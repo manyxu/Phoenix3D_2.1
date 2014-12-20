@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EventChannel.cpp
-*
-*/
+// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
 
 #include "PX2EventChannel.hpp"
 using namespace PX2;

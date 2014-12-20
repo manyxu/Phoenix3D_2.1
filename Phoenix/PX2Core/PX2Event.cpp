@@ -1,10 +1,7 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Event.cpp
-*
-*/
+// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
 
 #include "PX2Event.hpp"
+#include "PX2Assert.hpp"
 using namespace PX2;
 
 Event::Event ()

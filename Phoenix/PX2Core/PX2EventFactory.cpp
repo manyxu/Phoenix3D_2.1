@@ -1,10 +1,7 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EventFactory.cpp
-*
-*/
+// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
 
 #include "PX2EventFactory.hpp"
+#include "PX2Assert.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------

@@ -108,12 +108,6 @@
     <ClInclude Include="PX2Timespan.hpp">
       <Filter>Time</Filter>
     </ClInclude>
-    <ClInclude Include="PX2TimedNotificationQueue.hpp">
-      <Filter>Notifications</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2Notification.hpp">
-      <Filter>Notifications</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Runnable.hpp">
       <Filter>Thread</Filter>
     </ClInclude>
@@ -131,21 +125,6 @@
     </ClInclude>
     <ClInclude Include="PX2ThreadLocal.hpp">
       <Filter>Thread</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2NotificationQueue.hpp">
-      <Filter>Notifications</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2NotificationCenter.hpp">
-      <Filter>Notifications</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2AbstractObserver.hpp">
-      <Filter>Notifications</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2NObserver.hpp">
-      <Filter>Notifications</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2Observer.hpp">
-      <Filter>Notifications</Filter>
     </ClInclude>
     <ClInclude Include="PX2Exception.hpp">
       <Filter>Exception</Filter>
@@ -243,6 +222,36 @@
     <ClInclude Include="PX2Function.hpp">
       <Filter>ObjectSystem</Filter>
     </ClInclude>
+    <ClInclude Include="PX2Event.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EventChannel.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EventData.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EventFactory.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EventFactoryImplement.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EventHandler.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EventSpace.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EventSpaceRegister.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EventSpaceRegisterMCR.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EventWorld.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Assert.cpp">
@@ -314,12 +323,6 @@
     <ClCompile Include="PX2Timespan.cpp">
       <Filter>Time</Filter>
     </ClCompile>
-    <ClCompile Include="PX2TimedNotificationQueue.cpp">
-      <Filter>Notifications</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2Notification.cpp">
-      <Filter>Notifications</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Runnable.cpp">
       <Filter>Thread</Filter>
     </ClCompile>
@@ -337,15 +340,6 @@
     </ClCompile>
     <ClCompile Include="PX2ThreadLocal.cpp">
       <Filter>Thread</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2NotificationCenter.cpp">
-      <Filter>Notifications</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2NotificationQueue.cpp">
-      <Filter>Notifications</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2AbstractObserver.cpp">
-      <Filter>Notifications</Filter>
     </ClCompile>
     <ClCompile Include="PX2Exception.cpp">
       <Filter>Exception</Filter>
@@ -407,6 +401,27 @@
     <ClCompile Include="PX2Visitor.cpp">
       <Filter>Design</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Event.cpp">
+      <Filter>EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EventChannel.cpp">
+      <Filter>EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EventFactory.cpp">
+      <Filter>EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EventFactoryImplement.cpp">
+      <Filter>EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EventHandler.cpp">
+      <Filter>EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EventSpace.cpp">
+      <Filter>EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EventWorld.cpp">
+      <Filter>EventSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2DoubleChainList.inl">
@@ -460,12 +475,6 @@
     <None Include="PX2Timespan.inl">
       <Filter>Time</Filter>
     </None>
-    <None Include="PX2NObserver.inl">
-      <Filter>Notifications</Filter>
-    </None>
-    <None Include="PX2Observer.inl">
-      <Filter>Notifications</Filter>
-    </None>
     <None Include="PX2GeneralAlloctor.inl">
       <Filter>Memory</Filter>
     </None>
@@ -492,6 +501,21 @@
     </None>
     <None Include="PX2StringTokenizer.inl">
       <Filter>Untity</Filter>
+    </None>
+    <None Include="PX2Event.inl">
+      <Filter>EventSystem</Filter>
+    </None>
+    <None Include="PX2EventChannel.inl">
+      <Filter>EventSystem</Filter>
+    </None>
+    <None Include="PX2EventHandler.inl">
+      <Filter>EventSystem</Filter>
+    </None>
+    <None Include="PX2EventSpace.inl">
+      <Filter>EventSystem</Filter>
+    </None>
+    <None Include="PX2EventSpaceRegister.inl">
+      <Filter>EventSystem</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -522,9 +546,6 @@
     <Filter Include="Timer">
       <UniqueIdentifier>{0b74f816-36e8-4ebf-a4e8-038d6327dbd0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Notifications">
-      <UniqueIdentifier>{942fda35-45cb-4b69-8d78-575112d8b7a3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Exception">
       <UniqueIdentifier>{70364013-edfd-4b7d-a35f-6cdd259f17b6}</UniqueIdentifier>
     </Filter>
@@ -536,6 +557,9 @@
     </Filter>
     <Filter Include="FileStream">
       <UniqueIdentifier>{92570a08-bff0-4a85-b026-43852064b551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EventSystem">
+      <UniqueIdentifier>{e93185c7-fe65-4d5b-a034-c882fc6a0235}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PX2AbstractObserver.hpp" />
     <ClInclude Include="PX2Any.hpp" />
     <ClInclude Include="PX2Ascii.hpp" />
     <ClInclude Include="PX2Assert.hpp" />
@@ -32,7 +31,17 @@
     <ClInclude Include="PX2DoubleChainList.hpp" />
     <ClInclude Include="PX2Endian.hpp" />
     <ClInclude Include="PX2Environment.hpp" />
+    <ClInclude Include="PX2Event.hpp" />
+    <ClInclude Include="PX2EventChannel.hpp" />
+    <ClInclude Include="PX2EventData.hpp" />
+    <ClInclude Include="PX2EventFactory.hpp" />
+    <ClInclude Include="PX2EventFactoryImplement.hpp" />
+    <ClInclude Include="PX2EventHandler.hpp" />
+    <ClInclude Include="PX2EventSpace.hpp" />
+    <ClInclude Include="PX2EventSpaceRegister.hpp" />
+    <ClInclude Include="PX2EventSpaceRegisterMCR.hpp" />
     <ClInclude Include="PX2Eventt.hpp" />
+    <ClInclude Include="PX2EventWorld.hpp" />
     <ClInclude Include="PX2Exception.hpp" />
     <ClInclude Include="PX2FileIO.hpp" />
     <ClInclude Include="PX2FixMemoryObject.hpp" />
@@ -58,15 +67,10 @@
     <ClInclude Include="PX2Mutex.hpp" />
     <ClInclude Include="PX2MutexType.hpp" />
     <ClInclude Include="PX2Names.hpp" />
-    <ClInclude Include="PX2NObserver.hpp" />
     <ClInclude Include="PX2NotFreeObjectPool.hpp" />
     <ClInclude Include="PX2Noncopyable.hpp" />
-    <ClInclude Include="PX2Notification.hpp" />
-    <ClInclude Include="PX2NotificationCenter.hpp" />
-    <ClInclude Include="PX2NotificationQueue.hpp" />
     <ClInclude Include="PX2Object.hpp" />
     <ClInclude Include="PX2ObjectCopyPool.hpp" />
-    <ClInclude Include="PX2Observer.hpp" />
     <ClInclude Include="PX2OutStream.hpp" />
     <ClInclude Include="PX2PriorityQueue.hpp" />
     <ClInclude Include="PX2Property.hpp" />
@@ -92,7 +96,6 @@
     <ClInclude Include="PX2ThreadTarget.hpp" />
     <ClInclude Include="PX2ThreadType.hpp" />
     <ClInclude Include="PX2Time.hpp" />
-    <ClInclude Include="PX2TimedNotificationQueue.hpp" />
     <ClInclude Include="PX2Timer.hpp" />
     <ClInclude Include="PX2TimerManager.hpp" />
     <ClInclude Include="PX2Timespan.hpp" />
@@ -103,7 +106,6 @@
     <ClInclude Include="PX2WeakPointer.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PX2AbstractObserver.cpp" />
     <ClCompile Include="PX2Ascii.cpp" />
     <ClCompile Include="PX2Assert.cpp" />
     <ClCompile Include="PX2BufferIO.cpp" />
@@ -111,7 +113,14 @@
     <ClCompile Include="PX2DateTime.cpp" />
     <ClCompile Include="PX2Endian.cpp" />
     <ClCompile Include="PX2Environment.cpp" />
+    <ClCompile Include="PX2Event.cpp" />
+    <ClCompile Include="PX2EventChannel.cpp" />
+    <ClCompile Include="PX2EventFactory.cpp" />
+    <ClCompile Include="PX2EventFactoryImplement.cpp" />
+    <ClCompile Include="PX2EventHandler.cpp" />
+    <ClCompile Include="PX2EventSpace.cpp" />
     <ClCompile Include="PX2Eventt.cpp" />
+    <ClCompile Include="PX2EventWorld.cpp" />
     <ClCompile Include="PX2Exception.cpp" />
     <ClCompile Include="PX2FileIO.cpp" />
     <ClCompile Include="PX2Format.cpp" />
@@ -127,9 +136,6 @@
     <ClCompile Include="PX2LogOutputWindowHandler.cpp" />
     <ClCompile Include="PX2Memory.cpp" />
     <ClCompile Include="PX2Mutex.cpp" />
-    <ClCompile Include="PX2Notification.cpp" />
-    <ClCompile Include="PX2NotificationCenter.cpp" />
-    <ClCompile Include="PX2NotificationQueue.cpp" />
     <ClCompile Include="PX2Object.cpp" />
     <ClCompile Include="PX2ObjectCopyPool.cpp" />
     <ClCompile Include="PX2OutStream.cpp" />
@@ -149,7 +155,6 @@
     <ClCompile Include="PX2ThreadServer.cpp" />
     <ClCompile Include="PX2ThreadTarget.cpp" />
     <ClCompile Include="PX2Time.cpp" />
-    <ClCompile Include="PX2TimedNotificationQueue.cpp" />
     <ClCompile Include="PX2Timer.cpp" />
     <ClCompile Include="PX2TimerManager.cpp" />
     <ClCompile Include="PX2Timespan.cpp" />
@@ -163,6 +168,11 @@
     <None Include="PX2BufferIO.inl" />
     <None Include="PX2DateTime.inl" />
     <None Include="PX2DoubleChainList.inl" />
+    <None Include="PX2Event.inl" />
+    <None Include="PX2EventChannel.inl" />
+    <None Include="PX2EventHandler.inl" />
+    <None Include="PX2EventSpace.inl" />
+    <None Include="PX2EventSpaceRegister.inl" />
     <None Include="PX2FileIO.inl" />
     <None Include="PX2FixMemoryPool.inl" />
     <None Include="PX2GeneralAlloctor.inl" />
@@ -171,10 +181,8 @@
     <None Include="PX2Memory.inl" />
     <None Include="PX2MinHeap.inl" />
     <None Include="PX2MsgQueue.inl" />
-    <None Include="PX2NObserver.inl" />
     <None Include="PX2NotFreeObjectPool.inl" />
     <None Include="PX2Object.inl" />
-    <None Include="PX2Observer.inl" />
     <None Include="PX2OutStream.inl" />
     <None Include="PX2PriorityQueue.inl" />
     <None Include="PX2Rtti.inl" />

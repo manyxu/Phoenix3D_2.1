@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventHandler.inl
-*
-*/
+// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
 
 //----------------------------------------------------------------------------
 inline bool EventHandler::IsUpdateEvent (Event *event)
