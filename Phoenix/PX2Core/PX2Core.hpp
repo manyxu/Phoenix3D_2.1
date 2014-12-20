@@ -90,6 +90,7 @@
 #include "PX2Names.hpp"
 #include "PX2Object.hpp"
 #include "PX2Property.hpp"
+#include "PX2Function.hpp"
 #include "PX2OutStream.hpp"
 #include "PX2Rtti.hpp"
 #include "PX2Stream.hpp"

@@ -12,6 +12,7 @@
 #include "PX2SoundActor.hpp"
 #include "PX2UIManager.hpp"
 #include "PX2Character.hpp"
+#include "PX2TriggerActor.hpp"
 using namespace PX2;
 using namespace std;
 
@@ -27,9 +28,15 @@ mIsUseLightTexture(false)
 {
 	GraphicsRoot::GetSingleton().ClearAllLights();
 
+	mSpawnTagActor = new0 TagActor();
+	mSpawnTagActor->SetName("DefaultSpawnTagActor");
+	AddActor(mSpawnTagActor);
+	mSpawnTagActor->SetNamePropChangeable(false);
+
 	mDefaultARActor = new0 AmbientRegionActor();
-	mDefaultARActor->SetName("DefaultAmibient");
+	mDefaultARActor->SetName("DefaultAmbientActor");
 	AddActor(mDefaultARActor);
+	mDefaultARActor->SetNamePropChangeable(false);
 
 	SkySphere *skySphere = new0 SkySphere();
 	SkyActor *skyActor = new0 SkyActor(skySphere);
@@ -40,12 +47,6 @@ mIsUseLightTexture(false)
 Scene3D::~Scene3D ()
 {
 	mDefaultARActor = 0;
-}
-//----------------------------------------------------------------------------
-static AVector AnglesToDirection(float angle0, float angle1)
-{
-	return AVector(Mathf::Cos(angle1)*Mathf::Cos(angle0), 
-		-Mathf::Cos(angle1)*Mathf::Sin(angle0), -Mathf::Sin(angle1));
 }
 //-----------------------------------------------------------------------------
 void Scene3D::Update (double appSeconds, double elapsedSeconds)
@@ -58,6 +59,14 @@ void Scene3D::OnAddedActor (Actor *actor)
 	if (actor->IsDerived(TerrainActor::TYPE))
 	{
 		mTerrainActor = DynamicCast<TerrainActor>(actor);
+	}
+}
+//----------------------------------------------------------------------------
+void Scene3D::OnRemoveActor (Actor *actor)
+{
+	if (actor->IsDerived(TerrainActor::TYPE))
+	{
+		mTerrainActor = 0;
 	}
 }
 //----------------------------------------------------------------------------
@@ -193,6 +202,7 @@ void Scene3D::Load (InStream& source)
 	PX2_VERSION_LOAD(source);
 
 	source.ReadPointer(mTerrainActor);
+	source.ReadPointer(mSpawnTagActor);
 	source.ReadPointer(mDefaultARActor);
 	source.ReadEnum(mBakeSizeType);
 	source.ReadBool(mIsUseLightTexture);
@@ -207,12 +217,23 @@ void Scene3D::Link (InStream& source)
 	GraphicsRoot::GetSingleton().ClearAllLights();
 
 	source.ResolveLink(mTerrainActor);
+	source.ResolveLink(mSpawnTagActor);
 	source.ResolveLink(mDefaultARActor);
 }
 //----------------------------------------------------------------------------
 void Scene3D::PostLink ()
 {
 	Scene::PostLink();
+
+	if (mDefaultARActor)
+	{
+		mDefaultARActor->SetNamePropChangeable(false);
+	}
+
+	if (mSpawnTagActor)
+	{
+		mSpawnTagActor->SetNamePropChangeable(false);
+	}
 }
 //----------------------------------------------------------------------------
 bool Scene3D::Register (OutStream& target) const
@@ -220,6 +241,7 @@ bool Scene3D::Register (OutStream& target) const
 	if (Scene::Register(target))
 	{
 		target.Register(mTerrainActor);
+		target.Register(mSpawnTagActor);
 		target.Register(mDefaultARActor);
 
 		return true;
@@ -235,6 +257,7 @@ void Scene3D::Save (OutStream& target) const
 	PX2_VERSION_SAVE(target);
 
 	target.WritePointer(mTerrainActor);
+	target.WritePointer(mSpawnTagActor);
 	target.WritePointer(mDefaultARActor);
 	target.Write(mBakeSizeType);
 	target.WriteBool(mIsUseLightTexture);
@@ -247,6 +270,7 @@ int Scene3D::GetStreamingSize (Stream &stream) const
 	int size = Scene::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 	size += PX2_POINTERSIZE(mTerrainActor);
+	size += PX2_POINTERSIZE(mSpawnTagActor);
 	size += PX2_POINTERSIZE(mDefaultARActor);
 	size += PX2_ENUMSIZE(mBakeSizeType);
 	size += PX2_BOOLSIZE(mIsUseLightTexture);

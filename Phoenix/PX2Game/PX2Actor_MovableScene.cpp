@@ -56,19 +56,6 @@ void Actor::SetMovable (Movable *movable)
 		mScene->GetSceneNode()->AttachChild(mMovable);
 	}
 
-	Node *node = DynamicCast<Node>(mMovable);
-	if (node)
-	{
-		for (int i=0; i<node->GetNumChildren(); i++)
-		{
-			Renderable *renderable = DynamicCast<Renderable>(node->GetChild(i));
-			if (renderable)
-			{
-				renderable->SetUpdatePriority(-1);
-			}
-		}
-	}
-
 	SetBakeObject(IsBakeObject());
 	SetBakeTarget(IsBakeTarget());
 }
@@ -92,17 +79,43 @@ void Actor::ShowHelpMovable (bool show)
 //----------------------------------------------------------------------------
 void Actor::SetHelpMovable (Movable *movable)
 {
+	Node *parent = 0;
+	if (mHelpMovable)
+	{
+		parent = DynamicCast<Node>(mHelpMovable->GetParent());
+		if (parent)
+		{
+			parent->DetachChild(mHelpMovable);
+		}
+	}
+
 	mHelpMovable = movable;
 
 	mHelpMovable->LocalTransform.SetTranslate(mPosition);
+	mHelpMovable->LocalTransform.SetRotate(Matrix3f().MakeEulerXYZ(
+		mRotation.X(), mRotation.Y(), mRotation.Z()));
+	mHelpMovable->Show(mIsVisible);
 
-	if (!mIsVisible)
+	if (mHelpMovable && parent)
 	{
-		mHelpMovable->Culling = Movable::CULL_ALWAYS;
+		parent->AttachChild(mHelpMovable);
 	}
-	else
+
+	SetPickable(IsPickable());
+}
+//----------------------------------------------------------------------------
+void Actor::SetPickable (bool isPickable)
+{
+	mIsPickable = isPickable;
+
+	if (mMovable)
 	{
-		mHelpMovable->Culling = Movable::CULL_DYNAMIC;
+		mMovable->SetDoPick(isPickable);
+	}
+
+	if (mHelpMovable)
+	{
+		mHelpMovable->SetDoPick(isPickable);
 	}
 }
 //----------------------------------------------------------------------------

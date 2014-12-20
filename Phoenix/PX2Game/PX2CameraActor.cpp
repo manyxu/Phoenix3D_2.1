@@ -15,8 +15,16 @@ PX2_IMPLEMENT_FACTORY(CameraActor);
 //----------------------------------------------------------------------------
 CameraActor::CameraActor (Camera *camera)
 	:
-mCamera(camera)
+mCamera(camera),
+mFOV(35.0f)
 {
+	if (!camera)
+	{
+		mCamera = new0 Camera();
+		mCamera->SetName("Camera");
+		mCamera->SetFrustum(mFOV, 960.0f/640.0f, 1.0f, 1000.0f);
+	}
+
 	mCameraNode = new0 CameraNode(mCamera);
 	mCameraNode->SetName("CameraNode");
 	SetMovable(mCameraNode);
@@ -33,6 +41,25 @@ CameraActor::~CameraActor ()
 {
 }
 //----------------------------------------------------------------------------
+void CameraActor::SetFOV (float val)
+{
+	mFOV = val;
+
+	float fov = 35.0f;
+	float aspectRatio = 1.0f;
+	float dMin = 0.0f;
+	float dMax = 1000.0f;
+	if (mCamera->GetFrustum(fov, aspectRatio, dMin, dMax))
+	{
+		mCamera->SetFrustum(mFOV, aspectRatio, dMin, dMax);
+	}
+}
+//----------------------------------------------------------------------------
+float CameraActor::GetFOV () const
+{
+	return mFOV;
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // CameraActor
@@ -41,11 +68,20 @@ void CameraActor::RegistProperties ()
 {
 	Actor::RegistProperties();
 	AddPropertyClass("CameraActor");
+
+	AddProperty("FOV", Object::PT_FLOAT, mFOV);
 }
 //----------------------------------------------------------------------------
 void CameraActor::OnPropertyChanged (const PropertyObject &obj)
 {
 	Actor::OnPropertyChanged(obj);
+
+	if (obj.Name == "FOV")
+	{
+		mFOV = PX2_ANY_AS(obj.Data, float);
+
+		SetFOV(mFOV);
+	}
 }
 //----------------------------------------------------------------------------
 
@@ -80,7 +116,8 @@ void CameraActor::GetAllObjectsByName (const std::string& name,
 CameraActor::CameraActor (LoadConstructor value)
 	:
 Actor(value),
-mCamera(0)
+mCamera(0),
+mFOV(35.0f)
 {
 }
 //----------------------------------------------------------------------------
@@ -93,6 +130,7 @@ void CameraActor::Load (InStream& source)
 
 	source.ReadPointer(mCamera);
 	source.ReadPointer(mCameraNode);
+	source.Read(mFOV);
 
 	PX2_END_DEBUG_STREAM_LOAD(CameraActor, source);
 }
@@ -131,6 +169,7 @@ void CameraActor::Save (OutStream& target) const
 
 	target.WritePointer(mCamera);
 	target.WritePointer(mCameraNode);
+	target.Write(mFOV);
 
 	PX2_END_DEBUG_STREAM_SAVE(CameraActor, target);
 }
@@ -141,6 +180,7 @@ int CameraActor::GetStreamingSize (Stream &stream) const
 	size += PX2_VERSION_SIZE(mVersion);
 	size += PX2_POINTERSIZE(mCamera);
 	size += PX2_POINTERSIZE(mCameraNode);
+	size += sizeof(mFOV);
 
 	return size;
 }

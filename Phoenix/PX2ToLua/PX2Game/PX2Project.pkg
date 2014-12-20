@@ -13,8 +13,8 @@
 		Float4 GetColor ();
 
 		void SetScene (Scene *scene);
-		Scene *GetScene () const;
-		UIFrame *GetUI () const;
+		Scene *GetScene ();
+		UIFrame *GetUI ();
 
 		// infos
 		void SetShowProjectInfo (bool show);

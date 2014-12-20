@@ -10,6 +10,7 @@
 #include "PX2GamePre.hpp"
 #include "PX2Netable.hpp"
 #include "PX2XMLNode.hpp"
+#include "PX2LogicModule.hpp"
 
 namespace PX2
 {
@@ -31,25 +32,12 @@ namespace PX2
 		void SetServerID (int serverID);
 		int GetServerID () const;
 
-		void SetExtraDataInt (const std::string &name, int data);
-		int GetExtraDataInt (const std::string &name) const;
-		void SetExtraDataFloat (const std::string &name, float data);
-		float GetExtraDataFloat (const std::string &name) const;
+		virtual void Initlize ();
 
-		// init
+		// Scripts
 		void SetScriptHandler_Init (const std::string &handler);
 		const std::string &GetScriptHandler_Init () const;
 
-		virtual void Initlize ();
-
-		// serialize
-		bool SaveToXML (const std::string &filename);
-		bool LoadFromXML (const std::string &filename);
-		bool LoadFromXML (const std::string &filename, 
-			const std::string &classLayer);
-
-		// Scripts
-		
 		// 用户自己设置的名称,如果设置了
 		// GetScriptName 和 GetUserScriptName是一样的
 		void SetUserScriptName(const std::string &scriptName);
@@ -62,19 +50,12 @@ namespace PX2
 
 		void CallString (const char *fun, const char *format="", ...);
 
-	public_internal:
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
-
 	protected:
 		XMLNode GetXMLNodeAtClassLayer (XMLNode node, 
 			const std::string &classLayer);
 
 		bool mIsEnable;
-
 		int mServerID;
-		std::map<std::string, int> mExtraDataInts;
-		std::map<std::string, float> mExtraDataFloats;
 		std::string mScriptHandler_Init;
 		std::string mScriptName;
 		std::string mUserScriptName;

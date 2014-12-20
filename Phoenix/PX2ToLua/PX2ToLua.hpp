@@ -21,7 +21,7 @@
 #include "PX2Game.hpp"
 
 // the game
-#include "X_Heads.hpp"
+#include "TheGame.hpp"
 
 using namespace PX2;
 

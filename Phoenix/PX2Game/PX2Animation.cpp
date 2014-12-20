@@ -84,62 +84,6 @@ void Animation::Stop ()
 	mIsAnimPlaying = false;
 }
 //----------------------------------------------------------------------------
-void Animation::SaveToXMLNode (XMLNode nodeParent)
-{
-	XMLNode nodeClass = nodeParent.NewChild("Class");
-	nodeClass.SetAttributeString("Type", "Animation");
-
-	Gameable::SaveToXMLNode(nodeClass);
-
-	XMLNode nodeProperty = nodeClass.NewChild("Property");
-	nodeProperty.SetAttributeInt("AnimType", (int)GetAnimType());
-	nodeProperty.SetAttributeFloat("NormalTime", GetTime());
-	nodeProperty.SetAttributeFloat("Time", GetTime());
-	nodeProperty.SetAttributeString("Filename", GetFilename());
-	nodeProperty.SetAttributeBool("IsPlayOnce", IsPlayOnce());
-}
-//----------------------------------------------------------------------------
-void Animation::LoadFromXMLNode (XMLNode node)
-{
-	XMLNode nodeClass = node.GetChild("Class");
-	if (!nodeClass.IsNull())
-	{
-		Gameable::LoadFromXMLNode(nodeClass);
-	}
-	else
-	{
-		assertion(false, "");
-	}
-
-	XMLNode nodeProperty = node.GetChild("Property");
-	if (!nodeProperty.IsNull())
-	{
-		mAnimType = (AnimType)(nodeProperty.AttributeToInt("AnimType"));
-
-		SetTime(nodeProperty.AttributeToFloat("Time"));
-
-		if (nodeProperty.HasAttribute("NormalTime"))
-		{
-			SetNormalTime(nodeProperty.AttributeToFloat("NormalTime"));
-		}
-		else
-		{
-			SetNormalTime(GetTime());
-		}
-
-		SetFilename(nodeProperty.AttributeToString("Filename"));
-
-		if (nodeProperty.HasAttribute("IsPlayOnce"))
-		{
-			SetPlayOnce(nodeProperty.AttributeToBool("IsPlayOnce"));
-		}
-	}
-	else
-	{
-		assertion(false, "");
-	}
-}
-//----------------------------------------------------------------------------
 void Animation::SetCharacter (Character *character)
 {
 	mCharacter = character;

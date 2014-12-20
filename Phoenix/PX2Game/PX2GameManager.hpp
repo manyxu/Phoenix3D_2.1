@@ -9,37 +9,28 @@
 
 #include "PX2GamePre.hpp"
 #include "PX2Singleton.hpp"
-#include "PX2UIPicBox.hpp"
-#include "PX2UIFrame.hpp"
 #include "PX2Rect.hpp"
-#include "PX2Texture2DMaterial.hpp"
+#include "PX2Character.hpp"
 #include "PX2SmartPointer.hpp"
+#include "PX2InputEventHandler.hpp"
+#include "PX2CamCtrlModule.hpp"
 
 namespace PX2
 {
 
-	struct UBIBObj
-	{
-		UBIBObj ()
-		{
-			IsValued = false;
-		}
+	class Scene;
+	class Character;
 
-		bool IsValued;
-		VertexBufferPtr mVB;
-		IndexBufferPtr mIB;
-	};
-
-	class GameManager : public Singleton<GameManager>
+	class GameManager : public Singleton<GameManager>, public InputEventHandler
 	{
 	public:
 		GameManager ();
 		~GameManager ();
 
-		void LogCurMemory (const std::string &tag);
 		void Update (double appSeconds, double elapsedSeconds);
 
 		bool LoadBoost (const char *filename);
+		bool WirteBoost (const char *filename, int boostWidth, int boostHeight);
 		int GetBoostWidth () const;
 		int GetBoostHeight () const;
 		const std::string &GetProjectPath () const;
@@ -56,35 +47,55 @@ namespace PX2
 		};
 		void SetGameViewAdjustType (int types);
 		int GetGameViewAjustType () const;
-		void SetGameViewRect (const Rectf &rect);
-		const Rectf &GetGameViewRect () const;
+		Rectf CalGameViewRect (float screenWidth, float screenHeight);
 
-		// Converts
-		Movable *CT_Movable (Object *obj);
-		Node *CT_Node (Object *obj);
-		UIFrame *CT_UIFrame (Object *obj);
-		UIPicBox *CT_UIPicBox (Object *obj);
+		// ¹«ÓÃ ¼ì²â
+		bool GetSceneDownPos (Scene *scene, const APoint &curPos, APoint &lastPos);
+		bool GetSceneTerrainDownPos (Scene *scene, const APoint &curPos, APoint &lastPos);
+		bool GetSceneDownPos (Scene *scene, Actor *actor, APoint &lastPos);
+		bool GetSceneTerrainDownPos (Scene *scene, Actor *actor, APoint &lastPos);
 
-		VertexFormat *GetVertexFormatUser ();
-		Texture2DMaterial *GetMaterialUser ();
+		bool ScenePick (Movable *mov, const Float2 &screenPos, APoint &lastPos);
+		bool ScenePick (Scene *scene, const Float2 &screenPos, APoint &lastPos, Actor* &lastActor);
 
-		void ClearVBIB ();
-		void AddVBIB (const std::string &texPackFilename,
-			VertexBuffer *vb, IndexBuffer *ib);
-		UBIBObj GetVBID (const std::string &texPackFilename);
+		void Play (bool play);
+		bool IsPlaying () const;
+
+		// play
+		enum PlayMode
+		{
+			PM_SIMPLE,
+			PM_LOGIC,
+			PM_MAX_MODE
+		};
+		void SetPlayMode (PlayMode mode);
+		PlayMode GetPlayMode () const;
+
+		void SetMainCharacter (Character *chara);
+		Character *GetMainCharacter () const;
+		Character *CreateEngineDefaultCharacter ();
+
+		// touch
+		virtual bool TouchMoved (const InputEventData &data);
+		virtual bool TouchPressed (const InputEventData &data);
+		virtual bool TouchReleased (const InputEventData &data);
+		virtual bool TouchCancelled (const InputEventData &data);
+
+		// help
+		void LogCurMemory (const std::string &tag);
 
 	private:
 		int mBoostWidth;
 		int mBoostHeight;
-		Rectf mGameViewRect;
 		std::string mProjectPath;
 		int mGameViewAdjustType;
 
-		VertexFormatPtr mVertexFormatUser;
-		Texture2DMaterialPtr mMaterialUser;
+		PX2::TriMeshPtr mXYPlane;
+		CamCtrlModulePtr mCamCtrlModule;
 
-		typedef HashTable<FString, UBIBObj, FixedStringHashCoder> UBIBTable;
-		UBIBTable mUBIBTable;
+		bool mIsPlaying;
+		PlayMode mPlayMode;
+		CharacterPtr mMainCharacter;
 	};
 
 #include "PX2GameManager.inl"

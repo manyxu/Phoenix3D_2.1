@@ -27,12 +27,16 @@ namespace PX2
 
 		void SetCamera (Camera *camera);
 		Camera *GetCamera ();
+		
+		void SetFOV (float fov);
+		float GetFOV () const;
 
 		CameraNode *GetCameraNode ();
 
 	private:
 		CameraNodePtr mCameraNode;
 		CameraPtr mCamera;
+		float mFOV;
 	};
 
 	PX2_REGISTER_STREAM(CameraActor);

@@ -62,9 +62,6 @@ public_internal:
 		void SetCharacter (Character *character);
 		void SetEquipped (bool equip);
 
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
-
 	protected:
 		Character *mCharacter;
 		

@@ -37,11 +37,6 @@ namespace PX2
 
 		virtual void Initlize ();
 
-		// save
-	public:
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
-
 		// Movable
 	public:
 		virtual void SetMovableFilename (const std::string &filename, bool shareVIM);

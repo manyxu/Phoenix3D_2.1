@@ -16,6 +16,7 @@
 #include "PX2Polysegment.hpp"
 #include "PX2CellSpace.hpp"
 #include "PX2Gameable.hpp"
+#include "PX2LogicModule.hpp"
 
 namespace PX2
 {
@@ -74,18 +75,14 @@ namespace PX2
 		PX2::Node *GetSceneNode ();
 
 		// scene use ViewPort
-		void SetViewPort (int xPosition, int yPosition, int width,
-			int height);
-		void GetViewport (int& xPosition, int& yPosition, int& width,
-			int& height) const;
-		void SetAdjustCamWidthViewPort (bool doAdjust);
-		bool IsAdjustCamWidthViewPort () const;
-
-		void CallRendererSetViewport (); // 检测Viewport是否有效，设置Viewport
+		void SetViewport (const Rectf &rect);
+		const Rectf &GetViewport () const;
 
 		// Actors
 		void AddActor (Actor *actor);
+		virtual void OnAddedActor (Actor *actor);
 		bool RemoveActor (Actor *actor);
+		virtual void OnRemoveActor (Actor *actor);
 		bool IsActorIn (Actor *actor);
 		int GetNumActors ();
 		Actor *GetActor (const std::string &name) const;
@@ -102,7 +99,7 @@ namespace PX2
 		// Help system
 		void ShowHelpMovables (bool show);
 
-		void ComputeVisibleSet ();
+		void ComputeVisibleSetAndEnvironment ();
 		Culler &GetCuller ();
 
 		// events
@@ -114,23 +111,16 @@ namespace PX2
 		SceneUpdateCallback mUpdateCallback;		
 		CameraActorPtr mCameraActor;
 		CameraPtr mCamera;
+
 		int mSceneID;
 		float mLength;
 		float mWidth;
 		SceneManageType mSceneManageType;
-		int mViewportX;
-		int mViewportY;
-		int mViewportWidth;
-		int mViewportHeight;
-		bool mIsAdjustCamWithViewPort;
+		Rectf mViewport;
 		NodePtr mSceneNode;
 		std::vector<ActorPtr> mActors;
 		std::map<int, Actor*> mActorsMap;
-
-		// Actor Position Change 
 		bool mIsActorPositionChanged;
-
-		// SceneManage
 		CellSpacePtr mCellSpace;
 
 		Culler mCuller;

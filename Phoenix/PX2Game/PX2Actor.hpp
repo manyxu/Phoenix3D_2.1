@@ -16,6 +16,7 @@
 #include "PX2Gameable.hpp"
 #include "PX2PropModify.hpp"
 #include "PX2EffectNode.hpp"
+#include "PX2MoveBehavior.hpp"
 
 namespace GridMove
 {
@@ -32,6 +33,7 @@ namespace PX2
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
 		PX2_DECLARE_PROPERTY;
+		PX2_DECLARE_FUNCTION;
 		PX2_DECLARE_STREAM(Actor);
 
 	public:
@@ -95,6 +97,9 @@ namespace PX2
 		void *GetSceneContainer () const;
 		int GetSceneContainerIndex () const;
 
+		void SetPickable (bool isPickable);
+		bool IsPickable () const;
+
 		virtual void CalLights ();
 
 public_internal:
@@ -118,6 +123,8 @@ public_internal:
 		void *mSceneContainer;
 		int mSceneContainerIndex;
 
+		bool mIsPickable;
+
 		// Actor Effects
 	public:
 		EffectNode *AddActorEffect (const std::string &anchor, 
@@ -137,6 +144,8 @@ public_internal:
 		const APoint &GetRotation () const;
 		const APoint &GetPosition () const;
 
+		void SetFace (const AVector &dir, const AVector &uping=AVector::UNIT_Z);
+
 		PX2_DECLARE_PM_F(MaxSpeed);
 	public:
 		float GetPercentSpeedOverModified ();
@@ -145,17 +154,18 @@ public_internal:
 		void RemoveStopSpeedTag (const std::string &tag);
 		bool IsHasStopSpeedTag (const std::string &tag) const;
 		const std::vector<std::string> GetStopSpeedTags () const;
-		virtual void StopSpeed (bool stopSpeed);
 		bool IsStopSpeed () const;
 
-		virtual void SetVelocity (const AVector &vec);
-		const AVector &GetVelocity () const;
-		float GetSpeed () const;
+		virtual void SetVelocityDir (const AVector &vec);
+		const AVector &GetVelocityDir () const;
+		void SetHeadingAlignVelocityDir (bool isAlign);
+		bool IsHeadingAlignVelocityDir () const;
 		virtual void SetHeading (const AVector &heading);
 		const AVector &GetHeading () const;
 		virtual void OnUpdateGoToPosition (const APoint &toPos);
+		virtual void OnUpdateGoToStop ();
 
-		virtual void SetSmoothHeading (const AVector &soomthHeading);
+		virtual void SetSmoothHeading (const AVector &soomthHeading); // 确保soomthHeading是单位化的
 		const AVector &GetSmoothHeading () const;
 
 	protected:
@@ -165,8 +175,14 @@ public_internal:
 
 		std::vector<std::string> mStopSpeedTags;
 		bool mIsStopSpeed;
-		AVector mVelocity;
+		AVector mVelocityDir;
 		AVector mHeading;
+		bool mIsHeadingAlignVelocityDir;
+
+		// Touching
+	public:
+		virtual void OnTouchPressed (const APoint &pos);
+		virtual void OnTouchReleased (const APoint &pos);
 
 		// Props
 	public:
@@ -187,25 +203,37 @@ public_internal:
 
 		// AI
 	public:
-		void SetGridMoveOn (bool on);
-		bool IsGridMoveOn () const;
-		GridMoveBehavior *GetGridMoveBehavior ();
+		enum MoveBehaviorType
+		{
+			MBT_NONE,
+			MBT_FREE,
+			MBT_GRID,
+			MBT_MAX_TYPE
+		};
+		void SetMoveBehaviorType (MoveBehaviorType type);
+		MoveBehaviorType GetMoveBehaviorType () const;
+		MoveBehavior *GetMoveBehavior () const;
 
-		void SetArriveRange (float dis);
-		float GetArriveRange () const;
+		void GoTo (const APoint &pos);
 
-		void SetMass (float mass);
-		float GetMass () const;
+		void SetSmoothOn (bool on);
+		bool IsSmoothOn () const;
 
 	protected:
-		bool mIsGridMoveOn;
-		Pointer0<GridMoveBehavior> mGridMoveBehavior;
-		float mArriveRange;
-		float mMass;
+		MoveBehaviorType mMoveBehaviorType;
+		MoveBehaviorPtr mMoveBehavior;
 
 		bool mIsSmoothOn;
 		AVector mSmoothHeading;
 		Smoother<AVector> *mHeadingSmoother;
+
+		// Physics
+	public:
+		void SetMass (float mass);
+		float GetMass () const;
+
+	protected:
+		float mMass;
 
 		// Bake
 	public:
@@ -228,11 +256,6 @@ public_internal:
 		bool mIsBakeObject;
 		bool mIsBakeTarget;
 		std::map<std::string, std::string> mBakeTextures;
-
-		// SaveLoad
-	public:
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
 	};
 
 	PX2_REGISTER_STREAM(Actor);

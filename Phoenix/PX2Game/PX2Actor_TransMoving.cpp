@@ -7,6 +7,7 @@
 #include "PX2Actor.hpp"
 #include "PX2Scene.hpp"
 #include "PX2PropModify.hpp"
+#include "PX2MoveBehavior_Free.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -52,6 +53,26 @@ void Actor::SetRotation (const APoint &rolate)
 	{
 		mHelpMovable->LocalTransform.SetRotate(Matrix3f().MakeEulerXYZ(
 			rolate.X(), rolate.Y(), rolate.Z()));
+	}
+}
+//----------------------------------------------------------------------------
+void Actor::SetFace (const AVector &dir, const AVector &uping)
+{
+	AVector right = dir.Cross(uping);
+	right.Normalize();
+	AVector up = right.Cross(dir);
+	up.Normalize();
+
+	Matrix3f matRot(right, dir, up, true);
+
+	if (mMovable)
+	{
+		mMovable->LocalTransform.SetRotate(matRot);
+	}
+
+	if (mHelpMovable)
+	{
+		mHelpMovable->LocalTransform.SetRotate(matRot);
 	}
 }
 //----------------------------------------------------------------------------
@@ -127,22 +148,14 @@ const std::vector<std::string> Actor::GetStopSpeedTags () const
 	return mStopSpeedTags;
 }
 //----------------------------------------------------------------------------
-void Actor::StopSpeed (bool stop)
+void Actor::SetVelocityDir (const AVector &vec)
 {
-	mIsStopSpeed = stop;
-
-	if (mIsStopSpeed)
-	{
-		if (mGridMoveBehavior)
-			mGridMoveBehavior->SetSpeed(0.0f);
-
-		SetVelocity(AVector::ZERO);
-	}
+	mVelocityDir = vec;
 }
 //----------------------------------------------------------------------------
-void Actor::SetVelocity (const AVector &vec)
+void Actor::SetHeadingAlignVelocityDir (bool isAlign)
 {
-	mVelocity = vec;
+	mIsHeadingAlignVelocityDir = isAlign;
 }
 //----------------------------------------------------------------------------
 void Actor::SetHeading (const AVector &heading)
@@ -155,8 +168,39 @@ void Actor::OnUpdateGoToPosition (const APoint &toPos)
 	SetPosition(toPos);
 }
 //----------------------------------------------------------------------------
+void Actor::OnUpdateGoToStop ()
+{
+}
+//----------------------------------------------------------------------------
 void Actor::SetSmoothHeading (const AVector &soomthHeading)
 {
 	mSmoothHeading = soomthHeading;
+	SetFace(mSmoothHeading);
+}
+//----------------------------------------------------------------------------
+void Actor::SetMoveBehaviorType (MoveBehaviorType type)
+{
+	mMoveBehaviorType = type;
+
+	if (MBT_NONE == type)
+	{
+		mMoveBehavior = 0;
+	}
+	else if (MBT_FREE == type)
+	{
+		mMoveBehavior = new0 MoveBehaviorFree(this);
+	}
+	else
+	{
+		mMoveBehavior = 0;
+	}
+}
+//----------------------------------------------------------------------------
+void Actor::GoTo (const APoint &pos)
+{
+	if (mMoveBehavior)
+	{
+		mMoveBehavior->SetTarget(0, &pos);
+	}	
 }
 //----------------------------------------------------------------------------

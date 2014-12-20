@@ -15,6 +15,12 @@ namespace PX2
 	class WalkingState : public PostureState
 	{
 		PX2_SINGLETION(WalkingState);
+
+	public:
+		virtual void Update (Character *chara, double appSeconds, 
+			double elapsedSeconds);
+		virtual void StateEnter (Character *chara);
+		virtual void StateExit (Character *chara);
 	};
 
 }

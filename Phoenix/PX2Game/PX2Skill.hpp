@@ -29,11 +29,6 @@ namespace PX2
 		Skill ();
 		virtual ~Skill ();
 
-		// Save
-	public:
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
-
 		// Character
 	public:
 		Character *GetCharacter ();

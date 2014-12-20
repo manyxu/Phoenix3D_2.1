@@ -294,64 +294,6 @@ void SkillStepRangeTime::OnPropertyChanged (const PropertyObject &obj)
 	}
 }
 //----------------------------------------------------------------------------
-void SkillStepRangeTime::SaveToXMLNode (XMLNode nodeParent)
-{
-	XMLNode nodeClass = nodeParent.NewChild("Class");
-	nodeClass.SetAttributeString("Type", "SkillStepRangeTime");
-	
-	SkillStep::SaveToXMLNode(nodeClass);
-	
-	XMLNode nodeProperty = nodeClass.NewChild("Property");
-	nodeProperty.SetAttributeInt("TimeType", (int)GetTimeType());
-	nodeProperty.SetAttributeFloat("Value", GetValue());
-
-/*
-	XMLNode nodeClass("Class");
-	nodeClass.Create(nodeParent.mDoc);
-	nodeClass.SetAttributeString("Type", "SkillStepRangeTime");
-	nodeParent.LinkEndChild(nodeClass);
-
-	SkillStep::SaveToXMLNode(nodeClass);
-
-	XMLNode nodeProperty("Property");
-	nodeProperty.Create(nodeClass.mDoc);
-	nodeClass.LinkEndChild(nodeProperty);
-	nodeProperty.SetAttributeInt("TimeType", (int)GetTimeType());
-	nodeProperty.SetAttributeFloat("Value", GetValue());
-*/
-}
-//----------------------------------------------------------------------------
-void SkillStepRangeTime::LoadFromXMLNode (XMLNode node)
-{
-	XMLNode nodeClass = node.GetChild("Class");
-	if (!nodeClass.IsNull())
-	{
-		SkillStep::LoadFromXMLNode(nodeClass);
-	}
-	else
-	{
-		assertion(false, "");
-	}
-
-	XMLNode nodeProperty = node.GetChild("Property");
-	if (!nodeProperty.IsNull())
-	{
-		if (nodeProperty.HasAttribute("RangeTime"))
-		{
-			SetValue(0.3f);
-		}
-		else
-		{
-			SetTimeType((TimeType)nodeProperty.AttributeToInt("TimeType"));
-			SetValue(nodeProperty.AttributeToFloat("Value"));
-		}
-	}
-	else
-	{
-		assertion(false, "");
-	}
-}
-//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 持久化支持

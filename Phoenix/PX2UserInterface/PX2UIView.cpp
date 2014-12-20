@@ -12,24 +12,6 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-static bool UILessThan (const Renderable *renderable0,
-	const Renderable *renderable1)
-{
-	if (renderable0->GetSortIndex() == renderable1->GetSortIndex())
-	{
-		if (renderable0->IsTransparent())
-		{
-			return renderable0->WorldTransform.GetTranslate().Y() > renderable1->WorldTransform.GetTranslate().Y();
-		}
-		else
-		{
-			return renderable0 < renderable1;
-		}
-	}
-
-	return renderable0->GetSortIndex() < renderable1->GetSortIndex();
-}
-//----------------------------------------------------------------------------
 UIView::UIView (int id)
 	:
 mID(id),

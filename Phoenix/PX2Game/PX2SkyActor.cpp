@@ -20,6 +20,8 @@ mSky(sky)
 	{
 		SetMovable(sky);
 	}
+
+	SetPickable(false);
 }
 //----------------------------------------------------------------------------
 SkyActor::~SkyActor ()

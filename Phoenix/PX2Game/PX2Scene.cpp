@@ -16,6 +16,7 @@
 #include "PX2GameManager.hpp"
 #include "PX2Project.hpp"
 #include "PX2CameraShake.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 using namespace std;
 
@@ -38,21 +39,15 @@ mSceneID(0),
 mLength(100.0f),
 mWidth(100.0f),
 mSceneManageType(SMT_NONE),
-mViewportX(0),
-mViewportY(0),
-mViewportWidth(-1),
-mViewportHeight(-1),
-mIsAdjustCamWithViewPort(false),
 mIsActorPositionChanged(false),
 mCellSpace(0)
 {
 	mSceneNode = new0 Node();
 	
-	CameraPtr cam = new0 Camera();
-	cam->SetName("DefaultCamera");
-	CameraActorPtr camActor = new0 CameraActor(cam);
+	CameraActorPtr camActor = new0 CameraActor();
 	camActor->SetName("DefaultCameraActor");
 	AddActor(camActor);
+	camActor->SetPosition(APoint(0.0f, -10.0f, 6.0f));
 
 	SetCameraActor(camActor);
 	camActor->ShowHelpMovable(false);
@@ -74,6 +69,12 @@ void Scene::SetCameraActor (CameraActor *camActor)
 	mCamera = camActor->GetCamera();
 	mCuller.SetCamera(mCamera);	
 	GraphicsRoot::GetSingleton().SetCamera(mCamera);
+
+	const std::string &name = mCameraActor->GetName();
+	if (name == "DefaultCameraActor")
+	{
+		mCameraActor->SetNamePropChangeable(false);
+	}
 }
 //-----------------------------------------------------------------------------
 void Scene::SetSceneLength (float length)
@@ -168,9 +169,6 @@ void Scene::GetRangeActorsExcept (Actor *except, std::vector<Actor*> &actors,
 //-----------------------------------------------------------------------------
 void Scene::Update (double appSeconds, double elapsedSeconds)
 {
-	static double frame_time = 0;
-	frame_time += elapsedSeconds;
-
 	if (mCameraActor)
 	{
 		const APoint &curPos = mCameraActor->GetPosition();
@@ -239,45 +237,6 @@ void Scene::Update (double appSeconds, double elapsedSeconds)
 	mIsActorPositionChanged = false;
 }
 //----------------------------------------------------------------------------
-void Scene::CallRendererSetViewport ()
-{
-	float projWidth = (float)PX2_PROJ.GetWidth();
-	float projHeight = (float)PX2_PROJ.GetHeight();
-
-	const Rectf &rect = GameManager::GetSingleton().GetGameViewRect();
-
-	float widthScale = rect.Width()/projWidth;
-	float heightScale = rect.Height()/projHeight;
-
-	float newX = rect.Left + mViewportX*widthScale;
-	float newY = rect.Bottom + mViewportY*heightScale;
-	float newWidth = mViewportWidth*widthScale;
-	float newHeight = mViewportHeight*heightScale;
-
-	Renderer *defaultRenderer = Renderer::GetDefaultRenderer();
-	if (defaultRenderer && -1!=mViewportWidth && -1!=mViewportHeight)
-	{
-		defaultRenderer->SetViewport((int)newX, (int)newY, (int)newWidth, 
-			(int)newHeight);
-
-		if (mIsAdjustCamWithViewPort)
-		{
-			Camera *camera = defaultRenderer->GetCamera();
-			if (camera && camera->IsPerspective())
-			{
-				float upFovDegrees = 0.0f;
-				float aspectRatio = 0.0f;
-				float dMin = 0.0f;
-				float dMax = 0.0f;
-				camera->GetFrustum(upFovDegrees, aspectRatio, dMin, dMax);
-				camera->SetFrustum(upFovDegrees,
-					(float)mViewportWidth/(float)mViewportHeight,
-					dMin, dMax);
-			}
-		}
-	}
-}
-//----------------------------------------------------------------------------
 void Scene::AddActor (Actor *actor)
 {
 	assertion(actor!=0, "actor must not be 0.");
@@ -299,6 +258,13 @@ void Scene::AddActor (Actor *actor)
 	{
 		mCellSpace->AddActor(actor);
 	}
+
+	OnAddedActor(actor);
+}
+//----------------------------------------------------------------------------
+void Scene::OnAddedActor (Actor *actor)
+{
+	PX2_UNUSED(actor);
 }
 //----------------------------------------------------------------------------
 bool Scene::RemoveActor (Actor *actor)
@@ -322,6 +288,8 @@ bool Scene::RemoveActor (Actor *actor)
 				soundActor->Stop();
 			}
 
+			OnRemoveActor(actor);
+
 			actor->SetScene(0);
 			mActorsMap.erase(actor->GetID());
 
@@ -332,6 +300,11 @@ bool Scene::RemoveActor (Actor *actor)
 	}
 
 	return false;
+}
+//----------------------------------------------------------------------------
+void Scene::OnRemoveActor (Actor *actor)
+{
+	PX2_UNUSED(actor);
 }
 //----------------------------------------------------------------------------
 bool Scene::IsActorIn (Actor *actor)
@@ -432,11 +405,11 @@ void Scene::ShowHelpMovables (bool show)
 	}
 }
 //----------------------------------------------------------------------------
-void Scene::ComputeVisibleSet ()
+void Scene::ComputeVisibleSetAndEnvironment ()
 {
 	mCuller.SetCamera(GetCameraActor()->GetCamera());
 	mCuller.ComputeVisibleSet(GetSceneNode());
-	mCuller.ComputeEnvironment();
+	PX2_GR.ComputeEnvironment(mCuller.GetVisibleSet().Sort());
 }
 //----------------------------------------------------------------------------
 void Scene::DoEnter ()
@@ -521,15 +494,7 @@ void Scene::RegistProperties ()
 	sceneManageTypes.push_back("SMT_CELL2D");
 	AddPropertyEnum("SceneManageType", GetSceneManageType(), sceneManageTypes);
 
-	AddProperty("IsAdjustCamWidthViewPort", PT_BOOL, IsAdjustCamWidthViewPort());
-	int vXPos = 0;
-	int vYPos = 0;
-	int vWidth = 0;
-	int vHeight = 0;
-	GetViewport(vXPos, vYPos, vWidth, vHeight);
-	Rectf sceneViewPort = Rectf((float)vXPos, (float)vYPos, (float)vWidth, 
-		(float)vHeight);
-	AddProperty("SceneViewPort", PT_RECT, sceneViewPort);
+	AddProperty("SceneViewPort", PT_RECT, mViewport);
 
 	AddProperty("NumActors", PT_INT, GetNumActors(), false);
 }
@@ -554,15 +519,10 @@ void Scene::OnPropertyChanged (const PropertyObject &obj)
 	{
 		SetSceneWidth(PX2_ANY_AS(obj.Data, float));
 	}
-	else if ("IsAdjustCamWidthViewPort" == obj.Name)
-	{
-		SetAdjustCamWidthViewPort(PX2_ANY_AS(obj.Data, bool));
-	}
 	else if ("SceneViewPort" == obj.Name)
 	{
 		Rectf rect = PX2_ANY_AS(obj.Data, Rectf);
-		SetViewPort((int)rect.Left, (int)rect.Bottom, (int)rect.Width(),
-			(int)rect.Height());
+		SetViewport(rect);
 	}
 }
 //----------------------------------------------------------------------------
@@ -578,11 +538,6 @@ mSceneID(0),
 mLength(100.0f),
 mWidth(100.0f),
 mSceneManageType(SMT_NONE),
-mViewportX(0),
-mViewportY(0),
-mViewportWidth(-1),
-mViewportHeight(-1),
-mIsAdjustCamWithViewPort(false),
 mIsActorPositionChanged(false),
 mCellSpace(0)
 {
@@ -598,17 +553,14 @@ void Scene::Load (InStream& source)
 
 	source.ReadPointer(mCameraActor);
 	source.ReadPointer(mCamera);
+
 	source.Read(mSceneID);
 	source.Read(mLength);
 	source.Read(mWidth);
 	source.ReadEnum(mSceneManageType);
-	source.Read(mViewportX);
-	source.Read(mViewportY);
-	source.Read(mViewportWidth);
-	source.Read(mViewportHeight);
-	source.ReadBool(mIsAdjustCamWithViewPort);
+	source.ReadAggregate(mViewport);
 
-	int numActors;
+	int numActors = 0;
 	source.Read(numActors);
 	if (numActors > 0)
 	{
@@ -628,7 +580,7 @@ void Scene::Link (InStream& source)
 	source.ResolveLink(mCameraActor);
 	source.ResolveLink(mCamera);
 
-	const int numActors = (int)mActors.size();
+	int numActors = (int)mActors.size();
 	for (int i=0; i<numActors; ++i)
 	{
 		if (mActors[i])
@@ -642,7 +594,16 @@ void Scene::PostLink ()
 {
 	Gameable::PostLink();
 
-	const int numActors = (int)mActors.size();
+	if (mCameraActor)
+	{
+		const std::string &name = mCameraActor->GetName();
+		if (name == "DefaultCameraActor")
+		{
+			mCameraActor->SetNamePropChangeable(false);
+		}
+	}
+
+	int numActors = (int)mActors.size();
 	for (int i=0; i<numActors; ++i)
 	{
 		if (mActors[i])
@@ -670,7 +631,7 @@ bool Scene::Register (OutStream& target) const
 		target.Register(mCameraActor);
 		target.Register(mCamera);
 
-		const int numActors = (int)mActors.size();
+		int numActors = (int)mActors.size();
 		for (int i = 0; i < numActors; ++i)
 		{
 			if (mActors[i])
@@ -693,15 +654,12 @@ void Scene::Save (OutStream& target) const
 
 	target.WritePointer(mCameraActor);
 	target.WritePointer(mCamera);
+
 	target.Write(mSceneID);
 	target.Write(mLength);
 	target.Write(mWidth);
 	target.WriteEnum(mSceneManageType);
-	target.Write(mViewportX);
-	target.Write(mViewportY);
-	target.Write(mViewportWidth);
-	target.Write(mViewportHeight);
-	target.WriteBool(mIsAdjustCamWithViewPort);
+	target.WriteAggregate(mViewport);
 
 	const int numActors = (int)mActors.size();
 	target.Write(numActors);
@@ -727,15 +685,12 @@ int Scene::GetStreamingSize (Stream &stream) const
 
 	size += PX2_POINTERSIZE(mCameraActor);
 	size += PX2_POINTERSIZE(mCamera);
+
 	size += sizeof(mSceneID);
 	size += sizeof(mLength);
 	size += sizeof(mWidth);
 	size += PX2_ENUMSIZE(mSceneManageType);
-	size += sizeof(mViewportX);
-	size += sizeof(mViewportY);
-	size += sizeof(mViewportWidth);
-	size += sizeof(mViewportHeight);
-	size += PX2_BOOLSIZE(mIsAdjustCamWithViewPort);
+	size += sizeof(mViewport);
 
 	int numActors = (int)mActors.size();
 	size += sizeof(numActors);

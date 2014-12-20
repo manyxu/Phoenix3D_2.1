@@ -19,8 +19,6 @@ using namespace PX2;
 Project::Project ()
 	:
 mIsInGamePlay(false),
-mWidth(960),
-mHeight(640),
 mIsShowProjectInfo(true),
 mIsShowSceneBound(true),
 mIsSceneWired(false),
@@ -37,8 +35,10 @@ mDarkMax(1.0f),
 mDarkSpeed(0.5f),
 mCurDarkValue(0.0f)
 {
+	mSize = Sizef(960.0f, 640.0f);
 	mColor = Float4::BLACK;
 	SetUI(new0 UIFrame());
+	SetLogicGroup(new0 LogicGroup());
 }
 //----------------------------------------------------------------------------
 Project::~Project ()
@@ -145,9 +145,10 @@ void Project::Update (double appSeconds, double elapsedSeconds)
 	if (mScene)
 	{
 		defRenderer->SetCamera(mScene->GetCameraActor()->GetCamera());
-		mScene->CallRendererSetViewport();
+		PX2_GR.SetRenderViewPort(defRenderer, true);
 		mScene->Update(appSeconds, elapsedSeconds);
-		mScene->ComputeVisibleSet();
+
+		mScene->ComputeVisibleSetAndEnvironment();
 	}
 
 	UIView *uiView = UIManager::GetSingleton().GetDefaultView();
@@ -156,6 +157,7 @@ void Project::Update (double appSeconds, double elapsedSeconds)
 		Camera *uiCamera = uiView->GetCamera();
 		defRenderer->SetCamera(uiCamera);
 		uiView->CallRendererSetViewport();
+		PX2_GR.SetRenderViewPort(defRenderer, true);
 		uiView->Update(appSeconds, elapsedSeconds);
 
 		uiView->ComputeVisibleSet();
@@ -170,8 +172,8 @@ bool Project::Save (const std::string &filename)
 
 	XMLNode projNode = data.NewChild("Project");
 	projNode.SetAttributeString("Name", mName.c_str());
-	projNode.SetAttributeInt("Width", mWidth);
-	projNode.SetAttributeInt("Height", mHeight);
+	projNode.SetAttributeInt("Width", (int)mSize.Width);
+	projNode.SetAttributeInt("Height", (int)mSize.Height);
 	projNode.SetAttributeFloat("Color0", mColor[0]);
 	projNode.SetAttributeFloat("Color1", mColor[1]);
 	projNode.SetAttributeFloat("Color2", mColor[2]);
@@ -321,8 +323,7 @@ bool Project::Load (const std::string &filename)
 			}
 
 			mName = name;
-			mWidth = width;
-			mHeight = height;
+			mSize = Sizef((float)width, (float)height);
 
 			SetColor(color);
 			SetShowProjectInfo(isShowProjInfo);
@@ -358,8 +359,12 @@ bool Project::Load (const std::string &filename)
 			std::string outBaseName;
 			std::string outExt;
 			StringHelp::SplitFullFilename(filename, outPath, outBaseName, outExt);
-			std::string inName = outPath + outBaseName + ".px2ui";
-			SetUIFilename(inName);
+			
+			std::string uiInName = outPath + outBaseName + ".px2ui";
+			SetUIFilename(uiInName);
+
+			std::string logicInName = outPath + outBaseName + ".px2logic";
+			SetLogicFilename(logicInName);
 		}
 	}
 	else
@@ -378,6 +383,11 @@ void Project::SetSceneFilename (const std::string &filename)
 void Project::SetUIFilename (const std::string &filename)
 {
 	mUIFilename = filename;
+}
+//----------------------------------------------------------------------------
+void Project::SetLogicFilename (const std::string &filename)
+{
+	mLogicGroupFilename = filename;
 }
 //----------------------------------------------------------------------------
 void Project::SetLanguage (const std::string &filename)
@@ -421,6 +431,11 @@ void Project::SetUI (UIFrame *frame)
 {
 	mUI = frame;
 	UIManager::GetSingleton().GetDefaultView()->SetMainFrame(frame);
+}
+//----------------------------------------------------------------------------
+void Project::SetLogicGroup (LogicGroup *group)
+{
+	mLogicGroup = group;
 }
 //----------------------------------------------------------------------------
 void Project::SetShowProjectInfo (bool show)

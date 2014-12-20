@@ -85,6 +85,11 @@ inline int Actor::GetSceneContainerIndex () const
 	return mSceneContainerIndex;
 }
 //----------------------------------------------------------------------------
+inline bool Actor::IsPickable () const
+{
+	return mIsPickable;
+}
+//----------------------------------------------------------------------------
 inline const APoint &Actor::GetPosition () const
 {
 	return mPosition;
@@ -100,24 +105,24 @@ inline const APoint &Actor::GetRotation () const
 	return mRotation;
 }
 //----------------------------------------------------------------------------
-inline float Actor::GetSpeed () const
-{
-	return mVelocity.Length();
-}
-//----------------------------------------------------------------------------
 inline bool Actor::IsStopSpeed () const
 {
-	return mIsStopSpeed;
+	return !mStopSpeedTags.empty();
 }
 //----------------------------------------------------------------------------
-inline const AVector &Actor::GetVelocity () const
+inline const AVector &Actor::GetVelocityDir () const
 {
-	return mVelocity; 
+	return mVelocityDir; 
 }
 //----------------------------------------------------------------------------
 inline const AVector &Actor::GetHeading () const
 {
 	return mHeading;
+}
+//----------------------------------------------------------------------------
+inline bool Actor::IsHeadingAlignVelocityDir () const
+{
+	mIsHeadingAlignVelocityDir;
 }
 //----------------------------------------------------------------------------
 inline const AVector &Actor::GetSmoothHeading () const
@@ -145,29 +150,24 @@ inline float Actor::GetHeight () const
 	return mHeight;
 }
 //----------------------------------------------------------------------------
-inline void Actor::SetGridMoveOn (bool on)
+inline Actor::MoveBehaviorType Actor::GetMoveBehaviorType () const
 {
-	mIsGridMoveOn = on;
+	return mMoveBehaviorType;
 }
 //----------------------------------------------------------------------------
-inline bool Actor::IsGridMoveOn () const
+inline MoveBehavior *Actor::GetMoveBehavior () const
 {
-	return mIsGridMoveOn;
+	return mMoveBehavior;
 }
 //----------------------------------------------------------------------------
-inline GridMoveBehavior *Actor::GetGridMoveBehavior ()
+inline void Actor::SetSmoothOn (bool on)
 {
-	return mGridMoveBehavior;
+	mIsSmoothOn = on;
 }
 //----------------------------------------------------------------------------
-inline void Actor::SetArriveRange (float dis)
+inline bool Actor::IsSmoothOn () const
 {
-	mArriveRange = dis;
-}
-//----------------------------------------------------------------------------
-inline float Actor::GetArriveRange () const
-{
-	return mArriveRange;
+	return mIsSmoothOn;
 }
 //----------------------------------------------------------------------------
 inline void Actor::SetMass (float mass)

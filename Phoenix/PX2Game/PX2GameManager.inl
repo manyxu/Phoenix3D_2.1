@@ -20,23 +20,28 @@ inline const std::string &GameManager::GetProjectPath () const
 	return mProjectPath;
 }
 //----------------------------------------------------------------------------
-inline const Rectf &GameManager::GetGameViewRect () const
-{
-	return mGameViewRect;
-}
-//----------------------------------------------------------------------------
 inline int GameManager::GetGameViewAjustType () const
 {
 	return mGameViewAdjustType;
 }
 //----------------------------------------------------------------------------
-inline VertexFormat *GameManager::GetVertexFormatUser ()
+inline bool GameManager::IsPlaying () const
 {
-	return mVertexFormatUser;
+	return mIsPlaying;
 }
 //----------------------------------------------------------------------------
-inline Texture2DMaterial *GameManager::GetMaterialUser ()
+inline void GameManager::SetPlayMode (PlayMode mode)
 {
-	return mMaterialUser;
+	mPlayMode = mode;
+}
+//----------------------------------------------------------------------------
+inline GameManager::PlayMode GameManager::GetPlayMode () const
+{
+	return mPlayMode;
+}
+//----------------------------------------------------------------------------
+inline Character *GameManager::GetMainCharacter () const
+{
+	return mMainCharacter;
 }
 //----------------------------------------------------------------------------

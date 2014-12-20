@@ -56,10 +56,6 @@ namespace PX2
 
 		virtual void OnEnter (SkillInstance *instance);
 
-public_internal:
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
-
 	protected:
 		bool mIsLinkToActor;
 		std::string mToActorAnchor;

@@ -180,6 +180,22 @@ void Character::_CalSkins ()
 			}
 		}
 	}
+
+	if (mSkinMovable)
+	{
+		mSkinMovable->SetUpdatePriority(1);
+	}
+
+	if (mModelAnimMovable)
+	{
+		mModelAnimMovable->SetUpdatePriority(2);
+	}
+
+	Node *rootNode = DynamicCast<Node>(mMovable);
+	if (rootNode)
+	{
+		node->SetNeedCalUpdateChild(true);
+	}
 }
 //----------------------------------------------------------------------------
 void Character::Update (double appSeconds, double elapsedSeconds)
@@ -322,125 +338,6 @@ void Character::Update (double appSeconds, double elapsedSeconds)
 		{
 			itBuf++;
 		}
-	}
-}
-//----------------------------------------------------------------------------
-void Character::SaveToXMLNode (XMLNode nodeParent)
-{
-	XMLNode nodeClass = nodeParent.NewChild("Class");
-	nodeClass.SetAttributeString("Type", "Character");
-
-	Actor::SaveToXMLNode(nodeClass);
-
-	XMLNode nodeProperty = nodeClass.NewChild("Property");
-	nodeProperty.SetAttributeInt("HP", GetCurHP());
-	nodeProperty.SetAttributeInt("BaseHPCurLevel", GetBaseHPCurLevel());
-	nodeProperty.SetAttributeInt("AP", GetCurAP());
-	nodeProperty.SetAttributeInt("BaseAPCurLevel", GetBaseAPCurLevel());
-	nodeProperty.SetAttributeFloat("WatchDistance", GetWatchDistance());
-	nodeProperty.SetAttributeString("ScriptHandler_OnBeAffect", GetScriptHandler_OnBeAffect());
-	nodeProperty.SetAttributeString("ScriptHandler_OnSucAffect", GetScriptHandler_OnSucAffect());
-	nodeProperty.SetAttributeString("ScriptHandler_OnDie", GetScriptHandler_OnDie());
-
-	for (int i=0; i<GetNumAnims(); i++)
-	{
-		XMLNode nodeObject = nodeClass.NewChild("Object");
-		nodeObject.SetAttributeString("RttiName", mAnims[i]->GetRttiType().GetName());
-
-		mAnims[i]->SaveToXMLNode(nodeObject);
-	}
-
-	for (int i=0; i<GetNumItems(); i++)
-	{
-		XMLNode nodeObject = nodeClass.NewChild("Object");
-		nodeObject.SetAttributeString("RttiName", mItems[i]->GetRttiType().GetName());
-
-		mItems[i]->SaveToXMLNode(nodeObject);
-	}
-
-	for (int i=0; i<GetNumSkills(); i++)
-	{
-		XMLNode nodeObject = nodeClass.NewChild("Object");
-		nodeObject.SetAttributeString("RttiName", mSkills[i]->GetRttiType().GetName());
-
-		mSkills[i]->SaveToXMLNode(nodeObject);
-	}
-}
-//----------------------------------------------------------------------------
-void Character::LoadFromXMLNode (XMLNode node)
-{
-	XMLNode nodeBaseClass = node.GetChild("Class");
-	if (!nodeBaseClass.IsNull())
-	{
-		std::string typeName = nodeBaseClass.AttributeToString("Type");
-		Actor::LoadFromXMLNode(nodeBaseClass);
-	}
-	else
-	{
-		assertion(false, "");
-	}
-
-	XMLNode nextNode = node.IterateChild(nodeBaseClass);
-	while (!nextNode.IsNull())
-	{
-		if ("Property" == nextNode.GetNameStr())
-		{
-			if (nextNode.HasAttribute("WatchDistance"))
-			{
-				SetWatchDistance(nextNode.AttributeToFloat("WatchDistance"));
-			}
-
-			if (nextNode.HasAttribute("ScriptHandler_OnBeAffect"))
-			{
-				SetScriptHandler_OnBeAffect(nextNode.AttributeToString("ScriptHandler_OnBeAffect"));
-			}
-
-			if (nextNode.HasAttribute("ScriptHandler_OnSucAffect"))
-			{
-				SetScriptHandler_OnSucAffect(nextNode.AttributeToString("ScriptHandler_OnSucAffect"));
-			}
-
-			if (nextNode.HasAttribute("ScriptHandler_OnDie"))
-			{
-				SetScriptHandler_OnDie(nextNode.AttributeToString("ScriptHandler_OnDie"));
-			}
-		}
-		else if ("Object" == nextNode.GetNameStr())
-		{
-			const std::string rttiName = nextNode.AttributeToString("RttiName");
-			Gameable *gameable = LogicManager::GetSingleton().CreateFromRttiName(rttiName);
-			if (gameable)
-			{
-				XMLNode objectNodeClass = nextNode.GetChild("Class");
-				if (!objectNodeClass.IsNull())
-				{
-					gameable->LoadFromXMLNode(objectNodeClass);
-				}
-				else
-				{
-					assertion(false, "");
-				}
-			}
-
-			Animation *anim = DynamicCast<Animation>(gameable);
-			Skill *skill = DynamicCast<Skill>(gameable);
-			Item *item = DynamicCast<Item>(gameable);
-			
-			if (anim)
-			{
-				AddAnim(anim);
-			}
-			else if (skill)
-			{
-				AddSkill(skill);
-			}
-			else if (item)
-			{
-				AddItem(item);
-			}
-		}
-
-		nextNode = node.IterateChild(nextNode);
 	}
 }
 //----------------------------------------------------------------------------
@@ -667,8 +564,8 @@ void Character::PostLink ()
 {
 	Actor::PostLink();
 
-	mStandbyAnim = GetAnimByName("Standby");
-	mDefSkill = GetSkillByName("Def");
+	mStandbyAnim = GetAnimByName("stand");
+	mDefSkill = GetSkillByName("def");
 
 	SetCanBeAimed(IsCanBeAimed());
 }

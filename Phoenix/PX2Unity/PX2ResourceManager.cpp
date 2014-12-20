@@ -262,7 +262,8 @@ bool ResourceManager::CreateFloder (const std::string &parentPath,
 	std::string tempPath = path;
 	int index = 0;
 
-	while (true)
+	bool bTrue = true;
+	while (bTrue)
 	{
 		int pos = (int)tempPath.find('/', index);
 		if(-1 == pos)
@@ -972,6 +973,7 @@ ResourceManager::LoadRecord &ResourceManager::InsertRecord (
 #endif
 
 	bool isHasUpdate = IsHasUpdate(dstFilename, dstFilename);
+	PX2_UNUSED(isHasUpdate);
 
 	ScopedCS scopeCS(mResTableMutex);
 
@@ -1141,14 +1143,12 @@ bool ResourceManager::SaveTex2DPNG(Texture2D *tex2d, const std::string &filename
 	int width = tex2d->GetWidth();
 	int height = tex2d->GetHeight();
 	int bytePerPixel = tex2d->GetPixelSize();
-	Texture::Format format = tex2d->GetFormat();
-	bool revert = true;
 
 	ILuint image;
 	ilGenImages(1, &image);
 	ilBindImage(image);
 
-	ilLoadDataL(tex2d->GetData(0), width*height*bytePerPixel, width, height, 1, bytePerPixel);
+	ilLoadDataL(tex2d->GetData(0), width*height*bytePerPixel, width, height, 1, (ILubyte)bytePerPixel);
 
 	ilEnable(IL_FILE_OVERWRITE);
 	ilSave(IL_PNG, filename.c_str());

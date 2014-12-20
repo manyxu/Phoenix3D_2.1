@@ -60,8 +60,6 @@ int Terrain::DetachChild (Movable* child)
 			if (child == mPages[i][j])
 			{
 				mPages[i][j] = 0;
-
-				const std::string &name = child->GetName();
 			}
 		}
 	}

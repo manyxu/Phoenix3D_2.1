@@ -48,6 +48,8 @@ AmbientRegionActor::AmbientRegionActor ()
 	mDirLightDiffColor = Float3(1.0f, 1.0f, 1.0f);
 	mLightSpecColor = Float3(0.5f, 0.5f, 0.5f);
 	mLightSpecPow = 10.0f;
+
+	ShowHelpMovable(false);
 }
 //----------------------------------------------------------------------------
 AmbientRegionActor::~AmbientRegionActor ()
@@ -132,20 +134,15 @@ void AmbientRegionActor::SetLightIntensity (float intensity)
 	}
 }
 //----------------------------------------------------------------------------
-static AVector AnglesToDirection(float angle0, float angle1)
-{
-	return AVector(Mathf::Cos(angle1)*Mathf::Cos(angle0), 
-		-Mathf::Cos(angle1)*Mathf::Sin(angle0), -Mathf::Sin(angle1));
-}
-//----------------------------------------------------------------------------
 void AmbientRegionActor::SetHorAngle (float angle)
 {
 	mHorAngle = angle;
 
 	if (mLight)
 	{
-		AVector dir = AnglesToDirection(Mathf::DEG_TO_RAD*mHorAngle, 
+		AVector dir = AVector::AnglesToDirection(Mathf::DEG_TO_RAD*mHorAngle, 
 			Mathf::DEG_TO_RAD*mVerAngle);
+
 		mLight->SetDirection(dir);
 	}
 }
@@ -156,7 +153,7 @@ void AmbientRegionActor::SetVerAngle (float angle)
 
 	if (mLight)
 	{
-		AVector dir = AnglesToDirection(Mathf::DEG_TO_RAD*mHorAngle, 
+		AVector dir = AVector::AnglesToDirection(Mathf::DEG_TO_RAD*mHorAngle, 
 			Mathf::DEG_TO_RAD*mVerAngle);
 		mLight->SetDirection(dir);
 	}

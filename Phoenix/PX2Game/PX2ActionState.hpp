@@ -17,10 +17,10 @@ namespace PX2
 	class ActionState : public State<Character>
 	{
 	public:
-		virtual void Update (Character *b, double appSeconds,
+		virtual void Update (Character *chara, double appSeconds,
 			double elapsedSeconds);
-		virtual void StateEnter (Character *b);
-		virtual void StateExit (Character *b);
+		virtual void StateEnter (Character *chara);
+		virtual void StateExit (Character *chara);
 
 	protected:
 		ActionState ();

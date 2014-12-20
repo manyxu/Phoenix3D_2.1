@@ -16,21 +16,21 @@ ActionState::~ActionState ()
 {
 }
 //----------------------------------------------------------------------------
-void ActionState::Update (Character *b, double appSeconds,
+void ActionState::Update (Character *chara, double appSeconds,
 	double elapsedSeconds)
 {
-	PX2_UNUSED(b);
+	PX2_UNUSED(chara);
 	PX2_UNUSED(appSeconds);
 	PX2_UNUSED(elapsedSeconds);
 }
 //----------------------------------------------------------------------------
-void ActionState::StateEnter (Character *b)
+void ActionState::StateEnter (Character *chara)
 {
-	PX2_UNUSED(b);
+	PX2_UNUSED(chara);
 }
 //----------------------------------------------------------------------------
-void ActionState::StateExit (Character *b)
+void ActionState::StateExit (Character *chara)
 {
-	PX2_UNUSED(b);
+	PX2_UNUSED(chara);
 }
 //----------------------------------------------------------------------------

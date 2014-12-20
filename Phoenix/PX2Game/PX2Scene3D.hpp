@@ -9,6 +9,7 @@
 #include "PX2Scene.hpp"
 #include "PX2TerrainActor.hpp"
 #include "PX2CameraActor.hpp"
+#include "PX2TagActor.hpp"
 #include "PX2AmbientRegionActor.hpp"
 
 namespace PX2
@@ -27,11 +28,13 @@ namespace PX2
 
 		virtual void Update (double appSeconds, double elapsedSeconds);
 
-		void OnAddedActor (Actor *actor);
+		virtual void OnAddedActor (Actor *actor);
+		virtual void OnRemoveActor (Actor *actor);
 
 		void ShowHelpMovables (bool show);
 
 		TerrainActor *GetTerrainActor ();
+		TagActor *GetSpawnDefaultActor ();
 		AmbientRegionActor *GetDefaultARActor ();
 
 		// SceneBake
@@ -50,6 +53,7 @@ namespace PX2
 
 	protected:
 		TerrainActorPtr mTerrainActor;
+		PX2::TagActorPtr mSpawnTagActor;
 		PX2::AmbientRigionActorPtr mDefaultARActor;
 		BakeSizeType mBakeSizeType;
 		bool mIsUseLightTexture;

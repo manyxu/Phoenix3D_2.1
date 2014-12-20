@@ -128,6 +128,8 @@ namespace PX2
 
 		virtual void RegistProperties ();
 		virtual void OnPropertyChanged (const PropertyObject &obj);
+		void SetNamePropChangeable (bool isNamePropChangeable);
+		bool IsNamePropChangeable () const;
 
 		std::string AddProperty (const std::string &name, PropertyType type,
 			const Any &data, bool enable=true);
@@ -154,6 +156,54 @@ namespace PX2
 	private:
 		std::string GenPropertyTag ();
 		static int msNumProperties;
+		bool mIsNameChangeable;
+
+		// function
+	public:
+		enum FunParamType
+		{
+			FPT_INT,
+			FPT_FLOAT,
+			FPT_FLOAT3,
+			FPT_FLOAT4,
+			FPT_BOOL,
+			FPT_STRING,
+			FPT_MAX_TYPE
+		};
+		struct FunParam
+		{
+			FunParam ();
+			~FunParam ();
+
+			std::string Name;
+			FunParamType Type;
+			Any Value;
+		};
+		struct FunObject
+		{
+			std::string ClassName;
+			std::string FunName;
+			void AddInput (const std::string &paramName, FunParamType type,
+				const Any &paramValue);
+			void AddOutPut (const std::string &paramName, FunParamType type);
+
+			const std::vector<FunParam> &GetInParams () const;
+			int GetNumInParams () const;
+			const FunParam &GetInParam (int i) const;
+
+			const std::vector<FunParam> &GetOutParams () const;
+			int GetNumOutParams () const;
+			const FunParam &GetOutParam (int i) const;
+
+		protected:
+			std::vector<FunParam> mInParams;
+			std::vector<FunParam> mOutParams;
+		};
+		static void RegistFunctions ();
+		static std::map<std::string, std::vector<FunObject> > &GetFunctionMap ();
+
+	protected:
+		static std::map<std::string, std::vector<FunObject> > mFunObjectMap;
 
 		// ³Ö¾Ã»¯
 	public:

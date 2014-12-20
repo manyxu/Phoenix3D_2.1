@@ -1838,6 +1838,8 @@ void RecreateResources (Renderer* renderer,	std::map<const Resource *, PdrResour
 template <typename Resource, typename PdrResource>
 void DestroyResources (Renderer* renderer,	std::map<const Resource *, PdrResource *>& resmap)
 {
+	PX2_UNUSED(renderer);
+
 	typename std::map<const Resource *, PdrResource *>::iterator iter = resmap.begin();
 	typename std::map<const Resource *, PdrResource *>::iterator end = resmap.end();
 	for (; iter != end; ++iter)

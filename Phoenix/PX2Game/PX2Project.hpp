@@ -10,6 +10,7 @@
 #include "PX2GamePre.hpp"
 #include "PX2Scene.hpp"
 #include "PX2UIFrame.hpp"
+#include "PX2LogicGroup.hpp"
 #include "PX2Float4.hpp"
 
 namespace PX2
@@ -41,29 +42,31 @@ namespace PX2
 
 		void SetWidth (int width);
 		int GetWidth () const;
-
 		void SetHeight (int height);
 		int GetHeight () const;
+		const Sizef &GetSize () const;
 
 		void SetColor (Float4 color);
 		Float4 GetColor ();
 
 		void SetSceneFilename (const std::string &filename);
 		const std::string &GetSceneFilename () const;
-
 		void SetUIFilename (const std::string &filename);
 		const std::string &GetUIFilename () const;
+		void SetLogicFilename (const std::string &filename);
+		const std::string &GetLogicFilename () const;
+
+		void SetScene (Scene *scene);
+		Scene *GetScene ();
+		void SetUI (UIFrame *frame);
+		UIFrame *GetUI ();
+		void SetLogicGroup (LogicGroup *group);
+		LogicGroup *GetLogicGroup ();
 
 		void SetLanguage (const std::string &filename);
 		const std::string &GetLanguage () const;
-
 		void SetLanguage1 (const std::string &filename);
 		const std::string &GetLanguage1 () const;
-
-		void SetScene (Scene *scene);
-		Scene *GetScene () const;
-		void SetUI (UIFrame *frame);
-		UIFrame *GetUI () const;
 
 		// infos
 		void SetShowProjectInfo (bool show);
@@ -109,14 +112,16 @@ namespace PX2
 
 		bool mIsInGamePlay;
 		std::string mName;
-		int mWidth;
-		int mHeight;
+		Sizef mSize;
 		Float4 mColor;
 		bool mIsImagesEncrypt;
 		std::string mSceneFilename;
 		ScenePtr mScene;
 		std::string mUIFilename;
 		UIFramePtr mUI;
+		std::string mLogicGroupFilename;
+		LogicGroupPtr mLogicGroup;
+
 		std::string mLanguage;
 		std::string mLanguage1;
 

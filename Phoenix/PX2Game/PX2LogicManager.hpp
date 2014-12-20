@@ -25,10 +25,6 @@ namespace PX2
 
 		Gameable *Factory (const std::string &name);
 
-		Gameable *LoadFromXML (const std::string &filename);
-		Gameable *LoadFromBinary (const std::string &filename);
-		Gameable *CreateFromRttiName (const std::string &rttiName);
-
 	protected:
 		std::vector <std::string> mActorLogicNames;
 		std::vector <std::string> mSceneLogicNames;

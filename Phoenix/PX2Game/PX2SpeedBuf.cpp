@@ -65,7 +65,7 @@ void SpeedBuf::OnAdded ()
 	if (M_DOSTOP == mMode)
 	{
 		mCharacter->AddStopSpeedTag(GetAddedIDString());
-		mCharacter->SetVelocity(AVector::ZERO);
+		mCharacter->SetVelocityDir(AVector::ZERO);
 	}
 	else if (M_IMMEDIATE == mMode)
 	{

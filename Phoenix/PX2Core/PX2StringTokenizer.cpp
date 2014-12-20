@@ -51,7 +51,7 @@ StringTokenizer::~StringTokenizer()
 {
 }
 //----------------------------------------------------------------------------
-inline const std::string& StringTokenizer::operator [] (std::size_t index) 
+const std::string& StringTokenizer::operator [] (std::size_t index) 
 	const
 {
 	if (index >= _tokens.size())

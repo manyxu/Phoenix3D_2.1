@@ -160,45 +160,6 @@ void Animation2DFrames8::SetWorldRunDir (const AVector &vec)
 		mMesh->SetWorldRunDir(mWorldRunDir);
 }
 //----------------------------------------------------------------------------
-void Animation2DFrames8::SaveToXMLNode (XMLNode nodeParent)
-{
-	XMLNode nodeClass = nodeParent.NewChild("Class");
-	nodeClass.SetAttributeString("Type", "Animation2DFrames8");
-
-	Animation::SaveToXMLNode(nodeClass);
-
-	XMLNode nodeProperty = nodeClass.NewChild("Property");
-	nodeProperty.SetAttributeFloat("Interval", GetInterval());
-	nodeProperty.SetAttributeInt("NumFramePerDir", GetNumFramesPerDir());
-	nodeProperty.SetAttributeBool("IsPlayOnce", IsPlayOnce());
-}
-//----------------------------------------------------------------------------
-void Animation2DFrames8::LoadFromXMLNode (XMLNode node)
-{
-	XMLNode nodeClass = node.GetChild("Class");
-	if (!nodeClass.IsNull())
-	{
-		Animation::LoadFromXMLNode(nodeClass);
-	}
-	else
-	{
-		assertion(false, "");
-	}
-
-	XMLNode nodeProperty = node.GetChild("Property");
-	if (!nodeProperty.IsNull())
-	{
-		SetInterval(nodeProperty.AttributeToFloat("Interval"));
-		mNumFramePerDir = nodeProperty.AttributeToInt("NumFramePerDir");
-		if (nodeProperty.HasAttribute("IsPlayOnce"))
-			SetPlayOnce(nodeProperty.AttributeToBool("IsPlayOnce"));
-	}
-	else
-	{
-		assertion(false, "");
-	}
-}
-//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // Property

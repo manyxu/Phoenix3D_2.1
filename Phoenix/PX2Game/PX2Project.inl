@@ -12,12 +12,17 @@ inline void Project::SetName (const std::string &name)
 //----------------------------------------------------------------------------
 inline void Project::SetWidth (int width)
 {
-	mWidth = width;
+	mSize.Width = (float)width;
 }
 //----------------------------------------------------------------------------
 inline void Project::SetHeight (int height)
 {
-	mHeight = height;
+	mSize.Height = (float)height;
+}
+//----------------------------------------------------------------------------
+inline const Sizef &Project::GetSize () const
+{
+	return mSize;
 }
 //----------------------------------------------------------------------------
 inline void Project::SetInGamePlay (bool inGamePlay)
@@ -45,6 +50,11 @@ inline const std::string &Project::GetUIFilename () const
 	return mUIFilename;
 }
 //----------------------------------------------------------------------------
+inline const std::string &Project::GetLogicFilename () const
+{
+	return mLogicGroupFilename;
+}
+//----------------------------------------------------------------------------
 inline const std::string &Project::GetLanguage () const
 {
 	return mLanguage;
@@ -57,22 +67,27 @@ inline const std::string &Project::GetLanguage1 () const
 //----------------------------------------------------------------------------
 inline int Project::GetWidth () const
 {
-	return mWidth;
+	return (int)mSize.Width;
 }
 //----------------------------------------------------------------------------
 inline int Project::GetHeight () const
 {
-	return mHeight;
+	return (int)mSize.Height;
 }
 //----------------------------------------------------------------------------
-inline Scene *Project::GetScene () const
+inline Scene *Project::GetScene ()
 {
 	return mScene;
 }
 //----------------------------------------------------------------------------
-inline UIFrame *Project::GetUI () const
+inline UIFrame *Project::GetUI ()
 {
 	return mUI;
+}
+//----------------------------------------------------------------------------
+inline LogicGroup *Project::GetLogicGroup ()
+{
+	return mLogicGroup;
 }
 //----------------------------------------------------------------------------
 inline void Project::SetColor (Float4 color)

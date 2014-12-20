@@ -61,10 +61,6 @@ namespace PX2
 		virtual void OnEnter (SkillInstance *instance);
 		virtual void OnTrack (SkillInstance *trackInstance);
 
-public_internal:
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
-
 	protected:
 		bool mIsTrackToActor;
 		AVector mTrackDir;

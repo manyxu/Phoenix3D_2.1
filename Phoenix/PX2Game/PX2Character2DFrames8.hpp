@@ -64,9 +64,6 @@ namespace PX2
 
 		virtual void Die ();
 
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
-
 	protected:
 		NodePtr mActorNode;
 

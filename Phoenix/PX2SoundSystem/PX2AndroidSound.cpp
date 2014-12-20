@@ -26,6 +26,8 @@ bool AndroidSound::IsPlaying ()
 //----------------------------------------------------------------------------
 void AndroidSound::SetVolume (float volume)
 {
+	PX2_UNUSED(volume);
+
 #ifdef __ANDROID__
 	SetSoundVolumeJNI(mInstance, volume);
 #endif
@@ -33,6 +35,8 @@ void AndroidSound::SetVolume (float volume)
 //----------------------------------------------------------------------------
 void AndroidSound::SetPaused (bool paused)
 {
+	PX2_UNUSED(paused);
+
 #ifdef __ANDROID__
 	if (paused)
 		PauseSoundJNI(mInstance);

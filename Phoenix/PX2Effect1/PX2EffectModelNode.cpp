@@ -184,6 +184,8 @@ void EffectModelNode::CollectMeshs (Movable *movToCollect)
 //----------------------------------------------------------------------------
 void EffectModelNode::UpdateModelNode (float applicationTime, float elapsedTime)
 {
+	PX2_UNUSED(applicationTime);
+
 	if (mResetFilename)
 	{
 		SetModelFilename(mModelFilename);

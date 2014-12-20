@@ -50,32 +50,14 @@ inline PX2::Node *Scene::GetSceneNode ()
 	return mSceneNode;
 }
 //----------------------------------------------------------------------------
-inline void Scene::SetViewPort (int xPosition, int yPosition, int width,
-	int height)
+inline void Scene::SetViewport (const Rectf &rect)
 {
-	mViewportX = xPosition;
-	mViewportY = yPosition;
-	mViewportWidth = width;
-	mViewportHeight = height;
+	mViewport = rect;
 }
 //----------------------------------------------------------------------------
-inline void Scene::GetViewport (int& xPosition, int& yPosition, int& width,
-	int& height) const
+inline const Rectf &Scene::GetViewport () const
 {
-	xPosition = mViewportX;
-	yPosition = mViewportY;
-	width = mViewportWidth;
-	height = mViewportHeight;
-}
-//----------------------------------------------------------------------------
-inline void Scene::SetAdjustCamWidthViewPort (bool doAdjust)
-{
-	mIsAdjustCamWithViewPort = doAdjust;
-}
-//----------------------------------------------------------------------------
-inline bool Scene::IsAdjustCamWidthViewPort () const
-{
-	return mIsAdjustCamWithViewPort;
+	return mViewport;
 }
 //----------------------------------------------------------------------------
 inline int Scene::GetNumActors ()

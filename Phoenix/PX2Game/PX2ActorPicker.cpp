@@ -46,7 +46,7 @@ void ActorPicker::Execute (Scene* scene, const APoint& origin,
 		if (!actor->IsVisible())
 			continue;
 
-		if (actor->IsExactly(SkyActor::TYPE))
+		if (!actor->IsPickable())
 			continue;
 
 		Picker picker;

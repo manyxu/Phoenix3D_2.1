@@ -20,6 +20,11 @@ inline TerrainActor *Scene3D::GetTerrainActor ()
 	return mTerrainActor;
 }
 //----------------------------------------------------------------------------
+inline TagActor *Scene3D::GetSpawnDefaultActor ()
+{
+	return mSpawnTagActor;
+}
+//----------------------------------------------------------------------------
 inline AmbientRegionActor *Scene3D::GetDefaultARActor ()
 {
 	return mDefaultARActor;

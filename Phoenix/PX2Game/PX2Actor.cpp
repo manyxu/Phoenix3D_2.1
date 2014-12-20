@@ -14,7 +14,7 @@
 #include "PX2ResourceManager.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Gameable, Actor, 2);
+PX2_IMPLEMENT_RTTI(PX2, Gameable, Actor);
 PX2_IMPLEMENT_STREAM(Actor);
 PX2_IMPLEMENT_FACTORY(Actor);
 
@@ -27,7 +27,8 @@ mGroup(0),
 mScene(0),
 mSceneContainer(0),
 mSceneContainerIndex(-1),
-mIsStaticType(false),
+mIsPickable(true),
+mIsStaticType(true),
 mIsBuilding(false),
 mIsVisible(true),
 mActorTransparent(1.0f),
@@ -37,22 +38,23 @@ mMovable(0),
 mHelpMovable(0),
 mIsShowHelpMovable(false),
 mIsStopSpeed(false),
-mArriveRange(1.0f),
+mIsHeadingAlignVelocityDir(true),
 mSelfRadius(1.0f),
 mHeight(1.0f),
+mMoveBehaviorType(MBT_NONE),
 mMass(1.0f),
-mIsSmoothOn(true),
+mIsSmoothOn(false),
 mHeadingSmoother(0),
 mIsBakeObject(true),
 mIsBakeTarget(true)
 {
 	PX2_INIT_PM_F(MaxSpeed);
+	SetMaxSpeed(4.0f);
 
 	mScale = APoint(1.0f, 1.0f, 1.0f);
 	mHeading = AVector::UNIT_Y;
 
-	mIsGridMoveOn = false;
-	mGridMoveBehavior = new0 GridMoveBehavior(this);
+	SetMoveBehaviorType(mMoveBehaviorType);
 	mHeadingSmoother = new0 Smoother<AVector>(24, AVector::ZERO);
 
 	SetName("NoName");
@@ -67,50 +69,56 @@ Actor::~Actor ()
 //----------------------------------------------------------------------------
 void Actor::Update (double appSeconds, double elapsedSeconds)
 {
-	if(IsGridMoveOn())
+	if (!mIsStaticType)
 	{
-		if ((int)mStopSpeedTags.size() > 0)
+		if (!IsStopSpeed())
 		{
-			StopSpeed(true);
-		}
-		else
-		{
-			StopSpeed(false);
-		}
-
-		if (mIsStopSpeed)
-		{
-			mGridMoveBehavior->SetSpeed(0.0f);
-			SetVelocity(AVector::ZERO);
-		}
-		else
-		{
-			mGridMoveBehavior->SetSpeed(GetMMaxSpeed());		
-
-			APoint toPos;
-			AVector direction;
-			if (mGridMoveBehavior->Update((float)elapsedSeconds, toPos, direction))
+			if (mMoveBehavior)
 			{
-				OnUpdateGoToPosition(toPos);
-
-				float modifiedMaxSpeed = GetMMaxSpeed();
-				AVector vec =  direction * modifiedMaxSpeed;
-				SetVelocity(vec);
-
-				if (mVelocity != AVector::ZERO)
+				APoint toPos;
+				AVector dir;
+				float distance = 0.0f;
+				if (mMoveBehavior->Update((float)elapsedSeconds, toPos, dir, distance))
 				{
-					direction.Normalize();
-					SetHeading(direction);
+					SetVelocityDir(dir);
+					OnUpdateGoToPosition(toPos);
+
+					if (mIsHeadingAlignVelocityDir && dir!=AVector::ZERO)
+					{
+						SetHeading(dir);
+
+						if (!mIsSmoothOn)
+							SetFace(dir);
+					}
+				}
+				else
+				{
+					OnUpdateGoToStop();
 				}
 			}
+		}
+		else
+		{
+			SetVelocityDir(AVector::ZERO);
 		}
 
 		if (mIsSmoothOn)
 		{
 			AVector smoothHeading = mHeadingSmoother->Update(mHeading);
+			smoothHeading.Normalize();
 			SetSmoothHeading(smoothHeading);
 		}
 	}
+}
+//----------------------------------------------------------------------------
+void Actor::OnTouchPressed (const APoint &pos)
+{
+	PX2_UNUSED(pos);
+}
+//----------------------------------------------------------------------------
+void Actor::OnTouchReleased (const APoint &pos)
+{
+	PX2_UNUSED(pos);
 }
 //----------------------------------------------------------------------------
 void Actor::SetBakeObject (bool bakeObject)
@@ -274,58 +282,6 @@ void Actor::_SetBakeTarget (Movable *mov, bool bakeTarget)
 	}
 }
 //----------------------------------------------------------------------------
-void Actor::SaveToXMLNode (XMLNode nodeParent)
-{
-	XMLNode nodeClass = nodeParent.NewChild("Class");
-	nodeClass.SetAttributeString("Type", "Actor");
-
-	Gameable::SaveToXMLNode(nodeClass);
-
-	XMLNode nodeProperty = nodeClass.NewChild("Property");
-	nodeProperty.SetAttributeInt("ID", GetID());
-	nodeProperty.SetAttributeInt("TypeID", GetTypeID());
-	nodeProperty.SetAttributeFloat("SelfRadius", GetSelfRadius());
-	nodeProperty.SetAttributeFloat("Height", GetHeight());
-	nodeProperty.SetAttributeFloat("BaseMaxSpeed", GetMaxSpeed());
-}
-//----------------------------------------------------------------------------
-void Actor::LoadFromXMLNode (XMLNode node)
-{
-	XMLNode nodeBaseClass = node.GetChild("Class");
-	if (!nodeBaseClass.IsNull())
-	{
-		Gameable::LoadFromXMLNode(nodeBaseClass);
-	}
-	else
-	{
-		assertion(false, "");
-	}
-
-	XMLNode nodeProperty = node.GetChild("Property");
-	if (!nodeProperty.IsNull())
-	{
-		if (nodeProperty.HasAttribute("SelfRadius"))
-		{
-			SetSelfRadius(nodeProperty.AttributeToFloat("SelfRadius"));
-		}
-
-		if (nodeProperty.HasAttribute("Height"))
-		{
-			SetHeight(nodeProperty.AttributeToFloat("Height"));
-		}
-
-		if (nodeProperty.HasAttribute("BaseMaxSpeed"))
-		{
-			SetMaxSpeed(nodeProperty.AttributeToFloat("BaseMaxSpeed"));
-			CalMMaxSpeed();
-		}
-	}
-	else
-	{
-		assertion(false, "");
-	}
-}
-//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 名称支持
@@ -371,7 +327,11 @@ void Actor::RegistProperties ()
 	AddProperty("Rotation", Object::PT_APOINT3, Any(mRotation));
 	AddProperty("Scale", Object::PT_APOINT3, Any(mScale));
 
+	AddProperty("SelfRadius", Object::PT_FLOAT, GetSelfRadius());
+	AddProperty("Height", Object::PT_FLOAT, GetHeight());
+
 	AddProperty("IsShowHelpMovable", PT_BOOL, IsHelpMovableShow());
+	AddProperty("IsPickable", PT_BOOL, IsPickable());
 
 	AddProperty("IsBakeObject", PT_BOOL, IsBakeObject());
 	AddProperty("IsBakeTarget", PT_BOOL, IsBakeTarget());
@@ -410,10 +370,6 @@ void Actor::OnPropertyChanged (const PropertyObject &obj)
 	{
 		SetPosition(PX2_ANY_AS(obj.Data, APoint));
 	}
-	else if ("Heading" == obj.Name)
-	{
-		SetHeading(PX2_ANY_AS(obj.Data, AVector));
-	}
 	else if ("SelfRadius" == obj.Name)
 	{
 		SetSelfRadius(PX2_ANY_AS(obj.Data, float));
@@ -422,13 +378,13 @@ void Actor::OnPropertyChanged (const PropertyObject &obj)
 	{
 		SetHeight(PX2_ANY_AS(obj.Data, float));
 	}
-	else if ("BaseMaxSpeed" == obj.Name)
-	{
-		SetMaxSpeed(PX2_ANY_AS(obj.Data, float));
-	}
 	else if ("IsShowHelpMovable" == obj.Name)
 	{
 		ShowHelpMovable(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsPickable" == obj.Name)
+	{
+		SetPickable(PX2_ANY_AS(obj.Data, bool));
 	}
 	else if ("IsBakeObject" == obj.Name)
 	{
@@ -438,6 +394,33 @@ void Actor::OnPropertyChanged (const PropertyObject &obj)
 	{
 		SetBakeTarget(PX2_ANY_AS(obj.Data, bool));
 	}
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// Function
+//----------------------------------------------------------------------------
+void Actor::RegistFunctions ()
+{
+	Gameable::RegistFunctions ();
+
+	FunObject funObjSetScale;
+	funObjSetScale.ClassName = "Actor";
+	funObjSetScale.FunName = "SetScale";
+	funObjSetScale.AddOutPut("value", FPT_FLOAT3);
+	mFunObjectMap["Actor"].push_back(funObjSetScale);
+
+	FunObject funObjSetRotation;
+	funObjSetRotation.ClassName = "Actor";
+	funObjSetRotation.FunName = "SetRotation";
+	funObjSetRotation.AddOutPut("value", FPT_FLOAT3);
+	mFunObjectMap["Actor"].push_back(funObjSetRotation);
+
+	FunObject funObjSetPosition;
+	funObjSetPosition.ClassName = "Actor";
+	funObjSetPosition.FunName = "SetPosition";
+	funObjSetPosition.AddOutPut("value", FPT_FLOAT3);
+	mFunObjectMap["Actor"].push_back(funObjSetPosition);
 }
 //----------------------------------------------------------------------------
 
@@ -454,22 +437,24 @@ Gameable(value),
 	mSceneContainer(0),
 	mSceneContainerIndex(-1),
 	mIsVisible(true),
+	mIsPickable(true),
 	mActorTransparent(1.0f),
 	mMoveableResHandle(0),
 	mIsShareVIM(false),
 	mMovable(0),
 	mHelpMovable(0),
 	mIsShowHelpMovable(false),
-	mIsStaticType(false),
+	mIsStaticType(true),
 	mIsBuilding(false),
 	mSelfRadius(1.0f),
 	mHeight(1.0f),
 	mMaxSpeed(0.0f),
 	mMMaxSpeed(0.0f),
 	mIsStopSpeed(false),
-	mArriveRange(1.0f),
+	mIsHeadingAlignVelocityDir(true),
+	mMoveBehaviorType(MBT_NONE),
 	mMass(1.0f),
-	mIsSmoothOn(true),
+	mIsSmoothOn(false),
 	mHeadingSmoother(0),
 	mIsBakeObject(true),
 	mIsBakeTarget(true)
@@ -477,13 +462,14 @@ Gameable(value),
 	SetID(Scene::GetNextID());
 
 	PX2_INIT_PM_F(MaxSpeed);
+	SetMaxSpeed(4.0f);
 
-	mIsGridMoveOn = false;
-	mGridMoveBehavior = new0 GridMoveBehavior(this);
 	mHeadingSmoother = new0 Smoother<AVector>(24, AVector::ZERO);
 
 	mScale = APoint(1.0f, 1.0f, 1.0f);
 	mHeading = AVector::UNIT_Y;
+
+	SetMoveBehaviorType(mMoveBehaviorType);
 }
 //----------------------------------------------------------------------------
 void Actor::Load (InStream& source)
@@ -511,6 +497,7 @@ void Actor::Load (InStream& source)
 	}
 	source.ReadPointer(mHelpMovable);
 	source.ReadBool(mIsShowHelpMovable);
+	source.ReadBool(mIsPickable);
 	// mScene不被保存，它会在Scene::Link中调用Scene::AddChild被设置。
 
 	source.ReadAggregate(mScale);
@@ -522,26 +509,19 @@ void Actor::Load (InStream& source)
 
 	source.Read(mMass);
 
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		source.ReadBool(mIsBakeObject);
-		source.ReadBool(mIsBakeTarget);
-	}
+	source.ReadBool(mIsBakeObject);
+	source.ReadBool(mIsBakeTarget);
 
-	if (2 <= readedVersion)
+	int numLightTex = 0;
+	source.Read(numLightTex);
+	for (int i=0; i<numLightTex; i++)
 	{
-		int numLightTex = 0;
-		source.Read(numLightTex);
-		for (int i=0; i<numLightTex; i++)
-		{
-			std::string meshName;
-			std::string lightTexFilename;
-			source.ReadString(meshName);
-			source.ReadString(lightTexFilename);
+		std::string meshName;
+		std::string lightTexFilename;
+		source.ReadString(meshName);
+		source.ReadString(lightTexFilename);
 
-			mBakeTextures[meshName] = lightTexFilename;
-		}
+		mBakeTextures[meshName] = lightTexFilename;
 	}
 
 	PX2_END_DEBUG_STREAM_LOAD(Actor, source);
@@ -566,6 +546,8 @@ void Actor::Link (InStream& source)
 void Actor::PostLink ()
 {
 	Gameable::PostLink();
+
+	SetPickable(IsPickable());
 }
 //----------------------------------------------------------------------------
 bool Actor::Register (OutStream& target) const
@@ -606,6 +588,7 @@ void Actor::Save (OutStream& target) const
 	}
 	target.WritePointer(mHelpMovable);
 	target.WriteBool(mIsShowHelpMovable);
+	target.WriteBool(mIsPickable);
 
 	target.WriteAggregate(mScale);
 	target.WriteAggregate(mRotation);
@@ -645,6 +628,7 @@ int Actor::GetStreamingSize (Stream &stream) const
 	size += PX2_POINTERSIZE(mMovable);
 	size += PX2_POINTERSIZE(mHelpMovable);
 	size += PX2_BOOLSIZE(mIsShowHelpMovable);
+	size += PX2_BOOLSIZE(mIsPickable);
 
 	size += sizeof(mScale);
 	size += sizeof(mRotation);
@@ -655,41 +639,16 @@ int Actor::GetStreamingSize (Stream &stream) const
 
 	size += sizeof(mMass);
 
-	if (stream.IsIn())
+	size += PX2_BOOLSIZE(mIsBakeObject);
+	size += PX2_BOOLSIZE(mIsBakeTarget);
+
+	int numBakeTexs = (int)mBakeTextures.size();
+	size += sizeof(numBakeTexs);
+	std::map<std::string, std::string>::const_iterator it = mBakeTextures.begin();
+	for (; it!=mBakeTextures.end(); it++)
 	{
-		int readedVersion = GetReadedVersion();
-
-		if (1 <= readedVersion)
-		{
-			size += PX2_BOOLSIZE(mIsBakeObject);
-			size += PX2_BOOLSIZE(mIsBakeTarget);
-		}
-
-		if (2 <= readedVersion)
-		{
-			int numBakeTexs = (int)mBakeTextures.size();
-			size += sizeof(numBakeTexs);
-			std::map<std::string, std::string>::const_iterator it = mBakeTextures.begin();
-			for (; it!=mBakeTextures.end(); it++)
-			{
-				size += PX2_STRINGSIZE(it->first);
-				size += PX2_STRINGSIZE(it->second);
-			}
-		}
-	}
-	else
-	{
-		size += PX2_BOOLSIZE(mIsBakeObject);
-		size += PX2_BOOLSIZE(mIsBakeTarget);
-
-		int numBakeTexs = (int)mBakeTextures.size();
-		size += sizeof(numBakeTexs);
-		std::map<std::string, std::string>::const_iterator it = mBakeTextures.begin();
-		for (; it!=mBakeTextures.end(); it++)
-		{
-			size += PX2_STRINGSIZE(it->first);
-			size += PX2_STRINGSIZE(it->second);
-		}
+		size += PX2_STRINGSIZE(it->first);
+		size += PX2_STRINGSIZE(it->second);
 	}
 
 	return size;

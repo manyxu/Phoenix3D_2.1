@@ -65,8 +65,6 @@ namespace PX2
 
 public_internal:
 		virtual void SetCharacter (Character *character);
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
 
 	protected:
 		Animation ();

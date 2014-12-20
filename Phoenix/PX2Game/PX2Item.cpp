@@ -122,46 +122,6 @@ void Item::SetEquipped (bool equip)
 	}
 }
 //----------------------------------------------------------------------------
-void Item::SaveToXMLNode (XMLNode nodeParent)
-{
-	XMLNode nodeClass = nodeParent.NewChild("Class");
-	nodeClass.SetAttributeString("Type", "Item");
-
-	Actor::SaveToXMLNode(nodeClass);
-
-	XMLNode nodeProperty = nodeClass.NewChild("Property");
-	nodeProperty.SetAttributeString("TypeString", GetTypeString());
-	nodeProperty.SetAttributeBool("IsCanBeEquipped", IsCanBeEquipped());
-	nodeProperty.SetAttributeBool("IsEquippedDoUse", IsEquippedDoUse());
-	nodeProperty.SetAttributeString("ScriptHandler_Use", GetScriptHandler_Use());
-}
-//----------------------------------------------------------------------------
-void Item::LoadFromXMLNode (XMLNode node)
-{
-	XMLNode nodeClass = node.GetChild("Class");
-	if (!nodeClass.IsNull())
-	{
-		Actor::LoadFromXMLNode(nodeClass);
-	}
-	else
-	{
-		assertion(false, "");
-	}
-
-	XMLNode nodeProperty = node.GetChild("Property");
-	if (!nodeProperty.IsNull())
-	{
-		SetTypeString(nodeProperty.AttributeToString("TypeString"));
-		SetCanBeEquipped(nodeProperty.AttributeToBool("IsCanBeEquipped"));
-		SetEquippedDoUse(nodeProperty.AttributeToBool("IsEquippedDoUse"));
-		SetScriptHandler_Use(nodeProperty.AttributeToString("ScriptHandler_Use"));
-	}
-	else
-	{
-		assertion(false, "");
-	}	
-}
-//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // Property

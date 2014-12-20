@@ -21,7 +21,7 @@
 #include "PX2CameraActor.hpp"
 #include "PX2EffectActor.hpp"
 #include "PX2TriggerActor.hpp"
-#include "PX2LogicActor.hpp"
+#include "PX2TagActor.hpp"
 #include "PX2LightActor.hpp"
 
 

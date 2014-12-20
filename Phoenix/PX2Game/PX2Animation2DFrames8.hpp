@@ -45,10 +45,7 @@ namespace PX2
 		virtual void OnPlay (Character *character);
 		virtual void OnRemove (Character *character);
 
-public_internal:
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
-
+	protected:
 		float mInterval;
 		int mNumFramePerDir;
 		AVector mWorldRunDir;

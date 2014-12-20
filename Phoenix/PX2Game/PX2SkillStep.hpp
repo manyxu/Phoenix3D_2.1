@@ -133,8 +133,6 @@ namespace PX2
 
 public_internal:
 		void SetSkill (Skill *skill);
-		virtual void SaveToXMLNode (XMLNode nodeParent);
-		virtual void LoadFromXMLNode (XMLNode node);
 
 	protected:
 		SkillStep (Mode mode);
