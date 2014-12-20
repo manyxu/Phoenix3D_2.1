@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="PX2TerrainsPre.hpp" />
+    <ClInclude Include="PX2Terrain.hpp">
+      <Filter>Terrains</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Terrains.hpp" />
+    <ClInclude Include="PX2TerrainPage.hpp">
+      <Filter>Terrains</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Jungler.hpp">
+      <Filter>Jungler</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkySphere.hpp">
+      <Filter>Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RawTerrainPage.hpp">
+      <Filter>Terrains\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RawTerrain.hpp">
+      <Filter>Terrains\Raw</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LODTerrain.hpp">
+      <Filter>Terrains\Lod</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LODTerrainBlock.hpp">
+      <Filter>Terrains\Lod</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LODTerrainPage.hpp">
+      <Filter>Terrains\Lod</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LODTerrainVertex.hpp">
+      <Filter>Terrains\Lod</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EditTerrainMaterial.hpp">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkyMaterial.hpp">
+      <Filter>Sky</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2Terrain.cpp">
+      <Filter>Terrains</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TerrainPage.cpp">
+      <Filter>Terrains</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Jungler.cpp">
+      <Filter>Jungler</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkySphere.cpp">
+      <Filter>Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RawTerrainPage.cpp">
+      <Filter>Terrains\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RawTerrain.cpp">
+      <Filter>Terrains\Raw</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LODTerrain.cpp">
+      <Filter>Terrains\Lod</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LODTerrainBlock.cpp">
+      <Filter>Terrains\Lod</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LODTerrainPage.cpp">
+      <Filter>Terrains\Lod</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LODTerrainVertex.cpp">
+      <Filter>Terrains\Lod</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EditTerrainMaterial.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkyMaterial.cpp">
+      <Filter>Sky</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Material">
+      <UniqueIdentifier>{93fc8d6d-b17e-4b86-839e-8d2c15e13f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Terrains">
+      <UniqueIdentifier>{4c89290d-b862-4af3-831d-e292a8bb3c22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Jungler">
+      <UniqueIdentifier>{f0ae59b6-9992-42f9-ab59-2f8e961afc01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sky">
+      <UniqueIdentifier>{2aa40720-ed18-4e01-b9ad-5791bfc147f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Terrains\Raw">
+      <UniqueIdentifier>{acc46647-7a33-4741-a43b-6c23ecac2324}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Terrains\Lod">
+      <UniqueIdentifier>{b1c607a9-90c6-4bba-a480-96234bd02385}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2Terrain.inl">
+      <Filter>Terrains</Filter>
+    </None>
+    <None Include="PX2TerrainPage.inl">
+      <Filter>Terrains</Filter>
+    </None>
+    <None Include="PX2Jungler.inl">
+      <Filter>Jungler</Filter>
+    </None>
+    <None Include="PX2SkySphere.inl">
+      <Filter>Sky</Filter>
+    </None>
+    <None Include="PX2RawTerrainPage.inl">
+      <Filter>Terrains\Raw</Filter>
+    </None>
+    <None Include="PX2LODTerrainBlock.inl">
+      <Filter>Terrains\Lod</Filter>
+    </None>
+    <None Include="PX2LODTerrainPage.inl">
+      <Filter>Terrains\Lod</Filter>
+    </None>
+    <None Include="PX2LODTerrainVertex.inl">
+      <Filter>Terrains\Lod</Filter>
+    </None>
+    <None Include="PX2LODTerrain.inl">
+      <Filter>Terrains\Lod</Filter>
+    </None>
+  </ItemGroup>
+</Project>

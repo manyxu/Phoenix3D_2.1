@@ -1,0 +1,757 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CURL\src\amigaos.c" />
+    <ClCompile Include="CURL\src\asyn-ares.c" />
+    <ClCompile Include="CURL\src\asyn-thread.c" />
+    <ClCompile Include="CURL\src\axtls.c" />
+    <ClCompile Include="CURL\src\base64.c" />
+    <ClCompile Include="CURL\src\bundles.c" />
+    <ClCompile Include="CURL\src\conncache.c" />
+    <ClCompile Include="CURL\src\connect.c" />
+    <ClCompile Include="CURL\src\content_encoding.c" />
+    <ClCompile Include="CURL\src\cookie.c" />
+    <ClCompile Include="CURL\src\curl_addrinfo.c" />
+    <ClCompile Include="CURL\src\curl_darwinssl.c" />
+    <ClCompile Include="CURL\src\curl_fnmatch.c" />
+    <ClCompile Include="CURL\src\curl_gethostname.c" />
+    <ClCompile Include="CURL\src\curl_gssapi.c" />
+    <ClCompile Include="CURL\src\curl_memrchr.c" />
+    <ClCompile Include="CURL\src\curl_multibyte.c" />
+    <ClCompile Include="CURL\src\curl_ntlm.c" />
+    <ClCompile Include="CURL\src\curl_ntlm_core.c" />
+    <ClCompile Include="CURL\src\curl_ntlm_msgs.c" />
+    <ClCompile Include="CURL\src\curl_ntlm_wb.c" />
+    <ClCompile Include="CURL\src\curl_rtmp.c" />
+    <ClCompile Include="CURL\src\curl_sasl.c" />
+    <ClCompile Include="CURL\src\curl_schannel.c" />
+    <ClCompile Include="CURL\src\curl_sspi.c" />
+    <ClCompile Include="CURL\src\curl_threads.c" />
+    <ClCompile Include="CURL\src\cyassl.c" />
+    <ClCompile Include="CURL\src\dict.c" />
+    <ClCompile Include="CURL\src\dotdot.c" />
+    <ClCompile Include="CURL\src\easy.c" />
+    <ClCompile Include="CURL\src\escape.c" />
+    <ClCompile Include="CURL\src\file.c" />
+    <ClCompile Include="CURL\src\fileinfo.c" />
+    <ClCompile Include="CURL\src\formdata.c" />
+    <ClCompile Include="CURL\src\ftp.c" />
+    <ClCompile Include="CURL\src\ftplistparser.c" />
+    <ClCompile Include="CURL\src\getenv.c" />
+    <ClCompile Include="CURL\src\getinfo.c" />
+    <ClCompile Include="CURL\src\gopher.c" />
+    <ClCompile Include="CURL\src\gskit.c" />
+    <ClCompile Include="CURL\src\gtls.c" />
+    <ClCompile Include="CURL\src\hash.c" />
+    <ClCompile Include="CURL\src\hmac.c" />
+    <ClCompile Include="CURL\src\hostasyn.c" />
+    <ClCompile Include="CURL\src\hostcheck.c" />
+    <ClCompile Include="CURL\src\hostip.c" />
+    <ClCompile Include="CURL\src\hostip4.c" />
+    <ClCompile Include="CURL\src\hostip6.c" />
+    <ClCompile Include="CURL\src\hostsyn.c" />
+    <ClCompile Include="CURL\src\http.c" />
+    <ClCompile Include="CURL\src\http2.c" />
+    <ClCompile Include="CURL\src\http_chunks.c" />
+    <ClCompile Include="CURL\src\http_digest.c" />
+    <ClCompile Include="CURL\src\http_negotiate.c" />
+    <ClCompile Include="CURL\src\http_negotiate_sspi.c" />
+    <ClCompile Include="CURL\src\http_proxy.c" />
+    <ClCompile Include="CURL\src\idn_win32.c" />
+    <ClCompile Include="CURL\src\imap.c" />
+    <ClCompile Include="CURL\src\inet_ntop.c" />
+    <ClCompile Include="CURL\src\inet_pton.c" />
+    <ClCompile Include="CURL\src\krb5.c" />
+    <ClCompile Include="CURL\src\llist.c" />
+    <ClCompile Include="CURL\src\md4.c" />
+    <ClCompile Include="CURL\src\md5.c" />
+    <ClCompile Include="CURL\src\memdebug.c" />
+    <ClCompile Include="CURL\src\mprintf.c" />
+    <ClCompile Include="CURL\src\multi.c" />
+    <ClCompile Include="CURL\src\netrc.c" />
+    <ClCompile Include="CURL\src\non-ascii.c" />
+    <ClCompile Include="CURL\src\nonblock.c" />
+    <ClCompile Include="CURL\src\nss.c" />
+    <ClCompile Include="CURL\src\parsedate.c" />
+    <ClCompile Include="CURL\src\pingpong.c" />
+    <ClCompile Include="CURL\src\pipeline.c" />
+    <ClCompile Include="CURL\src\polarssl.c" />
+    <ClCompile Include="CURL\src\polarssl_threadlock.c" />
+    <ClCompile Include="CURL\src\pop3.c" />
+    <ClCompile Include="CURL\src\progress.c" />
+    <ClCompile Include="CURL\src\qssl.c" />
+    <ClCompile Include="CURL\src\rawstr.c" />
+    <ClCompile Include="CURL\src\rtsp.c" />
+    <ClCompile Include="CURL\src\security.c" />
+    <ClCompile Include="CURL\src\select.c" />
+    <ClCompile Include="CURL\src\sendf.c" />
+    <ClCompile Include="CURL\src\share.c" />
+    <ClCompile Include="CURL\src\slist.c" />
+    <ClCompile Include="CURL\src\smtp.c" />
+    <ClCompile Include="CURL\src\socks.c" />
+    <ClCompile Include="CURL\src\socks_gssapi.c" />
+    <ClCompile Include="CURL\src\socks_sspi.c" />
+    <ClCompile Include="CURL\src\speedcheck.c" />
+    <ClCompile Include="CURL\src\splay.c" />
+    <ClCompile Include="CURL\src\ssh.c" />
+    <ClCompile Include="CURL\src\sslgen.c" />
+    <ClCompile Include="CURL\src\ssluse.c" />
+    <ClCompile Include="CURL\src\strdup.c" />
+    <ClCompile Include="CURL\src\strequal.c" />
+    <ClCompile Include="CURL\src\strerror.c" />
+    <ClCompile Include="CURL\src\strtok.c" />
+    <ClCompile Include="CURL\src\strtoofft.c" />
+    <ClCompile Include="CURL\src\telnet.c" />
+    <ClCompile Include="CURL\src\tftp.c" />
+    <ClCompile Include="CURL\src\timeval.c" />
+    <ClCompile Include="CURL\src\transfer.c" />
+    <ClCompile Include="CURL\src\url.c" />
+    <ClCompile Include="CURL\src\version.c" />
+    <ClCompile Include="CURL\src\warnless.c" />
+    <ClCompile Include="CURL\src\wildcard.c" />
+    <ClCompile Include="CURL\src\x509asn1.c" />
+    <ClCompile Include="PX2FontManager.cpp" />
+    <ClCompile Include="PX2MD5.cpp" />
+    <ClCompile Include="DevIL\altivec_common.c" />
+    <ClCompile Include="DevIL\altivec_typeconversion.c" />
+    <ClCompile Include="DevIL\il_alloc.c" />
+    <ClCompile Include="DevIL\il_bits.c" />
+    <ClCompile Include="DevIL\il_blp.c" />
+    <ClCompile Include="DevIL\il_bmp.c" />
+    <ClCompile Include="DevIL\il_convbuff.c" />
+    <ClCompile Include="DevIL\il_convert.c" />
+    <ClCompile Include="DevIL\il_cut.c" />
+    <ClCompile Include="DevIL\il_dcx.c" />
+    <ClCompile Include="DevIL\il_dds-save.c" />
+    <ClCompile Include="DevIL\il_dds.c" />
+    <ClCompile Include="DevIL\il_devil.c" />
+    <ClCompile Include="DevIL\il_dicom.c" />
+    <ClCompile Include="DevIL\il_doom.c" />
+    <ClCompile Include="DevIL\il_dpx.c" />
+    <ClCompile Include="DevIL\il_endian.c" />
+    <ClCompile Include="DevIL\il_error.c" />
+    <ClCompile Include="DevIL\il_fastconv.c" />
+    <ClCompile Include="DevIL\il_files.c" />
+    <ClCompile Include="DevIL\il_fits.c" />
+    <ClCompile Include="DevIL\il_ftx.c" />
+    <ClCompile Include="DevIL\il_gif.c" />
+    <ClCompile Include="DevIL\il_hdr.c" />
+    <ClCompile Include="DevIL\il_header.c" />
+    <ClCompile Include="DevIL\il_icns.c" />
+    <ClCompile Include="DevIL\il_icon.c" />
+    <ClCompile Include="DevIL\il_iff.c" />
+    <ClCompile Include="DevIL\il_ilbm.c" />
+    <ClCompile Include="DevIL\il_internal.c" />
+    <ClCompile Include="DevIL\il_io.c" />
+    <ClCompile Include="DevIL\il_iwi.c" />
+    <ClCompile Include="DevIL\il_jp2.c" />
+    <ClCompile Include="DevIL\il_jpeg.c" />
+    <ClCompile Include="DevIL\il_lif.c" />
+    <ClCompile Include="DevIL\il_manip.c" />
+    <ClCompile Include="DevIL\il_mdl.c" />
+    <ClCompile Include="DevIL\il_mecel_portability.c" />
+    <ClCompile Include="DevIL\il_mng.c" />
+    <ClCompile Include="DevIL\il_mp3.c" />
+    <ClCompile Include="DevIL\il_neuquant.c" />
+    <ClCompile Include="DevIL\il_nvidia.cpp" />
+    <ClCompile Include="DevIL\il_pal.c" />
+    <ClCompile Include="DevIL\il_pcd.c" />
+    <ClCompile Include="DevIL\il_pcx.c" />
+    <ClCompile Include="DevIL\il_pic.c" />
+    <ClCompile Include="DevIL\il_pix.c" />
+    <ClCompile Include="DevIL\il_png.c" />
+    <ClCompile Include="DevIL\il_pnm.c" />
+    <ClCompile Include="DevIL\il_profiles.c" />
+    <ClCompile Include="DevIL\il_psd.c" />
+    <ClCompile Include="DevIL\il_psp.c" />
+    <ClCompile Include="DevIL\il_pxr.c" />
+    <ClCompile Include="DevIL\il_quantizer.c" />
+    <ClCompile Include="DevIL\il_raw.c" />
+    <ClCompile Include="DevIL\il_rawdata.c" />
+    <ClCompile Include="DevIL\il_register.c" />
+    <ClCompile Include="DevIL\il_rle.c" />
+    <ClCompile Include="DevIL\il_rot.c" />
+    <ClCompile Include="DevIL\il_sgi.c" />
+    <ClCompile Include="DevIL\il_size.c" />
+    <ClCompile Include="DevIL\il_squish.cpp" />
+    <ClCompile Include="DevIL\il_stack.c" />
+    <ClCompile Include="DevIL\il_states.c" />
+    <ClCompile Include="DevIL\il_sun.c" />
+    <ClCompile Include="DevIL\il_targa.c" />
+    <ClCompile Include="DevIL\il_texture.c" />
+    <ClCompile Include="DevIL\il_tiff.c" />
+    <ClCompile Include="DevIL\il_tpl.c" />
+    <ClCompile Include="DevIL\il_utility.c" />
+    <ClCompile Include="DevIL\il_vtf.c" />
+    <ClCompile Include="DevIL\il_wal.c" />
+    <ClCompile Include="DevIL\il_wbmp.c" />
+    <ClCompile Include="DevIL\il_wdp.c" />
+    <ClCompile Include="DevIL\il_xpm.c" />
+    <ClCompile Include="DevIL\PNG\example.c" />
+    <ClCompile Include="DevIL\PNG\png.c" />
+    <ClCompile Include="DevIL\PNG\pngerror.c" />
+    <ClCompile Include="DevIL\PNG\pngget.c" />
+    <ClCompile Include="DevIL\PNG\pngmem.c" />
+    <ClCompile Include="DevIL\PNG\pngpread.c" />
+    <ClCompile Include="DevIL\PNG\pngread.c" />
+    <ClCompile Include="DevIL\PNG\pngrio.c" />
+    <ClCompile Include="DevIL\PNG\pngrtran.c" />
+    <ClCompile Include="DevIL\PNG\pngrutil.c" />
+    <ClCompile Include="DevIL\PNG\pngset.c" />
+    <ClCompile Include="DevIL\PNG\pngtrans.c" />
+    <ClCompile Include="DevIL\PNG\pngwio.c" />
+    <ClCompile Include="DevIL\PNG\pngwrite.c" />
+    <ClCompile Include="DevIL\PNG\pngwtran.c" />
+    <ClCompile Include="DevIL\PNG\pngwutil.c" />
+    <ClCompile Include="FreeType\src\autofit\autofit.c" />
+    <ClCompile Include="FreeType\src\base\ftbase.c" />
+    <ClCompile Include="FreeType\src\base\ftbbox.c" />
+    <ClCompile Include="FreeType\src\base\ftbitmap.c" />
+    <ClCompile Include="FreeType\src\base\ftfstype.c" />
+    <ClCompile Include="FreeType\src\base\ftgasp.c" />
+    <ClCompile Include="FreeType\src\base\ftglyph.c" />
+    <ClCompile Include="FreeType\src\base\ftinit.c" />
+    <ClCompile Include="FreeType\src\base\ftlcdfil.c" />
+    <ClCompile Include="FreeType\src\base\ftstroke.c" />
+    <ClCompile Include="FreeType\src\base\ftsystem.c" />
+    <ClCompile Include="FreeType\src\base\fttype1.c" />
+    <ClCompile Include="FreeType\src\base\ftxf86.c" />
+    <ClCompile Include="FreeType\src\cff\cff.c" />
+    <ClCompile Include="FreeType\src\pshinter\pshinter.c" />
+    <ClCompile Include="FreeType\src\psnames\psnames.c" />
+    <ClCompile Include="FreeType\src\raster\raster.c" />
+    <ClCompile Include="FreeType\src\sfnt\sfnt.c" />
+    <ClCompile Include="FreeType\src\smooth\smooth.c" />
+    <ClCompile Include="FreeType\src\truetype\truetype.c" />
+    <ClCompile Include="Lua\lapi.c" />
+    <ClCompile Include="Lua\lauxlib.c" />
+    <ClCompile Include="Lua\lbaselib.c" />
+    <ClCompile Include="Lua\lcode.c" />
+    <ClCompile Include="Lua\ldblib.c" />
+    <ClCompile Include="Lua\ldebug.c" />
+    <ClCompile Include="Lua\ldo.c" />
+    <ClCompile Include="Lua\ldump.c" />
+    <ClCompile Include="Lua\lfunc.c" />
+    <ClCompile Include="Lua\lgc.c" />
+    <ClCompile Include="Lua\linit.c" />
+    <ClCompile Include="Lua\liolib.c" />
+    <ClCompile Include="Lua\llex.c" />
+    <ClCompile Include="Lua\lmathlib.c" />
+    <ClCompile Include="Lua\lmem.c" />
+    <ClCompile Include="Lua\loadlib.c" />
+    <ClCompile Include="Lua\lobject.c" />
+    <ClCompile Include="Lua\lopcodes.c" />
+    <ClCompile Include="Lua\loslib.c" />
+    <ClCompile Include="Lua\lparser.c" />
+    <ClCompile Include="Lua\lstate.c" />
+    <ClCompile Include="Lua\lstring.c" />
+    <ClCompile Include="Lua\lstrlib.c" />
+    <ClCompile Include="Lua\ltable.c" />
+    <ClCompile Include="Lua\ltablib.c" />
+    <ClCompile Include="Lua\ltm.c" />
+    <ClCompile Include="Lua\lundump.c" />
+    <ClCompile Include="Lua\lvm.c" />
+    <ClCompile Include="Lua\lzio.c" />
+    <ClCompile Include="Lua\print.c" />
+    <ClCompile Include="PX2CharCodingGBK.cpp" />
+    <ClCompile Include="PX2CharCodingUTF8.cpp" />
+    <ClCompile Include="PX2Crypt.cpp" />
+    <ClCompile Include="PX2CSVParser.cpp" />
+    <ClCompile Include="PX2CSVParser1.cpp" />
+    <ClCompile Include="PX2CURLDownload.cpp" />
+    <ClCompile Include="PX2Font.cpp" />
+    <ClCompile Include="PX2FontBitmapImpl.cpp" />
+    <ClCompile Include="PX2FontCommonImpl.cpp" />
+    <ClCompile Include="PX2FontGlyphMapFreeType.cpp" />
+    <ClCompile Include="PX2FontGlyphMapTrueType.cpp" />
+    <ClCompile Include="PX2IMEDelegate.cpp" />
+    <ClCompile Include="PX2IMEDispatcher.cpp" />
+    <ClCompile Include="PX2InputEventAdapter.cpp" />
+    <ClCompile Include="PX2InputEventHandler.cpp" />
+    <ClCompile Include="PX2InputEventListener.cpp" />
+    <ClCompile Include="PX2InputEvent.cpp" />
+    <ClCompile Include="PX2InputPushTransformController.cpp" />
+    <ClCompile Include="PX2InputRanges.cpp" />
+    <ClCompile Include="PX2JNI.cpp" />
+    <ClCompile Include="PX2LanguageManager.cpp" />
+    <ClCompile Include="PX2LuaManager.cpp" />
+    <ClCompile Include="PX2ResourceManager.cpp" />
+    <ClCompile Include="PX2ResourceUpdate.cpp" />
+    <ClCompile Include="PX2ScriptManager.cpp" />
+    <ClCompile Include="PX2TexPackData.cpp" />
+    <ClCompile Include="PX2XMLData.cpp" />
+    <ClCompile Include="PX2XMLNode.cpp" />
+    <ClCompile Include="ToLua\tolua_event.c" />
+    <ClCompile Include="ToLua\tolua_is.c" />
+    <ClCompile Include="ToLua\tolua_map.c" />
+    <ClCompile Include="ToLua\tolua_push.c" />
+    <ClCompile Include="ToLua\tolua_to.c" />
+    <ClCompile Include="ZLib\adler32.c" />
+    <ClCompile Include="ZLib\compress.c" />
+    <ClCompile Include="ZLib\crc32.c" />
+    <ClCompile Include="ZLib\deflate.c" />
+    <ClCompile Include="ZLib\gzclose.c" />
+    <ClCompile Include="ZLib\gzlib.c" />
+    <ClCompile Include="ZLib\gzread.c" />
+    <ClCompile Include="ZLib\gzwrite.c" />
+    <ClCompile Include="ZLib\infback.c" />
+    <ClCompile Include="ZLib\inffast.c" />
+    <ClCompile Include="ZLib\inflate.c" />
+    <ClCompile Include="ZLib\inftrees.c" />
+    <ClCompile Include="ZLib\minzip\ioapi.c" />
+    <ClCompile Include="ZLib\minzip\unzip.c" />
+    <ClCompile Include="ZLib\trees.c" />
+    <ClCompile Include="ZLib\uncompr.c" />
+    <ClCompile Include="ZLib\zutil.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CURL\config\win32\curl_config.h" />
+    <ClInclude Include="CURL\curl.h" />
+    <ClInclude Include="CURL\curlbuild.h" />
+    <ClInclude Include="CURL\curlrules.h" />
+    <ClInclude Include="CURL\curlver.h" />
+    <ClInclude Include="CURL\easy.h" />
+    <ClInclude Include="CURL\mprintf.h" />
+    <ClInclude Include="CURL\multi.h" />
+    <ClInclude Include="CURL\src\amigaos.h" />
+    <ClInclude Include="CURL\src\arpa_telnet.h" />
+    <ClInclude Include="CURL\src\asyn.h" />
+    <ClInclude Include="CURL\src\axtls.h" />
+    <ClInclude Include="CURL\src\bundles.h" />
+    <ClInclude Include="CURL\src\conncache.h" />
+    <ClInclude Include="CURL\src\connect.h" />
+    <ClInclude Include="CURL\src\content_encoding.h" />
+    <ClInclude Include="CURL\src\cookie.h" />
+    <ClInclude Include="CURL\src\curlx.h" />
+    <ClInclude Include="CURL\src\curl_addrinfo.h" />
+    <ClInclude Include="CURL\src\curl_base64.h" />
+    <ClInclude Include="CURL\src\curl_darwinssl.h" />
+    <ClInclude Include="CURL\src\curl_fnmatch.h" />
+    <ClInclude Include="CURL\src\curl_gethostname.h" />
+    <ClInclude Include="CURL\src\curl_gssapi.h" />
+    <ClInclude Include="CURL\src\curl_hmac.h" />
+    <ClInclude Include="CURL\src\curl_md4.h" />
+    <ClInclude Include="CURL\src\curl_md5.h" />
+    <ClInclude Include="CURL\src\curl_memory.h" />
+    <ClInclude Include="CURL\src\curl_memrchr.h" />
+    <ClInclude Include="CURL\src\curl_multibyte.h" />
+    <ClInclude Include="CURL\src\curl_ntlm.h" />
+    <ClInclude Include="CURL\src\curl_ntlm_core.h" />
+    <ClInclude Include="CURL\src\curl_ntlm_msgs.h" />
+    <ClInclude Include="CURL\src\curl_ntlm_wb.h" />
+    <ClInclude Include="CURL\src\curl_rtmp.h" />
+    <ClInclude Include="CURL\src\curl_sasl.h" />
+    <ClInclude Include="CURL\src\curl_schannel.h" />
+    <ClInclude Include="CURL\src\curl_sec.h" />
+    <ClInclude Include="CURL\src\curl_setup.h" />
+    <ClInclude Include="CURL\src\curl_setup_once.h" />
+    <ClInclude Include="CURL\src\curl_sspi.h" />
+    <ClInclude Include="CURL\src\curl_threads.h" />
+    <ClInclude Include="CURL\src\cyassl.h" />
+    <ClInclude Include="CURL\src\dict.h" />
+    <ClInclude Include="CURL\src\dotdot.h" />
+    <ClInclude Include="CURL\src\easyif.h" />
+    <ClInclude Include="CURL\src\escape.h" />
+    <ClInclude Include="CURL\src\file.h" />
+    <ClInclude Include="CURL\src\fileinfo.h" />
+    <ClInclude Include="CURL\src\formdata.h" />
+    <ClInclude Include="CURL\src\ftp.h" />
+    <ClInclude Include="CURL\src\ftplistparser.h" />
+    <ClInclude Include="CURL\src\getinfo.h" />
+    <ClInclude Include="CURL\src\gopher.h" />
+    <ClInclude Include="CURL\src\gskit.h" />
+    <ClInclude Include="CURL\src\gtls.h" />
+    <ClInclude Include="CURL\src\hash.h" />
+    <ClInclude Include="CURL\src\hostcheck.h" />
+    <ClInclude Include="CURL\src\hostip.h" />
+    <ClInclude Include="CURL\src\http.h" />
+    <ClInclude Include="CURL\src\http2.h" />
+    <ClInclude Include="CURL\src\http_chunks.h" />
+    <ClInclude Include="CURL\src\http_digest.h" />
+    <ClInclude Include="CURL\src\http_negotiate.h" />
+    <ClInclude Include="CURL\src\http_proxy.h" />
+    <ClInclude Include="CURL\src\imap.h" />
+    <ClInclude Include="CURL\src\inet_ntop.h" />
+    <ClInclude Include="CURL\src\inet_pton.h" />
+    <ClInclude Include="CURL\src\llist.h" />
+    <ClInclude Include="CURL\src\memdebug.h" />
+    <ClInclude Include="CURL\src\multihandle.h" />
+    <ClInclude Include="CURL\src\multiif.h" />
+    <ClInclude Include="CURL\src\netrc.h" />
+    <ClInclude Include="CURL\src\non-ascii.h" />
+    <ClInclude Include="CURL\src\nonblock.h" />
+    <ClInclude Include="CURL\src\nssg.h" />
+    <ClInclude Include="CURL\src\parsedate.h" />
+    <ClInclude Include="CURL\src\pingpong.h" />
+    <ClInclude Include="CURL\src\pipeline.h" />
+    <ClInclude Include="CURL\src\polarssl.h" />
+    <ClInclude Include="CURL\src\polarssl_threadlock.h" />
+    <ClInclude Include="CURL\src\pop3.h" />
+    <ClInclude Include="CURL\src\progress.h" />
+    <ClInclude Include="CURL\src\qssl.h" />
+    <ClInclude Include="CURL\src\rawstr.h" />
+    <ClInclude Include="CURL\src\rtsp.h" />
+    <ClInclude Include="CURL\src\select.h" />
+    <ClInclude Include="CURL\src\sendf.h" />
+    <ClInclude Include="CURL\src\setup-vms.h" />
+    <ClInclude Include="CURL\src\share.h" />
+    <ClInclude Include="CURL\src\sigpipe.h" />
+    <ClInclude Include="CURL\src\slist.h" />
+    <ClInclude Include="CURL\src\smtp.h" />
+    <ClInclude Include="CURL\src\sockaddr.h" />
+    <ClInclude Include="CURL\src\socks.h" />
+    <ClInclude Include="CURL\src\speedcheck.h" />
+    <ClInclude Include="CURL\src\splay.h" />
+    <ClInclude Include="CURL\src\ssh.h" />
+    <ClInclude Include="CURL\src\sslgen.h" />
+    <ClInclude Include="CURL\src\ssluse.h" />
+    <ClInclude Include="CURL\src\strdup.h" />
+    <ClInclude Include="CURL\src\strequal.h" />
+    <ClInclude Include="CURL\src\strerror.h" />
+    <ClInclude Include="CURL\src\strtok.h" />
+    <ClInclude Include="CURL\src\strtoofft.h" />
+    <ClInclude Include="CURL\src\telnet.h" />
+    <ClInclude Include="CURL\src\tftp.h" />
+    <ClInclude Include="CURL\src\timeval.h" />
+    <ClInclude Include="CURL\src\transfer.h" />
+    <ClInclude Include="CURL\src\url.h" />
+    <ClInclude Include="CURL\src\urldata.h" />
+    <ClInclude Include="CURL\src\warnless.h" />
+    <ClInclude Include="CURL\src\wildcard.h" />
+    <ClInclude Include="CURL\src\x509asn1.h" />
+    <ClInclude Include="CURL\stdcheaders.h" />
+    <ClInclude Include="CURL\typecheck-gcc.h" />
+    <ClInclude Include="PX2MD5.hpp" />
+    <ClInclude Include="DevIL\altivec_common.h" />
+    <ClInclude Include="DevIL\altivec_typeconversion.h" />
+    <ClInclude Include="DevIL\IL\config.h" />
+    <ClInclude Include="DevIL\IL\devil_internal_exports.h" />
+    <ClInclude Include="DevIL\IL\il.h" />
+    <ClInclude Include="DevIL\IL\ilu.h" />
+    <ClInclude Include="DevIL\IL\ilut.h" />
+    <ClInclude Include="DevIL\IL\ilut_config.h" />
+    <ClInclude Include="DevIL\IL\ilu_region.h" />
+    <ClInclude Include="DevIL\IL\il_wrap.h" />
+    <ClInclude Include="DevIL\il_alloc.h" />
+    <ClInclude Include="DevIL\il_bits.h" />
+    <ClInclude Include="DevIL\il_bmp.h" />
+    <ClInclude Include="DevIL\il_dcx.h" />
+    <ClInclude Include="DevIL\il_dds.h" />
+    <ClInclude Include="DevIL\il_doompal.h" />
+    <ClInclude Include="DevIL\il_dpx.h" />
+    <ClInclude Include="DevIL\il_endian.h" />
+    <ClInclude Include="DevIL\il_files.h" />
+    <ClInclude Include="DevIL\il_gif.h" />
+    <ClInclude Include="DevIL\il_hdr.h" />
+    <ClInclude Include="DevIL\il_icns.h" />
+    <ClInclude Include="DevIL\il_icon.h" />
+    <ClInclude Include="DevIL\il_internal.h" />
+    <ClInclude Include="DevIL\il_jp2.h" />
+    <ClInclude Include="DevIL\il_jpeg.h" />
+    <ClInclude Include="DevIL\il_lif.h" />
+    <ClInclude Include="DevIL\il_manip.h" />
+    <ClInclude Include="DevIL\il_mdl.h" />
+    <ClInclude Include="DevIL\il_mecel_portability.h" />
+    <ClInclude Include="DevIL\il_pal.h" />
+    <ClInclude Include="DevIL\il_pcx.h" />
+    <ClInclude Include="DevIL\il_pic.h" />
+    <ClInclude Include="DevIL\il_pnm.h" />
+    <ClInclude Include="DevIL\il_psd.h" />
+    <ClInclude Include="DevIL\il_psp.h" />
+    <ClInclude Include="DevIL\il_q2pal.h" />
+    <ClInclude Include="DevIL\il_register.h" />
+    <ClInclude Include="DevIL\il_rle.h" />
+    <ClInclude Include="DevIL\il_sgi.h" />
+    <ClInclude Include="DevIL\il_stack.h" />
+    <ClInclude Include="DevIL\il_states.h" />
+    <ClInclude Include="DevIL\il_targa.h" />
+    <ClInclude Include="DevIL\il_vtf.h" />
+    <ClInclude Include="DevIL\il_wdp.h" />
+    <ClInclude Include="DevIL\PNG\png.h" />
+    <ClInclude Include="DevIL\PNG\pngconf.h" />
+    <ClInclude Include="DevIL\PNG\pngdebug.h" />
+    <ClInclude Include="DevIL\PNG\pnginfo.h" />
+    <ClInclude Include="DevIL\PNG\pnglibconf.h" />
+    <ClInclude Include="DevIL\PNG\pngpriv.h" />
+    <ClInclude Include="DevIL\PNG\pngstruct.h" />
+    <ClInclude Include="FreeType\include\ft2build.h" />
+    <ClInclude Include="Lua\lapi.h" />
+    <ClInclude Include="Lua\lauxlib.h" />
+    <ClInclude Include="Lua\lcode.h" />
+    <ClInclude Include="Lua\ldebug.h" />
+    <ClInclude Include="Lua\ldo.h" />
+    <ClInclude Include="Lua\lfunc.h" />
+    <ClInclude Include="Lua\lgc.h" />
+    <ClInclude Include="Lua\llex.h" />
+    <ClInclude Include="Lua\llimits.h" />
+    <ClInclude Include="Lua\lmem.h" />
+    <ClInclude Include="Lua\lobject.h" />
+    <ClInclude Include="Lua\lopcodes.h" />
+    <ClInclude Include="Lua\lparser.h" />
+    <ClInclude Include="Lua\lstate.h" />
+    <ClInclude Include="Lua\lstring.h" />
+    <ClInclude Include="Lua\ltable.h" />
+    <ClInclude Include="Lua\ltm.h" />
+    <ClInclude Include="Lua\lua.h" />
+    <ClInclude Include="Lua\luaconf.h" />
+    <ClInclude Include="Lua\lualib.h" />
+    <ClInclude Include="Lua\lundump.h" />
+    <ClInclude Include="Lua\lvm.h" />
+    <ClInclude Include="Lua\lzio.h" />
+    <ClInclude Include="PX2CharCoding.hpp" />
+    <ClInclude Include="PX2CharCodingGBK.hpp" />
+    <ClInclude Include="PX2CharCodingUTF8.hpp" />
+    <ClInclude Include="PX2Crypt.hpp" />
+    <ClInclude Include="PX2CSVParser.hpp" />
+    <ClInclude Include="PX2CSVParser1.hpp" />
+    <ClInclude Include="PX2CURLDownload.hpp" />
+    <ClInclude Include="PX2Font.hpp" />
+    <ClInclude Include="PX2FontBitmapImpl.hpp" />
+    <ClInclude Include="PX2FontCommonImpl.hpp" />
+    <ClInclude Include="PX2FontDefine.hpp" />
+    <ClInclude Include="PX2FontGlyphMap.hpp" />
+    <ClInclude Include="PX2FontGlyphMapFreeType.hpp" />
+    <ClInclude Include="PX2FontGlyphMapTrueType.hpp" />
+    <ClInclude Include="PX2FontManager.hpp" />
+    <ClInclude Include="PX2IMEDelegate.hpp" />
+    <ClInclude Include="PX2IMEDispatcher.hpp" />
+    <ClInclude Include="PX2InputPushTransformController.hpp" />
+    <ClInclude Include="PX2InputRanges.hpp" />
+    <ClInclude Include="PX2InputEventHandler.hpp" />
+    <ClInclude Include="PX2InputEventListener.hpp" />
+    <ClInclude Include="PX2InputEvent.hpp" />
+    <ClInclude Include="PX2InputEventAdapter.hpp" />
+    <ClInclude Include="PX2JNI.hpp" />
+    <ClInclude Include="PX2LanguageManager.hpp" />
+    <ClInclude Include="PX2LuaManager.hpp" />
+    <ClInclude Include="PX2ResourceUpdate.hpp" />
+    <ClInclude Include="PX2ScriptManager.hpp" />
+    <ClInclude Include="PX2TexPackData.hpp" />
+    <ClInclude Include="PX2ResourceManager.hpp" />
+    <ClInclude Include="PX2Unity.hpp" />
+    <ClInclude Include="PX2UnityPre.hpp" />
+    <ClInclude Include="PX2XMLData.hpp" />
+    <ClInclude Include="PX2XMLNode.hpp" />
+    <ClInclude Include="RapidXML\rapidxml.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_iterators.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_print.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_utils.hpp" />
+    <ClInclude Include="ToLua\tolua++.h" />
+    <ClInclude Include="ToLua\tolua_event.h" />
+    <ClInclude Include="ZLib\crc32.h" />
+    <ClInclude Include="ZLib\deflate.h" />
+    <ClInclude Include="ZLib\gzguts.h" />
+    <ClInclude Include="ZLib\inffast.h" />
+    <ClInclude Include="ZLib\inffixed.h" />
+    <ClInclude Include="ZLib\inflate.h" />
+    <ClInclude Include="ZLib\inftrees.h" />
+    <ClInclude Include="ZLib\minzip\ioapi.h" />
+    <ClInclude Include="ZLib\minzip\unzip.h" />
+    <ClInclude Include="ZLib\trees.h" />
+    <ClInclude Include="ZLib\zconf.h" />
+    <ClInclude Include="ZLib\zlib.h" />
+    <ClInclude Include="ZLib\zutil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lua\Makefile" />
+    <None Include="PX2CSVParser.inl" />
+    <None Include="PX2CSVParser1.inl" />
+    <None Include="PX2CURLDownload.inl" />
+    <None Include="PX2Font.inl" />
+    <None Include="PX2FontCommonImpl.inl" />
+    <None Include="PX2FontManager.inl" />
+    <None Include="PX2InputEventAdapter.inl" />
+    <None Include="PX2InputPushTransformController.inl" />
+    <None Include="PX2LuaManager.inl" />
+    <None Include="PX2ResourceManager.inl" />
+    <None Include="PX2ResourceUpdate.inl" />
+    <None Include="PX2ScriptManager.inl" />
+    <None Include="PX2TexPackData.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ABAB3D8F-DB63-47E6-966D-C4DF261E9E56}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>PX2Unity_VC100</RootNamespace>
+    <ProjectName>PX2Unity</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2UnityD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2UnityD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2Unity</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2Unity</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;IL_STATIC_LIB;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\DevIL;.\DevIL\PNG;.\ZLib;.\ZLib\minzip;.\RapidXML;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\CURL;.\CURL\config\win32;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;IL_STATIC_LIB;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\DevIL;.\DevIL\PNG;.\ZLib;.\ZLib\minzip;.\CURL\config\win32;.\CURL;.\RapidXML;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\PX2ToLua;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;IL_STATIC_LIB;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\DevIL;.\DevIL\PNG;.\ZLib;.\ZLib\minzip;.\RapidXML;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\CURL;.\CURL\config\win32;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;IL_STATIC_LIB;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\DevIL;.\DevIL\PNG;.\ZLib;.\ZLib\minzip;.\CURL\config\win32;.\CURL;.\RapidXML;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\PX2ToLua;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

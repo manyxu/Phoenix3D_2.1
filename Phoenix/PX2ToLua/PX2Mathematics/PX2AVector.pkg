@@ -1,0 +1,40 @@
+// PX2AVector.pkg
+
+	class AVector : public HPoint
+	{
+	public:
+		AVector ();  //< default (0,0,0,0)
+		AVector (const AVector& vec);
+		AVector (float x, float y, float z);
+		AVector (const Float3& tuple);
+		AVector (const Vector3f& vec);
+		~AVector ();
+
+		AVector operator+ (const AVector& vec) const;
+		AVector operator- (const AVector& vec) const;
+		AVector operator* (float scalar) const;
+		AVector operator/ (float scalar) const;
+		AVector operator- () const;
+
+		float Length () const;
+		float SquaredLength () const;
+		float Dot (const AVector& vec) const;
+		float Normalize (const float epsilon = Mathf::ZERO_TOLERANCE);
+		AVector Cross (const AVector& vec) const;
+		AVector UnitCross (const AVector& vec) const;
+
+		static void Orthonormalize (AVector& vec0, AVector& vec1, AVector& vec2);
+		static void Orthonormalize (AVector* vec);
+
+		static void GenerateOrthonormalBasis (AVector& vec0, AVector& vec1,
+			AVector& vec2);
+
+		static void GenerateComplementBasis (AVector& vec0, AVector& vec1,
+			const AVector& vec2);
+
+		// ³£ÓÃÖµ
+		static const AVector ZERO;    //< (0,0,0,0)
+		static const AVector UNIT_X;  //< (1,0,0,0)
+		static const AVector UNIT_Y;  //< (0,1,0,0)
+		static const AVector UNIT_Z;  //< (0,0,1,0)
+	};

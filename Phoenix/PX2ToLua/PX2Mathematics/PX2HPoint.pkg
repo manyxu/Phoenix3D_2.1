@@ -1,0 +1,24 @@
+// PX2HPoint.pkg
+
+	class HPoint
+	{
+		HPoint ();
+		HPoint (const HPoint& pnt);
+		HPoint (float x, float y, float z, float w);
+		~HPoint (); 
+
+		inline float operator[] (int i) const;
+		inline float& operator[] (int i);
+		inline float X () const;
+		inline float& X ();
+		inline float Y () const;
+		inline float& Y ();
+		inline float Z () const;
+		inline float& Z ();
+		inline float W () const;
+		inline float& W ();
+
+		bool operator== (const HPoint& pnt) const;
+		bool operator<  (const HPoint& pnt) const;
+		bool operator<= (const HPoint& pnt) const;
+	};

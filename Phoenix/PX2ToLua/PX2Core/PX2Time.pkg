@@ -1,0 +1,4 @@
+// PX2Time.pkg
+
+	int64_t GetTimeInMicroseconds ();
+	double GetTimeInSeconds ();

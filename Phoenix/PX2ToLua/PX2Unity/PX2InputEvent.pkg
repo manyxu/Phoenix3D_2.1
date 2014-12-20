@@ -1,0 +1,16 @@
+// PX2InputEvent.pkg
+
+	class InputEventData
+	{
+		InputEventData ();
+		~InputEventData ();
+
+		KeyCode KCode;
+
+		MouseButtonID MButtonID;
+		MouseState MState;
+		MultiTouchState TState;
+		std::vector<MultiTouchState> TStates;
+
+		int ViewID;
+	};

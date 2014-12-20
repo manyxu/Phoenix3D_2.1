@@ -1,0 +1,23 @@
+// PX2APoint.pkg
+
+	class APoint : public HPoint
+	{
+		APoint ();
+		APoint (const APoint& pnt);
+		APoint (float x, float y, float z);
+		~APoint ();
+
+		AVector operator- (const APoint& pnt) const;
+
+		APoint operator+ (const AVector& vec) const;
+		APoint operator- (const AVector& vec) const;
+
+		APoint operator+ (const APoint& pnt) const;
+		APoint operator* (float scalar) const;
+		APoint operator/ (float scalar) const;
+		APoint operator- () const;
+
+		float Dot (const AVector& vec) const;
+
+		static const APoint ORIGIN;  // (0,0,0,1)
+	};

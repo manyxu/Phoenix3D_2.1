@@ -1,0 +1,39 @@
+// PX2Character2DFrames8.pkg
+
+	class Character2DFrames8 : public Character
+	{
+		Character2DFrames8 ();
+		~Character2DFrames8 ();
+		
+		virtual void Update (double appSeconds, double elapsedSeconds);
+
+		Node *GetActorNode ();
+		Node *GetAnimNode ();
+
+		void ShowSelfRadiusRange (bool show);
+		bool IsShowSelfRadiusRange () const;
+
+		void ShowHeadingDir (bool show);
+		bool IsShowHeadingDir () const;
+
+		virtual void SetSelfRadius (float radius);
+		virtual void SetHeight (float height);
+
+		void SetOffset (const APoint &off);
+		const APoint &GetOffset () const;
+
+		void SetAnimSize (float size);
+		float GetAnimSize () const;
+
+		void SetShadowFilename (const std::string &filename);
+		const std::string &GetShadowFilename () const;
+		void SetShadowSize (float size);
+		float GetShadowSize ();
+
+		void SetAttackFrontNodeOffset (const APoint &off);
+		const APoint &GetAttackFrontNodeOffset () const;
+
+		virtual void SetHeading (const AVector &heading);
+
+		virtual void Die ();
+	};

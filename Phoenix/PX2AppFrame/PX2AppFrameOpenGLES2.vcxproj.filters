@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="PX2Main.cpp" />
+    <ClCompile Include="PX2ApplicationBase.cpp" />
+    <ClCompile Include="PX2Application.cpp" />
+    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
+      <Filter>ToLua</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ScriptEventHandler.cpp">
+      <Filter>ScriptEventHandler</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2ApplicationBase.hpp" />
+    <ClInclude Include="PX2Application.hpp" />
+    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
+      <Filter>ToLua</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ScriptEventHandler.hpp">
+      <Filter>ScriptEventHandler</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ToLua">
+      <UniqueIdentifier>{31473a54-dcaf-4ac9-aa95-d62115a23291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptEventHandler">
+      <UniqueIdentifier>{45c080b3-bdf0-4ed5-93fe-8c2000757ae2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,319 @@
+// PX2Renderer.pkg
+
+	class Renderer
+	{
+		//============================================================================
+		// 与平台无关的接口
+	public:
+		/// 渲染器构造函数内部调用该函数，进行初始化。
+		void Initialize (int width, int height, Texture::Format colorFormat,
+			Texture::Format depthStencilFormat, int numMultisamples);
+
+		/// 渲染器析构函数内部调用该函数，进行释放。
+		void Terminate ();
+		
+		static void SetDefaultRenderer (Renderer *renderer);
+		static Renderer *GetDefaultRenderer ();
+
+		// 获得构造函数的输入参数
+		inline int GetWidth () const;
+		inline int GetHeight () const;
+		inline Texture::Format GetColorFormat () const;
+		inline Texture::Format GetDepthStencilFormat () const;
+		inline int GetNumMultisamples () const;
+
+		// === 资源管理
+		/*
+		* 这些资源是：vertex formats，vertex buffers，index buffers，textures（
+		* 1D，2D，3D，cube），render targets，vertex shader，和pixel shader。这
+		* 些资源拥有下面的操作
+
+		* Bind：根据输入的对象，创建与之相关的显存资源。渲染器负责mapping对象和
+		*	显存资源。如果Enable或者Lock函数在Bind之前被调用，渲染器内部会首先
+		*	创建该显存资源，不会产生异常。
+		* 
+		* BindAll：为所有渲染器，创建与输入对象相关联的显存资源。
+		* 
+		* Unbind：释放与输入对象相关联的显存资源。渲染器内部会移除对象和显存资
+		*	源的mipping。
+		* 
+		* UnbindAll：释放所有渲染器重，与输入对象相关联的显存资源。
+		* 
+		* Enable：激活资源。
+		* 
+		* Disable：取消激活资源。
+		* 
+		* Lock：获得与输入对象相关的显存资源的指针。（被Lock住的地址在AGP内存中
+		*	或是在普通内存中，取决于图形API以及资源的创建属性）使用这个函数更新
+		*	显存资源。你可以以只读的方式Lock住，用来读取。尽量不要Lock资源，会
+		*	降低速度，越少越好。
+		* 
+		* UnLock：释放Lock住的指针。
+		* 
+		* Update：内部Lock住显存资源，将内存数据拷贝到显示内存中，然后Unlock显存
+		*	。这是更新显存资源的最好方式（跟新完对象的内存然后调用Update）。
+		* 
+		* UpdateAll：为所有渲染器，更新与对象相关联的显存资源。
+		* 
+		* ReadColor：这个函数只为RenderTarget设计。在调用ReadColor之前，
+		* 	RenderTarget必须先被disabled。这个函数返回RenderTarget颜色显存的一
+		*	份Texture2D拷贝。调用者负责管理删除这个返回的Texture2D对象。
+		*/
+
+		// 顶点格式管理
+		/*
+		* vformat必须已经被应用程序分配。
+		*/
+		void Bind (const VertexFormat* vformat);
+		static void BindAll (const VertexFormat* vformat);
+		void Unbind (const VertexFormat* vformat);
+		static void UnbindAll (const VertexFormat* vformat);
+		void Enable (const VertexFormat* vformat);
+		void Disable (const VertexFormat* vformat);
+
+		// 顶点缓冲区管理
+		/*
+		* vbuffer必须已经被应用程序分配。
+		*/
+		void Bind (const VertexBuffer* vbuffer);
+		static void BindAll (const VertexBuffer* vbuffer);
+		void Unbind (const VertexBuffer* vbuffer);
+		static void UnbindAll (const VertexBuffer* vbuffer);
+		void Enable (const VertexBuffer* vbuffer,
+			unsigned int streamIndex = 0, unsigned int offset = 0);
+		void Disable (const VertexBuffer* vbuffer,
+			unsigned int streamIndex = 0);
+		void* Lock (const VertexBuffer* vbuffer,
+			Buffer::Locking mode);
+		void Unlock (const VertexBuffer* vbuffer);
+		void Update (const VertexBuffer* vbuffer);
+		static void UpdateAll (const VertexBuffer* vbuffer);
+
+		// 顶点索引缓冲区管理
+		/*
+		* ibuffer必须已经被应用程序分配。
+		*/
+		void Bind (const IndexBuffer* ibuffer);
+		static void BindAll (const IndexBuffer* ibuffer);
+		void Unbind (const IndexBuffer* ibuffer);
+		static void UnbindAll (const IndexBuffer* ibuffer);
+		void Enable (const IndexBuffer* ibuffer);
+		void Disable (const IndexBuffer* ibuffer);
+		void* Lock (const IndexBuffer* ibuffer, Buffer::Locking mode);
+		void Unlock (const IndexBuffer* ibuffer);
+		void Update (const IndexBuffer* ibuffer);
+		static void UpdateAll (const IndexBuffer* ibuffer);
+
+		// 1D纹理管理
+		/*
+		* texture必须已经被应用程序分配。
+		*/
+		void Bind (const Texture1D* texture);
+		static void BindAll (const Texture1D* texture);
+		void Unbind (const Texture1D* texture);
+		static void UnbindAll (const Texture1D* texture);
+		void Enable (const Texture1D* texture, int textureUnit);
+		void Disable (const Texture1D* texture, int textureUnit);
+		void* Lock (const Texture1D* texture, int level,
+			Buffer::Locking mode);
+		void Unlock (const Texture1D* texture, int level);
+		void Update (const Texture1D* texture, int level);
+		static void UpdateAll (const Texture1D* texture, int level);
+
+		// 2D纹理管理
+		/*
+		* texture必须已经被应用程序分配。
+		*/
+		void Bind (const Texture2D* texture);
+		static void BindAll (const Texture2D* texture);
+		void Unbind (const Texture2D* texture);
+		static void UnbindAll (const Texture2D* texture);
+		void Enable (const Texture2D* texture, int textureUnit);
+		void Enable (const Texture2D* texture, int textureUnit, int loc); // opengles2
+		void Disable (const Texture2D* texture, int textureUnit);
+		void* Lock (const Texture2D* texture, int level,
+			Buffer::Locking mode);
+		void Unlock (const Texture2D* texture, int level);
+		void Update (const Texture2D* texture, int level);
+		static void UpdateAll (const Texture2D* texture, int level);
+
+		// 3D纹理管理
+		/*
+		* texture必须已经被应用程序分配。
+		*/
+		void Bind (const Texture3D* texture);
+		static void BindAll (const Texture3D* texture);
+		void Unbind (const Texture3D* texture);
+		static void UnbindAll (const Texture3D* texture);
+		void Enable (const Texture3D* texture, int textureUnit);
+		void Disable (const Texture3D* texture, int textureUnit);
+		void* Lock (const Texture3D* texture, int level,
+			Buffer::Locking mode);
+		void Unlock (const Texture3D* texture, int level);
+		void Update (const Texture3D* texture, int level);
+		static void UpdateAll (const Texture3D* texture, int level);
+
+		// Cube纹理管理
+		/*
+		* texture必须已经被应用程序分配。
+		*/
+		void Bind (const TextureCube* texture);
+		static void BindAll (const TextureCube* texture);
+		void Unbind (const TextureCube* texture);
+		static void UnbindAll (const TextureCube* texture);
+		void Enable (const TextureCube* texture, int textureUnit);
+		void Disable (const TextureCube* texture, int textureUnit);
+		void* Lock (const TextureCube* texture, int face, int level,
+			Buffer::Locking mode);
+		void Unlock (const TextureCube* texture, int face, int level);
+		void Update (const TextureCube* texture, int face, int level);
+		static void UpdateAll (const TextureCube* texture, int face, int level);
+
+		// Render target管理
+		/*
+		* renderTarget必须已经被应用程序分配。
+		* ReadColor函数中，如果传递的texture指针为NULL，ReadColor会为你创建相应
+		* 的纹理；否则你需要自己创建正确顶点格式，正确大小的纹理。
+		*/
+		void Bind (const RenderTarget* renderTarget);
+		static void BindAll (const RenderTarget* renderTarget);
+		void Unbind (const RenderTarget* renderTarget);
+		static void UnbindAll (const RenderTarget* renderTarget);
+		void Enable (const RenderTarget* renderTarget);
+		void Disable (const RenderTarget* renderTarget);
+		void ReadColor (int i, const RenderTarget* renderTarget,
+			Texture2D*& texture);
+
+		// Vertex shader管理
+		/*
+		* vshader必须已经被应用程序创建。
+		*/
+		void Bind (const VertexShader* vshader);
+		static void BindAll (const VertexShader* vshader);
+		void Unbind (const VertexShader* vshader);
+		static void UnbindAll (const VertexShader* vshader);
+		void Enable (const VertexShader* vshader,
+			const ShaderParameters* parameters);
+		void Disable (const VertexShader* vshader,
+			const ShaderParameters* parameters);
+
+		// Pixel shader管理
+		/*
+		* pshader必须已经被应用程序创建。
+		*/
+		void Bind (const PixelShader* pshader);
+		static void BindAll (const PixelShader* pshader);
+		void Unbind (const PixelShader* pshader);
+		static void UnbindAll (const PixelShader* pshader);
+		void Enable (const PixelShader* pshader,
+			const ShaderParameters* parameters);
+		void Disable (const PixelShader* pshader,
+			const ShaderParameters* parameters);
+
+		// === End resource management.
+
+		// 全局渲染状态访问
+		inline const AlphaProperty* GetAlphaProperty () const;
+		inline const CullProperty* GetCullProperty () const;
+		inline const DepthProperty* GetDepthProperty () const;
+		inline const OffsetProperty* GetOffsetProperty () const;
+		inline const StencilProperty* GetStencilProperty () const;
+		inline const WireProperty* GetWireProperty () const;
+
+		// 当前相机管理
+		inline void SetCamera (Camera* camera);
+		inline Camera* GetCamera ();
+		inline const Camera* GetCamera () const;
+		inline const HMatrix& GetViewMatrix () const;
+		inline const HMatrix& GetProjectionMatrix () const;
+		inline const HMatrix& GetPostProjectionMatrix () const;
+
+		/// 获得选择射线
+		/**
+		* 根据输入右手坐标系下(原点在左下角，y轴向上，x轴向右)的坐标(x,y)和当前
+		* 的相机，获得选择射线。输入参数origin是相机的位置，direction是单位长度
+		* 的方向向量，他们都是在世界坐标系中的。如果(x,y)在视口范围内，返回
+		* “true”。
+		*/
+		bool GetPickRay (int x, int y, APoint& origin, AVector& direction) const;
+		
+		/// 获得3d点在屏幕的坐标
+		Vector2f PointWorldToViewPort (const APoint &point, bool *isInBack=0);
+
+		// 设置清空颜色，清空深度，清空模板值。
+		inline void SetClearColor (const Float4& clearColor);
+		inline const Float4& GetClearColor () const;
+		inline void SetClearDepth (float clearDepth);
+		inline float GetClearDepth () const;
+		inline void SetClearStencil (unsigned int clearStencil);
+		inline unsigned int GetClearStencil () const;
+
+		// 颜色通道mask访问。
+		inline void GetColorMask (bool& allowRed, bool& allowGreen,
+			bool& allowBlue, bool& allowAlpha) const;
+
+		// 设置优先渲染状态
+		/*
+		* 如果设置了优先渲染状态，其会凌驾于MaterialPass的渲染状态之上。取消优先
+		* 渲染状态，只要传递0指针。
+		*/
+		inline void SetOverrideAlphaProperty (const AlphaProperty* alphaState);
+		inline void SetOverrideCullProperty (const CullProperty* cullState);
+		inline void SetOverrideDepthProperty (const DepthProperty* depthState);
+		inline void SetOverrideOffsetProperty (const OffsetProperty* offsetState);
+		inline void SetOverrideStencilProperty (const StencilProperty* stencilState);
+		inline void SetOverrideWireProperty (const WireProperty* wireState);
+		inline const AlphaProperty* GetOverrideAlphaProperty () const;
+		inline const CullProperty* GetOverrideCullProperty () const;
+		inline const DepthProperty* GetOverrideDepthProperty () const;
+		inline const OffsetProperty* GetOverrideOffsetProperty () const;
+		inline const StencilProperty* GetOverrideStencilProperty () const;
+		inline const WireProperty* GetOverrideWireProperty () const;
+		inline void SetReverseCullOrder (bool reverseCullOrder);
+		inline bool GetReverseCullOrder () const;
+
+		// 绘制整个场景可见集的入口
+		void Draw (const VisibleSet& visibleSet, GlobalMaterial* globalMaterial = 0);
+
+		// 绘制单个对象的入口
+		void Draw (const Renderable* renderable);
+		void Draw (const Renderable* renderable, const MaterialInstance* instance);
+
+		// Renderable的渲染状态管理 
+		void SetAlphaProperty (const AlphaProperty* alphaState);
+		void SetCullProperty (const CullProperty* cullState);
+		void SetDepthProperty (const DepthProperty* depthState);
+		void SetOffsetProperty (const OffsetProperty* offsetState);
+		void SetStencilProperty (const StencilProperty* stencilState);
+		void SetWireProperty (const WireProperty* wireState);
+
+		// Viewport管理
+		/*
+		* viewport是右手坐标系。原点在屏幕左下角，y轴向上，x轴向右。
+		*/
+		void SetViewport (int xPosition, int yPosition, int width,
+			int height);
+		void GetViewport (int& xPosition, int& yPosition, int& width,
+			int& height) const;
+		void SetDepthRange (float zMin, float zMax);
+		void GetDepthRange (float& zMin, float& zMax) const;
+		void Resize (int width, int height);
+
+		// 窗口
+		void ResizeWindow (int width, int height);
+
+		// 清空颜色，深度，和模板支持
+		void ClearColorBuffer ();
+		void ClearDepthBuffer ();
+		void ClearStencilBuffer ();
+		void ClearBuffers ();
+		void ClearColorBuffer (int x, int y, int w, int h);
+		void ClearDepthBuffer (int x, int y, int w, int h);
+		void ClearStencilBuffer (int x, int y, int w, int h);
+		void ClearBuffers (int x, int y, int w, int h);
+		void DisplayColorBuffer ();
+
+		// 设置颜色mask
+		void SetColorMask (bool allowRed, bool allowGreen,
+			bool allowBlue, bool allowAlpha);
+	};

@@ -1,0 +1,12 @@
+// PX2Controlledable.pkg
+	
+	class Controlledable : public Object
+	{
+		virtual ~Controlledable ();
+
+		int GetNumControllers () const;
+		Controller* GetController (int i) const;
+		void AttachController (Controller* controller);
+		void DetachController (Controller* controller);
+		void DetachAllControllers ();
+	};

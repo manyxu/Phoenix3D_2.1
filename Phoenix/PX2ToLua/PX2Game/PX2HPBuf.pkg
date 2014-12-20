@@ -1,0 +1,27 @@
+// PX2HPBuf.pkg
+
+	class HPBuf : public Buf
+	{
+		HPBuf ();
+		virtual ~HPBuf ();
+
+		static HPBuf *Create ();
+
+		virtual void Update (double appSeconds, double elapsedSeconds);
+
+		enum Mode
+		{
+			M_IMMEDIATE,
+			M_LASTING,
+			M_NOREDUCE,
+			M_MAX_MODE
+		};
+		void SetMode (Mode mode);
+		Mode GetMode () const;
+
+		void SetValue (float val);
+		float GetValue () const;
+
+		virtual void OnAdded ();
+		virtual void OnRemoved ();
+	};

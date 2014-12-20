@@ -1,0 +1,9 @@
+// PX2UIPicBox.pkg
+
+	class UIPicBox : public TriMesh
+	{	
+		void SetDynamic (bool dyn);
+		bool IsDynamic () const;
+	};
+	
+	typedef Pointer0<UIPicBox> UIPicBoxPtr;

@@ -1,0 +1,12 @@
+// PX2Graphics.pkg
+
+$pfile "PX2Graphics/PX2Transform.pkg"
+$pfile "PX2Graphics/PX2Controlledable.pkg"
+$pfile "PX2Graphics/PX2Movable.pkg"
+$pfile "PX2Graphics/PX2Renderable.pkg"
+$pfile "PX2Graphics/PX2Triangles.pkg"
+$pfile "PX2Graphics/PX2TriMesh.pkg"
+$pfile "PX2Graphics/PX2Node.pkg"
+$pfile "PX2Graphics/PX2SwitchNode.pkg"
+$pfile "PX2Graphics/PX2Camera.pkg"
+$pfile "PX2Graphics/PX2Renderer.pkg"

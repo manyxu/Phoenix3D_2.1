@@ -1,0 +1,35 @@
+// PX2SkillInstance.pkg
+
+	class SkillInstance : public Gameable
+	{
+		SkillInstance (Skill *skill);
+		virtual ~SkillInstance ();
+
+		void SetBeShared (bool shared);
+		bool IsBeShared () const;
+		
+		virtual void Update (double appSeconds, double elapsedSeconds);
+		bool IsOver () const;
+
+		bool IsSkillCallOver () const;
+
+		void Enter (SkillStep *step);
+		virtual void OnLeave (SkillStep *step);
+		virtual void OnEnter (SkillStep *step);
+
+		void AddSkillActor (int aimTargetID, EffectActor *skillActor);
+		EffectActor *GetSkillActor (int aimTargetID);
+
+		void SetAimTarget (int id);
+		int GetAimTarget () const;
+
+		bool AddTarget (int id);
+		bool HasTarget (int id);
+		int GetNumTargets () const;
+		int GetTarget (int i);
+		Character *GetTargetCharacter (int i);
+		bool RemoveTarget (int id);
+		void RemoveAllTargets ();
+
+		Skill *GetSkill ();
+	};

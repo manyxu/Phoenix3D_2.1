@@ -1,0 +1,13 @@
+// PX2SoundManager.pkg
+
+	class SoundManager
+	{
+		static SoundManager &GetSingleton ();
+
+		void Clear ();
+		void Update (double appSeconds, double elapsedSeconds);
+
+		void PlaySound (const std::string &name,
+			const std::string &filename, float volume, bool isLoop=false);
+		void StopSound (const std::string &name, float disTime=0.0f);
+	};

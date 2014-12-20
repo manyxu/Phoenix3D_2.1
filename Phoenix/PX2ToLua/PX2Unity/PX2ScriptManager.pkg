@@ -1,0 +1,9 @@
+// PX2ScriptManager.pkg
+
+	class ScriptManager
+	{
+		static ScriptManager &GetSingleton ();
+	
+		virtual bool CallString (const char *str);
+		virtual bool CallFile (const char *filename);
+	};

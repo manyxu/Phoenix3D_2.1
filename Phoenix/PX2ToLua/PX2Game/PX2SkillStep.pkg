@@ -1,0 +1,82 @@
+// PX2SkillStep.pkg
+
+	class SkillStep : public Gameable
+	{	
+		virtual ~SkillStep ();
+
+		Skill *GetSkill ();
+		SkillInstance *GetCurEnteredSkillInstance (); // 只在Enter的生命周期中有效
+
+		void SetProbability (float pro);
+		float GetProbability () const;
+
+		enum Mode
+		{
+			M_RANGETIME,
+			M_FARTRACK,
+			M_LINK,
+			M_MAX_MODE
+		};
+		Mode GetMode () const;
+
+		// callover
+		void SetSkillCallOverAtThisStep (bool callOver);
+		bool IsSkillCallOverAtThisStep () const;
+		enum TimeType
+		{
+			TT_TIME,
+			TT_ANIMPERCENT,
+			TT_MAX_TYPE
+		};
+		void SetSkillCallOverTimeType (TimeType type);
+		TimeType GetSkillCallOverTimeType () const;
+		void SetSkillCallOverValue (float val);
+		float GetSkillCallOverValue () const;
+		float GetSkillCallOverTime () const;
+
+		// anim
+		void SetAnimName (const std::string &animName);
+		const std::string &GetAnimName () const;
+
+		// effect
+		void SetSelfEffectFilename (const std::string &selfEffectFilename);
+		const std::string &GetSelfEffectFilename () const;
+		void SetSelfEffectAnchor (const std::string &selfAnchor);
+		const std::string GetSelfEffectAnchor () const;
+		void SetSelfEffectTime (float seconds);
+		float GetSelfEffectTime () const;
+
+		void SetSelfPosEffectFilename (const std::string &posEffectFilename);
+		const std::string &GetSelfPosEffectFilename () const;
+		void SetSelfPosEffectAnchor (const std::string &selfAnchor);
+		const std::string GetSelfPosEffectAnchor () const;
+		void SetSelfPosEffectTime (float seconds);
+		float GetSelfPosEffectTime () const;
+
+		void SetTargetEffectFilename (const std::string &targetEffectFilename);
+		const std::string &GetTargetEffectFilename () const;
+		void SetTargetEffectAnchor (const std::string &targetAnchor);
+		const std::string &GetTargetEffectAnchor () const;
+		void SetTargetEffectTime (float seconds);
+		float GetTargetEffectTime () const;
+
+		void SetTargetPosEffectFilename (const std::string &posEffectFilename);
+		const std::string &GetTargetPosEffectFilename () const;
+		void SetTargetPosEffectTime (float seconds);
+		float GetTargetPosEffectTime () const;
+
+		// script handler
+		void SetScriptHandler_Enter (const std::string &handler);
+		const std::string &GetScriptHandler_Enter () const;
+
+		void SetScriptHandler_Leave (const std::string &handler);
+		const std::string &GetScriptHandler_Leave () const;
+
+		virtual void OnEnter (SkillInstance *instance);
+		virtual void OnLeave (SkillInstance *instance);
+
+		// step
+		bool SetNextStep (SkillStep *next);
+		SkillStep *GetNextStep ();
+		
+	};

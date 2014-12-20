@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="PX2EntitySystemPre.hpp" />
+    <ClInclude Include="PX2EntityModule.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Entity.hpp">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EntityModuleType.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EM_ID.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SceneEntity.hpp">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EM_Size.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EM_Movable.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EngineLoop.hpp">
+      <Filter>EngineLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EntitySystem.hpp" />
+    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
+      <Filter>EngineLoop\ToLua</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2EntityModule.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Entity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EntityModuleCreate.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EM_ID.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SceneEntity.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EM_Size.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EM_Movable.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EngineLoop.cpp">
+      <Filter>EngineLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
+      <Filter>EngineLoop\ToLua</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Module">
+      <UniqueIdentifier>{da04dd06-b64f-4255-8d3c-44b043b173a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{8df32bbc-56bb-406c-a210-e41c49c559ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{a509dac3-5b2c-4a49-a8bc-9519ed05ebfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project">
+      <UniqueIdentifier>{b6cc994b-e282-4f73-a7a6-aae1ca0eb506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Visitor">
+      <UniqueIdentifier>{db8da545-b980-4c8c-a73e-9e7069ab1f5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineLoop">
+      <UniqueIdentifier>{159de4b2-4971-4984-9fc6-31f118aef4f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EngineLoop\ToLua">
+      <UniqueIdentifier>{15a18ad7-0add-4248-bf93-a669e01ebdb6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2EntityModule.inl">
+      <Filter>Module</Filter>
+    </None>
+    <None Include="PX2EM_ID.inl">
+      <Filter>Module</Filter>
+    </None>
+    <None Include="PX2EM_Size.inl">
+      <Filter>Module</Filter>
+    </None>
+    <None Include="PX2Entity.inl">
+      <Filter>Entity</Filter>
+    </None>
+    <None Include="PX2SceneEntity.inl">
+      <Filter>Scene</Filter>
+    </None>
+    <None Include="PX2EM_Movable.inl">
+      <Filter>Module</Filter>
+    </None>
+    <None Include="PX2EngineLoop.inl">
+      <Filter>EngineLoop</Filter>
+    </None>
+  </ItemGroup>
+</Project>

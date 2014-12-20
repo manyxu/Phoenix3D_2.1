@@ -1,0 +1,78 @@
+// PX2Renderable.pkg
+
+	class Renderable : public Movable
+	{
+		enum PrimitiveType
+		{
+			PT_NONE,
+			PT_POLYPOINT,
+			PT_POLYSEGMENTS_DISJOINT,
+			PT_POLYSEGMENTS_CONTIGUOUS,
+			PT_TRIANGLES,
+			PT_TRIMESH,
+			PT_TRISTRIP,
+			PT_TRIFAN,
+			PT_MAX_QUANTITY
+		};
+
+		virtual ~Renderable ();
+
+		PrimitiveType GetPrimitiveType () const;
+
+		void SetVertexFormat (VertexFormat* vformat);
+		const VertexFormat* GetVertexFormat () const;
+		VertexFormat* GetVertexFormat ();
+
+		void SetVertexBuffer (VertexBuffer* vbuffer);
+		const VertexBuffer* GetVertexBuffer () const;
+		VertexBuffer* GetVertexBuffer ();
+
+		void SetIndexBuffer (IndexBuffer* ibuffer);
+		const IndexBuffer* GetIndexBuffer () const;
+		IndexBuffer* GetIndexBuffer ();
+
+		const Bound& GetModelBound () const;
+		Bound& GetModelBound ();
+
+		enum RenderUsage
+		{
+			RU_UI,
+			RU_GENERAL,
+			RU_REFLECT,
+			RU_SHADOWMAP,
+			RU_QUANTITY
+		};
+
+		void AddRenderUsage (RenderUsage usage);
+		void RemoveRenderUsage (RenderUsage usage);
+		unsigned int GetRenderUsage ();
+
+		enum RenderLayer
+		{
+			RL_BACKGROUND = 0,
+			RL_SKY,
+			RL_TERRAIN,
+			RL_SCENE,
+			RL_UI
+		};
+		void SetRenderLayer (RenderLayer layer);
+		unsigned int GetSortIndex ();
+
+		void SetMaterialInstance (MaterialInstance* material);
+		MaterialInstance* GetMaterialInstance () const;
+		
+		bool AddLight (Light *light);
+		bool RemoveLight (Light *light);		
+		void ClearLights ();
+		int GetNumLights ();
+		Light *GetLight (int i);
+
+		enum UpdateType
+		{
+			GU_MODEL_BOUND_ONLY = -3,
+			GU_NORMALS = -2,
+			GU_USE_GEOMETRY = -1,
+			GU_USE_TCOORD_CHANNEL = 0
+		};
+		virtual void UpdateModelSpace (UpdateType type);
+	};

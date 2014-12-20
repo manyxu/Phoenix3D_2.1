@@ -1,0 +1,1096 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="PX2GraphicsRoot.cpp" />
+    <ClCompile Include="PX2AlphaProperty.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Bound.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraModelDVectorConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraModelPositionConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Camera.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraNode.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraWorldDVectorConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraWorldPositionConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BoxSurface.cpp">
+      <Filter>CurvesSurfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Color.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Transform.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Buffer.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ClodMesh.cpp">
+      <Filter>Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CollapseRecord.cpp">
+      <Filter>Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CollapseRecordArray.cpp">
+      <Filter>Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Controlledable.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Controller.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Culler.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CreateClodMesh.cpp">
+      <Filter>Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CullProperty.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CurveMesh.cpp">
+      <Filter>CurvesSurfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CurveSegment.cpp">
+      <Filter>CurvesSurfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DepthProperty.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DlodNode.cpp">
+      <Filter>Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Float2Array.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FloatArray.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2GlobalMaterial.cpp">
+      <Filter>GlobalMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2HalfFloat.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ImageProcessing.cpp">
+      <Filter>ImageProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ImageProcessing2.cpp">
+      <Filter>ImageProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2IndexBuffer.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2KeyframeController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Light.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightAmbientConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightAttenuationConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightDiffuseConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightModelDVectorConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightModelPositionConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightWorldDVectorConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightWorldPositionConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightSpotConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightSpecularConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightNode.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Material.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MaterialInstance.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MaterialPass.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MaterialTechnique.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Movable.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Node.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2OffsetProperty.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Picker.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PickRecord.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PixelShader.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Polypoint.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Polysegment.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PMatrixConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Projector.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ProjectorWorldPositionConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ProjectorMatrixConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PVMatrixConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PVWMatrixConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Renderable.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Renderer.cpp">
+      <Filter>Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ScreenTarget.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Shader.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShaderFloat.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShaderParameters.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Shine.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShineAmbientConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShineDiffuseConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShineEmissiveConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShineSpecularConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkinController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SpecializedIO.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StandardMesh.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StencilProperty.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Texture.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Texture1D.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Texture2D.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Texture3D.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TextureCube.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TransformController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Triangles.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TriFan.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TriMesh.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TriStrip.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VertexBufferAccessor.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VertexBuffer.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SwitchNode.cpp">
+      <Filter>Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VertexFormat.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VertexShader.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VertexColor4Material.cpp">
+      <Filter>LocalMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VMatrixConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VWMatrixConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2WMatrixConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VisibleSet.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2WireProperty.cpp">
+      <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RenderTarget.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2IndexBuffer.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Mapping.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2MaterialPass.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2PixelShader.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Renderer.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Shader.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture2D.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexBuffer.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexFormat.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexShader.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererData.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture1D.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture3D.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2TextureCube.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RenderTarget.cpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2JunglerMaterial.cpp">
+      <Filter>LocalMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UserConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveAlphaCtrl.cpp">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveFloatController.cpp">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveController.cpp">
+      <Filter>Controllers\InterpCurveCtrls</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveFloat3Controller.cpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveRotateCtrl.cpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveScaleCtrl.cpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveTranslateCtrl.cpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveShakeCtrl.cpp">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PushTransformController.cpp">
+      <Filter>Controllers\ActionCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveSpeedCtrl.cpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TargetTransformController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BillboardNode.cpp">
+      <Filter>Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DynamicBufferManager.cpp">
+      <Filter>DynamicBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DynamicBufferObject.cpp">
+      <Filter>DynamicBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InterpCurveUniformScaleCtrl.cpp">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BlendTransformController.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkinMatrixConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FogColorConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FogParamConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightTex2Material.cpp">
+      <Filter>LocalMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightTexMaterial.cpp">
+      <Filter>LocalMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkinMaterial.cpp">
+      <Filter>LocalMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StdMaterial.cpp">
+      <Filter>LocalMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Texture2DMaterial.cpp">
+      <Filter>LocalMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VertexColorStdMaterial.cpp">
+      <Filter>LocalMaterials</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2Graphics.hpp" />
+    <ClInclude Include="PX2GraphicsRoot.hpp" />
+    <ClInclude Include="PX2AlphaProperty.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Bound.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraModelDVectorConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraModelPositionConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Camera.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraNode.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraWorldDVectorConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraWorldPositionConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BoxSurface.hpp">
+      <Filter>CurvesSurfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Color.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Transform.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Buffer.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ClodMesh.hpp">
+      <Filter>Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CollapseRecord.hpp">
+      <Filter>Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CollapseRecordArray.hpp">
+      <Filter>Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Controlledable.hpp">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Controller.hpp">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Culler.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CreateClodMesh.hpp">
+      <Filter>Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CullProperty.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CurveMesh.hpp">
+      <Filter>CurvesSurfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CurveSegment.hpp">
+      <Filter>CurvesSurfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DepthProperty.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DlodNode.hpp">
+      <Filter>Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Float2Array.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FloatArray.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GlobalMaterial.hpp">
+      <Filter>GlobalMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2HalfFloat.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ImageProcessing.hpp">
+      <Filter>ImageProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ImageProcessing2.hpp">
+      <Filter>ImageProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2IndexBuffer.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2KeyframeController.hpp">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Light.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightAmbientConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightAttenuationConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightDiffuseConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightModelDVectorConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightModelPositionConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightWorldDVectorConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightWorldPositionConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightSpotConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightSpecularConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightNode.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Material.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MaterialInstance.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MaterialPass.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MaterialTechnique.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Movable.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Node.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2OffsetProperty.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Picker.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PickRecord.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PixelShader.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Polypoint.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Polysegment.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PMatrixConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Projector.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ProjectorWorldPositionConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ProjectorMatrixConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PVMatrixConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PVWMatrixConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Renderable.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Renderer.hpp">
+      <Filter>Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Renderers.hpp">
+      <Filter>Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ScreenTarget.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Shader.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShaderFloat.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShaderParameters.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Shine.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShineAmbientConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShineDiffuseConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShineEmissiveConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShineSpecularConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkinController.hpp">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SpecializedIO.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StandardMesh.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StencilProperty.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Texture.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Texture1D.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Texture2D.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Texture3D.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TextureCube.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TransformController.hpp">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Triangles.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TriFan.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TriMesh.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TriStrip.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VertexBufferAccessor.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VertexBuffer.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SwitchNode.hpp">
+      <Filter>Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VertexFormat.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VertexShader.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VertexColor4Material.hpp">
+      <Filter>LocalMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VMatrixConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VWMatrixConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2WMatrixConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VisibleSet.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2WireProperty.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RenderTarget.hpp">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GraphicsPre.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2IndexBuffer.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Mapping.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2MaterialPass.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2PixelShader.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererData.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Shader.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture2D.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexBuffer.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexFormat.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexShader.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererPre.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture1D.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture3D.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2TextureCube.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RenderTarget.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2OpenGLES2RendererInput.hpp">
+      <Filter>Renderers\OpenGLES2</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2JunglerMaterial.hpp">
+      <Filter>LocalMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UserConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveAlphaCtrl.hpp">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveFloatController.hpp">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveController.hpp">
+      <Filter>Controllers\InterpCurveCtrls</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveFloat3Controller.hpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveRotateCtrl.hpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveScaleCtrl.hpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveTranslateCtrl.hpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveShakeCtrl.hpp">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PushTransformController.hpp">
+      <Filter>Controllers\ActionCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveSpeedCtrl.hpp">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TargetTransformController.hpp">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BillboardNode.hpp">
+      <Filter>Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShaderKeys.hpp">
+      <Filter>Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DynamicBufferManager.hpp">
+      <Filter>DynamicBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DynamicBufferObject.hpp">
+      <Filter>DynamicBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurveUniformScaleCtrl.hpp">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BlendTransformController.hpp">
+      <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkinMatrixConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FogColorConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FogParamConstant.hpp">
+      <Filter>ShaderFloats</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightTex2Material.hpp">
+      <Filter>LocalMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightTexMaterial.hpp">
+      <Filter>LocalMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkinMaterial.hpp">
+      <Filter>LocalMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StdMaterial.hpp">
+      <Filter>LocalMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Texture2DMaterial.hpp">
+      <Filter>LocalMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VertexColorStdMaterial.hpp">
+      <Filter>LocalMaterials</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2GraphicsRoot.inl" />
+    <None Include="PX2Bound.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2Camera.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2CameraNode.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2BoxSurface.inl">
+      <Filter>CurvesSurfaces</Filter>
+    </None>
+    <None Include="PX2Color.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2Transform.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2Buffer.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2ClodMesh.inl">
+      <Filter>Detail</Filter>
+    </None>
+    <None Include="PX2CollapseRecordArray.inl">
+      <Filter>Detail</Filter>
+    </None>
+    <None Include="PX2Controlledable.inl">
+      <Filter>Controllers</Filter>
+    </None>
+    <None Include="PX2Controller.inl">
+      <Filter>Controllers</Filter>
+    </None>
+    <None Include="PX2Culler.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2DlodNode.inl">
+      <Filter>Detail</Filter>
+    </None>
+    <None Include="PX2Float2Array.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2FloatArray.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2ImageProcessing.inl">
+      <Filter>ImageProcessing</Filter>
+    </None>
+    <None Include="PX2ImageProcessing2.inl">
+      <Filter>ImageProcessing</Filter>
+    </None>
+    <None Include="PX2IndexBuffer.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2KeyframeController.inl">
+      <Filter>Controllers</Filter>
+    </None>
+    <None Include="PX2Light.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2LightNode.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2Material.inl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="PX2MaterialInstance.inl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="PX2MaterialPass.inl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="PX2MaterialTechnique.inl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="PX2Movable.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2Node.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2PickRecord.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2Polypoint.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2Polysegment.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2Renderable.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2Renderer.inl">
+      <Filter>Renderers</Filter>
+    </None>
+    <None Include="PX2Shader.inl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="PX2ShaderFloat.inl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="PX2ShaderParameters.inl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="PX2SkinController.inl">
+      <Filter>Controllers</Filter>
+    </None>
+    <None Include="PX2Texture.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2Texture1D.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2Texture2D.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2Texture3D.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2TextureCube.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2TransformController.inl">
+      <Filter>Controllers</Filter>
+    </None>
+    <None Include="PX2Triangles.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2VertexBufferAccessor.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2VertexBuffer.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2SwitchNode.inl">
+      <Filter>Detail</Filter>
+    </None>
+    <None Include="PX2VertexFormat.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2VertexShader.inl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="PX2VisibleSet.inl">
+      <Filter>SceneGraph</Filter>
+    </None>
+    <None Include="PX2RenderTarget.inl">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="PX2InterpCurveFloatController.inl">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </None>
+    <None Include="PX2InterpCurveController.inl">
+      <Filter>Controllers\InterpCurveCtrls</Filter>
+    </None>
+    <None Include="PX2InterpCurveFloat3Controller.inl">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </None>
+    <None Include="PX2InterpCurveShakeCtrl.inl">
+      <Filter>Controllers\InterpCurveCtrls\Float</Filter>
+    </None>
+    <None Include="PX2PushTransformController.inl">
+      <Filter>Controllers\ActionCtrl</Filter>
+    </None>
+    <None Include="PX2InterpCurveSpeedCtrl.inl">
+      <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
+    </None>
+    <None Include="PX2TargetTransformController.inl">
+      <Filter>Controllers</Filter>
+    </None>
+    <None Include="PX2BillboardNode.inl">
+      <Filter>Detail</Filter>
+    </None>
+    <None Include="PX2BlendTransformController.inl">
+      <Filter>Controllers</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Controllers">
+      <UniqueIdentifier>{0e8721d1-76c4-4adf-8eb3-6a412282e0b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CurvesSurfaces">
+      <UniqueIdentifier>{6d0fc2fe-609e-4f0f-a9d8-1afacfaa4fa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GlobalMaterials">
+      <UniqueIdentifier>{0f87100a-eb43-4fd9-b8cb-db7517d836fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneGraph">
+      <UniqueIdentifier>{02cce708-da8e-4e68-8f46-41496d0df9a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ShaderFloats">
+      <UniqueIdentifier>{b5de0dbe-2232-43e1-b9db-26661e0a0a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataTypes">
+      <UniqueIdentifier>{9747d364-d2df-430d-9346-def66f787ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Detail">
+      <UniqueIdentifier>{4a2feecf-d800-4465-89cf-f67e9e7def44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{637d68d7-6043-4703-a520-483ce27e191b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImageProcessing">
+      <UniqueIdentifier>{9cfe6716-6ab9-4d3e-aa21-eece459f629b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{43e15e94-c428-498b-826c-e111a61ba082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderers">
+      <UniqueIdentifier>{729f913f-1476-4f2e-bd25-fdc0e88557bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderers\OpenGLES2">
+      <UniqueIdentifier>{bea4fc5f-25fe-4146-a8c6-59ecb7fd149a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers\InterpCurveCtrls">
+      <UniqueIdentifier>{50031940-36e0-4c49-9adb-a3164d00f583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers\InterpCurveCtrls\Float">
+      <UniqueIdentifier>{7cd2bcbf-9997-4fcb-badf-f6e3c5273402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers\InterpCurveCtrls\Float3">
+      <UniqueIdentifier>{6f976ac8-5d61-4c29-8faf-281c075e4dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers\ActionCtrl">
+      <UniqueIdentifier>{2014b119-1b38-46f4-90fd-b8e2468acc5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DynamicBuffer">
+      <UniqueIdentifier>{725533e6-dc1a-4002-a500-27a9e232fdbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LocalMaterials">
+      <UniqueIdentifier>{aa853b43-9a9e-4739-813e-e6273f3b4c66}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

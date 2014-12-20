@@ -1,0 +1,25 @@
+// PX2UIView.pkg
+
+	class UIView
+	{
+		UIView (int id);
+		~UIView ();
+
+		int GetID ();
+
+		void SetSize (float width, float height);
+		void SetSize (const Sizef &size);
+		const Sizef &GetSize () const;
+		void SetWidth (float width);
+		float GetWidth ();
+		void SetHeight (float height);
+		float GetHeight ();
+
+		void SetRenderer(Renderer *renderer);
+		Renderer *GetRenderer ();
+		void SetMainFrame (UIFrame *frame);
+		UIFrame *GetMainFrame ();
+		Camera *GetCamera ();
+		Culler &GetCuller ();
+		std::vector<UIPicBoxPtr> &GetPickedPicBoxs ();
+	};

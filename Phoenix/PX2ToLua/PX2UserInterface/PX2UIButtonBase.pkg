@@ -1,0 +1,28 @@
+// PX2UIButtonBase.pkg
+
+	class UIButtonBase : public UIFrame
+	{
+		virtual ~UIButtonBase ();
+
+		enum ButtonState
+		{
+			BS_NORMAL,
+			BS_OVER,
+			BS_DOWN,
+			BS_DISABLED,
+			BS_MAX_STATE 
+		};
+		virtual void SetButtonState (ButtonState state);
+		ButtonState GetButtonState () const;
+
+		void SetPicBox (ButtonState state, UIPicBox *pic);
+		UIPicBox *GetPicBoxAtState (ButtonState state);
+
+		void SetSize (float width, float height);
+		void SetSize (const Sizef &size);
+		const Sizef &GetSize () const;
+		void SetWidth (float width);
+		float GetWidth ();
+		void SetHeight (float height);
+		float GetHeight ();
+	};
