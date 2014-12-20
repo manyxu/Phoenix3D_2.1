@@ -117,7 +117,7 @@
     <ProjectGuid>{F7BB48E3-4028-4AB7-89BB-7C32C3B6DBCD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>PX2Effect1_VC100</RootNamespace>
-    <ProjectName>PX2Effect1</ProjectName>
+    <ProjectName>PX2Effect</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EventSpace.inl
-*
-*/
+// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
 
 //----------------------------------------------------------------------------
 inline void EventSpace::Space::Reset (int begin, int end)

@@ -138,6 +138,14 @@
     <ClCompile Include="PX2Mutex.cpp" />
     <ClCompile Include="PX2Object.cpp" />
     <ClCompile Include="PX2ObjectCopyPool.cpp" />
+    <ClCompile Include="PX2Object_Event.cpp" />
+    <ClCompile Include="PX2Object_Function.cpp" />
+    <ClCompile Include="PX2Object_Name.cpp" />
+    <ClCompile Include="PX2Object_Property.cpp" />
+    <ClCompile Include="PX2Object_Resource.cpp" />
+    <ClCompile Include="PX2Object_Rtti.cpp" />
+    <ClCompile Include="PX2Object_Stream.cpp" />
+    <ClCompile Include="PX2Object_UserData.cpp" />
     <ClCompile Include="PX2OutStream.cpp" />
     <ClCompile Include="PX2Rtti.cpp" />
     <ClCompile Include="PX2Runnable.cpp" />

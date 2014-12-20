@@ -1,8 +1,4 @@
-/*
-*
-* 文件名称	：	PX2Object.hpp
-*
-*/
+// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
 
 #ifndef PX2OBJECT_HPP
 #define PX2OBJECT_HPP
@@ -19,6 +15,9 @@
 
 namespace PX2
 {
+
+	class Event;
+	class EventHandler;
 
 	/// 对象系统根类
 	/** 
@@ -70,6 +69,19 @@ namespace PX2
 			std::vector<Object*>& objects);
 	private:
 		std::string mName;
+
+		// 事件
+	public:
+		void ComeInEventWorld ();
+		void GoOutEventWorld ();
+		bool IsInEventWorld();
+
+		EventHandler *GetEventHandler();
+
+		virtual void DoExecute(Event *event);
+
+	protected:
+		Pointer0<EventHandler> mEventHandler;
 
 		// Visitor
 	public:

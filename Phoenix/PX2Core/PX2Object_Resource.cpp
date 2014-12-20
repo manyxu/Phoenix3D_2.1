@@ -1,27 +1,16 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Object.cpp
-*
-*/
+// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
 
 #include "PX2Object.hpp"
-#include "PX2StringHelp.hpp"
-#include "PX2EventHandler.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-Object::Object ()
-	:
-mReadedVersion(0),
-mCurStream(NULL),
-mIsNameChangeable(true)
+void Object::SetResourcePath(const std::string& name)
 {
-	mEventHandler = new0 EventHandler();
+	mResourcePath = name;
 }
 //----------------------------------------------------------------------------
-Object::~Object ()
+const std::string& Object::GetResourcePath() const
 {
-	if (!mEventHandler->IsInWorld())
-		GoOutEventWorld();
+	return mResourcePath;
 }
 //----------------------------------------------------------------------------
