@@ -1,0 +1,9 @@
+// PX2Actor.pkg
+
+	class Actor : public Gameable
+	{
+		Actor ();
+		virtual ~Actor ();
+
+		virtual void Update (double appSeconds, double elapsedSeconds);
+	};

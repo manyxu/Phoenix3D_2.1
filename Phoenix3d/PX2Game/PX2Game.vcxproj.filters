@@ -1,0 +1,806 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Actors">
+      <UniqueIdentifier>{5720868f-dbd4-4a9e-9c8d-7cea1a3fffbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{d423b8f4-c4b0-4663-a7cc-6fdfd62036c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pick">
+      <UniqueIdentifier>{03aa4138-81cf-4e34-94d6-b65d1cd61802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project">
+      <UniqueIdentifier>{8459b5a1-e06a-4829-9bb7-94fbe85a76b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actors\3D">
+      <UniqueIdentifier>{de21c6e9-8f26-4930-a963-da577017d43b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes\3D">
+      <UniqueIdentifier>{8cc6ee85-ede7-4aa1-9ded-8a5e9eaafab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters">
+      <UniqueIdentifier>{eac3f7c0-732f-4e53-a414-83c4782cf15e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{61c7b627-062e-4dd2-be55-8ec05009f4b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Skill">
+      <UniqueIdentifier>{2bd93034-80bf-4320-9693-1d920f14488c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Accounts">
+      <UniqueIdentifier>{481fbe15-e04c-45a3-bb30-16535f347269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{6eaba212-95bd-42b3-822f-0827ddd4dc01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpacePartition">
+      <UniqueIdentifier>{d9d21394-a750-4469-8e61-9d165de63de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpacePartition\Cell2D">
+      <UniqueIdentifier>{5db98e9c-00bd-478c-90ae-0f6670be4b94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{11859836-e311-4146-a941-4e2b39010e3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Buf">
+      <UniqueIdentifier>{290bd9ce-6424-4bdd-9240-f1fc4faea874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameable">
+      <UniqueIdentifier>{328dd964-ee5b-4a96-98c1-8bd5131f5b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{0b7728bf-0094-4d39-859a-7c352d71bdf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Skill\Steps">
+      <UniqueIdentifier>{9977aab4-d3f7-40f2-a2b4-3cade4fdcaa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Affect">
+      <UniqueIdentifier>{b87b4100-bff7-4c42-b454-5544a92ff66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Help">
+      <UniqueIdentifier>{d5f1d29e-0028-49a1-a407-18d468ba1cfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{e3e0b21d-82ba-47f7-a4f3-51da46de1210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AddDeleting">
+      <UniqueIdentifier>{48538fb9-de23-4b1f-ad71-fd6609e27a6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Netable">
+      <UniqueIdentifier>{1d6b6aeb-6cab-4a54-90f1-b74692abb9a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{5695a493-bf96-48e3-97f9-bc0ef7442cf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\Character2D">
+      <UniqueIdentifier>{391ba1b9-157e-4c76-bdee-049d5a13ec65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMan">
+      <UniqueIdentifier>{55d84b68-89f9-47fa-8c8b-385c429a6812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actors\Trigger">
+      <UniqueIdentifier>{76da49c3-0ca2-4ecb-9871-7b3696ce2d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actors\Tag">
+      <UniqueIdentifier>{700bf9d3-fbcc-4fed-aeeb-4b861c711dd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actors\Camera">
+      <UniqueIdentifier>{338d841f-fafc-4108-a2ed-444c05e83caf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{4ffca3a7-4470-4c1b-85fc-ff7dd2988534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameMan\CamCtrlModule">
+      <UniqueIdentifier>{81a6b31e-99c1-40ab-8450-a3b767e725b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI\Move">
+      <UniqueIdentifier>{c52fe3bf-097d-4e3a-8c46-24dd62ec8c24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\StateMachine">
+      <UniqueIdentifier>{fcd73b87-bfbc-473f-9aa2-60a1b76795b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\StateMachine\MachineStates">
+      <UniqueIdentifier>{79d6cd6e-7e7a-4b34-80ca-41a75d362428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\StateMachine\MachineStates\ActionStates">
+      <UniqueIdentifier>{da27d3e8-6221-4ba2-8f58-c5ac276f49ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\StateMachine\MachineStates\MovementStates">
+      <UniqueIdentifier>{b7c328ae-bd36-4315-b494-c13d6d135dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\StateMachine\MachineStates\PostureStates">
+      <UniqueIdentifier>{763c29e5-21f6-48fe-a0cc-f47386fcc86e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Characters\StateMachine\MachineStates\LogicStates">
+      <UniqueIdentifier>{b259c578-d446-4f25-8025-95fe17925c00}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2Actor.cpp">
+      <Filter>Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Netable.cpp">
+      <Filter>Netable</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ActorPicker.cpp">
+      <Filter>Pick</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2GameManager.cpp">
+      <Filter>GameMan</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AmbientRegionActor.cpp">
+      <Filter>Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectActor.cpp">
+      <Filter>Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Project.cpp">
+      <Filter>Project</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkyActor.cpp">
+      <Filter>Actors\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TerrainActor.cpp">
+      <Filter>Actors\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Scene3D.cpp">
+      <Filter>Scenes\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Item.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillInstance.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2GameEventType.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CellSpace.cpp">
+      <Filter>SpacePartition\Cell2D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Scene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2User.cpp">
+      <Filter>Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AccoutManager.cpp">
+      <Filter>Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerInfo.cpp">
+      <Filter>Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DeletingManager.cpp">
+      <Filter>AddDeleting</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UserActor.cpp">
+      <Filter>Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SoundActor.cpp">
+      <Filter>Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Buf.cpp">
+      <Filter>Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Gameable.cpp">
+      <Filter>Gameable</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LogicManager.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Animation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Animation2DFrames8.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillActor.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillStepRangeTime.cpp">
+      <Filter>Skill\Steps</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillStep.cpp">
+      <Filter>Skill\Steps</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillStepFarTrack.cpp">
+      <Filter>Skill\Steps</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectBuf.cpp">
+      <Filter>Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2HPBuf.cpp">
+      <Filter>Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SpeedBuf.cpp">
+      <Filter>Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillCDTimeBuf.cpp">
+      <Filter>Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AffectObject.cpp">
+      <Filter>Affect</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FreezeBuf.cpp">
+      <Filter>Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AimBuf.cpp">
+      <Filter>Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillCriticalBuf.cpp">
+      <Filter>Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2GroupBuf.cpp">
+      <Filter>Buf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillStepLink.cpp">
+      <Filter>Skill\Steps</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillActorLink.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AddingManager.cpp">
+      <Filter>AddDeleting</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SoundManager.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerPlatform.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerPlatformEventType.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2A2DF8_Mesh.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character_LevelExp.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character_HPAP.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character_Anims.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character_Items.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character_Skills.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character_AI.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2WalkingState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StandingState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RunningState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PostureState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StopState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\MovementStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MovingState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\MovementStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MovementState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\MovementStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ActionState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FightingState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2IdleState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MagicingState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SpawningState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character2DFrames8.cpp">
+      <Filter>Characters\Character2D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_ID.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_Property.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_Activate.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_Step.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_Damage.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_QueryRange.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_Save.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_Character.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Actor_IDBitSet.cpp">
+      <Filter>Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Actor_MovableScene.cpp">
+      <Filter>Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Actor_TransMoving.cpp">
+      <Filter>Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Actor_Props.cpp">
+      <Filter>Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Animation3DSkeleton.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AnimationObject.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightActor.cpp">
+      <Filter>Actors</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TriggerActor.cpp">
+      <Filter>Actors\Trigger</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TagActor.cpp">
+      <Filter>Actors\Tag</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LogicModule.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LMParam.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CamCtrlModule.cpp">
+      <Filter>GameMan\CamCtrlModule</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraActor.cpp">
+      <Filter>Actors\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DeathState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2GoalState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\LogicStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LogicState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\LogicStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NullState.cpp">
+      <Filter>Characters\StateMachine\MachineStates\LogicStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MoveBehavior.cpp">
+      <Filter>AI\Move</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MoveBehavior_Free.cpp">
+      <Filter>AI\Move</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LogicGroup.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2GamePre.hpp" />
+    <ClInclude Include="PX2Game.hpp" />
+    <ClInclude Include="PX2Actor.hpp">
+      <Filter>Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Netable.hpp">
+      <Filter>Netable</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ActorPicker.hpp">
+      <Filter>Pick</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ActorPickRecord.hpp">
+      <Filter>Pick</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GameManager.hpp">
+      <Filter>GameMan</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AmbientRegionActor.hpp">
+      <Filter>Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectActor.hpp">
+      <Filter>Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Project.hpp">
+      <Filter>Project</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkyActor.hpp">
+      <Filter>Actors\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TerrainActor.hpp">
+      <Filter>Actors\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Scene3D.hpp">
+      <Filter>Scenes\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Item.hpp">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Character.hpp">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Skill.hpp">
+      <Filter>Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2State.hpp">
+      <Filter>Characters\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StateMachine.hpp">
+      <Filter>Characters\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillInstance.hpp">
+      <Filter>Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GameEventType.hpp">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Scene.hpp">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CellSpace.hpp">
+      <Filter>SpacePartition\Cell2D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2User.hpp">
+      <Filter>Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UserActor.hpp">
+      <Filter>Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AccoutManager.hpp">
+      <Filter>Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerInfo.hpp">
+      <Filter>Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DeletingManager.hpp">
+      <Filter>AddDeleting</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SoundActor.hpp">
+      <Filter>Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Buf.hpp">
+      <Filter>Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Gameable.hpp">
+      <Filter>Gameable</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LogicManager.hpp">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Animation.hpp">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Animation2DFrames8.hpp">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillActor.hpp">
+      <Filter>Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillStepRangeTime.hpp">
+      <Filter>Skill\Steps</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillStep.hpp">
+      <Filter>Skill\Steps</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillStepFarTrack.hpp">
+      <Filter>Skill\Steps</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectBuf.hpp">
+      <Filter>Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2HPBuf.hpp">
+      <Filter>Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SpeedBuf.hpp">
+      <Filter>Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillCDTimeBuf.hpp">
+      <Filter>Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AffectObject.hpp">
+      <Filter>Affect</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FreezeBuf.hpp">
+      <Filter>Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AimBuf.hpp">
+      <Filter>Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillCriticalBuf.hpp">
+      <Filter>Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GroupBuf.hpp">
+      <Filter>Buf</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CellSpaceT.hpp">
+      <Filter>SpacePartition\Cell2D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillStepLink.hpp">
+      <Filter>Skill\Steps</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillActorLink.hpp">
+      <Filter>Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Smoother.hpp">
+      <Filter>Help</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AddingManager.hpp">
+      <Filter>AddDeleting</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SoundManager.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerPlatform.hpp">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerPlatformEventType.hpp">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2A2DF8_Mesh.hpp">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2WalkingState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StandingState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RunningState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PostureState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StopState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\MovementStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MovingState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\MovementStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MovementState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\MovementStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ActionState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FightingState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2IdleState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MagicingState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SpawningState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\ActionStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Character2DFrames8.hpp">
+      <Filter>Characters\Character2D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Animation3DSkeleton.hpp">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AnimationObject.hpp">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightActor.hpp">
+      <Filter>Actors</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TriggerActor.hpp">
+      <Filter>Actors\Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TagActor.hpp">
+      <Filter>Actors\Tag</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LogicModule.hpp">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LMParam.hpp">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CamCtrlModule.hpp">
+      <Filter>GameMan\CamCtrlModule</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraActor.hpp">
+      <Filter>Actors\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DeathState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\PostureStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GoalState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\LogicStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LogicState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\LogicStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NullState.hpp">
+      <Filter>Characters\StateMachine\MachineStates\LogicStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MoveBehavior.hpp">
+      <Filter>AI\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MoveBehavior_Free.hpp">
+      <Filter>AI\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LogicGroup.hpp">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Heapnode.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2Netable.inl">
+      <Filter>Netable</Filter>
+    </None>
+    <None Include="PX2Actor.inl">
+      <Filter>Actors</Filter>
+    </None>
+    <None Include="PX2Scene.inl">
+      <Filter>Scenes</Filter>
+    </None>
+    <None Include="PX2GameManager.inl">
+      <Filter>GameMan</Filter>
+    </None>
+    <None Include="PX2AmbientRegionActor.inl">
+      <Filter>Actors</Filter>
+    </None>
+    <None Include="PX2EffectActor.inl">
+      <Filter>Actors</Filter>
+    </None>
+    <None Include="PX2Project.inl">
+      <Filter>Project</Filter>
+    </None>
+    <None Include="PX2SkyActor.inl">
+      <Filter>Actors\3D</Filter>
+    </None>
+    <None Include="PX2TerrainActor.inl">
+      <Filter>Actors\3D</Filter>
+    </None>
+    <None Include="PX2Scene3D.inl">
+      <Filter>Scenes\3D</Filter>
+    </None>
+    <None Include="PX2Item.inl">
+      <Filter>Items</Filter>
+    </None>
+    <None Include="PX2Character.inl">
+      <Filter>Characters</Filter>
+    </None>
+    <None Include="PX2Skill.inl">
+      <Filter>Skill</Filter>
+    </None>
+    <None Include="PX2StateMachine.inl">
+      <Filter>Characters\StateMachine</Filter>
+    </None>
+    <None Include="PX2State.inl">
+      <Filter>Characters\StateMachine</Filter>
+    </None>
+    <None Include="PX2SkillInstance.inl">
+      <Filter>Skill</Filter>
+    </None>
+    <None Include="PX2User.inl">
+      <Filter>Accounts</Filter>
+    </None>
+    <None Include="PX2UserActor.inl">
+      <Filter>Accounts</Filter>
+    </None>
+    <None Include="PX2AccoutManager.inl">
+      <Filter>Accounts</Filter>
+    </None>
+    <None Include="PX2SoundActor.inl">
+      <Filter>Actors</Filter>
+    </None>
+    <None Include="PX2Buf.inl">
+      <Filter>Buf</Filter>
+    </None>
+    <None Include="PX2Gameable.inl">
+      <Filter>Gameable</Filter>
+    </None>
+    <None Include="PX2LogicManager.inl">
+      <Filter>Logic</Filter>
+    </None>
+    <None Include="PX2Animation.inl">
+      <Filter>Animation</Filter>
+    </None>
+    <None Include="PX2Animation2DFrames8.inl">
+      <Filter>Animation</Filter>
+    </None>
+    <None Include="PX2SkillActor.inl">
+      <Filter>Skill</Filter>
+    </None>
+    <None Include="PX2SkillStepRangeTime.inl">
+      <Filter>Skill\Steps</Filter>
+    </None>
+    <None Include="PX2SkillStep.inl">
+      <Filter>Skill\Steps</Filter>
+    </None>
+    <None Include="PX2SkillStepFarTrack.inl">
+      <Filter>Skill\Steps</Filter>
+    </None>
+    <None Include="PX2EffectBuf.inl">
+      <Filter>Buf</Filter>
+    </None>
+    <None Include="PX2HPBuf.inl">
+      <Filter>Buf</Filter>
+    </None>
+    <None Include="PX2SpeedBuf.inl">
+      <Filter>Buf</Filter>
+    </None>
+    <None Include="PX2SkillCDTimeBuf.inl">
+      <Filter>Buf</Filter>
+    </None>
+    <None Include="PX2AimBuf.inl">
+      <Filter>Buf</Filter>
+    </None>
+    <None Include="PX2SkillCriticalBuf.inl">
+      <Filter>Buf</Filter>
+    </None>
+    <None Include="PX2GroupBuf.inl">
+      <Filter>Buf</Filter>
+    </None>
+    <None Include="PX2CellSpaceT.inl">
+      <Filter>SpacePartition\Cell2D</Filter>
+    </None>
+    <None Include="PX2SkillStepLink.inl">
+      <Filter>Skill\Steps</Filter>
+    </None>
+    <None Include="PX2SkillActorLink.inl">
+      <Filter>Skill</Filter>
+    </None>
+    <None Include="PX2Character2DFrames8.inl">
+      <Filter>Characters\Character2D</Filter>
+    </None>
+    <None Include="PX2Animation3DSkeleton.inl">
+      <Filter>Animation</Filter>
+    </None>
+    <None Include="PX2AnimationObject.inl">
+      <Filter>Animation</Filter>
+    </None>
+    <None Include="PX2LightActor.inl">
+      <Filter>Actors</Filter>
+    </None>
+    <None Include="PX2TriggerActor.inl">
+      <Filter>Actors\Trigger</Filter>
+    </None>
+    <None Include="PX2LMParam.inl">
+      <Filter>Logic</Filter>
+    </None>
+    <None Include="PX2LogicModule.inl">
+      <Filter>Logic</Filter>
+    </None>
+    <None Include="PX2CamCtrlModule.inl">
+      <Filter>GameMan\CamCtrlModule</Filter>
+    </None>
+    <None Include="PX2CameraActor.inl">
+      <Filter>Actors\Camera</Filter>
+    </None>
+    <None Include="PX2LogicGroup.inl">
+      <Filter>Logic</Filter>
+    </None>
+  </ItemGroup>
+</Project>

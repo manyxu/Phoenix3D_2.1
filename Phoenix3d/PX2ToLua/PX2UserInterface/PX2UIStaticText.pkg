@@ -1,0 +1,40 @@
+// PX2UIStaticText.pkg
+
+	class UIStaticText : public TriMesh
+	{
+ 		UIStaticText ();
+		virtual ~UIStaticText ();
+
+		void SetFont (const std::string &fontFilename, int fontWidth,
+			int fontHeight,	unsigned int fontStyle=FES_NORMAL);
+		Font *GetFont ();
+
+		void SetText (std::string text);
+		const std::string &GetText () const;
+
+		// FES_NORMAL
+		// FES_ITALIC
+		// FES_UNDERLINE
+		void SetFontStyle (int style);
+		int GetFontStyle ();
+
+		// FD_NORMAL 0
+		// FD_SHADOW 1
+		// FD_BORDER 2
+		void SetDrawStyle (int style);
+		int GetDrawStyle ();
+		
+		void SetColor (Float3 color);
+		const Float3 &GetColor () const;
+
+		void SetAlpha (float alpha);
+		float GetAlpha ();
+
+		void SetFontWidth (int width);
+		int GetFontWidth ();
+		void SetFontHeight (int height);
+		int GetFontHeight ();
+
+		void SetDoubleSide (bool d);
+		bool IsDoubleSide ();
+	};

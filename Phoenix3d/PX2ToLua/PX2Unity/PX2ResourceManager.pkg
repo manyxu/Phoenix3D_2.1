@@ -1,0 +1,41 @@
+// PX2ResourceManager.pkg
+
+	class ResourceManager
+	{
+		static ResourceManager &GetSingleton ();
+	
+		enum LoadState
+		{
+			LS_UNLOADED,
+			LS_LOADQUE,
+			LS_LOADING,
+			LS_LOADED,
+			LS_MAX_STATE
+		};
+
+		void Clear ();
+		Object *BlockLoad (const std::string &filename);
+		ResHandle BackgroundLoad (const std::string &filename);
+		Object *CheckRes (ResHandle handle);
+		LoadState GetResLoadState (ResHandle handle);
+		
+		void SetUseGarbageCollect (bool use);
+		bool IsUseGarbageCollect () const;
+		void SetGarbageCollectTime (float seconds);
+		float GetGarbageCollectTime () const;
+
+		bool LoadBuffer (const std::string &filename, int &bufferSize, 
+			char* &buffer);
+
+		// tex pack
+		bool AddTexPack (const std::string &texPackPath);
+		const TexPack &GetTexPack (const std::string &texPackPath);
+		const TexPackElement &GetTexPackElement (
+			const std::string &texPackPath, const std::string &eleName);
+
+		std::string GetWriteablePath ();
+		static const std::string GetResourcePath ();
+
+		void DDSKeepCompressed (bool keep=true);
+		bool IsDDSKeepCompressed ();
+	};

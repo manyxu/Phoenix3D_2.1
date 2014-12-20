@@ -1,0 +1,18 @@
+// PX2GroupBuf.pkg
+
+	class GroupBuf : public Buf
+	{
+		GroupBuf ();
+		virtual ~GroupBuf ();
+
+		static GroupBuf *Create ();
+
+		virtual void Update (double appSeconds, double elapsedSeconds);
+
+		void SetToGroupCharacterID (int id);
+
+		int GetBeforeGroup () const;
+
+		virtual void OnAdded ();
+		virtual void OnRemoved ();
+	};

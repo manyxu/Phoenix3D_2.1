@@ -1,0 +1,30 @@
+// PX2Movable.pkg
+	
+	class Movable : public Controlledable
+	{
+		virtual ~Movable ();
+			
+		Transform LocalTransform;
+		Transform WorldTransform;
+		bool WorldTransformIsCurrent;
+
+		Bound WorldBound;
+		bool WorldBoundIsCurrent;
+
+		enum CullingMode
+		{
+			CULL_DYNAMIC,
+			CULL_ALWAYS,
+			CULL_NEVER
+		};
+
+		CullingMode Culling;
+		
+		void Show (bool show);
+		bool IsShow () const;
+
+		void Update (double applicationTime = -Mathd::MAX_REAL,
+			bool initiator = true);
+
+		Movable* GetParent ();		
+	};

@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2A2DF8_Mesh.hpp" />
+    <ClInclude Include="PX2AddingManager.hpp" />
+    <ClInclude Include="PX2AccoutManager.hpp" />
+    <ClInclude Include="PX2Actor.hpp" />
+    <ClInclude Include="PX2AffectObject.hpp" />
+    <ClInclude Include="PX2AimBuf.hpp" />
+    <ClInclude Include="PX2Animation.hpp" />
+    <ClInclude Include="PX2Animation2DFrames8.hpp" />
+    <ClInclude Include="PX2Animation3DSkeleton.hpp" />
+    <ClInclude Include="PX2AnimationObject.hpp" />
+    <ClInclude Include="PX2Buf.hpp" />
+    <ClInclude Include="PX2CellSpace.hpp" />
+    <ClInclude Include="PX2Character2DFrames8.hpp" />
+    <ClInclude Include="PX2CellSpaceT.hpp" />
+    <ClInclude Include="PX2DeathState.hpp" />
+    <ClInclude Include="PX2EffectBuf.hpp" />
+    <ClInclude Include="PX2FreezeBuf.hpp" />
+    <ClInclude Include="PX2Gameable.hpp" />
+    <ClInclude Include="PX2DeletingManager.hpp" />
+    <ClInclude Include="PX2GoalState.hpp" />
+    <ClInclude Include="PX2Heapnode.hpp" />
+    <ClInclude Include="PX2LightActor.hpp" />
+    <ClInclude Include="PX2LMParam.hpp" />
+    <ClInclude Include="PX2LogicModule.hpp" />
+    <ClInclude Include="PX2CamCtrlModule.hpp" />
+    <ClInclude Include="PX2LogicGroup.hpp" />
+    <ClInclude Include="PX2LogicState.hpp" />
+    <ClInclude Include="PX2MoveBehavior.hpp" />
+    <ClInclude Include="PX2MoveBehavior_Free.hpp" />
+    <ClInclude Include="PX2NullState.hpp" />
+    <ClInclude Include="PX2SoundManager.hpp" />
+    <ClInclude Include="PX2GroupBuf.hpp" />
+    <ClInclude Include="PX2LogicManager.hpp" />
+    <ClInclude Include="PX2ServerInfo.hpp" />
+    <ClInclude Include="PX2SkillActor.hpp" />
+    <ClInclude Include="PX2SkillActorLink.hpp" />
+    <ClInclude Include="PX2SkillCDTimeBuf.hpp" />
+    <ClInclude Include="PX2SkillCriticalBuf.hpp" />
+    <ClInclude Include="PX2SkillStep.hpp" />
+    <ClInclude Include="PX2SkillStepLink.hpp" />
+    <ClInclude Include="PX2SkillStepRangeTime.hpp" />
+    <ClInclude Include="PX2SkillStepFarTrack.hpp" />
+    <ClInclude Include="PX2SoundActor.hpp" />
+    <ClInclude Include="PX2SpeedBuf.hpp" />
+    <ClInclude Include="PX2ActorPicker.hpp" />
+    <ClInclude Include="PX2ActorPickRecord.hpp" />
+    <ClInclude Include="PX2AmbientRegionActor.hpp" />
+    <ClInclude Include="PX2ActionState.hpp" />
+    <ClInclude Include="PX2FightingState.hpp" />
+    <ClInclude Include="PX2IdleState.hpp" />
+    <ClInclude Include="PX2MovingState.hpp" />
+    <ClInclude Include="PX2MovementState.hpp" />
+    <ClInclude Include="PX2PostureState.hpp" />
+    <ClInclude Include="PX2RunningState.hpp" />
+    <ClInclude Include="PX2MagicingState.hpp" />
+    <ClInclude Include="PX2SpawningState.hpp" />
+    <ClInclude Include="PX2StandingState.hpp" />
+    <ClInclude Include="PX2StopState.hpp" />
+    <ClInclude Include="PX2TagActor.hpp" />
+    <ClInclude Include="PX2TriggerActor.hpp" />
+    <ClInclude Include="PX2WalkingState.hpp" />
+    <ClInclude Include="PX2CameraActor.hpp" />
+    <ClInclude Include="PX2Character.hpp" />
+    <ClInclude Include="PX2EffectActor.hpp" />
+    <ClInclude Include="PX2Game.hpp" />
+    <ClInclude Include="PX2GameEventType.hpp" />
+    <ClInclude Include="PX2GameManager.hpp" />
+    <ClInclude Include="PX2GamePre.hpp" />
+    <ClInclude Include="PX2Item.hpp" />
+    <ClInclude Include="PX2Netable.hpp" />
+    <ClInclude Include="PX2Project.hpp" />
+    <ClInclude Include="PX2Scene.hpp" />
+    <ClInclude Include="PX2Scene3D.hpp" />
+    <ClInclude Include="PX2Skill.hpp" />
+    <ClInclude Include="PX2SkillInstance.hpp" />
+    <ClInclude Include="PX2SkyActor.hpp" />
+    <ClInclude Include="PX2Smoother.hpp" />
+    <ClInclude Include="PX2State.hpp" />
+    <ClInclude Include="PX2StateMachine.hpp" />
+    <ClInclude Include="PX2TerrainActor.hpp" />
+    <ClInclude Include="PX2ServerPlatform.hpp" />
+    <ClInclude Include="PX2ServerPlatformEventType.hpp" />
+    <ClInclude Include="PX2User.hpp" />
+    <ClInclude Include="PX2UserActor.hpp" />
+    <ClInclude Include="PX2HPBuf.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2A2DF8_Mesh.cpp" />
+    <ClCompile Include="PX2AccoutManager.cpp" />
+    <ClCompile Include="PX2Actor.cpp" />
+    <ClCompile Include="PX2ActorPicker.cpp" />
+    <ClCompile Include="PX2Actor_IDBitSet.cpp" />
+    <ClCompile Include="PX2Actor_MovableScene.cpp" />
+    <ClCompile Include="PX2Actor_Props.cpp" />
+    <ClCompile Include="PX2Actor_TransMoving.cpp" />
+    <ClCompile Include="PX2AddingManager.cpp" />
+    <ClCompile Include="PX2AffectObject.cpp" />
+    <ClCompile Include="PX2AimBuf.cpp" />
+    <ClCompile Include="PX2Animation.cpp" />
+    <ClCompile Include="PX2Animation2DFrames8.cpp" />
+    <ClCompile Include="PX2Animation3DSkeleton.cpp" />
+    <ClCompile Include="PX2AnimationObject.cpp" />
+    <ClCompile Include="PX2Buf.cpp" />
+    <ClCompile Include="PX2CellSpace.cpp" />
+    <ClCompile Include="PX2Character2DFrames8.cpp" />
+    <ClCompile Include="PX2Character_AI.cpp" />
+    <ClCompile Include="PX2Character_Anims.cpp" />
+    <ClCompile Include="PX2Character_HPAP.cpp" />
+    <ClCompile Include="PX2Character_Items.cpp" />
+    <ClCompile Include="PX2Character_LevelExp.cpp" />
+    <ClCompile Include="PX2Character_Skills.cpp" />
+    <ClCompile Include="PX2DeathState.cpp" />
+    <ClCompile Include="PX2EffectBuf.cpp" />
+    <ClCompile Include="PX2FreezeBuf.cpp" />
+    <ClCompile Include="PX2Gameable.cpp" />
+    <ClCompile Include="PX2DeletingManager.cpp" />
+    <ClCompile Include="PX2GoalState.cpp" />
+    <ClCompile Include="PX2LightActor.cpp" />
+    <ClCompile Include="PX2LMParam.cpp" />
+    <ClCompile Include="PX2LogicModule.cpp" />
+    <ClCompile Include="PX2CamCtrlModule.cpp" />
+    <ClCompile Include="PX2LogicGroup.cpp" />
+    <ClCompile Include="PX2LogicState.cpp" />
+    <ClCompile Include="PX2MoveBehavior.cpp" />
+    <ClCompile Include="PX2MoveBehavior_Free.cpp" />
+    <ClCompile Include="PX2NullState.cpp" />
+    <ClCompile Include="PX2Skill_Activate.cpp" />
+    <ClCompile Include="PX2Skill_Character.cpp" />
+    <ClCompile Include="PX2Skill_Damage.cpp" />
+    <ClCompile Include="PX2Skill_ID.cpp" />
+    <ClCompile Include="PX2Skill_Property.cpp" />
+    <ClCompile Include="PX2Skill_QueryRange.cpp" />
+    <ClCompile Include="PX2Skill_Save.cpp" />
+    <ClCompile Include="PX2Skill_Step.cpp" />
+    <ClCompile Include="PX2SoundManager.cpp" />
+    <ClCompile Include="PX2AmbientRegionActor.cpp" />
+    <ClCompile Include="PX2ActionState.cpp" />
+    <ClCompile Include="PX2FightingState.cpp" />
+    <ClCompile Include="PX2IdleState.cpp" />
+    <ClCompile Include="PX2MovingState.cpp" />
+    <ClCompile Include="PX2MovementState.cpp" />
+    <ClCompile Include="PX2PostureState.cpp" />
+    <ClCompile Include="PX2RunningState.cpp" />
+    <ClCompile Include="PX2MagicingState.cpp" />
+    <ClCompile Include="PX2SpawningState.cpp" />
+    <ClCompile Include="PX2StandingState.cpp" />
+    <ClCompile Include="PX2StopState.cpp" />
+    <ClCompile Include="PX2TagActor.cpp" />
+    <ClCompile Include="PX2WalkingState.cpp" />
+    <ClCompile Include="PX2CameraActor.cpp" />
+    <ClCompile Include="PX2Character.cpp" />
+    <ClCompile Include="PX2EffectActor.cpp" />
+    <ClCompile Include="PX2GameEventType.cpp" />
+    <ClCompile Include="PX2GameManager.cpp" />
+    <ClCompile Include="PX2GroupBuf.cpp" />
+    <ClCompile Include="PX2HPBuf.cpp" />
+    <ClCompile Include="PX2Item.cpp" />
+    <ClCompile Include="PX2LogicManager.cpp" />
+    <ClCompile Include="PX2Netable.cpp" />
+    <ClCompile Include="PX2Project.cpp" />
+    <ClCompile Include="PX2Scene.cpp" />
+    <ClCompile Include="PX2Scene3D.cpp" />
+    <ClCompile Include="PX2ServerInfo.cpp" />
+    <ClCompile Include="PX2Skill.cpp" />
+    <ClCompile Include="PX2SkillActor.cpp" />
+    <ClCompile Include="PX2SkillActorLink.cpp" />
+    <ClCompile Include="PX2SkillCDTimeBuf.cpp" />
+    <ClCompile Include="PX2SkillCriticalBuf.cpp" />
+    <ClCompile Include="PX2SkillInstance.cpp" />
+    <ClCompile Include="PX2SkillStep.cpp" />
+    <ClCompile Include="PX2SkillStepLink.cpp" />
+    <ClCompile Include="PX2SkillStepRangeTime.cpp" />
+    <ClCompile Include="PX2SkillStepFarTrack.cpp" />
+    <ClCompile Include="PX2SkyActor.cpp" />
+    <ClCompile Include="PX2SoundActor.cpp" />
+    <ClCompile Include="PX2SpeedBuf.cpp" />
+    <ClCompile Include="PX2TerrainActor.cpp" />
+    <ClCompile Include="PX2ServerPlatform.cpp" />
+    <ClCompile Include="PX2ServerPlatformEventType.cpp" />
+    <ClCompile Include="PX2TriggerActor.cpp" />
+    <ClCompile Include="PX2User.cpp" />
+    <ClCompile Include="PX2UserActor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2AccoutManager.inl" />
+    <None Include="PX2Actor.inl" />
+    <None Include="PX2AimBuf.inl" />
+    <None Include="PX2Animation.inl" />
+    <None Include="PX2Animation2DFrames8.inl" />
+    <None Include="PX2Animation3DSkeleton.inl" />
+    <None Include="PX2AnimationObject.inl" />
+    <None Include="PX2CamCtrlModule.inl" />
+    <None Include="PX2Character2DFrames8.inl" />
+    <None Include="PX2Buf.inl" />
+    <None Include="PX2CellSpaceT.inl" />
+    <None Include="PX2EffectBuf.inl" />
+    <None Include="PX2Gameable.inl" />
+    <None Include="PX2AmbientRegionActor.inl" />
+    <None Include="PX2CameraActor.inl" />
+    <None Include="PX2Character.inl" />
+    <None Include="PX2EffectActor.inl" />
+    <None Include="PX2GameManager.inl" />
+    <None Include="PX2GroupBuf.inl" />
+    <None Include="PX2HPBuf.inl" />
+    <None Include="PX2Item.inl" />
+    <None Include="PX2LightActor.inl" />
+    <None Include="PX2LMParam.inl" />
+    <None Include="PX2LogicManager.inl" />
+    <None Include="PX2LogicModule.inl" />
+    <None Include="PX2LogicGroup.inl" />
+    <None Include="PX2Netable.inl" />
+    <None Include="PX2Project.inl" />
+    <None Include="PX2Scene.inl" />
+    <None Include="PX2Scene3D.inl" />
+    <None Include="PX2Skill.inl" />
+    <None Include="PX2SkillActor.inl" />
+    <None Include="PX2SkillActorLink.inl" />
+    <None Include="PX2SkillCDTimeBuf.inl" />
+    <None Include="PX2SkillCriticalBuf.inl" />
+    <None Include="PX2SkillInstance.inl" />
+    <None Include="PX2SkillStep.inl" />
+    <None Include="PX2SkillStepLink.inl" />
+    <None Include="PX2SkillStepRangeTime.inl" />
+    <None Include="PX2SkillStepFarTrack.inl" />
+    <None Include="PX2SkyActor.inl" />
+    <None Include="PX2SoundActor.inl" />
+    <None Include="PX2SpeedBuf.inl" />
+    <None Include="PX2State.inl" />
+    <None Include="PX2StateMachine.inl" />
+    <None Include="PX2TerrainActor.inl" />
+    <None Include="PX2TriggerActor.inl" />
+    <None Include="PX2User.inl" />
+    <None Include="PX2UserActor.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{87A40857-076B-437B-8F6E-170E7A8F2BF0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>PX2Game_VC100</RootNamespace>
+    <ProjectName>PX2Game</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>PX2GameD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>PX2GameD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>PX2Game</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>PX2Game</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\RVO;.\GridMove;..\PX2SDK\Include\;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY GridMove\*.h ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\RVO;.\GridMove;..\PX2SDK\Include\;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY GridMove\*.h ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\RVO;.\GridMove;..\PX2SDK\Include\;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY GridMove\*.h ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>\;..\PX2SDK\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY GridMove\*.h ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

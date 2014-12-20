@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2AbstractObserver.hpp" />
+    <ClInclude Include="PX2Any.hpp" />
+    <ClInclude Include="PX2Ascii.hpp" />
+    <ClInclude Include="PX2Assert.hpp" />
+    <ClInclude Include="PX2BufferIO.hpp" />
+    <ClInclude Include="PX2Condition1.hpp" />
+    <ClInclude Include="PX2ConditionType.hpp" />
+    <ClInclude Include="PX2Core.hpp" />
+    <ClInclude Include="PX2CorePre.hpp" />
+    <ClInclude Include="PX2DateTime.hpp" />
+    <ClInclude Include="PX2DoubleChainList.hpp" />
+    <ClInclude Include="PX2Endian.hpp" />
+    <ClInclude Include="PX2Environment.hpp" />
+    <ClInclude Include="PX2Eventt.hpp" />
+    <ClInclude Include="PX2Exception.hpp" />
+    <ClInclude Include="PX2FileIO.hpp" />
+    <ClInclude Include="PX2FixMemoryObject.hpp" />
+    <ClInclude Include="PX2FixMemoryPool.hpp" />
+    <ClInclude Include="PX2Format.hpp" />
+    <ClInclude Include="PX2FString.hpp" />
+    <ClInclude Include="PX2Function.hpp" />
+    <ClInclude Include="PX2GeneralAlloctor.hpp" />
+    <ClInclude Include="PX2GeneralAlloctorObject.hpp" />
+    <ClInclude Include="PX2HashTable.hpp" />
+    <ClInclude Include="PX2Helps.hpp" />
+    <ClInclude Include="PX2InitTerm.hpp" />
+    <ClInclude Include="PX2InStream.hpp" />
+    <ClInclude Include="PX2LocalDateTime.hpp" />
+    <ClInclude Include="PX2Log.hpp" />
+    <ClInclude Include="PX2LogConsoleHandler.hpp" />
+    <ClInclude Include="PX2LogFileHandler.hpp" />
+    <ClInclude Include="PX2LogOutputWindowHandler.hpp" />
+    <ClInclude Include="PX2DesignUntity.hpp" />
+    <ClInclude Include="PX2Memory.hpp" />
+    <ClInclude Include="PX2MinHeap.hpp" />
+    <ClInclude Include="PX2MsgQueue.hpp" />
+    <ClInclude Include="PX2Mutex.hpp" />
+    <ClInclude Include="PX2MutexType.hpp" />
+    <ClInclude Include="PX2Names.hpp" />
+    <ClInclude Include="PX2NObserver.hpp" />
+    <ClInclude Include="PX2NotFreeObjectPool.hpp" />
+    <ClInclude Include="PX2Noncopyable.hpp" />
+    <ClInclude Include="PX2Notification.hpp" />
+    <ClInclude Include="PX2NotificationCenter.hpp" />
+    <ClInclude Include="PX2NotificationQueue.hpp" />
+    <ClInclude Include="PX2Object.hpp" />
+    <ClInclude Include="PX2ObjectCopyPool.hpp" />
+    <ClInclude Include="PX2Observer.hpp" />
+    <ClInclude Include="PX2OutStream.hpp" />
+    <ClInclude Include="PX2PriorityQueue.hpp" />
+    <ClInclude Include="PX2Property.hpp" />
+    <ClInclude Include="PX2PropModify.hpp" />
+    <ClInclude Include="PX2Rtti.hpp" />
+    <ClInclude Include="PX2Runnable.hpp" />
+    <ClInclude Include="PX2ScopedCS.hpp" />
+    <ClInclude Include="PX2ScopedCSUN.hpp" />
+    <ClInclude Include="PX2Semaphore.hpp" />
+    <ClInclude Include="PX2Singleton.hpp" />
+    <ClInclude Include="PX2Singleton1.hpp" />
+    <ClInclude Include="PX2SmartPointer.hpp" />
+    <ClInclude Include="PX2Smoother.hpp" />
+    <ClInclude Include="PX2Stream.hpp" />
+    <ClInclude Include="PX2StringHelp.hpp" />
+    <ClInclude Include="PX2StringTokenizer.hpp" />
+    <ClInclude Include="PX2System.hpp" />
+    <ClInclude Include="PX2Table.hpp" />
+    <ClInclude Include="PX2Thread.hpp" />
+    <ClInclude Include="PX2ThreadLocal.hpp" />
+    <ClInclude Include="PX2ThreadPool.hpp" />
+    <ClInclude Include="PX2ThreadServer.hpp" />
+    <ClInclude Include="PX2ThreadTarget.hpp" />
+    <ClInclude Include="PX2ThreadType.hpp" />
+    <ClInclude Include="PX2Time.hpp" />
+    <ClInclude Include="PX2TimedNotificationQueue.hpp" />
+    <ClInclude Include="PX2Timer.hpp" />
+    <ClInclude Include="PX2TimerManager.hpp" />
+    <ClInclude Include="PX2Timespan.hpp" />
+    <ClInclude Include="PX2Timestamp.hpp" />
+    <ClInclude Include="PX2TimeZone.hpp" />
+    <ClInclude Include="PX2Tuple.hpp" />
+    <ClInclude Include="PX2Visitor.hpp" />
+    <ClInclude Include="PX2WeakPointer.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2AbstractObserver.cpp" />
+    <ClCompile Include="PX2Ascii.cpp" />
+    <ClCompile Include="PX2Assert.cpp" />
+    <ClCompile Include="PX2BufferIO.cpp" />
+    <ClCompile Include="PX2Condition1.cpp" />
+    <ClCompile Include="PX2DateTime.cpp" />
+    <ClCompile Include="PX2Endian.cpp" />
+    <ClCompile Include="PX2Environment.cpp" />
+    <ClCompile Include="PX2Eventt.cpp" />
+    <ClCompile Include="PX2Exception.cpp" />
+    <ClCompile Include="PX2FileIO.cpp" />
+    <ClCompile Include="PX2Format.cpp" />
+    <ClCompile Include="PX2FString.cpp" />
+    <ClCompile Include="PX2GeneralAlloctor.cpp" />
+    <ClCompile Include="PX2HashTable.cpp" />
+    <ClCompile Include="PX2InitTerm.cpp" />
+    <ClCompile Include="PX2InStream.cpp" />
+    <ClCompile Include="PX2LocalDateTime.cpp" />
+    <ClCompile Include="PX2Log.cpp" />
+    <ClCompile Include="PX2LogConsoleHandler.cpp" />
+    <ClCompile Include="PX2LogFileHandler.cpp" />
+    <ClCompile Include="PX2LogOutputWindowHandler.cpp" />
+    <ClCompile Include="PX2Memory.cpp" />
+    <ClCompile Include="PX2Mutex.cpp" />
+    <ClCompile Include="PX2Notification.cpp" />
+    <ClCompile Include="PX2NotificationCenter.cpp" />
+    <ClCompile Include="PX2NotificationQueue.cpp" />
+    <ClCompile Include="PX2Object.cpp" />
+    <ClCompile Include="PX2ObjectCopyPool.cpp" />
+    <ClCompile Include="PX2OutStream.cpp" />
+    <ClCompile Include="PX2Rtti.cpp" />
+    <ClCompile Include="PX2Runnable.cpp" />
+    <ClCompile Include="PX2ScopedCS.cpp" />
+    <ClCompile Include="PX2ScopedCSUN.cpp" />
+    <ClCompile Include="PX2Semaphore.cpp" />
+    <ClCompile Include="PX2SmartPointer.cpp" />
+    <ClCompile Include="PX2Stream.cpp" />
+    <ClCompile Include="PX2StringHelp.cpp" />
+    <ClCompile Include="PX2StringTokenizer.cpp" />
+    <ClCompile Include="PX2System.cpp" />
+    <ClCompile Include="PX2Thread.cpp" />
+    <ClCompile Include="PX2ThreadLocal.cpp" />
+    <ClCompile Include="PX2ThreadPool.cpp" />
+    <ClCompile Include="PX2ThreadServer.cpp" />
+    <ClCompile Include="PX2ThreadTarget.cpp" />
+    <ClCompile Include="PX2Time.cpp" />
+    <ClCompile Include="PX2TimedNotificationQueue.cpp" />
+    <ClCompile Include="PX2Timer.cpp" />
+    <ClCompile Include="PX2TimerManager.cpp" />
+    <ClCompile Include="PX2Timespan.cpp" />
+    <ClCompile Include="PX2Timestamp.cpp" />
+    <ClCompile Include="PX2TimeZone.cpp" />
+    <ClCompile Include="PX2Visitor.cpp" />
+    <ClCompile Include="PX2WeakPointer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2Ascii.inl" />
+    <None Include="PX2BufferIO.inl" />
+    <None Include="PX2DateTime.inl" />
+    <None Include="PX2DoubleChainList.inl" />
+    <None Include="PX2FileIO.inl" />
+    <None Include="PX2FixMemoryPool.inl" />
+    <None Include="PX2GeneralAlloctor.inl" />
+    <None Include="PX2InStream.inl" />
+    <None Include="PX2LocalDateTime.inl" />
+    <None Include="PX2Memory.inl" />
+    <None Include="PX2MinHeap.inl" />
+    <None Include="PX2MsgQueue.inl" />
+    <None Include="PX2NObserver.inl" />
+    <None Include="PX2NotFreeObjectPool.inl" />
+    <None Include="PX2Object.inl" />
+    <None Include="PX2Observer.inl" />
+    <None Include="PX2OutStream.inl" />
+    <None Include="PX2PriorityQueue.inl" />
+    <None Include="PX2Rtti.inl" />
+    <None Include="PX2SmartPointer.inl" />
+    <None Include="PX2Stream.inl" />
+    <None Include="PX2StringTokenizer.inl" />
+    <None Include="PX2Table.inl" />
+    <None Include="PX2Thread.inl" />
+    <None Include="PX2Timespan.inl" />
+    <None Include="PX2Timestamp.inl" />
+    <None Include="PX2Tuple.inl" />
+    <None Include="PX2WeakPointer.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FD5A7A63-5763-4D25-A88F-74544DECF5DA}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>PX2Core_VC100</RootNamespace>
+    <ProjectName>PX2Core</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2CoreD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2CoreD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2Core</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2Core</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\SQLite;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <OutputFile>$(TargetPath)</OutputFile>
+    </Lib>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

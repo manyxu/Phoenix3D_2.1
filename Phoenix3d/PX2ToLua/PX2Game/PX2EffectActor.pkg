@@ -1,0 +1,12 @@
+// PX2EffectActor.pkg
+
+	class EffectActor : public Actor
+	{
+	public:
+		EffectActor (EffectNode *effect=0);
+		virtual ~EffectActor ();
+
+		virtual void DoEnter ();
+		virtual void DoExecute (Event *event);
+		virtual void DoLeave ();
+	};

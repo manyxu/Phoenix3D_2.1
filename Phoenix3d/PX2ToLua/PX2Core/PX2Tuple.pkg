@@ -1,0 +1,23 @@
+// PX2Tuple.pkg
+
+	template <int DIMENSION, typename TYPE>
+	class Tuple
+	{
+		Tuple ();
+		Tuple (const Tuple& tuple);
+		~Tuple ();
+
+		inline operator const TYPE* () const;
+		inline operator TYPE* ();
+		inline const TYPE& operator[] (int i) const;
+		inline TYPE& operator[] (int i);
+
+		Tuple& operator= (const Tuple& tuple);
+
+		bool operator== (const Tuple& tuple) const;
+		bool operator!= (const Tuple& tuple) const;
+		bool operator<  (const Tuple& tuple) const;
+		bool operator<= (const Tuple& tuple) const;
+		bool operator>  (const Tuple& tuple) const;
+		bool operator>= (const Tuple& tuple) const;
+	};

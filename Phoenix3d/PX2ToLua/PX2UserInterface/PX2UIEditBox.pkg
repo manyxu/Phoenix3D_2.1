@@ -1,0 +1,20 @@
+// PX2UIEditBox.pkg
+
+	class UIEditBox : public UIFrame
+	{
+		UIEditBox ();
+		virtual ~UIEditBox ();
+		
+		void SetPassword (bool isPassword);
+		bool IsPassword () const;
+
+		void SetSize (float width, float height);
+		void SetSize (const Sizef &size);
+		float GetWidth () const;
+		float GetHeight () const;
+		const Sizef &GetSize () const;
+
+		void SetText (const std::string &text);
+		const std::string &GetText () const;
+		const std::string &GetRealText () const;
+	};

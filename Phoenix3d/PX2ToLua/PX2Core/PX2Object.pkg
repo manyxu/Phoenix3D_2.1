@@ -1,0 +1,10 @@
+// PX2Object.pkg
+
+	class Object
+	{
+		const std::string& GetResourcePath () const;
+
+		void SetName (const std::string& name);
+		const std::string& GetName () const;
+		virtual Object* GetObjectByName (const std::string& name);
+	};

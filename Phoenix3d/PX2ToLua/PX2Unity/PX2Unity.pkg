@@ -1,0 +1,6 @@
+// PX2Unity.pkg
+
+$pfile "PX2Unity/PX2InputEvent.pkg"
+$pfile "PX2Unity/PX2ScriptManager.pkg"
+$pfile "PX2Unity/PX2ResourceManager.pkg"
+$pfile "PX2Unity/PX2LanguageManager.pkg"

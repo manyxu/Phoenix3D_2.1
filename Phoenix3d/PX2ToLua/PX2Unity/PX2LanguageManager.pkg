@@ -1,0 +1,11 @@
+// PX2LanguageManager.pkg
+
+	class LanguageManager
+	{
+		static LanguageManager &GetSingleton ();
+
+		bool Load (const char *filename);
+		void SetLanguage (int index);
+		std::string GetValue (std::string key);
+		std::string GetValue (std::string key, int index);
+	};

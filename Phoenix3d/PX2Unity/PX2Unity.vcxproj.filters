@@ -1,0 +1,1819 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ResourceManager">
+      <UniqueIdentifier>{c5c9c5f3-931c-433e-8729-18e719af82f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML">
+      <UniqueIdentifier>{0148aa54-0cd9-4e19-99c1-7842dce4e55a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Language">
+      <UniqueIdentifier>{b097d3ae-7b0d-413f-b922-34413176e103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CSV">
+      <UniqueIdentifier>{0d04ec63-240a-4721-bb66-23208165f819}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DevIL">
+      <UniqueIdentifier>{f87dd177-4c63-4899-b997-d78809553d4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DevIL\IL">
+      <UniqueIdentifier>{98969804-d4d8-4644-b55d-28c1125c32c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DevIL\PNG">
+      <UniqueIdentifier>{fd2d7aee-3838-4865-9722-de31313144ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Android">
+      <UniqueIdentifier>{79487dbc-d9e9-4add-926b-a8e1836e701e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZLib">
+      <UniqueIdentifier>{9a4c84ee-8d51-4aaf-b7ca-f9a282d0271f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ZLib\minzip">
+      <UniqueIdentifier>{15439039-4818-4296-8072-8d0793dfbdce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputEventAdapter">
+      <UniqueIdentifier>{1e787a30-005b-43ef-8648-c23c4eefe48f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{3e8c5625-7beb-4077-89ba-4d05f8694dd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType">
+      <UniqueIdentifier>{aadf60cf-657f-4dd7-ab2e-7c791d4774a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\CharCoding">
+      <UniqueIdentifier>{ed4d227e-8145-44b4-9f13-e3946223a515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FontTypes">
+      <UniqueIdentifier>{412fa9b6-8199-45e2-b668-562f5c8a2a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FontTypes\CommonImpl">
+      <UniqueIdentifier>{fb61ad19-ba4d-4bbb-ab19-1c3b1bf00db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\include">
+      <UniqueIdentifier>{e2a3eced-9d7e-417e-8e1e-55a8fa142b66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src">
+      <UniqueIdentifier>{d6d662de-e702-41df-a19a-d8d1a6bfba86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src\base">
+      <UniqueIdentifier>{49603465-bf76-4351-80e0-6bf0ae5032a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src\raster">
+      <UniqueIdentifier>{97bdbb18-7e4b-4f69-8651-dd816b974a0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src\sfnt">
+      <UniqueIdentifier>{9d6294a8-9af1-40f4-a0d8-5e57d349f135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src\smooth">
+      <UniqueIdentifier>{64e24836-dd5f-4f0e-947e-c739bf201d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src\autofit">
+      <UniqueIdentifier>{a9812174-9d37-4039-8c60-15794eb43dc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src\truetype">
+      <UniqueIdentifier>{f5241819-714e-40e8-899f-685b0404b68e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src\cff">
+      <UniqueIdentifier>{bd6a8d2f-4a65-444d-b511-5a8b93da9351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src\psnames">
+      <UniqueIdentifier>{d509ed69-72b7-4d02-b251-e71696ae495c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FreeType\src\pshinter">
+      <UniqueIdentifier>{b6db6f51-3a0b-4e49-8d05-256be3f84194}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{68597c40-44e0-4800-b26c-d44298201bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\ToLua">
+      <UniqueIdentifier>{8842d8a6-0b1a-446e-82a8-30fc6035c120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\Lua">
+      <UniqueIdentifier>{25be5886-7e92-4c99-8179-87ff51384494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{d5161c94-cd1c-4fc3-a271-2af1a715f3f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IMEInput">
+      <UniqueIdentifier>{45fd261f-72fa-44df-869d-7ecbd8279a03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DevIL\DDS">
+      <UniqueIdentifier>{e944e0af-d05e-46c3-ab12-cbadb1c1be50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CURL">
+      <UniqueIdentifier>{ebb7971b-34c2-4345-a37c-b8f74b6dbc8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CURL\src">
+      <UniqueIdentifier>{3d901794-071e-4185-b85d-baa97a742495}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CURL\config">
+      <UniqueIdentifier>{c16324bd-d09d-4557-a5fb-a0ace770e888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CURL\config\win32">
+      <UniqueIdentifier>{9e60b02a-3180-4cfc-ae4c-47e045482cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CURLDownload">
+      <UniqueIdentifier>{22277187-3d64-41f8-b28e-a810ad222164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crypt">
+      <UniqueIdentifier>{02e8492d-cd4a-458c-89fc-4e82b5d88dc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourceManager\Update">
+      <UniqueIdentifier>{4cb5ee0d-2edb-41aa-8e54-2e189a659827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MD5">
+      <UniqueIdentifier>{92c339ec-7471-4c6e-81da-42cf279801b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XML\RapidXML">
+      <UniqueIdentifier>{6a1efa6f-f192-41a5-8617-4fe8a80efdbb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2ResourceManager.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2XMLData.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2XMLNode.cpp">
+      <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LanguageManager.cpp">
+      <Filter>Language</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CSVParser.cpp">
+      <Filter>CSV</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\altivec_common.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\altivec_typeconversion.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_alloc.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_bits.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_blp.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_bmp.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_convbuff.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_convert.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_cut.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_dcx.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_devil.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_dicom.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_doom.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_dpx.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_endian.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_error.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_fastconv.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_files.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_fits.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_ftx.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_gif.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_hdr.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_header.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_icns.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_icon.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_iff.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_ilbm.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_internal.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_io.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_iwi.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_jp2.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_jpeg.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_lif.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_manip.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_mdl.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_mecel_portability.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_mng.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_mp3.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_neuquant.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_nvidia.cpp">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_pal.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_pcd.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_pcx.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_pic.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_pix.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_png.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_pnm.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_profiles.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_psd.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_psp.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_pxr.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_quantizer.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_raw.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_rawdata.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_register.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_rle.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_rot.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_sgi.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_size.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_squish.cpp">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_stack.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_states.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_sun.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_targa.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_texture.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_tiff.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_tpl.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_utility.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_vtf.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_wal.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_wbmp.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_wdp.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_xpm.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\example.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\png.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngerror.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngget.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngmem.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngpread.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngread.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngrio.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngrtran.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngrutil.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngset.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngtrans.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngwio.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngwrite.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngwtran.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\PNG\pngwutil.c">
+      <Filter>DevIL\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\adler32.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\compress.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\crc32.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\deflate.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\gzclose.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\gzlib.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\gzread.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\gzwrite.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\infback.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\inffast.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\inflate.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\inftrees.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\trees.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\uncompr.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\zutil.c">
+      <Filter>ZLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\minzip\ioapi.c">
+      <Filter>ZLib\minzip</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLib\minzip\unzip.c">
+      <Filter>ZLib\minzip</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2JNI.cpp">
+      <Filter>Android</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputEventAdapter.cpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputEventListener.cpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputEvent.cpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CharCodingGBK.cpp">
+      <Filter>Font\CharCoding</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CharCodingUTF8.cpp">
+      <Filter>Font\CharCoding</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FontGlyphMapFreeType.cpp">
+      <Filter>Font\FontTypes\CommonImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FontGlyphMapTrueType.cpp">
+      <Filter>Font\FontTypes\CommonImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftbbox.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftbitmap.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftfstype.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftglyph.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftlcdfil.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftstroke.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\fttype1.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftxf86.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftbase.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftsystem.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftinit.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftgasp.c">
+      <Filter>FreeType\src\base</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\raster\raster.c">
+      <Filter>FreeType\src\raster</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\sfnt\sfnt.c">
+      <Filter>FreeType\src\sfnt</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\smooth\smooth.c">
+      <Filter>FreeType\src\smooth</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\autofit\autofit.c">
+      <Filter>FreeType\src\autofit</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\truetype\truetype.c">
+      <Filter>FreeType\src\truetype</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\cff\cff.c">
+      <Filter>FreeType\src\cff</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\psnames\psnames.c">
+      <Filter>FreeType\src\psnames</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\pshinter\pshinter.c">
+      <Filter>FreeType\src\pshinter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TexPackData.cpp">
+      <Filter>ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ScriptManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LuaManager.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="ToLua\tolua_event.c">
+      <Filter>Scripts\ToLua</Filter>
+    </ClCompile>
+    <ClCompile Include="ToLua\tolua_is.c">
+      <Filter>Scripts\ToLua</Filter>
+    </ClCompile>
+    <ClCompile Include="ToLua\tolua_map.c">
+      <Filter>Scripts\ToLua</Filter>
+    </ClCompile>
+    <ClCompile Include="ToLua\tolua_push.c">
+      <Filter>Scripts\ToLua</Filter>
+    </ClCompile>
+    <ClCompile Include="ToLua\tolua_to.c">
+      <Filter>Scripts\ToLua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lapi.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lauxlib.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lbaselib.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lcode.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\ldblib.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\ldebug.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\ldo.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\ldump.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lfunc.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lgc.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\linit.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\liolib.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lmathlib.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lmem.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\loadlib.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lobject.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lopcodes.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\loslib.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lparser.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lstate.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lstring.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lstrlib.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\ltable.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\ltablib.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\ltm.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lundump.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lvm.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\lzio.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\print.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\llex.c">
+      <Filter>Scripts\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputEventHandler.cpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputRanges.cpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CSVParser1.cpp">
+      <Filter>CSV</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputPushTransformController.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2IMEDispatcher.cpp">
+      <Filter>IMEInput</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2IMEDelegate.cpp">
+      <Filter>IMEInput</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_dds-save.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="DevIL\il_dds.c">
+      <Filter>DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\amigaos.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\asyn-ares.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\asyn-thread.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\axtls.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\base64.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\bundles.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\conncache.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\connect.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\content_encoding.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\cookie.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_addrinfo.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_darwinssl.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_fnmatch.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_gethostname.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_gssapi.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_memrchr.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_multibyte.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_ntlm.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_ntlm_core.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_ntlm_msgs.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_ntlm_wb.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_rtmp.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_sasl.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_schannel.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_sspi.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\curl_threads.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\cyassl.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\dict.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\dotdot.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\easy.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\escape.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\file.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\fileinfo.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\formdata.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\ftp.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\ftplistparser.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\getenv.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\getinfo.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\gopher.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\gskit.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\gtls.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\hash.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\hmac.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\hostasyn.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\hostcheck.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\hostip.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\hostip4.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\hostip6.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\hostsyn.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\http.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\http_chunks.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\http_digest.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\http_negotiate.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\http_negotiate_sspi.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\http_proxy.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\http2.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\idn_win32.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\imap.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\inet_ntop.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\inet_pton.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\krb5.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\llist.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\md4.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\md5.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\memdebug.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\mprintf.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\multi.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\netrc.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\non-ascii.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\nonblock.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\nss.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\parsedate.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\pingpong.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\pipeline.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\polarssl.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\polarssl_threadlock.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\pop3.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\progress.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\qssl.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\rawstr.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\rtsp.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\security.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\select.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\sendf.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\share.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\slist.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\smtp.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\socks.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\socks_gssapi.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\socks_sspi.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\speedcheck.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\splay.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\ssh.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\sslgen.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\ssluse.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\strdup.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\strequal.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\strerror.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\strtok.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\strtoofft.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\telnet.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\tftp.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\timeval.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\transfer.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\url.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\version.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\warnless.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\wildcard.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CURL\src\x509asn1.c">
+      <Filter>CURL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CURLDownload.cpp">
+      <Filter>CURLDownload</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Crypt.cpp">
+      <Filter>Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ResourceUpdate.cpp">
+      <Filter>ResourceManager\Update</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MD5.cpp">
+      <Filter>MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Font.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FontBitmapImpl.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FontCommonImpl.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FontManager.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2Unity.hpp" />
+    <ClInclude Include="PX2UnityPre.hpp" />
+    <ClInclude Include="PX2XMLData.hpp">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2XMLNode.hpp">
+      <Filter>XML</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LanguageManager.hpp">
+      <Filter>Language</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CSVParser.hpp">
+      <Filter>CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\altivec_common.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\altivec_typeconversion.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_alloc.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_bits.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_bmp.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_dcx.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_doompal.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_dpx.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_endian.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_files.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_gif.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_hdr.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_icns.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_icon.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_internal.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_jp2.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_jpeg.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_lif.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_manip.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_mdl.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_mecel_portability.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_pal.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_pcx.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_pic.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_pnm.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_psd.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_psp.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_q2pal.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_register.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_rle.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_sgi.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_stack.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_states.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_targa.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_vtf.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_wdp.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\IL\config.h">
+      <Filter>DevIL\IL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\IL\devil_internal_exports.h">
+      <Filter>DevIL\IL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\IL\il.h">
+      <Filter>DevIL\IL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\IL\il_wrap.h">
+      <Filter>DevIL\IL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\IL\ilu.h">
+      <Filter>DevIL\IL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\IL\ilu_region.h">
+      <Filter>DevIL\IL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\IL\ilut.h">
+      <Filter>DevIL\IL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\IL\ilut_config.h">
+      <Filter>DevIL\IL</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\PNG\png.h">
+      <Filter>DevIL\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\PNG\pngconf.h">
+      <Filter>DevIL\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\PNG\pngdebug.h">
+      <Filter>DevIL\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\PNG\pnginfo.h">
+      <Filter>DevIL\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\PNG\pnglibconf.h">
+      <Filter>DevIL\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\PNG\pngpriv.h">
+      <Filter>DevIL\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\PNG\pngstruct.h">
+      <Filter>DevIL\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\crc32.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\deflate.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\gzguts.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\inffast.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\inffixed.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\inflate.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\inftrees.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\trees.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\zconf.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\zlib.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\zutil.h">
+      <Filter>ZLib</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\minzip\ioapi.h">
+      <Filter>ZLib\minzip</Filter>
+    </ClInclude>
+    <ClInclude Include="ZLib\minzip\unzip.h">
+      <Filter>ZLib\minzip</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2JNI.hpp">
+      <Filter>Android</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InputEventAdapter.hpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InputEventListener.hpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InputEvent.hpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FontDefine.hpp">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FontManager.hpp">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CharCodingGBK.hpp">
+      <Filter>Font\CharCoding</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CharCodingUTF8.hpp">
+      <Filter>Font\CharCoding</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CharCoding.hpp">
+      <Filter>Font\CharCoding</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FontGlyphMapFreeType.hpp">
+      <Filter>Font\FontTypes\CommonImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FontGlyphMapTrueType.hpp">
+      <Filter>Font\FontTypes\CommonImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FontGlyphMap.hpp">
+      <Filter>Font\FontTypes\CommonImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeType\include\ft2build.h">
+      <Filter>FreeType\include</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TexPackData.hpp">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ScriptManager.hpp">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LuaManager.hpp">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="ToLua\tolua_event.h">
+      <Filter>Scripts\ToLua</Filter>
+    </ClInclude>
+    <ClInclude Include="ToLua\tolua++.h">
+      <Filter>Scripts\ToLua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lapi.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lauxlib.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lcode.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\ldebug.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\ldo.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lfunc.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lgc.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\llimits.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lmem.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lobject.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lopcodes.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lparser.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lstate.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lstring.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\ltable.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\ltm.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lua.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\luaconf.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lualib.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lundump.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lvm.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\lzio.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="Lua\llex.h">
+      <Filter>Scripts\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InputEventHandler.hpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InputRanges.hpp">
+      <Filter>InputEventAdapter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CSVParser1.hpp">
+      <Filter>CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InputPushTransformController.hpp">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2IMEDispatcher.hpp">
+      <Filter>IMEInput</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2IMEDelegate.hpp">
+      <Filter>IMEInput</Filter>
+    </ClInclude>
+    <ClInclude Include="DevIL\il_dds.h">
+      <Filter>DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\config\win32\curl_config.h">
+      <Filter>CURL\config\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\amigaos.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\arpa_telnet.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\asyn.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\axtls.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\bundles.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\conncache.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\connect.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\content_encoding.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\cookie.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_addrinfo.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_base64.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_darwinssl.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_fnmatch.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_gethostname.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_gssapi.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_hmac.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_md4.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_md5.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_memory.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_memrchr.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_multibyte.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_ntlm.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_ntlm_core.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_ntlm_msgs.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_ntlm_wb.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_rtmp.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_sasl.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_schannel.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_sec.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_setup.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_setup_once.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_sspi.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curl_threads.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\curlx.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\cyassl.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\dict.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\dotdot.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\easyif.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\escape.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\file.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\fileinfo.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\formdata.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\ftp.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\ftplistparser.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\getinfo.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\gopher.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\gskit.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\gtls.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\hash.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\hostcheck.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\hostip.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\http.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\http_chunks.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\http_digest.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\http_negotiate.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\http_proxy.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\http2.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\imap.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\inet_ntop.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\inet_pton.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\llist.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\memdebug.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\multihandle.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\multiif.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\netrc.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\non-ascii.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\nonblock.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\nssg.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\parsedate.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\pingpong.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\pipeline.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\polarssl.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\polarssl_threadlock.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\pop3.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\progress.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\qssl.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\rawstr.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\rtsp.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\select.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\sendf.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\setup-vms.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\share.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\sigpipe.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\slist.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\smtp.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\sockaddr.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\socks.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\speedcheck.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\splay.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\ssh.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\sslgen.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\ssluse.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\strdup.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\strequal.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\strerror.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\strtok.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\strtoofft.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\telnet.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\tftp.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\timeval.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\transfer.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\url.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\urldata.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\warnless.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\wildcard.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\src\x509asn1.h">
+      <Filter>CURL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\curl.h">
+      <Filter>CURL</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\curlbuild.h">
+      <Filter>CURL</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\curlrules.h">
+      <Filter>CURL</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\curlver.h">
+      <Filter>CURL</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\easy.h">
+      <Filter>CURL</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\mprintf.h">
+      <Filter>CURL</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\multi.h">
+      <Filter>CURL</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\stdcheaders.h">
+      <Filter>CURL</Filter>
+    </ClInclude>
+    <ClInclude Include="CURL\typecheck-gcc.h">
+      <Filter>CURL</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CURLDownload.hpp">
+      <Filter>CURLDownload</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Crypt.hpp">
+      <Filter>Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ResourceUpdate.hpp">
+      <Filter>ResourceManager\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MD5.hpp">
+      <Filter>MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidXML\rapidxml.hpp">
+      <Filter>XML\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidXML\rapidxml_iterators.hpp">
+      <Filter>XML\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidXML\rapidxml_print.hpp">
+      <Filter>XML\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="RapidXML\rapidxml_utils.hpp">
+      <Filter>XML\RapidXML</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ResourceManager.hpp">
+      <Filter>ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Font.hpp">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FontBitmapImpl.hpp">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FontCommonImpl.hpp">
+      <Filter>Font</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2ResourceManager.inl">
+      <Filter>ResourceManager</Filter>
+    </None>
+    <None Include="PX2CSVParser.inl">
+      <Filter>CSV</Filter>
+    </None>
+    <None Include="PX2InputEventAdapter.inl">
+      <Filter>InputEventAdapter</Filter>
+    </None>
+    <None Include="PX2FontManager.inl">
+      <Filter>Font</Filter>
+    </None>
+    <None Include="PX2TexPackData.inl">
+      <Filter>ResourceManager</Filter>
+    </None>
+    <None Include="PX2LuaManager.inl">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="Lua\Makefile">
+      <Filter>Scripts\Lua</Filter>
+    </None>
+    <None Include="PX2ScriptManager.inl">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="PX2CSVParser1.inl">
+      <Filter>CSV</Filter>
+    </None>
+    <None Include="PX2InputPushTransformController.inl">
+      <Filter>Controls</Filter>
+    </None>
+    <None Include="PX2CURLDownload.inl">
+      <Filter>CURLDownload</Filter>
+    </None>
+    <None Include="PX2ResourceUpdate.inl">
+      <Filter>ResourceManager\Update</Filter>
+    </None>
+    <None Include="PX2Font.inl">
+      <Filter>Font</Filter>
+    </None>
+    <None Include="PX2FontCommonImpl.inl">
+      <Filter>Font</Filter>
+    </None>
+  </ItemGroup>
+</Project>

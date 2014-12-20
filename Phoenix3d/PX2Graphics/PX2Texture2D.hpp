@@ -1,0 +1,70 @@
+/*
+* Phoenix 3D 游戏引擎 Version 2.0
+*
+* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
+*
+* 文件名称	：	PX2Texture2D.hpp
+*
+* 版本		:	1.0 (2011/01/31)
+*
+* 作者		：	more
+*
+*/
+
+#ifndef PX2TEXTURE2D_HPP
+#define PX2TEXTURE2D_HPP
+
+#include "PX2GraphicsPre.hpp"
+#include "PX2Texture.hpp"
+
+namespace PX2
+{
+	
+	/// 2D纹理类
+	class Texture2D : public Texture
+	{
+		PX2_DECLARE_RTTI;
+		PX2_DECLARE_NAMES;
+		PX2_DECLARE_STREAM(Texture2D);
+
+	public:
+		/**
+		* 如果numLevels为0，会开辟所有级别minmap空间。
+		*/
+		Texture2D (Format tformat, int dimension0, int dimension1,
+			int numLevels, Buffer::Usage usage = Buffer::BU_TEXTURE);
+
+		virtual ~Texture2D ();
+
+		// 获得第0级别mipmap的宽度和高度
+		inline int GetWidth () const;
+		inline int GetHeight () const;
+
+		// minmap生成支持
+		bool CanGenMinmaps () const;
+		void GenerateMipmaps ();
+		bool HasMipmaps () const;
+
+		// 访问纹理数据
+		char* GetData (int level) const;
+
+	protected:
+		// mipmap的生成支持
+		void ComputeNumLevelBytes ();
+		void GenerateNextMipmap (int width, int height, const char* texels,
+			int widthNext, int heightNext, char* texelsNext, Float4* rgba);
+
+		// Begin Texture2D加载
+	public:
+		static Texture2D* LoadPXtf (const std::string& name,
+			int mode = FileIO::FM_DEFAULT_READ);
+		// End Texture2D加载
+	};
+
+	PX2_REGISTER_STREAM(Texture2D);
+	typedef Pointer0<Texture2D> Texture2DPtr;
+#include "PX2Texture2D.inl"
+
+}
+
+#endif

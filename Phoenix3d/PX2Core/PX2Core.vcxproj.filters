@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="PX2Core.hpp" />
+    <ClInclude Include="PX2Assert.hpp">
+      <Filter>Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Any.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DoubleChainList.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InStream.hpp">
+      <Filter>FileStream</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Log.hpp">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LogFileHandler.hpp">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Mutex.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MutexType.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BufferIO.hpp">
+      <Filter>FileStream</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Endian.hpp">
+      <Filter>FileStream</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Memory.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Object.hpp">
+      <Filter>ObjectSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Rtti.hpp">
+      <Filter>ObjectSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Names.hpp">
+      <Filter>ObjectSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Noncopyable.hpp">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SmartPointer.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2OutStream.hpp">
+      <Filter>FileStream</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ScopedCS.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ThreadType.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Time.hpp">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Table.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Tuple.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MinHeap.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Stream.hpp">
+      <Filter>FileStream</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Thread.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Singleton.hpp">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CorePre.hpp" />
+    <ClInclude Include="PX2ConditionType.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LogOutputWindowHandler.hpp">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FString.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FileIO.hpp">
+      <Filter>FileStream</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InitTerm.hpp">
+      <Filter>ObjectSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FixMemoryPool.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DateTime.hpp">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Timestamp.hpp">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Timespan.hpp">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TimedNotificationQueue.hpp">
+      <Filter>Notifications</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Notification.hpp">
+      <Filter>Notifications</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Runnable.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Eventt.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ThreadTarget.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Semaphore.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ThreadPool.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ThreadLocal.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NotificationQueue.hpp">
+      <Filter>Notifications</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NotificationCenter.hpp">
+      <Filter>Notifications</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AbstractObserver.hpp">
+      <Filter>Notifications</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NObserver.hpp">
+      <Filter>Notifications</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Observer.hpp">
+      <Filter>Notifications</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Exception.hpp">
+      <Filter>Exception</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Condition1.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ScopedCSUN.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GeneralAlloctor.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FixMemoryObject.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GeneralAlloctorObject.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ThreadServer.hpp">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MsgQueue.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LogConsoleHandler.hpp">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2System.hpp">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NotFreeObjectPool.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Timer.hpp">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LocalDateTime.hpp">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TimeZone.hpp">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TimerManager.hpp">
+      <Filter>Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Singleton1.hpp">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PriorityQueue.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Property.hpp">
+      <Filter>ObjectSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2WeakPointer.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ObjectCopyPool.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2HashTable.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Format.hpp">
+      <Filter>Untity</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Ascii.hpp">
+      <Filter>Untity</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StringHelp.hpp">
+      <Filter>Untity</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Helps.hpp">
+      <Filter>Untity</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Smoother.hpp">
+      <Filter>Untity</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Environment.hpp">
+      <Filter>Untity</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StringTokenizer.hpp">
+      <Filter>Untity</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PropModify.hpp">
+      <Filter>ObjectSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Visitor.hpp">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DesignUntity.hpp">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Function.hpp">
+      <Filter>ObjectSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2Assert.cpp">
+      <Filter>Assert</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FileIO.cpp">
+      <Filter>FileStream</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InStream.cpp">
+      <Filter>FileStream</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Log.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LogFileHandler.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Mutex.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BufferIO.cpp">
+      <Filter>FileStream</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Endian.cpp">
+      <Filter>FileStream</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Memory.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Object.cpp">
+      <Filter>ObjectSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Rtti.cpp">
+      <Filter>ObjectSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SmartPointer.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2OutStream.cpp">
+      <Filter>FileStream</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ScopedCS.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Time.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Stream.cpp">
+      <Filter>FileStream</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Thread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LogOutputWindowHandler.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FString.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InitTerm.cpp">
+      <Filter>ObjectSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DateTime.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Timestamp.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Timespan.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TimedNotificationQueue.cpp">
+      <Filter>Notifications</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Notification.cpp">
+      <Filter>Notifications</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Runnable.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Eventt.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ThreadTarget.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Semaphore.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ThreadPool.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ThreadLocal.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NotificationCenter.cpp">
+      <Filter>Notifications</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NotificationQueue.cpp">
+      <Filter>Notifications</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AbstractObserver.cpp">
+      <Filter>Notifications</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Exception.cpp">
+      <Filter>Exception</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Condition1.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ScopedCSUN.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2GeneralAlloctor.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ThreadServer.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LogConsoleHandler.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2System.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Timer.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LocalDateTime.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TimeZone.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TimerManager.cpp">
+      <Filter>Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2WeakPointer.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ObjectCopyPool.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2HashTable.cpp">
+      <Filter>DataTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Format.cpp">
+      <Filter>Untity</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Ascii.cpp">
+      <Filter>Untity</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StringHelp.cpp">
+      <Filter>Untity</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Environment.cpp">
+      <Filter>Untity</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StringTokenizer.cpp">
+      <Filter>Untity</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Visitor.cpp">
+      <Filter>Design</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2DoubleChainList.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2FileIO.inl">
+      <Filter>FileStream</Filter>
+    </None>
+    <None Include="PX2InStream.inl">
+      <Filter>FileStream</Filter>
+    </None>
+    <None Include="PX2BufferIO.inl">
+      <Filter>FileStream</Filter>
+    </None>
+    <None Include="PX2Object.inl">
+      <Filter>ObjectSystem</Filter>
+    </None>
+    <None Include="PX2Rtti.inl">
+      <Filter>ObjectSystem</Filter>
+    </None>
+    <None Include="PX2SmartPointer.inl">
+      <Filter>Memory</Filter>
+    </None>
+    <None Include="PX2OutStream.inl">
+      <Filter>FileStream</Filter>
+    </None>
+    <None Include="PX2Table.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2Tuple.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2MinHeap.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2Memory.inl">
+      <Filter>Memory</Filter>
+    </None>
+    <None Include="PX2FixMemoryPool.inl">
+      <Filter>Memory</Filter>
+    </None>
+    <None Include="PX2Thread.inl">
+      <Filter>Thread</Filter>
+    </None>
+    <None Include="PX2Timestamp.inl">
+      <Filter>Time</Filter>
+    </None>
+    <None Include="PX2DateTime.inl">
+      <Filter>Time</Filter>
+    </None>
+    <None Include="PX2Timespan.inl">
+      <Filter>Time</Filter>
+    </None>
+    <None Include="PX2NObserver.inl">
+      <Filter>Notifications</Filter>
+    </None>
+    <None Include="PX2Observer.inl">
+      <Filter>Notifications</Filter>
+    </None>
+    <None Include="PX2GeneralAlloctor.inl">
+      <Filter>Memory</Filter>
+    </None>
+    <None Include="PX2MsgQueue.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2NotFreeObjectPool.inl">
+      <Filter>Memory</Filter>
+    </None>
+    <None Include="PX2LocalDateTime.inl">
+      <Filter>Time</Filter>
+    </None>
+    <None Include="PX2PriorityQueue.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2Stream.inl">
+      <Filter>FileStream</Filter>
+    </None>
+    <None Include="PX2WeakPointer.inl">
+      <Filter>Memory</Filter>
+    </None>
+    <None Include="PX2Ascii.inl">
+      <Filter>Untity</Filter>
+    </None>
+    <None Include="PX2StringTokenizer.inl">
+      <Filter>Untity</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Assert">
+      <UniqueIdentifier>{02606171-7f34-49ce-bcdb-44fdfd2a61c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataTypes">
+      <UniqueIdentifier>{b3349378-bf1f-44f2-8019-f26d4334b689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Design">
+      <UniqueIdentifier>{07715a77-9952-4077-8ef5-0e1a171400d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{64803637-5a88-4ceb-9eef-c7abcd9529c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{eb612ec5-6983-4bfc-8811-2b18994b2769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ObjectSystem">
+      <UniqueIdentifier>{10aace37-2995-4be6-b408-29bf972d4f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Thread">
+      <UniqueIdentifier>{a2f67114-d00d-4a0a-8913-129fc178e3e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{076330ca-bc25-489c-9d39-65e96028744f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Timer">
+      <UniqueIdentifier>{0b74f816-36e8-4ebf-a4e8-038d6327dbd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Notifications">
+      <UniqueIdentifier>{942fda35-45cb-4b69-8d78-575112d8b7a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exception">
+      <UniqueIdentifier>{70364013-edfd-4b7d-a35f-6cdd259f17b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{c46f41b1-2924-4a35-aed9-f580c922e1e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Untity">
+      <UniqueIdentifier>{1c543d18-e4c7-4539-9108-2249fcc288ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileStream">
+      <UniqueIdentifier>{92570a08-bff0-4a85-b026-43852064b551}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

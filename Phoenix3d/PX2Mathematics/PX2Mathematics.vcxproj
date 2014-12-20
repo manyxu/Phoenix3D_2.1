@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2APoint.cpp" />
+    <ClCompile Include="PX2AVector.cpp" />
+    <ClCompile Include="PX2BezierCurve3.cpp" />
+    <ClCompile Include="PX2BitHacks.cpp" />
+    <ClCompile Include="PX2BSplineBasis.cpp" />
+    <ClCompile Include="PX2BSplineVolume.cpp" />
+    <ClCompile Include="PX2ContSphere3.cpp" />
+    <ClCompile Include="PX2Curve3.cpp" />
+    <ClCompile Include="PX2Distance.cpp" />
+    <ClCompile Include="PX2DistPoint3Circle3.cpp" />
+    <ClCompile Include="PX2Float1.cpp" />
+    <ClCompile Include="PX2Float2.cpp" />
+    <ClCompile Include="PX2Float3.cpp" />
+    <ClCompile Include="PX2Float4.cpp" />
+    <ClCompile Include="PX2HMatrix.cpp" />
+    <ClCompile Include="PX2HPlane.cpp" />
+    <ClCompile Include="PX2HPoint.cpp" />
+    <ClCompile Include="PX2HQuaternion.cpp" />
+    <ClCompile Include="PX2Integrate1.cpp" />
+    <ClCompile Include="PX2Interpolate.cpp" />
+    <ClCompile Include="PX2Intersector.cpp" />
+    <ClCompile Include="PX2IntrBox3Frustum3.cpp" />
+    <ClCompile Include="PX2IntrLine3Triangle3.cpp" />
+    <ClCompile Include="PX2Math.cpp" />
+    <ClCompile Include="PX2Matrix2.cpp" />
+    <ClCompile Include="PX2Matrix3.cpp" />
+    <ClCompile Include="PX2Matrix4.cpp" />
+    <ClCompile Include="PX2SingleCurve3.cpp" />
+    <ClCompile Include="PX2Surface.cpp" />
+    <ClCompile Include="PX2Vector2.cpp" />
+    <ClCompile Include="PX2Vector3.cpp" />
+    <ClCompile Include="PX2Vector4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2APoint.hpp" />
+    <ClInclude Include="PX2AVector.hpp" />
+    <ClInclude Include="PX2AxisAlignedBox3.hpp" />
+    <ClInclude Include="PX2BezierCurve3.hpp" />
+    <ClInclude Include="PX2BitHacks.hpp" />
+    <ClInclude Include="PX2Box3.hpp" />
+    <ClInclude Include="PX2BSplineBasis.hpp" />
+    <ClInclude Include="PX2BSplineVolume.hpp" />
+    <ClInclude Include="PX2Circle2.hpp" />
+    <ClInclude Include="PX2Circle3.hpp" />
+    <ClInclude Include="PX2ContSphere3.hpp" />
+    <ClInclude Include="PX2ConvexPolygon2.hpp" />
+    <ClInclude Include="PX2InterpCurve.hpp" />
+    <ClInclude Include="PX2Curve3.hpp" />
+    <ClInclude Include="PX2Distance.hpp" />
+    <ClInclude Include="PX2DistPoint3Circle3.hpp" />
+    <ClInclude Include="PX2EdgeKey.hpp" />
+    <ClInclude Include="PX2Float1.hpp" />
+    <ClInclude Include="PX2Float2.hpp" />
+    <ClInclude Include="PX2Float3.hpp" />
+    <ClInclude Include="PX2Float4.hpp" />
+    <ClInclude Include="PX2Frustum3.hpp" />
+    <ClInclude Include="PX2GMatrix.hpp" />
+    <ClInclude Include="PX2GVector.hpp" />
+    <ClInclude Include="PX2HMatrix.hpp" />
+    <ClInclude Include="PX2HPlane.hpp" />
+    <ClInclude Include="PX2HPoint.hpp" />
+    <ClInclude Include="PX2HQuaternion.hpp" />
+    <ClInclude Include="PX2Integer.hpp" />
+    <ClInclude Include="PX2Integrate1.hpp" />
+    <ClInclude Include="PX2Interpolate.hpp" />
+    <ClInclude Include="PX2Intersector.hpp" />
+    <ClInclude Include="PX2IntrBox3Frustum3.hpp" />
+    <ClInclude Include="PX2IntrLine3Triangle3.hpp" />
+    <ClInclude Include="PX2Line3.hpp" />
+    <ClInclude Include="PX2Math.hpp" />
+    <ClInclude Include="PX2Mathematics.hpp" />
+    <ClInclude Include="PX2MathematicsPre.hpp" />
+    <ClInclude Include="PX2Matrix2.hpp" />
+    <ClInclude Include="PX2Matrix3.hpp" />
+    <ClInclude Include="PX2Matrix4.hpp" />
+    <ClInclude Include="PX2Polygon2.hpp" />
+    <ClInclude Include="PX2Ray3.hpp" />
+    <ClInclude Include="PX2Rect.hpp" />
+    <ClInclude Include="PX2SingleCurve3.hpp" />
+    <ClInclude Include="PX2Size.hpp" />
+    <ClInclude Include="PX2Sphere3.hpp" />
+    <ClInclude Include="PX2Surface.hpp" />
+    <ClInclude Include="PX2Triangle3.hpp" />
+    <ClInclude Include="PX2TriangleKey.hpp" />
+    <ClInclude Include="PX2Vector2.hpp" />
+    <ClInclude Include="PX2Vector3.hpp" />
+    <ClInclude Include="PX2Vector4.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2APoint.inl" />
+    <None Include="PX2AVector.inl" />
+    <None Include="PX2AxisAlignedBox3.inl" />
+    <None Include="PX2BitHacks.inl" />
+    <None Include="PX2Box3.inl" />
+    <None Include="PX2Circle2.inl" />
+    <None Include="PX2Circle3.inl" />
+    <None Include="PX2ConvexPolygon2.inl" />
+    <None Include="PX2EdgeKey.inl" />
+    <None Include="PX2Frustum3.inl" />
+    <None Include="PX2GMatrix.inl" />
+    <None Include="PX2GVector.inl" />
+    <None Include="PX2HMatrix.inl" />
+    <None Include="PX2HPlane.inl" />
+    <None Include="PX2HPoint.inl" />
+    <None Include="PX2HQuaternion.inl" />
+    <None Include="PX2Integer.inl" />
+    <None Include="PX2InterpCurve.inl" />
+    <None Include="PX2Line3.inl" />
+    <None Include="PX2Math.inl" />
+    <None Include="PX2Matrix2.inl" />
+    <None Include="PX2Matrix3.inl" />
+    <None Include="PX2Matrix4.inl" />
+    <None Include="PX2Polygon2.inl" />
+    <None Include="PX2Ray3.inl" />
+    <None Include="PX2Rect.inl" />
+    <None Include="PX2Size.inl" />
+    <None Include="PX2Sphere3.inl" />
+    <None Include="PX2Triangle3.inl" />
+    <None Include="PX2TriangleKey.inl" />
+    <None Include="PX2Vector2.inl" />
+    <None Include="PX2Vector3.inl" />
+    <None Include="PX2Vector4.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7CDD58B4-04F8-4A47-BD29-7DB68948BD5F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>PX2Mathematics_VC100</RootNamespace>
+    <ProjectName>PX2Mathematics</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2MathematicsD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2MathematicsD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2Mathematics</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2Mathematics</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\PX2SDK\Include;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\PX2SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\PX2SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\PX2SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

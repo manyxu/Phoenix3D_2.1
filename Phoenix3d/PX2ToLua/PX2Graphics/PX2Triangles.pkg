@@ -1,0 +1,17 @@
+// PX2Triangles.pkg
+
+	class Triangles : public Renderable
+	{
+		virtual ~Triangles ();
+
+		virtual int GetNumTriangles () const = 0;
+		virtual bool GetTriangle (int i, int& v0, int& v1, int& v2) const = 0;
+		bool GetModelTriangle (int i, APoint* modelTriangle) const;
+		bool GetWorldTriangle (int i, APoint* worldTriangle) const;
+
+		int GetNumVertices () const;
+		const Transform& GetWorldTransform () const;
+		Float3 GetPosition (int v) const;
+
+		virtual void UpdateModelSpace (UpdateType type);
+	};

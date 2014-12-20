@@ -1,0 +1,14 @@
+// PX2FreezeBuf.pkg
+
+	class FreezeBuf : public Buf
+	{
+		FreezeBuf ();
+		virtual ~FreezeBuf ();
+
+		static FreezeBuf *Create ();
+
+		virtual void Update (double appSeconds, double elapsedSeconds);
+
+		virtual void OnAdded ();
+		virtual void OnRemoved ();
+	};

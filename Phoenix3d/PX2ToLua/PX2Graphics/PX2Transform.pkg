@@ -1,0 +1,44 @@
+// PX2Transform.pkg
+
+	class Transform
+	{
+		Transform ();
+		~Transform ();
+
+		void MakeIdentity ();
+
+		void MakeUnitScale ();
+
+		bool IsIdentity () const;      // I
+		bool IsRSMatrix () const;      // R*S
+		bool IsUniformScale () const;  // R*S, S = c*I
+
+		void SetRotate (const HMatrix& rotate);
+		void SetMatrix (const HMatrix& matrix);
+		void SetTranslate (const APoint& translate);
+		void SetScale (const APoint& scale);
+		void SetUniformScale (float scale);
+		const HMatrix& GetRotate () const;
+		const HMatrix& GetMatrix () const;
+		const APoint& GetTranslate () const;
+		const APoint& GetScale () const;
+		float GetUniformScale () const;
+
+		float GetNorm () const;
+
+		APoint operator* (const APoint& pnt) const;
+
+		AVector operator* (const AVector& vec) const;
+
+		Transform operator* (const Transform& transform) const;
+
+		const HMatrix& Matrix () const;
+
+		const HMatrix& Inverse () const;
+
+		Transform InverseTransform () const;
+
+		static const Transform IDENTITY;
+
+		static int GetStreamingSize ();
+	};

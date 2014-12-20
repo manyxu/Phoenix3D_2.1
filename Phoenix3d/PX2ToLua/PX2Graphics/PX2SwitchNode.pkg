@@ -1,0 +1,15 @@
+// PX2SwitchNode.pkg
+
+	class SwitchNode : public Node
+	{
+		SwitchNode ();
+		virtual ~SwitchNode ();
+		
+		static SwitchNode *Create();
+
+		enum { SN_INVALID_CHILD = -1 };
+
+		void SetActiveChild (int activeChild);
+		int GetActiveChild () const;
+		void DisableAllChildren ();
+	};

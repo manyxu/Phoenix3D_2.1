@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="PX2UIPre.hpp" />
+    <ClInclude Include="PX2UserInterface.hpp" />
+    <ClInclude Include="PX2UIMaterial.hpp">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIManager.hpp">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIView.hpp">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UICallback.hpp">
+      <Filter>Callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIInputStaticText.hpp">
+      <Filter>UIObjects\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIEditBox.hpp">
+      <Filter>UIObjects\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIMaterialUV3.hpp">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIMaterialDark.hpp">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIMaterialBlur.hpp">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIProgressBar.hpp">
+      <Filter>UIObjects\Progress</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIProgressBarCtrl.hpp">
+      <Filter>UIObjects\Progress</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIButton.hpp">
+      <Filter>UIObjects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIButtonBase.hpp">
+      <Filter>UIObjects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UICheckButton.hpp">
+      <Filter>UIObjects\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIScoreStaticText.hpp">
+      <Filter>UIObjects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIScoreStaticTextCtrl.hpp">
+      <Filter>UIObjects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIStaticText.hpp">
+      <Filter>UIObjects\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIPicBox.hpp">
+      <Filter>UIObjects\PicBox</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIFrame.hpp">
+      <Filter>UIObjects\UIFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIPushFrame.hpp">
+      <Filter>UIObjects\UIFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIRangeFrame.hpp">
+      <Filter>UIObjects\UIFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIBagFrame.hpp">
+      <Filter>UIObjects\UIFrame</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2UIMaterial.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIView.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIInputStaticText.cpp">
+      <Filter>UIObjects\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIEditBox.cpp">
+      <Filter>UIObjects\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIMaterialUV3.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIMaterialDark.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIMaterialBlur.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIProgressBar.cpp">
+      <Filter>UIObjects\Progress</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIProgressBarCtrl.cpp">
+      <Filter>UIObjects\Progress</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIButton.cpp">
+      <Filter>UIObjects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIButtonBase.cpp">
+      <Filter>UIObjects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UICheckButton.cpp">
+      <Filter>UIObjects\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIScoreStaticText.cpp">
+      <Filter>UIObjects\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIScoreStaticTextCtrl.cpp">
+      <Filter>UIObjects\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIStaticText.cpp">
+      <Filter>UIObjects\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIPicBox.cpp">
+      <Filter>UIObjects\PicBox</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIFrame.cpp">
+      <Filter>UIObjects\UIFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIPushFrame.cpp">
+      <Filter>UIObjects\UIFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIRangeFrame.cpp">
+      <Filter>UIObjects\UIFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIBagFrame.cpp">
+      <Filter>UIObjects\UIFrame</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2UIManager.inl">
+      <Filter>Manager</Filter>
+    </None>
+    <None Include="PX2UIView.inl">
+      <Filter>Manager</Filter>
+    </None>
+    <None Include="PX2UIEditBox.inl">
+      <Filter>UIObjects\EditBox</Filter>
+    </None>
+    <None Include="PX2UIInputStaticText.inl">
+      <Filter>UIObjects\EditBox</Filter>
+    </None>
+    <None Include="PX2UIProgressBar.inl">
+      <Filter>UIObjects\Progress</Filter>
+    </None>
+    <None Include="PX2UIProgressBarCtrl.inl">
+      <Filter>UIObjects\Progress</Filter>
+    </None>
+    <None Include="PX2UIButton.inl">
+      <Filter>UIObjects\Buttons</Filter>
+    </None>
+    <None Include="PX2UIButtonBase.inl">
+      <Filter>UIObjects\Buttons</Filter>
+    </None>
+    <None Include="PX2UIScoreStaticText.inl">
+      <Filter>UIObjects\Text</Filter>
+    </None>
+    <None Include="PX2UIScoreStaticTextCtrl.inl">
+      <Filter>UIObjects\Text</Filter>
+    </None>
+    <None Include="PX2UIStaticText.inl">
+      <Filter>UIObjects\Text</Filter>
+    </None>
+    <None Include="PX2UIPicBox.inl">
+      <Filter>UIObjects\PicBox</Filter>
+    </None>
+    <None Include="PX2UIFrame.inl">
+      <Filter>UIObjects\UIFrame</Filter>
+    </None>
+    <None Include="PX2UIPushFrame.inl">
+      <Filter>UIObjects\UIFrame</Filter>
+    </None>
+    <None Include="PX2UIRangeFrame.inl">
+      <Filter>UIObjects\UIFrame</Filter>
+    </None>
+    <None Include="PX2UIBagFrame.inl">
+      <Filter>UIObjects\UIFrame</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="UIObjects">
+      <UniqueIdentifier>{4f8ee406-dde4-4b1e-9afa-483e56745410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{dd2b5cd8-599c-41b6-9aba-69e70b720434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Callbacks">
+      <UniqueIdentifier>{0f7a1468-4edf-496e-b0c8-589c7f95d135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{024e4d52-d609-40a1-a77e-66c28fa3ac95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIObjects\EditBox">
+      <UniqueIdentifier>{1e6f9f87-c48e-4baf-a396-e09d54cf3a2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIObjects\Progress">
+      <UniqueIdentifier>{f422ae98-2e18-4397-bd9d-bb5cac5c743f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIObjects\Buttons">
+      <UniqueIdentifier>{86a2a167-efb5-48b4-9969-7d2406ef6741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIObjects\Text">
+      <UniqueIdentifier>{d2169490-d6e0-4b32-b4ea-af7f09e05775}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIObjects\PicBox">
+      <UniqueIdentifier>{6df539c8-670e-442d-b1d5-9aa910094e8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIObjects\UIFrame">
+      <UniqueIdentifier>{449528f2-c11b-452e-a3a9-797b6005e610}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

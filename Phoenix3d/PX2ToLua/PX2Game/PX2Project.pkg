@@ -1,0 +1,25 @@
+// PX2Project.pkg
+
+	class Project : public Singleton<Project>
+	{
+		static Project &GetSingleton ();
+		static Project *GetSingletonPtr ();	
+	
+		const std::string &GetName () const;
+		int GetWidth () const;
+		int GetHeight () const;
+
+		void SetColor (Float4 color);
+		Float4 GetColor ();
+
+		void SetScene (Scene *scene);
+		Scene *GetScene () const;
+		UIFrame *GetUI () const;
+
+		// infos
+		void SetShowProjectInfo (bool show);
+		bool IsShowProjectInfo ();
+		
+		void SetPublish (bool pub);
+		bool IsPublish () const;
+	};

@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="PX2AVector.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2APoint.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BitHacks.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ContSphere3.cpp">
+      <Filter>Containment</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Float1.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Float2.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Float3.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Float4.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Matrix2.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Matrix3.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Matrix4.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2HPoint.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2HQuaternion.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2HPlane.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2HMatrix.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Distance.cpp">
+      <Filter>Distance</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DistPoint3Circle3.cpp">
+      <Filter>Distance\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Interpolate.cpp">
+      <Filter>Interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Intersector.cpp">
+      <Filter>Intersection</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Integrate1.cpp">
+      <Filter>NumericalAnalysis</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Vector4.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Vector3.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Vector2.cpp">
+      <Filter>Algebra</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BezierCurve3.cpp">
+      <Filter>CurvesSurfacesVolumes\Curves 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SingleCurve3.cpp">
+      <Filter>CurvesSurfacesVolumes\Curves 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Curve3.cpp">
+      <Filter>CurvesSurfacesVolumes\Curves 3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Surface.cpp">
+      <Filter>CurvesSurfacesVolumes\Surfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BSplineVolume.cpp">
+      <Filter>CurvesSurfacesVolumes\Volumes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BSplineBasis.cpp">
+      <Filter>CurvesSurfacesVolumes</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2IntrLine3Triangle3.cpp">
+      <Filter>Intersection\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2IntrBox3Frustum3.cpp">
+      <Filter>Intersection\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Math.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2Mathematics.hpp" />
+    <ClInclude Include="PX2AVector.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2APoint.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BitHacks.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ContSphere3.hpp">
+      <Filter>Containment</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Circle2.hpp">
+      <Filter>Objects2D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Float1.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Float2.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Float3.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Matrix2.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Matrix3.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Matrix4.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2HPoint.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2HQuaternion.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2HPlane.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2HMatrix.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AxisAlignedBox3.hpp">
+      <Filter>Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Circle3.hpp">
+      <Filter>Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Box3.hpp">
+      <Filter>Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Distance.hpp">
+      <Filter>Distance</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DistPoint3Circle3.hpp">
+      <Filter>Distance\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Interpolate.hpp">
+      <Filter>Interpolation</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Intersector.hpp">
+      <Filter>Intersection</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EdgeKey.hpp">
+      <Filter>Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TriangleKey.hpp">
+      <Filter>Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Integrate1.hpp">
+      <Filter>NumericalAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Integer.hpp">
+      <Filter>Rational</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Vector4.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Vector3.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Vector2.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Line3.hpp">
+      <Filter>Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Ray3.hpp">
+      <Filter>Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Sphere3.hpp">
+      <Filter>Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Triangle3.hpp">
+      <Filter>Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Polygon2.hpp">
+      <Filter>Objects2D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BezierCurve3.hpp">
+      <Filter>CurvesSurfacesVolumes\Curves 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SingleCurve3.hpp">
+      <Filter>CurvesSurfacesVolumes\Curves 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Curve3.hpp">
+      <Filter>CurvesSurfacesVolumes\Curves 3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Surface.hpp">
+      <Filter>CurvesSurfacesVolumes\Surfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BSplineVolume.hpp">
+      <Filter>CurvesSurfacesVolumes\Volumes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BSplineBasis.hpp">
+      <Filter>CurvesSurfacesVolumes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ConvexPolygon2.hpp">
+      <Filter>Objects2D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Frustum3.hpp">
+      <Filter>Objects3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2IntrLine3Triangle3.hpp">
+      <Filter>Intersection\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2IntrBox3Frustum3.hpp">
+      <Filter>Intersection\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Math.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MathematicsPre.hpp" />
+    <ClInclude Include="PX2GMatrix.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GVector.hpp">
+      <Filter>Algebra</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Float4.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InterpCurve.hpp">
+      <Filter>Interpolation\InterpCurve</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Rect.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Size.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2AVector.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2APoint.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2BitHacks.inl">
+      <Filter>Base</Filter>
+    </None>
+    <None Include="PX2Circle2.inl">
+      <Filter>Objects2D</Filter>
+    </None>
+    <None Include="PX2Matrix2.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2Matrix3.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2Matrix4.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2HPoint.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2HQuaternion.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2HPlane.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2HMatrix.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2AxisAlignedBox3.inl">
+      <Filter>Objects3D</Filter>
+    </None>
+    <None Include="PX2Circle3.inl">
+      <Filter>Objects3D</Filter>
+    </None>
+    <None Include="PX2Box3.inl">
+      <Filter>Objects3D</Filter>
+    </None>
+    <None Include="PX2EdgeKey.inl">
+      <Filter>Meshes</Filter>
+    </None>
+    <None Include="PX2TriangleKey.inl">
+      <Filter>Meshes</Filter>
+    </None>
+    <None Include="PX2Integer.inl">
+      <Filter>Rational</Filter>
+    </None>
+    <None Include="PX2Vector4.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2Vector3.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2Vector2.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2Line3.inl">
+      <Filter>Objects3D</Filter>
+    </None>
+    <None Include="PX2Ray3.inl">
+      <Filter>Objects3D</Filter>
+    </None>
+    <None Include="PX2Sphere3.inl">
+      <Filter>Objects3D</Filter>
+    </None>
+    <None Include="PX2Triangle3.inl">
+      <Filter>Objects3D</Filter>
+    </None>
+    <None Include="PX2Polygon2.inl">
+      <Filter>Objects2D</Filter>
+    </None>
+    <None Include="PX2ConvexPolygon2.inl">
+      <Filter>Objects2D</Filter>
+    </None>
+    <None Include="PX2Frustum3.inl">
+      <Filter>Objects3D</Filter>
+    </None>
+    <None Include="PX2Math.inl">
+      <Filter>Base</Filter>
+    </None>
+    <None Include="PX2GMatrix.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2GVector.inl">
+      <Filter>Algebra</Filter>
+    </None>
+    <None Include="PX2InterpCurve.inl">
+      <Filter>Interpolation\InterpCurve</Filter>
+    </None>
+    <None Include="PX2Rect.inl">
+      <Filter>Base</Filter>
+    </None>
+    <None Include="PX2Size.inl">
+      <Filter>Base</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{60e7f759-f577-42fd-853a-6a50d8019fc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algebra">
+      <UniqueIdentifier>{0d7c7f20-1d32-4191-a4ee-31c3ac40772d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Containment">
+      <UniqueIdentifier>{b8df18da-1924-4f46-a663-148e5dc14953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects2D">
+      <UniqueIdentifier>{c8c7a6dd-0784-4e46-8cf2-c37327db7537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects3D">
+      <UniqueIdentifier>{c465a57f-3384-437b-802d-af3f4f7193ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Distance">
+      <UniqueIdentifier>{1f79e4d4-c309-4ce4-b6f3-01b402d091f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Distance\3D">
+      <UniqueIdentifier>{849b9c3e-2486-4d69-b5db-05a2b4a9b13c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interpolation">
+      <UniqueIdentifier>{5e162b1c-6f7b-4090-9e50-59ab93e67876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intersection">
+      <UniqueIdentifier>{0276bc1b-410d-4333-9170-2424fcc47ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Intersection\3D">
+      <UniqueIdentifier>{0c08e4da-f5ec-46cf-87fc-a08877370ab6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Meshes">
+      <UniqueIdentifier>{de809dd3-f50c-49ee-8a72-0625def52a7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NumericalAnalysis">
+      <UniqueIdentifier>{936c1372-26af-4b86-b94f-b26d8edc0184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rational">
+      <UniqueIdentifier>{4c94216c-c8d0-482b-a236-1b6a116caf2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CurvesSurfacesVolumes">
+      <UniqueIdentifier>{c4f5cd16-297b-4341-bd78-c358a9e83e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CurvesSurfacesVolumes\Curves 3D">
+      <UniqueIdentifier>{31c60854-6750-499d-9153-63514fdc096e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CurvesSurfacesVolumes\Surfaces">
+      <UniqueIdentifier>{859ef580-77d7-4f48-a5e6-801a8e818232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CurvesSurfacesVolumes\Volumes">
+      <UniqueIdentifier>{e19ab717-e9bd-4900-834c-e2be881fd378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interpolation\InterpCurve">
+      <UniqueIdentifier>{2627e11d-0418-48b2-b652-8520c5529d0f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

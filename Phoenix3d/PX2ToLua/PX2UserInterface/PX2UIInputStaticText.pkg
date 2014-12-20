@@ -1,0 +1,7 @@
+// PX2UIInputStaticText.pkg
+
+	class UIInputStaticText : public UIStaticText 
+	{
+		UIInputStaticText ();
+		virtual ~UIInputStaticText ();
+	};

@@ -1,0 +1,184 @@
+// PX2Character.pkg
+
+	class Character : public Actor
+	{
+		Character ();
+		virtual ~Character ();
+
+		virtual void Initlize ();
+
+		// Movable
+	public:
+		virtual void SetMovableFilename (const std::string &filename, bool shareVIM);
+
+		// level exp
+	public:
+		virtual void SetLevel (int level);
+		int GetLevel () const;
+
+		virtual void SetExp (int exp);
+		int GetExp ();
+		int GetExpCurLevel ();
+
+		// hp ap
+	public:
+		virtual void SetBaseHPCurLevel (int hp);
+		int GetBaseHPCurLevel () const;
+
+		void SetCurHPNoReduce (bool de);
+		bool IsCurHPNoRecline () const;
+
+		virtual void SetCurHP (int hp);
+		virtual void AddCurHP (int hp, int tag);
+
+		int GetCurHP () const;
+		void AddMHP (const std::string &factorName, int modHP);
+		void RemoveMHP (const std::string &factorName);
+		std::map<std::string, int> GetMMapHPs () const;
+		void CalMHP ();
+		int GetMHP () const;
+		float GetHPPercent () const;
+
+		// ap
+		virtual void SetBaseAPCurLevel (int ap);
+		int GetBaseAPCurLevel () const;
+
+		virtual void SetCurAP (int ap);
+		int GetCurAP () const;
+		void AddMAP (const std::string &factorName, int modAP);
+		void RemoveMAP (const std::string &factorName);
+		std::map<std::string, int> GetMMapAPs () const;
+		void CalMAP ();
+		int GetMAP () const;
+
+		virtual void SetDead (bool dead);
+		virtual void Die ();
+		bool IsDead () const;
+
+		void SetScriptHandler_OnDie (const std::string &handler);
+		const std::string &GetScriptHandler_OnDie () const;
+		void AddScriptHandler_OnDie (const std::string &name, const std::string &handler);
+		void RemoveScriptHandler_OnDie (const std::string &name);
+
+		// anims
+	public:
+		bool AddAnim (Animation *anim);
+		bool HasAnim (Animation *anim);
+		bool RemoveAnim (Animation *anim);
+		void RemoveAllAnims ();
+		int GetNumAnims () const;
+		Animation *GetAnim (int i);
+		Animation *GetAnimByName (const std::string &name);
+		Animation *GetStandAnim ();
+		virtual void PlayAnim (Animation *anim);
+		virtual void StopAnim (Animation *anim);
+		virtual void StopCurAnim ();
+		virtual void PlayCurAnim ();
+		virtual void PlayAnimByName (const std::string &name);
+		Animation *GetCurPlayingAnim ();
+		bool IsHasAnimPlaying () const;
+
+		void SetModelTagName (const std::string &modelTagName);
+		const std::string &GetModelTagName () const;
+
+		// items
+	public:
+		bool AddItem (Item *item);
+		bool HasItem (Item *item);
+		int GetNumItems () const;
+		Item *GetItemByID (int id);
+		Item *GetItem (int index);
+		bool RemoveItem (Item *item);
+		void RemoveAllItems ();
+
+		bool EquipItem (Item *item);
+		int GetNumItemsEquipped ();
+		Item *GetEquippedItem (int index);
+		bool UnEquipItem (Item *item);
+		void UnEquipAllItems ();
+
+		// skills buffs
+	public:
+		bool AddSkill (Skill *skill);
+		bool HasSkill (Skill *skill);
+		int GetNumSkills () const;
+		Skill *GetSkillByID (int id);
+		Skill *GetSkillByTypeID (int typeID);
+		Skill *GetSkillByName (const std::string &name);
+		Skill *GetDefSkill ();
+		Skill *GetSkill (int i);
+		bool RemoveSkill (Skill *skill);
+		void RemoveAllSkills ();
+		bool IsAnySkillHasInstance ();
+		bool IsAllSkillCallOver ();
+		void ResetAllSkillsCD ();
+
+		// 0 不需要，1需要，2忽视
+		std::list<Skill *> GetValidSkills (
+			const Character *target, bool useTrigerDis, int positive, int needTarget, int cdOK);
+
+		// buffs
+		void AddBufClassExcept (const std::string &name, const std::string &except);
+		void RemoveBufClassExcept (const std::string &name);
+		void RemoveAllBufClassExcepts ();
+		bool HasBufClassExcept (const std::string &except);
+
+		bool AddBuf (Buf *buf);
+		bool HasBuf (Buf *buf);
+		bool HasBuf (const std::string &name);
+		bool HasBufClass (const std::string &classStr);
+		bool HasBufClass (Buf *buf);
+		Buf *GetBufByClass (const std::string &className);
+		int GetNumBufsOfClass (const std::string &className);
+		void RemoveBufsOfClass (const std::string &className);
+		int GetNumBufs () const;
+		Buf *GetBufs (int i);
+		bool RemoveBuf (Buf *buf);
+		void RemoveAllBufs ();
+
+		// ai attack
+	public:
+		virtual void Freeze (bool enable);
+		bool IsFreezed () const;
+
+		void SetWatchDistance (float dist);
+		float GetWatchDistance () const;
+
+		void SetCanBeAimed (bool can);
+		bool IsCanBeAimed () const;
+		virtual void SetAimTarget (int targetID);
+		int GetAimTarget () const;
+		Character *GetAimTargetCharacter () const;
+		Character *GetAimTargetCharacterAlive () const;
+		int GetNumAimingMe () const;
+
+		void BeAffect (AffectObject *ao);
+		virtual void OnBeAffect (AffectObject *ao);
+		virtual void OnSucAffect (AffectObject *ao);
+
+		void SetCurAffectMeObject (AffectObject *ao);
+		AffectObject *GetCurAffectMeObject () const;
+		void SetCurSucAffectObject (AffectObject *ao);
+		AffectObject *GetCurSucAffectObject ();
+		
+		void SetScriptHandler_OnBeAffect (const std::string &handler);
+		const std::string &GetScriptHandler_OnBeAffect () const;
+		void AddScriptHandler_OnBeAffect (const std::string &name, const std::string &handler);
+		void RemoveScriptHandler_OnBeAffect (const std::string &name);
+
+		void SetScriptHandler_OnSucAffect (const std::string &handler);
+		const std::string &GetScriptHandler_OnSucAffect () const;
+		void AddScriptHandler_OnSucAffect (const std::string &name, const std::string &handler);
+		void RemoveScriptHandler_OnSucAffect (const std::string &name);
+
+		void SetScriptHandler_OnSucAffectParam (const std::string &name, float param);
+		float GetScriptHandler_OnSucAffectParam (const std::string &name);
+
+		// state machine
+	public:
+		void CreateStateMachines ();
+
+		StateMachine<Character> *GetActionSM () const;
+		StateMachine<Character> *GetMovementSM () const;
+		StateMachine<Character> *GetPostureSM () const;		
+	};

@@ -1,0 +1,11 @@
+// PX2Netable.pkg
+
+	class Netable : public Controlledable
+	{
+		Netable ();
+		virtual ~Netable ();
+
+		void ComeInToEventWorld ();
+		void GoOutFromEventWorld ();
+		bool IsInEventWorld ();
+	};

@@ -1,0 +1,27 @@
+// PX2Animation2DFrames8.pkg
+
+	class Animation2DFrames8 : public Animation
+	{
+		Animation2DFrames8 ();
+		~Animation2DFrames8 ();
+
+		virtual void Stop ();
+		virtual bool IsPlaying () const;
+
+		virtual void SetTime (float time);
+		void SetInterval (float interval);
+		float GetInterval () const;
+
+		virtual void SetFilename (const std::string &filename);
+		int GetNumFramesPerDir () const;
+
+		virtual void SetPlayOnce (bool once);
+
+		void SetWorldRunDir (const AVector &vec);
+		const AVector &GetWorldRunDir () const;
+
+		void SetAnimSize (float size);
+
+		virtual void OnPlay (Character *character);
+		virtual void OnRemove (Character *character);
+	};
