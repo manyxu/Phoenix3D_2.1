@@ -26,7 +26,7 @@ FontManager::~FontManager()
 bool FontManager::Initlize ()
 {
 	mFonts.clear();
-	mDefaultFont = CreateTypeFont(24, 24, "Data/fonts/heiti.ttf", CCT_UTF8,
+	mDefaultFont = CreateTypeFont(24, 24, "Data/engine/arial.ttf", CCT_UTF8,
 		FES_NORMAL);
 
 	return true;
@@ -74,11 +74,6 @@ Font *FontManager::CreateTypeFont (int fontWidth, int fontHeight,
 	unsigned int fontExtStyle)
 {
 	std::string strFilename = fontFilename;
-
-	if ("Data/fonts/heiti.TTF" == strFilename)
-	{
-		strFilename = "Data/fonts/heiti.ttf";
-	}
 
 	for (int i=0; i<(int)mFonts.size(); i++)
 	{

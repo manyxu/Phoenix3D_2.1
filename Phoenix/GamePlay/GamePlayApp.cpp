@@ -264,9 +264,9 @@ void GamePlayApp::CreateProject ()
 
 	PX2_SM.CallFile("Data/scripts/onCreateProject.lua");
 
-	CharacterPtr chara = mGameMan->CreateEngineDefaultCharacter();
-	mGameMan->SetMainCharacter(chara);
-	PX2_PROJ.GetScene()->AddActor(chara);
+	//CharacterPtr chara = mGameMan->CreateEngineDefaultCharacter();
+	//mGameMan->SetMainCharacter(chara);
+	//PX2_PROJ.GetScene()->AddActor(chara);
 	
 	mIsProjectCreated = true;
 

@@ -148,8 +148,6 @@ void SkillInstance::Update (double appSeconds, double elapsedSeconds)
 				bool isRange = mSkill->IsRangeAffect();
 				int numTargetsLock = mSkill->GetNumTargetsLock();
 
-				Skill::AffectGroupType agt = mSkill->GetAffectGroupType();
-				Character *me = mSkill->GetCharacter();
 				SkillActor *skillActor = (SkillActor*)GetSkillActor(mAnimTarget);
 
 				RemoveAllTargets();
@@ -236,11 +234,9 @@ void SkillInstance::Update (double appSeconds, double elapsedSeconds)
 				RemoveAllTargets();
 
 				Skill::RangeType rt = mSkill->GetRangeType();
-				Skill::AffectGroupType agt = mSkill->GetAffectGroupType();
 
 				if (Skill::RT_FAR == rt)
 				{
-					Character *me = mSkill->GetCharacter();
 					int toActorID = skillActorLink->GetToActorID();
 					Character *target = DynamicCast<Character>(scene->GetActorByID(toActorID));
 					if (target && !target->IsDead() && target->IsContainAllBits(mSkill->GetSkillQueryBitSet()))

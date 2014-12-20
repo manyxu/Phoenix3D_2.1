@@ -11,7 +11,6 @@
 #include "PX2Netable.hpp"
 #include "PX2APoint.hpp"
 #include "PX2Movable.hpp"
-#include "PX2GridMoveBehavior.hpp"
 #include "PX2Smoother.hpp"
 #include "PX2Gameable.hpp"
 #include "PX2PropModify.hpp"

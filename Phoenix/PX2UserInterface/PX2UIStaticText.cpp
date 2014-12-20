@@ -43,7 +43,7 @@ mFontType(FT_FREETYPE)
 	mMtl->GetPixelShader()->SetCoordinate(0, 0, Shader::SC_CLAMP);
 	mMtl->GetPixelShader()->SetCoordinate(0, 1, Shader::SC_CLAMP);
 
-	mFontFilename = "Data/fonts/heiti.ttf";
+	mFontFilename = "Data/engine/arial.ttf";
 	mFontStyle = 0;
 	mFontWidth = 24;
 	mFontHeight = 24;

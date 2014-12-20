@@ -1,6 +1,5 @@
 // PX2Game.pkg
 
-$pfile "PX2Game/PX2Project.pkg"
 $pfile "PX2Game/PX2GameManager.pkg"
 $pfile "PX2Game/PX2Netable.pkg"
 $pfile "PX2Game/PX2Gameable.pkg"
@@ -33,3 +32,4 @@ $pfile "PX2Game/PX2Character2DFrames8.pkg"
 $pfile "PX2Game/PX2Scene.pkg"
 $pfile "PX2Game/PX2Scene3D.pkg"
 $pfile "PX2Game/PX2SoundManager.pkg"
+$pfile "PX2Game/PX2Project.pkg"
