@@ -21,7 +21,7 @@ float Object::GetUserDataFloat(const std::string &name, bool *isValied) const
 		return it->second;
 	}
 
-	isValied = false;
+	*isValied = false;
 	return 0.0f;
 }
 //----------------------------------------------------------------------------
@@ -42,7 +42,7 @@ Any Object::GetUserDataAny(const std::string &name, bool *isValied) const
 		return it->second;
 	}
 
-	isValied = false;
+	*isValied = false;
 	return Any();
 }
 //----------------------------------------------------------------------------
