@@ -44,9 +44,6 @@
     <ClCompile Include="PX2CollapseRecordArray.cpp">
       <Filter>Detail</Filter>
     </ClCompile>
-    <ClCompile Include="PX2Controlledable.cpp">
-      <Filter>Controllers</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Controller.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
@@ -416,6 +413,9 @@
     <ClCompile Include="PX2VertexColorStdMaterial.cpp">
       <Filter>LocalMaterials</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Controlledable.cpp">
+      <Filter>Controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -461,9 +461,6 @@
     </ClInclude>
     <ClInclude Include="PX2CollapseRecordArray.hpp">
       <Filter>Detail</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2Controlledable.hpp">
-      <Filter>Controllers</Filter>
     </ClInclude>
     <ClInclude Include="PX2Controller.hpp">
       <Filter>Controllers</Filter>
@@ -847,6 +844,9 @@
     <ClInclude Include="PX2VertexColorStdMaterial.hpp">
       <Filter>LocalMaterials</Filter>
     </ClInclude>
+    <ClInclude Include="PX2Controlledable.hpp">
+      <Filter>Controllers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Bound.inl">
@@ -872,9 +872,6 @@
     </None>
     <None Include="PX2CollapseRecordArray.inl">
       <Filter>Detail</Filter>
-    </None>
-    <None Include="PX2Controlledable.inl">
-      <Filter>Controllers</Filter>
     </None>
     <None Include="PX2Controller.inl">
       <Filter>Controllers</Filter>
@@ -1025,6 +1022,9 @@
       <Filter>Detail</Filter>
     </None>
     <None Include="PX2BlendTransformController.inl">
+      <Filter>Controllers</Filter>
+    </None>
+    <None Include="PX2Controlledable.inl">
       <Filter>Controllers</Filter>
     </None>
   </ItemGroup>
