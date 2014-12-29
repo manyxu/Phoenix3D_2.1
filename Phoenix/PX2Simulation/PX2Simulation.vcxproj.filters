@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Project">
+      <UniqueIdentifier>{b31b8deb-d05d-4453-aab6-f6cb42026e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor">
+      <UniqueIdentifier>{60fbc326-48e3-48fd-a99a-e7e430ce2986}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{256fb3ce-074f-4981-a0ea-e646e682a18e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{abb892ac-c459-4d49-b87a-e44d264ca112}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2Actor.hpp">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SimulationPre.hpp" />
+    <ClInclude Include="PX2Component.hpp">
+      <Filter>Component</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2Actor.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Component.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2Actor.inl">
+      <Filter>Actor</Filter>
+    </None>
+    <None Include="PX2Component.inl">
+      <Filter>Component</Filter>
+    </None>
+  </ItemGroup>
+</Project>

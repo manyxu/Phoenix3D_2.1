@@ -80,9 +80,6 @@
 // Base
 #include "PX2Ascii.hpp"
 
-// Notifications
-#include "PX2Notification.hpp"
-#include "PX2TimedNotificationQueue.hpp"
 
 // ObjectSystems
 #include "PX2InitTerm.hpp"

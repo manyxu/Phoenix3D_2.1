@@ -1,27 +1,27 @@
 /*
 *
-* 文件名称	：	PX2EM_Size.cpp
+* 文件名称	：	PX2Component.inl
 *
 */
 
 //----------------------------------------------------------------------------
-inline float EN_Size::GetLength () const
+inline void Component::SetPriority(int priority)
 {
-	return mLength;
+	mPriority = priority;
 }
 //----------------------------------------------------------------------------
-inline float EN_Size::GetWidth () const
+inline int Component::GetPriority() const
 {
-	return mWidth;
+	return mPriority;
 }
 //----------------------------------------------------------------------------
-inline float EN_Size::GetHeight () const
+inline Actor *Component::GetActor()
 {
-	return mHeight;
+	return mActor;
 }
 //----------------------------------------------------------------------------
-inline float EN_Size::GetRadius () const
+inline void Component::SetActor(Actor *actor)
 {
-	return mRadius;
+	mActor = actor;
 }
 //----------------------------------------------------------------------------
