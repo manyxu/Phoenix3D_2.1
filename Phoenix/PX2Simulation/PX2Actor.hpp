@@ -23,14 +23,26 @@ namespace PX2
 	protected:
 		virtual void UpdateWorldData(double applicationTime);
 
+		// Movable
+	public:
+		void SetMovable (Movable *mov);
+		void AddMovable (Movable *mov);
+
+		Node *GetNode ();
+		Node *GetHelpNode ();
+
+	protected:
+		NodePtr mNode;
+		NodePtr mHelperNode;
+
 		// Component
 	public:
 		int GetNumComponents () const;
 		Component *GetComponent (int i) const;
 		Component *GetComponentByName (const std::string &name) const;
-		bool IsHasComponent (Component* controller);
-		void AttachComponent (Component* controller);
-		void DetachComponent (Component* controller);
+		bool IsHasComponent (Component* component);
+		void AttachComponent (Component* component);
+		void DetachComponent (Component* component);
 		void DetachAllComponents();
 		void SortComponents(); // 按照优先级从大到小排序
 

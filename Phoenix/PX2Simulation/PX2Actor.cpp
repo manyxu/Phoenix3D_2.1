@@ -16,20 +16,41 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Node, Actor);
 Actor::Actor()
 {
 	SetName("Actor");
+
+	mNode = new0 Node();
+	AttachChild(mNode);
+	mNode->SetName("Node");
+
+	mHelperNode = new0 Node();
+	AttachChild(mHelperNode);
+	mHelperNode->SetName("HelpNode");
 }
 //----------------------------------------------------------------------------
 Actor::~Actor()
 {
 }
 //----------------------------------------------------------------------------
-void Actor::UpdateWorldData(double applicationTime)
+void Actor::UpdateWorldData (double applicationTime)
 {
 	UpdateComponents(applicationTime);
 
 	Node::UpdateWorldData(applicationTime);
 }
 //----------------------------------------------------------------------------
+void Actor::SetMovable (Movable *mov)
+{
+	mNode->DetachAllChildren();
+	mNode->AttachChild(mov);
+}
+//----------------------------------------------------------------------------
+void Actor::AddMovable(Movable *mov)
+{
+	mNode->AttachChild(mov);
+}
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
+// Component
 //----------------------------------------------------------------------------
 Component *Actor::GetComponentByName (const std::string &name) const
 {
@@ -42,46 +63,46 @@ Component *Actor::GetComponentByName (const std::string &name) const
 	return 0;
 }
 //----------------------------------------------------------------------------
-bool Actor::IsHasComponent (Component* controller)
+bool Actor::IsHasComponent (Component* component)
 {
 	for (int i = 0; i < GetNumComponents(); i++)
 	{
-		if (mComponents[i] == controller)
+		if (mComponents[i] == component)
 			return true;
 	}
 
 	return false;
 }
 //----------------------------------------------------------------------------
-void Actor::AttachComponent (Component* controller)
+void Actor::AttachComponent (Component* component)
 {
 	// ¿ØÖÆÆ÷±ØÐë´æÔÚ
-	if (!controller)
+	if (!component)
 	{
-		assertion(false, "Cannot attach a null controller\n");
+		assertion(false, "Cannot attach a null component\n");
 		return;
 	}
 
-	if (IsHasComponent(controller))
+	if (IsHasComponent(component))
 		return;
 
-	mComponents.push_back(controller);
-	controller->SetActor(this);
-	controller->OnAttach();
+	mComponents.push_back(component);
+	component->SetActor(this);
+	component->OnAttach();
 
 	SortControls();
 }
 //----------------------------------------------------------------------------
-void Actor::DetachComponent (Component* controller)
+void Actor::DetachComponent (Component* component)
 {
 	std::vector<ComponentPtr>::iterator it = mComponents.begin();
 
 	for (; it != mComponents.end(); it++)
 	{
-		if (controller == *it)
+		if (component == *it)
 		{
-			controller->OnDetach();
-			controller->SetActor(0);
+			component->OnDetach();
+			component->SetActor(0);
 			mComponents.erase(it);
 			return;
 		}

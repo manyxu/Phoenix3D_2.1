@@ -11,17 +11,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PX2AccoutManager.hpp" />
     <ClInclude Include="PX2Actor.hpp" />
+    <ClInclude Include="PX2Animation.hpp" />
     <ClInclude Include="PX2Component.hpp" />
+    <ClInclude Include="PX2Project.hpp" />
+    <ClInclude Include="PX2Scene.hpp" />
+    <ClInclude Include="PX2ServerInfo.hpp" />
     <ClInclude Include="PX2SimulationPre.hpp" />
+    <ClInclude Include="PX2User.hpp" />
+    <ClInclude Include="PX2UserActor.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PX2AccoutManager.cpp" />
     <ClCompile Include="PX2Actor.cpp" />
+    <ClCompile Include="PX2Animation.cpp" />
     <ClCompile Include="PX2Component.cpp" />
+    <ClCompile Include="PX2Project.cpp" />
+    <ClCompile Include="PX2Scene.cpp" />
+    <ClCompile Include="PX2ServerInfo.cpp" />
+    <ClCompile Include="PX2User.cpp" />
+    <ClCompile Include="PX2UserActor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl" />
     <None Include="PX2Component.inl" />
+    <None Include="PX2Project.inl" />
+    <None Include="PX2User.inl" />
+    <None Include="PX2UserActor.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5F6FCB4C-6389-48A3-AE54-D5C2F89570CB}</ProjectGuid>

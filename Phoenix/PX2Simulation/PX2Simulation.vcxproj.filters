@@ -13,6 +13,12 @@
     <Filter Include="Component">
       <UniqueIdentifier>{abb892ac-c459-4d49-b87a-e44d264ca112}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{fb54f622-6774-4d85-8dd5-e69616c94e34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Accounts">
+      <UniqueIdentifier>{296d9fa0-aa17-40b5-87dc-9b0ca6aaf600}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -22,6 +28,27 @@
     <ClInclude Include="PX2Component.hpp">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="PX2Scene.hpp">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Project.hpp">
+      <Filter>Project</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Animation.hpp">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UserActor.hpp">
+      <Filter>Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2User.hpp">
+      <Filter>Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AccoutManager.hpp">
+      <Filter>Accounts</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerInfo.hpp">
+      <Filter>Accounts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Actor.cpp">
@@ -30,6 +57,27 @@
     <ClCompile Include="PX2Component.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Project.cpp">
+      <Filter>Project</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Animation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UserActor.cpp">
+      <Filter>Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2User.cpp">
+      <Filter>Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AccoutManager.cpp">
+      <Filter>Accounts</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerInfo.cpp">
+      <Filter>Accounts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl">
@@ -37,6 +85,15 @@
     </None>
     <None Include="PX2Component.inl">
       <Filter>Component</Filter>
+    </None>
+    <None Include="PX2Project.inl">
+      <Filter>Project</Filter>
+    </None>
+    <None Include="PX2UserActor.inl">
+      <Filter>Accounts</Filter>
+    </None>
+    <None Include="PX2User.inl">
+      <Filter>Accounts</Filter>
     </None>
   </ItemGroup>
 </Project>

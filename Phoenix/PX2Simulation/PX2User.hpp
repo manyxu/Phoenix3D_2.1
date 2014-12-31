@@ -1,0 +1,41 @@
+// PX2User.hpp
+
+#ifndef PX2USER_HPP
+#define PX2USER_HPP
+
+#include "PX2SimulationPre.hpp"
+#include "PX2Object.hpp"
+#include "PX2UserActor.hpp"
+
+namespace PX2
+{
+
+	class User : public Object
+	{
+	public:
+		User();
+		virtual ~User();
+
+		virtual void Update(float appTime, float elapsedTime);
+
+		void SetUserName(const std::string &useName);
+		const std::string &GetUserName() const;
+
+		void AddUserActor(UserActor *userActor);
+		void DeleteUserActor(UserActor *userActor);
+		UserActor *GetUserActor(int index) const;
+		UserActor *GetUserActorByName(const std::string &useName) const;
+		int GetNumUserActors() const;
+
+	protected:
+		std::string mName;
+		std::string mUserName;
+		std::vector<UserActorPtr> mUserActors;
+	};
+
+#include "PX2User.inl"
+	typedef Pointer0<User> UserPtr;
+
+}
+
+#endif
