@@ -79,6 +79,7 @@
     <ClInclude Include="PX2Runnable.hpp" />
     <ClInclude Include="PX2ScopedCS.hpp" />
     <ClInclude Include="PX2ScopedCSUN.hpp" />
+    <ClInclude Include="PX2ScriptManager.hpp" />
     <ClInclude Include="PX2Semaphore.hpp" />
     <ClInclude Include="PX2Singleton.hpp" />
     <ClInclude Include="PX2Singleton1.hpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="PX2Object_Property.cpp" />
     <ClCompile Include="PX2Object_Resource.cpp" />
     <ClCompile Include="PX2Object_Rtti.cpp" />
+    <ClCompile Include="PX2Object_Script.cpp" />
     <ClCompile Include="PX2Object_Stream.cpp" />
     <ClCompile Include="PX2Object_UserData.cpp" />
     <ClCompile Include="PX2OutStream.cpp" />
@@ -151,6 +153,7 @@
     <ClCompile Include="PX2Runnable.cpp" />
     <ClCompile Include="PX2ScopedCS.cpp" />
     <ClCompile Include="PX2ScopedCSUN.cpp" />
+    <ClCompile Include="PX2ScriptManager.cpp" />
     <ClCompile Include="PX2Semaphore.cpp" />
     <ClCompile Include="PX2SmartPointer.cpp" />
     <ClCompile Include="PX2Stream.cpp" />

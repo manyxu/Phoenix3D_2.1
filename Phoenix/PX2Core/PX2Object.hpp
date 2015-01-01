@@ -217,6 +217,25 @@ namespace PX2
 	protected:
 		static std::map<std::string, std::vector<FunObject> > mFunObjectMap;
 
+		// Scripts
+	public:
+		void SetUserScriptName(const std::string &scriptName);
+		const std::string &GetUserScriptName() const;
+		const std::string &GetScriptName() const;
+
+		void SetScriptHandler(const std::string &handler);
+		const std::string &GetScriptHandler() const;
+
+		bool RegistToScriptSystem();
+		bool UnRegistToScriptSystem();
+		bool IsRegistedToScriptSystem();
+
+	protected:
+		std::string mScriptHandler;
+
+		std::string mScriptName;
+		std::string mUserScriptName;
+
 		// ³Ö¾Ã»¯
 	public:
 		static Object *Create ();

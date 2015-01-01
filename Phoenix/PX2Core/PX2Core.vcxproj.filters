@@ -252,6 +252,9 @@
     <ClInclude Include="PX2EventWorld.hpp">
       <Filter>EventSystem</Filter>
     </ClInclude>
+    <ClInclude Include="PX2ScriptManager.hpp">
+      <Filter>Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Assert.cpp">
@@ -446,6 +449,12 @@
     <ClCompile Include="PX2Object_Event.cpp">
       <Filter>ObjectSystem</Filter>
     </ClCompile>
+    <ClCompile Include="PX2ScriptManager.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Object_Script.cpp">
+      <Filter>ObjectSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2DoubleChainList.inl">
@@ -584,6 +593,9 @@
     </Filter>
     <Filter Include="EventSystem">
       <UniqueIdentifier>{e93185c7-fe65-4d5b-a034-c882fc6a0235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{28ec057e-08f6-460c-a8a0-0e14ffdab94c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
