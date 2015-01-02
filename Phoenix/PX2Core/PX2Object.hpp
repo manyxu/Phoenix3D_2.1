@@ -223,9 +223,6 @@ namespace PX2
 		const std::string &GetUserScriptName() const;
 		const std::string &GetScriptName() const;
 
-		void SetScriptHandler(const std::string &handler);
-		const std::string &GetScriptHandler() const;
-
 		bool RegistToScriptSystem();
 		bool UnRegistToScriptSystem();
 		bool IsRegistedToScriptSystem();

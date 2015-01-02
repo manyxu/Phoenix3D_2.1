@@ -202,7 +202,7 @@ bool UIFrame::RegistToScriptSystem ()
 			+ StringHelp::IntToString(PX2_SM.GetNextRegistObjectID());
 	}
 
-	PX2_SM.AddGlobalName(mScriptName, this);	
+	PX2_SM.AddGlobalName(mScriptName, this);
 	PX2_SM.SetUserTypePointer(mScriptName.c_str(), className.c_str(), this);
 
 	return true;

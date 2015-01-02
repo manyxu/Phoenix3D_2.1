@@ -60,8 +60,6 @@ LuaManager::LuaManager ()
 	:
 mState(0)
 {
-	mType = ST_LUA;
-
 	mState = lua_open();
 	luaL_openlibs(mState);
 	lua_register(mState, "GetGlobal", GetGlobal);
@@ -73,6 +71,12 @@ LuaManager::~LuaManager ()
 	{
 		lua_close(mState);
 	}
+}
+//----------------------------------------------------------------------------
+void LuaManager::Create()
+{
+	ScriptManager *sm = new0 LuaManager();
+	PX2_UNUSED(sm);
 }
 //----------------------------------------------------------------------------
 void LuaManager::SetLuaState (lua_State *state)

@@ -549,9 +549,6 @@
     <ClCompile Include="PX2TexPackData.cpp">
       <Filter>ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="PX2ScriptManager.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
     <ClCompile Include="PX2LuaManager.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
@@ -1285,9 +1282,6 @@
     <ClInclude Include="PX2TexPackData.hpp">
       <Filter>ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="PX2ScriptManager.hpp">
-      <Filter>Scripts</Filter>
-    </ClInclude>
     <ClInclude Include="PX2LuaManager.hpp">
       <Filter>Scripts</Filter>
     </ClInclude>
@@ -1793,9 +1787,6 @@
     </None>
     <None Include="Lua\Makefile">
       <Filter>Scripts\Lua</Filter>
-    </None>
-    <None Include="PX2ScriptManager.inl">
-      <Filter>Scripts</Filter>
     </None>
     <None Include="PX2CSVParser1.inl">
       <Filter>CSV</Filter>

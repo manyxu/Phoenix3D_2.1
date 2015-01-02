@@ -295,7 +295,6 @@
     <ClCompile Include="PX2LuaManager.cpp" />
     <ClCompile Include="PX2ResourceManager.cpp" />
     <ClCompile Include="PX2ResourceUpdate.cpp" />
-    <ClCompile Include="PX2ScriptManager.cpp" />
     <ClCompile Include="PX2TexPackData.cpp" />
     <ClCompile Include="PX2XMLData.cpp" />
     <ClCompile Include="PX2XMLNode.cpp" />
@@ -543,7 +542,6 @@
     <ClInclude Include="PX2LanguageManager.hpp" />
     <ClInclude Include="PX2LuaManager.hpp" />
     <ClInclude Include="PX2ResourceUpdate.hpp" />
-    <ClInclude Include="PX2ScriptManager.hpp" />
     <ClInclude Include="PX2TexPackData.hpp" />
     <ClInclude Include="PX2ResourceManager.hpp" />
     <ClInclude Include="PX2Unity.hpp" />
@@ -583,7 +581,6 @@
     <None Include="PX2LuaManager.inl" />
     <None Include="PX2ResourceManager.inl" />
     <None Include="PX2ResourceUpdate.inl" />
-    <None Include="PX2ScriptManager.inl" />
     <None Include="PX2TexPackData.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

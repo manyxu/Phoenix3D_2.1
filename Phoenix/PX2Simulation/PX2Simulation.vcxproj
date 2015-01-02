@@ -11,10 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp" />
     <ClInclude Include="PX2AccoutManager.hpp" />
     <ClInclude Include="PX2Actor.hpp" />
     <ClInclude Include="PX2Animation.hpp" />
     <ClInclude Include="PX2Component.hpp" />
+    <ClInclude Include="PX2EngineLoop.hpp" />
     <ClInclude Include="PX2Project.hpp" />
     <ClInclude Include="PX2Scene.hpp" />
     <ClInclude Include="PX2ServerInfo.hpp" />
@@ -23,10 +25,12 @@
     <ClInclude Include="PX2UserActor.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp" />
     <ClCompile Include="PX2AccoutManager.cpp" />
     <ClCompile Include="PX2Actor.cpp" />
     <ClCompile Include="PX2Animation.cpp" />
     <ClCompile Include="PX2Component.cpp" />
+    <ClCompile Include="PX2EngineLoop.cpp" />
     <ClCompile Include="PX2Project.cpp" />
     <ClCompile Include="PX2Scene.cpp" />
     <ClCompile Include="PX2ServerInfo.cpp" />
@@ -36,6 +40,7 @@
   <ItemGroup>
     <None Include="PX2Actor.inl" />
     <None Include="PX2Component.inl" />
+    <None Include="PX2EngineLoop.inl" />
     <None Include="PX2Project.inl" />
     <None Include="PX2User.inl" />
     <None Include="PX2UserActor.inl" />
@@ -81,7 +86,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\PX2SDK\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\PX2SDK\Include;..\PX2Unity\Lua;..\PX2Unity\ToLua;..\PX2ToLua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

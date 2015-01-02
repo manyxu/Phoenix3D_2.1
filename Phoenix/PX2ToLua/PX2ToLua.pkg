@@ -8,6 +8,3 @@ $pfile "PX2Input/PX2Input.pkg"
 $pfile "PX2Unity/PX2Unity.pkg"
 $pfile "PX2SoundSystem/PX2SoundSystemInc.pkg"
 $pfile "PX2UserInterface/PX2UserInterface.pkg"
-$pfile "PX2Game/PX2Game.pkg"
-// Game
-//$pfile "TheGame/TheGame.pkg"

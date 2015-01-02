@@ -19,6 +19,12 @@
     <Filter Include="Accounts">
       <UniqueIdentifier>{296d9fa0-aa17-40b5-87dc-9b0ca6aaf600}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{f4c91037-3f89-4acc-ae19-4207a680d3ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ToLua">
+      <UniqueIdentifier>{b7034736-595d-48dc-8088-5da71a982857}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -49,6 +55,12 @@
     <ClInclude Include="PX2ServerInfo.hpp">
       <Filter>Accounts</Filter>
     </ClInclude>
+    <ClInclude Include="PX2EngineLoop.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
+      <Filter>ToLua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Actor.cpp">
@@ -78,6 +90,12 @@
     <ClCompile Include="PX2ServerInfo.cpp">
       <Filter>Accounts</Filter>
     </ClCompile>
+    <ClCompile Include="PX2EngineLoop.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
+      <Filter>ToLua</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl">
@@ -94,6 +112,9 @@
     </None>
     <None Include="PX2User.inl">
       <Filter>Accounts</Filter>
+    </None>
+    <None Include="PX2EngineLoop.inl">
+      <Filter>Engine</Filter>
     </None>
   </ItemGroup>
 </Project>

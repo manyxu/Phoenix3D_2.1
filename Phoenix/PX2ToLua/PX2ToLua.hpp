@@ -18,10 +18,6 @@
 #include "PX2UserInterface.hpp"
 #include "PX2Terrains.hpp"
 #include "PX2Effect.hpp"
-#include "PX2Game.hpp"
-
-// the game
-#include "TheGame.hpp"
 
 using namespace PX2;
 

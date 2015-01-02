@@ -1,5 +1,0 @@
-// PX2GameManager.pkg
-
-	class GameManager : public Singleton<GameManager>
-	{
-	};

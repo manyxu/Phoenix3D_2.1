@@ -19,18 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp" />
     <ClInclude Include="PX2AppFramePre.hpp" />
     <ClInclude Include="PX2Application.hpp" />
     <ClInclude Include="PX2ApplicationBase.hpp" />
-    <ClInclude Include="PX2ScriptEventHandler.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp" />
     <ClCompile Include="PX2Application.cpp" />
     <ClCompile Include="PX2ApplicationBase.cpp" />
     <ClCompile Include="PX2Main.cpp" />
-    <ClCompile Include="PX2ScriptEventHandler.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{97D918C4-1A28-4D49-BDD5-A21605491E42}</ProjectGuid>

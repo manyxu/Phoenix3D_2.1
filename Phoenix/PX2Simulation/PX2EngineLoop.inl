@@ -1,12 +1,8 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ScriptManager.hpp
-*
-*/
+// PX2EngineLoop.inl
 
 //----------------------------------------------------------------------------
-inline ScriptManager::ScriptType ScriptManager::GetScriptType ()
+inline float EngineLoop::GetElapsedTime()
 {
-	return mType;
+	return (float)(mAppTime - mLastAppTime);
 }
 //----------------------------------------------------------------------------
