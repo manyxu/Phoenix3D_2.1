@@ -1,0 +1,31 @@
+// PX2UIBase.hpp
+
+#ifndef PX2UIBASE_HPP
+#define PX2UIBASE_HPP
+
+#include "PX2UIPre.hpp"
+#include "PX2Rect.hpp"
+
+namespace PX2
+{
+
+	class UIWindow
+	{
+	public:
+		UIWindow();
+		virtual ~UIWindow();
+
+		virtual void ShowWindow(bool show = true, bool takeFocus = true) = 0;
+		virtual bool ShowModal() = 0;
+		virtual void Close() = 0;
+		virtual void CenterWindow() = 0;
+
+		virtual void SetIcon(unsigned int res) = 0;
+
+	protected:
+		bool mIsSubclassed;
+	};
+
+}
+
+#endif
