@@ -12,6 +12,7 @@ HFONT mHFonts[UIFONT__LAST] = { 0 };
 HBRUSH m_hBrushes[UICOLOR__LAST] = { 0 };
 LOGFONT m_aLogFonts[UIFONT__LAST] = { 0 };
 COLORREF mCtrlColors[UICOLOR__LAST][2] = { 0 };
+COLORREF m_clrColors[UICOLOR__LAST][2] = { 0 };
 TEXTMETRIC m_aTextMetrics[UIFONT__LAST] = { 0 };
 HIMAGELIST m_himgIcons16 = NULL;
 HIMAGELIST m_himgIcons24 = NULL;

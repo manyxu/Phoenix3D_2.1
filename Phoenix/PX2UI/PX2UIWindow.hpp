@@ -15,6 +15,9 @@ namespace PX2
 		UIWindow();
 		virtual ~UIWindow();
 
+		virtual UIWindow *Subcalss(UIWindow *window) = 0;
+		virtual void UnSubclass() = 0;
+
 		virtual void ShowWindow(bool show = true, bool takeFocus = true) = 0;
 		virtual bool ShowModal() = 0;
 		virtual void Close() = 0;

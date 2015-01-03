@@ -16,11 +16,11 @@ namespace PX2
 
 		HWND GetHWND() const;
 
-		HWND Create(UIWindow *parent, const std::string &name,
-			unsigned long stype, unsigned long exStyle, const Rectf &rect);
+		HWND Create(UIWindow *parent, const std::string &name, unsigned long stype, unsigned long exStyle, const Rectf &rect);
 		HWND Create(HWND hwndParent, LPCTSTR pstrName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int cx, int cy, HMENU hMenu);
 
 		HWND Subcalss(HWND hWnd);
+
 		virtual void UnSubclass();
 
 		virtual void ShowWindow(bool show = true, bool takeFocus = true);

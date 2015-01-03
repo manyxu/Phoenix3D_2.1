@@ -26,7 +26,7 @@ HWND UIWindow_Win::Create(UIWindow *parent, const std::string &name,
 	unsigned long stype, unsigned long exStyle, const Rectf &rect)
 {
 	return Create(((UIWindow_Win*)parent)->GetHWND(), name.c_str(), 
-		stype, exStyle, rect.Left, rect.Top, rect.Width(), rect.Height(), 0);
+		stype, exStyle, (int)rect.Left, (int)rect.Top, (int)rect.Width(), (int)rect.Height(), 0);
 }
 //----------------------------------------------------------------------------
 HWND UIWindow_Win::Create(HWND hwndParent, LPCTSTR pstrName, 
@@ -47,9 +47,9 @@ HWND UIWindow_Win::Create(HWND hwndParent, LPCTSTR pstrName,
 	return mHWnd;
 }
 //----------------------------------------------------------------------------
-HWND UIWindow_Win::Subcalss (HWND hWnd)
+HWND UIWindow_Win::Subcalss(HWND hWnd)
 {
-	assertion(TRUE==::IsWindow(hWnd), "must be awindow");
+	assertion(TRUE == ::IsWindow(hWnd), "must be awindow");
 	mOldWndProc = SubclassWindow(hWnd, __WndProc);
 
 	if (0 == mOldWndProc)
@@ -57,13 +57,13 @@ HWND UIWindow_Win::Subcalss (HWND hWnd)
 
 	mIsSubclassed = true;
 	mHWnd = hWnd;
-	
+
 	return mHWnd;
 }
 //----------------------------------------------------------------------------
 void UIWindow_Win::UnSubclass()
 {
-	assertion(::IsWindow(mHWnd), "");
+	assertion(TRUE==::IsWindow(mHWnd), "");
 
 	if (!::IsWindow(mHWnd)) 
 		return;
@@ -195,7 +195,6 @@ unsigned int UIWindow_Win::GetClassStyle() const
 {
 	return 0;
 }
-//----------------------------------------------------------------------------
 LRESULT UIWindow_Win::SendMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	ASSERT(::IsWindow(mHWnd));
