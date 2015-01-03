@@ -1,9 +1,12 @@
 // PX2UIWindow_Win.hpp
 
 #include "PX2UIWindow_Win.hpp"
+<<<<<<< HEAD
 #include "PX2UIPaintManager_Win.hpp"
 #include "PX2Assert.hpp"
 #include "PX2UIPre.hpp"
+=======
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -22,6 +25,7 @@ HWND UIWindow_Win::GetHWND() const
 	return mHWnd;
 }
 //----------------------------------------------------------------------------
+<<<<<<< HEAD
 HWND UIWindow_Win::Create(UIWindow *parent, const std::string &name,
 	unsigned long stype, unsigned long exStyle, const Rectf &rect)
 {
@@ -59,10 +63,22 @@ HWND UIWindow_Win::Subcalss (HWND hWnd)
 	mHWnd = hWnd;
 	
 	return mHWnd;
+=======
+UIWindow *UIWindow_Win::Create(UIWindow *parent, const std::string &name,
+	unsigned long stype, unsigned long exStyle, const Rectf &rect)
+{
+
+}
+//----------------------------------------------------------------------------
+UIWindow *UIWindow_Win::Subcalss(UIWindow *window)
+{
+
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 }
 //----------------------------------------------------------------------------
 void UIWindow_Win::UnSubclass()
 {
+<<<<<<< HEAD
 	assertion(::IsWindow(mHWnd), "");
 
 	if (!::IsWindow(mHWnd)) 
@@ -85,10 +101,19 @@ void UIWindow_Win::ShowWindow(bool show, bool takeFocus)
 	if (!::IsWindow(mHWnd)) return;
 
 	::ShowWindow(mHWnd, show ? (takeFocus ? SW_SHOWNORMAL : SW_SHOWNOACTIVATE) : SW_HIDE);
+=======
+
+}
+//----------------------------------------------------------------------------
+void UIWindow_Win::ShowWindow(bool show = true, bool takeFocus = true)
+{
+
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 }
 //----------------------------------------------------------------------------
 bool UIWindow_Win::ShowModal()
 {
+<<<<<<< HEAD
 	assertion(TRUE == ::IsWindow(mHWnd), "must be awindow");
 
 	HWND hWndParent = GetWindowOwner(mHWnd);
@@ -122,20 +147,28 @@ bool UIWindow_Win::ShowModal()
 		::PostQuitMessage(msg.wParam);
 	
 	return true;
+=======
+
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 }
 //----------------------------------------------------------------------------
 void UIWindow_Win::Close()
 {
+<<<<<<< HEAD
 	assertion(TRUE == ::IsWindow(mHWnd), "must be awindow");
 
 	if (!::IsWindow(mHWnd)) 
 		return;
 
 	PostMessage(WM_CLOSE);
+=======
+
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 }
 //----------------------------------------------------------------------------
 void UIWindow_Win::CenterWindow()
 {
+<<<<<<< HEAD
 	assertion(TRUE == ::IsWindow(mHWnd), "must be awindow");
 	assertion((GetWindowStyle(mHWnd)&WS_CHILD)==0, "");
 
@@ -171,10 +204,14 @@ void UIWindow_Win::CenterWindow()
 		yTop = rcArea.bottom - DlgHeight;
 
 	::SetWindowPos(mHWnd, NULL, xLeft, yTop, -1, -1, SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
+=======
+
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 }
 //----------------------------------------------------------------------------
 void UIWindow_Win::SetIcon(unsigned int res)
 {
+<<<<<<< HEAD
 	HICON hIcon = (HICON)::LoadImage(UIPaintManager_Win::GetResourceInstance(), 
 		MAKEINTRESOURCE(res), IMAGE_ICON, ::GetSystemMetrics(SM_CXICON), 
 		::GetSystemMetrics(SM_CYICON), LR_DEFAULTCOLOR);
@@ -184,6 +221,9 @@ void UIWindow_Win::SetIcon(unsigned int res)
 		IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), LR_DEFAULTCOLOR);
 
 	::SendMessage(mHWnd, WM_SETICON, (WPARAM)FALSE, (LPARAM)hIcon);
+=======
+
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 }
 //----------------------------------------------------------------------------
 LPCTSTR UIWindow_Win::GetSuperClassName() const
@@ -196,6 +236,7 @@ unsigned int UIWindow_Win::GetClassStyle() const
 	return 0;
 }
 //----------------------------------------------------------------------------
+<<<<<<< HEAD
 LRESULT UIWindow_Win::SendMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	ASSERT(::IsWindow(mHWnd));
@@ -208,6 +249,8 @@ LRESULT UIWindow_Win::PostMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	return ::PostMessage(mHWnd, uMsg, wParam, lParam);
 }
 //----------------------------------------------------------------------------
+=======
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 bool UIWindow_Win::RegisterWindowClass()
 {
 	WNDCLASS wc = { 0 };
@@ -216,7 +259,11 @@ bool UIWindow_Win::RegisterWindowClass()
 	wc.cbWndExtra = 0;
 	wc.hIcon = NULL;
 	wc.lpfnWndProc = __WndProc;
+<<<<<<< HEAD
 	wc.hInstance = UIPaintManager_Win::GetResourceInstance();
+=======
+	wc.hInstance = CPaintManagerUI::GetResourceInstance();
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 	wc.hCursor = ::LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = NULL;
 	wc.lpszMenuName = NULL;
@@ -230,11 +277,20 @@ bool UIWindow_Win::RegisterWindowClass()
 //----------------------------------------------------------------------------
 bool UIWindow_Win::RegisterSuperclass()
 {
+<<<<<<< HEAD
+=======
+	// Get the class information from an existing
+	// window so we can subclass it later on...
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 	WNDCLASSEX wc = { 0 };
 	wc.cbSize = sizeof(WNDCLASSEX);
 	if (!::GetClassInfoEx(NULL, GetSuperClassName(), &wc))
 	{
+<<<<<<< HEAD
 		if (!::GetClassInfoEx(UIPaintManager_Win::GetResourceInstance(), GetSuperClassName(), &wc))
+=======
+		if (!::GetClassInfoEx(CPaintManagerUI::GetResourceInstance(), GetSuperClassName(), &wc)) 
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 		{
 			ASSERT(!"Unable to locate window class");
 			return NULL;
@@ -242,12 +298,19 @@ bool UIWindow_Win::RegisterSuperclass()
 	}
 	mOldWndProc = wc.lpfnWndProc;
 	wc.lpfnWndProc = __ControlProc;
+<<<<<<< HEAD
 	wc.hInstance = UIPaintManager_Win::GetResourceInstance();
 	wc.lpszClassName = GetWindowClassName();
 	ATOM ret = ::RegisterClassEx(&wc);
 
 	ASSERT(ret != NULL || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS);
 
+=======
+	wc.hInstance = CPaintManagerUI::GetResourceInstance();
+	wc.lpszClassName = GetWindowClassName();
+	ATOM ret = ::RegisterClassEx(&wc);
+	ASSERT(ret != NULL || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS);
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 	return ret != NULL || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS;
 }
 //----------------------------------------------------------------------------

@@ -15,6 +15,7 @@ namespace PX2
 		UIPaintManager_Win();
 		virtual ~UIPaintManager_Win();
 
+<<<<<<< HEAD
 		static HINSTANCE GetResourceInstance();
 		static HINSTANCE GetLanguageInstance();
 		static void SetResourceInstance(HINSTANCE hInst);
@@ -32,6 +33,9 @@ namespace PX2
 
 		static void MessageLoop();
 		static bool TranslateMessage(const LPMSG pMsg);
+=======
+		void Init();
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 
 	protected:
 		HWND mHWndPaint;
@@ -39,11 +43,14 @@ namespace PX2
 		HDC mHDCOffscreen;
 		HBITMAP mHBMPOffscreen;
 		HWND mHWndTooltip;
+<<<<<<< HEAD
 
 		unsigned int mMsgMouseWheel;
 
 		static HINSTANCE mHLangInst;
 		static HINSTANCE mHInstance;
+=======
+>>>>>>> d7d7322973c15255a2595ab89885b4ef0270c6ca
 	};
 
 }
