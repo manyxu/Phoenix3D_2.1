@@ -12,7 +12,7 @@
     <ClInclude Include="PX2UIPaintManager.hpp">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Win\PX2UIDefinePre.hpp" />
+    <ClInclude Include="PX2UIDefinePre.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Win">

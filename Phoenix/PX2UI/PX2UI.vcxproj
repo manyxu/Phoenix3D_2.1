@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PX2UIDefinePre.hpp" />
     <ClInclude Include="PX2UIPaintManager.hpp" />
     <ClInclude Include="PX2UIWindow.hpp" />
     <ClInclude Include="PX2UIPre.hpp" />
-    <ClInclude Include="Win\PX2UIDefinePre.hpp" />
     <ClInclude Include="Win\PX2UIPaintManager_Win.hpp" />
     <ClInclude Include="Win\PX2UIWindow_Win.hpp" />
   </ItemGroup>
