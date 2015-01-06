@@ -27,7 +27,7 @@ void UIPaintManager::SetMinMaxInfo(int cx, int cy)
 {
 	assertion(cx>=0 && cy>=0, "should bigger than 0");
 
-	mMinSize.Width = cx;
-	mMinSize.Height = cy;
+	mMinSize.Width = (float)cx;
+	mMinSize.Height = (float)cy;
 }
 //----------------------------------------------------------------------------
