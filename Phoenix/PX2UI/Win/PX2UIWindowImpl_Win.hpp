@@ -1,23 +1,21 @@
-// PX2UIWindow_Win.hpp
+// PX2UIWindowIMPL_Win.hpp
 
-#ifndef PX2UIWINDOW_WIN_HPP
-#define PX2UIWINDOW_WIN_HPP
+#ifndef PX2UIWINDOWIMPL_WIN_HPP
+#define PX2UIWINDOWIMPL_WIN_HPP
 
-#include "PX2UIWindow.hpp"
+#include "PX2UIWindowImpl.hpp"
 
 namespace PX2
 {
 
-	class UIWindow_Win : public UIWindow
+	class UIWindowImpl_Win : public UIWindowImpl
 	{
 	public:
-		UIWindow_Win();
-		~UIWindow_Win();
+		UIWindowImpl_Win();
+		~UIWindowImpl_Win();
 
-		HWND GetHWND() const;
-
-		HWND Create(UIWindow *parent, const std::string &name, unsigned long stype, unsigned long exStyle, const Rectf &rect);
-		HWND Create(HWND hwndParent, LPCTSTR pstrName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int cx, int cy, HMENU hMenu);
+		virtual UIWindowImpl *Create(UIWindowImpl *parent, const std::string &name,
+			UIWindowStyle style, const Rectf &rect);
 
 		HWND Subcalss(HWND hWnd);
 
@@ -30,7 +28,12 @@ namespace PX2
 
 		virtual void SetIcon(unsigned int res);
 
+	public_internal:
+		HWND GetHWND() const;
+
 	protected:
+		HWND Create(HWND hwndParent, LPCTSTR pstrName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int cx, int cy, HMENU hMenu);
+
 		virtual LPCTSTR GetWindowClassName() const;
 		virtual LPCTSTR GetSuperClassName() const;
 		virtual unsigned int GetClassStyle() const;

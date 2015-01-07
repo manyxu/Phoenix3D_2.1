@@ -1,36 +1,47 @@
 // PX2UIWindow_Win.hpp
 
-#include "PX2UIWindow_Win.hpp"
+#include "PX2UIWindowImpl_Win.hpp"
 #include "PX2UIPaintManager_Win.hpp"
 #include "PX2Assert.hpp"
 #include "PX2UIPre.hpp"
+#include "PX2UIDefine.hpp"
+#include "PX2UIMapping_Win.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-UIWindow_Win::UIWindow_Win() :
+UIWindowImpl_Win::UIWindowImpl_Win() :
 mHWnd(0),
 mOldWndProc(::DefWindowProc)
 {
 
 }
 //----------------------------------------------------------------------------
-UIWindow_Win::~UIWindow_Win()
+UIWindowImpl_Win::~UIWindowImpl_Win()
 {
 }
 //----------------------------------------------------------------------------
-HWND UIWindow_Win::GetHWND() const
+HWND UIWindowImpl_Win::GetHWND() const
 {
 	return mHWnd;
 }
 //----------------------------------------------------------------------------
-HWND UIWindow_Win::Create(UIWindow *parent, const std::string &name,
-	unsigned long stype, unsigned long exStyle, const Rectf &rect)
+UIWindowImpl *UIWindowImpl_Win::Create(UIWindowImpl *parent, const std::string &name,
+	UIWindowStyle style, const Rectf &rect)
 {
-	return Create(((UIWindow_Win*)parent)->GetHWND(), name.c_str(), 
-		stype, exStyle, (int)rect.Left, (int)rect.Top, (int)rect.Width(), (int)rect.Height(), 0);
+	HWND parHWnd = 0;
+	if (parent)
+	{
+		parHWnd = ((UIWindowImpl_Win*)parent)->GetHWND();
+	}
+
+	Create(parHWnd, name.c_str(), gUIWindowStype[style], 0,
+		(int)rect.Left, (int)rect.Top, (int)rect.Width(), (int)rect.Height(), 
+		0);
+
+	return this;
 }
 //----------------------------------------------------------------------------
-HWND UIWindow_Win::Create(HWND hwndParent, LPCTSTR pstrName, 
+HWND UIWindowImpl_Win::Create(HWND hwndParent, LPCTSTR pstrName, 
 	DWORD dwStyle, DWORD dwExStyle, int x, int y, int cx, int cy, HMENU hMenu)
 {
 	if (GetSuperClassName() != NULL && !RegisterSuperclass()) return NULL;
@@ -45,7 +56,7 @@ HWND UIWindow_Win::Create(HWND hwndParent, LPCTSTR pstrName,
 	return mHWnd;
 }
 //----------------------------------------------------------------------------
-HWND UIWindow_Win::Subcalss(HWND hWnd)
+HWND UIWindowImpl_Win::Subcalss(HWND hWnd)
 {
 	assertion(TRUE == ::IsWindow(hWnd), "must be awindow");
 	mOldWndProc = SubclassWindow(hWnd, __WndProc);
@@ -59,7 +70,7 @@ HWND UIWindow_Win::Subcalss(HWND hWnd)
 	return mHWnd;
 }
 //----------------------------------------------------------------------------
-void UIWindow_Win::UnSubclass()
+void UIWindowImpl_Win::UnSubclass()
 {
 	assertion(TRUE==::IsWindow(mHWnd), "");
 
@@ -76,7 +87,7 @@ void UIWindow_Win::UnSubclass()
 	mIsSubclassed = false;
 }
 //----------------------------------------------------------------------------
-void UIWindow_Win::ShowWindow(bool show, bool takeFocus)
+void UIWindowImpl_Win::ShowWindow(bool show, bool takeFocus)
 {
 	assertion(TRUE == ::IsWindow(mHWnd), "must be awindow");
 
@@ -85,7 +96,7 @@ void UIWindow_Win::ShowWindow(bool show, bool takeFocus)
 	::ShowWindow(mHWnd, show ? (takeFocus ? SW_SHOWNORMAL : SW_SHOWNOACTIVATE) : SW_HIDE);
 }
 //----------------------------------------------------------------------------
-bool UIWindow_Win::ShowModal()
+bool UIWindowImpl_Win::ShowModal()
 {
 	assertion(TRUE == ::IsWindow(mHWnd), "must be awindow");
 
@@ -122,7 +133,7 @@ bool UIWindow_Win::ShowModal()
 	return true;
 }
 //----------------------------------------------------------------------------
-void UIWindow_Win::Close()
+void UIWindowImpl_Win::Close()
 {
 	assertion(TRUE == ::IsWindow(mHWnd), "must be awindow");
 
@@ -132,7 +143,7 @@ void UIWindow_Win::Close()
 	PostMessage(WM_CLOSE);
 }
 //----------------------------------------------------------------------------
-void UIWindow_Win::CenterWindow()
+void UIWindowImpl_Win::CenterWindow()
 {
 	assertion(TRUE == ::IsWindow(mHWnd), "must be awindow");
 	assertion((GetWindowStyle(mHWnd)&WS_CHILD)==0, "");
@@ -171,7 +182,7 @@ void UIWindow_Win::CenterWindow()
 	::SetWindowPos(mHWnd, NULL, xLeft, yTop, -1, -1, SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
 }
 //----------------------------------------------------------------------------
-void UIWindow_Win::SetIcon(unsigned int res)
+void UIWindowImpl_Win::SetIcon(unsigned int res)
 {
 	HICON hIcon = (HICON)::LoadImage(UIPaintManager_Win::GetResourceInstance(), 
 		MAKEINTRESOURCE(res), IMAGE_ICON, ::GetSystemMetrics(SM_CXICON), 
@@ -184,41 +195,41 @@ void UIWindow_Win::SetIcon(unsigned int res)
 	::SendMessage(mHWnd, WM_SETICON, (WPARAM)FALSE, (LPARAM)hIcon);
 }
 //----------------------------------------------------------------------------
-LPCTSTR UIWindow_Win::GetWindowClassName() const
+LPCTSTR UIWindowImpl_Win::GetWindowClassName() const
 {
-	return _T("UIWindow_Win");
+	return _T("UIWindowImpl_Win");
 }
 //----------------------------------------------------------------------------
-LPCTSTR UIWindow_Win::GetSuperClassName() const
+LPCTSTR UIWindowImpl_Win::GetSuperClassName() const
 {
 	return 0;
 }
 //----------------------------------------------------------------------------
-unsigned int UIWindow_Win::GetClassStyle() const
+unsigned int UIWindowImpl_Win::GetClassStyle() const
 {
 	return (CS_VREDRAW | CS_HREDRAW);
 }
 //----------------------------------------------------------------------------
-LRESULT UIWindow_Win::SendMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT UIWindowImpl_Win::SendMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	ASSERT(::IsWindow(mHWnd));
 	return ::SendMessage(mHWnd, uMsg, wParam, lParam);
 }
 //----------------------------------------------------------------------------
-LRESULT UIWindow_Win::PostMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT UIWindowImpl_Win::PostMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	ASSERT(::IsWindow(mHWnd));
 	return ::PostMessage(mHWnd, uMsg, wParam, lParam);
 }
 //----------------------------------------------------------------------------
-bool UIWindow_Win::RegisterWindowClass()
+bool UIWindowImpl_Win::RegisterWindowClass()
 {
 	WNDCLASS wc = { 0 };
 	wc.style = GetClassStyle();
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 	wc.hIcon = NULL;
-	wc.lpfnWndProc = UIWindow_Win::__WndProc;
+	wc.lpfnWndProc = UIWindowImpl_Win::__WndProc;
 	wc.hInstance = UIPaintManager_Win::GetResourceInstance();
 	wc.hCursor = ::LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = NULL;
@@ -229,7 +240,7 @@ bool UIWindow_Win::RegisterWindowClass()
 	return ret != NULL || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS;
 }
 //----------------------------------------------------------------------------
-bool UIWindow_Win::RegisterSuperclass()
+bool UIWindowImpl_Win::RegisterSuperclass()
 {
 	WNDCLASSEX wc = { 0 };
 	wc.cbSize = sizeof(WNDCLASSEX);
@@ -252,28 +263,28 @@ bool UIWindow_Win::RegisterSuperclass()
 	return ret != NULL || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS;
 }
 //----------------------------------------------------------------------------
-LRESULT UIWindow_Win::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT UIWindowImpl_Win::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	return ::CallWindowProc(mOldWndProc, mHWnd, uMsg, wParam, lParam);
 }
 //----------------------------------------------------------------------------
-void UIWindow_Win::OnFinalMessage(HWND hWnd)
+void UIWindowImpl_Win::OnFinalMessage(HWND hWnd)
 {
 }
 //----------------------------------------------------------------------------
-LRESULT CALLBACK UIWindow_Win::__WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK UIWindowImpl_Win::__WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	UIWindow_Win* pThis = NULL;
+	UIWindowImpl_Win* pThis = NULL;
 	if (uMsg == WM_NCCREATE)
 	{
 		LPCREATESTRUCT lpcs = reinterpret_cast<LPCREATESTRUCT>(lParam);
-		pThis = static_cast<UIWindow_Win*>(lpcs->lpCreateParams);
+		pThis = static_cast<UIWindowImpl_Win*>(lpcs->lpCreateParams);
 		pThis->mHWnd = hWnd;
 		::SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LPARAM>(pThis));
 	}
 	else 
 	{
-		pThis = reinterpret_cast<UIWindow_Win*>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
+		pThis = reinterpret_cast<UIWindowImpl_Win*>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
 		if (uMsg == WM_NCDESTROY && pThis != NULL) 
 		{
 			LRESULT lRes = ::CallWindowProc(pThis->mOldWndProc, hWnd, uMsg, wParam, lParam);
@@ -294,17 +305,17 @@ LRESULT CALLBACK UIWindow_Win::__WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LP
 	}
 }
 //----------------------------------------------------------------------------
-LRESULT CALLBACK UIWindow_Win::__ControlProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK UIWindowImpl_Win::__ControlProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	UIWindow_Win* pThis = NULL;
+	UIWindowImpl_Win* pThis = NULL;
 	if (uMsg == WM_NCCREATE) {
 		LPCREATESTRUCT lpcs = reinterpret_cast<LPCREATESTRUCT>(lParam);
-		pThis = static_cast<UIWindow_Win*>(lpcs->lpCreateParams);
+		pThis = static_cast<UIWindowImpl_Win*>(lpcs->lpCreateParams);
 		::SetProp(hWnd, "WndX", (HANDLE)pThis);
 		pThis->mHWnd = hWnd;
 	}
 	else {
-		pThis = reinterpret_cast<UIWindow_Win*>(::GetProp(hWnd, "WndX"));
+		pThis = reinterpret_cast<UIWindowImpl_Win*>(::GetProp(hWnd, "WndX"));
 		if (uMsg == WM_NCDESTROY && pThis != NULL) {
 			LRESULT lRes = ::CallWindowProc(pThis->mOldWndProc, hWnd, uMsg, wParam, lParam);
 			if (pThis->mIsSubclassed) pThis->UnSubclass();

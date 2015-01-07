@@ -11,18 +11,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PX2UIDefinePre.hpp" />
+    <ClInclude Include="PX2UIDefine.hpp" />
     <ClInclude Include="PX2UIPaintManager.hpp" />
     <ClInclude Include="PX2UIWindow.hpp" />
     <ClInclude Include="PX2UIPre.hpp" />
+    <ClInclude Include="PX2UIWindowImpl.hpp" />
     <ClInclude Include="Win\PX2UIPaintManager_Win.hpp" />
-    <ClInclude Include="Win\PX2UIWindow_Win.hpp" />
+    <ClInclude Include="Win\PX2UIWindowImpl_Win.hpp" />
+    <ClInclude Include="Win\PX2UIMapping_Win.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UIPaintManager.cpp" />
     <ClCompile Include="PX2UIWindow.cpp" />
     <ClCompile Include="Win\PX2UIPaintManager_Win.cpp" />
-    <ClCompile Include="Win\PX2UIWindow_Win.cpp" />
+    <ClCompile Include="Win\PX2UIWindowImpl.cpp" />
+    <ClCompile Include="Win\PX2UIWindowImpl_Win.cpp" />
+    <ClCompile Include="Win\PX2UIMapping_Win.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Win\PX2UIWindow.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{72287CC2-2C2D-40B0-8995-58BA207D1FA7}</ProjectGuid>
