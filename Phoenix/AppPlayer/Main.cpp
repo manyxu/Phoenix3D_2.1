@@ -21,7 +21,11 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 
 	UIPaintManager_Win::MessageLoop();
 
+<<<<<<< HEAD
 	//::CoUninitialize();
+=======
+	::CoUninitialize();
+>>>>>>> 4a9c74c96de5f6ea64eb2b90a5c9334e4ec4de5d
 
 	PX2::Memory::Terminate("abc.text", false);
 
