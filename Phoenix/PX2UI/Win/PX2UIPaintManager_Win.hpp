@@ -16,9 +16,7 @@ namespace PX2
 		virtual ~UIPaintManager_Win();
 
 		static HINSTANCE GetResourceInstance();
-		static HINSTANCE GetLanguageInstance();
 		static void SetResourceInstance(HINSTANCE hInst);
-		static void SetLanguageInstance(HINSTANCE hInst);
 
 		void Init(HWND hWnd);
 
@@ -42,7 +40,6 @@ namespace PX2
 
 		unsigned int mMsgMouseWheel;
 
-		static HINSTANCE mHLangInst;
 		static HINSTANCE mHInstance;
 	};
 

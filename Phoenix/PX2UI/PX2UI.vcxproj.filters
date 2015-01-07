@@ -2,39 +2,63 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="PX2UIPre.hpp" />
-    <ClInclude Include="PX2UIWindow.hpp" />
-    <ClInclude Include="Win\PX2UIWindow_Win.hpp">
-      <Filter>Win</Filter>
-    </ClInclude>
     <ClInclude Include="Win\PX2UIPaintManager_Win.hpp">
       <Filter>Manager\Win</Filter>
     </ClInclude>
     <ClInclude Include="PX2UIPaintManager.hpp">
       <Filter>Manager</Filter>
     </ClInclude>
-    <ClInclude Include="PX2UIDefinePre.hpp" />
+    <ClInclude Include="PX2UIWindow.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Win\PX2UIMapping_Win.hpp">
+      <Filter>Window\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIDefine.hpp" />
+    <ClInclude Include="PX2UIWindowImpl.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Win\PX2UIWindowImpl_Win.hpp">
+      <Filter>Window\Win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Win">
-      <UniqueIdentifier>{b086ff04-c425-4746-ade4-33c306810277}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager">
       <UniqueIdentifier>{b94ba5f8-7658-4207-86cd-8488c6922be0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Manager\Win">
       <UniqueIdentifier>{4ac3a5ee-9e94-4a84-bafb-6c0367e6e8a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{4aaa5fe1-ae89-4e61-b8ad-392e9a8d803e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Win">
+      <UniqueIdentifier>{b086ff04-c425-4746-ade4-33c306810277}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PX2UIWindow.cpp" />
-    <ClCompile Include="Win\PX2UIWindow_Win.cpp">
-      <Filter>Win</Filter>
-    </ClCompile>
     <ClCompile Include="Win\PX2UIPaintManager_Win.cpp">
       <Filter>Manager\Win</Filter>
     </ClCompile>
     <ClCompile Include="PX2UIPaintManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
+    <ClCompile Include="PX2UIWindow.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Win\PX2UIMapping_Win.cpp">
+      <Filter>Window\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="Win\PX2UIWindowImpl_Win.cpp">
+      <Filter>Window\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="Win\PX2UIWindowImpl.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Win\PX2UIWindow.inl">
+      <Filter>Window</Filter>
+    </None>
   </ItemGroup>
 </Project>

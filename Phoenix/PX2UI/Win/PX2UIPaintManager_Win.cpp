@@ -1,7 +1,7 @@
 // PX2UIPaintManager_Win.cpp
 
 #include "PX2UIPaintManager_Win.hpp"
-#include "PX2UIDefinePre.hpp"
+#include "PX2UIDefine.hpp"
 #include "PX2UIPre.hpp"
 #include "PX2Assert.hpp"
 using namespace PX2;
@@ -171,11 +171,6 @@ UIPaintManager_Win::~UIPaintManager_Win()
 HINSTANCE UIPaintManager_Win::GetResourceInstance()
 {
 	return mHInstance;
-}
-//----------------------------------------------------------------------------
-HINSTANCE UIPaintManager_Win::GetLanguageInstance()
-{
-	return mHLangInst;
 }
 //----------------------------------------------------------------------------
 void UIPaintManager_Win::SetResourceInstance(HINSTANCE hInst)

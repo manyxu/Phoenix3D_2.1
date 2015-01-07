@@ -1,7 +1,7 @@
-// PX2UIDefinePre.hpp
+// PX2UIDefine.hpp
 
-#ifndef PX2UIDEFINEPRE_HPP
-#define PX2UIDEFINEPRE_HPP
+#ifndef PX2UIDEFINE_HPP
+#define PX2UIDEFINE_HPP
 
 namespace PX2
 {
@@ -112,6 +112,26 @@ namespace PX2
 		UICOLOR_STANDARD_WHITE,
 		UICOLOR__LAST,
 		UICOLOR__INVALID,
+	};
+
+	enum UIClassType
+	{
+		UICS_NONE,
+		UICS_FRAME,
+		UICS_CHILD,
+		UICS_DIALOG,
+		UICS_MAX_TYPE
+	};
+
+	enum UIWindowStyle
+	{
+		UIWS_NONE,
+		UIWS_FRAME,
+		UIWS_CHILD,
+		UIWS_DIALOG,
+		UIWS_FRAME_EX,
+		UIWS_DIALOG_EX,
+		UIWS_MAX_TYPE
 	};
 
 	struct SystemSettingsUI
