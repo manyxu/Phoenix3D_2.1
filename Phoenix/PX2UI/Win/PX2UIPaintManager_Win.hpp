@@ -15,8 +15,9 @@ namespace PX2
 		UIPaintManager_Win();
 		virtual ~UIPaintManager_Win();
 
-		static HINSTANCE GetResourceInstance();
-		static void SetResourceInstance(HINSTANCE hInst);
+		virtual void SetPlatformData(void *data);
+		void SetResourceInstance(HINSTANCE hInst);
+		HINSTANCE GetResourceInstance();
 
 		void Init(HWND hWnd);
 
@@ -28,7 +29,8 @@ namespace PX2
 		void UpdateLayout();
 		void Invalidate(RECT rcItem);
 
-		static void MessageLoop();
+		virtual void Run();
+
 		static bool TranslateMessage(const LPMSG pMsg);
 
 	protected:
@@ -40,7 +42,7 @@ namespace PX2
 
 		unsigned int mMsgMouseWheel;
 
-		static HINSTANCE mHInstance;
+		HINSTANCE mHInstance;
 	};
 
 }

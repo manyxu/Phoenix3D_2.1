@@ -11,8 +11,8 @@ namespace PX2
 	class UIWindowImpl_Win : public UIWindowImpl
 	{
 	public:
-		UIWindowImpl_Win();
-		~UIWindowImpl_Win();
+		UIWindowImpl_Win(UIWindow *window);
+		virtual ~UIWindowImpl_Win();
 
 		virtual UIWindowImpl *Create(UIWindowImpl *parent, const std::string &name,
 			UIWindowStyle style, const Rectf &rect);
@@ -32,6 +32,8 @@ namespace PX2
 		HWND GetHWND() const;
 
 	protected:
+		UIWindowImpl_Win();
+
 		HWND Create(HWND hwndParent, LPCTSTR pstrName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int cx, int cy, HMENU hMenu);
 
 		virtual LPCTSTR GetWindowClassName() const;

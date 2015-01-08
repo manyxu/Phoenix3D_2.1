@@ -11,10 +11,12 @@
 namespace PX2
 {
 
+	class UIWindow;
+
 	class UIWindowImpl
 	{
 	public:
-		UIWindowImpl();
+		UIWindowImpl(UIWindow *window);
 		virtual ~UIWindowImpl();
 
 		virtual UIWindowImpl *Create(UIWindowImpl *parent, 
@@ -29,7 +31,10 @@ namespace PX2
 		virtual void SetIcon(unsigned int res) = 0;
 
 	protected:
+		UIWindowImpl();
+
 		bool mIsSubclassed;
+		UIWindow *mWindow;
 	};
 	typedef Pointer0<UIWindowImpl> UIWindowImplPtr;
 

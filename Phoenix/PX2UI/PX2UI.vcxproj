@@ -29,6 +29,7 @@
     <ClCompile Include="Win\PX2UIMapping_Win.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="PX2UIPaintManager.inl" />
     <None Include="Win\PX2UIWindow.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -489,9 +489,6 @@
     <ClCompile Include="FreeType\src\base\ftbbox.c">
       <Filter>FreeType\src\base</Filter>
     </ClCompile>
-    <ClCompile Include="FreeType\src\base\ftbitmap.c">
-      <Filter>FreeType\src\base</Filter>
-    </ClCompile>
     <ClCompile Include="FreeType\src\base\ftfstype.c">
       <Filter>FreeType\src\base</Filter>
     </ClCompile>
@@ -1031,6 +1028,9 @@
     </ClCompile>
     <ClCompile Include="PX2FontManager.cpp">
       <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeType\src\base\ftbitmap.c">
+      <Filter>FreeType\src\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

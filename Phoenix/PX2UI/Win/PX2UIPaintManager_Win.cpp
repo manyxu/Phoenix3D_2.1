@@ -19,8 +19,6 @@ HIMAGELIST m_himgIcons24 = NULL;
 HIMAGELIST m_himgIcons32 = NULL;
 HIMAGELIST m_himgIcons50 = NULL;
 //----------------------------------------------------------------------------
-HINSTANCE UIPaintManager_Win::mHInstance = 0;
-//----------------------------------------------------------------------------
 UIPaintManager_Win::UIPaintManager_Win() :
 mHWndPaint(0),
 mHDCPaint(0),
@@ -167,14 +165,21 @@ UIPaintManager_Win::~UIPaintManager_Win()
 	if (mHDCPaint != NULL) ::ReleaseDC(mHWndPaint, mHDCPaint);
 }
 //----------------------------------------------------------------------------
-HINSTANCE UIPaintManager_Win::GetResourceInstance()
+void UIPaintManager_Win::SetPlatformData(void *data)
 {
-	return mHInstance;
+	UIPaintManager::SetPlatformData(data);
+
+	SetResourceInstance(HINSTANCE(data));
 }
 //----------------------------------------------------------------------------
 void UIPaintManager_Win::SetResourceInstance(HINSTANCE hInst)
 {
 	mHInstance = hInst;
+}
+//----------------------------------------------------------------------------
+HINSTANCE UIPaintManager_Win::GetResourceInstance()
+{
+	return mHInstance;
 }
 //----------------------------------------------------------------------------
 void UIPaintManager_Win::Init(HWND hWnd)
@@ -213,12 +218,12 @@ void UIPaintManager_Win::Invalidate(RECT rcItem)
 	::InvalidateRect(mHWndPaint, &rcItem, FALSE);
 }
 //----------------------------------------------------------------------------
-void UIPaintManager_Win::MessageLoop()
+void UIPaintManager_Win::Run()
 {
 	MSG msg = { 0 };
-	while (::GetMessage(&msg, NULL, 0, 0)) 
+	while (::GetMessage(&msg, NULL, 0, 0))
 	{
-		if (!TranslateMessage(&msg)) 
+		if (!TranslateMessage(&msg))
 		{
 			::TranslateMessage(&msg);
 			::DispatchMessage(&msg);

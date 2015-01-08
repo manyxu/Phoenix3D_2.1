@@ -6,14 +6,22 @@
 #include "PX2UIPre.hpp"
 #include "PX2UIDefine.hpp"
 #include "PX2UIMapping_Win.hpp"
+#include "PX2UIWindow.hpp"
 using namespace PX2;
 
+//----------------------------------------------------------------------------
+UIWindowImpl_Win::UIWindowImpl_Win(UIWindow *window) :
+UIWindowImpl(window),
+mHWnd(0),
+mOldWndProc(::DefWindowProc)
+{
+
+}
 //----------------------------------------------------------------------------
 UIWindowImpl_Win::UIWindowImpl_Win() :
 mHWnd(0),
 mOldWndProc(::DefWindowProc)
 {
-
 }
 //----------------------------------------------------------------------------
 UIWindowImpl_Win::~UIWindowImpl_Win()
@@ -47,9 +55,12 @@ HWND UIWindowImpl_Win::Create(HWND hwndParent, LPCTSTR pstrName,
 	if (GetSuperClassName() != NULL && !RegisterSuperclass()) return NULL;
 	if (GetSuperClassName() == NULL && !RegisterWindowClass()) return NULL;
 
+	HINSTANCE hInst = ((UIPaintManager_Win*)UIPaintManager::GetSingletonPtr())
+		->GetResourceInstance();
+
 	mHWnd = ::CreateWindowEx(dwExStyle, GetWindowClassName(), pstrName, 
 		dwStyle, x, y, cx, cy, hwndParent, hMenu, 
-		UIPaintManager_Win::GetResourceInstance(), this);
+		hInst, this);
 
 	assertion(0 != mHWnd, "mHWnd must not be null");
 
@@ -184,12 +195,15 @@ void UIWindowImpl_Win::CenterWindow()
 //----------------------------------------------------------------------------
 void UIWindowImpl_Win::SetIcon(unsigned int res)
 {
-	HICON hIcon = (HICON)::LoadImage(UIPaintManager_Win::GetResourceInstance(), 
+	HINSTANCE hInst = ((UIPaintManager_Win*)UIPaintManager::GetSingletonPtr())
+		->GetResourceInstance();
+
+	HICON hIcon = (HICON)::LoadImage(hInst,
 		MAKEINTRESOURCE(res), IMAGE_ICON, ::GetSystemMetrics(SM_CXICON), 
 		::GetSystemMetrics(SM_CYICON), LR_DEFAULTCOLOR);
 
 	::SendMessage(mHWnd, WM_SETICON, (WPARAM)TRUE, (LPARAM)hIcon);
-	hIcon = (HICON)::LoadImage(UIPaintManager_Win::GetResourceInstance(), MAKEINTRESOURCE(res), 
+	hIcon = (HICON)::LoadImage(hInst, MAKEINTRESOURCE(res),
 		IMAGE_ICON, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON), LR_DEFAULTCOLOR);
 
 	::SendMessage(mHWnd, WM_SETICON, (WPARAM)FALSE, (LPARAM)hIcon);
@@ -224,13 +238,16 @@ LRESULT UIWindowImpl_Win::PostMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 //----------------------------------------------------------------------------
 bool UIWindowImpl_Win::RegisterWindowClass()
 {
+	HINSTANCE hInst = ((UIPaintManager_Win*)UIPaintManager::GetSingletonPtr())
+		->GetResourceInstance();
+
 	WNDCLASS wc = { 0 };
 	wc.style = GetClassStyle();
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 	wc.hIcon = NULL;
 	wc.lpfnWndProc = UIWindowImpl_Win::__WndProc;
-	wc.hInstance = UIPaintManager_Win::GetResourceInstance();
+	wc.hInstance = hInst;
 	wc.hCursor = ::LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = NULL;
 	wc.lpszMenuName = NULL;
@@ -242,11 +259,14 @@ bool UIWindowImpl_Win::RegisterWindowClass()
 //----------------------------------------------------------------------------
 bool UIWindowImpl_Win::RegisterSuperclass()
 {
+	HINSTANCE hInst = ((UIPaintManager_Win*)UIPaintManager::GetSingletonPtr())
+		->GetResourceInstance();
+
 	WNDCLASSEX wc = { 0 };
 	wc.cbSize = sizeof(WNDCLASSEX);
 	if (!::GetClassInfoEx(NULL, GetSuperClassName(), &wc))
 	{
-		if (!::GetClassInfoEx(UIPaintManager_Win::GetResourceInstance(), GetSuperClassName(), &wc))
+		if (!::GetClassInfoEx(hInst, GetSuperClassName(), &wc))
 		{
 			ASSERT(!"Unable to locate window class");
 			return NULL;
@@ -254,7 +274,7 @@ bool UIWindowImpl_Win::RegisterSuperclass()
 	}
 	mOldWndProc = wc.lpfnWndProc;
 	wc.lpfnWndProc = __ControlProc;
-	wc.hInstance = UIPaintManager_Win::GetResourceInstance();
+	wc.hInstance = hInst;
 	wc.lpszClassName = GetWindowClassName();
 	ATOM ret = ::RegisterClassEx(&wc);
 
@@ -270,6 +290,7 @@ LRESULT UIWindowImpl_Win::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 //----------------------------------------------------------------------------
 void UIWindowImpl_Win::OnFinalMessage(HWND hWnd)
 {
+	delete0(mWindow);
 }
 //----------------------------------------------------------------------------
 LRESULT CALLBACK UIWindowImpl_Win::__WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -290,7 +311,7 @@ LRESULT CALLBACK UIWindowImpl_Win::__WndProc(HWND hWnd, UINT uMsg, WPARAM wParam
 			LRESULT lRes = ::CallWindowProc(pThis->mOldWndProc, hWnd, uMsg, wParam, lParam);
 			::SetWindowLongPtr(pThis->mHWnd, GWLP_USERDATA, 0L);
 			if (pThis->mIsSubclassed) pThis->UnSubclass();
-			pThis->mHWnd = NULL;
+			pThis->mHWnd = 0;
 			pThis->OnFinalMessage(hWnd);
 			return lRes;
 		}

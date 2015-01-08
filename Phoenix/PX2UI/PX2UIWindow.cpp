@@ -11,7 +11,7 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 UIWindow::UIWindow()
 {
-	mImpl = new0 UIWindowImpl_Win();
+	mImpl = new0 UIWindowImpl_Win(this);
 }
 //----------------------------------------------------------------------------
 UIWindow::~UIWindow()
@@ -26,6 +26,10 @@ void UIWindow::Create(UIWindow *parent, const std::string &name,
 		impl = parent->GetImpl();
 
 	mImpl->Create(impl, name, style, rect);
+}
+//----------------------------------------------------------------------------
+void UIWindow::OnClose()
+{
 }
 //----------------------------------------------------------------------------
 void UIWindow::UnSubclass()

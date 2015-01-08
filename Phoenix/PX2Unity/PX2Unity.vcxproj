@@ -128,6 +128,7 @@
     <ClCompile Include="CURL\src\warnless.c" />
     <ClCompile Include="CURL\src\wildcard.c" />
     <ClCompile Include="CURL\src\x509asn1.c" />
+    <ClCompile Include="FreeType\src\base\ftbitmap.c" />
     <ClCompile Include="PX2FontManager.cpp" />
     <ClCompile Include="PX2MD5.cpp" />
     <ClCompile Include="DevIL\altivec_common.c" />
@@ -224,7 +225,6 @@
     <ClCompile Include="FreeType\src\autofit\autofit.c" />
     <ClCompile Include="FreeType\src\base\ftbase.c" />
     <ClCompile Include="FreeType\src\base\ftbbox.c" />
-    <ClCompile Include="FreeType\src\base\ftbitmap.c" />
     <ClCompile Include="FreeType\src\base\ftfstype.c" />
     <ClCompile Include="FreeType\src\base\ftgasp.c" />
     <ClCompile Include="FreeType\src\base\ftglyph.c" />

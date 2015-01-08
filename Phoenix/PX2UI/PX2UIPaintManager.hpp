@@ -18,12 +18,21 @@ namespace PX2
 		UIPaintManager();
 		virtual ~UIPaintManager();
 
+		static UIPaintManager *Create();
+
+		virtual void SetPlatformData(void *data);
+		void *GetPlatformData();
+
 		void Init();
 
 		const Float2 &GetMousePos() const;
 		void SetMinMaxInfo (int cx, int cy);
 
+		virtual void Run();
+
 	protected:
+		void *mPlatformData;
+
 		Sizef mMinSize;
 		Float2 mLastMousePos;
 
@@ -32,6 +41,8 @@ namespace PX2
 
 		bool mIsResizeNeeded;
 	};
+
+#include "PX2UIPaintManager.inl"
 
 }
 
