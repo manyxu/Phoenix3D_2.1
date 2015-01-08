@@ -34,7 +34,7 @@ namespace PX2
 	protected:
 		UIWindowImplPtr mImpl;
 	};
-
+	typedef Pointer0<UIWindow> UIWindowPtr;
 #include "PX2UIWindow.inl"
 
 }
