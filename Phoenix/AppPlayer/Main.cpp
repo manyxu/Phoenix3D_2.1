@@ -3,7 +3,6 @@
 #include "PX2UIPre.hpp"
 #include "PX2UIWindow.hpp"
 #include "PX2UIPaintManager.hpp"
-#include <objbase.h>
 using namespace PX2;
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)

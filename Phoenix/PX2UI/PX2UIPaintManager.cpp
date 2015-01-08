@@ -9,6 +9,7 @@
 
 using namespace PX2;
 
+//----------------------------------------------------------------------------
 UIPaintManager::UIPaintManager() :
 mIsResizeNeeded(false),
 mPlatformData(0)

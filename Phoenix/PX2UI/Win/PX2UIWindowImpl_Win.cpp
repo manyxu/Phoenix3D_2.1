@@ -285,12 +285,37 @@ bool UIWindowImpl_Win::RegisterSuperclass()
 //----------------------------------------------------------------------------
 LRESULT UIWindowImpl_Win::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	if (uMsg == WM_CREATE)
+	{
+	}
+	if (uMsg == WM_DESTROY) 
+	{
+		::PostQuitMessage(0L);
+	}
+	if (uMsg == WM_SETFOCUS) 
+	{
+	}
+	if (uMsg == WM_ERASEBKGND)
+	{
+		return 1;
+	}
+	if (uMsg == WM_PAINT)
+	{
+		PAINTSTRUCT ps = { 0 };
+		::BeginPaint(mHWnd, &ps);
+		::EndPaint(mHWnd, &ps);
+		return 0;
+	}
+
 	return ::CallWindowProc(mOldWndProc, mHWnd, uMsg, wParam, lParam);
 }
 //----------------------------------------------------------------------------
 void UIWindowImpl_Win::OnFinalMessage(HWND hWnd)
 {
-	delete0(mWindow);
+	//if (mWindow)
+	//{
+	//	delete0(mWindow);
+	//}
 }
 //----------------------------------------------------------------------------
 LRESULT CALLBACK UIWindowImpl_Win::__WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
