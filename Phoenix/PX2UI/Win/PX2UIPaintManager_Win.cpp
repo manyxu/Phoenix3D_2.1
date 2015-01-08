@@ -19,7 +19,6 @@ HIMAGELIST m_himgIcons24 = NULL;
 HIMAGELIST m_himgIcons32 = NULL;
 HIMAGELIST m_himgIcons50 = NULL;
 //----------------------------------------------------------------------------
-HINSTANCE UIPaintManager_Win::mHLangInst = 0;
 HINSTANCE UIPaintManager_Win::mHInstance = 0;
 //----------------------------------------------------------------------------
 UIPaintManager_Win::UIPaintManager_Win() :
@@ -176,11 +175,6 @@ HINSTANCE UIPaintManager_Win::GetResourceInstance()
 void UIPaintManager_Win::SetResourceInstance(HINSTANCE hInst)
 {
 	mHInstance = hInst;
-}
-//----------------------------------------------------------------------------
-void UIPaintManager_Win::SetLanguageInstance(HINSTANCE hInst)
-{
-	mHLangInst = hInst;
 }
 //----------------------------------------------------------------------------
 void UIPaintManager_Win::Init(HWND hWnd)

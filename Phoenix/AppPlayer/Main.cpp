@@ -12,20 +12,11 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 
 	UIPaintManager_Win::SetResourceInstance(hInstance);
 
-	//HRESULT Hr = ::CoInitialize(NULL);
-	//if (FAILED(Hr)) return 0;
-
 	UIWindow* pFrame = new UIWindow();
 	if (pFrame == NULL) return 0;
 	pFrame->Create(0, _T("Test123"), UIWS_FRAME, Rectf(0.0f, 0.0f, 800.0f, 600.0f));
 
 	UIPaintManager_Win::MessageLoop();
-
-<<<<<<< HEAD
-	//::CoUninitialize();
-=======
-	::CoUninitialize();
->>>>>>> 4a9c74c96de5f6ea64eb2b90a5c9334e4ec4de5d
 
 	PX2::Memory::Terminate("abc.text", false);
 
