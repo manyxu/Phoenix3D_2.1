@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PX2UIControl.hpp" />
     <ClInclude Include="PX2UIDefine.hpp" />
     <ClInclude Include="PX2UIPaintManager.hpp" />
     <ClInclude Include="PX2UIWindow.hpp" />
@@ -21,6 +22,7 @@
     <ClInclude Include="Win\PX2UIMapping_Win.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PX2UIControl.cpp" />
     <ClCompile Include="PX2UIPaintManager.cpp" />
     <ClCompile Include="PX2UIWindow.cpp" />
     <ClCompile Include="Win\PX2UIPaintManager_Win.cpp" />

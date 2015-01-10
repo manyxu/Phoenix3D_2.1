@@ -3,6 +3,7 @@
 #include "PX2UIPre.hpp"
 #include "PX2UIWindow.hpp"
 #include "PX2UIPaintManager.hpp"
+#include "PX2WindowMain.hpp"
 using namespace PX2;
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)
@@ -12,12 +13,18 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 	UIPaintManager *uiPaintMan = UIPaintManager::Create();
 	uiPaintMan->SetPlatformData(hInstance);
 
-	UIWindowPtr frame = new0 UIWindow();
-	frame->Create(0, _T("Test123"), UIWS_FRAME, Rectf(0.0f, 0.0f, 800.0f, 600.0f));
+	WindowMainPtr winMain = new0 WindowMain();
+	winMain->Create(0, "MainWindow", UIWS_FRAME, Rectf(0.0f, 0.0f, 800.0f, 600.0f));
+	winMain->CenterWindow();
+
+	WindowMainPtr winMain1 = new0 WindowMain();
+	winMain1->Create(winMain, "MainWindow1", UIWS_FRAME, Rectf(0.0f, 0.0f, 800.0f, 600.0f));
+	winMain1->CenterWindow();
 
 	uiPaintMan->Run();
 
-	frame = 0;
+	winMain = 0;
+	winMain1 = 0;
 	delete0(uiPaintMan);
 
 	PX2::Memory::Terminate("abc.text", false);

@@ -21,6 +21,9 @@
     <ClInclude Include="Win\PX2UIWindowImpl_Win.hpp">
       <Filter>Window\Win</Filter>
     </ClInclude>
+    <ClInclude Include="PX2UIControl.hpp">
+      <Filter>Control</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Manager">
@@ -34,6 +37,9 @@
     </Filter>
     <Filter Include="Window\Win">
       <UniqueIdentifier>{b086ff04-c425-4746-ade4-33c306810277}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Control">
+      <UniqueIdentifier>{b23afc91-1d4a-42cc-a25e-3398cdb054e8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +60,9 @@
     </ClCompile>
     <ClCompile Include="Win\PX2UIWindowImpl.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIControl.cpp">
+      <Filter>Control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

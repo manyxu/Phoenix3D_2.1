@@ -18,6 +18,26 @@ UIWindow::~UIWindow()
 {
 }
 //----------------------------------------------------------------------------
+void UIWindow::SetClassStyle(UIClassType stype)
+{
+	mImpl->SetClassStyle(stype);
+}
+//----------------------------------------------------------------------------
+UIClassType UIWindow::GetClassStype() const
+{
+	return mImpl->GetClassStype();
+}
+//----------------------------------------------------------------------------
+void UIWindow::SetClassName(const std::string &className)
+{
+	mImpl->SetClassName(className);
+}
+//----------------------------------------------------------------------------
+const std::string &UIWindow::GetClassName() const
+{
+	return mImpl->GetClassName();
+}
+//----------------------------------------------------------------------------
 void UIWindow::Create(UIWindow *parent, const std::string &name,
 	UIWindowStyle style, const Rectf &rect)
 {
@@ -28,17 +48,14 @@ void UIWindow::Create(UIWindow *parent, const std::string &name,
 	mImpl->Create(impl, name, style, rect);
 }
 //----------------------------------------------------------------------------
-void UIWindow::OnClose()
+void UIWindow::Close()
 {
-}
-//----------------------------------------------------------------------------
-void UIWindow::UnSubclass()
-{
+	mImpl->Close();
 }
 //----------------------------------------------------------------------------
 void UIWindow::ShowWindow(bool sho, bool takeFocus)
 {
-
+	mImpl->ShowWindow(sho, takeFocus);
 }
 //----------------------------------------------------------------------------
 bool UIWindow::ShowModal()
@@ -46,18 +63,13 @@ bool UIWindow::ShowModal()
 	return mImpl->ShowModal();
 }
 //----------------------------------------------------------------------------
-void UIWindow::Close()
-{
-
-}
-//----------------------------------------------------------------------------
 void UIWindow::CenterWindow()
 {
-
+	mImpl->CenterWindow();
 }
 //----------------------------------------------------------------------------
 void UIWindow::SetIcon(unsigned int res)
 {
-
+	mImpl->SetIcon(res);
 }
 //----------------------------------------------------------------------------

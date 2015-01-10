@@ -36,9 +36,7 @@ namespace PX2
 
 		HWND Create(HWND hwndParent, LPCTSTR pstrName, DWORD dwStyle, DWORD dwExStyle, int x, int y, int cx, int cy, HMENU hMenu);
 
-		virtual LPCTSTR GetWindowClassName() const;
 		virtual LPCTSTR GetSuperClassName() const;
-		virtual unsigned int GetClassStyle() const;
 
 		LRESULT SendMessage(UINT uMsg, WPARAM wParam = 0, LPARAM lParam = 0);
 		LRESULT PostMessage(UINT uMsg, WPARAM wParam = 0, LPARAM lParam = 0);

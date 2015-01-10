@@ -17,13 +17,16 @@ namespace PX2
 		UIWindow();
 		virtual ~UIWindow();
 
+		void SetClassStyle(UIClassType stype);
+		UIClassType GetClassStype() const;
+		void SetClassName(const std::string &className);
+		const std::string &GetClassName() const;
+
 		virtual void Create(UIWindow *parent, const std::string &name, UIWindowStyle style, const Rectf &rect);
-		virtual void UnSubclass();
-		virtual void OnClose();
+		void Close();
 
 		virtual void ShowWindow(bool show = true, bool takeFocus = true);
 		virtual bool ShowModal();
-		virtual void Close();
 		virtual void CenterWindow();
 
 		virtual void SetIcon(unsigned int res);

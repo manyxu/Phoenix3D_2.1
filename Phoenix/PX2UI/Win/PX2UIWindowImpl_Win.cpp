@@ -58,7 +58,7 @@ HWND UIWindowImpl_Win::Create(HWND hwndParent, LPCTSTR pstrName,
 	HINSTANCE hInst = ((UIPaintManager_Win*)UIPaintManager::GetSingletonPtr())
 		->GetResourceInstance();
 
-	mHWnd = ::CreateWindowEx(dwExStyle, GetWindowClassName(), pstrName, 
+	mHWnd = ::CreateWindowEx(dwExStyle, GetClassName().c_str(), pstrName, 
 		dwStyle, x, y, cx, cy, hwndParent, hMenu, 
 		hInst, this);
 
@@ -209,19 +209,9 @@ void UIWindowImpl_Win::SetIcon(unsigned int res)
 	::SendMessage(mHWnd, WM_SETICON, (WPARAM)FALSE, (LPARAM)hIcon);
 }
 //----------------------------------------------------------------------------
-LPCTSTR UIWindowImpl_Win::GetWindowClassName() const
-{
-	return _T("UIWindowImpl_Win");
-}
-//----------------------------------------------------------------------------
 LPCTSTR UIWindowImpl_Win::GetSuperClassName() const
 {
 	return 0;
-}
-//----------------------------------------------------------------------------
-unsigned int UIWindowImpl_Win::GetClassStyle() const
-{
-	return (CS_VREDRAW | CS_HREDRAW);
 }
 //----------------------------------------------------------------------------
 LRESULT UIWindowImpl_Win::SendMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -242,7 +232,7 @@ bool UIWindowImpl_Win::RegisterWindowClass()
 		->GetResourceInstance();
 
 	WNDCLASS wc = { 0 };
-	wc.style = GetClassStyle();
+	wc.style = gUIClassStype[mClassType];
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 	wc.hIcon = NULL;
@@ -251,7 +241,7 @@ bool UIWindowImpl_Win::RegisterWindowClass()
 	wc.hCursor = ::LoadCursor(NULL, IDC_ARROW);
 	wc.hbrBackground = NULL;
 	wc.lpszMenuName = NULL;
-	wc.lpszClassName = GetWindowClassName();
+	wc.lpszClassName = GetClassName().c_str();
 	ATOM ret = ::RegisterClass(&wc);
 	ASSERT(ret != NULL || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS);
 	return ret != NULL || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS;
@@ -275,7 +265,7 @@ bool UIWindowImpl_Win::RegisterSuperclass()
 	mOldWndProc = wc.lpfnWndProc;
 	wc.lpfnWndProc = __ControlProc;
 	wc.hInstance = hInst;
-	wc.lpszClassName = GetWindowClassName();
+	wc.lpszClassName = GetClassName().c_str();
 	ATOM ret = ::RegisterClassEx(&wc);
 
 	ASSERT(ret != NULL || ::GetLastError() == ERROR_CLASS_ALREADY_EXISTS);
@@ -312,10 +302,7 @@ LRESULT UIWindowImpl_Win::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 //----------------------------------------------------------------------------
 void UIWindowImpl_Win::OnFinalMessage(HWND hWnd)
 {
-	//if (mWindow)
-	//{
-	//	delete0(mWindow);
-	//}
+	PX2_UNUSED(hWnd);
 }
 //----------------------------------------------------------------------------
 LRESULT CALLBACK UIWindowImpl_Win::__WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)

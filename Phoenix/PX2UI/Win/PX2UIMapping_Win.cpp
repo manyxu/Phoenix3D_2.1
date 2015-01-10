@@ -6,6 +6,13 @@
 namespace PX2
 {
 
+	unsigned int gUIClassStype[UICS_MAX_TYPE] =
+	{
+		0,
+		(CS_VREDRAW | CS_HREDRAW),
+		(CS_VREDRAW | CS_HREDRAW | CS_DBLCLKS | CS_SAVEBITS),
+		(CS_VREDRAW | CS_HREDRAW | CS_DBLCLKS | CS_SAVEBITS)
+	};
 	//----------------------------------------------------------------------------
 	unsigned int gUIWindowStype[UIWS_MAX_TYPE] =
 	{

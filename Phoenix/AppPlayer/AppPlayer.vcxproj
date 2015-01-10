@@ -83,7 +83,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PX2Main.cpp" />
+    <ClCompile Include="PX2WindowMain.cpp" />
+    <ClCompile Include="PX2WindowStandard.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2WindowMain.hpp" />
+    <ClInclude Include="PX2WindowStandard.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

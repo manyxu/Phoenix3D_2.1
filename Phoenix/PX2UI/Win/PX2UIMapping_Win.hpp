@@ -8,6 +8,7 @@
 namespace PX2
 {
 
+	extern unsigned int gUIClassStype[UICS_MAX_TYPE];
 	extern unsigned int gUIWindowStype[UIWS_MAX_TYPE];
 
 }

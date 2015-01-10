@@ -19,6 +19,11 @@ namespace PX2
 		UIWindowImpl(UIWindow *window);
 		virtual ~UIWindowImpl();
 
+		void SetClassStyle(UIClassType stype);
+		UIClassType GetClassStype() const;
+		void SetClassName(const std::string &className);
+		const std::string &GetClassName() const;
+
 		virtual UIWindowImpl *Create(UIWindowImpl *parent, 
 			const std::string &name, UIWindowStyle style, 
 			const Rectf &rect) = 0;
@@ -33,7 +38,10 @@ namespace PX2
 	protected:
 		UIWindowImpl();
 
+		UIClassType mClassType;
+		std::string mClassName;
 		bool mIsSubclassed;
+
 		UIWindow *mWindow;
 	};
 	typedef Pointer0<UIWindowImpl> UIWindowImplPtr;
