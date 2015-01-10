@@ -38,6 +38,11 @@ void UIPaintManager::Init()
 
 }
 //----------------------------------------------------------------------------
+void UIPaintManager::Invalidate(const Rectf &rcItem)
+{
+	PX2_UNUSED(rcItem);
+}
+//----------------------------------------------------------------------------
 const Float2 &UIPaintManager::GetMousePos() const
 {
 	return mLastMousePos;

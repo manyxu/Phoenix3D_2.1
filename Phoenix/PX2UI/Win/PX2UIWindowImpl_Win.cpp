@@ -157,7 +157,7 @@ void UIWindowImpl_Win::Close()
 void UIWindowImpl_Win::CenterWindow()
 {
 	assertion(TRUE == ::IsWindow(mHWnd), "must be awindow");
-	assertion((GetWindowStyle(mHWnd)&WS_CHILD)==0, "");
+	assertion((GetWindowStyle(mHWnd)&WS_CHILD)==0, "must not be a child window");
 
 	RECT rcDlg = { 0 };
 	::GetWindowRect(mHWnd, &rcDlg);

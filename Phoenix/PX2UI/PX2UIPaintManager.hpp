@@ -7,6 +7,7 @@
 #include "PX2Size.hpp"
 #include "PX2APoint.hpp"
 #include "PX2Float2.hpp"
+#include "PX2Rect.hpp"
 #include "PX2UIDefine.hpp"
 
 namespace PX2
@@ -24,9 +25,13 @@ namespace PX2
 		void *GetPlatformData();
 
 		void Init();
+		void Invalidate(const Rectf &rcItem);
 
 		const Float2 &GetMousePos() const;
 		void SetMinMaxInfo (int cx, int cy);
+
+		const SystemMetricsUI &GetSystemMetrics() const;
+		const SystemSettingsUI &GetSystemSettings() const;
 
 		virtual void Run();
 
@@ -37,7 +42,7 @@ namespace PX2
 		Float2 mLastMousePos;
 
 		SystemMetricsUI mSystemMetrics;
-		SystemSettingsUI mSystemConfig;
+		SystemSettingsUI mSystemSettings;
 
 		bool mIsResizeNeeded;
 	};

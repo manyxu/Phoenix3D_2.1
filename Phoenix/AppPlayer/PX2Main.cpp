@@ -18,8 +18,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 	winMain->CenterWindow();
 
 	WindowMainPtr winMain1 = new0 WindowMain();
-	winMain1->Create(winMain, "MainWindow1", UIWS_FRAME, Rectf(0.0f, 0.0f, 800.0f, 600.0f));
-	winMain1->CenterWindow();
+	winMain1->Create(winMain, "MainWindow1", UIWS_CHILD, Rectf(0.0f, 0.0f, 800.0f, 600.0f));
+	//winMain1->CenterWindow();
 
 	uiPaintMan->Run();
 

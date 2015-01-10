@@ -1,15 +1,16 @@
-// PX2UIControl.cpp
+// PX2UIRender.cpp
 
-#include "PX2UIControl.hpp"
+#include "PX2UIRender.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-UIControl::UIControl() :
-mPaintMan(0)
+UIRenderer::UIRenderer() :
+TheRenderer(0),
+TheDC(0)
 {
 }
 //----------------------------------------------------------------------------
-UIControl::~UIControl()
+UIRenderer::~UIRenderer()
 {
 }
 //----------------------------------------------------------------------------

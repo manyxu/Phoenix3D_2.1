@@ -5,9 +5,12 @@
 
 #include "PX2UIPre.hpp"
 #include "PX2Rect.hpp"
+#include "PX2UIDefine.hpp"
 
 namespace PX2
 {
+
+	class UIPaintManager;
 
 	class UIControl
 	{
@@ -33,6 +36,9 @@ namespace PX2
 		virtual bool IsEnabled() const;
 
 		virtual void DoPaint (HDC hDC, const Rectf &rect) = 0;
+
+	protected:
+		UIPaintManager *mPaintMan;
 	};
 
 }

@@ -3,10 +3,7 @@
   <ItemGroup>
     <ClInclude Include="PX2UIPre.hpp" />
     <ClInclude Include="Win\PX2UIPaintManager_Win.hpp">
-      <Filter>Manager\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2UIPaintManager.hpp">
-      <Filter>Manager</Filter>
+      <Filter>Paint\Win</Filter>
     </ClInclude>
     <ClInclude Include="PX2UIWindow.hpp">
       <Filter>Window</Filter>
@@ -24,14 +21,23 @@
     <ClInclude Include="PX2UIControl.hpp">
       <Filter>Control</Filter>
     </ClInclude>
+    <ClInclude Include="PX2UIButton.hpp">
+      <Filter>Control</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIPaintManager.hpp">
+      <Filter>Paint</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIRenderManager_Win.hpp">
+      <Filter>Render\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIRender.hpp">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIRenderManager.hpp">
+      <Filter>Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Manager">
-      <UniqueIdentifier>{b94ba5f8-7658-4207-86cd-8488c6922be0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Win">
-      <UniqueIdentifier>{4ac3a5ee-9e94-4a84-bafb-6c0367e6e8a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Window">
       <UniqueIdentifier>{4aaa5fe1-ae89-4e61-b8ad-392e9a8d803e}</UniqueIdentifier>
     </Filter>
@@ -41,13 +47,22 @@
     <Filter Include="Control">
       <UniqueIdentifier>{b23afc91-1d4a-42cc-a25e-3398cdb054e8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{4908b6a7-0015-40aa-ae32-965e04e0caae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Paint">
+      <UniqueIdentifier>{94e0bba5-4c9f-4da4-9337-b9785bb405d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Paint\Win">
+      <UniqueIdentifier>{4ac3a5ee-9e94-4a84-bafb-6c0367e6e8a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\Win">
+      <UniqueIdentifier>{73367c68-d63f-405c-9685-84edadadd777}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Win\PX2UIPaintManager_Win.cpp">
-      <Filter>Manager\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2UIPaintManager.cpp">
-      <Filter>Manager</Filter>
+      <Filter>Paint\Win</Filter>
     </ClCompile>
     <ClCompile Include="PX2UIWindow.cpp">
       <Filter>Window</Filter>
@@ -64,13 +79,28 @@
     <ClCompile Include="PX2UIControl.cpp">
       <Filter>Control</Filter>
     </ClCompile>
+    <ClCompile Include="PX2UIButton.cpp">
+      <Filter>Control</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIPaintManager.cpp">
+      <Filter>Paint</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIRenderManager_Win.cpp">
+      <Filter>Render\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIRenderManager.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIRender.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Win\PX2UIWindow.inl">
       <Filter>Window</Filter>
     </None>
     <None Include="PX2UIPaintManager.inl">
-      <Filter>Manager</Filter>
+      <Filter>Paint</Filter>
     </None>
   </ItemGroup>
 </Project>

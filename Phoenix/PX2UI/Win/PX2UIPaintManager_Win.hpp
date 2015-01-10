@@ -19,7 +19,16 @@ namespace PX2
 		void SetResourceInstance(HINSTANCE hInst);
 		HINSTANCE GetResourceInstance();
 
+		COLORREF GetColor(UITYPE_COLOR index) const;
+		bool GetColorPair(UITYPE_COLOR index, COLORREF& clr1, COLORREF& clr2) const;
+		HPEN GetPen(UITYPE_COLOR index) const;
+		HFONT GetFont(UITYPE_FONT index) const;
+		HBRUSH GetBrush(UITYPE_COLOR index) const;
+		HICON GetIcon(int index, int cxySize) const;
+
 		void Init(HWND hWnd);
+
+		void Invalidate(const Rectf &rcItem);
 
 		HDC GetPaintDC() const;
 		HWND GetPaintWindow() const;
