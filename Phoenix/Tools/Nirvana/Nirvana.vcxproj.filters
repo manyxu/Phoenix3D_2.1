@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="App">
+      <UniqueIdentifier>{b6c7622e-5c87-454d-ae84-68e50071083c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2EditorApp.hpp">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EditorPre.hpp" />
+    <ClInclude Include="PX2MainFrame.hpp">
+      <Filter>App</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2EditorApp.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MainFrame.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
