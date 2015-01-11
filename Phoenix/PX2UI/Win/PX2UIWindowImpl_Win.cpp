@@ -277,19 +277,43 @@ LRESULT UIWindowImpl_Win::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if (uMsg == WM_CREATE)
 	{
+		LONG styleValue = ::GetWindowLong(mHWnd, GWL_STYLE);
+		//styleValue &= ~WS_CAPTION;
+		::SetWindowLong(mHWnd, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
+		RECT rcClient;
+		::GetClientRect(mHWnd, &rcClient);
+		::SetWindowPos(mHWnd, NULL, rcClient.left, rcClient.top, rcClient.right - rcClient.left,
+			rcClient.bottom - rcClient.top, SWP_FRAMECHANGED);
 	}
-	if (uMsg == WM_DESTROY) 
+	else if (uMsg == WM_DESTROY) 
 	{
 		::PostQuitMessage(0L);
 	}
-	if (uMsg == WM_SETFOCUS) 
+	else if (uMsg == WM_SETFOCUS)
 	{
 	}
-	if (uMsg == WM_ERASEBKGND)
+	else if (uMsg == WM_ERASEBKGND)
 	{
 		return 1;
 	}
-	if (uMsg == WM_PAINT)
+	else if (uMsg == WM_SIZE)
+	{
+		RECT rcWnd;
+		::GetWindowRect(mHWnd, &rcWnd);
+		::OffsetRect(&rcWnd, -rcWnd.left, -rcWnd.top);
+		//rcWnd.Offset(-rcWnd.left, -rcWnd.top);
+		rcWnd.right++; rcWnd.bottom++;
+
+		HRGN hRgn = ::CreateRoundRectRgn(rcWnd.left, rcWnd.top, rcWnd.right, rcWnd.bottom, 0, 0);
+		::SetWindowRgn(mHWnd, hRgn, TRUE);
+		::DeleteObject(hRgn);
+	}
+	else if (WM_NCACTIVATE == uMsg || WM_NCCALCSIZE == uMsg || WM_NCPAINT == uMsg ||
+		WM_NCHITTEST == uMsg)
+	{
+		return 0;
+	}
+	else if (uMsg == WM_PAINT)
 	{
 		PAINTSTRUCT ps = { 0 };
 		::BeginPaint(mHWnd, &ps);
