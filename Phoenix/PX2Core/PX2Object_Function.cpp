@@ -4,11 +4,8 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-std::map<std::string, std::vector<Object::FunObject> > Object::mFunObjectMap;
-//----------------------------------------------------------------------------
-Object::FunParam::FunParam()
-	:
-	Type(FPT_INT)
+Object::FunParam::FunParam() :
+Type(FPT_INT)
 {
 }
 //----------------------------------------------------------------------------
@@ -26,12 +23,13 @@ void Object::FunObject::AddInput(const std::string &paramName,
 	mInParams.push_back(funParam);
 }
 //----------------------------------------------------------------------------
-void Object::FunObject::AddOutPut(const std::string &paramName,
-	Object::FunParamType type)
+void Object::FunObject::AddOutput(const std::string &paramName, FunParamType type,
+	const Any &paramValue)
 {
 	FunParam funParam;
 	funParam.Name = paramName;
 	funParam.Type = type;
+	funParam.Value = paramValue;
 	mOutParams.push_back(funParam);
 }
 //----------------------------------------------------------------------------
@@ -65,26 +63,22 @@ const Object::FunParam &Object::FunObject::GetOutParam(int i) const
 	return mOutParams[i];
 }
 //----------------------------------------------------------------------------
-void Object::RegistFunctions()
+void Object::RegistFunctions(std::map<std::string, std::vector<FunObject> > &map)
 {
-	mFunObjectMap.clear();
+	if (map.find("Object") != map.end()) return;
 
 	FunObject funObjSetName;
 	funObjSetName.ClassName = "Object";
 	funObjSetName.FunName = "SetName";
-	funObjSetName.AddInput("name", FPT_STRING, std::string("NoName"));
-	mFunObjectMap[funObjSetName.ClassName].push_back(funObjSetName);
+	funObjSetName.AddInput("handler", FPT_POINTER_THIS, (Object*)0);
+	funObjSetName.AddInput("in_name", FPT_STRING, std::string("NoName"));
+	map[funObjSetName.ClassName].push_back(funObjSetName);
 
 	FunObject funObjGetName;
 	funObjGetName.ClassName = "Object";
 	funObjGetName.FunName = "GetName";
-	funObjGetName.AddOutPut("value", FPT_STRING);
-	mFunObjectMap[funObjSetName.ClassName].push_back(funObjGetName);
-}
-//----------------------------------------------------------------------------
-std::map<std::string, std::vector<Object::FunObject> > &Object::
-GetFunctionMap()
-{
-	return mFunObjectMap;
+	funObjGetName.AddInput("handler", FPT_POINTER_THIS, (Object*)0);
+	funObjGetName.AddOutput("out_name", FPT_STRING, std::string("notvalied"));
+	map[funObjSetName.ClassName].push_back(funObjGetName);
 }
 //----------------------------------------------------------------------------

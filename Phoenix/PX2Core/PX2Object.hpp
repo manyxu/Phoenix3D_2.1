@@ -20,6 +20,9 @@
 namespace PX2
 {
 
+	class Event;
+	class EventHandler;
+
 	/// 对象系统根类
 	/** 
 	* 对系统提供：运行识别机制，控制器系统，拷贝系统，名称ID系统,以及硬盘持久化
@@ -70,6 +73,19 @@ namespace PX2
 			std::vector<Object*>& objects);
 	private:
 		std::string mName;
+
+		// 事件
+	public:
+		void ComeInEventWorld();
+		void GoOutEventWorld();
+		bool IsInEventWorld();
+
+		EventHandler *GetEventHandler();
+
+		virtual void DoExecute(Event *event);
+
+	protected:
+		Pointer0<EventHandler> mEventHandler;
 
 		// Visitor
 	public:
@@ -188,7 +204,7 @@ namespace PX2
 			std::string FunName;
 			void AddInput (const std::string &paramName, FunParamType type,
 				const Any &paramValue);
-			void AddOutput (const std::string &paramName, FunParamType type,
+			void AddOutput(const std::string &paramName, FunParamType type,
 				const Any &paramValue);
 
 			const std::vector<FunParam> &GetInParams () const;
@@ -203,7 +219,23 @@ namespace PX2
 			std::vector<FunParam> mInParams;
 			std::vector<FunParam> mOutParams;
 		};
-		static void RegistFunctions (std::map<std::string, std::vector<FunObject> > &map);
+		static void RegistFunctions(std::map<std::string, std::vector<FunObject> > &map);
+
+		// Scripts
+	public:
+		void SetUserScriptName(const std::string &scriptName);
+		const std::string &GetUserScriptName() const;
+		const std::string &GetScriptName() const;
+
+		bool RegistToScriptSystem();
+		bool UnRegistToScriptSystem();
+		bool IsRegistedToScriptSystem();
+
+	protected:
+		std::string mScriptHandler;
+
+		std::string mScriptName;
+		std::string mUserScriptName;
 
 		// 持久化
 	public:
