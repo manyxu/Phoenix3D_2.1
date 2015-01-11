@@ -218,7 +218,7 @@ void ResourceManager::ClearRes (const std::string &resPath)
 //----------------------------------------------------------------------------
 Object *ResourceManager::BlockLoad (const std::string &filename)
 {
-	if (filename == "")
+	if (filename.empty())
 	{
 		assertion(false, "filename must not be null");
 		return 0;
@@ -262,8 +262,7 @@ bool ResourceManager::CreateFloder (const std::string &parentPath,
 	std::string tempPath = path;
 	int index = 0;
 
-	bool bTrue = true;
-	while (bTrue)
+	while (true)
 	{
 		int pos = (int)tempPath.find('/', index);
 		if(-1 == pos)
@@ -973,7 +972,6 @@ ResourceManager::LoadRecord &ResourceManager::InsertRecord (
 #endif
 
 	bool isHasUpdate = IsHasUpdate(dstFilename, dstFilename);
-	PX2_UNUSED(isHasUpdate);
 
 	ScopedCS scopeCS(mResTableMutex);
 
@@ -1148,7 +1146,7 @@ bool ResourceManager::SaveTex2DPNG(Texture2D *tex2d, const std::string &filename
 	ilGenImages(1, &image);
 	ilBindImage(image);
 
-	ilLoadDataL(tex2d->GetData(0), width*height*bytePerPixel, width, height, 1, (ILubyte)bytePerPixel);
+	ilLoadDataL(tex2d->GetData(0), width*height*bytePerPixel, width, height, 1, bytePerPixel);
 
 	ilEnable(IL_FILE_OVERWRITE);
 	ilSave(IL_PNG, filename.c_str());

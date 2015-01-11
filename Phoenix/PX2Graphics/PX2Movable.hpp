@@ -128,6 +128,11 @@ namespace PX2
 		virtual void SetColor (const Float3 &color);
 		const Float3 &GetColor () const;
 
+		void SetBrightnessSelfCtrled (bool selfCtrled);
+		bool IsBrightnessSelfCtrled () const;
+		virtual void SetBrightness (float brightness);
+		float GetBrightness () const;
+
 		// Update time
 		void SetUpdateTime (float time);
 		float GetUpdateTime () const;
@@ -170,6 +175,9 @@ public_internal:
 		bool mIsIngoreParent_Translate;
 		bool mIsIngoreParent_Rotate;
 		bool mIsIngoreParent_Scale;
+
+		bool mIsBrightnessSelfCtrled;
+		float mBrightness;
 	};
 
 	PX2_REGISTER_STREAM(Movable);

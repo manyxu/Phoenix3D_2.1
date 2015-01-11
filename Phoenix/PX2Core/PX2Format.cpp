@@ -7,7 +7,9 @@
 #include "PX2Format.hpp"
 #include "PX2Assert.hpp"
 #include "PX2Ascii.hpp"
-using namespace PX2;
+
+namespace PX2
+{
 
 //----------------------------------------------------------------------------
 void ParseFlags(std::ostream& str, std::string::const_iterator& itFmt, const std::string::const_iterator& endFmt)
@@ -245,7 +247,7 @@ void Format(std::string& result, const std::string& fmt, const Any& value)
 {
 	std::vector<Any> args;
 	args.push_back(value);
-	Format(result, fmt, args);
+	FormatVec(result, fmt, args);
 }
 //----------------------------------------------------------------------------
 void Format(std::string& result, const std::string& fmt, const Any& value1, const Any& value2)
@@ -253,7 +255,7 @@ void Format(std::string& result, const std::string& fmt, const Any& value1, cons
 	std::vector<Any> args;
 	args.push_back(value1);
 	args.push_back(value2);
-	Format(result, fmt, args);
+	FormatVec(result, fmt, args);
 }
 //----------------------------------------------------------------------------
 void Format(std::string& result, const std::string& fmt, const Any& value1, const Any& value2, const Any& value3)
@@ -262,7 +264,7 @@ void Format(std::string& result, const std::string& fmt, const Any& value1, cons
 	args.push_back(value1);
 	args.push_back(value2);
 	args.push_back(value3);
-	Format(result, fmt, args);
+	FormatVec(result, fmt, args);
 }
 //----------------------------------------------------------------------------
 void Format(std::string& result, const std::string& fmt, const Any& value1, const Any& value2, const Any& value3, const Any& value4)
@@ -272,7 +274,7 @@ void Format(std::string& result, const std::string& fmt, const Any& value1, cons
 	args.push_back(value2);
 	args.push_back(value3);
 	args.push_back(value4);
-	Format(result, fmt, args);
+	FormatVec(result, fmt, args);
 }
 //----------------------------------------------------------------------------
 void Format(std::string& result, const std::string& fmt, const Any& value1, const Any& value2, const Any& value3, const Any& value4, const Any& value5)
@@ -283,7 +285,7 @@ void Format(std::string& result, const std::string& fmt, const Any& value1, cons
 	args.push_back(value3);
 	args.push_back(value4);
 	args.push_back(value5);
-	Format(result, fmt, args);
+	FormatVec(result, fmt, args);
 }
 //----------------------------------------------------------------------------
 void Format(std::string& result, const std::string& fmt, const Any& value1, const Any& value2, const Any& value3, const Any& value4, const Any& value5, const Any& value6)
@@ -295,10 +297,10 @@ void Format(std::string& result, const std::string& fmt, const Any& value1, cons
 	args.push_back(value4);
 	args.push_back(value5);
 	args.push_back(value6);
-	Format(result, fmt, args);
+	FormatVec(result, fmt, args);
 }
 //----------------------------------------------------------------------------
-void Format(std::string& result, const std::string& fmt, const std::vector<Any>& values)
+void FormatVec(std::string& result, const std::string& fmt, const std::vector<Any>& values)
 {
 	std::string::const_iterator itFmt  = fmt.begin();
 	std::string::const_iterator endFmt = fmt.end();
@@ -343,3 +345,5 @@ void Format(std::string& result, const std::string& fmt, const std::vector<Any>&
 	}
 }
 //----------------------------------------------------------------------------
+
+}

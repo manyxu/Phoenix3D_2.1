@@ -35,6 +35,9 @@ namespace PX2
 
 		bool Initlize ();
 		bool Terminate ();
+		
+		void SetInEditor (bool isInEditor);
+		bool IsInEditor () const;
 
 		void SetCamera (Camera *camera);
 		PX2::Camera *GetCamera();
@@ -59,6 +62,8 @@ namespace PX2
 		const Float4 &GetFogParam () const;
 		void SetFogColor (const Float4 &fogColor);
 		const Float4 &GetFogColor () const;
+		void SetFogColorDist (const Float4 &fogColor);
+		const Float4 &GetFogColorDist () const;
 
 		// environment
 		void ComputeEnvironment (VisibleSet &vs);
@@ -67,6 +72,7 @@ namespace PX2
 		const static std::string sTerResPath;
 
 	private:
+		bool mIsInEditor;
 		Rectf mRect;
 		Sizef mSize;
 		PX2::CameraPtr mCamera;
@@ -74,6 +80,7 @@ namespace PX2
 		static std::string PX2Path;
 		Float4 mFogParam;
 		Float4 mFogColor;
+		Float4 mFogColorDist;
 	};
 
 #include "PX2GraphicsRoot.inl"

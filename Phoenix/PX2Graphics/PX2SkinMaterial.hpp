@@ -27,7 +27,7 @@ namespace PX2
 
 		PixelShader* GetPixelShader () const;
 
-		MaterialInstance* CreateInstance (Texture2D* texture, Shine *shine) const;
+		MaterialInstance* CreateInstance (ShaderFloat *offset, Texture2D* texture, Shine *shine) const;
 
 		void _CalShaderKey();
 
@@ -38,9 +38,9 @@ namespace PX2
 		static int* msVRegisters[Shader::MAX_PROFILES];
 		static std::string msVPrograms[Shader::MAX_PROFILES];
 
-		static int msDx9PRegisters[1];
-		static int msOglPRegisters[1];
-		static int msOpenGLES2PRegisters[1];
+		static int msDx9PRegisters[3];
+		static int msOglPRegisters[3];
+		static int msOpenGLES2PRegisters[3];
 		static int* msPRegisters[Shader::MAX_PROFILES];
 		static int msAllPTextureUnits[1];
 		static int* msPTextureUnits[Shader::MAX_PROFILES];

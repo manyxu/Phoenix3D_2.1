@@ -75,6 +75,11 @@ Font *FontManager::CreateTypeFont (int fontWidth, int fontHeight,
 {
 	std::string strFilename = fontFilename;
 
+	if ("Data/fonts/heiti.TTF" == strFilename)
+	{
+		strFilename = "Data/fonts/heiti.ttf";
+	}
+
 	for (int i=0; i<(int)mFonts.size(); i++)
 	{
 		if (mFonts[i]->IsSame(fontWidth, fontHeight, strFilename.c_str(),

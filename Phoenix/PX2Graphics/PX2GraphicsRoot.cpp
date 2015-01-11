@@ -9,7 +9,7 @@
 #include "PX2StringHelp.hpp"
 #include "PX2FString.hpp"
 #include "PX2Renderer.hpp"
-#include "PX2VertexColorStdMaterial.hpp"
+#include "PX2StdVC4Material.hpp"
 #include "PX2LightAmbientConstant.hpp"
 #include "PX2LightDiffuseConstant.hpp"
 #include "PX2LightSpecularConstant.hpp"
@@ -28,8 +28,10 @@ std::string GraphicsRoot::PX2Path;
 //----------------------------------------------------------------------------
 GraphicsRoot::GraphicsRoot ()
 {
+	mIsInEditor = false;
 	mFogParam = Float4(0.0f, 120.0f, 0.0f, 0.0f);
 	mFogColor = Float4::RED;
+	mFogColorDist = Float4::BLUE;
 }
 //----------------------------------------------------------------------------
 GraphicsRoot::~GraphicsRoot ()
@@ -216,8 +218,8 @@ void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
 
 		PX2::Material *mtl = inst->GetMaterial();
 
-		PX2::VertexColorStdMaterial *vcStdMtl = DynamicCast<VertexColorStdMaterial>(mtl);
 		PX2::StdMaterial *stdMtl = DynamicCast<StdMaterial>(mtl);
+		PX2::StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mtl);
 		PX2::LightTexMaterial *lightTexMtl = DynamicCast<LightTexMaterial>(mtl);
 		PX2::LightTex2Material *lightTex2Mtl = DynamicCast<LightTex2Material>(mtl);
 		PX2::SkinMaterial *skinMtl = DynamicCast<SkinMaterial>(mtl);
@@ -228,22 +230,7 @@ void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
 		LightDiffuseConstant *difConstant = 0;
 		LightSpecularConstant *specConstant = 0;
 
-		if (vcStdMtl && lightDir)
-		{
-			modelDVectorConstant = DynamicCast<LightModelDVectorConstant>(inst->GetVertexConstant(0, "gLightModelDirection"));
-			ambConstant = DynamicCast<LightAmbientConstant>(inst->GetVertexConstant(0, "gLightAmbient"));
-			difConstant = DynamicCast<LightDiffuseConstant>(inst->GetVertexConstant(0, "gLightDiffuse"));
-
-			if (modelDVectorConstant)
-				modelDVectorConstant->SetLight(lightDir);
-
-			if (ambConstant)
-				ambConstant->SetLight(lightDir);
-
-			if (difConstant)
-				difConstant->SetLight(lightDir);
-		}
-		else if (lightTexMtl && lightDir)
+		if ((lightTexMtl||lightTex2Mtl) && lightDir)
 		{
 			lightWorldDVectorConstant = DynamicCast<LightWorldDVectorConstant>(inst->GetVertexConstant(0, "LightWorldDirection"));
 			specConstant = DynamicCast<LightSpecularConstant>(inst->GetVertexConstant(0, "LightSpecular"));
@@ -254,18 +241,7 @@ void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
 			if (specConstant)
 				specConstant->SetLight(lightDir);
 		}
-		else if (lightTex2Mtl && lightDir)
-		{
-			lightWorldDVectorConstant = DynamicCast<LightWorldDVectorConstant>(inst->GetVertexConstant(0, "LightWorldDirection"));
-			specConstant = DynamicCast<LightSpecularConstant>(inst->GetVertexConstant(0, "LightSpecular"));
-
-			if (lightWorldDVectorConstant)
-				lightWorldDVectorConstant->SetLight(lightDir);
-
-			if (specConstant)
-				specConstant->SetLight(lightDir);
-		}
-		else if (stdMtl && lightDir)
+		else if ((stdMtl||stdVC4Mtl) && lightDir)
 		{
 			lightWorldDVectorConstant = DynamicCast<LightWorldDVectorConstant>(inst->GetVertexConstant(0, "LightWorldDirection"));
 

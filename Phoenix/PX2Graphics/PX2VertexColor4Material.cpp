@@ -21,7 +21,7 @@ VertexColor4Material::VertexColor4Material ()
 		2, 2, 1, 0, false);
 	vshader->SetInput(0, "modelPosition", Shader::VT_FLOAT3,
 		Shader::VS_POSITION);
-	vshader->SetInput(1, "modelColor0", Shader::VT_FLOAT3,
+	vshader->SetInput(1, "modelColor0", Shader::VT_FLOAT4,
 		Shader::VS_COLOR0);
 	vshader->SetOutput(0, "clipPosition", Shader::VT_FLOAT4,
 		Shader::VS_POSITION);

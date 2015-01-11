@@ -67,37 +67,34 @@ namespace PX2
 
 		inline PrimitiveType GetPrimitiveType () const;
 
+		// vb ib
 		inline void SetVertexFormat (VertexFormat* vformat);
 		inline const VertexFormat* GetVertexFormat () const;
 		inline VertexFormat* GetVertexFormat ();
-
 		inline void SetVertexBuffer (VertexBuffer* vbuffer);
 		inline const VertexBuffer* GetVertexBuffer () const;
 		inline VertexBuffer* GetVertexBuffer ();
-
 		inline void SetIndexBuffer (IndexBuffer* ibuffer);
 		inline const IndexBuffer* GetIndexBuffer () const;
 		inline IndexBuffer* GetIndexBuffer ();
-
 		inline void SetIBOffset (int offset);
 		inline int GetIBOffset () const;
 		inline void SetIBNumElements (int num);
 		inline int GetIBNumElements () const;
 
+		// share vb ib
 		inline void SetShareDBObject_V (DBObject_V *obj);
 		inline const DBObject_V *GetShareDBObject_V () const;
 		inline DBObject_V *GetShareDBObject_V ();
-
 		inline void SetShareDBObject_I (DBObject_I *obj);
 		inline const DBObject_I *GetShareDBObject_I () const;
 		inline DBObject_I *GetShareDBObject_I ();
-
 		void SetUseShareBuffers (bool use);
 		bool IsUseShareBuffers () const;
 
+		// bound
 		inline const Bound& GetModelBound () const;
 		inline Bound& GetModelBound ();
-
 		void SetUseBoundPick (bool isUseBoundPick);
 		bool IsUseBoundPick () const;
 
@@ -110,7 +107,6 @@ namespace PX2
 			RU_SHADOWMAP,
 			RU_QUANTITY
 		};
-
 		void AddRenderUsage (RenderUsage usage);
 		void RemoveRenderUsage (RenderUsage usage);
 		unsigned int GetRenderUsage ();
@@ -186,10 +182,17 @@ namespace PX2
 		void SetUseLightTexture (bool light, Texture2D *lightTex);
 		bool IsUseLightTexture () const;
 
-		void SetUseStdTex2DMtl ();
+		void SetUseStdMtl ();
 
 		virtual void SetAlpha (float alpha);
 		virtual void SetColor (const Float3 &color);
+		virtual void SetBrightness (float brightness);
+
+		void SetFogInfulenceParam_Height (float param);
+		float GetFogInfulenceParam_Height () const;
+
+		void SetFogInfulenceParam_Distance (float param);
+		float GetFogInfulenceParam_Distance () const;
 
 		// 几何图形跟新类型
 		enum UpdateType
@@ -221,6 +224,23 @@ namespace PX2
 
 		virtual void OnForceBind ();
 
+		// 物理
+		enum PhysicsType
+		{
+			PHYS_NONE,
+			PHYS_BOX,
+			PHYS_SPHERE,
+			PHYS_CONVEXHULL,
+			PHYS_CONVEXTRIMESH,
+			PHYS_HEIGHTFIELD,
+			PHYS_MAX_TYPE
+		};
+		void SetPhysicsType (PhysicsType type);
+		PhysicsType GetPhysicsType () const;
+
+		void SetPhysicsParam (const Float3 &param);
+		const Float3 &GetPhysicsParam () const;
+
 public_internal:
 		float mEyeDistance; // 相机距离
 		static bool LessThan (const Renderable *renderable0,
@@ -232,6 +252,7 @@ public_internal:
 
 public_internal:
 		bool IsTransparent () const;
+		Float4 UpdateFogParam () const;
 
 	protected:
 		// 几何图形更新
@@ -284,10 +305,16 @@ public_internal:
 		*/
 		std::vector<LightPtr> mInfulencedLights; 
 
+		float mFogIP_Height;
+		float mFogIP_Distance;
+
+		PhysicsType mPhysicsType;
+		Float3 mPhysicsParam;
+
 		// Begin load/save
 	public:
 		// created properly unless we have a Load for each instantiable primitive.
-		// 使用持久化系统from/to *.tdvf Load/Save渲染对象。因为Renderable是具体几何
+		// 使用持久化系统from/to *.px2vf Load/Save渲染对象。因为Renderable是具体几何
 		// 图形一个抽象基类，所以我们不能通过此函数加载，创建，返回一个Renderable。
 		static void LoadPX2VF (const std::string& name, PrimitiveType& type,
 			VertexFormat*& vformat, VertexBuffer*& vbuffer, IndexBuffer*& ibuffer,

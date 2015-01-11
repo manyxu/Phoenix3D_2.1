@@ -8,7 +8,7 @@
 #include "PX2Culler.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Controlledable, Movable, 2);
+PX2_IMPLEMENT_RTTI_V(PX2, Controlledable, Movable, 3);
 PX2_IMPLEMENT_STREAM(Movable);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(Movable);
 
@@ -23,6 +23,8 @@ Movable::Movable ()
 	mAlpha(1.0f),
 	mIsColorSelfCtrled(false),
 	mColor(Float3::WHITE),
+	mIsBrightnessSelfCtrled(false),
+	mBrightness(1.0f),
 	mUpdateTime(-1.0f),
 	mUpdateTiming(0.0f),
 	mUpdateTimingInit(-1.0f),
@@ -256,6 +258,11 @@ void Movable::SetColor (const Float3 &color)
 	mColor = color;
 }
 //----------------------------------------------------------------------------
+void Movable::SetBrightness (float brightness)
+{
+	mBrightness = brightness;
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 名称
@@ -307,11 +314,14 @@ void Movable::RegistProperties ()
 	cullings.push_back("CULL_ALWAYS");
 	cullings.push_back("CULL_NEVER");
 	AddPropertyEnum("CullingMode", (int)Culling, cullings);
+	AddProperty("IsShow", Object::PT_BOOL, IsShow());
 
 	AddProperty("Alpha", Object::PT_FLOAT, Any(GetAlpha()));
-	AddProperty("AlphaSelfCtrled", Object::PT_BOOL, Any(IsAlphaSelfCtrled()));
+	AddProperty("IsAlphaSelfCtrled", Object::PT_BOOL, Any(IsAlphaSelfCtrled()));
 	AddProperty("Color", Object::PT_COLOR3FLOAT3, Any(GetColor()));
-	AddProperty("ColorSelfCtrled", Object::PT_BOOL, Any(IsColorSelfCtrled()));
+	AddProperty("IsColorSelfCtrled", Object::PT_BOOL, Any(IsColorSelfCtrled()));
+	AddProperty("Brightness", Object::PT_FLOAT, GetBrightness());
+	AddProperty("IsBrightnessSelfCtrled", Object::PT_BOOL, IsBrightnessSelfCtrled());
 
 	AddProperty("UpdateTime", Object::PT_FLOAT, GetUpdateTime());
 }
@@ -348,11 +358,15 @@ void Movable::OnPropertyChanged (const PropertyObject &obj)
 	{
 		Culling = (CullingMode)(*Any_Cast<int>(&obj.Data));
 	}
+	else if ("IsShow" == obj.Name)
+	{
+		Show(PX2_ANY_AS(obj.Data, bool));
+	}
 	else if ("Alpha" == obj.Name)
 	{
 		SetAlpha(*Any_Cast<float>(&obj.Data));
 	}
-	else if ("AlphaSelfCtrled" == obj.Name)
+	else if ("IsAlphaSelfCtrled" == obj.Name)
 	{
 		SetAlphaSelfCtrled(*Any_Cast<bool>(&obj.Data));
 	}
@@ -360,9 +374,17 @@ void Movable::OnPropertyChanged (const PropertyObject &obj)
 	{
 		SetColor(*Any_Cast<Float3>(&obj.Data));
 	}
-	else if ("ColorSelfCtrled" == obj.Name)
+	else if ("IsColorSelfCtrled" == obj.Name)
 	{
 		SetColorSelfCtrled(*Any_Cast<bool>(&obj.Data));
+	}
+	else if ("Brightness" == obj.Name)
+	{
+		SetBrightness(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("IsBrightnessSelfCtrled" == obj.Name)
+	{
+		SetBrightnessSelfCtrled(PX2_ANY_AS(obj.Data, bool));
 	}
 	else if ("UpdateTime" == obj.Name)
 	{
@@ -385,6 +407,8 @@ Movable::Movable (LoadConstructor value)
 	mAlpha(1.0f),
 	mIsColorSelfCtrled(false),
 	mColor(Float3::WHITE),
+	mIsBrightnessSelfCtrled(false),
+	mBrightness(1.0f),
 	mUpdateTime(-1.0f),
 	mUpdateTiming(0.0f),
 	mUpdateTimingInit(-1.0f),
@@ -429,6 +453,12 @@ void Movable::Load (InStream& source)
 		source.ReadBool(mIsColorSelfCtrled);
 	}
 
+	if (3 <= readedVersion)
+	{
+		source.ReadBool(mIsBrightnessSelfCtrled);
+		source.Read(mBrightness);
+	}
+
     PX2_END_DEBUG_STREAM_LOAD(Movable, source);
 }
 //----------------------------------------------------------------------------
@@ -471,6 +501,9 @@ void Movable::Save (OutStream& target) const
 	target.WriteBool(mIsAlphaSelfCtrled);
 	target.WriteBool(mIsColorSelfCtrled);
 
+	target.WriteBool(mIsBrightnessSelfCtrled);
+	target.Write(mBrightness);
+
 	// mParent不被保存，它会在Node::Link中调用Node::SetChild被设置。
 
     PX2_END_DEBUG_STREAM_SAVE(Movable, target);
@@ -501,12 +534,20 @@ int Movable::GetStreamingSize (Stream &stream) const
 			size += PX2_BOOLSIZE(mIsAlphaSelfCtrled);
 			size += PX2_BOOLSIZE(mIsColorSelfCtrled);
 		}
+		if (3 <= readedVersion)
+		{
+			size += PX2_BOOLSIZE(mIsBrightnessSelfCtrled);
+			size += sizeof(mBrightness);
+		}
 	}
 	else
 	{
 		size += sizeof(mUpdateTime);
 		size += PX2_BOOLSIZE(mIsAlphaSelfCtrled);
 		size += PX2_BOOLSIZE(mIsColorSelfCtrled);
+
+		size += PX2_BOOLSIZE(mIsBrightnessSelfCtrled);
+		size += sizeof(mBrightness);
 	}
 
     // mParent不被持久化

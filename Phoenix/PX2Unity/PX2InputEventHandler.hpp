@@ -23,6 +23,11 @@ namespace PX2
 		void SetPriority (int priority);
 		int GetPriority () const;
 
+		void SetSigned (bool sign);
+		bool IsSigned () const;
+		void SetSignIgnoreOtherHandlers (bool doIngore);
+		bool IsSignIgnoreOtherHandlers () const;
+
 		void AddAcceptRange (const Rectf &ar);
 		bool HasAcceptRange (const Rectf &ar);
 		void RemoveAcceptRange (const Rectf &ar);
@@ -43,6 +48,8 @@ namespace PX2
 
 		int mPriority;
 		InputRange mInputRange;
+		bool mIsSigned;
+		bool mIsSignIgnoreOtherHandlers;
 	};
 
 }

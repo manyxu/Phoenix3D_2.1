@@ -18,11 +18,11 @@ PX2_IMPLEMENT_EVENT(InputEventSpace);
 InputEventData::InputEventData ()
 	:
 ViewID(0),
-	UnCoveredType(-1),
-	KCode(KC_UNASSIGNED),
-	MButtonID(MBID_LEFT),
-	IsLargeSmall(false),
-	LargeSmallValue(0.0f)
+TheEventType(-1),
+KCode(KC_UNASSIGNED),
+MButtonID(MBID_LEFT),
+IsLargeSmall(false),
+LargeSmallValue(0.0f)
 {
 }
 //----------------------------------------------------------------------------

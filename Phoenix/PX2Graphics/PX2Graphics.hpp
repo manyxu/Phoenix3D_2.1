@@ -61,8 +61,8 @@
 // LocalMaterials
 #include "PX2JunglerMaterial.hpp"
 #include "PX2SkinMaterial.hpp"
-#include "PX2VertexColorStdMaterial.hpp"
 #include "PX2StdMaterial.hpp"
+#include "PX2StdVC4Material.hpp"
 #include "PX2Texture2DMaterial.hpp"
 #include "PX2LightTexMaterial.hpp"
 #include "PX2LightTex2Material.hpp"

@@ -29,7 +29,6 @@ namespace PX2
 	public:
 		virtual ~Controlledable ();
 
-		// Controller
 		void ResetPlay ();
 		virtual void Play ();
 		virtual bool IsPlaying () const;
@@ -41,7 +40,7 @@ namespace PX2
 		// 访问控制对象的控制器
 		int GetNumControllers () const;
 		Controller* GetController (int i) const;
-		Controller *GetControllerByName (const std::string &name) const;
+		Controller *GetController (const std::string &name) const;
 		bool HasController (Controller* controller);
 		void AttachController (Controller* controller);
 		void DetachController (Controller* controller);
@@ -52,6 +51,7 @@ namespace PX2
 	private:
 		bool mIsSelfCtrled;
 		std::vector<ControllerPtr> mControllers;
+
 		double mControlUpdateTimeLast;
 		double mControlUpdateTimeMin;
 	};

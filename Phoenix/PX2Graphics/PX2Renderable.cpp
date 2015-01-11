@@ -10,16 +10,17 @@
 #include "PX2Texture2DMaterial.hpp"
 #include "PX2ShaderParameters.hpp"
 #include "PX2SkinMaterial.hpp"
-#include "PX2VertexColorStdMaterial.hpp"
 #include "PX2StdMaterial.hpp"
+#include "PX2StdVC4Material.hpp"
 #include "PX2Texture2DMaterial.hpp"
 #include "PX2LightTexMaterial.hpp"
 #include "PX2LightTex2Material.hpp"
 #include "PX2VertexColor4Material.hpp"
 #include "PX2ShineDiffuseConstant.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Movable, Renderable, 7);
+PX2_IMPLEMENT_RTTI_V(PX2, Movable, Renderable, 9);
 PX2_IMPLEMENT_STREAM(Renderable);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(Renderable);
 
@@ -44,7 +45,10 @@ mIBNumElements(0),
 mIsBackObject(true),
 mIsBackTarget(false),
 mIsUseLightTexture(false),
-mBakeSizeType(BST_NORMAL)
+mBakeSizeType(BST_NORMAL),
+mPhysicsType(PHYS_NONE),
+mFogIP_Height(1.0f),
+mFogIP_Distance(1.0f)
 {
 	AllowRed = true;
 	AllowGreen = true;
@@ -56,9 +60,17 @@ mBakeSizeType(BST_NORMAL)
 
 	mDefaultShine = new0 Shine();
 	mDefaultShine->SetName("DefaultShine");
+	mDefaultShine->Ambient = Float4::MakeColor(150, 150, 150, 255);
+	mDefaultShine->Diffuse = mDefaultShine->Ambient;
+	mDefaultShine->Specular = Float4::MakeColor(230, 230, 230, 51);
 
 	mBakeShine = new0 Shine ();
 	mBakeShine->SetName("BakeShine");
+	mBakeShine->Ambient = Float4::MakeColor(150, 150, 150, 255);
+	mBakeShine->Diffuse = mBakeShine->Ambient;
+	mBakeShine->Specular = Float4::ZERO;
+
+	mPhysicsParam = Float3::UNIT;
 }
 //----------------------------------------------------------------------------
 Renderable::Renderable (PrimitiveType type, VertexFormat* vformat,
@@ -82,7 +94,10 @@ mIBNumElements(0),
 mIsBackObject(true),
 mIsBackTarget(false),
 mIsUseLightTexture(false),
-mBakeSizeType(BST_NORMAL)
+mBakeSizeType(BST_NORMAL),
+mPhysicsType(PHYS_NONE),
+mFogIP_Height(1.0f),
+mFogIP_Distance(1.0f)
 {
 	AllowRed = true;
 	AllowGreen = true;
@@ -95,9 +110,19 @@ mBakeSizeType(BST_NORMAL)
 
 	mDefaultShine = new0 Shine();
 	mDefaultShine->SetName("DefaultShine");
+	mDefaultShine->Ambient = Float4::MakeColor(150, 150, 150, 255);
+	mDefaultShine->Diffuse = mDefaultShine->Ambient;
+	mDefaultShine->Specular = Float4::MakeColor(230, 230, 230, 51);
+	mDefaultShine->ReCalTemp();
 
 	mBakeShine = new0 Shine ();
 	mBakeShine->SetName("BakeShine");
+	mBakeShine->Ambient = Float4::MakeColor(150, 150, 150, 255);
+	mBakeShine->Diffuse = mBakeShine->Ambient;
+	mBakeShine->Specular = Float4::ZERO;
+	mBakeShine->ReCalTemp();
+
+	mPhysicsParam = Float3::UNIT;
 }
 //----------------------------------------------------------------------------
 Renderable::~Renderable ()
@@ -170,26 +195,25 @@ Light *Renderable::GetLight (int i)
 //----------------------------------------------------------------------------
 void Renderable::SetLightTexture (Texture2D *tex)
 {
-	PX2_UNUSED(tex);
-
 	MaterialInstance *mi = GetMaterialInstance();
 	if (mi)
 	{
 		Material *material = DynamicCast<Material>(mi->GetMaterial());
 		Texture2DMaterial *tex2DMtl = DynamicCast<Texture2DMaterial>(material);
-
-		if (tex2DMtl)
+		StdMaterial *stdMtl = DynamicCast<StdMaterial>(material);
+		if (tex2DMtl || stdMtl)
 		{
 			Texture2D *tex2d = DynamicCast<Texture2D>(mi->GetPixelTexture(0, 0));
 			if (tex2d && !mIsUseLightTexture)
 			{
+
 				mNormalTexPath = tex2d->GetResourcePath();
 			}
 		}
 	}
 }
 //----------------------------------------------------------------------------
-void Renderable::SetUseStdTex2DMtl ()
+void Renderable::SetUseStdMtl ()
 {
 	MaterialInstance *mi = GetMaterialInstance();
 	if (mi)
@@ -244,8 +268,9 @@ void Renderable::SetUseLightTexture (bool use, Texture2D *lightTex)
 				mNormalMaterialInstance = GetMaterialInstance();
 				Material *normalMtl = mNormalMaterialInstance->GetMaterial();
 				Texture2DMaterial *tex2DMtl = DynamicCast<Texture2DMaterial>(normalMtl);
+				StdMaterial *stdMtl = DynamicCast<StdMaterial>(normalMtl);
 
-				if (tex2DMtl)
+				if (tex2DMtl || stdMtl)
 				{
 					VertexBufferAccessor vba(this);
 					if (!vba.HasTCoord(1))
@@ -259,7 +284,7 @@ void Renderable::SetUseLightTexture (bool use, Texture2D *lightTex)
 						mtl->GetAlphaProperty(0, 0)->Compare = normalMtl->GetAlphaProperty(0, 0)->Compare;
 
 						mtl->_CalShaderKey();
-						MaterialInstance *mi = mtl->CreateInstance(normalTex, lightTex, 0);
+						MaterialInstance *mi = mtl->CreateInstance(normalTex, lightTex, GetBakeShine(), 0);
 						SetMaterialInstance(mi);
 					}
 					else
@@ -273,7 +298,7 @@ void Renderable::SetUseLightTexture (bool use, Texture2D *lightTex)
 						mtl->GetAlphaProperty(0, 0)->Compare = normalMtl->GetAlphaProperty(0, 0)->Compare;
 
 						mtl->_CalShaderKey();
-						MaterialInstance *mi = mtl->CreateInstance(normalTex, lightTex, 0);
+						MaterialInstance *mi = mtl->CreateInstance(normalTex, lightTex, GetBakeShine(), 0);
 						SetMaterialInstance(mi);
 					}
 				}
@@ -298,18 +323,11 @@ void Renderable::SetAlpha (float alpha)
 
 	if (mMaterial)
 	{
-		VertexColorStdMaterial *stdESMtl_Default = DynamicCast<VertexColorStdMaterial>(mMaterial->GetMaterial());
-		if (stdESMtl_Default)
-		{
-			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterial->GetVertexConstant(0, "gShineDiffuse"));
-			if (sDiffConst)
-			{
-				sDiffConst->GetShine()->Diffuse[3] = alpha;
-			}
-		}
-
+		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterial->GetMaterial());
+		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterial->GetMaterial());
 		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterial->GetMaterial());
-		if (sktMtl1)
+
+		if (stdMtl || stdVC4Mtl || sktMtl1)
 		{
 			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterial->GetVertexConstant(0, "gShineDiffuse"));
 			if (sDiffConst)
@@ -326,30 +344,70 @@ void Renderable::SetColor (const Float3 &color)
 
 	if (mMaterial)
 	{
-		VertexColorStdMaterial *stdESMtl_Default = DynamicCast<VertexColorStdMaterial>(mMaterial->GetMaterial());
-		if (stdESMtl_Default)
-		{
-			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterial->GetVertexConstant(0, "gShineDiffuse"));
-			if (sDiffConst)
-			{
-				sDiffConst->GetShine()->Emissive[0] = color[0];
-				sDiffConst->GetShine()->Emissive[1] = color[1];
-				sDiffConst->GetShine()->Emissive[2] = color[2];
-			}
-		}
-
+		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterial->GetMaterial());
+		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterial->GetMaterial());
 		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterial->GetMaterial());
-		if (sktMtl1)
+
+		if (stdMtl || stdVC4Mtl || sktMtl1)
 		{
 			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterial->GetVertexConstant(0, "gShineDiffuse"));
 			if (sDiffConst)
 			{
-				sDiffConst->GetShine()->Emissive[0] = color[0];
-				sDiffConst->GetShine()->Emissive[1] = color[1];
-				sDiffConst->GetShine()->Emissive[2] = color[2];
+				sDiffConst->GetShine()->Emissive[0] = mColor[0] * mBrightness;
+				sDiffConst->GetShine()->Emissive[1] = mColor[1] * mBrightness;
+				sDiffConst->GetShine()->Emissive[2] = mColor[2] * mBrightness;
+			}
+		}	
+	}
+}
+//----------------------------------------------------------------------------
+void Renderable::SetBrightness (float brightness)
+{
+	Movable::SetBrightness(brightness);
+
+	if (mMaterial)
+	{
+		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterial->GetMaterial());
+		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterial->GetMaterial());
+		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterial->GetMaterial());
+
+		if (stdMtl || stdVC4Mtl || sktMtl1)
+		{
+			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterial->GetVertexConstant(0, "gShineDiffuse"));
+			if (sDiffConst)
+			{
+				sDiffConst->GetShine()->Emissive[0] = mColor[0] * mBrightness;
+				sDiffConst->GetShine()->Emissive[1] = mColor[1] * mBrightness;
+				sDiffConst->GetShine()->Emissive[2] = mColor[2] * mBrightness;
 			}
 		}
 	}
+}
+//----------------------------------------------------------------------------
+void Renderable::SetFogInfulenceParam_Height (float param)
+{
+	mFogIP_Height = param;
+}
+//----------------------------------------------------------------------------
+void Renderable::SetFogInfulenceParam_Distance (float param)
+{
+	mFogIP_Distance = param;
+}
+//----------------------------------------------------------------------------
+Float4 Renderable::UpdateFogParam () const
+{
+	Float4 lastFogParam;
+	const Float4 &fogParam = PX2_GR.GetFogParam();
+
+	lastFogParam = fogParam;
+
+	lastFogParam[0] = fogParam[0];
+	lastFogParam[1] = fogParam[0] + (fogParam[1] - fogParam[0]) * 1.0f/mFogIP_Distance;
+
+	lastFogParam[2] = fogParam[3] - (fogParam[3] - fogParam[2]) * 1.0f/mFogIP_Height;
+	lastFogParam[3] = fogParam[3];
+
+	return lastFogParam;
 }
 //----------------------------------------------------------------------------
 void Renderable::UpdateModelSpace (UpdateType)
@@ -652,8 +710,7 @@ void Renderable::RegistProperties ()
 	primitiveTypes.push_back("PT_TRIMESH");
 	primitiveTypes.push_back("PT_TRISTRIP");
 	primitiveTypes.push_back("PT_TRIFAN");
-	AddPropertyEnum("PrimitiveType", (int)GetPrimitiveType(), primitiveTypes, 
-		false);
+	AddPropertyEnum("PrimitiveType", (int)GetPrimitiveType(), primitiveTypes, false);
 	AddProperty("ModelBoundCenter", PT_APOINT3, GetModelBound().GetCenter(), false);
 	AddProperty("ModelBoundRadius", PT_FLOAT, GetModelBound().GetRadius(), false);
 
@@ -684,6 +741,17 @@ void Renderable::RegistProperties ()
 	bakeSizeTypes.push_back("BST_512");
 	bakeSizeTypes.push_back("BST_1024");
 	AddPropertyEnum("BakeSizeType", (int)GetBakeSizeType(), bakeSizeTypes);
+
+	std::vector<std::string> physTypes;
+	physTypes.push_back("PHYS_NONE");
+	physTypes.push_back("PHYS_BOX");
+	physTypes.push_back("PHYS_SPHERE");
+	physTypes.push_back("PHYS_CONVEXHULL");
+	physTypes.push_back("PHYS_CONVEXTRIMESH");
+	physTypes.push_back("PHYS_HEIGHTFIELD");
+	AddPropertyEnum("PhysicsType", (int)GetPhysicsType(), physTypes);
+
+	AddProperty("PhysicsParam", Object::PT_FLOAT3, mPhysicsParam);
 }
 //----------------------------------------------------------------------------
 void Renderable::OnPropertyChanged (const PropertyObject &obj)
@@ -709,6 +777,14 @@ void Renderable::OnPropertyChanged (const PropertyObject &obj)
 	else if ("BakeSizeType" == obj.Name)
 	{
 		SetBakeSizeType((BakeSizeType)PX2_ANY_AS(obj.Data, int));
+	}
+	else if ("PhysicsType" == obj.Name)
+	{
+		SetPhysicsType((PhysicsType)PX2_ANY_AS(obj.Data, int));
+	}
+	else if ("PhysicsParam" == obj.Name)
+	{
+		SetPhysicsParam(PX2_ANY_AS(obj.Data, Float3));
 	}
 }
 //----------------------------------------------------------------------------
@@ -768,7 +844,10 @@ mIBNumElements(0),
 mIsBackObject(true),
 mIsBackTarget(false),
 mIsUseLightTexture(false),
-mBakeSizeType(BST_NORMAL)
+mBakeSizeType(BST_NORMAL),
+mPhysicsType(PHYS_NONE),
+mFogIP_Height(1.0f),
+mFogIP_Distance(1.0f)
 {
 	AllowRed = true;
 	AllowGreen = true;
@@ -776,6 +855,8 @@ mBakeSizeType(BST_NORMAL)
 	AllowAlpha = true;
 
 	SetUpdatePriority(-1);
+
+	mPhysicsParam = Float3::UNIT;
 }
 //----------------------------------------------------------------------------
 void Renderable::Load (InStream& source)
@@ -829,6 +910,16 @@ void Renderable::Load (InStream& source)
 	if (7 <= readedVersion)
 	{
 		source.ReadPointer(mBakeShine);
+	}
+	if (8 <= readedVersion)
+	{
+		source.ReadEnum(mPhysicsType);
+		source.ReadAggregate(mPhysicsParam);
+	}
+	if (9 <= readedVersion)
+	{
+		source.Read(mFogIP_Height);
+		source.Read(mFogIP_Distance);
 	}
 
 	PX2_END_DEBUG_STREAM_LOAD(Renderable, source);
@@ -909,6 +1000,10 @@ void Renderable::Save (OutStream& target) const
 	target.WritePointer(mNormalMaterialInstance);
 	target.Write(mSubLayer);
 	target.WritePointer(mBakeShine);
+	target.WriteEnum(mPhysicsType);
+	target.WriteAggregate(mPhysicsParam);
+	target.Write(mFogIP_Height);
+	target.Write(mFogIP_Distance);
 
 	PX2_END_DEBUG_STREAM_SAVE(Renderable, target);
 }
@@ -964,6 +1059,16 @@ int Renderable::GetStreamingSize (Stream &stream) const
 		{
 			size += PX2_POINTERSIZE(mBakeShine);
 		}
+		if (8 <= readedVersion)
+		{
+			size += PX2_ENUMSIZE(mPhysicsType);
+			size += sizeof(mPhysicsParam);
+		}
+		if (9 <= readedVersion)
+		{
+			size += sizeof(mFogIP_Height);
+			size += sizeof(mFogIP_Distance);
+		}
 	}
 	else
 	{
@@ -981,6 +1086,10 @@ int Renderable::GetStreamingSize (Stream &stream) const
 		size += PX2_BOOLSIZE(mNormalMaterialInstance);
 		size += sizeof(mSubLayer);
 		size += PX2_POINTERSIZE(mBakeShine);
+		size += PX2_ENUMSIZE(mPhysicsType);
+		size += sizeof(mPhysicsParam);
+		size += sizeof(mFogIP_Height);
+		size += sizeof(mFogIP_Distance);
 	}
 
 	return size;

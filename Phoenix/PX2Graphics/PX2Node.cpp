@@ -7,7 +7,7 @@
 #include "PX2Node.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, Movable, Node);
+PX2_IMPLEMENT_RTTI_V(PX2, Movable, Node, 1);
 PX2_IMPLEMENT_STREAM(Node);
 PX2_IMPLEMENT_FACTORY(Node);
 
@@ -15,7 +15,8 @@ PX2_IMPLEMENT_FACTORY(Node);
 Node::Node ()
 	:
 mIsDoPickPriority(false),
-mIsNeedCalUpdateChild(true)
+mIsNeedCalUpdateChild(true),
+mAnchorID(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -124,6 +125,43 @@ int Node::AttachChild (Movable* child)
     const int numChildren = (int)mChild.size();
     mChild.push_back(child);
     return numChildren;
+}
+//----------------------------------------------------------------------------
+void Node::InsertChild (Movable *before, Movable *child)
+{
+	if (!child)
+	{
+		assertion(false, "You cannot attach null children to a node.\n");
+		return;
+	}
+
+	if (child->GetParent())
+	{
+		assertion(false, "The child already has a parent.\n");
+		return;
+	}
+
+	mIsNeedCalUpdateChild = true;
+
+	child->SetParent(this);
+	child->OnAttach();
+
+	// 将孩子插入到第一个可用位置
+	std::vector<MovablePtr>::iterator iter = mChild.begin();
+	std::vector<MovablePtr>::iterator end = mChild.end();
+	for (; iter!=end; iter++)
+	{
+		if (*iter == before)
+		{
+			std::vector<MovablePtr>::iterator itP1 = iter+1;
+			if (itP1 != end)
+				mChild.insert(itP1, child);
+			else
+				mChild.push_back(child);
+			
+			return;
+		}
+	}
 }
 //----------------------------------------------------------------------------
 int Node::DetachChild (Movable* child)
@@ -288,7 +326,7 @@ void Node::SetAlpha (float alpha)
 
 	for (int i=0; i<GetNumChildren(); i++)
 	{
-		if (mChild[i] != NULL && !mChild[i]->IsAlphaSelfCtrled())
+		if (mChild[i] && !mChild[i]->IsAlphaSelfCtrled())
 		{
 			mChild[i]->SetAlpha(alpha);
 		}
@@ -301,9 +339,22 @@ void Node::SetColor (const Float3 &color)
 
 	for (int i=0; i<GetNumChildren(); i++)
 	{
-		if (mChild[i] != NULL && !mChild[i]->IsColorSelfCtrled())
+		if (mChild[i] && !mChild[i]->IsColorSelfCtrled())
 		{
 			mChild[i]->SetColor(color);
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void Node::SetBrightness (float brightness)
+{
+	Movable::SetBrightness(brightness);
+
+	for (int i=0; i<GetNumChildren(); i++)
+	{
+		if (mChild[i] && !mChild[i]->IsBrightnessSelfCtrled())
+		{
+			mChild[i]->SetBrightness(brightness);
 		}
 	}
 }
@@ -445,13 +496,19 @@ void Node::RegistProperties ()
 
 	AddPropertyClass("Node");
 
-	AddProperty("NumChildren", Object::PT_INT, Any(GetNumChildren()), 
-		false);
+	AddProperty("NumChildren", Object::PT_INT, Any(GetNumChildren()), false);
+
+	AddProperty("AnchorID", Object::PT_INT, GetAnchorID());
 }
 //----------------------------------------------------------------------------
 void Node::OnPropertyChanged (const PropertyObject &obj)
 {
 	Movable::OnPropertyChanged(obj);
+
+	if ("AnchorID" == obj.Name)
+	{
+		SetAnchorID(PX2_ANY_AS(obj.Data, int));
+	}
 }
 //----------------------------------------------------------------------------
 
@@ -462,7 +519,8 @@ Node::Node (LoadConstructor value)
     :
     Movable(value),
 	mIsDoPickPriority(false),
-	mIsNeedCalUpdateChild(true)
+	mIsNeedCalUpdateChild(true),
+	mAnchorID(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -480,6 +538,12 @@ void Node::Load (InStream& source)
         mChild.resize(numChildren);
         source.ReadPointerVV(numChildren, &mChild[0]);
     }
+
+	int readedVersion = GetReadedVersion();
+	if (1 <= readedVersion)
+	{
+		source.Read(mAnchorID);
+	}
 
     PX2_END_DEBUG_STREAM_LOAD(Node, source);
 }
@@ -542,6 +606,7 @@ void Node::Save (OutStream& target) const
         }
     }
 
+	target.Write(mAnchorID);
 
     PX2_END_DEBUG_STREAM_SAVE(Node, target);
 }
@@ -553,6 +618,20 @@ int Node::GetStreamingSize (Stream &stream) const
     int numChildren = (int)mChild.size();
     size += sizeof(numChildren);
     size += numChildren*PX2_POINTERSIZE(mChild[0]);
+
+	if (stream.IsIn())
+	{
+		int readedVersion = GetReadedVersion();
+		if (1 <= readedVersion)
+		{
+			size += sizeof(mAnchorID);
+		}
+	}
+	else
+	{
+		size += sizeof(mAnchorID);
+	}
+
     return size;
 }
 //----------------------------------------------------------------------------

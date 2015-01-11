@@ -27,9 +27,10 @@ FogParamConstant::~FogParamConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void FogParamConstant::Update (const Renderable*, const Camera*)
+void FogParamConstant::Update (const Renderable *renderable, const Camera*)
 {
-	const float* source = (const float*)PX2_GR.GetFogParam();
+	Float4 fogParam = renderable->UpdateFogParam();
+	const float* source = (const float*)fogParam;
 	float* target = mData;
 	for (int i = 0; i < 4; ++i)
 	{

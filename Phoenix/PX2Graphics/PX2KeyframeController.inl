@@ -5,6 +5,16 @@
 */
 
 //----------------------------------------------------------------------------
+inline void KeyframeController::SetTransScale (const APoint &xyzScale)
+{
+	mTransScale = xyzScale;
+}
+//----------------------------------------------------------------------------
+inline const APoint &KeyframeController::GetTransScale () const
+{
+	return mTransScale;
+}
+//----------------------------------------------------------------------------
 inline int KeyframeController::GetNumCommonTimes () const
 {
 	return mNumCommonTimes;

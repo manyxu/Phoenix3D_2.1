@@ -20,6 +20,7 @@
 #include "PX2LightAmbientConstant.hpp"
 #include "PX2LightDiffuseConstant.hpp"
 #include "PX2LightSpecularConstant.hpp"
+#include "PX2FogColorDistConstant.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Material, StdMaterial);
@@ -31,13 +32,16 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Material, StdMaterial);
 StdMaterial::StdMaterial ()
 {
 	VertexShader* vshader = new0 VertexShader("PX2.Std",
-		3, 3, 12, 0, false);
+		3, 4, 12, 0, false);
 	vshader->SetInput(0, "modelPosition", Shader::VT_FLOAT3, Shader::VS_POSITION);
 	vshader->SetInput(1, "modelNormal", Shader::VT_FLOAT3, Shader::VS_NORMAL);
 	vshader->SetInput(2, "modelTCoord0", Shader::VT_FLOAT2, Shader::VS_TEXCOORD0);
+
 	vshader->SetOutput(0, "clipPosition", Shader::VT_FLOAT4,Shader::VS_POSITION);
-	vshader->SetOutput(1, "vertexTCoord0", Shader::VT_FLOAT2, Shader::VS_TEXCOORD0);
-	vshader->SetOutput(2, "vertexTCoord1", Shader::VT_FLOAT2, Shader::VS_TEXCOORD1);
+	vshader->SetOutput(1, "vertexColor", Shader::VT_FLOAT4,Shader::VS_COLOR0);
+	vshader->SetOutput(2, "vertexTCoord0", Shader::VT_FLOAT2, Shader::VS_TEXCOORD0);
+	vshader->SetOutput(3, "vertexTCoord1", Shader::VT_FLOAT2, Shader::VS_TEXCOORD1);
+
 	vshader->SetConstant(0, "PVWMatrix", 4);
 	vshader->SetConstant(1, "WMatrix", 4);
 	vshader->SetConstant(2, "gShineEmissive", 1);
@@ -54,12 +58,13 @@ StdMaterial::StdMaterial ()
 	vshader->SetPrograms(msVPrograms);
 
 	PixelShader* pshader = new0 PixelShader("PX2.Std",
-		3, 1, 1, 1, false);
+		3, 1, 2, 1, false);
 	pshader->SetInput(0, "vertexColor", Shader::VT_FLOAT4, Shader::VS_COLOR0);
 	pshader->SetInput(1, "vertexTCoord0", Shader::VT_FLOAT2, Shader::VS_TEXCOORD0);
 	pshader->SetInput(2, "vertexTCoord1", Shader::VT_FLOAT2, Shader::VS_TEXCOORD1);
 	pshader->SetOutput(0, "pixelColor", Shader::VT_FLOAT4, Shader::VS_COLOR0);
 	pshader->SetConstant(0, "FogColor", 1);
+	pshader->SetConstant(1, "FogColorDist", 1);
 	pshader->SetSampler(0, "BaseSampler", Shader::ST_2D);
 	pshader->SetFilter(0, Shader::SF_LINEAR);
 	pshader->SetCoordinate(0, 0, Shader::SC_CLAMP);
@@ -131,6 +136,7 @@ MaterialInstance* StdMaterial::CreateInstance (Texture2D* texture,
 	
 	instance->SetPixelTexture(0, "BaseSampler", texture);
 	instance->SetPixelConstant(0, "FogColor", new0 FogColorConstant());
+	instance->SetPixelConstant(0, "FogColorDist", new0 FogColorDistConstant());
 
 	return instance;
 }
@@ -281,10 +287,8 @@ std::string StdMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"mul r2.xyz, r0.w, r2\n"
 	"mul r0.xyz, r3.y, r0\n"
 	"dp3 r0.x, r2, r0\n"
-	"mov r0.w, c11\n"
 	"max r3.y, r0.x, c18.z\n"
-	"mul r3.z, c14.w, r0.w\n"
-	"pow r0, r3.y, r3.z\n"
+	"pow r0, r3.y, c11.w\n"
 	"mov r0.w, r0.x\n"
 	"dp3 r2.x, r2, -c17\n"
 	"mov r0.xyz, c9\n"
@@ -341,17 +345,15 @@ std::string StdMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"rsq r3.w, r0.w\n"
 	"dp3 r0.w, r2, r2\n"
 	"rsq r0.w, r0.w\n"
-	"mul r2.xyz, r0.w, r2\n"
-	"mov r0.w, c11\n"
 	"mad r0.xyz, r3.w, r0, -c17\n"
 	"mul r0.xyz, r0, c18.y\n"
 	"dp3 r3.x, r0, r0\n"
 	"rsq r3.x, r3.x\n"
 	"mul r0.xyz, r3.x, r0\n"
+	"mul r2.xyz, r0.w, r2\n"
 	"dp3 r0.x, r2, r0\n"
-	"mul r3.y, c14.w, r0.w\n"
 	"max r3.x, r0, c18.z\n"
-	"pow r0, r3.x, r3.y\n"
+	"pow r0, r3.x, c11.w\n"
 	"dp3 r0.y, r2, -c17\n"
 	"mov r2.xyz, c11\n"
 	"mov r0.w, r0.x\n"
@@ -408,7 +410,7 @@ std::string StdMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"	gl_Position = PVWMatrix * vec4(modelPosition, 1.0);\n"
 	"	vec3 worldPosition = (WMatrix * vec4(modelPosition, 1.0)).xyz;\n"
 	"	vec4 col0 = WMatrix[0]; vec4 col1 = WMatrix[1]; vec4 col2 = WMatrix[2]; \n"
-	"	mat3 worldMat = mat3(col0, col1, col2);\n"
+	"	mat3 worldMat = mat3(col0.xyz, col1.xyz, col2.xyz);\n"
 	"	vec3 worldNormal = normalize(worldMat * modelNormal);\n"
 	"	vec3 viewVector = normalize(CameraWorldPosition.xyz - worldPosition);\n"
 	"	float dist = sqrt((CameraWorldPosition.x - worldPosition.x)*(CameraWorldPosition.x - worldPosition.x) + (CameraWorldPosition.y - worldPosition.y)*(CameraWorldPosition.y - worldPosition.y) + (CameraWorldPosition.z - worldPosition.z)*(CameraWorldPosition.z - worldPosition.z));\n"
@@ -437,9 +439,9 @@ int* StdMaterial::msPTextureUnits[Shader::MAX_PROFILES] =
 	msAllPTextureUnits
 };
 
-int StdMaterial::msDx9PRegisters[1]= {0};
-int StdMaterial::msOglPRegisters[1] = {1};
-int StdMaterial::msOpenGLES2PRegisters[1] = {0};
+int StdMaterial::msDx9PRegisters[2]= {0, 1};
+int StdMaterial::msOglPRegisters[2] = {1, 2};
+int StdMaterial::msOpenGLES2PRegisters[2] = {0, 1};
 
 int* StdMaterial::msPRegisters[Shader::MAX_PROFILES] =
 {
@@ -462,33 +464,39 @@ std::string StdMaterial::msPPrograms[Shader::MAX_PROFILES] =
 	// PP_PS_2_0
 	"ps_2_0\n"
 	"dcl_2d s0\n"
-	"def c1, 1.00000000, 0, 0, 0\n"
+	"def c2, 1.00000000, 0, 0, 0\n"
 	"dcl t0.xy\n"
 	"dcl v0\n"
 	"dcl t1.xy\n"
 	"mov r0.x, t0\n"
-	"add r0.y, -t0, c1.x\n"
+	"add r0.y, -t0, c2.x\n"
 	"texld r0, r0, s0\n"
 	"mul r0, r0, v0\n"
-	"add r0.xyz, r0, -c0\n"
-	"mul r0.xyz, t1.x, r0\n"
-	"mad r0.xyz, t1.y, r0, c0\n"
+	"add r1.xyz, r0, -c0\n"
+	"mul r0.x, t1.y, c0.w\n"
+	"mad r0.xyz, r0.x, r1, c0\n"
+	"add r1.xyz, r0, -c1\n"
+	"mul r0.x, t1, c1.w\n"
+	"mad r0.xyz, r0.x, r1, c1\n"
 	"mov oC0, r0\n",
 
 	// PP_PS_3_0
 	"ps_3_0\n"
 	"dcl_2d s0\n"
-	"def c1, 1.00000000, 0, 0, 0\n"
+	"def c2, 1.00000000, 0, 0, 0\n"
 	"dcl_texcoord0 v1.xy\n"
 	"dcl_color0 v0\n"
 	"dcl_texcoord1 v2.xy\n"
 	"mov r0.x, v1\n"
-	"add r0.y, -v1, c1.x\n"
+	"add r0.y, -v1, c2.x\n"
 	"texld r0, r0, s0\n"
 	"mul r0, r0, v0\n"
-	"add r0.xyz, r0, -c0\n"
-	"mul r0.xyz, v2.x, r0\n"
-	"mad oC0.xyz, v2.y, r0, c0\n"
+	"add r1.xyz, r0, -c0\n"
+	"mul r0.x, v2.y, c0.w\n"
+	"mad r0.xyz, r0.x, r1, c0\n"
+	"add r1.xyz, r0, -c1\n"
+	"mul r0.x, v2, c1.w\n"
+	"mad oC0.xyz, r0.x, r1, c1\n"
 	"mov oC0.w, r0\n",
 
 	// PP_ARBFP1
@@ -500,12 +508,13 @@ std::string StdMaterial::msPPrograms[Shader::MAX_PROFILES] =
 	"varying mediump vec2 vertexTCoord1;\n"
 	"uniform sampler2D BaseSampler;\n"
 	"uniform mediump vec4 FogColor;\n"
+	"uniform mediump vec4 FogColorDist;\n"
 	"void main()\n"
 	"{\n"
 	"	mediump vec2 texCoord = vec2(vertexTCoord0.x, 1.0-vertexTCoord0.y);\n"
 	"	mediump vec4 lastColor = texture2D(BaseSampler, texCoord)*vertexColor;\n"
-	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColor.rgb * (1.0 - vertexTCoord1.x);\n"
 	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.y + FogColor.rgb * (1.0 - vertexTCoord1.y);\n"
+	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColorDist.rgb * (1.0 - vertexTCoord1.x);\n"
 	"	gl_FragColor = lastColor;\n"
 	"}\n"
 };
@@ -527,12 +536,13 @@ std::string StdMaterial::msPPrograsOGLESTest[2] =
 	"varying mediump vec2 vertexTCoord1;\n"
 	"uniform sampler2D BaseSampler;\n"
 	"uniform mediump vec4 FogColor;\n"
+	"uniform mediump vec4 FogColorDist;\n"
 	"void main()\n"
 	"{\n"
 	"	mediump vec2 texCoord = vec2(vertexTCoord0.x, 1.0-vertexTCoord0.y);\n"
 	"	mediump vec4 lastColor = texture2D(BaseSampler, texCoord)*vertexColor;\n"
-	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColor.rgb * (1.0 - vertexTCoord1.x);\n"
 	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.y + FogColor.rgb * (1.0 - vertexTCoord1.y);\n"
+	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColorDist.rgb * (1.0 - vertexTCoord1.x);\n"
 	"	gl_FragColor = lastColor;\n"
 	"}\n",
 
@@ -541,6 +551,7 @@ std::string StdMaterial::msPPrograsOGLESTest[2] =
 	"varying mediump vec2 vertexTCoord1;\n"
 	"uniform sampler2D BaseSampler;\n"
 	"uniform mediump vec4 FogColor;\n"
+	"uniform mediump vec4 FogColorDist;\n"
 	"void main()\n"
 	"{\n"
 	"	mediump vec2 texCoord = vec2(vertexTCoord0.x, 1.0-vertexTCoord0.y);\n"
@@ -551,8 +562,8 @@ std::string StdMaterial::msPPrograsOGLESTest[2] =
 	"	}"
 	"	else"
 	"	{"
-	"		lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColor.rgb * (1.0 - vertexTCoord1.x);\n"
 	"		lastColor.rgb = lastColor.rgb * vertexTCoord1.y + FogColor.rgb * (1.0 - vertexTCoord1.y);\n"
+	"		lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColorDist.rgb * (1.0 - vertexTCoord1.x);\n"
 	"		gl_FragColor = lastColor;\n"
 	"	}"
 	"}\n"

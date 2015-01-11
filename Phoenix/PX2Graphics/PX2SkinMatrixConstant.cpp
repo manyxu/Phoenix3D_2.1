@@ -30,8 +30,6 @@ SkinMatrixConstant::~SkinMatrixConstant ()
 //----------------------------------------------------------------------------
 void SkinMatrixConstant::Update (const Renderable *renderable, const Camera* camera)
 {
-	PX2_UNUSED(camera);
-
 	if (!mSkinContrl)
 	{
 		for (int i=0; i<renderable->GetNumControllers(); i++)

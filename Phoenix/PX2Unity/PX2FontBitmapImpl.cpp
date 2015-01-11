@@ -117,8 +117,6 @@ bool FontBitmapImpl::IsSame (int fontWidth, int fontHeight,
 	const char *fontFilename, CharCodingType codingType,
 	unsigned int fontExtStyle)
 {
-	PX2_UNUSED(fontExtStyle);
-
 	if (mFontWidth != fontWidth)
 		return false;
 

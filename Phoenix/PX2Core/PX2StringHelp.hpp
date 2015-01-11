@@ -19,29 +19,24 @@ namespace PX2
 	public:
 		static bool Initlize();
 
-		/** 将文件路径标准化(将"\\"换成'/'), 如果末尾没有'/',添加'/' */
+		// 将文件路径标准化（将"\\"换成'/'）, 如果末尾没有'/',添加'/'
 		static std::string StandardisePath (const std::string &path);
 
+		/// 将文件路径拆成文件夹名和文件名
 		/**
-		 * 将文件路径拆成文件夹名和文件名
-		 *
-		 * 例如"E:\\Phoenix\\Data\\objs\\normal.px2obj"拆成的结果为
-		 * outPath = "E:/Phoenix/Data//objs/"
-		 * outBaseFileName = "normal.px2obj"
-		 *
-		 * @param	fullName
-		 * @param	outPath
-		 * @param	outBaseFileName
-		 */
+		* 例如"E:\\Phoenix\\Data\\Tdtf\\Normal.tdtf"拆成的结果为
+		* outPath = "E:/Phoenix/Data//Tdtf/"
+		* outBaseFileName = "Normal.tdtf"
+		*/
 		static void SplitFilename (const std::string &fullName,
 			std::string &outPath, std::string &outBaseFileName);
 
 		/// 将文件名拆成文件名称和扩展名
 		/**
-		 * 例如"normal.px2obj"拆成的结果为
-		 * outBaseName = "Normal"
-		 * outExtention = "px2obj"
-		 */
+		* 例如"Normal.tdtf"拆成的结果为
+		* outBaseName = "Normal"
+		* outExtention = "tdtf"
+		*/
 		static void SplitBaseFilename (const std::string &baseFileName,
 			std::string &outBaseName, std::string &outExtention);
 

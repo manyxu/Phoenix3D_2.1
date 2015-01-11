@@ -668,15 +668,15 @@ void Shader::RegistProperties ()
 	shadowKeys.push_back("SKT_TEXTURE2D");
 	shadowKeys.push_back("SKT_STD_ALPHATEST");
 	shadowKeys.push_back("SKT_STD");
+	shadowKeys.push_back("SKT_STDVC4");
 	shadowKeys.push_back("SKT_LIGHTTEX_ALPHATEST");
 	shadowKeys.push_back("SKT_LIGHTTEX");
-	shadowKeys.push_back("SKT_LIGHTTEX2");
 	shadowKeys.push_back("SKT_LIGHTTEX2_ALPHATEST");
+	shadowKeys.push_back("SKT_LIGHTTEX2");
 	shadowKeys.push_back("SKT_SKIN_ALPHATEST");
 	shadowKeys.push_back("SKT_SKIN");
 	shadowKeys.push_back("SKT_TERRAIN");
 	shadowKeys.push_back("SKT_SKY");
-	shadowKeys.push_back("SKT_VERTEXCOLORSTD");
 	AddPropertyEnum("ShaderKey", GetShaderKey(), shadowKeys, false);
 }
 //----------------------------------------------------------------------------

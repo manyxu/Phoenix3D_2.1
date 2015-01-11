@@ -5,6 +5,16 @@
 */
 
 //----------------------------------------------------------------------------
+inline void GraphicsRoot::SetInEditor (bool isInEditor)
+{
+	mIsInEditor = isInEditor;
+}
+//----------------------------------------------------------------------------
+inline bool GraphicsRoot::IsInEditor () const
+{
+	return mIsInEditor;
+}
+//----------------------------------------------------------------------------
 inline void GraphicsRoot::SetRect (const Rectf &rect)
 {
 	mRect = rect;
@@ -53,5 +63,15 @@ inline void GraphicsRoot::SetFogColor (const Float4 &fogColor)
 inline const Float4 &GraphicsRoot::GetFogColor () const
 {
 	return mFogColor;
+}
+//----------------------------------------------------------------------------
+inline void GraphicsRoot::SetFogColorDist (const Float4 &fogColor)
+{
+	mFogColorDist = fogColor;
+}
+//----------------------------------------------------------------------------
+inline const Float4 &GraphicsRoot::GetFogColorDist () const
+{
+	return mFogColorDist;
 }
 //----------------------------------------------------------------------------

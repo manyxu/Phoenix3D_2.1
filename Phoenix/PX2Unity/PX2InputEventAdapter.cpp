@@ -83,27 +83,6 @@ bool InputEventAdapter::Ternamate ()
 	return true;
 }
 //----------------------------------------------------------------------------
-void InputEventAdapter::SetSize (float width, float height)
-{
-	mSize.Width = width;
-	mSize.Height = height;
-}
-//----------------------------------------------------------------------------
-void InputEventAdapter::SetSize (const Sizef &size)
-{
-	mSize = size;
-}
-//----------------------------------------------------------------------------
-void InputEventAdapter::SetWidth (float width)
-{
-	mSize.Width = width;
-}
-//----------------------------------------------------------------------------
-void InputEventAdapter::SetHeight (float height)
-{
-	mSize.Height = height;
-}
-//----------------------------------------------------------------------------
 void InputEventAdapter::SetRect (const Rectf &rect)
 {
 	mRect = rect;

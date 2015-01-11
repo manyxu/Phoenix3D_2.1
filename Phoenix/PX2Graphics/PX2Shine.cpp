@@ -20,6 +20,11 @@ Ambient(1.0f, 1.0f, 1.0f, 1.0f),
 Diffuse(1.0f, 1.0f, 1.0f, 1.0f),
 Specular(0.3f, 0.3f, 0.3f, 0.0f)
 {
+	ReCalTemp();
+}
+//----------------------------------------------------------------------------
+void Shine::ReCalTemp ()
+{
 	mEmissiveTemp = Float3(Emissive[0], Emissive[1], Emissive[2]);
 	mEmissiveAlphaTemp = Emissive[3];
 	mAmbientTemp = Float3(Ambient[0], Ambient[1], Ambient[2]);

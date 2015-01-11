@@ -29,14 +29,6 @@ namespace PX2
 		bool Initlize (); // 如果在编辑器中不需要调用这些
 		bool Ternamate (); // 如果在编辑器中不需要调用这些
 
-		void SetSize (float width, float height);
-		void SetSize (const Sizef &size);
-		const Sizef &GetSize () const;
-		void SetWidth (float width);
-		float GetWidth ();
-		void SetHeight (float height);
-		float GetHeight ();
-
 		void SetRect (const Rectf &rect);
 		const Rectf &GetRect () const;
 
@@ -46,14 +38,14 @@ namespace PX2
 		void Update ();
 
 		InputManager *GetInputManager ();
+		InputEventListener *GetInputEventListener ();
+
 		Keyboard *GetKeyboard ();
 		Mouse *GetMouse ();
-		InputEventListener *GetInputEventListener ();
 
 		static void CoordinateToPX2 (Axis &Y, const Sizef &winSize);
 
 	protected:
-		Sizef mSize;
 		Rectf mRect;
 		ParamList mParamList;
 		InputManager *mInputManager;

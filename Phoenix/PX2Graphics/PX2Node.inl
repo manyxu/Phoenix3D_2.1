@@ -30,3 +30,13 @@ inline bool Node::IsNeedCalUpdateChild () const
 	return mIsNeedCalUpdateChild;
 }
 //----------------------------------------------------------------------------
+inline void Node::SetAnchorID (int anchorID)
+{
+	mAnchorID = anchorID;
+}
+//----------------------------------------------------------------------------
+inline int Node::GetAnchorID () const
+{
+	return mAnchorID;
+}
+//----------------------------------------------------------------------------

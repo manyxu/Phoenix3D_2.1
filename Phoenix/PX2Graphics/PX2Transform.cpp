@@ -225,9 +225,6 @@ Transform Transform::operator* (const Transform& transform) const
 
 	product.SetMatrix(matMA*matMB);
 
-	if (mIsRSMatrix && transform.mIsRSMatrix)
-		product.mIsRSMatrix = true;
-
 	product.SetTranslate(matMA*transform.mTranslate + mTranslate);
 	return product;
 }

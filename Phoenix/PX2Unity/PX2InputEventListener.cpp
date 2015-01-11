@@ -19,16 +19,9 @@ InputEventListener::~InputEventListener ()
 //----------------------------------------------------------------------------
 bool InputEventListener::KeyPressed (const KeyEvent &arg)
 {
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(InputEventSpace::KeyPressed);
-
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = InputEventSpace::KeyPressed;
 	data.KCode = arg.Key;
-
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 	OnInputEventData(data);
 
@@ -37,16 +30,9 @@ bool InputEventListener::KeyPressed (const KeyEvent &arg)
 //----------------------------------------------------------------------------
 bool InputEventListener::KeyReleased (const KeyEvent &arg)
 {
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(InputEventSpace::KeyReleased);
-
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = InputEventSpace::KeyReleased;
 	data.KCode = arg.Key;
-
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 	OnInputEventData(data);
 
@@ -58,7 +44,6 @@ bool InputEventListener::MouseMoved (const MouseEvent &arg)
 	bool converted = InputEventAdapter::GetSingleton().IsConverted2Touch();
 	const Sizef &winSize = InputManager::GetSingleton().GetSize();
 
-	/*arg.State.IsButtonDown();*/
 	Event::EventType entType = InputEventSpace::MouseMoved;
 	if (converted)
 	{
@@ -70,11 +55,8 @@ bool InputEventListener::MouseMoved (const MouseEvent &arg)
 		entType = InputEventSpace::TouchMoved;
 	}
 
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
-
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 	data.MState = arg.State;
 	InputEventAdapter::CoordinateToPX2(data.MState.Y, winSize);
 	if (converted)
@@ -83,10 +65,6 @@ bool InputEventListener::MouseMoved (const MouseEvent &arg)
 		data.TState.Y = data.MState.Y;
 		data.TState.Z = data.MState.Z;
 	}
-
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 	OnInputEventData(data);
 
@@ -105,11 +83,8 @@ bool InputEventListener::MousePressed (const MouseEvent &arg,
 		entType = InputEventSpace::TouchPressed;
 	}
 
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
-
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 	data.MButtonID = id;
 	data.MState = arg.State;
 	InputEventAdapter::CoordinateToPX2(data.MState.Y, winSize);
@@ -119,10 +94,6 @@ bool InputEventListener::MousePressed (const MouseEvent &arg,
 		data.TState.Y = data.MState.Y;
 		data.TState.Z = data.MState.Z;
 	}
-
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 	OnInputEventData(data);
 
@@ -141,11 +112,8 @@ bool InputEventListener::MouseReleased (const MouseEvent &arg,
 		entType = InputEventSpace::TouchReleased;
 	}
 
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
-
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 	data.MButtonID = id;
 	data.MState = arg.State;
 	InputEventAdapter::CoordinateToPX2(data.MState.Y, winSize);
@@ -156,9 +124,19 @@ bool InputEventListener::MouseReleased (const MouseEvent &arg,
 		data.TState.Z = data.MState.Z;
 	}
 
-	ent->SetData<InputEventData>(data);
+	OnInputEventData(data);
 
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
+	return true;
+}
+//----------------------------------------------------------------------------
+bool InputEventListener::MouseWheeled (float val)
+{
+	Event::EventType entType = InputEventSpace::MouseWheeled;
+
+	InputEventData data;
+	data.TheEventType = entType;
+	data.IsLargeSmall = true;
+	data.LargeSmallValue = val;
 
 	OnInputEventData(data);
 
@@ -169,15 +147,9 @@ bool InputEventListener::TouchMoved (const MultiTouchEvent &arg)
 {
 	Event::EventType entType = InputEventSpace::TouchMoved;
 
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
-
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 	data.TState = arg.State;
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 	OnInputEventData(data);
 
@@ -188,15 +160,9 @@ bool InputEventListener::TouchPressed (const MultiTouchEvent &arg)
 {
 	Event::EventType entType = InputEventSpace::TouchPressed;
 
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
-
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 	data.TState = arg.State;
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 	OnInputEventData(data);
 
@@ -207,15 +173,9 @@ bool InputEventListener::TouchReleased (const MultiTouchEvent &arg)
 {
 	Event::EventType entType = InputEventSpace::TouchReleased;
 
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
-
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 	data.TState = arg.State;
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 	OnInputEventData(data);
 
@@ -226,48 +186,21 @@ bool InputEventListener::TouchCancelled (const MultiTouchEvent &arg)
 {
 	Event::EventType entType = InputEventSpace::TouchCancelled;
 
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
-
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 	data.TState = arg.State;
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 	OnInputEventData(data);
 
 	return true;
 }
 //----------------------------------------------------------------------------
-void InputEventListener::OnLargeSmall (float val)
-{
-	Event::EventType entType = InputEventSpace::TouchMoved;
-
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
-
-	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
-	data.IsLargeSmall = true;
-	data.LargeSmallValue = val;
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
-
-	OnInputEventData(data);
-}
-//----------------------------------------------------------------------------
 void InputEventListener::TouchMoved(int num, int ids[], float xs[], float ys[])
 {
-	Sizef size = PX2_IEA.GetSize();
-
 	Event::EventType entType = InputEventSpace::TouchMoved;
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
+
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 
 	if (num > 0)
 	{
@@ -277,7 +210,8 @@ void InputEventListener::TouchMoved(int num, int ids[], float xs[], float ys[])
 		PX2_UNUSED(id);
 
 #if defined __ANDROID__
-		y = size.Height - y;
+		float rectHeight = PX2_IEA.GetRect().Height();
+		y = rectHeight - y;
 #endif
 
 		data.TState.X.Absoulate = x;
@@ -295,7 +229,8 @@ void InputEventListener::TouchMoved(int num, int ids[], float xs[], float ys[])
 		PX2_UNUSED(id);
 
 #if defined __ANDROID__
-		y = size.Height - y;
+		float rectHeight = PX2_IEA.GetRect().Height();
+		y = rectHeight - y;
 #endif
 
 		MultiTouchState state;
@@ -309,22 +244,15 @@ void InputEventListener::TouchMoved(int num, int ids[], float xs[], float ys[])
 		data.TStates.push_back(data.TState);
 	}
 
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
-
 	OnInputEventData(data);
 }
 //----------------------------------------------------------------------------
 void InputEventListener::TouchPressed(int num, int ids[], float xs[], float ys[])
 {
-	Sizef size = PX2_IEA.GetSize();
-
 	Event::EventType entType = InputEventSpace::TouchPressed;
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
+
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 
 	if (num > 0)
 	{
@@ -334,7 +262,8 @@ void InputEventListener::TouchPressed(int num, int ids[], float xs[], float ys[]
 		PX2_UNUSED(id);
 
 #if defined __ANDROID__
-		y = size.Height - y;
+		float rectHeight = PX2_IEA.GetRect().Height();
+		y = rectHeight - y;
 #endif
 
 		data.TState.X.Absoulate = x;
@@ -352,7 +281,8 @@ void InputEventListener::TouchPressed(int num, int ids[], float xs[], float ys[]
 		PX2_UNUSED(id);
 
 #if defined __ANDROID__
-		y = size.Height - y;
+		float rectHeight = PX2_IEA.GetRect().Height();
+		y = rectHeight - y;
 #endif
 
 		MultiTouchState state;
@@ -366,22 +296,15 @@ void InputEventListener::TouchPressed(int num, int ids[], float xs[], float ys[]
 		data.TStates.push_back(data.TState);
 	}
 
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
-
 	OnInputEventData(data);
 }
 //----------------------------------------------------------------------------
 void InputEventListener::TouchReleased(int num, int ids[], float xs[], float ys[])
 {
-	Sizef size = PX2_IEA.GetSize();
-
 	Event::EventType entType = InputEventSpace::TouchReleased;
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
+
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 
 	if (num > 0)
 	{
@@ -391,7 +314,8 @@ void InputEventListener::TouchReleased(int num, int ids[], float xs[], float ys[
 		PX2_UNUSED(id);
 
 #if defined __ANDROID__
-		y = size.Height - y;
+		float rectHeight = PX2_IEA.GetRect().Height();
+		y = rectHeight - y;
 #endif
 
 		data.TState.X.Absoulate = x;
@@ -409,7 +333,8 @@ void InputEventListener::TouchReleased(int num, int ids[], float xs[], float ys[
 		PX2_UNUSED(id);
 
 #if defined __ANDROID__
-		y = size.Height - y;
+		float rectHeight = PX2_IEA.GetRect().Height();
+		y = rectHeight - y;
 #endif
 
 		MultiTouchState state;
@@ -423,22 +348,15 @@ void InputEventListener::TouchReleased(int num, int ids[], float xs[], float ys[
 		data.TStates.push_back(data.TState);
 	}
 
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
-
 	OnInputEventData(data);
 }
 //----------------------------------------------------------------------------
 void InputEventListener::TouchCancelled(int num, int ids[], float xs[], float ys[])
 {
-	Sizef size = PX2_IEA.GetSize();
-
 	Event::EventType entType = InputEventSpace::TouchCancelled;
-	Event *ent = 0;
-	ent = InputEventSpace::CreateEventX(entType);
+
 	InputEventData data;
-	data.UnCoveredType = ent->GetEventType();
+	data.TheEventType = entType;
 
 	if (num > 0)
 	{
@@ -448,7 +366,8 @@ void InputEventListener::TouchCancelled(int num, int ids[], float xs[], float ys
 		PX2_UNUSED(id);
 
 #if defined __ANDROID__
-		y = size.Height - y;
+		float rectHeight = PX2_IEA.GetRect().Height();
+		y = rectHeight - y;
 #endif
 
 		data.TState.X.Absoulate = x;
@@ -466,7 +385,8 @@ void InputEventListener::TouchCancelled(int num, int ids[], float xs[], float ys
 		PX2_UNUSED(id);
 
 #if defined __ANDROID__
-		y = size.Height - y;
+		float rectHeight = PX2_IEA.GetRect().Height();
+		y = rectHeight - y;
 #endif
 
 		MultiTouchState state;
@@ -479,10 +399,6 @@ void InputEventListener::TouchCancelled(int num, int ids[], float xs[], float ys
 
 		data.TStates.push_back(data.TState);
 	}
-
-	ent->SetData<InputEventData>(data);
-
-	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 	OnInputEventData(data);
 }
@@ -497,19 +413,24 @@ void InputEventListener::OnInputEventData (const InputEventData &data)
 {
 	for (int i=0; i<(int)mHandlers.size(); i++)
 	{
-		if (data.UnCoveredType == InputEventSpace::UnCover(InputEventSpace::TouchPressed))
+		mHandlers[i]->SetSigned(false);
+	}
+
+	for (int i=0; i<(int)mHandlers.size(); i++)
+	{
+		if (data.TheEventType == InputEventSpace::TouchPressed)
 		{
 			mHandlers[i]->TouchPressed(data);
 		}
-		else if (data.UnCoveredType == InputEventSpace::UnCover(InputEventSpace::TouchReleased))
+		else if (data.TheEventType == InputEventSpace::TouchReleased)
 		{
 			mHandlers[i]->TouchReleased(data);
 		}
-		else if (data.UnCoveredType == InputEventSpace::UnCover(InputEventSpace::TouchCancelled))
+		else if (data.TheEventType == InputEventSpace::TouchCancelled)
 		{
 			mHandlers[i]->TouchCancelled(data);
 		}
-		else if (data.UnCoveredType == InputEventSpace::UnCover(InputEventSpace::TouchMoved))
+		else if (data.TheEventType == InputEventSpace::TouchMoved)
 		{
 #if defined(_WIN32) || defined(WIN32)
 			if (data.IsLargeSmall)
@@ -528,7 +449,14 @@ void InputEventListener::OnInputEventData (const InputEventData &data)
 			mHandlers[i]->TouchMoved(data);
 #endif
 		}
+
+		if (mHandlers[i]->IsSigned() && mHandlers[i]->IsSignIgnoreOtherHandlers())
+			break;
 	}
+
+	Event *ent = InputEventSpace::CreateEventX(data.TheEventType);
+	ent->SetData<InputEventData>(data);
+	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------
 bool InputEventListener::HasHandler (InputEventHandler *handler)

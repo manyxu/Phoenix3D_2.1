@@ -4,6 +4,7 @@
 *
 */
 
+#include "PX2GraphicsPre.hpp"
 #include "PX2Texture3D.hpp"
 #include "PX2BitHacks.hpp"
 #include "PX2Renderer.hpp"

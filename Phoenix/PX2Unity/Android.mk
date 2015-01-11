@@ -11,10 +11,8 @@ LOCAL_ARM_MODE := arm
 
 LOCAL_MODULE := PX2Unity
 
-LOCAL_SRC_FILES := \
-PX2InputPushTransformController.cpp \
-PX2CSVParser.cpp \
-PX2CSVParser1.cpp \
+FILE_LIST := $(wildcard $(LOCAL_PATH)/*cpp)
+LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%) \
 ZLib/adler32.c \
 ZLib/compress.c \
 ZLib/crc32.c \
@@ -74,7 +72,6 @@ DevIL/il_wbmp.c \
 DevIL/il_png.c \
 DevIL/il_dds-save.c \
 DevIL/il_dds.c \
-PX2JNI.cpp \
 FreeType/src/base/ftbbox.c \
 FreeType/src/base/ftbitmap.c \
 FreeType/src/base/ftfstype.c \
@@ -95,24 +92,6 @@ FreeType/src/truetype/truetype.c \
 FreeType/src/cff/cff.c \
 FreeType/src/psnames/psnames.c \
 FreeType/src/pshinter/pshinter.c \
-PX2CharCodingGBK.cpp \
-PX2CharCodingUTF8.cpp \
-PX2FontGlyphMapFreeType.cpp \
-PX2FontGlyphMapTrueType.cpp \
-PX2Font.cpp \
-PX2FontBitmapImpl.cpp \
-PX2FontCommonImpl.cpp \
-PX2FontManager.cpp \
-PX2IMEDelegate.cpp \
-PX2IMEDispatcher.cpp \
-PX2InputEvent.cpp \
-PX2InputEventAdapter.cpp \
-PX2InputEventHandler.cpp \
-PX2InputEventListener.cpp \
-PX2InputRanges.cpp \
-PX2LanguageManager.cpp \
-PX2ResourceUpdate.cpp \
-PX2ResourceManager.cpp \
 Lua/lapi.c \
 Lua/lauxlib.c \
 Lua/lbaselib.c \
@@ -252,17 +231,11 @@ CURL/src/dotdot.c \
 CURL/src/x509asn1.c \
 CURL/src/gskit.c \
 CURL/src/http2.c \
-PX2CURLDownload.cpp \
 ToLua/tolua_event.c \
 ToLua/tolua_is.c \
 ToLua/tolua_map.c \
 ToLua/tolua_push.c \
-ToLua/tolua_to.c \
-PX2LuaManager.cpp \
-PX2ScriptManager.cpp \
-PX2TexPackData.cpp \
-PX2XMLData.cpp \
-PX2XMLNode.cpp
+ToLua/tolua_to.c
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
 

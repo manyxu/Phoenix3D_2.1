@@ -5,21 +5,6 @@
 */
 
 //----------------------------------------------------------------------------
-inline const Sizef &InputEventAdapter::GetSize () const
-{
-	return mSize;
-}
-//----------------------------------------------------------------------------
-inline float InputEventAdapter::GetWidth ()
-{
-	return mSize.Width;
-}
-//----------------------------------------------------------------------------
-inline float InputEventAdapter::GetHeight ()
-{
-	return mSize.Height;
-}
-//----------------------------------------------------------------------------
 inline const Rectf &InputEventAdapter::GetRect () const
 {
 	return mRect;

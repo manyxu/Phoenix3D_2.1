@@ -24,7 +24,7 @@ struct stShareString
 
 	~stShareString()
 	{
-		delete1<char>(Str);
+		delete [] Str;
 	}
 
 	stShareString *Next;
@@ -52,8 +52,8 @@ bool FString::Initlize ()
 		sHashTable[i] = 0;
 	}
 
-	sTableMutex = new0 Mutex();
-	sRefMutex = new0 Mutex();
+	sTableMutex = new Mutex();
+	sRefMutex = new Mutex();
 
 	return true;
 }
@@ -67,15 +67,17 @@ bool FString::Ternimate ()
 		while (0 != cur)
 		{
 			stShareString *next = cur->Next;
-			delete0(cur);
+			delete(cur);
 			cur = next;
 		}
 
 		sHashTable[i] = 0;
 	}
 
-	delete0(sTableMutex);
-	delete0(sRefMutex);
+	delete(sTableMutex);
+	sTableMutex = 0;
+	delete(sRefMutex);
+	sRefMutex = 0;
 
 	return true;
 }
@@ -106,11 +108,11 @@ FStringHandle FString::Insert (const char *str, int length)
 		cur = cur->Next;
 	}
 
-	cur = new0 stShareString();
+	cur = new stShareString();
 	cur->RefCount = 1;
 	cur->Next = sHashTable[i];
 	sHashTable[i] = cur;
-	cur->Str = new1<char>(length+1);
+	cur->Str = new char[length+1];
 
 #ifdef _DEBUG
 	cur->HashValue = StringHash(str, length);

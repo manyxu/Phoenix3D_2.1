@@ -20,8 +20,6 @@
 //----------------------------------------------------------------------------
 #if defined(_WIN32) || defined(WIN32)
 
-#define PX2_PLATFORM_WINDOWS
-
 #ifndef _WIN32
 #define _WIN32
 #endif
@@ -60,8 +58,6 @@
 //----------------------------------------------------------------------------
 #if defined(__APPLE__)
 
-#define PX2_PLATFORM_APPLE
-
 #if defined(__BIG_ENDIAN__)
 #define PX2_BIG_ENDIAN
 #else
@@ -75,8 +71,6 @@
 //----------------------------------------------------------------------------
 #if defined(__LINUX__)
 
-#define PX2_PLATFORM_LINUX
-
 #include <inttypes.h>
 
 #define PX2_LITTLE_ENDIAN
@@ -87,20 +81,24 @@
 //----------------------------------------------------------------------------
 #if defined(__ANDROID__)
 
-#define PX2_PLATFORM_ANDROID
-
 #include <inttypes.h>
 
 #define PX2_LITTLE_ENDIAN
 #define PX2_USE_PTHREAD
 #endif
+//----------------------------------------------------------------------------
+// Marmalade
+//----------------------------------------------------------------------------
+#if defined(__MARMALADE__)
 
+#define PX2_LITTLE_ENDIAN
+#define PX2_USE_PTHREAD
+
+#endif
 //----------------------------------------------------------------------------
 // IOS
 //----------------------------------------------------------------------------
 #if defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__) || defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-
-#define PX2_PLATFORM_IOS
 
 #ifndef __IOS__
 #define __IOS__
@@ -108,6 +106,8 @@
 
 #endif
 //----------------------------------------------------------------------------
+
+
 
 // 常用标准头文件
 #include <cassert>

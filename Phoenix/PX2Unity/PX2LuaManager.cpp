@@ -6,6 +6,7 @@
 
 #include "PX2LuaManager.hpp"
 #include "PX2ResourceManager.hpp"
+#include "PX2GraphicsRoot.hpp"
 #include "PX2Assert.hpp"
 
 #if defined(_WIN32) || defined(WIN32)
@@ -60,6 +61,8 @@ LuaManager::LuaManager ()
 	:
 mState(0)
 {
+	mType = ST_LUA;
+
 	mState = lua_open();
 	luaL_openlibs(mState);
 	lua_register(mState, "GetGlobal", GetGlobal);
@@ -71,12 +74,6 @@ LuaManager::~LuaManager ()
 	{
 		lua_close(mState);
 	}
-}
-//----------------------------------------------------------------------------
-void LuaManager::Create()
-{
-	ScriptManager *sm = new0 LuaManager();
-	PX2_UNUSED(sm);
 }
 //----------------------------------------------------------------------------
 void LuaManager::SetLuaState (lua_State *state)
@@ -95,11 +92,16 @@ bool LuaManager::CallString (const char *str)
 	{
 		const char *err = lua_tostring(mState, -1);
 
+		if (!PX2_GR.IsInEditor())
+		{
+
 #if defined(_WIN32) || defined(WIN32)
-		::MessageBox(0, err, "CallString::luaL_dostring error.\n", MB_OK);
+			::MessageBox(0, err, "CallString::luaL_dostring error.\n", MB_OK);
 #endif
-		assertion(false, "CallString::luaL_dostring &s error:%s.\n", str, err);
-		PX2_LOG_ERROR("CallString::luaL_dostring &s error:%s.\n", str, err);
+			assertion(false, "CallString::luaL_dostring %s error:%s.\n", str, err);
+		}
+
+		PX2_LOG_ERROR("CallString::luaL_dostring %s error:%s.\n", str, err);
 
 		return false;
 	}

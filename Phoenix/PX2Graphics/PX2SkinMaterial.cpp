@@ -22,6 +22,7 @@
 #include "PX2LightAmbientConstant.hpp"
 #include "PX2LightDiffuseConstant.hpp"
 #include "PX2LightSpecularConstant.hpp"
+#include "PX2FogColorDistConstant.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Material, SkinMaterial);
@@ -45,7 +46,7 @@ SkinMaterial::SkinMaterial ()
 	vshader->SetOutput(3, "vertexTCoord1", Shader::VT_FLOAT2, Shader::VS_TEXCOORD1);
 
 	vshader->SetConstant(0, "gPVWMatrix", 4);
-	vshader->SetConstant(1, "gBoneTM", 114);
+	vshader->SetConstant(1, "gBoneTM", 111);
 	vshader->SetConstant(2, "CameraWorldPosition", 1);
 	vshader->SetConstant(3, "gShineEmissive", 1);
 	vshader->SetConstant(4, "gShineAmbient", 1);
@@ -60,12 +61,14 @@ SkinMaterial::SkinMaterial ()
 	vshader->SetPrograms(msVPrograms);
 
 	PixelShader* pshader = new0 PixelShader("PX2.Skin",
-		3, 1, 1, 1, false);
+		3, 1, 3, 1, false);
 	pshader->SetInput(0, "vertexColor", Shader::VT_FLOAT4, Shader::VS_COLOR0);
 	pshader->SetInput(1, "vertexTCoord0", Shader::VT_FLOAT2, Shader::VS_TEXCOORD0);
 	pshader->SetInput(2, "vertexTCoord1", Shader::VT_FLOAT2, Shader::VS_TEXCOORD1);
 	pshader->SetOutput(0, "pixelColor", Shader::VT_FLOAT4, Shader::VS_COLOR0);
-	pshader->SetConstant(0, "FogColor", 1);
+	pshader->SetConstant(0, "UVOffset", 1);
+	pshader->SetConstant(1, "FogColor", 1);
+	pshader->SetConstant(2, "FogColorDist", 1);
 	pshader->SetSampler(0, "gDiffuseSampler", Shader::ST_2D);
 	pshader->SetFilter(0, Shader::SF_LINEAR);
 	pshader->SetCoordinate(0, 0, Shader::SC_CLAMP);
@@ -101,9 +104,16 @@ PixelShader* SkinMaterial::GetPixelShader () const
 	return mTechniques[0]->GetPass(0)->GetPixelShader();
 }
 //----------------------------------------------------------------------------
-MaterialInstance* SkinMaterial::CreateInstance (Texture2D* texture,
-	Shine *shine) const
+MaterialInstance* SkinMaterial::CreateInstance (ShaderFloat *offset, 
+	Texture2D* texture,	Shine *shine) const
 {
+	if (!offset)
+	{
+		offset = new0 ShaderFloat(1);
+		Float4 offsetVal = Float4::ZERO;
+		offset->SetRegister(0, offsetVal);
+	}
+
 	if (!shine)
 	{
 		shine = new0 Shine();
@@ -120,7 +130,7 @@ MaterialInstance* SkinMaterial::CreateInstance (Texture2D* texture,
 
 	MaterialInstance* instance = new0 MaterialInstance(this, 0);
 	instance->SetVertexConstant(0, "gPVWMatrix", new0 PVWMatrixConstant());
-	instance->SetVertexConstant(0, "gBoneTM", new0 SkinMatrixConstant(38));
+	instance->SetVertexConstant(0, "gBoneTM", new0 SkinMatrixConstant(37));
 	instance->SetVertexConstant(0, "CameraWorldPosition", new0 CameraWorldPositionConstant());
 	instance->SetVertexConstant(0, "gShineEmissive", new0 ShineEmissiveConstant(shine));
 	instance->SetVertexConstant(0, "gShineAmbient", new0 ShineAmbientConstant(shine));
@@ -133,7 +143,9 @@ MaterialInstance* SkinMaterial::CreateInstance (Texture2D* texture,
 	instance->SetVertexConstant(0, "LightWorldDirection", new0 LightWorldDVectorConstant(light));
 
 	instance->SetPixelTexture(0, "gDiffuseSampler", texture);
+	instance->SetPixelConstant(0, "UVOffset", offset);
 	instance->SetPixelConstant(0, "FogColor", new0 FogColorConstant());
+	instance->SetPixelConstant(0, "FogColorDist", new0 FogColorDistConstant());
 
 	return instance;
 }
@@ -235,8 +247,8 @@ int SkinMaterial::GetStreamingSize (Stream &stream) const
 //----------------------------------------------------------------------------
 // Profiles.
 //----------------------------------------------------------------------------
-int SkinMaterial::msDx9VRegisters[12] = { 0, 4, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127};
-int SkinMaterial::msOglVRegisters[12] = { 1, 5, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128};
+int SkinMaterial::msDx9VRegisters[12] = { 0, 4, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124};
+int SkinMaterial::msOglVRegisters[12] = { 1, 5, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125};
 int SkinMaterial::msOpenGLES2VRegisters[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int* SkinMaterial::msVRegisters[Shader::MAX_PROFILES] =
 {
@@ -259,60 +271,60 @@ std::string SkinMaterial::msVPrograms[Shader::MAX_PROFILES] =
 
 	// VP_VS_2_0
 	"vs_2_0\n"
-	"def c128, 1.00000000, 3.00000000, 0.00000000, 0.50000000\n"
+	"def c125, 1.00000000, 3.00000000, 0.00000000, 0.50000000\n"
 	"dcl_texcoord1 v3\n"
 	"dcl_position0 v0\n"
 	"dcl_texcoord2 v4\n"
 	"dcl_normal0 v1\n"
 	"dcl_texcoord0 v2\n"
-	"mul r4.y, v3, c128\n"
-	"mul r4.x, v3, c128.y\n"
+	"mul r4.y, v3, c125\n"
+	"mul r4.x, v3, c125.y\n"
 	"abs r2.x, r4\n"
 	"abs r0.y, r4\n"
 	"frc r0.z, r0.y\n"
 	"frc r2.y, r2.x\n"
-	"slt r0.x, r4.y, c128.z\n"
+	"slt r0.x, r4.y, c125.z\n"
 	"max r0.x, -r0, r0\n"
-	"slt r0.x, c128.z, r0\n"
-	"slt r1.w, r4.x, c128.z\n"
+	"slt r0.x, c125.z, r0\n"
+	"slt r1.w, r4.x, c125.z\n"
 	"max r1.w, -r1, r1\n"
-	"slt r1.w, c128.z, r1\n"
+	"slt r1.w, c125.z, r1\n"
 	"add r0.y, r0, -r0.z\n"
-	"add r0.w, -r0.x, c128.x\n"
+	"add r0.w, -r0.x, c125.x\n"
 	"mul r0.z, r0.y, r0.w\n"
 	"mad r1.y, r0.x, -r0, r0.z\n"
 	"mov r0.xyz, v0\n"
-	"mov r0.w, c128.x\n"
+	"mov r0.w, c125.x\n"
 	"mova a0.x, r4.y\n"
 	"dp4 r1.x, r0, c[a0.x + 4]\n"
 	"mova a0.x, r1.y\n"
 	"dp4 r1.y, r0, c[a0.x + 5]\n"
 	"dp4 r1.z, r0, c[a0.x + 6]\n"
 	"add r2.w, r2.x, -r2.y\n"
-	"add r2.z, -r1.w, c128.x\n"
+	"add r2.z, -r1.w, c125.x\n"
 	"mul r3.x, r2.w, r2.z\n"
 	"mul r2.xyz, v4.y, r1\n"
 	"mad r1.x, r1.w, -r2.w, r3\n"
 	"mova a0.y, r1.x\n"
-	"mul r3.w, v3.z, c128.y\n"
+	"mul r3.w, v3.z, c125.y\n"
 	"mova a0.z, r4.x\n"
 	"dp4 r1.x, r0, c[a0.z + 4]\n"
 	"dp4 r1.y, r0, c[a0.y + 5]\n"
 	"dp4 r1.z, r0, c[a0.y + 6]\n"
 	"mad r2.xyz, v4.x, r1, r2\n"
-	"slt r1.w, r3, c128.z\n"
+	"slt r1.w, r3, c125.z\n"
 	"max r1.x, -r1.w, r1.w\n"
-	"slt r1.x, c128.z, r1\n"
+	"slt r1.x, c125.z, r1\n"
 	"abs r1.y, r3.w\n"
 	"frc r1.z, r1.y\n"
 	"add r1.y, r1, -r1.z\n"
-	"add r1.w, -r1.x, c128.x\n"
+	"add r1.w, -r1.x, c125.x\n"
 	"mul r1.z, r1.y, r1.w\n"
-	"mul r1.w, v3, c128.y\n"
+	"mul r1.w, v3, c125.y\n"
 	"abs r3.y, r1.w\n"
-	"slt r3.x, r1.w, c128.z\n"
+	"slt r3.x, r1.w, c125.z\n"
 	"max r3.x, -r3, r3\n"
-	"slt r3.x, c128.z, r3\n"
+	"slt r3.x, c125.z, r3\n"
 	"frc r4.z, r3.y\n"
 	"mad r2.w, r1.x, -r1.y, r1.z\n"
 	"mova a0.z, r3.w\n"
@@ -322,7 +334,7 @@ std::string SkinMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"dp4 r1.z, r0, c[a0.z + 6]\n"
 	"mad r1.xyz, v4.z, r1, r2\n"
 	"add r3.y, r3, -r4.z\n"
-	"add r3.z, -r3.x, c128.x\n"
+	"add r3.z, -r3.x, c125.x\n"
 	"mul r3.z, r3.y, r3\n"
 	"mad r2.x, r3, -r3.y, r3.z\n"
 	"mova a0.z, r2.x\n"
@@ -331,11 +343,11 @@ std::string SkinMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"dp4 r2.y, r0, c[a0.z + 5]\n"
 	"dp4 r2.z, r0, c[a0.z + 6]\n"
 	"mad r1.xyz, r2, v4.w, r1\n"
-	"add r0.xyz, -r1, c118\n"
+	"add r0.xyz, -r1, c115\n"
 	"dp3 r0.w, r0, r0\n"
 	"rsq r0.w, r0.w\n"
-	"mad r0.xyz, r0.w, r0, -c127\n"
-	"mul r3.xyz, r0, c128.w\n"
+	"mad r0.xyz, r0.w, r0, -c124\n"
+	"mul r3.xyz, r0, c125.w\n"
 	"mova a0.w, r4.y\n"
 	"dp3 r0.z, c[a0.x + 6], v1\n"
 	"dp3 r0.y, c[a0.x + 5], v1\n"
@@ -360,46 +372,44 @@ std::string SkinMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"dp3 r2.x, r3, r3\n"
 	"dp3 r1.w, r0, r0\n"
 	"rsq r1.w, r1.w\n"
-	"mul r0.xyz, r1.w, r0\n"
 	"rsq r2.x, r2.x\n"
+	"mul r0.xyz, r1.w, r0\n"
 	"mul r2.xyz, r2.x, r3\n"
-	"dp3 r2.x, r0, r2\n"
-	"mov r1.w, c122\n"
-	"mul r3.x, c125.w, r1.w\n"
-	"max r1.w, r2.x, c128.z\n"
-	"pow r2, r1.w, r3.x\n"
-	"dp3 r0.x, r0, -c127\n"
-	"max r1.w, r0.x, c128.z\n"
+	"dp3 r1.w, r0, r2\n"
+	"max r1.w, r1, c125.z\n"
+	"pow r2, r1.w, c119.w\n"
+	"dp3 r0.x, r0, -c124\n"
+	"max r1.w, r0.x, c125.z\n"
 	"mov r2.w, r2.x\n"
-	"mov r0.xyz, c120\n"
-	"mul r3.xyz, c123, r0\n"
-	"mov r2.xyz, c122\n"
-	"mov r0.xyz, c121\n"
-	"add r3.xyz, r3, c119\n"
-	"mul r0.xyz, c124, r0\n"
+	"mov r0.xyz, c117\n"
+	"mul r3.xyz, c120, r0\n"
+	"mov r2.xyz, c119\n"
+	"mov r0.xyz, c118\n"
+	"add r3.xyz, r3, c116\n"
+	"mul r0.xyz, c121, r0\n"
 	"mad r0.xyz, r0, r1.w, r3\n"
-	"mov r1.w, c128.x\n"
-	"mul r2.xyz, c125, r2\n"
+	"mov r1.w, c125.x\n"
+	"mul r2.xyz, c122, r2\n"
 	"mad oD0.xyz, r2, r2.w, r0\n"
-	"add r0.x, c126.w, -c126.z\n"
+	"add r0.x, c123.w, -c123.z\n"
 	"rcp r0.y, r0.x\n"
-	"add r0.x, r1.z, -c126.z\n"
+	"add r0.x, r1.z, -c123.z\n"
 	"mul r0.x, r0, r0.y\n"
-	"add r0.z, c126.y, -c126.x\n"
+	"add r0.z, c123.y, -c123.x\n"
 	"rcp r0.y, r0.w\n"
-	"min r0.x, r0, c128\n"
+	"min r0.x, r0, c125\n"
 	"rcp r0.z, r0.z\n"
-	"add r0.y, -r0, c126\n"
+	"add r0.y, -r0, c123\n"
 	"mul r0.y, r0, r0.z\n"
-	"min r0.y, r0, c128.x\n"
+	"min r0.y, r0, c125.x\n"
 	"dp4 oPos.w, r1, c3\n"
 	"dp4 oPos.z, r1, c2\n"
 	"dp4 oPos.y, r1, c1\n"
 	"dp4 oPos.x, r1, c0\n"
-	"max oT1.y, r0.x, c128.z\n"
-	"max oT1.x, r0.y, c128.z\n"
+	"max oT1.y, r0.x, c125.z\n"
+	"max oT1.x, r0.y, c125.z\n"
 	"mov oT0.xy, v2\n"
-	"mov oD0.w, c121\n",
+	"mov oD0.w, c118\n",
 
 	// VP_VS_3_0
 	"vs_3_0\n"
@@ -407,60 +417,60 @@ std::string SkinMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"dcl_color0 o1\n"
 	"dcl_texcoord0 o2\n"
 	"dcl_texcoord1 o3\n"
-	"def c128, 1.00000000, 3.00000000, 0.00000000, 0.50000000\n"
+	"def c125, 1.00000000, 3.00000000, 0.00000000, 0.50000000\n"
 	"dcl_texcoord1 v3\n"
 	"dcl_position0 v0\n"
 	"dcl_texcoord2 v4\n"
 	"dcl_normal0 v1\n"
 	"dcl_texcoord0 v2\n"
-	"mul r4.y, v3, c128\n"
-	"mul r4.x, v3, c128.y\n"
+	"mul r4.y, v3, c125\n"
+	"mul r4.x, v3, c125.y\n"
 	"abs r2.x, r4\n"
 	"abs r0.y, r4\n"
 	"frc r0.z, r0.y\n"
 	"frc r2.y, r2.x\n"
-	"slt r0.x, r4.y, c128.z\n"
+	"slt r0.x, r4.y, c125.z\n"
 	"max r0.x, -r0, r0\n"
-	"slt r0.x, c128.z, r0\n"
-	"slt r1.w, r4.x, c128.z\n"
+	"slt r0.x, c125.z, r0\n"
+	"slt r1.w, r4.x, c125.z\n"
 	"max r1.w, -r1, r1\n"
-	"slt r1.w, c128.z, r1\n"
+	"slt r1.w, c125.z, r1\n"
 	"add r0.y, r0, -r0.z\n"
-	"add r0.w, -r0.x, c128.x\n"
+	"add r0.w, -r0.x, c125.x\n"
 	"mul r0.z, r0.y, r0.w\n"
 	"mad r1.y, r0.x, -r0, r0.z\n"
 	"mov r0.xyz, v0\n"
-	"mov r0.w, c128.x\n"
+	"mov r0.w, c125.x\n"
 	"mova a0.x, r4.y\n"
 	"dp4 r1.x, r0, c[a0.x + 4]\n"
 	"mova a0.x, r1.y\n"
 	"dp4 r1.y, r0, c[a0.x + 5]\n"
 	"dp4 r1.z, r0, c[a0.x + 6]\n"
 	"add r2.w, r2.x, -r2.y\n"
-	"add r2.z, -r1.w, c128.x\n"
+	"add r2.z, -r1.w, c125.x\n"
 	"mul r3.x, r2.w, r2.z\n"
 	"mul r2.xyz, v4.y, r1\n"
 	"mad r1.x, r1.w, -r2.w, r3\n"
 	"mova a0.y, r1.x\n"
-	"mul r3.w, v3.z, c128.y\n"
+	"mul r3.w, v3.z, c125.y\n"
 	"mova a0.z, r4.x\n"
 	"dp4 r1.x, r0, c[a0.z + 4]\n"
 	"dp4 r1.y, r0, c[a0.y + 5]\n"
 	"dp4 r1.z, r0, c[a0.y + 6]\n"
 	"mad r2.xyz, v4.x, r1, r2\n"
-	"slt r1.w, r3, c128.z\n"
+	"slt r1.w, r3, c125.z\n"
 	"max r1.x, -r1.w, r1.w\n"
-	"slt r1.x, c128.z, r1\n"
+	"slt r1.x, c125.z, r1\n"
 	"abs r1.y, r3.w\n"
 	"frc r1.z, r1.y\n"
 	"add r1.y, r1, -r1.z\n"
-	"add r1.w, -r1.x, c128.x\n"
+	"add r1.w, -r1.x, c125.x\n"
 	"mul r1.z, r1.y, r1.w\n"
-	"mul r1.w, v3, c128.y\n"
+	"mul r1.w, v3, c125.y\n"
 	"abs r3.y, r1.w\n"
-	"slt r3.x, r1.w, c128.z\n"
+	"slt r3.x, r1.w, c125.z\n"
 	"max r3.x, -r3, r3\n"
-	"slt r3.x, c128.z, r3\n"
+	"slt r3.x, c125.z, r3\n"
 	"frc r4.z, r3.y\n"
 	"mad r2.w, r1.x, -r1.y, r1.z\n"
 	"mova a0.z, r3.w\n"
@@ -470,7 +480,7 @@ std::string SkinMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"dp4 r1.z, r0, c[a0.z + 6]\n"
 	"mad r1.xyz, v4.z, r1, r2\n"
 	"add r3.y, r3, -r4.z\n"
-	"add r3.z, -r3.x, c128.x\n"
+	"add r3.z, -r3.x, c125.x\n"
 	"mul r3.z, r3.y, r3\n"
 	"mad r2.x, r3, -r3.y, r3.z\n"
 	"mova a0.z, r2.x\n"
@@ -479,11 +489,11 @@ std::string SkinMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"dp4 r2.y, r0, c[a0.z + 5]\n"
 	"dp4 r2.z, r0, c[a0.z + 6]\n"
 	"mad r1.xyz, r2, v4.w, r1\n"
-	"add r0.xyz, -r1, c118\n"
+	"add r0.xyz, -r1, c115\n"
 	"dp3 r0.w, r0, r0\n"
 	"rsq r0.w, r0.w\n"
-	"mad r0.xyz, r0.w, r0, -c127\n"
-	"mul r3.xyz, r0, c128.w\n"
+	"mad r0.xyz, r0.w, r0, -c124\n"
+	"mul r3.xyz, r0, c125.w\n"
 	"mova a0.w, r4.y\n"
 	"dp3 r0.z, c[a0.x + 6], v1\n"
 	"dp3 r0.y, c[a0.x + 5], v1\n"
@@ -508,42 +518,40 @@ std::string SkinMaterial::msVPrograms[Shader::MAX_PROFILES] =
 	"dp3 r2.x, r3, r3\n"
 	"dp3 r1.w, r0, r0\n"
 	"rsq r1.w, r1.w\n"
-	"mul r0.xyz, r1.w, r0\n"
 	"rsq r2.x, r2.x\n"
+	"mul r0.xyz, r1.w, r0\n"
 	"mul r2.xyz, r2.x, r3\n"
-	"dp3 r2.x, r0, r2\n"
-	"mov r1.w, c122\n"
-	"mul r3.x, c125.w, r1.w\n"
-	"max r1.w, r2.x, c128.z\n"
-	"pow r2, r1.w, r3.x\n"
-	"dp3 r0.x, r0, -c127\n"
-	"max r1.w, r0.x, c128.z\n"
+	"dp3 r1.w, r0, r2\n"
+	"max r1.w, r1, c125.z\n"
+	"pow r2, r1.w, c119.w\n"
+	"dp3 r0.x, r0, -c124\n"
+	"max r1.w, r0.x, c125.z\n"
 	"mov r2.w, r2.x\n"
-	"mov r0.xyz, c120\n"
-	"mul r3.xyz, c123, r0\n"
-	"mov r2.xyz, c122\n"
-	"mov r0.xyz, c121\n"
-	"add r3.xyz, r3, c119\n"
-	"mul r0.xyz, c124, r0\n"
+	"mov r0.xyz, c117\n"
+	"mul r3.xyz, c120, r0\n"
+	"mov r2.xyz, c119\n"
+	"mov r0.xyz, c118\n"
+	"add r3.xyz, r3, c116\n"
+	"mul r0.xyz, c121, r0\n"
 	"mad r0.xyz, r0, r1.w, r3\n"
-	"mov r1.w, c128.x\n"
-	"mul r2.xyz, c125, r2\n"
+	"mov r1.w, c125.x\n"
+	"mul r2.xyz, c122, r2\n"
 	"mad o1.xyz, r2, r2.w, r0\n"
-	"add r0.x, c126.w, -c126.z\n"
+	"add r0.x, c123.w, -c123.z\n"
 	"rcp r0.y, r0.x\n"
-	"add r0.x, r1.z, -c126.z\n"
+	"add r0.x, r1.z, -c123.z\n"
 	"mul_sat o3.y, r0.x, r0\n"
-	"add r0.y, c126, -c126.x\n"
+	"add r0.y, c123, -c123.x\n"
 	"rcp r0.x, r0.w\n"
 	"rcp r0.y, r0.y\n"
-	"add r0.x, -r0, c126.y\n"
+	"add r0.x, -r0, c123.y\n"
 	"dp4 o0.w, r1, c3\n"
 	"dp4 o0.z, r1, c2\n"
 	"dp4 o0.y, r1, c1\n"
 	"dp4 o0.x, r1, c0\n"
 	"mul_sat o3.x, r0, r0.y\n"
 	"mov o2.xy, v2\n"
-	"mov o1.w, c121\n",
+	"mov o1.w, c118\n",
 
 	// VP_ARBVP1
 	"!!ARBvp1.0\n"
@@ -551,7 +559,7 @@ std::string SkinMaterial::msVPrograms[Shader::MAX_PROFILES] =
 
 	// vp_gles2
 	"uniform mat4 gPVWMatrix;\n"
-	"uniform vec4 gBoneTM[114];\n"
+	"uniform vec4 gBoneTM[111];\n"
 	"uniform vec4 gShineEmissive;\n"
 	"uniform vec4 gShineAmbient;\n"
 	"uniform vec4 gShineDiffuse;\n"
@@ -616,9 +624,9 @@ int* SkinMaterial::msPTextureUnits[Shader::MAX_PROFILES] =
 	msAllPTextureUnits
 };
 
-int SkinMaterial::msDx9PRegisters[1]= {0};
-int SkinMaterial::msOglPRegisters[1] = {1};
-int SkinMaterial::msOpenGLES2PRegisters[1] = {0};
+int SkinMaterial::msDx9PRegisters[3]= {0, 1, 2};
+int SkinMaterial::msOglPRegisters[3] = {1, 2, 3};
+int SkinMaterial::msOpenGLES2PRegisters[3] = {0, 1, 2};
 
 int* SkinMaterial::msPRegisters[Shader::MAX_PROFILES] =
 {
@@ -641,33 +649,37 @@ std::string SkinMaterial::msPPrograms[Shader::MAX_PROFILES] =
 	// PP_PS_2_0
 	"ps_2_0\n"
 	"dcl_2d s0\n"
-	"def c1, 1.00000000, 0, 0, 0\n"
+	"def c3, 1.00000000, 0, 0, 0\n"
 	"dcl t0.xy\n"
 	"dcl v0\n"
 	"dcl t1.xy\n"
 	"mov r0.x, t0\n"
-	"add r0.y, -t0, c1.x\n"
+	"add r0.y, -t0, c3.x\n"
+	"add r0.xy, r0, c0\n"
 	"texld r0, r0, s0\n"
 	"mul r0, r0, v0\n"
-	"add r0.xyz, r0, -c0\n"
-	"mul r0.xyz, t1.x, r0\n"
-	"mad r0.xyz, t1.y, r0, c0\n"
+	"add r0.xyz, r0, -c1\n"
+	"mad r0.xyz, t1.y, r0, c1\n"
+	"add r0.xyz, r0, -c2\n"
+	"mad r0.xyz, t1.x, r0, c2\n"
 	"mov oC0, r0\n",
 
 	// PP_PS_3_0
 	"ps_3_0\n"
 	"dcl_2d s0\n"
-	"def c1, 1.00000000, 0, 0, 0\n"
+	"def c3, 1.00000000, 0, 0, 0\n"
 	"dcl_texcoord0 v1.xy\n"
 	"dcl_color0 v0\n"
 	"dcl_texcoord1 v2.xy\n"
 	"mov r0.x, v1\n"
-	"add r0.y, -v1, c1.x\n"
+	"add r0.y, -v1, c3.x\n"
+	"add r0.xy, r0, c0\n"
 	"texld r0, r0, s0\n"
 	"mul r0, r0, v0\n"
-	"add r0.xyz, r0, -c0\n"
-	"mul r0.xyz, v2.x, r0\n"
-	"mad oC0.xyz, v2.y, r0, c0\n"
+	"add r0.xyz, r0, -c1\n"
+	"mad r0.xyz, v2.y, r0, c1\n"
+	"add r0.xyz, r0, -c2\n"
+	"mad oC0.xyz, v2.x, r0, c2\n"
 	"mov oC0.w, r0\n",
 
 	// PP_ARBFP1
@@ -678,13 +690,16 @@ std::string SkinMaterial::msPPrograms[Shader::MAX_PROFILES] =
 	"varying mediump vec2 vertexTCoord0;\n"
 	"varying mediump vec2 vertexTCoord1;\n"
 	"uniform sampler2D gDiffuseSampler;\n"
+	"uniform mediump vec4 UVOffset;\n"
 	"uniform mediump vec4 FogColor;\n"
+	"uniform mediump vec4 FogColorDist;\n"
 	"void main()\n"
 	"{\n"
 	"	mediump vec2 texCoord = vec2(vertexTCoord0.x, 1.0-vertexTCoord0.y);\n"
+	"	texCoord.xy += UVOffset.xy;\n"
 	"	mediump vec4 lastColor = texture2D(gDiffuseSampler, texCoord) * vertexColor;\n"
-	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColor.rgb * (1.0 - vertexTCoord1.x);\n"
 	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.y + FogColor.rgb * (1.0 - vertexTCoord1.y);\n"
+	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColorDist.rgb * (1.0 - vertexTCoord1.x);\n"
 	"	gl_FragColor = lastColor;\n"
 	"}\n"
 };
@@ -704,13 +719,16 @@ std::string SkinMaterial::msPPrograsOGLESTest[2] =
 	"varying mediump vec2 vertexTCoord0;\n"
 	"varying mediump vec2 vertexTCoord1;\n"
 	"uniform sampler2D gDiffuseSampler;\n"
+	"uniform mediump vec4 UVOffset;\n"
 	"uniform mediump vec4 FogColor;\n"
+	"uniform mediump vec4 FogColorDist;\n"
 	"void main()\n"
 	"{\n"
 	"	mediump vec2 texCoord = vec2(vertexTCoord0.x, 1.0-vertexTCoord0.y);\n"
+	"	texCoord.xy += UVOffset.xy;\n"
 	"	mediump vec4 lastColor = texture2D(gDiffuseSampler, texCoord) * vertexColor;\n"
-	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColor.rgb * (1.0 - vertexTCoord1.x);\n"
 	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.y + FogColor.rgb * (1.0 - vertexTCoord1.y);\n"
+	"	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColorDist.rgb * (1.0 - vertexTCoord1.x);\n"
 	"	gl_FragColor = lastColor;\n"
 	"}\n",
 
@@ -718,10 +736,13 @@ std::string SkinMaterial::msPPrograsOGLESTest[2] =
 	"varying mediump vec2 vertexTCoord0;\n"
 	"varying mediump vec2 vertexTCoord1;\n"
 	"uniform sampler2D gDiffuseSampler;\n"
+	"uniform mediump vec4 UVOffset;\n"
 	"uniform mediump vec4 FogColor;\n"
+	"uniform mediump vec4 FogColorDist;\n"
 	"void main()\n"
 	"{\n"
 	"	mediump vec2 texCoord = vec2(vertexTCoord0.x, 1.0-vertexTCoord0.y);\n"
+	"	texCoord.xy += UVOffset.xy;\n"
 	"	mediump vec4 lastColor = texture2D(gDiffuseSampler, texCoord) * vertexColor;\n"
 	"	if (lastColor.a < 0.25)\n"
 	"	{\n"
@@ -729,8 +750,8 @@ std::string SkinMaterial::msPPrograsOGLESTest[2] =
 	"	}\n"
 	"	else\n"
 	"	{\n"
-	"		lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColor.rgb * (1.0 - vertexTCoord1.x);\n"
 	"		lastColor.rgb = lastColor.rgb * vertexTCoord1.y + FogColor.rgb * (1.0 - vertexTCoord1.y);\n"
+	"		lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColorDist.rgb * (1.0 - vertexTCoord1.x);\n"
 	"		gl_FragColor = lastColor;\n"
 	"	}\n"
 	"}\n"

@@ -32,6 +32,9 @@ namespace PX2
 
 		virtual ~KeyframeController ();
 
+		void SetTransScale (const APoint &xyzScale);
+		const APoint &GetTransScale () const;
+
 		// 成员访问
 		inline int GetNumCommonTimes () const;
 		inline float* GetCommonTimes () const;
@@ -81,6 +84,8 @@ namespace PX2
 
 		// 记录索引，用来进行插值。
 		int mTLastIndex, mRLastIndex, mSLastIndex, mCLastIndex;
+
+		APoint mTransScale;
 	};
 
 	PX2_REGISTER_STREAM(KeyframeController);

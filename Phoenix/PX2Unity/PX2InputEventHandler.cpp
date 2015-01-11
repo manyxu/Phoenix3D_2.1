@@ -10,7 +10,9 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 InputEventHandler::InputEventHandler ()
 	:
-mPriority(0)
+mPriority(0),
+mIsSigned(0),
+mIsSignIgnoreOtherHandlers(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -26,6 +28,26 @@ void InputEventHandler::SetPriority (int priority)
 int InputEventHandler::GetPriority () const
 {
 	return mPriority;
+}
+//----------------------------------------------------------------------------
+void InputEventHandler::SetSigned (bool sign)
+{
+	mIsSigned = sign;
+}
+//----------------------------------------------------------------------------
+bool InputEventHandler::IsSigned () const
+{
+	return mIsSigned;
+}
+//----------------------------------------------------------------------------
+void InputEventHandler::SetSignIgnoreOtherHandlers (bool doIngore)
+{
+	mIsSignIgnoreOtherHandlers = doIngore;
+}
+//----------------------------------------------------------------------------
+bool InputEventHandler::IsSignIgnoreOtherHandlers () const
+{
+	return mIsSignIgnoreOtherHandlers;
 }
 //----------------------------------------------------------------------------
 void InputEventHandler::AddAcceptRange (const Rectf &ar)

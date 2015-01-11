@@ -12,7 +12,7 @@
 //----------------------------------------------------------------------------
 #define PX2_DECLARE_FUNCTION \
 public: \
-	static void RegistFunctions ();
+	static void RegistFunctions (std::map<std::string, std::vector<FunObject> > &map);
 //----------------------------------------------------------------------------
 
 #endif

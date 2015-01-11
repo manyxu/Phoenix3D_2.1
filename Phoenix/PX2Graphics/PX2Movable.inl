@@ -35,6 +35,21 @@ inline const Float3 &Movable::GetColor () const
 	return mColor;
 }
 //----------------------------------------------------------------------------
+inline void Movable::SetBrightnessSelfCtrled (bool selfCtrled)
+{
+	mIsBrightnessSelfCtrled = selfCtrled;
+}
+//----------------------------------------------------------------------------
+inline bool Movable::IsBrightnessSelfCtrled () const
+{
+	return mIsBrightnessSelfCtrled;
+}
+//----------------------------------------------------------------------------
+inline float Movable::GetBrightness () const
+{
+	return mBrightness;
+}
+//----------------------------------------------------------------------------
 inline Movable* Movable::GetParent ()
 {
     return mParent;

@@ -31,6 +31,7 @@ namespace PX2
 	/// Usage Examples:
 	///     std::string s1 = Format("The answer to life, the universe, and everything is %d", 42);
 	///     std::string s2 = Format("second: %[1]d, first: %[0]d", 1, 2);
+	std::string Format(const std::string& fmt, const Any& value);
 	std::string Format(const std::string& fmt, const Any& value1, const Any& value2);
 	std::string Format(const std::string& fmt, const Any& value1, const Any& value2, const Any& value3);
 	std::string Format(const std::string& fmt, const Any& value1, const Any& value2, const Any& value3, const Any& value4);
@@ -39,7 +40,6 @@ namespace PX2
 
 
 	void Format(std::string& result, const std::string& fmt, const Any& value);
-
 	void Format(std::string& result, const std::string& fmt, const Any& value1, const Any& value2);
 	void Format(std::string& result, const std::string& fmt, const Any& value1, const Any& value2, const Any& value3);
 	void Format(std::string& result, const std::string& fmt, const Any& value1, const Any& value2, const Any& value3, const Any& value4);
@@ -47,7 +47,7 @@ namespace PX2
 	void Format(std::string& result, const std::string& fmt, const Any& value1, const Any& value2, const Any& value3, const Any& value4, const Any& value5, const Any& value6);
 
 
-	void Format(std::string& result, const std::string& fmt, const std::vector<Any>& values);
+	void FormatVec(std::string& result, const std::string& fmt, const std::vector<Any>& values);
 
 }
 

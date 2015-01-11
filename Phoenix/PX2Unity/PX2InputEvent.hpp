@@ -26,6 +26,7 @@ namespace PX2
 	PX2_EVENT(MouseMoved)
 	PX2_EVENT(MousePressed)
 	PX2_EVENT(MouseReleased)
+	PX2_EVENT(MouseWheeled)
 	PX2_EVENT(TouchPressed)
 	PX2_EVENT(TouchMoved)
 	PX2_EVENT(TouchReleased)
@@ -38,7 +39,7 @@ namespace PX2
 		InputEventData ();
 		~InputEventData ();
 
-		int UnCoveredType;
+		int TheEventType;
 
 		KeyCode KCode;
 

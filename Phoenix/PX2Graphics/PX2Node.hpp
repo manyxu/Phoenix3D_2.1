@@ -72,6 +72,8 @@ namespace PX2
 		*/
 		virtual int AttachChild (Movable* child);
 
+		void InsertChild (Movable *before, Movable *child);
+
 		/// 从父亲节点中去除child
 		/**
 		* 如果'child'非空，返回child在孩子数组中的索引。否则返回-1。
@@ -101,11 +103,11 @@ namespace PX2
 		* 回null。
 		*/
 		virtual MovablePtr GetChild (int i);
-
 		virtual MovablePtr GetChildByName (const std::string &name);
 
 		virtual void SetAlpha (float alpha);
 		virtual void SetColor (const Float3 &color);
+		virtual void SetBrightness (float brightness);
 		
 		void SetDoPickPriority (bool doPickPriority); // 一般用来为Node设置
 		bool IsDoPickPriority () const;
@@ -113,6 +115,9 @@ namespace PX2
 
 		void SetNeedCalUpdateChild (bool needCal);
 		bool IsNeedCalUpdateChild () const;
+
+		void SetAnchorID (int anchorID);
+		int GetAnchorID () const;
 
 	protected:
 		// 几何图形更新
@@ -124,6 +129,8 @@ namespace PX2
 
 		// 孩子列表
 		std::vector<MovablePtr> mChild;
+
+		int mAnchorID;
 		
 		std::vector<Movable*> mUpdateChild;
 		bool mIsNeedCalUpdateChild;

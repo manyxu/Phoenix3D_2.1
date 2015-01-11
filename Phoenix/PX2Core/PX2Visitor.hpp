@@ -15,11 +15,11 @@ namespace PX2
 	class Object;
 	class Any;
 
-	class Vistor
+	class Visitor
 	{
 	public:
-		Vistor ();
-		virtual ~Vistor ();
+		Visitor ();
+		virtual ~Visitor ();
 
 		virtual void Visit (Object *obj, const int info);
 		virtual void Visit (Object *obj, const std::string &info);
@@ -28,18 +28,34 @@ namespace PX2
 
 #define  PX2_VISITOR \
 public: \
-	void AddVistor (Vistor *vistor) \
+	void AddVisitor (Visitor *visitor) \
 	{ \
-		for (int i=0; i<(int)mVistors.size(); i++) \
+		for (int i=0; i<(int)mVisitors.size(); i++) \
 		{ \
-			if (vistor == mVistors[i]) \
+			if (visitor == mVisitors[i]) \
 				return; \
 		} \
-		mVistors.push_back(vistor); \
+		mVisitors.push_back(visitor); \
+	} \
+	void RemoveVisitor (Visitor *visitor) \
+	{ \
+		std::vector<Visitor *>::iterator it = mVisitors.begin(); \
+		for (; it!=mVisitors.end(); it++) \
+		{ \
+			if (visitor == *it) \
+			{ \
+				mVisitors.erase(it); \
+					return; \
+			} \
+		} \
+	} \
+	void RemoveAllVisitors () \
+	{ \
+		mVisitors.clear(); \
 	} \
 	\
 protected: \
-	std::vector<Vistor *> mVistors;
+	std::vector<Visitor *> mVisitors;
 }
 
 #endif

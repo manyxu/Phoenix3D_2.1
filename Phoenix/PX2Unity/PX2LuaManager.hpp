@@ -31,8 +31,6 @@ namespace PX2
 		LuaManager ();
 		virtual ~LuaManager ();
 
-		virtual void Create();
-
 		void SetLuaState (lua_State *state);
 		lua_State *GetLuaState ();
 

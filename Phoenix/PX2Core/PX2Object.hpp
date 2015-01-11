@@ -1,4 +1,8 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+/*
+*
+* 文件名称	：	PX2Object.hpp
+*
+*/
 
 #ifndef PX2OBJECT_HPP
 #define PX2OBJECT_HPP
@@ -15,9 +19,6 @@
 
 namespace PX2
 {
-
-	class Event;
-	class EventHandler;
 
 	/// 对象系统根类
 	/** 
@@ -69,19 +70,6 @@ namespace PX2
 			std::vector<Object*>& objects);
 	private:
 		std::string mName;
-
-		// 事件
-	public:
-		void ComeInEventWorld ();
-		void GoOutEventWorld ();
-		bool IsInEventWorld();
-
-		EventHandler *GetEventHandler();
-
-		virtual void DoExecute(Event *event);
-
-	protected:
-		Pointer0<EventHandler> mEventHandler;
 
 		// Visitor
 	public:
@@ -174,12 +162,15 @@ namespace PX2
 	public:
 		enum FunParamType
 		{
+			FPT_NONE,
 			FPT_INT,
 			FPT_FLOAT,
-			FPT_FLOAT3,
-			FPT_FLOAT4,
+			FPT_APOINT,
+			FPT_AVECTOR,
 			FPT_BOOL,
 			FPT_STRING,
+			FPT_POINTER,
+			FPT_POINTER_THIS,
 			FPT_MAX_TYPE
 		};
 		struct FunParam
@@ -197,7 +188,8 @@ namespace PX2
 			std::string FunName;
 			void AddInput (const std::string &paramName, FunParamType type,
 				const Any &paramValue);
-			void AddOutPut (const std::string &paramName, FunParamType type);
+			void AddOutput (const std::string &paramName, FunParamType type,
+				const Any &paramValue);
 
 			const std::vector<FunParam> &GetInParams () const;
 			int GetNumInParams () const;
@@ -211,27 +203,7 @@ namespace PX2
 			std::vector<FunParam> mInParams;
 			std::vector<FunParam> mOutParams;
 		};
-		static void RegistFunctions ();
-		static std::map<std::string, std::vector<FunObject> > &GetFunctionMap ();
-
-	protected:
-		static std::map<std::string, std::vector<FunObject> > mFunObjectMap;
-
-		// Scripts
-	public:
-		void SetUserScriptName(const std::string &scriptName);
-		const std::string &GetUserScriptName() const;
-		const std::string &GetScriptName() const;
-
-		bool RegistToScriptSystem();
-		bool UnRegistToScriptSystem();
-		bool IsRegistedToScriptSystem();
-
-	protected:
-		std::string mScriptHandler;
-
-		std::string mScriptName;
-		std::string mUserScriptName;
+		static void RegistFunctions (std::map<std::string, std::vector<FunObject> > &map);
 
 		// 持久化
 	public:

@@ -32,11 +32,6 @@ namespace PX2
 		MaterialInstance (const Material* material, int techniqueIndex);
 		virtual ~MaterialInstance ();
 
-		void SetBlendMode(int mode)
-		{
-			mBlendMode = mode;
-		}
-
 		// 成员访问
 		/*
 		* 这些主要被Renderer渲染几何图形时调用。
@@ -87,8 +82,6 @@ namespace PX2
 		int mNumPasses;
 		ShaderParametersPtr* mVertexParameters;
 		ShaderParametersPtr* mPixelParameters;
-
-		int mBlendMode;
 	};
 
 	PX2_REGISTER_STREAM(MaterialInstance);

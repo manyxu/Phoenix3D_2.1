@@ -41,9 +41,9 @@ namespace PX2
 		static int* msVRegisters[Shader::MAX_PROFILES];
 		static std::string msVPrograms[Shader::MAX_PROFILES];
 
-		static int msDx9PRegisters[1];
-		static int msOglPRegisters[1];
-		static int msOpenGLES2PRegisters[1];
+		static int msDx9PRegisters[2];
+		static int msOglPRegisters[2];
+		static int msOpenGLES2PRegisters[2];
 		static int* msPRegisters[Shader::MAX_PROFILES];
 		static int msAllPTextureUnits[1];
 		static int* msPTextureUnits[Shader::MAX_PROFILES];

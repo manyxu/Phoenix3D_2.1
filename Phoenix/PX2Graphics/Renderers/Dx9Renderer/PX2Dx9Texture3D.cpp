@@ -13,25 +13,25 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 PdrTexture3D::PdrTexture3D (Renderer* renderer, const Texture3D* texture)
 {
-	IDirect3DDevice9* device = renderer->mData->mDevice;
+	//IDirect3DDevice9* device = renderer->mData->mDevice;
 
-	int numLevels = texture->GetNumLevels();
-	HRESULT hr = device->CreateVolumeTexture((UINT)texture->GetWidth(),
-		(UINT)texture->GetHeight(), (UINT)texture->GetThickness(),
-		(UINT)numLevels, gDX9BufferUsage[texture->GetUsage()],
-		gDX9TextureFormat[texture->GetFormat()], D3DPOOL_MANAGED,
-		&mTexture, 0);
-	PX2_UNUSED(hr);
-	assertion(hr == D3D_OK, "Failed to create 3D texture: %s\n",
-		DXGetErrorString(hr));
+	//int numLevels = texture->GetNumLevels();
+	//HRESULT hr = device->CreateVolumeTexture((UINT)texture->GetWidth(),
+	//	(UINT)texture->GetHeight(), (UINT)texture->GetThickness(),
+	//	(UINT)numLevels, gDX9BufferUsage[texture->GetUsage()],
+	//	gDX9TextureFormat[texture->GetFormat()], D3DPOOL_MANAGED,
+	//	&mTexture, 0);
+	//PX2_UNUSED(hr);
+	//assertion(hr == D3D_OK, "Failed to create 3D texture: %s\n",
+	//	DXGetErrorString(hr));
 
-	for (int level = 0; level < numLevels; ++level)
-	{
-		void* data = Lock(level, Buffer::BL_WRITE_ONLY);
-		memcpy(data, texture->GetData(level),
-			texture->GetNumLevelBytes(level));
-		Unlock(level);
-	}
+	//for (int level = 0; level < numLevels; ++level)
+	//{
+	//	void* data = Lock(level, Buffer::BL_WRITE_ONLY);
+	//	memcpy(data, texture->GetData(level),
+	//		texture->GetNumLevelBytes(level));
+	//	Unlock(level);
+	//}
 }
 //----------------------------------------------------------------------------
 PdrTexture3D::~PdrTexture3D ()

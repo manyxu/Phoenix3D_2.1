@@ -255,3 +255,33 @@ inline bool Renderable::IsUseLightTexture () const
 	return mIsUseLightTexture;
 }
 //----------------------------------------------------------------------------
+inline float Renderable::GetFogInfulenceParam_Height () const
+{
+	return mFogIP_Height;
+}
+//----------------------------------------------------------------------------
+inline float Renderable::GetFogInfulenceParam_Distance () const
+{
+	return mFogIP_Distance;
+}
+//----------------------------------------------------------------------------
+inline void Renderable::SetPhysicsType (PhysicsType type)
+{
+	mPhysicsType = type;
+}
+//----------------------------------------------------------------------------
+inline Renderable::PhysicsType Renderable::GetPhysicsType () const
+{
+	return mPhysicsType;
+}
+//----------------------------------------------------------------------------
+inline void Renderable::SetPhysicsParam (const Float3 &param)
+{
+	mPhysicsParam = param;
+}
+//----------------------------------------------------------------------------
+inline const Float3 &Renderable::GetPhysicsParam () const
+{
+	return mPhysicsParam;
+}
+//----------------------------------------------------------------------------

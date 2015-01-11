@@ -112,6 +112,8 @@ mCLastIndex(0)
 			mScales = 0;
 		}
 	}
+
+	mTransScale = APoint(1.0f, 1.0f, 1.0f);
 }
 //----------------------------------------------------------------------------
 KeyframeController::~KeyframeController ()
@@ -233,6 +235,9 @@ bool KeyframeController::Update (double applicationTime)
 		if (mNumTranslations > 0)
 		{
 			trn = GetTranslate(normTime, i0, i1);
+			trn[0] *= mTransScale[0];
+			trn[1] *= mTransScale[1];
+			trn[2] *= mTransScale[2];
 			mTransform.SetTranslate(trn);
 		}
 
@@ -255,6 +260,9 @@ bool KeyframeController::Update (double applicationTime)
 			GetKeyInfo(ctrlTime, mNumTranslations, mTranslationTimes,
 				mTLastIndex, normTime, i0, i1);
 			trn = GetTranslate(normTime, i0, i1);
+			trn[0] *= mTransScale[0];
+			trn[1] *= mTransScale[1];
+			trn[2] *= mTransScale[2];
 			mTransform.SetTranslate(trn);
 		}
 
@@ -303,6 +311,7 @@ mRLastIndex(0),
 mSLastIndex(0),
 mCLastIndex(0)
 {
+	mTransScale = APoint(1.0f, 1.0f, 1.0f);
 }
 //----------------------------------------------------------------------------
 void KeyframeController::Load (InStream& source)

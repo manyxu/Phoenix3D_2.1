@@ -24,20 +24,26 @@ namespace PX2
 		InputEventListener ();
 		~InputEventListener ();
 
+		// handlers
+		bool HasHandler (InputEventHandler *handler);
+		void AddHandler (InputEventHandler *handler);
+		void RemoveHandler (InputEventHandler *handler);
+		int GetNumHandlers ();
+		void RemoveAllHandlers ();
+
+		void OnInputEventData (const InputEventData &data);
+
+public_internal:
+		// called in pc
 		virtual bool KeyPressed (const KeyEvent &arg);
 		virtual bool KeyReleased (const KeyEvent &arg);
 
 		virtual bool MouseMoved (const MouseEvent &arg);
 		virtual bool MousePressed (const MouseEvent &arg, MouseButtonID id);
 		virtual bool MouseReleased (const MouseEvent &arg, MouseButtonID id);
+		virtual bool MouseWheeled (float val);
 
-		virtual bool TouchMoved (const MultiTouchEvent &arg);
-		virtual bool TouchPressed (const MultiTouchEvent &arg);
-		virtual bool TouchReleased (const MultiTouchEvent &arg);
-		virtual bool TouchCancelled (const MultiTouchEvent &arg);
-		void OnLargeSmall (float val);
-
-		// called in 
+		// called in android 
 		// Phoenix3d\Phoenix2p1\GamePlay\Proj.Android\jni\phoenix3d_px2_library_PX2Natives.cpp
 		void TouchMoved (int num, int ids[], float xs[], float ys[]);
 		void TouchPressed (int num, int ids[], float xs[], float ys[]);
@@ -45,14 +51,13 @@ namespace PX2
 		void TouchCancelled (int num, int ids[], float xs[], float ys[]);
 		void KeypadMsg (bool back, bool menu);
 
-		bool HasHandler (InputEventHandler *handler);
-		void AddHandler (InputEventHandler *handler);
-		void RemoveHandler (InputEventHandler *handler);
-		int GetNumHandlers ();
-		void RemoveAllHandlers ();
+		// called in ios
+		virtual bool TouchMoved (const MultiTouchEvent &arg);
+		virtual bool TouchPressed (const MultiTouchEvent &arg);
+		virtual bool TouchReleased (const MultiTouchEvent &arg);
+		virtual bool TouchCancelled (const MultiTouchEvent &arg);
 
 	protected:
-		void OnInputEventData (const InputEventData &data);
 		std::vector<InputEventHandler*> mHandlers; // 不参与管理Handler的生命
 	};
 

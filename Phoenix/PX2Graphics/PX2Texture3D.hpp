@@ -1,13 +1,6 @@
 /*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
 *
 * 文件名称	：	PX2Texture3D.hpp
-*
-* 版本		:	1.0 (2011/01/31)
-*
-* 作者		：	more
 *
 */
 
@@ -29,7 +22,7 @@ namespace PX2
 
 	public:
 		Texture3D (Format tformat, int dimension0, int dimension1, int dimension2,
-			int numLevels, Buffer::Usage usage = Buffer::BU_TEXTURE);
+			int numLevels, Buffer::Usage usage);
 
 		virtual ~Texture3D ();
 
