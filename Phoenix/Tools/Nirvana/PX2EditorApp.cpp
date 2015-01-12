@@ -5,7 +5,7 @@
 */
 
 #include "PX2EditorApp.hpp"
-#include "PX2MainFrame.hpp"
+#include "PX2wxFrame.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -29,18 +29,18 @@ bool EditorApp::OnInit()
 
 #if defined _DEBUG
 #if defined(_WIN64) || defined(WIN64)
-	mMainFrame = new MainFrame("NirvanaDx964D", 0, 0, wxMin(1024,
+	mMainFrame = new PX2WXFrame("NirvanaDx964D", 0, 0, wxMin(1024,
 		displayWidth), wxMin(768, displayHeight));
 #else
-	mMainFrame = new MainFrame("NirvanaDx9D", 0, 0, wxMin(1024,
+	mMainFrame = new PX2WXFrame("NirvanaDx9D", 0, 0, wxMin(1024,
 		displayWidth), wxMin(768, displayHeight));
 #endif
 #else
 #if defined(_WIN64) || defined(WIN64)
-	mMainFrame = new MainFrame("NirvanaDx964", 0, 0, wxMin(1024,
+	mMainFrame = new PX2WXFrame("NirvanaDx964", 0, 0, wxMin(1024,
 		displayWidth), wxMin(768, displayHeight));
 #else
-	mMainFrame = new MainFrame("NirvanaDx9", 0, 0, wxMin(1024,
+	mMainFrame = new PX2WXFrame("NirvanaDx9", 0, 0, wxMin(1024,
 		displayWidth), wxMin(768, displayHeight));
 #endif
 #endif

@@ -4,24 +4,24 @@
 *
 */
 
-#include "PX2MainFrame.hpp"
+#include "PX2wxFrame.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 #define ID_FRAMETIMER (wxID_HIGHEST+1)
 //----------------------------------------------------------------------------
-BEGIN_EVENT_TABLE(MainFrame, wxFrame)
-EVT_TIMER(ID_FRAMETIMER, MainFrame::OnTimer)
-EVT_SIZE(MainFrame::OnSize)
-EVT_MOTION(MainFrame::OnMotion)
-EVT_ENTER_WINDOW(MainFrame::OnEnterWindow)
-EVT_LEAVE_WINDOW(MainFrame::OnLeaveWindow)
-EVT_LEFT_DOWN(MainFrame::OnLeftDown)
-EVT_LEFT_UP(MainFrame::OnLeftUp)
+BEGIN_EVENT_TABLE(PX2WXFrame, wxFrame)
+EVT_TIMER(ID_FRAMETIMER, PX2WXFrame::OnTimer)
+EVT_SIZE(PX2WXFrame::OnSize)
+EVT_MOTION(PX2WXFrame::OnMotion)
+EVT_ENTER_WINDOW(PX2WXFrame::OnEnterWindow)
+EVT_LEAVE_WINDOW(PX2WXFrame::OnLeaveWindow)
+EVT_LEFT_DOWN(PX2WXFrame::OnLeftDown)
+EVT_LEFT_UP(PX2WXFrame::OnLeftUp)
 END_EVENT_TABLE();
 //----------------------------------------------------------------------------
-MainFrame::MainFrame(const std::string &title, int xPos, int yPos,
+PX2WXFrame::PX2WXFrame(const std::string &title, int xPos, int yPos,
 	int width, int height) :
 wxFrame(0, -1, title, wxPoint(xPos, yPos), wxSize(width, height), 
 	wxSYSTEM_MENU | wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxCLOSE_BOX | wxCLIP_CHILDREN)
@@ -35,21 +35,21 @@ wxFrame(0, -1, title, wxPoint(xPos, yPos), wxSize(width, height),
 	mTimer.Start(25);
 }
 //----------------------------------------------------------------------------
-MainFrame::~MainFrame()
+PX2WXFrame::~PX2WXFrame()
 {
 }
 //----------------------------------------------------------------------------
-void MainFrame::OnTimer(wxTimerEvent& event)
+void PX2WXFrame::OnTimer(wxTimerEvent& event)
 {
 	if (mIsDoSizing)
 		_Sizing();
 }
 //----------------------------------------------------------------------------
-void MainFrame::OnSize(wxSizeEvent& e)
+void PX2WXFrame::OnSize(wxSizeEvent& e)
 {
 }
 //----------------------------------------------------------------------------
-void MainFrame::OnMotion(wxMouseEvent& e)
+void PX2WXFrame::OnMotion(wxMouseEvent& e)
 {
 	if (!mIsDoSizing)
 	{
@@ -57,15 +57,15 @@ void MainFrame::OnMotion(wxMouseEvent& e)
 	}
 }
 //----------------------------------------------------------------------------
-void MainFrame::OnEnterWindow(wxMouseEvent& e)
+void PX2WXFrame::OnEnterWindow(wxMouseEvent& e)
 {
 }
 //----------------------------------------------------------------------------
-void MainFrame::OnLeaveWindow(wxMouseEvent& e)
+void PX2WXFrame::OnLeaveWindow(wxMouseEvent& e)
 {
 }
 //----------------------------------------------------------------------------
-void MainFrame::OnLeftDown(wxMouseEvent& e)
+void PX2WXFrame::OnLeftDown(wxMouseEvent& e)
 {
 	mIsMouseDown_Left = true;
 
@@ -75,7 +75,7 @@ void MainFrame::OnLeftDown(wxMouseEvent& e)
 	}
 }
 //----------------------------------------------------------------------------
-void MainFrame::OnLeftUp(wxMouseEvent& e)
+void PX2WXFrame::OnLeftUp(wxMouseEvent& e)
 {
 	mIsMouseDown_Left = false;
 
@@ -85,7 +85,7 @@ void MainFrame::OnLeftUp(wxMouseEvent& e)
 	}
 }
 //----------------------------------------------------------------------------
-bool MainFrame::_CalIsInSizingRange()
+bool PX2WXFrame::_CalIsInSizingRange()
 {
 	wxPoint mousePos = wxGetMousePosition();
 	mBeforeSizingRect = GetRect();
@@ -133,7 +133,7 @@ bool MainFrame::_CalIsInSizingRange()
 	return isInSizingRange;
 }
 //----------------------------------------------------------------------------
-int MainFrame::_CalSizeDir(const wxRect &frameRect, const wxSize &borderSize,
+int PX2WXFrame::_CalSizeDir(const wxRect &frameRect, const wxSize &borderSize,
 	const wxPoint &mousePos)
 {
 	wxRect rectLT = wxRect(frameRect.x, frameRect.y, borderSize.GetWidth(), borderSize.GetHeight());
@@ -189,7 +189,7 @@ int MainFrame::_CalSizeDir(const wxRect &frameRect, const wxSize &borderSize,
 	return 0;
 }
 //----------------------------------------------------------------------------
-void MainFrame::_Sizing()
+void PX2WXFrame::_Sizing()
 {
 	wxPoint mousePos = wxGetMousePosition();
 
@@ -244,8 +244,7 @@ void MainFrame::_Sizing()
 
 	if (0 != mSizeDir)
 	{
-		SetSize(newSize);
-		SetPosition(newPos);
+		SetSize(wxRect(newPos.x, newPos.y, newSize.GetWidth(), newSize.GetHeight()));
 	}
 }
 //----------------------------------------------------------------------------

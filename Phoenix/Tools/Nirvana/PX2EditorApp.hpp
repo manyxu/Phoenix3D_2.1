@@ -8,7 +8,7 @@
 namespace PX2Editor
 {
 
-	class MainFrame;
+	class PX2WXFrame;
 
 	class EditorApp : public wxApp, public PX2::Singleton < EditorApp >
 	{
@@ -20,7 +20,7 @@ namespace PX2Editor
 		virtual int OnExit();
 
 	protected:
-		MainFrame *mMainFrame;
+		PX2WXFrame *mMainFrame;
 	};
 
 	DECLARE_APP(EditorApp)

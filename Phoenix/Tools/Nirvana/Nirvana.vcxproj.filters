@@ -10,7 +10,7 @@
       <Filter>App</Filter>
     </ClInclude>
     <ClInclude Include="PX2EditorPre.hpp" />
-    <ClInclude Include="PX2MainFrame.hpp">
+    <ClInclude Include="PX2wxFrame.hpp">
       <Filter>App</Filter>
     </ClInclude>
   </ItemGroup>
@@ -18,7 +18,7 @@
     <ClCompile Include="PX2EditorApp.cpp">
       <Filter>App</Filter>
     </ClCompile>
-    <ClCompile Include="PX2MainFrame.cpp">
+    <ClCompile Include="PX2wxFrame.cpp">
       <Filter>App</Filter>
     </ClCompile>
   </ItemGroup>

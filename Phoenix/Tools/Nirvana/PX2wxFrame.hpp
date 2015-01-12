@@ -1,23 +1,23 @@
 /*
 *
-* 文件名称	：	PX2EditorFrame.hpp
+* 文件名称	：	PX2wxFrame.hpp
 *
 */
 
-#ifndef PX2MAINFRAME_HPP
-#define PX2MAINFRAME_HPP
+#ifndef PX2WXMAINFRAME_HPP
+#define PX2WXMAINFRAME_HPP
 
 #include "PX2EditorPre.hpp"
 
 namespace PX2Editor
 {
 
-	class MainFrame : public wxFrame
+	class PX2WXFrame : public wxFrame
 	{
 	public:
-		MainFrame(const std::string &title, int xPos, int yPos, 
+		PX2WXFrame(const std::string &title, int xPos, int yPos, 
 			int width, int height);
-		virtual ~MainFrame();
+		virtual ~PX2WXFrame();
 
 		void OnTimer(wxTimerEvent& event);
 		void OnSize(wxSizeEvent& e);

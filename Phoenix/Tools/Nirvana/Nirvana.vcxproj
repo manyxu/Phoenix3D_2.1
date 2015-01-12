@@ -84,11 +84,11 @@
   <ItemGroup>
     <ClInclude Include="PX2EditorApp.hpp" />
     <ClInclude Include="PX2EditorPre.hpp" />
-    <ClInclude Include="PX2MainFrame.hpp" />
+    <ClInclude Include="PX2wxFrame.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2EditorApp.cpp" />
-    <ClCompile Include="PX2MainFrame.cpp" />
+    <ClCompile Include="PX2wxFrame.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
