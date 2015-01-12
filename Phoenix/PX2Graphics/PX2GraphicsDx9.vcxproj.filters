@@ -269,9 +269,6 @@
     <ClCompile Include="PX2VertexShader.cpp">
       <Filter>Shaders</Filter>
     </ClCompile>
-    <ClCompile Include="PX2VertexColor4Material.cpp">
-      <Filter>LocalMaterials</Filter>
-    </ClCompile>
     <ClCompile Include="PX2VMatrixConstant.cpp">
       <Filter>ShaderFloats</Filter>
     </ClCompile>
@@ -328,9 +325,6 @@
     </ClCompile>
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9VertexShader.cpp">
       <Filter>Renderers\Dx9Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2Texture2DMaterial.cpp">
-      <Filter>LocalMaterials</Filter>
     </ClCompile>
     <ClCompile Include="PX2UserConstant.cpp">
       <Filter>ShaderFloats</Filter>
@@ -395,26 +389,29 @@
     <ClCompile Include="PX2FogColorConstant.cpp">
       <Filter>ShaderFloats</Filter>
     </ClCompile>
-    <ClCompile Include="PX2JunglerMaterial.cpp">
-      <Filter>LocalMaterials</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2SkinMaterial.cpp">
-      <Filter>LocalMaterials</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2StdMaterial.cpp">
-      <Filter>LocalMaterials</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightTexMaterial.cpp">
-      <Filter>LocalMaterials</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightTex2Material.cpp">
-      <Filter>LocalMaterials</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2VertexColorStdMaterial.cpp">
-      <Filter>LocalMaterials</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Controlledable.cpp">
       <Filter>Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightTex2Material.cpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightTexMaterial.cpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkinMaterial.cpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StdMaterial.cpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2JunglerMaterial.cpp">
+      <Filter>LocalMaterials\NotUse</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Texture2DMaterial.cpp">
+      <Filter>LocalMaterials\Simple</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VertexColor4Material.cpp">
+      <Filter>LocalMaterials\Simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -690,9 +687,6 @@
     <ClInclude Include="PX2VertexShader.hpp">
       <Filter>Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="PX2VertexColor4Material.hpp">
-      <Filter>LocalMaterials</Filter>
-    </ClInclude>
     <ClInclude Include="PX2VMatrixConstant.hpp">
       <Filter>ShaderFloats</Filter>
     </ClInclude>
@@ -756,9 +750,6 @@
     </ClInclude>
     <ClInclude Include="Renderers\Dx9Renderer\PX2Dx9RendererPre.hpp">
       <Filter>Renderers\Dx9Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2Texture2DMaterial.hpp">
-      <Filter>LocalMaterials</Filter>
     </ClInclude>
     <ClInclude Include="PX2UserConstant.hpp">
       <Filter>ShaderFloats</Filter>
@@ -826,26 +817,29 @@
     <ClInclude Include="PX2FogColorConstant.hpp">
       <Filter>ShaderFloats</Filter>
     </ClInclude>
-    <ClInclude Include="PX2JunglerMaterial.hpp">
-      <Filter>LocalMaterials</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2SkinMaterial.hpp">
-      <Filter>LocalMaterials</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2StdMaterial.hpp">
-      <Filter>LocalMaterials</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightTexMaterial.hpp">
-      <Filter>LocalMaterials</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightTex2Material.hpp">
-      <Filter>LocalMaterials</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2VertexColorStdMaterial.hpp">
-      <Filter>LocalMaterials</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Controlledable.hpp">
       <Filter>Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightTex2Material.hpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightTexMaterial.hpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkinMaterial.hpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StdMaterial.hpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2JunglerMaterial.hpp">
+      <Filter>LocalMaterials\NotUse</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Texture2DMaterial.hpp">
+      <Filter>LocalMaterials\Simple</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VertexColor4Material.hpp">
+      <Filter>LocalMaterials\Simple</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1082,6 +1076,15 @@
     </Filter>
     <Filter Include="DynamicBuffer">
       <UniqueIdentifier>{f0ed51d7-31a8-4342-bb3c-d368c9636a3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LocalMaterials\Lighting">
+      <UniqueIdentifier>{8ba94c52-64a5-4fb2-aaf7-705539154363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LocalMaterials\NotUse">
+      <UniqueIdentifier>{29e137d5-54e9-4e09-b062-efc02b7150d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LocalMaterials\Simple">
+      <UniqueIdentifier>{31f75ea6-d60d-499b-ad2d-6b4988badfb4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
