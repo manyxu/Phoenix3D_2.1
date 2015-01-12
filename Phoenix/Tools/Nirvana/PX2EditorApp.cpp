@@ -30,23 +30,24 @@ bool EditorApp::OnInit()
 #if defined _DEBUG
 #if defined(_WIN64) || defined(WIN64)
 	mMainFrame = new MainFrame("NirvanaDx964D", 0, 0, wxMin(1024,
-		displayWidth), wxMin(748, displayHeight));
+		displayWidth), wxMin(768, displayHeight));
 #else
 	mMainFrame = new MainFrame("NirvanaDx9D", 0, 0, wxMin(1024,
-		displayWidth), wxMin(748, displayHeight));
+		displayWidth), wxMin(768, displayHeight));
 #endif
 #else
 #if defined(_WIN64) || defined(WIN64)
 	mMainFrame = new MainFrame("NirvanaDx964", 0, 0, wxMin(1024,
-		displayWidth), wxMin(748, displayHeight));
+		displayWidth), wxMin(768, displayHeight));
 #else
 	mMainFrame = new MainFrame("NirvanaDx9", 0, 0, wxMin(1024,
-		displayWidth), wxMin(748, displayHeight));
+		displayWidth), wxMin(768, displayHeight));
 #endif
 #endif
 
 	mMainFrame->Show(true);
 	SetTopWindow(mMainFrame);
+	mMainFrame->Center();
 	//mMainFrame->Maximize();
 
 	return true;
