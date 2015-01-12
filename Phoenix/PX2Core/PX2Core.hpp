@@ -29,13 +29,21 @@
 #include "PX2Visitor.hpp"
 #include "PX2DesignUntity.hpp"
 
+// EventSystem
+#include "PX2Event.hpp"
+#include "PX2EventData.hpp"
+#include "PX2EventFactory.hpp"
+#include "PX2EventHandler.hpp"
+#include "PX2EventSpace.hpp"
+#include "PX2EventWorld.hpp"
+
 #if defined(_WIN32) || defined(WIN32)
 #pragma warning(push) 
 #pragma warning(disable : 4312)
 #endif
 
 #include "PX2Singleton.hpp"
-#include "PX2Singleton1.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 
 #if defined(_WIN32) || defined(WIN32)
 #pragma warning(pop)

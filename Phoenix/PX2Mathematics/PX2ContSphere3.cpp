@@ -8,6 +8,7 @@
 
 namespace PX2
 {
+
 	//----------------------------------------------------------------------------
 	template <typename Real>
 	Sphere3<Real> ContSphereOfAABB (int numPoints, const Vector3<Real>* points)
@@ -120,4 +121,5 @@ namespace PX2
 		Sphere3<double> MergeSpheres<double> (const Sphere3<double>&,
 		const Sphere3<double>&);
 	//----------------------------------------------------------------------------
+
 }

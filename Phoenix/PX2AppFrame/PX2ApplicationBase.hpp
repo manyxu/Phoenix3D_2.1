@@ -8,7 +8,6 @@
 #define PX2APPLICATIONBASE_HPP
 
 #include "PX2AppFramePre.hpp"
-#include "PX2ScriptEventHandler.hpp"
 
 namespace PX2
 {
@@ -92,19 +91,13 @@ namespace PX2
 
 		TimerManager *mTimerMan;
 		EventWorld *mEventWorld;
-		InputEventAdapter *mInputEventAdapter;
 		LanguageManager *mLanguageMan;
 		GraphicsRoot *mRoot;
 		IMEDispatcher *mIMEDisp;
 		DynamicBufferManager *mDBM;
 		ResourceManager *mResMan;
 		ScriptManager *mScriptMan;
-		ScriptEventHandlerPtr mScriptEventHandler;
-		GameManager *mGameMan;
 		FontManager *mFontMan;
-		UIManager *mUIManager;
-		SoundSystem *mSoundSystem;
-		Project *mProject;
 		float mInitScreenWidth;
 		float mInitScreenHeight;
 		AppSuitType mScreenSuitType;
@@ -121,18 +114,18 @@ namespace PX2
 		bool mBeforeInBackgroundSoundEnable;
 
 		Culler mInfoCuller;
-		UIFramePtr mInfoFrame;
-		UIPicBoxPtr mBackPic;
+		//UIFramePtr mInfoFrame;
+		//UIPicBoxPtr mBackPic;
 
-		UIStaticTextPtr mFrameText;
+		//UIStaticTextPtr mFrameText;
 		float mFrameRate;
 		int mNumFrames;
 		float mFrameTime;
 		bool mUpdateDrawInfo;
 
-		UIStaticTextPtr mCurTotalMemory; // ув
-		UIStaticTextPtr mMaxTotalMemory;
-		UIStaticTextPtr mDebugText;
+		//UIStaticTextPtr mCurTotalMemory; // ув
+		//UIStaticTextPtr mMaxTotalMemory;
+		//UIStaticTextPtr mDebugText;
 	};
 
 }

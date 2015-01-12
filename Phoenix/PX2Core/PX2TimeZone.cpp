@@ -11,7 +11,7 @@
 #include <Windows.h>
 #else
 
-#if defined(__APPLE__) || defined(__MARMALADE__)
+#if defined(__APPLE__)
 #include <sys/time.h>
 #else
 #include <sys/timeb.h>
@@ -27,7 +27,7 @@ public:
 
 	int GetTimeZone()
 	{
-#if defined(__APPLE__)  || defined(__ANDROID__) || defined (__LINUX__) || defined (__MARMALADE__)
+#if defined(__APPLE__)  || defined(__ANDROID__) || defined (__LINUX__)
 		std::time_t now = std::time(NULL);
 		struct std::tm t;
 		gmtime_r(&now, &t);

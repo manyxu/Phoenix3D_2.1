@@ -8,7 +8,7 @@
 #define PX2DYNAMICBUFFERMANAGER_HPP
 
 #include "PX2GraphicsPre.hpp"
-#include "PX2Singleton.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 #include "PX2VertexFormat.hpp"
 #include "PX2VertexBuffer.hpp"
 #include "PX2IndexBuffer.hpp"

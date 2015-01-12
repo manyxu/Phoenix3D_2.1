@@ -31,14 +31,8 @@
     <Filter Include="ZLib\minzip">
       <UniqueIdentifier>{15439039-4818-4296-8072-8d0793dfbdce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="InputEventAdapter">
-      <UniqueIdentifier>{1e787a30-005b-43ef-8648-c23c4eefe48f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Font">
       <UniqueIdentifier>{3e8c5625-7beb-4077-89ba-4d05f8694dd8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType">
-      <UniqueIdentifier>{aadf60cf-657f-4dd7-ab2e-7c791d4774a6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Font\CharCoding">
       <UniqueIdentifier>{ed4d227e-8145-44b4-9f13-e3946223a515}</UniqueIdentifier>
@@ -49,39 +43,6 @@
     <Filter Include="Font\FontTypes\CommonImpl">
       <UniqueIdentifier>{fb61ad19-ba4d-4bbb-ab19-1c3b1bf00db9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FreeType\include">
-      <UniqueIdentifier>{e2a3eced-9d7e-417e-8e1e-55a8fa142b66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src">
-      <UniqueIdentifier>{d6d662de-e702-41df-a19a-d8d1a6bfba86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src\base">
-      <UniqueIdentifier>{49603465-bf76-4351-80e0-6bf0ae5032a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src\raster">
-      <UniqueIdentifier>{97bdbb18-7e4b-4f69-8651-dd816b974a0d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src\sfnt">
-      <UniqueIdentifier>{9d6294a8-9af1-40f4-a0d8-5e57d349f135}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src\smooth">
-      <UniqueIdentifier>{64e24836-dd5f-4f0e-947e-c739bf201d97}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src\autofit">
-      <UniqueIdentifier>{a9812174-9d37-4039-8c60-15794eb43dc2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src\truetype">
-      <UniqueIdentifier>{f5241819-714e-40e8-899f-685b0404b68e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src\cff">
-      <UniqueIdentifier>{bd6a8d2f-4a65-444d-b511-5a8b93da9351}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src\psnames">
-      <UniqueIdentifier>{d509ed69-72b7-4d02-b251-e71696ae495c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FreeType\src\pshinter">
-      <UniqueIdentifier>{b6db6f51-3a0b-4e49-8d05-256be3f84194}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts">
       <UniqueIdentifier>{68597c40-44e0-4800-b26c-d44298201bf4}</UniqueIdentifier>
     </Filter>
@@ -90,9 +51,6 @@
     </Filter>
     <Filter Include="Scripts\Lua">
       <UniqueIdentifier>{25be5886-7e92-4c99-8179-87ff51384494}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Controls">
-      <UniqueIdentifier>{d5161c94-cd1c-4fc3-a271-2af1a715f3f3}</UniqueIdentifier>
     </Filter>
     <Filter Include="IMEInput">
       <UniqueIdentifier>{45fd261f-72fa-44df-869d-7ecbd8279a03}</UniqueIdentifier>
@@ -127,6 +85,42 @@
     <Filter Include="XML\RapidXML">
       <UniqueIdentifier>{6a1efa6f-f192-41a5-8617-4fe8a80efdbb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Font\FreeType">
+      <UniqueIdentifier>{aadf60cf-657f-4dd7-ab2e-7c791d4774a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\include">
+      <UniqueIdentifier>{e2a3eced-9d7e-417e-8e1e-55a8fa142b66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src">
+      <UniqueIdentifier>{d6d662de-e702-41df-a19a-d8d1a6bfba86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src\base">
+      <UniqueIdentifier>{49603465-bf76-4351-80e0-6bf0ae5032a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src\raster">
+      <UniqueIdentifier>{97bdbb18-7e4b-4f69-8651-dd816b974a0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src\sfnt">
+      <UniqueIdentifier>{9d6294a8-9af1-40f4-a0d8-5e57d349f135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src\smooth">
+      <UniqueIdentifier>{64e24836-dd5f-4f0e-947e-c739bf201d97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src\autofit">
+      <UniqueIdentifier>{a9812174-9d37-4039-8c60-15794eb43dc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src\truetype">
+      <UniqueIdentifier>{f5241819-714e-40e8-899f-685b0404b68e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src\cff">
+      <UniqueIdentifier>{bd6a8d2f-4a65-444d-b511-5a8b93da9351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src\psnames">
+      <UniqueIdentifier>{d509ed69-72b7-4d02-b251-e71696ae495c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Font\FreeType\src\pshinter">
+      <UniqueIdentifier>{b6db6f51-3a0b-4e49-8d05-256be3f84194}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2ResourceManager.cpp">
@@ -140,9 +134,6 @@
     </ClCompile>
     <ClCompile Include="PX2LanguageManager.cpp">
       <Filter>Language</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2CSVParser.cpp">
-      <Filter>CSV</Filter>
     </ClCompile>
     <ClCompile Include="DevIL\altivec_common.c">
       <Filter>DevIL</Filter>
@@ -465,15 +456,6 @@
     <ClCompile Include="PX2JNI.cpp">
       <Filter>Android</Filter>
     </ClCompile>
-    <ClCompile Include="PX2InputEventAdapter.cpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2InputEventListener.cpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2InputEvent.cpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClCompile>
     <ClCompile Include="PX2CharCodingGBK.cpp">
       <Filter>Font\CharCoding</Filter>
     </ClCompile>
@@ -487,61 +469,61 @@
       <Filter>Font\FontTypes\CommonImpl</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftbbox.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftfstype.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftglyph.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftlcdfil.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftstroke.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\fttype1.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftxf86.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftbase.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftsystem.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftinit.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftgasp.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\raster\raster.c">
-      <Filter>FreeType\src\raster</Filter>
+      <Filter>Font\FreeType\src\raster</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\sfnt\sfnt.c">
-      <Filter>FreeType\src\sfnt</Filter>
+      <Filter>Font\FreeType\src\sfnt</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\smooth\smooth.c">
-      <Filter>FreeType\src\smooth</Filter>
+      <Filter>Font\FreeType\src\smooth</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\autofit\autofit.c">
-      <Filter>FreeType\src\autofit</Filter>
+      <Filter>Font\FreeType\src\autofit</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\truetype\truetype.c">
-      <Filter>FreeType\src\truetype</Filter>
+      <Filter>Font\FreeType\src\truetype</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\cff\cff.c">
-      <Filter>FreeType\src\cff</Filter>
+      <Filter>Font\FreeType\src\cff</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\psnames\psnames.c">
-      <Filter>FreeType\src\psnames</Filter>
+      <Filter>Font\FreeType\src\psnames</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\pshinter\pshinter.c">
-      <Filter>FreeType\src\pshinter</Filter>
+      <Filter>Font\FreeType\src\pshinter</Filter>
     </ClCompile>
     <ClCompile Include="PX2TexPackData.cpp">
       <Filter>ResourceManager</Filter>
@@ -654,17 +636,8 @@
     <ClCompile Include="Lua\llex.c">
       <Filter>Scripts\Lua</Filter>
     </ClCompile>
-    <ClCompile Include="PX2InputEventHandler.cpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2InputRanges.cpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClCompile>
     <ClCompile Include="PX2CSVParser1.cpp">
       <Filter>CSV</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2InputPushTransformController.cpp">
-      <Filter>Controls</Filter>
     </ClCompile>
     <ClCompile Include="PX2IMEDispatcher.cpp">
       <Filter>IMEInput</Filter>
@@ -1030,7 +1003,7 @@
       <Filter>Font</Filter>
     </ClCompile>
     <ClCompile Include="FreeType\src\base\ftbitmap.c">
-      <Filter>FreeType\src\base</Filter>
+      <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1044,9 +1017,6 @@
     </ClInclude>
     <ClInclude Include="PX2LanguageManager.hpp">
       <Filter>Language</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2CSVParser.hpp">
-      <Filter>CSV</Filter>
     </ClInclude>
     <ClInclude Include="DevIL\altivec_common.h">
       <Filter>DevIL</Filter>
@@ -1243,15 +1213,6 @@
     <ClInclude Include="PX2JNI.hpp">
       <Filter>Android</Filter>
     </ClInclude>
-    <ClInclude Include="PX2InputEventAdapter.hpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2InputEventListener.hpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2InputEvent.hpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClInclude>
     <ClInclude Include="PX2FontDefine.hpp">
       <Filter>Font</Filter>
     </ClInclude>
@@ -1277,7 +1238,7 @@
       <Filter>Font\FontTypes\CommonImpl</Filter>
     </ClInclude>
     <ClInclude Include="FreeType\include\ft2build.h">
-      <Filter>FreeType\include</Filter>
+      <Filter>Font\FreeType\include</Filter>
     </ClInclude>
     <ClInclude Include="PX2TexPackData.hpp">
       <Filter>ResourceManager</Filter>
@@ -1360,17 +1321,8 @@
     <ClInclude Include="Lua\llex.h">
       <Filter>Scripts\Lua</Filter>
     </ClInclude>
-    <ClInclude Include="PX2InputEventHandler.hpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2InputRanges.hpp">
-      <Filter>InputEventAdapter</Filter>
-    </ClInclude>
     <ClInclude Include="PX2CSVParser1.hpp">
       <Filter>CSV</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2InputPushTransformController.hpp">
-      <Filter>Controls</Filter>
     </ClInclude>
     <ClInclude Include="PX2IMEDispatcher.hpp">
       <Filter>IMEInput</Filter>
@@ -1770,12 +1722,6 @@
     <None Include="PX2ResourceManager.inl">
       <Filter>ResourceManager</Filter>
     </None>
-    <None Include="PX2CSVParser.inl">
-      <Filter>CSV</Filter>
-    </None>
-    <None Include="PX2InputEventAdapter.inl">
-      <Filter>InputEventAdapter</Filter>
-    </None>
     <None Include="PX2FontManager.inl">
       <Filter>Font</Filter>
     </None>
@@ -1790,9 +1736,6 @@
     </None>
     <None Include="PX2CSVParser1.inl">
       <Filter>CSV</Filter>
-    </None>
-    <None Include="PX2InputPushTransformController.inl">
-      <Filter>Controls</Filter>
     </None>
     <None Include="PX2CURLDownload.inl">
       <Filter>CURLDownload</Filter>

@@ -6,8 +6,16 @@
 
 #include "PX2XMLData.hpp"
 #include "PX2Assert.hpp"
+
+#if defined(_WIN32) || defined(WIN32)
+#pragma warning(push) 
+#pragma warning(disable : 4100)
+#endif
 #include "rapidxml.hpp"
 #include "rapidxml_print.hpp"
+#if defined(_WIN32) || defined(WIN32)
+#pragma warning(pop)
+#endif
 
 using namespace PX2;
 using namespace std;
@@ -17,6 +25,7 @@ namespace rapidxml
     void parse_error_handler(const char *what, void *where)
 	{
 		assertion(false, "parse xml error: %s", what);
+		PX2_UNUSED(where);
 	}
 }
 

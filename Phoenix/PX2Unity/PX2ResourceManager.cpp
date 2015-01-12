@@ -262,7 +262,8 @@ bool ResourceManager::CreateFloder (const std::string &parentPath,
 	std::string tempPath = path;
 	int index = 0;
 
-	while (true)
+	bool bIsTrue = true;
+	while (bIsTrue)
 	{
 		int pos = (int)tempPath.find('/', index);
 		if(-1 == pos)
@@ -972,6 +973,7 @@ ResourceManager::LoadRecord &ResourceManager::InsertRecord (
 #endif
 
 	bool isHasUpdate = IsHasUpdate(dstFilename, dstFilename);
+	PX2_UNUSED(isHasUpdate);
 
 	ScopedCS scopeCS(mResTableMutex);
 

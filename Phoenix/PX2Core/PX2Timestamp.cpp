@@ -13,8 +13,6 @@ using namespace PX2;
 
 #ifdef __APPLE__
 #include <sys/time.h>
-#elif __MARMALADE__
-#include "s3e.h"
 #else
 #include <sys/timeb.h>
 #endif
@@ -85,8 +83,6 @@ void Timestamp::Update()
 	ts.HighPart = ft.dwHighDateTime;
 	ts.QuadPart -= epoch.QuadPart;
 	mTimeVal = ts.QuadPart/10;
-#elif defined(__MARMALADE__)
-	mTimeVal = s3eTimerGetUTC()*1000;
 #else
 	struct timeval tv;
 	gettimeofday(&tv, 0);

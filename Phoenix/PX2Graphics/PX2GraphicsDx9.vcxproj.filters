@@ -413,6 +413,12 @@
     <ClCompile Include="PX2VertexColor4Material.cpp">
       <Filter>LocalMaterials\Simple</Filter>
     </ClCompile>
+    <ClCompile Include="PX2StdVC4Material.cpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FogColorDistConstant.cpp">
+      <Filter>ShaderFloats</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -840,6 +846,12 @@
     </ClInclude>
     <ClInclude Include="PX2VertexColor4Material.hpp">
       <Filter>LocalMaterials\Simple</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StdVC4Material.hpp">
+      <Filter>LocalMaterials\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FogColorDistConstant.hpp">
+      <Filter>ShaderFloats</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

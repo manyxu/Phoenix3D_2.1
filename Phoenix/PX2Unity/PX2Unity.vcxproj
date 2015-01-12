@@ -274,7 +274,6 @@
     <ClCompile Include="PX2CharCodingGBK.cpp" />
     <ClCompile Include="PX2CharCodingUTF8.cpp" />
     <ClCompile Include="PX2Crypt.cpp" />
-    <ClCompile Include="PX2CSVParser.cpp" />
     <ClCompile Include="PX2CSVParser1.cpp" />
     <ClCompile Include="PX2CURLDownload.cpp" />
     <ClCompile Include="PX2Font.cpp" />
@@ -284,12 +283,6 @@
     <ClCompile Include="PX2FontGlyphMapTrueType.cpp" />
     <ClCompile Include="PX2IMEDelegate.cpp" />
     <ClCompile Include="PX2IMEDispatcher.cpp" />
-    <ClCompile Include="PX2InputEventAdapter.cpp" />
-    <ClCompile Include="PX2InputEventHandler.cpp" />
-    <ClCompile Include="PX2InputEventListener.cpp" />
-    <ClCompile Include="PX2InputEvent.cpp" />
-    <ClCompile Include="PX2InputPushTransformController.cpp" />
-    <ClCompile Include="PX2InputRanges.cpp" />
     <ClCompile Include="PX2JNI.cpp" />
     <ClCompile Include="PX2LanguageManager.cpp" />
     <ClCompile Include="PX2LuaManager.cpp" />
@@ -519,7 +512,6 @@
     <ClInclude Include="PX2CharCodingGBK.hpp" />
     <ClInclude Include="PX2CharCodingUTF8.hpp" />
     <ClInclude Include="PX2Crypt.hpp" />
-    <ClInclude Include="PX2CSVParser.hpp" />
     <ClInclude Include="PX2CSVParser1.hpp" />
     <ClInclude Include="PX2CURLDownload.hpp" />
     <ClInclude Include="PX2Font.hpp" />
@@ -532,12 +524,6 @@
     <ClInclude Include="PX2FontManager.hpp" />
     <ClInclude Include="PX2IMEDelegate.hpp" />
     <ClInclude Include="PX2IMEDispatcher.hpp" />
-    <ClInclude Include="PX2InputPushTransformController.hpp" />
-    <ClInclude Include="PX2InputRanges.hpp" />
-    <ClInclude Include="PX2InputEventHandler.hpp" />
-    <ClInclude Include="PX2InputEventListener.hpp" />
-    <ClInclude Include="PX2InputEvent.hpp" />
-    <ClInclude Include="PX2InputEventAdapter.hpp" />
     <ClInclude Include="PX2JNI.hpp" />
     <ClInclude Include="PX2LanguageManager.hpp" />
     <ClInclude Include="PX2LuaManager.hpp" />
@@ -570,14 +556,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Lua\Makefile" />
-    <None Include="PX2CSVParser.inl" />
     <None Include="PX2CSVParser1.inl" />
     <None Include="PX2CURLDownload.inl" />
     <None Include="PX2Font.inl" />
     <None Include="PX2FontCommonImpl.inl" />
     <None Include="PX2FontManager.inl" />
-    <None Include="PX2InputEventAdapter.inl" />
-    <None Include="PX2InputPushTransformController.inl" />
     <None Include="PX2LuaManager.inl" />
     <None Include="PX2ResourceManager.inl" />
     <None Include="PX2ResourceUpdate.inl" />

@@ -14,9 +14,6 @@
 #include <sys/stat.h>
 #elif defined(__APPLE__) || defined(__IOS__)
 #include <unistd.h>
-#elif defined(__MARMALADE__)
-#include <unistd.h>
-#include "s3eDevice.h"
 #endif
 
 using namespace PX2;
@@ -25,9 +22,7 @@ using namespace PX2;
 void System::SleepSeconds (float seconds)
 {
 #if defined(_WIN32) || defined(WIN32)
-	Sleep((DWORD)(seconds*1000.0));
-#elif defined(__MARMALADE__)
-	s3eDeviceYield(int(seconds*1000));
+	Sleep((DWORD)(seconds*1000.0));;
 #else
 	timespec ts;
 	ts.tv_sec = int(seconds);
@@ -42,13 +37,6 @@ int System::GetNumCPUs ()
 	SYSTEM_INFO  info;
 	GetSystemInfo(&info);
 	return (long)info.dwNumberOfProcessors;
-#elif defined(__MARMALADE__)
-	int num = s3eDeviceGetInt(S3E_DEVICE_NUM_CPU_CORES);
-	if(num == -1)
-	{
-		num = 1;
-	}
-	return num;
 #else
 	return sysconf(_SC_NPROCESSORS_ONLN);
 #endif
@@ -98,14 +86,11 @@ std::string System::GetUniqueID ()
 	free(pAdapterInfo);
 	return idstr;
 }
-#elif defined(__MARMALADE__)
-std::string System::GetUniqueID ()
-{
-	return std::string(s3eDeviceGetString(S3E_DEVICE_UNIQUE_ID));
-}
+//----------------------------------------------------------------------------
 #else
 std::string System::GetUniqueID ()
 {
 	return std::string("xxx");
 }
+//----------------------------------------------------------------------------
 #endif

@@ -9,8 +9,6 @@
 #include <windows.h>
 #elif defined __ANDROID__
 #include <android/log.h>
-#elif defined __MARMALADE__
-#include "s3e.h"
 #endif
 using namespace PX2;
 
@@ -35,9 +33,6 @@ void OutputWindowHandler::Handle (const LogBuffer *logBuffer,
 	__android_log_print(ANDROID_LOG_INFO, "phoenix3d.px2", timeStamp);
 	__android_log_print(ANDROID_LOG_INFO, "phoenix3d.px2",
 		(char*)logBuffer->Buffer);
-#elif defined __MARMALADE__
-	s3eDebugOutputString(timeStamp);
-	s3eDebugOutputString(logBuffer->Buffer);
 #endif
 }
 //----------------------------------------------------------------------------

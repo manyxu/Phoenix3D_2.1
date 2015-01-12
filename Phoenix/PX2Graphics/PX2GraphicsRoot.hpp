@@ -18,7 +18,7 @@
 #include "PX2Size.hpp"
 #include "PX2Camera.hpp"
 #include "PX2Light.hpp"
-#include "PX2Singleton.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 #include "PX2Rect.hpp"
 
 namespace PX2

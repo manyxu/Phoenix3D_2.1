@@ -4,7 +4,7 @@
 #define PX2SCRIPTMANAGER_HPP
 
 #include "PX2CorePre.hpp"
-#include "PX2Singleton.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 
 namespace PX2
 {

@@ -7,7 +7,7 @@
 #ifndef PX2TIMERMANAGER_HPP
 #define PX2TIMERMANAGER_HPP
 
-#include "PX2Singleton.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 #include "PX2Timer.hpp"
 #include "PX2Time.hpp"
 

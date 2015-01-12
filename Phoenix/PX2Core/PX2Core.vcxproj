@@ -81,8 +81,8 @@
     <ClInclude Include="PX2ScopedCSUN.hpp" />
     <ClInclude Include="PX2ScriptManager.hpp" />
     <ClInclude Include="PX2Semaphore.hpp" />
+    <ClInclude Include="PX2Singleton_NeedNew.hpp" />
     <ClInclude Include="PX2Singleton.hpp" />
-    <ClInclude Include="PX2Singleton1.hpp" />
     <ClInclude Include="PX2SmartPointer.hpp" />
     <ClInclude Include="PX2Smoother.hpp" />
     <ClInclude Include="PX2Stream.hpp" />

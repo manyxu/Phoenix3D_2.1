@@ -32,8 +32,6 @@ namespace PX2
 #include <sys/time.h>
 	static timeval gsInitial;
 	static bool gsInitializedTime = false;
-#elif defined(__MARMALADE__)
-#include "s3eTimer.h"
 #else
 #include <sys/timeb.h>
 	static timeval gsInitial;
@@ -60,31 +58,6 @@ namespace PX2
 		timersub(&currentTime, &gsInitial, &deltaTime);
 
 		return double(1000000)*deltaTime.tv_sec + deltaTime.tv_usec;
-#elif defined(__MARMALADE__)
-		return s3eTimerGetMs()*1000;
-//#else
-//		struct timeb currentTime;
-//
-//		if (!gsInitializedTime)
-//		{
-//			gsInitializedTime = true;
-//			ftime(&currentTime);
-//			gsInitialSec = (long)currentTime.time;
-//			gsInitialUSec = 1000*currentTime.millitm;
-//		}
-//
-//		ftime(&currentTime);
-//		long currentSec = (long)currentTime.time;
-//		long currentUSec = 1000*currentTime.millitm;
-//		long deltaSec = currentSec - gsInitialSec;
-//		long deltaUSec = currentUSec - gsInitialUSec;
-//		if (deltaUSec < 0)
-//		{
-//			deltaUSec += 1000000;
-//			--deltaSec;
-//		}
-//
-//		return 1000000*deltaSec + deltaUSec;
 #endif
 	}
 	//----------------------------------------------------------------------------
@@ -96,9 +69,7 @@ namespace PX2
 	//----------------------------------------------------------------------------
 	void ResetTime ()
 	{
-#ifndef __MARMALADE__
 		gsInitializedTime = false;
-#endif
 	}
 	//----------------------------------------------------------------------------
 

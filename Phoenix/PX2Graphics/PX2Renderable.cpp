@@ -195,6 +195,8 @@ Light *Renderable::GetLight (int i)
 //----------------------------------------------------------------------------
 void Renderable::SetLightTexture (Texture2D *tex)
 {
+	PX2_UNUSED(tex);
+
 	MaterialInstance *mi = GetMaterialInstance();
 	if (mi)
 	{

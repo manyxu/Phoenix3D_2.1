@@ -14,7 +14,6 @@
 // __LINUX__        :  Linux
 // __ANDROID__		:  Android
 // __IOS__          :  IOS
-// __MARMALADE__    :  Marmalade
 //----------------------------------------------------------------------------
 // Microsoft Windows
 //----------------------------------------------------------------------------
@@ -86,15 +85,7 @@
 #define PX2_LITTLE_ENDIAN
 #define PX2_USE_PTHREAD
 #endif
-//----------------------------------------------------------------------------
-// Marmalade
-//----------------------------------------------------------------------------
-#if defined(__MARMALADE__)
 
-#define PX2_LITTLE_ENDIAN
-#define PX2_USE_PTHREAD
-
-#endif
 //----------------------------------------------------------------------------
 // IOS
 //----------------------------------------------------------------------------
@@ -168,9 +159,9 @@
 
 // 用来进行内存管理的宏
 #ifdef _DEBUG
-#ifndef __MARMALADE__
+
 	#define PX2_USE_MEMORY // 使用Phoenix的内存管理机制
-#endif
+
 	#ifdef PX2_USE_MEMORY
 		// 当在main函数之前分配内存或者再main退出之后释放内存，触发宏
 		#define PX2_USE_MEMORY_ASSERT_ON_PREMAIN_POSTMAIN_OPERATIONS

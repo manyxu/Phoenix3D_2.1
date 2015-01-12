@@ -4,7 +4,7 @@
 #define PX2EVENTWORLD_HPP
 
 #include "PX2EventHandler.hpp"
-#include "PX2Singleton.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 #include "PX2SmartPointer.hpp"
 
 namespace PX2

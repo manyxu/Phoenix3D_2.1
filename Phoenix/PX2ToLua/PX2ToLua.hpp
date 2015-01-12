@@ -12,12 +12,7 @@
 #include "PX2Graphics.hpp"
 #include "PX2Renderers.hpp"
 #include "PX2EventWorld.hpp"
-#include "PX2Input.hpp"
 #include "PX2Unity.hpp"
-#include "PX2SoundSystem.hpp"
-#include "PX2UserInterface.hpp"
-#include "PX2Terrains.hpp"
-#include "PX2Effect.hpp"
 
 using namespace PX2;
 

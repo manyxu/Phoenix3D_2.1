@@ -15,7 +15,7 @@
 #define PX2LOG_HPP
 
 #include "PX2CorePre.hpp"
-#include "PX2Singleton.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 #include "PX2ThreadServer.hpp"
 #include "PX2FixMemoryObject.hpp"
 #include "PX2MsgQueue.hpp"

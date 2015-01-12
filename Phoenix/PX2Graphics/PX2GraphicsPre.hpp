@@ -16,7 +16,7 @@
 
 #include "PX2MathematicsPre.hpp"
 
-#if defined(__ANDROID__) || defined(__MARMALADE__) || defined(__APPLE__)
+#if defined(__ANDROID__) || defined(__APPLE__)
 	#define PX2_USE_OPENGLES2
 #endif
 

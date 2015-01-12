@@ -77,9 +77,6 @@
     <ClInclude Include="PX2Thread.hpp">
       <Filter>Thread</Filter>
     </ClInclude>
-    <ClInclude Include="PX2Singleton.hpp">
-      <Filter>Design</Filter>
-    </ClInclude>
     <ClInclude Include="PX2CorePre.hpp" />
     <ClInclude Include="PX2ConditionType.hpp">
       <Filter>Thread</Filter>
@@ -171,9 +168,6 @@
     <ClInclude Include="PX2TimerManager.hpp">
       <Filter>Timer</Filter>
     </ClInclude>
-    <ClInclude Include="PX2Singleton1.hpp">
-      <Filter>Design</Filter>
-    </ClInclude>
     <ClInclude Include="PX2PriorityQueue.hpp">
       <Filter>DataTypes</Filter>
     </ClInclude>
@@ -254,6 +248,12 @@
     </ClInclude>
     <ClInclude Include="PX2ScriptManager.hpp">
       <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Singleton_NeedNew.hpp">
+      <Filter>Design</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Singleton.hpp">
+      <Filter>Design</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

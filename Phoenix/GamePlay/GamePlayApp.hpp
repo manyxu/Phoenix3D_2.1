@@ -43,7 +43,6 @@ protected:
 	CullPropertyPtr mCullProperty;
 	DepthPropertyPtr mDepthProperty;
 	bool mIsProjectCreated;
-	Float2 mTouchPos;
 };
 
 PX2_REGISTER_APPLICATION(GamePlayApp)

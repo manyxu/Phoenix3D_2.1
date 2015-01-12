@@ -8,13 +8,7 @@
 #define PX2UNITY_HPP
 
 // csv
-#include "PX2CSVParser.hpp"
 #include "PX2CSVParser1.hpp"
-
-// input adapter
-#include "PX2InputEvent.hpp"
-#include "PX2InputEventAdapter.hpp"
-#include "PX2InputEventListener.hpp"
 
 // language
 #include "PX2LanguageManager.hpp"
@@ -23,9 +17,6 @@
 #include "PX2MD5.hpp"
 
 #include "PX2Crypt.hpp"
-
-// Controls
-#include "PX2InputPushTransformController.hpp"
 
 // Font
 #include "PX2Font.hpp"

@@ -6,10 +6,6 @@
 
 #include "PX2Application.hpp"
 #include "PX2IMEDispatcher.hpp"
-#include "PX2InputEvent.hpp"
-#ifdef __MARMALADE__
-#include "s3e.h"
-#endif
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -18,8 +14,6 @@ using namespace PX2;
 static std::queue<int> s_isUniChar;
 static BYTE s_lobyte;
 static BYTE s_hibyte;
-
-static InputEventData wheelData;
 
 #define GET_WHEEL_DELTA_WPARAM(wParam) ((short)HIWORD(wParam))
 
@@ -215,10 +209,10 @@ int Application::Main (int numArguments, char** arguments)
 //----------------------------------------------------------------------------
 bool Application::OnIdle ()
 {
-	if (mInputEventAdapter)
-	{
-		mInputEventAdapter->Update();
-	}
+	//if (mInputEventAdapter)
+	//{
+	//	mInputEventAdapter->Update();
+	//}
 
 	return ApplicationBase::OnIdle();
 }
@@ -226,85 +220,6 @@ bool Application::OnIdle ()
 #if defined __ANDROID__
 int Application::Main (int numArguments, char** arguments)
 {
-	return 0;
-}
-#endif
-//----------------------------------------------------------------------------
-#ifdef __MARMALADE__
-static void SwitchToForeground()
-{
-	if (ApplicationBase::msApplication->IsInitlized())
-		ApplicationBase::msApplication->WillEnterForeground(false);
-}
-static void SwitchToBackground()
-{
-	if (ApplicationBase::msApplication->IsInitlized())
-		ApplicationBase::msApplication->DidEnterBackground();
-}
-static int32 PauseCallback(void *systemData, void *userData)
-{
-	if (ApplicationBase::msApplication->IsInitlized())
-		ApplicationBase::msApplication->OnPause();
-
-	return 0;
-}
-static int32 UnPauseCallback(void *systemData, void *userData)
-{
-//	if (ApplicationBase::msApplication->IsInitlized())
-//		ApplicationBase::msApplication->OnResume();
-
-	return 0;
-}
-
-int g_FrameYieldMS = 10;
-int Application::Main (int numArguments, char** arguments)
-{
-	Initlize ();
-
-	s3eDeviceRegister(S3E_DEVICE_PAUSE, PauseCallback, NULL);
-	s3eDeviceRegister(S3E_DEVICE_UNPAUSE , UnPauseCallback, NULL);
-
-    if (s3eGLGetInt(S3E_GL_MUST_SUSPEND))
-    {
-        // when a suspend is requested, terminate EGL
-        s3eGLRegister(S3E_GL_SUSPEND, (s3eCallback)SwitchToBackground, NULL);
-
-        // when a resume is requested, re-initialise EGL...
-        s3eGLRegister(S3E_GL_RESUME, (s3eCallback)SwitchToForeground, NULL);
-        // ...and restore the shaders
-        //s3eGLRegister(S3E_GL_RESUME, (s3eCallback)loadShader, NULL);
-    }
-
-	if (ApplicationBase::msApplication->IsInitlized()) 
-		ApplicationBase::msApplication->WillEnterForeground(true);
-
-	// Ô¤Çå³ý±³¾°É«
-	mRenderer->ClearBuffers();
-
-	bool quit = false;
-	while(!quit)
-	{
-		s3eDeviceYield(g_FrameYieldMS);
-
-		if(s3eDeviceCheckQuitRequest())
-		{
-			quit = true;
-		}
-        if((s3eKeyboardGetState(s3eKeyAbsBSK) & S3E_KEY_STATE_PRESSED) != 0)
-		{
-			if(IsPause()) OnResume();
-			else OnPause();
-		}
-		if(s3eDeviceCheckPauseRequest())
-		{
-			OnPause();
-		}
-
-		s3eKeyboardUpdate();
-		OnIdle();
-	}
-
-	Ternamate ();
 	return 0;
 }
 #endif
@@ -373,7 +288,7 @@ bool Application::OnInitlizeApp ()
 	mYPosition = offsetY;
 
 	// === Input ===
-	mInputEventAdapter->AddParam((int)mhWnd);
+	//mInputEventAdapter->AddParam((int)mhWnd);
 
 	// === äÖÈ¾Æ÷ ===
 
@@ -397,20 +312,16 @@ bool Application::OnInitlizeApp ()
 	Renderer::SetDefaultRenderer(mRenderer);
 	mRenderer->SetClearColor(mClearColor);
 
-	UIManager::GetSingleton().GetDefaultView()->SetRenderer(mRenderer);
+	//UIManager::GetSingleton().GetDefaultView()->SetRenderer(mRenderer);
 
 	return true;
 }
 #endif
 //----------------------------------------------------------------------------
-#if defined(__ANDROID__) || defined(__MARMALADE__)
+#if defined(__ANDROID__)
 bool Application::OnInitlizeApp ()
 {
-#ifdef __MARMALADE__
-	mInput.mWindowHandle = s3eGLGetNativeWindow();
-#else
 	mInput.mWindowHandle = 0;
-#endif
 	mInput.mRendererDC = EGL_DEFAULT_DISPLAY;
 
 #ifdef PX2_USE_OPENGLES2
@@ -440,7 +351,7 @@ bool Application::OnTernamateApp()
 }
 #endif
 //----------------------------------------------------------------------------
-#if defined(__ANDROID__)||defined(__MARMALADE__)
+#if defined(__ANDROID__)
 bool Application::OnTernamateApp()
 {
 	ApplicationBase::OnTernamate();

@@ -104,7 +104,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Lib\x86;..\ThirdPartiesLibs\pthread\lib\x86;..\ThirdPartiesLibs\FMOD\api\lib;..\TheGame\_OutPut</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsDx9D.lib;PX2EventSystemD.lib;PX2TerrainsD.lib;PX2InputD.lib;PX2UnityD.lib;PX2UserInterfaceD.lib;PX2SoundSystemD.lib;PX2Effect1D.lib;PX2GameD.lib;PX2Net1D.lib;PX2AppFrameDx9D.lib;d3d9.lib;d3dx9.lib;dxerr.lib;xinput.lib;dinput8.lib;dxguid.lib;pthreadVC2.lib;pthreadVCE2.lib;pthreadVSE2.lib;fmodex_vc.lib;TheGameD.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsDx9D.lib;PX2UnityD.lib;PX2AppFrameDx9D.lib;d3d9.lib;d3dx9.lib;dxerr.lib;xinput.lib;dinput8.lib;dxguid.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
       <Profile>true</Profile>
     </Link>
