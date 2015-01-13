@@ -39,18 +39,23 @@ PX2WXFrame::~PX2WXFrame()
 {
 }
 //----------------------------------------------------------------------------
-void PX2WXFrame::OnTimer(wxTimerEvent& event)
+void PX2WXFrame::OnTimer(wxTimerEvent& e)
 {
 	if (mIsDoSizing)
 		_Sizing();
+
+	PX2_UNUSED(e);
 }
 //----------------------------------------------------------------------------
 void PX2WXFrame::OnSize(wxSizeEvent& e)
 {
+	PX2_UNUSED(e);
 }
 //----------------------------------------------------------------------------
 void PX2WXFrame::OnMotion(wxMouseEvent& e)
 {
+	PX2_UNUSED(e);
+
 	if (!mIsDoSizing)
 	{
 		_CalIsInSizingRange();
@@ -59,14 +64,18 @@ void PX2WXFrame::OnMotion(wxMouseEvent& e)
 //----------------------------------------------------------------------------
 void PX2WXFrame::OnEnterWindow(wxMouseEvent& e)
 {
+	PX2_UNUSED(e);
 }
 //----------------------------------------------------------------------------
 void PX2WXFrame::OnLeaveWindow(wxMouseEvent& e)
 {
+	PX2_UNUSED(e);
 }
 //----------------------------------------------------------------------------
 void PX2WXFrame::OnLeftDown(wxMouseEvent& e)
 {
+	PX2_UNUSED(e);
+
 	mIsMouseDown_Left = true;
 
 	if (_CalIsInSizingRange())
@@ -77,6 +86,8 @@ void PX2WXFrame::OnLeftDown(wxMouseEvent& e)
 //----------------------------------------------------------------------------
 void PX2WXFrame::OnLeftUp(wxMouseEvent& e)
 {
+	PX2_UNUSED(e);
+
 	mIsMouseDown_Left = false;
 
 	if (mIsDoSizing)

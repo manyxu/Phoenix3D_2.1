@@ -19,7 +19,7 @@ namespace PX2Editor
 			int width, int height);
 		virtual ~PX2WXFrame();
 
-		void OnTimer(wxTimerEvent& event);
+		void OnTimer(wxTimerEvent& e);
 		void OnSize(wxSizeEvent& e);
 		void OnMotion(wxMouseEvent& e);
 		void OnEnterWindow(wxMouseEvent& e);

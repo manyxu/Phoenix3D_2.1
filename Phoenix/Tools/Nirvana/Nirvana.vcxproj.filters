@@ -4,21 +4,30 @@
     <Filter Include="App">
       <UniqueIdentifier>{b6c7622e-5c87-454d-ae84-68e50071083c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="wxExtends">
+      <UniqueIdentifier>{eb66bdf2-95ee-4c92-9f90-6ba444fc48a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PX2EditorApp.hpp">
-      <Filter>App</Filter>
-    </ClInclude>
     <ClInclude Include="PX2EditorPre.hpp" />
     <ClInclude Include="PX2wxFrame.hpp">
+      <Filter>wxExtends</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_App.hpp">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_MainFrame.hpp">
       <Filter>App</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PX2EditorApp.cpp">
+    <ClCompile Include="PX2wxFrame.cpp">
+      <Filter>wxExtends</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_App.cpp">
       <Filter>App</Filter>
     </ClCompile>
-    <ClCompile Include="PX2wxFrame.cpp">
+    <ClCompile Include="PX2E_MainFrame.cpp">
       <Filter>App</Filter>
     </ClCompile>
   </ItemGroup>
