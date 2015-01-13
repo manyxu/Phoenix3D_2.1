@@ -71,9 +71,8 @@ namespace PX2
 		virtual int Main (int numArguments, char** arguments);
 		virtual bool OnIdle ();
 
-	protected:
-		virtual bool OnInitlizeApp ();
-		virtual bool OnTernamateApp ();
+		virtual bool Initlize();
+		virtual bool Ternamate();
 
 #if defined(_WIN32) || defined(WIN32)
 		// ´°¿Ú

@@ -11,26 +11,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp" />
     <ClInclude Include="PX2AccoutManager.hpp" />
     <ClInclude Include="PX2Actor.hpp" />
     <ClInclude Include="PX2Animation.hpp" />
-    <ClInclude Include="PX2Component.hpp" />
     <ClInclude Include="PX2EngineLoop.hpp" />
     <ClInclude Include="PX2Project.hpp" />
     <ClInclude Include="PX2Scene.hpp" />
     <ClInclude Include="PX2ServerInfo.hpp" />
+    <ClInclude Include="PX2Simulation.hpp" />
     <ClInclude Include="PX2SimulationPre.hpp" />
     <ClInclude Include="PX2User.hpp" />
     <ClInclude Include="PX2UserActor.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp" />
     <ClCompile Include="PX2AccoutManager.cpp" />
     <ClCompile Include="PX2Actor.cpp" />
     <ClCompile Include="PX2Animation.cpp" />
-    <ClCompile Include="PX2Component.cpp" />
     <ClCompile Include="PX2EngineLoop.cpp" />
+    <ClCompile Include="PX2EngineLoop_InitTerm.cpp" />
+    <ClCompile Include="PX2EngineLoop_Tick.cpp" />
     <ClCompile Include="PX2Project.cpp" />
     <ClCompile Include="PX2Scene.cpp" />
     <ClCompile Include="PX2ServerInfo.cpp" />
@@ -39,7 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl" />
-    <None Include="PX2Component.inl" />
     <None Include="PX2EngineLoop.inl" />
     <None Include="PX2Project.inl" />
     <None Include="PX2User.inl" />
@@ -85,13 +83,20 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_USE_DX9;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\;..\PX2SDK\Include;..\PX2Unity\Lua;..\PX2Unity\ToLua;..\PX2ToLua;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

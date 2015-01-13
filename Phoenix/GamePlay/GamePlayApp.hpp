@@ -18,25 +18,9 @@ public:
 	GamePlayApp ();
 	virtual ~GamePlayApp ();
 
-	virtual bool OnInitlize ();
-	virtual bool OnTernamate ();
-
-	virtual void WillEnterForeground (bool isFirstTime);
-	virtual void DidEnterBackground ();
-
-	virtual bool OnIdle ();
-	virtual bool OnResume();
-	virtual bool OnPause();
-
-	virtual void DoEnter ();
-	virtual void DoExecute (Event *event);
-	virtual void DoLeave ();
-
 protected:
 	void CreateProject ();
 	void DestoryProject ();
-	void ZoomCamera (Camera *cam, float zoom);
-	void MoveCamera (Camera *cam, const float &horz, const float &vert);
 
 	Float4 mTextColor;
 	WirePropertyPtr mWireProperty;

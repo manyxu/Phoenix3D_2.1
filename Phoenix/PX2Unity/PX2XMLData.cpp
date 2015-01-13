@@ -55,7 +55,6 @@ bool XMLData::LoadFile (const string &fileName)
 	if (!mDocument)
 		return false;
 
-	long len = 0;
 	FILE *fp = fopen(fileName.c_str(), "rb");
 	if(fp)
 	{

@@ -34,25 +34,19 @@ namespace PX2
 		static bool IsInitlized ();
 		void SetInitScreenWidthHeight (float width, float height);
 		int GetProjSuitType () const; // 1-960x640 2-1136x640
-		bool Initlize ();
-		bool Ternamate ();
-		void ResetRenderStates ();
-		virtual bool OnInitlize ();
-		virtual bool OnTernamate ();
+		
+		virtual bool Initlize ();
+		virtual bool Ternamate ();
 
 		virtual void OnSize (int width, int height);
-		virtual void WillEnterForeground (bool firsttime);
+		virtual void WillEnterForeground (bool isFirstTime);
 		virtual void DidEnterBackground ();
 		bool IsIsInBackground () const;
-		virtual void OnProjectSize (int width, int height);
 
 		int GetWidth ();
 		int GetHeight ();
 
-		bool IsPause();
 		virtual bool OnIdle ();
-		virtual bool OnResume();
-		virtual bool OnPause();
 
 		virtual void DoEnter ();
 		virtual void DoExecute (Event *event);
@@ -69,8 +63,6 @@ namespace PX2
 		virtual int Main (int numArguments, char** arguments);
 
 	protected:
-		virtual bool OnInitlizeApp () = 0;
-		virtual bool OnTernamateApp () = 0;
 		void CreateInfo ();
 		void UpdateDrawInfo (int x, int y);
 		void DrawInfo (Camera *cam);
@@ -83,41 +75,17 @@ namespace PX2
 		int mXPosition, mYPosition, mWidth, mHeight;
 		bool mAllowResize;
 
+		// renderer
 		Texture::Format mColorFormat;
 		Texture::Format mDepthStencilFormat;
 		int mNumMultisamples;
 		Float4 mClearColor;
 		Renderer* mRenderer;
 
-		TimerManager *mTimerMan;
-		EventWorld *mEventWorld;
-		LanguageManager *mLanguageMan;
-		GraphicsRoot *mRoot;
-		IMEDispatcher *mIMEDisp;
-		DynamicBufferManager *mDBM;
-		ResourceManager *mResMan;
-		ScriptManager *mScriptMan;
-		FontManager *mFontMan;
 		float mInitScreenWidth;
 		float mInitScreenHeight;
 		AppSuitType mScreenSuitType;
-		
-		bool mPauseGame;  //是否正在暂停游戏
-		bool mIsInBackground;
-		float mApplicationTime;
-		float mLastApplicationTime;
-		bool mIsTimeInited;
-		float mElapsedTimeTemp;
-		float mElapsedTimeUser;
 
-		bool mBeforeInBackgroundMusicEnable;
-		bool mBeforeInBackgroundSoundEnable;
-
-		Culler mInfoCuller;
-		//UIFramePtr mInfoFrame;
-		//UIPicBoxPtr mBackPic;
-
-		//UIStaticTextPtr mFrameText;
 		float mFrameRate;
 		int mNumFrames;
 		float mFrameTime;

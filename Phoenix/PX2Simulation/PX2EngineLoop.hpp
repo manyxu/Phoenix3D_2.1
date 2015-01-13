@@ -12,37 +12,51 @@
 #include "PX2ResourceManager.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2FontManager.hpp"
+#include "PX2AddDeleteManager.hpp"
 #include "PX2UIManager.hpp"
-#include "PX2InputEventAdapter.hpp"
-#include "PX2SoundSystem.hpp"
+#include "PX2AccoutManager.hpp"
 
 namespace PX2
 {
 
-	class EngineLoop : public Singleton<EngineLoop>
+	class EngineLoop
 	{
-	public:
-		EngineLoop();
-		virtual ~EngineLoop();
+		PX2_SINGLETION(EngineLoop);
 
+		// init term
+	public:
+		bool PreInitlize();
 		bool Initlize();
+
+		void WillEnterForeground(bool isFirstTime);
+		void DidEnterBackground();
+
 		bool Ternamate();
-		void Tick();
-		float GetElapsedTime();
+		bool AfterTernamate();
 
 	private:
 		TimerManager *mTimerMan;
 		EventWorld *mEventWorld;
-		InputEventAdapter *mInputEventAdapter;
 		LanguageManager *mLanguageMan;
 		ScriptManager *mScriptMan;
 		GraphicsRoot *mRoot;
 		IMEDispatcher *mIMEDisp;
-		DynamicBufferManager *mDBM;
 		ResourceManager *mResMan;
 		FontManager *mFontMan;
+		AddDeleteManager *mADMan;
 		UIManager *mUIManager;
-		SoundSystem *mSoundSystem;
+		AccoutManager *mAccoutManager;
+
+	protected:
+		bool mIsInBackground;
+
+		bool mBeforeInBackgroundMusicEnable;
+		bool mBeforeInBackgroundSoundEnable;
+
+		// Tick
+	public:
+		void Tick();
+		float GetElapsedTime();
 
 	private:
 		double mAppTime;
@@ -51,6 +65,7 @@ namespace PX2
 	};
 
 #include "PX2EngineLoop.inl"
+#define PX2_ENGINELOOP EngineLoop::GetSingleton()
 
 }
 

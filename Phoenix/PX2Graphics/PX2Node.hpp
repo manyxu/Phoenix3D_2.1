@@ -105,6 +105,8 @@ namespace PX2
 		virtual MovablePtr GetChild (int i);
 		virtual MovablePtr GetChildByName (const std::string &name);
 
+		virtual void Enable(bool enable);
+
 		virtual void SetAlpha (float alpha);
 		virtual void SetColor (const Float3 &color);
 		virtual void SetBrightness (float brightness);

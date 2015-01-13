@@ -68,10 +68,11 @@ Object::FactoryFunction Object::Find(const std::string& name)
 	return 0;
 }
 //----------------------------------------------------------------------------
-Object::Object(LoadConstructor)
-	:
-	mReadedVersion(0),
-	mCurStream(NULL)
+Object::Object(LoadConstructor) :
+mIsEnable(true),
+mReadedVersion(0),
+mCurStream(0),
+mID(0)
 {
 	mEventHandler = new0 EventHandler();
 }
@@ -88,11 +89,14 @@ void Object::Load(InStream& source)
 	// 读取ID，提供对象的链接信息
 	source.ReadUniqueID(this);
 
+	source.ReadBool(mIsEnable);
+
 	// 资源路径
 	source.ReadString(mResourcePath);
 
 	// 读取对象的名称
 	source.ReadString(mName);
+	source.Read(mID);
 
 	PX2_END_DEBUG_STREAM_LOAD(Object, source);
 }
@@ -125,11 +129,15 @@ void Object::Save(OutStream& target) const
 	// 写入ID
 	target.WriteUniqueID(this);
 
+	//是否有效
+	target.WriteBool(mIsEnable);
+
 	// 资源路径
 	target.WriteString(mResourcePath);
 
 	// 写入对象名称
 	target.WriteString(mName);
+	target.Write(mID);
 
 	PX2_END_DEBUG_STREAM_SAVE(Object, target);
 }
@@ -147,11 +155,15 @@ int Object::GetStreamingSize(Stream &stream) const
 	// 对象ID
 	size += sizeof(unsigned int);
 
+	// 是否有效
+	size += PX2_BOOLSIZE(mIsEnable);
+
 	// 资源路径
 	size += PX2_STRINGSIZE(mResourcePath);
 
 	// 对象的名称
 	size += PX2_STRINGSIZE(mName);
+	size += sizeof(mID);
 
 	return size;
 }

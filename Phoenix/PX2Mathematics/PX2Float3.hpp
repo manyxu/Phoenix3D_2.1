@@ -52,11 +52,6 @@ namespace PX2
 		static const Float3 GREEN;  //< (0,1,0)
 		static const Float3 BLUE;	//< (0,0,1)
 		static const Float3 YELLOW; //< (1,1,0)
-
-		static const Float3 WINGREEN;
-		static const Float3 WINBLUE;
-		static const Float3 WINPURPLE;
-		static const Float3 WINORANGE;
 	};
 
 }

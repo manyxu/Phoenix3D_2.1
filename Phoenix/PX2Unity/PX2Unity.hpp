@@ -18,6 +18,9 @@
 
 #include "PX2Crypt.hpp"
 
+// AddDelete
+#include "PX2AddDeleteManager.hpp"
+
 // Font
 #include "PX2Font.hpp"
 #include "PX2FontManager.hpp"

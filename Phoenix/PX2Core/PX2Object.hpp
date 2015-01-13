@@ -8,7 +8,7 @@
 #define PX2OBJECT_HPP
 
 #include "PX2CorePre.hpp"
-#include "PX2Names.hpp"
+#include "PX2NameID.hpp"
 #include "PX2Property.hpp"
 #include "PX2Rtti.hpp"
 #include "PX2SmartPointer.hpp"
@@ -30,6 +30,14 @@ namespace PX2
 	*/
 	class Object
 	{
+		// Enable Disable
+	public:
+		virtual void Enable(bool enable);
+		bool IsEnable() const;
+
+	protected:
+		bool mIsEnable;
+
 		// 运行识别信息
 	public:
 		virtual const Rtti& GetRttiType () const;
@@ -66,13 +74,25 @@ namespace PX2
 
 		// 名称
 	public:
-		void SetName (const std::string& name);
-		const std::string& GetName () const;
-		virtual Object* GetObjectByName (const std::string& name);
-		virtual void GetAllObjectsByName (const std::string& name,
+		void SetName(const std::string& name);
+		const std::string& GetName() const;
+		virtual Object* GetObjectByName(const std::string& name);
+		virtual void GetAllObjectsByName(const std::string& name,
 			std::vector<Object*>& objects);
+
 	private:
 		std::string mName;
+
+		// ID
+	public:
+		void SetID(int id);
+		int GetID() const;
+		virtual Object* GetObjectByID(int id);
+		virtual void GetAllObjectsByID(int id,
+			std::vector<Object*>& objects);
+
+	private:
+		int mID;
 
 		// 事件
 	public:

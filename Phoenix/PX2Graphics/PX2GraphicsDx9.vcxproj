@@ -35,6 +35,8 @@
     <ClCompile Include="PX2CollapseRecord.cpp" />
     <ClCompile Include="PX2CollapseRecordArray.cpp" />
     <ClCompile Include="PX2Color.cpp" />
+    <ClCompile Include="PX2Componable.cpp" />
+    <ClCompile Include="PX2Component.cpp" />
     <ClCompile Include="PX2Controlledable.cpp" />
     <ClCompile Include="PX2Controller.cpp" />
     <ClCompile Include="PX2CreateClodMesh.cpp" />
@@ -177,6 +179,8 @@
     <ClInclude Include="PX2CollapseRecord.hpp" />
     <ClInclude Include="PX2CollapseRecordArray.hpp" />
     <ClInclude Include="PX2Color.hpp" />
+    <ClInclude Include="PX2Componable.hpp" />
+    <ClInclude Include="PX2Component.hpp" />
     <ClInclude Include="PX2Controlledable.hpp" />
     <ClInclude Include="PX2Controller.hpp" />
     <ClInclude Include="PX2CreateClodMesh.hpp" />
@@ -319,6 +323,8 @@
     <None Include="PX2ClodMesh.inl" />
     <None Include="PX2CollapseRecordArray.inl" />
     <None Include="PX2Color.inl" />
+    <None Include="PX2Componable.inl" />
+    <None Include="PX2Component.inl" />
     <None Include="PX2Controlledable.inl" />
     <None Include="PX2Controller.inl" />
     <None Include="PX2Culler.inl" />

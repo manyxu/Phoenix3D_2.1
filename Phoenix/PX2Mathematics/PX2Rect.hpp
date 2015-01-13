@@ -62,6 +62,7 @@ namespace PX2
 
 	typedef Rect<float> Rectf;
 	typedef Rect<double> Rectd;
+	typedef Rect<int> Recti;
 
 }
 

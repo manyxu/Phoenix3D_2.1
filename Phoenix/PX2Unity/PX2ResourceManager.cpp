@@ -1148,7 +1148,7 @@ bool ResourceManager::SaveTex2DPNG(Texture2D *tex2d, const std::string &filename
 	ilGenImages(1, &image);
 	ilBindImage(image);
 
-	ilLoadDataL(tex2d->GetData(0), width*height*bytePerPixel, width, height, 1, bytePerPixel);
+	ilLoadDataL(tex2d->GetData(0), width*height*bytePerPixel, width, height, 1, (ILubyte)bytePerPixel);
 
 	ilEnable(IL_FILE_OVERWRITE);
 	ilSave(IL_PNG, filename.c_str());

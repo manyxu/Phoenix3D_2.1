@@ -329,6 +329,10 @@ int64_t file_size (const char* szFileName)
 int CURLDownload::ProgressFunction (void *clientp, double dltotal, 
 	double dlnow, double ultotal, double ulnow)
 {
+	PX2_UNUSED(dlnow);
+	PX2_UNUSED(ultotal);
+	PX2_UNUSED(dlnow);
+
 	CURLDownload *download = static_cast<CURLDownload *>(clientp);
 	if (!download)
 	{

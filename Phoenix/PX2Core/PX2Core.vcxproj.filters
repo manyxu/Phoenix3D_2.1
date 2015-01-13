@@ -41,9 +41,6 @@
     <ClInclude Include="PX2Rtti.hpp">
       <Filter>ObjectSystem</Filter>
     </ClInclude>
-    <ClInclude Include="PX2Names.hpp">
-      <Filter>ObjectSystem</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Noncopyable.hpp">
       <Filter>Design</Filter>
     </ClInclude>
@@ -255,6 +252,9 @@
     <ClInclude Include="PX2Singleton.hpp">
       <Filter>Design</Filter>
     </ClInclude>
+    <ClInclude Include="PX2NameID.hpp">
+      <Filter>ObjectSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Assert.cpp">
@@ -434,9 +434,6 @@
     <ClCompile Include="PX2Object_UserData.cpp">
       <Filter>ObjectSystem</Filter>
     </ClCompile>
-    <ClCompile Include="PX2Object_Name.cpp">
-      <Filter>ObjectSystem</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Object_Resource.cpp">
       <Filter>ObjectSystem</Filter>
     </ClCompile>
@@ -453,6 +450,9 @@
       <Filter>Script</Filter>
     </ClCompile>
     <ClCompile Include="PX2Object_Script.cpp">
+      <Filter>ObjectSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Object_NameID.cpp">
       <Filter>ObjectSystem</Filter>
     </ClCompile>
   </ItemGroup>

@@ -11,6 +11,7 @@ const AVector AVector::ZERO(0.0f, 0.0f, 0.0f);
 const AVector AVector::UNIT_X(1.0f, 0.0f, 0.0f);
 const AVector AVector::UNIT_Y(0.0f, 1.0f, 0.0f);
 const AVector AVector::UNIT_Z(0.0f, 0.0f, 1.0f);
+const AVector AVector::UNIT(1.0f, 1.0f, 1.0f);
 
 //----------------------------------------------------------------------------
 AVector::AVector ()

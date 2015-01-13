@@ -1,4 +1,4 @@
-// ÎÄ¼þÃû³Æ	£º	PX2SimulationPre.hpp
+// PX2SimulationPre.hpp
 
 
 #ifndef PX2SIMULATIONPRE_HPP

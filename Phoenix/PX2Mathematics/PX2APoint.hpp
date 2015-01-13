@@ -76,6 +76,7 @@ namespace PX2
 
 		// ÌØ¶¨Öµ
 		static const APoint ORIGIN;  // (0,0,0,1)
+		static const APoint UNIT;
 	};
 
 #include "PX2APoint.inl"

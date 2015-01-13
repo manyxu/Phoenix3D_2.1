@@ -7,12 +7,12 @@
 #include "PX2SimulationPre.hpp"
 #include "PX2User.hpp"
 #include "PX2ServerInfo.hpp"
-#include "PX2Singleton.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 
 namespace PX2
 {
 
-	class AccoutManager : public Singleton < AccoutManager >
+	class AccoutManager : public Singleton<AccoutManager>
 	{
 	public:
 		AccoutManager();

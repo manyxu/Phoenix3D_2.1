@@ -7,7 +7,7 @@
 #include "PX2Controlledable.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Object, Controlledable, 1);
+PX2_IMPLEMENT_RTTI(PX2, Componable, Controlledable);
 PX2_IMPLEMENT_STREAM(Controlledable);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(Controlledable);
 
@@ -165,7 +165,7 @@ bool Controlledable::UpdateControllers (double applicationTime)
 //----------------------------------------------------------------------------
 void Controlledable::RegistProperties ()
 {
-	Object::RegistProperties();
+	Componable::RegistProperties();
 
 	AddPropertyClass("Controlledable");
 
@@ -174,7 +174,7 @@ void Controlledable::RegistProperties ()
 //----------------------------------------------------------------------------
 void Controlledable::OnPropertyChanged (const PropertyObject &obj)
 {
-	Object::OnPropertyChanged(obj);
+	Componable::OnPropertyChanged(obj);
 
 	if ("IsSelfCtrled" == obj.Name)
 	{
@@ -186,9 +186,9 @@ void Controlledable::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 // Ãû³ÆÖ§³Ö
 //----------------------------------------------------------------------------
-Object* Controlledable::GetObjectByName (const std::string& name)
+Object* Controlledable::GetObjectByName(const std::string& name)
 {
-	Object* found = Object::GetObjectByName(name);
+	Object* found = Componable::GetObjectByName(name);
 	if (found)
 	{
 		return found;
@@ -205,11 +205,38 @@ Object* Controlledable::GetObjectByName (const std::string& name)
 void Controlledable::GetAllObjectsByName (const std::string& name,
 											std::vector<Object*>& objects)
 {
-	Object::GetAllObjectsByName(name, objects);
+	Componable::GetAllObjectsByName(name, objects);
 
 	for (int i = 0; i < GetNumControllers(); ++i)
 	{
 		PX2_GET_ALL_OBJECTS_BY_NAME(mControllers[i], name, objects);
+	}
+}
+//----------------------------------------------------------------------------
+Object* Controlledable::GetObjectByID(int id)
+{
+	Object* found = Componable::GetObjectByID(id);
+	if (found)
+	{
+		return found;
+	}
+
+	for (int i = 0; i < GetNumControllers(); ++i)
+	{
+		PX2_GET_OBJECT_BY_ID(mControllers[i], id, found);
+	}
+
+	return 0;
+}
+//----------------------------------------------------------------------------
+void Controlledable::GetAllObjectsByID(int id,
+	std::vector<Object*>& objects)
+{
+	Componable::GetAllObjectsByID(id, objects);
+
+	for (int i = 0; i < GetNumControllers(); ++i)
+	{
+		PX2_GET_ALL_OBJECTS_BY_ID(mControllers[i], id, objects);
 	}
 }
 //----------------------------------------------------------------------------
@@ -219,7 +246,7 @@ void Controlledable::GetAllObjectsByName (const std::string& name,
 //----------------------------------------------------------------------------
 Controlledable::Controlledable (LoadConstructor value)
 :
-Object(value),
+Componable(value),
 mIsSelfCtrled(false),
 mControllers(0)
 {
@@ -231,14 +258,10 @@ void Controlledable::Load (InStream& source)
 {
 	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
 
-	Object::Load(source);
+	Componable::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		source.ReadBool(mIsSelfCtrled);
-	}
+	source.ReadBool(mIsSelfCtrled);
 
 	int numCtrls;
 	source.Read(numCtrls);
@@ -253,7 +276,7 @@ void Controlledable::Load (InStream& source)
 //----------------------------------------------------------------------------
 void Controlledable::Link (InStream& source)
 {
-	Object::Link(source);
+	Componable::Link(source);
 
 	int numCtrls = (int)mControllers.size();
 	for (int i=0; i<numCtrls; i++)
@@ -264,12 +287,12 @@ void Controlledable::Link (InStream& source)
 //----------------------------------------------------------------------------
 void Controlledable::PostLink ()
 {
-	Object::PostLink();
+	Componable::PostLink();
 }
 //----------------------------------------------------------------------------
 bool Controlledable::Register (OutStream& target) const
 {
-	if (Object::Register(target))
+	if (Componable::Register(target))
 	{
 		int numCtrls = (int)mControllers.size();
 		for (int i=0; i<numCtrls; i++)
@@ -285,7 +308,7 @@ void Controlledable::Save (OutStream& target) const
 {
 	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
 
-	Object::Save(target);
+	Componable::Save(target);
 	PX2_VERSION_SAVE(target);
 
 	target.WriteBool(mIsSelfCtrled);
@@ -304,21 +327,10 @@ int Controlledable::GetStreamingSize (Stream &stream) const
 {
 	int numCtrls = (int)mControllers.size();
 
-	int size = Object::GetStreamingSize(stream);
+	int size = Componable::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size += PX2_BOOLSIZE(mIsSelfCtrled);
-		}
-	}
-	else
-	{
-		size += PX2_BOOLSIZE(mIsSelfCtrled);
-	}
+	size += PX2_BOOLSIZE(mIsSelfCtrled);
 
 	size += sizeof(numCtrls);
 	size += numCtrls*PX2_POINTERSIZE(mControllers[0]);

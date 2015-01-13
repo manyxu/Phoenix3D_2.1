@@ -8,6 +8,7 @@
 using namespace PX2;
 
 const APoint APoint::ORIGIN(0.0f, 0.0f, 0.0f);
+const APoint APoint::UNIT(1.0f, 1.0f, 1.0f);
 
 //----------------------------------------------------------------------------
 APoint::APoint ()

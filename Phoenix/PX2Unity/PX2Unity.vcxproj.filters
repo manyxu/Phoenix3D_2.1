@@ -121,6 +121,9 @@
     <Filter Include="Font\FreeType\src\pshinter">
       <UniqueIdentifier>{b6db6f51-3a0b-4e49-8d05-256be3f84194}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AddDelete">
+      <UniqueIdentifier>{e530e1af-c415-45c2-bd49-32d14c79ef4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2ResourceManager.cpp">
@@ -1005,6 +1008,9 @@
     <ClCompile Include="FreeType\src\base\ftbitmap.c">
       <Filter>Font\FreeType\src\base</Filter>
     </ClCompile>
+    <ClCompile Include="PX2AddDeleteManager.cpp">
+      <Filter>AddDelete</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Unity.hpp" />
@@ -1716,6 +1722,9 @@
     </ClInclude>
     <ClInclude Include="PX2FontCommonImpl.hpp">
       <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AddDeleteManager.hpp">
+      <Filter>AddDelete</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

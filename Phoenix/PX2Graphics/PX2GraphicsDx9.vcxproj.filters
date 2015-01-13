@@ -419,6 +419,12 @@
     <ClCompile Include="PX2FogColorDistConstant.cpp">
       <Filter>ShaderFloats</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Component.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Componable.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -853,6 +859,12 @@
     <ClInclude Include="PX2FogColorDistConstant.hpp">
       <Filter>ShaderFloats</Filter>
     </ClInclude>
+    <ClInclude Include="PX2Component.hpp">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Componable.hpp">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Bound.inl">
@@ -1033,6 +1045,12 @@
     <None Include="PX2Controlledable.inl">
       <Filter>Controllers</Filter>
     </None>
+    <None Include="PX2Component.inl">
+      <Filter>Component</Filter>
+    </None>
+    <None Include="PX2Componable.inl">
+      <Filter>Component</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Controllers">
@@ -1097,6 +1115,9 @@
     </Filter>
     <Filter Include="LocalMaterials\Simple">
       <UniqueIdentifier>{31f75ea6-d60d-499b-ad2d-6b4988badfb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{f1128f9a-439b-4520-849e-f7fa1ed0c924}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

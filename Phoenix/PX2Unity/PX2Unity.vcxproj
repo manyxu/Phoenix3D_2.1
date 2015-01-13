@@ -129,6 +129,7 @@
     <ClCompile Include="CURL\src\wildcard.c" />
     <ClCompile Include="CURL\src\x509asn1.c" />
     <ClCompile Include="FreeType\src\base\ftbitmap.c" />
+    <ClCompile Include="PX2AddDeleteManager.cpp" />
     <ClCompile Include="PX2FontManager.cpp" />
     <ClCompile Include="PX2MD5.cpp" />
     <ClCompile Include="DevIL\altivec_common.c" />
@@ -431,6 +432,7 @@
     <ClInclude Include="CURL\src\x509asn1.h" />
     <ClInclude Include="CURL\stdcheaders.h" />
     <ClInclude Include="CURL\typecheck-gcc.h" />
+    <ClInclude Include="PX2AddDeleteManager.hpp" />
     <ClInclude Include="PX2MD5.hpp" />
     <ClInclude Include="DevIL\altivec_common.h" />
     <ClInclude Include="DevIL\altivec_typeconversion.h" />

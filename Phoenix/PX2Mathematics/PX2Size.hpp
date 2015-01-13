@@ -51,6 +51,7 @@ namespace PX2
 
 	typedef Size<float> Sizef;
 	typedef Size<double> Sized;
+	typedef Size<int> Sizei;
 
 }
 

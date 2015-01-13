@@ -132,7 +132,7 @@ namespace PX2
 		static const Vector2 ZERO;    // (0,0)
 		static const Vector2 UNIT_X;  // (1,0)
 		static const Vector2 UNIT_Y;  // (0,1)
-		static const Vector2 ONE;     // (1,1)
+		static const Vector2 UNIT;     // (1,1)
 
 	protected:
 		using Tuple<2,Real>::mTuple;

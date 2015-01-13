@@ -9,6 +9,7 @@
 
 #include "PX2GraphicsPre.hpp"
 #include "PX2Controller.hpp"
+#include "PX2Componable.hpp"
 
 namespace PX2
 {
@@ -17,10 +18,11 @@ namespace PX2
 	/**
 	* 从此类派生的类具有绑定控制器的功能。
 	*/
-	class Controlledable : public Object
+	class Controlledable : public Componable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
+		PX2_DECLARE_IDS;
 		PX2_DECLARE_PROPERTY;
 		PX2_DECLARE_STREAM(Controlledable);
 

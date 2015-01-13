@@ -16,11 +16,6 @@ const Float3 Float3::GREEN(0.0f, 1.0f, 0.0f);
 const Float3 Float3::BLUE(0.0f, 0.0f, 1.0f);
 const Float3 Float3::YELLOW(1.0f, 1.0f, 0.0f);
 
-const Float3 Float3::WINGREEN(MakeColor(132, 254, 109));
-const Float3 Float3::WINBLUE(MakeColor(114, 239, 255));
-const Float3 Float3::WINPURPLE(MakeColor(222, 80, 226));
-const Float3 Float3::WINORANGE(MakeColor(255, 175, 26));
-
 //----------------------------------------------------------------------------
 Float3::Float3 ()
 {

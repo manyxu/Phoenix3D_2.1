@@ -320,6 +320,19 @@ MovablePtr Node::GetChildByName (const std::string &name)
 	return 0;
 }
 //----------------------------------------------------------------------------
+void Node::Enable(bool enable)
+{
+	Movable::Enable(enable);
+
+	for (int i = 0; i < GetNumChildren(); i++)
+	{
+		if (mChild[i])
+		{
+			mChild[i]->Enable(enable);
+		}
+	}
+}
+//----------------------------------------------------------------------------
 void Node::SetAlpha (float alpha)
 {
 	Movable::SetAlpha(alpha);

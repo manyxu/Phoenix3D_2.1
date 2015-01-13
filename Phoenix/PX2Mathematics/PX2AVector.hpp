@@ -94,6 +94,7 @@ namespace PX2
 		static const AVector UNIT_X;  //< (1,0,0,0)
 		static const AVector UNIT_Y;  //< (0,1,0,0)
 		static const AVector UNIT_Z;  //< (0,0,1,0)
+		static const AVector UNIT;  //< (1,1,1,0)
 
 		static AVector AnglesToDirection(float angle0, float angle1);
 	};

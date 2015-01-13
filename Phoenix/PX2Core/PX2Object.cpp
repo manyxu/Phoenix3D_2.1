@@ -10,11 +10,12 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-Object::Object ()
-	:
+Object::Object () :
+mIsEnable(true),
 mReadedVersion(0),
 mCurStream(NULL),
-mIsNameChangeable(true)
+mIsNameChangeable(true),
+mID(0)
 {
 	mEventHandler = new0 EventHandler();
 }
@@ -23,5 +24,15 @@ Object::~Object ()
 {
 	if (!mEventHandler->IsInWorld())
 		GoOutEventWorld();
+}
+//----------------------------------------------------------------------------
+void Object::Enable(bool enable)
+{
+	mIsEnable = enable;
+}
+//----------------------------------------------------------------------------
+bool Object::IsEnable() const
+{
+	return mIsEnable;
 }
 //----------------------------------------------------------------------------

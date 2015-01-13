@@ -126,6 +126,7 @@ LRESULT CALLBACK MsWindowEventHandler (HWND handle, UINT message,
 
 				char szUtf8[8] = {0};
 				int length = WideCharToMultiByte(CP_UTF8, 0, s_ch, nUTF16Size, szUtf8, u8Len, 0, 0);
+				PX2_UNUSED(length);
 				IMEDispatcher::GetSingleton().DispathInsertText(szUtf8, 3);
 			}
 			else 
@@ -167,9 +168,6 @@ int Application::Main (int numArguments, char** arguments)
 
 	Initlize ();
 
-	// 预清除背景色
-	mRenderer->ClearBuffers();
-
 	// 显示窗口
 	ShowWindow(mhWnd, SW_SHOWNORMAL);
 	UpdateWindow(mhWnd);
@@ -209,11 +207,6 @@ int Application::Main (int numArguments, char** arguments)
 //----------------------------------------------------------------------------
 bool Application::OnIdle ()
 {
-	//if (mInputEventAdapter)
-	//{
-	//	mInputEventAdapter->Update();
-	//}
-
 	return ApplicationBase::OnIdle();
 }
 //----------------------------------------------------------------------------
@@ -224,24 +217,24 @@ int Application::Main (int numArguments, char** arguments)
 }
 #endif
 //----------------------------------------------------------------------------
-#if defined(_WIN32) || defined(WIN32)
-bool Application::OnInitlizeApp ()
+bool Application::Initlize()
 {
-	// === 创建渲染窗口 ===
+	PX2_ENGINELOOP.PreInitlize();
 
+#if defined(_WIN32) || defined(WIN32)
 	// 注册窗口类
 	static char sWindowClass[] = "Phoenix2 ApplicationBase";
 	WNDCLASS wc;
-	wc.style         = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-	wc.lpfnWndProc   = MsWindowEventHandler;
-	wc.cbClsExtra    = 0;
-	wc.cbWndExtra    = 0;
-	wc.hInstance     = 0;
-	wc.hIcon         = LoadIcon(0, IDI_APPLICATION);
-	wc.hCursor       = LoadCursor(0, IDC_ARROW);
+	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+	wc.lpfnWndProc = MsWindowEventHandler;
+	wc.cbClsExtra = 0;
+	wc.cbWndExtra = 0;
+	wc.hInstance = 0;
+	wc.hIcon = LoadIcon(0, IDI_APPLICATION);
+	wc.hCursor = LoadCursor(0, IDC_ARROW);
 	wc.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	wc.lpszClassName = sWindowClass;
-	wc.lpszMenuName  = 0;
+	wc.lpszMenuName = 0;
 	RegisterClass(&wc);
 
 	DWORD dwStyle;
@@ -255,7 +248,7 @@ bool Application::OnInitlizeApp ()
 	}
 
 	// 请求特定客户区大小的窗口大小
-	RECT rect = { 0, 0, mWidth-1, mHeight-1 };
+	RECT rect = { 0, 0, mWidth - 1, mHeight - 1 };
 	AdjustWindowRect(&rect, dwStyle, FALSE);
 
 	// 创建窗口
@@ -287,81 +280,50 @@ bool Application::OnInitlizeApp ()
 	mXPosition = offsetX;
 	mYPosition = offsetY;
 
-	// === Input ===
-	//mInputEventAdapter->AddParam((int)mhWnd);
-
-	// === 渲染器 ===
-
 #ifdef PX2_USE_DX9
-	// 创建渲染器
 	mInput.mWindowHandle = mhWnd;
 	mInput.mDriver = Direct3DCreate9(D3D_SDK_VERSION);
 	assertion(mInput.mDriver != 0, "Failed to create Direct3D9\n");
 	mRenderer = new0 Renderer(mInput, mWidth, mHeight,
 		mColorFormat, mDepthStencilFormat, mNumMultisamples);
-#endif
 
-#ifdef PX2_USE_OPENGLES2
-	mInput.mWindowHandle = mhWnd;
-	mInput.mRendererDC = GetDC(mhWnd);
+#else
+	mInput.mWindowHandle = hWnd;
+	mInput.mRendererDC = GetDC(hWnd);
 	mRenderer = new0 Renderer(mInput, mWidth, mHeight,
 		mColorFormat, mDepthStencilFormat, mNumMultisamples);
-
 #endif
 
-	Renderer::SetDefaultRenderer(mRenderer);
-	mRenderer->SetClearColor(mClearColor);
+#else
 
-	//UIManager::GetSingleton().GetDefaultView()->SetRenderer(mRenderer);
+#ifdef PX2_USE_OPENGLES2
 
-	return true;
-}
-#endif
-//----------------------------------------------------------------------------
-#if defined(__ANDROID__)
-bool Application::OnInitlizeApp ()
-{
+#ifdef __ANDROID__
 	mInput.mWindowHandle = 0;
 	mInput.mRendererDC = EGL_DEFAULT_DISPLAY;
-
-#ifdef PX2_USE_OPENGLES2
+#endif
 	mRenderer = new0 Renderer(mInput, mWidth, mHeight,
 		mColorFormat, mDepthStencilFormat, mNumMultisamples);
 #endif
 
+#endif
+
 	Renderer::SetDefaultRenderer(mRenderer);
 	mRenderer->SetClearColor(mClearColor);
-	UIManager::GetSingleton().GetDefaultView()->SetRenderer(mRenderer);
 
-	return true;
+	return ApplicationBase::Initlize();
 }
-#endif
 //----------------------------------------------------------------------------
-#if defined(_WIN32) || defined(WIN32)
-bool Application::OnTernamateApp()
+bool Application::Ternamate()
 {
-	if (mRenderer)
-	{
-		delete0(mRenderer);
+	bool baseRet = ApplicationBase::Ternamate();
+
+	PX2_ENGINELOOP.AfterTernamate();
+
 #ifdef PX2_USE_DX9
-		mInput.mDriver->Release();
+	mInput.mDriver->Release();
 #endif
-	}
-	return true;
-}
-#endif
-//----------------------------------------------------------------------------
-#if defined(__ANDROID__)
-bool Application::OnTernamateApp()
-{
-	ApplicationBase::OnTernamate();
 
-	if (mRenderer)
-	{
-		delete0(mRenderer);
-	}
-
-	return true;
+	return baseRet;
 }
-#endif
 //----------------------------------------------------------------------------
