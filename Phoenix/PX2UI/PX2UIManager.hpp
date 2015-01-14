@@ -17,6 +17,7 @@ namespace PX2
 		virtual ~UIManager();
 
 		void Clear();
+		void Update(double appSeconds, double elapsedSeconds);
 
 		// UIView
 	public:
@@ -31,6 +32,7 @@ namespace PX2
 		std::map<std::string, UIViewPtr> mUIViews;
 	};
 
+#include "PX2UIManager.inl"
 #define PX2_UIM UIManager::GetSingleton()
 
 }

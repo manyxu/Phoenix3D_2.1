@@ -130,25 +130,9 @@ namespace PX2
 		/// 每个通道的字节大小
 		inline static int GetTypeSize (AttributeType type);
 
-		enum VertexFormatType
-		{
-			VFT_PCT1,
-			VFT_PCT2,
-			VFT_MAX_TYPE
-		};
-		static VertexFormat *GetPreCreatedVF (VertexFormatType type);
-
 		// pdr
 	public:
 		void *PdrPointer;
-
-public_internal:
-		static bool RegisterInitFinal ();
-
-	protected:
-		static void Init ();
-		static void Final ();
-		static std::vector<Pointer0<VertexFormat> > msPreCreatedVFs;
 
 		/// 顶点格式通道信息
 		class Element
@@ -175,7 +159,6 @@ public_internal:
 	PX2_REGISTER_STREAM(VertexFormat);
 	typedef Pointer0<VertexFormat> VertexFormatPtr;
 #include "PX2VertexFormat.inl"
-	static bool gsVertexFormatInitFinal = VertexFormat::RegisterInitFinal();
 
 }
 

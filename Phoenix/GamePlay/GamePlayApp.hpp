@@ -17,16 +17,6 @@ public:
 	
 	GamePlayApp ();
 	virtual ~GamePlayApp ();
-
-protected:
-	void CreateProject ();
-	void DestoryProject ();
-
-	Float4 mTextColor;
-	WirePropertyPtr mWireProperty;
-	CullPropertyPtr mCullProperty;
-	DepthPropertyPtr mDepthProperty;
-	bool mIsProjectCreated;
 };
 
 PX2_REGISTER_APPLICATION(GamePlayApp)

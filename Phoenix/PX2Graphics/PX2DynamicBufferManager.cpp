@@ -6,6 +6,7 @@
 
 #include "PX2DynamicBufferManager.hpp"
 #include "PX2Renderer.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -26,7 +27,7 @@ DynamicBufferManager::~DynamicBufferManager ()
 //----------------------------------------------------------------------------
 bool DynamicBufferManager::Initlize ()
 {
-	VertexFormat *vf = VertexFormat::GetPreCreatedVF(VertexFormat::VFT_PCT1);
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PCT1);
 
 	mVB = new0 VertexBuffer(mNumMaxVertex, vf->GetStride(), 
 		Buffer::BU_DYNAMIC);

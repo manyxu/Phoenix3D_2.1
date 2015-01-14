@@ -30,5 +30,8 @@
     <ClCompile Include="PX2E_MainFrame.cpp">
       <Filter>App</Filter>
     </ClCompile>
+    <ClCompile Include="PX2wxFrame_Override.cpp">
+      <Filter>wxExtends</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

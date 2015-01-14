@@ -168,6 +168,7 @@ int MaterialPass::GetStreamingSize (Stream &stream) const
 {
     int size = Object::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
     size += PX2_POINTERSIZE(mVShader);
     size += PX2_POINTERSIZE(mPShader);
     size += PX2_POINTERSIZE(mAlphaProperty);

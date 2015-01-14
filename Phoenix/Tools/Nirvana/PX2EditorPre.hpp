@@ -3,10 +3,6 @@
 #ifndef PX2EDITORPRERE_HPP
 #define PX2EDITORPRERE_HPP
 
-// PX2
-#include "PX2Core.hpp"
-#include "PX2Mathematics.hpp"
-
 #include "wx/wxprec.h"
 
 #ifndef WX_PRECOMP

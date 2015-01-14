@@ -10,7 +10,7 @@ namespace PX2Editor
 
 	class E_MainFrame;
 
-	class E_App : public wxApp, public PX2::Singleton < E_App >
+	class E_App : public wxApp
 	{
 	public:
 		E_App();

@@ -103,6 +103,7 @@
     <ClCompile Include="PX2PVWMatrixConstant.cpp" />
     <ClCompile Include="PX2Renderable.cpp" />
     <ClCompile Include="PX2Renderer.cpp" />
+    <ClCompile Include="PX2RenderStep.cpp" />
     <ClCompile Include="PX2RenderTarget.cpp" />
     <ClCompile Include="PX2ScreenTarget.cpp" />
     <ClCompile Include="PX2Shader.cpp" />
@@ -250,6 +251,7 @@
     <ClInclude Include="PX2Renderable.hpp" />
     <ClInclude Include="PX2Renderer.hpp" />
     <ClInclude Include="PX2Renderers.hpp" />
+    <ClInclude Include="PX2RenderStep.hpp" />
     <ClInclude Include="PX2RenderTarget.hpp" />
     <ClInclude Include="PX2ScreenTarget.hpp" />
     <ClInclude Include="PX2Shader.hpp" />
@@ -355,6 +357,7 @@
     <None Include="PX2PushTransformController.inl" />
     <None Include="PX2Renderable.inl" />
     <None Include="PX2Renderer.inl" />
+    <None Include="PX2RenderStep.inl" />
     <None Include="PX2RenderTarget.inl" />
     <None Include="PX2Shader.inl" />
     <None Include="PX2ShaderFloat.inl" />

@@ -6,6 +6,7 @@
 
 #include "PX2Application.hpp"
 #include "PX2IMEDispatcher.hpp"
+#include "PX2EngineLoop.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -219,8 +220,6 @@ int Application::Main (int numArguments, char** arguments)
 //----------------------------------------------------------------------------
 bool Application::Initlize()
 {
-	PX2_ENGINELOOP.PreInitlize();
-
 #if defined(_WIN32) || defined(WIN32)
 	// ×¢²á´°¿ÚÀà
 	static char sWindowClass[] = "Phoenix2 ApplicationBase";
@@ -280,50 +279,16 @@ bool Application::Initlize()
 	mXPosition = offsetX;
 	mYPosition = offsetY;
 
-#ifdef PX2_USE_DX9
-	mInput.mWindowHandle = mhWnd;
-	mInput.mDriver = Direct3DCreate9(D3D_SDK_VERSION);
-	assertion(mInput.mDriver != 0, "Failed to create Direct3D9\n");
-	mRenderer = new0 Renderer(mInput, mWidth, mHeight,
-		mColorFormat, mDepthStencilFormat, mNumMultisamples);
-
-#else
-	mInput.mWindowHandle = hWnd;
-	mInput.mRendererDC = GetDC(hWnd);
-	mRenderer = new0 Renderer(mInput, mWidth, mHeight,
-		mColorFormat, mDepthStencilFormat, mNumMultisamples);
+	PX2_ENGINELOOP.SetPt_Data(mhWnd);
 #endif
 
-#else
-
-#ifdef PX2_USE_OPENGLES2
-
-#ifdef __ANDROID__
-	mInput.mWindowHandle = 0;
-	mInput.mRendererDC = EGL_DEFAULT_DISPLAY;
-#endif
-	mRenderer = new0 Renderer(mInput, mWidth, mHeight,
-		mColorFormat, mDepthStencilFormat, mNumMultisamples);
-#endif
-
-#endif
-
-	Renderer::SetDefaultRenderer(mRenderer);
-	mRenderer->SetClearColor(mClearColor);
+	PX2_ENGINELOOP.SetPt_Size(Sizef((float)mWidth, (float)mHeight));
 
 	return ApplicationBase::Initlize();
 }
 //----------------------------------------------------------------------------
 bool Application::Ternamate()
 {
-	bool baseRet = ApplicationBase::Ternamate();
-
-	PX2_ENGINELOOP.AfterTernamate();
-
-#ifdef PX2_USE_DX9
-	mInput.mDriver->Release();
-#endif
-
-	return baseRet;
+	return ApplicationBase::Ternamate();
 }
 //----------------------------------------------------------------------------

@@ -7,6 +7,10 @@ using namespace PX2;
 
 //----------------------------------------------------------------------------
 EngineLoop::EngineLoop() :
+mPt_Data(0),
+
+mRendererInput(0),
+
 mTimerMan(0),
 mEventWorld(0),
 mLanguageMan(0),
@@ -29,5 +33,25 @@ mElapsedTime(0)
 //----------------------------------------------------------------------------
 EngineLoop::~EngineLoop()
 {
+}
+//----------------------------------------------------------------------------
+void EngineLoop::SetPt_Data(void *data)
+{
+	mPt_Data = data;
+}
+//----------------------------------------------------------------------------
+void *EngineLoop::GetPt_Data()
+{
+	return mPt_Data;
+}
+//----------------------------------------------------------------------------
+void EngineLoop::SetPt_Size(const Sizef &size)
+{
+	mPt_Size = size;
+}
+//----------------------------------------------------------------------------
+const Sizef &EngineLoop::GetPt_Size() const
+{
+	return mPt_Size;
 }
 //----------------------------------------------------------------------------

@@ -14,8 +14,10 @@ namespace PX2Editor
 		E_MainFrame(const std::string &title, int xPos, int yPos,
 			int width, int height);
 		virtual ~E_MainFrame();
-	};
 
+	protected:
+		virtual void OnTimer_Update();
+	};
 
 }
 

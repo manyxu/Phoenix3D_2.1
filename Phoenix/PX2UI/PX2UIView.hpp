@@ -5,61 +5,34 @@
 
 #include "PX2Object.hpp"
 #include "PX2Size.hpp"
-#include "PX2UIFrame.hpp"
+#include "PX2RenderStep.hpp"
 
 namespace PX2
 {
 
-	class Renderer;
-	class Camera;
-
-	class UIView : public Object
+	class UIView : public RenderStep
 	{
 	public:
 		UIView();
 		~UIView();
 
-		void Clear();
+		void SetCameraAutoCenter(bool autoCenter);
+		bool IsCameraAutoCenter() const;
 
 	protected:
-		static float msUICameraZ;
+		virtual void OnSizeChange();
 
-		// Size
-	public:
-		void SetSize(float width, float height);
-		void SetSize(const Sizef &size);
-		const Sizef &GetSize() const;
-
-	protected:
-		void OnSizeChange();
-		Sizef mSize;
-
-		// Renderer Camera Culler
-	public:
-		void SetRenderer(Renderer *renderer);
-		Renderer *GetRenderer();
-
-		void SetCamera(Camera *camera);
-		Camera *GetCamera();
-
-	protected:
-		Renderer *mRenderer;
-		CameraPtr mCamera;
-		Culler mCuller;
-
-		// UIFrame
-	public:
-		void SetFrame(UIFrame *frame);
-		UIFrame *GetFrame();
-
-	protected:
-		UIFramePtr mUIFrame;
+		bool mIsCameraAutoCenter;
 
 		// Pick
 	public:
 
 	protected:
 		float mMoveAdjugeParam;
+
+		// general
+	protected:
+		static float msUICameraZ;
 	};
 
 #include "PX2UIView.inl"

@@ -28,6 +28,9 @@ namespace PX2Editor
 		void OnLeftUp(wxMouseEvent& e);
 
 	protected:
+		virtual void OnTimer_Update();
+
+	protected:
 		DECLARE_EVENT_TABLE()
 		bool _CalIsInSizingRange();
 		void _Sizing();

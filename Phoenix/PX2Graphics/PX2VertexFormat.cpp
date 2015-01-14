@@ -64,42 +64,6 @@ int VertexFormat::msTypeSize[AT_QUANTITY] =
 	8   // AT_SHORT4
 };
 //----------------------------------------------------------------------------
-VertexFormat *VertexFormat::GetPreCreatedVF (VertexFormatType type)
-{
-	return msPreCreatedVFs[(int)type];
-}
-//----------------------------------------------------------------------------
-std::vector<Pointer0<VertexFormat> > VertexFormat::msPreCreatedVFs;
-//----------------------------------------------------------------------------
-void VertexFormat::Init ()
-{
-	msPreCreatedVFs.resize((int)VFT_MAX_TYPE);
-
-	msPreCreatedVFs[(int)VFT_PCT1] = VertexFormat::Create(3,
-		VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
-		VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
-		VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0);
-
-	msPreCreatedVFs[(int)VFT_PCT2] = VertexFormat::Create(4,
-		VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
-		VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
-		VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0,
-		VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 1);
-}
-//----------------------------------------------------------------------------
-void VertexFormat::Final ()
-{
-	msPreCreatedVFs.clear();
-}
-//----------------------------------------------------------------------------
-bool VertexFormat::RegisterInitFinal()
-{
-	InitTerm::AddInitializer(Init);
-	InitTerm::AddTerminator(Final);
-
-	return true;
-}
-//----------------------------------------------------------------------------
 VertexFormat::VertexFormat ()
 :
 mNumAttributes(0),

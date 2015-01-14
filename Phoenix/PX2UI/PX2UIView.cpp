@@ -1,22 +1,26 @@
 // PX2UIView.cpp
 
 #include "PX2UIView.hpp"
+#include "PX2UIFrame.hpp"
+#include "PX2UIPicBox.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 float UIView::msUICameraZ = -2000.0f;
 //----------------------------------------------------------------------------
 UIView::UIView() :
-mRenderer(0)
+mIsCameraAutoCenter(true)
 {
 	mSize.Set(1024.0f, 768.0f);
 
-	mCamera = new0 Camera(false);
-	mCuller.SetCamera(mCamera);
-	mCamera->SetFrame(APoint(0.0f, msUICameraZ, 0.0f), AVector::UNIT_Y,
+	Camera *camera = new0 Camera(false);
+	camera->SetFrame(APoint(0.0f, msUICameraZ, 0.0f), AVector::UNIT_Y,
 		AVector::UNIT_Z, AVector::UNIT_X);
+	SetCamera(camera);
 
-	mUIFrame = new0 UIFrame();
+	UIFrame *mainFrame = new0 UIFrame();
+	SetNode(mainFrame);
+	mainFrame->SetName("UIMainFrame");
 
 #if defined(_WIN32) || defined(WIN32)
 	mMoveAdjugeParam = 5.0f;
@@ -24,30 +28,33 @@ mRenderer(0)
 	mMoveAdjugeParam = 64.0f;
 #endif
 
+	OnSizeChange();
+
+	UIPicBox *picBox = new0 UIPicBox();
+	mainFrame->AttachChild(picBox);
+	picBox->LocalTransform.SetTranslate(APoint(200.0f, 0.0f, 200.0f));
 }
 //----------------------------------------------------------------------------
 UIView::~UIView()
 {
 }
 //----------------------------------------------------------------------------
-void UIView::Clear()
+void UIView::SetCameraAutoCenter(bool autoCenter)
 {
-	mUIFrame = 0;
-}
-//----------------------------------------------------------------------------
-void UIView::SetSize(float width, float height)
-{
-	SetSize(Sizef(width, height));
-}
-//----------------------------------------------------------------------------
-void UIView::SetSize(const Sizef &size)
-{
-	mSize = size;
-
-	OnSizeChange();
+	mIsCameraAutoCenter = autoCenter;
 }
 //----------------------------------------------------------------------------
 void UIView::OnSizeChange()
 {
+	float helfWidth = mSize.Width / 2.0f;
+	float helfHeight = mSize.Height / 2.0f;
+
+	mCamera->SetFrustum(0.1f, Mathf::FAbs(msUICameraZ)+100.0f,
+		-helfHeight, helfHeight, -helfWidth, helfWidth);
+
+	if (mIsCameraAutoCenter)
+	{
+		mCamera->SetPosition(APoint(helfWidth, msUICameraZ, helfHeight));
+	}
 }
 //----------------------------------------------------------------------------

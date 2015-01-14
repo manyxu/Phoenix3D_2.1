@@ -75,8 +75,10 @@ bool GraphicsRoot::Initlize ()
 //-----------------------------------------------------------------------------
 bool GraphicsRoot::Terminate ()
 {
+	mRenderSteps.clear();
 	mCamera = 0;
 	mAllLights.clear();
+	mCreatedVFs.clear();
 
 	Environment::RemoveAllDirectories();
 
@@ -288,5 +290,96 @@ void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
 				specConstant->SetLight(lightDir);
 		}
 	}
+}
+//----------------------------------------------------------------------------
+bool GraphicsRoot::AddRenderStep(RenderStep *step)
+{
+	if (IsHasRenderStep(step))
+		return false;
+
+	mRenderSteps.push_back(step);
+
+	return true;
+}
+//----------------------------------------------------------------------------
+bool GraphicsRoot::IsHasRenderStep(RenderStep *step) const
+{
+	for (int i = 0; i < (int)mRenderSteps.size(); i++)
+	{
+		if (step == mRenderSteps[i])
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
+bool GraphicsRoot::RemoveRenderStep(RenderStep *step)
+{
+	std::vector<RenderStepPtr>::iterator it = mRenderSteps.begin();
+	for (; it != mRenderSteps.end(); it++)
+	{
+		if (*it == step)
+		{
+			mRenderSteps.erase(it);
+
+			return true;
+		}
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
+void GraphicsRoot::ComputeVisibleSet()
+{
+	for (int i = 0; i < (int)mRenderSteps.size(); i++)
+	{
+		mRenderSteps[i]->ComputeVisibleSet();
+	}
+}
+//----------------------------------------------------------------------------
+void GraphicsRoot::Draw()
+{
+	for (int i = 0; i < (int)mRenderSteps.size(); i++)
+	{
+		mRenderSteps[i]->Draw();
+	}
+}
+//----------------------------------------------------------------------------
+VertexFormat *GraphicsRoot::GetVertexFormat(VertexFormatType type)
+{
+	std::map<VertexFormatType, VertexFormatPtr >::iterator it =
+		mCreatedVFs.find(type);
+
+	if (it != mCreatedVFs.end())
+	{
+		return it->second;
+	}
+	else
+	{
+		VertexFormat *vf = 0;
+		if (VFT_PCT1 == type)
+		{
+			vf = VertexFormat::Create(3,
+				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
+				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0);
+		}
+		else if (VFT_PCT1 == type)
+		{
+			vf = VertexFormat::Create(4,
+				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
+				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0,
+				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 1);
+		}
+
+		mCreatedVFs[type] = vf;
+
+		return vf;
+	}
+
+	return 0;
 }
 //----------------------------------------------------------------------------

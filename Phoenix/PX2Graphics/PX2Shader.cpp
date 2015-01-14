@@ -13,7 +13,6 @@ PX2_IMPLEMENT_ABSTRACT_FACTORY(Shader);
 PX2_IMPLEMENT_DEFAULT_NAMES(Object, Shader);
 
 std::string Shader::msNullString = "";
-static int num_shader = 0;
 //----------------------------------------------------------------------------
 Shader::Shader ()
     :
@@ -39,9 +38,6 @@ Shader::Shader ()
 	mShaderKey(0),
 	PdrPointer(0)
 {
-    SetName("");
-	num_shader++;
-
     mCoordinate[0] = 0;
     mCoordinate[1] = 0;
     mCoordinate[2] = 0;
@@ -67,7 +63,6 @@ Shader::Shader (const std::string& programName, int numInputs, int numOutputs,
 	mShaderKey(0),
 	PdrPointer(0)
 {
-	num_shader++;
     assertion(numOutputs > 0, "Shader must have at least one output.\n");
     int i, dim;
 
@@ -714,9 +709,6 @@ Shader::Shader (LoadConstructor value)
 	mShaderKey(0),
 	PdrPointer(0)
 {
-    SetName("");
-	num_shader++;
-
     mCoordinate[0] = 0;
     mCoordinate[1] = 0;
     mCoordinate[2] = 0;

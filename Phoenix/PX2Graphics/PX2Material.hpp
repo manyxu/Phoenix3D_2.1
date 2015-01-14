@@ -54,45 +54,6 @@ namespace PX2
 
 	protected:
 		std::vector<MaterialTechniquePtr> mTechniques;
-
-		// Begin load/save
-	public:
-		static Material* LoadPX2fx (const std::string& name,
-			int mode = FileIO::FM_DEFAULT_READ);
-
-		void SavePX2fx (const std::string& name,
-			int mode = FileIO::FM_DEFAULT_WRITE);
-
-	protected:
-		// 用来支持派生类从*.pxfx加载生成效果
-		Material (const std::string& name,
-			int mode = FileIO::FM_DEFAULT_READ);
-
-	private:
-		static MaterialTechnique* LoadMaterialTechnique (FileIO& inFile);
-		static MaterialPass* LoadMaterialPass (FileIO& inFile);
-		static Shader* LoadShader (FileIO& inFile, bool isVertexShader);
-		static AlphaProperty* LoadAlphaProperty (FileIO& inFile);
-		static CullProperty* LoadCullProperty (FileIO& inFile);
-		static DepthProperty* LoadDepthProperty (FileIO& inFile);
-		static OffsetProperty* LoadOffsetProperty (FileIO& inFile);
-		static StencilProperty* LoadStencilProperty (FileIO& inFile);
-		static WireProperty* LoadWireProperty (FileIO& inFile);
-		static std::string LoadString (FileIO& inFile);
-
-		static void SaveMaterialTechnique (FileIO& outFile,
-			MaterialTechnique* technique);
-		static void SaveMaterialPass (FileIO& outFile, MaterialPass* pass);
-		static void SaveShader (FileIO& outFile, Shader* shader);
-		static void SaveAlphaProperty (FileIO& outFile, AlphaProperty* aproperty);
-		static void SaveCullProperty (FileIO& outFile, CullProperty* cproperty);
-		static void SaveDepthProperty (FileIO& outFile, DepthProperty* dproperty);
-		static void SaveOffsetProperty (FileIO& outFile, OffsetProperty* oproperty);
-		static void SaveStencilProperty (FileIO& outFile, StencilProperty* sproperty);
-		static void SaveWireProperty (FileIO& outFile, WireProperty* wproperty);
-		static void SaveString (FileIO& outFile, std::string& name);
-
-		// End load/save
 	};
 
 	PX2_REGISTER_STREAM(Material);

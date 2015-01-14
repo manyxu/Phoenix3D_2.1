@@ -14,16 +14,6 @@
 #include <ShellAPI.h>
 #endif
 
-#ifdef PX2_USE_DX9
-#include "PX2Dx9RendererInput.hpp"
-#include "PX2Dx9RendererData.hpp"
-#endif
-
-#ifdef PX2_USE_OPENGLES2
-#include "PX2OpenGLES2RendererInput.hpp"
-#include "PX2OpenGLES2RendererData.hpp"
-#endif
-
 namespace PX2
 {
 
@@ -78,8 +68,6 @@ namespace PX2
 		// ´°¿Ú
 		HWND mhWnd;
 #endif
-
-		RendererInput mInput;
 	};
 
 }

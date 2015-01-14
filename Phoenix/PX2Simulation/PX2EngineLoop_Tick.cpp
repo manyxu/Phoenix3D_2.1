@@ -8,8 +8,11 @@ void EngineLoop::Tick()
 {
 	mAppTime = GetTimeInSeconds();
 	mElapsedTime = GetElapsedTime();
-
 	mLastAppTime = mAppTime;
+
+	mUIManager->Update(mAppTime, mElapsedTime);
+
+	PX2_GR.ComputeVisibleSet();
 
 	Renderer *defaultRenderer = Renderer::GetDefaultRenderer();
 	if (defaultRenderer->PreDraw())
@@ -17,32 +20,7 @@ void EngineLoop::Tick()
 		defaultRenderer->InitRenderStates();
 		defaultRenderer->ClearBuffers();
 
-		// scene
-		//if (scene)
-		//{
-		//	mRenderer->SetCamera(scene->GetCameraActor()->GetCamera());
-		//	PX2_GR.SetRenderViewPort(mRenderer, true, &projSize, &scene->GetViewport());
-		//	mRenderer->Draw(scene->GetCuller().GetVisibleSet().Sort());
-		//}
-
-		//// ui
-		//if (uiView && proj->IsShowUI())
-		//{
-		//	mRenderer->InitRenderStates();
-		//	mRenderer->ClearDepthBuffer();
-
-		//	CameraPtr beforeCam = mRenderer->GetCamera();
-
-		//	mRenderer->SetCamera(uiView->GetCamera());
-		//	uiView->CallRendererSetViewport ();
-		//	mRenderer->Draw(uiView->GetCuller().GetVisibleSet().Sort());
-		//	if (proj->IsShowProjectInfo())
-		//	{				
-		//		DrawInfo(uiView->GetCamera());
-		//	}
-
-		//	mRenderer->SetCamera(beforeCam);
-		//}
+		PX2_GR.Draw();
 
 		defaultRenderer->PostDraw();
 		defaultRenderer->DisplayColorBuffer();

@@ -1,12 +1,8 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2MainFrame.cpp
-*
-*/
+// PX2MainFrame.cpp
 
 #include "PX2wxFrame.hpp"
+#include "PX2CorePre.hpp"
 using namespace PX2Editor;
-using namespace PX2;
 
 //----------------------------------------------------------------------------
 #define ID_FRAMETIMER (wxID_HIGHEST+1)
@@ -41,10 +37,12 @@ PX2WXFrame::~PX2WXFrame()
 //----------------------------------------------------------------------------
 void PX2WXFrame::OnTimer(wxTimerEvent& e)
 {
+	PX2_UNUSED(e);
+
 	if (mIsDoSizing)
 		_Sizing();
 
-	PX2_UNUSED(e);
+	OnTimer_Update();
 }
 //----------------------------------------------------------------------------
 void PX2WXFrame::OnSize(wxSizeEvent& e)

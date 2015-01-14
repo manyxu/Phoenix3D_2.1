@@ -1,4 +1,8 @@
-// PX2UIPicBox.hpp
+/*
+*
+* ÎÄ¼þÃû³Æ	£º	PX2UIPicBox.hpp
+*
+*/
 
 #ifndef PX2UIPICBOX_HPP
 #define PX2UIPICBOX_HPP
@@ -7,7 +11,13 @@
 #include "PX2Float2.hpp"
 #include "PX2Size.hpp"
 #include "PX2Rect.hpp"
+#include "PX2Texture2D.hpp"
+#include "PX2Material.hpp"
+#include "PX2MaterialInstance.hpp"
 #include "PX2TriMesh.hpp"
+#include "PX2Camera.hpp"
+#include "PX2UIMaterial.hpp"
+#include "PX2TexPackData.hpp"
 
 namespace PX2
 {
@@ -23,6 +33,18 @@ namespace PX2
 		UIPicBox(const std::string &filename = "Data/engine/default.png");
 		UIPicBox(const std::string &packName, const std::string &eleName);
 		virtual ~UIPicBox();
+
+		enum PicBoxType
+		{
+			PBT_NORMAL,
+			PBT_NINE,
+			PBT_MAX_TYPE
+		};
+		void SetPicBoxType(PicBoxType type);
+		PicBoxType GetPicBoxType();
+
+		void SetDynamic(bool dyn);
+		bool IsDynamic() const;
 
 		// anchor
 		void SetAnchorPoint(float anchX, float anchZ);
@@ -53,6 +75,43 @@ namespace PX2
 		virtual void SetAlpha(float alpha); //< 0-1
 		virtual void SetColor(const Float3 &color);
 
+		void SetUVScaleX(float xScale);
+		void SetUVScaleY(float yScale);
+		void SetUVScale(Float2 uvScale);
+		float GetUVScaleX() const;
+		float GetUVScaleY() const;
+		const Float2 &GetUVScale() const;
+		Float2 &GetUVScale();
+
+		// material
+		UIMaterial *GetUIMaterial() const;
+
+		enum TexMode
+		{
+			TM_TEX,
+			TM_TEXPACK_ELE,
+			TM_MAX_MODE
+		};
+		void SetTexMode(TexMode mode);
+		TexMode GetTexMode() const;
+
+		// base texture
+		void SetTexture(Texture2D *tex);
+		void SetTexture(const std::string &filename);
+		void SetTexture(const std::string &texPackName, const std::string &eleName);
+		Texture2D *GetTexture();
+		const std::string &GetTextureFilename() const;
+		void SetDoubleSide(bool d);
+		bool IsDoubleSide() const;
+		void SetUseAlphaTest(bool use);
+		bool IsUseAlphaText() const;
+		void SetFliterPoint(bool point);
+		bool IsFliterPoint() const;
+		void SetUseClamp(bool clamp);
+		bool IsUseClamp() const;
+
+		virtual void OnForceBind();
+
 	public_internal:
 		void UIAfterPicked(int info);
 
@@ -72,6 +131,28 @@ namespace PX2
 
 		virtual void OnPicked(int info);
 		virtual void OnNotPicked(int pickInfo);
+
+		PicBoxType mPicBoxType;
+		bool mIsDynamic;
+		Float2 mAnchorPoint;
+		Sizef mSize;
+		Sizef mCornerSize;
+		Float2 mUV0;
+		Float2 mUV1;
+		Float2 mUV2;
+		Float2 mUV3;
+		Float4 mColor;
+		Float2 mUVScale;
+		TexPackElement mPackEle;
+		bool mIsBufferNeedUpdate;
+
+		bool mIsMtlNeedUpdate;
+		TexMode mTexMode;
+		UIMaterialPtr mUIMtl;
+		MaterialInstancePtr mUIMtlInst;
+		std::string mTexturePathname;
+		std::string mTexturePackName;
+		std::string mElementName;
 	};
 
 	PX2_REGISTER_STREAM(UIPicBox);

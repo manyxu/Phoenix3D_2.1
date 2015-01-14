@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class ApplicationBase : public EventHandler
+	class ApplicationBase
 	{
 	protected:
 		ApplicationBase ();
@@ -48,10 +48,6 @@ namespace PX2
 
 		virtual bool OnIdle ();
 
-		virtual void DoEnter ();
-		virtual void DoExecute (Event *event);
-		virtual void DoLeave ();
-
 		// Enteries
 		typedef bool (*AppInitlizeFun)();
 		static AppInitlizeFun msAppInitlizeFun;
@@ -63,10 +59,6 @@ namespace PX2
 		virtual int Main (int numArguments, char** arguments);
 
 	protected:
-		void CreateInfo ();
-		void UpdateDrawInfo (int x, int y);
-		void DrawInfo (Camera *cam);
-
 		static bool msIsInitlized;
 	
 		// äÖÈ¾Ïà¹Ø
@@ -75,25 +67,9 @@ namespace PX2
 		int mXPosition, mYPosition, mWidth, mHeight;
 		bool mAllowResize;
 
-		// renderer
-		Texture::Format mColorFormat;
-		Texture::Format mDepthStencilFormat;
-		int mNumMultisamples;
-		Float4 mClearColor;
-		Renderer* mRenderer;
-
 		float mInitScreenWidth;
 		float mInitScreenHeight;
 		AppSuitType mScreenSuitType;
-
-		float mFrameRate;
-		int mNumFrames;
-		float mFrameTime;
-		bool mUpdateDrawInfo;
-
-		//UIStaticTextPtr mCurTotalMemory; // Õ×
-		//UIStaticTextPtr mMaxTotalMemory;
-		//UIStaticTextPtr mDebugText;
 	};
 
 }

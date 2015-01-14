@@ -19,22 +19,35 @@
 namespace PX2
 {
 
+	class RendererInput;
+
 	class EngineLoop
 	{
 		PX2_SINGLETION(EngineLoop);
 
+		// pre init
+	public:
+		void SetPt_Data(void *data);
+		void *GetPt_Data();
+		void SetPt_Size(const Sizef &size);
+		const Sizef &GetPt_Size() const;
+
+	protected:
+		void *mPt_Data;
+		Sizef mPt_Size;
+
 		// init term
 	public:
-		bool PreInitlize();
 		bool Initlize();
 
 		void WillEnterForeground(bool isFirstTime);
 		void DidEnterBackground();
 
 		bool Ternamate();
-		bool AfterTernamate();
 
 	private:
+		RendererInput *mRendererInput;
+
 		TimerManager *mTimerMan;
 		EventWorld *mEventWorld;
 		LanguageManager *mLanguageMan;

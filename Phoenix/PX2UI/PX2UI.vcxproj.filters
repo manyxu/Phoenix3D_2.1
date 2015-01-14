@@ -11,6 +11,12 @@
       <Filter>UIObj</Filter>
     </ClInclude>
     <ClInclude Include="PX2UIPre.hpp" />
+    <ClInclude Include="PX2UIMaterial.hpp">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIPicBox.hpp">
+      <Filter>UIObj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UIView.cpp">
@@ -20,6 +26,12 @@
       <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="PX2UIFrame.cpp">
+      <Filter>UIObj</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIMaterial.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIPicBox.cpp">
       <Filter>UIObj</Filter>
     </ClCompile>
   </ItemGroup>
@@ -33,6 +45,9 @@
     <Filter Include="Manager">
       <UniqueIdentifier>{be16f12f-bd2d-4365-94ab-20e6840c1936}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{3bb48ebb-17ac-41ed-883b-bc3cf5b0083a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2UIView.inl">
@@ -40,6 +55,12 @@
     </None>
     <None Include="PX2UIFrame.inl">
       <Filter>UIObj</Filter>
+    </None>
+    <None Include="PX2UIPicBox.inl">
+      <Filter>UIObj</Filter>
+    </None>
+    <None Include="PX2UIManager.inl">
+      <Filter>Manager</Filter>
     </None>
   </ItemGroup>
 </Project>

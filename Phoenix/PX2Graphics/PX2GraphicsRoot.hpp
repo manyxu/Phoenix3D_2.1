@@ -20,6 +20,8 @@
 #include "PX2Light.hpp"
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2Rect.hpp"
+#include "PX2VertexFormat.hpp"
+#include "PX2RenderStep.hpp"
 
 namespace PX2
 {
@@ -81,6 +83,32 @@ namespace PX2
 		Float4 mFogParam;
 		Float4 mFogColor;
 		Float4 mFogColorDist;
+
+		// RenderStep;
+	public:
+		bool AddRenderStep(RenderStep *step);
+		bool IsHasRenderStep(RenderStep *step) const;
+		bool RemoveRenderStep(RenderStep *step);
+
+		void ComputeVisibleSet();
+		void Draw();
+
+	protected:
+		std::vector<RenderStepPtr> mRenderSteps;
+
+		// VertexFormat
+	public:
+		enum VertexFormatType
+		{
+			VFT_PCT1,
+			VFT_PCT2,
+			VFT_MAX_TYPE
+		};
+
+		VertexFormat *GetVertexFormat(VertexFormatType type);
+
+	protected:
+		std::map<VertexFormatType, VertexFormatPtr > mCreatedVFs;
 	};
 
 #include "PX2GraphicsRoot.inl"

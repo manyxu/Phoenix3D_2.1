@@ -1,21 +1,73 @@
 // PX2EngineLoop_InitTerm.cpp
 
 #include "PX2EngineLoop.hpp"
-using namespace PX2;
 
-//----------------------------------------------------------------------------
-bool EngineLoop::PreInitlize()
-{
-#ifdef PX2_USE_MEMORY
-	Memory::Initialize();
+#ifdef PX2_USE_DX9
+#include "PX2Dx9RendererInput.hpp"
+#include "PX2Dx9RendererData.hpp"
 #endif
 
-	return true;
-}
+#ifdef PX2_USE_OPENGLES2
+#include "PX2OpenGLES2RendererInput.hpp"
+#include "PX2OpenGLES2RendererData.hpp"
+#endif
+
+#include "PX2Assert.hpp"
+
+using namespace PX2;
+
 //----------------------------------------------------------------------------
 bool EngineLoop::Initlize()
 {
 	time_t ti; time(&ti); srand((unsigned int)ti);
+
+#ifdef PX2_USE_MEMORY
+	Memory::Initialize();
+#endif
+
+	// renderer
+	mRendererInput = new0 RendererInput();
+	Renderer *renderer = 0;
+	Texture::Format colorFormat = Texture::TF_A8R8G8B8;
+	Texture::Format depthStencilFormat = Texture::TF_D24S8;
+	int numMultisamples = 0;
+
+#if defined(_WIN32) || defined(WIN32)
+
+	HWND hWnd = (HWND)mPt_Data;
+	int width = (int)mPt_Size.Width;
+	int height = (int)mPt_Size.Height;
+
+#ifdef PX2_USE_DX9
+	mRendererInput->mWindowHandle = hWnd;
+	mRendererInput->mDriver = Direct3DCreate9(D3D_SDK_VERSION);
+	assertion(mRendererInput->mDriver != 0, "Failed to create Direct3D9\n");
+	renderer = new0 Renderer(*mRendererInput, width, height,
+		colorFormat, depthStencilFormat, numMultisamples);
+
+#else
+	mRendererInput->mWindowHandle = hWnd;
+	mRendererInput->mRendererDC = GetDC(hWnd);
+	renderer = new0 Renderer(*mRendererInput, width, height,
+		colorFormat, depthStencilFormat, numMultisamples);
+#endif
+
+#else
+
+#ifdef PX2_USE_OPENGLES2
+
+#ifdef __ANDROID__
+	mRendererInput->mWindowHandle = 0;
+	mRendererInput->mRendererDC = EGL_DEFAULT_DISPLAY;
+#endif
+
+	renderer = new0 Renderer(*mRendererInput, width, height,
+		colorFormat, depthStencilFormat, numMultisamples);
+#endif
+
+#endif
+	Renderer::SetDefaultRenderer(renderer);
+	renderer->SetClearColor(Float4::RED);
 
 	StringHelp::Initlize();
 	FString::Initlize();
@@ -70,6 +122,7 @@ bool EngineLoop::Initlize()
 
 	mUIManager = new0 UIManager();
 	mUIManager->ComeInEventWorld();
+	mUIManager->GetDefaultUIView()->SetRenderer(renderer);
 
 	mAccoutManager = new0 AccoutManager();
 
@@ -213,6 +266,16 @@ bool EngineLoop::Ternamate()
 		Renderer::SetDefaultRenderer(0);
 	}
 
+#ifdef PX2_USE_DX9
+	if (mRendererInput)
+	{
+		mRendererInput->mDriver->Release();
+
+		delete0(mRendererInput);
+		mRendererInput = 0;
+	}
+#endif
+
 	Logger *logger = Logger::GetSingletonPtr();
 	if (logger)
 	{
@@ -222,11 +285,6 @@ bool EngineLoop::Ternamate()
 
 	FString::Ternimate();
 
-	return true;
-}
-//----------------------------------------------------------------------------
-bool EngineLoop::AfterTernamate()
-{
 #ifdef PX2_USE_MEMORY
 	Memory::Terminate("PX2Application_MemoryReport.txt", false);
 #endif
