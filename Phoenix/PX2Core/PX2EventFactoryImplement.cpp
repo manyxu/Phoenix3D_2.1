@@ -1,8 +1,11 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+/*
+*
+* ÎÄ¼þÃû³Æ	£º	PX2EventFactoryImpl.cpp
+*
+*/
 
 #include "PX2EventFactoryImplement.hpp"
 #include "PX2EventSpace.hpp"
-#include "PX2Memory.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------

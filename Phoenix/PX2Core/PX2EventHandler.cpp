@@ -1,4 +1,8 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+/*
+*
+* ÎÄ¼þÃû³Æ	£º	PX2EventHandler.cpp
+*
+*/
 
 #include "PX2Event.hpp"
 #include "PX2EventHandler.hpp"

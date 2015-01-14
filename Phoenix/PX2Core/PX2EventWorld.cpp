@@ -11,106 +11,127 @@ using namespace PX2;
 
 EventWorld::EventWorld ()
 {
-	mNowEventList = new0 EventList();
-	assertion(mNowEventList!=0, "mNowEventList was not created successfully.");
-
-	mNextEventList = new0 EventList();
-	assertion(mNextEventList!=0, "mNextEventList was not created successfully.");
+	mEventList = new0 EventList();
+	mEventListBroadcasting = new0 EventList();
+	mIsShoutdown = false;
+	mIsUpdatingEvents = false;
 }
 //----------------------------------------------------------------------------
 EventWorld::~EventWorld ()
 {
+	// 移除出发了的消息
+	EventList::iterator itEvent = mEventList->begin();
+	for (; itEvent!=mEventList->end(); itEvent++)
+	{
+		EventFactory::GetInstance().DestoryEvent(*itEvent);
+	}
+	mEventList->clear();
+	delete0(mEventList);
+	mEventList = 0;
+
+	EventList::iterator itEventBCing = mEventListBroadcasting->begin();
+	for (; itEventBCing!=mEventListBroadcasting->end(); itEventBCing++)
+	{
+		EventFactory::GetInstance().DestoryEvent(*itEventBCing);
+	}
+	mEventListBroadcasting->clear();
+	delete0(mEventListBroadcasting);
+	mEventListBroadcasting = 0;
+
 	// handlers
 	mHandlers.clear();
-
-	// events
-	EventList::iterator itEvent;
-	for (itEvent=mNowEventList->begin();
-		itEvent!=mNowEventList->end();
-		++itEvent)
-	{
-		EventFactory::GetInstance().DestoryEvent(*itEvent);
-	}
-	mNowEventList->clear();
-
-	for (itEvent=mNextEventList->begin();
-		itEvent!=mNextEventList->end();
-		++itEvent)
-	{
-		EventFactory::GetInstance().DestoryEvent(*itEvent);
-	}
-	mNextEventList->clear();
-
-	// list
-	if (mNowEventList)
-	{
-		delete0(mNowEventList);
-		mNowEventList = 0;
-	}
-
-	if (mNextEventList)
-	{
-		delete0(mNextEventList);
-		mNextEventList = 0;
-	}
+	mHandlersComingIn.clear();
+	mHandlersGoingOut.clear();
+}
+//----------------------------------------------------------------------------
+void EventWorld::Shutdown (bool shutdown)
+{
+	mIsShoutdown = shutdown;
+}
+//----------------------------------------------------------------------------
+bool EventWorld::IsShutdown () const
+{
+	return mIsShoutdown;
 }
 //----------------------------------------------------------------------------
 void EventWorld::ComeIn (EventHandler *handler)
 {
+	if (mIsShoutdown) return;
+
 	assertion(handler!=0, "handler must not be 0.");
 
-	if (!handler)
-		return;
+	if (!handler) return;
 
-	if (handler->IsInWorld(this))
-		return;
+	if (handler->IsInWorld(this)) return;
 
-	for (int i=0; i<(int)mAddingHandlers.size(); i++)
+	if (!mIsUpdatingEvents)
 	{
-		if (mAddingHandlers[i] == handler)
-			return;
+		mHandlers.push_back(handler);
+		handler->Enter(this);
 	}
-
-	mAddingHandlers.push_back(handler);
+	else
+	{
+		mHandlersComingIn.push_back(handler);
+	}
 }
 //----------------------------------------------------------------------------
 void EventWorld::GoOut(EventHandler *handler)
 {
-	assertion(handler!=0, "handler must not be 0.");
+	if (!handler) return;
 
-	EventHandlerList::iterator it = mAddingHandlers.begin();
-	for (; it!=mAddingHandlers.end();)
+	if (!handler->IsInWorld(this))	return;
+
+	if (!mIsUpdatingEvents)
 	{
-		if (handler == *it)
+		handler->Leave();
+
+		EventHandlerList::iterator it = mHandlers.begin();
+		for (; it!=mHandlers.end(); it++)
 		{
-			it = mAddingHandlers.erase(it);
-		}
-		else
-		{
-			it++;
+			if (*it == handler)
+			{
+				*it = 0;
+				mHandlers.erase(it);
+				return;
+			}
 		}
 	}
-
-	if (!handler)
-		return;
-
-	if (!handler->IsInWorld(this))
-		return;
-
-	handler->Leave();
-
-	_RemoveHandler(handler);
+	else
+	{
+		mHandlersGoingOut.push_back(handler);
+	}
 }
 //----------------------------------------------------------------------------
 void EventWorld::Update (float detalTime)
 {
-	for (int i=0; i<(int)mAddingHandlers.size(); i++)
+	if (mIsShoutdown)
+		return;
+
+	for (int i=0; i<(int)mHandlersComingIn.size(); i++)
 	{
-		EventHandler *handler = mAddingHandlers[i];
-		handler->Enter(this);
-		_AddHandler(handler);
+		mHandlers.push_back(mHandlersComingIn[i]);
 	}
-	mAddingHandlers.clear();
+	mHandlersComingIn.clear();
+
+	for (int i=0; i<(int)mHandlersGoingOut.size(); i++)
+	{
+		mHandlersGoingOut[i]->Leave();
+
+		EventHandlerList::iterator it = mHandlers.begin();
+		for (; it!=mHandlers.end();)
+		{
+			if (*it == mHandlersGoingOut[i])
+			{
+				*it = 0;
+				it = mHandlers.erase(it);
+			}
+			else
+			{
+				it++;
+			}
+		}
+	}
+	mHandlersGoingOut.clear();
 
 	_UpdateEvent(detalTime);
 }
@@ -130,32 +151,12 @@ void EventWorld::BroadcastingNetEvent (Event* event)
 	PX2_UNUSED(event);
 }
 //----------------------------------------------------------------------------
-bool EventWorld::_AddHandler (EventHandler* handler)
+void EventWorld::_UpdateEvent(float detalTime)
 {
-	mHandlers.push_back(handler);
+	mIsUpdatingEvents = true;
 
-	return true;
-}
-//----------------------------------------------------------------------------
-void EventWorld::_RemoveHandler (EventHandler* handler)
-{
-	EventHandlerList::iterator it = mHandlers.begin();
-
-	for (; it!=mHandlers.end(); it++)
-	{
-		if (*it == handler)
-		{
-			*it = 0;
-			mHandlers.erase(it);
-			return;
-		}
-	}
-}
-//----------------------------------------------------------------------------
-void EventWorld::_UpdateEvent (float detalTime)
-{
-	EventList::iterator itEvent=mNowEventList->begin();
-	for (;itEvent!=mNowEventList->end(); ++itEvent)
+	EventList::iterator itEvent = mEventList->begin();
+	for (; itEvent != mEventList->end(); ++itEvent)
 	{
 		if (0 == *itEvent)
 			continue;
@@ -171,14 +172,6 @@ void EventWorld::_UpdateEvent (float detalTime)
 		// 系统消息
 		if ((*itEvent)->IsSystemEvent())
 		{
-			// 没有频道的消息
-			switch ((*itEvent)->GetEventType())
-			{
-			case EVENT_NONE:
-				break;
-			default:
-				break;
-			}
 		}
 		// 非系统消息
 		else
@@ -206,32 +199,49 @@ void EventWorld::_UpdateEvent (float detalTime)
 		*itEvent = 0;
 	}
 
-	// 将没有触发的事件，继续到后面的列表
-	EventList::iterator itEvent1 = mNowEventList->begin();
-	for (; itEvent1!=mNowEventList->end(); ++itEvent1)
+	// 移除出发了的消息
+	EventList::iterator itEvent1 = mEventList->begin();
+	for (; itEvent1 != mEventList->end();)
 	{
-		if (*itEvent1)
+		if (!*itEvent1)
 		{
-			mNextEventList->push_back(*itEvent1);
+			itEvent1 = mEventList->erase(itEvent1);
+		}
+		else
+		{
+			itEvent1++;
 		}
 	}
 
-	mNowEventList->clear();
-
-	SwapEventList();
+	mIsUpdatingEvents = false;
 }
 //----------------------------------------------------------------------------
 void EventWorld::_BroadcastingEvent (Event* event)
 {
-	mNextEventList->push_back(event);
-}
-//----------------------------------------------------------------------------
-void EventWorld::SwapEventList()
-{
-	EventList* tempEventList = 0;
+	if (!mIsUpdatingEvents)
+	{ // general one event, just do put
+		mEventList->push_back(event);
 
-	tempEventList = mNowEventList;
-	mNowEventList = mNextEventList;
-	mNextEventList = tempEventList;
+		if (!mIsShoutdown)
+		{
+			_UpdateEvent(0.0f);
+
+			while (!mEventListBroadcasting->empty())
+			{
+				EventList::iterator it = mEventListBroadcasting->begin();
+				for (; it != mEventListBroadcasting->end(); it++)
+				{
+					mEventList->push_back(*it);
+				}
+				mEventListBroadcasting->clear();
+
+				_UpdateEvent(0.0f);
+			}
+		}
+	}
+	else
+	{
+		mEventListBroadcasting->push_back(event);
+	}
 }
 //----------------------------------------------------------------------------

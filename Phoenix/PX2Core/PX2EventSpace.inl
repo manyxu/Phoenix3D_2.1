@@ -1,4 +1,8 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+/*
+*
+* ÎÄ¼þÃû³Æ	£º	PX2EventSpace.inl
+*
+*/
 
 //----------------------------------------------------------------------------
 inline void EventSpace::Space::Reset (int begin, int end)
@@ -25,7 +29,7 @@ inline bool EventSpace::Space::IsIn (Event* event) const
 
 	Event::EventType eventType = event->GetEventType();
 	
-	return (eventType >= mBegin) && (eventType <= mEnd);
+	return (eventType >= mBegin) && (eventType < mEnd);
 }
 //----------------------------------------------------------------------------
 inline bool EventSpace::Space::IsEqual (Event* event, Event::EventType eventType) const

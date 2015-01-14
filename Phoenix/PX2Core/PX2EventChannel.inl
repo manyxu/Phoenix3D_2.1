@@ -1,4 +1,8 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+/*
+*
+* ÎÄ¼şÃû³Æ	£º	PX2EventChannel.inl
+*
+*/
 
 template <int N>
 EventChannel &EventChannel::AddUserChannel ()

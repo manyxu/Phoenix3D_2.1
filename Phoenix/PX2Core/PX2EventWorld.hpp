@@ -1,8 +1,13 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+/*
+*
+* 文件名称	：	PX2EventWorld.hpp
+*
+*/
 
 #ifndef PX2EVENTWORLD_HPP
 #define PX2EVENTWORLD_HPP
 
+#include "PX2CorePre.hpp"
 #include "PX2EventHandler.hpp"
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2SmartPointer.hpp"
@@ -17,44 +22,34 @@ namespace PX2
 		EventWorld ();
 		~EventWorld ();
 
+		void Shutdown (bool shutdown);
+		bool IsShutdown () const;
+
+		void Update (float detalTime);
+
 		// 消息句柄
 		void ComeIn (EventHandler *handler);
 		void GoOut (EventHandler *handler);
 
-		/// 更新
-		/**
-		* 1.为每个事件句柄添加一个新的更新消息
-		* 2.分发各个事件，对事件进行相应处理
-		* 3.流逝时间单位（秒）
-		*/
-		void Update (float detalTime);
-
-		/// 广播本地消息
-		/**
-		* 该消息只能广播非系统消息，如果是一个系统消息，会出现一个断言失败。
-		*/
 		void BroadcastingLocalEvent (Event* event);
-
-		/// 广播网络消息
-		/**
-		*
-		*/
 		void BroadcastingNetEvent (Event* event);
 
 	private:
-		bool _AddHandler (EventHandler* handler);
-		void _RemoveHandler (EventHandler* handler);
-		void _UpdateEvent (float detalTime);
-		void _BroadcastingEvent (Event* event);
-		void SwapEventList ();
-
 		typedef std::vector<Event*> EventList;
 		typedef std::vector<EventHandler*> EventHandlerList;
 
-		EventList* mNowEventList;
-		EventList* mNextEventList;
-		EventHandlerList mAddingHandlers;
+		void _UpdateEvent(float detalTime);
+		void _BroadcastingEvent (Event* event);
+		void SwapEventList ();
+
+		bool mIsShoutdown;
+		EventList* mEventList;
 		EventHandlerList mHandlers;
+
+		bool mIsUpdatingEvents;
+		EventHandlerList mHandlersComingIn;
+		EventHandlerList mHandlersGoingOut;
+		EventList *mEventListBroadcasting;
 	};
 
 	typedef Pointer0<EventWorld> EventWorldPtr;
