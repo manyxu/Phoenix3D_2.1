@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2GraphicsRoot.cpp
-*
-*/
+// PX2GraphicsRoot.cpp
 
 #include "PX2GraphicsRoot.hpp"
 #include "PX2Environment.hpp"
@@ -20,6 +16,7 @@
 #include "PX2LightTex2Material.hpp"
 #include "PX2SkinMaterial.hpp"
 #include "PX2StdMaterial.hpp"
+#include "PX2MaterialManager.hpp"
 using namespace PX2;
 
 const std::string GraphicsRoot::sEmptyResPath = "EmptyResPath";
@@ -70,11 +67,24 @@ bool GraphicsRoot::Initlize ()
 	Camera::SetDefaultDepthType(Camera::PM_DEPTH_MINUS_ONE_TO_ONE);
 #endif
 
+	MaterialManager *mi = new0 MaterialManager();
+	PX2_UNUSED(mi);
+	PX2_MATERIALMAN.Initlize();
+
 	return true;
 }
 //-----------------------------------------------------------------------------
 bool GraphicsRoot::Terminate ()
 {
+	MaterialManager *mi = MaterialManager::GetSingletonPtr();
+	if (mi)
+	{
+		mi->Terminate();
+
+		delete0(mi);
+		MaterialManager::Set(0);
+	}
+
 	mRenderSteps.clear();
 	mCamera = 0;
 	mAllLights.clear();
@@ -379,5 +389,12 @@ VertexFormat *GraphicsRoot::GetVertexFormat(VertexFormatType type)
 	}
 
 	return 0;
+}
+//----------------------------------------------------------------------------
+ObjectLoadFun GraphicsRoot::msUserLoadFun = 0;
+//----------------------------------------------------------------------------
+void GraphicsRoot::SetUserLoadFun(ObjectLoadFun userLoadFun)
+{
+	msUserLoadFun = userLoadFun;
 }
 //----------------------------------------------------------------------------

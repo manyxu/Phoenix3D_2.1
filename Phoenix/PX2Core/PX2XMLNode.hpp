@@ -7,7 +7,7 @@
 #ifndef PX2XMLNODE_HPP
 #define PX2XMLNODE_HPP
 
-#include "PX2UnityPre.hpp"
+#include "PX2CorePre.hpp"
 
 namespace rapidxml
 {

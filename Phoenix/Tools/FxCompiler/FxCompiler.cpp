@@ -266,10 +266,6 @@ bool FxCompiler::ProcessMaterialNode (XMLNode materialNode)
 				return false;
 			}
 		}
-		else if ("instance" == childName)
-		{
-
-		}
 
 		childNode = materialNode.IterateChild(childNode);
 	}
@@ -280,9 +276,11 @@ bool FxCompiler::ProcessMaterialNode (XMLNode materialNode)
 bool FxCompiler::ProcessTechniqueNode (XMLNode techniqueNode)
 {
 	string techniqueName = techniqueNode.AttributeToString("name");
+	string tag = techniqueNode.AttributeToString("tag");
 
 	MaterialTechniquePtr materialTechnique = new0 MaterialTechnique();
 	materialTechnique->SetName(techniqueName);
+	materialTechnique->SetTag(tag);
 
 	mCurMaterial->InsertTechnique(materialTechnique);
 

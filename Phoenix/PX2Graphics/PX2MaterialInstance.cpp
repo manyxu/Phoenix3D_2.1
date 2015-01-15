@@ -6,6 +6,8 @@
 
 #include "PX2MaterialInstance.hpp"
 #include "PX2StringHelp.hpp"
+#include "PX2GraphicsRoot.hpp"
+#include "PX2MaterialManager.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Object, MaterialInstance);
@@ -38,6 +40,51 @@ mTechniqueIndex(techniqueIndex)
 		mPixelParameters[p] =
 			new0 ShaderParameters(pass->GetPixelShader());
 		mPixelParameters[p]->SetName("PParams_" + StringHelp::IntToString(p));
+	}
+}
+//----------------------------------------------------------------------------
+MaterialInstance::MaterialInstance(const std::string &mtlFilename, 
+	const std::string &intanceName) :
+	mMaterialFilename(mtlFilename),
+	mInstanceTagName(intanceName)
+{
+	_RefreshMaterial(mMaterialFilename, mInstanceTagName);
+}
+//----------------------------------------------------------------------------
+void MaterialInstance::_RefreshMaterial(const std::string &mtlFilename,
+	const std::string &tagName)
+{
+	mMaterial = PX2_MATERIALMAN.GetMaterial(mtlFilename.c_str());
+	assertion(mMaterial != 0, "Material must be specified.\n");
+
+	MaterialTechnique* technique = mMaterial->GetTechnique(tagName,
+		mTechniqueIndex);
+
+	mNumPasses = technique->GetNumPasses();
+	mVertexParameters = new1<ShaderParametersPtr>(mNumPasses);
+	mPixelParameters = new1<ShaderParametersPtr>(mNumPasses);
+	int p;
+	for (p = 0; p < mNumPasses; ++p)
+	{
+		MaterialPass* pass = technique->GetPass(p);
+		VertexShader *vs = pass->GetVertexShader();
+		PixelShader *ps = pass->GetPixelShader();
+		
+		mVertexParameters[p] = new0 ShaderParameters(pass->GetVertexShader());
+
+		mPixelParameters[p] = new0 ShaderParameters(pass->GetPixelShader());
+
+		for (int i = 0; i < vs->GetNumConstants(); i++)
+		{
+			const std::string &constantName = vs->GetConstantName(i);
+
+			ShaderFloat *shaderFloat = PX2_MATERIALMAN.CreateShaderFloat(constantName.c_str());
+
+			if (shaderFloat)
+			{
+				SetVertexConstant(p, i, shaderFloat);
+			}
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -340,8 +387,16 @@ void MaterialInstance::Load (InStream& source)
 	Object::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	source.Read(mTechniqueIndex);
-	source.ReadPointer(mMaterial);
+	if (!mMaterialFilename.empty() && !mInstanceTagName.empty())
+	{
+		source.ReadString(mMaterialFilename);
+		source.ReadString(mInstanceTagName);
+	}
+	else
+	{
+		source.ReadPointer(mMaterial);
+		source.Read(mTechniqueIndex);
+	}
 
 	source.ReadPointerRR(mNumPasses, mVertexParameters);
 	source.ReadPointerVR(mNumPasses, mPixelParameters);
@@ -353,7 +408,10 @@ void MaterialInstance::Link (InStream& source)
 {
 	Object::Link(source);
 
-	source.ResolveLink(mMaterial);
+	if (mMaterialFilename.empty() && mInstanceTagName.empty())
+	{
+		source.ResolveLink(mMaterial);
+	}
 
 	source.ResolveLink(mNumPasses, mVertexParameters);
 	source.ResolveLink(mNumPasses, mPixelParameters);
@@ -362,14 +420,21 @@ void MaterialInstance::Link (InStream& source)
 void MaterialInstance::PostLink ()
 {
 	Object::PostLink();
+
+	if (!mMaterialFilename.empty() && !mInstanceTagName.empty())
+	{
+		_RefreshMaterial(mMaterialFilename, mInstanceTagName);
+	}
 }
 //----------------------------------------------------------------------------
 bool MaterialInstance::Register (OutStream& target) const
 {
 	if (Object::Register(target))
 	{
-		if(target.IsObjectCopy()) target.Register(mMaterial, true);
-		else target.Register(mMaterial);
+		if (mMaterialFilename.empty() && mInstanceTagName.empty())
+		{
+			target.Register(mMaterial);
+		}
 
 		target.Register(mNumPasses, mVertexParameters);
 		target.Register(mNumPasses, mPixelParameters);
@@ -385,8 +450,16 @@ void MaterialInstance::Save (OutStream& target) const
 	Object::Save(target);
 	PX2_VERSION_SAVE(target);
 
-	target.Write(mTechniqueIndex);
-	target.WritePointer(mMaterial);
+	if (!mMaterialFilename.empty() && !mInstanceTagName.empty())
+	{
+		target.WriteString(mMaterialFilename);
+		target.WriteString(mInstanceTagName);
+	}
+	else
+	{
+		target.WritePointer(mMaterial);
+		target.Write(mTechniqueIndex);
+	}
 
 	target.WritePointerW(mNumPasses, mVertexParameters);
 	target.WritePointerN(mNumPasses, mPixelParameters);
@@ -398,11 +471,22 @@ int MaterialInstance::GetStreamingSize (Stream &stream) const
 {
 	int size = Object::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
-	size += sizeof(mTechniqueIndex);
-	size += PX2_POINTERSIZE(mMaterial);
+
+	if (!mMaterialFilename.empty() && !mInstanceTagName.empty())
+	{
+		size += PX2_STRINGSIZE(mMaterialFilename);
+		size += PX2_STRINGSIZE(mInstanceTagName);
+	}
+	else
+	{
+		size += PX2_POINTERSIZE(mMaterial);
+		size += sizeof(mTechniqueIndex);
+	}
+
 	size += sizeof(mNumPasses);
 	size += mNumPasses*PX2_POINTERSIZE(mVertexParameters[0]);
 	size += mNumPasses*PX2_POINTERSIZE(mPixelParameters[0]);
+
 	return size;
 }
 //----------------------------------------------------------------------------

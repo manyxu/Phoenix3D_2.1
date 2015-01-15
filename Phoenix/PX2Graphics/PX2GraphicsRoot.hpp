@@ -26,6 +26,8 @@
 namespace PX2
 {
 
+	typedef Object *(*ObjectLoadFun) (const char *filename);
+
 	class Renderer;
 	class VisibleSet;
 
@@ -109,6 +111,11 @@ namespace PX2
 
 	protected:
 		std::map<VertexFormatType, VertexFormatPtr > mCreatedVFs;
+
+		// Load
+	public:
+		static void SetUserLoadFun(ObjectLoadFun userLoadFun);
+		static ObjectLoadFun msUserLoadFun;
 	};
 
 #include "PX2GraphicsRoot.inl"

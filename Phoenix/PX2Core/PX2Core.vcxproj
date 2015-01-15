@@ -105,6 +105,12 @@
     <ClInclude Include="PX2Tuple.hpp" />
     <ClInclude Include="PX2Visitor.hpp" />
     <ClInclude Include="PX2WeakPointer.hpp" />
+    <ClInclude Include="PX2XMLData.hpp" />
+    <ClInclude Include="PX2XMLNode.hpp" />
+    <ClInclude Include="RapidXML\rapidxml.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_iterators.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_print.hpp" />
+    <ClInclude Include="RapidXML\rapidxml_utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Ascii.cpp" />
@@ -173,6 +179,8 @@
     <ClCompile Include="PX2TimeZone.cpp" />
     <ClCompile Include="PX2Visitor.cpp" />
     <ClCompile Include="PX2WeakPointer.cpp" />
+    <ClCompile Include="PX2XMLData.cpp" />
+    <ClCompile Include="PX2XMLNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Ascii.inl" />
@@ -291,7 +299,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;.\SQLite;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\RapidXML;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

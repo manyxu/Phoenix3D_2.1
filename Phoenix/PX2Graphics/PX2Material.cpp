@@ -6,6 +6,7 @@
 
 #include "PX2Material.hpp"
 #include "PX2Renderable.hpp"
+#include "PX2MaterialInstance.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Object, Material);
@@ -41,6 +42,21 @@ MaterialTechnique* Material::GetTechnique (int techniqueIndex) const
 	}
 
 	assertion(false, "Invalid index in GetTechnique.\n");
+	return 0;
+}
+//----------------------------------------------------------------------------
+MaterialTechnique* Material::GetTechnique(const std::string &techniqueName,
+	int &index) const
+{
+	for (int i = 0; i < (int)mTechniques.size(); i++)
+	{
+		if (techniqueName == mTechniques[i]->GetTag())
+		{
+			index = i;
+			return mTechniques[i];
+		}
+	}
+
 	return 0;
 }
 //----------------------------------------------------------------------------

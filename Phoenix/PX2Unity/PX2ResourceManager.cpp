@@ -41,10 +41,9 @@ using namespace PX2;
 using namespace std;
 
 //----------------------------------------------------------------------------
-Texture *ResManUserLoadFun (const char *filename)
+Object *ResManUserLoadFun (const char *filename)
 {
-	Object *obj = ResourceManager::GetSingleton().BlockLoad(filename);
-	return DynamicCast<Texture>(obj);
+	return ResourceManager::GetSingleton().BlockLoad(filename);
 }
 //----------------------------------------------------------------------------
 std::string ResourceManager::msResPath;
@@ -81,7 +80,7 @@ mEndVersionList(19870824)
 	mResTableMutex = new0 Mutex();
 	mTexPacksMutex = new0 Mutex();
 
-	ShaderParameters::SetUserLoadFun(ResManUserLoadFun);
+	GraphicsRoot::SetUserLoadFun(ResManUserLoadFun);
 
 	// Init Devil
 	ilInit();

@@ -7,7 +7,6 @@
 #include "PX2XMLNode.hpp"
 #include "PX2Assert.hpp"
 #include "rapidxml.hpp"
-#include <list>
 
 using namespace std;
 using namespace PX2;

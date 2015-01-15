@@ -17,7 +17,6 @@ MaterialPass::MaterialPass ()
 	:
 PdrPointer(0)
 {
-	SetName("MP");
 }
 //----------------------------------------------------------------------------
 MaterialPass::~MaterialPass ()

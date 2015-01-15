@@ -4,9 +4,6 @@
     <Filter Include="ResourceManager">
       <UniqueIdentifier>{c5c9c5f3-931c-433e-8729-18e719af82f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="XML">
-      <UniqueIdentifier>{0148aa54-0cd9-4e19-99c1-7842dce4e55a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Language">
       <UniqueIdentifier>{b097d3ae-7b0d-413f-b922-34413176e103}</UniqueIdentifier>
     </Filter>
@@ -82,9 +79,6 @@
     <Filter Include="MD5">
       <UniqueIdentifier>{92c339ec-7471-4c6e-81da-42cf279801b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="XML\RapidXML">
-      <UniqueIdentifier>{6a1efa6f-f192-41a5-8617-4fe8a80efdbb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Font\FreeType">
       <UniqueIdentifier>{aadf60cf-657f-4dd7-ab2e-7c791d4774a6}</UniqueIdentifier>
     </Filter>
@@ -128,12 +122,6 @@
   <ItemGroup>
     <ClCompile Include="PX2ResourceManager.cpp">
       <Filter>ResourceManager</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2XMLData.cpp">
-      <Filter>XML</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2XMLNode.cpp">
-      <Filter>XML</Filter>
     </ClCompile>
     <ClCompile Include="PX2LanguageManager.cpp">
       <Filter>Language</Filter>
@@ -1012,12 +1000,6 @@
   <ItemGroup>
     <ClInclude Include="PX2Unity.hpp" />
     <ClInclude Include="PX2UnityPre.hpp" />
-    <ClInclude Include="PX2XMLData.hpp">
-      <Filter>XML</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2XMLNode.hpp">
-      <Filter>XML</Filter>
-    </ClInclude>
     <ClInclude Include="PX2LanguageManager.hpp">
       <Filter>Language</Filter>
     </ClInclude>
@@ -1692,18 +1674,6 @@
     </ClInclude>
     <ClInclude Include="PX2MD5.hpp">
       <Filter>MD5</Filter>
-    </ClInclude>
-    <ClInclude Include="RapidXML\rapidxml.hpp">
-      <Filter>XML\RapidXML</Filter>
-    </ClInclude>
-    <ClInclude Include="RapidXML\rapidxml_iterators.hpp">
-      <Filter>XML\RapidXML</Filter>
-    </ClInclude>
-    <ClInclude Include="RapidXML\rapidxml_print.hpp">
-      <Filter>XML\RapidXML</Filter>
-    </ClInclude>
-    <ClInclude Include="RapidXML\rapidxml_utils.hpp">
-      <Filter>XML\RapidXML</Filter>
     </ClInclude>
     <ClInclude Include="PX2ResourceManager.hpp">
       <Filter>ResourceManager</Filter>

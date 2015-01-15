@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2Material.hpp
-*
-* 版本		:	1.0 (2011/02/01)
-*
-* 作者		：	more
-*
-*/
+// PX2Material.hpp
 
 #ifndef PX2MATERIAL_HPP
 #define PX2MATERIAL_HPP
@@ -21,6 +10,8 @@
 namespace PX2
 {
 
+	class MaterialInstance;
+
 	/// 材质模板类
 	class Material : public Object
 	{
@@ -30,7 +21,7 @@ namespace PX2
 		PX2_DECLARE_STREAM(Material);
 
 	public:
-		Material ();
+		Material();
 		virtual ~Material ();
 
 		/// 在渲染技术数组末尾插入一个渲染技术
@@ -38,6 +29,7 @@ namespace PX2
 
 		inline int GetNumTechniques () const;
 		MaterialTechnique* GetTechnique (int techniqueIndex) const;
+		MaterialTechnique* GetTechnique(const std::string &techniqueName, int &index) const;
 
 		int GetNumPasses (int techniqueIndex) const;
 		MaterialPass* GetPass (int techniqueIndex, int passIndex) const;

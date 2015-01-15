@@ -1,13 +1,8 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2XMLData.hpp
-*
-*/
+ // PX2XMLData.hpp
 
 #ifndef PX2XMLDATA_HPP
 #define PX2XMLDATA_HPP
 
-#include "PX2UnityPre.hpp"
 #include "PX2XMLNode.hpp"
 
 namespace PX2

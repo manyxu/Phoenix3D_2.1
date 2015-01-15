@@ -29,7 +29,9 @@ namespace PX2
 		PX2_DECLARE_STREAM(MaterialInstance);
 
 	public:
-		MaterialInstance (const Material* material, int techniqueIndex);
+		MaterialInstance(const Material* material, int techniqueIndex);
+		MaterialInstance(const std::string &mtlFilename, 
+			const std::string &tagName);
 		virtual ~MaterialInstance ();
 
 		// ≥…‘±∑√Œ 
@@ -77,8 +79,15 @@ namespace PX2
 		Texture* GetPixelTexture (int pass, int handle) const;
 
 	protected:
+		void _RefreshMaterial(const std::string &mtlFilename,
+			const std::string &intanceName);
+
 		MaterialPtr mMaterial;
 		int mTechniqueIndex;
+
+		std::string mMaterialFilename;
+		std::string mInstanceTagName;
+		
 		int mNumPasses;
 		ShaderParametersPtr* mVertexParameters;
 		ShaderParametersPtr* mPixelParameters;

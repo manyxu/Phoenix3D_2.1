@@ -248,7 +248,7 @@ void Renderable::SetUseLightTexture (bool use, Texture2D *lightTex)
 	if (!IsBakeTarget())
 		return;
 
-	if (!ShaderParameters::msTextureUserLoadFun)
+	if (!GraphicsRoot::msUserLoadFun)
 		return;
 	
 	MaterialInstance *mi = GetMaterialInstance();
@@ -262,7 +262,7 @@ void Renderable::SetUseLightTexture (bool use, Texture2D *lightTex)
 	{
 		if (!mNormalTexPath.empty() && lightTex)
 		{
-			Texture2D *normalTex = DynamicCast<Texture2D>(ShaderParameters::msTextureUserLoadFun(
+			Texture2D *normalTex = DynamicCast<Texture2D>(GraphicsRoot::msUserLoadFun(
 				mNormalTexPath.c_str()));
 
 			if (normalTex && lightTex)

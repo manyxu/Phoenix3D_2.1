@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2ShaderParameters.hpp
-*
-* 版本		:	1.0 (2011/02/01)
-*
-* 作者		：	more
-*
-*/
+// PX2ShaderParameters.hpp
 
 #ifndef PX2SHADERPARAMETERS_HPP
 #define PX2SHADERPARAMETERS_HPP
@@ -21,8 +10,6 @@
 
 namespace PX2
 {
-
-	typedef Texture *(*TextureUserLoadFun) (const char *filename);
 
 	/// 着色器参数类
 	/**
@@ -65,11 +52,6 @@ namespace PX2
 
 		// 在绘制的时候更新常量
 		void UpdateConstants (const Renderable* renderable, const Camera* camera);
-
-		// 共享贴图
-		static void SetUserLoadFun (TextureUserLoadFun userLoadFun);
-
-		static TextureUserLoadFun msTextureUserLoadFun;
 
 	protected:
 		ShaderPtr mShader;

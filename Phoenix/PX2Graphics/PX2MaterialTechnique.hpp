@@ -31,6 +31,9 @@ namespace PX2
 		MaterialTechnique ();
 		virtual ~MaterialTechnique ();
 
+		void SetTag(const std::string &tag);
+		const std::string &GetTag() const;
+
 		// 插入一个新的pass到pass队列末尾。
 		void InsertPass (MaterialPass* pass);
 		void PopLastPass ();
@@ -50,6 +53,7 @@ namespace PX2
 		WireProperty* GetWireProperty (int passIndex) const;
 
 	protected:
+		std::string mTag;
 		std::vector<MaterialPassPtr> mPasses;
 	};
 

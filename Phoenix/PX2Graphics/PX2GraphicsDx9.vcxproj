@@ -84,6 +84,7 @@
     <ClCompile Include="PX2LightWorldPositionConstant.cpp" />
     <ClCompile Include="PX2Material.cpp" />
     <ClCompile Include="PX2MaterialInstance.cpp" />
+    <ClCompile Include="PX2MaterialManager.cpp" />
     <ClCompile Include="PX2MaterialPass.cpp" />
     <ClCompile Include="PX2MaterialTechnique.cpp" />
     <ClCompile Include="PX2Movable.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="PX2LightWorldPositionConstant.hpp" />
     <ClInclude Include="PX2Material.hpp" />
     <ClInclude Include="PX2MaterialInstance.hpp" />
+    <ClInclude Include="PX2MaterialManager.hpp" />
     <ClInclude Include="PX2MaterialPass.hpp" />
     <ClInclude Include="PX2MaterialTechnique.hpp" />
     <ClInclude Include="PX2Movable.hpp" />

@@ -37,14 +37,7 @@ mIsMtlNeedUpdate(true)
 		mTexturePathname));
 	if (tex) SetSize((float)tex->GetWidth(), (float)tex->GetHeight());
 
-	Material *mtl = DynamicCast<Material>(PX2_RM.BlockLoad(
-		"Data/mtls/ui/ui.px2obj"));
-	mtl->GetVertexShader(0, 0)->SetShaderKey(SKT_UI);
-	mtl->GetPixelShader(0, 0)->SetShaderKey(SKT_UI);
-
-	MaterialInstance *mi = new0 MaterialInstance(mtl, 0);
-	mi->SetVertexConstant(0, 0, new0 PVWMatrixConstant());
-	mi->SetPixelTexture(0, 0, tex);
+	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj", "default");
 	SetMaterialInstance(mi);
 }
 //----------------------------------------------------------------------------

@@ -206,6 +206,8 @@ void MaterialTechnique::Load (InStream& source)
 	Object::Load(source);
 	PX2_VERSION_LOAD(source);
 
+	source.ReadString(mTag);
+
 	int numPasses;
 	source.Read(numPasses);
 	mPasses.resize(numPasses);
@@ -253,6 +255,8 @@ void MaterialTechnique::Save (OutStream& target) const
 	Object::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WriteString(mTag);
+
 	target.WritePointerW((int)mPasses.size(), &mPasses[0]);
 
 	PX2_END_DEBUG_STREAM_SAVE(MaterialTechnique, target);
@@ -262,6 +266,8 @@ int MaterialTechnique::GetStreamingSize (Stream &stream) const
 {
 	int size = Object::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
+	size += PX2_STRINGSIZE(mTag);
 	int numPasses = (int)mPasses.size();
 	size += sizeof(numPasses);
 	size += numPasses*PX2_POINTERSIZE(mPasses[0]);

@@ -222,13 +222,13 @@ void ShaderParameters::OnPropertyChanged (const PropertyObject &obj)
 		size_t pos = name.find(key);	
 		size_t len = key.length();
 		size_t leftLen = name.length() - len;
-		if (pos != std::string::npos && msTextureUserLoadFun)
+		if (pos != std::string::npos && GraphicsRoot::msUserLoadFun)
 		{
 			std::string iStr = name.substr(len, leftLen);
 			int i = atoi(iStr.c_str());
 
 			mTextureResPath[i] = path;
-			mTextures[i] = msTextureUserLoadFun(path.c_str());
+			mTextures[i] = DynamicCast<Texture2D>(GraphicsRoot::msUserLoadFun(path.c_str()));
 		}
 	}
 }
@@ -334,7 +334,7 @@ void ShaderParameters::Link (InStream& source)
 	source.ResolveLink(mShader);
 	source.ResolveLink(mNumConstants, mConstants);
 
-	assertion(0!=msTextureUserLoadFun, "msTextureUserLoadFun must not be 0.\n");
+	assertion(0!=GraphicsRoot::msUserLoadFun, "msUserLoadFun must not be 0.\n");
 
 	for (int i=0; i<mNumTextures; i++)
 	{
@@ -350,7 +350,8 @@ void ShaderParameters::Link (InStream& source)
 				}
 				else
 				{
-					mTextures[i] = msTextureUserLoadFun(mTextureResPath[i].c_str());
+					mTextures[i] = DynamicCast<Texture>
+						(GraphicsRoot::msUserLoadFun(mTextureResPath[i].c_str()));
 				}
 			}
 			else
@@ -492,12 +493,5 @@ int ShaderParameters::GetStreamingSize (Stream &stream) const
 	}
 
 	return size;
-}
-//----------------------------------------------------------------------------
-TextureUserLoadFun ShaderParameters::msTextureUserLoadFun = 0;
-//----------------------------------------------------------------------------
-void ShaderParameters::SetUserLoadFun (TextureUserLoadFun userLoadFun)
-{
-	msTextureUserLoadFun = userLoadFun;
 }
 //----------------------------------------------------------------------------

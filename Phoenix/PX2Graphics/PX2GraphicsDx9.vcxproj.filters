@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="PX2GraphicsRoot.cpp" />
-    <ClCompile Include="PX2AlphaProperty.cpp">
-      <Filter>Material</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Bound.cpp">
       <Filter>DataTypes</Filter>
     </ClCompile>
@@ -53,17 +50,11 @@
     <ClCompile Include="PX2CreateClodMesh.cpp">
       <Filter>Detail</Filter>
     </ClCompile>
-    <ClCompile Include="PX2CullProperty.cpp">
-      <Filter>Material</Filter>
-    </ClCompile>
     <ClCompile Include="PX2CurveMesh.cpp">
       <Filter>CurvesSurfaces</Filter>
     </ClCompile>
     <ClCompile Include="PX2CurveSegment.cpp">
       <Filter>CurvesSurfaces</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2DepthProperty.cpp">
-      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2DlodNode.cpp">
       <Filter>Detail</Filter>
@@ -143,9 +134,6 @@
     <ClCompile Include="PX2Node.cpp">
       <Filter>SceneGraph</Filter>
     </ClCompile>
-    <ClCompile Include="PX2OffsetProperty.cpp">
-      <Filter>Material</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Picker.cpp">
       <Filter>SceneGraph</Filter>
     </ClCompile>
@@ -212,9 +200,6 @@
     <ClCompile Include="PX2SpecializedIO.cpp">
       <Filter>DataTypes</Filter>
     </ClCompile>
-    <ClCompile Include="PX2StencilProperty.cpp">
-      <Filter>Material</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Texture.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
@@ -245,9 +230,6 @@
     <ClCompile Include="PX2VertexFormat.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
-    <ClCompile Include="PX2VertexShader.cpp">
-      <Filter>Material</Filter>
-    </ClCompile>
     <ClCompile Include="PX2VMatrixConstant.cpp">
       <Filter>ShaderFloats</Filter>
     </ClCompile>
@@ -259,9 +241,6 @@
     </ClCompile>
     <ClCompile Include="PX2VisibleSet.cpp">
       <Filter>SceneGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2WireProperty.cpp">
-      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2RenderTarget.cpp">
       <Filter>Resources</Filter>
@@ -434,13 +413,34 @@
     <ClCompile Include="PX2TexPackData.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
+    <ClCompile Include="PX2MaterialManager.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AlphaProperty.cpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CullProperty.cpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DepthProperty.cpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2OffsetProperty.cpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StencilProperty.cpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VertexShader.cpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2WireProperty.cpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
     <ClInclude Include="PX2GraphicsRoot.hpp" />
-    <ClInclude Include="PX2AlphaProperty.hpp">
-      <Filter>Material</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Bound.hpp">
       <Filter>DataTypes</Filter>
     </ClInclude>
@@ -489,17 +489,11 @@
     <ClInclude Include="PX2CreateClodMesh.hpp">
       <Filter>Detail</Filter>
     </ClInclude>
-    <ClInclude Include="PX2CullProperty.hpp">
-      <Filter>Material</Filter>
-    </ClInclude>
     <ClInclude Include="PX2CurveMesh.hpp">
       <Filter>CurvesSurfaces</Filter>
     </ClInclude>
     <ClInclude Include="PX2CurveSegment.hpp">
       <Filter>CurvesSurfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2DepthProperty.hpp">
-      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2DlodNode.hpp">
       <Filter>Detail</Filter>
@@ -579,9 +573,6 @@
     <ClInclude Include="PX2Node.hpp">
       <Filter>SceneGraph</Filter>
     </ClInclude>
-    <ClInclude Include="PX2OffsetProperty.hpp">
-      <Filter>Material</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Picker.hpp">
       <Filter>SceneGraph</Filter>
     </ClInclude>
@@ -651,9 +642,6 @@
     <ClInclude Include="PX2SpecializedIO.hpp">
       <Filter>DataTypes</Filter>
     </ClInclude>
-    <ClInclude Include="PX2StencilProperty.hpp">
-      <Filter>Material</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Texture.hpp">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -684,9 +672,6 @@
     <ClInclude Include="PX2VertexFormat.hpp">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="PX2VertexShader.hpp">
-      <Filter>Material</Filter>
-    </ClInclude>
     <ClInclude Include="PX2VMatrixConstant.hpp">
       <Filter>ShaderFloats</Filter>
     </ClInclude>
@@ -698,9 +683,6 @@
     </ClInclude>
     <ClInclude Include="PX2VisibleSet.hpp">
       <Filter>SceneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2WireProperty.hpp">
-      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2RenderTarget.hpp">
       <Filter>Resources</Filter>
@@ -883,6 +865,30 @@
     <ClInclude Include="PX2TexPackData.hpp">
       <Filter>Geometry</Filter>
     </ClInclude>
+    <ClInclude Include="PX2MaterialManager.hpp">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AlphaProperty.hpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CullProperty.hpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DepthProperty.hpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2OffsetProperty.hpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StencilProperty.hpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VertexShader.hpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2WireProperty.hpp">
+      <Filter>Material\RenderProperty</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Bound.inl">
@@ -1011,9 +1017,6 @@
     <None Include="PX2VertexFormat.inl">
       <Filter>Resources</Filter>
     </None>
-    <None Include="PX2VertexShader.inl">
-      <Filter>Material</Filter>
-    </None>
     <None Include="PX2VisibleSet.inl">
       <Filter>SceneGraph</Filter>
     </None>
@@ -1074,6 +1077,9 @@
     </None>
     <None Include="PX2TexPackData.inl">
       <Filter>Geometry</Filter>
+    </None>
+    <None Include="PX2VertexShader.inl">
+      <Filter>Material\RenderProperty</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -1145,6 +1151,9 @@
     </Filter>
     <Filter Include="Geometry">
       <UniqueIdentifier>{c8d888be-e356-4b46-b455-270f132defd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material\RenderProperty">
+      <UniqueIdentifier>{c2cb1096-17c1-4182-a73f-5dcfa5a50db7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

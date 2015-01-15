@@ -1,11 +1,8 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2XMLData.cpp
-*
-*/
+// XMLData.hpp
 
 #include "PX2XMLData.hpp"
 #include "PX2Assert.hpp"
+#include "PX2Memory.hpp"
 
 #if defined(_WIN32) || defined(WIN32)
 #pragma warning(push) 
