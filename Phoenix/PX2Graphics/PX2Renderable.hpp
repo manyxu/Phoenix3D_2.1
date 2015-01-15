@@ -294,7 +294,7 @@ public_internal:
 		MaterialInstancePtr mNormalMaterialInstance;
 
 		// 绘制几何图形的效果
-		MaterialInstancePtr mMaterial;
+		MaterialInstancePtr mMaterialInstance;
 
 		RenderLayer mLayer;
 		int mSubLayer;
@@ -310,28 +310,6 @@ public_internal:
 
 		PhysicsType mPhysicsType;
 		Float3 mPhysicsParam;
-
-		// Begin load/save
-	public:
-		// created properly unless we have a Load for each instantiable primitive.
-		// 使用持久化系统from/to *.px2vf Load/Save渲染对象。因为Renderable是具体几何
-		// 图形一个抽象基类，所以我们不能通过此函数加载，创建，返回一个Renderable。
-		static void LoadPX2VF (const std::string& name, PrimitiveType& type,
-			VertexFormat*& vformat, VertexBuffer*& vbuffer, IndexBuffer*& ibuffer,
-			int mode = FileIO::FM_DEFAULT_READ);
-
-		void SavePX2VF (const std::string& name,
-			int mode = FileIO::FM_DEFAULT_WRITE);
-
-	private:
-		static VertexFormat* LoadVertexFormat (FileIO& inFile);
-		static VertexBuffer* LoadVertexBuffer (FileIO& inFile,
-			VertexFormat* vformat);
-		static IndexBuffer* LoadIndexBuffer (FileIO& inFile);
-		void SaveVertexFormat (FileIO& outFile);
-		void SaveVertexBuffer (FileIO& outFile);
-		void SaveIndexBuffer (FileIO& outFile);
-		// End load/save
 	};
 
 	PX2_REGISTER_STREAM(Renderable);

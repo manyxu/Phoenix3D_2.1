@@ -87,6 +87,7 @@
     <ClCompile Include="PX2MaterialPass.cpp" />
     <ClCompile Include="PX2MaterialTechnique.cpp" />
     <ClCompile Include="PX2Movable.cpp" />
+    <ClCompile Include="PX2MtlTexObj.cpp" />
     <ClCompile Include="PX2Node.cpp" />
     <ClCompile Include="PX2OffsetProperty.cpp" />
     <ClCompile Include="PX2Picker.cpp" />
@@ -124,6 +125,7 @@
     <ClCompile Include="PX2StencilProperty.cpp" />
     <ClCompile Include="PX2SwitchNode.cpp" />
     <ClCompile Include="PX2TargetTransformController.cpp" />
+    <ClCompile Include="PX2TexPackData.cpp" />
     <ClCompile Include="PX2Texture.cpp" />
     <ClCompile Include="PX2Texture1D.cpp" />
     <ClCompile Include="PX2Texture2D.cpp" />
@@ -234,6 +236,7 @@
     <ClInclude Include="PX2MaterialPass.hpp" />
     <ClInclude Include="PX2MaterialTechnique.hpp" />
     <ClInclude Include="PX2Movable.hpp" />
+    <ClInclude Include="PX2MtlTexObj.hpp" />
     <ClInclude Include="PX2Node.hpp" />
     <ClInclude Include="PX2OffsetProperty.hpp" />
     <ClInclude Include="PX2Picker.hpp" />
@@ -273,6 +276,7 @@
     <ClInclude Include="PX2StencilProperty.hpp" />
     <ClInclude Include="PX2SwitchNode.hpp" />
     <ClInclude Include="PX2TargetTransformController.hpp" />
+    <ClInclude Include="PX2TexPackData.hpp" />
     <ClInclude Include="PX2Texture.hpp" />
     <ClInclude Include="PX2Texture1D.hpp" />
     <ClInclude Include="PX2Texture2D.hpp" />
@@ -365,6 +369,7 @@
     <None Include="PX2SkinController.inl" />
     <None Include="PX2SwitchNode.inl" />
     <None Include="PX2TargetTransformController.inl" />
+    <None Include="PX2TexPackData.inl" />
     <None Include="PX2Texture.inl" />
     <None Include="PX2Texture1D.inl" />
     <None Include="PX2Texture2D.inl" />

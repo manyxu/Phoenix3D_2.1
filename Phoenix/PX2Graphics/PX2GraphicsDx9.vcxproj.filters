@@ -3,7 +3,7 @@
   <ItemGroup>
     <ClCompile Include="PX2GraphicsRoot.cpp" />
     <ClCompile Include="PX2AlphaProperty.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2Bound.cpp">
       <Filter>DataTypes</Filter>
@@ -54,7 +54,7 @@
       <Filter>Detail</Filter>
     </ClCompile>
     <ClCompile Include="PX2CullProperty.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2CurveMesh.cpp">
       <Filter>CurvesSurfaces</Filter>
@@ -63,7 +63,7 @@
       <Filter>CurvesSurfaces</Filter>
     </ClCompile>
     <ClCompile Include="PX2DepthProperty.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2DlodNode.cpp">
       <Filter>Detail</Filter>
@@ -126,16 +126,16 @@
       <Filter>SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="PX2Material.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2MaterialInstance.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2MaterialPass.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2MaterialTechnique.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2Movable.cpp">
       <Filter>SceneGraph</Filter>
@@ -144,7 +144,7 @@
       <Filter>SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="PX2OffsetProperty.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2Picker.cpp">
       <Filter>SceneGraph</Filter>
@@ -153,13 +153,7 @@
       <Filter>SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="PX2PixelShader.cpp">
-      <Filter>Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2Polypoint.cpp">
-      <Filter>SceneGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2Polysegment.cpp">
-      <Filter>SceneGraph</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2PMatrixConstant.cpp">
       <Filter>ShaderFloats</Filter>
@@ -189,13 +183,13 @@
       <Filter>SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="PX2Shader.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2ShaderFloat.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2ShaderParameters.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2Shine.cpp">
       <Filter>SceneGraph</Filter>
@@ -218,11 +212,8 @@
     <ClCompile Include="PX2SpecializedIO.cpp">
       <Filter>DataTypes</Filter>
     </ClCompile>
-    <ClCompile Include="PX2StandardMesh.cpp">
-      <Filter>SceneGraph</Filter>
-    </ClCompile>
     <ClCompile Include="PX2StencilProperty.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2Texture.cpp">
       <Filter>Resources</Filter>
@@ -242,18 +233,6 @@
     <ClCompile Include="PX2TransformController.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="PX2Triangles.cpp">
-      <Filter>SceneGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2TriFan.cpp">
-      <Filter>SceneGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2TriMesh.cpp">
-      <Filter>SceneGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2TriStrip.cpp">
-      <Filter>SceneGraph</Filter>
-    </ClCompile>
     <ClCompile Include="PX2VertexBufferAccessor.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
@@ -267,7 +246,7 @@
       <Filter>Resources</Filter>
     </ClCompile>
     <ClCompile Include="PX2VertexShader.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2VMatrixConstant.cpp">
       <Filter>ShaderFloats</Filter>
@@ -282,7 +261,7 @@
       <Filter>SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="PX2WireProperty.cpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2RenderTarget.cpp">
       <Filter>Resources</Filter>
@@ -428,12 +407,39 @@
     <ClCompile Include="PX2RenderStep.cpp">
       <Filter>Renderers</Filter>
     </ClCompile>
+    <ClCompile Include="PX2TriStrip.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TriMesh.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TriFan.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Triangles.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2StandardMesh.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Polysegment.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Polypoint.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MtlTexObj.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TexPackData.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
     <ClInclude Include="PX2GraphicsRoot.hpp" />
     <ClInclude Include="PX2AlphaProperty.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2Bound.hpp">
       <Filter>DataTypes</Filter>
@@ -484,7 +490,7 @@
       <Filter>Detail</Filter>
     </ClInclude>
     <ClInclude Include="PX2CullProperty.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2CurveMesh.hpp">
       <Filter>CurvesSurfaces</Filter>
@@ -493,7 +499,7 @@
       <Filter>CurvesSurfaces</Filter>
     </ClInclude>
     <ClInclude Include="PX2DepthProperty.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2DlodNode.hpp">
       <Filter>Detail</Filter>
@@ -556,16 +562,16 @@
       <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="PX2Material.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2MaterialInstance.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2MaterialPass.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2MaterialTechnique.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2Movable.hpp">
       <Filter>SceneGraph</Filter>
@@ -574,7 +580,7 @@
       <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="PX2OffsetProperty.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2Picker.hpp">
       <Filter>SceneGraph</Filter>
@@ -583,13 +589,7 @@
       <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="PX2PixelShader.hpp">
-      <Filter>Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2Polypoint.hpp">
-      <Filter>SceneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2Polysegment.hpp">
-      <Filter>SceneGraph</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2PMatrixConstant.hpp">
       <Filter>ShaderFloats</Filter>
@@ -622,13 +622,13 @@
       <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="PX2Shader.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2ShaderFloat.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2ShaderParameters.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2Shine.hpp">
       <Filter>SceneGraph</Filter>
@@ -651,11 +651,8 @@
     <ClInclude Include="PX2SpecializedIO.hpp">
       <Filter>DataTypes</Filter>
     </ClInclude>
-    <ClInclude Include="PX2StandardMesh.hpp">
-      <Filter>SceneGraph</Filter>
-    </ClInclude>
     <ClInclude Include="PX2StencilProperty.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2Texture.hpp">
       <Filter>Resources</Filter>
@@ -675,18 +672,6 @@
     <ClInclude Include="PX2TransformController.hpp">
       <Filter>Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="PX2Triangles.hpp">
-      <Filter>SceneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2TriFan.hpp">
-      <Filter>SceneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2TriMesh.hpp">
-      <Filter>SceneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2TriStrip.hpp">
-      <Filter>SceneGraph</Filter>
-    </ClInclude>
     <ClInclude Include="PX2VertexBufferAccessor.hpp">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -700,7 +685,7 @@
       <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="PX2VertexShader.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2VMatrixConstant.hpp">
       <Filter>ShaderFloats</Filter>
@@ -715,7 +700,7 @@
       <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="PX2WireProperty.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2RenderTarget.hpp">
       <Filter>Resources</Filter>
@@ -809,7 +794,7 @@
       <Filter>Detail</Filter>
     </ClInclude>
     <ClInclude Include="PX2ShaderKeys.hpp">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2DynamicBufferManager.hpp">
       <Filter>DynamicBuffer</Filter>
@@ -871,6 +856,33 @@
     <ClInclude Include="PX2RenderStep.hpp">
       <Filter>Renderers</Filter>
     </ClInclude>
+    <ClInclude Include="PX2TriStrip.hpp">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TriMesh.hpp">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TriFan.hpp">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Triangles.hpp">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2StandardMesh.hpp">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Polysegment.hpp">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Polypoint.hpp">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MtlTexObj.hpp">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TexPackData.hpp">
+      <Filter>Geometry</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Bound.inl">
@@ -931,16 +943,16 @@
       <Filter>SceneGraph</Filter>
     </None>
     <None Include="PX2Material.inl">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </None>
     <None Include="PX2MaterialInstance.inl">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </None>
     <None Include="PX2MaterialPass.inl">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </None>
     <None Include="PX2MaterialTechnique.inl">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </None>
     <None Include="PX2Movable.inl">
       <Filter>SceneGraph</Filter>
@@ -951,12 +963,6 @@
     <None Include="PX2PickRecord.inl">
       <Filter>SceneGraph</Filter>
     </None>
-    <None Include="PX2Polypoint.inl">
-      <Filter>SceneGraph</Filter>
-    </None>
-    <None Include="PX2Polysegment.inl">
-      <Filter>SceneGraph</Filter>
-    </None>
     <None Include="PX2Renderable.inl">
       <Filter>SceneGraph</Filter>
     </None>
@@ -964,13 +970,13 @@
       <Filter>Renderers</Filter>
     </None>
     <None Include="PX2Shader.inl">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </None>
     <None Include="PX2ShaderFloat.inl">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </None>
     <None Include="PX2ShaderParameters.inl">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </None>
     <None Include="PX2SkinController.inl">
       <Filter>Controllers</Filter>
@@ -993,9 +999,6 @@
     <None Include="PX2TransformController.inl">
       <Filter>Controllers</Filter>
     </None>
-    <None Include="PX2Triangles.inl">
-      <Filter>SceneGraph</Filter>
-    </None>
     <None Include="PX2VertexBufferAccessor.inl">
       <Filter>Resources</Filter>
     </None>
@@ -1009,7 +1012,7 @@
       <Filter>Resources</Filter>
     </None>
     <None Include="PX2VertexShader.inl">
-      <Filter>Shaders</Filter>
+      <Filter>Material</Filter>
     </None>
     <None Include="PX2VisibleSet.inl">
       <Filter>SceneGraph</Filter>
@@ -1060,6 +1063,18 @@
     <None Include="PX2RenderStep.inl">
       <Filter>Renderers</Filter>
     </None>
+    <None Include="PX2Triangles.inl">
+      <Filter>Geometry</Filter>
+    </None>
+    <None Include="PX2Polysegment.inl">
+      <Filter>Geometry</Filter>
+    </None>
+    <None Include="PX2Polypoint.inl">
+      <Filter>Geometry</Filter>
+    </None>
+    <None Include="PX2TexPackData.inl">
+      <Filter>Geometry</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Controllers">
@@ -1088,9 +1103,6 @@
     </Filter>
     <Filter Include="ImageProcessing">
       <UniqueIdentifier>{9cfe6716-6ab9-4d3e-aa21-eece459f629b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{43e15e94-c428-498b-826c-e111a61ba082}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renderers">
       <UniqueIdentifier>{729f913f-1476-4f2e-bd25-fdc0e88557bd}</UniqueIdentifier>
@@ -1127,6 +1139,12 @@
     </Filter>
     <Filter Include="Component">
       <UniqueIdentifier>{f1128f9a-439b-4520-849e-f7fa1ed0c924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{43e15e94-c428-498b-826c-e111a61ba082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Geometry">
+      <UniqueIdentifier>{c8d888be-e356-4b46-b455-270f132defd5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

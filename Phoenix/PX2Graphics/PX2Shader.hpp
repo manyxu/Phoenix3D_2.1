@@ -36,6 +36,16 @@ namespace PX2
 		// 最大版本数量。如果你增加了新的版本，需要改变这个数值。
 		enum { MAX_PROFILES = 6 };
 
+		enum Profile
+		{
+			P_NONE,
+			P_1_1,
+			P_2_0,
+			P_3_0,
+			P_ARBVP1,
+			P_OPENGLES2,
+		};
+
 		// 着色器程序输入和输出变量类型
 		enum VariableType
 		{
@@ -159,8 +169,7 @@ namespace PX2
 		/**
 		* 这个类定义了shader，但是不没有包含着色器的常量参数和纹理参数。每个
 		* “shader实例”会定义具体常量参数和纹理参数，常量参数被放在
-		* MaterialInstance中。profileOwner表示shader是不是从文件中加载的，如果
-		* 为false表示shader是写在代码中的。
+		* MaterialInstance中。profileOwner表示shader是不是预先分配好内存。
 		*/
 		Shader ();
 		Shader (const std::string& programName, int numInputs, int numOutputs,
@@ -188,6 +197,7 @@ namespace PX2
 		void SetBaseRegister (int profile, int i, int baseRegister); //< 第i个常量从第baseRegister个寄存器开始
 		void SetTextureUnit (int profile, int i, int textureUnit);
 		void SetProgram (int profile, const std::string& program);
+		void SetProgramFilename(int profile, const std::string& filename);
 
 		// 以下3个函数，如果构造函数中的“profileOwner”为“false”，你可以将与
 		// 版本相关的数据放在全局变量中，析构函数不会对数据的释放进行管理。
@@ -268,6 +278,7 @@ namespace PX2
 		int* mBaseRegister[MAX_PROFILES];
 		int* mTextureUnit[MAX_PROFILES];
 		std::string* mProgram[MAX_PROFILES];
+		std::string* mProgramFilename[MAX_PROFILES];
 
 		int mShaderKey;
 

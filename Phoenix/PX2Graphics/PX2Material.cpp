@@ -260,6 +260,12 @@ void Material::Link (InStream& source)
 void Material::PostLink ()
 {
 	Object::PostLink();
+
+	const std::string &resPath = GetResourcePath();
+	if (!resPath.empty())
+	{
+
+	}
 }
 //----------------------------------------------------------------------------
 bool Material::Register (OutStream& target) const

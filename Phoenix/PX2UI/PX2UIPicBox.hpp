@@ -16,7 +16,6 @@
 #include "PX2MaterialInstance.hpp"
 #include "PX2TriMesh.hpp"
 #include "PX2Camera.hpp"
-#include "PX2UIMaterial.hpp"
 #include "PX2TexPackData.hpp"
 
 namespace PX2
@@ -43,9 +42,6 @@ namespace PX2
 		void SetPicBoxType(PicBoxType type);
 		PicBoxType GetPicBoxType();
 
-		void SetDynamic(bool dyn);
-		bool IsDynamic() const;
-
 		// anchor
 		void SetAnchorPoint(float anchX, float anchZ);
 		void SetAnchorPoint(Float2 anchor);
@@ -62,6 +58,7 @@ namespace PX2
 		float GetHeight() const;
 		void MakeSizeWithTex();
 
+		// cornorsize
 		void SetTexCornerSize(float width, float height);
 		void SetTexCornerSize(const Sizef &size);
 		const Sizef &GetTexCornerSize() const;
@@ -75,17 +72,6 @@ namespace PX2
 		virtual void SetAlpha(float alpha); //< 0-1
 		virtual void SetColor(const Float3 &color);
 
-		void SetUVScaleX(float xScale);
-		void SetUVScaleY(float yScale);
-		void SetUVScale(Float2 uvScale);
-		float GetUVScaleX() const;
-		float GetUVScaleY() const;
-		const Float2 &GetUVScale() const;
-		Float2 &GetUVScale();
-
-		// material
-		UIMaterial *GetUIMaterial() const;
-
 		enum TexMode
 		{
 			TM_TEX,
@@ -96,19 +82,10 @@ namespace PX2
 		TexMode GetTexMode() const;
 
 		// base texture
-		void SetTexture(Texture2D *tex);
 		void SetTexture(const std::string &filename);
-		void SetTexture(const std::string &texPackName, const std::string &eleName);
-		Texture2D *GetTexture();
+		void SetTexture(const std::string &texPackName, const std::string &eleName,
+			bool doCreateBuffer=true);
 		const std::string &GetTextureFilename() const;
-		void SetDoubleSide(bool d);
-		bool IsDoubleSide() const;
-		void SetUseAlphaTest(bool use);
-		bool IsUseAlphaText() const;
-		void SetFliterPoint(bool point);
-		bool IsFliterPoint() const;
-		void SetUseClamp(bool clamp);
-		bool IsUseClamp() const;
 
 		virtual void OnForceBind();
 
@@ -120,36 +97,23 @@ namespace PX2
 		virtual void UpdateWorldData(double applicationTime);
 
 		void UpdateBuffers(float elapsedTime);
-		void UpdateVertexBuffer(float elapsedTime);
+		void UpdateVertexBuffer(float elapsedTime, const std::vector<Float2> &uvs);
 		void UpdateIndexBuffer();
-		void UpdateDynBuffers(float elapsedTime);
 		void ReCreateVBuffer();
-
-		void UpdateMtl();
-		void SetTextureNoRecreateBuffer(const std::string &texPackName,
-			std::string eleName);
 
 		virtual void OnPicked(int info);
 		virtual void OnNotPicked(int pickInfo);
 
 		PicBoxType mPicBoxType;
-		bool mIsDynamic;
 		Float2 mAnchorPoint;
 		Sizef mSize;
 		Sizef mCornerSize;
-		Float2 mUV0;
-		Float2 mUV1;
-		Float2 mUV2;
-		Float2 mUV3;
-		Float4 mColor;
-		Float2 mUVScale;
+
 		TexPackElement mPackEle;
 		bool mIsBufferNeedUpdate;
 
 		bool mIsMtlNeedUpdate;
 		TexMode mTexMode;
-		UIMaterialPtr mUIMtl;
-		MaterialInstancePtr mUIMtlInst;
 		std::string mTexturePathname;
 		std::string mTexturePackName;
 		std::string mElementName;

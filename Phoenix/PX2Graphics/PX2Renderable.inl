@@ -177,12 +177,12 @@ inline unsigned int Renderable::GetSortIndex () const
 //----------------------------------------------------------------------------
 inline void Renderable::SetMaterialInstance (MaterialInstance* material)
 {
-    mMaterial = material;
+    mMaterialInstance = material;
 }
 //----------------------------------------------------------------------------
 inline MaterialInstance* Renderable::GetMaterialInstance () const
 {
-    return mMaterial;
+    return mMaterialInstance;
 }
 //----------------------------------------------------------------------------
 inline void Renderable::SetShine (Shine *shine)

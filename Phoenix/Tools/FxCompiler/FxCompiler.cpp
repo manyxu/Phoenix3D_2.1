@@ -1,8 +1,4 @@
-/*
-*
-* 文件名称	：	FxCompiler.cpp
-*
-*/
+// FxCompiler.cpp
 
 #include "FxCompiler.hpp"
 
@@ -191,6 +187,8 @@ FxCompiler::FxCompiler ()
 		mCgVStatus[i] = -1;
 		mCgPStatus[i] = -1;
 	}
+
+	InitializeMaps(); 
 }
 //----------------------------------------------------------------------------
 FxCompiler::~FxCompiler ()
@@ -232,11 +230,16 @@ bool FxCompiler::Compile (const std::string &XMLName)
 		return false;
 	}
 
-	string fileName = string(materialNode.AttributeToString("name")) + 
-		string(".px2fx");
+	std::string mtlName = materialNode.AttributeToString("name");
+	string mtlFilename = mtlName + string(".px2obj");
 
-	// 保存
-	mCurMaterial->SavePX2fx(fileName);
+	std::string resourcePath = "Data/mtls/" + mtlName + "/" + mtlFilename;
+
+	mCurMaterial->SetResourcePath(resourcePath);
+
+	OutStream outStream;
+	outStream.Insert(mCurMaterial);
+	outStream.Save(mtlFilename);
 
 	return true;
 }
@@ -249,18 +252,26 @@ bool FxCompiler::ProcessMaterialNode (XMLNode materialNode)
 	mCurMaterial->SetName(materialName);
 
 	// Technique
-	XMLNode techniqueNode = materialNode.IterateChild();
-	while (!techniqueNode.IsNull())
+	XMLNode childNode = materialNode.IterateChild();
+	while (!childNode.IsNull())
 	{
-		if (!ProcessTechniqueNode(techniqueNode))
+		std::string childName = childNode.GetName();
+		if ("technique" == childName)
 		{
-			assertion(false, "Process technique %s node failed.",
-				techniqueNode.AttributeToString("name"));
+			if (!ProcessTechniqueNode(childNode))
+			{
+				assertion(false, "Process technique %s node failed.",
+					childNode.AttributeToString("name"));
 
-			return false;
+				return false;
+			}
+		}
+		else if ("instance" == childName)
+		{
+
 		}
 
-		techniqueNode = materialNode.IterateChild(techniqueNode);
+		childNode = materialNode.IterateChild(childNode);
 	}
 
 	return true;
@@ -299,74 +310,44 @@ bool FxCompiler::ProcessPassNode (XMLNode passNode, MaterialTechnique* technique
 
 	MaterialPassPtr materialPass = new0 MaterialPass();
 	materialPass->SetName(passName);
-
 	technique->InsertPass(materialPass);
 
-	// vertexshader
-	XMLNode vertexShaderNode = passNode.GetChild("vertexshader");
-	XMLNode childNodeVS = vertexShaderNode.IterateChild();
-	while (!childNodeVS.IsNull())
+	XMLNode shaderNode = passNode.IterateChild();
+	while (!shaderNode.IsNull())
 	{
-		std::string name = childNodeVS.GetName();
-
-		if ("var" == name)
+		std::string shaderName = shaderNode.GetName();
+		if ("shader" == shaderName)
 		{
-			std::string type(childNodeVS.AttributeToString("type"));
-			std::string filename(childNodeVS.AttributeToString("file"));
-			std::string entryname(childNodeVS.AttributeToString("entry"));
-			
-			if ("cg" == type)
-			{
-				if (!CompileShader(true, filename, entryname))
-				{
-					assertion(false, "Process vertexshader failed.");
+			std::string type = shaderNode.AttributeToString("type");
+			std::string name = shaderNode.AttributeToString("name");
+			int numInputs = shaderNode.AttributeToInt("ni");
+			int numOutputs = shaderNode.AttributeToInt("no");
+			int numConstants = shaderNode.AttributeToInt("nc");
+			int numSamplers = shaderNode.AttributeToInt("ns");
 
-					return false;
-				}
-			}
-			else if ("gles2" == type)
+			Shader *shader = 0;
+			if ("vs" == type)
 			{
-				mCgVStatus[5] = 0;
+				VertexShader *vs = new0 VertexShader(name, numInputs, numOutputs,
+					numConstants, numSamplers, true);
+				materialPass->SetVertexShader(vs);
+
+				shader = vs;
 			}
+			else if ("ps" == type)
+			{
+				PixelShader *ps = new0 PixelShader(name, numInputs, numOutputs,
+					numConstants, numSamplers, true);
+				materialPass->SetPixelShader(ps);
+
+				shader = ps;
+			}
+
+			ProcessShaderNode(shaderNode, shader);
 		}
 
-		childNodeVS = vertexShaderNode.IterateChild(childNodeVS);
+		shaderNode = passNode.IterateChild(shaderNode);
 	}
-
-	// pixelshader
-	XMLNode pixelShaderNode = passNode.GetChild("pixelshader");
-	XMLNode childNodePS = pixelShaderNode.IterateChild();
-	while (!childNodePS.IsNull())
-	{
-		std::string name = childNodePS.GetName();
-
-		if ("var" == name)
-		{
-			std::string type(childNodePS.AttributeToString("type"));
-			std::string filename(childNodePS.AttributeToString("file"));
-			std::string entryname(childNodePS.AttributeToString("entry"));
-
-			if ("cg" == type)
-			{
-				if (!CompileShader(false, filename, entryname))
-				{
-					assertion(false, "Process pixelshader failed.");
-
-					return false;
-				}
-			}
-			else if ("gles2" == type)
-			{
-				mCgPStatus[5] = 0;
-			}
-		}
-
-		childNodePS = vertexShaderNode.IterateChild(childNodePS);
-	}
-
-	// 检测着色器对
-	if (!CheakShaderPairs())
-		return false;
 
 	// renderproperty
 	XMLNode renderPropertyNode = passNode.GetChild("renderproperty");
@@ -390,9 +371,218 @@ bool FxCompiler::ProcessPassNode (XMLNode passNode, MaterialTechnique* technique
 		materialPass->SetWireProperty(new0 WireProperty());
 	}
 
-	if (!UpdateMaterialPass(mCurVertexShaderName, mCurPixelShaderName, 
-		materialPass))
-		return false;
+	return true;
+}
+//----------------------------------------------------------------------------
+bool FxCompiler::ProcessShaderNode(XMLNode shaderNode, Shader *shader)
+{
+	XMLNode childNode = shaderNode.IterateChild();
+	while (!childNode.IsNull())
+	{
+		std::string name = childNode.GetName();
+		if ("i" == name)
+		{
+			ProcessShaderNode_Inputs(childNode, shader);
+		}
+		else if ("o" == name)
+		{
+			ProcessShaderNode_Outputs(childNode, shader);
+		}
+		else if ("c" == name)
+		{
+			ProcessShaderNode_Constants(childNode, shader);
+		}
+		else if ("s" == name)
+		{
+			ProcessShaderNode_Samples(childNode, shader);
+		}
+		else if ("p" == name)
+		{
+			ProcessShaderNode_Program(childNode, shader);
+		}
+
+		childNode = shaderNode.IterateChild(childNode);
+	}
+
+	return true;
+}
+//----------------------------------------------------------------------------
+bool FxCompiler::ProcessShaderNode_Inputs(XMLNode inputsNode, Shader *shader)
+{
+	XMLNode childNode = inputsNode.IterateChild();
+	while (!childNode.IsNull())
+	{
+		std::string name = childNode.GetName();
+
+		if ("var" == name)
+		{
+			int index = childNode.AttributeToInt("index");
+			std::string paramName = childNode.AttributeToString("name");
+			Shader::VariableType vt = mVariableTypes[childNode.AttributeToString("vt")];
+			Shader::VariableSemantic vs = mSemantics[childNode.AttributeToString("vs")];
+
+			shader->SetInput(index, paramName, vt, vs);
+		}
+
+		childNode = inputsNode.IterateChild(childNode);
+	}
+
+	return true;
+}
+//----------------------------------------------------------------------------
+bool FxCompiler::ProcessShaderNode_Outputs(XMLNode outputsNode, Shader *shader)
+{
+	XMLNode childNode = outputsNode.IterateChild();
+	while (!childNode.IsNull())
+	{
+		std::string name = childNode.GetName();
+
+		if ("var" == name)
+		{
+			int index = childNode.AttributeToInt("index");
+			std::string paramName = childNode.AttributeToString("name");
+			Shader::VariableType vt = mVariableTypes[childNode.AttributeToString("vt")];
+			Shader::VariableSemantic vs = mSemantics[childNode.AttributeToString("vs")];
+
+			shader->SetOutput(index, paramName, vt, vs);
+		}
+
+		childNode = outputsNode.IterateChild(childNode);
+	}
+
+	return true;
+}
+//----------------------------------------------------------------------------
+bool FxCompiler::ProcessShaderNode_Constants(XMLNode constantsNode, Shader *shader)
+{
+	int numAllRegist = 0;
+
+	XMLNode childNode = constantsNode.IterateChild();
+	while (!childNode.IsNull())
+	{
+		std::string name = childNode.GetName();
+
+		if ("var" == name)
+		{
+			int index = childNode.AttributeToInt("index");
+			std::string paramName = childNode.AttributeToString("name");
+			int numRegist = childNode.AttributeToInt("nr");
+
+			shader->SetConstant(index, paramName, numRegist);
+
+			for (int i = 1; i < Shader::MAX_PROFILES; ++i)
+			{
+				if (i <= (int)VertexShader::P_3_0)
+				{
+					shader->SetBaseRegister(i, index, numAllRegist);
+				}
+				else if (i == (int)VertexShader::P_ARBVP1)
+				{
+					shader->SetBaseRegister(i, index, 1+numAllRegist);
+				}
+				else if (i == (int)VertexShader::P_OPENGLES2)
+				{
+					shader->SetBaseRegister(i, index, 1+numAllRegist);
+				}
+			}
+
+			numAllRegist += numRegist;
+		}
+
+		childNode = constantsNode.IterateChild(childNode);
+	}
+
+	return true;
+}
+//----------------------------------------------------------------------------
+bool FxCompiler::ProcessShaderNode_Samples(XMLNode samplesNode, Shader *shader)
+{
+	XMLNode childNode = samplesNode.IterateChild();
+	while (!childNode.IsNull())
+	{
+		std::string name = childNode.GetName();
+
+		if ("var" == name)
+		{
+			int index = childNode.AttributeToInt("index");
+			std::string sampleName = childNode.AttributeToString("name");
+
+			std::string toFileST = childNode.AttributeToString("st");
+			Shader::SamplerType samtype;
+			SamplerTypeMap::iterator iter = mSamplerTypes.find(toFileST);
+			if (iter == mSamplerTypes.end())
+			{
+				assertion("Invalid sampler type: %s", toFileST.c_str());
+				return false;
+			}
+			samtype = iter->second;
+
+			shader->SetSampler(index, sampleName, samtype);
+
+			for (int i = 1; i < Shader::MAX_PROFILES; ++i)
+			{
+				shader->SetTextureUnit(i, index, index);
+			}
+		}
+
+		childNode = samplesNode.IterateChild(childNode);
+	}
+
+	return true;
+}
+//----------------------------------------------------------------------------
+bool FxCompiler::ProcessShaderNode_Program(XMLNode programNode, Shader *shader)
+{
+	VertexShader *vs = DynamicCast<VertexShader>(shader);
+	bool isVertexShader = (0 != vs);
+
+	XMLNode childNode = programNode.IterateChild();
+	while (!childNode.IsNull())
+	{
+		std::string name = childNode.GetName();
+
+		if ("var" == name)
+		{
+			std::string type = childNode.AttributeToString("type");
+			std::string filename = childNode.AttributeToString("file");
+			std::string entryname = childNode.AttributeToString("entry");
+
+			if ("cg" == type)
+			{
+				if (!CompileShader(isVertexShader, filename, entryname))
+				{
+					assertion(false, "Process pixelshader failed.");
+
+					return false;
+				}
+
+				for (int i = 1; i <= Shader::P_ARBVP1; ++i)
+				{
+					Program program;
+
+					std::string compiledFilename;
+					std::string profileName = msVProfileName[i];
+					if (!isVertexShader)
+					{
+						profileName = msPProfileName[i];
+					}
+
+					compiledFilename = entryname + "." + profileName + ".txt";
+
+					Parse(compiledFilename, profileName, program);
+
+					shader->SetProgram(i, program.Text);
+				}
+			}
+			else if ("gles2" == type)
+			{
+				int profile = (int)VertexShader::P_OPENGLES2;
+				shader->SetProgramFilename(profile, "Data/mtls/" + entryname + filename);
+			}
+		}
+
+		childNode = programNode.IterateChild(childNode);
+	}
 
 	return true;
 }
@@ -411,8 +601,8 @@ bool FxCompiler::CompileShader (bool v, string filename, string shaderName)
 			mCurVertexShaderName = shaderName;
 
 			// 如果存在旧的顶点着色器程序，将其删除
-			command = "del " + shaderName + "." + msVProfileName[i] + ".txt";
-			system(command.c_str());
+			//command = "del " + shaderName + "." + msVProfileName[i] + ".txt";
+			//system(command.c_str());
 
 			// 编译顶点着色器
 			command = "cgc -profile " + msVProfileName[i];
@@ -430,8 +620,8 @@ bool FxCompiler::CompileShader (bool v, string filename, string shaderName)
 			mCurPixelShaderName = shaderName;
 
 			// 如果存在旧的像素着色器程序，将其删除
-			command = "del " + shaderName + "." + msPProfileName[1] + ".txt";
-			system(command.c_str());
+			//command = "del " + shaderName + "." + msPProfileName[1] + ".txt";
+			//system(command.c_str());
 
 			// 编译像素着色器
 			command = "cgc -profile " + msPProfileName[i];
@@ -444,106 +634,106 @@ bool FxCompiler::CompileShader (bool v, string filename, string shaderName)
 
 	return true;
 }
+////----------------------------------------------------------------------------
+//bool FxCompiler::CheakShaderPairs ()
+//{
+//	mCompileSucceeded = false;
+//	std::string command;
+//
+//	for (int i=1; i<Shader::MAX_PROFILES; ++i)
+//	{
+//		if (mCgVStatus[i] == 0 && mCgPStatus[i] == 0)
+//		{
+//			mCompileSucceeded = true;
+//			Messages.push_back("The profile pair " + msVProfileName[i] +
+//				" and " + msPProfileName[i] + " compiled.\n");
+//		}
+//		else
+//		{
+//			// 当只有一个着色器编译成功时，将顶点和像素着色器都删除
+//			if (mCgVStatus[i] == 0)
+//			{
+//				// 顶点着色器编译通过，像素着色器没有	
+//				command = "del " + mCurVertexShaderName + "." + msVProfileName[i] +
+//					".txt";
+//				system(command.c_str());
+//			}
+//			else
+//			{
+//				Messages.push_back("Profile " + msVProfileName[i] +
+//					" did not compile.\n");
+//			}
+//
+//			if (mCgPStatus[i] == 0)
+//			{
+//				// 像素着色器编译通过，顶点着色器没有	
+//				command = "del " + mCurPixelShaderName + "." + msPProfileName[i] +
+//					".txt";
+//				system(command.c_str());
+//			}
+//			else
+//			{
+//				Messages.push_back("Profile " + msPProfileName[i] +
+//					" did not compile.\n");
+//			}
+//
+//			Messages.push_back("The profile pair " + msVProfileName[i] +
+//				" and " + msPProfileName[i] + " did not compile.\n");
+//		}
+//	} // end for (i=1; i<Shader::MAX_PROFILES; ++i)
+//
+//	if (!mCompileSucceeded)
+//	{
+//		Messages.push_back("All profiles failed to compile.\n");
+//		return false;
+//	}
+//
+//	return true;
+//}
 //----------------------------------------------------------------------------
-bool FxCompiler::CheakShaderPairs ()
-{
-	mCompileSucceeded = false;
-	std::string command;
-
-	for (int i=1; i<Shader::MAX_PROFILES; ++i)
-	{
-		if (mCgVStatus[i] == 0 && mCgPStatus[i] == 0)
-		{
-			mCompileSucceeded = true;
-			Messages.push_back("The profile pair " + msVProfileName[i] +
-				" and " + msPProfileName[i] + " compiled.\n");
-		}
-		else
-		{
-			// 当只有一个着色器编译成功时，将顶点和像素着色器都删除
-			if (mCgVStatus[i] == 0)
-			{
-				// 顶点着色器编译通过，像素着色器没有	
-				command = "del " + mCurVertexShaderName + "." + msVProfileName[i] +
-					".txt";
-				system(command.c_str());
-			}
-			else
-			{
-				Messages.push_back("Profile " + msVProfileName[i] +
-					" did not compile.\n");
-			}
-
-			if (mCgPStatus[i] == 0)
-			{
-				// 像素着色器编译通过，顶点着色器没有	
-				command = "del " + mCurPixelShaderName + "." + msPProfileName[i] +
-					".txt";
-				system(command.c_str());
-			}
-			else
-			{
-				Messages.push_back("Profile " + msPProfileName[i] +
-					" did not compile.\n");
-			}
-
-			Messages.push_back("The profile pair " + msVProfileName[i] +
-				" and " + msPProfileName[i] + " did not compile.\n");
-		}
-	} // end for (i=1; i<Shader::MAX_PROFILES; ++i)
-
-	if (!mCompileSucceeded)
-	{
-		Messages.push_back("All profiles failed to compile.\n");
-		return false;
-	}
-
-	return true;
-}
-//----------------------------------------------------------------------------
-bool FxCompiler::UpdateMaterialPass (string vertexShaderName,
-	string pixelShaderName, MaterialPass *pass)
-{
-	InitializeMaps();
-
-	Program vProgram[Shader::MAX_PROFILES];
-	Program pProgram[Shader::MAX_PROFILES];
-
-	for (int i=1; i<Shader::MAX_PROFILES; ++i)
-	{
-		if (5 == i)
-			continue;
-
-		mActiveProfile = i;
-
-		std::string inVName = vertexShaderName + "." + msVProfileName[i] + ".txt";
-		std::string inPName = pixelShaderName + "." + msPProfileName[i] + ".txt";
-
-		bool hasVProfile = Parse(inVName, msVProfileName[i], vProgram[i]);
-
-		bool hasPProfile = Parse(inPName, msPProfileName[i], pProgram[i]);
-
-		if (hasVProfile && hasPProfile)
-		{
-			VertexShader *vShader = pass->GetVertexShader();
-			PixelShader *pShader = pass->GetPixelShader();
-
-			if (!vShader)
-			{
-				if (!CreateShaders(vProgram[i], pProgram[i], pass))
-					return false;
-			}
-			else
-			{
-				if (!UpdateShaders(vProgram[i], pProgram[i], vShader, pShader))
-					return false;
-
-			}
-		} // end if
-	} // end for
-
-	return true;
-}
+//bool FxCompiler::UpdateMaterialPass (string vertexShaderName,
+//	string pixelShaderName, MaterialPass *pass)
+//{
+//	InitializeMaps();
+//
+//	Program vProgram[Shader::MAX_PROFILES];
+//	Program pProgram[Shader::MAX_PROFILES];
+//
+//	for (int i=1; i<Shader::MAX_PROFILES; ++i)
+//	{
+//		if (5 == i)
+//			continue;
+//
+//		mActiveProfile = i;
+//
+//		std::string inVName = vertexShaderName + "." + msVProfileName[i] + ".txt";
+//		std::string inPName = pixelShaderName + "." + msPProfileName[i] + ".txt";
+//
+//		bool hasVProfile = Parse(inVName, msVProfileName[i], vProgram[i]);
+//
+//		bool hasPProfile = Parse(inPName, msPProfileName[i], pProgram[i]);
+//
+//		if (hasVProfile && hasPProfile)
+//		{
+//			VertexShader *vShader = pass->GetVertexShader();
+//			PixelShader *pShader = pass->GetPixelShader();
+//
+//			if (!vShader)
+//			{
+//				if (!CreateShaders(vProgram[i], pProgram[i], pass))
+//					return false;
+//			}
+//			else
+//			{
+//				if (!UpdateShaders(vProgram[i], pProgram[i], vShader, pShader))
+//					return false;
+//
+//			}
+//		} // end if
+//	} // end for
+//
+//	return true;
+//}
 //----------------------------------------------------------------------------
 bool FxCompiler::ProcessRenderProperty (XMLNode node, MaterialPass *pass)
 {
@@ -884,7 +1074,8 @@ bool FxCompiler::Parse (const std::string& fileName,
 	if (!inFile)
 	{
 		// 文件不存在，表明这个版本的着色器编译失败。
-		Messages.push_back("Profile " + profileName + " not supported.\n");
+		Messages.push_back("Profile " + profileName +
+			" not supported Filename:" + fileName + "\n");
 		return false;
 	}
 
@@ -1587,10 +1778,9 @@ void FxCompiler::ReportError (const std::string& message,
 //----------------------------------------------------------------------------
 // FxCompiler::Program
 //----------------------------------------------------------------------------
-FxCompiler::Program::Program ()
-	:
+FxCompiler::Program::Program () :
 Name(""),
-	Text("")
+Text("")
 {
 }
 //----------------------------------------------------------------------------

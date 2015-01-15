@@ -13,7 +13,6 @@
   <ItemGroup>
     <ClInclude Include="PX2UIFrame.hpp" />
     <ClInclude Include="PX2UIManager.hpp" />
-    <ClInclude Include="PX2UIMaterial.hpp" />
     <ClInclude Include="PX2UIPicBox.hpp" />
     <ClInclude Include="PX2UIPre.hpp" />
     <ClInclude Include="PX2UIView.hpp" />
@@ -21,7 +20,6 @@
   <ItemGroup>
     <ClCompile Include="PX2UIFrame.cpp" />
     <ClCompile Include="PX2UIManager.cpp" />
-    <ClCompile Include="PX2UIMaterial.cpp" />
     <ClCompile Include="PX2UIPicBox.cpp" />
     <ClCompile Include="PX2UIView.cpp" />
   </ItemGroup>

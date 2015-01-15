@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	FxCompiler.hpp
-*
-* 版本		:	1.0 (2011/02/11)
-*
-* 作者		：	more
-*
-*/
+// FxCompiler.hpp
 
 #ifndef FXCOMPILER_HPP
 #define FXCOMPILER_HPP
@@ -90,11 +79,18 @@ private:
 	bool ProcessMaterialNode (XMLNode materialNode);
 	bool ProcessTechniqueNode (XMLNode techniqueNode);
 	bool ProcessPassNode (XMLNode passNode, MaterialTechnique *technique);
+	bool ProcessShaderNode(XMLNode shaderNode, Shader *shader);
+	bool ProcessShaderNode_Inputs(XMLNode inputsNode, Shader *shader);
+	bool ProcessShaderNode_Outputs(XMLNode outputsNode, Shader *shader);
+	bool ProcessShaderNode_Constants(XMLNode constantsNode, Shader *shader);
+	bool ProcessShaderNode_Samples(XMLNode samplesNode, Shader *shader);
+	bool ProcessShaderNode_Program(XMLNode programsNode, Shader *shader);
 	bool CompileShader (bool v, string filename, string shaderName);
-	bool CheakShaderPairs ();
-	bool UpdateMaterialPass (string vertexShaderName, string pixelShaderName,
-		MaterialPass *pass);
-	bool ProcessRenderProperty (XMLNode renderPropertyNode, MaterialPass *pass);
+	bool ProcessRenderProperty(XMLNode renderPropertyNode, MaterialPass *pass);
+
+	//bool CheakShaderPairs ();
+	//bool UpdateMaterialPass (string vertexShaderName, string pixelShaderName,
+	//	MaterialPass *pass);
 	Float4 StringToFloat4 (std::string value);
 
 	XMLData mXMLData;

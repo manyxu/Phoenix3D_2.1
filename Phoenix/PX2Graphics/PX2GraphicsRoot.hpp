@@ -100,8 +100,8 @@ namespace PX2
 	public:
 		enum VertexFormatType
 		{
-			VFT_PCT1,
-			VFT_PCT2,
+			VFT_PT1,
+			VFT_PT2,
 			VFT_MAX_TYPE
 		};
 

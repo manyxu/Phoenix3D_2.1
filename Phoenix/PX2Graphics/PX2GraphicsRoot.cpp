@@ -359,18 +359,16 @@ VertexFormat *GraphicsRoot::GetVertexFormat(VertexFormatType type)
 	else
 	{
 		VertexFormat *vf = 0;
-		if (VFT_PCT1 == type)
+		if (VFT_PT1 == type)
+		{
+			vf = VertexFormat::Create(2,
+				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0);
+		}
+		else if (VFT_PT2 == type)
 		{
 			vf = VertexFormat::Create(3,
 				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
-				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
-				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0);
-		}
-		else if (VFT_PCT1 == type)
-		{
-			vf = VertexFormat::Create(4,
-				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
-				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
 				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0,
 				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 1);
 		}

@@ -528,9 +528,6 @@
     <ClCompile Include="FreeType\src\pshinter\pshinter.c">
       <Filter>Font\FreeType\src\pshinter</Filter>
     </ClCompile>
-    <ClCompile Include="PX2TexPackData.cpp">
-      <Filter>ResourceManager</Filter>
-    </ClCompile>
     <ClCompile Include="PX2LuaManager.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
@@ -1246,9 +1243,6 @@
     <ClInclude Include="FreeType\include\ft2build.h">
       <Filter>Font\FreeType\include</Filter>
     </ClInclude>
-    <ClInclude Include="PX2TexPackData.hpp">
-      <Filter>ResourceManager</Filter>
-    </ClInclude>
     <ClInclude Include="PX2LuaManager.hpp">
       <Filter>Scripts</Filter>
     </ClInclude>
@@ -1733,9 +1727,6 @@
     </None>
     <None Include="PX2FontManager.inl">
       <Filter>Font</Filter>
-    </None>
-    <None Include="PX2TexPackData.inl">
-      <Filter>ResourceManager</Filter>
     </None>
     <None Include="PX2LuaManager.inl">
       <Filter>Scripts</Filter>

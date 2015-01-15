@@ -47,6 +47,7 @@ Shader::Shader ()
         mBaseRegister[i] = 0;
         mTextureUnit[i] = 0;
         mProgram[i] = 0;
+		mProgramFilename[i] = 0;
     }
 
 	memset(&mTexLoc, 0, sizeof(int)*8);
@@ -177,6 +178,7 @@ Shader::Shader (const std::string& programName, int numInputs, int numOutputs,
         for (i = 0; i < MAX_PROFILES; ++i)
         {
             mProgram[i] = new0 std::string();
+			mProgramFilename[i] = new0 std::string();
         }
     }
     else
@@ -184,6 +186,7 @@ Shader::Shader (const std::string& programName, int numInputs, int numOutputs,
         for (i = 0; i < MAX_PROFILES; ++i)
         {
             mProgram[i] = 0;
+			mProgramFilename[i] = 0;
         }
     }
 
@@ -217,6 +220,7 @@ Shader::~Shader ()
             delete1(mBaseRegister[i]);
             delete1(mTextureUnit[i]);
             delete0(mProgram[i]);
+			delete0(mProgramFilename[i]);
         }
     }
 }
@@ -374,6 +378,20 @@ void Shader::SetProgram (int profile, const std::string& program)
         assertion(false, "Invalid profile.\n");
     }
     assertion(false, "You may not set profile data you do not own.\n");
+}
+//----------------------------------------------------------------------------
+void Shader::SetProgramFilename(int profile, const std::string& filename)
+{
+	if (mProfileOwner)
+	{
+		if (0 <= profile && profile < MAX_PROFILES)
+		{
+			*mProgramFilename[profile] = filename;
+			return;
+		}
+		assertion(false, "Invalid profile.\n");
+	}
+	assertion(false, "You may not set profile data you do not own.\n");
 }
 //----------------------------------------------------------------------------
 void Shader::SetBaseRegisters (int* baseRegisters[MAX_PROFILES])
@@ -718,6 +736,7 @@ Shader::Shader (LoadConstructor value)
         mBaseRegister[i] = 0;
         mTextureUnit[i] = 0;
         mProgram[i] = 0;
+		mProgramFilename[i] = 0;
     }
 	memset(&mTexLoc, 0, sizeof(int)*8);
 }
@@ -766,12 +785,15 @@ void Shader::Load (InStream& source)
             source.ReadVR(mNumSamplers, mTextureUnit[i]);
             mProgram[i] = new0 std::string();
             source.ReadString(*mProgram[i]);
+			mProgramFilename[i] = new0 std::string();
+			source.ReadString(*mProgramFilename[i]);
         }
         for (i = maxProfiles; i < MAX_PROFILES; ++i)
         {
             mBaseRegister[i] = 0;
             mTextureUnit[i] = 0;
             mProgram[i] = 0;
+			mProgramFilename[i] = 0;
         }
     }
 
@@ -828,6 +850,7 @@ void Shader::Save (OutStream& target) const
             target.WriteN(mNumConstants, mBaseRegister[i]);
             target.WriteN(mNumSamplers, mTextureUnit[i]);
             target.WriteString(*mProgram[i]);
+			target.WriteString(*mProgramFilename[i]);
         }
     }
 
@@ -887,6 +910,7 @@ int Shader::GetStreamingSize (Stream &stream) const
             size += mNumConstants*sizeof(mBaseRegister[i]);
             size += mNumSamplers*sizeof(mTextureUnit[i]);
             size += PX2_STRINGSIZE(*mProgram[i]);
+			size += PX2_STRINGSIZE(*mProgramFilename[i]);
         }
     }
 

@@ -33,7 +33,7 @@ mType(type),
 mVFormat(0),
 mVBuffer(0),
 mIBuffer(0),
-mMaterial(0),
+mMaterialInstance(0),
 mSortIndex(0),
 mSubLayer(0),
 mIsUseBoundPick(false),
@@ -82,7 +82,7 @@ mType(type),
 mVFormat(vformat),
 mVBuffer(vbuffer),
 mIBuffer(ibuffer),
-mMaterial(0),
+mMaterialInstance(0),
 mSortIndex(0),
 mSubLayer(0),
 mIsUseBoundPick(false),
@@ -323,15 +323,15 @@ void Renderable::SetAlpha (float alpha)
 {
 	Movable::SetAlpha(alpha);
 
-	if (mMaterial)
+	if (mMaterialInstance)
 	{
-		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterial->GetMaterial());
-		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterial->GetMaterial());
-		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterial->GetMaterial());
+		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterialInstance->GetMaterial());
+		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterialInstance->GetMaterial());
+		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterialInstance->GetMaterial());
 
 		if (stdMtl || stdVC4Mtl || sktMtl1)
 		{
-			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterial->GetVertexConstant(0, "gShineDiffuse"));
+			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterialInstance->GetVertexConstant(0, "gShineDiffuse"));
 			if (sDiffConst)
 			{
 				sDiffConst->GetShine()->Diffuse[3] = alpha;
@@ -344,15 +344,15 @@ void Renderable::SetColor (const Float3 &color)
 {
 	Movable::SetColor(color);
 
-	if (mMaterial)
+	if (mMaterialInstance)
 	{
-		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterial->GetMaterial());
-		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterial->GetMaterial());
-		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterial->GetMaterial());
+		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterialInstance->GetMaterial());
+		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterialInstance->GetMaterial());
+		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterialInstance->GetMaterial());
 
 		if (stdMtl || stdVC4Mtl || sktMtl1)
 		{
-			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterial->GetVertexConstant(0, "gShineDiffuse"));
+			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterialInstance->GetVertexConstant(0, "gShineDiffuse"));
 			if (sDiffConst)
 			{
 				sDiffConst->GetShine()->Emissive[0] = mColor[0] * mBrightness;
@@ -367,15 +367,15 @@ void Renderable::SetBrightness (float brightness)
 {
 	Movable::SetBrightness(brightness);
 
-	if (mMaterial)
+	if (mMaterialInstance)
 	{
-		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterial->GetMaterial());
-		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterial->GetMaterial());
-		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterial->GetMaterial());
+		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterialInstance->GetMaterial());
+		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterialInstance->GetMaterial());
+		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterialInstance->GetMaterial());
 
 		if (stdMtl || stdVC4Mtl || sktMtl1)
 		{
-			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterial->GetVertexConstant(0, "gShineDiffuse"));
+			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterialInstance->GetVertexConstant(0, "gShineDiffuse"));
 			if (sDiffConst)
 			{
 				sDiffConst->GetShine()->Emissive[0] = mColor[0] * mBrightness;
@@ -470,16 +470,16 @@ void Renderable::GetVisibleSet (Culler& culler, bool)
 //----------------------------------------------------------------------------
 void Renderable::AdjustTransparent ()
 {
-	if (!mMaterial)
+	if (!mMaterialInstance)
 	{
 		SetTransparent(false);
 		return;
 	}
 
-	for (int i=0; i<mMaterial->GetNumPasses(); i++)
+	for (int i=0; i<mMaterialInstance->GetNumPasses(); i++)
 	{
 		AlphaProperty *alphaProperty =
-			mMaterial->GetPass(i)->GetAlphaProperty();
+			mMaterialInstance->GetPass(i)->GetAlphaProperty();
 		if (alphaProperty)
 		{
 			if (alphaProperty->BlendEnabled)
@@ -512,185 +512,6 @@ bool Renderable::LessThan (const Renderable *renderable0,
 	}
 
 	return renderable0->mSortIndex < renderable1->mSortIndex;
-}
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-// Begin load/save
-//----------------------------------------------------------------------------
-void Renderable::LoadPX2VF (const std::string& name, PrimitiveType& type,
-					   VertexFormat*& vformat, VertexBuffer*& vbuffer, IndexBuffer*& ibuffer,
-					   int mode)
-{
-	FileIO inFile(name, mode);
-	if (!inFile)
-	{
-		assertion(false, "Failed to open file %s\n", name.c_str());
-		return;
-	}
-
-	int iType;
-	inFile.Read(sizeof(int), &iType);
-	type = (PrimitiveType)iType;
-
-	vformat = LoadVertexFormat(inFile);
-	vbuffer = LoadVertexBuffer(inFile, vformat);
-	ibuffer = LoadIndexBuffer(inFile);
-
-	inFile.Close();
-}
-//----------------------------------------------------------------------------
-void Renderable::SavePX2VF (const std::string& name, int mode)
-{
-	FileIO outFile(name, mode);
-	if (!outFile)
-	{
-		assertion(false, "Failed to open file %s\n", name.c_str());
-		return;
-	}
-
-	int type = (int)mType;
-	outFile.Write(sizeof(int), &type);
-
-	SaveVertexFormat(outFile);
-	SaveVertexBuffer(outFile);
-	SaveIndexBuffer(outFile);
-
-	outFile.Close();
-}
-//----------------------------------------------------------------------------
-VertexFormat* Renderable::LoadVertexFormat (FileIO& inFile)
-{
-	int numAttributes;
-	inFile.Read(sizeof(int), &numAttributes);
-
-	VertexFormat* vformat = new0 VertexFormat(numAttributes);
-	for (int i = 0; i < numAttributes; ++i)
-	{
-		unsigned int streamIndex, offset, usageIndex;
-		int type, usage;
-
-		inFile.Read(sizeof(unsigned int), &streamIndex);
-		inFile.Read(sizeof(unsigned int), &offset);
-		inFile.Read(sizeof(int), &type);
-		inFile.Read(sizeof(int), &usage);
-		inFile.Read(sizeof(unsigned int), &usageIndex);
-
-		vformat->SetAttribute(i, streamIndex, offset,
-			(VertexFormat::AttributeType)type,
-			(VertexFormat::AttributeUsage)usage, usageIndex);
-	}
-
-	int stride;
-	inFile.Read(sizeof(int), &stride);
-	vformat->SetStride(stride);
-
-	return vformat;
-}
-//----------------------------------------------------------------------------
-VertexBuffer* Renderable::LoadVertexBuffer (FileIO& inFile, VertexFormat* vformat)
-{
-	int numElements, elementSize, usage;
-	inFile.Read(sizeof(int), &numElements);
-	inFile.Read(sizeof(int), &elementSize);
-	inFile.Read(sizeof(int), &usage);
-
-	VertexBuffer* vbuffer = new0 VertexBuffer(numElements, elementSize,
-		(Buffer::Usage)usage);
-
-	VertexBufferAccessor vba(vformat, vbuffer);
-	vba.Read(inFile);
-
-	return vbuffer;
-}
-//----------------------------------------------------------------------------
-IndexBuffer* Renderable::LoadIndexBuffer (FileIO& inFile)
-{
-	int numElements;
-	inFile.Read(sizeof(int), &numElements);
-
-	if (numElements > 0)
-	{
-		int elementSize, usage, offset;
-		inFile.Read(sizeof(int), &elementSize);
-		inFile.Read(sizeof(int), &usage);
-		inFile.Read(sizeof(int), &offset);
-
-		IndexBuffer* ibuffer = new0 IndexBuffer(numElements, elementSize,
-			(Buffer::Usage)usage);
-		ibuffer->SetOffset(offset);
-
-		inFile.Read(elementSize, ibuffer->GetNumBytes()/elementSize,
-			ibuffer->GetData());
-
-		return ibuffer;
-	}
-
-	return 0;
-}
-//----------------------------------------------------------------------------
-void Renderable::SaveVertexFormat (FileIO& outFile)
-{
-	int numAttributes = mVFormat->GetNumAttributes();
-	outFile.Write(sizeof(int), &numAttributes);
-
-	for (int i = 0; i < numAttributes; ++i)
-	{
-		unsigned int streamIndex, offset, usageIndex;
-		VertexFormat::AttributeType vftype;
-		VertexFormat::AttributeUsage vfusage;
-		mVFormat->GetAttribute(i, streamIndex, offset, vftype, vfusage,
-			usageIndex);
-		int type = (int)vftype;
-		int usage = (int)vfusage;
-
-		outFile.Write(sizeof(unsigned int), &streamIndex);
-		outFile.Write(sizeof(unsigned int), &offset);
-		outFile.Write(sizeof(int), &type);
-		outFile.Write(sizeof(int), &usage);
-		outFile.Write(sizeof(unsigned int), &usageIndex);
-	}
-
-	int stride = mVFormat->GetStride();
-	outFile.Write(sizeof(int), &stride);
-}
-//----------------------------------------------------------------------------
-void Renderable::SaveVertexBuffer (FileIO& outFile)
-{
-	int numElements = mVBuffer->GetNumElements();
-	int elementSize = mVBuffer->GetElementSize();
-	Buffer::Usage vbusage = mVBuffer->GetUsage();
-	int usage = (int)vbusage;
-	outFile.Write(sizeof(int), &numElements);
-	outFile.Write(sizeof(int), &elementSize);
-	outFile.Write(sizeof(int), &usage);
-
-	VertexBufferAccessor vba(mVFormat, mVBuffer);
-	vba.Write(outFile);
-}
-//----------------------------------------------------------------------------
-void Renderable::SaveIndexBuffer (FileIO& outFile)
-{
-	if (mIBuffer)
-	{
-		int numElements = mIBuffer->GetNumElements();
-		int elementSize = mIBuffer->GetElementSize();
-		Buffer::Usage ibusage = mIBuffer->GetUsage();
-		int usage = (int)ibusage;
-		int offset = mIBuffer->GetOffset();
-		outFile.Write(sizeof(int), &numElements);
-		outFile.Write(sizeof(int), &elementSize);
-		outFile.Write(sizeof(int), &usage);
-		outFile.Write(sizeof(int), &offset);
-
-		outFile.Write(elementSize, mIBuffer->GetNumBytes()/elementSize,
-			mIBuffer->GetData());
-	}
-	else
-	{
-		int numElements = 0;
-		outFile.Write(sizeof(int), &numElements);
-	}
 }
 //----------------------------------------------------------------------------
 
@@ -805,7 +626,7 @@ Object* Renderable::GetObjectByName (const std::string& name)
 	PX2_GET_OBJECT_BY_NAME(mVFormat, name, found);
 	PX2_GET_OBJECT_BY_NAME(mVBuffer, name, found);
 	PX2_GET_OBJECT_BY_NAME(mIBuffer, name, found);
-	PX2_GET_OBJECT_BY_NAME(mMaterial, name, found);
+	PX2_GET_OBJECT_BY_NAME(mMaterialInstance, name, found);
 
 	return 0;
 }
@@ -818,7 +639,7 @@ void Renderable::GetAllObjectsByName (const std::string& name,
 	PX2_GET_ALL_OBJECTS_BY_NAME(mVFormat, name, objects);
 	PX2_GET_ALL_OBJECTS_BY_NAME(mVBuffer, name, objects);
 	PX2_GET_ALL_OBJECTS_BY_NAME(mIBuffer, name, objects);
-	PX2_GET_ALL_OBJECTS_BY_NAME(mMaterial, name, objects);
+	PX2_GET_ALL_OBJECTS_BY_NAME(mMaterialInstance, name, objects);
 }
 //----------------------------------------------------------------------------
 
@@ -834,7 +655,7 @@ mType(PT_NONE),
 mVFormat(0),
 mVBuffer(0),
 mIBuffer(0),
-mMaterial(0),
+mMaterialInstance(0),
 mSortIndex(0),
 mSubLayer(0),
 mIsUseBoundPick(false),
@@ -873,7 +694,7 @@ void Renderable::Load (InStream& source)
 	source.ReadPointer(mVFormat);
 	source.ReadPointer(mVBuffer);
 	source.ReadPointer(mIBuffer);
-	source.ReadPointer(mMaterial);
+	source.ReadPointer(mMaterialInstance);
 	source.ReadEnum(mLayer);
 	SetRenderLayer(mLayer);
 
@@ -934,7 +755,7 @@ void Renderable::Link (InStream& source)
 	source.ResolveLink(mVFormat);
 	source.ResolveLink(mVBuffer);
 	source.ResolveLink(mIBuffer);
-	source.ResolveLink(mMaterial);
+	source.ResolveLink(mMaterialInstance);
 	source.ResolveLink(mDefaultShine);
 	source.ResolveLink(mNormalMaterialInstance);
 	source.ResolveLink(mBakeShine);
@@ -964,7 +785,7 @@ bool Renderable::Register (OutStream& target) const
 		target.Register(mVFormat);
 		target.Register(mVBuffer);
 		target.Register(mIBuffer);
-		target.Register(mMaterial);
+		target.Register(mMaterialInstance);
 		target.Register(mDefaultShine);
 		target.Register(mNormalMaterialInstance);
 		target.Register(mBakeShine);
@@ -986,7 +807,7 @@ void Renderable::Save (OutStream& target) const
 	target.WritePointer(mVFormat);
 	target.WritePointer(mVBuffer);
 	target.WritePointer(mIBuffer);
-	target.WritePointer(mMaterial);
+	target.WritePointer(mMaterialInstance);
 	target.WriteEnum(mLayer);
 	target.WriteBool(AllowRed);
 	target.WriteBool(AllowGreen);
@@ -1019,7 +840,7 @@ int Renderable::GetStreamingSize (Stream &stream) const
 	size += PX2_POINTERSIZE(mVFormat);
 	size += PX2_POINTERSIZE(mVBuffer);
 	size += PX2_POINTERSIZE(mIBuffer);
-	size += PX2_POINTERSIZE(mMaterial);
+	size += PX2_POINTERSIZE(mMaterialInstance);
 	size += PX2_ENUMSIZE(mLayer);
 
 	if (Stream::ST_IN == stream.GetStreamType())

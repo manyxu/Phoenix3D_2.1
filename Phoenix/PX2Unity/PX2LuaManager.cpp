@@ -61,7 +61,7 @@ LuaManager::LuaManager ()
 	:
 mState(0)
 {
-	mType = ST_LUA;
+	//mType = ST_LUA;
 
 	mState = lua_open();
 	luaL_openlibs(mState);
