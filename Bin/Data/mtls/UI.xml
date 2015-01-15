@@ -1,11 +1,13 @@
-<material name="UI">
+<material name="Mtl_UI">
 	<technique name="T0">
 		<pass name="P0">
 			<vertexshader>
-				<var type="cg" file="UI.fx" entry="UI"/>
+				<var type="cg" file="UI_cg.fx" entry="UI"/>
+				<var type="gles2" file="UI_gles2.fx" entry="UI"/>
 			</vertexshader>
 			<pixelshader>
-				<var type="cg" file="UI.fx" entry="UI"/>
+				<var type="cg" file="UI_cg.fx" entry="UI"/>
+				<var type="gles2" file="UI_gles2.fx" entry="UI"/>
 			</pixelshader>
 		</pass>
 	</technique>
