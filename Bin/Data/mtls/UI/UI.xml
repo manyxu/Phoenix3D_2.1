@@ -1,0 +1,38 @@
+<material name="Mtl_UI">
+	<technique name="T0">
+		<pass name="P0">
+			<shader type="vs", name="UI" ni="2" no="2" nc="1" ns="0">
+				<i>
+					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
+					<var index="1" name="modelTCoord0" vt="float2" vs="TEXCOORD0"/>
+				</i>
+				<o>
+					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
+					<var index="1" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+				</o>
+				<c>
+					<var index="0" name="PVWMatrix" nr="4"/>
+				</c>
+				<p>
+					<var type="cg" file="UI_cg.fx" entry="UI"/>
+					<var type="gles2" file="UI_gles2_vs.fx" entry="UI"/>
+				</p>
+			</shader>
+			<shader type="ps" name="UI" ni="2" no="1" nc="0" ns="1">
+				<i>
+					<var index="0" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
+				</i>
+				<o>
+					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
+				</o>
+				<s>
+					<var index="0" name="Sample0" st="sampler2D"/>
+				</s>
+				<p>
+					<var type="cg" file="UI_cg.fx" entry="UI"/>
+					<var type="gles2" file="UI_gles2_ps.fx" entry="UI"/>
+				</p>
+			</shader>
+		</pass>
+	</technique>
+</material>
