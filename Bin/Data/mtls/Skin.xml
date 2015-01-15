@@ -1,0 +1,12 @@
+<material name="Skin">
+	<technique name="T0">
+		<pass name="P0">
+			<vertexshader>
+				<var type="cg" file="Skin.fx" entry="Skin"/>
+			</vertexshader>
+			<pixelshader>
+				<var type="cg" file="Skin.fx" entry="Skin"/>
+			</pixelshader>
+		</pass>
+	</technique>
+</material>

@@ -1,0 +1,12 @@
+<material name="UI">
+	<technique name="T0">
+		<pass name="P0">
+			<vertexshader>
+				<var type="cg" file="UI.fx" entry="UI"/>
+			</vertexshader>
+			<pixelshader>
+				<var type="cg" file="UI.fx" entry="UI"/>
+			</pixelshader>
+		</pass>
+	</technique>
+</material>

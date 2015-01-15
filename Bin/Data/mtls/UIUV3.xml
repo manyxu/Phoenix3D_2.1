@@ -1,0 +1,12 @@
+<material name="UIUV3">
+	<technique name="T0">
+		<pass name="P0">
+			<vertexshader>
+				<var type="cg" file="UIUV3.fx" entry="UIUV3"/>
+			</vertexshader>
+			<pixelshader>
+				<var type="cg" file="UIUV3.fx" entry="UIUV3"/>
+			</pixelshader>
+		</pass>
+	</technique>
+</material>
