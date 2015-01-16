@@ -155,6 +155,12 @@ private:
 	typedef std::map<std::string, Shader::SamplerType> SamplerTypeMap;
 	SamplerTypeMap mSamplerTypes;
 
+	typedef std::map<std::string, Shader::SamplerFilter> SamplerFilterMap;
+	SamplerFilterMap mSamplerFilterTypes;
+
+	typedef std::map<std::string, Shader::SamplerCoordinate> SamplerCoordinateMap;
+	SamplerCoordinateMap mSamplerCoordinates;
+
 	static const std::string msVProfileName[Shader::MAX_PROFILES];	// shader编译版本名称
 	static const std::string msPProfileName[Shader::MAX_PROFILES];	// 同上
 	static const std::string msVTName[Shader::VT_QUANTITY];			// 变量数据类型名称

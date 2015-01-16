@@ -865,19 +865,15 @@ void Font::RenderText (TriMesh *mesh, float depth)
 		FontDrawRect &rect = mDrawRects[i];
 
 		vba.Position<Float3>(4*i)	= Float3(rect.Rect.Left, depth, rect.Rect.Bottom);
-		vba.Color<Float4>(0, 4*i)	= rect.Color;
 		vba.TCoord<Float2>(0, 4*i)	= Float2(rect.RectUV.Left, rect.RectUV.Bottom);
 
 		vba.Position<Float3>(4*i+1) = Float3(rect.Rect.Right, depth, rect.Rect.Bottom);
-		vba.Color<Float4>(0, 4*i+1) = rect.Color;
 		vba.TCoord<Float2>(0, 4*i+1)= Float2(rect.RectUV.Right, rect.RectUV.Bottom);
 
 		vba.Position<Float3>(4*i+2) = Float3(rect.Rect.Right, depth, rect.Rect.Top);
-		vba.Color<Float4>(0, 4*i+2) = rect.Color;
 		vba.TCoord<Float2>(0, 4*i+2)= Float2(rect.RectUV.Right, rect.RectUV.Top);
 
 		vba.Position<Float3>(4*i+3) = Float3(rect.Rect.Left, depth, rect.Rect.Top);
-		vba.Color<Float4>(0, 4*i+3) = rect.Color;
 		vba.TCoord<Float2>(0, 4*i+3)= Float2(rect.RectUV.Left, rect.RectUV.Top);
 	}
 	vBuffer->SetNumElements(4*mShowNum);

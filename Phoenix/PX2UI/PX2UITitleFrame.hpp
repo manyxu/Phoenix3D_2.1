@@ -6,6 +6,7 @@
 #include "PX2UISizeFrame.hpp"
 #include "PX2Size.hpp"
 #include "PX2UIPicBox.hpp"
+#include "PX2UIText.hpp"
 
 namespace PX2
 {
@@ -24,6 +25,8 @@ namespace PX2
 
 	protected:
 		UIPicBoxPtr mPB_Back;
+		UIPicBoxPtr mPB_Logo;
+		UITextPtr mT_Title;
 	};
 
 	PX2_REGISTER_STREAM(UITitleFrame);

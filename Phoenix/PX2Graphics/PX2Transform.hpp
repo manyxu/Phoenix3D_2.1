@@ -69,6 +69,7 @@ namespace PX2
 		void SetTranslateX (float x);
 		void SetTranslateY (float y);
 		void SetTranslateZ (float z);
+		void SetTranslateXZ(float x, float z);
 		void SetScale (const APoint& scale);
 		void SetUniformScale (float scale);
 		inline const HMatrix& GetRotate () const;

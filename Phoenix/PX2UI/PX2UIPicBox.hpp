@@ -78,13 +78,11 @@ namespace PX2
 			TM_TEXPACK_ELE,
 			TM_MAX_MODE
 		};
-		void SetTexMode(TexMode mode);
 		TexMode GetTexMode() const;
 
 		// base texture
 		void SetTexture(const std::string &filename);
-		void SetTexture(const std::string &texPackName, const std::string &eleName,
-			bool doCreateBuffer=true);
+		void SetTexture(const std::string &texPackName, const std::string &eleName);
 		const std::string &GetTextureFilename() const;
 
 		virtual void OnForceBind();

@@ -27,10 +27,11 @@ mTexturePathname(filename)
 {
 	_Init();
 
-	SetTexMode(TM_TEX);
-	SetTexture(mTexturePathname);
+	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj",
+		"default");
+	SetMaterialInstance(mi);
 
-	mIsBufferNeedUpdate = true;
+	SetTexture(mTexturePathname);
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
 		mTexturePathname));
 	if (tex) SetSize((float)tex->GetWidth(), (float)tex->GetHeight());
@@ -43,11 +44,14 @@ mAnchorPoint(0.5f, 0.5f),
 mSize(128, 64),
 mCornerSize(6, 6),
 mIsBufferNeedUpdate(true),
-mTexMode(TM_TEX)
+mTexMode(TM_TEXPACK_ELE)
 {
 	_Init();
 
-	SetTexMode(TM_TEXPACK_ELE);
+	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj",
+		"default");
+	SetMaterialInstance(mi);
+
 	SetTexture(packName, eleName);
 	SetSize((float)mPackEle.W, (float)mPackEle.H);
 }
@@ -122,11 +126,6 @@ void UIPicBox::SetAlpha(float alpha)
 	GetShine()->Emissive = Float4(color[0], color[1], color[2], alpha);
 }
 //----------------------------------------------------------------------------
-void UIPicBox::SetTexMode(TexMode mode)
-{
-	mTexMode = mode;
-}
-//----------------------------------------------------------------------------
 UIPicBox::TexMode UIPicBox::GetTexMode() const
 {
 	return mTexMode;
@@ -134,25 +133,27 @@ UIPicBox::TexMode UIPicBox::GetTexMode() const
 //----------------------------------------------------------------------------
 void UIPicBox::SetTexture(const std::string &filename)
 {
-	mTexturePackName = "";
-	mElementName = "";
-
-	mTexMode = TM_TEX;
-
-	mTexturePathname = filename;
-
 	Texture *texture = DynamicCast<Texture>(PX2_RM.BlockLoad(filename));
 	if (texture)
 	{
+		if (mTexMode != TM_TEX)
+		{
+			mIsBufferNeedUpdate = true;
+		}
+
+		mTexMode = TM_TEX;
+
+		mTexturePackName = "";
+		mElementName = "";
+		mTexturePathname = filename;
+
 		GetMaterialInstance()->SetPixelTexture(0, "Sample0", texture);
 	}
 }
 //----------------------------------------------------------------------------
 void UIPicBox::SetTexture(const std::string &texPackName,
-	const std::string &eleName, bool doCreateBuffer)
+	const std::string &eleName)
 {
-	mTexMode = TM_TEXPACK_ELE;
-
 	ResourceManager::GetSingleton().AddTexPack(texPackName);
 	mPackEle =
 		ResourceManager::GetSingleton().GetTexPackElement(texPackName, eleName);
@@ -162,18 +163,22 @@ void UIPicBox::SetTexture(const std::string &texPackName,
 
 	Object *obj = ResourceManager::GetSingleton().BlockLoad(
 		mPackEle.ImagePathFull);
-	Texture2D *tex = DynamicCast<Texture2D>(obj);
+	Texture2D *texture = DynamicCast<Texture2D>(obj);
 
-	if (tex)
+	if (texture)
 	{
+		if (mTexMode != TM_TEXPACK_ELE)
+		{
+			mIsBufferNeedUpdate = true;
+		}
+
+		mTexMode = TM_TEXPACK_ELE;
+
 		mElementName = eleName;
 		mTexturePackName = texPackName;
-		mTexturePathname = tex->GetResourcePath();
 
-		if (doCreateBuffer)
-		{
-			ReCreateVBuffer();
-		}
+		mTexturePathname = texture->GetResourcePath();
+		GetMaterialInstance()->SetPixelTexture(0, "Sample0", texture);
 	}
 }
 //----------------------------------------------------------------------------
@@ -279,10 +284,6 @@ void UIPicBox::_Init()
 	SetPicBoxType(PBT_NORMAL);
 
 	GetShine()->Emissive = Float4::WHITE;
-
-	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj", 
-		"default");
-	SetMaterialInstance(mi);
 }
 //----------------------------------------------------------------------------
 void UIPicBox::UpdateWorldData(double applicationTime)
@@ -606,10 +607,6 @@ void UIPicBox::OnPropertyChanged(const PropertyObject &obj)
 	{
 		SetTexCornerSize(PX2_ANY_AS(obj.Data, Sizef));
 	}
-	else if ("TexMode" == obj.Name)
-	{
-		SetTexMode((TexMode)PX2_ANY_AS(obj.Data, int));
-	}
 	else if ("Tex" == obj.Name && mTexMode == TM_TEX)
 	{
 		SetTexture(PX2_ANY_AS(obj.Data, std::string));
@@ -677,7 +674,7 @@ void UIPicBox::PostLink()
 
 	if ("" != mElementName && "" != mTexturePackName)
 	{
-		SetTexture(mTexturePackName, mElementName, false);
+		SetTexture(mTexturePackName, mElementName);
 	}
 }
 //----------------------------------------------------------------------------

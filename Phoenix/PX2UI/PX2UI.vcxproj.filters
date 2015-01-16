@@ -23,6 +23,9 @@
     <ClInclude Include="PX2UITitleFrame.hpp">
       <Filter>WindowFrame</Filter>
     </ClInclude>
+    <ClInclude Include="PX2UIText.hpp">
+      <Filter>UIObj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UIView.cpp">
@@ -45,6 +48,9 @@
     </ClCompile>
     <ClCompile Include="PX2UITitleFrame.cpp">
       <Filter>WindowFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIText.cpp">
+      <Filter>UIObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +81,9 @@
       <Filter>Manager</Filter>
     </None>
     <None Include="PX2UISizeFrame.inl">
+      <Filter>UIObj</Filter>
+    </None>
+    <None Include="PX2UIText.inl">
       <Filter>UIObj</Filter>
     </None>
   </ItemGroup>

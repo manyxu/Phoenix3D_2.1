@@ -100,6 +100,14 @@ void Transform::SetTranslateZ (float z)
 	UpdateHMatrix();
 }
 //----------------------------------------------------------------------------
+void Transform::SetTranslateXZ(float x, float z)
+{
+	mTranslate.X() = x;
+	mTranslate.Z() = z;
+	mIsIdentity = false;
+	UpdateHMatrix();
+}
+//----------------------------------------------------------------------------
 void Transform::SetScale (const APoint& scale)
 {
 	if (scale.X()==scale.Y() && scale.Y()==scale.Z())

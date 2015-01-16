@@ -29,13 +29,35 @@
 					<var index="0" name="ShineEmissive" nr="1"/>
 				</c>
 				<s>
-					<var index="0" name="Sample0" st="sampler2D"/>
+					<var index="0" name="Sample0" st="sampler2D" sf="NEAREST" sc_0="CLAMP" sc_1="CLAMP"/>
 				</s>
 				<p>
 					<var type="cg" file="ui_cg.fx" entry="ui"/>
 					<var type="gles2" file="ui_gles2_ps.fx" entry=""/>
 				</p>
 			</shader>
+			<renderproperty>
+				<Alpha>
+					<p param="BlendEnabled" value="true"/>
+					<p param="SrcBlend" value="SBM_SRC_ALPHA"/>
+					<p param="DstBlend" value="DBM_ONE_MINUS_SRC_ALPHA"/>
+					<p param="CompareEnabled" value="false"/>
+					<p param="Compare" value="CM_GEQUAL"/>
+					<p param="Reference" value="0"/>
+				</Alpha>
+				<Depth>
+					<p param="Enabled" value="true"/>
+					<p param="Writable" value="false"/>
+					<p param="Compare" value="CM_LEQUAL"/>
+				</Depth>
+				<Cull>
+					<p param="Enabled" value="true"/>
+					<p param="CCWOrder" value="true"/>
+				</Cull>
+				<Wire>
+					<p param="Enabled" value="false"/>
+				</Wire>
+			</renderproperty>
 		</pass>
 	</technique>
 </material>

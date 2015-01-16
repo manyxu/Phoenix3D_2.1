@@ -16,6 +16,7 @@
     <ClInclude Include="PX2UIPicBox.hpp" />
     <ClInclude Include="PX2UIPre.hpp" />
     <ClInclude Include="PX2UISizeFrame.hpp" />
+    <ClInclude Include="PX2UIText.hpp" />
     <ClInclude Include="PX2UITitleFrame.hpp" />
     <ClInclude Include="PX2UIView.hpp" />
     <ClInclude Include="PX2UIWindowFrame.hpp" />
@@ -25,6 +26,7 @@
     <ClCompile Include="PX2UIManager.cpp" />
     <ClCompile Include="PX2UIPicBox.cpp" />
     <ClCompile Include="PX2UISizeFrame.cpp" />
+    <ClCompile Include="PX2UIText.cpp" />
     <ClCompile Include="PX2UITitleFrame.cpp" />
     <ClCompile Include="PX2UIView.cpp" />
     <ClCompile Include="PX2UIWindowFrame.cpp" />
@@ -34,6 +36,7 @@
     <None Include="PX2UIManager.inl" />
     <None Include="PX2UIPicBox.inl" />
     <None Include="PX2UISizeFrame.inl" />
+    <None Include="PX2UIText.inl" />
     <None Include="PX2UIView.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

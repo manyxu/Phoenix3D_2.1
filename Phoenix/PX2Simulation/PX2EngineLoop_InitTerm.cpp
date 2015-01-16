@@ -296,6 +296,12 @@ void EngineLoop::SetSize(const Sizef &size)
 {
 	mSize = size;
 
+	Renderer *dr = Renderer::GetDefaultRenderer();
+	if (dr)
+	{
+		dr->ResizeWindow((int)size.Width, (int)size.Height);
+	}
+
 	UIManager *uiMain = UIManager::GetSingletonPtr();
 	if (uiMain)
 	{

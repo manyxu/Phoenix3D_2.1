@@ -1,6 +1,6 @@
 // PX2UICaptionFrame.cpp
 
-#include "PX2UICaptionFrame.hpp"
+#include "PX2UITitleFrame.hpp"
 #include "PX2UIPicBox.hpp"
 using namespace PX2;
 
@@ -16,6 +16,19 @@ UITitleFrame::UITitleFrame()
 	mPB_Back->SetTexture("Data/engine/white.png");
 	mPB_Back->SetAnchorPoint(0.0f, 1.0f);
 	mPB_Back->SetColor(Float3::MakeColor(214, 219, 230));
+
+	mPB_Logo = new0 UIPicBox();
+	AttachChild(mPB_Logo);
+	mPB_Logo->LocalTransform.SetTranslateY(-1.0f);
+	mPB_Logo->SetTexture("Data/engine/phoenix.png");
+	mPB_Logo->SetSize(32.0f, 32.0f);
+
+	mT_Title = new0 UIText();
+	AttachChild(mT_Title);
+	mT_Title->SetText("Nirvana - Phoenix Engine Editor");
+	mT_Title->SetFontWidthHeight(12, 12);
+	mT_Title->SetRectUseage(UIText::RU_ALIGNS);
+	mT_Title->SetAligns(TEXTALIGN_LEFT | TEXTALIGN_VCENTER);
 }
 //----------------------------------------------------------------------------
 UITitleFrame::~UITitleFrame()
@@ -28,6 +41,10 @@ void UITitleFrame::OnParentSizeChanged(const Sizef &parentSize,
 	UISizeFrame::OnParentSizeChanged(parentSize, parentBorderSize);
 
 	mPB_Back->SetSize(mSize);
+	mPB_Logo->LocalTransform.SetTranslateXZ(16.0f, -16.0f);
+
+	float t_titleLeft = 50.0f;
+	mT_Title->SetRect(Rectf(t_titleLeft, -mSize.Height, mSize.Width, 0.0f));
 }
 //----------------------------------------------------------------------------
 

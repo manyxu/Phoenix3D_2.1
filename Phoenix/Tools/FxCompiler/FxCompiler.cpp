@@ -359,15 +359,24 @@ bool FxCompiler::ProcessPassNode (XMLNode passNode, MaterialTechnique* technique
 			propertyNode = renderPropertyNode.IterateChild(propertyNode);
 		}
 	}
-	else
-	{
+
+	if (!materialPass->GetAlphaProperty())
 		materialPass->SetAlphaProperty(new0 AlphaProperty());
+
+	if (!materialPass->GetCullProperty())
 		materialPass->SetCullProperty(new0 CullProperty());
+
+	if (!materialPass->GetDepthProperty())
 		materialPass->SetDepthProperty(new0 DepthProperty());
+
+	if (!materialPass->GetOffsetProperty())
 		materialPass->SetOffsetProperty(new0 OffsetProperty());
+
+	if (!materialPass->GetStencilProperty())
 		materialPass->SetStencilProperty(new0 StencilProperty());
+
+	if (!materialPass->GetWireProperty())
 		materialPass->SetWireProperty(new0 WireProperty());
-	}
 
 	return true;
 }
@@ -510,12 +519,45 @@ bool FxCompiler::ProcessShaderNode_Samples(XMLNode samplesNode, Shader *shader)
 			SamplerTypeMap::iterator iter = mSamplerTypes.find(toFileST);
 			if (iter == mSamplerTypes.end())
 			{
-				assertion("Invalid sampler type: %s", toFileST.c_str());
+				assertion(false, "Invalid sampler type: %s", toFileST.c_str());
 				return false;
 			}
 			samtype = iter->second;
-
 			shader->SetSampler(index, sampleName, samtype);
+
+			std::string sf = childNode.AttributeToString("sf");
+			Shader::SamplerFilter samfliter;
+			SamplerFilterMap::iterator iterSF = mSamplerFilterTypes.find(sf);
+			if (iterSF == mSamplerFilterTypes.end())
+			{
+				assertion(false, "Invalid SamplerFilter type: %s", toFileST.c_str());
+				return false;
+			}
+			samfliter = iterSF->second;
+			shader->SetFilter(index, samfliter);
+
+			std::string sc_0 = childNode.AttributeToString("sc_0");
+			std::string sc_1 = childNode.AttributeToString("sc_1");
+
+			Shader::SamplerCoordinate sc0;
+			SamplerCoordinateMap::iterator sc0_iter = mSamplerCoordinates.find(sc_0);
+			if (sc0_iter == mSamplerCoordinates.end())
+			{
+				assertion(false, "Invalid SamplerCoordinate type: %s", sc_0.c_str());
+				return false;
+			}
+			sc0 = sc0_iter->second;
+			shader->SetCoordinate(index, 0, mSamplerCoordinates[sc_0]);
+
+			Shader::SamplerCoordinate sc1;
+			SamplerCoordinateMap::iterator sc1_iter = mSamplerCoordinates.find(sc_1);
+			if (sc1_iter == mSamplerCoordinates.end())
+			{
+				assertion(false, "Invalid SamplerCoordinate type: %s", sc_1.c_str());
+				return false;
+			}
+			sc1 = sc1_iter->second;
+			shader->SetCoordinate(index, 1, mSamplerCoordinates[sc_1]);
 
 			for (int i = 1; i < Shader::MAX_PROFILES; ++i)
 			{
@@ -733,54 +775,56 @@ bool FxCompiler::CompileShader (bool v, string filename, string shaderName)
 //	return true;
 //}
 //----------------------------------------------------------------------------
-bool FxCompiler::ProcessRenderProperty (XMLNode node, MaterialPass *pass)
+bool FxCompiler::ProcessRenderProperty (XMLNode nodeProperty, MaterialPass *pass)
 {
-	string propertyName = node.AttributeToString("property");
+	string propertyName = nodeProperty.GetName();
 
 	if (propertyName == "Alpha")
 	{
 		AlphaPropertyPtr alphaProperty = new0 AlphaProperty();
 		pass->SetAlphaProperty(alphaProperty);
 
-		if (string(node.AttributeToString("param")) == "BlendEnabled")
+		XMLNode childNode = nodeProperty.IterateChild();
+		while (!childNode.IsNull())
 		{
-			alphaProperty->BlendEnabled = node.AttributeToBool("value");
-		}
-		else if (string(node.AttributeToString("param")) == "SrcBlend")
-		{
-			for (int i=0; i<(int)AlphaProperty::SBM_QUANTITY; i++)
+			if (string(childNode.AttributeToString("param")) == "BlendEnabled")
 			{
-				if (node.AttributeToString("value") == msSrcBlendMode[i])
-					alphaProperty->SrcBlend = (AlphaProperty::SrcBlendMode)i;
+				alphaProperty->BlendEnabled = childNode.AttributeToBool("value");
 			}
-		}
-		else if (string(node.AttributeToString("param")) == "DstBlend")
-		{
-			for (int i=0; i<(int)AlphaProperty::DBM_QUANTITY; i++)
+			else if (string(childNode.AttributeToString("param")) == "SrcBlend")
 			{
-				if (node.AttributeToString("value") == msDstBlendMode[i])
-					alphaProperty->DstBlend = (AlphaProperty::DstBlendMode)i;
+				for (int i = 0; i < (int)AlphaProperty::SBM_QUANTITY; i++)
+				{
+					if (childNode.AttributeToString("value") == msSrcBlendMode[i])
+						alphaProperty->SrcBlend = (AlphaProperty::SrcBlendMode)i;
+				}
 			}
-		}
-		else if (string(node.AttributeToString("param")) == "CompareEnabled")
-		{
-			alphaProperty->CompareEnabled = node.AttributeToBool("value");
-		}
-		else if (string(node.AttributeToString("param")) == "Compare")
-		{
-			for (int i=0; i<(int)AlphaProperty::CM_QUANTITY; i++)
+			else if (string(childNode.AttributeToString("param")) == "DstBlend")
 			{
-				if (string(node.AttributeToString("value")) == msAlphaCompareMode[i])
-					alphaProperty->Compare = (AlphaProperty::CompareMode)i;
+				for (int i = 0; i < (int)AlphaProperty::DBM_QUANTITY; i++)
+				{
+					if (childNode.AttributeToString("value") == msDstBlendMode[i])
+						alphaProperty->DstBlend = (AlphaProperty::DstBlendMode)i;
+				}
 			}
-		}
-		else if (string(node.AttributeToString("param")) == "Reference")
-		{
-			alphaProperty->Reference = node.AttributeToFloat("value");
-		}
-		else if (string(node.AttributeToString("param")) == "ConstantColor")
-		{
-			alphaProperty->ConstantColor = StringToFloat4(node.AttributeToString("value"));
+			else if (string(childNode.AttributeToString("param")) == "CompareEnabled")
+			{
+				alphaProperty->CompareEnabled = childNode.AttributeToBool("value");
+			}
+			else if (string(childNode.AttributeToString("param")) == "Compare")
+			{
+				for (int i = 0; i < (int)AlphaProperty::CM_QUANTITY; i++)
+				{
+					if (string(childNode.AttributeToString("value")) == msAlphaCompareMode[i])
+						alphaProperty->Compare = (AlphaProperty::CompareMode)i;
+				}
+			}
+			else if (string(childNode.AttributeToString("param")) == "Reference")
+			{
+				alphaProperty->Reference = childNode.AttributeToFloat("value");
+			}
+
+			childNode = nodeProperty.IterateChild(childNode);
 		}
 	}
 	else if (propertyName == "Cull")
@@ -788,13 +832,19 @@ bool FxCompiler::ProcessRenderProperty (XMLNode node, MaterialPass *pass)
 		CullPropertyPtr cullProperty = new0 CullProperty();
 		pass->SetCullProperty(cullProperty);
 
-		if (string(node.AttributeToString("param")) == "Enabled")
+		XMLNode childNode = nodeProperty.IterateChild();
+		while (!childNode.IsNull())
 		{
-			cullProperty->Enabled = node.AttributeToBool("value");
-		}
-		else if (string(node.AttributeToString("param")) == "CCWOrder")
-		{
-			cullProperty->CCWOrder = node.AttributeToBool("value");
+			if (string(childNode.AttributeToString("param")) == "Enabled")
+			{
+				cullProperty->Enabled = childNode.AttributeToBool("value");
+			}
+			else if (string(childNode.AttributeToString("param")) == "CCWOrder")
+			{
+				cullProperty->CCWOrder = childNode.AttributeToBool("value");
+			}
+
+			childNode = nodeProperty.IterateChild(childNode);
 		}
 	}
 	else if (propertyName == "Depth")
@@ -802,23 +852,29 @@ bool FxCompiler::ProcessRenderProperty (XMLNode node, MaterialPass *pass)
 		DepthPropertyPtr depthProperty = new0 DepthProperty();
 		pass->SetDepthProperty(depthProperty);
 
-		if (string(node.AttributeToString("param")) == "Enabled")
+		XMLNode childNode = nodeProperty.IterateChild();
+		while (!childNode.IsNull())
 		{
-			depthProperty->Enabled = node.AttributeToBool("value");
-		}
-		else if (string(node.AttributeToString("param")) == "Writable")
-		{
-			depthProperty->Writable = node.AttributeToBool("value");
-		}
-		else if (string(node.AttributeToString("param")) == "Compare")
-		{
-			for (int i=0; i<(int)DepthProperty::CM_QUANTITY; i++)
+			if (string(childNode.AttributeToString("param")) == "Enabled")
 			{
-				if (string(node.AttributeToString("value")) == msDepthCompareMode[i])
+				depthProperty->Enabled = childNode.AttributeToBool("value");
+			}
+			else if (string(childNode.AttributeToString("param")) == "Writable")
+			{
+				depthProperty->Writable = childNode.AttributeToBool("value");
+			}
+			else if (string(childNode.AttributeToString("param")) == "Compare")
+			{
+				for (int i = 0; i < (int)DepthProperty::CM_QUANTITY; i++)
 				{
-					depthProperty->Compare = DepthProperty::CompareMode(i);
+					if (string(childNode.AttributeToString("value")) == msDepthCompareMode[i])
+					{
+						depthProperty->Compare = DepthProperty::CompareMode(i);
+					}
 				}
 			}
+
+			childNode = nodeProperty.IterateChild(childNode);
 		}
 	}
 	else if (propertyName == "Offset")
@@ -826,21 +882,27 @@ bool FxCompiler::ProcessRenderProperty (XMLNode node, MaterialPass *pass)
 		OffsetPropertyPtr offsetProperty = new0 OffsetProperty();
 		pass->SetOffsetProperty(offsetProperty);
 
-		if (string(node.AttributeToString("param")) == "FillEnabled")
+		XMLNode childNode = nodeProperty.IterateChild();
+		while (!childNode.IsNull())
 		{
-			offsetProperty->FillEnabled = node.AttributeToBool("value");
-		}
-		else if (string(node.AttributeToString("param")) == "LineEnabled")
-		{
-			offsetProperty->LineEnabled = node.AttributeToBool("LineEnabled");
-		}
-		else if (string(node.AttributeToString("param")) == "PointEnabled")
-		{
-			offsetProperty->Scale = node.AttributeToFloat("Scale");
-		}
-		else if (string(node.AttributeToString("param")) == "Bias")
-		{
-			offsetProperty->Bias = node.AttributeToFloat("Bias");
+			if (string(childNode.AttributeToString("param")) == "FillEnabled")
+			{
+				offsetProperty->FillEnabled = childNode.AttributeToBool("value");
+			}
+			else if (string(childNode.AttributeToString("param")) == "LineEnabled")
+			{
+				offsetProperty->LineEnabled = childNode.AttributeToBool("LineEnabled");
+			}
+			else if (string(childNode.AttributeToString("param")) == "PointEnabled")
+			{
+				offsetProperty->Scale = childNode.AttributeToFloat("Scale");
+			}
+			else if (string(childNode.AttributeToString("param")) == "Bias")
+			{
+				offsetProperty->Bias = childNode.AttributeToFloat("Bias");
+			}
+
+			childNode = nodeProperty.IterateChild(childNode);
 		}
 	}
 	else if (propertyName == "Stencil")
@@ -848,55 +910,61 @@ bool FxCompiler::ProcessRenderProperty (XMLNode node, MaterialPass *pass)
 		StencilPropertyPtr stencilProperty = new0 StencilProperty();
 		pass->SetStencilProperty(stencilProperty);
 
-		if (string(node.AttributeToString("param")) == "Enabled")
+		XMLNode childNode = nodeProperty.IterateChild();
+		while (!childNode.IsNull())
 		{
-			stencilProperty->Enabled = node.AttributeToBool("value");
-		}
-		else if (string(node.AttributeToString("param")) == "Compare")
-		{
-			for (int i=0; i<(int)StencilProperty::CM_QUANTITY; i++)
+			if (string(childNode.AttributeToString("param")) == "Enabled")
 			{
-				if (node.AttributeToString("value") == msStencilCompareMode[i])
+				stencilProperty->Enabled = childNode.AttributeToBool("value");
+			}
+			else if (string(childNode.AttributeToString("param")) == "Compare")
+			{
+				for (int i = 0; i < (int)StencilProperty::CM_QUANTITY; i++)
 				{
-					stencilProperty->Compare = (StencilProperty::CompareMode)i;
+					if (childNode.AttributeToString("value") == msStencilCompareMode[i])
+					{
+						stencilProperty->Compare = (StencilProperty::CompareMode)i;
+					}
 				}
 			}
-		}
-		else if (string(node.AttributeToString("param")) == "Reference")
-		{
-			stencilProperty->Reference = node.AttributeToInt("Reference");
-		}
-		else if (string(node.AttributeToString("param")) == "Mask")
-		{
-			stencilProperty->Mask = node.AttributeToInt("value");
-		}
-		else if (string(node.AttributeToString("param")) == "WriteMask")
-		{
-			stencilProperty->WriteMask = node.AttributeToInt("value");
-		}
-		else if (string(node.AttributeToString("param")) == "OnFail")
-		{
-			for (int i=0; i<(int)StencilProperty::OT_QUANTITY; i++)
+			else if (string(childNode.AttributeToString("param")) == "Reference")
 			{
-				if (node.AttributeToString("value") == msStencilOperationType[i])
-					stencilProperty->OnFail = (StencilProperty::OperationType)i;
+				stencilProperty->Reference = childNode.AttributeToInt("Reference");
 			}
-		}
-		else if (string(node.AttributeToString("param")) == "OnZFail")
-		{
-			for (int i=0; i<(int)StencilProperty::OT_QUANTITY; i++)
+			else if (string(childNode.AttributeToString("param")) == "Mask")
 			{
-				if (string(node.AttributeToString("value")) == msStencilOperationType[i])
-					stencilProperty->OnZFail = (StencilProperty::OperationType)i;
+				stencilProperty->Mask = childNode.AttributeToInt("value");
 			}
-		}
-		else if (string(node.AttributeToString("param")) == "OnZPass")
-		{
-			for (int i=0; i<(int)StencilProperty::OT_QUANTITY; i++)
+			else if (string(childNode.AttributeToString("param")) == "WriteMask")
 			{
-				if (string(node.AttributeToString("value")) == msStencilOperationType[i])
-					stencilProperty->OnZPass = (StencilProperty::OperationType)i;
+				stencilProperty->WriteMask = childNode.AttributeToInt("value");
 			}
+			else if (string(childNode.AttributeToString("param")) == "OnFail")
+			{
+				for (int i = 0; i < (int)StencilProperty::OT_QUANTITY; i++)
+				{
+					if (childNode.AttributeToString("value") == msStencilOperationType[i])
+						stencilProperty->OnFail = (StencilProperty::OperationType)i;
+				}
+			}
+			else if (string(childNode.AttributeToString("param")) == "OnZFail")
+			{
+				for (int i = 0; i < (int)StencilProperty::OT_QUANTITY; i++)
+				{
+					if (string(childNode.AttributeToString("value")) == msStencilOperationType[i])
+						stencilProperty->OnZFail = (StencilProperty::OperationType)i;
+				}
+			}
+			else if (string(childNode.AttributeToString("param")) == "OnZPass")
+			{
+				for (int i = 0; i < (int)StencilProperty::OT_QUANTITY; i++)
+				{
+					if (string(childNode.AttributeToString("value")) == msStencilOperationType[i])
+						stencilProperty->OnZPass = (StencilProperty::OperationType)i;
+				}
+			}
+
+			childNode = nodeProperty.IterateChild(childNode);
 		}
 	}
 	else if (propertyName == "Wire")
@@ -904,8 +972,14 @@ bool FxCompiler::ProcessRenderProperty (XMLNode node, MaterialPass *pass)
 		WirePropertyPtr wireProperty = new0 WireProperty();
 		pass->SetWireProperty(wireProperty);
 
-		if (string(node.AttributeToString("param")) == "Enabled")
-			wireProperty->Enabled = node.AttributeToBool("Enabled");
+		XMLNode childNode = nodeProperty.IterateChild();
+		while (!childNode.IsNull())
+		{
+			if (string(childNode.AttributeToString("param")) == "Enabled")
+				wireProperty->Enabled = childNode.AttributeToBool("value");
+
+			childNode = nodeProperty.IterateChild(childNode);
+		}
 	}
 
 	return true;
@@ -1063,6 +1137,20 @@ void FxCompiler::InitializeMaps ()
 	mSamplerTypes.insert(std::make_pair("samplerSHADOW", Shader::ST_2D));
 	mSamplerTypes.insert(std::make_pair("sampler3D", Shader::ST_3D));
 	mSamplerTypes.insert(std::make_pair("samplerCUBE", Shader::ST_CUBE));
+
+	mSamplerFilterTypes.insert(std::make_pair("NEAREST", Shader::SF_NEAREST));
+	mSamplerFilterTypes.insert(std::make_pair("LINEAR", Shader::SF_LINEAR));
+	mSamplerFilterTypes.insert(std::make_pair("NEAREST_NEAREST", Shader::SF_NEAREST_NEAREST));
+	mSamplerFilterTypes.insert(std::make_pair("NEAREST_LINEAR", Shader::SF_NEAREST_LINEAR));
+	mSamplerFilterTypes.insert(std::make_pair("LINEAR_NEAREST", Shader::SF_LINEAR_NEAREST));
+	mSamplerFilterTypes.insert(std::make_pair("LINEAR_LINEAR", Shader::SF_LINEAR_LINEAR));
+
+	mSamplerCoordinates.insert(std::make_pair("NONE", Shader::SC_NONE));
+	mSamplerCoordinates.insert(std::make_pair("CLAMP", Shader::SC_CLAMP));
+	mSamplerCoordinates.insert(std::make_pair("REPEAT", Shader::SC_REPEAT));
+	mSamplerCoordinates.insert(std::make_pair("MIRRORED_REPEAT", Shader::SC_MIRRORED_REPEAT));
+	mSamplerCoordinates.insert(std::make_pair("CLAMP_BORDER", Shader::SC_CLAMP_BORDER));
+	mSamplerCoordinates.insert(std::make_pair("CLAMP_EDGE", Shader::SC_CLAMP_EDGE));
 }
 //----------------------------------------------------------------------------
 bool FxCompiler::Parse (const std::string& fileName,
