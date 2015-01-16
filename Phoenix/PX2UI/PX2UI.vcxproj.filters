@@ -17,10 +17,10 @@
     <ClInclude Include="PX2UISizeFrame.hpp">
       <Filter>UIObj</Filter>
     </ClInclude>
-    <ClInclude Include="PX2UICaptionFrame.hpp">
+    <ClInclude Include="PX2UIWindowFrame.hpp">
       <Filter>WindowFrame</Filter>
     </ClInclude>
-    <ClInclude Include="PX2UIWindowFrame.hpp">
+    <ClInclude Include="PX2UITitleFrame.hpp">
       <Filter>WindowFrame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -43,7 +43,7 @@
     <ClCompile Include="PX2UIWindowFrame.cpp">
       <Filter>WindowFrame</Filter>
     </ClCompile>
-    <ClCompile Include="PX2UICaptionFrame.cpp">
+    <ClCompile Include="PX2UITitleFrame.cpp">
       <Filter>WindowFrame</Filter>
     </ClCompile>
   </ItemGroup>

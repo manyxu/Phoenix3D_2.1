@@ -4,7 +4,7 @@
 #define PX2UIWINDOWFRAME_HPP
 
 #include "PX2UISizeFrame.hpp"
-#include "PX2UICaptionFrame.hpp"
+#include "PX2UITitleFrame.hpp"
 
 namespace PX2
 {

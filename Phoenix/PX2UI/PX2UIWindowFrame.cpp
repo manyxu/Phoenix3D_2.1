@@ -11,7 +11,7 @@ PX2_IMPLEMENT_FACTORY(UIWindowFrame);
 //----------------------------------------------------------------------------
 UIWindowFrame::UIWindowFrame()
 {
-	mCaptionFrame = new0 UICaptionFrame();
+	mCaptionFrame = new0 UITitleFrame();
 	AttachChild(mCaptionFrame);
 	mCaptionFrame->SetSize(0.0f, 30.0f);
 	mCaptionFrame->SetRelativeType_V(UISizeFrame::LT_ONE);
