@@ -14,6 +14,15 @@
     <ClInclude Include="PX2UIPicBox.hpp">
       <Filter>UIObj</Filter>
     </ClInclude>
+    <ClInclude Include="PX2UISizeFrame.hpp">
+      <Filter>UIObj</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UICaptionFrame.hpp">
+      <Filter>WindowFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIWindowFrame.hpp">
+      <Filter>WindowFrame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UIView.cpp">
@@ -28,6 +37,15 @@
     <ClCompile Include="PX2UIPicBox.cpp">
       <Filter>UIObj</Filter>
     </ClCompile>
+    <ClCompile Include="PX2UISizeFrame.cpp">
+      <Filter>UIObj</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIWindowFrame.cpp">
+      <Filter>WindowFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UICaptionFrame.cpp">
+      <Filter>WindowFrame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="View">
@@ -38,6 +56,9 @@
     </Filter>
     <Filter Include="Manager">
       <UniqueIdentifier>{be16f12f-bd2d-4365-94ab-20e6840c1936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WindowFrame">
+      <UniqueIdentifier>{c548730b-7e80-4e9b-938b-e8a101811dd8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +73,9 @@
     </None>
     <None Include="PX2UIManager.inl">
       <Filter>Manager</Filter>
+    </None>
+    <None Include="PX2UISizeFrame.inl">
+      <Filter>UIObj</Filter>
     </None>
   </ItemGroup>
 </Project>

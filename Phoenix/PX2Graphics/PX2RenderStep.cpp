@@ -6,7 +6,8 @@ using namespace PX2;
 
 //----------------------------------------------------------------------------
 RenderStep::RenderStep() :
-mRenderer(0)
+mRenderer(0),
+mIsUpdated(false)
 {
 	mSize.Set(1024.0f, 768.0f);
 }
@@ -22,6 +23,12 @@ void RenderStep::Clear()
 //----------------------------------------------------------------------------
 void RenderStep::Update(double appSeconds, double elapsedSeconds)
 {
+	if (!mIsUpdated)
+	{
+		OnSizeChange();
+		mIsUpdated = true;
+	}
+
 	PX2_UNUSED(elapsedSeconds);
 	if (mNode) mNode->Update(appSeconds, 0.0f);
 }

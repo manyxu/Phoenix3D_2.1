@@ -66,6 +66,14 @@ namespace PX2
 		bool mBeforeInBackgroundMusicEnable;
 		bool mBeforeInBackgroundSoundEnable;
 
+		// public
+	public:
+		void SetSize(const Sizef &size);
+		const Sizef &GetSize() const;
+
+	protected:
+		Sizef mSize;
+
 		// Tick
 	public:
 		void Tick();

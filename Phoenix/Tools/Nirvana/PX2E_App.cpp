@@ -7,6 +7,7 @@
 #include "PX2E_App.hpp"
 #include "PX2E_MainFrame.hpp"
 #include "PX2EngineLoop.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -55,11 +56,22 @@ bool E_App::OnInit()
 	PX2_ENGINELOOP.SetPt_Size(Sizef(1024.0f, 768.0f));
 	PX2_ENGINELOOP.Initlize();
 
+	Edit *edit = new0 Edit();
+	edit->Initlize();
+
 	return true;
 }
 //-----------------------------------------------------------------------------
 int E_App::OnExit()
 {
+	Edit *edit = Edit::GetSingletonPtr();
+	if (edit)
+	{
+		edit->Ternamate();
+		delete0(edit);
+		Edit::Set(0);
+	}
+
 	PX2_ENGINELOOP.Ternamate();
 
 	return 0;

@@ -67,7 +67,7 @@ bool EngineLoop::Initlize()
 
 #endif
 	Renderer::SetDefaultRenderer(renderer);
-	renderer->SetClearColor(Float4::RED);
+	renderer->SetClearColor(Float4::WHITE);
 
 	StringHelp::Initlize();
 	FString::Initlize();
@@ -290,5 +290,16 @@ bool EngineLoop::Ternamate()
 #endif
 
 	return true;
+}
+//----------------------------------------------------------------------------
+void EngineLoop::SetSize(const Sizef &size)
+{
+	mSize = size;
+
+	UIManager *uiMain = UIManager::GetSingletonPtr();
+	if (uiMain)
+	{
+		uiMain->SetSize(mSize);
+	}
 }
 //----------------------------------------------------------------------------

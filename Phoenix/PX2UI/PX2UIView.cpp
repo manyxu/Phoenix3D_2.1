@@ -1,7 +1,7 @@
 // PX2UIView.cpp
 
 #include "PX2UIView.hpp"
-#include "PX2UIFrame.hpp"
+#include "PX2UISizeFrame.hpp"
 #include "PX2UIPicBox.hpp"
 using namespace PX2;
 
@@ -18,9 +18,9 @@ mIsCameraAutoCenter(true)
 		AVector::UNIT_Z, AVector::UNIT_X);
 	SetCamera(camera);
 
-	UIFrame *mainFrame = new0 UIFrame();
+	UISizeFrame *mainFrame = new0 UISizeFrame();
 	SetNode(mainFrame);
-	mainFrame->SetName("UIMainFrame");
+	mainFrame->SetName("MainSizeFrame");
 
 #if defined(_WIN32) || defined(WIN32)
 	mMoveAdjugeParam = 5.0f;
@@ -29,10 +29,6 @@ mIsCameraAutoCenter(true)
 #endif
 
 	OnSizeChange();
-
-	UIPicBox *picBox = new0 UIPicBox();
-	mainFrame->AttachChild(picBox);
-	picBox->LocalTransform.SetTranslate(APoint(200.0f, 0.0f, 200.0f));
 }
 //----------------------------------------------------------------------------
 UIView::~UIView()
@@ -55,6 +51,12 @@ void UIView::OnSizeChange()
 	if (mIsCameraAutoCenter)
 	{
 		mCamera->SetPosition(APoint(helfWidth, msUICameraZ, helfHeight));
+	}
+
+	UISizeFrame *sizeFrame = DynamicCast<UISizeFrame>(GetNode());
+	if (sizeFrame)
+	{
+		sizeFrame->SetSize(mSize);
 	}
 }
 //----------------------------------------------------------------------------

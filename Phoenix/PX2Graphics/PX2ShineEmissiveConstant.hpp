@@ -28,18 +28,10 @@ namespace PX2
 		PX2_DECLARE_STREAM(ShineEmissiveConstant);
 
 	public:
-		ShineEmissiveConstant (Shine* shine);
+		ShineEmissiveConstant ();
 		virtual ~ShineEmissiveConstant ();
 
-		Shine* GetShine ();
-
 		virtual void Update (const Renderable* renderable, const Camera* camera);
-
-		virtual void Float_OnRegistProperties (Object *parObj);
-		virtual void Float_OnPropertyChanged (Object *parObj, const PropertyObject &obj);
-
-	protected:
-		ShinePtr mShine;
 	};
 
 	PX2_REGISTER_STREAM(ShineEmissiveConstant);

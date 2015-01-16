@@ -254,6 +254,7 @@ void PX2WXFrame::_Sizing()
 	if (0 != mSizeDir)
 	{
 		SetSize(wxRect(newPos.x, newPos.y, newSize.GetWidth(), newSize.GetHeight()));
+		OnSize_Update(PX2::Sizef(newSize.GetWidth(), newSize.GetHeight()));
 	}
 }
 //----------------------------------------------------------------------------

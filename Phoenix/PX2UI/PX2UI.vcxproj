@@ -11,22 +11,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PX2UICaptionFrame.hpp" />
     <ClInclude Include="PX2UIFrame.hpp" />
     <ClInclude Include="PX2UIManager.hpp" />
     <ClInclude Include="PX2UIPicBox.hpp" />
     <ClInclude Include="PX2UIPre.hpp" />
+    <ClInclude Include="PX2UISizeFrame.hpp" />
     <ClInclude Include="PX2UIView.hpp" />
+    <ClInclude Include="PX2UIWindowFrame.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PX2UICaptionFrame.cpp" />
     <ClCompile Include="PX2UIFrame.cpp" />
     <ClCompile Include="PX2UIManager.cpp" />
     <ClCompile Include="PX2UIPicBox.cpp" />
+    <ClCompile Include="PX2UISizeFrame.cpp" />
     <ClCompile Include="PX2UIView.cpp" />
+    <ClCompile Include="PX2UIWindowFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2UIFrame.inl" />
     <None Include="PX2UIManager.inl" />
     <None Include="PX2UIPicBox.inl" />
+    <None Include="PX2UISizeFrame.inl" />
     <None Include="PX2UIView.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

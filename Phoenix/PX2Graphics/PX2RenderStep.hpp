@@ -23,6 +23,9 @@ namespace PX2
 		void Clear();
 		void Update(double appSeconds, double elapsedSeconds);
 
+	protected:
+		bool mIsUpdated;
+
 		// Size
 	public:
 		void SetSize(float width, float height);

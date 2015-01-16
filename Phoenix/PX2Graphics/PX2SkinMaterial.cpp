@@ -132,7 +132,7 @@ MaterialInstance* SkinMaterial::CreateInstance (ShaderFloat *offset,
 	instance->SetVertexConstant(0, "gPVWMatrix", new0 PVWMatrixConstant());
 	instance->SetVertexConstant(0, "gBoneTM", new0 SkinMatrixConstant(37));
 	instance->SetVertexConstant(0, "CameraWorldPosition", new0 CameraWorldPositionConstant());
-	instance->SetVertexConstant(0, "gShineEmissive", new0 ShineEmissiveConstant(shine));
+	instance->SetVertexConstant(0, "gShineEmissive", new0 ShineEmissiveConstant());
 	instance->SetVertexConstant(0, "gShineAmbient", new0 ShineAmbientConstant(shine));
 	instance->SetVertexConstant(0, "gShineDiffuse", new0 ShineDiffuseConstant(shine));
 	instance->SetVertexConstant(0, "gShineSpecular", new0 ShineSpecularConstant(shine));

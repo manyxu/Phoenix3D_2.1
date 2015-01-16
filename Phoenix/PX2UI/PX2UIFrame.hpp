@@ -4,6 +4,7 @@
 #define PX2UIFRAME_HPP
 
 #include "PX2Node.hpp"
+#include "PX2Size.hpp"
 
 namespace PX2
 {

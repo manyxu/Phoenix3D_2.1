@@ -29,10 +29,21 @@ GraphicsRoot::GraphicsRoot ()
 	mFogParam = Float4(0.0f, 120.0f, 0.0f, 0.0f);
 	mFogColor = Float4::RED;
 	mFogColorDist = Float4::BLUE;
+
+	MaterialManager *mi = new0 MaterialManager();
+	PX2_UNUSED(mi);
 }
 //----------------------------------------------------------------------------
 GraphicsRoot::~GraphicsRoot ()
 {
+	MaterialManager *mi = MaterialManager::GetSingletonPtr();
+	if (mi)
+	{
+		mi->Terminate();
+
+		delete0(mi);
+		MaterialManager::Set(0);
+	}
 }
 //----------------------------------------------------------------------------
 bool GraphicsRoot::Initlize ()
@@ -67,8 +78,6 @@ bool GraphicsRoot::Initlize ()
 	Camera::SetDefaultDepthType(Camera::PM_DEPTH_MINUS_ONE_TO_ONE);
 #endif
 
-	MaterialManager *mi = new0 MaterialManager();
-	PX2_UNUSED(mi);
 	PX2_MATERIALMAN.Initlize();
 
 	return true;
@@ -76,14 +85,7 @@ bool GraphicsRoot::Initlize ()
 //-----------------------------------------------------------------------------
 bool GraphicsRoot::Terminate ()
 {
-	MaterialManager *mi = MaterialManager::GetSingletonPtr();
-	if (mi)
-	{
-		mi->Terminate();
-
-		delete0(mi);
-		MaterialManager::Set(0);
-	}
+	PX2_MATERIALMAN.Terminate();
 
 	mRenderSteps.clear();
 	mCamera = 0;

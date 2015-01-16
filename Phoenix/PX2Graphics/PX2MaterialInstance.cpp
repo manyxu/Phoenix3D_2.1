@@ -19,7 +19,10 @@ MaterialInstance::MaterialInstance (const Material* material,
 											int techniqueIndex)
 											:
 mMaterial((Material*)material),  // conceptual constness
-mTechniqueIndex(techniqueIndex)
+mTechniqueIndex(techniqueIndex),
+mNumPasses(0),
+mVertexParameters(0),
+mPixelParameters(0)
 {
 	assertion(material != 0, "Material must be specified.\n");
 	assertion(
@@ -46,7 +49,10 @@ mTechniqueIndex(techniqueIndex)
 MaterialInstance::MaterialInstance(const std::string &mtlFilename, 
 	const std::string &intanceName) :
 	mMaterialFilename(mtlFilename),
-	mInstanceTagName(intanceName)
+	mInstanceTagName(intanceName),
+	mNumPasses(0),
+	mVertexParameters(0),
+	mPixelParameters(0)
 {
 	_RefreshMaterial(mMaterialFilename, mInstanceTagName);
 }
@@ -60,30 +66,62 @@ void MaterialInstance::_RefreshMaterial(const std::string &mtlFilename,
 	MaterialTechnique* technique = mMaterial->GetTechnique(tagName,
 		mTechniqueIndex);
 
-	mNumPasses = technique->GetNumPasses();
-	mVertexParameters = new1<ShaderParametersPtr>(mNumPasses);
-	mPixelParameters = new1<ShaderParametersPtr>(mNumPasses);
-	int p;
-	for (p = 0; p < mNumPasses; ++p)
+	int newNumPass = technique->GetNumPasses();
+	ShaderParametersPtr* newVertexParameters = new1<ShaderParametersPtr>(
+		newNumPass);
+	ShaderParametersPtr* newPixelParameters = new1<ShaderParametersPtr>(
+		newNumPass);
+
+	for (int p = 0; p < newNumPass; ++p)
 	{
 		MaterialPass* pass = technique->GetPass(p);
 		VertexShader *vs = pass->GetVertexShader();
 		PixelShader *ps = pass->GetPixelShader();
-		
-		mVertexParameters[p] = new0 ShaderParameters(pass->GetVertexShader());
 
-		mPixelParameters[p] = new0 ShaderParameters(pass->GetPixelShader());
+		ShaderParameters *oldParams_V = 0;
+		if (p < mNumPasses)
+			oldParams_V = mVertexParameters[p];
 
-		for (int i = 0; i < vs->GetNumConstants(); i++)
+		ShaderParameters *oldParams_P = 0;
+		if (p < mNumPasses)
+			oldParams_P = mPixelParameters[p];
+
+		_RefreshMaterialParams(oldParams_V, newVertexParameters[p],
+			vs);
+		_RefreshMaterialParams(oldParams_P, newPixelParameters[p],
+			ps);
+
+		if (oldParams_V)
+			mVertexParameters[p] = 0;
+
+		if (oldParams_P)
+			mPixelParameters[p] = 0;
+	}
+
+	delete1(mVertexParameters);
+	delete1(mPixelParameters);
+
+	mNumPasses = newNumPass;
+	mVertexParameters = newVertexParameters;
+	mPixelParameters = newPixelParameters;
+}
+//----------------------------------------------------------------------------
+void MaterialInstance::_RefreshMaterialParams(ShaderParameters *oldParam,
+	ShaderParametersPtr &newParam, Shader *shader)
+{
+	PX2_UNUSED(oldParam);
+
+	newParam = new0 ShaderParameters(shader);
+
+	for (int i = 0; i < shader->GetNumConstants(); i++)
+	{
+		const std::string &constantName = shader->GetConstantName(i);
+
+		ShaderFloat *shaderFloat = PX2_MATERIALMAN.CreateShaderFloat(
+			constantName.c_str());
+		if (shaderFloat)
 		{
-			const std::string &constantName = vs->GetConstantName(i);
-
-			ShaderFloat *shaderFloat = PX2_MATERIALMAN.CreateShaderFloat(constantName.c_str());
-
-			if (shaderFloat)
-			{
-				SetVertexConstant(p, i, shaderFloat);
-			}
+			newParam->SetConstant(i, shaderFloat);
 		}
 	}
 }

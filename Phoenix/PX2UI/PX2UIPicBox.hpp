@@ -112,7 +112,6 @@ namespace PX2
 		TexPackElement mPackEle;
 		bool mIsBufferNeedUpdate;
 
-		bool mIsMtlNeedUpdate;
 		TexMode mTexMode;
 		std::string mTexturePathname;
 		std::string mTexturePackName;

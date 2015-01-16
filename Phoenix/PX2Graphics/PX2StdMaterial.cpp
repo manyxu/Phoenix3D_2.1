@@ -123,7 +123,7 @@ MaterialInstance* StdMaterial::CreateInstance (Texture2D* texture,
 	MaterialInstance* instance = new0 MaterialInstance(this, 0);
 	instance->SetVertexConstant(0, "PVWMatrix", new0 PVWMatrixConstant());
 	instance->SetVertexConstant(0, "WMatrix", new0 WMatrixConstant());
-	instance->SetVertexConstant(0, "gShineEmissive", new0 ShineEmissiveConstant(shine));
+	instance->SetVertexConstant(0, "gShineEmissive", new0 ShineEmissiveConstant());
 	instance->SetVertexConstant(0, "gShineAmbient", new0 ShineAmbientConstant(shine));
 	instance->SetVertexConstant(0, "gShineDiffuse", new0 ShineDiffuseConstant(shine));
 	instance->SetVertexConstant(0, "gShineSpecular", new0 ShineSpecularConstant(shine));

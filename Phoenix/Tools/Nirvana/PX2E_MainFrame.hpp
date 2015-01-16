@@ -17,6 +17,7 @@ namespace PX2Editor
 
 	protected:
 		virtual void OnTimer_Update();
+		virtual void OnSize_Update(const PX2::Sizef &size);
 	};
 
 }

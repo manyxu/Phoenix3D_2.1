@@ -16,16 +16,14 @@ PX2_IMPLEMENT_FACTORY(UIPicBox);
 PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, UIPicBox);
 
 //----------------------------------------------------------------------------
-UIPicBox::UIPicBox(const std::string &filename)
-:
+UIPicBox::UIPicBox(const std::string &filename) :
 mPicBoxType(PBT_MAX_TYPE),
 mAnchorPoint(0.5f, 0.5f),
 mSize(128, 64),
 mCornerSize(6, 6),
 mIsBufferNeedUpdate(true),
 mTexMode(TM_TEX),
-mTexturePathname(filename),
-mIsMtlNeedUpdate(true)
+mTexturePathname(filename)
 {
 	_Init();
 
@@ -36,9 +34,6 @@ mIsMtlNeedUpdate(true)
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
 		mTexturePathname));
 	if (tex) SetSize((float)tex->GetWidth(), (float)tex->GetHeight());
-
-	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj", "default");
-	SetMaterialInstance(mi);
 }
 //----------------------------------------------------------------------------
 UIPicBox::UIPicBox(const std::string &packName, const std::string &eleName)
@@ -48,8 +43,7 @@ mAnchorPoint(0.5f, 0.5f),
 mSize(128, 64),
 mCornerSize(6, 6),
 mIsBufferNeedUpdate(true),
-mTexMode(TM_TEX),
-mIsMtlNeedUpdate(true)
+mTexMode(TM_TEX)
 {
 	_Init();
 
@@ -116,11 +110,16 @@ void UIPicBox::MakeSizeWithTex()
 void UIPicBox::SetColor(const Float3 &color)
 {
 	TriMesh::SetColor(color);
+
+	GetShine()->Emissive = Float4(color[0], color[1], color[2], GetAlpha());
 }
 //----------------------------------------------------------------------------
 void UIPicBox::SetAlpha(float alpha)
 {
 	TriMesh::SetAlpha(alpha);
+
+	const Float3 &color = GetColor();
+	GetShine()->Emissive = Float4(color[0], color[1], color[2], alpha);
 }
 //----------------------------------------------------------------------------
 void UIPicBox::SetTexMode(TexMode mode)
@@ -142,9 +141,11 @@ void UIPicBox::SetTexture(const std::string &filename)
 
 	mTexturePathname = filename;
 
-	ReCreateVBuffer();
-
-	mIsMtlNeedUpdate = true;
+	Texture *texture = DynamicCast<Texture>(PX2_RM.BlockLoad(filename));
+	if (texture)
+	{
+		GetMaterialInstance()->SetPixelTexture(0, "Sample0", texture);
+	}
 }
 //----------------------------------------------------------------------------
 void UIPicBox::SetTexture(const std::string &texPackName,
@@ -173,8 +174,6 @@ void UIPicBox::SetTexture(const std::string &texPackName,
 		{
 			ReCreateVBuffer();
 		}
-
-		mIsMtlNeedUpdate = true;
 	}
 }
 //----------------------------------------------------------------------------
@@ -278,6 +277,12 @@ void UIPicBox::_Init()
 	SetRenderLayer(Renderable::RL_UI);
 
 	SetPicBoxType(PBT_NORMAL);
+
+	GetShine()->Emissive = Float4::WHITE;
+
+	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj", 
+		"default");
+	SetMaterialInstance(mi);
 }
 //----------------------------------------------------------------------------
 void UIPicBox::UpdateWorldData(double applicationTime)
@@ -628,8 +633,7 @@ mAnchorPoint(0.5f, 0.5f),
 mSize(128, 64),
 mCornerSize(6, 6),
 mIsBufferNeedUpdate(true),
-mTexMode(TM_TEX),
-mIsMtlNeedUpdate(true)
+mTexMode(TM_TEX)
 {
 }
 //----------------------------------------------------------------------------

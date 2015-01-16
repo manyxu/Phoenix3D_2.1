@@ -4,6 +4,7 @@
 #include "PX2GraphicsRoot.hpp"
 #include "PX2PVMatrixConstant.hpp"
 #include "PX2PVWMatrixConstant.hpp"
+#include "PX2ShineEmissiveConstant.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -70,6 +71,10 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name)
 	if (FString("PVWMatrix") == name)
 	{
 		return new0 PVWMatrixConstant();
+	}
+	else if (FString("ShineEmissive") == name)
+	{
+		return new0 ShineEmissiveConstant();
 	}
 
 	return 0;

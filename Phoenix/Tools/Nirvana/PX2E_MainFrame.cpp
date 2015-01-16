@@ -21,3 +21,10 @@ void E_MainFrame::OnTimer_Update()
 	PX2_ENGINELOOP.Tick();
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnSize_Update(const Sizef &size)
+{
+	PX2WXFrame::OnSize_Update(size);
+
+	PX2_ENGINELOOP.SetSize(size);
+}
+//----------------------------------------------------------------------------

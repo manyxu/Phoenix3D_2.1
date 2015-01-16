@@ -8,6 +8,7 @@
 #define PX2WXMAINFRAME_HPP
 
 #include "PX2EditorPre.hpp"
+#include "PX2Size.hpp"
 
 namespace PX2Editor
 {
@@ -29,6 +30,7 @@ namespace PX2Editor
 
 	protected:
 		virtual void OnTimer_Update();
+		virtual void OnSize_Update(const PX2::Sizef &size);
 
 	protected:
 		DECLARE_EVENT_TABLE()
