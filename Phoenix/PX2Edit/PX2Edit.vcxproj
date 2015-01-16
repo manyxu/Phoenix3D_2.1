@@ -12,10 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Edit.hpp" />
+    <ClInclude Include="PX2EditMainWindow.hpp" />
     <ClInclude Include="PX2EditUIMan.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
+    <ClCompile Include="PX2EditMainWindow.cpp" />
     <ClCompile Include="PX2EditUIMan.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

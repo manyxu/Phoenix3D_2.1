@@ -3,9 +3,20 @@
   <ItemGroup>
     <ClInclude Include="PX2Edit.hpp" />
     <ClInclude Include="PX2EditUIMan.hpp" />
+    <ClInclude Include="PX2EditMainWindow.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
     <ClCompile Include="PX2EditUIMan.cpp" />
+    <ClCompile Include="PX2EditMainWindow.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Window">
+      <UniqueIdentifier>{4152603c-6826-4b28-973a-a010a393e4fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 
 #include "PX2UISizeFrame.hpp"
 #include "PX2UITitleFrame.hpp"
+#include "PX2UIPicBox.hpp"
 
 namespace PX2
 {

@@ -13,7 +13,8 @@ UIWindowFrame::UIWindowFrame()
 {
 	mCaptionFrame = new0 UITitleFrame();
 	AttachChild(mCaptionFrame);
-	mCaptionFrame->SetSize(0.0f, 40.0f);
+	mCaptionFrame->LocalTransform.SetTranslateY(-1.0f);
+	mCaptionFrame->SetSize(0.0f, 30.0f);
 	mCaptionFrame->SetRelativeType_V(UISizeFrame::LT_ONE);
 	mCaptionFrame->SetSizeRelativeType(UISizeFrame::SRT_H);
 }

@@ -66,7 +66,8 @@ Material *MaterialManager::GetMaterial(const FString &filename)
 	return mtl;
 }
 //----------------------------------------------------------------------------
-ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name)
+ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,
+	int numRegister)
 {
 	if (FString("PVWMatrix") == name)
 	{
@@ -77,6 +78,6 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name)
 		return new0 ShineEmissiveConstant();
 	}
 
-	return 0;
+	return new0 ShaderFloat(numRegister);
 }
 //----------------------------------------------------------------------------

@@ -21,7 +21,7 @@ UITitleFrame::UITitleFrame()
 	AttachChild(mPB_Logo);
 	mPB_Logo->LocalTransform.SetTranslateY(-1.0f);
 	mPB_Logo->SetTexture("Data/engine/phoenix.png");
-	mPB_Logo->SetSize(32.0f, 32.0f);
+	mPB_Logo->SetSize(20.0f, 20.0f);
 
 	mT_Title = new0 UIText();
 	AttachChild(mT_Title);
@@ -41,9 +41,9 @@ void UITitleFrame::OnParentSizeChanged(const Sizef &parentSize,
 	UISizeFrame::OnParentSizeChanged(parentSize, parentBorderSize);
 
 	mPB_Back->SetSize(mSize);
-	mPB_Logo->LocalTransform.SetTranslateXZ(16.0f, -16.0f);
+	mPB_Logo->LocalTransform.SetTranslateXZ(mSize.Height / 2.0f, -mSize.Height / 2.0f);
 
-	float t_titleLeft = 50.0f;
+	float t_titleLeft = 40.0f;
 	mT_Title->SetRect(Rectf(t_titleLeft, -mSize.Height, mSize.Width, 0.0f));
 }
 //----------------------------------------------------------------------------

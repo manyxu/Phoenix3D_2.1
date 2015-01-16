@@ -21,7 +21,7 @@ namespace PX2
 		bool Terminate();
 
 		Material *GetMaterial(const FString &filename);
-		ShaderFloat *CreateShaderFloat(const FString &name);
+		ShaderFloat *CreateShaderFloat(const FString &name, int numRegister);
 
 	protected:
 		std::map<FString, MaterialPtr> mMaterialMap;

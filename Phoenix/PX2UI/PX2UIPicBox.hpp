@@ -84,6 +84,7 @@ namespace PX2
 		void SetTexture(const std::string &filename);
 		void SetTexture(const std::string &texPackName, const std::string &eleName);
 		const std::string &GetTextureFilename() const;
+		void SetUVRepeat(const Float2 &uvRepeat);
 
 		virtual void OnForceBind();
 

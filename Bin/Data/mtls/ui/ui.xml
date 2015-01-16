@@ -18,7 +18,7 @@
 					<var type="gles2" file="ui_gles2_vs.fx" entry=""/>
 				</p>
 			</shader>
-			<shader type="ps" name="ui" ni="2" no="1" nc="1" ns="1">
+			<shader type="ps" name="ui" ni="2" no="1" nc="2" ns="1">
 				<i>
 					<var index="0" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
 				</i>
@@ -27,6 +27,7 @@
 				</o>
 				<c>
 					<var index="0" name="ShineEmissive" nr="1"/>
+					<var index="1" name="UVParam" nr="1"/>
 				</c>
 				<s>
 					<var index="0" name="Sample0" st="sampler2D" sf="NEAREST" sc_0="CLAMP" sc_1="CLAMP"/>

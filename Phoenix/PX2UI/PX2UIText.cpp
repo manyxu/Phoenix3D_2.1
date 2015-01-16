@@ -23,6 +23,9 @@ mFontType(FT_FREETYPE)
 	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj",
 		"default");
 	SetMaterialInstance(mi);
+	ShaderFloat *shaderFloat = mi->GetPixelConstant(0, "UVParam");
+	(*shaderFloat)[0] = 1.0f;
+	(*shaderFloat)[1] = 1.0f;
 
 	_Init();
 }
@@ -629,8 +632,6 @@ void UIText::Load(InStream& source)
 	TriMesh::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	int readedVersion = GetReadedVersion();
-
 	source.ReadString(mText);
 	source.ReadString(mKey);
 
@@ -720,7 +721,6 @@ int UIText::GetStreamingSize(Stream &stream) const
 {
 	int size = TriMesh::GetStreamingSize(stream);
 
-	int readedVersion = GetReadedVersion();
 	size += PX2_VERSION_SIZE(mVersion);
 
 	size += PX2_STRINGSIZE(mText);

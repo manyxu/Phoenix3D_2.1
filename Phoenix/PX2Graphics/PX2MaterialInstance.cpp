@@ -116,9 +116,10 @@ void MaterialInstance::_RefreshMaterialParams(ShaderParameters *oldParam,
 	for (int i = 0; i < shader->GetNumConstants(); i++)
 	{
 		const std::string &constantName = shader->GetConstantName(i);
+		int numRegister = shader->GetNumRegistersUsed(i);
 
 		ShaderFloat *shaderFloat = PX2_MATERIALMAN.CreateShaderFloat(
-			constantName.c_str());
+			constantName.c_str(), numRegister);
 		if (shaderFloat)
 		{
 			newParam->SetConstant(i, shaderFloat);

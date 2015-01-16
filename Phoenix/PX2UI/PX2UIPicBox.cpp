@@ -35,6 +35,8 @@ mTexturePathname(filename)
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
 		mTexturePathname));
 	if (tex) SetSize((float)tex->GetWidth(), (float)tex->GetHeight());
+
+	SetUVRepeat(Float2::UNIT);
 }
 //----------------------------------------------------------------------------
 UIPicBox::UIPicBox(const std::string &packName, const std::string &eleName)
@@ -54,6 +56,8 @@ mTexMode(TM_TEXPACK_ELE)
 
 	SetTexture(packName, eleName);
 	SetSize((float)mPackEle.W, (float)mPackEle.H);
+
+	SetUVRepeat(Float2::UNIT);
 }
 //----------------------------------------------------------------------------
 UIPicBox::~UIPicBox()
@@ -180,6 +184,13 @@ void UIPicBox::SetTexture(const std::string &texPackName,
 		mTexturePathname = texture->GetResourcePath();
 		GetMaterialInstance()->SetPixelTexture(0, "Sample0", texture);
 	}
+}
+//----------------------------------------------------------------------------
+void UIPicBox::SetUVRepeat(const Float2 &uvRepeat)
+{
+	ShaderFloat *constant = GetMaterialInstance()->GetPixelConstant(0, "UVParam");
+	(*constant)[0] = uvRepeat[0];
+	(*constant)[1] = uvRepeat[1];
 }
 //----------------------------------------------------------------------------
 void UIPicBox::SetTexCornerSize(float width, float height)

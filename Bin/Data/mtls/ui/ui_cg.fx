@@ -2,6 +2,7 @@
 
 float4x4 PVWMatrix;
 float4 ShineEmissive;
+float4 UVParam;
 sampler2D Sampler0;
 
 void v_ui
@@ -22,6 +23,6 @@ void p_ui
     out float4 pixelColor : COLOR
 )
 {
-    float4 texColor = tex2D(Sampler0, float2(vertexTCoord0.x, 1.0f-vertexTCoord0.y));
+    float4 texColor = tex2D(Sampler0, float2(vertexTCoord0.x, 1.0f-vertexTCoord0.y)*UVParam.xy);
 	pixelColor = texColor*ShineEmissive;
 }
