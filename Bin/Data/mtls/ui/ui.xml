@@ -1,7 +1,7 @@
 <material name="ui">
-	<technique name="T0">
+	<technique name="T0" tag="default">
 		<pass name="P0">
-			<shader type="vs" name="UI" ni="2" no="2" nc="1" ns="0">
+			<shader type="vs" name="ui" ni="2" no="2" nc="1" ns="0">
 				<i>
 					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
 					<var index="1" name="modelTCoord0" vt="float2" vs="TEXCOORD0"/>
@@ -18,13 +18,16 @@
 					<var type="gles2" file="ui_gles2_vs.fx" entry=""/>
 				</p>
 			</shader>
-			<shader type="ps" name="UI" ni="2" no="1" nc="0" ns="1">
+			<shader type="ps" name="ui" ni="2" no="1" nc="1" ns="1">
 				<i>
 					<var index="0" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
 				</i>
 				<o>
 					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
 				</o>
+				<c>
+					<var index="0" name="ShineEmissive" nr="1"/>
+				</c>
 				<s>
 					<var index="0" name="Sample0" st="sampler2D"/>
 				</s>

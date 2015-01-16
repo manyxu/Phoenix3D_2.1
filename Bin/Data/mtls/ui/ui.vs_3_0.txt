@@ -7,12 +7,14 @@ vs_3_0
 //profile vs_3_0
 //program v_ui
 //semantic PVWMatrix
+//semantic ShineEmissive
 //semantic Sampler0
 //var float3 modelPosition : $vin.POSITION0 : ATTR0 : 0 : 1
 //var float2 modelTCoord0 : $vin.TEXCOORD0 : ATTR1 : 1 : 1
 //var float4 clipPosition : $vout.POSITION : ATTR0 : 2 : 1
 //var float2 vertexTCoord0 : $vout.TEXCOORD0 : ATTR1 : 3 : 1
 //var float4x4 PVWMatrix :  : c[0], 4 : -1 : 1
+//var float4 ShineEmissive :  :  : -1 : 0
 //var sampler2D Sampler0 :  :  : -1 : 0
 //const c[4] = 1
 dcl_position o0
