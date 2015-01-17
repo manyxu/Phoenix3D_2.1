@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:b5455b25166f0fa3b93b19a122d31099$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="minmaxclose.png" width="128" height="64">
+    <sprite n="close_down" x="2" y="22" w="44" h="18"/>
+    <sprite n="close_normal" x="2" y="2" w="44" h="18"/>
+    <sprite n="close_over" x="2" y="42" w="44" h="18"/>
+    <sprite n="max_dis" x="102" y="42" w="23" h="18"/>
+    <sprite n="max_down" x="77" y="42" w="23" h="18"/>
+    <sprite n="max_normal" x="102" y="22" w="23" h="18"/>
+    <sprite n="max_over" x="77" y="22" w="23" h="18"/>
+    <sprite n="min_dis" x="48" y="42" w="27" h="18"/>
+    <sprite n="min_down" x="48" y="22" w="27" h="18"/>
+    <sprite n="min_normal" x="77" y="2" w="27" h="18"/>
+    <sprite n="min_over" x="48" y="2" w="27" h="18"/>
+</TextureAtlas>
