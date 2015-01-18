@@ -71,3 +71,16 @@ bool Object::IsRegistedToScriptSystem()
 	return PX2_SM.IsGlobalNameExist(mScriptName);
 }
 //----------------------------------------------------------------------------
+void Object::CallString(const char *fun, const char *format, ...)
+{
+	ScriptManager *sm = ScriptManager::GetSingletonPtr();
+	if (!sm) return;
+
+	va_list argptr;
+	va_start(argptr, format);
+
+	PX2_SM.CallObjectFuntionValist(mScriptName.c_str(), fun, format, argptr);
+
+	va_end(argptr);
+}
+//----------------------------------------------------------------------------

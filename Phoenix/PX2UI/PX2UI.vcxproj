@@ -11,32 +11,50 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PX2UIAuiFrame.hpp" />
+    <ClInclude Include="PX2UIButton.hpp" />
+    <ClInclude Include="PX2UICallback.hpp" />
     <ClInclude Include="PX2UIFrame.hpp" />
     <ClInclude Include="PX2UIManager.hpp" />
+    <ClInclude Include="PX2UIMenu.hpp" />
+    <ClInclude Include="PX2UIMenuItem.hpp" />
     <ClInclude Include="PX2UIPicBox.hpp" />
     <ClInclude Include="PX2UIPre.hpp" />
     <ClInclude Include="PX2UISizeFrame.hpp" />
     <ClInclude Include="PX2UIText.hpp" />
     <ClInclude Include="PX2UITitleFrame.hpp" />
+    <ClInclude Include="PX2UITree.hpp" />
+    <ClInclude Include="PX2UITreeItem.hpp" />
     <ClInclude Include="PX2UIView.hpp" />
     <ClInclude Include="PX2UIWindowFrame.hpp" />
+    <ClInclude Include="PX2UIButtonBase.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PX2UIAuiFrame.cpp" />
+    <ClCompile Include="PX2UIButton.cpp" />
+    <ClCompile Include="PX2UIButtonBase.cpp" />
     <ClCompile Include="PX2UIFrame.cpp" />
     <ClCompile Include="PX2UIManager.cpp" />
+    <ClCompile Include="PX2UIMenu.cpp" />
+    <ClCompile Include="PX2UIMenuItem.cpp" />
     <ClCompile Include="PX2UIPicBox.cpp" />
     <ClCompile Include="PX2UISizeFrame.cpp" />
     <ClCompile Include="PX2UIText.cpp" />
     <ClCompile Include="PX2UITitleFrame.cpp" />
+    <ClCompile Include="PX2UITree.cpp" />
+    <ClCompile Include="PX2UITreeItem.cpp" />
     <ClCompile Include="PX2UIView.cpp" />
     <ClCompile Include="PX2UIWindowFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="PX2UIButton.inl" />
+    <None Include="PX2UIButtonBase.inl" />
     <None Include="PX2UIFrame.inl" />
     <None Include="PX2UIManager.inl" />
     <None Include="PX2UIPicBox.inl" />
     <None Include="PX2UISizeFrame.inl" />
     <None Include="PX2UIText.inl" />
+    <None Include="PX2UITitleFrame.inl" />
     <None Include="PX2UIView.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -251,9 +251,9 @@ namespace PX2
 		bool UnRegistToScriptSystem();
 		bool IsRegistedToScriptSystem();
 
-	protected:
-		std::string mScriptHandler;
+		void CallString(const char *fun, const char *format = "", ...);
 
+	protected:
 		std::string mScriptName;
 		std::string mUserScriptName;
 

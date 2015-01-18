@@ -5,6 +5,7 @@
 
 #include "PX2Node.hpp"
 #include "PX2Size.hpp"
+#include "PX2UICallback.hpp"
 
 namespace PX2
 {
@@ -22,6 +23,18 @@ namespace PX2
 		// info为1表示Pressed，为2表示Released
 		virtual void OnChildPicked(int info, Movable *child);
 		virtual void OnChildUIAfterPicked(int info, Movable *child);
+
+		// calls
+	public:
+		void SetUICallback(UICallback callback);
+		UICallback GetUICallback() const;
+
+		void SetScriptHandler(const std::string &scriptHandler);
+		const std::string &GetScriptHandler() const;
+
+	protected:
+		UICallback mUICallback;
+		std::string mUIScriptHandler;
 	};
 
 	PX2_REGISTER_STREAM(UIFrame);

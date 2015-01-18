@@ -9,7 +9,8 @@ PX2_IMPLEMENT_STREAM(UIFrame);
 PX2_IMPLEMENT_FACTORY(UIFrame);
 
 //----------------------------------------------------------------------------
-UIFrame::UIFrame()
+UIFrame::UIFrame() :
+mUICallback(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -45,9 +46,9 @@ void UIFrame::OnChildUIAfterPicked(int info, Movable *child)
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-UIFrame::UIFrame(LoadConstructor value)
-:
-Node(value)
+UIFrame::UIFrame(LoadConstructor value) :
+Node(value),
+mUICallback(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -57,6 +58,8 @@ void UIFrame::Load(InStream& source)
 
 	Node::Load(source);
 	PX2_VERSION_LOAD(source);
+
+	source.ReadString(mUIScriptHandler);
 
 	PX2_END_DEBUG_STREAM_LOAD(UIFrame, source);
 }
@@ -83,6 +86,8 @@ void UIFrame::Save(OutStream& target) const
 	Node::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WriteString(mUIScriptHandler);
+
 	PX2_END_DEBUG_STREAM_SAVE(UIFrame, target);
 }
 //----------------------------------------------------------------------------
@@ -90,6 +95,8 @@ int UIFrame::GetStreamingSize(Stream &stream) const
 {
 	int size = Node::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
+	size += PX2_STRINGSIZE(mUIScriptHandler);
 
 	return size;
 }

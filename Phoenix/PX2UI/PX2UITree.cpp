@@ -1,92 +1,87 @@
-// PX2WindowFrame.cpp
+// PX2UICaptionFrame.cpp
 
-#include "PX2UIWindowFrame.hpp"
+#include "PX2UITree.hpp"
+#include "PX2UIPicBox.hpp"
 using namespace PX2;
-using namespace std;
 
-PX2_IMPLEMENT_RTTI(PX2, UISizeFrame, UIWindowFrame);
-PX2_IMPLEMENT_STREAM(UIWindowFrame);
-PX2_IMPLEMENT_FACTORY(UIWindowFrame);
+PX2_IMPLEMENT_RTTI(PX2, UISizeFrame, UITree);
+PX2_IMPLEMENT_STREAM(UITree);
+PX2_IMPLEMENT_FACTORY(UITree);
 
 //----------------------------------------------------------------------------
-UIWindowFrame::UIWindowFrame()
+UITree::UITree()
 {
-	SetSizeRelativeType(SRT_HV);
-
-	float titleHeight = 30.0f;
-	mTitleFrame = new0 UITitleFrame();
-	AttachChild(mTitleFrame);
-	mTitleFrame->LocalTransform.SetTranslateY(-1.0f);
-	mTitleFrame->SetSize(0.0f, titleHeight);
-	mTitleFrame->SetRelativeType_V(UISizeFrame::LT_ONE);
-	mTitleFrame->SetRelativeValue_V(-titleHeight);
-	mTitleFrame->SetSizeRelativeType(UISizeFrame::SRT_H);
 }
 //----------------------------------------------------------------------------
-void UIWindowFrame::SetTitleFrame(UITitleFrame *titleFrame)
+UITree::~UITree()
 {
-	if (mTitleFrame)
-	{
-		DetachChild(mTitleFrame);
-		mTitleFrame = 0;
-	}
-
-	mTitleFrame = titleFrame;
-	if (mTitleFrame)
-	{
-		AttachChild(mTitleFrame);
-	}
 }
 //----------------------------------------------------------------------------
-UIWindowFrame::~UIWindowFrame()
+int UITree::AttachChild(Movable* child)
 {
+	int ret = UISizeFrame::AttachChild(child);
+
+	float zPos = 0.0f;
+	for (int i = 0; i < GetNumChildren(); i++)
+	{
+		UISizeFrame *sizeFrame = DynamicCast<UISizeFrame>(GetChild(i));
+		if (sizeFrame)
+		{
+			float sizeFrameHeight = sizeFrame->GetHeight();
+			sizeFrame->LocalTransform.SetTranslateZ(zPos);
+			zPos -= sizeFrameHeight;
+		}
+	}
+
+	return ret;
 }
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-UIWindowFrame::UIWindowFrame(LoadConstructor value) :
+UITree::UITree(LoadConstructor value)
+:
 UISizeFrame(value)
 {
 }
 //----------------------------------------------------------------------------
-void UIWindowFrame::Load(InStream& source)
+void UITree::Load(InStream& source)
 {
 	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
 
 	UISizeFrame::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	PX2_END_DEBUG_STREAM_LOAD(UIWindowFrame, source);
+	PX2_END_DEBUG_STREAM_LOAD(UITree, source);
 }
 //----------------------------------------------------------------------------
-void UIWindowFrame::Link(InStream& source)
+void UITree::Link(InStream& source)
 {
 	UISizeFrame::Link(source);
 }
 //----------------------------------------------------------------------------
-void UIWindowFrame::PostLink()
+void UITree::PostLink()
 {
 	UISizeFrame::PostLink();
 }
 //----------------------------------------------------------------------------
-bool UIWindowFrame::Register(OutStream& target) const
+bool UITree::Register(OutStream& target) const
 {
 	return UISizeFrame::Register(target);
 }
 //----------------------------------------------------------------------------
-void UIWindowFrame::Save(OutStream& target) const
+void UITree::Save(OutStream& target) const
 {
 	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
 
 	UISizeFrame::Save(target);
 	PX2_VERSION_SAVE(target);
 
-	PX2_END_DEBUG_STREAM_SAVE(UIWindowFrame, target);
+	PX2_END_DEBUG_STREAM_SAVE(UITree, target);
 }
 //----------------------------------------------------------------------------
-int UIWindowFrame::GetStreamingSize(Stream &stream) const
+int UITree::GetStreamingSize(Stream &stream) const
 {
 	int size = UISizeFrame::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);

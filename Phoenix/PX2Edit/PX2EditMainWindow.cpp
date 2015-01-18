@@ -15,7 +15,52 @@ EditMainWindow::EditMainWindow()
 	AttachChild(mPB_Back);
 	mPB_Back->SetAnchorPoint(0.0f, 0.0f);
 	mPB_Back->SetTexture("Data/engine/white.png");
-	mPB_Back->SetColor(Float3::MakeColor(41, 57, 85));
+	mPB_Back->SetColor(Float3::MakeColor(49, 52, 57));
+
+	// title
+	mTitleHeight = 30.0f;
+	mEditTitleFrame = new0 EditTitleFrame();
+	SetTitleFrame(mEditTitleFrame);
+	mEditTitleFrame->LocalTransform.SetTranslateY(-1.0f);
+	mEditTitleFrame->SetSize(0.0f, mTitleHeight);
+	mEditTitleFrame->SetRelativeType_V(UISizeFrame::LT_ONE);
+	mEditTitleFrame->SetRelativeValue_V(-mTitleHeight);
+	mEditTitleFrame->SetSizeRelativeType(UISizeFrame::SRT_H);
+
+	// menu bar
+	mMenuBarHeight = 20.0f;
+	mMenuBar = new0 UIMenuBar();
+	AttachChild(mMenuBar);
+	mMenuBar->GetBackPicBox()->SetTexture("Data/editor/menu/menubar_back.png");
+	mMenuBar->LocalTransform.SetTranslateY(-1.0f);
+	mMenuBar->SetSize(0.0f, mMenuBarHeight);
+	mMenuBar->SetRelativeType_V(UISizeFrame::LT_ONE);
+	mMenuBar->SetRelativeValue_V(-mTitleHeight - mMenuBarHeight);
+	mMenuBar->SetSizeRelativeType(UISizeFrame::SRT_H);
+
+	EditMenuItem *menuFile = new0 EditMenuItem("File", "File");
+	menuFile->SetWidth(60.0f);
+	mMenuBar->AddItem(menuFile);
+
+	EditMenuItem *menuWindow = new0 EditMenuItem("Windows", "Windows");
+	menuWindow->SetWidth(60.0f);
+	mMenuBar->AddItem(menuWindow);
+
+	EditMenuItem *menuHelp = new0 EditMenuItem("Help", "Help");
+	menuHelp->SetWidth(60.0f);
+	mMenuBar->AddItem(menuHelp);
+
+	// AuiMain
+	mMainAuiFrame = new0 UIAuiFrame();
+	AttachChild(mMainAuiFrame);
+	mMainAuiFrame->SetSizeRelativeType(UISizeFrame::SRT_NONE);
+
+	// SceneTree
+	mSceneTree = new0 EditSceneTree();
+	mSceneTree->SetSizeRelativeType(UISizeFrame::SRT_NONE);
+	mMainAuiFrame->AddFrame(UIAuiFrame::APT_LEFT, mSceneTree);
+
+	mMainAuiFrame->AddFrame(UIAuiFrame::APT_CENTER, new0 EditSceneTree());
 }
 //----------------------------------------------------------------------------
 EditMainWindow::~EditMainWindow()
@@ -27,7 +72,10 @@ void EditMainWindow::OnParentSizeChanged(const Sizef &parentSize,
 {
 	UIWindowFrame::OnParentSizeChanged(parentSize, parentBorderSize);
 
-	mPB_Back->SetSize(GetSize());
+	const Sizef &size = GetSize();
+	mPB_Back->SetSize(size);
+
+	mMainAuiFrame->SetSize(size.Width, size.Height-mTitleHeight-mMenuBarHeight);
 }
 //----------------------------------------------------------------------------
 

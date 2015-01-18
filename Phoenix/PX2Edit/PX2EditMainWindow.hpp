@@ -4,6 +4,12 @@
 #define PX2EDITWINDOWFRAME_HPP
 
 #include "PX2UIWindowFrame.hpp"
+#include "PX2UIMenu.hpp"
+#include "PX2UIAuiFrame.hpp"
+#include "PX2EditTitleWindow.hpp"
+#include "PX2EditMenuItem.hpp"
+#include "PX2EditSceneTree.hpp"
+#include "PX2EditSceneTreeItem.hpp"
 
 namespace PX2
 {
@@ -22,6 +28,16 @@ namespace PX2
 
 	protected:
 		UIPicBoxPtr mPB_Back;
+
+		float mTitleHeight;
+		EditTitleFramePtr mEditTitleFrame;
+
+		float mMenuBarHeight;
+		UIMenuBarPtr mMenuBar;
+
+		UIAuiFramePtr mMainAuiFrame;
+		
+		EditSceneTreePtr mSceneTree;
 	};
 
 	PX2_REGISTER_STREAM(EditMainWindow);

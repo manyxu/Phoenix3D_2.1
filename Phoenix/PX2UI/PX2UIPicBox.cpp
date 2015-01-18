@@ -17,10 +17,10 @@ PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, UIPicBox);
 
 //----------------------------------------------------------------------------
 UIPicBox::UIPicBox(const std::string &filename) :
-mPicBoxType(PBT_MAX_TYPE),
+mPicBoxType(PBT_NORMAL),
 mAnchorPoint(0.5f, 0.5f),
-mSize(128, 64),
-mCornerSize(6, 6),
+mSize(128.0f, 64.0f),
+mCornerSize(10.0f, 10.0f),
 mIsBufferNeedUpdate(true),
 mTexMode(TM_TEX),
 mTexturePathname(filename)
@@ -41,10 +41,10 @@ mTexturePathname(filename)
 //----------------------------------------------------------------------------
 UIPicBox::UIPicBox(const std::string &packName, const std::string &eleName)
 :
-mPicBoxType(PBT_MAX_TYPE),
+mPicBoxType(PBT_NORMAL),
 mAnchorPoint(0.5f, 0.5f),
-mSize(128, 64),
-mCornerSize(6, 6),
+mSize(128.0f, 64.0f),
+mCornerSize(10.0f, 10.0f),
 mIsBufferNeedUpdate(true),
 mTexMode(TM_TEXPACK_ELE)
 {

@@ -19,8 +19,10 @@ namespace PX2
 		UIWindowFrame();
 		virtual ~UIWindowFrame();
 
+		void SetTitleFrame(UITitleFrame *titleFrame);
+
 	protected:
-		UICaptionFramePtr mCaptionFrame;
+		UITitleFramePtr mTitleFrame;
 	};
 
 	PX2_REGISTER_STREAM(UIWindowFrame);

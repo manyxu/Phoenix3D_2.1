@@ -1,10 +1,8 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2AccoutManager.cpp
-*
-*/
+// PX2AccoutManager.cpp
 
 #include "PX2AccoutManager.hpp"
+#include "PX2XMLData.hpp"
+#include "PX2ResourceManager.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -29,6 +27,34 @@ void AccoutManager::Update(float appTime, float elapsedTime)
 //----------------------------------------------------------------------------
 bool AccoutManager::LoadServerList(const std::string &filename)
 {
+	char *buffer = 0;
+	int bufferSize = 0;
+
+	if (PX2_RM.LoadBuffer(filename, bufferSize, buffer))
+	{
+		XMLData data;
+		if (data.LoadBuffer(buffer, bufferSize))
+		{
+			XMLNode rootNode = data.GetRootNode();
+			XMLNode child = rootNode.IterateChild();
+
+			while (!child.IsNull())
+			{
+				ServerInfo *info = new0 ServerInfo();
+
+				info->Type = child.GetName();
+				info->Name = child.AttributeToString("name");
+				info->WWWAddr = child.AttributeToString("wwwaddr");
+
+				mServerInfos.push_back(info);
+
+				child = rootNode.IterateChild(child);
+			}
+		}
+
+		return true;
+	}
+
 	return false;
 }
 //----------------------------------------------------------------------------

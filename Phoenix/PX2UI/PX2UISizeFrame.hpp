@@ -30,6 +30,8 @@ namespace PX2
 		void SetHeight(float height);
 		float GetHeight() const;
 
+		virtual void OnSizeChanged();
+
 	protected:
 		Sizef mSize;
 

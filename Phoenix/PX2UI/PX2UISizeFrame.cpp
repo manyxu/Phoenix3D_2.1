@@ -1,6 +1,7 @@
 // PX2UIFrame.cpp
 
 #include "PX2UISizeFrame.hpp"
+#include "PX2Time.hpp"
 using namespace PX2;
 using namespace std;
 
@@ -14,7 +15,7 @@ mPosRelativeType_H(PT_NONE),
 mRelativeVal_H(0.0f),
 mPosRelativeType_V(PT_NONE),
 mRelativeVal_V(0.0f),
-mSizeRelativeType(SRT_HV),
+mSizeRelativeType(SRT_NONE),
 mIsRelativeChanged(false)
 {
 }
@@ -41,9 +42,14 @@ void UISizeFrame::SetSize(float width, float height)
 void UISizeFrame::SetSize(const Sizef &size)
 {
 	mSize = size;
-	mIsRelativeChanged = true;
+	OnSizeChanged();
 
-	_UpdateRelative();
+	//mIsRelativeChanged = true;
+	_UpdateRelative(); // update now
+}
+//----------------------------------------------------------------------------
+void UISizeFrame::OnSizeChanged()
+{
 }
 //----------------------------------------------------------------------------
 void UISizeFrame::SetWidth(float width)

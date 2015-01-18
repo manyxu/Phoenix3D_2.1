@@ -28,7 +28,7 @@ wxFrame(0, -1, title, wxPoint(xPos, yPos), wxSize(width, height),
 	mSizeDir = 0;
 
 	mTimer.SetOwner(this, ID_FRAMETIMER);
-	mTimer.Start(25);
+	mTimer.Start(20);
 }
 //----------------------------------------------------------------------------
 PX2WXFrame::~PX2WXFrame()
