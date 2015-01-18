@@ -91,7 +91,7 @@
 // ObjectSystems
 #include "PX2InitTerm.hpp"
 #include "PX2InStream.hpp"
-#include "PX2Names.hpp"
+#include "PX2NameID.hpp"
 #include "PX2Object.hpp"
 #include "PX2Property.hpp"
 #include "PX2Function.hpp"
