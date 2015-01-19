@@ -4,34 +4,69 @@
     <Filter Include="App">
       <UniqueIdentifier>{b6c7622e-5c87-454d-ae84-68e50071083c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="wxExtends">
-      <UniqueIdentifier>{eb66bdf2-95ee-4c92-9f90-6ba444fc48a9}</UniqueIdentifier>
+    <Filter Include="RenderView">
+      <UniqueIdentifier>{e66a9068-715a-4e43-8afa-3569661bd933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResView">
+      <UniqueIdentifier>{ff2bb637-ff94-44b5-8aa3-ba91e9e7f60f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneView">
+      <UniqueIdentifier>{8a6018ff-698c-4e33-aa60-8590ce37a00f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wxExtent">
+      <UniqueIdentifier>{0d57487b-353f-4976-ad05-92b31d75ab1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PreView">
+      <UniqueIdentifier>{7156c218-5a00-4b7d-b5d5-00e038488201}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />
-    <ClInclude Include="PX2wxFrame.hpp">
-      <Filter>wxExtends</Filter>
-    </ClInclude>
     <ClInclude Include="PX2E_App.hpp">
       <Filter>App</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_MainFrame.hpp">
       <Filter>App</Filter>
     </ClInclude>
+    <ClInclude Include="PX2E_RenderView.hpp">
+      <Filter>RenderView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_ProjView.hpp">
+      <Filter>SceneView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2wxDockArt.hpp">
+      <Filter>wxExtent</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_PreView.hpp">
+      <Filter>PreView</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PX2wxFrame.cpp">
-      <Filter>wxExtends</Filter>
-    </ClCompile>
     <ClCompile Include="PX2E_App.cpp">
       <Filter>App</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_MainFrame.cpp">
       <Filter>App</Filter>
     </ClCompile>
-    <ClCompile Include="PX2wxFrame_Override.cpp">
-      <Filter>wxExtends</Filter>
+    <ClCompile Include="PX2E_RenderView.cpp">
+      <Filter>RenderView</Filter>
     </ClCompile>
+    <ClCompile Include="PX2E_ResView.cpp">
+      <Filter>ResView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_ProjView.cpp">
+      <Filter>SceneView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2wxDockArt.cpp">
+      <Filter>wxExtent</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_PreView.cpp">
+      <Filter>PreView</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2E_ResView.hpp">
+      <Filter>ResView</Filter>
+    </None>
   </ItemGroup>
 </Project>

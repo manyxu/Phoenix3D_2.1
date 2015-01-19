@@ -6,6 +6,7 @@
 
 #include "PX2E_App.hpp"
 #include "PX2E_MainFrame.hpp"
+#include "PX2E_RenderView.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
 using namespace PX2Editor;
@@ -24,7 +25,13 @@ E_App::~E_App()
 //-----------------------------------------------------------------------------
 bool E_App::OnInit()
 {
+	Edit::SetEditForm(wxID_HIGHEST);
+
 	wxLog::SetLogLevel(0);
+
+	wxImage::AddHandler(new wxBMPHandler());
+	wxImage::AddHandler(new wxPNGHandler());
+	wxImage::AddHandler(new wxGIFHandler());
 
 	int displayWidth, displayHeight;
 	wxDisplaySize(&displayWidth, &displayHeight);
@@ -47,12 +54,14 @@ bool E_App::OnInit()
 #endif
 #endif
 
+	mMainFrame->Initlize();
+
 	mMainFrame->Show(true);
 	SetTopWindow(mMainFrame);
 	mMainFrame->Center();
-	//mMainFrame->Maximize();
+	mMainFrame->Maximize();
 
-	PX2_ENGINELOOP.SetPt_Data(mMainFrame->GetHandle());
+	PX2_ENGINELOOP.SetPt_Data(mMainFrame->GetRenderView()->GetHandle());
 	PX2_ENGINELOOP.SetPt_Size(Sizef(1024.0f, 768.0f));
 	PX2_ENGINELOOP.Initlize();
 

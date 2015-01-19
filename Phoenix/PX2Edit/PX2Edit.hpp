@@ -4,7 +4,6 @@
 #define PX2EDIT_HPP
 
 #include "PX2Singleton_NeedNew.hpp"
-#include "PX2EditUIMan.hpp"
 
 namespace PX2
 {
@@ -18,11 +17,15 @@ namespace PX2
 		bool Initlize();
 		bool Ternamate();
 
+		static void SetEditForm(int from);
+		static int GetEditID();
+
 	protected:
-		EditUIMan *mEditUIMain;
+		static int msEditorID;
 	};
 
 #define PX2EDIT Edit::GetSingleton()
+#define PX2EDIT_GETID Edit::GetEditID()
 
 }
 

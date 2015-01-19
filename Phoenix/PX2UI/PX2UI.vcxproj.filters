@@ -17,9 +17,6 @@
     <ClInclude Include="PX2UISizeFrame.hpp">
       <Filter>UIObj</Filter>
     </ClInclude>
-    <ClInclude Include="PX2UIWindowFrame.hpp">
-      <Filter>WindowFrame</Filter>
-    </ClInclude>
     <ClInclude Include="PX2UIText.hpp">
       <Filter>UIObj</Filter>
     </ClInclude>
@@ -31,24 +28,6 @@
     </ClInclude>
     <ClInclude Include="PX2UICallback.hpp">
       <Filter>Callback</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2UIAuiFrame.hpp">
-      <Filter>WindowFrame\Aui</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2UIMenu.hpp">
-      <Filter>WindowFrame\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2UIMenuItem.hpp">
-      <Filter>WindowFrame\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2UITitleFrame.hpp">
-      <Filter>WindowFrame\Title</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2UITreeItem.hpp">
-      <Filter>WindowFrame\Tree</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2UITree.hpp">
-      <Filter>WindowFrame\Tree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +46,6 @@
     <ClCompile Include="PX2UISizeFrame.cpp">
       <Filter>UIObj</Filter>
     </ClCompile>
-    <ClCompile Include="PX2UIWindowFrame.cpp">
-      <Filter>WindowFrame</Filter>
-    </ClCompile>
     <ClCompile Include="PX2UIText.cpp">
       <Filter>UIObj</Filter>
     </ClCompile>
@@ -78,24 +54,6 @@
     </ClCompile>
     <ClCompile Include="PX2UIButton.cpp">
       <Filter>UIObj</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2UIAuiFrame.cpp">
-      <Filter>WindowFrame\Aui</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2UIMenu.cpp">
-      <Filter>WindowFrame\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2UIMenuItem.cpp">
-      <Filter>WindowFrame\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2UITitleFrame.cpp">
-      <Filter>WindowFrame\Title</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2UITree.cpp">
-      <Filter>WindowFrame\Tree</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2UITreeItem.cpp">
-      <Filter>WindowFrame\Tree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,23 +66,8 @@
     <Filter Include="Manager">
       <UniqueIdentifier>{be16f12f-bd2d-4365-94ab-20e6840c1936}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WindowFrame">
-      <UniqueIdentifier>{c548730b-7e80-4e9b-938b-e8a101811dd8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Callback">
       <UniqueIdentifier>{3eed6ced-db1d-4527-8eec-abe3c864563a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WindowFrame\Aui">
-      <UniqueIdentifier>{6c13c8df-17a2-4588-bba7-e96345cd067d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WindowFrame\Menu">
-      <UniqueIdentifier>{d4573604-37d9-4bbf-81c5-a8ebb29a4380}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WindowFrame\Title">
-      <UniqueIdentifier>{202be0c9-a5e4-4ac2-b4c7-722f302cc5e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WindowFrame\Tree">
-      <UniqueIdentifier>{b00dbedc-3957-445f-92d0-c2c29015a120}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -151,9 +94,6 @@
     </None>
     <None Include="PX2UIButton.inl">
       <Filter>UIObj</Filter>
-    </None>
-    <None Include="PX2UITitleFrame.inl">
-      <Filter>WindowFrame\Title</Filter>
     </None>
   </ItemGroup>
 </Project>

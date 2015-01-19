@@ -85,13 +85,22 @@
     <ClInclude Include="PX2E_App.hpp" />
     <ClInclude Include="PX2E_MainFrame.hpp" />
     <ClInclude Include="PX2EditorPre.hpp" />
-    <ClInclude Include="PX2wxFrame.hpp" />
+    <ClInclude Include="PX2E_RenderView.hpp" />
+    <ClInclude Include="PX2E_ProjView.hpp" />
+    <ClInclude Include="PX2E_PreView.hpp" />
+    <ClInclude Include="PX2wxDockArt.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp" />
     <ClCompile Include="PX2E_MainFrame.cpp" />
-    <ClCompile Include="PX2wxFrame.cpp" />
-    <ClCompile Include="PX2wxFrame_Override.cpp" />
+    <ClCompile Include="PX2E_RenderView.cpp" />
+    <ClCompile Include="PX2E_ResView.cpp" />
+    <ClCompile Include="PX2E_ProjView.cpp" />
+    <ClCompile Include="PX2E_PreView.cpp" />
+    <ClCompile Include="PX2wxDockArt.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2E_ResView.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

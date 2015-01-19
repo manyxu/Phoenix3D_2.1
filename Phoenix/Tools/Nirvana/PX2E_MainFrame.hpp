@@ -3,21 +3,39 @@
 #ifndef PX2E_MAINFRAME_HPP
 #define PX2E_MAINFRAME_HPP
 
-#include "PX2wxFrame.hpp"
+#include "PX2EditorPre.hpp"
 
 namespace PX2Editor
 {
 
-	class E_MainFrame : public PX2WXFrame
+	class RenderView;
+
+	class E_MainFrame : public wxFrame
 	{
 	public:
 		E_MainFrame(const std::string &title, int xPos, int yPos,
 			int width, int height);
 		virtual ~E_MainFrame();
 
+		bool Initlize();
+
+		RenderView *GetRenderView();
+
+		void OnTimer(wxTimerEvent& event);
+
 	protected:
-		virtual void OnTimer_Update();
-		virtual void OnSize_Update(const PX2::Sizef &size);
+		DECLARE_EVENT_TABLE()
+
+		void _CreateMenu();
+		void _CreateMainToolBar();
+		void _CreateViews();
+		void _CreateStatusBar();
+
+		bool mIsInitlized;
+		wxAuiManager *mAuiManager;
+		wxTimer mTimer;
+
+		RenderView *mRenderView;
 	};
 
 }
