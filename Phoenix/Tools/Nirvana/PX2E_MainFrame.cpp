@@ -43,11 +43,13 @@ bool E_MainFrame::Initlize()
 
 	mAuiManager->SetArtProvider(new PX2wxDockArt());
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_CAPTION_SIZE, 22);
-	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 0);
-	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 5);
+	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 2);
+	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(44, 61, 91));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(44, 61, 91));
+	//mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(214, 219, 233));
+	
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(64, 81, 111));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(44, 61, 91));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(39, 39, 39));
 
@@ -63,7 +65,7 @@ bool E_MainFrame::Initlize()
 	mTimer.Start(25);
 
 	_CreateMenu();
-	_CreateMainToolBar();
+	//_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
 
@@ -91,6 +93,8 @@ void E_MainFrame::_CreateMenu()
 {
 	wxMenuBar *mainMenu = new wxMenuBar();
 	SetMenuBar(mainMenu);
+	mainMenu->SetBackgroundColour(wxColour(214, 219, 233));
+	mainMenu->SetForegroundColour(wxColour(214, 219, 233));
 
 	wxMenu* menu = new wxMenu();
 	mainMenu->Append(menu, "File");
@@ -99,9 +103,9 @@ void E_MainFrame::_CreateMenu()
 void E_MainFrame::_CreateMainToolBar()
 {
 	wxAuiToolBar *mianToolBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_OVERFLOW | wxAUI_TB_HORIZONTAL | wxAUI_TB_PLAIN_BACKGROUND);
-	mianToolBar->SetBackgroundColour(wxColour(214, 219, 233));
-	mianToolBar->SetForegroundColour(wxColour(214, 219, 233));
+		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
+
+	mianToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
 
 	mianToolBar->AddTool(PX2EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
 	mianToolBar->AddSeparator();
@@ -111,7 +115,8 @@ void E_MainFrame::_CreateMainToolBar()
 
 	mAuiManager->AddPane(mianToolBar, wxAuiPaneInfo().
 		Name(wxT("tb")).Caption(wxT("Toolbar")).
-		ToolbarPane().Top().LeftDockable(false).RightDockable(false));
+		ToolbarPane().Top().Dockable(false).PaneBorder(false).Resizable(false).Maximize().
+		MinSize(200, 28).MaxSize(200, 28));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()

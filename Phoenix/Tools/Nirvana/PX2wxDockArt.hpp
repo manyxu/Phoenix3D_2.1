@@ -65,4 +65,23 @@ protected:
 	void InitBitmaps();
 };
 
+class PX2wxAuiToolBarArt : public wxAuiDefaultToolBarArt
+{
+public:
+	PX2wxAuiToolBarArt();
+	~PX2wxAuiToolBarArt();
+
+	virtual void DrawBackground(
+		wxDC& dc,
+		wxWindow* wnd,
+		const wxRect& rect);
+
+	virtual void DrawPlainBackground(wxDC& dc,
+		wxWindow* wnd,
+		const wxRect& rect);
+
+protected:
+	wxColour mBackColor;
+};
+
 #endif

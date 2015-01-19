@@ -613,3 +613,41 @@ void PX2wxDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
 	// draw the button itself
 	dc.DrawBitmap(bmp, rect.x, rect.y, true);
 }
+
+
+PX2wxAuiToolBarArt::PX2wxAuiToolBarArt()
+{
+
+}
+PX2wxAuiToolBarArt::~PX2wxAuiToolBarArt()
+{
+
+}
+
+void PX2wxAuiToolBarArt::DrawBackground(
+	wxDC& dc,
+	wxWindow* wnd,
+	const wxRect& _rect)
+{
+	wxRect rect = _rect;
+	rect.height++;
+
+	wxColour color = wxColour(214, 219, 233);
+	wxColour startColour = color.ChangeLightness(255);
+	wxColour endColour = color.ChangeLightness(200);
+
+	dc.GradientFillLinear(rect, startColour, endColour, wxSOUTH);
+}
+
+void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
+	wxWindow* wnd,
+	const wxRect& _rect)
+{
+	wxRect rect = _rect;
+	rect.height++;
+
+	dc.SetBrush(wxColour(214, 219, 233));
+
+	dc.DrawRectangle(rect.GetX() - 1, rect.GetY() - 1,
+		rect.GetWidth() + 2, rect.GetHeight() + 1);
+}
