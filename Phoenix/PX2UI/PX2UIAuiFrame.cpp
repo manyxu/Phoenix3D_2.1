@@ -41,9 +41,8 @@ void UIAuiFrame::OnParentSizeChanged(const Sizef &parentSize,
 	const Sizef &parentBorderSize)
 {
 	UISizeFrame::OnParentSizeChanged(parentSize, parentBorderSize);
-
 	const Sizef &size = GetSize();
-	
+
 	UIAuiFrame *centerFrame = mFrames[APT_CENTER];
 	UIAuiFrame *leftFrame = mFrames[APT_LEFT];
 	UIAuiFrame *topFrame = mFrames[APT_TOP];

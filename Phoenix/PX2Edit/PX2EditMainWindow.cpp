@@ -53,12 +53,12 @@ EditMainWindow::EditMainWindow()
 	// AuiMain
 	mMainAuiFrame = new0 UIAuiFrame();
 	AttachChild(mMainAuiFrame);
-	mMainAuiFrame->SetSizeRelativeType(UISizeFrame::SRT_NONE);
 
 	// SceneTree
 	mSceneTree = new0 EditSceneTree();
-	mSceneTree->SetSizeRelativeType(UISizeFrame::SRT_NONE);
 	mMainAuiFrame->AddFrame(UIAuiFrame::APT_LEFT, mSceneTree);
+	mMainAuiFrame->SetSizeRelativeType(UISizeFrame::SRT_HV);
+	mMainAuiFrame->SetSizeRelativeVal_V(-mTitleHeight - mMenuBarHeight);
 
 	mMainAuiFrame->AddFrame(UIAuiFrame::APT_CENTER, new0 EditSceneTree());
 }
@@ -74,8 +74,6 @@ void EditMainWindow::OnParentSizeChanged(const Sizef &parentSize,
 
 	const Sizef &size = GetSize();
 	mPB_Back->SetSize(size);
-
-	mMainAuiFrame->SetSize(size.Width, size.Height-mTitleHeight-mMenuBarHeight);
 }
 //----------------------------------------------------------------------------
 

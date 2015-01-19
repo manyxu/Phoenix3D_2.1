@@ -21,6 +21,7 @@ EditSceneTree::EditSceneTree()
 	SetSizeRelativeType(SRT_HV);
 
 	mSceneTree = new0 UITree();
+	AttachChild(mSceneTree);
 
 	EditSceneTreeItem *item = new0 EditSceneTreeItem();
 	mSceneTree->AttachChild(item);

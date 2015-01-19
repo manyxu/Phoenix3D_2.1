@@ -16,7 +16,9 @@ mRelativeVal_H(0.0f),
 mPosRelativeType_V(PT_NONE),
 mRelativeVal_V(0.0f),
 mSizeRelativeType(SRT_NONE),
-mIsRelativeChanged(false)
+mIsRelativeChanged(false),
+mSizeRelativeVal_H(0.0f),
+mSizeRelativeVal_V(0.0f)
 {
 }
 //----------------------------------------------------------------------------
@@ -132,16 +134,16 @@ void UISizeFrame::OnParentSizeChanged(const Sizef &parentSize,
 	// size
 	if (SRT_H == mSizeRelativeType)
 	{
-		SetSize(Sizef(parentSize.Width - parentBorderSize.Width*2.0f, mSize.Height));
+		SetSize(Sizef(parentSize.Width - parentBorderSize.Width*2.0f + mSizeRelativeVal_H, mSize.Height));
 	}
 	else if (SRT_V == mSizeRelativeType)
 	{
-		SetSize(Sizef(mSize.Width, parentSize.Height - parentBorderSize.Height*2.0f));
+		SetSize(Sizef(mSize.Width, parentSize.Height - parentBorderSize.Height*2.0f + mSizeRelativeVal_V));
 	}
 	else if (SRT_HV == mSizeRelativeType)
 	{
-		SetSize(Sizef(parentSize.Width - parentBorderSize.Width*2.0f,
-			parentSize.Height - parentBorderSize.Height*2.0f));
+		SetSize(Sizef(parentSize.Width - parentBorderSize.Width*2.0f + mSizeRelativeVal_H,
+			parentSize.Height - parentBorderSize.Height*2.0f + mSizeRelativeVal_V));
 	}
 }
 //----------------------------------------------------------------------------
@@ -200,7 +202,9 @@ mRelativeVal_H(0.0f),
 mPosRelativeType_V(PT_NONE),
 mRelativeVal_V(0.0f),
 mSizeRelativeType(SRT_HV),
-mIsRelativeChanged(false)
+mIsRelativeChanged(false),
+mSizeRelativeVal_H(0.0f),
+mSizeRelativeVal_V(0.0f)
 {
 }
 //----------------------------------------------------------------------------

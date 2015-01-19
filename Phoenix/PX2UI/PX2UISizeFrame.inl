@@ -46,3 +46,23 @@ inline UISizeFrame::SizeRelativeType UISizeFrame::GetSizeRelativeType() const
 	return mSizeRelativeType;
 }
 //----------------------------------------------------------------------------
+inline void UISizeFrame::SetSizeRelativeVal_H(float val)
+{
+	mSizeRelativeVal_H = val;
+}
+//----------------------------------------------------------------------------
+inline float UISizeFrame::GetSIzeRelativeVal_H() const
+{
+	return mSizeRelativeVal_H;
+}
+//----------------------------------------------------------------------------
+inline void UISizeFrame::SetSizeRelativeVal_V(float val)
+{
+	mSizeRelativeVal_V = val;
+}
+//----------------------------------------------------------------------------
+inline float UISizeFrame::GetSIzeRelativeVal_V() const
+{
+	return mSizeRelativeVal_V;
+}
+//----------------------------------------------------------------------------

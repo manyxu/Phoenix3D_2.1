@@ -16,9 +16,6 @@
     <ClInclude Include="PX2EditSceneTreeItem.hpp">
       <Filter>Window\SceneTree</Filter>
     </ClInclude>
-    <ClInclude Include="PX2EditTabWindow.hpp">
-      <Filter>Window\Main\TabWindow</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -36,9 +33,6 @@
     <ClCompile Include="PX2EditSceneTreeItem.cpp">
       <Filter>Window\SceneTree</Filter>
     </ClCompile>
-    <ClCompile Include="PX2EditTabWindow.cpp">
-      <Filter>Window\Main\TabWindow</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Window">
@@ -49,9 +43,6 @@
     </Filter>
     <Filter Include="Window\SceneTree">
       <UniqueIdentifier>{9a121f28-0864-454e-8c22-58058cbcd220}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Window\Main\TabWindow">
-      <UniqueIdentifier>{0d567cd0-6a43-4801-968c-f79dc29db68f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

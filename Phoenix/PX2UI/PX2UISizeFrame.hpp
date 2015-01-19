@@ -91,9 +91,15 @@ namespace PX2
 		};
 		void SetSizeRelativeType(SizeRelativeType srt);
 		SizeRelativeType GetSizeRelativeType() const;
+		void SetSizeRelativeVal_H(float val);
+		float GetSIzeRelativeVal_H() const;
+		void SetSizeRelativeVal_V(float val);
+		float GetSIzeRelativeVal_V() const;
 
 	protected:
 		SizeRelativeType mSizeRelativeType;
+		float mSizeRelativeVal_H;
+		float mSizeRelativeVal_V;
 
 	protected:
 		void _UpdateRelative();

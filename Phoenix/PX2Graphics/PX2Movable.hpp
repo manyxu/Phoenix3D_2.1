@@ -92,7 +92,6 @@ namespace PX2
 
 		/// »ñµÃ¸¸Ç×
 		Movable* GetParent ();
-
 		void SetParentTransformIngore (bool trans, bool rotate, bool scale);
 		void GetParentTransformIngore (bool &trans, bool &rotate, bool &scale);
 
@@ -104,6 +103,8 @@ namespace PX2
 		virtual void OnAttach ();
 		virtual void OnDetach (); 
 
+		// Pick
+	public:
 		virtual void OnPicked (int pickInfo); // called during Picker::Execute
 		virtual void OnNotPicked (int pickInfo);
 
@@ -116,24 +117,25 @@ namespace PX2
 		void SetNotPickedParentChildrenNotPicked (bool use);
 		bool IsNotPickedParentChildrenNotPicked () const;
 
-		// alpha
+		// Color Alpha Brightness
+	public:
+		void SetColorSelfCtrled(bool selfCtrled);
+		bool IsColorSelfCtrled() const;
+		virtual void SetColor(const Float3 &color);
+		const Float3 &GetColor() const;
+
 		void SetAlphaSelfCtrled (bool selfCtrled);
 		bool IsAlphaSelfCtrled () const;
 		virtual void SetAlpha (float alpha);
 		float GetAlpha () const;
-
-		// color
-		void SetColorSelfCtrled (bool selfCtrled);
-		bool IsColorSelfCtrled () const;
-		virtual void SetColor (const Float3 &color);
-		const Float3 &GetColor () const;
 
 		void SetBrightnessSelfCtrled (bool selfCtrled);
 		bool IsBrightnessSelfCtrled () const;
 		virtual void SetBrightness (float brightness);
 		float GetBrightness () const;
 
-		// Update time
+		// Update
+	public:
 		void SetUpdateTime (float time);
 		float GetUpdateTime () const;
 
@@ -158,26 +160,25 @@ public_internal:
 		Movable* mParent;
 
 	protected:
+		bool mIsIngoreParent_Translate;
+		bool mIsIngoreParent_Rotate;
+		bool mIsIngoreParent_Scale;
+
 		bool mIsAlphaSelfCtrled;
 		float mAlpha;
 		bool mIsColorSelfCtrled;
 		Float3 mColor;
+		bool mIsBrightnessSelfCtrled;
+		float mBrightness;
+
 		float mUpdateTime;
 		float mUpdateTiming;
 		float mUpdateTimingInit;
-
 		int mUpdatePriority;
 
 		bool mIsDoPick;
 		bool mIsPickIngoreCullingMode;
 		bool mIsNotPickedParentChildrenNotPicked;
-
-		bool mIsIngoreParent_Translate;
-		bool mIsIngoreParent_Rotate;
-		bool mIsIngoreParent_Scale;
-
-		bool mIsBrightnessSelfCtrled;
-		float mBrightness;
 	};
 
 	PX2_REGISTER_STREAM(Movable);

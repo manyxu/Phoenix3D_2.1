@@ -16,7 +16,6 @@
     <ClInclude Include="PX2EditMenuItem.hpp" />
     <ClInclude Include="PX2EditSceneTree.hpp" />
     <ClInclude Include="PX2EditSceneTreeItem.hpp" />
-    <ClInclude Include="PX2EditTabWindow.hpp" />
     <ClInclude Include="PX2EditTitleWindow.hpp" />
     <ClInclude Include="PX2EditUIMan.hpp" />
   </ItemGroup>
@@ -26,7 +25,6 @@
     <ClCompile Include="PX2EditMenuItem.cpp" />
     <ClCompile Include="PX2EditSceneTree.cpp" />
     <ClCompile Include="PX2EditSceneTreeItem.cpp" />
-    <ClCompile Include="PX2EditTabWindow.cpp" />
     <ClCompile Include="PX2EditTitleWindow.cpp" />
     <ClCompile Include="PX2EditUIMan.cpp" />
   </ItemGroup>
