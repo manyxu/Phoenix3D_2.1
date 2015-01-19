@@ -125,26 +125,26 @@ void E_MainFrame::_CreateViews()
 	mAuiManager->AddPane(projView, wxAuiPaneInfo().Name(wxT("ProjView"))
 		.Caption("Project").DefaultPane().Left().Icon(wxBitmap("DataEditor/icons/proj.png", wxBITMAP_TYPE_PNG))
 		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
-		.FloatingSize(220, 150).MinSize(0, 0));
+		.FloatingSize(220, 150).MinSize(100, 100));
 
 	mRenderView = new RenderView(this);
 	mAuiManager->AddPane(mRenderView,
 		wxAuiPaneInfo().Name(wxT("RenderView")).Caption("Stage")
 		.DefaultPane().Centre().Dockable(true).Icon(wxBitmap("DataEditor/icons/stage.png", wxBITMAP_TYPE_PNG))
-		.FloatingSize(800, 600).MinSize(0, 0)
+		.FloatingSize(800, 600).MinSize(100, 100)
 		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true));
 
 	PreView *preView = new PreView(this);
 	mAuiManager->AddPane(preView, wxAuiPaneInfo().Name(wxT("PreView"))
 		.Caption("PreView").DefaultPane().Right().Icon(wxBitmap("DataEditor/icons/preview.png", wxBITMAP_TYPE_PNG))
 		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
-		.FloatingSize(220, 150).MinSize(0, 0));
+		.FloatingSize(220, 150).MinSize(100, 100));
 
 	ResView *resView = new ResView(this);
 	mAuiManager->AddPane(resView, wxAuiPaneInfo().Name(wxT("ResView"))
 		.Caption("Asserts").DefaultPane().Right().Icon(wxBitmap("DataEditor/icons/res.png", wxBITMAP_TYPE_PNG))
 		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
-		.FloatingSize(220, 150).MinSize(0, 0));
+		.FloatingSize(220, 150).MinSize(100, 100));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateStatusBar()
