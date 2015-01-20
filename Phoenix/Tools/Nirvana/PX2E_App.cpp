@@ -7,6 +7,7 @@
 #include "PX2E_App.hpp"
 #include "PX2E_MainFrame.hpp"
 #include "PX2E_RenderView.hpp"
+#include "PX2E_ResTree.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
 using namespace PX2Editor;
@@ -67,6 +68,8 @@ bool E_App::OnInit()
 
 	Edit *edit = new0 Edit();
 	edit->Initlize();
+
+	ResTree::GetSingleton().UpdateOnPath("Data/");
 
 	return true;
 }

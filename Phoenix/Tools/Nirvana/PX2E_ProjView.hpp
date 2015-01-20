@@ -21,7 +21,7 @@ namespace PX2Editor
 
 		ProjView();
 
-		wxToolBar *mResTreeBar;
+		wxToolBar *mProjTreeBar;
 	};
 
 }

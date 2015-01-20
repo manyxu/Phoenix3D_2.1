@@ -21,6 +21,13 @@ namespace PX2Editor
 		ResView();
 
 		wxToolBar *mResTreeBar;
+		wxSplitterWindow *mSplitter;
+
+		void Splitter1OnIdle(wxIdleEvent&)
+		{
+			mSplitter->SetSashPosition(120);
+			mSplitter->Disconnect(wxEVT_IDLE, wxIdleEventHandler(ResView::Splitter1OnIdle), NULL, this);
+		}
 	};
 
 }

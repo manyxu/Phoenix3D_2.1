@@ -626,7 +626,7 @@ PX2wxAuiToolBarArt::~PX2wxAuiToolBarArt()
 
 void PX2wxAuiToolBarArt::DrawBackground(
 	wxDC& dc,
-	wxWindow* wnd,
+	wxWindow*,
 	const wxRect& _rect)
 {
 	wxRect rect = _rect;
@@ -640,7 +640,7 @@ void PX2wxAuiToolBarArt::DrawBackground(
 }
 
 void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
-	wxWindow* wnd,
+	wxWindow*,
 	const wxRect& _rect)
 {
 	wxRect rect = _rect;

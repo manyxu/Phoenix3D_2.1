@@ -21,7 +21,7 @@ namespace PX2Editor
 
 		RenderView *GetRenderView();
 
-		void OnTimer(wxTimerEvent& event);
+		void OnTimer(wxTimerEvent& e);
 
 	protected:
 		DECLARE_EVENT_TABLE()

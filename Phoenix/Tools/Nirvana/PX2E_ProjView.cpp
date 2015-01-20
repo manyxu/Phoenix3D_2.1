@@ -1,6 +1,7 @@
 // PX2E_RenderView.cpp
 
 #include "PX2E_ProjView.hpp"
+#include "PX2E_ProjTree.hpp"
 using namespace PX2Editor;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::ProjView, wxWindow)
@@ -12,32 +13,46 @@ ProjView::ProjView()
 }
 //----------------------------------------------------------------------------
 ProjView::ProjView(wxWindow *parent) :
-wxWindow(parent, -1)
+wxWindow(parent, wxID_ANY)
 {
-	wxBoxSizer* bSizer9;
-	bSizer9 = new wxBoxSizer(wxVERTICAL);
+	SetBackgroundColour(wxColour(207, 214, 229));
 
-	wxBoxSizer* bSizer10;
-	bSizer10 = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer* bSizer54;
+	bSizer54 = new wxBoxSizer(wxVERTICAL);
 
-	mResTreeBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
-	mResTreeBar->SetBackgroundColour(wxColour(207, 214, 229));
-	mResTreeBar->SetForegroundColour(wxColour(207, 214, 229));
-	mResTreeBar->Realize();
+	wxBoxSizer* bSizer55;
+	bSizer55 = new wxBoxSizer(wxVERTICAL);
 
-	bSizer10->Add(mResTreeBar, 1, wxEXPAND, 0);
+	mProjTreeBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+		wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
+	mProjTreeBar->SetBackgroundColour(wxColour(207, 214, 229));
+	mProjTreeBar->SetForegroundColour(wxColour(207, 214, 229));
+	mProjTreeBar->Realize();
 
-	bSizer9->Add(bSizer10, 0, wxEXPAND | wxALIGN_CENTER_HORIZONTAL, 0);
+	bSizer55->Add(mProjTreeBar, 0, wxEXPAND | wxBOTTOM, 5);
 
-	wxBoxSizer* bSizer11;
-	bSizer11 = new wxBoxSizer(wxVERTICAL);
+	bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
 
-	//mResTree = new ResTree(this);
-	//bSizer11->Add(mResTree, 1, wxALL | wxEXPAND, 1);
+	wxBoxSizer* bSizer56;
+	bSizer56 = new wxBoxSizer(wxVERTICAL);
 
-	bSizer9->Add(bSizer11, 1, wxEXPAND, 0);
+	wxSearchCtrl *searchCtrl = new wxSearchCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(-1, 22),
+		wxTE_CAPITALIZE | wxTE_CENTER | wxTE_PROCESS_ENTER | wxNO_BORDER);
+	searchCtrl->ShowSearchButton(false);
+	searchCtrl->ShowCancelButton(false);
+	bSizer56->Add(searchCtrl, 0, wxEXPAND, 5);
 
-	this->SetSizer(bSizer9);
+	bSizer54->Add(bSizer56, 0, wxEXPAND, 5);
+
+	wxBoxSizer* bSizer57;
+	bSizer57 = new wxBoxSizer(wxVERTICAL);
+
+	ProjTree *projTree = new ProjTree(this);
+	bSizer57->Add(projTree, 1, wxEXPAND|wxTOP, 2);
+
+	bSizer54->Add(bSizer57, 1, wxEXPAND, 5);
+
+	this->SetSizer(bSizer54);
 	this->Layout();
 }
 //----------------------------------------------------------------------------

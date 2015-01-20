@@ -85,15 +85,28 @@
     <ClInclude Include="PX2E_App.hpp" />
     <ClInclude Include="PX2E_MainFrame.hpp" />
     <ClInclude Include="PX2EditorPre.hpp" />
+    <ClInclude Include="PX2E_ProjTreeItem.hpp" />
     <ClInclude Include="PX2E_RenderView.hpp" />
     <ClInclude Include="PX2E_ProjView.hpp" />
     <ClInclude Include="PX2E_PreView.hpp" />
+    <ClInclude Include="PX2E_ProjTree.hpp" />
+    <ClInclude Include="PX2E_ProjTreeDef.hpp" />
+    <ClInclude Include="PX2E_ResShow.hpp" />
+    <ClInclude Include="PX2E_ResSplitPanel.hpp" />
+    <ClInclude Include="PX2E_ResTree.hpp" />
+    <ClInclude Include="PX2E_ResTreeItem.hpp" />
     <ClInclude Include="PX2wxDockArt.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp" />
     <ClCompile Include="PX2E_MainFrame.cpp" />
+    <ClCompile Include="PX2E_ProjTree.cpp" />
+    <ClCompile Include="PX2E_ProjTreeItem.cpp" />
     <ClCompile Include="PX2E_RenderView.cpp" />
+    <ClCompile Include="PX2E_ResShow.cpp" />
+    <ClCompile Include="PX2E_ResSplitPanel.cpp" />
+    <ClCompile Include="PX2E_ResTree.cpp" />
+    <ClCompile Include="PX2E_ResTreeItem.cpp" />
     <ClCompile Include="PX2E_ResView.cpp" />
     <ClCompile Include="PX2E_ProjView.cpp" />
     <ClCompile Include="PX2E_PreView.cpp" />

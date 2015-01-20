@@ -3,6 +3,8 @@
 #ifndef PX2EDITORPRERE_HPP
 #define PX2EDITORPRERE_HPP
 
+#include "PX2CorePre.hpp"
+
 #include "wx/wxprec.h"
 
 #ifndef WX_PRECOMP
@@ -33,8 +35,9 @@
 #include <wx/splash.h>
 #include <wx/webview.h>
 #include <wx/aui/aui.h>
-#include "wx/clipbrd.h"
-#include "wx/collpane.h"
-#include "wx/statline.h"
+#include <wx/clipbrd.h>
+#include <wx/collpane.h>
+#include <wx/statline.h>
+#include <wx/srchctrl.h>
 
 #endif

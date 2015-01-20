@@ -81,8 +81,10 @@ RenderView *E_MainFrame::GetRenderView()
 	return mRenderView;
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::OnTimer(wxTimerEvent& event)
+void E_MainFrame::OnTimer(wxTimerEvent& e)
 {
+	PX2_UNUSED(e);
+
 	if (mIsInitlized)
 	{
 		PX2_ENGINELOOP.Tick();

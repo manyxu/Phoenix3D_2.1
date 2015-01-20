@@ -1,6 +1,7 @@
 // PX2E_RenderView.cpp
 
 #include "PX2E_ResView.hpp"
+#include "PX2E_ResSplitPanel.hpp"
 using namespace PX2Editor;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::ResView, wxWindow)
@@ -14,31 +15,44 @@ ResView::ResView()
 ResView::ResView(wxWindow *parent) :
 wxWindow(parent, -1)
 {
-	wxBoxSizer* bSizer9;
-	bSizer9 = new wxBoxSizer(wxVERTICAL);
+	SetBackgroundColour(wxColour(207, 214, 229));
 
-	wxBoxSizer* bSizer10;
-	bSizer10 = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer* bSizer54;
+	bSizer54 = new wxBoxSizer(wxVERTICAL);
 
-	mResTreeBar = new wxToolBar(this, wxID_ANY, wxPoint(0, -2), wxDefaultSize, wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
+	wxBoxSizer* bSizer55;
+	bSizer55 = new wxBoxSizer(wxVERTICAL);
+
+	mResTreeBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+		wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
 	mResTreeBar->SetBackgroundColour(wxColour(207, 214, 229));
 	mResTreeBar->SetForegroundColour(wxColour(207, 214, 229));
 	mResTreeBar->Realize();
 
-	bSizer10->Add(mResTreeBar, 1, wxEXPAND, 0);
+	bSizer55->Add(mResTreeBar, 0, wxEXPAND | wxBOTTOM, 5);
 
-	bSizer9->Add(bSizer10, 0, wxEXPAND | wxALIGN_CENTER_HORIZONTAL, 0);
+	bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
 
-	wxBoxSizer* bSizer11;
-	bSizer11 = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer* bSizer56;
+	bSizer56 = new wxBoxSizer(wxVERTICAL);
 
-	//mResTree = new ResTree(this);
-	//bSizer11->Add(mResTree, 1, wxALL | wxEXPAND, 1);
+	wxSearchCtrl *searchCtrl = new wxSearchCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(-1, 22),
+		wxTE_CAPITALIZE | wxTE_CENTER | wxTE_PROCESS_ENTER | wxNO_BORDER);
+	searchCtrl->ShowSearchButton(false);
+	searchCtrl->ShowCancelButton(false);
+	bSizer56->Add(searchCtrl, 0, wxEXPAND, 5);
 
-	bSizer9->Add(bSizer11, 1, wxEXPAND, 0);
+	bSizer54->Add(bSizer56, 0, wxEXPAND, 5);
 
-	this->SetSizer(bSizer9);
+	wxBoxSizer* bSizer57;
+	bSizer57 = new wxBoxSizer(wxVERTICAL);
 
+	ResSplitPanel *splitPanel = new ResSplitPanel(this);
+	bSizer57->Add(splitPanel, 1, wxEXPAND | wxTOP, 2);
+
+	bSizer54->Add(bSizer57, 1, wxEXPAND, 5);
+
+	this->SetSizer(bSizer54);
 	this->Layout();
 }
 //----------------------------------------------------------------------------

@@ -10,14 +10,17 @@
     <Filter Include="ResView">
       <UniqueIdentifier>{ff2bb637-ff94-44b5-8aa3-ba91e9e7f60f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SceneView">
-      <UniqueIdentifier>{8a6018ff-698c-4e33-aa60-8590ce37a00f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="wxExtent">
       <UniqueIdentifier>{0d57487b-353f-4976-ad05-92b31d75ab1c}</UniqueIdentifier>
     </Filter>
     <Filter Include="PreView">
       <UniqueIdentifier>{7156c218-5a00-4b7d-b5d5-00e038488201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResView\TreeShow">
+      <UniqueIdentifier>{852ea878-fb5a-4b4b-a2cc-3e474a20efdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ProjView">
+      <UniqueIdentifier>{8a6018ff-698c-4e33-aa60-8590ce37a00f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -32,13 +35,34 @@
       <Filter>RenderView</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_ProjView.hpp">
-      <Filter>SceneView</Filter>
+      <Filter>ProjView</Filter>
     </ClInclude>
     <ClInclude Include="PX2wxDockArt.hpp">
       <Filter>wxExtent</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_PreView.hpp">
       <Filter>PreView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_ProjTree.hpp">
+      <Filter>ProjView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_ProjTreeItem.hpp">
+      <Filter>ProjView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_ProjTreeDef.hpp">
+      <Filter>ProjView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_ResTree.hpp">
+      <Filter>ResView\TreeShow</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_ResShow.hpp">
+      <Filter>ResView\TreeShow</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_ResSplitPanel.hpp">
+      <Filter>ResView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_ResTreeItem.hpp">
+      <Filter>ResView\TreeShow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -55,13 +79,31 @@
       <Filter>ResView</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_ProjView.cpp">
-      <Filter>SceneView</Filter>
+      <Filter>ProjView</Filter>
     </ClCompile>
     <ClCompile Include="PX2wxDockArt.cpp">
       <Filter>wxExtent</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_PreView.cpp">
       <Filter>PreView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_ProjTree.cpp">
+      <Filter>ProjView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_ProjTreeItem.cpp">
+      <Filter>ProjView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_ResTree.cpp">
+      <Filter>ResView\TreeShow</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_ResShow.cpp">
+      <Filter>ResView\TreeShow</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_ResSplitPanel.cpp">
+      <Filter>ResView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_ResTreeItem.cpp">
+      <Filter>ResView\TreeShow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
