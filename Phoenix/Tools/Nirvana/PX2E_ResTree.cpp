@@ -32,6 +32,11 @@ ResTree::ResTree()
 //----------------------------------------------------------------------------
 ResTree::~ResTree()
 {
+	if (mImageList)
+	{
+		delete mImageList;
+		mImageList = 0;
+	}
 }
 //----------------------------------------------------------------------------
 void ResTree::UpdateOnPath(const std::string &pathName)

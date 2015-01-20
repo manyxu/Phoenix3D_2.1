@@ -5,6 +5,7 @@
 #include "PX2E_ResView.hpp"
 #include "PX2E_ProjView.hpp"
 #include "PX2E_PreView.hpp"
+#include "PX2E_StartView.hpp"
 #include "PX2wxDockArt.hpp"
 
 #include "PX2EngineLoop.hpp"
@@ -42,14 +43,14 @@ bool E_MainFrame::Initlize()
 		| wxAUI_MGR_TRANSPARENT_DRAG | wxAUI_MGR_ALLOW_ACTIVE_PANE );
 
 	mAuiManager->SetArtProvider(new PX2wxDockArt());
-	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_CAPTION_SIZE, 22);
+	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_CAPTION_SIZE, 24);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 2);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(44, 61, 91));
 	//mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(214, 219, 233));
 	
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(64, 81, 111));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(44, 61, 91));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(44, 61, 91));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(39, 39, 39));
 
@@ -129,13 +130,6 @@ void E_MainFrame::_CreateViews()
 		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
 		.FloatingSize(220, 150).MinSize(100, 100));
 
-	mRenderView = new RenderView(this);
-	mAuiManager->AddPane(mRenderView,
-		wxAuiPaneInfo().Name(wxT("RenderView")).Caption("Stage")
-		.DefaultPane().Centre().Dockable(true).Icon(wxBitmap("DataEditor/icons/stage.png", wxBITMAP_TYPE_PNG))
-		.FloatingSize(800, 600).MinSize(100, 100)
-		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true));
-
 	PreView *preView = new PreView(this);
 	mAuiManager->AddPane(preView, wxAuiPaneInfo().Name(wxT("PreView"))
 		.Caption("PreView").DefaultPane().Right().Icon(wxBitmap("DataEditor/icons/preview.png", wxBITMAP_TYPE_PNG))
@@ -147,6 +141,45 @@ void E_MainFrame::_CreateViews()
 		.Caption("Asserts").DefaultPane().Right().Icon(wxBitmap("DataEditor/icons/res.png", wxBITMAP_TYPE_PNG))
 		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
 		.FloatingSize(220, 150).MinSize(100, 100));
+
+	wxSize client_size = GetClientSize();
+	wxAuiNotebook* ctrl = new wxAuiNotebook(this, wxID_ANY,
+		wxPoint(client_size.x, client_size.y), wxSize(430, 200), 0);
+	ctrl->SetArtProvider(new PX2wxAuiTabArt);
+	long styleFlag = ctrl->GetWindowStyleFlag();
+	styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
+	styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
+	styleFlag ^= wxAUI_NB_CLOSE_ON_ACTIVE_TAB;
+	ctrl->SetWindowStyleFlag(styleFlag);
+
+	ctrl->Freeze();
+
+	wxBitmap page_bmp = wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_OTHER, wxSize(16, 16));
+	StartView *centerView = new StartView(this);
+	ctrl->AddPage(centerView, wxT("Start"), false, page_bmp);
+
+	mRenderView = new RenderView(this);
+	ctrl->AddPage(mRenderView, wxT("Stage"), false, page_bmp);
+
+	ctrl->Thaw();
+
+	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(wxT("notebook_content")).
+		CenterPane().PaneBorder(false));
+	ctrl->Refresh();
+
+	//StartView *centerView = new StartView(this);
+	//mAuiManager->AddPane(centerView,
+	//	wxAuiPaneInfo().Name(wxT("RenderView")).Caption("StartView")
+	//	.DefaultPane().Centre().Dockable(true).Icon(wxBitmap("DataEditor/icons/stage.png", wxBITMAP_TYPE_PNG))
+	//	.FloatingSize(800, 600).MinSize(100, 100)
+	//	.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true));
+
+	//mRenderView = new RenderView(this);
+	//mAuiManager->AddPane(mRenderView,
+	//	wxAuiPaneInfo().Name(wxT("RenderView")).Caption("Stage")
+	//	.DefaultPane().Centre().Dockable(true).Icon(wxBitmap("DataEditor/icons/stage.png", wxBITMAP_TYPE_PNG))
+	//	.FloatingSize(800, 600).MinSize(100, 100)
+	//	.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateStatusBar()

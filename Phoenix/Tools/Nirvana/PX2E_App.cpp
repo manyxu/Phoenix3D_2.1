@@ -33,6 +33,9 @@ bool E_App::OnInit()
 	wxImage::AddHandler(new wxBMPHandler());
 	wxImage::AddHandler(new wxPNGHandler());
 	wxImage::AddHandler(new wxGIFHandler());
+	wxFileSystem::AddHandler(new wxArchiveFSHandler());
+	wxXmlResource::Get()->InitAllHandlers();
+	wxXmlResource::Get()->Load(wxT("DataEditor/wxfbp/*.xrc"));
 
 	int displayWidth, displayHeight;
 	wxDisplaySize(&displayWidth, &displayHeight);

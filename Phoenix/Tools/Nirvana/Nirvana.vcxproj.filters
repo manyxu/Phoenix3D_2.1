@@ -22,6 +22,9 @@
     <Filter Include="ProjView">
       <UniqueIdentifier>{8a6018ff-698c-4e33-aa60-8590ce37a00f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StartView">
+      <UniqueIdentifier>{ffa5b37c-af00-4fdd-8248-ed470d38abfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -64,6 +67,9 @@
     <ClInclude Include="PX2E_ResTreeItem.hpp">
       <Filter>ResView\TreeShow</Filter>
     </ClInclude>
+    <ClInclude Include="PX2E_StartView.hpp">
+      <Filter>StartView</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -104,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="PX2E_ResTreeItem.cpp">
       <Filter>ResView\TreeShow</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_StartView.cpp">
+      <Filter>StartView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

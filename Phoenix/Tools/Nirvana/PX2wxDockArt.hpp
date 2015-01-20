@@ -84,4 +84,44 @@ protected:
 	wxColour mBackColor;
 };
 
+class PX2wxAuiTabArt : public wxAuiSimpleTabArt
+{
+public:
+	PX2wxAuiTabArt();
+	virtual ~PX2wxAuiTabArt();
+
+	wxAuiTabArt* Clone();
+
+	void SetSizingInfo(const wxSize& tabCtrlSize,
+		size_t tabCount);
+
+	virtual void DrawBorder(
+		wxDC& dc,
+		wxWindow* wnd,
+		const wxRect& rect);
+
+	virtual void DrawBackground(
+		wxDC& dc,
+		wxWindow* wnd,
+		const wxRect& rect);
+
+	virtual void DrawTab(wxDC& dc,
+		wxWindow* wnd,
+		const wxAuiNotebookPage& pane,
+		const wxRect& inRect,
+		int closeButtonState,
+		wxRect* outTabRect,
+		wxRect* outButtonRect,
+		int* xExtent);
+
+	virtual void DrawButton(
+		wxDC& dc,
+		wxWindow* wnd,
+		const wxRect& inRect,
+		int bitmapId,
+		int buttonState,
+		int orientation,
+		wxRect* outRect);
+};
+
 #endif

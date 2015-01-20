@@ -83,6 +83,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="PX2E_App.hpp" />
+    <ClInclude Include="PX2E_StartView.hpp" />
     <ClInclude Include="PX2E_MainFrame.hpp" />
     <ClInclude Include="PX2EditorPre.hpp" />
     <ClInclude Include="PX2E_ProjTreeItem.hpp" />
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp" />
+    <ClCompile Include="PX2E_StartView.cpp" />
     <ClCompile Include="PX2E_MainFrame.cpp" />
     <ClCompile Include="PX2E_ProjTree.cpp" />
     <ClCompile Include="PX2E_ProjTreeItem.cpp" />

@@ -39,5 +39,6 @@
 #include <wx/collpane.h>
 #include <wx/statline.h>
 #include <wx/srchctrl.h>
+#include <wx/renderer.h>
 
 #endif
