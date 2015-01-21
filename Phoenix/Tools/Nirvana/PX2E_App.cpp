@@ -10,6 +10,16 @@
 #include "PX2E_ResTree.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
+#include "PX2ToLuaEditor.hpp"
+
+extern "C"
+{
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
+}
+#include "tolua++.h"
+
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -71,6 +81,10 @@ bool E_App::OnInit()
 
 	Edit *edit = new0 Edit();
 	edit->Initlize();
+
+	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
+	tolua_PX2Editor_open(luaMan->GetLuaState());
+	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", this);
 
 	ResTree::GetSingleton().UpdateOnPath("Data/");
 

@@ -25,6 +25,9 @@
     <Filter Include="StartView">
       <UniqueIdentifier>{ffa5b37c-af00-4fdd-8248-ed470d38abfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua">
+      <UniqueIdentifier>{2229a2e6-a50c-4b50-a89c-baca89327dda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -70,6 +73,9 @@
     <ClInclude Include="PX2E_StartView.hpp">
       <Filter>StartView</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\PX2ToLua\PX2ToLuaEditor.hpp">
+      <Filter>Lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -113,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="PX2E_StartView.cpp">
       <Filter>StartView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PX2ToLua\PX2ToLuaEditor.cpp">
+      <Filter>Lua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

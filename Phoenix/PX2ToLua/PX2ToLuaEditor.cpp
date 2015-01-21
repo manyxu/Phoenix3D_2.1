@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 01/21/15 15:36:58.
+** Generated automatically by tolua++-1.0.92 on 01/21/15 17:30:13.
 */
 
 #ifndef __cplusplus
@@ -149,6 +149,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"Vector3f");
  tolua_usertype(tolua_S,"VisibleSet");
+ tolua_usertype(tolua_S,"E_MainFrame");
  tolua_usertype(tolua_S,"VertexShader");
  tolua_usertype(tolua_S,"GlobalMaterial");
  tolua_usertype(tolua_S,"Texture1D");
@@ -11894,6 +11895,9 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"ClearBuffers",tolua_PX2Editor_Renderer_ClearBuffers01);
    tolua_function(tolua_S,"DisplayColorBuffer",tolua_PX2Editor_Renderer_DisplayColorBuffer00);
    tolua_function(tolua_S,"SetColorMask",tolua_PX2Editor_Renderer_SetColorMask00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"E_MainFrame","E_MainFrame","",NULL);
+  tolua_beginmodule(tolua_S,"E_MainFrame");
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

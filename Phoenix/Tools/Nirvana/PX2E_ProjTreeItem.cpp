@@ -58,6 +58,7 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 
 	Project *proj = DynamicCast<Project>(mObject);
 	Actor *actor = DynamicCast<Actor>(mObject);
+	PX2_UNUSED(actor);
 
 	if (!mObject)
 	{ // IT_CATALOG

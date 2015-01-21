@@ -48,7 +48,6 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(44, 61, 91));
-	//mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(214, 219, 233));
 	
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(44, 61, 91));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(44, 61, 91));
@@ -66,7 +65,6 @@ bool E_MainFrame::Initlize()
 	mTimer.Start(25);
 
 	_CreateMenu();
-	//_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
 
@@ -96,8 +94,6 @@ void E_MainFrame::_CreateMenu()
 {
 	wxMenuBar *mainMenu = new wxMenuBar();
 	SetMenuBar(mainMenu);
-	mainMenu->SetBackgroundColour(wxColour(214, 219, 233));
-	mainMenu->SetForegroundColour(wxColour(214, 219, 233));
 
 	wxMenu* menu = new wxMenu();
 	mainMenu->Append(menu, "File");

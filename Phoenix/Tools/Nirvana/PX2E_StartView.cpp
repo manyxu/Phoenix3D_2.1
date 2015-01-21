@@ -14,8 +14,7 @@ StartView::StartView()
 //----------------------------------------------------------------------------
 StartView::StartView(wxWindow *parent) 
 {
-	const bool bSuccess = wxXmlResource::Get()->LoadPanel(this, parent,
-		TEXT("StartPage"));
+	wxXmlResource::Get()->LoadPanel(this, parent, TEXT("StartPage"));
 }
 //----------------------------------------------------------------------------
 StartView::~StartView()
