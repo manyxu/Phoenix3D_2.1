@@ -92,11 +92,15 @@ void E_MainFrame::OnTimer(wxTimerEvent& e)
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenu()
 {
-	wxMenuBar *mainMenu = new wxMenuBar();
-	SetMenuBar(mainMenu);
-
-	wxMenu* menu = new wxMenu();
-	mainMenu->Append(menu, "File");
+	mMainMenuBar = new wxMenuBar();
+	SetMenuBar(mMainMenuBar);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::AddMainMenuItem(const std::string &title)
+{
+	wxString wxTitle = title;
+	wxMenu* menu = new wxMenu(wxTitle);
+	mMainMenuBar->Append(menu, wxTitle);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainToolBar()

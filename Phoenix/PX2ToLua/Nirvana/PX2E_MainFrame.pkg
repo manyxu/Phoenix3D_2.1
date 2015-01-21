@@ -1,5 +1,6 @@
 // PX2E_MainFrame.pkg
 
-	class E_MainFrame
+	class E_MainFrame : public wxFrame
 	{
+		void AddMainMenuItem(const std::string &title);
 	};

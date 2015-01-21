@@ -23,6 +23,9 @@ namespace PX2Editor
 
 		void OnTimer(wxTimerEvent& e);
 
+	public:
+		void AddMainMenuItem(const std::string &title);
+
 	protected:
 		DECLARE_EVENT_TABLE()
 
@@ -32,6 +35,7 @@ namespace PX2Editor
 		void _CreateStatusBar();
 
 		bool mIsInitlized;
+		wxMenuBar *mMainMenuBar;
 		wxAuiManager *mAuiManager;
 		wxTimer mTimer;
 

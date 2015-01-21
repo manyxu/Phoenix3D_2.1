@@ -7,6 +7,7 @@
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
 #include "PX2ToLuaEditor.hpp"
+#include "PX2LuaManager.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -57,7 +58,6 @@ bool E_App::OnInit()
 
 	mMainFrame->Initlize();
 
-	mMainFrame->Show(true);
 	SetTopWindow(mMainFrame);
 	mMainFrame->Center();
 	mMainFrame->Maximize();
@@ -71,9 +71,13 @@ bool E_App::OnInit()
 
 	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
 	tolua_PX2Editor_open(luaMan->GetLuaState());
-	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", this);
+	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", mMainFrame);
+
+	luaMan->CallFile("DataEditor/scripts/start.lua");
 
 	ResTree::GetSingleton().UpdateOnPath("Data/");
+
+	mMainFrame->Show(true);
 
 	return true;
 }

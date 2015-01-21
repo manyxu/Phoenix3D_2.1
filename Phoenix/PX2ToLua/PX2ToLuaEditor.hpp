@@ -1,17 +1,11 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ToLua.hpp
-*
-*/
+// PX2ToLuaEditor.hpp
 
 #ifndef PX2TOLUA_HPP
 #define PX2TOLUA_HPP
 
-#include "PX2Core.hpp"
-#include "PX2Mathematics.hpp"
-#include "PX2Graphics.hpp"
-#include "PX2Unity.hpp"
-using namespace PX2;
+#include "PX2CorePre.hpp"
+#include "PX2E_MainFrame.hpp"
+using namespace PX2Editor;
 
 #define PX2_LUA
 
