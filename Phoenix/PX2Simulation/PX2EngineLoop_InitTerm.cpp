@@ -14,8 +14,16 @@
 
 #include "PX2Assert.hpp"
 #include "PX2LuaManager.hpp"
-
+#include "PX2ToLua.hpp"
 using namespace PX2;
+
+extern "C"
+{
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
+}
+#include "tolua++.h"
 
 //----------------------------------------------------------------------------
 bool EngineLoop::Initlize()
@@ -126,6 +134,9 @@ bool EngineLoop::Initlize()
 	mUIManager->GetDefaultUIView()->SetRenderer(renderer);
 
 	mAccoutManager = new0 AccoutManager();
+
+	LuaManager *luaMan = (LuaManager*)mScriptMan;
+	tolua_PX2_open(luaMan->GetLuaState());
 
 	mScriptMan->SetUserTypePointer("PX2_LOG", "Logger", Logger::GetSingletonPtr());
 	mScriptMan->SetUserTypePointer("PX2_LM", "LanguageManager", &(PX2_LM));

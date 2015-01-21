@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 01/21/15 17:48:00.
+** Generated automatically by tolua++-1.0.92 on 01/21/15 18:31:03.
 */
 
 #ifndef __cplusplus
@@ -28,6 +28,13 @@ static int tolua_collect_TriMesh (lua_State* tolua_S)
 static int tolua_collect_Transform (lua_State* tolua_S)
 {
  Transform* self = (Transform*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_ResHandle (lua_State* tolua_S)
+{
+ ResHandle* self = (ResHandle*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -131,25 +138,31 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ShaderParameters");
  tolua_usertype(tolua_S,"OffsetProperty");
  tolua_usertype(tolua_S,"Texture3D");
+ tolua_usertype(tolua_S,"TexPackElement");
  tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"Controlledable");
+ tolua_usertype(tolua_S,"ResHandle");
  tolua_usertype(tolua_S,"APoint");
  tolua_usertype(tolua_S,"PixelShader");
  tolua_usertype(tolua_S,"Node");
  tolua_usertype(tolua_S,"Light");
  tolua_usertype(tolua_S,"TriMesh");
  tolua_usertype(tolua_S,"Float4");
+ tolua_usertype(tolua_S,"LanguageManager");
  tolua_usertype(tolua_S,"Controller");
  tolua_usertype(tolua_S,"HPoint");
  tolua_usertype(tolua_S,"HMatrix");
  tolua_usertype(tolua_S,"Camera");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"Vector2f");
+ tolua_usertype(tolua_S,"E_MainFrame");
+ tolua_usertype(tolua_S,"TexPack");
  tolua_usertype(tolua_S,"Transform");
  tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"Vector3f");
  tolua_usertype(tolua_S,"VisibleSet");
- tolua_usertype(tolua_S,"E_MainFrame");
+ tolua_usertype(tolua_S,"ResourceManager");
+ tolua_usertype(tolua_S,"ScriptManager");
  tolua_usertype(tolua_S,"VertexShader");
  tolua_usertype(tolua_S,"GlobalMaterial");
  tolua_usertype(tolua_S,"Texture1D");
@@ -11392,6 +11405,873 @@ static int tolua_PX2_Renderer_SetColorMask00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: GetSingleton of class  ScriptManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ScriptManager_GetSingleton00
+static int tolua_PX2_ScriptManager_GetSingleton00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ScriptManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ScriptManager& tolua_ret = (ScriptManager&)  ScriptManager::GetSingleton();
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"ScriptManager");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetSingleton'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CallString of class  ScriptManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ScriptManager_CallString00
+static int tolua_PX2_ScriptManager_CallString00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScriptManager",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScriptManager* self = (ScriptManager*)  tolua_tousertype(tolua_S,1,0);
+  const char* str = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CallString'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->CallString(str);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CallString'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CallFile of class  ScriptManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ScriptManager_CallFile00
+static int tolua_PX2_ScriptManager_CallFile00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ScriptManager",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ScriptManager* self = (ScriptManager*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CallFile'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->CallFile(filename);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CallFile'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetSingleton of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_GetSingleton00
+static int tolua_PX2_ResourceManager_GetSingleton00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   ResourceManager& tolua_ret = (ResourceManager&)  ResourceManager::GetSingleton();
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"ResourceManager");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetSingleton'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: Clear of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_Clear00
+static int tolua_PX2_ResourceManager_Clear00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Clear'", NULL);
+#endif
+  {
+   self->Clear();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'Clear'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: BlockLoad of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_BlockLoad00
+static int tolua_PX2_ResourceManager_BlockLoad00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  const std::string filename = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'BlockLoad'", NULL);
+#endif
+  {
+   Object* tolua_ret = (Object*)  self->BlockLoad(filename);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Object");
+   tolua_pushcppstring(tolua_S,(const char*)filename);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'BlockLoad'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: BackgroundLoad of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_BackgroundLoad00
+static int tolua_PX2_ResourceManager_BackgroundLoad00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  const std::string filename = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'BackgroundLoad'", NULL);
+#endif
+  {
+   ResHandle tolua_ret = (ResHandle)  self->BackgroundLoad(filename);
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((ResHandle)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"ResHandle");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(ResHandle));
+     tolua_pushusertype(tolua_S,tolua_obj,"ResHandle");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+   tolua_pushcppstring(tolua_S,(const char*)filename);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'BackgroundLoad'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CheckRes of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_CheckRes00
+static int tolua_PX2_ResourceManager_CheckRes00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ResHandle",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  ResHandle handle = *((ResHandle*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CheckRes'", NULL);
+#endif
+  {
+   Object* tolua_ret = (Object*)  self->CheckRes(handle);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Object");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CheckRes'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetResLoadState of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_GetResLoadState00
+static int tolua_PX2_ResourceManager_GetResLoadState00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"ResHandle",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  ResHandle handle = *((ResHandle*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetResLoadState'", NULL);
+#endif
+  {
+   ResourceManager::LoadState tolua_ret = (ResourceManager::LoadState)  self->GetResLoadState(handle);
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetResLoadState'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetUseGarbageCollect of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_SetUseGarbageCollect00
+static int tolua_PX2_ResourceManager_SetUseGarbageCollect00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  bool use = ((bool)  tolua_toboolean(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetUseGarbageCollect'", NULL);
+#endif
+  {
+   self->SetUseGarbageCollect(use);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetUseGarbageCollect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: IsUseGarbageCollect of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_IsUseGarbageCollect00
+static int tolua_PX2_ResourceManager_IsUseGarbageCollect00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const ResourceManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const ResourceManager* self = (const ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsUseGarbageCollect'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->IsUseGarbageCollect();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IsUseGarbageCollect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetGarbageCollectTime of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_SetGarbageCollectTime00
+static int tolua_PX2_ResourceManager_SetGarbageCollectTime00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  float seconds = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetGarbageCollectTime'", NULL);
+#endif
+  {
+   self->SetGarbageCollectTime(seconds);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetGarbageCollectTime'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetGarbageCollectTime of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_GetGarbageCollectTime00
+static int tolua_PX2_ResourceManager_GetGarbageCollectTime00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const ResourceManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const ResourceManager* self = (const ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetGarbageCollectTime'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->GetGarbageCollectTime();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetGarbageCollectTime'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: LoadBuffer of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_LoadBuffer00
+static int tolua_PX2_ResourceManager_LoadBuffer00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isstring(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  const std::string filename = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+  int bufferSize = ((int)  tolua_tonumber(tolua_S,3,0));
+  char* buffer = ((char*)  tolua_tostring(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'LoadBuffer'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->LoadBuffer(filename,bufferSize,buffer);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+   tolua_pushcppstring(tolua_S,(const char*)filename);
+   tolua_pushnumber(tolua_S,(lua_Number)bufferSize);
+   tolua_pushstring(tolua_S,(const char*)buffer);
+  }
+ }
+ return 4;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'LoadBuffer'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddTexPack of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_AddTexPack00
+static int tolua_PX2_ResourceManager_AddTexPack00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  const std::string texPackPath = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddTexPack'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->AddTexPack(texPackPath);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+   tolua_pushcppstring(tolua_S,(const char*)texPackPath);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddTexPack'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetTexPack of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_GetTexPack00
+static int tolua_PX2_ResourceManager_GetTexPack00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  const std::string texPackPath = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetTexPack'", NULL);
+#endif
+  {
+   const TexPack& tolua_ret = (const TexPack&)  self->GetTexPack(texPackPath);
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const TexPack");
+   tolua_pushcppstring(tolua_S,(const char*)texPackPath);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetTexPack'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetTexPackElement of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_GetTexPackElement00
+static int tolua_PX2_ResourceManager_GetTexPackElement00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  const std::string texPackPath = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+  const std::string eleName = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetTexPackElement'", NULL);
+#endif
+  {
+   const TexPackElement& tolua_ret = (const TexPackElement&)  self->GetTexPackElement(texPackPath,eleName);
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const TexPackElement");
+   tolua_pushcppstring(tolua_S,(const char*)texPackPath);
+   tolua_pushcppstring(tolua_S,(const char*)eleName);
+  }
+ }
+ return 3;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetTexPackElement'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetWriteablePath of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_GetWriteablePath00
+static int tolua_PX2_ResourceManager_GetWriteablePath00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetWriteablePath'", NULL);
+#endif
+  {
+   std::string tolua_ret = (std::string)  self->GetWriteablePath();
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetWriteablePath'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetResourcePath of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_GetResourcePath00
+static int tolua_PX2_ResourceManager_GetResourcePath00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   const std::string tolua_ret = (const std::string)  ResourceManager::GetResourcePath();
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetResourcePath'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: DDSKeepCompressed of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_DDSKeepCompressed00
+static int tolua_PX2_ResourceManager_DDSKeepCompressed00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,2,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+  bool keep = ((bool)  tolua_toboolean(tolua_S,2,true));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'DDSKeepCompressed'", NULL);
+#endif
+  {
+   self->DDSKeepCompressed(keep);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'DDSKeepCompressed'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: IsDDSKeepCompressed of class  ResourceManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_ResourceManager_IsDDSKeepCompressed00
+static int tolua_PX2_ResourceManager_IsDDSKeepCompressed00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"ResourceManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  ResourceManager* self = (ResourceManager*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsDDSKeepCompressed'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->IsDDSKeepCompressed();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IsDDSKeepCompressed'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetSingleton of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_GetSingleton00
+static int tolua_PX2_LanguageManager_GetSingleton00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"LanguageManager",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   LanguageManager& tolua_ret = (LanguageManager&)  LanguageManager::GetSingleton();
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"LanguageManager");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetSingleton'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: Load of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_Load00
+static int tolua_PX2_LanguageManager_Load00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LanguageManager",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LanguageManager* self = (LanguageManager*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Load'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->Load(filename);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'Load'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetLanguage of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_SetLanguage00
+static int tolua_PX2_LanguageManager_SetLanguage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LanguageManager",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LanguageManager* self = (LanguageManager*)  tolua_tousertype(tolua_S,1,0);
+  int index = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetLanguage'", NULL);
+#endif
+  {
+   self->SetLanguage(index);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetLanguage'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetValue of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_GetValue00
+static int tolua_PX2_LanguageManager_GetValue00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LanguageManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LanguageManager* self = (LanguageManager*)  tolua_tousertype(tolua_S,1,0);
+  std::string key = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetValue'", NULL);
+#endif
+  {
+   std::string tolua_ret = (std::string)  self->GetValue(key);
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetValue'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetValue of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_GetValue01
+static int tolua_PX2_LanguageManager_GetValue01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LanguageManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  LanguageManager* self = (LanguageManager*)  tolua_tousertype(tolua_S,1,0);
+  std::string key = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+  int index = ((int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetValue'", NULL);
+#endif
+  {
+   std::string tolua_ret = (std::string)  self->GetValue(key,index);
+   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_PX2_LanguageManager_GetValue00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
 {
@@ -11895,6 +12775,46 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"ClearBuffers",tolua_PX2_Renderer_ClearBuffers01);
    tolua_function(tolua_S,"DisplayColorBuffer",tolua_PX2_Renderer_DisplayColorBuffer00);
    tolua_function(tolua_S,"SetColorMask",tolua_PX2_Renderer_SetColorMask00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"ScriptManager","ScriptManager","",NULL);
+  tolua_beginmodule(tolua_S,"ScriptManager");
+   tolua_function(tolua_S,"GetSingleton",tolua_PX2_ScriptManager_GetSingleton00);
+   tolua_function(tolua_S,"CallString",tolua_PX2_ScriptManager_CallString00);
+   tolua_function(tolua_S,"CallFile",tolua_PX2_ScriptManager_CallFile00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"ResourceManager","ResourceManager","",NULL);
+  tolua_beginmodule(tolua_S,"ResourceManager");
+   tolua_function(tolua_S,"GetSingleton",tolua_PX2_ResourceManager_GetSingleton00);
+   tolua_constant(tolua_S,"LS_UNLOADED",ResourceManager::LS_UNLOADED);
+   tolua_constant(tolua_S,"LS_LOADQUE",ResourceManager::LS_LOADQUE);
+   tolua_constant(tolua_S,"LS_LOADING",ResourceManager::LS_LOADING);
+   tolua_constant(tolua_S,"LS_LOADED",ResourceManager::LS_LOADED);
+   tolua_constant(tolua_S,"LS_MAX_STATE",ResourceManager::LS_MAX_STATE);
+   tolua_function(tolua_S,"Clear",tolua_PX2_ResourceManager_Clear00);
+   tolua_function(tolua_S,"BlockLoad",tolua_PX2_ResourceManager_BlockLoad00);
+   tolua_function(tolua_S,"BackgroundLoad",tolua_PX2_ResourceManager_BackgroundLoad00);
+   tolua_function(tolua_S,"CheckRes",tolua_PX2_ResourceManager_CheckRes00);
+   tolua_function(tolua_S,"GetResLoadState",tolua_PX2_ResourceManager_GetResLoadState00);
+   tolua_function(tolua_S,"SetUseGarbageCollect",tolua_PX2_ResourceManager_SetUseGarbageCollect00);
+   tolua_function(tolua_S,"IsUseGarbageCollect",tolua_PX2_ResourceManager_IsUseGarbageCollect00);
+   tolua_function(tolua_S,"SetGarbageCollectTime",tolua_PX2_ResourceManager_SetGarbageCollectTime00);
+   tolua_function(tolua_S,"GetGarbageCollectTime",tolua_PX2_ResourceManager_GetGarbageCollectTime00);
+   tolua_function(tolua_S,"LoadBuffer",tolua_PX2_ResourceManager_LoadBuffer00);
+   tolua_function(tolua_S,"AddTexPack",tolua_PX2_ResourceManager_AddTexPack00);
+   tolua_function(tolua_S,"GetTexPack",tolua_PX2_ResourceManager_GetTexPack00);
+   tolua_function(tolua_S,"GetTexPackElement",tolua_PX2_ResourceManager_GetTexPackElement00);
+   tolua_function(tolua_S,"GetWriteablePath",tolua_PX2_ResourceManager_GetWriteablePath00);
+   tolua_function(tolua_S,"GetResourcePath",tolua_PX2_ResourceManager_GetResourcePath00);
+   tolua_function(tolua_S,"DDSKeepCompressed",tolua_PX2_ResourceManager_DDSKeepCompressed00);
+   tolua_function(tolua_S,"IsDDSKeepCompressed",tolua_PX2_ResourceManager_IsDDSKeepCompressed00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"LanguageManager","LanguageManager","",NULL);
+  tolua_beginmodule(tolua_S,"LanguageManager");
+   tolua_function(tolua_S,"GetSingleton",tolua_PX2_LanguageManager_GetSingleton00);
+   tolua_function(tolua_S,"Load",tolua_PX2_LanguageManager_Load00);
+   tolua_function(tolua_S,"SetLanguage",tolua_PX2_LanguageManager_SetLanguage00);
+   tolua_function(tolua_S,"GetValue",tolua_PX2_LanguageManager_GetValue00);
+   tolua_function(tolua_S,"GetValue",tolua_PX2_LanguageManager_GetValue01);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"E_MainFrame","E_MainFrame","",NULL);
   tolua_beginmodule(tolua_S,"E_MainFrame");

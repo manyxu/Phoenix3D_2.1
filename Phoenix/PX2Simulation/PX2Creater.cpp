@@ -13,12 +13,9 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 void Creater::AddObject(PX2::Object *parent, PX2::Object *obj, bool command)
 {
-	Actor *actor = DynamicCast<Actor>(obj);
 	Movable *mov = DynamicCast<Movable>(obj);
-	Animation *anim = DynamicCast<Animation>(obj);
 	Controller *ctrl = DynamicCast<Controller>(obj);
 
-	Scene *scenePar = DynamicCast<Scene>(parent);
 	Node *nodePar = DynamicCast<Node>(parent);
 	Controlledable *ctrlablePar = DynamicCast<Controlledable>(parent);
 
@@ -59,9 +56,6 @@ void Creater::AddObject(PX2::Object *parent, PX2::Object *obj, bool command)
 //----------------------------------------------------------------------------
 bool Creater::RemoveObject(PX2::Object *obj, bool command)
 {
-	Scene *scene = PX2_PROJ.GetScene();
-
-	Actor *actor = DynamicCast<Actor>(obj);
 	Movable *mov = DynamicCast<Movable>(obj);
 	Controller *ctrl = DynamicCast<Controller>(obj);
 	//EffectModule *module = DynamicCast<EffectModule>(obj);

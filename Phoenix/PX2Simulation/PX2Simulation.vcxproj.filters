@@ -19,9 +19,6 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{f4c91037-3f89-4acc-ae19-4207a680d3ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ToLua">
-      <UniqueIdentifier>{b7034736-595d-48dc-8088-5da71a982857}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Event">
       <UniqueIdentifier>{053bb2c4-2081-4c3b-9a3f-7242278f084c}</UniqueIdentifier>
     </Filter>
@@ -80,6 +77,9 @@
     <ClInclude Include="PX2Creater.hpp">
       <Filter>Edit\Creater</Filter>
     </ClInclude>
+    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Actor.cpp">
@@ -128,6 +128,9 @@
       <Filter>Edit\Creater</Filter>
     </ClCompile>
     <ClCompile Include="PX2EngineLoop_Play.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

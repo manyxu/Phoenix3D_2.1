@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2E_App.cpp
-*
-*/
+// PX2E_App.cpp
 
 #include "PX2E_App.hpp"
 #include "PX2E_MainFrame.hpp"
@@ -11,15 +7,6 @@
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
 #include "PX2ToLuaEditor.hpp"
-
-extern "C"
-{
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-}
-#include "tolua++.h"
-
 using namespace PX2Editor;
 using namespace PX2;
 

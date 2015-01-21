@@ -19,6 +19,7 @@ using namespace PX2;
 
 #if (defined(_WIN32) || defined(WIN32)) && defined(_DEBUG)
 #pragma warning (disable:4800)
+#pragma warning (disable:4505)
 #endif
 
 struct lua_State;
