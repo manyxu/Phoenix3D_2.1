@@ -11,3 +11,8 @@ inline const Sizef &EngineLoop::GetSize() const
 	return mSize;
 }
 //----------------------------------------------------------------------------
+inline EngineLoop::PlayType EngineLoop::GetPlayType() const
+{
+	return mPlayType;
+}
+//----------------------------------------------------------------------------

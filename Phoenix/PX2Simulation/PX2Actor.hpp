@@ -33,7 +33,7 @@ namespace PX2
 
 	protected:
 		NodePtr mNode;
-		NodePtr mHelperNode;
+		NodePtr mHelpNode;
 	};
 
 #include "PX2Actor.inl"

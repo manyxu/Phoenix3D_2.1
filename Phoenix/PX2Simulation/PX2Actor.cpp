@@ -21,9 +21,9 @@ Actor::Actor()
 	AttachChild(mNode);
 	mNode->SetName("Node");
 
-	mHelperNode = new0 Node();
-	AttachChild(mHelperNode);
-	mHelperNode->SetName("HelpNode");
+	mHelpNode = new0 Node();
+	AttachChild(mHelpNode);
+	mHelpNode->SetName("HelpNode");
 }
 //----------------------------------------------------------------------------
 Actor::~Actor()

@@ -2,6 +2,7 @@
 
 #include "PX2Edit.hpp"
 #include "PX2UIManager.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -17,6 +18,8 @@ Edit::~Edit()
 //----------------------------------------------------------------------------
 bool Edit::Initlize()
 {
+	PX2_GR.SetInEditor(true);
+
 	return true;
 }
 //----------------------------------------------------------------------------

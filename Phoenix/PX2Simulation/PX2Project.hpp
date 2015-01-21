@@ -4,18 +4,26 @@
 #define PX2PROJECT_HPP
 
 #include "PX2SimulationPre.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 #include "PX2Node.hpp"
 #include "PX2Scene.hpp"
 #include "PX2Size.hpp"
+#include "PX2Float4.hpp"
 
 namespace PX2
 {
 
-	class Project : public Node
+	class Project : public Node, public Singleton<Project>
 	{
 	public:
 		Project ();
 		~Project ();
+
+		// Load Save
+	public:
+		bool Save(const std::string &filename); //< only used in editor
+		bool SaveConfig(const std::string &filename); //< only used in editor	
+		bool Load(const std::string &filename);
 
 		// Config
 	public:
@@ -25,14 +33,21 @@ namespace PX2
 		float GetWidth() const;
 		float GetHeight() const;
 
+		void SetBackgroundColor(const Float4 &color);
+		const Float4 &GetBackgroundColor() const;
+
 	protected:
 		Sizef mSize;
+		Float4 mBackgroundColor;
 
 		// Scene
 	public:
-		void SetSceneFilename(const std::string &scenefilename);
-		const std::string &GetSceneFilename () const;
+		void SetScene(Scene *scene);
 		Scene *GetScene();
+		const std::string &GetSceneFilename() const;
+
+	public_internal:
+		void SetSceneFilename(const std::string &scenefilename);
 
 	protected:
 		std::string mSceneFilename;
@@ -45,19 +60,9 @@ namespace PX2
 
 	protected:
 		std::string mUIFilename;
-
-		// Language
-	public:
-		void SetLanguage0(const std::string &filename);
-		const std::string &GetLanguage0 () const;
-		void SetLanguage1(const std::string &filename);
-		const std::string &GetLanguage1() const;
-		
-	protected:
-		std::string mLanguagePath0;
-		std::string mLanguagePath1;
 	};
 
+#define PX2_PROJ Project::GetSingleton()
 #include "PX2Project.inl"
 
 }

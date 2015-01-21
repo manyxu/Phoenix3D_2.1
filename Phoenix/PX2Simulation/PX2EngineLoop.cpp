@@ -20,6 +20,8 @@ mResMan(0),
 mScriptMan(0),
 mFontMan(0),
 mADMan(0),
+mSelection(0),
+mCreater(0),
 mUIManager(0),
 mAccoutManager(0),
 
@@ -27,7 +29,9 @@ mIsInBackground(false),
 
 mAppTime(0),
 mLastAppTime(0),
-mElapsedTime(0)
+mElapsedTime(0),
+
+mPlayType(PT_NONE)
 {
 }
 //----------------------------------------------------------------------------

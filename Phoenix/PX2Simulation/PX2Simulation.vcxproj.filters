@@ -22,6 +22,21 @@
     <Filter Include="ToLua">
       <UniqueIdentifier>{b7034736-595d-48dc-8088-5da71a982857}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Event">
+      <UniqueIdentifier>{053bb2c4-2081-4c3b-9a3f-7242278f084c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Edit">
+      <UniqueIdentifier>{d74eefc4-22d7-4224-957f-80556a84bf0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Edit\Select">
+      <UniqueIdentifier>{78c669d3-94ad-4205-800d-8499d2c28738}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Edit\RedoUndo">
+      <UniqueIdentifier>{2f80a3a3-6677-442d-a81d-11e13fdf5774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Edit\Creater">
+      <UniqueIdentifier>{f4209441-bcd6-4b76-947b-9da1a939e3f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -53,6 +68,18 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="PX2Simulation.hpp" />
+    <ClInclude Include="PX2Selection.hpp">
+      <Filter>Edit\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SimulationEventType.hpp">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RedoUndo.hpp">
+      <Filter>Edit\RedoUndo</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Creater.hpp">
+      <Filter>Edit\Creater</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Actor.cpp">
@@ -88,6 +115,21 @@
     <ClCompile Include="PX2EngineLoop_Tick.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Selection.cpp">
+      <Filter>Edit\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SimulationEventType.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RedoUndo.cpp">
+      <Filter>Edit\RedoUndo</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Creater.cpp">
+      <Filter>Edit\Creater</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EngineLoop_Play.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl">
@@ -104,6 +146,9 @@
     </None>
     <None Include="PX2EngineLoop.inl">
       <Filter>Engine</Filter>
+    </None>
+    <None Include="PX2Selection.inl">
+      <Filter>Edit\Select</Filter>
     </None>
   </ItemGroup>
 </Project>

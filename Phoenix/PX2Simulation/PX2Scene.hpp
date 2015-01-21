@@ -4,6 +4,7 @@
 #define PX2SCENE_HPP
 
 #include "PX2Node.hpp"
+#include "PX2Actor.hpp"
 
 namespace PX2
 {
@@ -17,6 +18,8 @@ namespace PX2
 	public:
 		Scene();
 		~Scene();
+
+		virtual int AttachChild(Movable* child);
 
 	protected:
 		virtual void UpdateWorldData(double applicationTime);

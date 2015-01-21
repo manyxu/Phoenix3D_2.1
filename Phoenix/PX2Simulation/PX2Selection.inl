@@ -1,13 +1,13 @@
-// PX2Actor.inl
+// PX2Selection.inl
 
 //----------------------------------------------------------------------------
-inline Node *Actor::GetNode()
+inline const APoint &Selection::GetCenter() const
 {
-	return mNode;
+	return mCenter;
 }
 //----------------------------------------------------------------------------
-inline Node *Actor::GetHelpNode()
+inline float Selection::GetRadius() const
 {
-	return mHelpNode;
+	return mBoundRadius;
 }
 //----------------------------------------------------------------------------

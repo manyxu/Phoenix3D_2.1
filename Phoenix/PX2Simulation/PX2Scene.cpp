@@ -18,6 +18,11 @@ Scene::~Scene()
 {
 }
 //----------------------------------------------------------------------------
+int Scene::AttachChild(Movable* child)
+{
+	return AttachChild(child);
+}
+//----------------------------------------------------------------------------
 void Scene::UpdateWorldData(double applicationTime)
 {
 	Node::UpdateWorldData(applicationTime);

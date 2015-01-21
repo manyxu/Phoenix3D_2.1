@@ -14,6 +14,8 @@
 #include "PX2FontManager.hpp"
 #include "PX2AddDeleteManager.hpp"
 #include "PX2UIManager.hpp"
+#include "PX2Selection.hpp"
+#include "PX2Creater.hpp"
 #include "PX2AccoutManager.hpp"
 
 namespace PX2
@@ -57,6 +59,8 @@ namespace PX2
 		ResourceManager *mResMan;
 		FontManager *mFontMan;
 		AddDeleteManager *mADMan;
+		Selection *mSelection;
+		Creater *mCreater;
 		UIManager *mUIManager;
 		AccoutManager *mAccoutManager;
 
@@ -83,6 +87,21 @@ namespace PX2
 		double mAppTime;
 		double mLastAppTime;
 		double mElapsedTime;
+
+		// Play
+	public:
+		enum PlayType
+		{
+			PT_NONE,
+			PT_SIMULATE,
+			PT_PLAY,
+			PT_MAX_TYPE
+		};
+		void Play(PlayType type);
+		PlayType GetPlayType() const;
+		
+	protected:
+		PlayType mPlayType;
 	};
 
 #include "PX2EngineLoop.inl"

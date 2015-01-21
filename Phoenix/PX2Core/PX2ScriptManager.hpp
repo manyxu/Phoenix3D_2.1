@@ -15,8 +15,6 @@ namespace PX2
 		ScriptManager();
 		virtual ~ScriptManager();
 
-		virtual void Create() = 0;
-
 		virtual void Clear();
 
 		virtual bool CallString(const char *str) = 0;

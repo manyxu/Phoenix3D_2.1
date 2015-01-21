@@ -13,6 +13,7 @@
 #endif
 
 #include "PX2Assert.hpp"
+#include "PX2LuaManager.hpp"
 
 using namespace PX2;
 
@@ -106,9 +107,8 @@ bool EngineLoop::Initlize()
 
 	mEventWorld = new0 EventWorld();
 
-	//mScriptMan = new0 LuaManager();
-	//mScriptMan->Create();
-	//LuaManager *luaMan = (LuaManager*)mScriptMan;
+	mScriptMan = new0 LuaManager();
+	LuaManager *luaMan = (LuaManager*)mScriptMan;
 	//tolua_PX2_open(luaMan->GetLuaState());
 
 	mRoot = new0 GraphicsRoot();
@@ -119,6 +119,9 @@ bool EngineLoop::Initlize()
 
 	mADMan = new0 AddDeleteManager();
 	PX2_UNUSED(mADMan);
+
+	mSelection = new0 Selection();
+	PX2_UNUSED(mSelection);
 
 	mUIManager = new0 UIManager();
 	mUIManager->ComeInEventWorld();
@@ -179,6 +182,19 @@ void EngineLoop::DidEnterBackground()
 //----------------------------------------------------------------------------
 bool EngineLoop::Ternamate()
 {
+	if (mSelection)
+	{
+		mSelection->Clear();
+		delete0(mSelection);
+		Selection::Set(0);
+	}
+
+	if (mCreater)
+	{
+		delete0(mCreater);
+		Creater::Set(0);
+	}
+
 	if (mADMan)
 	{
 		mADMan->Clear();

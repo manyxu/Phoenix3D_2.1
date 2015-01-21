@@ -2,8 +2,22 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="PX2Edit.hpp" />
+    <ClInclude Include="PX2EditMap.hpp" />
+    <ClInclude Include="PX2EditMapPre.hpp" />
+    <ClInclude Include="PX2EditEventType.hpp">
+      <Filter>Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
+    <ClCompile Include="PX2EditMap.cpp" />
+    <ClCompile Include="PX2EditEventType.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Event">
+      <UniqueIdentifier>{1b237efc-cd28-4ca2-8d66-04894b860179}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
