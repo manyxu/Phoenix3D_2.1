@@ -2,6 +2,6 @@
 
 function CreateMainMenu()
 
-	local mainMenu = 
-
 end
+
+CreateMainMenu()
