@@ -1,4 +1,4 @@
-// PX2.pkg
+// PX2ToLua.pkg
 
 $#include "PX2ToLua.hpp"
 $pfile "PX2Core/PX2Core.pkg"
@@ -8,3 +8,6 @@ $pfile "PX2Input/PX2Input.pkg"
 $pfile "PX2Unity/PX2Unity.pkg"
 $pfile "PX2SoundSystem/PX2SoundSystemInc.pkg"
 $pfile "PX2UserInterface/PX2UserInterface.pkg"
+$pfile "PX2Game/PX2Game.pkg"
+// Game
+$pfile "XGame/XGame.pkg"

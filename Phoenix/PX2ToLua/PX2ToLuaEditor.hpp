@@ -19,10 +19,6 @@
 #include "PX2Terrains.hpp"
 #include "PX2Effect.hpp"
 #include "PX2Game.hpp"
-
-// the game
-#include "X_Heads.hpp"
-
 using namespace PX2;
 
 #define PX2_LUA
@@ -40,7 +36,7 @@ extern "C"
 #include "lualib.h"
 }
 #include "tolua++.h"
-extern int  tolua_PX2_open (lua_State* tolua_S);
+extern int  tolua_PX2Editor_open (lua_State* tolua_S);
 #endif
 
 #endif
