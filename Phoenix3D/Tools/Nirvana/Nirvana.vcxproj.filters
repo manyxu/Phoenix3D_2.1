@@ -25,6 +25,9 @@
     <Filter Include="StartView">
       <UniqueIdentifier>{ffa5b37c-af00-4fdd-8248-ed470d38abfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dlgs">
+      <UniqueIdentifier>{09bfbc80-67fc-465a-b149-c05218ed5447}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />

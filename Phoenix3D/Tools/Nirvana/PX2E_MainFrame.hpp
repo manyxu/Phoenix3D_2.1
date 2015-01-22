@@ -24,6 +24,12 @@ namespace PX2Editor
 		void OnTimer(wxTimerEvent& e);
 		void OnMenuItem(wxCommandEvent &e);
 
+		void OnNewProject();
+		void OnOpenProject();
+		void OnSaveProject();
+		void OnSaveProjectAs();
+		void OnCloseProject();
+
 	public:
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,
