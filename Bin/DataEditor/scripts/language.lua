@@ -8,6 +8,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("Save", "保存")
 	PX2_LM:AddItem1("SaveAs", "另存为")
 	PX2_LM:AddItem1("Close", "关闭")
+	PX2_LM:AddItem1("Exit", "退出")
 	
 	PX2_LM:AddItem1("Edit", "编辑")
 	

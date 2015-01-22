@@ -18,6 +18,8 @@ function CreateMainMenu()
 	E_MainFrame:AddMenuItem(itemFile, PX2_LM:GetValue("Save"), "OnSaveScene")
 	E_MainFrame:AddMenuItem(itemFile, PX2_LM:GetValue("SaveAs"), "OnSaveAsScene")
 	E_MainFrame:AddMenuItem(itemFile, PX2_LM:GetValue("Close"), "OnCloseScene")
+	E_MainFrame:AddSeparater(itemFile)
+	E_MainFrame:AddMenuItem(itemFile, PX2_LM:GetValue("Exit"), "OnExit")
 	
 	local itemEdit = E_MainFrame:AddMainMenuItem((PX2_LM:GetValue("Edit")))
 	
@@ -58,6 +60,9 @@ function OnSaveAsScene()
 end
 
 function OnCloseScene()
+end
+
+function OnExit()
 end
 
 CreateMainMenu()
