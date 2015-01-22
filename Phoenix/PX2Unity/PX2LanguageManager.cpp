@@ -69,6 +69,31 @@ bool LanguageManager::Add (const char *filename)
 	return false;
 }
 //----------------------------------------------------------------------------
+void LanguageManager::AddItem(const std::string &key, const std::string &langauge0,
+	const std::string &langauge1)
+{
+	LanguageTableIterator it = mLanguages.Insert(key.c_str());
+	if (it)
+	{
+		it->value.clear();
+
+		it->value.push_back(langauge0);
+		it->value.push_back(langauge1);
+	}
+}
+//----------------------------------------------------------------------------
+void LanguageManager::AddItem1(const std::string &key, const std::string &langauge0)
+{
+	LanguageTableIterator it = mLanguages.Insert(key.c_str());
+	if (it)
+	{
+		it->value.clear();
+
+		it->value.push_back(langauge0);
+		it->value.push_back(key);
+	}
+}
+//----------------------------------------------------------------------------
 void LanguageManager::SetLanguage (int index)
 {
 	mLanguageIndex = index;
@@ -80,7 +105,7 @@ bool LanguageManager::HasValue (const std::string &key) const
 	return 0!=it;
 }
 //----------------------------------------------------------------------------
-std::string LanguageManager::GetValue (const std::string &key)
+const std::string &LanguageManager::GetValue (const std::string &key)
 {
 	LanguageTableIterator it = mLanguages.Find(key.c_str());
 	if (it)
@@ -94,10 +119,10 @@ std::string LanguageManager::GetValue (const std::string &key)
 	assertion(false, "language key %s does not exist.", key.c_str());
 	PX2_LOG_ERROR("language key %s does not exist.", key.c_str());
 
-	return "";
+	return mEmptyStr;
 }
 //----------------------------------------------------------------------------
-std::string LanguageManager::GetValue (const std::string &key, int index)
+const std::string &LanguageManager::GetValue (const std::string &key, int index)
 {
 	LanguageTableIterator it = mLanguages.Find(key.c_str());
 	if (it)
@@ -111,7 +136,7 @@ std::string LanguageManager::GetValue (const std::string &key, int index)
 	assertion(false, "language key %s does not exist.", key.c_str());
 	PX2_LOG_ERROR("language key %s does not exist.", key.c_str());
 
-	return "";
+	return mEmptyStr;
 }
 //----------------------------------------------------------------------------
 LanguageManager::LanguageManager ()

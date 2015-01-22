@@ -2,10 +2,14 @@
 
 	class LanguageManager
 	{
-		static LanguageManager &GetSingleton ();
-
 		bool Load (const char *filename);
+		bool Add (const char *filename);
+		void AddItem(const std::string &key, const std::string &langauge0, 
+			const std::string &langauge1);
+		void AddItem1(const std::string &key, const std::string &langauge0);
+
 		void SetLanguage (int index);
-		std::string GetValue (std::string key);
-		std::string GetValue (std::string key, int index);
+		bool HasValue (const std::string &key) const;
+		const std::string &GetValue (const std::string &key);
+		void Clear ();
 	};

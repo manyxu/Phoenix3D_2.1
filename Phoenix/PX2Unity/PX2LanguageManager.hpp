@@ -21,10 +21,14 @@ namespace PX2
 
 		bool Load (const char *filename);
 		bool Add (const char *filename);
+		void AddItem(const std::string &key, const std::string &langauge0, 
+			const std::string &langauge1);
+		void AddItem1(const std::string &key, const std::string &langauge0);
+
 		void SetLanguage (int index);
 		bool HasValue (const std::string &key) const;
-		std::string GetValue (const std::string &key);
-		std::string GetValue (const std::string &key, int index);
+		const std::string &GetValue (const std::string &key);
+		const std::string &GetValue (const std::string &key, int index);
 		void Clear ();
 
 	protected:
@@ -33,6 +37,8 @@ namespace PX2
 		typedef LanguageTable::Element * LanguageTableIterator;
 
 		LanguageTable mLanguages;
+
+		std::string mEmptyStr;
 	};
 
 #define PX2_LM LanguageManager::GetSingleton()

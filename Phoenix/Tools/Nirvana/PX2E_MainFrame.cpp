@@ -10,6 +10,7 @@
 
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
+#include "PX2ScriptManager.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -47,7 +48,7 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 2);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
 
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(44, 61, 91));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(255, 242, 157));
 	
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(44, 61, 91));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(44, 61, 91));
@@ -90,17 +91,50 @@ void E_MainFrame::OnTimer(wxTimerEvent& e)
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnMenuItem(wxCommandEvent &e)
+{
+	int id = e.GetId();
+
+	std::map<int, std::string>::iterator it = mIDScripts.find(id);
+
+	if (it != mIDScripts.end())
+	{
+		std::string callStr = it->second;
+		callStr += "()";
+		PX2_SM.CallString(callStr);
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenu()
 {
 	mMainMenuBar = new wxMenuBar();
 	SetMenuBar(mMainMenuBar);
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::AddMainMenuItem(const std::string &title)
+wxMenu *E_MainFrame::AddMainMenuItem(const std::string &title)
 {
-	wxString wxTitle = title;
-	wxMenu* menu = new wxMenu(wxTitle);
-	mMainMenuBar->Append(menu, wxTitle);
+	wxMenu* menu = new wxMenu();
+	mMainMenuBar->Append(menu, title);
+
+	return menu;
+}
+//----------------------------------------------------------------------------
+wxMenuItem *E_MainFrame::AddMenuItem(wxMenu *menu, const std::string &title,
+	const std::string &script)
+{
+	int id = PX2EDIT_GETID;
+	wxMenuItem *item = menu->Append(id, title);
+	Connect(id, wxEVT_COMMAND_MENU_SELECTED, 
+		wxCommandEventHandler(E_MainFrame::OnMenuItem));
+
+	mIDScripts[id] = script;
+
+	return item;
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::AddSeparater(wxMenu *menu)
+{
+	menu->AppendSeparator();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainToolBar()

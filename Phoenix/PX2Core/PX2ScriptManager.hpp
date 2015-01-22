@@ -18,6 +18,7 @@ namespace PX2
 		virtual void Clear();
 
 		virtual bool CallString(const char *str) = 0;
+		virtual bool CallString(const std::string &str) = 0;
 		virtual bool CallFile(const char *filename) = 0;
 		virtual bool CallBuffer(const char *buffer, unsigned long size) = 0;
 		virtual bool CallObjectFunction(const char *objectName, const char *funName,

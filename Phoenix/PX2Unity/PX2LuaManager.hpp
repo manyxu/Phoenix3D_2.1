@@ -35,6 +35,7 @@ namespace PX2
 		lua_State *GetLuaState ();
 
 		virtual bool CallString (const char *str);
+		virtual bool CallString(const std::string &str);
 		virtual bool CallFile (const char *filename);
 		virtual bool CallBuffer (const char *buffer, unsigned long size);
 		virtual bool CallObjectFunction (const char *objectName, const char *funName,

@@ -109,6 +109,11 @@ bool LuaManager::CallString (const char *str)
 	return true;
 }
 //----------------------------------------------------------------------------
+bool LuaManager::CallString(const std::string &str)
+{
+	return CallString(str.c_str());
+}
+//----------------------------------------------------------------------------
 bool LuaManager::CallFile (const char *filename)
 {
 	bool ret = false;

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 01/21/15 18:31:03.
+** Generated automatically by tolua++-1.0.92 on 01/22/15 11:23:15.
 */
 
 #ifndef __cplusplus
@@ -155,7 +155,6 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Camera");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"Vector2f");
- tolua_usertype(tolua_S,"E_MainFrame");
  tolua_usertype(tolua_S,"TexPack");
  tolua_usertype(tolua_S,"Transform");
  tolua_usertype(tolua_S,"TextureCube");
@@ -12112,34 +12111,6 @@ static int tolua_PX2_ResourceManager_IsDDSKeepCompressed00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: GetSingleton of class  LanguageManager */
-#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_GetSingleton00
-static int tolua_PX2_LanguageManager_GetSingleton00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"LanguageManager",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   LanguageManager& tolua_ret = (LanguageManager&)  LanguageManager::GetSingleton();
-    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"LanguageManager");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'GetSingleton'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: Load of class  LanguageManager */
 #ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_Load00
 static int tolua_PX2_LanguageManager_Load00(lua_State* tolua_S)
@@ -12169,6 +12140,117 @@ static int tolua_PX2_LanguageManager_Load00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'Load'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: Add of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_Add00
+static int tolua_PX2_LanguageManager_Add00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LanguageManager",0,&tolua_err) ||
+     !tolua_isstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LanguageManager* self = (LanguageManager*)  tolua_tousertype(tolua_S,1,0);
+  const char* filename = ((const char*)  tolua_tostring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Add'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->Add(filename);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'Add'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddItem of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_AddItem00
+static int tolua_PX2_LanguageManager_AddItem00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LanguageManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LanguageManager* self = (LanguageManager*)  tolua_tousertype(tolua_S,1,0);
+  const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+  const std::string langauge0 = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
+  const std::string langauge1 = ((const std::string)  tolua_tocppstring(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddItem'", NULL);
+#endif
+  {
+   self->AddItem(key,langauge0,langauge1);
+   tolua_pushcppstring(tolua_S,(const char*)key);
+   tolua_pushcppstring(tolua_S,(const char*)langauge0);
+   tolua_pushcppstring(tolua_S,(const char*)langauge1);
+  }
+ }
+ return 3;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddItem'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddItem1 of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_AddItem100
+static int tolua_PX2_LanguageManager_AddItem100(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"LanguageManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  LanguageManager* self = (LanguageManager*)  tolua_tousertype(tolua_S,1,0);
+  const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+  const std::string langauge0 = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddItem1'", NULL);
+#endif
+  {
+   self->AddItem1(key,langauge0);
+   tolua_pushcppstring(tolua_S,(const char*)key);
+   tolua_pushcppstring(tolua_S,(const char*)langauge0);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddItem1'.",&tolua_err);
  return 0;
 #endif
 }
@@ -12207,6 +12289,41 @@ static int tolua_PX2_LanguageManager_SetLanguage00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: HasValue of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_HasValue00
+static int tolua_PX2_LanguageManager_HasValue00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const LanguageManager",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const LanguageManager* self = (const LanguageManager*)  tolua_tousertype(tolua_S,1,0);
+  const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'HasValue'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->HasValue(key);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+   tolua_pushcppstring(tolua_S,(const char*)key);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'HasValue'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: GetValue of class  LanguageManager */
 #ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_GetValue00
 static int tolua_PX2_LanguageManager_GetValue00(lua_State* tolua_S)
@@ -12223,16 +12340,17 @@ static int tolua_PX2_LanguageManager_GetValue00(lua_State* tolua_S)
 #endif
  {
   LanguageManager* self = (LanguageManager*)  tolua_tousertype(tolua_S,1,0);
-  std::string key = ((std::string)  tolua_tocppstring(tolua_S,2,0));
+  const std::string key = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetValue'", NULL);
 #endif
   {
-   std::string tolua_ret = (std::string)  self->GetValue(key);
+   const std::string tolua_ret = (const std::string)  self->GetValue(key);
    tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+   tolua_pushcppstring(tolua_S,(const char*)key);
   }
  }
- return 1;
+ return 2;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'GetValue'.",&tolua_err);
@@ -12241,34 +12359,34 @@ static int tolua_PX2_LanguageManager_GetValue00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: GetValue of class  LanguageManager */
-#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_GetValue01
-static int tolua_PX2_LanguageManager_GetValue01(lua_State* tolua_S)
+/* method: Clear of class  LanguageManager */
+#ifndef TOLUA_DISABLE_tolua_PX2_LanguageManager_Clear00
+static int tolua_PX2_LanguageManager_Clear00(lua_State* tolua_S)
 {
+#ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"LanguageManager",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
+#endif
  {
   LanguageManager* self = (LanguageManager*)  tolua_tousertype(tolua_S,1,0);
-  std::string key = ((std::string)  tolua_tocppstring(tolua_S,2,0));
-  int index = ((int)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetValue'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Clear'", NULL);
 #endif
   {
-   std::string tolua_ret = (std::string)  self->GetValue(key,index);
-   tolua_pushcppstring(tolua_S,(const char*)tolua_ret);
+   self->Clear();
   }
  }
- return 1;
-tolua_lerror:
- return tolua_PX2_LanguageManager_GetValue00(tolua_S);
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'Clear'.",&tolua_err);
+ return 0;
+#endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -12810,14 +12928,14 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"LanguageManager","LanguageManager","",NULL);
   tolua_beginmodule(tolua_S,"LanguageManager");
-   tolua_function(tolua_S,"GetSingleton",tolua_PX2_LanguageManager_GetSingleton00);
    tolua_function(tolua_S,"Load",tolua_PX2_LanguageManager_Load00);
+   tolua_function(tolua_S,"Add",tolua_PX2_LanguageManager_Add00);
+   tolua_function(tolua_S,"AddItem",tolua_PX2_LanguageManager_AddItem00);
+   tolua_function(tolua_S,"AddItem1",tolua_PX2_LanguageManager_AddItem100);
    tolua_function(tolua_S,"SetLanguage",tolua_PX2_LanguageManager_SetLanguage00);
+   tolua_function(tolua_S,"HasValue",tolua_PX2_LanguageManager_HasValue00);
    tolua_function(tolua_S,"GetValue",tolua_PX2_LanguageManager_GetValue00);
-   tolua_function(tolua_S,"GetValue",tolua_PX2_LanguageManager_GetValue01);
-  tolua_endmodule(tolua_S);
-  tolua_cclass(tolua_S,"E_MainFrame","E_MainFrame","",NULL);
-  tolua_beginmodule(tolua_S,"E_MainFrame");
+   tolua_function(tolua_S,"Clear",tolua_PX2_LanguageManager_Clear00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

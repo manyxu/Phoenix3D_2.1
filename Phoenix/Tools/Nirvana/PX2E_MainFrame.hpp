@@ -22,9 +22,13 @@ namespace PX2Editor
 		RenderView *GetRenderView();
 
 		void OnTimer(wxTimerEvent& e);
+		void OnMenuItem(wxCommandEvent &e);
 
 	public:
-		void AddMainMenuItem(const std::string &title);
+		wxMenu *AddMainMenuItem(const std::string &title);
+		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,
+			const std::string &script);
+		void AddSeparater(wxMenu *menu);
 
 	protected:
 		DECLARE_EVENT_TABLE()
@@ -38,6 +42,7 @@ namespace PX2Editor
 		wxMenuBar *mMainMenuBar;
 		wxAuiManager *mAuiManager;
 		wxTimer mTimer;
+		std::map<int, std::string> mIDScripts;
 
 		RenderView *mRenderView;
 	};
