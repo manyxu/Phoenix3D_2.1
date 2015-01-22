@@ -40,6 +40,7 @@
     <ClInclude Include="PX2EventSpace.hpp" />
     <ClInclude Include="PX2EventSpaceRegister.hpp" />
     <ClInclude Include="PX2EventSpaceRegisterMCR.hpp" />
+    <ClInclude Include="PX2EventSystem.hpp" />
     <ClInclude Include="PX2Eventt.hpp" />
     <ClInclude Include="PX2EventWorld.hpp" />
     <ClInclude Include="PX2Exception.hpp" />

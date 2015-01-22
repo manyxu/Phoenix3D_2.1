@@ -273,6 +273,9 @@
     <ClInclude Include="RapidXML\rapidxml_utils.hpp">
       <Filter>XML\RapidXML</Filter>
     </ClInclude>
+    <ClInclude Include="PX2EventSystem.hpp">
+      <Filter>EventSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Assert.cpp">
