@@ -396,7 +396,7 @@ void E_MainFrame::_CreateTimeLine()
 {
 	_CreateView("TimeLine", "TimeLine", new TimeLineView(this),
 		wxBitmap("DataEditor/icons/res.png", wxBITMAP_TYPE_PNG),
-		wxAuiPaneInfo().Bottom().Caption("TimeLine"));
+		wxAuiPaneInfo().DefaultPane().Caption("TimeLine").Float());
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateView(const std::string &name, const std::string &caption, 
@@ -414,7 +414,7 @@ void E_MainFrame::_CreateView(const std::string &name, const std::string &captio
 
 	ctrl->Thaw();
 
-	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(name).Right().Caption(caption));
+	mAuiManager->AddPane(ctrl, paneInfo);
 
 	ctrl->Refresh();
 }
