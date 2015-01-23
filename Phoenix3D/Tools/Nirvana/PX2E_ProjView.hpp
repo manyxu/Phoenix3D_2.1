@@ -4,6 +4,7 @@
 #define PX2E_PROJVIEW_HPP
 
 #include "PX2EditorPre.hpp"
+#include "PX2E_ProjTree.hpp"
 
 namespace PX2Editor
 {
@@ -16,12 +17,15 @@ namespace PX2Editor
 		ProjView(wxWindow *parent);
 		virtual ~ProjView();
 
+		ProjTree *GetProjTree();
+
 	protected:
 		DECLARE_EVENT_TABLE()
 
 		ProjView();
 
 		wxToolBar *mProjTreeBar;
+		ProjTree *mProjTree;
 	};
 
 }

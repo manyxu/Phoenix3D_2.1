@@ -74,8 +74,9 @@ bool E_App::OnInit()
 	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", mMainFrame);
 
 	luaMan->CallFile("DataEditor/scripts/start.lua");
-
 	ResTree::GetSingleton().UpdateOnPath("Data/");
+
+	mMainFrame->AddEventHandlers();
 
 	mMainFrame->Show(true);
 

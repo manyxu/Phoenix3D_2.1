@@ -29,7 +29,9 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	int width, int height) :
 	wxFrame((wxFrame*)0, -1, title, wxPoint(xPos, yPos), wxSize(width, height)),
 	mIsInitlized(false),
-	mAuiManager(0)
+	mAuiManager(0),
+	mRenderView(0),
+	mProjView(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -79,6 +81,11 @@ bool E_MainFrame::Initlize()
 	mIsInitlized = true;
 
 	return true;
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::AddEventHandlers()
+{
+	PX2_EW.ComeIn(mProjView->GetProjTree());
 }
 //----------------------------------------------------------------------------
 RenderView *E_MainFrame::GetRenderView()
@@ -332,66 +339,70 @@ void E_MainFrame::_CreateViews()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateProjView()
 {
-	wxBitmap icon("DataEditor/icons/proj.png", wxBITMAP_TYPE_PNG);
+	mProjView = new ProjView(this);
 
-	_CreateView(new ProjView(this), "ProjView", "ProjView", icon,
-		wxAuiPaneInfo().Left()
-		.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
-		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100));
+	_CreateView(mProjView, "ProjView", "ProjView", "ProjView",
+		wxAuiPaneInfo().Left());
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainView()
 {
 	mRenderView = new RenderView(this);
-	wxBitmap icon("DataEditor/icons/proj.png", wxBITMAP_TYPE_PNG);
-	_CreateView(mRenderView, "Center", "Center", icon,
+
+	_CreateView(mRenderView, "Center", "Center", "Center",
 		wxAuiPaneInfo().CenterPane(), true);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateInsp()
 {
-	PX2wxAuiNotebook* ctrl = new PX2wxAuiNotebook(this, false);
-	ctrl->SetArtProvider(new PX2wxAuiTabArt(false));
-	long styleFlag = 0;
-	styleFlag ^= wxAUI_NB_TAB_MOVE;
-	styleFlag ^= wxAUI_NB_BOTTOM;
-	ctrl->SetWindowStyleFlag(styleFlag);
-	ctrl->Freeze();
+	WindowObj objRes;
+	mResView = new ResView(this);
+	objRes.TheWindow = mResView;
+	objRes.Caption = "ResView";
+	objRes.Name = "ResView";
 
-	wxBitmap page_bmp = wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_OTHER, wxSize(16, 16));
+	WindowObj objInsp;
+	mInspView = new InspView(this);
+	objInsp.TheWindow = mInspView;
+	objInsp.Caption = "InspView";
+	objInsp.Name = "InspView";
 
-	ResView *resView = new ResView(this);
-	ctrl->AddPage(resView, wxT("ResView"), false, wxBitmap("DataEditor/icons/res.png", wxBITMAP_TYPE_PNG));
+	std::vector<WindowObj> objs;
+	objs.push_back(objRes);
+	objs.push_back(objInsp);
 
-	InspWindow *inspWin = new InspWindow(this);
-	ctrl->AddPage(inspWin, wxT("InspView"), false, page_bmp);
-
-	ctrl->Thaw();
-
-	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(wxT("insp"))
-		.Right().Caption("ResView")
-		.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
-		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100));
-
-	ctrl->Refresh();
+	_CreateView(objs, "Insp", wxAuiPaneInfo().Right());
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine()
 {
-	_CreateView(new TimeLineView(this), "TimeLine", "TimeLine",
-		wxBitmap("DataEditor/icons/res.png", wxBITMAP_TYPE_PNG),
-		wxAuiPaneInfo().DefaultPane().Caption("TimeLine")
-		.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
-		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100));
+	_CreateView(new TimeLineView(this), "TimeLine", "TimeLine", "TimeLine",
+		wxAuiPaneInfo().DefaultPane());
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateView(wxWindow *window0, 
-	const std::string &name, const std::string &caption,
-	const wxBitmap &bitMap, wxAuiPaneInfo &paneInfo, bool isTopStyle)
+void E_MainFrame::_CreateView(wxWindow *window0, const std::string &name0,
+	const std::string &caption0, const std::string &caption,
+	wxAuiPaneInfo &paneInfo, bool isTopStyle)
 {
-	PX2wxAuiNotebook* ctrl = new PX2wxAuiNotebook(this, isTopStyle);
+	WindowObj obj;
+	obj.TheWindow = window0;
+	obj.Name = name0;
+	obj.Caption = caption0;
+
+	std::vector<WindowObj> winObjs;
+	winObjs.push_back(obj);
+
+	_CreateView(winObjs, caption, paneInfo, isTopStyle);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateView(std::vector<WindowObj> &objs, 
+	const std::string &caption,
+	wxAuiPaneInfo &paneInfo,
+	bool isTopStyle)
+{
+	PX2wxAuiNotebook* noteBook = new PX2wxAuiNotebook(this, isTopStyle);
 	PX2wxAuiTabArt *tabArt = new PX2wxAuiTabArt(isTopStyle);
-	ctrl->SetArtProvider(tabArt);
+	noteBook->SetArtProvider(tabArt);
 	long styleFlag = 0;
 	styleFlag ^= wxAUI_NB_TAB_MOVE;
 	if (isTopStyle)
@@ -404,18 +415,32 @@ void E_MainFrame::_CreateView(wxWindow *window0,
 		styleFlag ^= wxAUI_NB_BOTTOM;
 	}
 
-	ctrl->SetWindowStyleFlag(styleFlag);
-	ctrl->SetTabCtrlHeight(24);
-	ctrl->Freeze();
+	noteBook->SetWindowStyleFlag(styleFlag);
+	noteBook->SetTabCtrlHeight(24);
+	noteBook->Freeze();
 
-	ctrl->AddPage(window0, caption, false, bitMap);
+	wxBitmap bitMap = wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_OTHER, wxSize(16, 16));
+	for (int i = 0; i < (int)objs.size(); i++)
+	{
+		WindowObj &obj = objs[i];
 
-	ctrl->UpdateTabsHeight();
-	ctrl->Thaw();
+		noteBook->AddPage(obj.TheWindow, obj.Caption, false, bitMap);
 
-	mAuiManager->AddPane(ctrl, paneInfo);
+		WindowObj winObj;
+		winObj.Name = obj.Name;
+		winObj.TheWindow = obj.TheWindow;
+		winObj.NoteBook = noteBook;
+		mWindowObjs[obj.Name] = winObj;
+	}
 
-	ctrl->Refresh();
+	noteBook->UpdateTabsHeight();
+	noteBook->Thaw();
+
+	paneInfo.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
+		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100).Caption(caption);
+	mAuiManager->AddPane(noteBook, paneInfo);
+
+	noteBook->Refresh();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateStatusBar()

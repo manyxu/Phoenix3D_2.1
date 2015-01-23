@@ -13,7 +13,8 @@ ProjView::ProjView()
 }
 //----------------------------------------------------------------------------
 ProjView::ProjView(wxWindow *parent) :
-wxWindow(parent, wxID_ANY)
+wxWindow(parent, wxID_ANY),
+mProjTree(0)
 {
 	SetBackgroundColour(wxColour(207, 214, 229));
 
@@ -40,6 +41,7 @@ wxWindow(parent, wxID_ANY)
 		wxTE_CAPITALIZE | wxTE_CENTER | wxTE_PROCESS_ENTER | wxNO_BORDER);
 	searchCtrl->ShowSearchButton(false);
 	searchCtrl->ShowCancelButton(false);
+	//searchCtrl->Enable(false);
 	bSizer56->Add(searchCtrl, 0, wxEXPAND, 5);
 
 	bSizer54->Add(bSizer56, 0, wxEXPAND, 5);
@@ -47,8 +49,8 @@ wxWindow(parent, wxID_ANY)
 	wxBoxSizer* bSizer57;
 	bSizer57 = new wxBoxSizer(wxVERTICAL);
 
-	ProjTree *projTree = new ProjTree(this);
-	bSizer57->Add(projTree, 1, wxEXPAND|wxTOP, 2);
+	mProjTree = new ProjTree(this);
+	bSizer57->Add(mProjTree, 1, wxEXPAND | wxTOP, 2);
 
 	bSizer54->Add(bSizer57, 1, wxEXPAND, 5);
 
@@ -58,5 +60,10 @@ wxWindow(parent, wxID_ANY)
 //----------------------------------------------------------------------------
 ProjView::~ProjView()
 {
+}
+//----------------------------------------------------------------------------
+ProjTree *ProjView::GetProjTree()
+{
+	return mProjTree;
 }
 //----------------------------------------------------------------------------

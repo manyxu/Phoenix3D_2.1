@@ -196,6 +196,8 @@ void EngineLoop::DidEnterBackground()
 //----------------------------------------------------------------------------
 bool EngineLoop::Ternamate()
 {
+	PX2_EW.Shutdown(true);
+	
 	if (mSelection)
 	{
 		mSelection->Clear();

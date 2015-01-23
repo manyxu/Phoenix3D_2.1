@@ -1,0 +1,7 @@
+// PX2Project.pkg
+
+	class Project
+	{
+		Project ();
+		~Project ();
+	};

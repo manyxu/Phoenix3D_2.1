@@ -1,7 +1,9 @@
 // PX2E_ProjTree.cpp
 
 #include "PX2E_ProjTree.hpp"
+#include "PX2Project.hpp"
 #include "PX2Edit.hpp"
+#include "PX2EditEventType.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -13,7 +15,9 @@ wxTreeCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 wxTR_DEFAULT_STYLE | wxTR_FULL_ROW_HIGHLIGHT | wxTR_NO_LINES | wxTR_TWIST_BUTTONS| wxNO_BORDER),
 mTreeLevel(OTL_GENERAL),
 mImageList(0),
-mItemProj(0)
+mItemProj(0),
+mItemScene(0),
+mItemUI(0)
 {
 	mImageList = new wxImageList(16, 16);
 
@@ -27,13 +31,32 @@ mItemProj(0)
 	Icons["scene"] = imageScene;
 	Icons["ui"] = imageUI;
 	Icons["logic"] = imageLogic;
+}
+//----------------------------------------------------------------------------
+ProjTree::~ProjTree()
+{
+	UnselectAll();
+
+	_ClearProject();
+
+	if (mImageList)
+	{
+		delete mImageList;
+		mImageList = 0;
+	}
+}
+//----------------------------------------------------------------------------
+void ProjTree::_RefreshProject()
+{
+	Project *proj = Project::GetSingletonPtr();
 
 	wxTreeItemId projectID = AddRoot("Project", 0);
-	mItemProj = new ProjTreeItem(this, projectID, ProjTreeItem::IT_CATALOG, 0,
-		"Project");
+	mItemProj = new ProjTreeItem(this, projectID, ProjTreeItem::IT_CATALOG, 
+		Icons["proj"], "Project");
+	mItemProj->SetObject(proj);
 
 	mItemScene = new ProjTreeItem(this, mItemProj,
-		ProjTreeItem::IT_CATALOG, Icons["proj"], 0, mTreeLevel, "Scene");
+		ProjTreeItem::IT_CATALOG, Icons["scene"], 0, mTreeLevel, "Scene");
 	mItemProj->mChildItems.push_back(mItemScene);
 
 	mItemUI = new ProjTreeItem(this, mItemProj,
@@ -45,21 +68,32 @@ mItemProj(0)
 	mItemProj->mChildItems.push_back(mItemLogic);
 }
 //----------------------------------------------------------------------------
-ProjTree::~ProjTree()
+void ProjTree::_ClearProject()
 {
-	UnselectAll();
-
 	if (mItemProj)
 	{
 		mItemProj->SetObject(0);
 		delete mItemProj;
 		mItemProj = 0;
 	}
-
-	if (mImageList)
+}
+//----------------------------------------------------------------------------
+void ProjTree::DoExecute(Event *event)
+{
+	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject))
 	{
-		delete mImageList;
-		mImageList = 0;
+		_RefreshProject();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedProject))
+	{
+		_RefreshProject();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::SavedProject))
+	{
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::ClosedProject))
+	{
+		_ClearProject();
 	}
 }
 //----------------------------------------------------------------------------

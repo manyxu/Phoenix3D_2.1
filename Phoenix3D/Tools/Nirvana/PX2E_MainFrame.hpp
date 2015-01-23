@@ -9,6 +9,10 @@ namespace PX2Editor
 {
 
 	class RenderView;
+	class ProjView;
+	class ResView;
+	class InspView;
+	class PX2wxAuiNotebook;
 
 	class E_MainFrame : public wxFrame
 	{
@@ -18,6 +22,7 @@ namespace PX2Editor
 		virtual ~E_MainFrame();
 
 		bool Initlize();
+		void AddEventHandlers();
 
 		RenderView *GetRenderView();
 
@@ -53,18 +58,45 @@ namespace PX2Editor
 		void _CreateInsp();
 		void _CreateTimeLine();
 		void _CreateStatusBar();
-		void _CreateView(wxWindow *window0, 
-			const std::string &name, const std::string &caption,
-			const wxBitmap &bitMap, wxAuiPaneInfo &paneInfo,
+
+		struct WindowObj
+		{
+			WindowObj()
+			{
+				TheWindow = 0; 
+				NoteBook = 0;
+			}
+			~WindowObj() {}
+
+			std::string Name;
+			std::string Caption;
+			wxWindow *TheWindow;
+
+			PX2wxAuiNotebook *NoteBook;
+		};
+
+		void _CreateView(wxWindow *window0, const std::string &name0, const std::string &caption0,
+			const std::string &caption,
+			wxAuiPaneInfo &paneInfo,
 			bool isTopStyle=false);
 
+		void _CreateView(std::vector<WindowObj> &objs, const std::string &caption,
+			wxAuiPaneInfo &paneInfo,
+			bool isTopStyle = false);
+
 		bool mIsInitlized;
+		
 		wxMenuBar *mMainMenuBar;
 		wxAuiManager *mAuiManager;
+		std::map<std::string, WindowObj> mWindowObjs;
+
 		wxTimer mTimer;
 		std::map<int, std::string> mIDScripts;
 
 		RenderView *mRenderView;
+		ProjView *mProjView;
+		ResView *mResView;
+		InspView *mInspView;
 	};
 
 }

@@ -7,19 +7,19 @@
 using namespace PX2Editor;
 using namespace PX2;
 
-BEGIN_EVENT_TABLE(InspWindow, wxWindow)
-EVT_SIZE(InspWindow::OnSize)
+BEGIN_EVENT_TABLE(InspView, wxWindow)
+EVT_SIZE(InspView::OnSize)
 END_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
-InspWindow::InspWindow(wxWindow *parent) :
+InspView::InspView(wxWindow *parent) :
 wxWindow(parent, wxID_ANY),
 mCurWindow(0)
 {
 	SetBackgroundColour(wxColour(255, 255, 255));
 }
 //----------------------------------------------------------------------------
-InspWindow::~InspWindow()
+InspView::~InspView()
 {
 	if (mCurWindow)
 	{
@@ -28,7 +28,7 @@ InspWindow::~InspWindow()
 	}
 }
 //----------------------------------------------------------------------------
-void InspWindow::OnSize(wxSizeEvent& e)
+void InspView::OnSize(wxSizeEvent& e)
 {
 	PX2_UNUSED(e);
 
@@ -40,7 +40,7 @@ void InspWindow::OnSize(wxSizeEvent& e)
 	}
 }
 //----------------------------------------------------------------------------
-void InspWindow::DoExecute(PX2::Event *ent)
+void InspView::DoExecute(PX2::Event *ent)
 {
 	if (SimuES_E::IsEqual(ent, SimuES_E::AddSelect))
 	{
@@ -53,7 +53,7 @@ void InspWindow::DoExecute(PX2::Event *ent)
 	}
 }
 //----------------------------------------------------------------------------
-void InspWindow::_SetObject(PX2::Object *obj)
+void InspView::_SetObject(PX2::Object *obj)
 {
 	if (mObject == obj && obj)
 		return;
@@ -66,7 +66,7 @@ void InspWindow::_SetObject(PX2::Object *obj)
 		_ChangeToWindow("");
 }
 //----------------------------------------------------------------------------
-void InspWindow::_ChangeToWindow(std::string str, int userData)
+void InspView::_ChangeToWindow(std::string str, int userData)
 {
 	PX2_UNUSED(userData);
 

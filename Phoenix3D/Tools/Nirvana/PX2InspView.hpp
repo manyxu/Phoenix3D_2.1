@@ -10,11 +10,11 @@
 namespace PX2Editor
 {
 
-	class InspWindow : public wxWindow, public PX2::EventHandler
+	class InspView : public wxWindow, public PX2::EventHandler
 	{
 	public:
-		InspWindow(wxWindow *parent);
-		~InspWindow();
+		InspView(wxWindow *parent);
+		~InspView();
 
 		void OnSize(wxSizeEvent& e);
 

@@ -20,7 +20,7 @@
 #include "PX2EngineLoop.hpp"
 
 // Project
-#include "PX2Projector.hpp"
+#include "PX2Project.hpp"
 
 // Scene
 #include "PX2Scene.hpp"
