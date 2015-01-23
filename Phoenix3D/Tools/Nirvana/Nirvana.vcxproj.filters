@@ -13,9 +13,6 @@
     <Filter Include="wxExtent">
       <UniqueIdentifier>{0d57487b-353f-4976-ad05-92b31d75ab1c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PreView">
-      <UniqueIdentifier>{7156c218-5a00-4b7d-b5d5-00e038488201}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ResView\TreeShow">
       <UniqueIdentifier>{852ea878-fb5a-4b4b-a2cc-3e474a20efdd}</UniqueIdentifier>
     </Filter>
@@ -40,7 +37,7 @@
     <Filter Include="wxExtent\Aui">
       <UniqueIdentifier>{dcb4747c-5117-46da-b3ba-bdcc31322ca8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Curve">
+    <Filter Include="TimeLine">
       <UniqueIdentifier>{abec324d-387a-4b67-ad10-77aa5e0db90d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -60,9 +57,6 @@
     </ClInclude>
     <ClInclude Include="PX2wxDockArt.hpp">
       <Filter>wxExtent</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2E_PreView.hpp">
-      <Filter>PreView</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_ProjTree.hpp">
       <Filter>ProjView</Filter>
@@ -134,7 +128,10 @@
       <Filter>wxExtent\Aui</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_TimeLineView.hpp">
-      <Filter>Curve</Filter>
+      <Filter>TimeLine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_TimeLineRender.hpp">
+      <Filter>TimeLine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +152,6 @@
     </ClCompile>
     <ClCompile Include="PX2wxDockArt.cpp">
       <Filter>wxExtent</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2E_PreView.cpp">
-      <Filter>PreView</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_ProjTree.cpp">
       <Filter>ProjView</Filter>
@@ -226,7 +220,10 @@
       <Filter>wxExtent\Aui</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_TimeLineView.cpp">
-      <Filter>Curve</Filter>
+      <Filter>TimeLine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_TimeLineRender.cpp">
+      <Filter>TimeLine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

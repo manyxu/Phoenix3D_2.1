@@ -1,6 +1,7 @@
 // PX2E_PreView.cpp
 
 #include "PX2E_TimeLineView.hpp"
+#include "PX2E_TimeLineRender.hpp"
 using namespace PX2Editor;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::TimeLineView, wxWindow)
@@ -46,8 +47,8 @@ wxWindow(parent, -1)
 	wxBoxSizer* bSizer57;
 	bSizer57 = new wxBoxSizer(wxVERTICAL);
 
-	//ProjTree *projTree = new ProjTree(this);
-	//bSizer57->Add(projTree, 1, wxEXPAND | wxTOP, 2);
+	TimeLineRender *timeLineRender = new TimeLineRender(this);
+	bSizer57->Add(timeLineRender, 1, wxEXPAND | wxTOP, 2);
 
 	bSizer54->Add(bSizer57, 1, wxEXPAND, 5);
 

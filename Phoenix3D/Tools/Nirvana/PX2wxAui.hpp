@@ -11,14 +11,81 @@ namespace PX2Editor
 	class PX2wxAuiNotebook : public wxAuiNotebook
 	{
 	public:
-		PX2wxAuiNotebook(wxWindow* parent);
+		PX2wxAuiNotebook(wxWindow* parent, bool isTop);
 		~PX2wxAuiNotebook();
 
 		void DragFun_Begin(wxAuiNotebookEvent &ent);
 		void DragFun_End(wxAuiNotebookEvent &ent);
 		void DragFun_Motion(wxAuiNotebookEvent &ent);
 
+		void UpdateTabsHeight();
+
 		DECLARE_EVENT_TABLE()
+
+	protected:
+		bool mIsTop;
+	};
+
+	class PX2wxAuiToolBarArt : public wxAuiDefaultToolBarArt
+	{
+	public:
+		PX2wxAuiToolBarArt();
+		~PX2wxAuiToolBarArt();
+
+		virtual void DrawBackground(
+			wxDC& dc,
+			wxWindow* wnd,
+			const wxRect& rect);
+
+		virtual void DrawPlainBackground(wxDC& dc,
+			wxWindow* wnd,
+			const wxRect& rect);
+
+	protected:
+		wxColour mBackColor;
+	};
+
+	class PX2wxAuiTabArt : public wxAuiSimpleTabArt
+	{
+	public:
+		PX2wxAuiTabArt(bool isTop);
+		virtual ~PX2wxAuiTabArt();
+
+		wxAuiTabArt* Clone();
+
+		void SetSizingInfo(const wxSize& tabCtrlSize,
+			size_t tabCount);
+
+		virtual void DrawBorder(
+			wxDC& dc,
+			wxWindow* wnd,
+			const wxRect& rect);
+
+		virtual void DrawBackground(
+			wxDC& dc,
+			wxWindow* wnd,
+			const wxRect& rect);
+
+		virtual void DrawTab(wxDC& dc,
+			wxWindow* wnd,
+			const wxAuiNotebookPage& pane,
+			const wxRect& inRect,
+			int closeButtonState,
+			wxRect* outTabRect,
+			wxRect* outButtonRect,
+			int* xExtent);
+
+		virtual void DrawButton(
+			wxDC& dc,
+			wxWindow* wnd,
+			const wxRect& inRect,
+			int bitmapId,
+			int buttonState,
+			int orientation,
+			wxRect* outRect);
+
+	protected:
+		bool mIsTop;
 	};
 
 }

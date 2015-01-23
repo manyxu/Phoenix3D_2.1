@@ -48,11 +48,15 @@ namespace PX2Editor
 		void _CreateMenu();
 		void _CreateMainToolBar();
 		void _CreateViews();
+		void _CreateProjView();
+		void _CreateMainView();
 		void _CreateInsp();
 		void _CreateTimeLine();
 		void _CreateStatusBar();
-		void _CreateView(const std::string &name, const std::string &caption,
-			wxWindow *window0, wxBitmap &bitMap, wxAuiPaneInfo &paneInfo);
+		void _CreateView(wxWindow *window0, 
+			const std::string &name, const std::string &caption,
+			const wxBitmap &bitMap, wxAuiPaneInfo &paneInfo,
+			bool isTopStyle=false);
 
 		bool mIsInitlized;
 		wxMenuBar *mMainMenuBar;

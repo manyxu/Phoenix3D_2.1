@@ -4,7 +4,6 @@
 #include "PX2E_RenderView.hpp"
 #include "PX2E_ResView.hpp"
 #include "PX2E_ProjView.hpp"
-#include "PX2E_PreView.hpp"
 #include "PX2E_StartView.hpp"
 #include "PX2E_TimeLineView.hpp"
 #include "PX2wxDockArt.hpp"
@@ -66,7 +65,7 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(216, 102, 36));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(216, 102, 36));
 
-	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
+	//mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
 	mTimer.SetOwner(this, sID_ENGINELOOPTIMER);
 	mTimer.Start(25);
@@ -325,52 +324,35 @@ void E_MainFrame::_CreateMainToolBar()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()
 {
-	ProjView *projView = new ProjView(this);
-	mAuiManager->AddPane(projView, wxAuiPaneInfo().Name(wxT("ProjView"))
-		.Caption("Project").DefaultPane().Left().Icon(wxBitmap("DataEditor/icons/proj.png", wxBITMAP_TYPE_PNG))
-		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
-		.FloatingSize(220, 150).MinSize(100, 100));
-
-	//PreView *preView = new PreView(this);
-	//mAuiManager->AddPane(preView, wxAuiPaneInfo().Name(wxT("PreView"))
-	//	.Caption("PreView").DefaultPane().Right().Icon(wxBitmap("DataEditor/icons/preview.png", wxBITMAP_TYPE_PNG))
-	//	.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
-	//	.FloatingSize(220, 150).MinSize(100, 100));
-
-	wxSize client_size = GetClientSize();
-	wxAuiNotebook* ctrl = new wxAuiNotebook(this);
-	ctrl->SetTabCtrlHeight(24);
-	ctrl->SetArtProvider(new PX2wxAuiTabArt);
-	long styleFlag = ctrl->GetWindowStyleFlag();
-	styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
-	styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
-	styleFlag ^= wxAUI_NB_CLOSE_ON_ACTIVE_TAB;
-	ctrl->SetWindowStyleFlag(styleFlag);
-	ctrl->Freeze();
-
-	wxBitmap page_bmp = wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_OTHER, wxSize(16, 16));
-	StartView *centerView = new StartView(this);
-	ctrl->AddPage(centerView, wxT("Start"), false, page_bmp);
-	mRenderView = new RenderView(this);
-	ctrl->AddPage(mRenderView, wxT("Stage"), false, page_bmp);
-
-	ctrl->Show(true);
-	ctrl->Thaw();
-
-	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(wxT("Center")).
-		CenterPane());
-
-	ctrl->Refresh();
-
+	_CreateProjView();
+	_CreateMainView();
 	_CreateInsp();
 	_CreateTimeLine();
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::_CreateProjView()
+{
+	wxBitmap icon("DataEditor/icons/proj.png", wxBITMAP_TYPE_PNG);
+
+	_CreateView(new ProjView(this), "ProjView", "ProjView", icon,
+		wxAuiPaneInfo().Left()
+		.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
+		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100));
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateMainView()
+{
+	mRenderView = new RenderView(this);
+	wxBitmap icon("DataEditor/icons/proj.png", wxBITMAP_TYPE_PNG);
+	_CreateView(mRenderView, "Center", "Center", icon,
+		wxAuiPaneInfo().CenterPane(), true);
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateInsp()
 {
-	PX2wxAuiNotebook* ctrl = new PX2wxAuiNotebook(this);
-	ctrl->SetArtProvider(new PX2wxAuiTabArt);
-	long styleFlag = ctrl->GetWindowStyleFlag();
+	PX2wxAuiNotebook* ctrl = new PX2wxAuiNotebook(this, false);
+	ctrl->SetArtProvider(new PX2wxAuiTabArt(false));
+	long styleFlag = 0;
 	styleFlag ^= wxAUI_NB_TAB_MOVE;
 	styleFlag ^= wxAUI_NB_BOTTOM;
 	ctrl->SetWindowStyleFlag(styleFlag);
@@ -387,31 +369,48 @@ void E_MainFrame::_CreateInsp()
 	ctrl->Thaw();
 
 	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(wxT("insp"))
-		.Right().Caption("ResView"));
+		.Right().Caption("ResView")
+		.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
+		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100));
 
 	ctrl->Refresh();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine()
 {
-	_CreateView("TimeLine", "TimeLine", new TimeLineView(this),
+	_CreateView(new TimeLineView(this), "TimeLine", "TimeLine",
 		wxBitmap("DataEditor/icons/res.png", wxBITMAP_TYPE_PNG),
-		wxAuiPaneInfo().DefaultPane().Caption("TimeLine").Float());
+		wxAuiPaneInfo().DefaultPane().Caption("TimeLine")
+		.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
+		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100));
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateView(const std::string &name, const std::string &caption, 
-	wxWindow *window0, wxBitmap &bitMap, wxAuiPaneInfo &paneInfo)
+void E_MainFrame::_CreateView(wxWindow *window0, 
+	const std::string &name, const std::string &caption,
+	const wxBitmap &bitMap, wxAuiPaneInfo &paneInfo, bool isTopStyle)
 {
-	PX2wxAuiNotebook* ctrl = new PX2wxAuiNotebook(this);
-	ctrl->SetArtProvider(new PX2wxAuiTabArt);
-	long styleFlag = ctrl->GetWindowStyleFlag();
+	PX2wxAuiNotebook* ctrl = new PX2wxAuiNotebook(this, isTopStyle);
+	PX2wxAuiTabArt *tabArt = new PX2wxAuiTabArt(isTopStyle);
+	ctrl->SetArtProvider(tabArt);
+	long styleFlag = 0;
 	styleFlag ^= wxAUI_NB_TAB_MOVE;
-	styleFlag ^= wxAUI_NB_BOTTOM;
+	if (isTopStyle)
+	{
+		styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
+		styleFlag ^= wxAUI_NB_CLOSE_ON_ACTIVE_TAB;
+	}
+	else
+	{
+		styleFlag ^= wxAUI_NB_BOTTOM;
+	}
+
 	ctrl->SetWindowStyleFlag(styleFlag);
+	ctrl->SetTabCtrlHeight(24);
 	ctrl->Freeze();
 
-	ctrl->AddPage(window0, name, false, bitMap);
+	ctrl->AddPage(window0, caption, false, bitMap);
 
+	ctrl->UpdateTabsHeight();
 	ctrl->Thaw();
 
 	mAuiManager->AddPane(ctrl, paneInfo);
