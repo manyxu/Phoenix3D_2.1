@@ -6,6 +6,7 @@
 #include "PX2E_ProjView.hpp"
 #include "PX2E_PreView.hpp"
 #include "PX2E_StartView.hpp"
+#include "PX2E_TimeLineView.hpp"
 #include "PX2wxDockArt.hpp"
 #include "PX2wxAui.hpp"
 
@@ -362,6 +363,7 @@ void E_MainFrame::_CreateViews()
 	ctrl->Refresh();
 
 	_CreateInsp();
+	_CreateTimeLine();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateInsp()
@@ -386,6 +388,33 @@ void E_MainFrame::_CreateInsp()
 
 	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(wxT("insp"))
 		.Right().Caption("ResView"));
+
+	ctrl->Refresh();
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateTimeLine()
+{
+	_CreateView("TimeLine", "TimeLine", new TimeLineView(this),
+		wxBitmap("DataEditor/icons/res.png", wxBITMAP_TYPE_PNG),
+		wxAuiPaneInfo().Bottom().Caption("TimeLine"));
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateView(const std::string &name, const std::string &caption, 
+	wxWindow *window0, wxBitmap &bitMap, wxAuiPaneInfo &paneInfo)
+{
+	PX2wxAuiNotebook* ctrl = new PX2wxAuiNotebook(this);
+	ctrl->SetArtProvider(new PX2wxAuiTabArt);
+	long styleFlag = ctrl->GetWindowStyleFlag();
+	styleFlag ^= wxAUI_NB_TAB_MOVE;
+	styleFlag ^= wxAUI_NB_BOTTOM;
+	ctrl->SetWindowStyleFlag(styleFlag);
+	ctrl->Freeze();
+
+	ctrl->AddPage(window0, name, false, bitMap);
+
+	ctrl->Thaw();
+
+	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(name).Right().Caption(caption));
 
 	ctrl->Refresh();
 }

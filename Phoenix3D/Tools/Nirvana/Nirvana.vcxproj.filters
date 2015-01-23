@@ -40,6 +40,9 @@
     <Filter Include="wxExtent\Aui">
       <UniqueIdentifier>{dcb4747c-5117-46da-b3ba-bdcc31322ca8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Curve">
+      <UniqueIdentifier>{abec324d-387a-4b67-ad10-77aa5e0db90d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -130,6 +133,9 @@
     <ClInclude Include="PX2wxAui.hpp">
       <Filter>wxExtent\Aui</Filter>
     </ClInclude>
+    <ClInclude Include="PX2E_TimeLineView.hpp">
+      <Filter>Curve</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -218,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="PX2wxAui.cpp">
       <Filter>wxExtent\Aui</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_TimeLineView.cpp">
+      <Filter>Curve</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

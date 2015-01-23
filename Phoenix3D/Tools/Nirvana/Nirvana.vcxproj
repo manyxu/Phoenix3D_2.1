@@ -110,6 +110,7 @@
     <ClInclude Include="PX2InspView.hpp" />
     <ClInclude Include="PX2ObjectInspector.hpp" />
     <ClInclude Include="PX2ObjectPropertyGrid.hpp" />
+    <ClInclude Include="PX2E_TimeLineView.hpp" />
     <ClInclude Include="PX2wxAui.hpp" />
     <ClInclude Include="PX2wxDockArt.hpp" />
   </ItemGroup>
@@ -141,6 +142,7 @@
     <ClCompile Include="PX2InspView.cpp" />
     <ClCompile Include="PX2ObjectInspector.cpp" />
     <ClCompile Include="PX2ObjectPropertyGrid.cpp" />
+    <ClCompile Include="PX2E_TimeLineView.cpp" />
     <ClCompile Include="PX2wxAui.cpp" />
     <ClCompile Include="PX2wxDockArt.cpp" />
   </ItemGroup>
