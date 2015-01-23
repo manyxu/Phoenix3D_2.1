@@ -59,33 +59,43 @@ function CreateMainMenu()
 end
 
 function OnNewProject()
+	E_MainFrame:OnNewProject();
 end
 
 function OnOpenProject()
+	E_MainFrame:OnOpenProject();
 end
 
 function OnSaveProject()
+	E_MainFrame:OnSaveProject();
 end
 
 function OnSaveAsProject()
+	E_MainFrame:OnSaveProjectAs();
 end
 
 function OnCloseProject()
+	E_MainFrame:OnCloseProject();
 end
 
 function OnNewScene()
+	E_MainFrame:OnNewScene();
 end
 
 function OnOpenScene()
+	E_MainFrame:OnOpenScene();
 end
 
 function OnSaveScene()
+	E_MainFrame:OnSaveScene();
 end
 
 function OnSaveAsScene()
+	E_MainFrame:OnSaveSceneAs();
 end
 
 function OnCloseScene()
+	E_MainFrame:OnCloseScene();
 end
 
 function OnExit()
