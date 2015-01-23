@@ -88,6 +88,14 @@ void Selection::Clear()
 	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------
+PX2::Object *Selection::GetFirstObject() const
+{
+	if ((int)mObjects.size() > 0)
+		return mObjects[0];
+
+	return 0;
+}
+//----------------------------------------------------------------------------
 bool Selection::IsObjectIn(PX2::Object *obj)
 {
 	for (int i = 0; i < (int)mObjects.size(); i++)

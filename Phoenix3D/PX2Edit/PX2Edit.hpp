@@ -4,9 +4,12 @@
 #define PX2EDIT_HPP
 
 #include "PX2Singleton_NeedNew.hpp"
+#include "PX2EditMap.hpp"
 
 namespace PX2
 {
+
+	class EditMap;
 
 	class Edit : public Singleton<Edit>
 	{
@@ -17,15 +20,21 @@ namespace PX2
 		bool Initlize();
 		bool Ternamate();
 
+		EditMap *GetEditMap();
+
 		static void SetEditForm(int from);
 		static int GetEditID();
 
 	protected:
+		EditMap *mEditMap;
+
 		static int msEditorID;
 	};
 
-#define PX2EDIT Edit::GetSingleton()
-#define PX2EDIT_GETID Edit::GetEditID()
+#include "PX2Edit.inl"
+
+#define PX2_EDIT Edit::GetSingleton()
+#define PX2_EDIT_GETID Edit::GetEditID()
 
 }
 

@@ -30,6 +30,12 @@ namespace PX2Editor
 		void OnSaveProjectAs();
 		void OnCloseProject();
 
+		void OnNewScene();
+		void OnOpenScene();
+		void OnSaveScene();
+		void OnSaveSceneAs();
+		void OnCloseScene();
+
 	public:
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,
@@ -42,6 +48,7 @@ namespace PX2Editor
 		void _CreateMenu();
 		void _CreateMainToolBar();
 		void _CreateViews();
+		void _CreateInsp();
 		void _CreateStatusBar();
 
 		bool mIsInitlized;

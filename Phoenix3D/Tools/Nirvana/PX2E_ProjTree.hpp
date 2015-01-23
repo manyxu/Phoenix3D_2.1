@@ -17,10 +17,15 @@ namespace PX2Editor
 		ProjTree(wxWindow *parent);
 		virtual ~ProjTree();
 
+	public_internal:
+		std::map<std::string, int> Icons;
+
 	protected:
 		DECLARE_EVENT_TABLE()
 
 		ProjTreeLevel mTreeLevel;
+
+		wxImageList *mImageList;
 
 		ProjTreeItem *mItemProj;
 		ProjTreeItem *mItemScene;

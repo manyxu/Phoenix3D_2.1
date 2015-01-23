@@ -20,4 +20,7 @@
       <UniqueIdentifier>{1b237efc-cd28-4ca2-8d66-04894b860179}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2Edit.inl" />
+  </ItemGroup>
 </Project>

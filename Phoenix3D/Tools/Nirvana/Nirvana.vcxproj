@@ -55,7 +55,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;PX2_USE_DX9;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;..\..\PX2ToLua;..\..\PX2Unity\ToLua;..\..\PX2Unity\Lua;..\..\PX2SDK\Include;..\..\ThirdPartiesLibs\wxWidgets-3.0.2\include;..\..\ThirdPartiesLibs\wxWidgets-3.0.2\lib\vc_lib\mswud;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\PropGrid;..\..\PX2ToLua;..\..\PX2Unity\ToLua;..\..\PX2Unity\Lua;..\..\PX2SDK\Include;..\..\ThirdPartiesLibs\wxWidgets-3.0.2\include;..\..\ThirdPartiesLibs\wxWidgets-3.0.2\lib\vc_lib\mswud;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -83,6 +83,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\PX2ToLua\PX2ToLuaEditor.hpp" />
+    <ClInclude Include="PropGrid\PX2EditProperty.hpp" />
+    <ClInclude Include="PropGrid\PX2EMFloat3Property.hpp" />
+    <ClInclude Include="PropGrid\PX2EMFloat3RangeProperty.hpp" />
+    <ClInclude Include="PropGrid\PX2EMFloatProperty.hpp" />
+    <ClInclude Include="PropGrid\PX2EMFloatRangeProperty.hpp" />
+    <ClInclude Include="PropGrid\PX2MovableTransProperty.hpp" />
+    <ClInclude Include="PropGrid\PX2PropertyGrid.hpp" />
+    <ClInclude Include="PropGrid\PX2PropertyPage.hpp" />
+    <ClInclude Include="PropGrid\wxPropertyExtend.hpp" />
+    <ClInclude Include="PX2DlgCreateProject.hpp" />
     <ClInclude Include="PX2E_App.hpp" />
     <ClInclude Include="PX2E_StartView.hpp" />
     <ClInclude Include="PX2E_MainFrame.hpp" />
@@ -97,10 +107,24 @@
     <ClInclude Include="PX2E_ResSplitPanel.hpp" />
     <ClInclude Include="PX2E_ResTree.hpp" />
     <ClInclude Include="PX2E_ResTreeItem.hpp" />
+    <ClInclude Include="PX2InspView.hpp" />
+    <ClInclude Include="PX2ObjectInspector.hpp" />
+    <ClInclude Include="PX2ObjectPropertyGrid.hpp" />
+    <ClInclude Include="PX2wxAui.hpp" />
     <ClInclude Include="PX2wxDockArt.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\PX2ToLua\PX2ToLuaEditor.cpp" />
+    <ClCompile Include="PropGrid\PX2EditProperty.cpp" />
+    <ClCompile Include="PropGrid\PX2EMFloat3Property.cpp" />
+    <ClCompile Include="PropGrid\PX2EMFloat3RangeProperty.cpp" />
+    <ClCompile Include="PropGrid\PX2EMFloatProperty.cpp" />
+    <ClCompile Include="PropGrid\PX2EMFloatRangeProperty.cpp" />
+    <ClCompile Include="PropGrid\PX2MovableTransProperty.cpp" />
+    <ClCompile Include="PropGrid\PX2PropertyGrid.cpp" />
+    <ClCompile Include="PropGrid\PX2PropertyPage.cpp" />
+    <ClCompile Include="PropGrid\wxPropertyExtend.cpp" />
+    <ClCompile Include="PX2DlgCreateProject.cpp" />
     <ClCompile Include="PX2E_App.cpp" />
     <ClCompile Include="PX2E_StartView.cpp" />
     <ClCompile Include="PX2E_MainFrame.cpp" />
@@ -114,6 +138,10 @@
     <ClCompile Include="PX2E_ResView.cpp" />
     <ClCompile Include="PX2E_ProjView.cpp" />
     <ClCompile Include="PX2E_PreView.cpp" />
+    <ClCompile Include="PX2InspView.cpp" />
+    <ClCompile Include="PX2ObjectInspector.cpp" />
+    <ClCompile Include="PX2ObjectPropertyGrid.cpp" />
+    <ClCompile Include="PX2wxAui.cpp" />
     <ClCompile Include="PX2wxDockArt.cpp" />
   </ItemGroup>
   <ItemGroup>

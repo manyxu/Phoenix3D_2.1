@@ -25,6 +25,8 @@ namespace PX2
 		bool IsObjectIn(PX2::Object *obj);
 		void Clear();
 
+		PX2::Object *GetFirstObject() const;
+
 		const PX2::APoint &GetCenter() const;
 		float GetRadius() const;
 

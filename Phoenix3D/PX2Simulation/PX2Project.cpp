@@ -147,11 +147,6 @@ void Project::SetScene(Scene *scene)
 	}
 }
 //----------------------------------------------------------------------------
-const std::string &Project::GetSceneFilename() const
-{
-	return mSceneFilename;
-}
-//----------------------------------------------------------------------------
 void Project::SetSceneFilename(const std::string &scenefilename)
 {
 	mSceneFilename = scenefilename;

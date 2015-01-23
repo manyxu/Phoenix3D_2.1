@@ -28,6 +28,18 @@
     <Filter Include="Dlgs">
       <UniqueIdentifier>{09bfbc80-67fc-465a-b149-c05218ed5447}</UniqueIdentifier>
     </Filter>
+    <Filter Include="InspView">
+      <UniqueIdentifier>{ba37bc03-10c7-4319-9bc6-e33e52b2d6cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wxExtent\PropertyGrid">
+      <UniqueIdentifier>{1fbe960d-43c0-4e5f-967d-ca8a62f48b7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InspView\ObjectProperty">
+      <UniqueIdentifier>{0068a6c4-dd34-4285-9dcd-1dee8d026d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wxExtent\Aui">
+      <UniqueIdentifier>{dcb4747c-5117-46da-b3ba-bdcc31322ca8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -76,6 +88,48 @@
     <ClInclude Include="..\..\PX2ToLua\PX2ToLuaEditor.hpp">
       <Filter>App</Filter>
     </ClInclude>
+    <ClInclude Include="PX2DlgCreateProject.hpp">
+      <Filter>Dlgs</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InspView.hpp">
+      <Filter>InspView</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGrid\PX2EditProperty.hpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGrid\PX2EMFloat3Property.hpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGrid\PX2EMFloat3RangeProperty.hpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGrid\PX2EMFloatProperty.hpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGrid\PX2EMFloatRangeProperty.hpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGrid\PX2MovableTransProperty.hpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGrid\PX2PropertyGrid.hpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGrid\PX2PropertyPage.hpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGrid\wxPropertyExtend.hpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ObjectPropertyGrid.hpp">
+      <Filter>InspView\ObjectProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ObjectInspector.hpp">
+      <Filter>InspView\ObjectProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2wxAui.hpp">
+      <Filter>wxExtent\Aui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -122,6 +176,48 @@
     </ClCompile>
     <ClCompile Include="..\..\PX2ToLua\PX2ToLuaEditor.cpp">
       <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DlgCreateProject.cpp">
+      <Filter>Dlgs</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InspView.cpp">
+      <Filter>InspView</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGrid\PX2EditProperty.cpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGrid\PX2EMFloat3Property.cpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGrid\PX2EMFloat3RangeProperty.cpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGrid\PX2EMFloatProperty.cpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGrid\PX2EMFloatRangeProperty.cpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGrid\PX2MovableTransProperty.cpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGrid\PX2PropertyGrid.cpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGrid\PX2PropertyPage.cpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PropGrid\wxPropertyExtend.cpp">
+      <Filter>wxExtent\PropertyGrid</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ObjectPropertyGrid.cpp">
+      <Filter>InspView\ObjectProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ObjectInspector.cpp">
+      <Filter>InspView\ObjectProperty</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2wxAui.cpp">
+      <Filter>wxExtent\Aui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

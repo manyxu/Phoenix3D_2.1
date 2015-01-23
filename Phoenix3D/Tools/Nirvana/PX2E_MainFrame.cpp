@@ -7,14 +7,19 @@
 #include "PX2E_PreView.hpp"
 #include "PX2E_StartView.hpp"
 #include "PX2wxDockArt.hpp"
+#include "PX2wxAui.hpp"
 
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
 #include "PX2ScriptManager.hpp"
+#include "PX2Project.hpp"
+#include "PX2DlgCreateProject.hpp"
+#include "PX2InspView.hpp"
+#include "PX2ObjectInspector.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
-const int sID_ENGINELOOPTIMER = PX2EDIT_GETID;
+const int sID_ENGINELOOPTIMER = PX2_EDIT_GETID;
 
 BEGIN_EVENT_TABLE(E_MainFrame, wxFrame)
 EVT_TIMER(sID_ENGINELOOPTIMER, E_MainFrame::OnTimer)
@@ -105,28 +110,165 @@ void E_MainFrame::OnMenuItem(wxCommandEvent &e)
 	}
 }
 //----------------------------------------------------------------------------
-void  E_MainFrame::OnNewProject()
+void E_MainFrame::OnNewProject()
 {
+	DlgCreateProject dlg(this);
 
+	if (wxID_OK == dlg.ShowModal())
+	{
+		std::string name = dlg.mProjName;
+		std::string projPath = dlg.mProjPath;
+		int width = dlg.mProjWidth;
+		int height = dlg.mProjHeight;
+
+		std::string path = projPath + "/" + name + ".px2proj";
+
+		PX2_EDIT.GetEditMap()->NewProject(path, name, width, height);
+	}
 }
 //----------------------------------------------------------------------------
-void  E_MainFrame::OnOpenProject()
+void E_MainFrame::OnOpenProject()
 {
+	wxFileDialog dlg(this,
+		wxT("Open project"),
+		wxEmptyString,
+		wxEmptyString,
+		wxT("Project (*.px2proj)|*.px2proj"));
+
+	dlg.CenterOnParent();
+
+	if (wxID_OK == dlg.ShowModal())
+	{
+		PX2_EDIT.GetEditMap()->LoadProject(dlg.GetPath());
+	}
 }
 //----------------------------------------------------------------------------
-void  E_MainFrame::OnSaveProject()
+void E_MainFrame::OnSaveProject()
 {
+	EditMap *map = PX2_EDIT.GetEditMap();
 
+	Project *proj = Project::GetSingletonPtr();
+	if (proj)
+	{
+		if (proj->GetScene())
+		{
+			OnSaveScene();
+		}
+	}
+
+	map->SaveProject();
 }
 //----------------------------------------------------------------------------
-void  E_MainFrame::OnSaveProjectAs()
+void E_MainFrame::OnSaveProjectAs()
 {
+	// save scene first
+	EditMap *map = PX2_EDIT.GetEditMap();
+	Project *proj = Project::GetSingletonPtr();
+	if (proj)
+	{
+		if (proj->GetScene() && proj->GetSceneFilename().empty())
+		{
+			OnSaveSceneAs();
+		}
+	}
 
+	wxFileDialog dlg(this,
+		wxT("Save project"),
+		wxEmptyString,
+		wxEmptyString,
+		wxT("Project (*.px2proj)|*.px2proj"),
+		wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+
+	dlg.CenterOnParent();
+
+	if (wxID_OK == dlg.ShowModal())
+	{
+		map->SaveProjectAs(dlg.GetPath());
+	}
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::OnCloseProject()
 {
+	PX2_EDIT.GetEditMap()->CloseProject();
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnNewScene()
+{
+	EditMap *map = PX2_EDIT.GetEditMap();
+	map->NewScene();
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnOpenScene()
+{
+	wxFileDialog dlg(this,
+		wxT("Open scene"),
+		wxEmptyString,
+		wxEmptyString,
+		wxT("scene (*.px2obj)|*.px2obj"));
 
+	dlg.CenterOnParent();
+
+	if (wxID_OK == dlg.ShowModal())
+	{
+		std::string strPath = dlg.GetPath();
+		PX2_EDIT.GetEditMap()->LoadScene(strPath);
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnSaveScene()
+{
+	std::string path;
+	if (Project::GetSingletonPtr())
+		path = Project::GetSingleton().GetSceneFilename();
+
+	if (!path.empty())
+	{
+		PX2_EDIT.GetEditMap()->SaveScene(path.c_str());
+	}
+	else
+	{
+		wxFileDialog dlg(this,
+			wxT("Save scene"),
+			wxEmptyString,
+			wxEmptyString,
+			wxT("scene (*.px2obj)|*.px2obj"),
+			wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+
+		dlg.CenterOnParent();
+
+		if (wxID_OK == dlg.ShowModal())
+		{
+			std::string strPath = dlg.GetPath();
+			PX2_EDIT.GetEditMap()->SaveScene(strPath);
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnSaveSceneAs()
+{
+	wxFileDialog dlg(this,
+		wxT("Save scene"),
+		wxEmptyString,
+		wxEmptyString,
+		wxT("scene (*.px2obj)|*.px2obj"),
+		wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+
+	dlg.CenterOnParent();
+
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		std::string strPath = dlg.GetPath();
+		PX2_EDIT.GetEditMap()->SaveSceneAs(strPath);
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnCloseScene()
+{
+	EditMap *map = PX2_EDIT.GetEditMap();
+	if (map)
+	{
+		map->CloseScene();
+	}
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenu()
@@ -146,7 +288,7 @@ wxMenu *E_MainFrame::AddMainMenuItem(const std::string &title)
 wxMenuItem *E_MainFrame::AddMenuItem(wxMenu *menu, const std::string &title,
 	const std::string &script)
 {
-	int id = PX2EDIT_GETID;
+	int id = PX2_EDIT_GETID;
 	wxMenuItem *item = menu->Append(id, title);
 	Connect(id, wxEVT_COMMAND_MENU_SELECTED, 
 		wxCommandEventHandler(E_MainFrame::OnMenuItem));
@@ -168,10 +310,10 @@ void E_MainFrame::_CreateMainToolBar()
 
 	mianToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
 
-	mianToolBar->AddTool(PX2EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
 	mianToolBar->AddSeparator();
-	mianToolBar->AddTool(PX2EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddTool(PX2EDIT_GETID, _("NewProject2"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject2"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
 	mianToolBar->Realize();
 
 	mAuiManager->AddPane(mianToolBar, wxAuiPaneInfo().
@@ -188,56 +330,64 @@ void E_MainFrame::_CreateViews()
 		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
 		.FloatingSize(220, 150).MinSize(100, 100));
 
-	PreView *preView = new PreView(this);
-	mAuiManager->AddPane(preView, wxAuiPaneInfo().Name(wxT("PreView"))
-		.Caption("PreView").DefaultPane().Right().Icon(wxBitmap("DataEditor/icons/preview.png", wxBITMAP_TYPE_PNG))
-		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
-		.FloatingSize(220, 150).MinSize(100, 100));
-
-	ResView *resView = new ResView(this);
-	mAuiManager->AddPane(resView, wxAuiPaneInfo().Name(wxT("ResView"))
-		.Caption("Asserts").DefaultPane().Right().Icon(wxBitmap("DataEditor/icons/res.png", wxBITMAP_TYPE_PNG))
-		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
-		.FloatingSize(220, 150).MinSize(100, 100));
+	//PreView *preView = new PreView(this);
+	//mAuiManager->AddPane(preView, wxAuiPaneInfo().Name(wxT("PreView"))
+	//	.Caption("PreView").DefaultPane().Right().Icon(wxBitmap("DataEditor/icons/preview.png", wxBITMAP_TYPE_PNG))
+	//	.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true)
+	//	.FloatingSize(220, 150).MinSize(100, 100));
 
 	wxSize client_size = GetClientSize();
-	wxAuiNotebook* ctrl = new wxAuiNotebook(this, wxID_ANY,
-		wxPoint(client_size.x, client_size.y), wxSize(430, 200), 0);
+	wxAuiNotebook* ctrl = new wxAuiNotebook(this);
+	ctrl->SetTabCtrlHeight(24);
 	ctrl->SetArtProvider(new PX2wxAuiTabArt);
 	long styleFlag = ctrl->GetWindowStyleFlag();
 	styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
 	styleFlag ^= wxAUI_NB_CLOSE_ON_ACTIVE_TAB;
 	ctrl->SetWindowStyleFlag(styleFlag);
-
 	ctrl->Freeze();
 
 	wxBitmap page_bmp = wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_OTHER, wxSize(16, 16));
 	StartView *centerView = new StartView(this);
 	ctrl->AddPage(centerView, wxT("Start"), false, page_bmp);
-
 	mRenderView = new RenderView(this);
 	ctrl->AddPage(mRenderView, wxT("Stage"), false, page_bmp);
 
+	ctrl->Show(true);
 	ctrl->Thaw();
 
-	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(wxT("notebook_content")).
-		CenterPane().PaneBorder(false));
+	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(wxT("Center")).
+		CenterPane());
+
 	ctrl->Refresh();
 
-	//StartView *centerView = new StartView(this);
-	//mAuiManager->AddPane(centerView,
-	//	wxAuiPaneInfo().Name(wxT("RenderView")).Caption("StartView")
-	//	.DefaultPane().Centre().Dockable(true).Icon(wxBitmap("DataEditor/icons/stage.png", wxBITMAP_TYPE_PNG))
-	//	.FloatingSize(800, 600).MinSize(100, 100)
-	//	.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true));
+	_CreateInsp();
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateInsp()
+{
+	PX2wxAuiNotebook* ctrl = new PX2wxAuiNotebook(this);
+	ctrl->SetArtProvider(new PX2wxAuiTabArt);
+	long styleFlag = ctrl->GetWindowStyleFlag();
+	styleFlag ^= wxAUI_NB_TAB_MOVE;
+	styleFlag ^= wxAUI_NB_BOTTOM;
+	ctrl->SetWindowStyleFlag(styleFlag);
+	ctrl->Freeze();
 
-	//mRenderView = new RenderView(this);
-	//mAuiManager->AddPane(mRenderView,
-	//	wxAuiPaneInfo().Name(wxT("RenderView")).Caption("Stage")
-	//	.DefaultPane().Centre().Dockable(true).Icon(wxBitmap("DataEditor/icons/stage.png", wxBITMAP_TYPE_PNG))
-	//	.FloatingSize(800, 600).MinSize(100, 100)
-	//	.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true));
+	wxBitmap page_bmp = wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_OTHER, wxSize(16, 16));
+
+	ResView *resView = new ResView(this);
+	ctrl->AddPage(resView, wxT("ResView"), false, wxBitmap("DataEditor/icons/res.png", wxBITMAP_TYPE_PNG));
+
+	InspWindow *inspWin = new InspWindow(this);
+	ctrl->AddPage(inspWin, wxT("InspView"), false, page_bmp);
+
+	ctrl->Thaw();
+
+	mAuiManager->AddPane(ctrl, wxAuiPaneInfo().Name(wxT("insp"))
+		.Right().Caption("ResView"));
+
+	ctrl->Refresh();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateStatusBar()

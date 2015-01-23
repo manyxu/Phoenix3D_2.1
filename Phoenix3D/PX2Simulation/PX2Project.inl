@@ -16,3 +16,13 @@ inline float Project::GetHeight() const
 	return mSize.Height;
 }
 //----------------------------------------------------------------------------
+inline Scene *Project::GetScene()
+{
+	return mScene;
+}
+//----------------------------------------------------------------------------
+inline const std::string &Project::GetSceneFilename() const
+{
+	return mSceneFilename;
+}
+//----------------------------------------------------------------------------
