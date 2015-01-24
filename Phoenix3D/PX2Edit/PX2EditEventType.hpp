@@ -12,7 +12,7 @@ namespace PX2
 	PX2_EVENT(NewProject)
 	PX2_EVENT(LoadedProject)
 	PX2_EVENT(SavedProject)
-	PX2_EVENT(ClosedProject)
+	PX2_EVENT(CloseProject)
 	PX2_EVENT(NewScene)
 	PX2_EVENT(LoadedScene)
 	PX2_EVENT(SavedScene)

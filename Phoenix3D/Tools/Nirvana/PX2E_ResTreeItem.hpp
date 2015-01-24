@@ -31,7 +31,7 @@ namespace PX2Editor
 		ResTreeItem *GetParent() { return mParent; }
 
 		ResTreeItem *GetChildItem(wxTreeItemId id);
-		ResTreeItem *GetItem(const std::string& resPath);
+		ResTreeItem *GetChildItem(const std::string& resPath);
 
 	public_internal:
 		void SetParent(ResTreeItem *parent);

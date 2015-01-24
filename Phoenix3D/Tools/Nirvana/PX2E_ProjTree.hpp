@@ -13,11 +13,20 @@ namespace PX2Editor
 
 	class ProjTree : public wxTreeCtrl, public PX2::EventHandler
 	{
+		DECLARE_DYNAMIC_CLASS(ProjTree)
+
 	public:
+		ProjTree();
 		ProjTree(wxWindow *parent);
 		virtual ~ProjTree();
 
+		ProjTreeItem *GetItem(wxTreeItemId id);
+		ProjTreeItem *GetItem(PX2::Object *obj);
+
 		virtual void DoExecute(PX2::Event *event);
+
+		void OnSelChanged(wxTreeEvent& event);
+		void OnSelChanging(wxTreeEvent& event);
 
 	public_internal:
 		std::map<std::string, int> Icons;

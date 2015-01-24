@@ -5,7 +5,6 @@
 
 #include "PX2SimulationPre.hpp"
 #include "PX2Node.hpp"
-#include "PX2Component.hpp"
 
 namespace PX2
 {
@@ -38,7 +37,7 @@ namespace PX2
 
 #include "PX2Actor.inl"
 	PX2_REGISTER_STREAM(Actor);
-	typedef Pointer0<Actor> EntityPtr;
+	typedef Pointer0<Actor> ActorPtr;
 
 }
 

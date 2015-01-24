@@ -22,7 +22,6 @@ namespace PX2
 
 		EditMap *GetEditMap();
 
-		static void SetEditForm(int from);
 		static int GetEditID();
 
 	protected:

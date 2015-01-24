@@ -24,8 +24,6 @@ E_App::~E_App()
 //-----------------------------------------------------------------------------
 bool E_App::OnInit()
 {
-	Edit::SetEditForm(wxID_HIGHEST);
-
 	wxLog::SetLogLevel(0);
 
 	wxImage::AddHandler(new wxBMPHandler());

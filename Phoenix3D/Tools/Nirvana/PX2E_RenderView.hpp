@@ -16,10 +16,17 @@ namespace PX2Editor
 		RenderView(wxWindow *parent);
 		virtual ~RenderView();
 
+		void OnSize(wxSizeEvent& e);
+		void OnPaint(wxPaintEvent& e);
+		void OnEraseBackground(wxEraseEvent& rEvent);
+
 	protected:
 		DECLARE_EVENT_TABLE()
 
 		RenderView();
+
+	protected:
+		bool mIsInited;
 	};
 
 }

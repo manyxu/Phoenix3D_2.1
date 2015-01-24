@@ -103,7 +103,7 @@ void ResTreeItem::SetParent(ResTreeItem *parent)
 	mItemID = mResTree->AppendItem(parent->GetItemID(), mResName, iconID);
 }
 //-----------------------------------------------------------------------------
-ResTreeItem *ResTreeItem::GetItem(const std::string& resPath)
+ResTreeItem *ResTreeItem::GetChildItem(const std::string& resPath)
 {
 	if (resPath == mResPathName)
 		return this;
@@ -112,7 +112,7 @@ ResTreeItem *ResTreeItem::GetItem(const std::string& resPath)
 	{
 		if (mChildItems[i])
 		{
-			ResTreeItem *item = mChildItems[i]->GetItem(resPath);
+			ResTreeItem *item = mChildItems[i]->GetChildItem(resPath);
 
 			if (item)
 			{

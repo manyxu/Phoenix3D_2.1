@@ -241,9 +241,8 @@ void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
 		{
 			if (prop->mProperty)
 			{
-				prop->mProperty->SetTextColour(lastTextColor, false);
-				prop->mProperty->SetTextColour(lastTextColor);
-				prop->mProperty->SetBackgroundColour(lastBackColor);
+				//prop->mProperty->SetTextColour(lastTextColor);
+				//prop->mProperty->SetBackgroundColour(lastBackColor);
 			}
 		}
 

@@ -18,7 +18,11 @@ namespace PX2Editor
 		ResTree(wxWindow *parent);
 		virtual ~ResTree();
 
+		ResTreeItem *GetItem(wxTreeItemId id);
+
 		void UpdateOnPath(const std::string &pathName);
+
+		void OnSelChanged(wxTreeEvent &ent);
 
 	public_internal:
 		std::map<std::string, int> Icons;

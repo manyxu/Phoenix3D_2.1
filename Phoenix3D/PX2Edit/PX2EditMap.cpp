@@ -22,6 +22,8 @@ void EditMap::NewProject(const std::string &pathname,
 	bool canDoChange = (EngineLoop::PT_NONE == PX2_ENGINELOOP.GetPlayType());
 	if (!canDoChange) return;
 
+	CloseProject();
+
 	Project *proj = new0 Project();
 	proj->SetName(projName);
 	proj->SetSize((float)width, (float)height);
@@ -138,11 +140,10 @@ void EditMap::CloseProject()
 			scene = 0;
 		}
 
-		delete0(oldProj);
-		Project::Set(0);
-
-		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::ClosedProject);
+		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::CloseProject);
 		EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
+
+		Project::Destory();
 	}
 }
 //----------------------------------------------------------------------------

@@ -5,6 +5,8 @@
 
 #include "PX2Node.hpp"
 #include "PX2Actor.hpp"
+#include "PX2RenderStep.hpp"
+#include "PX2CameraActor.hpp"
 
 namespace PX2
 {
@@ -17,14 +19,20 @@ namespace PX2
 
 	public:
 		Scene();
-		~Scene();
+		virtual ~Scene();
+
+		void SetUseCameraActor(CameraActor *cameraActor);
+		CameraActor *GetUseCameraActor();
 
 		virtual int AttachChild(Movable* child);
 
 	protected:
 		virtual void UpdateWorldData(double applicationTime);
+
+		CameraActorPtr mCameraActor;
 	};
 
+#include "PX2Scene.inl"
 	PX2_REGISTER_STREAM(Scene);
 	typedef Pointer0<Scene> ScenePtr;
 

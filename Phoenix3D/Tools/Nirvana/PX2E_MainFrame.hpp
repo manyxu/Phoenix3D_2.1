@@ -4,17 +4,19 @@
 #define PX2E_MAINFRAME_HPP
 
 #include "PX2EditorPre.hpp"
+#include "PX2EventHandler.hpp"
 
 namespace PX2Editor
 {
 
+	class StartView;
 	class RenderView;
 	class ProjView;
 	class ResView;
 	class InspView;
 	class PX2wxAuiNotebook;
 
-	class E_MainFrame : public wxFrame
+	class E_MainFrame : public wxFrame , public PX2::EventHandler
 	{
 	public:
 		E_MainFrame(const std::string &title, int xPos, int yPos,
@@ -25,6 +27,8 @@ namespace PX2Editor
 		void AddEventHandlers();
 
 		RenderView *GetRenderView();
+
+		virtual void DoExecute(PX2::Event *event);
 
 		void OnTimer(wxTimerEvent& e);
 		void OnMenuItem(wxCommandEvent &e);
@@ -55,6 +59,7 @@ namespace PX2Editor
 		void _CreateViews();
 		void _CreateProjView();
 		void _CreateMainView();
+		void _ShowRenderView(bool show);
 		void _CreateInsp();
 		void _CreateTimeLine();
 		void _CreateStatusBar();
@@ -75,12 +80,12 @@ namespace PX2Editor
 			PX2wxAuiNotebook *NoteBook;
 		};
 
-		void _CreateView(wxWindow *window0, const std::string &name0, const std::string &caption0,
+		PX2wxAuiNotebook *_CreateView(wxWindow *window0, const std::string &name0, const std::string &caption0,
 			const std::string &caption,
 			wxAuiPaneInfo &paneInfo,
 			bool isTopStyle=false);
 
-		void _CreateView(std::vector<WindowObj> &objs, const std::string &caption,
+		PX2wxAuiNotebook *_CreateView(std::vector<WindowObj> &objs, const std::string &caption,
 			wxAuiPaneInfo &paneInfo,
 			bool isTopStyle = false);
 
@@ -93,10 +98,14 @@ namespace PX2Editor
 		wxTimer mTimer;
 		std::map<int, std::string> mIDScripts;
 
+		StartView *mStartView;
 		RenderView *mRenderView;
+		bool mIsShowRenderView;
 		ProjView *mProjView;
 		ResView *mResView;
 		InspView *mInspView;
+
+		PX2wxAuiNotebook *mNoteBookCenter;
 	};
 
 }

@@ -9,16 +9,37 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
+Pointer0<Project> Project::msProject;
+//----------------------------------------------------------------------------
 Project::Project()
 {
 	if (ScriptManager::GetSingletonPtr())
 		PX2_SM.SetUserTypePointer("PX2_PROJ", "Project", this);
+
+	msProject = this;
+
+	mBackgroundColor = Float4::MakeColor(150, 150, 150, 255);
+	
+	mSceneRenderStep = new0 RenderStep();
+	PX2_GR.AddRenderStep(mSceneRenderStep);
 }
 //----------------------------------------------------------------------------
 Project::~Project ()
 {
+	PX2_GR.RemoveRenderStep(mSceneRenderStep);
+	mSceneRenderStep = 0;
+
 	if (ScriptManager::GetSingletonPtr())
 		PX2_SM.SetUserTypePointer("PX2_PROJ", "Project", 0);
+}
+//----------------------------------------------------------------------------
+void Project::Destory()
+{
+	if (msProject)
+	{
+		msProject = 0;
+		Project::Set(0);
+	}
 }
 //----------------------------------------------------------------------------
 bool Project::Save(const std::string &filename)
@@ -144,6 +165,26 @@ void Project::SetScene(Scene *scene)
 	if (mScene)
 	{
 		mScene->ComeInEventWorld();
+	}
+
+	mSceneRenderStep->SetNode(mScene);
+
+	if (mScene)
+	{
+		CameraActor *camActor = mScene->GetUseCameraActor();
+
+		if (camActor)
+		{
+			mSceneRenderStep->SetCamera(camActor->GetCamera());
+		}
+		else
+		{
+			mSceneRenderStep->SetCamera(0);
+		}
+	}
+	else
+	{
+		mSceneRenderStep->SetCamera(0);
 	}
 }
 //----------------------------------------------------------------------------

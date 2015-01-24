@@ -35,7 +35,7 @@ void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
 		{
 			src_tabs->SetCursor(wxCursor(wxCURSOR_ARROW));
 			int src_idx = evt.GetSelection();
-			DeletePage(src_idx);
+			RemovePage(src_idx);
 		}
 		
 		UpdateTabsHeight();

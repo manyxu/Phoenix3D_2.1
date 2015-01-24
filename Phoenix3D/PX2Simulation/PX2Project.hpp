@@ -9,6 +9,7 @@
 #include "PX2Scene.hpp"
 #include "PX2Size.hpp"
 #include "PX2Float4.hpp"
+#include "PX2RenderStep.hpp"
 
 namespace PX2
 {
@@ -18,6 +19,12 @@ namespace PX2
 	public:
 		Project ();
 		~Project ();
+
+		// 使用该接口删除Project
+		static void Destory();
+
+	private:
+		static Pointer0<Project> msProject;
 
 		// Load Save
 	public:
@@ -45,6 +52,7 @@ namespace PX2
 		void SetScene(Scene *scene);
 		Scene *GetScene();
 		const std::string &GetSceneFilename() const;
+		RenderStep *GetSceneRenderStep();
 
 	public_internal:
 		void SetSceneFilename(const std::string &scenefilename);
@@ -52,6 +60,7 @@ namespace PX2
 	protected:
 		std::string mSceneFilename;
 		ScenePtr mScene;
+		RenderStepPtr mSceneRenderStep;
 
 		// UI
 	public:

@@ -16,6 +16,7 @@
 #include "PX2DlgCreateProject.hpp"
 #include "PX2InspView.hpp"
 #include "PX2ObjectInspector.hpp"
+#include "PX2EditEventType.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -31,6 +32,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mIsInitlized(false),
 	mAuiManager(0),
 	mRenderView(0),
+	mIsShowRenderView(false),
 	mProjView(0)
 {
 }
@@ -67,8 +69,6 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(216, 102, 36));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(216, 102, 36));
 
-	//mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
-
 	mTimer.SetOwner(this, sID_ENGINELOOPTIMER);
 	mTimer.Start(25);
 
@@ -85,7 +85,25 @@ bool E_MainFrame::Initlize()
 //----------------------------------------------------------------------------
 void E_MainFrame::AddEventHandlers()
 {
+	PX2_EW.ComeIn(this);
 	PX2_EW.ComeIn(mProjView->GetProjTree());
+	PX2_EW.ComeIn(mInspView);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::DoExecute(Event *event)
+{
+	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject))
+	{
+		_ShowRenderView(true);
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedProject))
+	{
+		_ShowRenderView(true);
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseProject))
+	{
+		_ShowRenderView(false);
+	}
 }
 //----------------------------------------------------------------------------
 RenderView *E_MainFrame::GetRenderView()
@@ -347,10 +365,43 @@ void E_MainFrame::_CreateProjView()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainView()
 {
-	mRenderView = new RenderView(this);
+	mStartView = new StartView(this);
 
-	_CreateView(mRenderView, "Center", "Center", "Center",
-		wxAuiPaneInfo().CenterPane(), true);
+	WindowObj objStart;
+	objStart.TheWindow = mStartView;
+	objStart.Caption = "StartView";
+	objStart.Name = "StartView";
+
+	std::vector<WindowObj> objs;
+	objs.push_back(objStart);
+
+	mNoteBookCenter = _CreateView(objs, "Center", wxAuiPaneInfo().CenterPane(), true);
+
+	mRenderView = new RenderView(this);
+	mRenderView->Show(false);
+	mIsShowRenderView = false;
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_ShowRenderView(bool show)
+{
+	if (show == mIsShowRenderView)
+		return;
+
+	if (show)
+	{
+		mIsShowRenderView = true;
+		mRenderView->Show(true);
+		mNoteBookCenter->AddPage(mRenderView, "Stage");
+		int index = mNoteBookCenter->GetPageIndex(mRenderView);
+		mNoteBookCenter->SetSelection(index);
+	}
+	else
+	{
+		mIsShowRenderView = false;
+		mRenderView->Show(false);
+		int index = mNoteBookCenter->GetPageIndex(mRenderView);
+		mNoteBookCenter->RemovePage(index);
+	}
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateInsp()
@@ -380,7 +431,7 @@ void E_MainFrame::_CreateTimeLine()
 		wxAuiPaneInfo().DefaultPane());
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateView(wxWindow *window0, const std::string &name0,
+PX2wxAuiNotebook *E_MainFrame::_CreateView(wxWindow *window0, const std::string &name0,
 	const std::string &caption0, const std::string &caption,
 	wxAuiPaneInfo &paneInfo, bool isTopStyle)
 {
@@ -392,10 +443,10 @@ void E_MainFrame::_CreateView(wxWindow *window0, const std::string &name0,
 	std::vector<WindowObj> winObjs;
 	winObjs.push_back(obj);
 
-	_CreateView(winObjs, caption, paneInfo, isTopStyle);
+	return _CreateView(winObjs, caption, paneInfo, isTopStyle);
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateView(std::vector<WindowObj> &objs, 
+PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	const std::string &caption,
 	wxAuiPaneInfo &paneInfo,
 	bool isTopStyle)
@@ -441,6 +492,8 @@ void E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	mAuiManager->AddPane(noteBook, paneInfo);
 
 	noteBook->Refresh();
+
+	return noteBook;
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateStatusBar()
@@ -448,5 +501,8 @@ void E_MainFrame::_CreateStatusBar()
 	wxStatusBar *status = CreateStatusBar();
 	status->SetFieldsCount(1);
 	status->SetStatusText("Welcome to Phoenix editor!");
+
+	status->SetBackgroundColour(wxColour(0, 122, 204));
+	status->SetForegroundColour(wxColour(255, 122, 204));
 }
 //----------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 // PX2Scene.cpp
 
 #include "PX2Scene.hpp"
+#include "PX2Project.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Node, Scene);
@@ -16,6 +17,21 @@ Scene::Scene()
 //----------------------------------------------------------------------------
 Scene::~Scene()
 {
+}
+//----------------------------------------------------------------------------
+void Scene::SetUseCameraActor(CameraActor *cameraActor)
+{
+	mCameraActor = cameraActor;
+
+	Project *proj = Project::GetSingletonPtr();
+	if (proj && mCameraActor)
+	{
+		RenderStep *renderStep = proj->GetSceneRenderStep();
+		if (renderStep)
+		{
+			renderStep->SetCamera(mCameraActor->GetCamera());
+		}
+	}
 }
 //----------------------------------------------------------------------------
 int Scene::AttachChild(Movable* child)

@@ -80,6 +80,9 @@
     <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="PX2CameraActor.hpp">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Actor.cpp">
@@ -133,6 +136,9 @@
     <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="PX2CameraActor.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl">
@@ -152,6 +158,12 @@
     </None>
     <None Include="PX2Selection.inl">
       <Filter>Edit\Select</Filter>
+    </None>
+    <None Include="PX2Scene.inl">
+      <Filter>Scene</Filter>
+    </None>
+    <None Include="PX2CameraActor.inl">
+      <Filter>Actor</Filter>
     </None>
   </ItemGroup>
 </Project>

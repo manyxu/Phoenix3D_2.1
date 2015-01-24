@@ -15,11 +15,13 @@
     <ClInclude Include="PX2EditEventType.hpp" />
     <ClInclude Include="PX2EditMap.hpp" />
     <ClInclude Include="PX2EditMapPre.hpp" />
+    <ClInclude Include="PX2EditRenderView.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
     <ClCompile Include="PX2EditEventType.cpp" />
     <ClCompile Include="PX2EditMap.cpp" />
+    <ClCompile Include="PX2EditRenderView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Edit.inl" />
