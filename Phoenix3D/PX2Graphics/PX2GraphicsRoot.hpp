@@ -104,6 +104,7 @@ namespace PX2
 		{
 			VFT_PT1,
 			VFT_PT2,
+			VFT_PC,
 			VFT_MAX_TYPE
 		};
 

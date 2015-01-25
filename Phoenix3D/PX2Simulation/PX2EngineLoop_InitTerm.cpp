@@ -129,6 +129,12 @@ bool EngineLoop::Initlize()
 	mSelection = new0 Selection();
 	PX2_UNUSED(mSelection);
 
+	mCreater = new0 Creater();
+	PX2_UNUSED(mCreater);
+
+	mURDoMan = new0 URDoManager();
+	PX2_UNUSED(mURDoMan);
+
 	mUIManager = new0 UIManager();
 	mUIManager->ComeInEventWorld();
 	mUIManager->GetDefaultUIView()->SetRenderer(renderer);
@@ -205,6 +211,12 @@ bool EngineLoop::Ternamate()
 		mSelection->Clear();
 		delete0(mSelection);
 		Selection::Set(0);
+	}
+
+	if (mURDoMan)
+	{
+		delete0(mURDoMan);
+		URDoManager::Set(0);
 	}
 
 	if (mCreater)

@@ -384,6 +384,12 @@ VertexFormat *GraphicsRoot::GetVertexFormat(VertexFormatType type)
 				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0,
 				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 1);
 		}
+		else if (VFT_PC == type)
+		{
+			vf = VertexFormat::Create(2,
+				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0);
+		}
 
 		mCreatedVFs[type] = vf;
 

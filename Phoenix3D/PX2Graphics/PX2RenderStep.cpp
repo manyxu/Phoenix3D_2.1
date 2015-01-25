@@ -30,7 +30,7 @@ void RenderStep::Update(double appSeconds, double elapsedSeconds)
 	}
 
 	PX2_UNUSED(elapsedSeconds);
-	if (mNode) mNode->Update(appSeconds, true);
+	if (mNode) mNode->Update(appSeconds, false);
 }
 //----------------------------------------------------------------------------
 void RenderStep::SetSize(float width, float height)
@@ -47,6 +47,10 @@ void RenderStep::SetSize(const Sizef &size)
 //----------------------------------------------------------------------------
 void RenderStep::OnSizeChange()
 {
+	if (mRenderer)
+	{
+		mRenderer->ResizeWindow((int)mSize.Width, (int)mSize.Height);
+	}
 }
 //----------------------------------------------------------------------------
 void RenderStep::SetCamera(Camera *camera)
@@ -62,7 +66,8 @@ void RenderStep::SetNode(Node *node)
 //----------------------------------------------------------------------------
 void RenderStep::ComputeVisibleSet()
 {
-	if (mNode)
+	const Camera *cam = mCuller.GetCamera();
+	if (mNode && cam)
 	{
 		mCuller.ComputeVisibleSet(mNode);
 		mCuller.GetVisibleSet().Sort();
@@ -75,6 +80,8 @@ void RenderStep::Draw()
 	if (mRenderer)
 	{
 		CameraPtr beforeCamer = mRenderer->GetCamera();
+
+		mRenderer->InitRenderStates();
 
 		mRenderer->SetCamera(mCamera);
 		mRenderer->Draw(mCuller.GetVisibleSet());

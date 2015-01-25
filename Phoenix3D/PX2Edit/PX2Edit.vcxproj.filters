@@ -3,11 +3,12 @@
   <ItemGroup>
     <ClInclude Include="PX2Edit.hpp" />
     <ClInclude Include="PX2EditMap.hpp" />
-    <ClInclude Include="PX2EditMapPre.hpp" />
     <ClInclude Include="PX2EditEventType.hpp">
       <Filter>Event</Filter>
     </ClInclude>
     <ClInclude Include="PX2EditRenderView.hpp" />
+    <ClInclude Include="PX2EditParams.hpp" />
+    <ClInclude Include="PX2EditPre.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -16,6 +17,7 @@
       <Filter>Event</Filter>
     </ClCompile>
     <ClCompile Include="PX2EditRenderView.cpp" />
+    <ClCompile Include="PX2EditParams.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Event">

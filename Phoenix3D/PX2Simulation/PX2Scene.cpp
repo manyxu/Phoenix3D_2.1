@@ -2,6 +2,7 @@
 
 #include "PX2Scene.hpp"
 #include "PX2Project.hpp"
+#include "PX2Creater.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Node, Scene);
@@ -13,6 +14,14 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Node, Scene);
 Scene::Scene()
 {
 	SetName("Scene");
+
+	CameraActor *camActor = new0 CameraActor();
+	AttachChild(camActor);
+	camActor->LocalTransform.SetTranslate(APoint(0.0f, -1.0f, 1.0f));
+
+	SetUseCameraActor(camActor);
+
+	PX2_CREATER.CreateActor_Box(this, APoint::ORIGIN);
 }
 //----------------------------------------------------------------------------
 Scene::~Scene()
@@ -36,7 +45,7 @@ void Scene::SetUseCameraActor(CameraActor *cameraActor)
 //----------------------------------------------------------------------------
 int Scene::AttachChild(Movable* child)
 {
-	return AttachChild(child);
+	return Node::AttachChild(child);
 }
 //----------------------------------------------------------------------------
 void Scene::UpdateWorldData(double applicationTime)

@@ -14,8 +14,11 @@ CameraActor::CameraActor()
 	SetName("CameraActor");
 
 	mCamera = new0 Camera();
+	mCamera->SetFrustum(35.0f, 960.0f / 640.0f, 1.0f, 1000.0f);
+	mCamera->SetFrame(APoint::ORIGIN, AVector::UNIT_Y, AVector::UNIT_Z, AVector::UNIT_X);
 
 	mCameraNode = new0 CameraNode();
+	AttachChild(mCameraNode);
 	mCameraNode->SetCamera(mCamera);
 	mCameraNode->EnableUpdate(true);
 	mCameraNode->SetUpdatePriority(100);

@@ -15,6 +15,7 @@
 #include "PX2AddDeleteManager.hpp"
 #include "PX2UIManager.hpp"
 #include "PX2Selection.hpp"
+#include "PX2RedoUndo.hpp"
 #include "PX2Creater.hpp"
 #include "PX2AccoutManager.hpp"
 
@@ -61,6 +62,7 @@ namespace PX2
 		AddDeleteManager *mADMan;
 		Selection *mSelection;
 		Creater *mCreater;
+		URDoManager *mURDoMan;
 		UIManager *mUIManager;
 		AccoutManager *mAccoutManager;
 

@@ -6,6 +6,7 @@
 #include "PX2ResourceManager.hpp"
 #include "PX2StringTokenizer.hpp"
 #include "PX2ScriptManager.hpp"
+#include "PX2Renderer.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -18,9 +19,10 @@ Project::Project()
 
 	msProject = this;
 
-	mBackgroundColor = Float4::MakeColor(150, 150, 150, 255);
+	mBackgroundColor = Float4::MakeColor(255, 255, 200, 255);
 	
 	mSceneRenderStep = new0 RenderStep();
+	mSceneRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
 	PX2_GR.AddRenderStep(mSceneRenderStep);
 }
 //----------------------------------------------------------------------------

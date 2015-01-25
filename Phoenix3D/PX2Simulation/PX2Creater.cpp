@@ -8,8 +8,42 @@
 #include "PX2SimulationEventType.hpp"
 #include "PX2RedoUndo.hpp"
 #include "PX2Project.hpp"
+#include "PX2ResourceManager.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
+//----------------------------------------------------------------------------
+Creater::Creater()
+{
+}
+//----------------------------------------------------------------------------
+Creater::~Creater()
+{
+}
+//----------------------------------------------------------------------------
+Actor *Creater::CreateActor_Box(Scene *scene, const PX2::APoint &pos)
+{
+	PX2::Texture2D *tex = DynamicCast<PX2::Texture2D>(PX2_RM.BlockLoad("Data/engine/default.png"));
+	if (!tex) return 0;
+
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1);
+
+	StandardMesh stdMesh(vf);
+	TriMesh *mesh = stdMesh.Box(1, 1, 1);
+	mesh->SetName("NoName");
+
+	StdMaterialPtr mtl = new0 StdMaterial();
+	mesh->SetMaterialInstance(mtl->CreateInstance(tex, mesh->GetShine(), 0));
+
+	ActorPtr actor = new0 Actor();
+	actor->SetName("NoName");
+	actor->SetMovable(mesh);
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
 //----------------------------------------------------------------------------
 void Creater::AddObject(PX2::Object *parent, PX2::Object *obj, bool command)
 {

@@ -86,6 +86,7 @@ bool E_MainFrame::Initlize()
 void E_MainFrame::AddEventHandlers()
 {
 	PX2_EW.ComeIn(this);
+	PX2_EW.ComeIn(mRenderView);
 	PX2_EW.ComeIn(mProjView->GetProjTree());
 	PX2_EW.ComeIn(mInspView);
 }

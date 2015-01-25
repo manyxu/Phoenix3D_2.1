@@ -6,6 +6,7 @@
 #include "PX2EditMapPre.hpp"
 #include "PX2Node.hpp"
 #include "PX2Renderable.hpp"
+#include "PX2RenderStep.hpp"
 
 namespace PX2
 {
@@ -36,11 +37,25 @@ namespace PX2
 		void SetViewDetail(ViewDetail viewDetail);
 		ViewDetail GetViewDetail() const;
 
+		RenderStep *GetRenderStep();
+
+		void OnMoveHV(bool isAltDown, float h, float v);
+
 	protected:
-		PX2::NodePtr mGridScene;
+		void _CreateGridGeometry();
+		void _MoveCamera(float horz, float vert);
+		void _ZoomCamera(float zoom);
+
+		ViewType mViewType;
+		ViewDetail mViewDetail;
+
 		PX2::RenderablePtr mGrid;
-		PX2::RenderablePtr mGridAxis;
+		PX2::NodePtr mGridNode;
+
+		RenderStepPtr mRenderStep;
 	};
+
+	typedef Pointer0<EditRenderView> EditRenderViewPtr;
 
 }
 

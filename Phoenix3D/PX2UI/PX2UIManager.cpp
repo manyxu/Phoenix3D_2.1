@@ -28,11 +28,11 @@ void UIManager::Clear()
 //----------------------------------------------------------------------------
 void UIManager::Update(double appSeconds, double elapsedSeconds)
 {
-	std::map<std::string, UIViewPtr>::iterator it = mUIViews.begin();
-	for (; it != mUIViews.end(); it++)
-	{
-		it->second->Update(appSeconds, elapsedSeconds);
-	}
+	//std::map<std::string, UIViewPtr>::iterator it = mUIViews.begin();
+	//for (; it != mUIViews.end(); it++)
+	//{
+	//	it->second->Update(appSeconds, elapsedSeconds);
+	//}
 }
 //----------------------------------------------------------------------------
 void UIManager::SetSize(const Sizef &size)
@@ -65,7 +65,7 @@ bool UIManager::AddUIView(const std::string &name, UIView *view)
 
 	mUIViews[name] = view;
 
-	PX2_GR.AddRenderStep(view);
+	//PX2_GR.AddRenderStep(view);
 
 	return true;
 }
