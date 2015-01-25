@@ -8,12 +8,16 @@
 #include "PX2VertexColor4Material.hpp"
 #include "PX2Project.hpp"
 #include "PX2Time.hpp"
+#include "PX2Selection.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView::EditRenderView() :
 mViewType(VT_PERSPECTIVE),
-mViewDetail(VD_TEXTURED)
+mViewDetail(VD_TEXTURED),
+mIsLeftDown(false),
+mIsRightDown(false),
+mIsMiddleDown(false)
 {
 	_CreateGridGeometry();
 }
@@ -101,6 +105,77 @@ void EditRenderView::OnMoveHV(bool isAltDown, float h, float v)
 	}
 }
 //----------------------------------------------------------------------------
+void EditRenderView::OnLeftDown(const APoint &pos)
+{
+	mIsLeftDown = true;
+}
+//----------------------------------------------------------------------------
+void EditRenderView::OnLeftUp(const APoint &pos)
+{
+	mIsLeftDown = false;
+}
+//----------------------------------------------------------------------------
+void EditRenderView::OnMiddleDown(const APoint &pos)
+{
+	mIsMiddleDown = true;
+}
+//----------------------------------------------------------------------------
+void EditRenderView::OnMiddleUp(const APoint &pos)
+{
+	mIsMiddleDown = false;
+}
+//----------------------------------------------------------------------------
+void EditRenderView::OnMouseWheel(float delta)
+{
+
+}
+//----------------------------------------------------------------------------
+void EditRenderView::OnRightDown(const APoint &pos)
+{
+	mIsRightDown = true;
+}
+//----------------------------------------------------------------------------
+void EditRenderView::OnRightUp(const APoint &pos)
+{
+	mIsRightDown = false;
+}
+//----------------------------------------------------------------------------
+void EditRenderView::OnMotion(const APoint &pos)
+{
+	APoint curPos = pos;
+	AVector delta = curPos - mLastMousePoint;
+	mLastMousePoint = curPos;
+
+	if (delta == AVector::ZERO) return;
+
+	if (mIsMiddleDown)
+	{
+		float speedVal = 3.0f;
+		//if (shiftDown) speedVal *= 2.0f;
+
+		if (VT_PERSPECTIVE == mViewType)
+		{
+			//if (wxGetKeyState(WXK_ALT))
+			{
+				//_RolateCamera(delta.X()*mPixelToWorld.first*speedVal*0.25f, delta.Z()*mPixelToWorld.second*speedVal*0.25f);
+			}
+			//else if (wxGetKeyState(WXK_CONTROL))
+			{
+				//mWindow->ZoomCamera((float)diff.y*speedVal);
+				//_RoundCamera(delta.X()*speedVal*0.2f, delta.Z()*speedVal*0.2f);
+			}
+			//else
+			{
+				//_PanCamera(-diff.x*mPixelToWorld.first*speedVal, -diff.y*mPixelToWorld.second*speedVal);
+			}
+		}
+		else if (VT_PERSPECTIVE == mViewType)
+		{
+			//_PanCamera(diff.x*mPixelToWorld.first, diff.y*mPixelToWorld.second);
+		}
+	}
+}
+//----------------------------------------------------------------------------
 void EditRenderView::_MoveCamera(float horz, float vert)
 {
 	Scene *scene = PX2_PROJ.GetScene();
@@ -108,16 +183,11 @@ void EditRenderView::_MoveCamera(float horz, float vert)
 	
 	if (camActor)
 	{
-		Vector3f position = camActor->LocalTransform.GetTranslate();
-		const HMatrix &rotMat = camActor->LocalTransform.GetRotate();
-		HPoint r, d, u;
-		rotMat.GetColumn(0, r);
-		rotMat.GetColumn(1, d);
-		rotMat.GetColumn(2, u);
-
-		AVector dVector = AVector(d[0], d[1], d[2]);
-		AVector uVector = AVector(u[0], u[1], u[2]);
-		AVector rVector = AVector(r[0], r[1], r[2]);
+		APoint position = camActor->LocalTransform.GetTranslate();
+		AVector rVector;
+		AVector dVector;
+		AVector uVector;
+		camActor->GetRDUVector(rVector, dVector, uVector);
 
 		if (mViewType == VT_PERSPECTIVE)
 		{
@@ -144,6 +214,46 @@ void EditRenderView::_MoveCamera(float horz, float vert)
 			position.X() -= horz * 1.0f;
 		}
 
+		camActor->LocalTransform.SetTranslate(position);
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView::_PanCamera(const float &horz, const float &vert)
+{
+	Scene *scene = PX2_PROJ.GetScene();
+	CameraActor *camActor = scene->GetUseCameraActor();
+
+	if (camActor)
+	{
+		APoint position = camActor->LocalTransform.GetTranslate();
+		AVector rVector;
+		AVector dVector;
+		AVector uVector;
+		camActor->GetRDUVector(rVector, dVector, uVector);
+
+		if (mViewType == VT_PERSPECTIVE)
+		{
+			rVector.Normalize();
+			position += rVector * horz * 5.0f;
+
+			uVector.Normalize();
+			position -= uVector * vert * 5.0f;
+		}
+		else if (mViewType == VT_TOP)
+		{
+			position.Y() += vert * 1.0f;
+			position.X() -= horz * 1.0f;
+		}
+		else if (mViewType == VT_LEFT)
+		{
+			position.Z() += vert * 1.0f;
+			position.Y() += horz * 1.0f;
+		}
+		else if (mViewType == VT_FRONT)
+		{
+			position.Z() += vert * 1.0f;
+			position.X() -= horz * 1.0f;
+		}
 		camActor->LocalTransform.SetTranslate(position);
 	}
 }
@@ -205,6 +315,95 @@ void EditRenderView::_ZoomCamera(float zoom)
 
 			camActor->GetCamera()->SetFrustum(dMin, dMax, uMin, uMax, rMin, rMax);
 		}
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView::_RolateCamera(float horz, float vert)
+{
+	RenderStep *renderStep = PX2_PROJ.GetSceneRenderStep();
+	const Sizef &size = renderStep->GetSize();
+
+	Scene *scene = PX2_PROJ.GetScene();
+	CameraActor *camActor = scene->GetUseCameraActor();
+
+	if (VT_PERSPECTIVE == mViewType)
+	{
+		AVector rVector;
+		AVector dVector;
+		AVector uVector;
+		camActor->GetRDUVector(rVector, dVector, uVector);
+
+		// horz
+		HMatrix incrH(AVector::UNIT_Z, -horz*0.5f);
+		dVector = incrH * dVector;
+		uVector = incrH * uVector;
+		rVector = incrH * rVector;
+
+		// vert
+		Matrix3f kIncrV(rVector, -vert*0.5f);
+		dVector = kIncrV * dVector;
+		uVector = kIncrV * uVector;
+
+		dVector.Normalize();
+		float dVectorAdj = dVector.Dot(AVector::UNIT_Z);
+		float dVectorAdj1 = dVector.Dot(-AVector::UNIT_Z);
+		if (dVectorAdj > 0.9f || dVectorAdj1 > 0.9f)
+			return;
+
+		AVector::Orthonormalize(dVector, uVector, rVector);
+		camActor->LocalTransform.SetRotate(HMatrix(rVector, dVector,
+			uVector, AVector::ZERO, true));
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView::_RoundCamera(float horz, float vert)
+{
+	RenderStep *renderStep = PX2_PROJ.GetSceneRenderStep();
+	const Sizef &size = renderStep->GetSize();
+
+	Scene *scene = PX2_PROJ.GetScene();
+	CameraActor *camActor = scene->GetUseCameraActor();
+
+	if (mViewType == VT_PERSPECTIVE)
+	{
+		PX2::Object *obj = PX2_SELECTION.GetFirstObject();
+
+		bool hasTarget = false;
+		APoint pos;
+		Movable *mov = DynamicCast<Movable>(obj);
+		if (mov)
+		{
+			pos = mov->LocalTransform.GetTranslate();
+			hasTarget = true;
+		}
+
+		const APoint &camPos = camActor->LocalTransform.GetTranslate();
+		AVector rVector;
+		AVector dVector;
+		AVector uVector;
+		camActor->GetRDUVector(rVector, dVector, uVector);
+
+		AVector targetDir = pos - camPos;
+		float targetLength = targetDir.Normalize();
+
+		// horz
+		HMatrix incrH(AVector::UNIT_Z, -horz*0.1f);
+		targetDir = incrH * targetDir;
+		dVector = incrH * dVector;
+		uVector = incrH * uVector;
+		rVector = incrH * rVector;
+
+		HMatrix incrV(rVector, -vert*0.1f);
+		targetDir = incrV * targetDir;
+		dVector = incrV * dVector;
+		uVector = incrV * uVector;
+
+		APoint newPos = pos - targetDir*targetLength;
+		camActor->LocalTransform.SetTranslate(newPos);
+
+		AVector::Orthonormalize(dVector, uVector, rVector);
+		camActor->LocalTransform.SetRotate(
+			HMatrix(rVector, dVector, uVector, AVector::ZERO, true));
 	}
 }
 //----------------------------------------------------------------------------

@@ -23,6 +23,14 @@ namespace PX2Editor
 		void OnSize(wxSizeEvent& e);
 		void OnPaint(wxPaintEvent& e);
 		void OnEraseBackground(wxEraseEvent& rEvent);
+		void OnLeftDown(wxMouseEvent& e);
+		void OnLeftUp(wxMouseEvent& e);
+		void OnMiddleDown(wxMouseEvent& e);
+		void OnMiddleUp(wxMouseEvent& e);
+		void OnMouseWheel(wxMouseEvent& e);
+		void OnRightDown(wxMouseEvent& e);
+		void OnRightUp(wxMouseEvent& e);
+		void OnMotion(wxMouseEvent& e);
 
 		virtual void DoExecute(PX2::Event *event);
 
@@ -31,6 +39,7 @@ namespace PX2Editor
 
 		RenderView();
 		void _Update(double detalSeconds);
+		PX2::APoint _wxPointToAPoint(wxPoint &point);
 
 	protected:
 		bool mIsInited;
@@ -42,6 +51,7 @@ namespace PX2Editor
 		float mCurCameraMoveSpeed_S;
 		float mCurCameraMoveSpeed_A;
 		float mCurCameraMoveSpeed_D;
+		wxSize mSize;
 	};
 
 }

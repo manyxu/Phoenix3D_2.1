@@ -51,6 +51,16 @@ void RenderStep::OnSizeChange()
 	{
 		mRenderer->ResizeWindow((int)mSize.Width, (int)mSize.Height);
 	}
+
+	if (mCamera)
+	{
+		float fov = 0.0f;
+		float asp = 1.0f;
+		float dMin = 0.0f;
+		float dMax = 0.0f;
+		mCamera->GetFrustum(fov, asp, dMin, dMax);
+		mCamera->SetFrustum(fov, mSize.Width / mSize.Height, dMin, dMax);
+	}
 }
 //----------------------------------------------------------------------------
 void RenderStep::SetCamera(Camera *camera)

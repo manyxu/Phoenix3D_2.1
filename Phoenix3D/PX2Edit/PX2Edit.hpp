@@ -20,11 +20,24 @@ namespace PX2
 		bool Initlize();
 		bool Ternamate();
 
+		enum EditMode
+		{
+			EM_NONE,
+			EM_SELECT,
+			EM_TRANSLATE,
+			EM_ROLATE,
+			EM_SCALE,
+			EM_MAX_MODE
+		};
+		void SetEditMode(EditMode mode);
+		EditMode GetEditMode() const;
+
 		EditMap *GetEditMap();
 
 		static int GetEditID();
 
 	protected:
+		EditMode mEditMode;
 		EditMap *mEditMap;
 
 		static int msEditorID;

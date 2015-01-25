@@ -15,6 +15,14 @@ EVT_TIMER(sID_CTRLTIMER, RenderView::OnTimer)
 EVT_SIZE(RenderView::OnSize)
 EVT_PAINT(RenderView::OnPaint)
 EVT_ERASE_BACKGROUND(RenderView::OnEraseBackground)
+EVT_LEFT_DOWN(RenderView::OnLeftDown)
+EVT_LEFT_UP(RenderView::OnLeftUp)
+EVT_MIDDLE_DOWN(RenderView::OnMiddleDown)
+EVT_MIDDLE_UP(RenderView::OnMiddleUp)
+EVT_MOUSEWHEEL(RenderView::OnMouseWheel)
+EVT_RIGHT_DOWN(RenderView::OnRightDown)
+EVT_RIGHT_UP(RenderView::OnRightUp)
+EVT_MOTION(RenderView::OnMotion)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 RenderView::RenderView()
@@ -58,6 +66,8 @@ void RenderView::OnSize(wxSizeEvent& e)
 
 	RenderStep *renderStep = proj->GetSceneRenderStep();
 	renderStep->SetSize((float)size.GetWidth(), (float)size.GetHeight());
+
+	mSize = size;
 }
 //----------------------------------------------------------------------------
 void RenderView::OnPaint(wxPaintEvent& e)
@@ -70,6 +80,99 @@ void RenderView::OnEraseBackground(wxEraseEvent& e)
 {
 	if (!mIsInited) return;
 	PX2_UNUSED(e);
+}
+//----------------------------------------------------------------------------
+void RenderView::OnLeftDown(wxMouseEvent& e)
+{
+	SetFocus();
+
+	wxPoint mousePos = e.GetPosition();
+	APoint pos = _wxPointToAPoint(mousePos);
+
+	if (mEditRenderView)
+	{
+		mEditRenderView->OnLeftDown(pos);
+	}
+}
+//----------------------------------------------------------------------------
+void RenderView::OnLeftUp(wxMouseEvent& e)
+{
+	wxPoint mousePos = e.GetPosition();
+	APoint pos = _wxPointToAPoint(mousePos);
+
+	if (mEditRenderView)
+	{
+		mEditRenderView->OnLeftUp(pos);
+	}
+}
+//----------------------------------------------------------------------------
+void RenderView::OnMiddleDown(wxMouseEvent& e)
+{
+	SetFocus();
+
+	wxPoint mousePos = e.GetPosition();
+	APoint pos = _wxPointToAPoint(mousePos);
+
+	if (mEditRenderView)
+	{
+		mEditRenderView->OnMiddleDown(pos);
+	}
+}
+//----------------------------------------------------------------------------
+void RenderView::OnMiddleUp(wxMouseEvent& e)
+{
+	wxPoint mousePos = e.GetPosition();
+	APoint pos = _wxPointToAPoint(mousePos);
+
+	if (mEditRenderView)
+	{
+		mEditRenderView->OnMiddleUp(pos);
+	}
+}
+//----------------------------------------------------------------------------
+void RenderView::OnMouseWheel(wxMouseEvent& e)
+{
+	float delta = (float)e.GetWheelDelta();
+
+	if (mEditRenderView)
+	{
+		mEditRenderView->OnMouseWheel(delta);
+	}
+}
+//----------------------------------------------------------------------------
+void RenderView::OnRightDown(wxMouseEvent& e)
+{
+	SetFocus();
+
+	wxPoint mousePos = e.GetPosition();
+	APoint pos = _wxPointToAPoint(mousePos);
+
+	if (mEditRenderView)
+	{
+		mEditRenderView->OnRightDown(pos);
+	}
+}
+//----------------------------------------------------------------------------
+void RenderView::OnRightUp(wxMouseEvent& e)
+{
+	wxPoint mousePos = e.GetPosition();
+	APoint pos = _wxPointToAPoint(mousePos);
+
+	if (mEditRenderView)
+	{
+		mEditRenderView->OnRightUp(pos);
+	}
+}
+//----------------------------------------------------------------------------
+void RenderView::OnMotion(wxMouseEvent& e)
+{
+	wxPoint mousePos = e.GetPosition();
+	APoint pos = _wxPointToAPoint(mousePos);
+
+	if (mEditRenderView)
+	{
+		mEditRenderView->OnMotion(pos);
+	}
 }
 //----------------------------------------------------------------------------
 void RenderView::DoExecute(PX2::Event *event)
@@ -203,5 +306,10 @@ void RenderView::_Update(double detalSeconds)
 
 	if (mEditRenderView)
 		mEditRenderView->OnMoveHV(altDown, moveValueH, moveValueV);
+}
+//----------------------------------------------------------------------------
+APoint RenderView::_wxPointToAPoint(wxPoint &point)
+{
+	return APoint((float)point.x, 0.0f, (float)(mSize.GetHeight() - point.y));
 }
 //----------------------------------------------------------------------------

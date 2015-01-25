@@ -41,13 +41,29 @@ namespace PX2
 
 		void OnMoveHV(bool isAltDown, float h, float v);
 
+		void OnLeftDown(const APoint &pos);
+		void OnLeftUp(const APoint &pos);
+		void OnMiddleDown(const APoint &pos);
+		void OnMiddleUp(const APoint &pos);
+		void OnMouseWheel(float delta);
+		void OnRightDown(const APoint &pos);
+		void OnRightUp(const APoint &pos);
+		void OnMotion(const APoint &pos);
+
 	protected:
 		void _CreateGridGeometry();
-		void _MoveCamera(float horz, float vert);
+		void _MoveCamera(float horz, float vert); //< 透视角度，沿着视线方向移动
+		void _PanCamera(const float &horz, const float &vert); //< 透视角度，上下左右移动，其他视角和MoveCamera一样
 		void _ZoomCamera(float zoom);
+		void _RolateCamera(float horz, float vert);
+		void _RoundCamera(float horz, float vert);
 
 		ViewType mViewType;
 		ViewDetail mViewDetail;
+		bool mIsLeftDown;
+		bool mIsMiddleDown;
+		bool mIsRightDown;
+		APoint mLastMousePoint;
 
 		PX2::RenderablePtr mGrid;
 		PX2::NodePtr mGridNode;
