@@ -873,22 +873,75 @@ void BoundCtrl::UpdateCtrl()
 		for (int i = 0; i < numObjscts; i++)
 		{
 			Object *obj = PX2_SELECTION.GetObjectAt(i);
-			Movable *mov = DynamicCast<Movable>(obj);
-			if (mov)
+			Actor *actor = DynamicCast<Actor>(obj);
+			Movable *movable = DynamicCast<Movable>(obj);
+
+			if (actor)
 			{
 				mCtrlsGroup->SetActiveChild(0);
-				pos += mov->WorldTransform.GetTranslate();
 
-				if (0.0f != mov->WorldBound.GetRadius())
+				Movable *node = actor->GetNode();
+				Movable *helpNode = actor->GetHelpNode();
+
+				bool calHelpMovBound = true;
+
+				if (node)
+				{
+					if (0.0f != node->WorldBound.GetRadius())
+					{
+						calHelpMovBound = false;
+
+						if (firstBound)
+						{
+							bound = node->WorldBound;
+							firstBound = false;
+						}
+						else
+						{
+							bound.GrowToContain(node->WorldBound);
+						}
+					}
+					else
+					{
+						calHelpMovBound = true;
+					}
+				}
+				else
+				{
+					calHelpMovBound = true;
+				}
+
+				if (calHelpMovBound && helpNode && helpNode->IsShow())
+				{
+					if (0.0f != helpNode->WorldBound.GetRadius())
+					{
+						if (firstBound)
+						{
+							bound = helpNode->WorldBound;
+							firstBound = false;
+						}
+						else
+						{
+							bound.GrowToContain(helpNode->WorldBound);
+						}
+					}
+				}
+			}
+			else if (movable)
+			{
+				mCtrlsGroup->SetActiveChild(0);
+				pos += movable->WorldTransform.GetTranslate();
+
+				if (0.0f != movable->WorldBound.GetRadius())
 				{
 					if (firstBound)
 					{
-						bound = mov->WorldBound;
+						bound = movable->WorldBound;
 						firstBound = false;
 					}
 					else
 					{
-						bound.GrowToContain(mov->WorldBound);
+						bound.GrowToContain(movable->WorldBound);
 					}
 				}
 			}
