@@ -28,6 +28,7 @@ EditRenderView::~EditRenderView()
 	if (mRenderStep)
 	{
 		PX2_GR.RemoveRenderStep(mRenderStep);
+		mRenderStep = 0;
 	}
 }
 //----------------------------------------------------------------------------

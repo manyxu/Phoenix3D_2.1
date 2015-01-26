@@ -22,7 +22,7 @@ void EngineLoop::Tick()
 	PX2_GR.ComputeVisibleSet();
 
 	Renderer *defaultRenderer = Renderer::GetDefaultRenderer();
-	if (defaultRenderer->PreDraw())
+	if (defaultRenderer && defaultRenderer->PreDraw())
 	{
 		defaultRenderer->SetClearColor(proj->GetBackgroundColor());
 		defaultRenderer->InitRenderStates();

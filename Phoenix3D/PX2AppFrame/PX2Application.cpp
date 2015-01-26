@@ -223,8 +223,20 @@ int Application::Main (int numArguments, char** arguments)
 //----------------------------------------------------------------------------
 bool Application::Initlize()
 {
+	if (msIsInitlized)
+		return true;
+
+	PX2_ENGINELOOP.Initlize();
+
+	// Load boost
+	PX2_ENGINELOOP.LoadBoost("Data/boost.xml");
+	const Sizef &boostSize = PX2_ENGINELOOP.GetBoostSize();
+	mWidth = (int)boostSize.Width;
+	mHeight = (int)boostSize.Height;
+	std::string projectPath = PX2_ENGINELOOP.GetProjectPath();
+	PX2_ENGINELOOP.SetPt_Size(boostSize);
+
 #if defined(_WIN32) || defined(WIN32)
-	// 注册窗口类
 	static char sWindowClass[] = "Phoenix2 ApplicationBase";
 	WNDCLASS wc;
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
@@ -259,49 +271,38 @@ bool Application::Initlize()
 		rect.right - rect.left + 1, rect.bottom - rect.top + 1, 0, 0, 0, 0);
 
 	PX2_ENGINELOOP.SetPt_Data(mhWnd);
-#endif
 
-	PX2_ENGINELOOP.SetPt_Size(Sizef((float)mWidth, (float)mHeight));
+	// 居中
+	RECT rcDesktop, rcWindow;
+	GetWindowRect(GetDesktopWindow(), &rcDesktop);
 
-	if (ApplicationBase::Initlize())
+	HWND hTaskBar = FindWindow(TEXT("Shell_TrayWnd"), NULL);
+	if (hTaskBar != NULL)
 	{
-		const Sizef &boostSize = PX2_ENGINELOOP.GetBoostSize();
-		int iBoostWidth = (int)boostSize.Width;
-		int iBoostHeight = (int)boostSize.Height;
+		APPBARDATA abd;
 
-		MoveWindow(mhWnd, 0, 0, iBoostWidth, iBoostHeight, true);
+		abd.cbSize = sizeof(APPBARDATA);
+		abd.hWnd = hTaskBar;
 
-		// 居中
-		RECT rcDesktop, rcWindow;
-		GetWindowRect(GetDesktopWindow(), &rcDesktop);
-
-		HWND hTaskBar = FindWindow(TEXT("Shell_TrayWnd"), NULL);
-		if (hTaskBar != NULL)
-		{
-			APPBARDATA abd;
-
-			abd.cbSize = sizeof(APPBARDATA);
-			abd.hWnd = hTaskBar;
-
-			SHAppBarMessage(ABM_GETTASKBARPOS, &abd);
-			SubtractRect(&rcDesktop, &rcDesktop, &abd.rc);
-		}
-		GetWindowRect(mhWnd, &rcWindow);
-		int offsetX = (rcDesktop.right - rcDesktop.left - (rcWindow.right - rcWindow.left)) / 2;
-		offsetX = (offsetX > 0) ? offsetX : rcDesktop.left;
-		int offsetY = (rcDesktop.bottom - rcDesktop.top - (rcWindow.bottom - rcWindow.top)) / 2;
-		offsetY = (offsetY > 0) ? offsetY : rcDesktop.top;
-		SetWindowPos(mhWnd, 0, offsetX, offsetY, 0, 0, SWP_NOCOPYBITS | SWP_NOSIZE | SWP_NOOWNERZORDER | SWP_NOZORDER);
-		mXPosition = offsetX;
-		mYPosition = offsetY;
-
-		UpdateWindow(mhWnd);
-		ShowWindow(mhWnd, true);
-
-		OnSize(iBoostWidth, iBoostHeight);
-
-		return true;
+		SHAppBarMessage(ABM_GETTASKBARPOS, &abd);
+		SubtractRect(&rcDesktop, &rcDesktop, &abd.rc);
 	}
+	GetWindowRect(mhWnd, &rcWindow);
+	int offsetX = (rcDesktop.right - rcDesktop.left - (rcWindow.right - rcWindow.left)) / 2;
+	offsetX = (offsetX > 0) ? offsetX : rcDesktop.left;
+	int offsetY = (rcDesktop.bottom - rcDesktop.top - (rcWindow.bottom - rcWindow.top)) / 2;
+	offsetY = (offsetY > 0) ? offsetY : rcDesktop.top;
+	SetWindowPos(mhWnd, 0, offsetX, offsetY, 0, 0, SWP_NOCOPYBITS | SWP_NOSIZE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+	mXPosition = offsetX;
+	mYPosition = offsetY;
+#endif
+	PX2_ENGINELOOP.InitlizeRenderer();
+	PX2_ENGINELOOP.SetSize(boostSize);
+
+	// Load Project
+	_LoadProject(projectPath);
+
+	msIsInitlized = true;
 
 	return false;
 }

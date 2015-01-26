@@ -76,21 +76,7 @@ int ApplicationBase::GetProjSuitType () const
 //----------------------------------------------------------------------------
 bool ApplicationBase::Initlize ()
 {
-	if (msIsInitlized)
-		return true;
-
-	PX2_ENGINELOOP.Initlize();
-
-	// Load boost
-	PX2_ENGINELOOP.LoadBoost("Data/boost.xml");
-	const Sizef &boostSize = PX2_ENGINELOOP.GetBoostSize();
-	const std::string &projFilename = PX2_ENGINELOOP.GetProjectPath();
-
-	// Load Project
-	_LoadProject(projFilename);
-
-	msIsInitlized = true;
-
+	/*_*/
 	return true;
 }
 //----------------------------------------------------------------------------

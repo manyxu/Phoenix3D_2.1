@@ -42,6 +42,7 @@ namespace PX2
 		// init term
 	public:
 		bool Initlize();
+		bool InitlizeRenderer();
 
 		void WillEnterForeground(bool isFirstTime);
 		void DidEnterBackground();

@@ -60,9 +60,11 @@ bool E_App::OnInit()
 	mMainFrame->Center();
 	mMainFrame->Maximize();
 
+	PX2_ENGINELOOP.Initlize();
+
 	PX2_ENGINELOOP.SetPt_Data(mMainFrame->GetRenderView()->GetHandle());
 	PX2_ENGINELOOP.SetPt_Size(Sizef(1024.0f, 768.0f));
-	PX2_ENGINELOOP.Initlize();
+	PX2_ENGINELOOP.InitlizeRenderer();
 
 	Edit *edit = new0 Edit();
 	edit->Initlize();
@@ -83,11 +85,6 @@ bool E_App::OnInit()
 //-----------------------------------------------------------------------------
 int E_App::OnExit()
 {
-	if (mMainFrame)
-	{
-		mMainFrame->Ternamate();
-	}
-
 	Edit *edit = Edit::GetSingletonPtr();
 	if (edit)
 	{

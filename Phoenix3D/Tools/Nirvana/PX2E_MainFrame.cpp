@@ -84,16 +84,6 @@ bool E_MainFrame::Initlize()
 	return true;
 }
 //----------------------------------------------------------------------------
-bool E_MainFrame::Ternamate()
-{
-	if (mRenderView)
-	{
-		mRenderView->Ternamate();
-	}
-
-	return true;
-}
-//----------------------------------------------------------------------------
 void E_MainFrame::AddEventHandlers()
 {
 	PX2_EW.ComeIn(this);
