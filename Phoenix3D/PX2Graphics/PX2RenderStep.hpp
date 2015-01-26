@@ -61,6 +61,10 @@ namespace PX2
 	public:
 		void ComputeVisibleSet();
 		void Draw();
+
+		// Help
+	public:
+		std::pair<float, float> CalPixelToWorld();
 	};
 
 #include "PX2RenderStep.inl"

@@ -100,3 +100,47 @@ void RenderStep::Draw()
 	}
 }
 //----------------------------------------------------------------------------
+std::pair<float, float> RenderStep::CalPixelToWorld()
+{
+	std::pair<float, float> pixelToWorld;
+
+	if (mCamera)
+	{
+		if (mCamera->IsPerspective())
+		{
+			float rMin = mCamera->GetRMin();
+			float uMin = mCamera->GetUMin();
+			float viewPortWidth = mSize.Width;
+			float viewPortHeight = mSize.Height;
+
+			float worldW = 2.0f * -rMin;
+			float worldH = 2.0f * -uMin;
+
+			worldW *= 10.0f;
+			worldH *= 10.0f;
+
+			pixelToWorld.first = worldW / (float)viewPortWidth;
+			pixelToWorld.second = worldH / (float)viewPortHeight;
+		}
+		else
+		{
+			float rMin = mCamera->GetRMin();
+			float uMin = mCamera->GetUMin();
+			float viewPortWidth = mSize.Width;
+			float viewPortHeight = mSize.Height;
+
+			float worldW = 2.0f * -rMin;
+			float worldH = 2.0f * -uMin;
+
+			worldW *= 1.0f;
+			worldH *= 1.0f;
+
+			pixelToWorld.first = worldW / (float)viewPortWidth;
+			pixelToWorld.second = worldH / (float)viewPortHeight;
+		}
+
+	}
+
+	return pixelToWorld;
+}
+//----------------------------------------------------------------------------

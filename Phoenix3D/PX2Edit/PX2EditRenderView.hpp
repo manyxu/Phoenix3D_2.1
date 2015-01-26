@@ -17,6 +17,13 @@ namespace PX2
 		EditRenderView();
 		~EditRenderView();
 
+	protected:
+		void _CreateGridGeometry();
+
+		PX2::RenderablePtr mGrid;
+		PX2::NodePtr mGridNode;
+
+	public:
 		enum ViewType
 		{
 			VT_TOP,
@@ -39,8 +46,15 @@ namespace PX2
 
 		RenderStep *GetRenderStep();
 
+	protected:
+		ViewType mViewType;
+		ViewDetail mViewDetail;
+		RenderStepPtr mRenderStep;
+
+	public:
 		void OnMoveHV(bool isAltDown, float h, float v);
 
+		void OnSize(const Sizef& size);
 		void OnLeftDown(const APoint &pos);
 		void OnLeftUp(const APoint &pos);
 		void OnMiddleDown(const APoint &pos);
@@ -51,24 +65,20 @@ namespace PX2
 		void OnMotion(const APoint &pos);
 
 	protected:
-		void _CreateGridGeometry();
 		void _MoveCamera(float horz, float vert); //< 透视角度，沿着视线方向移动
 		void _PanCamera(const float &horz, const float &vert); //< 透视角度，上下左右移动，其他视角和MoveCamera一样
 		void _ZoomCamera(float zoom);
 		void _RolateCamera(float horz, float vert);
 		void _RoundCamera(float horz, float vert);
 
-		ViewType mViewType;
-		ViewDetail mViewDetail;
+		Sizef mSize;
 		bool mIsLeftDown;
 		bool mIsMiddleDown;
 		bool mIsRightDown;
 		APoint mLastMousePoint;
 
-		PX2::RenderablePtr mGrid;
-		PX2::NodePtr mGridNode;
-
-		RenderStepPtr mRenderStep;
+	public:
+		std::pair<float, float> mPixelToWorld;
 	};
 
 	typedef Pointer0<EditRenderView> EditRenderViewPtr;

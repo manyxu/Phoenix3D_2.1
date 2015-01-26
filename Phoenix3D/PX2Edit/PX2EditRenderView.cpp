@@ -9,6 +9,7 @@
 #include "PX2Project.hpp"
 #include "PX2Time.hpp"
 #include "PX2Selection.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -105,9 +106,23 @@ void EditRenderView::OnMoveHV(bool isAltDown, float h, float v)
 	}
 }
 //----------------------------------------------------------------------------
+void EditRenderView::OnSize(const Sizef& size)
+{
+	mSize = size;
+
+	Project *proj = Project::GetSingletonPtr();
+	if (!proj) return;
+
+	RenderStep *renderStep = proj->GetSceneRenderStep();
+	renderStep->SetSize(mSize);
+}
+//----------------------------------------------------------------------------
 void EditRenderView::OnLeftDown(const APoint &pos)
 {
 	mIsLeftDown = true;
+
+	if (mRenderStep)
+		mPixelToWorld = mRenderStep->CalPixelToWorld();
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnLeftUp(const APoint &pos)
@@ -118,21 +133,34 @@ void EditRenderView::OnLeftUp(const APoint &pos)
 void EditRenderView::OnMiddleDown(const APoint &pos)
 {
 	mIsMiddleDown = true;
+
+	if (mRenderStep)
+		mPixelToWorld = mRenderStep->CalPixelToWorld();
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnMiddleUp(const APoint &pos)
 {
 	mIsMiddleDown = false;
+
+	if (mRenderStep)
+		mPixelToWorld = mRenderStep->CalPixelToWorld();
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnMouseWheel(float delta)
 {
+	float delta1 = delta * 0.03f;
 
+	if (PX2_EDIT.IsShiftDown) delta1 *= 2.0f;
+
+	_ZoomCamera(delta1);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnRightDown(const APoint &pos)
 {
 	mIsRightDown = true;
+
+	if (mRenderStep)
+		mPixelToWorld = mRenderStep->CalPixelToWorld();
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnRightUp(const APoint &pos)
@@ -151,27 +179,27 @@ void EditRenderView::OnMotion(const APoint &pos)
 	if (mIsMiddleDown)
 	{
 		float speedVal = 3.0f;
-		//if (shiftDown) speedVal *= 2.0f;
+		if (PX2_EDIT.IsShiftDown) speedVal *= 2.0f;
 
 		if (VT_PERSPECTIVE == mViewType)
 		{
-			//if (wxGetKeyState(WXK_ALT))
+			if (PX2_EDIT.IsAltDown)
 			{
-				//_RolateCamera(delta.X()*mPixelToWorld.first*speedVal*0.25f, delta.Z()*mPixelToWorld.second*speedVal*0.25f);
+				_RolateCamera(delta.X()*mPixelToWorld.first*speedVal*0.25f, -delta.Z()*mPixelToWorld.second*speedVal*0.25f);
 			}
-			//else if (wxGetKeyState(WXK_CONTROL))
+			else if (PX2_EDIT.IsCtrlDown)
 			{
-				//mWindow->ZoomCamera((float)diff.y*speedVal);
-				//_RoundCamera(delta.X()*speedVal*0.2f, delta.Z()*speedVal*0.2f);
+				//_ZoomCamera(-delta.Z()*speedVal);
+				_RoundCamera(delta.X()*speedVal*0.2f, delta.Z()*speedVal*0.2f);
 			}
-			//else
+			else
 			{
-				//_PanCamera(-diff.x*mPixelToWorld.first*speedVal, -diff.y*mPixelToWorld.second*speedVal);
+				_PanCamera(-delta.X()*mPixelToWorld.first*speedVal, delta.Z()*mPixelToWorld.second*speedVal);
 			}
 		}
-		else if (VT_PERSPECTIVE == mViewType)
+		else
 		{
-			//_PanCamera(diff.x*mPixelToWorld.first, diff.y*mPixelToWorld.second);
+			_PanCamera(delta.X()*mPixelToWorld.first, delta.Z()*mPixelToWorld.second);
 		}
 	}
 }
@@ -377,33 +405,36 @@ void EditRenderView::_RoundCamera(float horz, float vert)
 			hasTarget = true;
 		}
 
-		const APoint &camPos = camActor->LocalTransform.GetTranslate();
-		AVector rVector;
-		AVector dVector;
-		AVector uVector;
-		camActor->GetRDUVector(rVector, dVector, uVector);
+		if (hasTarget)
+		{
+			const APoint &camPos = camActor->LocalTransform.GetTranslate();
+			AVector rVector;
+			AVector dVector;
+			AVector uVector;
+			camActor->GetRDUVector(rVector, dVector, uVector);
 
-		AVector targetDir = pos - camPos;
-		float targetLength = targetDir.Normalize();
+			AVector targetDir = pos - camPos;
+			float targetLength = targetDir.Normalize();
 
-		// horz
-		HMatrix incrH(AVector::UNIT_Z, -horz*0.1f);
-		targetDir = incrH * targetDir;
-		dVector = incrH * dVector;
-		uVector = incrH * uVector;
-		rVector = incrH * rVector;
+			// horz
+			HMatrix incrH(AVector::UNIT_Z, -horz*0.1f);
+			targetDir = incrH * targetDir;
+			dVector = incrH * dVector;
+			uVector = incrH * uVector;
+			rVector = incrH * rVector;
 
-		HMatrix incrV(rVector, -vert*0.1f);
-		targetDir = incrV * targetDir;
-		dVector = incrV * dVector;
-		uVector = incrV * uVector;
+			HMatrix incrV(rVector, -vert*0.1f);
+			targetDir = incrV * targetDir;
+			dVector = incrV * dVector;
+			uVector = incrV * uVector;
 
-		APoint newPos = pos - targetDir*targetLength;
-		camActor->LocalTransform.SetTranslate(newPos);
+			APoint newPos = pos - targetDir*targetLength;
+			camActor->LocalTransform.SetTranslate(newPos);
 
-		AVector::Orthonormalize(dVector, uVector, rVector);
-		camActor->LocalTransform.SetRotate(
-			HMatrix(rVector, dVector, uVector, AVector::ZERO, true));
+			AVector::Orthonormalize(dVector, uVector, rVector);
+			camActor->LocalTransform.SetRotate(
+				HMatrix(rVector, dVector, uVector, AVector::ZERO, true));
+		}
 	}
 }
 //----------------------------------------------------------------------------

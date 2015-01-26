@@ -11,7 +11,10 @@ int Edit::msEditorID = 6001;
 //----------------------------------------------------------------------------
 Edit::Edit() :
 mEditMode(EM_NONE),
-mEditMap(0)
+mEditMap(0),
+IsAltDown(false),
+IsCtrlDown(false),
+IsShiftDown(false)
 {
 }
 //----------------------------------------------------------------------------

@@ -6,6 +6,7 @@
 
 #include "PX2ApplicationBase.hpp"
 #include "PX2EngineLoop.hpp"
+#include "PX2Project.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -80,6 +81,14 @@ bool ApplicationBase::Initlize ()
 
 	PX2_ENGINELOOP.Initlize();
 
+	// Load boost
+	PX2_ENGINELOOP.LoadBoost("Data/boost.xml");
+	const Sizef &boostSize = PX2_ENGINELOOP.GetBoostSize();
+	const std::string &projFilename = PX2_ENGINELOOP.GetProjectPath();
+
+	// Load Project
+	_LoadProject(projFilename);
+
 	msIsInitlized = true;
 
 	return true;
@@ -118,24 +127,7 @@ bool ApplicationBase::Ternamate ()
 //----------------------------------------------------------------------------
 void ApplicationBase::OnSize (int width, int height)
 {
-	//if (!mProject)
-	//	return;
-
-	//mWidth = width;
-	//mHeight = height;
-	//float projWidth = mProject->GetWidth();
-	//float projHeight = mProject->GetHeight();
-
-	//Sizef sz((float)mWidth, (float)mHeight);
-	//Rectf rect = GameManager::GetSingleton().CalGameViewRect((float)mWidth, (float)mHeight);
-	//mRoot->SetSize(sz);
-	//mRoot->SetRect(rect);	
-	//mInputEventAdapter->SetRect(rect);
-	//mInputEventAdapter->GetInputManager()->SetSize(sz);
-
-	//if (mRenderer) mRenderer->ResizeWindow(mWidth, mHeight);
-
-	//OnProjectSize(projWidth, projHeight);
+	PX2_ENGINELOOP.SetSize(Sizef((float)width, (float)height));
 }
 //----------------------------------------------------------------------------
 void ApplicationBase::WillEnterForeground(bool isFirstTime)
@@ -153,5 +145,41 @@ int ApplicationBase::Main (int numArguments, char** arguments)
 	PX2_UNUSED(numArguments);
 	PX2_UNUSED(arguments);
 	return 1;
+}
+//----------------------------------------------------------------------------
+bool ApplicationBase::_LoadProject(const std::string &projFilename)
+{
+	Project *newProj = new0 Project();
+	if (newProj->Load(projFilename))
+	{
+		const std::string &sceneFilename = newProj->GetSceneFilename();
+		if (!sceneFilename.empty())
+		{
+			_LoadScene(sceneFilename);
+		}
+
+		PX2_ENGINELOOP.SetSize(newProj->GetSize());
+
+		return true;
+	}
+	else
+	{
+		Project::Destory();
+		return false;
+	}
+}
+//----------------------------------------------------------------------------
+bool ApplicationBase::_LoadScene(const std::string &sceneFilename)
+{
+	Scene *newscene = DynamicCast<Scene>(PX2_RM.BlockLoad(sceneFilename));
+	if (newscene)
+	{
+		Project::GetSingleton().SetScene(newscene);
+		Project::GetSingleton().SetSceneFilename(sceneFilename);
+
+		return true;
+	}
+
+	return false;
 }
 //----------------------------------------------------------------------------

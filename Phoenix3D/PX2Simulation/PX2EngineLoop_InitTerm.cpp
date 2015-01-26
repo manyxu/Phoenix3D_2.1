@@ -202,8 +202,6 @@ void EngineLoop::DidEnterBackground()
 //----------------------------------------------------------------------------
 bool EngineLoop::Ternamate()
 {
-	Project::Destory();
-
 	PX2_EW.Shutdown(true);
 	
 	if (mSelection)
@@ -237,6 +235,8 @@ bool EngineLoop::Ternamate()
 		delete0(mAccoutManager);
 		AccoutManager::Set(0);
 	}
+
+	Project::Destory();
 
 	if (mResMan)
 	{
@@ -336,6 +336,27 @@ bool EngineLoop::Ternamate()
 #endif
 
 	return true;
+}
+//----------------------------------------------------------------------------
+bool EngineLoop::LoadBoost(const std::string &filename)
+{
+	XMLData data;
+
+	int bufferSize = 0;
+	char *buffer = 0;
+	ResourceManager::GetSingleton().LoadBuffer(filename, bufferSize, buffer);
+	if (!buffer || bufferSize == 0) return false;
+
+	if (data.LoadBuffer(buffer, bufferSize))
+	{
+		mBoostSize.Width = data.GetNodeByPath("config.var").AttributeToFloat("width");
+		mBoostSize.Height = data.GetNodeByPath("config.var").AttributeToFloat("height");
+		mProjectPath = data.GetNodeByPath("play.var").AttributeToString("projectpath");
+
+		return true;
+	}
+
+	return false;
 }
 //----------------------------------------------------------------------------
 void EngineLoop::SetSize(const Sizef &size)

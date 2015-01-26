@@ -113,20 +113,23 @@ bool Project::Load(const std::string &filename)
 
 			// general
 			XMLNode generalNode = rootNode.GetChild("general");
-			name = generalNode.AttributeToString("name");
-			width = generalNode.AttributeToInt("width");
-			height = generalNode.AttributeToInt("height");
-			std::string colorStr = generalNode.AttributeToString("color");
-			StringTokenizer stk(colorStr, ",");
-			Float4 color = Float4::MakeColor(
-				StringHelp::StringToInt(stk[0]),
-				StringHelp::StringToInt(stk[1]),
-				StringHelp::StringToInt(stk[2]),
-				StringHelp::StringToInt(stk[3]));
+			if (!generalNode.IsNull())
+			{
+				name = generalNode.AttributeToString("name");
+				width = generalNode.AttributeToInt("width");
+				height = generalNode.AttributeToInt("height");
+				std::string colorStr = generalNode.AttributeToString("color");
+				StringTokenizer stk(colorStr, ",");
+				Float4 color = Float4::MakeColor(
+					StringHelp::StringToInt(stk[0]),
+					StringHelp::StringToInt(stk[1]),
+					StringHelp::StringToInt(stk[2]),
+					StringHelp::StringToInt(stk[3]));
 
-			SetName(name);
-			SetSize(Sizef((float)width, (float)height));
-			SetBackgroundColor(color);
+				SetName(name);
+				SetSize(Sizef((float)width, (float)height));
+				SetBackgroundColor(color);
+			}
 
 			// scene
 			XMLNode sceneNode = rootNode.GetChild("scene");

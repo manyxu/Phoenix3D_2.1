@@ -33,7 +33,8 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mAuiManager(0),
 	mRenderView(0),
 	mIsShowRenderView(false),
-	mProjView(0)
+	mProjView(0),
+	mIsCrossCursor(false)
 {
 }
 //----------------------------------------------------------------------------
@@ -118,6 +119,27 @@ void E_MainFrame::OnTimer(wxTimerEvent& e)
 
 	if (mIsInitlized)
 	{
+		PX2_EDIT.IsAltDown = wxGetKeyState(WXK_ALT);
+		PX2_EDIT.IsCtrlDown = wxGetKeyState(WXK_CONTROL);
+		PX2_EDIT.IsShiftDown = wxGetKeyState(WXK_SHIFT);
+
+		//if (PX2_EDIT.IsAltDown)
+		//{
+		//	if (!mIsCrossCursor)
+		//	{
+		//		wxSetCursor(wxNullCursor);
+		//		mIsCrossCursor = true;
+		//	}
+		//}
+		//else
+		//{
+		//	if (mIsCrossCursor)
+		//	{
+		//		wxSetCursor(*wxSTANDARD_CURSOR);
+		//		mIsCrossCursor = false;
+		//	}
+		//}
+
 		PX2_ENGINELOOP.Tick();
 	}
 }

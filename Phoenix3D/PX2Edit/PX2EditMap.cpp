@@ -63,8 +63,7 @@ bool EditMap::LoadProject(const char *pathname)
 	}
 	else
 	{
-		delete0(newProj);
-		Project::Set(0);
+		Project::Destory();
 	}
 
 	return false;

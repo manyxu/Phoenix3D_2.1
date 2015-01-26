@@ -41,6 +41,12 @@ namespace PX2
 		EditMap *mEditMap;
 
 		static int msEditorID;
+
+		// key
+	public:
+		bool IsAltDown;
+		bool IsCtrlDown;
+		bool IsShiftDown;
 	};
 
 #include "PX2Edit.inl"

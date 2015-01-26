@@ -72,6 +72,16 @@ namespace PX2
 		bool mBeforeInBackgroundMusicEnable;
 		bool mBeforeInBackgroundSoundEnable;
 
+		// boost
+	public:
+		bool LoadBoost(const std::string &filename);
+		const Sizef &GetBoostSize() const;
+		const std::string &GetProjectPath() const;
+
+	protected:
+		Sizef mBoostSize;
+		std::string mProjectPath;
+
 		// public
 	public:
 		void SetSize(const Sizef &size);

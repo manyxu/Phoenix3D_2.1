@@ -59,13 +59,13 @@ void RenderView::OnTimer(wxTimerEvent& event)
 //----------------------------------------------------------------------------
 void RenderView::OnSize(wxSizeEvent& e)
 {
-	Project *proj = Project::GetSingletonPtr();
-	if (!proj) return;
-
 	wxSize size = e.GetSize();
 
-	RenderStep *renderStep = proj->GetSceneRenderStep();
-	renderStep->SetSize((float)size.GetWidth(), (float)size.GetHeight());
+	if (mEditRenderView)
+	{
+		mEditRenderView->OnSize(Sizef((float)size.GetWidth(), 
+			(float)size.GetHeight()));
+	}
 
 	mSize = size;
 }
@@ -132,7 +132,7 @@ void RenderView::OnMiddleUp(wxMouseEvent& e)
 //----------------------------------------------------------------------------
 void RenderView::OnMouseWheel(wxMouseEvent& e)
 {
-	float delta = (float)e.GetWheelDelta();
+	float delta = (float)e.GetWheelRotation();
 
 	if (mEditRenderView)
 	{
@@ -188,6 +188,8 @@ void RenderView::DoExecute(PX2::Event *event)
 		RenderStep *renderStep = mEditRenderView->GetRenderStep();
 		renderStep->SetCamera(sceneRenderStepCamera);
 		renderStep->SetRenderer(sceneRenderStepRenderer);
+
+		SetSize(GetSize());
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
@@ -197,115 +199,115 @@ void RenderView::DoExecute(PX2::Event *event)
 //----------------------------------------------------------------------------
 void RenderView::_Update(double detalSeconds)
 {
-	bool altDown = wxGetKeyState(WXK_ALT);
-	bool ctrlDown = wxGetKeyState(WXK_CONTROL);
-	bool shiftDown = wxGetKeyState(WXK_SHIFT);
-	bool wDown = wxGetKeyState((wxKeyCode)(_T('W')));
-	bool sDown = wxGetKeyState((wxKeyCode)(_T('S')));
-	bool aDown = wxGetKeyState((wxKeyCode)(_T('A')));
-	bool dDown = wxGetKeyState((wxKeyCode)(_T('D')));
+	//bool altDown = wxGetKeyState(WXK_ALT);
+	//bool ctrlDown = wxGetKeyState(WXK_CONTROL);
+	//bool shiftDown = wxGetKeyState(WXK_SHIFT);
+	//bool wDown = wxGetKeyState((wxKeyCode)(_T('W')));
+	//bool sDown = wxGetKeyState((wxKeyCode)(_T('S')));
+	//bool aDown = wxGetKeyState((wxKeyCode)(_T('A')));
+	//bool dDown = wxGetKeyState((wxKeyCode)(_T('D')));
 
-	// cal move speed
-	float speedParam0 = (mCameraMoveSpeed / 0.2f);
-	float speedParam1 = (mCameraMoveSpeed / 0.1f);
-	if (wDown)
-	{
-		mCurCameraMoveSpeed_W = mCameraMoveSpeed;
-	}
-	else
-	{
-		float curSpeedTemp = mCurCameraMoveSpeed_W;
-		curSpeedTemp -= (float)detalSeconds * (speedParam0 + speedParam1*(float)detalSeconds);
-		if (curSpeedTemp >= 0.0f)
-		{
-			mCurCameraMoveSpeed_W = curSpeedTemp;
-		}
-		else
-		{
-			mCurCameraMoveSpeed_W = 0.0f;
-		}
-	}
+	//// cal move speed
+	//float speedParam0 = (mCameraMoveSpeed / 0.2f);
+	//float speedParam1 = (mCameraMoveSpeed / 0.1f);
+	//if (wDown)
+	//{
+	//	mCurCameraMoveSpeed_W = mCameraMoveSpeed;
+	//}
+	//else
+	//{
+	//	float curSpeedTemp = mCurCameraMoveSpeed_W;
+	//	curSpeedTemp -= (float)detalSeconds * (speedParam0 + speedParam1*(float)detalSeconds);
+	//	if (curSpeedTemp >= 0.0f)
+	//	{
+	//		mCurCameraMoveSpeed_W = curSpeedTemp;
+	//	}
+	//	else
+	//	{
+	//		mCurCameraMoveSpeed_W = 0.0f;
+	//	}
+	//}
 
-	if (sDown)
-	{
-		mCurCameraMoveSpeed_S = mCameraMoveSpeed;
-	}
-	else
-	{
-		float curSpeedTemp = mCurCameraMoveSpeed_S;
-		curSpeedTemp -= (float)detalSeconds * (speedParam0 + speedParam1*(float)detalSeconds);
-		if (curSpeedTemp > 0.0f)
-		{
-			mCurCameraMoveSpeed_S = curSpeedTemp;
-		}
-		else
-		{
-			mCurCameraMoveSpeed_S = 0.0f;
-		}
-	}
+	//if (sDown)
+	//{
+	//	mCurCameraMoveSpeed_S = mCameraMoveSpeed;
+	//}
+	//else
+	//{
+	//	float curSpeedTemp = mCurCameraMoveSpeed_S;
+	//	curSpeedTemp -= (float)detalSeconds * (speedParam0 + speedParam1*(float)detalSeconds);
+	//	if (curSpeedTemp > 0.0f)
+	//	{
+	//		mCurCameraMoveSpeed_S = curSpeedTemp;
+	//	}
+	//	else
+	//	{
+	//		mCurCameraMoveSpeed_S = 0.0f;
+	//	}
+	//}
 
-	if (aDown)
-	{
-		mCurCameraMoveSpeed_A = mCameraMoveSpeed;
-	}
-	else
-	{
-		float curSpeedTemp = mCurCameraMoveSpeed_A;
-		curSpeedTemp -= (float)detalSeconds * (speedParam0 + speedParam1*(float)detalSeconds);
-		if (curSpeedTemp > 0.0f)
-		{
-			mCurCameraMoveSpeed_A = curSpeedTemp;
-		}
-		else
-		{
-			mCurCameraMoveSpeed_A = 0.0f;
-		}
-	}
+	//if (aDown)
+	//{
+	//	mCurCameraMoveSpeed_A = mCameraMoveSpeed;
+	//}
+	//else
+	//{
+	//	float curSpeedTemp = mCurCameraMoveSpeed_A;
+	//	curSpeedTemp -= (float)detalSeconds * (speedParam0 + speedParam1*(float)detalSeconds);
+	//	if (curSpeedTemp > 0.0f)
+	//	{
+	//		mCurCameraMoveSpeed_A = curSpeedTemp;
+	//	}
+	//	else
+	//	{
+	//		mCurCameraMoveSpeed_A = 0.0f;
+	//	}
+	//}
 
-	if (dDown)
-	{
-		mCurCameraMoveSpeed_D = mCameraMoveSpeed;
-	}
-	else
-	{
-		float curSpeedTemp = mCurCameraMoveSpeed_D;
-		curSpeedTemp -= (float)detalSeconds * (speedParam0 + speedParam1*(float)detalSeconds);
-		if (curSpeedTemp > 0.0f)
-		{
-			mCurCameraMoveSpeed_D = curSpeedTemp;
-		}
-		else
-		{
-			mCurCameraMoveSpeed_D = 0.0f;
-		}
-	}
+	//if (dDown)
+	//{
+	//	mCurCameraMoveSpeed_D = mCameraMoveSpeed;
+	//}
+	//else
+	//{
+	//	float curSpeedTemp = mCurCameraMoveSpeed_D;
+	//	curSpeedTemp -= (float)detalSeconds * (speedParam0 + speedParam1*(float)detalSeconds);
+	//	if (curSpeedTemp > 0.0f)
+	//	{
+	//		mCurCameraMoveSpeed_D = curSpeedTemp;
+	//	}
+	//	else
+	//	{
+	//		mCurCameraMoveSpeed_D = 0.0f;
+	//	}
+	//}
 
-	// move
-	float moveValue_W = mCurCameraMoveSpeed_W * (float)detalSeconds;
-	float moveValue_S = mCurCameraMoveSpeed_S * (float)detalSeconds;
-	float moveValue_A = mCurCameraMoveSpeed_A * (float)detalSeconds;
-	float moveValue_D = mCurCameraMoveSpeed_D * (float)detalSeconds;
+	//// move
+	//float moveValue_W = mCurCameraMoveSpeed_W * (float)detalSeconds;
+	//float moveValue_S = mCurCameraMoveSpeed_S * (float)detalSeconds;
+	//float moveValue_A = mCurCameraMoveSpeed_A * (float)detalSeconds;
+	//float moveValue_D = mCurCameraMoveSpeed_D * (float)detalSeconds;
 
-	if (shiftDown)
-	{
-		moveValue_W = moveValue_W * 4.0f;
-		moveValue_S = moveValue_S * 4.0f;
-		moveValue_A = moveValue_A * 4.0f;
-		moveValue_D = moveValue_D * 4.0f;
-	}
+	//if (shiftDown)
+	//{
+	//	moveValue_W = moveValue_W * 4.0f;
+	//	moveValue_S = moveValue_S * 4.0f;
+	//	moveValue_A = moveValue_A * 4.0f;
+	//	moveValue_D = moveValue_D * 4.0f;
+	//}
 
-	// 统一控制移动速度
-	float scale = 0.5f;
-	moveValue_W = moveValue_W * scale;
-	moveValue_S = moveValue_S * scale;
-	moveValue_A = moveValue_A * scale;
-	moveValue_D = moveValue_D * scale;
+	//// 统一控制移动速度
+	//float scale = 0.5f;
+	//moveValue_W = moveValue_W * scale;
+	//moveValue_S = moveValue_S * scale;
+	//moveValue_A = moveValue_A * scale;
+	//moveValue_D = moveValue_D * scale;
 
-	float moveValueV = moveValue_W - moveValue_S;
-	float moveValueH = moveValue_A - moveValue_D;
+	//float moveValueV = moveValue_W - moveValue_S;
+	//float moveValueH = moveValue_A - moveValue_D;
 
-	if (mEditRenderView)
-		mEditRenderView->OnMoveHV(altDown, moveValueH, moveValueV);
+	//if (mEditRenderView)
+	//	mEditRenderView->OnMoveHV(altDown, moveValueH, moveValueV);
 }
 //----------------------------------------------------------------------------
 APoint RenderView::_wxPointToAPoint(wxPoint &point)

@@ -84,22 +84,52 @@ void CameraActor::Load(InStream& source)
 	Actor::Load(source);
 	PX2_VERSION_LOAD(source);
 
+	source.ReadPointer(mCamera);
+	source.ReadPointer(mCameraNode);
+
 	PX2_END_DEBUG_STREAM_LOAD(CameraActor, source);
 }
 //----------------------------------------------------------------------------
 void CameraActor::Link(InStream& source)
 {
 	Actor::Link(source);
+
+	if (mCamera)
+		source.ResolveLink(mCamera);
+
+	if (mCameraNode)
+		source.ResolveLink(mCameraNode);
 }
 //----------------------------------------------------------------------------
 void CameraActor::PostLink()
 {
 	Actor::PostLink();
+
+	if (mCamera)
+	{
+		mCamera->PostLink();
+	}
+
+	if (mCameraNode)
+	{
+		mCameraNode->PostLink();
+	}
 }
 //----------------------------------------------------------------------------
 bool CameraActor::Register(OutStream& target) const
 {
-	return Actor::Register(target);
+	if (Actor::Register(target))
+	{
+		if (mCamera)
+			target.Register(mCamera);
+
+		if (mCameraNode)
+			target.Register(mCameraNode);
+
+		return true;
+	}
+
+	return false;
 }
 //----------------------------------------------------------------------------
 void CameraActor::Save(OutStream& target) const
@@ -109,6 +139,9 @@ void CameraActor::Save(OutStream& target) const
 	Actor::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WritePointer(mCamera);
+	target.WritePointer(mCameraNode);
+
 	PX2_END_DEBUG_STREAM_SAVE(CameraActor, target);
 }
 //----------------------------------------------------------------------------
@@ -116,6 +149,9 @@ int CameraActor::GetStreamingSize(Stream &stream) const
 {
 	int size = Actor::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
+	size += PX2_POINTERSIZE(mCamera);
+	size += PX2_POINTERSIZE(mCameraNode);
 
 	return size;
 }

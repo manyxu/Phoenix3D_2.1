@@ -106,6 +106,8 @@ namespace PX2Editor
 		InspView *mInspView;
 
 		PX2wxAuiNotebook *mNoteBookCenter;
+
+		bool mIsCrossCursor;
 	};
 
 }
