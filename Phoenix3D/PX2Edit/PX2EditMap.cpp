@@ -169,17 +169,17 @@ bool EditMap::LoadScene(const std::string &pathname)
 
 	CloseScene();
 
-	//Scene *newscene = DynamicCast<Scene>(PX2_RM.BlockLoad(pathname));
-	//if (newscene)
-	//{
-	//	Project::GetSingleton().SetScene(newscene);
-	//	Project::GetSingleton().SetSceneFilename(pathname);
+	Scene *newscene = DynamicCast<Scene>(PX2_RM.BlockLoad(pathname));
+	if (newscene)
+	{
+		Project::GetSingleton().SetScene(newscene);
+		Project::GetSingleton().SetSceneFilename(pathname);
 
-	//	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::LoadedScene);
-	//	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
+		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::LoadedScene);
+		EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
-	//	return true;
-	//}
+		return true;
+	}
 
 	return false;
 }
@@ -219,9 +219,9 @@ void EditMap::CloseScene()
 	Scene *scene = PX2_PROJ.GetScene();
 	if (scene)
 	{
-		PX2_RM.ClearRes(scene->GetResourcePath());
 		PX2_PROJ.SetScene(0);
 		PX2_PROJ.SetSceneFilename("");
+		PX2_RM.ClearRes(scene->GetResourcePath());
 		scene = 0;
 
 		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::CloseScene);

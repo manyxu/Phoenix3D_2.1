@@ -46,6 +46,13 @@ RenderView::~RenderView()
 {
 }
 //----------------------------------------------------------------------------
+bool RenderView::Ternamate()
+{
+	mEditRenderView = 0;
+
+	return true;
+}
+//----------------------------------------------------------------------------
 void RenderView::OnTimer(wxTimerEvent& event)
 {
 	int ival = event.GetInterval();

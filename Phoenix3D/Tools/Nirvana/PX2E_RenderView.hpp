@@ -19,6 +19,8 @@ namespace PX2Editor
 		RenderView(wxWindow *parent);
 		virtual ~RenderView();
 
+		bool Ternamate();
+
 		void OnTimer(wxTimerEvent& event);
 		void OnSize(wxSizeEvent& e);
 		void OnPaint(wxPaintEvent& e);

@@ -127,11 +127,6 @@ mEndVersionList(19870824)
 
 	GraphicsRoot::SetUserLoadFun(ResManUserLoadFun);
 
-	// Init Devil
-	//ilInit();
-	//ilEnable(IL_FILE_OVERWRITE);
-	//ilEnable(IL_CONV_PAL);
-
 	CreateCondition(mLoadingDequeCondition);
 	mLoadingThread = new0 Thread("ResLoadThread");
 	mLoadingThread->Start(*this);
@@ -192,9 +187,6 @@ ResourceManager::~ResourceManager ()
 	}
 
 	CloseCondition(mLoadingDequeCondition);
-
-	// Shutdown Devil
-	//ilShutDown();
 
 	if (mTexPacksMutex)
 	{
@@ -1839,96 +1831,18 @@ std::string &ResourceManager::GetDataUpdateServerType ()
 Texture2D *ResourceManager::LoadTexFormOtherImagefile (std::string outExt,
 	int bufferSize, const char*buffer)
 {
-	/*ILuint image;
-	ilGenImages(1, &image);
-	ilBindImage(image);
-
-	bool revert = false;
-
-	ILenum type = IL_TYPE_UNKNOWN;
-
-	if ("jpg" == outExt || "JPG" == outExt)
-	{
-	type = IL_JPG;
-	revert = true;
-	}
-	else if ("png" == outExt || "PNG" == outExt)
-	{
-	type = IL_PNG;
-	revert = true;
-	}
-	else if ("dds" == outExt || "DDS" == outExt)
-	{
-	type = IL_DDS;
-	revert = true;
-	}
-	else if ("tga" == outExt || "TGA" == outExt)
-	{
-	type = IL_TGA;
-	}
-	else if ("bmp" == outExt || "BMP" == outExt)
-	{
-	type = IL_BMP;
-	}
-	else
-	{
-	assertion(false, "format is not supported.");
-	return 0;
-	}
-	*/
-	//ILboolean b = ilLoadL(type, buffer, bufferSize);
-	/*
-	if (!b)
-	{
-	assertion(false, "ilLoadL texture file error: %s", outExt.c_str());
-	return 0;
-	}
-
-	int width = ilGetInteger(IL_IMAGE_WIDTH);
-	int height = ilGetInteger(IL_IMAGE_HEIGHT);
-	ILint fmt = ilGetInteger(IL_IMAGE_FORMAT);
-	int bytePerPixel = ilGetInteger(IL_IMAGE_BYTES_PER_PIXEL);
-
-	ILint destfmt = IL_BGRA;
-	Texture::Format format = Texture::TF_A8R8G8B8;
-
-	if (fmt==IL_RGBA || fmt==IL_BGRA)
-	{
-	format = Texture::TF_A8R8G8B8;
-	destfmt = IL_BGRA;
-	}
-	else if(fmt==IL_RGB || fmt==IL_BGR)
-	{
-	format = Texture::TF_R8G8B8;
-	destfmt = IL_BGR;
-	}
-	else
-	{
-	assertion(false, "");
-	}*/
+	if (!buffer || bufferSize <= 0) return 0;
 
 	Texture2D* texture = 0;
 
-	do 
+	if ("png" == outExt || "PNG" == outExt)
 	{
-		if(!buffer || bufferSize <=0 )
-			break;
-		if("png" == outExt || "PNG" == outExt)
-		{
-			texture = _initWithPngData(buffer,bufferSize);
-		}
-		else if("jpg" == outExt || "JPG" == outExt)
-		{
-			texture = _initWithJpgData(buffer,bufferSize);
-		}
-	} while (0);
-
-	//for (int y=0; y<height; y++)
-	//{
-	//	int y1 = revert ? y : height-1-y;
-	//	char *destBuffer = texture->GetData(0) + bytePerPixel*width*y;
-	//	ilCopyPixels(0, y1, 0, width, 1, 1, destfmt, IL_UNSIGNED_BYTE, destBuffer);
-	//}
+		texture = _initWithPngData(buffer, bufferSize);
+	}
+	else if ("jpg" == outExt || "JPG" == outExt)
+	{
+		texture = _initWithJpgData(buffer, bufferSize);
+	}
 
 	return texture;
 }
@@ -2033,9 +1947,8 @@ Texture2D *ResourceManager::_initWithPngData(const char *pData, int nDatalen)
 		rowbytes = png_get_rowbytes(png_ptr, info_ptr);
 
 		unsigned char* data = new unsigned char[rowbytes * height];
+		
 		char* textureData = texture->GetData(0);
-		if(!data)
-			break;
 
 		for (unsigned short i = 0; i < height; ++i)
 		{
@@ -2070,6 +1983,9 @@ Texture2D *ResourceManager::_initWithPngData(const char *pData, int nDatalen)
 			}
 		}
 		free(row_pointers);
+
+		delete[] data;
+
 	} while (0);
 
 	if (png_ptr)
@@ -2138,8 +2054,7 @@ Texture2D *ResourceManager::_initWithJpgData(const char *pData, int nDatalen)
         jpeg_start_decompress( &cinfo );
 
         row_pointer[0] = new unsigned char[cinfo.output_width*cinfo.output_components];
-		if(!row_pointer[0])
-			break;
+		if(!row_pointer[0]) break;
 
 		Texture::Format format = Texture::TF_R8G8B8;
 		texture = new0 Texture2D(format, cinfo.output_width, cinfo.output_height, 1);
@@ -2168,7 +2083,8 @@ Texture2D *ResourceManager::_initWithJpgData(const char *pData, int nDatalen)
         /* wrap up decompression, destroy objects, free pointers and close open files */        
     } while (0);
 
-    free(row_pointer[0]);
+	delete[] row_pointer[0];
+
    return texture;
 }
 //----------------------------------------------------------------------------

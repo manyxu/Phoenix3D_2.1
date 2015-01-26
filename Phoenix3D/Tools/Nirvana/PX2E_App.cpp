@@ -83,6 +83,11 @@ bool E_App::OnInit()
 //-----------------------------------------------------------------------------
 int E_App::OnExit()
 {
+	if (mMainFrame)
+	{
+		mMainFrame->Ternamate();
+	}
+
 	Edit *edit = Edit::GetSingletonPtr();
 	if (edit)
 	{

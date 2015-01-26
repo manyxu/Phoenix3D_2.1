@@ -25,6 +25,7 @@ namespace PX2Editor
 
 		bool Initlize();
 		void AddEventHandlers();
+		bool Ternamate();
 
 		RenderView *GetRenderView();
 
