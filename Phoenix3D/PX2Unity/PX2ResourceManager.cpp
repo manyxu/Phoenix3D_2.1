@@ -12,9 +12,12 @@
 #include "PX2Crypt.hpp"
 #include "PX2MD5.hpp"
 
-// DevIL
-#include "IL/il.h"
-#include "IL/ilu.h"
+//  DevIL
+//#include "IL/il.h"
+//#include "IL/ilu.h"
+
+#include "ImageLibs/PNG/png.h"
+#include "ImageLibs/JPG/jpeglib.h"
 
 #include "unzip.h"
 #if defined(_WIN32) || defined(WIN32)
@@ -40,8 +43,50 @@
 using namespace PX2;
 using namespace std;
 
+#define PX2_RGB_PREMULTIPLY_ALPHA(vr,vg,vb,va) \
+	(unsigned)(((unsigned)((unsigned char)(vr) * ((unsigned char)(va) + 1)) >> 8) | \
+	((unsigned)((unsigned char)(vg) * ((unsigned char)(va) + 1) >> 8) << 8) | \
+	((unsigned)((unsigned char)(vb) * ((unsigned char)(va) + 1) >> 8) << 16) | \
+	((unsigned)(unsigned char)(va) << 24))
+typedef struct
+{
+	unsigned char* data;
+	int size;
+	int offset;
+}tImageSource;
+
+struct my_error_mgr{
+	struct jpeg_error_mgr pub;
+	jmp_buf setjmp_buffer;
+};
+
+typedef struct my_error_mgr *my_error_ptr;
+
+METHODDEF(void)
+my_error_exit(j_common_ptr cinfo)
+{
+	my_error_ptr myerr = (my_error_ptr)cinfo->err;
+	(*cinfo->err->output_message) (cinfo);
+	longjmp(myerr->setjmp_buffer, 1);
+}
+
+static void pngReadCallBack(png_structp png_ptr, png_bytep data, png_size_t length)
+{
+	tImageSource* isource = (tImageSource*)png_get_io_ptr(png_ptr);
+
+	if((int)(isource->offset + length) <= isource->size)
+	{
+		memcpy(data, isource->data+isource->offset,length);
+		isource->offset += length;
+	}
+	else
+	{
+		png_error(png_ptr, "pngReaderCallback failed");
+	}
+}
+
 //----------------------------------------------------------------------------
-Object *ResManUserLoadFun (const char *filename)
+Object *ResManUserLoadFun(const char *filename)
 {
 	return ResourceManager::GetSingleton().BlockLoad(filename);
 }
@@ -83,9 +128,9 @@ mEndVersionList(19870824)
 	GraphicsRoot::SetUserLoadFun(ResManUserLoadFun);
 
 	// Init Devil
-	ilInit();
-	ilEnable(IL_FILE_OVERWRITE);
-	ilEnable(IL_CONV_PAL);
+	//ilInit();
+	//ilEnable(IL_FILE_OVERWRITE);
+	//ilEnable(IL_CONV_PAL);
 
 	CreateCondition(mLoadingDequeCondition);
 	mLoadingThread = new0 Thread("ResLoadThread");
@@ -149,7 +194,7 @@ ResourceManager::~ResourceManager ()
 	CloseCondition(mLoadingDequeCondition);
 
 	// Shutdown Devil
-	ilShutDown();
+	//ilShutDown();
 
 	if (mTexPacksMutex)
 	{
@@ -940,7 +985,7 @@ static bool CheckResourceCCZFile(std::string &inoutPath)
 	char *buffer = 0;
 	int bufferSize = 0;
 	std::string newPath;
-	if ("png"==outExtention ||"PNG"==outExtention || "dds"==outExtention || "DDS"==outExtention)
+	if ("dds"==outExtention || "DDS"==outExtention)
 	{
 		newPath = outPath + outBaseName + ".pvr.ccz";
 		/*
@@ -972,7 +1017,6 @@ ResourceManager::LoadRecord &ResourceManager::InsertRecord (
 #endif
 
 	bool isHasUpdate = IsHasUpdate(dstFilename, dstFilename);
-	PX2_UNUSED(isHasUpdate);
 
 	ScopedCS scopeCS(mResTableMutex);
 
@@ -1068,15 +1112,18 @@ Object *ResourceManager::_LoadObject (const std::string &filename)
 	StringHelp::SplitFullFilename(filename, outPath, outBaseName, outExtention);
 	char *buffer = 0;
 	int bufferSize = 0;
-	
-	if (_LoadBuffer(filename, bufferSize, buffer))
+	if("dds"==outExtention || "DDS"==outExtention)
+	{
+		obj = LoadTextureFromDDS(filename);
+	}
+	else if (_LoadBuffer(filename, bufferSize, buffer))
 	{
 		if ("ccz"==outExtention)
 		{
 			obj = LoadTextureFromPVRTC_CCZ(bufferSize, buffer);
 		}
-		else if ("png"==outExtention || "PNG"==outExtention || "dds"==outExtention 
-			|| "DDS"==outExtention)
+		else if ("png"==outExtention || "PNG"==outExtention || "jpg"==outExtention 
+			|| "JPG"==outExtention )
 		{
 			obj = LoadTexFormOtherImagefile(outExtention, bufferSize, buffer);
 		}
@@ -1139,7 +1186,7 @@ bool ResourceManager::_LoadBuffer (const std::string &fn,
 //----------------------------------------------------------------------------
 bool ResourceManager::SaveTex2DPNG(Texture2D *tex2d, const std::string &filename)
 {
-	int width = tex2d->GetWidth();
+	/*int width = tex2d->GetWidth();
 	int height = tex2d->GetHeight();
 	int bytePerPixel = tex2d->GetPixelSize();
 
@@ -1147,12 +1194,12 @@ bool ResourceManager::SaveTex2DPNG(Texture2D *tex2d, const std::string &filename
 	ilGenImages(1, &image);
 	ilBindImage(image);
 
-	ilLoadDataL(tex2d->GetData(0), width*height*bytePerPixel, width, height, 1, (ILubyte)bytePerPixel);
+	ilLoadDataL(tex2d->GetData(0), width*height*bytePerPixel, width, height, 1, bytePerPixel);
 
 	ilEnable(IL_FILE_OVERWRITE);
 	ilSave(IL_PNG, filename.c_str());
 
-	ilDeleteImages(1, &image);
+	ilDeleteImages(1, &image);*/
 
 	return true;
 }
@@ -1792,7 +1839,7 @@ std::string &ResourceManager::GetDataUpdateServerType ()
 Texture2D *ResourceManager::LoadTexFormOtherImagefile (std::string outExt,
 	int bufferSize, const char*buffer)
 {
-	ILuint image;
+	/*ILuint image;
 	ilGenImages(1, &image);
 	ilBindImage(image);
 
@@ -1802,38 +1849,39 @@ Texture2D *ResourceManager::LoadTexFormOtherImagefile (std::string outExt,
 
 	if ("jpg" == outExt || "JPG" == outExt)
 	{
-		type = IL_JPG;
-		revert = true;
+	type = IL_JPG;
+	revert = true;
 	}
 	else if ("png" == outExt || "PNG" == outExt)
 	{
-		type = IL_PNG;
-		revert = true;
+	type = IL_PNG;
+	revert = true;
 	}
 	else if ("dds" == outExt || "DDS" == outExt)
 	{
-		type = IL_DDS;
-		revert = true;
+	type = IL_DDS;
+	revert = true;
 	}
 	else if ("tga" == outExt || "TGA" == outExt)
 	{
-		type = IL_TGA;
+	type = IL_TGA;
 	}
 	else if ("bmp" == outExt || "BMP" == outExt)
 	{
-		type = IL_BMP;
+	type = IL_BMP;
 	}
 	else
 	{
-		assertion(false, "format is not supported.");
-		return 0;
+	assertion(false, "format is not supported.");
+	return 0;
 	}
-
-	ILboolean b = ilLoadL(type, buffer, bufferSize);
+	*/
+	//ILboolean b = ilLoadL(type, buffer, bufferSize);
+	/*
 	if (!b)
 	{
-		assertion(false, "ilLoadL texture file error: %s", outExt.c_str());
-		return 0;
+	assertion(false, "ilLoadL texture file error: %s", outExt.c_str());
+	return 0;
 	}
 
 	int width = ilGetInteger(IL_IMAGE_WIDTH);
@@ -1846,32 +1894,282 @@ Texture2D *ResourceManager::LoadTexFormOtherImagefile (std::string outExt,
 
 	if (fmt==IL_RGBA || fmt==IL_BGRA)
 	{
-		format = Texture::TF_A8R8G8B8;
-		destfmt = IL_BGRA;
+	format = Texture::TF_A8R8G8B8;
+	destfmt = IL_BGRA;
 	}
 	else if(fmt==IL_RGB || fmt==IL_BGR)
 	{
-		format = Texture::TF_R8G8B8;
-		destfmt = IL_BGR;
+	format = Texture::TF_R8G8B8;
+	destfmt = IL_BGR;
 	}
 	else
 	{
-		assertion(false, "");
-	}
+	assertion(false, "");
+	}*/
 
 	Texture2D* texture = 0;
-	texture = new0 Texture2D(format, width, height, 1);
 
-	for (int y=0; y<height; y++)
+	do 
 	{
-		int y1 = revert ? y : height-1-y;
-		char *destBuffer = texture->GetData(0) + bytePerPixel*width*y;
-		ilCopyPixels(0, y1, 0, width, 1, 1, destfmt, IL_UNSIGNED_BYTE, destBuffer);
-	}
+		if(!buffer || bufferSize <=0 )
+			break;
+		if("png" == outExt || "PNG" == outExt)
+		{
+			texture = _initWithPngData(buffer,bufferSize);
+		}
+		else if("jpg" == outExt || "JPG" == outExt)
+		{
+			texture = _initWithJpgData(buffer,bufferSize);
+		}
+	} while (0);
 
-	ilDeleteImages(1, &image);
+	//for (int y=0; y<height; y++)
+	//{
+	//	int y1 = revert ? y : height-1-y;
+	//	char *destBuffer = texture->GetData(0) + bytePerPixel*width*y;
+	//	ilCopyPixels(0, y1, 0, width, 1, 1, destfmt, IL_UNSIGNED_BYTE, destBuffer);
+	//}
 
 	return texture;
+}
+//----------------------------------------------------------------------------
+Texture2D *ResourceManager::_initWithPngData(const char *pData, int nDatalen)
+{
+// length of bytes to check if it is a valid png file
+#define PNGSIGSIZE  8
+	Texture2D* texture = 0;
+	png_byte        header[PNGSIGSIZE]   = {0}; 
+	png_structp     png_ptr     =   0;
+	png_infop       info_ptr    = 0;
+
+	do 
+	{
+		// png header len is 8 bytes
+		if(nDatalen < PNGSIGSIZE)
+			break;
+
+		// check the data is png or not
+		memcpy(header, pData, PNGSIGSIZE);
+		if(png_sig_cmp(header, 0, PNGSIGSIZE))
+			break;
+
+		// init png_struct
+		png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, 0);
+		if(! png_ptr)
+			break;
+
+		// init png_info
+		info_ptr = png_create_info_struct(png_ptr);
+		if(! info_ptr)
+			break;
+
+//#if (CC_TARGET_PLATFORM != CC_PLATFORM_BADA && CC_TARGET_PLATFORM != CC_PLATFORM_NACL)
+//		CC_BREAK_IF(setjmp(png_jmpbuf(png_ptr)));
+//#endif
+
+		// set the read call back function
+		tImageSource imagesource;
+		imagesource.data    = (unsigned char*)pData;
+		imagesource.size    = nDatalen;
+		imagesource.offset  = 0;
+		png_set_read_fn(png_ptr, &imagesource, pngReadCallBack);
+
+		// read png header info
+
+		// read png file info
+		png_read_info(png_ptr, info_ptr);
+
+		int width = png_get_image_width(png_ptr, info_ptr);
+		int height = png_get_image_height(png_ptr, info_ptr);
+		int bitsPerComponent = png_get_bit_depth(png_ptr, info_ptr);
+		png_uint_32 color_type = png_get_color_type(png_ptr, info_ptr);
+
+		Texture::Format format = Texture::TF_A8R8G8B8;
+		if(color_type == PNG_COLOR_TYPE_RGB_ALPHA)
+		{
+			format = Texture::TF_A8R8G8B8;
+		}
+		else if(color_type == PNG_COLOR_TYPE_RGB)
+		{
+			format = Texture::TF_R8G8B8;
+		}
+		texture = new0 Texture2D(format, width, height, 1);
+
+		// force palette images to be expanded to 24-bit RGB
+		// it may include alpha channel
+		if (color_type == PNG_COLOR_TYPE_PALETTE)
+		{
+			png_set_palette_to_rgb(png_ptr);
+		}
+		// low-bit-depth grayscale images are to be expanded to 8 bits
+		if (color_type == PNG_COLOR_TYPE_GRAY && bitsPerComponent < 8)
+		{
+			png_set_expand_gray_1_2_4_to_8(png_ptr);
+		}
+		// expand any tRNS chunk data into a full alpha channel
+		if (png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS))
+		{
+			png_set_tRNS_to_alpha(png_ptr);
+		}  
+		// reduce images with 16-bit samples to 8 bits
+		if (bitsPerComponent == 16)
+		{
+			png_set_strip_16(png_ptr);            
+		} 
+		// expand grayscale images to RGB
+		if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
+		{
+			png_set_gray_to_rgb(png_ptr);
+		}
+
+		// read png data
+		// m_nBitsPerComponent will always be 8
+		bitsPerComponent = 8;
+		png_uint_32 rowbytes;
+		png_bytep* row_pointers = (png_bytep*)malloc( sizeof(png_bytep) * height );
+
+		png_read_update_info(png_ptr, info_ptr);
+
+		rowbytes = png_get_rowbytes(png_ptr, info_ptr);
+
+		unsigned char* data = new unsigned char[rowbytes * height];
+		char* textureData = texture->GetData(0);
+		if(!data)
+			break;
+
+		for (unsigned short i = 0; i < height; ++i)
+		{
+			row_pointers[i] = data + i*rowbytes;
+		}
+		png_read_image(png_ptr, row_pointers);
+
+		png_read_end(png_ptr, NULL);
+
+		png_uint_32 channel = rowbytes/width;
+		if (channel == 4)
+		{
+			unsigned int *tmp = (unsigned int *)textureData;
+			for(unsigned short i = 0; i < height; i++)
+			{
+				for(unsigned int j = 0; j < rowbytes; j += 4)
+				{
+					*tmp++ = PX2_RGB_PREMULTIPLY_ALPHA( row_pointers[i][j], row_pointers[i][j + 1], 
+						row_pointers[i][j + 2], row_pointers[i][j + 3] );
+				}
+			}
+		}
+		else if(channel == 3)
+		{
+			unsigned char *tmp = (unsigned char *)textureData;
+			for(unsigned short i = 0; i < height; i++)
+			{
+				for(unsigned int j = 0; j < rowbytes; j ++)
+				{
+					*tmp++ = row_pointers[i][j];
+				}
+			}
+		}
+		free(row_pointers);
+	} while (0);
+
+	if (png_ptr)
+	{
+		png_destroy_read_struct(&png_ptr, (info_ptr) ? &info_ptr : 0, 0);
+	}
+	return texture;
+}
+//----------------------------------------------------------------------------
+Texture2D *ResourceManager::_initWithJpgData(const char *pData, int nDatalen)
+{
+	 /* these are standard libjpeg structures for reading(decompression) */
+    struct jpeg_decompress_struct cinfo;
+    /* We use our private extension JPEG error handler.
+	 * Note that this struct must live as long as the main JPEG parameter
+	 * struct, to avoid dangling-pointer problems.
+	 */
+	struct my_error_mgr jerr;
+    /* libjpeg data structure for storing one row, that is, scanline of an image */
+    JSAMPROW row_pointer[1] = {0};
+    unsigned long location = 0;
+    unsigned int i = 0;
+	Texture2D* texture = 0;
+
+    do 
+    {
+        /* We set up the normal JPEG error routines, then override error_exit. */
+		cinfo.err = jpeg_std_error(&jerr.pub);
+		jerr.pub.error_exit = my_error_exit;
+		/* Establish the setjmp return context for my_error_exit to use. */
+		if (setjmp(jerr.setjmp_buffer)) {
+			/* If we get here, the JPEG code has signaled an error.
+			 * We need to clean up the JPEG object, close the input file, and return.
+			 */
+			jpeg_destroy_decompress(&cinfo);
+			break;
+		}
+
+        /* setup decompression process and source, then read JPEG header */
+        jpeg_create_decompress( &cinfo );
+
+        jpeg_mem_src( &cinfo, (unsigned char *) pData, nDatalen );
+
+        /* reading the image header which contains image information */
+#if (JPEG_LIB_VERSION >= 90)
+        // libjpeg 0.9 adds stricter types.
+        jpeg_read_header( &cinfo, TRUE );
+#else
+        jpeg_read_header( &cinfo, true );
+#endif
+
+        // we only support RGB or grayscale
+        if (cinfo.jpeg_color_space != JCS_RGB)
+        {
+            if (cinfo.jpeg_color_space == JCS_GRAYSCALE || cinfo.jpeg_color_space == JCS_YCbCr)
+            {
+                cinfo.out_color_space = JCS_RGB;
+            }
+        }
+        else
+        {
+            break;
+        }
+
+        /* Start decompression jpeg here */
+        jpeg_start_decompress( &cinfo );
+
+        row_pointer[0] = new unsigned char[cinfo.output_width*cinfo.output_components];
+		if(!row_pointer[0])
+			break;
+
+		Texture::Format format = Texture::TF_R8G8B8;
+		texture = new0 Texture2D(format, cinfo.output_width, cinfo.output_height, 1);
+		char* textureData = texture->GetData(0);
+		if(!textureData)
+			break;
+
+        /* now actually read the jpeg into the raw buffer */
+        /* read one scan line at a time */
+        while( cinfo.output_scanline < cinfo.output_height )
+        {
+            jpeg_read_scanlines( &cinfo, row_pointer, 1 );
+			for( i=0; i<cinfo.output_width*cinfo.output_components;i++) 
+			{
+				textureData[location++] = row_pointer[0][i];
+			}
+        }
+
+		/* When read image file with broken data, jpeg_finish_decompress() may cause error.
+		 * Besides, jpeg_destroy_decompress() shall deallocate and release all memory associated
+		 * with the decompression object.
+		 * So it doesn't need to call jpeg_finish_decompress().
+		 */
+		//jpeg_finish_decompress( &cinfo );
+        jpeg_destroy_decompress( &cinfo );
+        /* wrap up decompression, destroy objects, free pointers and close open files */        
+    } while (0);
+
+    free(row_pointer[0]);
+   return texture;
 }
 //----------------------------------------------------------------------------
 #ifdef _MSC_VER
@@ -2143,6 +2441,9 @@ Texture2D *ResourceManager::LoadTextureFromPVRTC(int dataLength, const char *dat
 #ifndef DWORD
 typedef unsigned long DWORD;
 #endif
+#ifndef uint32
+typedef unsigned int uint32;
+#endif
 
 #define FOURCC(c0, c1, c2, c3) (c0 | (c1 << 8) | (c2 << 16) | (c3 << 24))
 
@@ -2152,6 +2453,10 @@ const DWORD D3DFMT_A16B16G16R16F	= 113;
 const DWORD D3DFMT_R32F				= 114;
 const DWORD D3DFMT_G32R32F			= 115;
 const DWORD D3DFMT_A32B32G32R32F	= 116;
+
+const uint32 DDS_PIXELFORMAT_SIZE = 8 * sizeof(uint32);
+const uint32 DDS_CAPS_SIZE = 4 * sizeof(uint32);
+const uint32 DDS_HEADER_SIZE = 19 * sizeof(uint32) + DDS_PIXELFORMAT_SIZE + DDS_CAPS_SIZE;
 
 #define DDSD_CAPS        0x00000001
 #define DDSD_HEIGHT      0x00000002
@@ -2285,8 +2590,6 @@ static void GetDescInfo (const DDSHeader &header, int &width, int &height,
 Texture2D *ResourceManager::LoadTextureFromDDS (const std::string &filename)
 {
 	PX2_UNUSED(filename);
-
-	assertion(false, "current not do this.");
 
 	FILE* inFile;
 	inFile = fopen(filename.c_str(), "rb");
@@ -2438,3 +2741,4 @@ void ResourceManager::Run ()
 	RunLoadingThread();
 }
 //----------------------------------------------------------------------------
+

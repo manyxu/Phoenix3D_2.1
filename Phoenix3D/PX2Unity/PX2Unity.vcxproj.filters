@@ -10,15 +10,6 @@
     <Filter Include="CSV">
       <UniqueIdentifier>{0d04ec63-240a-4721-bb66-23208165f819}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DevIL">
-      <UniqueIdentifier>{f87dd177-4c63-4899-b997-d78809553d4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DevIL\IL">
-      <UniqueIdentifier>{98969804-d4d8-4644-b55d-28c1125c32c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DevIL\PNG">
-      <UniqueIdentifier>{fd2d7aee-3838-4865-9722-de31313144ae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Android">
       <UniqueIdentifier>{79487dbc-d9e9-4add-926b-a8e1836e701e}</UniqueIdentifier>
     </Filter>
@@ -51,9 +42,6 @@
     </Filter>
     <Filter Include="IMEInput">
       <UniqueIdentifier>{45fd261f-72fa-44df-869d-7ecbd8279a03}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="DevIL\DDS">
-      <UniqueIdentifier>{e944e0af-d05e-46c3-ab12-cbadb1c1be50}</UniqueIdentifier>
     </Filter>
     <Filter Include="CURL">
       <UniqueIdentifier>{ebb7971b-34c2-4345-a37c-b8f74b6dbc8b}</UniqueIdentifier>
@@ -118,6 +106,15 @@
     <Filter Include="AddDelete">
       <UniqueIdentifier>{e530e1af-c415-45c2-bd49-32d14c79ef4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ImageLibs">
+      <UniqueIdentifier>{bd008fb2-a5f2-42fa-abfb-9a1d25c774a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImageLibs\PNG">
+      <UniqueIdentifier>{395ee5c7-ce1c-4e21-939c-66218cb44af3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImageLibs\JPG">
+      <UniqueIdentifier>{ad1c9ccc-134b-4c92-8139-32876b10de41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2ResourceManager.cpp">
@@ -125,273 +122,6 @@
     </ClCompile>
     <ClCompile Include="PX2LanguageManager.cpp">
       <Filter>Language</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\altivec_common.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\altivec_typeconversion.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_alloc.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_bits.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_blp.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_bmp.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_convbuff.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_convert.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_cut.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_dcx.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_devil.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_dicom.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_doom.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_dpx.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_endian.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_error.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_fastconv.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_files.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_fits.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_ftx.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_gif.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_hdr.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_header.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_icns.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_icon.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_iff.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_ilbm.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_internal.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_io.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_iwi.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_jp2.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_jpeg.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_lif.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_manip.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_mdl.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_mecel_portability.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_mng.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_mp3.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_neuquant.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_nvidia.cpp">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_pal.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_pcd.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_pcx.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_pic.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_pix.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_png.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_pnm.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_profiles.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_psd.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_psp.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_pxr.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_quantizer.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_raw.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_rawdata.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_register.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_rle.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_rot.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_sgi.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_size.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_squish.cpp">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_stack.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_states.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_sun.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_targa.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_texture.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_tiff.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_tpl.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_utility.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_vtf.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_wal.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_wbmp.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_wdp.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_xpm.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\example.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\png.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngerror.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngget.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngmem.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngpread.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngread.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngrio.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngrtran.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngrutil.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngset.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngtrans.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngwio.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngwrite.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngwtran.c">
-      <Filter>DevIL\PNG</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\PNG\pngwutil.c">
-      <Filter>DevIL\PNG</Filter>
     </ClCompile>
     <ClCompile Include="ZLib\adler32.c">
       <Filter>ZLib</Filter>
@@ -632,12 +362,6 @@
     </ClCompile>
     <ClCompile Include="PX2IMEDelegate.cpp">
       <Filter>IMEInput</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_dds-save.c">
-      <Filter>DevIL</Filter>
-    </ClCompile>
-    <ClCompile Include="DevIL\il_dds.c">
-      <Filter>DevIL</Filter>
     </ClCompile>
     <ClCompile Include="CURL\src\amigaos.c">
       <Filter>CURL\src</Filter>
@@ -996,165 +720,243 @@
     <ClCompile Include="PX2AddDeleteManager.cpp">
       <Filter>AddDelete</Filter>
     </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\cdjpeg.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\example.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jaricom.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcapimin.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcapistd.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcarith.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jccoefct.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jccolor.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcdctmgr.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jchuff.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcinit.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcmainct.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcmarker.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcmaster.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcomapi.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcparam.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcprepct.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jcsample.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jctrans.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdapimin.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdapistd.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdarith.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdatadst.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdatasrc.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdcoefct.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdcolor.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jddctmgr.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdhuff.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdinput.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdmainct.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdmarker.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdmaster.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdmerge.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdpostct.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdsample.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jdtrans.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jerror.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jfdctflt.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jfdctfst.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jfdctint.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jidctflt.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jidctfst.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jidctint.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jmemmgr.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jmemnobs.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jquant1.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jquant2.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\jutils.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\rdbmp.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\rdcolmap.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\rdgif.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\rdppm.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\rdrle.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\rdswitch.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\rdtarga.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\transupp.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\wrbmp.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\wrgif.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\wrppm.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\wrrle.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\JPG\wrtarga.c">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\example.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\png.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngerror.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngget.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngmem.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngpread.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngread.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngrio.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngrtran.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngrutil.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngset.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngtrans.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngwio.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngwrite.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngwtran.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLibs\PNG\pngwutil.c">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Unity.hpp" />
     <ClInclude Include="PX2UnityPre.hpp" />
     <ClInclude Include="PX2LanguageManager.hpp">
       <Filter>Language</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\altivec_common.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\altivec_typeconversion.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_alloc.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_bits.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_bmp.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_dcx.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_doompal.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_dpx.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_endian.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_files.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_gif.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_hdr.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_icns.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_icon.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_internal.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_jp2.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_jpeg.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_lif.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_manip.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_mdl.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_mecel_portability.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_pal.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_pcx.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_pic.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_pnm.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_psd.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_psp.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_q2pal.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_register.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_rle.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_sgi.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_stack.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_states.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_targa.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_vtf.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_wdp.h">
-      <Filter>DevIL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\IL\config.h">
-      <Filter>DevIL\IL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\IL\devil_internal_exports.h">
-      <Filter>DevIL\IL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\IL\il.h">
-      <Filter>DevIL\IL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\IL\il_wrap.h">
-      <Filter>DevIL\IL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\IL\ilu.h">
-      <Filter>DevIL\IL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\IL\ilu_region.h">
-      <Filter>DevIL\IL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\IL\ilut.h">
-      <Filter>DevIL\IL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\IL\ilut_config.h">
-      <Filter>DevIL\IL</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\PNG\png.h">
-      <Filter>DevIL\PNG</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\PNG\pngconf.h">
-      <Filter>DevIL\PNG</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\PNG\pngdebug.h">
-      <Filter>DevIL\PNG</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\PNG\pnginfo.h">
-      <Filter>DevIL\PNG</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\PNG\pnglibconf.h">
-      <Filter>DevIL\PNG</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\PNG\pngpriv.h">
-      <Filter>DevIL\PNG</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\PNG\pngstruct.h">
-      <Filter>DevIL\PNG</Filter>
     </ClInclude>
     <ClInclude Include="ZLib\crc32.h">
       <Filter>ZLib</Filter>
@@ -1311,9 +1113,6 @@
     </ClInclude>
     <ClInclude Include="PX2IMEDelegate.hpp">
       <Filter>IMEInput</Filter>
-    </ClInclude>
-    <ClInclude Include="DevIL\il_dds.h">
-      <Filter>DevIL</Filter>
     </ClInclude>
     <ClInclude Include="CURL\config\win32\curl_config.h">
       <Filter>CURL\config\win32</Filter>
@@ -1689,6 +1488,63 @@
     </ClInclude>
     <ClInclude Include="PX2AddDeleteManager.hpp">
       <Filter>AddDelete</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\cderror.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\cdjpeg.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\jconfig.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\jdct.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\jerror.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\jinclude.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\jmemsys.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\jmorecfg.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\jpegint.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\jpeglib.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\jversion.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\JPG\transupp.h">
+      <Filter>ImageLibs\JPG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\PNG\png.h">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\PNG\pngconf.h">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\PNG\pngdebug.h">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\PNG\pnginfo.h">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\PNG\pnglibconf.h">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\PNG\pngpriv.h">
+      <Filter>ImageLibs\PNG</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLibs\PNG\pngstruct.h">
+      <Filter>ImageLibs\PNG</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

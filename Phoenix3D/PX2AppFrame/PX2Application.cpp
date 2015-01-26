@@ -24,11 +24,13 @@ LRESULT CALLBACK MsWindowEventHandler (HWND handle, UINT message,
 	int sizeX = 0;
 	int sizeY = 0;
 	static bool firsttime = true;
+	static bool isCreated = false;
 	float wheeldelta = 0.0f;
 
 	switch (message) 
 	{
 	case WM_CREATE:
+		isCreated = true;
 		break;
 
 	case WM_DESTROY:
@@ -39,7 +41,8 @@ LRESULT CALLBACK MsWindowEventHandler (HWND handle, UINT message,
 		sizeX = LOWORD(lParam);
 		sizeY = HIWORD(lParam);
 
-		ApplicationBase::msApplication->OnSize(sizeX, sizeY);
+		if (isCreated)
+			ApplicationBase::msApplication->OnSize(sizeX, sizeY);
 
 		switch (wParam)
 		{
@@ -255,36 +258,52 @@ bool Application::Initlize()
 		dwStyle, mXPosition, mYPosition,
 		rect.right - rect.left + 1, rect.bottom - rect.top + 1, 0, 0, 0, 0);
 
-	// ¾ÓÖÐ
-	RECT rcDesktop, rcWindow;
-	GetWindowRect(GetDesktopWindow(), &rcDesktop);
-
-	HWND hTaskBar = FindWindow(TEXT("Shell_TrayWnd"), NULL);
-	if (hTaskBar != NULL)
-	{
-		APPBARDATA abd;
-
-		abd.cbSize = sizeof(APPBARDATA);
-		abd.hWnd = hTaskBar;
-
-		SHAppBarMessage(ABM_GETTASKBARPOS, &abd);
-		SubtractRect(&rcDesktop, &rcDesktop, &abd.rc);
-	}
-	GetWindowRect(mhWnd, &rcWindow);
-	int offsetX = (rcDesktop.right - rcDesktop.left - (rcWindow.right - rcWindow.left)) / 2;
-	offsetX = (offsetX > 0) ? offsetX : rcDesktop.left;
-	int offsetY = (rcDesktop.bottom - rcDesktop.top - (rcWindow.bottom - rcWindow.top)) / 2;
-	offsetY = (offsetY > 0) ? offsetY : rcDesktop.top;
-	SetWindowPos(mhWnd, 0, offsetX, offsetY, 0, 0, SWP_NOCOPYBITS | SWP_NOSIZE | SWP_NOOWNERZORDER | SWP_NOZORDER);
-	mXPosition = offsetX;
-	mYPosition = offsetY;
-
 	PX2_ENGINELOOP.SetPt_Data(mhWnd);
 #endif
 
 	PX2_ENGINELOOP.SetPt_Size(Sizef((float)mWidth, (float)mHeight));
 
-	return ApplicationBase::Initlize();
+	if (ApplicationBase::Initlize())
+	{
+		const Sizef &boostSize = PX2_ENGINELOOP.GetBoostSize();
+		int iBoostWidth = (int)boostSize.Width;
+		int iBoostHeight = (int)boostSize.Height;
+
+		MoveWindow(mhWnd, 0, 0, iBoostWidth, iBoostHeight, true);
+
+		// ¾ÓÖÐ
+		RECT rcDesktop, rcWindow;
+		GetWindowRect(GetDesktopWindow(), &rcDesktop);
+
+		HWND hTaskBar = FindWindow(TEXT("Shell_TrayWnd"), NULL);
+		if (hTaskBar != NULL)
+		{
+			APPBARDATA abd;
+
+			abd.cbSize = sizeof(APPBARDATA);
+			abd.hWnd = hTaskBar;
+
+			SHAppBarMessage(ABM_GETTASKBARPOS, &abd);
+			SubtractRect(&rcDesktop, &rcDesktop, &abd.rc);
+		}
+		GetWindowRect(mhWnd, &rcWindow);
+		int offsetX = (rcDesktop.right - rcDesktop.left - (rcWindow.right - rcWindow.left)) / 2;
+		offsetX = (offsetX > 0) ? offsetX : rcDesktop.left;
+		int offsetY = (rcDesktop.bottom - rcDesktop.top - (rcWindow.bottom - rcWindow.top)) / 2;
+		offsetY = (offsetY > 0) ? offsetY : rcDesktop.top;
+		SetWindowPos(mhWnd, 0, offsetX, offsetY, 0, 0, SWP_NOCOPYBITS | SWP_NOSIZE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+		mXPosition = offsetX;
+		mYPosition = offsetY;
+
+		UpdateWindow(mhWnd);
+		ShowWindow(mhWnd, true);
+
+		OnSize(iBoostWidth, iBoostHeight);
+
+		return true;
+	}
+
+	return false;
 }
 //----------------------------------------------------------------------------
 bool Application::Ternamate()

@@ -69,7 +69,7 @@ int luaO_log2 (unsigned int x) {
 }
 
 
-int luaO_rawequalObj (const TValue *t1, const TValue *t2) {
+LUAI_FUNC int luaO_rawequalObj (const TValue *t1, const TValue *t2) {
   if (ttype(t1) != ttype(t2)) return 0;
   else switch (ttype(t1)) {
     case LUA_TNIL:
@@ -108,7 +108,7 @@ static void pushstr (lua_State *L, const char *str) {
 
 
 /* this function handles only `%d', `%c', %f, %p, and `%s' formats */
-const char *luaO_pushvfstring (lua_State *L, const char *fmt, va_list argp) {
+LUAI_FUNC const char *luaO_pushvfstring (lua_State *L, const char *fmt, va_list argp) {
   int n = 1;
   pushstr(L, "");
   for (;;) {

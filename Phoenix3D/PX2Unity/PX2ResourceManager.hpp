@@ -19,7 +19,6 @@
 
 namespace PX2
 {
-
 	class ResourceManager : public Runnable, public Singleton<ResourceManager>
 	{
 	public:
@@ -65,6 +64,9 @@ namespace PX2
 		bool IsUseGarbageCollect () const;
 		void SetGarbageCollectTime (float seconds);
 		float GetGarbageCollectTime () const;
+
+		Texture2D *_initWithPngData(const char *pData, int nDatalen);
+		Texture2D *_initWithJpgData(const char *pData, int nDatalen);
 
 		// folder
 		bool CreateFloder (const std::string &parentPath, const std::string &path);
