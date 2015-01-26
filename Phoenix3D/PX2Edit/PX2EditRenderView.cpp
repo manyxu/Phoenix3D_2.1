@@ -11,6 +11,7 @@
 #include "PX2Selection.hpp"
 #include "PX2Edit.hpp"
 #include "PX2ActorPicker.hpp"
+#include "PX2EventWorld.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -22,6 +23,8 @@ mIsRightDown(false),
 mIsMiddleDown(false)
 {
 	_CreateGridGeometry();
+
+	_CreateNodeCtrl();
 }
 //----------------------------------------------------------------------------
 EditRenderView::~EditRenderView()
@@ -30,6 +33,16 @@ EditRenderView::~EditRenderView()
 	{
 		PX2_GR.RemoveRenderStep(mRenderStep);
 		mRenderStep = 0;
+	}
+
+	if (mSceneNodeCtrl)
+	{
+		PX2_EW.GoOut(mSceneNodeCtrl);
+	}
+
+	if (mBoundCtrl)
+	{
+		PX2_EW.GoOut(mBoundCtrl);
 	}
 }
 //----------------------------------------------------------------------------
@@ -522,5 +535,23 @@ void EditRenderView::_RoundCamera(float horz, float vert)
 				HMatrix(rVector, dVector, uVector, AVector::ZERO, true));
 		}
 	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView::_CreateNodeCtrl()
+{
+	mSceneNodeCtrl = new0 SceneNodeCtrl();
+	PX2_EW.ComeIn(mSceneNodeCtrl);
+
+	mBoundCtrl = new0 BoundCtrl();
+	PX2_EW.ComeIn(mBoundCtrl);
+
+	mSceneCtrlNode = new0 Node();
+	mSceneCtrlNode->AttachChild(mSceneNodeCtrl->GetCtrlsGroup());
+	mSceneCtrlNode->AttachChild(mBoundCtrl->GetCtrlsGroup());
+	mSceneCtrlNode->Update(GetTimeInSeconds(), true);
+
+	mRenderStepSceneCtrl = new0 RenderStep();
+	mRenderStepSceneCtrl->SetNode(mSceneCtrlNode);
+	PX2_GR.AddRenderStep(mRenderStepSceneCtrl);
 }
 //----------------------------------------------------------------------------

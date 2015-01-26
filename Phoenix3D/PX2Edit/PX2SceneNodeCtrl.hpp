@@ -14,11 +14,11 @@ namespace PX2
 	class Renderer;
 	class RenderStep;
 
-	class SceneNodeCtrl : public PX2::EventHandler
+	class SceneNodeCtrl : public EventHandler
 	{
 	public:
 		SceneNodeCtrl();
-		~SceneNodeCtrl();
+		virtual ~SceneNodeCtrl();
 
 		enum AxisMode
 		{
@@ -84,7 +84,7 @@ namespace PX2
 
 		// PX2 Event
 		virtual void DoEnter();
-		virtual void DoExecute(PX2::Event *event);
+		virtual void DoExecute(Event *event);
 		virtual void DoLeave();
 
 	private:
@@ -107,8 +107,9 @@ namespace PX2
 		float mOriginScale;
 		DragType mDragType;
 	};
+	typedef Pointer0<SceneNodeCtrl> SceneNodeCtrlPtr;
 
-	class BoundCtrl : public PX2::EventHandler
+	class BoundCtrl : public EventHandler
 	{
 	public:
 		BoundCtrl();
@@ -131,6 +132,7 @@ namespace PX2
 		PX2::SwitchNodePtr mCtrlsGroup;
 		PX2::NodePtr mBoundNode;
 	};
+	typedef Pointer0<BoundCtrl> BoundCtrlPtr;
 
 }
 

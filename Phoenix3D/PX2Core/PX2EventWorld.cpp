@@ -81,10 +81,10 @@ void EventWorld::GoOut(EventHandler *handler)
 
 	if (!handler->IsInWorld(this))	return;
 
+	handler->Leave();
+
 	if (!mIsUpdatingEvents)
 	{
-		handler->Leave();
-
 		EventHandlerList::iterator it = mHandlers.begin();
 		for (; it!=mHandlers.end(); it++)
 		{
@@ -110,6 +110,7 @@ void EventWorld::Update (float detalTime)
 	for (int i=0; i<(int)mHandlersComingIn.size(); i++)
 	{
 		mHandlers.push_back(mHandlersComingIn[i]);
+		mHandlersComingIn[i]->Enter(this);
 	}
 	mHandlersComingIn.clear();
 
