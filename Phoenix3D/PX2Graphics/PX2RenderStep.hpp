@@ -6,6 +6,7 @@
 #include "PX2GraphicsPre.hpp"
 #include "PX2Object.hpp"
 #include "PX2Size.hpp"
+#include "PX2Rect.hpp"
 #include "PX2Culler.hpp"
 #include "PX2Node.hpp"
 
@@ -26,15 +27,15 @@ namespace PX2
 	protected:
 		bool mIsUpdated;
 
-		// Size
+		// Rect
 	public:
-		void SetSize(float width, float height);
-		void SetSize(const Sizef &size);
-		const Sizef &GetSize() const;
+		void SetRect(const Rectf &rect);
+		const Rectf &GetRect() const;
+		Sizef GetSize() const;
 
 	protected:
-		virtual void OnSizeChange();
-		Sizef mSize;
+		virtual void OnRectChange();
+		Rectf mRect;
 
 		// Renderer Camera Culler
 	public:
@@ -43,6 +44,8 @@ namespace PX2
 
 		void SetCamera(Camera *camera);
 		Camera *GetCamera();
+
+		bool GetPickRay(int x, int y, APoint& origin, AVector& direction);
 
 	protected:
 		Renderer *mRenderer;

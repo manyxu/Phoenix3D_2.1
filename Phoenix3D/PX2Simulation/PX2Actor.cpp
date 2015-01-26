@@ -13,7 +13,8 @@ PX2_IMPLEMENT_FACTORY(Actor);
 PX2_IMPLEMENT_DEFAULT_NAMES(Node, Actor);
 
 //----------------------------------------------------------------------------
-Actor::Actor()
+Actor::Actor() :
+mIsPickable(true)
 {
 	SetName("Actor");
 
@@ -24,6 +25,7 @@ Actor::Actor()
 	mHelpNode = new0 Node();
 	AttachChild(mHelpNode);
 	mHelpNode->SetName("HelpNode");
+	mHelpNode->Show(false);
 }
 //----------------------------------------------------------------------------
 Actor::~Actor()
@@ -48,14 +50,29 @@ void Actor::AddMovable(Movable *mov)
 	mNode->AttachChild(mov);
 }
 //----------------------------------------------------------------------------
+void Actor::SetPickable(bool isPickable)
+{
+	mIsPickable = isPickable;
+
+	if (mNode)
+	{
+		mNode->SetDoPick(isPickable);
+	}
+
+	if (mHelpNode)
+	{
+		mHelpNode->SetDoPick(isPickable);
+	}
+}
+//----------------------------------------------------------------------------
 
 
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-Actor::Actor(LoadConstructor value)
-	:
-Node(value)
+Actor::Actor(LoadConstructor value) :
+Node(value),
+mIsPickable(true)
 {
 }
 //----------------------------------------------------------------------------
@@ -65,6 +82,8 @@ void Actor::Load(InStream& source)
 
 	Node::Load(source);
 	PX2_VERSION_LOAD(source);
+
+	source.ReadBool(mIsPickable);
 
 	PX2_END_DEBUG_STREAM_LOAD(Actor, source);
 }
@@ -77,6 +96,8 @@ void Actor::Link(InStream& source)
 void Actor::PostLink()
 {
 	Node::PostLink();
+
+	SetPickable(IsPickable());
 }
 //----------------------------------------------------------------------------
 bool Actor::Register(OutStream& target) const
@@ -91,6 +112,8 @@ void Actor::Save(OutStream& target) const
 	Node::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WriteBool(mIsPickable);
+
 	PX2_END_DEBUG_STREAM_SAVE(Actor, target);
 }
 //----------------------------------------------------------------------------
@@ -98,6 +121,8 @@ int Actor::GetStreamingSize(Stream &stream) const
 {
 	int size = Node::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
+	size += PX2_BOOLSIZE(mIsPickable);
 
 	return size;
 }

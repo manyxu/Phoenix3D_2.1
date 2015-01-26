@@ -6,8 +6,3 @@ inline UIView *UIManager::GetDefaultUIView()
 	return mDefaultUIView;
 }
 //----------------------------------------------------------------------------
-inline const Sizef &UIManager::GetSize() const
-{
-	return mSize;
-}
-//----------------------------------------------------------------------------

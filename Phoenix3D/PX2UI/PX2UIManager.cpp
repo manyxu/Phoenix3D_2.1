@@ -35,16 +35,6 @@ void UIManager::Update(double appSeconds, double elapsedSeconds)
 	}
 }
 //----------------------------------------------------------------------------
-void UIManager::SetSize(const Sizef &size)
-{
-	mSize = size;
-
-	if (mDefaultUIView)
-	{
-		mDefaultUIView->SetSize(size);
-	}
-}
-//----------------------------------------------------------------------------
 bool UIManager::IsHasUIView(const std::string &name) const
 {
 	std::map<std::string, UIViewPtr>::const_iterator it = mUIViews.find(name);

@@ -369,13 +369,6 @@ void EngineLoop::SetSize(const Sizef &size)
 {
 	mSize = size;
 
-	UIManager *uiMain = UIManager::GetSingletonPtr();
-	if (uiMain)
-	{
-		uiMain->SetSize(mSize);
-		uiMain->Update(GetTimeInSeconds(), 0.0f);
-	}
-
 	Renderer *dr = Renderer::GetDefaultRenderer();
 	if (dr)
 	{

@@ -30,9 +30,13 @@ namespace PX2
 		Node *GetNode ();
 		Node *GetHelpNode ();
 
+		void SetPickable(bool isPickable);
+		bool IsPickable() const;
+
 	protected:
 		NodePtr mNode;
 		NodePtr mHelpNode;
+		bool mIsPickable;
 	};
 
 #include "PX2Actor.inl"

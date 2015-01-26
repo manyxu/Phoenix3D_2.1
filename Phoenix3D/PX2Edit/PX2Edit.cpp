@@ -10,6 +10,7 @@ using namespace PX2;
 int Edit::msEditorID = 6001;
 //----------------------------------------------------------------------------
 Edit::Edit() :
+mEditType(ET_SCENE),
 mEditMode(EM_NONE),
 mEditMap(0),
 IsAltDown(false),
@@ -39,6 +40,11 @@ bool Edit::Ternamate()
 	}
 	
 	return true;
+}
+//----------------------------------------------------------------------------
+void Edit::SetEditType(EditType type)
+{
+	mEditType = type;
 }
 //----------------------------------------------------------------------------
 void Edit::SetEditMode(EditMode mode)

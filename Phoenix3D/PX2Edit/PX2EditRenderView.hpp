@@ -7,6 +7,7 @@
 #include "PX2Node.hpp"
 #include "PX2Renderable.hpp"
 #include "PX2RenderStep.hpp"
+#include "PX2EditDefine.hpp"
 
 namespace PX2
 {
@@ -47,9 +48,13 @@ namespace PX2
 		RenderStep *GetRenderStep();
 
 	protected:
+		void _ClickSelect(const APoint &scrPos);
+		void _ClickSelectScene(const APoint &scrPos, SelectMode mode);
+
 		ViewType mViewType;
 		ViewDetail mViewDetail;
 		RenderStepPtr mRenderStep;
+		APoint mSelectPoint;
 
 	public:
 		void OnMoveHV(bool isAltDown, float h, float v);

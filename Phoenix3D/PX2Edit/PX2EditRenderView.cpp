@@ -10,6 +10,7 @@
 #include "PX2Time.hpp"
 #include "PX2Selection.hpp"
 #include "PX2Edit.hpp"
+#include "PX2ActorPicker.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -83,6 +84,88 @@ void EditRenderView::_CreateGridGeometry()
 	PX2_GR.AddRenderStep(mRenderStep);
 }
 //----------------------------------------------------------------------------
+void EditRenderView::_ClickSelect(const APoint &scrPos)
+{
+	SelectMode mode = SM_SINGLE;
+	if (PX2_EDIT.IsCtrlDown) mode = SM_MULTI;
+
+	Edit::EditType editType = PX2_EDIT.GetEditType();
+
+	if (Edit::ET_SCENE == editType)
+	{
+		_ClickSelectScene(scrPos, mode);
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView::_ClickSelectScene(const APoint &scrPos, 
+	SelectMode mode)
+{
+	Scene *scene = PX2_PROJ.GetScene();
+	RenderStep *renderStep = PX2_PROJ.GetSceneRenderStep();
+
+	// pre
+	std::map<Actor*, bool> actorsPickable;
+	for (int i = 0; i < scene->GetNumChildren(); i++)
+	{
+		Actor *actor = DynamicCast<Actor>(scene->GetChild(i));
+		if (actor)
+		{
+			actorsPickable[actor] = actor->IsPickable();
+			actor->SetPickable(true);
+		}
+	}
+
+	APoint origin;
+	AVector direction;
+	renderStep->GetPickRay(scrPos.X(), scrPos.Z(), origin, direction);
+
+	ActorPicker actorPicker;
+	actorPicker.Execute(scene, origin, direction, 0.0f, Mathf::MAX_REAL);
+
+	// post
+	std::map<Actor*, bool>::iterator it = actorsPickable.begin();
+	for (; it != actorsPickable.end(); it++)
+	{
+		Actor *actor = it->first;
+		actor->SetPickable(it->second);
+	}
+	actorsPickable.clear();
+
+	if (actorPicker.Records.size() > 0)
+	{
+		const ActorPickRecord &record = actorPicker.GetClosestToZero();
+		Object *recordObj = record.Intersected;
+		mSelectPoint = origin + direction*record.T;
+
+		if (SM_SINGLE == mode)
+		{
+			PX2_SELECTION.Clear();
+			PX2_SELECTION.AddObject(recordObj);
+		}
+		else if (SM_MULTI == mode)
+		{
+			if (PX2_SELECTION.IsObjectIn(recordObj))
+			{
+				PX2_SELECTION.RemoveObject(recordObj);
+			}
+			else
+			{
+				PX2_SELECTION.AddObject(recordObj);
+			}
+		}
+	}
+	else
+	{
+		if (SM_SINGLE == mode)
+		{
+			PX2_SELECTION.Clear();
+		}
+	}
+
+	SelectMode mode = SM_SINGLE;
+	if (PX2_EDIT.IsCtrlDown) mode = SM_MULTI;
+}
+//----------------------------------------------------------------------------
 void EditRenderView::OnMoveHV(bool isAltDown, float h, float v)
 {
 	if (VT_PERSPECTIVE == mViewType)
@@ -115,7 +198,7 @@ void EditRenderView::OnSize(const Sizef& size)
 	if (!proj) return;
 
 	RenderStep *renderStep = proj->GetSceneRenderStep();
-	renderStep->SetSize(mSize);
+	renderStep->SetRect(Rectf(0.0f, 0.0f, mSize.Width, mSize.Height));
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnLeftDown(const APoint &pos)
@@ -124,6 +207,8 @@ void EditRenderView::OnLeftDown(const APoint &pos)
 
 	if (mRenderStep)
 		mPixelToWorld = mRenderStep->CalPixelToWorld();
+
+	_ClickSelect(pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnLeftUp(const APoint &pos)

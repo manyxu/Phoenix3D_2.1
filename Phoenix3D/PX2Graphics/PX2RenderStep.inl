@@ -1,9 +1,9 @@
 // PX2UIView.inl
 
 //----------------------------------------------------------------------------
-inline const Sizef &RenderStep::GetSize() const
+inline const Rectf &RenderStep::GetRect() const
 {
-	return mSize;
+	return mRect;
 }
 //----------------------------------------------------------------------------
 inline void RenderStep::SetRenderer(Renderer *renderer)

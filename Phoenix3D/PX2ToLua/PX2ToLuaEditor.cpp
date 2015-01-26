@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 01/23/15 10:54:49.
+** Generated automatically by tolua++-1.0.92 on 01/26/15 15:26:23.
 */
 
 #ifndef __cplusplus
@@ -334,6 +334,39 @@ static int tolua_PX2Editor_E_MainFrame_OnCloseScene00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: OnSetEditMode of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnSetEditMode00
+static int tolua_PX2Editor_E_MainFrame_OnSetEditMode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+  int type = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnSetEditMode'", NULL);
+#endif
+  {
+   self->OnSetEditMode(type);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'OnSetEditMode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: AddMainMenuItem of class  E_MainFrame */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_AddMainMenuItem00
 static int tolua_PX2Editor_E_MainFrame_AddMainMenuItem00(lua_State* tolua_S)
@@ -461,6 +494,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OnSaveScene",tolua_PX2Editor_E_MainFrame_OnSaveScene00);
    tolua_function(tolua_S,"OnSaveSceneAs",tolua_PX2Editor_E_MainFrame_OnSaveSceneAs00);
    tolua_function(tolua_S,"OnCloseScene",tolua_PX2Editor_E_MainFrame_OnCloseScene00);
+   tolua_function(tolua_S,"OnSetEditMode",tolua_PX2Editor_E_MainFrame_OnSetEditMode00);
    tolua_function(tolua_S,"AddMainMenuItem",tolua_PX2Editor_E_MainFrame_AddMainMenuItem00);
    tolua_function(tolua_S,"AddMenuItem",tolua_PX2Editor_E_MainFrame_AddMenuItem00);
    tolua_function(tolua_S,"AddSeparater",tolua_PX2Editor_E_MainFrame_AddSeparater00);

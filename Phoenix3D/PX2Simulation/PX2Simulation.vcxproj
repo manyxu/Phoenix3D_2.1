@@ -14,6 +14,8 @@
     <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp" />
     <ClInclude Include="PX2AccoutManager.hpp" />
     <ClInclude Include="PX2Actor.hpp" />
+    <ClInclude Include="PX2ActorPicker.hpp" />
+    <ClInclude Include="PX2ActorPickRecord.hpp" />
     <ClInclude Include="PX2Animation.hpp" />
     <ClInclude Include="PX2CameraActor.hpp" />
     <ClInclude Include="PX2Creater.hpp" />
@@ -33,6 +35,7 @@
     <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp" />
     <ClCompile Include="PX2AccoutManager.cpp" />
     <ClCompile Include="PX2Actor.cpp" />
+    <ClCompile Include="PX2ActorPicker.cpp" />
     <ClCompile Include="PX2Animation.cpp" />
     <ClCompile Include="PX2CameraActor.cpp" />
     <ClCompile Include="PX2Creater.cpp" />

@@ -319,6 +319,11 @@ void E_MainFrame::OnCloseScene()
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnSetEditMode(int mode)
+{
+	PX2_EDIT.SetEditMode((Edit::EditMode)mode);
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenu()
 {
 	mMainMenuBar = new wxMenuBar();

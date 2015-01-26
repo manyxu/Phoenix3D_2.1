@@ -9,6 +9,7 @@
     <ClInclude Include="PX2EditRenderView.hpp" />
     <ClInclude Include="PX2EditParams.hpp" />
     <ClInclude Include="PX2EditPre.hpp" />
+    <ClInclude Include="PX2EditDefine.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />

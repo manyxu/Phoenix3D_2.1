@@ -14,6 +14,8 @@
 		void OnSaveSceneAs();
 		void OnCloseScene();
 		
+		void OnSetEditMode(int type);
+		
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title, const std::string &script);
 		void AddSeparater(wxMenu *menu);

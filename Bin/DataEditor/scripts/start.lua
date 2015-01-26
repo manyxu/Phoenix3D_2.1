@@ -29,10 +29,10 @@ function CreateMainMenu()
 	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Paste").."\tCtrl-V", "OnPaste")
 	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Delete").."\tDelete", "OnDelete")
 	E_MainFrame:AddSeparater(itemEdit)
-	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Select").."\tF1", "OnSelect")
-	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Move").."\tF2", "OnMove")
-	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Rotate").."\tF3", "OnRotate")
-	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Scale").."\tF4", "OnScale")
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Select").."\tQ", "OnSelect")
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Translate").."\tW", "OnTranslate")
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Rotate").."\tE", "OnRotate")
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Scale").."\tR", "OnScale")
 	E_MainFrame:AddSeparater(itemEdit)
 	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("PlayAndStop").."\tAlt-Space", "OnPlayAndStop")
 	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("ResetPlay").."\tShift-Space", "OnResetPlay")
@@ -99,6 +99,22 @@ function OnCloseScene()
 end
 
 function OnExit()
+end
+
+function OnSelect()
+	E_MainFrame:OnSetEditMode(1)
+end
+
+function OnTranslate()
+	E_MainFrame:OnSetEditMode(2)
+end
+
+function OnRotate()
+	E_MainFrame:OnSetEditMode(3)
+end
+
+function OnScale()
+	E_MainFrame:OnSetEditMode(4)
 end
 
 CreateMainMenu()

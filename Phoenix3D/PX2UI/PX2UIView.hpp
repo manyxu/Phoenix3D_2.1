@@ -20,7 +20,7 @@ namespace PX2
 		bool IsCameraAutoCenter() const;
 
 	protected:
-		virtual void OnSizeChange();
+		virtual void OnRectChange();
 
 		bool mIsCameraAutoCenter;
 

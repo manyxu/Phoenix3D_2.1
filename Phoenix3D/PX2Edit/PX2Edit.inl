@@ -1,6 +1,11 @@
 // PX2Edit.inl
 
 //----------------------------------------------------------------------------
+inline Edit::EditType Edit::GetEditType() const
+{
+	return mEditType;
+}
+//----------------------------------------------------------------------------
 inline Edit::EditMode Edit::GetEditMode() const
 {
 	return mEditMode;

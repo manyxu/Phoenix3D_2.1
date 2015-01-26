@@ -5,6 +5,7 @@
 
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2EditMap.hpp"
+#include "PX2EditDefine.hpp"
 
 namespace PX2
 {
@@ -20,6 +21,17 @@ namespace PX2
 		bool Initlize();
 		bool Ternamate();
 
+	public:
+		enum EditType
+		{
+			ET_SCENE,
+			ET_TERRAIN,
+			ET_UI,
+			ET_MAXTYPE
+		};
+		void SetEditType(EditType type);
+		EditType GetEditType() const;
+
 		enum EditMode
 		{
 			EM_NONE,
@@ -34,12 +46,15 @@ namespace PX2
 
 		EditMap *GetEditMap();
 
-		static int GetEditID();
-
 	protected:
+		EditType mEditType;
 		EditMode mEditMode;
 		EditMap *mEditMap;
 
+	public:
+		static int GetEditID();
+
+	protected:
 		static int msEditorID;
 
 		// key

@@ -19,12 +19,6 @@ namespace PX2
 		void Clear();
 		void Update(double appSeconds, double elapsedSeconds);
 
-		void SetSize(const Sizef &size);
-		const Sizef &GetSize() const;
-
-	protected:
-		Sizef mSize;
-
 		// UIView
 	public:
 		UIView *GetDefaultUIView();

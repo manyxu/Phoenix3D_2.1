@@ -11,3 +11,8 @@ inline Node *Actor::GetHelpNode()
 	return mHelpNode;
 }
 //----------------------------------------------------------------------------
+inline bool Actor::IsPickable() const
+{
+	return mIsPickable;
+}
+//----------------------------------------------------------------------------

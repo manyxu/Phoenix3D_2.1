@@ -34,6 +34,9 @@
     <Filter Include="Edit\Creater">
       <UniqueIdentifier>{f4209441-bcd6-4b76-947b-9da1a939e3f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pick">
+      <UniqueIdentifier>{dfc80d16-4423-48ca-8ca1-f436730d312f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -82,6 +85,12 @@
     </ClInclude>
     <ClInclude Include="PX2CameraActor.hpp">
       <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ActorPicker.hpp">
+      <Filter>Pick</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ActorPickRecord.hpp">
+      <Filter>Pick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="PX2CameraActor.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ActorPicker.cpp">
+      <Filter>Pick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

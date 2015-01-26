@@ -45,6 +45,8 @@ namespace PX2Editor
 		void OnSaveSceneAs();
 		void OnCloseScene();
 
+		void OnSetEditMode(int type);
+
 	public:
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,

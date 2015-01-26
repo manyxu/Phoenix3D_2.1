@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Edit.hpp" />
+    <ClInclude Include="PX2EditDefine.hpp" />
     <ClInclude Include="PX2EditEventType.hpp" />
     <ClInclude Include="PX2EditMap.hpp" />
     <ClInclude Include="PX2EditPre.hpp" />
