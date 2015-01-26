@@ -17,6 +17,7 @@
 #include "PX2InspView.hpp"
 #include "PX2ObjectInspector.hpp"
 #include "PX2EditEventType.hpp"
+#include "PX2UIEventType.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -105,6 +106,11 @@ void E_MainFrame::DoExecute(Event *event)
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseProject))
 	{
 		_ShowRenderView(false);
+	}
+	else if (UIEventSpace::IsEqual(event, UIEventSpace::TabDrag))
+	{
+		_CreateView(new ResView(this), "ResView", "ResView", "ResView",
+			wxAuiPaneInfo().Right());
 	}
 }
 //----------------------------------------------------------------------------
@@ -487,6 +493,7 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	else
 	{
 		styleFlag ^= wxAUI_NB_BOTTOM;
+		styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	}
 
 	noteBook->SetWindowStyleFlag(styleFlag);

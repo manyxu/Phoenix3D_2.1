@@ -84,6 +84,15 @@ namespace PX2Editor
 			int orientation,
 			wxRect* outRect);
 
+		virtual wxSize GetTabSize(
+                 wxDC& dc,
+                 wxWindow* wnd,
+                 const wxString& caption,
+                 const wxBitmap& bitmap,
+                 bool active,
+                 int closeButtonState,
+                 int* xExtent);
+
 	protected:
 		bool mIsTop;
 	};

@@ -1,6 +1,8 @@
 // PX2wxAui.cpp
 
 #include "PX2wxAui.hpp"
+#include "PX2EngineLoop.hpp"
+#include "PX2UIEventType.hpp"
 using namespace PX2Editor;
 
 BEGIN_EVENT_TABLE(PX2wxAuiNotebook, wxAuiNotebook)
@@ -36,6 +38,15 @@ void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
 			src_tabs->SetCursor(wxCursor(wxCURSOR_ARROW));
 			int src_idx = evt.GetSelection();
 			RemovePage(src_idx);
+			Event *ent = UIEventSpace::CreateEventX(UIEventSpace::TabDrag);
+			PX2_EW.BroadcastingLocalEvent(ent);
+			/*wxWindow *mainFrame = E_MainFrame::GetSingletonPtr();
+			E_MainFrame::GetSingleton()._CreateView(new ResView(mainFrame),
+				"ResView",
+				"ResView",
+				"ResView",
+				wxAuiPaneInfo().Right()
+			);*/
 		}
 		
 		UpdateTabsHeight();
@@ -142,7 +153,7 @@ void PX2wxAuiTabArt::SetSizingInfo(const wxSize& tab_ctrl_size,
 		m_fixedTabWidth = tot_width / 2;
 
 	if (m_fixedTabWidth > 160)
-		m_fixedTabWidth = 160;
+		m_fixedTabWidth = 120;
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
@@ -303,7 +314,7 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	}
 	else
 	{
-		text_offset = tab_x + (tab_height / 3) + (tab_width / 2) - (textx / 2);
+		text_offset = tab_x + (tab_width / 2) - (textx / 2);
 	}
 
 	// set minimum text offset
@@ -353,7 +364,7 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 
 	*out_tab_rect = wxRect(tab_x, tab_y, tab_width, tab_height);
 
-	dc.DestroyClippingRegion();
+	dc.DestroyClippingRegion();	
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiTabArt::DrawButton(wxDC& dc,
@@ -420,3 +431,31 @@ void PX2wxAuiTabArt::DrawButton(wxDC& dc,
 	*out_rect = rect;
 }
 //----------------------------------------------------------------------------
+wxSize PX2wxAuiTabArt::GetTabSize(wxDC& dc,
+	wxWindow* WXUNUSED(wnd),
+	const wxString& caption,
+	const wxBitmap& WXUNUSED(bitmap),
+	bool WXUNUSED(active),
+	int closeButtonState,
+	int* xExtent)
+{
+	wxCoord measured_textx, measured_texty;
+
+	dc.SetFont(m_measuringFont);
+	dc.GetTextExtent(caption, &measured_textx, &measured_texty);
+
+	wxCoord tab_height = measured_texty + 4;
+	wxCoord tab_width = measured_textx + tab_height + 5;
+
+	if (closeButtonState != wxAUI_BUTTON_STATE_HIDDEN)
+		tab_width += m_activeCloseBmp.GetWidth();
+
+	if (m_flags & wxAUI_NB_TAB_FIXED_WIDTH)
+	{
+		tab_width = m_fixedTabWidth;
+	}
+
+	*xExtent = tab_width + 1;
+
+	return wxSize(tab_width, tab_height);
+}
