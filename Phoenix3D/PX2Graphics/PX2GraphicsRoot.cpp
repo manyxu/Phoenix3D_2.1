@@ -6,6 +6,7 @@
 #include "PX2FString.hpp"
 #include "PX2Renderer.hpp"
 #include "PX2StdVC4Material.hpp"
+#include "PX2VertexColor4Material.hpp"
 #include "PX2LightAmbientConstant.hpp"
 #include "PX2LightDiffuseConstant.hpp"
 #include "PX2LightSpecularConstant.hpp"
@@ -17,6 +18,10 @@
 #include "PX2SkinMaterial.hpp"
 #include "PX2StdMaterial.hpp"
 #include "PX2MaterialManager.hpp"
+#include "PX2TriMesh.hpp"
+#include "PX2VertexFormat.hpp"
+#include "PX2StandardMesh.hpp"
+#include "PX2Time.hpp"
 using namespace PX2;
 
 const std::string GraphicsRoot::sEmptyResPath = "EmptyResPath";
@@ -80,11 +85,42 @@ bool GraphicsRoot::Initlize ()
 
 	PX2_MATERIALMAN.Initlize();
 
+	// create help meshs
+	VertexFormat *vf = GetVertexFormat(GraphicsRoot::VFT_PC);
+	StandardMesh stdMesh(vf);
+
+	mTriMeshXY = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
+	mTriMeshXY->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
+	mTriMeshXY->WorldTransformIsCurrent = true;
+	mTriMeshXY->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
+	mTriMeshXY->GetMaterialInstance()->GetMaterial()->GetWireProperty(0, 0)->Enabled = true;
+	mTriMeshXY->Update(GetTimeInSeconds(), false);
+
+	mTriMeshXZ = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
+	mTriMeshXZ->WorldTransform.SetRotate(Matrix3f().MakeEulerXYZ(Mathf::HALF_PI,
+		0.0f, 0.0f));
+	mTriMeshXZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
+	mTriMeshXZ->WorldTransformIsCurrent = true;
+	mTriMeshXZ->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
+	mTriMeshXZ->Update(GetTimeInSeconds(), false);
+
+	mTriMeshYZ = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
+	mTriMeshYZ->WorldTransform.SetRotate(Matrix3f().MakeEulerXYZ(0.0f,
+		Mathf::HALF_PI, 0.0f));
+	mTriMeshYZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
+	mTriMeshYZ->WorldTransformIsCurrent = true;
+	mTriMeshYZ->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
+	mTriMeshYZ->Update(GetTimeInSeconds(), false);
+
 	return true;
 }
 //-----------------------------------------------------------------------------
 bool GraphicsRoot::Terminate ()
 {
+	mTriMeshXY = 0;
+	mTriMeshXZ = 0;
+	mTriMeshYZ = 0;
+
 	PX2_MATERIALMAN.Terminate();
 
 	mRenderSteps.clear();

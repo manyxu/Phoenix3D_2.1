@@ -28,6 +28,8 @@ PX2wxAuiNotebook::~PX2wxAuiNotebook()
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
 {
+	Freeze();
+
 	wxAuiTabCtrl* src_tabs = (wxAuiTabCtrl*)evt.GetEventObject();
 	if (src_tabs)
 	{
@@ -48,6 +50,9 @@ void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
 		
 		UpdateTabsHeight();
 	}
+
+	Thaw();
+	Refresh();
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::DragFun_End(wxAuiNotebookEvent &ent)

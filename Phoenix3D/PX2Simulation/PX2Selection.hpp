@@ -27,6 +27,11 @@ namespace PX2
 
 		PX2::Object *GetFirstObject() const;
 
+		void Translate(PX2::AVector vec);
+		void TranslateTo(PX2::APoint pos);
+		void AddRolate(PX2::AVector vec);
+		void AddScale(PX2::AVector vec);
+
 		const PX2::APoint &GetCenter() const;
 		float GetRadius() const;
 

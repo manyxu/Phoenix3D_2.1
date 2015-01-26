@@ -83,6 +83,8 @@ void Actor::Load(InStream& source)
 	Node::Load(source);
 	PX2_VERSION_LOAD(source);
 
+	source.ReadPointer(mNode);
+	source.ReadPointer(mHelpNode);
 	source.ReadBool(mIsPickable);
 
 	PX2_END_DEBUG_STREAM_LOAD(Actor, source);
@@ -91,11 +93,31 @@ void Actor::Load(InStream& source)
 void Actor::Link(InStream& source)
 {
 	Node::Link(source);
+
+	if (mNode)
+	{
+		source.ResolveLink(mNode);
+	}
+
+	if (mHelpNode)
+	{
+		source.ResolveLink(mHelpNode);
+	}
 }
 //----------------------------------------------------------------------------
 void Actor::PostLink()
 {
 	Node::PostLink();
+
+	if (mNode)
+	{
+		mNode->PostLink();
+	}
+
+	if (mHelpNode)
+	{
+		mHelpNode->PostLink();
+	}
 
 	SetPickable(IsPickable());
 }
@@ -112,6 +134,8 @@ void Actor::Save(OutStream& target) const
 	Node::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WritePointer(mNode);
+	target.WritePointer(mHelpNode);
 	target.WriteBool(mIsPickable);
 
 	PX2_END_DEBUG_STREAM_SAVE(Actor, target);
@@ -122,6 +146,8 @@ int Actor::GetStreamingSize(Stream &stream) const
 	int size = Node::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
+	size += PX2_POINTERSIZE(mNode);
+	size += PX2_POINTERSIZE(mHelpNode);
 	size += PX2_BOOLSIZE(mIsPickable);
 
 	return size;
