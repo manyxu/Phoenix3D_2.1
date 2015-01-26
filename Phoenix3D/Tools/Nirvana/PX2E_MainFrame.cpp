@@ -109,8 +109,10 @@ void E_MainFrame::DoExecute(Event *event)
 	}
 	else if (NirvanaUIEventSpace::IsEqual(event, NirvanaUIEventSpace::TabDrag))
 	{
-		_CreateView(new ResView(this), "ResView", "ResView", "ResView",
-			wxAuiPaneInfo().Right());
+		wxWindow *window = event->GetData<wxWindow*>();
+		_CreateView(window, "ResView", "ResView", "ResView",
+			wxAuiPaneInfo().Right().BestSize(200, 200).Float());
+		mAuiManager->Update();
 	}
 }
 //----------------------------------------------------------------------------

@@ -37,16 +37,13 @@ void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
 		{
 			src_tabs->SetCursor(wxCursor(wxCURSOR_ARROW));
 			int src_idx = evt.GetSelection();
+			wxWindow *window = GetPage(src_idx);
 			RemovePage(src_idx);
+			Update();
+
 			Event *ent = NirvanaUIEventSpace::CreateEventX(NirvanaUIEventSpace::TabDrag);
+			ent->SetData<wxWindow*>(window);
 			PX2_EW.BroadcastingLocalEvent(ent);
-			/*wxWindow *mainFrame = E_MainFrame::GetSingletonPtr();
-			E_MainFrame::GetSingleton()._CreateView(new ResView(mainFrame),
-				"ResView",
-				"ResView",
-				"ResView",
-				wxAuiPaneInfo().Right()
-			);*/
 		}
 		
 		UpdateTabsHeight();
