@@ -2,7 +2,7 @@
 
 #include "PX2wxAui.hpp"
 #include "PX2EngineLoop.hpp"
-#include "PX2UIEventType.hpp"
+#include "PX2NirvanaUIEventType.hpp"
 using namespace PX2Editor;
 
 BEGIN_EVENT_TABLE(PX2wxAuiNotebook, wxAuiNotebook)
@@ -38,7 +38,7 @@ void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
 			src_tabs->SetCursor(wxCursor(wxCURSOR_ARROW));
 			int src_idx = evt.GetSelection();
 			RemovePage(src_idx);
-			Event *ent = UIEventSpace::CreateEventX(UIEventSpace::TabDrag);
+			Event *ent = NirvanaUIEventSpace::CreateEventX(NirvanaUIEventSpace::TabDrag);
 			PX2_EW.BroadcastingLocalEvent(ent);
 			/*wxWindow *mainFrame = E_MainFrame::GetSingletonPtr();
 			E_MainFrame::GetSingleton()._CreateView(new ResView(mainFrame),

@@ -40,6 +40,9 @@
     <Filter Include="TimeLine">
       <UniqueIdentifier>{abec324d-387a-4b67-ad10-77aa5e0db90d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Event">
+      <UniqueIdentifier>{139a2c43-9676-4d39-9078-0cddaf4cd218}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -133,6 +136,9 @@
     <ClInclude Include="PX2E_TimeLineRender.hpp">
       <Filter>TimeLine</Filter>
     </ClInclude>
+    <ClInclude Include="PX2NirvanaUIEventType.hpp">
+      <Filter>Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -224,6 +230,9 @@
     </ClCompile>
     <ClCompile Include="PX2E_TimeLineRender.cpp">
       <Filter>TimeLine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NirvanaUIEventType.cpp">
+      <Filter>Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

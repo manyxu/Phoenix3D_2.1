@@ -17,7 +17,7 @@
 #include "PX2InspView.hpp"
 #include "PX2ObjectInspector.hpp"
 #include "PX2EditEventType.hpp"
-#include "PX2UIEventType.hpp"
+#include "PX2NirvanaUIEventType.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -107,7 +107,7 @@ void E_MainFrame::DoExecute(Event *event)
 	{
 		_ShowRenderView(false);
 	}
-	else if (UIEventSpace::IsEqual(event, UIEventSpace::TabDrag))
+	else if (NirvanaUIEventSpace::IsEqual(event, NirvanaUIEventSpace::TabDrag))
 	{
 		_CreateView(new ResView(this), "ResView", "ResView", "ResView",
 			wxAuiPaneInfo().Right());
