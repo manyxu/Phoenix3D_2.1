@@ -81,6 +81,11 @@ void SceneNodeCtrl::OnLeftDown(RenderStep *renderStep, const PX2::APoint &pos)
 	if (Edit::ET_SCENE != editType) return;
 
 	DragType dt = GetDragType(renderStep, pos);
+	if (dt != DT_NONE)
+	{
+		int a = 0;
+	}
+
 	SetDragType(dt);
 }
 //----------------------------------------------------------------------------
@@ -106,7 +111,7 @@ void SceneNodeCtrl::OnMouseWheel(RenderStep *renderStep, float wheelDelta)
 	{
 		if (0.0f != rmax)
 		{
-			mCtrlsGroup->WorldTransform.SetUniformScale(rmax*0.13f);
+			mCtrlsGroup->WorldTransform.SetUniformScale(rmax*0.11f);
 			mCtrlsGroup->Update(GetTimeInSeconds(), false);
 		}
 	}
@@ -118,7 +123,6 @@ void SceneNodeCtrl::OnMouseWheel(RenderStep *renderStep, float wheelDelta)
 		mCtrlsGroup->WorldTransform.SetUniformScale(scale);
 		mCtrlsGroup->Update(GetTimeInSeconds(), false);
 	}
-
 }
 //----------------------------------------------------------------------------
 void SceneNodeCtrl::OnMotion(bool leftDown, RenderStep *renderStep,
@@ -202,9 +206,16 @@ void SceneNodeCtrl::OnMotion(bool leftDown, RenderStep *renderStep,
 	}
 
 	if (DT_NONE == mDragType) return;
+	else
+	{
+		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SceneNodeDrag);
+		ent->SetData<int>(1);
+		EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
+	}
 
 	int numObjs = PX2_SELECTION.GetNumObjects();
-	if (0 == numObjs) return;
+	if (0 == numObjs) 
+		return;
 
 	// get pickPoint with the plane
 	TriMesh *meshHelp = PX2_GR.GetXYPlane();
@@ -519,6 +530,27 @@ void SceneNodeCtrl::DoExecute(PX2::Event *event)
 		UpdateCtrlTrans();
 		UpdateCtrl();
 	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::SetEditMode))
+	{
+		Edit::EditMode mode = event->GetData<Edit::EditMode>();
+
+		if (Edit::EM_SELECT == mode)
+		{
+			SetCtrlType(SceneNodeCtrl::CT_SELECT);
+		}
+		else if (Edit::EM_TRANSLATE == mode)
+		{
+			SetCtrlType(SceneNodeCtrl::CT_TRANSLATE);
+		}
+		else if (Edit::EM_ROLATE == mode)
+		{
+			SetCtrlType(SceneNodeCtrl::CT_ROLATE);
+		}
+		else if (Edit::EM_SCALE == mode)
+		{
+			SetCtrlType(SceneNodeCtrl::CT_SCALE);
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void SceneNodeCtrl::DoLeave()
@@ -709,62 +741,75 @@ SceneNodeCtrl::DragType SceneNodeCtrl::GetDragType(RenderStep *renderStep,
 	PX2::Movable *ctrlXZ = GetCurrentCtrlXZ();
 
 	bool xDrag = false;
+	float xDragT = Mathf::MAX_REAL;
+
 	bool yDrag = false;
+	float yDragT = Mathf::MAX_REAL;
+
 	bool zDrag = false;
+	float zDragT = Mathf::MAX_REAL;
+
 	bool xyzDrag = false;
+	float xyzDragT = Mathf::MAX_REAL;
+
 	bool xyDrag = false;
+	float xyDragT = Mathf::MAX_REAL;
+
 	bool yzDrag = false;
+	float yzDragT = Mathf::MAX_REAL;
+
 	bool xzDrag = false;
+	float xzDragT = Mathf::MAX_REAL;
 
 	GetCtrlsGroup()->Update(GetTimeInSeconds(), false);
 
 	picker.Execute(ctrlX, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
 	if ((int)picker.Records.size() > 0)
+	{
 		xDrag = true;
+		xDragT = picker.GetClosestNonnegative().T;
+	}
 
 	picker.Execute(ctrlY, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
 	if ((int)picker.Records.size() > 0)
+	{
 		yDrag = true;
+		yDragT = picker.GetClosestNonnegative().T;
+	}
 
 	picker.Execute(ctrlZ, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
 	if ((int)picker.Records.size() > 0)
+	{
 		zDrag = true;
+		zDragT = picker.GetClosestNonnegative().T;
+	}
 
 	picker.Execute(ctrlXYZ, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
 	if ((int)picker.Records.size() > 0)
+	{
 		xyzDrag = true;
+		xyzDragT = picker.GetClosestNonnegative().T;
+	}
 
-	float maxLength = Mathf::MAX_REAL;
 	picker.Execute(ctrlXY, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
 	if ((int)picker.Records.size() > 0)
 	{
-		if (picker.GetClosestNonnegative().T < maxLength)
-		{
-			xyDrag = true;
-			maxLength = picker.GetClosestNonnegative().T;
-		}
+		xyDrag = true;
+		xyDragT = picker.GetClosestNonnegative().T;
 	}
-	else
-	{
-		picker.Execute(ctrlYZ, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
-		if ((int)picker.Records.size() > 0)
-		{
-			if (picker.GetClosestNonnegative().T < maxLength)
-			{
-				yzDrag = true;
-				maxLength = picker.GetClosestNonnegative().T;
-			}
-		}
 
-		picker.Execute(ctrlXZ, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
-		if ((int)picker.Records.size() > 0)
-		{
-			if (picker.GetClosestNonnegative().T < maxLength)
-			{
-				xzDrag = true;
-				maxLength = picker.GetClosestNonnegative().T;
-			}
-		}
+	picker.Execute(ctrlYZ, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
+	if ((int)picker.Records.size() > 0)
+	{
+		yzDrag = true;
+		yzDragT = picker.GetClosestNonnegative().T;
+	}
+
+	picker.Execute(ctrlXZ, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
+	if ((int)picker.Records.size() > 0)
+	{
+		xzDrag = true;
+		xzDragT = picker.GetClosestNonnegative().T;
 	}
 
 	if (xDrag)
@@ -834,27 +879,6 @@ void BoundCtrl::DoExecute(PX2::Event *event)
 //----------------------------------------------------------------------------
 void BoundCtrl::DoLeave()
 {
-}
-//----------------------------------------------------------------------------
-void BoundCtrl::OnLeftDown(RenderStep *renderStep, const PX2::APoint &point)
-{
-	PX2_UNUSED(renderStep);
-	PX2_UNUSED(point);
-}
-//----------------------------------------------------------------------------
-void BoundCtrl::OnLeftUp(RenderStep *renderStep, const PX2::APoint &point)
-{
-	PX2_UNUSED(renderStep);
-	PX2_UNUSED(point);
-}
-//----------------------------------------------------------------------------
-void BoundCtrl::OnMotion(bool leftDown, RenderStep *renderStep,
-	const PX2::APoint &posNow, const PX2::APoint &posBefore)
-{
-	PX2_UNUSED(leftDown);
-	PX2_UNUSED(renderStep);
-	PX2_UNUSED(posNow);
-	PX2_UNUSED(posBefore);
 }
 //----------------------------------------------------------------------------
 void BoundCtrl::UpdateCtrl()

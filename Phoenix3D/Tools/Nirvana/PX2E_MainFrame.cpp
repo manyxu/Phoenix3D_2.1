@@ -114,6 +114,18 @@ void E_MainFrame::DoExecute(Event *event)
 			wxAuiPaneInfo().Right().BestSize(200, 200).Float());
 		mAuiManager->Update();
 	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::SceneNodeDrag))
+	{
+		int drag = event->GetData<int>();
+		if (1 == drag)
+		{
+			SetCursor(wxCursor(wxCURSOR_SIZING));
+		}
+		else if (0 == drag)
+		{
+			SetCursor(wxCursor(wxCURSOR_ARROW));
+		}
+	}
 }
 //----------------------------------------------------------------------------
 RenderView *E_MainFrame::GetRenderView()

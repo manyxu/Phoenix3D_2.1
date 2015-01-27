@@ -117,11 +117,6 @@ namespace PX2
 
 		PX2::Node *GetCtrlsGroup() { return mCtrlsGroup; }
 
-		void OnLeftDown(RenderStep *renderStep, const PX2::APoint &point);
-		void OnLeftUp(RenderStep *renderStep, const PX2::APoint &point);
-		void OnMotion(bool leftDown, RenderStep *renderStep,
-			const PX2::APoint &posNow, const PX2::APoint &posBefore);
-
 		virtual void DoEnter();
 		virtual void DoExecute(PX2::Event *event);
 		virtual void DoLeave();

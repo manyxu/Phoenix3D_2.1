@@ -180,14 +180,15 @@ void RenderView::DoExecute(PX2::Event *event)
 	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene) ||
 		EditEventSpace::IsEqual(event, EditEventSpace::LoadedScene))
 	{
+		mEditRenderView = 0;
+
 		RenderStep *sceneRenderStep = PX2_PROJ.GetSceneRenderStep();
 		Camera *sceneRenderStepCamera = sceneRenderStep->GetCamera();
 		Renderer *sceneRenderStepRenderer = sceneRenderStep->GetRenderer();
 
 		mEditRenderView = new0 EditRenderView();
-		RenderStep *renderStep = mEditRenderView->GetRenderStep();
-		renderStep->SetCamera(sceneRenderStepCamera);
-		renderStep->SetRenderer(sceneRenderStepRenderer);
+		mEditRenderView->SetRenderer(sceneRenderStepRenderer);
+		mEditRenderView->SetCamera(sceneRenderStepCamera);
 
 		SetSize(GetSize());
 	}

@@ -19,6 +19,9 @@ namespace PX2
 		EditRenderView();
 		~EditRenderView();
 
+		void SetRenderer(Renderer *renderer);
+		void SetCamera(Camera *camera);
+
 	protected:
 		void _CreateGridGeometry();
 
