@@ -1,9 +1,11 @@
 // PX2E_RenderView.cpp
 
 #include "PX2E_RenderView.hpp"
+#include "PX2E_NirMan.hpp"
 #include "PX2Project.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2Edit.hpp"
+#include "PX2ScriptManager.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -36,7 +38,10 @@ mCameraMoveSpeed(40.0f),
 mCurCameraMoveSpeed_W(0.0f),
 mCurCameraMoveSpeed_S(0.0f),
 mCurCameraMoveSpeed_A(0.0f),
-mCurCameraMoveSpeed_D(0.0f)
+mCurCameraMoveSpeed_D(0.0f),
+mIsRightDown(false),
+mIsRightDownOnMotion(false),
+mEditMenu(0)
 {
 	mCtrlTimer.SetOwner(this, sID_CTRLTIMER);
 	mCtrlTimer.Start(15);
@@ -44,6 +49,11 @@ mCurCameraMoveSpeed_D(0.0f)
 //----------------------------------------------------------------------------
 RenderView::~RenderView()
 {
+	if (mEditMenu)
+	{
+		delete mEditMenu;
+		mEditMenu = 0;
+	}
 }
 //----------------------------------------------------------------------------
 void RenderView::OnTimer(wxTimerEvent& event)
@@ -141,6 +151,9 @@ void RenderView::OnMouseWheel(wxMouseEvent& e)
 //----------------------------------------------------------------------------
 void RenderView::OnRightDown(wxMouseEvent& e)
 {
+	mIsRightDown = true;
+	mIsRightDownOnMotion = false;
+
 	SetFocus();
 
 	wxPoint mousePos = e.GetPosition();
@@ -160,6 +173,22 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 	if (mEditRenderView)
 	{
 		mEditRenderView->OnRightUp(pos);
+
+		if (!mIsRightDownOnMotion)
+		{
+			if (mEditMenu)
+			{
+				delete mEditMenu;
+				mEditMenu = 0;
+			}
+
+			mEditMenu = new wxMenu();
+			NirMan::GetSingleton().SetCurMenu(mEditMenu);
+
+			PX2_SM.CallString("CreateStageEditMenu()");
+
+			if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -171,6 +200,11 @@ void RenderView::OnMotion(wxMouseEvent& e)
 	if (mEditRenderView)
 	{
 		mEditRenderView->OnMotion(pos);
+	}
+
+	if (mIsRightDown)
+	{
+		mIsRightDownOnMotion = true;
 	}
 }
 //----------------------------------------------------------------------------

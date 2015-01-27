@@ -1,3 +1,4 @@
 // PX2Simulation.pkg
 
 $pfile "PX2Simulation/PX2Project.pkg"
+$pfile "PX2Simulation/PX2Selection.pkg"

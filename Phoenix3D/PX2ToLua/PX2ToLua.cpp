@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 01/23/15 12:13:26.
+** Generated automatically by tolua++-1.0.92 on 01/27/15 15:55:24.
 */
 
 #ifndef __cplusplus
@@ -148,6 +148,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"TexPackElement");
  tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"Controlledable");
+ tolua_usertype(tolua_S,"Selection");
  tolua_usertype(tolua_S,"ResHandle");
  tolua_usertype(tolua_S,"APoint");
  tolua_usertype(tolua_S,"PixelShader");
@@ -162,13 +163,16 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Camera");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"Vector2f");
+ tolua_usertype(tolua_S,"ResourceManager");
+ tolua_usertype(tolua_S,"PX2::AVector");
+ tolua_usertype(tolua_S,"Buffer::Locking");
  tolua_usertype(tolua_S,"Project");
  tolua_usertype(tolua_S,"TexPack");
  tolua_usertype(tolua_S,"Transform");
  tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"Vector3f");
  tolua_usertype(tolua_S,"VisibleSet");
- tolua_usertype(tolua_S,"ResourceManager");
+ tolua_usertype(tolua_S,"PX2::APoint");
  tolua_usertype(tolua_S,"ScriptManager");
  tolua_usertype(tolua_S,"VertexShader");
  tolua_usertype(tolua_S,"GlobalMaterial");
@@ -185,7 +189,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"MaterialInstance");
  tolua_usertype(tolua_S,"WireProperty");
  tolua_usertype(tolua_S,"VertexBuffer");
- tolua_usertype(tolua_S,"Buffer::Locking");
+ tolua_usertype(tolua_S,"PX2::Object");
  tolua_usertype(tolua_S,"DepthProperty");
  tolua_usertype(tolua_S,"Float3");
  tolua_usertype(tolua_S,"AVector");
@@ -12484,6 +12488,431 @@ static int tolua_PX2_Project_delete00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: AddObject of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_AddObject00
+static int tolua_PX2_Selection_AddObject00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"PX2::Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+  PX2::Object* obj = ((PX2::Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddObject'", NULL);
+#endif
+  {
+   self->AddObject(obj);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddObject'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: RemoveObject of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_RemoveObject00
+static int tolua_PX2_Selection_RemoveObject00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"PX2::Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+  PX2::Object* obj = ((PX2::Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'RemoveObject'", NULL);
+#endif
+  {
+   self->RemoveObject(obj);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'RemoveObject'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetObjectAt of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_GetObjectAt00
+static int tolua_PX2_Selection_GetObjectAt00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+  int i = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetObjectAt'", NULL);
+#endif
+  {
+   PX2::Object* tolua_ret = (PX2::Object*)  self->GetObjectAt(i);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PX2::Object");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetObjectAt'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetNumObjects of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_GetNumObjects00
+static int tolua_PX2_Selection_GetNumObjects00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetNumObjects'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->GetNumObjects();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetNumObjects'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: IsObjectIn of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_IsObjectIn00
+static int tolua_PX2_Selection_IsObjectIn00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"PX2::Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+  PX2::Object* obj = ((PX2::Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsObjectIn'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->IsObjectIn(obj);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IsObjectIn'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: Clear of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_Clear00
+static int tolua_PX2_Selection_Clear00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Clear'", NULL);
+#endif
+  {
+   self->Clear();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'Clear'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetFirstObject of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_GetFirstObject00
+static int tolua_PX2_Selection_GetFirstObject00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const Selection",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Selection* self = (const Selection*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetFirstObject'", NULL);
+#endif
+  {
+   PX2::Object* tolua_ret = (PX2::Object*)  self->GetFirstObject();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PX2::Object");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetFirstObject'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: Translate of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_Translate00
+static int tolua_PX2_Selection_Translate00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"PX2::AVector",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+  PX2::AVector vec = *((PX2::AVector*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Translate'", NULL);
+#endif
+  {
+   self->Translate(vec);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'Translate'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TranslateTo of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_TranslateTo00
+static int tolua_PX2_Selection_TranslateTo00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"PX2::APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+  PX2::APoint pos = *((PX2::APoint*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TranslateTo'", NULL);
+#endif
+  {
+   self->TranslateTo(pos);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'TranslateTo'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddRolate of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_AddRolate00
+static int tolua_PX2_Selection_AddRolate00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"PX2::AVector",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+  PX2::AVector vec = *((PX2::AVector*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddRolate'", NULL);
+#endif
+  {
+   self->AddRolate(vec);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddRolate'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddScale of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_AddScale00
+static int tolua_PX2_Selection_AddScale00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Selection",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"PX2::AVector",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Selection* self = (Selection*)  tolua_tousertype(tolua_S,1,0);
+  PX2::AVector vec = *((PX2::AVector*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddScale'", NULL);
+#endif
+  {
+   self->AddScale(vec);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddScale'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetCenter of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_GetCenter00
+static int tolua_PX2_Selection_GetCenter00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const Selection",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Selection* self = (const Selection*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetCenter'", NULL);
+#endif
+  {
+   const PX2::APoint& tolua_ret = (const PX2::APoint&)  self->GetCenter();
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const PX2::APoint");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetCenter'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetRadius of class  Selection */
+#ifndef TOLUA_DISABLE_tolua_PX2_Selection_GetRadius00
+static int tolua_PX2_Selection_GetRadius00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const Selection",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Selection* self = (const Selection*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetRadius'", NULL);
+#endif
+  {
+   float tolua_ret = (float)  self->GetRadius();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetRadius'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
 {
@@ -13041,6 +13470,22 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"new_local",tolua_PX2_Project_new00_local);
    tolua_function(tolua_S,".call",tolua_PX2_Project_new00_local);
    tolua_function(tolua_S,"delete",tolua_PX2_Project_delete00);
+  tolua_endmodule(tolua_S);
+  tolua_cclass(tolua_S,"Selection","Selection","",NULL);
+  tolua_beginmodule(tolua_S,"Selection");
+   tolua_function(tolua_S,"AddObject",tolua_PX2_Selection_AddObject00);
+   tolua_function(tolua_S,"RemoveObject",tolua_PX2_Selection_RemoveObject00);
+   tolua_function(tolua_S,"GetObjectAt",tolua_PX2_Selection_GetObjectAt00);
+   tolua_function(tolua_S,"GetNumObjects",tolua_PX2_Selection_GetNumObjects00);
+   tolua_function(tolua_S,"IsObjectIn",tolua_PX2_Selection_IsObjectIn00);
+   tolua_function(tolua_S,"Clear",tolua_PX2_Selection_Clear00);
+   tolua_function(tolua_S,"GetFirstObject",tolua_PX2_Selection_GetFirstObject00);
+   tolua_function(tolua_S,"Translate",tolua_PX2_Selection_Translate00);
+   tolua_function(tolua_S,"TranslateTo",tolua_PX2_Selection_TranslateTo00);
+   tolua_function(tolua_S,"AddRolate",tolua_PX2_Selection_AddRolate00);
+   tolua_function(tolua_S,"AddScale",tolua_PX2_Selection_AddScale00);
+   tolua_function(tolua_S,"GetCenter",tolua_PX2_Selection_GetCenter00);
+   tolua_function(tolua_S,"GetRadius",tolua_PX2_Selection_GetRadius00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

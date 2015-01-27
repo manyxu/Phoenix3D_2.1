@@ -53,6 +53,10 @@ namespace PX2Editor
 		float mCurCameraMoveSpeed_A;
 		float mCurCameraMoveSpeed_D;
 		wxSize mSize;
+
+		wxMenu *mEditMenu;
+		bool mIsRightDown;
+		bool mIsRightDownOnMotion;
 	};
 
 }

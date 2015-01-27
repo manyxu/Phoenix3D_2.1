@@ -103,6 +103,7 @@ bool EngineLoop::Initlize()
 	mScriptMan->SetUserTypePointer("PX2_LM", "LanguageManager", &(PX2_LM));
 	mScriptMan->SetUserTypePointer("PX2_RM", "ResourceManager", ResourceManager::GetSingletonPtr());
 	mScriptMan->SetUserTypePointer("PX2_SM", "ScriptManager", ScriptManager::GetSingletonPtr());
+	mScriptMan->SetUserTypePointer("PX2_SELECTION", "Selection", Selection::GetSingletonPtr());
 
 	return true;
 }

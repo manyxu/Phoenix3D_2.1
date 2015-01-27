@@ -6,8 +6,8 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-NirMan::NirMan() :
-mEditMenu(0)
+NirMan::NirMan():
+mCurMenu(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -17,25 +17,22 @@ NirMan::~NirMan()
 //----------------------------------------------------------------------------
 bool NirMan::Initlize()
 {
-	mEditMenu = new wxMenu();
-
 	return true;
 }
 //----------------------------------------------------------------------------
 bool NirMan::Ternamate()
 {
-	if (mEditMenu)
-	{
-		delete mEditMenu;
-		mEditMenu = 0;
-	}
-
 	return true;
 }
 //----------------------------------------------------------------------------
-wxMenu *NirMan::GetEditMenu()
+void NirMan::SetCurMenu(wxMenu *menu)
 {
-	return mEditMenu;
+	mCurMenu = menu;
+}
+//----------------------------------------------------------------------------
+wxMenu *NirMan::GetCurMenu()
+{
+	return mCurMenu;
 }
 //----------------------------------------------------------------------------
 void NirMan::OnMenuItem(wxCommandEvent &e)
@@ -50,6 +47,14 @@ void NirMan::OnMenuItem(wxCommandEvent &e)
 		callStr += "()";
 		PX2_SM.CallString(callStr);
 	}
+}
+//----------------------------------------------------------------------------
+wxMenu *NirMan::AddSubMenu(wxMenu *menu, const std::string &title)
+{
+	wxMenu *subMenu = new wxMenu();
+	menu->AppendSubMenu(subMenu, title);
+
+	return subMenu;
 }
 //----------------------------------------------------------------------------
 wxMenuItem *NirMan::AddMenuItem(wxMenu *menu, const std::string &title,

@@ -19,16 +19,20 @@ namespace PX2
 		bool Ternamate();
 
 	public:
-		wxMenu *GetEditMenu();
+		void SetCurMenu(wxMenu *menu);
+		wxMenu *GetCurMenu();
+
+	protected:
+		wxMenu *mCurMenu;
 
 	public:
+		wxMenu *AddSubMenu(wxMenu *menu, const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title, 
 			const std::string &script);
 		void AddSeparater(wxMenu *menu);
 		void OnMenuItem(wxCommandEvent &e);
 
 	protected:
-		wxMenu *mEditMenu;
 		std::map<int, std::string> mIDScripts;
 	};
 

@@ -16,6 +16,11 @@
 // Animation
 #include "PX2Animation.hpp"
 
+// Creater
+#include "PX2Creater.hpp"
+#include "PX2RedoUndo.hpp"
+#include "PX2Selection.hpp"
+
 // Engine
 #include "PX2EngineLoop.hpp"
 
