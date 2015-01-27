@@ -23,7 +23,9 @@ namespace PX2
 		enum AxisMode
 		{
 			AM_WORLD,
-			AM_LOCAL
+			AM_LOCAL,
+			AM_PARENT,
+			AM_MAX_MODE
 		};
 		void SetAxisMode(AxisMode mode);
 		AxisMode GetAxisMode() { return mAxisMode; }

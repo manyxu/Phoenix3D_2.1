@@ -91,7 +91,6 @@ bool GraphicsRoot::Initlize ()
 
 	mTriMeshXY = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
 	mTriMeshXY->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
-	mTriMeshXY->WorldTransformIsCurrent = true;
 	mTriMeshXY->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
 	mTriMeshXY->GetMaterialInstance()->GetMaterial()->GetWireProperty(0, 0)->Enabled = true;
 	mTriMeshXY->Update(GetTimeInSeconds(), false);
@@ -100,7 +99,6 @@ bool GraphicsRoot::Initlize ()
 	mTriMeshXZ->WorldTransform.SetRotate(Matrix3f().MakeEulerXYZ(Mathf::HALF_PI,
 		0.0f, 0.0f));
 	mTriMeshXZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
-	mTriMeshXZ->WorldTransformIsCurrent = true;
 	mTriMeshXZ->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
 	mTriMeshXZ->Update(GetTimeInSeconds(), false);
 
@@ -108,7 +106,6 @@ bool GraphicsRoot::Initlize ()
 	mTriMeshYZ->WorldTransform.SetRotate(Matrix3f().MakeEulerXYZ(0.0f,
 		Mathf::HALF_PI, 0.0f));
 	mTriMeshYZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
-	mTriMeshYZ->WorldTransformIsCurrent = true;
 	mTriMeshYZ->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
 	mTriMeshYZ->Update(GetTimeInSeconds(), false);
 

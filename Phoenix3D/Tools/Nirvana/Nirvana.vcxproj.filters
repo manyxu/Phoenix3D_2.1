@@ -43,6 +43,9 @@
     <Filter Include="Event">
       <UniqueIdentifier>{139a2c43-9676-4d39-9078-0cddaf4cd218}</UniqueIdentifier>
     </Filter>
+    <Filter Include="App\Main">
+      <UniqueIdentifier>{9df18248-b55c-4ce6-a355-d112e287f9a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -139,6 +142,9 @@
     <ClInclude Include="PX2NirvanaUIEventType.hpp">
       <Filter>Event</Filter>
     </ClInclude>
+    <ClInclude Include="PX2E_NirMan.hpp">
+      <Filter>App\Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -233,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="PX2NirvanaUIEventType.cpp">
       <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_NirMan.cpp">
+      <Filter>App\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

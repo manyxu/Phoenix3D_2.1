@@ -32,13 +32,14 @@ namespace PX2Editor
 		void OnRightUp(wxMouseEvent& e);
 		void OnMotion(wxMouseEvent& e);
 
+		void OnMenuItem(wxCommandEvent &e);
+
 		virtual void DoExecute(PX2::Event *event);
 
 	protected:
 		DECLARE_EVENT_TABLE()
 
 		RenderView();
-		void _Update(double detalSeconds);
 		PX2::APoint _wxPointToAPoint(wxPoint &point);
 
 	protected:
