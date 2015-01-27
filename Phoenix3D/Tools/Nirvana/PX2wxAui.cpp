@@ -20,6 +20,8 @@ mIsTop(isTop)
 
 	Connect(wxEVT_COMMAND_AUINOTEBOOK_DRAG_MOTION,
 		wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Motion));
+	Connect(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED,
+		wxAuiNotebookEventHandler(PX2wxAuiNotebook::Tab_Click));
 }
 //----------------------------------------------------------------------------
 PX2wxAuiNotebook::~PX2wxAuiNotebook()
@@ -47,7 +49,10 @@ void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
 		}
 		
 		UpdateTabsHeight();
+		Thaw();
+		Refresh();
 	}
+	
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::DragFun_End(wxAuiNotebookEvent &ent)
@@ -56,6 +61,24 @@ void PX2wxAuiNotebook::DragFun_End(wxAuiNotebookEvent &ent)
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::DragFun_Motion(wxAuiNotebookEvent &ent)
 {
+}
+//----------------------------------------------------------------------------
+void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
+{
+	wxAuiTabCtrl* src_tabs = (wxAuiTabCtrl*)ent.GetEventObject();
+	int numPages = m_tabs.GetPageCount();
+	
+	if (src_tabs)
+	{
+		if (numPages > 1)
+		{
+
+			int src_idx = ent.GetSelection();
+			wxString title = GetPageText(src_idx);
+			wxString paneName = "Insp";
+			m_mgr.GetPane(paneName).caption = title;
+		}
+	}	
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::UpdateTabsHeight()
@@ -169,7 +192,7 @@ void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 	const wxRect& rect)
 {
 	dc.SetBrush(wxBrush(wxColour(44, 61, 91)));
-	dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 2);
+	dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 6);
 
 	//// draw base line
 	if (mIsTop)
@@ -242,7 +265,7 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		close_button_state,
 		x_extent);
 
-	wxCoord tab_height = tab_size.y+4;
+	wxCoord tab_height = tab_size.y;
 	wxCoord tab_width = tab_size.x;
 	wxCoord tab_x = in_rect.x;
 	wxCoord tab_y = in_rect.y + in_rect.height - tab_height;
@@ -275,7 +298,7 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		dc.SetBrush(wxColour(54, 78, 111));
 		dc.SetFont(m_normalFont);
 		textx = normal_textx;
-		texty = normal_texty;
+		texty = normal_texty + 4;
 	}
 
 	// -- draw line --
@@ -307,16 +330,12 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	if (close_button_state != wxAUI_BUTTON_STATE_HIDDEN)
 	{
 		close_button_width = m_activeCloseBmp.GetWidth();
-		text_offset = tab_x + (tab_height / 2) + ((tab_width - close_button_width) / 2) - (textx / 2);
+		text_offset = tab_x + ((tab_width - close_button_width) / 2) - (textx / 2);
 	}
 	else
 	{
-		text_offset = tab_x + (tab_width / 2) - (textx / 2);
+		text_offset = tab_x + (tab_width - textx)/ 2 ;
 	}
-
-	// set minimum text offset
-	if (text_offset < tab_x + tab_height)
-		text_offset = tab_x + tab_height;
 
 	// chop text if necessary
 	wxString draw_text = wxAuiChopText(dc,
@@ -326,7 +345,7 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	// draw tab text
 	dc.DrawText(draw_text,
 		text_offset,
-		(tab_y + tab_height) / 2 - (texty / 2) + 1);
+		(tab_y + tab_height - texty) / 2);
 
 
 	// draw focus rectangle
@@ -441,8 +460,8 @@ wxSize PX2wxAuiTabArt::GetTabSize(wxDC& dc,
 	dc.SetFont(m_measuringFont);
 	dc.GetTextExtent(caption, &measured_textx, &measured_texty);
 
-	wxCoord tab_height = measured_texty + 4;
-	wxCoord tab_width = measured_textx + tab_height + 5;
+	wxCoord tab_height = measured_texty + 5;
+	wxCoord tab_width = measured_textx  + 6;
 
 	if (closeButtonState != wxAUI_BUTTON_STATE_HIDDEN)
 		tab_width += m_activeCloseBmp.GetWidth();

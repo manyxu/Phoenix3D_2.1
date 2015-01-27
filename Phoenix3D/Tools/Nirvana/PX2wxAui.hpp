@@ -17,6 +17,7 @@ namespace PX2Editor
 		void DragFun_Begin(wxAuiNotebookEvent &ent);
 		void DragFun_End(wxAuiNotebookEvent &ent);
 		void DragFun_Motion(wxAuiNotebookEvent &ent);
+		void Tab_Click(wxAuiNotebookEvent &ent);
 
 		void UpdateTabsHeight();
 

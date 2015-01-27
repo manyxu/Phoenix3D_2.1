@@ -500,7 +500,6 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	else
 	{
 		styleFlag ^= wxAUI_NB_BOTTOM;
-		styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	}
 
 	noteBook->SetWindowStyleFlag(styleFlag);
