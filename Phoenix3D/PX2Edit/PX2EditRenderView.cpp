@@ -11,6 +11,7 @@
 #include "PX2Selection.hpp"
 #include "PX2Edit.hpp"
 #include "PX2ActorPicker.hpp"
+#include "PX2EventWorld.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -22,6 +23,8 @@ mIsRightDown(false),
 mIsMiddleDown(false)
 {
 	_CreateGridGeometry();
+
+	_CreateNodeCtrl();
 }
 //----------------------------------------------------------------------------
 EditRenderView::~EditRenderView()
@@ -31,6 +34,34 @@ EditRenderView::~EditRenderView()
 		PX2_GR.RemoveRenderStep(mRenderStep);
 		mRenderStep = 0;
 	}
+
+	if (mRenderStepSceneCtrl)
+	{
+		PX2_GR.RemoveRenderStep(mRenderStepSceneCtrl);
+		mRenderStepSceneCtrl = 0;
+	}
+
+	if (mSceneNodeCtrl)
+	{
+		PX2_EW.GoOut(mSceneNodeCtrl);
+	}
+
+	if (mBoundCtrl)
+	{
+		PX2_EW.GoOut(mBoundCtrl);
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView::SetRenderer(Renderer *renderer)
+{
+	mRenderStep->SetRenderer(renderer);
+	mRenderStepSceneCtrl->SetRenderer(renderer);
+}
+//----------------------------------------------------------------------------
+void EditRenderView::SetCamera(Camera *camera)
+{
+	mRenderStep->SetCamera(camera);
+	mRenderStepSceneCtrl->SetCamera(camera);
 }
 //----------------------------------------------------------------------------
 RenderStep *EditRenderView::GetRenderStep()
@@ -197,8 +228,16 @@ void EditRenderView::OnSize(const Sizef& size)
 	Project *proj = Project::GetSingletonPtr();
 	if (!proj) return;
 
+	Rectf rect = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
+
 	RenderStep *renderStep = proj->GetSceneRenderStep();
-	renderStep->SetRect(Rectf(0.0f, 0.0f, mSize.Width, mSize.Height));
+	renderStep->SetRect(rect);
+
+	if (mRenderStep)
+		mRenderStep->SetRect(rect);
+
+	if (mRenderStepSceneCtrl)
+		mRenderStepSceneCtrl->SetRect(rect);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnLeftDown(const APoint &pos)
@@ -208,12 +247,19 @@ void EditRenderView::OnLeftDown(const APoint &pos)
 	if (mRenderStep)
 		mPixelToWorld = mRenderStep->CalPixelToWorld();
 
-	_ClickSelect(pos);
+	if (mSceneNodeCtrl)
+		mSceneNodeCtrl->OnLeftDown(mRenderStepSceneCtrl, pos);
+
+	if (SceneNodeCtrl::DT_NONE == mSceneNodeCtrl->GetDragType())
+		_ClickSelect(pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnLeftUp(const APoint &pos)
 {
 	mIsLeftDown = false;
+
+	if (mSceneNodeCtrl)
+		mSceneNodeCtrl->OnLeftUp(mRenderStepSceneCtrl, pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnMiddleDown(const APoint &pos)
@@ -239,6 +285,9 @@ void EditRenderView::OnMouseWheel(float delta)
 	if (PX2_EDIT.IsShiftDown) delta1 *= 2.0f;
 
 	_ZoomCamera(delta1);
+
+	if (mSceneNodeCtrl)
+		mSceneNodeCtrl->OnMouseWheel(mRenderStepSceneCtrl, delta);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnRightDown(const APoint &pos)
@@ -257,7 +306,8 @@ void EditRenderView::OnRightUp(const APoint &pos)
 void EditRenderView::OnMotion(const APoint &pos)
 {
 	APoint curPos = pos;
-	AVector delta = curPos - mLastMousePoint;
+	APoint lastPos = mLastMousePoint;
+	AVector delta = curPos - lastPos;
 	mLastMousePoint = curPos;
 
 	if (delta == AVector::ZERO) return;
@@ -288,6 +338,9 @@ void EditRenderView::OnMotion(const APoint &pos)
 			_PanCamera(delta.X()*mPixelToWorld.first, delta.Z()*mPixelToWorld.second);
 		}
 	}
+
+	if (mSceneNodeCtrl)
+		mSceneNodeCtrl->OnMotion(mIsLeftDown, mRenderStepSceneCtrl, curPos, lastPos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::_MoveCamera(float horz, float vert)
@@ -522,5 +575,23 @@ void EditRenderView::_RoundCamera(float horz, float vert)
 				HMatrix(rVector, dVector, uVector, AVector::ZERO, true));
 		}
 	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView::_CreateNodeCtrl()
+{
+	mSceneNodeCtrl = new0 SceneNodeCtrl();
+	PX2_EW.ComeIn(mSceneNodeCtrl);
+
+	mBoundCtrl = new0 BoundCtrl();
+	PX2_EW.ComeIn(mBoundCtrl);
+
+	mSceneCtrlNode = new0 Node();
+	mSceneCtrlNode->AttachChild(mSceneNodeCtrl->GetCtrlsGroup());
+	mSceneCtrlNode->AttachChild(mBoundCtrl->GetCtrlsGroup());
+	mSceneCtrlNode->Update(GetTimeInSeconds(), true);
+
+	mRenderStepSceneCtrl = new0 RenderStep();
+	mRenderStepSceneCtrl->SetNode(mSceneCtrlNode);
+	PX2_GR.AddRenderStep(mRenderStepSceneCtrl);
 }
 //----------------------------------------------------------------------------

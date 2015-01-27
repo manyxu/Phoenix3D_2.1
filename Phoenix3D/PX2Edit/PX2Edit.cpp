@@ -13,6 +13,7 @@ Edit::Edit() :
 mEditType(ET_SCENE),
 mEditMode(EM_NONE),
 mEditMap(0),
+mGeoObjFactory(0),
 IsAltDown(false),
 IsCtrlDown(false),
 IsShiftDown(false)
@@ -28,6 +29,8 @@ bool Edit::Initlize()
 	PX2_GR.SetInEditor(true);
 
 	mEditMap = new0 EditMap();
+
+	mGeoObjFactory = new0 GeoObjFactory();
 	
 	return true;
 }
@@ -37,6 +40,11 @@ bool Edit::Ternamate()
 	if (mEditMap)
 	{
 		delete0(mEditMap);
+	}
+
+	if (mGeoObjFactory)
+	{
+		delete0(mGeoObjFactory);
 	}
 	
 	return true;

@@ -6,6 +6,7 @@
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2EditMap.hpp"
 #include "PX2EditDefine.hpp"
+#include "PX2GeoObjFactory.hpp"
 
 namespace PX2
 {
@@ -52,9 +53,13 @@ namespace PX2
 		EditMap *mEditMap;
 
 	public:
+		GeoObjFactory *GetGOF();
+
 		static int GetEditID();
 
 	protected:
+		GeoObjFactory *mGeoObjFactory;
+
 		static int msEditorID;
 
 		// key

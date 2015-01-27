@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2GraphicsRoot.hpp
-*
-* 版本		:	1.0 (2012/04/15)
-*
-* 作者		：	more
-*
-*/
+// PX2GraphicsRoot.hpp
 
 #ifndef PX2GRAPHICSROOT_HPP
 #define PX2GRAPHICSROOT_HPP
@@ -30,6 +19,7 @@ namespace PX2
 
 	class Renderer;
 	class VisibleSet;
+	class TriMesh;
 
 	class GraphicsRoot : public Singleton<GraphicsRoot>
 	{
@@ -112,6 +102,17 @@ namespace PX2
 
 	protected:
 		std::map<VertexFormatType, VertexFormatPtr > mCreatedVFs;
+
+		// HelpMesh
+	public:
+		TriMesh *GetXYPlane();
+		TriMesh *GetXZPlane();
+		TriMesh *GetYZPlane();
+
+	protected:
+		Pointer0<TriMesh> mTriMeshXY;
+		Pointer0<TriMesh> mTriMeshXZ;
+		Pointer0<TriMesh> mTriMeshYZ;
 
 		// Load
 	public:

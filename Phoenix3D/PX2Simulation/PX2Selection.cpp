@@ -4,6 +4,7 @@
 #include "PX2SimulationEventType.hpp"
 #include "PX2Actor.hpp"
 #include "PX2Movable.hpp"
+#include "PX2Time.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -105,6 +106,74 @@ bool Selection::IsObjectIn(PX2::Object *obj)
 	}
 
 	return false;
+}
+//----------------------------------------------------------------------------
+void Selection::Translate(PX2::AVector vec)
+{
+	for (int i = 0; i < (int)mObjects.size(); i++)
+	{
+		Movable *mov = DynamicCast<Movable>(mObjects[i]);
+		if (mov)
+		{
+			APoint transBefore = mov->LocalTransform.GetTranslate();
+			mov->LocalTransform.SetTranslate(transBefore + vec);
+			mov->Update(GetTimeInSeconds(), false);
+		}
+	}
+
+	_UpdateSelect();
+}
+//----------------------------------------------------------------------------
+void Selection::TranslateTo(PX2::APoint pos)
+{
+	for (int i = 0; i < (int)mObjects.size(); i++)
+	{
+		Movable *mov = DynamicCast<Movable>(mObjects[i]);
+		if (mov)
+		{
+			mov->LocalTransform.SetTranslate(pos);
+			mov->Update(GetTimeInSeconds(), false);
+		}
+	}
+
+	_UpdateSelect();
+}
+//----------------------------------------------------------------------------
+void Selection::AddRolate(PX2::AVector vec)
+{
+	for (int i = 0; i < (int)mObjects.size(); i++)
+	{
+		Movable *mov = DynamicCast<Movable>(mObjects[i]);
+		if (mov)
+		{
+			APoint rotation;
+			Matrix3f mat = mov->LocalTransform.GetRotate();
+			mat.ExtractEulerXYZ(rotation.X(), rotation.Y(), rotation.Z());
+			rotation += vec;
+			Matrix3f matTrans;
+			matTrans.MakeEulerXYZ(rotation[0], rotation[1], rotation[2]);
+			mov->LocalTransform.SetRotate(matTrans);
+			mov->Update(GetTimeInSeconds(), false);
+		}
+	}
+
+	_UpdateSelect();
+}
+//----------------------------------------------------------------------------
+void Selection::AddScale(PX2::AVector vec)
+{
+	for (int i = 0; i < (int)mObjects.size(); i++)
+	{
+		Movable *mov = DynamicCast<Movable>(mObjects[i]);
+		if (mov)
+		{
+			APoint scale = mov->LocalTransform.GetScale();
+			scale += vec;
+			mov->LocalTransform.SetUniformScale(scale.X());
+		}
+	}
+
+	_UpdateSelect();
 }
 //----------------------------------------------------------------------------
 void Selection::_UpdateSelect()

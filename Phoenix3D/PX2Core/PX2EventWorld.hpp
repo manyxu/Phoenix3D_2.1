@@ -35,6 +35,8 @@ namespace PX2
 		void BroadcastingNetEvent (Event* event);
 
 	private:
+		bool _IsInComingOut(EventHandler *handler);
+
 		typedef std::vector<Event*> EventList;
 		typedef std::vector<EventHandler*> EventHandlerList;
 

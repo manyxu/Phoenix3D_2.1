@@ -8,6 +8,7 @@
 #include "PX2Renderable.hpp"
 #include "PX2RenderStep.hpp"
 #include "PX2EditDefine.hpp"
+#include "PX2SceneNodeCtrl.hpp"
 
 namespace PX2
 {
@@ -17,6 +18,9 @@ namespace PX2
 	public:
 		EditRenderView();
 		~EditRenderView();
+
+		void SetRenderer(Renderer *renderer);
+		void SetCamera(Camera *camera);
 
 	protected:
 		void _CreateGridGeometry();
@@ -84,6 +88,16 @@ namespace PX2
 
 	public:
 		std::pair<float, float> mPixelToWorld;
+
+	public:
+
+	protected:
+		void _CreateNodeCtrl();
+
+		SceneNodeCtrlPtr mSceneNodeCtrl;
+		BoundCtrlPtr mBoundCtrl;
+		PX2::NodePtr mSceneCtrlNode;
+		RenderStepPtr mRenderStepSceneCtrl;
 	};
 
 	typedef Pointer0<EditRenderView> EditRenderViewPtr;

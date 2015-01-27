@@ -75,3 +75,18 @@ inline const Float4 &GraphicsRoot::GetFogColorDist () const
 	return mFogColorDist;
 }
 //----------------------------------------------------------------------------
+inline TriMesh *GraphicsRoot::GetXYPlane()
+{
+	return mTriMeshXY;
+}
+//----------------------------------------------------------------------------
+inline TriMesh *GraphicsRoot::GetXZPlane()
+{
+	return mTriMeshXZ;
+}
+//----------------------------------------------------------------------------
+inline TriMesh *GraphicsRoot::GetYZPlane()
+{
+	return mTriMeshYZ;
+}
+//----------------------------------------------------------------------------

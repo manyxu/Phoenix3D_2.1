@@ -2,27 +2,63 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="PX2Edit.hpp" />
-    <ClInclude Include="PX2EditMap.hpp" />
     <ClInclude Include="PX2EditEventType.hpp">
       <Filter>Event</Filter>
     </ClInclude>
-    <ClInclude Include="PX2EditRenderView.hpp" />
-    <ClInclude Include="PX2EditParams.hpp" />
     <ClInclude Include="PX2EditPre.hpp" />
     <ClInclude Include="PX2EditDefine.hpp" />
+    <ClInclude Include="PX2EditRenderView.hpp">
+      <Filter>RenderView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EditMap.hpp">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EditParams.hpp">
+      <Filter>Param</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2GeoObjFactory.hpp">
+      <Filter>NodeCtrls</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SceneNodeCtrl.hpp">
+      <Filter>NodeCtrls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
-    <ClCompile Include="PX2EditMap.cpp" />
     <ClCompile Include="PX2EditEventType.cpp">
       <Filter>Event</Filter>
     </ClCompile>
-    <ClCompile Include="PX2EditRenderView.cpp" />
-    <ClCompile Include="PX2EditParams.cpp" />
+    <ClCompile Include="PX2EditRenderView.cpp">
+      <Filter>RenderView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EditMap.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EditParams.cpp">
+      <Filter>Param</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2GeoObjFactory.cpp">
+      <Filter>NodeCtrls</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SceneNodeCtrl.cpp">
+      <Filter>NodeCtrls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Event">
       <UniqueIdentifier>{1b237efc-cd28-4ca2-8d66-04894b860179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderView">
+      <UniqueIdentifier>{3a934333-9c01-4c3a-a083-31770afe72d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{60102ffc-17d6-4464-8cae-d41f7adda533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Param">
+      <UniqueIdentifier>{0b2b77e5-34a2-4eb7-8996-dcde72618c9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NodeCtrls">
+      <UniqueIdentifier>{cfe27ef9-3f45-42a9-ace5-16d748fbb83a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,9 @@
 
 #include "PX2CorePre.hpp"
 #include "PX2E_MainFrame.hpp"
+#include "PX2E_NirMan.hpp"
 using namespace PX2Editor;
+using namespace PX2;
 
 #define PX2_LUA
 

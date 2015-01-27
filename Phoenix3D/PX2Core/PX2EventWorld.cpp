@@ -81,10 +81,10 @@ void EventWorld::GoOut(EventHandler *handler)
 
 	if (!handler->IsInWorld(this))	return;
 
+	handler->Leave();
+
 	if (!mIsUpdatingEvents)
 	{
-		handler->Leave();
-
 		EventHandlerList::iterator it = mHandlers.begin();
 		for (; it!=mHandlers.end(); it++)
 		{
@@ -102,6 +102,19 @@ void EventWorld::GoOut(EventHandler *handler)
 	}
 }
 //----------------------------------------------------------------------------
+bool EventWorld::_IsInComingOut(EventHandler *handler)
+{
+	for (int i = 0; i < (int)mHandlersGoingOut.size(); i++)
+	{
+		if (handler == mHandlersGoingOut[i])
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
 void EventWorld::Update (float detalTime)
 {
 	if (mIsShoutdown)
@@ -110,13 +123,12 @@ void EventWorld::Update (float detalTime)
 	for (int i=0; i<(int)mHandlersComingIn.size(); i++)
 	{
 		mHandlers.push_back(mHandlersComingIn[i]);
+		mHandlersComingIn[i]->Enter(this);
 	}
 	mHandlersComingIn.clear();
 
 	for (int i=0; i<(int)mHandlersGoingOut.size(); i++)
 	{
-		mHandlersGoingOut[i]->Leave();
-
 		EventHandlerList::iterator it = mHandlers.begin();
 		for (; it!=mHandlers.end();)
 		{
@@ -188,8 +200,11 @@ void EventWorld::_UpdateEvent(float detalTime)
 					itHandler!=mHandlers.end();
 					++itHandler)
 				{
-					if ((*itHandler)->GetChannel().IsListening((*itEvent)->GetChannel()))
-						(*itHandler)->Execute(*itEvent);
+					if (!_IsInComingOut((*itHandler)))
+					{
+						if ((*itHandler)->GetChannel().IsListening((*itEvent)->GetChannel()))
+							(*itHandler)->Execute(*itEvent);
+					}
 				}
 			}
 		}

@@ -69,9 +69,14 @@ bool E_App::OnInit()
 	Edit *edit = new0 Edit();
 	edit->Initlize();
 
+	NirMan *nirMan = new0 NirMan();
+	nirMan->Initlize();
+
 	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
 	tolua_PX2Editor_open(luaMan->GetLuaState());
+
 	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", mMainFrame);
+	luaMan->SetUserTypePointer("NirMan", "NirMan", nirMan);
 
 	luaMan->CallFile("DataEditor/scripts/start.lua");
 	ResTree::GetSingleton().UpdateOnPath("Data/");
@@ -85,6 +90,14 @@ bool E_App::OnInit()
 //-----------------------------------------------------------------------------
 int E_App::OnExit()
 {
+	NirMan *nirMan = NirMan::GetSingletonPtr();
+	if (nirMan)
+	{
+		nirMan->Ternamate();
+		delete0(nirMan);
+		NirMan::Set(0);
+	}
+
 	Edit *edit = Edit::GetSingletonPtr();
 	if (edit)
 	{
