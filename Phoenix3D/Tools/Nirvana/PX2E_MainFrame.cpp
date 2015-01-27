@@ -470,7 +470,7 @@ void E_MainFrame::_CreateInsp()
 	objs.push_back(objRes);
 	objs.push_back(objInsp);
 
-	_CreateView(objs, "Insp", wxAuiPaneInfo().Right());
+	_CreateView(objs, "ResView", wxAuiPaneInfo().Right());
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine()
@@ -536,7 +536,7 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	noteBook->Thaw();
 
 	paneInfo.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
-		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100).Caption(caption);
+		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100).Caption(caption).Name(caption);
 	mAuiManager->AddPane(noteBook, paneInfo);
 
 	noteBook->Refresh();
@@ -552,5 +552,14 @@ void E_MainFrame::_CreateStatusBar()
 
 	status->SetBackgroundColour(wxColour(0, 122, 204));
 	status->SetForegroundColour(wxColour(255, 122, 204));
+}
+//----------------------------------------------------------------------------
+wxAuiManager *E_MainFrame::GetAuiMananger()
+{
+	if (mAuiManager)
+	{
+		return mAuiManager;
+	}
+	return 0;
 }
 //----------------------------------------------------------------------------

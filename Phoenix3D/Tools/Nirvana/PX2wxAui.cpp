@@ -67,20 +67,20 @@ void PX2wxAuiNotebook::DragFun_Motion(wxAuiNotebookEvent &ent)
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
 {
-	wxAuiTabCtrl* src_tabs = (wxAuiTabCtrl*)ent.GetEventObject();
 	int numPages = m_tabs.GetPageCount();
-	
-	if (src_tabs)
+
+	if (numPages > 1)
 	{
-		if (numPages > 1)
+		wxAuiManager *auiMan = E_MainFrame::GetSingleton().GetAuiMananger();
+		if (auiMan)
 		{
-			//E_MainFrame::GetSingleton().
 			int src_idx = ent.GetSelection();
 			wxString title = GetPageText(src_idx);
-			wxString paneName = "Insp";
-			m_mgr.GetPane(paneName).caption = title;
+			wxString paneName = "ResView";
+			auiMan->GetPane(paneName).caption = title;
+			auiMan->Update();
 		}
-	}	
+	}
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::UpdateTabsHeight()

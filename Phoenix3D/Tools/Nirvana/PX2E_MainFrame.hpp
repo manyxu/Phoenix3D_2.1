@@ -53,6 +53,7 @@ namespace PX2Editor
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,
 			const std::string &script);
 		void AddSeparater(wxMenu *menu);
+		wxAuiManager *GetAuiMananger();
 
 	protected:
 		DECLARE_EVENT_TABLE()
