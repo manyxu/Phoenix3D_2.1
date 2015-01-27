@@ -3,6 +3,7 @@
 #include "PX2wxAui.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2NirvanaUIEventType.hpp"
+#include "PX2E_MainFrame.hpp"
 using namespace PX2Editor;
 
 BEGIN_EVENT_TABLE(PX2wxAuiNotebook, wxAuiNotebook)
@@ -30,6 +31,7 @@ PX2wxAuiNotebook::~PX2wxAuiNotebook()
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
 {
+	Freeze();
 	wxAuiTabCtrl* src_tabs = (wxAuiTabCtrl*)evt.GetEventObject();
 	if (src_tabs)
 	{
@@ -72,7 +74,7 @@ void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
 	{
 		if (numPages > 1)
 		{
-
+			//E_MainFrame::GetSingleton().
 			int src_idx = ent.GetSelection();
 			wxString title = GetPageText(src_idx);
 			wxString paneName = "Insp";
@@ -192,7 +194,7 @@ void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 	const wxRect& rect)
 {
 	dc.SetBrush(wxBrush(wxColour(44, 61, 91)));
-	dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 6);
+	dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 5);
 
 	//// draw base line
 	if (mIsTop)
@@ -309,9 +311,9 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	points[1].x = tab_x + tab_width;
 	points[1].y = tab_y;
 	points[2].x = tab_x + tab_width;
-	points[2].y = tab_y + tab_height - 4;
+	points[2].y = tab_y + tab_height;
 	points[3].x = tab_x;
-	points[3].y = tab_y + tab_height - 4;
+	points[3].y = tab_y + tab_height;
 	points[4] = points[0];
 
 	dc.SetClippingRegion(in_rect);

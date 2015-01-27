@@ -5,6 +5,7 @@
 
 #include "PX2EditorPre.hpp"
 #include "PX2EventHandler.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 
 namespace PX2Editor
 {
@@ -16,7 +17,7 @@ namespace PX2Editor
 	class InspView;
 	class PX2wxAuiNotebook;
 
-	class E_MainFrame : public wxFrame , public PX2::EventHandler
+	class E_MainFrame : public wxFrame, public PX2::EventHandler, public PX2::Singleton<E_MainFrame>
 	{
 	public:
 		E_MainFrame(const std::string &title, int xPos, int yPos,
