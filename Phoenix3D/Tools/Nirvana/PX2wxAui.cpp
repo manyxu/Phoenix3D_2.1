@@ -13,6 +13,8 @@ PX2wxAuiNotebook::PX2wxAuiNotebook(wxWindow* parent, bool isTop) :
 wxAuiNotebook(parent),
 mIsTop(isTop)
 {
+	m_selectedFont.SetWeight(wxNORMAL);
+
 	Connect(wxEVT_COMMAND_AUINOTEBOOK_BEGIN_DRAG,
 		wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Begin));
 
@@ -99,7 +101,6 @@ void PX2wxAuiNotebook::UpdateTabsHeight()
 //----------------------------------------------------------------------------
 PX2wxAuiToolBarArt::PX2wxAuiToolBarArt()
 {
-
 }
 //----------------------------------------------------------------------------
 PX2wxAuiToolBarArt::~PX2wxAuiToolBarArt()
@@ -296,11 +297,20 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	}
 	else
 	{
-		dc.SetPen(wxPen(wxColour(54, 78, 111)));
-		dc.SetBrush(wxColour(54, 78, 111));
+		if (mIsTop)
+		{
+			dc.SetPen(wxPen(wxColour(54, 78, 111)));
+			dc.SetBrush(wxColour(54, 78, 111));
+		}
+		else
+		{
+			dc.SetPen(wxPen(wxColour(54, 78, 111)));
+			dc.SetBrush(wxColour(54, 78, 111));
+		}
+
 		dc.SetFont(m_normalFont);
 		textx = normal_textx;
-		texty = normal_texty + 4;
+		texty = normal_texty;
 	}
 
 	// -- draw line --
@@ -315,10 +325,22 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	points[3].x = tab_x;
 	points[3].y = tab_y + tab_height;
 	points[4] = points[0];
+
 	if (mIsTop)
 	{
+		points[0].y -= 4;
+		points[1].y -= 4;
+
 		points[2].y = tab_y + tab_height - 4;
 		points[3].y = tab_y + tab_height - 4;	
+	}
+	else
+	{
+		points[0].y -= 4;
+		points[1].y -= 4;
+
+		points[2].y = tab_y + tab_height - 4;
+		points[3].y = tab_y + tab_height - 4;
 	}
 
 	dc.SetClippingRegion(in_rect);
@@ -344,6 +366,11 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		text_offset = tab_x + (tab_width - textx)/ 2 ;
 	}
 
+	if (page.active)
+		dc.SetTextForeground(wxColour(0, 0, 0));
+	else
+		dc.SetTextForeground(wxColour(255, 255, 255));
+
 	// chop text if necessary
 	wxString draw_text = wxAuiChopText(dc,
 		caption,
@@ -353,7 +380,6 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	dc.DrawText(draw_text,
 		text_offset,
 		(tab_y + tab_height - texty) / 2);
-
 
 	// draw focus rectangle
 	if (page.active && (wnd->FindFocus() == wnd))

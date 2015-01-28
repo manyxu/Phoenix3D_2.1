@@ -8,6 +8,8 @@
 #include "PX2E_StartView.hpp"
 #include "PX2E_TimeLineView.hpp"
 #include "PX2E_TopView.hpp"
+#include "PX2E_LogicView.hpp"
+#include "PX2E_InspView.hpp"
 #include "PX2wxDockArt.hpp"
 #include "PX2wxAui.hpp"
 
@@ -16,7 +18,6 @@
 #include "PX2ScriptManager.hpp"
 #include "PX2Project.hpp"
 #include "PX2DlgCreateProject.hpp"
-#include "PX2InspView.hpp"
 #include "PX2ObjectInspector.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2NirvanaUIEventType.hpp"
@@ -38,6 +39,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mAuiManager(0),
 	mTopView(0),
 	mRenderView(0),
+	mLogicView(0),
 	mIsShowRenderView(false),
 	mProjView(0),
 	mIsCrossCursor(false)
@@ -73,8 +75,8 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(77, 96, 130));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(77, 96, 130));
 
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(216, 102, 36));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(216, 102, 36));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(255, 242, 157));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(255, 242, 157));
 
 	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
@@ -444,7 +446,7 @@ void E_MainFrame::_CreateProjView()
 {
 	mProjView = new ProjView(this);
 
-	_CreateView(mProjView, "ProjView", "ProjView", "ProjView",
+	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"), PX2_LM.GetValue("Project"),
 		wxAuiPaneInfo().Left());
 }
 //----------------------------------------------------------------------------
@@ -455,16 +457,23 @@ void E_MainFrame::_CreateMainView()
 	mStartView = new StartView(this);
 	WindowObj objStart;
 	objStart.TheWindow = mStartView;
-	objStart.Caption = "StartView";
+	objStart.Caption = PX2_LMVAL("StartView");
 	objStart.Name = "StartView";
 	objs.push_back(objStart);
 
 	mUIRenderView = new UIRenderView(this);
 	WindowObj objUI;
 	objUI.TheWindow = mUIRenderView;
-	objUI.Caption = "UI";
+	objUI.Caption = PX2_LMVAL("UIView");
 	objUI.Name = "UI";
 	objs.push_back(objUI);
+
+	mLogicView = new LogicView(this);
+	WindowObj objLogicView;
+	objLogicView.TheWindow = mLogicView;
+	objLogicView.Caption = PX2_LMVAL("LogicView");
+	objLogicView.Name = "Logic";
+	objs.push_back(objLogicView);
 
 	mNoteBookCenter = _CreateView(objs, "Center", wxAuiPaneInfo().CenterPane(), 
 		"Center", true);
@@ -483,7 +492,7 @@ void E_MainFrame::_ShowRenderView(bool show)
 	{
 		mIsShowRenderView = true;
 		mRenderView->Show(true);
-		mNoteBookCenter->AddPage(mRenderView, "Stage");
+		mNoteBookCenter->AddPage(mRenderView, PX2_LM.GetValue("Stage"));
 		int index = mNoteBookCenter->GetPageIndex(mRenderView);
 		mNoteBookCenter->SetSelection(index);
 	}
@@ -501,25 +510,25 @@ void E_MainFrame::_CreateInsp()
 	WindowObj objRes;
 	mResView = new ResView(this);
 	objRes.TheWindow = mResView;
-	objRes.Caption = "ResView";
+	objRes.Caption = PX2_LM.GetValue("ResView");
 	objRes.Name = "ResView";
 
 	WindowObj objInsp;
 	mInspView = new InspView(this);
 	objInsp.TheWindow = mInspView;
-	objInsp.Caption = "InspView";
+	objInsp.Caption = PX2_LM.GetValue("InspView");
 	objInsp.Name = "InspView";
 
 	std::vector<WindowObj> objs;
 	objs.push_back(objRes);
 	objs.push_back(objInsp);
 
-	_CreateView(objs, "ResView", wxAuiPaneInfo().Right(),"Insp");
+	_CreateView(objs, PX2_LM.GetValue("ResView"), wxAuiPaneInfo().Right(), "Right");
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine()
 {
-	_CreateView(new TimeLineView(this), "TimeLine", "TimeLine", "TimeLine",
+	_CreateView(new TimeLineView(this), "TimeLine", PX2_LM.GetValue("TimeLine"), PX2_LM.GetValue("TimeLine"),
 		wxAuiPaneInfo().DefaultPane());
 }
 //----------------------------------------------------------------------------

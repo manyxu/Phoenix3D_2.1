@@ -54,13 +54,15 @@ bool E_App::OnInit()
 #endif
 #endif
 
-	mMainFrame->Initlize();
+	PX2_ENGINELOOP.Initlize();
 
+	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
+	luaMan->CallFile("DataEditor/scripts/language.lua");
+
+	mMainFrame->Initlize();
 	SetTopWindow(mMainFrame);
 	mMainFrame->Center();
 	mMainFrame->Maximize();
-
-	PX2_ENGINELOOP.Initlize();
 
 	PX2_ENGINELOOP.SetPt_Data(mMainFrame->GetRenderView()->GetHandle());
 	PX2_ENGINELOOP.SetPt_Size(Sizef(1024.0f, 768.0f));
@@ -72,7 +74,6 @@ bool E_App::OnInit()
 	NirMan *nirMan = new0 NirMan();
 	nirMan->Initlize();
 
-	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
 	tolua_PX2Editor_open(luaMan->GetLuaState());
 
 	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", mMainFrame);

@@ -84,10 +84,11 @@ PX2wxDockArt::PX2wxDockArt()
 
 	m_activeCaptionColour = wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT);
 	m_activeCaptionGradientColour = wxAuiLightContrastColour1(wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
-	m_activeCaptionTextColour = wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHTTEXT);
+	m_activeCaptionTextColour = wxColor(117, 99, 61);
+
 	m_inactiveCaptionColour = darker1Colour;
 	m_inactiveCaptionGradientColour = baseColour.ChangeLightness(97);
-	m_inactiveCaptionTextColour = *wxBLACK;
+	m_inactiveCaptionTextColour = wxColor(206, 212, 221);
 
 	m_sashBrush = wxBrush(baseColour);
 	m_backgroundBrush = wxBrush(baseColour);
@@ -98,11 +99,7 @@ PX2wxDockArt::PX2wxDockArt()
 	m_gripperPen2 = wxPen(darker3Colour);
 	m_gripperPen3 = *wxWHITE_PEN;
 
-#ifdef __WXMAC__
-	m_captionFont = *wxSMALL_FONT;
-#else
-	m_captionFont = wxFont(8, wxDEFAULT, wxNORMAL, wxNORMAL, FALSE);
-#endif
+	m_captionFont = *wxNORMAL_FONT;
 
 	// default metric values
 #if defined( __WXMAC__ ) && wxOSX_USE_COCOA_OR_CARBON
@@ -452,8 +449,7 @@ void PX2wxDockArt::DrawCaption(wxDC& dc, wxWindow *WXUNUSED(window),
 	if (pane.state & wxAuiPaneInfo::optionActive)
 		dc.SetTextForeground(wxColour(0, 0, 0));
 	else
-		dc.SetTextForeground(wxColour(200, 200, 200));
-
+		dc.SetTextForeground(wxColour(255, 255, 255));
 
 	wxCoord w, h;
 	dc.GetTextExtent(wxT("ABCDEFHXfgkj"), &w, &h);
@@ -577,7 +573,6 @@ void PX2wxDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
 		break;
 	}
 
-
 	wxRect rect = _rect;
 
 	int old_y = rect.y;
@@ -609,7 +604,5 @@ void PX2wxDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
 		dc.DrawRectangle(rect.x, rect.y, 15, 15);
 	}
 
-
-	// draw the button itself
 	dc.DrawBitmap(bmp, rect.x, rect.y, true);
 }

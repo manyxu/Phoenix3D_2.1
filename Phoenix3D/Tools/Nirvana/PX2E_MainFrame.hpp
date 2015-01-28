@@ -17,6 +17,7 @@ namespace PX2Editor
 	class ResView;
 	class InspView;
 	class TopView;
+	class LogicView;
 	class PX2wxAuiNotebook;
 
 	class E_MainFrame : public wxFrame, public PX2::EventHandler, public PX2::Singleton<E_MainFrame>
@@ -110,6 +111,7 @@ namespace PX2Editor
 		TopView *mTopView;
 		StartView *mStartView;
 		RenderView *mRenderView;
+		LogicView *mLogicView;
 		bool mIsShowRenderView;
 		UIRenderView *mUIRenderView;
 		ProjView *mProjView;

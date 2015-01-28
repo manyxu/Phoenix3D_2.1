@@ -49,7 +49,10 @@
     <Filter Include="TopView">
       <UniqueIdentifier>{def88b55-da7b-4180-8ab7-f703d37b830b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UIView">
+    <Filter Include="LogicView">
+      <UniqueIdentifier>{d7423f3e-e7f6-4a2f-9597-0f6509f43e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIRenderView">
       <UniqueIdentifier>{e2c36225-ada4-48e3-b70b-3efa5de409da}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -99,9 +102,6 @@
     </ClInclude>
     <ClInclude Include="PX2DlgCreateProject.hpp">
       <Filter>Dlgs</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2InspView.hpp">
-      <Filter>InspView</Filter>
     </ClInclude>
     <ClInclude Include="PropGrid\PX2EditProperty.hpp">
       <Filter>wxExtent\PropertyGrid</Filter>
@@ -155,7 +155,13 @@
       <Filter>TopView</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_UIRenderView.hpp">
-      <Filter>UIView</Filter>
+      <Filter>UIRenderView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_LogicView.hpp">
+      <Filter>LogicView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_InspView.hpp">
+      <Filter>InspView</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,9 +209,6 @@
     </ClCompile>
     <ClCompile Include="PX2DlgCreateProject.cpp">
       <Filter>Dlgs</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2InspView.cpp">
-      <Filter>InspView</Filter>
     </ClCompile>
     <ClCompile Include="PropGrid\PX2EditProperty.cpp">
       <Filter>wxExtent\PropertyGrid</Filter>
@@ -259,7 +262,13 @@
       <Filter>TopView</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_UIRenderView.cpp">
-      <Filter>UIView</Filter>
+      <Filter>UIRenderView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_LogicView.cpp">
+      <Filter>LogicView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_InspView.cpp">
+      <Filter>InspView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
