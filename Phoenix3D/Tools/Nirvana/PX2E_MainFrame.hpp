@@ -12,6 +12,7 @@ namespace PX2Editor
 
 	class StartView;
 	class RenderView;
+	class UIRenderView;
 	class ProjView;
 	class ResView;
 	class InspView;
@@ -110,6 +111,7 @@ namespace PX2Editor
 		StartView *mStartView;
 		RenderView *mRenderView;
 		bool mIsShowRenderView;
+		UIRenderView *mUIRenderView;
 		ProjView *mProjView;
 		ResView *mResView;
 		InspView *mInspView;

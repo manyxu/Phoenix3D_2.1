@@ -82,16 +82,8 @@ void ProjTree::_RefreshProject()
 
 	// scene
 	mItemScene = new ProjTreeItem(this, mItemProj,
-		ProjTreeItem::IT_CATALOG, Icons["scene"], 0, mTreeLevel, "Scene");
+		ProjTreeItem::IT_CATALOG, Icons["scene"], 0, mTreeLevel, "NoScene");
 	mItemProj->mChildItems.push_back(mItemScene);
-
-	mItemCameras = new ProjTreeItem(this, mItemScene,
-		ProjTreeItem::IT_CATALOG, Icons["camera"], 0, mTreeLevel, "Camera");
-	mItemScene->mChildItems.push_back(mItemCameras);
-
-	mItemObjects = new ProjTreeItem(this, mItemScene,
-		ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, "Object");
-	mItemScene->mChildItems.push_back(mItemObjects);
 
 	// ui
 	mItemUI = new ProjTreeItem(this, mItemProj,
@@ -103,24 +95,47 @@ void ProjTree::_RefreshProject()
 		ProjTreeItem::IT_CATALOG, Icons["logic"], 0, mTreeLevel, "Logic");
 	mItemProj->mChildItems.push_back(mItemLogic);
 
-	_RefreshScene();
-	_RefreshUI();
-	_RefreshLogic();
+	Scene *scene = proj->GetScene();
+	if (scene)
+	{
+		_RefreshScene();
+	}
+	
+	UIFrame *uiFrame = proj->GetUIFrame();
+	if (uiFrame)
+	{
+		_RefreshUI();
+	}
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearProject()
 {
+	_ClearScene();
+	_ClearUI();
+
 	if (mItemProj)
 	{
+		mItemProj->ClearChildren();
 		mItemProj->SetObject(0);
-		delete mItemProj;
+
+		mItemScene = 0;
+		mItemUI = 0;
+		mItemLogic = 0;
+
+		delete(mItemProj);
 		mItemProj = 0;
 	}
 }
 //----------------------------------------------------------------------------
 void ProjTree::_RefreshScene()
 {
-	_ClearScene();
+	mItemCameras = new ProjTreeItem(this, mItemScene,
+		ProjTreeItem::IT_CATALOG, Icons["camera"], 0, mTreeLevel, "Camera");
+	mItemScene->mChildItems.push_back(mItemCameras);
+
+	mItemObjects = new ProjTreeItem(this, mItemScene,
+		ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, "Object");
+	mItemScene->mChildItems.push_back(mItemObjects);
 
 	Scene *scene = 0;
 	Project *proj = Project::GetSingletonPtr();
@@ -145,13 +160,26 @@ void ProjTree::_RefreshScene()
 //----------------------------------------------------------------------------
 void ProjTree::_ClearScene()
 {
-	mItemCameras->ClearChildren();
-	mItemObjects->ClearChildren();
+	if (mItemScene)
+	{
+		mItemScene->ClearChildren();
+		mItemScene->SetObject(0);
+		mItemScene->SetName("NoScene");
+	}
 }
 //----------------------------------------------------------------------------
 void ProjTree::_RefreshUI()
 {
-	_ClearUI();
+	UIFrame *uiFrame = 0;
+	Project *proj = Project::GetSingletonPtr();
+	if (proj)
+	{
+		uiFrame = proj->GetUIFrame();
+	}
+	if (!uiFrame) return;
+
+	if (mItemUI)
+		mItemUI->AddChild(uiFrame, 0, mTreeLevel);
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearUI()
@@ -239,10 +267,12 @@ void ProjTree::DoExecute(Event *event)
 {
 	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject))
 	{
+		_ClearProject();
 		_RefreshProject();
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedProject))
 	{
+		_ClearProject();
 		_RefreshProject();
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::SavedProject))
@@ -251,6 +281,20 @@ void ProjTree::DoExecute(Event *event)
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseProject))
 	{
 		_ClearProject();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene))
+	{
+		_ClearScene();
+		_RefreshScene();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedScene))
+	{
+		_ClearScene();
+		_RefreshScene();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
+	{
+		_ClearScene();
 	}
 	else if (SimuES_E::IsEqual(event, SimuES_E::AddObject))
 	{

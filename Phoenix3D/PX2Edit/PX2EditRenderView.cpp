@@ -347,6 +347,8 @@ void EditRenderView::OnMotion(const APoint &pos)
 void EditRenderView::_MoveCamera(float horz, float vert)
 {
 	Scene *scene = PX2_PROJ.GetScene();
+	if (!scene) return;
+
 	CameraActor *camActor = scene->GetUseCameraActor();
 	
 	if (camActor)
@@ -389,6 +391,8 @@ void EditRenderView::_MoveCamera(float horz, float vert)
 void EditRenderView::_PanCamera(const float &horz, const float &vert)
 {
 	Scene *scene = PX2_PROJ.GetScene();
+	if (!scene) return;
+
 	CameraActor *camActor = scene->GetUseCameraActor();
 
 	if (camActor)
@@ -432,6 +436,8 @@ void EditRenderView::_ZoomCamera(float zoom)
 	const Sizef &size = renderStep->GetSize();
 
 	Scene *scene = PX2_PROJ.GetScene();
+	if (!scene) return;
+
 	CameraActor *camActor = scene->GetUseCameraActor();
 
 	if (camActor)

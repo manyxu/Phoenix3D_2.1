@@ -9,11 +9,11 @@
 using namespace PX2Editor;
 using namespace PX2;
 
-const int sID_CTRLTIMER = PX2_EDIT_GETID;
+const int sID_RenderViewTimer = PX2_EDIT_GETID;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::RenderView, wxWindow)
 BEGIN_EVENT_TABLE(RenderView, wxWindow)
-EVT_TIMER(sID_CTRLTIMER, RenderView::OnTimer)
+EVT_TIMER(sID_RenderViewTimer, RenderView::OnTimer)
 EVT_SIZE(RenderView::OnSize)
 EVT_PAINT(RenderView::OnPaint)
 EVT_ERASE_BACKGROUND(RenderView::OnEraseBackground)
@@ -43,7 +43,7 @@ mIsRightDown(false),
 mIsRightDownOnMotion(false),
 mEditMenu(0)
 {
-	mCtrlTimer.SetOwner(this, sID_CTRLTIMER);
+	mCtrlTimer.SetOwner(this, sID_RenderViewTimer);
 	mCtrlTimer.Start(15);
 }
 //----------------------------------------------------------------------------
@@ -61,7 +61,7 @@ void RenderView::OnTimer(wxTimerEvent& event)
 	int ival = event.GetInterval();
 	double dIval = ival / 1000.0;
 
-	if (sID_CTRLTIMER == event.GetId())
+	if (sID_RenderViewTimer == event.GetId())
 	{
 	}
 }

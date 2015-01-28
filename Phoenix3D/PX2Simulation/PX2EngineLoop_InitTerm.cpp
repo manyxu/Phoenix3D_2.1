@@ -116,7 +116,7 @@ bool EngineLoop::InitlizeRenderer()
 	Renderer *renderer = 0;
 	Texture::Format colorFormat = Texture::TF_A8R8G8B8;
 	Texture::Format depthStencilFormat = Texture::TF_D24S8;
-	int numMultisamples = 0;
+	int numMultisamples = 4;
 
 #if defined(_WIN32) || defined(WIN32)
 

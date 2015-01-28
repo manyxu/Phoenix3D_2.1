@@ -60,7 +60,7 @@ bool Project::Save(const std::string &filename)
 
 	if (mUIFrame)
 	{
-		std::string outName = outPath + outBaseName + ".px2obj";
+		std::string outName = outPath + outBaseName + "_ui.px2obj";
 
 		OutStream output;
 		output.Insert(mUIFrame);
@@ -173,7 +173,7 @@ bool Project::Load(const std::string &filename)
 			StringHelp::SplitFullFilename(filename, outPath, outBaseName, outExt);
 
 			// ui
-			mUIFilename = outPath + outBaseName + ".px2ui";
+			mUIFilename = outPath + outBaseName + "_ui.px2obj";
 		}
 	}
 	else

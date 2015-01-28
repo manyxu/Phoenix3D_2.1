@@ -49,6 +49,9 @@
     <Filter Include="TopView">
       <UniqueIdentifier>{def88b55-da7b-4180-8ab7-f703d37b830b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UIView">
+      <UniqueIdentifier>{e2c36225-ada4-48e3-b70b-3efa5de409da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -151,6 +154,9 @@
     <ClInclude Include="PX2E_TopView.hpp">
       <Filter>TopView</Filter>
     </ClInclude>
+    <ClInclude Include="PX2E_UIRenderView.hpp">
+      <Filter>UIView</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -251,6 +257,9 @@
     </ClCompile>
     <ClCompile Include="PX2E_TopView.cpp">
       <Filter>TopView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_UIRenderView.cpp">
+      <Filter>UIView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

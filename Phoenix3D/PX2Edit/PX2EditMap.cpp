@@ -46,6 +46,9 @@ bool EditMap::LoadProject(const char *pathname)
 	Project *newProj = new0 Project();
 	if (newProj->Load(pathname))
 	{
+		Event *event = EditEventSpace::CreateEventX(EditEventSpace::LoadedProject);
+		EventWorld::GetSingleton().BroadcastingLocalEvent(event);
+
 		const std::string &sceneFilename = newProj->GetSceneFilename();
 		if (!sceneFilename.empty())
 		{
@@ -66,9 +69,6 @@ bool EditMap::LoadProject(const char *pathname)
 		mProjectFilePath = pathname;
 
 		PX2_ENGINELOOP.SetSize(newProj->GetSize());
-
-		Event *event = EditEventSpace::CreateEventX(EditEventSpace::LoadedProject);
-		EventWorld::GetSingleton().BroadcastingLocalEvent(event);
 
 		return true;
 	}
@@ -139,17 +139,11 @@ void EditMap::CloseProject()
 	bool canDoChange = (EngineLoop::PT_NONE == PX2_ENGINELOOP.GetPlayType());
 	if (!canDoChange) return;
 
+	CloseScene();
+
 	Project *oldProj = Project::GetSingletonPtr();
 	if (oldProj)
 	{
-		Scene *scene = PX2_PROJ.GetScene();
-		if (scene)
-		{
-			PX2_RM.ClearRes(oldProj->GetResourcePath());
-			oldProj->SetScene(0);
-			scene = 0;
-		}
-
 		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::CloseProject);
 		EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
@@ -226,6 +220,9 @@ void EditMap::CloseScene()
 {
 	bool canDoChange = (EngineLoop::PT_NONE == PX2_ENGINELOOP.GetPlayType());
 	if (!canDoChange) return;
+
+	Project *proj = Project::GetSingletonPtr();
+	if (!proj) return;
 
 	Scene *scene = PX2_PROJ.GetScene();
 	if (scene)

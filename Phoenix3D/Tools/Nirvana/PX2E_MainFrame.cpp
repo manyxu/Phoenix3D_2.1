@@ -2,6 +2,7 @@
 
 #include "PX2E_MainFrame.hpp"
 #include "PX2E_RenderView.hpp"
+#include "PX2E_UIRenderView.hpp"
 #include "PX2E_ResView.hpp"
 #include "PX2E_ProjView.hpp"
 #include "PX2E_StartView.hpp"
@@ -102,18 +103,19 @@ void E_MainFrame::AddEventHandlers()
 //----------------------------------------------------------------------------
 void E_MainFrame::DoExecute(Event *event)
 {
-	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject))
+	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene))
 	{
 		_ShowRenderView(true);
 	}
-	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedProject))
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedScene))
 	{
 		_ShowRenderView(true);
 	}
-	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseProject))
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
 		_ShowRenderView(false);
 	}
+
 	else if (NirvanaUIEventSpace::IsEqual(event, NirvanaUIEventSpace::TabDrag))
 	{
 		wxWindow *window = event->GetData<wxWindow*>();
@@ -359,7 +361,7 @@ void E_MainFrame::OnSetting()
 	if (params)
 	{
 		PX2_SELECTION.Clear();
-		PX2_SELECTION.AddObject(params);
+	//	PX2_SELECTION.AddObject(params);
 	}
 	else
 	{
@@ -449,17 +451,24 @@ void E_MainFrame::_CreateProjView()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainView()
 {
-	mStartView = new StartView(this);
+	std::vector<WindowObj> objs;
 
+	mStartView = new StartView(this);
 	WindowObj objStart;
 	objStart.TheWindow = mStartView;
 	objStart.Caption = "StartView";
 	objStart.Name = "StartView";
-
-	std::vector<WindowObj> objs;
 	objs.push_back(objStart);
 
-	mNoteBookCenter = _CreateView(objs, "Center", wxAuiPaneInfo().CenterPane(), "Center",true);
+	mUIRenderView = new UIRenderView(this);
+	WindowObj objUI;
+	objUI.TheWindow = mUIRenderView;
+	objUI.Caption = "UI";
+	objUI.Name = "UI";
+	objs.push_back(objUI);
+
+	mNoteBookCenter = _CreateView(objs, "Center", wxAuiPaneInfo().CenterPane(), 
+		"Center", true);
 
 	mRenderView = new RenderView(this);
 	mRenderView->Show(false);
