@@ -14,6 +14,7 @@ mEditType(ET_SCENE),
 mEditMode(EM_NONE),
 mEditMap(0),
 mGeoObjFactory(0),
+mEditParams(0),
 IsAltDown(false),
 IsCtrlDown(false),
 IsShiftDown(false)
@@ -31,6 +32,8 @@ bool Edit::Initlize()
 	mEditMap = new0 EditMap();
 
 	mGeoObjFactory = new0 GeoObjFactory();
+
+	mEditParams = new0 EditParams();
 	
 	return true;
 }
@@ -45,6 +48,11 @@ bool Edit::Ternamate()
 	if (mGeoObjFactory)
 	{
 		delete0(mGeoObjFactory);
+	}
+
+	if (mEditParams)
+	{
+		delete0(mEditParams);
 	}
 	
 	return true;

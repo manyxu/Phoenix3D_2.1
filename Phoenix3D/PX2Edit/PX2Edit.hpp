@@ -7,11 +7,13 @@
 #include "PX2EditMap.hpp"
 #include "PX2EditDefine.hpp"
 #include "PX2GeoObjFactory.hpp"
+#include "PX2EditParams.hpp"
 
 namespace PX2
 {
 
 	class EditMap;
+	class EditParams;
 
 	class Edit : public Singleton<Edit>
 	{
@@ -61,6 +63,12 @@ namespace PX2
 		GeoObjFactory *mGeoObjFactory;
 
 		static int msEditorID;
+
+	public:
+		EditParams *GetEditParams();
+
+	protected:
+		EditParams *mEditParams;
 
 		// key
 	public:

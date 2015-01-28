@@ -19,6 +19,7 @@
 #include "PX2EditEventType.hpp"
 #include "PX2NirvanaUIEventType.hpp"
 #include "PX2EditParams.hpp"
+
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -347,7 +348,7 @@ void E_MainFrame::OnSetEditMode(int mode)
 //----------------------------------------------------------------------------
 void E_MainFrame::OnSetting()
 {
-	EditParams *params = EditParams::GetSingletonPtr();
+	EditParams *params = PX2_EDIT.GetEditParams();
 
 	//Object *obj = params;
 	if (params)

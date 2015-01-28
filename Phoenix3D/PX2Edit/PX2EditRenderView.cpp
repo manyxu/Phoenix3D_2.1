@@ -71,7 +71,7 @@ RenderStep *EditRenderView::GetRenderStep()
 //----------------------------------------------------------------------------
 void EditRenderView::_CreateGridGeometry()
 {
-	float gridSize = EditParams::GetSingleton().GridSize;
+	float gridSize = PX2_EDIT.GetEditParams()->GridSize;
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
 

@@ -16,3 +16,8 @@ inline EditMap *Edit::GetEditMap()
 	return mEditMap;
 }
 //----------------------------------------------------------------------------
+inline EditParams *Edit::GetEditParams()
+{
+	return mEditParams;
+}
+//----------------------------------------------------------------------------
