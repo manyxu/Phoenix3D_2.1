@@ -76,7 +76,7 @@ void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
 		{
 			int src_idx = ent.GetSelection();
 			wxString title = GetPageText(src_idx);
-			wxString paneName = "ResView";
+			wxString paneName = "Insp";
 			auiMan->GetPane(paneName).caption = title;
 			auiMan->Update();
 		}
@@ -315,6 +315,11 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	points[3].x = tab_x;
 	points[3].y = tab_y + tab_height;
 	points[4] = points[0];
+	if (mIsTop)
+	{
+		points[2].y = tab_y + tab_height - 4;
+		points[3].y = tab_y + tab_height - 4;	
+	}
 
 	dc.SetClippingRegion(in_rect);
 

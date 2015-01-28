@@ -48,6 +48,7 @@ namespace PX2Editor
 		void OnCloseScene();
 
 		void OnSetEditMode(int type);
+		void OnSetting();
 
 	public:
 		wxMenu *AddMainMenuItem(const std::string &title);
@@ -93,6 +94,7 @@ namespace PX2Editor
 
 		PX2wxAuiNotebook *_CreateView(std::vector<WindowObj> &objs, const std::string &caption,
 			wxAuiPaneInfo &paneInfo,
+			wxString paneName = "Default",
 			bool isTopStyle = false);
 
 		bool mIsInitlized;

@@ -19,6 +19,7 @@
 #include "PX2ObjectInspector.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2NirvanaUIEventType.hpp"
+#include "PX2EditParams.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -350,6 +351,22 @@ void E_MainFrame::OnSetEditMode(int mode)
 	PX2_EDIT.SetEditMode((Edit::EditMode)mode);
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnSetting()
+{
+	EditParams *params = EditParams::GetSingletonPtr();
+
+	//Object *obj = params;
+	if (params)
+	{
+		PX2_SELECTION.Clear();
+		PX2_SELECTION.AddObject(params);
+	}
+	else
+	{
+		PX2_SELECTION.Clear();
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenu()
 {
 	mMainMenuBar = new wxMenuBar();
@@ -442,7 +459,7 @@ void E_MainFrame::_CreateMainView()
 	std::vector<WindowObj> objs;
 	objs.push_back(objStart);
 
-	mNoteBookCenter = _CreateView(objs, "Center", wxAuiPaneInfo().CenterPane(), true);
+	mNoteBookCenter = _CreateView(objs, "Center", wxAuiPaneInfo().CenterPane(), "Center",true);
 
 	mRenderView = new RenderView(this);
 	mRenderView->Show(false);
@@ -489,7 +506,7 @@ void E_MainFrame::_CreateInsp()
 	objs.push_back(objRes);
 	objs.push_back(objInsp);
 
-	_CreateView(objs, "ResView", wxAuiPaneInfo().Right());
+	_CreateView(objs, "ResView", wxAuiPaneInfo().Right(),"Insp");
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine()
@@ -510,12 +527,15 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(wxWindow *window0, const std::string 
 	std::vector<WindowObj> winObjs;
 	winObjs.push_back(obj);
 
-	return _CreateView(winObjs, caption, paneInfo, isTopStyle);
+	wxString paneName = caption;
+
+	return _CreateView(winObjs, caption, paneInfo, paneName, isTopStyle);
 }
 //----------------------------------------------------------------------------
 PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	const std::string &caption,
 	wxAuiPaneInfo &paneInfo,
+	wxString paneName,
 	bool isTopStyle)
 {
 	PX2wxAuiNotebook* noteBook = new PX2wxAuiNotebook(this, isTopStyle);
@@ -527,6 +547,7 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	{
 		styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
 		styleFlag ^= wxAUI_NB_CLOSE_ON_ACTIVE_TAB;
+		styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	}
 	else
 	{
@@ -555,7 +576,7 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	noteBook->Thaw();
 
 	paneInfo.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
-		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100).Caption(caption).Name(caption);
+		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100).Caption(caption).Name(paneName);
 	mAuiManager->AddPane(noteBook, paneInfo);
 
 	noteBook->Refresh();
