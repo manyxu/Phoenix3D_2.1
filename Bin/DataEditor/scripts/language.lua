@@ -68,6 +68,17 @@ function AddLanguages()
 	PX2_LM:AddItem1("RectPiece", "面片")
 	PX2_LM:AddItem1("Box", "正方体")
 	PX2_LM:AddItem1("Sphere", "球")
+	
+	PX2_LM:AddItem1("Project", "工程")
+	PX2_LM:AddItem1("Scene", "场景")
+	PX2_LM:AddItem1("TimeLine", "时间线")
+	PX2_LM:AddItem1("Stage", "场景")
+	PX2_LM:AddItem1("ResView", "资源")
+	PX2_LM:AddItem1("InspView", "检视")
+	
+	PX2_LM:AddItem1("StartView", "起始页")
+	PX2_LM:AddItem1("UIView", "界面")
+	PX2_LM:AddItem1("LogicView", "逻辑")
 end
 
 AddLanguages()
