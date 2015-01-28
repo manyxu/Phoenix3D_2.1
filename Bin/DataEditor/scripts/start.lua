@@ -54,6 +54,7 @@ function CreateMainMenu()
 	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("VersionWindows"), "OnVersionWindows")
 	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("VersionAndroid"), "OnVersionAndroid")
 	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("VersionIOS"), "OnVersionIOS")
+	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("Setting"), "OnSetting")
 	--help
 	local itemHelp = E_MainFrame:AddMainMenuItem((PX2_LM:GetValue("Help")))
 end
@@ -115,6 +116,10 @@ end
 
 function OnScale()
 	E_MainFrame:OnSetEditMode(4)
+end
+
+function OnSetting()
+	E_MainFrame:OnSetting();
 end
 
 CreateMainMenu()

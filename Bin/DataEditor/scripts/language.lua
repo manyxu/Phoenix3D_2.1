@@ -42,6 +42,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("VersionWindows", "生成版本信息_Windows")
 	PX2_LM:AddItem1("VersionAndroid", "生成版本信息_Android")
 	PX2_LM:AddItem1("VersionIOS", "生成版本信息_IOS")
+	PX2_LM:AddItem1("Setting", "设置")
 	
 	PX2_LM:AddItem1("Help", "帮助")
 end
