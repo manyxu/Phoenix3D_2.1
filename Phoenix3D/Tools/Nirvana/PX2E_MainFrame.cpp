@@ -18,6 +18,7 @@
 #include "PX2ObjectInspector.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2NirvanaUIEventType.hpp"
+#include "PX2EditParams.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -344,6 +345,22 @@ void E_MainFrame::OnSetEditMode(int mode)
 	PX2_EDIT.SetEditMode((Edit::EditMode)mode);
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnSetting()
+{
+	EditParams *params = EditParams::GetSingletonPtr();
+
+	//Object *obj = params;
+	if (params)
+	{
+		PX2_SELECTION.Clear();
+		PX2_SELECTION.AddObject(params);
+	}
+	else
+	{
+		PX2_SELECTION.Clear();
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenu()
 {
 	mMainMenuBar = new wxMenuBar();
@@ -508,6 +525,7 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	{
 		styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
 		styleFlag ^= wxAUI_NB_CLOSE_ON_ACTIVE_TAB;
+		styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	}
 	else
 	{
