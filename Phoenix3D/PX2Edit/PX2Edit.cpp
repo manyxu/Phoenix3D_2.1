@@ -50,10 +50,7 @@ bool Edit::Ternamate()
 		delete0(mGeoObjFactory);
 	}
 
-	if (mEditParams)
-	{
-		delete0(mEditParams);
-	}
+	mEditParams = 0;
 	
 	return true;
 }

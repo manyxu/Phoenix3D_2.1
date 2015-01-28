@@ -7,11 +7,11 @@
 #include "PX2EditParams.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, Node, EditParams);
+PX2_IMPLEMENT_RTTI(PX2, Object, EditParams);
 PX2_IMPLEMENT_STREAM(EditParams);
 PX2_IMPLEMENT_FACTORY(EditParams);
-PX2_IMPLEMENT_DEFAULT_NAMES(Node, EditParams);
-PX2_IMPLEMENT_DEFAULT_STREAM(Node, EditParams);
+PX2_IMPLEMENT_DEFAULT_NAMES(Object, EditParams);
+PX2_IMPLEMENT_DEFAULT_STREAM(Object, EditParams);
 //-----------------------------------------------------------------------------
 EditParams::EditParams()
 {

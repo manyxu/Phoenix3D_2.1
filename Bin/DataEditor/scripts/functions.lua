@@ -43,6 +43,10 @@ end
 function OnExit()
 end
 
+function OnSetting()
+	E_MainFrame:OnSetting()
+end
+
 function OnSelect()
 	E_MainFrame:OnSetEditMode(1)
 end

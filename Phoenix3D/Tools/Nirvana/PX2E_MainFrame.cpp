@@ -357,12 +357,10 @@ void E_MainFrame::OnSetEditMode(int mode)
 void E_MainFrame::OnSetting()
 {
 	EditParams *params = PX2_EDIT.GetEditParams();
-
-	//Object *obj = params;
 	if (params)
 	{
 		PX2_SELECTION.Clear();
-	//	PX2_SELECTION.AddObject(params);
+		PX2_SELECTION.AddObject(params);
 	}
 	else
 	{

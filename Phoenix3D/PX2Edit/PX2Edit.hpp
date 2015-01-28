@@ -68,7 +68,7 @@ namespace PX2
 		EditParams *GetEditParams();
 
 	protected:
-		EditParams *mEditParams;
+		EditParamsPtr mEditParams;
 
 		// key
 	public:
