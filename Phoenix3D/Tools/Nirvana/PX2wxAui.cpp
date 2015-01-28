@@ -76,7 +76,7 @@ void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
 		{
 			int src_idx = ent.GetSelection();
 			wxString title = GetPageText(src_idx);
-			wxString paneName = "ResView";
+			wxString paneName = "Insp";
 			auiMan->GetPane(paneName).caption = title;
 			auiMan->Update();
 		}

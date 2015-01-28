@@ -92,6 +92,7 @@ namespace PX2Editor
 
 		PX2wxAuiNotebook *_CreateView(std::vector<WindowObj> &objs, const std::string &caption,
 			wxAuiPaneInfo &paneInfo,
+			wxString paneName = "Default",
 			bool isTopStyle = false);
 
 		bool mIsInitlized;
