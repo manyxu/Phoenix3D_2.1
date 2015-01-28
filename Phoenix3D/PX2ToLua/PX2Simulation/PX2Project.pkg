@@ -2,6 +2,35 @@
 
 	class Project
 	{
-		Project ();
-		~Project ();
+
+		// Load Save
+	public:
+		bool Save(const std::string &filename); //< only used in editor
+		bool SaveConfig(const std::string &filename); //< only used in editor	
+		bool Load(const std::string &filename);
+
+		// Config
+	public:
+		void SetSize(float width, float height);
+		void SetSize(const Sizef &size);
+		const Sizef & GetSize() const;
+		float GetWidth() const;
+		float GetHeight() const;
+
+		void SetBackgroundColor(const Float4 &color);
+		const Float4 &GetBackgroundColor() const;
+
+		// Scene
+	public:
+		void SetScene(Scene *scene);
+		Scene *GetScene();
+		const std::string &GetSceneFilename() const;
+		RenderStep *GetSceneRenderStep();
+
+		// UI
+	public:
+		void SetUIFrame(UIFrame *ui);
+		UIFrame *GetUIFrame();
+		const std::string &GetUIFilename() const;
+
 	};

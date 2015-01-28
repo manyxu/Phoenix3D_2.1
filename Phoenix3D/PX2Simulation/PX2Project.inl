@@ -31,3 +31,13 @@ inline RenderStep *Project::GetSceneRenderStep()
 	return mSceneRenderStep;
 }
 //----------------------------------------------------------------------------
+inline UIFrame *Project::GetUIFrame()
+{
+	return mUIFrame;
+}
+//----------------------------------------------------------------------------
+inline const std::string &Project::GetUIFilename() const
+{
+	return mUIFilename;
+}
+//----------------------------------------------------------------------------

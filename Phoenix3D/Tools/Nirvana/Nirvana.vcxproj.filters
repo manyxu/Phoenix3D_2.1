@@ -43,8 +43,11 @@
     <Filter Include="Event">
       <UniqueIdentifier>{139a2c43-9676-4d39-9078-0cddaf4cd218}</UniqueIdentifier>
     </Filter>
-    <Filter Include="App\Main">
+    <Filter Include="App\Manager">
       <UniqueIdentifier>{9df18248-b55c-4ce6-a355-d112e287f9a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TopView">
+      <UniqueIdentifier>{def88b55-da7b-4180-8ab7-f703d37b830b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +146,10 @@
       <Filter>Event</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_NirMan.hpp">
-      <Filter>App\Main</Filter>
+      <Filter>App\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_TopView.hpp">
+      <Filter>TopView</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -241,7 +247,10 @@
       <Filter>Event</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_NirMan.cpp">
-      <Filter>App\Main</Filter>
+      <Filter>App\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_TopView.cpp">
+      <Filter>TopView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

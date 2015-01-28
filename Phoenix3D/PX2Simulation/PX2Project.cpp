@@ -7,6 +7,7 @@
 #include "PX2StringTokenizer.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2Renderer.hpp"
+#include "PX2UIManager.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -24,6 +25,9 @@ Project::Project()
 	mSceneRenderStep = new0 RenderStep();
 	mSceneRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
 	PX2_GR.AddRenderStep(mSceneRenderStep);
+
+	mUIFrame = new0 UIFrame();
+	SetUIFrame(mUIFrame);
 }
 //----------------------------------------------------------------------------
 Project::~Project ()
@@ -48,6 +52,20 @@ bool Project::Save(const std::string &filename)
 {
 	if (!SaveConfig(filename))
 		return false;
+
+	std::string outPath;
+	std::string outBaseName;
+	std::string outExt;
+	StringHelp::SplitFullFilename(filename, outPath, outBaseName, outExt);
+
+	if (mUIFrame)
+	{
+		std::string outName = outPath + outBaseName + ".px2obj";
+
+		OutStream output;
+		output.Insert(mUIFrame);
+		output.Save(outName);
+	}
 
 	return false;
 }
@@ -147,6 +165,15 @@ bool Project::Load(const std::string &filename)
 
 			// setting
 			XMLNode settingNode = rootNode.GetChild("setting");
+
+			// split file names
+			std::string outPath;
+			std::string outBaseName;
+			std::string outExt;
+			StringHelp::SplitFullFilename(filename, outPath, outBaseName, outExt);
+
+			// ui
+			mUIFilename = outPath + outBaseName + ".px2ui";
 		}
 	}
 	else
@@ -196,6 +223,13 @@ void Project::SetScene(Scene *scene)
 void Project::SetSceneFilename(const std::string &scenefilename)
 {
 	mSceneFilename = scenefilename;
+}
+//----------------------------------------------------------------------------
+void Project::SetUIFrame(UIFrame *ui)
+{
+	mUIFrame = ui;
+
+	PX2_UIM.GetDefaultUIView()->SetNode(mUIFrame);
 }
 //----------------------------------------------------------------------------
 void Project::SetSize(float width, float height)

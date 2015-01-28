@@ -243,6 +243,8 @@ void ResourceManager::Clear ()
 //----------------------------------------------------------------------------
 void ResourceManager::ClearRes (const std::string &resPath)
 {
+	if (resPath.empty()) return;
+
 	mResTableMutex->Enter();
 	ResTable::Element *eleRes = mResTable.Find(resPath.c_str());
 	if (eleRes)

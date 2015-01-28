@@ -115,11 +115,11 @@ void PX2wxAuiToolBarArt::DrawBackground(
 	wxRect rect = _rect;
 	rect.height++;
 
-	wxColour color = wxColour(214, 219, 233);
-	wxColour startColour = color.ChangeLightness(255);
-	wxColour endColour = color.ChangeLightness(200);
+	wxColour color = wxColour(207, 214, 229);
+	wxColour startColour = color.ChangeLightness(125);
+	wxColour endColour = color.ChangeLightness(125);
 
-	dc.GradientFillLinear(rect, startColour, endColour, wxSOUTH);
+	dc.GradientFillLinear(rect, color, color, wxSOUTH);
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,

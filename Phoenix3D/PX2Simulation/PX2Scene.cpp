@@ -20,8 +20,6 @@ Scene::Scene()
 	camActor->LocalTransform.SetTranslate(APoint(0.0f, -1.0f, 1.0f));
 
 	SetUseCameraActor(camActor);
-
-	PX2_CREATER.CreateActor_Box(this, APoint::ORIGIN);
 }
 //----------------------------------------------------------------------------
 Scene::~Scene()

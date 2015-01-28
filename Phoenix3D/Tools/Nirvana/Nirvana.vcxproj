@@ -107,6 +107,7 @@
     <ClInclude Include="PX2E_ResTree.hpp" />
     <ClInclude Include="PX2E_ResTreeItem.hpp" />
     <ClInclude Include="PX2E_TimeLineRender.hpp" />
+    <ClInclude Include="PX2E_TopView.hpp" />
     <ClInclude Include="PX2InspView.hpp" />
     <ClInclude Include="PX2ObjectInspector.hpp" />
     <ClInclude Include="PX2ObjectPropertyGrid.hpp" />
@@ -141,6 +142,7 @@
     <ClCompile Include="PX2E_ResView.cpp" />
     <ClCompile Include="PX2E_ProjView.cpp" />
     <ClCompile Include="PX2E_TimeLineRender.cpp" />
+    <ClCompile Include="PX2E_TopView.cpp" />
     <ClCompile Include="PX2InspView.cpp" />
     <ClCompile Include="PX2ObjectInspector.cpp" />
     <ClCompile Include="PX2ObjectPropertyGrid.cpp" />

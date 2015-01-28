@@ -1,0 +1,13 @@
+// PX2Project.pkg
+
+	class Scene : public Node
+	{
+	public:
+		Scene();
+		virtual ~Scene();
+
+		void SetUseCameraActor(CameraActor *cameraActor);
+		CameraActor *GetUseCameraActor();
+
+		virtual int AttachChild(Movable* child);
+	};

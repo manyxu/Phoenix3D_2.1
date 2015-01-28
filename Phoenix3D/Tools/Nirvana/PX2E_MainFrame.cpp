@@ -6,6 +6,7 @@
 #include "PX2E_ProjView.hpp"
 #include "PX2E_StartView.hpp"
 #include "PX2E_TimeLineView.hpp"
+#include "PX2E_TopView.hpp"
 #include "PX2wxDockArt.hpp"
 #include "PX2wxAui.hpp"
 
@@ -32,6 +33,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	wxFrame((wxFrame*)0, -1, title, wxPoint(xPos, yPos), wxSize(width, height)),
 	mIsInitlized(false),
 	mAuiManager(0),
+	mTopView(0),
 	mRenderView(0),
 	mIsShowRenderView(false),
 	mProjView(0),
@@ -56,7 +58,7 @@ bool E_MainFrame::Initlize()
 
 	mAuiManager->SetArtProvider(new PX2wxDockArt());
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_CAPTION_SIZE, 24);
-	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 2);
+	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 1);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(44, 61, 91));
@@ -71,10 +73,14 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(216, 102, 36));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(216, 102, 36));
 
+	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
+
 	mTimer.SetOwner(this, sID_ENGINELOOPTIMER);
 	mTimer.Start(25);
 
 	_CreateMenu();
+	//_CreateTopView();
+	_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
 
@@ -376,6 +382,16 @@ void E_MainFrame::AddSeparater(wxMenu *menu)
 	menu->AppendSeparator();
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::_CreateTopView()
+{
+	mTopView = new TopView(this);
+
+	mAuiManager->AddPane(mTopView, wxAuiPaneInfo().
+		Name(wxT("tb")).
+		ToolbarPane().Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
+		MinSize(200, 32).MaxSize(200, 32).Resizable(false));
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainToolBar()
 {
 	wxAuiToolBar *mianToolBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
@@ -387,12 +403,15 @@ void E_MainFrame::_CreateMainToolBar()
 	mianToolBar->AddSeparator();
 	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
 	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject2"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddStretchSpacer();
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("Login"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddLabel(PX2_EDIT_GETID, "Ðí¶à");
 	mianToolBar->Realize();
 
 	mAuiManager->AddPane(mianToolBar, wxAuiPaneInfo().
-		Name(wxT("tb")).Caption(wxT("Toolbar")).
-		ToolbarPane().Top().Dockable(false).PaneBorder(false).Resizable(false).Maximize().
-		MinSize(200, 28).MaxSize(200, 28));
+		Name(wxT("tb")).
+		ToolbarPane().Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
+		MinSize(200, 30).MaxSize(200, 30).Resizable(false));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()

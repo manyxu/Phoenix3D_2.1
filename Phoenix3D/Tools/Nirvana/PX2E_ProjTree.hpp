@@ -37,12 +37,26 @@ namespace PX2Editor
 		void _RefreshProject();
 		void _ClearProject();
 
+		void _RefreshScene();
+		void _ClearScene();
+
+		void _RefreshUI();
+		void _ClearUI();
+
+		void _RefreshLogic();
+		void _ClearLogic();
+
+		void _AddObject(PX2::Object *obj);
+		void _RemoveObject(PX2::Object *obj);
+
 		ProjTreeLevel mTreeLevel;
 
 		wxImageList *mImageList;
 
 		ProjTreeItem *mItemProj;
 		ProjTreeItem *mItemScene;
+		ProjTreeItem *mItemCameras;
+		ProjTreeItem *mItemObjects;
 		ProjTreeItem *mItemUI;
 		ProjTreeItem *mItemLogic;
 	};

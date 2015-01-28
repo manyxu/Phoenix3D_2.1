@@ -52,6 +52,17 @@ bool EditMap::LoadProject(const char *pathname)
 			LoadScene(sceneFilename);
 		}
 
+		const std::string &uiFilename = newProj->GetUIFilename();
+		if (!uiFilename.empty())
+		{
+			ObjectPtr uiObj = PX2_RM.BlockLoad(uiFilename);
+			UIFrame *ui = DynamicCast<UIFrame>(uiObj);
+			if (ui)
+			{
+				Project::GetSingleton().SetUIFrame(ui);
+			}
+		}
+
 		mProjectFilePath = pathname;
 
 		PX2_ENGINELOOP.SetSize(newProj->GetSize());

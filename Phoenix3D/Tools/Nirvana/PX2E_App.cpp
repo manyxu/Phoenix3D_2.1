@@ -77,6 +77,7 @@ bool E_App::OnInit()
 
 	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", mMainFrame);
 	luaMan->SetUserTypePointer("NirMan", "NirMan", nirMan);
+	luaMan->SetUserTypePointer("PX2_EDIT", "Edit", Edit::GetSingletonPtr());
 
 	luaMan->CallFile("DataEditor/scripts/start.lua");
 	ResTree::GetSingleton().UpdateOnPath("Data/");

@@ -59,7 +59,6 @@ function OnScale()
 	E_MainFrame:OnSetEditMode(4)
 end
 
-
 function ImportSelectedRes()
 end
 
@@ -76,4 +75,22 @@ function Play()
 end
 
 function Stop()
+end
+
+function CreateRectPiece()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Rectangle(scene, pickPos)
+end
+
+function CreateBox()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Box(scene, pickPos)
+end
+
+function CreateSphere()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Sphere(scene, pickPos)
 end

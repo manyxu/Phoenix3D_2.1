@@ -1,0 +1,24 @@
+// PX2EditMap.pkg
+
+	class EditMap
+	{
+	public:
+		EditMap();
+		~EditMap();
+
+		// project scene
+	public:
+		void NewProject(const std::string &pathname, 
+			const std::string &projName, int width, int height);
+		bool LoadProject(const char *pathname);
+		bool SaveProject();
+		bool SaveProjectAs(const char *pathname);
+		void CloseProject();
+		std::string GetProjectFilePath() { return mProjectFilePath; }
+
+		void NewScene();
+		bool LoadScene(const std::string &pathname);
+		bool SaveScene(const std::string &pathname);
+		bool SaveSceneAs(const std::string &pathname);
+		void CloseScene();
+	};

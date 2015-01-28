@@ -16,3 +16,18 @@ inline EditMap *Edit::GetEditMap()
 	return mEditMap;
 }
 //----------------------------------------------------------------------------
+inline GeoObjFactory *Edit::GetGOF()
+{
+	return mGeoObjFactory;
+}
+//----------------------------------------------------------------------------
+inline void Edit::SetPickPos(const PX2::APoint &pos)
+{
+	mPickPos = pos;
+}
+//----------------------------------------------------------------------------
+inline PX2::APoint Edit::GetPickPos()
+{
+	return mPickPos;
+}
+//----------------------------------------------------------------------------

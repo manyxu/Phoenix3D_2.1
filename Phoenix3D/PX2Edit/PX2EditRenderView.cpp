@@ -167,6 +167,7 @@ void EditRenderView::_ClickSelectScene(const APoint &scrPos,
 		const ActorPickRecord &record = actorPicker.GetClosestToZero();
 		Object *recordObj = record.Intersected;
 		mSelectPoint = origin + direction*record.T;
+		PX2_EDIT.SetPickPos(mSelectPoint);
 
 		if (SM_SINGLE == mode)
 		{

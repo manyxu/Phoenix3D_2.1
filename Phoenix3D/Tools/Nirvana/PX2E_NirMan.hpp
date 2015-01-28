@@ -11,6 +11,8 @@ namespace PX2
 
 	class NirMan : public wxEvtHandler, public PX2::Singleton<NirMan>
 	{
+		DECLARE_EVENT_TABLE()
+
 	public:
 		NirMan();
 		virtual ~NirMan();
@@ -30,10 +32,6 @@ namespace PX2
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title, 
 			const std::string &script);
 		void AddSeparater(wxMenu *menu);
-		void OnMenuItem(wxCommandEvent &e);
-
-	protected:
-		std::map<int, std::string> mIDScripts;
 	};
 
 }

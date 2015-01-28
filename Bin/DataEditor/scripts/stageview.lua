@@ -6,7 +6,13 @@ function CreateStageEditMenu()
 	local editMenu = NirMan:GetCurMenu()
 	
 	local createMenu = NirMan:AddSubMenu(editMenu, (PX2_LM:GetValue("Create")))
+	
 	local createSceneMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("Scene")))
+	local createSceneGeometryMenu = NirMan:AddSubMenu(createSceneMenu, (PX2_LM:GetValue("Geometry")))
+	NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("RectPiece"), "CreateRectPiece")
+	NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("Box"), "CreateBox")
+	NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("Sphere"), "CreateSphere")
+	
 	local createUIMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("UI")))
 	
 	local addMenu = NirMan:AddSubMenu(editMenu, (PX2_LM:GetValue("Add")))

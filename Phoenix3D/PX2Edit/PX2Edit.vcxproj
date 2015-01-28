@@ -18,6 +18,7 @@
     <ClInclude Include="PX2EditPre.hpp" />
     <ClInclude Include="PX2EditParams.hpp" />
     <ClInclude Include="PX2EditRenderView.hpp" />
+    <ClInclude Include="PX2Edits.hpp" />
     <ClInclude Include="PX2GeoObjFactory.hpp" />
     <ClInclude Include="PX2SceneNodeCtrl.hpp" />
   </ItemGroup>

@@ -2,3 +2,5 @@
 
 $pfile "PX2Simulation/PX2Project.pkg"
 $pfile "PX2Simulation/PX2Selection.pkg"
+$pfile "PX2Simulation/PX2Creater.pkg"
+$pfile "PX2Simulation/PX2Scene.pkg"

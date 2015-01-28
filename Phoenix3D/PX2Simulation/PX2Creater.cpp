@@ -21,6 +21,30 @@ Creater::~Creater()
 {
 }
 //----------------------------------------------------------------------------
+Actor *Creater::CreateActor_Rectangle(Scene *scene, const PX2::APoint &pos)
+{
+	PX2::Texture2D *tex = DynamicCast<PX2::Texture2D>(PX2_RM.BlockLoad("Data/engine/default.png"));
+	if (!tex) return 0;
+
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1);
+
+	StandardMesh stdMesh(vf);
+	TriMesh *mesh = stdMesh.Rectangle(2, 2, 1.0f, 1.0f, Float2(0.5f, 0.5f));
+	mesh->SetName("NoName");
+
+	StdMaterialPtr mtl = new0 StdMaterial();
+	mesh->SetMaterialInstance(mtl->CreateInstance(tex, mesh->GetShine(), 0));
+
+	ActorPtr actor = new0 Actor();
+	actor->SetName("NoName");
+	actor->SetMovable(mesh);
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
 Actor *Creater::CreateActor_Box(Scene *scene, const PX2::APoint &pos)
 {
 	PX2::Texture2D *tex = DynamicCast<PX2::Texture2D>(PX2_RM.BlockLoad("Data/engine/default.png"));
@@ -30,6 +54,30 @@ Actor *Creater::CreateActor_Box(Scene *scene, const PX2::APoint &pos)
 
 	StandardMesh stdMesh(vf);
 	TriMesh *mesh = stdMesh.Box(1, 1, 1);
+	mesh->SetName("NoName");
+
+	StdMaterialPtr mtl = new0 StdMaterial();
+	mesh->SetMaterialInstance(mtl->CreateInstance(tex, mesh->GetShine(), 0));
+
+	ActorPtr actor = new0 Actor();
+	actor->SetName("NoName");
+	actor->SetMovable(mesh);
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
+Actor *Creater::CreateActor_Sphere(Scene *scene, const PX2::APoint &pos)
+{
+	PX2::Texture2D *tex = DynamicCast<PX2::Texture2D>(PX2_RM.BlockLoad("Data/engine/default.png"));
+	if (!tex) return 0;
+
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1);
+
+	StandardMesh stdMesh(vf);
+	TriMesh *mesh = stdMesh.Sphere(32, 32, 1);
 	mesh->SetName("NoName");
 
 	StdMaterialPtr mtl = new0 StdMaterial();

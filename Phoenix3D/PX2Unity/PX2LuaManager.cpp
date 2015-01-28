@@ -92,7 +92,7 @@ bool LuaManager::CallString (const char *str)
 	{
 		const char *err = lua_tostring(mState, -1);
 
-		if (!PX2_GR.IsInEditor())
+		//if (!PX2_GR.IsInEditor())
 		{
 
 #if defined(_WIN32) || defined(WIN32)

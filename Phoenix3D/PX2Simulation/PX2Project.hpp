@@ -10,6 +10,7 @@
 #include "PX2Size.hpp"
 #include "PX2Float4.hpp"
 #include "PX2RenderStep.hpp"
+#include "PX2UIFrame.hpp"
 
 namespace PX2
 {
@@ -64,11 +65,13 @@ namespace PX2
 
 		// UI
 	public:
-		void SetUIFramename(const std::string &filename);
-		const std::string &GetUIFilename () const;
+		void SetUIFrame(UIFrame *ui);
+		UIFrame *GetUIFrame();
+		const std::string &GetUIFilename() const;
 
 	protected:
 		std::string mUIFilename;
+		UIFramePtr mUIFrame;
 	};
 
 #define PX2_PROJ Project::GetSingleton()

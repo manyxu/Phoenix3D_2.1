@@ -15,6 +15,7 @@ namespace PX2Editor
 	class ProjView;
 	class ResView;
 	class InspView;
+	class TopView;
 	class PX2wxAuiNotebook;
 
 	class E_MainFrame : public wxFrame, public PX2::EventHandler, public PX2::Singleton<E_MainFrame>
@@ -59,6 +60,7 @@ namespace PX2Editor
 		DECLARE_EVENT_TABLE()
 
 		void _CreateMenu();
+		void _CreateTopView();
 		void _CreateMainToolBar();
 		void _CreateViews();
 		void _CreateProjView();
@@ -102,6 +104,7 @@ namespace PX2Editor
 		wxTimer mTimer;
 		std::map<int, std::string> mIDScripts;
 
+		TopView *mTopView;
 		StartView *mStartView;
 		RenderView *mRenderView;
 		bool mIsShowRenderView;

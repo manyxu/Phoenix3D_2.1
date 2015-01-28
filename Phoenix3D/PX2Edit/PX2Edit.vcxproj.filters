@@ -22,6 +22,7 @@
     <ClInclude Include="PX2SceneNodeCtrl.hpp">
       <Filter>NodeCtrls</Filter>
     </ClInclude>
+    <ClInclude Include="PX2Edits.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />

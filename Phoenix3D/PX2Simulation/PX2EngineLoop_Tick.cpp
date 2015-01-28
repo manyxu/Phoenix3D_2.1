@@ -12,7 +12,7 @@ void EngineLoop::Tick()
 	mLastAppTime = mAppTime;
 
 	if (mEventWorld)
-		mEventWorld->Update(mElapsedTime);
+		mEventWorld->Update((float)mElapsedTime);
 
 	Project *proj = Project::GetSingletonPtr();
 	if (!proj) return;
