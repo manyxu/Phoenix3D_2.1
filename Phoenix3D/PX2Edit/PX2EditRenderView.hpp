@@ -9,77 +9,59 @@
 #include "PX2RenderStep.hpp"
 #include "PX2EditDefine.hpp"
 #include "PX2SceneNodeCtrl.hpp"
+#include "PX2Renderer.hpp"
 
 namespace PX2
 {
+
+	class RendererInput;
 
 	class EditRenderView
 	{
 	public:
 		EditRenderView();
-		~EditRenderView();
+		virtual ~EditRenderView();
 
+	public:
+		void SetPt_Data(void *data);
+		void *GetPt_Data();
+		void SetPt_Size(const Sizef &size);
+		const Sizef &GetPt_Size() const;
+
+		bool InitlizeRendererStep();
+
+	protected:
+		void *mPt_Data;
+		Sizef mPt_Size;
+
+	public:
 		void SetRenderer(Renderer *renderer);
 		void SetCamera(Camera *camera);
+		RenderStep *GetRenderStepCtrl();
+		RenderStep *GetRenderStepCtrl1();
+		void Draw();
 
 	protected:
-		void _CreateGridGeometry();
-
-		PX2::RenderablePtr mGrid;
-		PX2::NodePtr mGridNode;
-
-	public:
-		enum ViewType
-		{
-			VT_TOP,
-			VT_FRONT,
-			VT_LEFT,
-			VT_PERSPECTIVE,
-			VT_MAX_TYPE
-		};
-		void SetViewType(ViewType viewType);
-		ViewType GetViewType();
-
-		enum ViewDetail
-		{
-			VD_WIREFRAME,
-			VD_SOLID,
-			VD_TEXTURED
-		};
-		void SetViewDetail(ViewDetail viewDetail);
-		ViewDetail GetViewDetail() const;
-
-		RenderStep *GetRenderStep();
-
-	protected:
-		void _ClickSelect(const APoint &scrPos);
-		void _ClickSelectScene(const APoint &scrPos, SelectMode mode);
-
-		ViewType mViewType;
-		ViewDetail mViewDetail;
+		RendererInput *mRendererInput;
+		Renderer *mRenderer;
 		RenderStepPtr mRenderStep;
-		APoint mSelectPoint;
+
+		RenderStepPtr mRenderStepCtrl;
+		RenderStepPtr mRenderStepCtrl1;
+		bool mIsRenderCreated;
 
 	public:
-		void OnMoveHV(bool isAltDown, float h, float v);
-
-		void OnSize(const Sizef& size);
-		void OnLeftDown(const APoint &pos);
-		void OnLeftUp(const APoint &pos);
-		void OnMiddleDown(const APoint &pos);
-		void OnMiddleUp(const APoint &pos);
-		void OnMouseWheel(float delta);
-		void OnRightDown(const APoint &pos);
-		void OnRightUp(const APoint &pos);
-		void OnMotion(const APoint &pos);
+		virtual void OnSize(const Sizef& size);
+		virtual void OnLeftDown(const APoint &pos);
+		virtual void OnLeftUp(const APoint &pos);
+		virtual void OnMiddleDown(const APoint &pos);
+		virtual void OnMiddleUp(const APoint &pos);
+		virtual void OnMouseWheel(float delta);
+		virtual void OnRightDown(const APoint &pos);
+		virtual void OnRightUp(const APoint &pos);
+		virtual void OnMotion(const APoint &pos);
 
 	protected:
-		void _MoveCamera(float horz, float vert); //< 透视角度，沿着视线方向移动
-		void _PanCamera(const float &horz, const float &vert); //< 透视角度，上下左右移动，其他视角和MoveCamera一样
-		void _ZoomCamera(float zoom);
-		void _RolateCamera(float horz, float vert);
-		void _RoundCamera(float horz, float vert);
-
 		Sizef mSize;
 		bool mIsLeftDown;
 		bool mIsMiddleDown;
@@ -88,16 +70,6 @@ namespace PX2
 
 	public:
 		std::pair<float, float> mPixelToWorld;
-
-	public:
-
-	protected:
-		void _CreateNodeCtrl();
-
-		SceneNodeCtrlPtr mSceneNodeCtrl;
-		BoundCtrlPtr mBoundCtrl;
-		PX2::NodePtr mSceneCtrlNode;
-		RenderStepPtr mRenderStepSceneCtrl;
 	};
 
 	typedef Pointer0<EditRenderView> EditRenderViewPtr;

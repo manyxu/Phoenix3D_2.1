@@ -64,7 +64,7 @@ bool E_App::OnInit()
 	mMainFrame->Center();
 	mMainFrame->Maximize();
 
-	PX2_ENGINELOOP.SetPt_Data(mMainFrame->GetRenderView()->GetHandle());
+	PX2_ENGINELOOP.SetPt_Data(mMainFrame->GetRenderViewScene()->GetHandle());
 	PX2_ENGINELOOP.SetPt_Size(Sizef(1024.0f, 768.0f));
 	PX2_ENGINELOOP.InitlizeRenderer();
 

@@ -437,6 +437,12 @@
     <ClCompile Include="PX2WireProperty.cpp">
       <Filter>Material\RenderProperty</Filter>
     </ClCompile>
+    <ClCompile Include="PX2RendererInput.cpp">
+      <Filter>Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9RendererInput.cpp">
+      <Filter>Renderers\Dx9Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -888,6 +894,9 @@
     </ClInclude>
     <ClInclude Include="PX2WireProperty.hpp">
       <Filter>Material\RenderProperty</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RendererInput.hpp">
+      <Filter>Renderers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

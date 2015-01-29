@@ -2,6 +2,8 @@
 
 #include "PX2E_RenderView.hpp"
 #include "PX2E_NirMan.hpp"
+#include "PX2EditRenderView_Scene.hpp"
+#include "PX2EditRenderView_Logic.hpp"
 #include "PX2Project.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2Edit.hpp"
@@ -9,11 +11,8 @@
 using namespace PX2Editor;
 using namespace PX2;
 
-const int sID_RenderViewTimer = PX2_EDIT_GETID;
-
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::RenderView, wxWindow)
 BEGIN_EVENT_TABLE(RenderView, wxWindow)
-EVT_TIMER(sID_RenderViewTimer, RenderView::OnTimer)
 EVT_SIZE(RenderView::OnSize)
 EVT_PAINT(RenderView::OnPaint)
 EVT_ERASE_BACKGROUND(RenderView::OnEraseBackground)
@@ -31,20 +30,20 @@ RenderView::RenderView()
 {
 }
 //----------------------------------------------------------------------------
-RenderView::RenderView(wxWindow *parent):
-wxWindow(parent, -1),
+RenderView::RenderView(RenderViewType viewType, wxWindow *parent) :
+wxWindow(parent, wxID_ANY),
+mRenderViewType(viewType),
+mTimerID(-1),
 mIsInited(false),
-mCameraMoveSpeed(40.0f),
-mCurCameraMoveSpeed_W(0.0f),
-mCurCameraMoveSpeed_S(0.0f),
-mCurCameraMoveSpeed_A(0.0f),
-mCurCameraMoveSpeed_D(0.0f),
 mIsRightDown(false),
 mIsRightDownOnMotion(false),
 mEditMenu(0)
 {
-	mCtrlTimer.SetOwner(this, sID_RenderViewTimer);
-	mCtrlTimer.Start(15);
+	mTimerID = PX2_EDIT_GETID;
+	Connect(mTimerID, wxEVT_TIMER, wxTimerEventHandler(RenderView::OnTimer));
+
+	mTimer.SetOwner(this, mTimerID);
+	mTimer.Start(25);
 }
 //----------------------------------------------------------------------------
 RenderView::~RenderView()
@@ -61,8 +60,10 @@ void RenderView::OnTimer(wxTimerEvent& event)
 	int ival = event.GetInterval();
 	double dIval = ival / 1000.0;
 
-	if (sID_RenderViewTimer == event.GetId())
+	if (mTimerID == event.GetId())
 	{
+		if (mEditRenderView)
+			mEditRenderView->Draw();
 	}
 }
 //----------------------------------------------------------------------------
@@ -83,6 +84,11 @@ void RenderView::OnPaint(wxPaintEvent& e)
 {
 	wxPaintDC dc(this);
 	PX2_UNUSED(e);
+
+	if (!mEditRenderView)
+	{
+		dc.Clear();
+	}
 }
 //----------------------------------------------------------------------------
 void RenderView::OnEraseBackground(wxEraseEvent& e)
@@ -174,20 +180,23 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 	{
 		mEditRenderView->OnRightUp(pos);
 
-		if (!mIsRightDownOnMotion)
+		if (RVT_SCENE == mRenderViewType)
 		{
-			if (mEditMenu)
+			if (!mIsRightDownOnMotion)
 			{
-				delete mEditMenu;
-				mEditMenu = 0;
+				if (mEditMenu)
+				{
+					delete mEditMenu;
+					mEditMenu = 0;
+				}
+
+				mEditMenu = new wxMenu();
+				NirMan::GetSingleton().SetCurMenu(mEditMenu);
+
+				PX2_SM.CallString("CreateStageEditMenu()");
+
+				if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
 			}
-
-			mEditMenu = new wxMenu();
-			NirMan::GetSingleton().SetCurMenu(mEditMenu);
-
-			PX2_SM.CallString("CreateStageEditMenu()");
-
-			if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
 		}
 	}
 }
@@ -210,24 +219,56 @@ void RenderView::OnMotion(wxMouseEvent& e)
 //----------------------------------------------------------------------------
 void RenderView::DoExecute(PX2::Event *event)
 {
+	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject) ||
+		EditEventSpace::IsEqual(event, EditEventSpace::LoadedProject))
+	{
+		if (RVT_LOGIC == mRenderViewType)
+		{
+			mEditRenderView = 0;
+
+			//mEditRenderView = new0 EditRenderView_Logic();
+
+			//wxSize size = GetClientSize();
+			//Sizef sz(size.x, size.y);
+
+			//mEditRenderView->SetPt_Data(GetHandle());
+			//mEditRenderView->SetPt_Size(sz);
+			//mEditRenderView->InitlizeRendererStep();
+		}
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseProject))
+	{
+		if (RVT_LOGIC == mRenderViewType)
+		{
+			mEditRenderView = 0;
+		}
+	}
 	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene) ||
 		EditEventSpace::IsEqual(event, EditEventSpace::LoadedScene))
 	{
-		mEditRenderView = 0;
+		if (RVT_SCENE == mRenderViewType)
+		{
+			mEditRenderView = 0;
 
-		RenderStep *sceneRenderStep = PX2_PROJ.GetSceneRenderStep();
-		Camera *sceneRenderStepCamera = sceneRenderStep->GetCamera();
-		Renderer *sceneRenderStepRenderer = sceneRenderStep->GetRenderer();
+			RenderStep *sceneRenderStep = PX2_PROJ.GetSceneRenderStep();
+			Camera *sceneRenderStepCamera = sceneRenderStep->GetCamera();
+			Renderer *sceneRenderStepRenderer = sceneRenderStep->GetRenderer();
 
-		mEditRenderView = new0 EditRenderView();
-		mEditRenderView->SetRenderer(sceneRenderStepRenderer);
-		mEditRenderView->SetCamera(sceneRenderStepCamera);
+			mEditRenderView = new0 EditRenderView_Scene();
+			mEditRenderView->SetRenderer(sceneRenderStepRenderer);
+			mEditRenderView->SetCamera(sceneRenderStepCamera);
 
-		SetSize(GetSize());
+			wxSize size = GetClientSize();
+			Sizef sz(size.x, size.y);
+			mEditRenderView->OnSize(sz);
+		}
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
-		mEditRenderView = 0;
+		if (RVT_SCENE == mRenderViewType)
+		{
+			mEditRenderView = 0;
+		}
 	}
 }
 //----------------------------------------------------------------------------

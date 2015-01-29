@@ -1378,11 +1378,12 @@ void Renderer::ClearSharePdrData ()
 //----------------------------------------------------------------------------
 RendererData::RendererData(RendererInput& input, int width, int height,
 							Texture::Format colorFormat, Texture::Format depthStencilFormat,
-							int numMultisamples)
-							:
-mWindowHandle(input.mWindowHandle),
+							int numMultisamples) :
 mDeviceLost(false)
 {
+	PdrRendererInput *pdrRenderInput = (PdrRendererInput*)(&input);
+	mWindowHandle = pdrRenderInput->mWindowHandle;
+
 	D3DFORMAT dxColorFormat = gDX9TextureFormat[colorFormat];
 	D3DFORMAT dxDepthStencilFormat = gDX9TextureFormat[depthStencilFormat];
 
@@ -1407,7 +1408,7 @@ mDeviceLost(false)
 	HRESULT hr;
 	if (numMultisamples == 2)
 	{
-		hr = input.mDriver->CheckDeviceMultiSampleType(
+		hr = pdrRenderInput->mDriver->CheckDeviceMultiSampleType(
 			D3DADAPTER_DEFAULT,
 			D3DDEVTYPE_HAL,
 			dxColorFormat,
@@ -1426,7 +1427,7 @@ mDeviceLost(false)
 	}
 	else if (numMultisamples == 4)
 	{
-		hr = input.mDriver->CheckDeviceMultiSampleType(
+		hr = pdrRenderInput->mDriver->CheckDeviceMultiSampleType(
 			D3DADAPTER_DEFAULT,
 			D3DDEVTYPE_HAL,
 			dxColorFormat,
@@ -1444,7 +1445,7 @@ mDeviceLost(false)
 		}
 	}
 
-	hr = input.mDriver->CreateDevice(
+	hr = pdrRenderInput->mDriver->CreateDevice(
 		D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
 		mWindowHandle,
@@ -1459,7 +1460,7 @@ mDeviceLost(false)
 
 	// 设备能力查询
 	D3DCAPS9 deviceCaps;
-	hr = input.mDriver->GetDeviceCaps(
+	hr = pdrRenderInput->mDriver->GetDeviceCaps(
 		D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
 		&deviceCaps);

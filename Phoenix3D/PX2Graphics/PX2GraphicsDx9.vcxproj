@@ -105,6 +105,7 @@
     <ClCompile Include="PX2PVWMatrixConstant.cpp" />
     <ClCompile Include="PX2Renderable.cpp" />
     <ClCompile Include="PX2Renderer.cpp" />
+    <ClCompile Include="PX2RendererInput.cpp" />
     <ClCompile Include="PX2RenderStep.cpp" />
     <ClCompile Include="PX2RenderTarget.cpp" />
     <ClCompile Include="PX2ScreenTarget.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9Mapping.cpp" />
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9PixelShader.cpp" />
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9Renderer.cpp" />
+    <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9RendererInput.cpp" />
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9RenderTarget.cpp" />
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9Shader.cpp" />
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9Texture1D.cpp" />
@@ -255,6 +257,7 @@
     <ClInclude Include="PX2PVWMatrixConstant.hpp" />
     <ClInclude Include="PX2Renderable.hpp" />
     <ClInclude Include="PX2Renderer.hpp" />
+    <ClInclude Include="PX2RendererInput.hpp" />
     <ClInclude Include="PX2Renderers.hpp" />
     <ClInclude Include="PX2RenderStep.hpp" />
     <ClInclude Include="PX2RenderTarget.hpp" />
