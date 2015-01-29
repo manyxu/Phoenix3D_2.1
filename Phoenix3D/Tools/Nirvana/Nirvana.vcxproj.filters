@@ -4,9 +4,6 @@
     <Filter Include="App">
       <UniqueIdentifier>{b6c7622e-5c87-454d-ae84-68e50071083c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RenderView">
-      <UniqueIdentifier>{e66a9068-715a-4e43-8afa-3569661bd933}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ResView">
       <UniqueIdentifier>{ff2bb637-ff94-44b5-8aa3-ba91e9e7f60f}</UniqueIdentifier>
     </Filter>
@@ -49,11 +46,11 @@
     <Filter Include="TopView">
       <UniqueIdentifier>{def88b55-da7b-4180-8ab7-f703d37b830b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LogicView">
-      <UniqueIdentifier>{d7423f3e-e7f6-4a2f-9597-0f6509f43e95}</UniqueIdentifier>
+    <Filter Include="CenterViews">
+      <UniqueIdentifier>{e22b5954-6be6-4047-b53b-c39f5288d492}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UIRenderView">
-      <UniqueIdentifier>{e2c36225-ada4-48e3-b70b-3efa5de409da}</UniqueIdentifier>
+    <Filter Include="CenterViews\RenderView">
+      <UniqueIdentifier>{e66a9068-715a-4e43-8afa-3569661bd933}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +62,7 @@
       <Filter>App</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_RenderView.hpp">
-      <Filter>RenderView</Filter>
+      <Filter>CenterViews\RenderView</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_ProjView.hpp">
       <Filter>ProjView</Filter>
@@ -154,12 +151,6 @@
     <ClInclude Include="PX2E_TopView.hpp">
       <Filter>TopView</Filter>
     </ClInclude>
-    <ClInclude Include="PX2E_UIRenderView.hpp">
-      <Filter>UIRenderView</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2E_LogicView.hpp">
-      <Filter>LogicView</Filter>
-    </ClInclude>
     <ClInclude Include="PX2E_InspView.hpp">
       <Filter>InspView</Filter>
     </ClInclude>
@@ -172,7 +163,7 @@
       <Filter>App</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_RenderView.cpp">
-      <Filter>RenderView</Filter>
+      <Filter>CenterViews\RenderView</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_ResView.cpp">
       <Filter>ResView</Filter>
@@ -260,12 +251,6 @@
     </ClCompile>
     <ClCompile Include="PX2E_TopView.cpp">
       <Filter>TopView</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2E_UIRenderView.cpp">
-      <Filter>UIRenderView</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2E_LogicView.cpp">
-      <Filter>LogicView</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_InspView.cpp">
       <Filter>InspView</Filter>

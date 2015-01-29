@@ -111,30 +111,40 @@ bool EngineLoop::Initlize()
 //----------------------------------------------------------------------------
 bool EngineLoop::InitlizeRenderer()
 {
-	// renderer
-	mRendererInput = new0 RendererInput();
+	Renderer *defRenderer = CreateRenderer(mPt_Data, (int)mPt_Size.Width,
+		(int)mPt_Size.Height, 2, mRendererInput);
+
+	Renderer::SetDefaultRenderer(defRenderer);
+	mUIManager->GetDefaultUIView()->SetRenderer(defRenderer);
+
+	return true;
+}
+//----------------------------------------------------------------------------
+Renderer *EngineLoop::CreateRenderer(void *ptData, int width, int height,
+	int numMultisamples, RendererInput* &renderInput)
+{
+	PdrRendererInput *pdrRenderInput = new0 PdrRendererInput();
+	renderInput = pdrRenderInput;
+
 	Renderer *renderer = 0;
 	Texture::Format colorFormat = Texture::TF_A8R8G8B8;
 	Texture::Format depthStencilFormat = Texture::TF_D24S8;
-	int numMultisamples = 4;
 
 #if defined(_WIN32) || defined(WIN32)
 
-	HWND hWnd = (HWND)mPt_Data;
-	int width = (int)mPt_Size.Width;
-	int height = (int)mPt_Size.Height;
+	HWND hWnd = (HWND)ptData;
 
 #ifdef PX2_USE_DX9
-	mRendererInput->mWindowHandle = hWnd;
-	mRendererInput->mDriver = Direct3DCreate9(D3D_SDK_VERSION);
-	assertion(mRendererInput->mDriver != 0, "Failed to create Direct3D9\n");
-	renderer = new0 Renderer(*mRendererInput, width, height,
+	pdrRenderInput->mWindowHandle = hWnd;
+	pdrRenderInput->mDriver = Direct3DCreate9(D3D_SDK_VERSION);
+	assertion(pdrRenderInput->mDriver != 0, "Failed to create Direct3D9\n");
+	renderer = new0 Renderer(*pdrRenderInput, width, height,
 		colorFormat, depthStencilFormat, numMultisamples);
 
 #else
-	mRendererInput->mWindowHandle = hWnd;
-	mRendererInput->mRendererDC = GetDC(hWnd);
-	renderer = new0 Renderer(*mRendererInput, width, height,
+	pdrRenderInput->mWindowHandle = hWnd;
+	pdrRenderInput->mRendererDC = GetDC(hWnd);
+	renderer = new0 Renderer(*pdrRenderInput, width, height,
 		colorFormat, depthStencilFormat, numMultisamples);
 #endif
 
@@ -143,21 +153,19 @@ bool EngineLoop::InitlizeRenderer()
 #ifdef PX2_USE_OPENGLES2
 
 #ifdef __ANDROID__
-	mRendererInput->mWindowHandle = 0;
-	mRendererInput->mRendererDC = EGL_DEFAULT_DISPLAY;
+	pdrRenderInput->mWindowHandle = 0;
+	pdrRenderInput->mRendererDC = EGL_DEFAULT_DISPLAY;
 #endif
 
-	renderer = new0 Renderer(*mRendererInput, width, height,
+	renderer = new0 Renderer(*pdrRenderInput, width, height,
 		colorFormat, depthStencilFormat, numMultisamples);
 #endif
 
 #endif
-	Renderer::SetDefaultRenderer(renderer);
+
 	renderer->SetClearColor(Float4::WHITE);
 
-	mUIManager->GetDefaultUIView()->SetRenderer(renderer);
-
-	return true;
+	return renderer;
 }
 //----------------------------------------------------------------------------
 void EngineLoop::WillEnterForeground(bool isFirstTime)
@@ -323,7 +331,7 @@ bool EngineLoop::Ternamate()
 #ifdef PX2_USE_DX9
 	if (mRendererInput)
 	{
-		mRendererInput->mDriver->Release();
+		mRendererInput->Ternamate();
 
 		delete0(mRendererInput);
 		mRendererInput = 0;

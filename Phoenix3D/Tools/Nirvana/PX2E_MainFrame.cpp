@@ -2,13 +2,11 @@
 
 #include "PX2E_MainFrame.hpp"
 #include "PX2E_RenderView.hpp"
-#include "PX2E_UIRenderView.hpp"
 #include "PX2E_ResView.hpp"
 #include "PX2E_ProjView.hpp"
 #include "PX2E_StartView.hpp"
 #include "PX2E_TimeLineView.hpp"
 #include "PX2E_TopView.hpp"
-#include "PX2E_LogicView.hpp"
 #include "PX2E_InspView.hpp"
 #include "PX2wxDockArt.hpp"
 #include "PX2wxAui.hpp"
@@ -38,9 +36,8 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mIsInitlized(false),
 	mAuiManager(0),
 	mTopView(0),
-	mRenderView(0),
-	mLogicView(0),
-	mIsShowRenderView(false),
+	mRenderViewScene(0),
+	mRenderViewLogic(0),
 	mProjView(0),
 	mIsCrossCursor(false)
 {
@@ -99,7 +96,8 @@ bool E_MainFrame::Initlize()
 void E_MainFrame::AddEventHandlers()
 {
 	PX2_EW.ComeIn(this);
-	PX2_EW.ComeIn(mRenderView);
+	PX2_EW.ComeIn(mRenderViewScene);
+	PX2_EW.ComeIn(mRenderViewLogic);
 	PX2_EW.ComeIn(mProjView->GetProjTree());
 	PX2_EW.ComeIn(mInspView);
 }
@@ -108,17 +106,13 @@ void E_MainFrame::DoExecute(Event *event)
 {
 	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene))
 	{
-		_ShowRenderView(true);
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedScene))
 	{
-		_ShowRenderView(true);
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
-		_ShowRenderView(false);
 	}
-
 	else if (NirvanaUIEventSpace::IsEqual(event, NirvanaUIEventSpace::TabDrag))
 	{
 		wxWindow *window = event->GetData<wxWindow*>();
@@ -140,9 +134,9 @@ void E_MainFrame::DoExecute(Event *event)
 	}
 }
 //----------------------------------------------------------------------------
-RenderView *E_MainFrame::GetRenderView()
+RenderView *E_MainFrame::GetRenderViewScene()
 {
-	return mRenderView;
+	return mRenderViewScene;
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::OnTimer(wxTimerEvent& e)
@@ -379,7 +373,10 @@ void E_MainFrame::_CreateMenu()
 wxMenu *E_MainFrame::AddMainMenuItem(const std::string &title)
 {
 	wxMenu* menu = new wxMenu();
+
 	mMainMenuBar->Append(menu, title);
+
+	menu->GetWindow()->SetBackgroundColour(wxColour(234, 240, 255));
 
 	return menu;
 }
@@ -388,7 +385,11 @@ wxMenuItem *E_MainFrame::AddMenuItem(wxMenu *menu, const std::string &title,
 	const std::string &script)
 {
 	int id = PX2_EDIT_GETID;
-	wxMenuItem *item = menu->Append(id, title);
+	wxMenuItem *item = new wxMenuItem(menu, id, title);
+	//item->SetBackgroundColour(wxColour(234, 240, 255));
+	//item->SetTextColour(wxColour(0, 0, 0));
+	menu->Append(item);
+
 	Connect(id, wxEVT_COMMAND_MENU_SELECTED, 
 		wxCommandEventHandler(E_MainFrame::OnMenuItem));
 
@@ -399,7 +400,12 @@ wxMenuItem *E_MainFrame::AddMenuItem(wxMenu *menu, const std::string &title,
 //----------------------------------------------------------------------------
 void E_MainFrame::AddSeparater(wxMenu *menu)
 {
-	menu->AppendSeparator();
+	wxMenuItem *item = new wxMenuItem(menu, wxID_SEPARATOR);
+	item->SetBackgroundColour(wxColour(234, 240, 255));
+	item->SetTextColour(wxColour(0, 0, 0));
+	menu->Append(item);
+
+	//wxMenuItem *item = menu->AppendSeparator();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTopView()
@@ -461,48 +467,26 @@ void E_MainFrame::_CreateMainView()
 	objStart.Name = "StartView";
 	objs.push_back(objStart);
 
-	mUIRenderView = new UIRenderView(this);
-	WindowObj objUI;
-	objUI.TheWindow = mUIRenderView;
-	objUI.Caption = PX2_LMVAL("UIView");
-	objUI.Name = "UI";
-	objs.push_back(objUI);
+	mRenderViewScene = new RenderView(RenderView::RVT_SCENE, this);
+	WindowObj objRenderViewScene;
+	objRenderViewScene.TheWindow = mRenderViewScene;
+	objRenderViewScene.Caption = PX2_LMVAL("Stage");
+	objRenderViewScene.Name = "Stage";
+	objs.push_back(objRenderViewScene);
 
-	mLogicView = new LogicView(this);
+	mRenderViewLogic = new RenderView(RenderView::RVT_LOGIC, this);
 	WindowObj objLogicView;
-	objLogicView.TheWindow = mLogicView;
+	objLogicView.TheWindow = mRenderViewLogic;
 	objLogicView.Caption = PX2_LMVAL("LogicView");
 	objLogicView.Name = "Logic";
 	objs.push_back(objLogicView);
 
 	mNoteBookCenter = _CreateView(objs, "Center", wxAuiPaneInfo().CenterPane(), 
 		"Center", true);
-
-	mRenderView = new RenderView(this);
-	mRenderView->Show(false);
-	mIsShowRenderView = false;
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_ShowRenderView(bool show)
+void E_MainFrame::_RefreshRenderView(bool show)
 {
-	if (show == mIsShowRenderView)
-		return;
-
-	if (show)
-	{
-		mIsShowRenderView = true;
-		mRenderView->Show(true);
-		mNoteBookCenter->AddPage(mRenderView, PX2_LM.GetValue("Stage"));
-		int index = mNoteBookCenter->GetPageIndex(mRenderView);
-		mNoteBookCenter->SetSelection(index);
-	}
-	else
-	{
-		mIsShowRenderView = false;
-		mRenderView->Show(false);
-		int index = mNoteBookCenter->GetPageIndex(mRenderView);
-		mNoteBookCenter->RemovePage(index);
-	}
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateInsp()
@@ -604,11 +588,10 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 void E_MainFrame::_CreateStatusBar()
 {
 	wxStatusBar *status = CreateStatusBar();
-	status->SetFieldsCount(1);
 	status->SetStatusText("Welcome to Phoenix editor!");
 
 	status->SetBackgroundColour(wxColour(0, 122, 204));
-	status->SetForegroundColour(wxColour(255, 122, 204));
+	status->SetForegroundColour(wxColour(255, 0, 0));
 }
 //----------------------------------------------------------------------------
 wxAuiManager *E_MainFrame::GetAuiMananger()

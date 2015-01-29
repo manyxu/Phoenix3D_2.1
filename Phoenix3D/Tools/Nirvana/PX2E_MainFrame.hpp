@@ -30,7 +30,7 @@ namespace PX2Editor
 		bool Initlize();
 		void AddEventHandlers();
 
-		RenderView *GetRenderView();
+		RenderView *GetRenderViewScene();
 
 		virtual void DoExecute(PX2::Event *event);
 
@@ -68,10 +68,11 @@ namespace PX2Editor
 		void _CreateViews();
 		void _CreateProjView();
 		void _CreateMainView();
-		void _ShowRenderView(bool show);
 		void _CreateInsp();
 		void _CreateTimeLine();
 		void _CreateStatusBar();
+
+		void _RefreshRenderView(bool show);
 
 		struct WindowObj
 		{
@@ -110,10 +111,8 @@ namespace PX2Editor
 
 		TopView *mTopView;
 		StartView *mStartView;
-		RenderView *mRenderView;
-		LogicView *mLogicView;
-		bool mIsShowRenderView;
-		UIRenderView *mUIRenderView;
+		RenderView *mRenderViewScene;
+		RenderView *mRenderViewLogic;
 		ProjView *mProjView;
 		ResView *mResView;
 		InspView *mInspView;

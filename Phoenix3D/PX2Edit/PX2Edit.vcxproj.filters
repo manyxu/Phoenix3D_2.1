@@ -8,7 +8,7 @@
     <ClInclude Include="PX2EditPre.hpp" />
     <ClInclude Include="PX2EditDefine.hpp" />
     <ClInclude Include="PX2EditRenderView.hpp">
-      <Filter>RenderView</Filter>
+      <Filter>Views</Filter>
     </ClInclude>
     <ClInclude Include="PX2EditMap.hpp">
       <Filter>Map</Filter>
@@ -23,6 +23,15 @@
       <Filter>NodeCtrls</Filter>
     </ClInclude>
     <ClInclude Include="PX2Edits.hpp" />
+    <ClInclude Include="PX2EditRenderView_Scene.hpp">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EditRenderView_UI.hpp">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EditRenderView_Logic.hpp">
+      <Filter>Views</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -30,7 +39,7 @@
       <Filter>Event</Filter>
     </ClCompile>
     <ClCompile Include="PX2EditRenderView.cpp">
-      <Filter>RenderView</Filter>
+      <Filter>Views</Filter>
     </ClCompile>
     <ClCompile Include="PX2EditMap.cpp">
       <Filter>Map</Filter>
@@ -44,13 +53,19 @@
     <ClCompile Include="PX2SceneNodeCtrl.cpp">
       <Filter>NodeCtrls</Filter>
     </ClCompile>
+    <ClCompile Include="PX2EditRenderView_Scene.cpp">
+      <Filter>Views</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EditRenderView_UI.cpp">
+      <Filter>Views</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EditRenderView_Logic.cpp">
+      <Filter>Views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Event">
       <UniqueIdentifier>{1b237efc-cd28-4ca2-8d66-04894b860179}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="RenderView">
-      <UniqueIdentifier>{3a934333-9c01-4c3a-a083-31770afe72d6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Map">
       <UniqueIdentifier>{60102ffc-17d6-4464-8cae-d41f7adda533}</UniqueIdentifier>
@@ -60,6 +75,9 @@
     </Filter>
     <Filter Include="NodeCtrls">
       <UniqueIdentifier>{cfe27ef9-3f45-42a9-ace5-16d748fbb83a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Views">
+      <UniqueIdentifier>{3a934333-9c01-4c3a-a083-31770afe72d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

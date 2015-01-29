@@ -94,7 +94,6 @@
     <ClInclude Include="PropGrid\wxPropertyExtend.hpp" />
     <ClInclude Include="PX2DlgCreateProject.hpp" />
     <ClInclude Include="PX2E_App.hpp" />
-    <ClInclude Include="PX2E_LogicView.hpp" />
     <ClInclude Include="PX2E_StartView.hpp" />
     <ClInclude Include="PX2E_MainFrame.hpp" />
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -114,7 +113,6 @@
     <ClInclude Include="PX2ObjectPropertyGrid.hpp" />
     <ClInclude Include="PX2E_TimeLineView.hpp" />
     <ClInclude Include="PX2NirvanaUIEventType.hpp" />
-    <ClInclude Include="PX2E_UIRenderView.hpp" />
     <ClInclude Include="PX2wxAui.hpp" />
     <ClInclude Include="PX2wxDockArt.hpp" />
     <ClInclude Include="PX2E_NirMan.hpp" />
@@ -132,7 +130,6 @@
     <ClCompile Include="PropGrid\wxPropertyExtend.cpp" />
     <ClCompile Include="PX2DlgCreateProject.cpp" />
     <ClCompile Include="PX2E_App.cpp" />
-    <ClCompile Include="PX2E_LogicView.cpp" />
     <ClCompile Include="PX2E_StartView.cpp" />
     <ClCompile Include="PX2E_MainFrame.cpp" />
     <ClCompile Include="PX2E_ProjTree.cpp" />
@@ -151,7 +148,6 @@
     <ClCompile Include="PX2ObjectPropertyGrid.cpp" />
     <ClCompile Include="PX2E_TimeLineView.cpp" />
     <ClCompile Include="PX2NirvanaUIEventType.cpp" />
-    <ClCompile Include="PX2E_UIRenderView.cpp" />
     <ClCompile Include="PX2wxAui.cpp" />
     <ClCompile Include="PX2wxDockArt.cpp" />
     <ClCompile Include="PX2E_NirMan.cpp" />
