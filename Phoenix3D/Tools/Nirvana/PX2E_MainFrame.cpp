@@ -68,15 +68,18 @@ bool E_MainFrame::Initlize()
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(44, 61, 91));
 	
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(44, 61, 91));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(44, 61, 91));//44 61 91
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(44, 61, 91));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(39, 39, 39));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(44, 61, 91));
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(77, 96, 130));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(77, 96, 130));
+//	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(0, 0, 130));
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(255, 242, 157));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(255, 242, 157));
+	//mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(255, 242, 157));
+
+	//mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(0, 242, 157));
 
 	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
@@ -138,6 +141,21 @@ void E_MainFrame::DoExecute(Event *event)
 			SetCursor(wxCursor(wxCURSOR_ARROW));
 		}
 	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::EditThemeChange))
+	{
+		if (mAuiManager)
+		{
+			/*wxString paneName = PX2_LM.GetValue("Project");
+			ProjView *projView = (ProjView *)mAuiManager->GetPane(paneName).window;
+			projView->SetBackgroundColour(wxColour(0, 214, 229));
+			mAuiManager->Update();*/
+
+			mProjView->SetBackgroundColour(wxColour(214, 0, 229));
+
+			Refresh();
+			//mAuiManager->Refresh();
+		}
+	}	
 }
 //----------------------------------------------------------------------------
 RenderView *E_MainFrame::GetRenderView()

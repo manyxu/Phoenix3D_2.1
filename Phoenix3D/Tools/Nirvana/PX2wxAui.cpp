@@ -78,7 +78,7 @@ void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
 		{
 			int src_idx = ent.GetSelection();
 			wxString title = GetPageText(src_idx);
-			wxString paneName = "Insp";
+			wxString paneName = "Right";
 			auiMan->GetPane(paneName).caption = title;
 			auiMan->Update();
 		}
@@ -116,7 +116,8 @@ void PX2wxAuiToolBarArt::DrawBackground(
 	wxRect rect = _rect;
 	rect.height++;
 
-	wxColour color = wxColour(207, 214, 229);
+	//wxColour color = wxColour(207, 214, 229);
+	wxColour color = wxColour(0, 214, 229);
 	wxColour startColour = color.ChangeLightness(125);
 	wxColour endColour = color.ChangeLightness(125);
 
@@ -130,7 +131,8 @@ void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
 	wxRect rect = _rect;
 	rect.height++;
 
-	dc.SetBrush(wxColour(214, 219, 233));
+	//dc.SetBrush(wxColour(214, 219, 233));
+	dc.SetBrush(wxColour(0, 219, 0));
 
 	dc.DrawRectangle(rect.GetX() - 1, rect.GetY() - 1,
 		rect.GetWidth() + 2, rect.GetHeight() + 1);
@@ -194,7 +196,8 @@ void PX2wxAuiTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
 void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 	const wxRect& rect)
 {
-	dc.SetBrush(wxBrush(wxColour(44, 61, 91)));
+	//dc.SetBrush(wxBrush(wxColour(44, 61, 91)));
+	dc.SetBrush(wxBrush(wxColour(0, 0, 0)));
 	dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 5);
 
 	//// draw base line

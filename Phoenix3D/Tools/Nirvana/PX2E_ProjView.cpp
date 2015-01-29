@@ -17,6 +17,7 @@ wxWindow(parent, wxID_ANY),
 mProjTree(0)
 {
 	SetBackgroundColour(wxColour(207, 214, 229));
+	//SetBackgroundColour(wxColour(0, 214, 229));
 
 	wxBoxSizer* bSizer54;
 	bSizer54 = new wxBoxSizer(wxVERTICAL);
@@ -26,8 +27,10 @@ mProjTree(0)
 
 	mProjTreeBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
-	mProjTreeBar->SetBackgroundColour(wxColour(207, 214, 229));
+	//mProjTreeBar->SetBackgroundColour(wxColour(207, 214, 229));
+	mProjTreeBar->SetBackgroundColour(wxColour(0, 214, 229));
 	mProjTreeBar->SetForegroundColour(wxColour(207, 214, 229));
+	//mProjTreeBar->SetForegroundColour(wxColour(0, 214, 229));
 	mProjTreeBar->Realize();
 
 	bSizer55->Add(mProjTreeBar, 0, wxEXPAND | wxBOTTOM, 5);
