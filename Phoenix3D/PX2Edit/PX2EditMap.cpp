@@ -58,12 +58,7 @@ bool EditMap::LoadProject(const char *pathname)
 		const std::string &uiFilename = newProj->GetUIFilename();
 		if (!uiFilename.empty())
 		{
-			ObjectPtr uiObj = PX2_RM.BlockLoad(uiFilename);
-			UIFrame *ui = DynamicCast<UIFrame>(uiObj);
-			if (ui)
-			{
-				Project::GetSingleton().SetUIFrame(ui);
-			}
+			LoadUI(uiFilename);
 		}
 
 		mProjectFilePath = pathname;
@@ -235,6 +230,23 @@ void EditMap::CloseScene()
 		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::CloseScene);
 		PX2_EW.BroadcastingLocalEvent(ent);
 	}
+}
+//----------------------------------------------------------------------------
+bool EditMap::LoadUI(const std::string &pathname)
+{
+	ObjectPtr uiObj = PX2_RM.BlockLoad(pathname);
+	UIFrame *ui = DynamicCast<UIFrame>(uiObj);
+	if (ui)
+	{
+		Project::GetSingleton().SetUIFrame(ui);
+
+		Event *eventUI = EditEventSpace::CreateEventX(EditEventSpace::LoadedUI);
+		EventWorld::GetSingleton().BroadcastingLocalEvent(eventUI);
+
+		return true;
+	}
+
+	return false;
 }
 //----------------------------------------------------------------------------
 std::string EditMap::_CalSavePath(const std::string &pathname)

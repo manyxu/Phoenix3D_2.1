@@ -467,7 +467,7 @@ void E_MainFrame::_CreateMainView()
 	objStart.Name = "StartView";
 	objs.push_back(objStart);
 
-	mRenderViewScene = new RenderView(RenderView::RVT_SCENE, this);
+	mRenderViewScene = new RenderView(RenderView::RVT_SCENEUI, this);
 	WindowObj objRenderViewScene;
 	objRenderViewScene.TheWindow = mRenderViewScene;
 	objRenderViewScene.Caption = PX2_LMVAL("Stage");

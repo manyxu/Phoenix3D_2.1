@@ -17,7 +17,7 @@ namespace PX2Editor
 	public:
 		enum RenderViewType
 		{
-			RVT_SCENE,
+			RVT_SCENEUI,
 			RVT_LOGIC,
 			RVT_MAX_TYPE
 		};

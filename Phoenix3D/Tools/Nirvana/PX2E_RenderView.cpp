@@ -187,7 +187,7 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 		it->second->OnRightUp(pos);
 	}
 
-	if (RVT_SCENE == mRenderViewType)
+	if (RVT_SCENEUI == mRenderViewType)
 	{
 		if (!mIsRightDownOnMotion)
 		{
@@ -226,19 +226,10 @@ void RenderView::OnMotion(wxMouseEvent& e)
 //----------------------------------------------------------------------------
 void RenderView::DoExecute(PX2::Event *event)
 {
-	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject) ||
-		EditEventSpace::IsEqual(event, EditEventSpace::LoadedProject))
+	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject))
 	{
 		if (RVT_LOGIC == mRenderViewType)
 		{
-			//mEditRenderView = new0 EditRenderView_Logic();
-
-			//wxSize size = GetClientSize();
-			//Sizef sz(size.x, size.y);
-
-			//mEditRenderView->SetPt_Data(GetHandle());
-			//mEditRenderView->SetPt_Size(sz);
-			//mEditRenderView->InitlizeRendererStep();
 		}
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseProject))
@@ -251,7 +242,7 @@ void RenderView::DoExecute(PX2::Event *event)
 	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene) ||
 		EditEventSpace::IsEqual(event, EditEventSpace::LoadedScene))
 	{
-		if (RVT_SCENE == mRenderViewType)
+		if (RVT_SCENEUI == mRenderViewType)
 		{
 			std::map<std::string, PX2::EditRenderViewPtr>::iterator it
 				= mEditRenderViews.find("Scene");
@@ -277,7 +268,7 @@ void RenderView::DoExecute(PX2::Event *event)
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
-		if (RVT_SCENE == mRenderViewType)
+		if (RVT_SCENEUI == mRenderViewType)
 		{
 			std::map<std::string, PX2::EditRenderViewPtr>::iterator it
 				= mEditRenderViews.find("Scene");
