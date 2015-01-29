@@ -288,7 +288,7 @@ void ObjectPropertyGrid::OnPropertyGridChange(wxPropertyGridEvent &event)
 			//}
 
 			//// do change
-			//obj->OnPropertyChanged(propObj);
+			obj->OnPropertyChanged(propObj);
 
 			//// appended events
 			//if (propLabel == "Name")
