@@ -53,8 +53,6 @@ namespace PX2
 		APoint mSelectPoint;
 
 	public:
-		void OnMoveHV(bool isAltDown, float h, float v);
-
 		virtual void OnSize(const Sizef& size);
 		virtual void OnLeftDown(const APoint &pos);
 		virtual void OnLeftUp(const APoint &pos);

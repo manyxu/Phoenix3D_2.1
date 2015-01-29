@@ -26,10 +26,10 @@
     <ClInclude Include="PX2EditRenderView_Scene.hpp">
       <Filter>Views</Filter>
     </ClInclude>
-    <ClInclude Include="PX2EditRenderView_UI.hpp">
+    <ClInclude Include="PX2EditRenderView_Logic.hpp">
       <Filter>Views</Filter>
     </ClInclude>
-    <ClInclude Include="PX2EditRenderView_Logic.hpp">
+    <ClInclude Include="PX2EditRenderView_UI.hpp">
       <Filter>Views</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,10 +56,10 @@
     <ClCompile Include="PX2EditRenderView_Scene.cpp">
       <Filter>Views</Filter>
     </ClCompile>
-    <ClCompile Include="PX2EditRenderView_UI.cpp">
+    <ClCompile Include="PX2EditRenderView_Logic.cpp">
       <Filter>Views</Filter>
     </ClCompile>
-    <ClCompile Include="PX2EditRenderView_Logic.cpp">
+    <ClCompile Include="PX2EditRenderView_UI.cpp">
       <Filter>Views</Filter>
     </ClCompile>
   </ItemGroup>

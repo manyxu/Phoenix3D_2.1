@@ -54,7 +54,7 @@ namespace PX2Editor
 
 		int mTimerID;
 		wxTimer mTimer;
-		PX2::EditRenderViewPtr mEditRenderView;
+		std::map<std::string, PX2::EditRenderViewPtr> mEditRenderViews;
 		wxSize mSize;
 
 		wxMenu *mEditMenu;

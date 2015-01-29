@@ -62,8 +62,6 @@ void RenderView::OnTimer(wxTimerEvent& event)
 
 	if (mTimerID == event.GetId())
 	{
-		if (mEditRenderView)
-			mEditRenderView->Draw();
 	}
 }
 //----------------------------------------------------------------------------
@@ -71,9 +69,10 @@ void RenderView::OnSize(wxSizeEvent& e)
 {
 	wxSize size = e.GetSize();
 
-	if (mEditRenderView)
+	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
+	for (; it != mEditRenderViews.end(); it++)
 	{
-		mEditRenderView->OnSize(Sizef((float)size.GetWidth(), 
+		it->second->OnSize(Sizef((float)size.GetWidth(),
 			(float)size.GetHeight()));
 	}
 
@@ -85,7 +84,7 @@ void RenderView::OnPaint(wxPaintEvent& e)
 	wxPaintDC dc(this);
 	PX2_UNUSED(e);
 
-	if (!mEditRenderView)
+	if (mEditRenderViews.empty())
 	{
 		dc.Clear();
 	}
@@ -104,9 +103,10 @@ void RenderView::OnLeftDown(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = _wxPointToAPoint(mousePos);
 
-	if (mEditRenderView)
+	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
+	for (; it != mEditRenderViews.end(); it++)
 	{
-		mEditRenderView->OnLeftDown(pos);
+		it->second->OnLeftDown(pos);
 	}
 }
 //----------------------------------------------------------------------------
@@ -115,9 +115,10 @@ void RenderView::OnLeftUp(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = _wxPointToAPoint(mousePos);
 
-	if (mEditRenderView)
+	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
+	for (; it != mEditRenderViews.end(); it++)
 	{
-		mEditRenderView->OnLeftUp(pos);
+		it->second->OnLeftUp(pos);
 	}
 }
 //----------------------------------------------------------------------------
@@ -128,9 +129,10 @@ void RenderView::OnMiddleDown(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = _wxPointToAPoint(mousePos);
 
-	if (mEditRenderView)
+	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
+	for (; it != mEditRenderViews.end(); it++)
 	{
-		mEditRenderView->OnMiddleDown(pos);
+		it->second->OnMiddleDown(pos);
 	}
 }
 //----------------------------------------------------------------------------
@@ -139,9 +141,10 @@ void RenderView::OnMiddleUp(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = _wxPointToAPoint(mousePos);
 
-	if (mEditRenderView)
+	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
+	for (; it != mEditRenderViews.end(); it++)
 	{
-		mEditRenderView->OnMiddleUp(pos);
+		it->second->OnMiddleUp(pos);
 	}
 }
 //----------------------------------------------------------------------------
@@ -149,9 +152,10 @@ void RenderView::OnMouseWheel(wxMouseEvent& e)
 {
 	float delta = (float)e.GetWheelRotation();
 
-	if (mEditRenderView)
+	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
+	for (; it != mEditRenderViews.end(); it++)
 	{
-		mEditRenderView->OnMouseWheel(delta);
+		it->second->OnMouseWheel(delta);
 	}
 }
 //----------------------------------------------------------------------------
@@ -165,9 +169,10 @@ void RenderView::OnRightDown(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = _wxPointToAPoint(mousePos);
 
-	if (mEditRenderView)
+	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
+	for (; it != mEditRenderViews.end(); it++)
 	{
-		mEditRenderView->OnRightDown(pos);
+		it->second->OnRightDown(pos);
 	}
 }
 //----------------------------------------------------------------------------
@@ -176,27 +181,28 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = _wxPointToAPoint(mousePos);
 
-	if (mEditRenderView)
+	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
+	for (; it != mEditRenderViews.end(); it++)
 	{
-		mEditRenderView->OnRightUp(pos);
+		it->second->OnRightUp(pos);
+	}
 
-		if (RVT_SCENE == mRenderViewType)
+	if (RVT_SCENE == mRenderViewType)
+	{
+		if (!mIsRightDownOnMotion)
 		{
-			if (!mIsRightDownOnMotion)
+			if (mEditMenu)
 			{
-				if (mEditMenu)
-				{
-					delete mEditMenu;
-					mEditMenu = 0;
-				}
-
-				mEditMenu = new wxMenu();
-				NirMan::GetSingleton().SetCurMenu(mEditMenu);
-
-				PX2_SM.CallString("CreateStageEditMenu()");
-
-				if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
+				delete mEditMenu;
+				mEditMenu = 0;
 			}
+
+			mEditMenu = new wxMenu();
+			NirMan::GetSingleton().SetCurMenu(mEditMenu);
+
+			PX2_SM.CallString("CreateStageEditMenu()");
+
+			if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
 		}
 	}
 }
@@ -206,9 +212,10 @@ void RenderView::OnMotion(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = _wxPointToAPoint(mousePos);
 
-	if (mEditRenderView)
+	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
+	for (; it != mEditRenderViews.end(); it++)
 	{
-		mEditRenderView->OnMotion(pos);
+		it->second->OnMotion(pos);
 	}
 
 	if (mIsRightDown)
@@ -224,8 +231,6 @@ void RenderView::DoExecute(PX2::Event *event)
 	{
 		if (RVT_LOGIC == mRenderViewType)
 		{
-			mEditRenderView = 0;
-
 			//mEditRenderView = new0 EditRenderView_Logic();
 
 			//wxSize size = GetClientSize();
@@ -240,7 +245,7 @@ void RenderView::DoExecute(PX2::Event *event)
 	{
 		if (RVT_LOGIC == mRenderViewType)
 		{
-			mEditRenderView = 0;
+			mEditRenderViews.clear();
 		}
 	}
 	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene) ||
@@ -248,26 +253,38 @@ void RenderView::DoExecute(PX2::Event *event)
 	{
 		if (RVT_SCENE == mRenderViewType)
 		{
-			mEditRenderView = 0;
+			std::map<std::string, PX2::EditRenderViewPtr>::iterator it
+				= mEditRenderViews.find("Scene");
+			if (it != mEditRenderViews.end())
+			{
+				mEditRenderViews.erase(it);
+			}
 
 			RenderStep *sceneRenderStep = PX2_PROJ.GetSceneRenderStep();
 			Camera *sceneRenderStepCamera = sceneRenderStep->GetCamera();
 			Renderer *sceneRenderStepRenderer = sceneRenderStep->GetRenderer();
 
-			mEditRenderView = new0 EditRenderView_Scene();
-			mEditRenderView->SetRenderer(sceneRenderStepRenderer);
-			mEditRenderView->SetCamera(sceneRenderStepCamera);
+			EditRenderView *renderView = new0 EditRenderView_Scene();
+			renderView->SetRenderer(sceneRenderStepRenderer);
+			renderView->SetCamera(sceneRenderStepCamera);
 
 			wxSize size = GetClientSize();
 			Sizef sz(size.x, size.y);
-			mEditRenderView->OnSize(sz);
+			renderView->OnSize(sz);
+
+			mEditRenderViews["Scene"] = renderView;
 		}
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
 		if (RVT_SCENE == mRenderViewType)
 		{
-			mEditRenderView = 0;
+			std::map<std::string, PX2::EditRenderViewPtr>::iterator it
+				= mEditRenderViews.find("Scene");
+			if (it != mEditRenderViews.end())
+			{
+				mEditRenderViews.erase(it);
+			}
 		}
 	}
 }
