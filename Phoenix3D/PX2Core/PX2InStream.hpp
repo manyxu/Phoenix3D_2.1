@@ -97,7 +97,7 @@ public_internal:
 
 		// 帮助函数
 		int GetBytesRead () const;
-		void ReadUniqueID (Object* object, bool shareptr=false);
+		void ReadUniqueID (Object* object);
 		template <typename T> void ResolveLink (T*& object);
 		template <typename T> void ResolveLink (int numElements, T** object);
 		template <typename T> void ResolveLink (Pointer0<T>& object);
@@ -105,14 +105,8 @@ public_internal:
 			Pointer0<T>* objects);
 
 	private:
-		struct LinkDesc
-		{
-			LinkDesc(Object *o, bool b) : obj(o), shareptr(b){}
-			Object *obj;
-			bool shareptr;
-		};
 		typedef std::map<uint64_t, Object*> LinkMap; //< uint64_t记录在mOrdered中的顺序号，Object*记录当前对象指针
-		typedef std::vector<LinkDesc> LinkArray;
+		typedef std::vector<Object*> LinkArray;
 
 		// 需要做持久化的对象列表
 		std::vector<Object*> mTopLevel;

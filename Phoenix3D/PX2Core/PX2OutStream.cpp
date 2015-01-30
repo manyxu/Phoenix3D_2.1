@@ -10,7 +10,7 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-OutStream::OutStream () : mForCopy(false)
+OutStream::OutStream ()
 {
 	mStreamType = ST_OUT;
 }
@@ -64,7 +64,7 @@ void OutStream::Save (int& bufferSize, char*& buffer, int mode)
 	const Object* object = 0;
 	unsigned int uniqueID = 0;
 	mRegistered.insert(std::make_pair(object, uniqueID));
-	mOrdered.push_back(RegObjDesc(object, false));
+	mOrdered.push_back(object);
 
 	// 需要保存的对象进行注册ct->Register(*this);
 	std::vector<Object*>::iterator iterT = mTopLevel.begin();
@@ -81,20 +81,12 @@ void OutStream::Save (int& bufferSize, char*& buffer, int mode)
 	bufferSize = 0;
 	for (++iterO; iterO != endO; ++iterO)
 	{
-		if(iterO->shareptr)
-		{
-			bufferSize += sizeof(Object *) + sizeof(unsigned int) + sizeof(int); //如果是shareptr, 保存为一个长度为0的string和一个指针值 + unique id
-		}
-		else
-		{
-			object = iterO->ptr;
-			bufferSize += object->GetStreamingSize(*this);
-		}
+		object = *iterO;
+		bufferSize += object->GetStreamingSize(*this);
 	}
 
 	// 为"Top Level"字符串调整缓冲区大小
 	std::string topLevel("Top Level");
-	std::string zeroStr("");
 	int numTopLevelBytes = GetStreamingSize(topLevel);
 	bufferSize += numTopLevelBytes*(int)mTopLevel.size();
 
@@ -107,22 +99,12 @@ void OutStream::Save (int& bufferSize, char*& buffer, int mode)
 	endO = mOrdered.end();
 	for (++iterO, uniqueID = 1; iterO != endO; ++iterO, ++uniqueID)
 	{
-		object = iterO->ptr;
+		object = *iterO;
 		if (IsTopLevel(object))
 		{
 			WriteString(topLevel);
 		}
-
-		if(iterO->shareptr)
-		{
-			WriteString(zeroStr);
-			mTarget.Write(sizeof(Object *), &object);
-			mTarget.Write(sizeof(unsigned int), &uniqueID);
-		}
-		else
-		{
-			object->Save(*this);
-		}
+		object->Save(*this);
 	}
 
 	// 清空容器，为其他保存作准备。
@@ -268,7 +250,7 @@ int OutStream::GetBytesWritten () const
 	return mTarget.GetNumBytesProcessed();
 }
 //----------------------------------------------------------------------------
-bool OutStream::RegisterRoot (const Object* object, bool shareptr)
+bool OutStream::RegisterRoot (const Object* object)
 {
 	if (mRegistered.find(object) == mRegistered.end())
 	{
@@ -286,7 +268,7 @@ bool OutStream::RegisterRoot (const Object* object, bool shareptr)
 
 		unsigned int uniqueID = (unsigned int)mOrdered.size();
 		mRegistered.insert(std::make_pair(object, uniqueID));
-		mOrdered.push_back(RegObjDesc(object, shareptr));
+		mOrdered.push_back(object);
 		return true;
 	}
 	return false;

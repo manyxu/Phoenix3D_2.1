@@ -181,17 +181,16 @@ bool OutStream::WritePointerN (int numElements, const Pointer0<T>* objects)
 }
 //----------------------------------------------------------------------------
 template <typename T>
-void OutStream::Register (const T* object, bool shareptr)
+void OutStream::Register(const T* object)
 {
 	if (object)
 	{
-		if(shareptr) RegisterRoot(object, true);
-		else object->Register(*this);
+		object->Register(*this);
 	}
 }
 //----------------------------------------------------------------------------
 template <typename T>
-void OutStream::Register (int numElements, T* const* objects)
+void OutStream::Register(int numElements, T* const* objects)
 {
 	for (int i = 0; i < numElements; ++i)
 	{
@@ -200,17 +199,16 @@ void OutStream::Register (int numElements, T* const* objects)
 }
 //----------------------------------------------------------------------------
 template <typename T>
-void OutStream::Register (const Pointer0<T>& object, bool shareptr)
+void OutStream::Register(const Pointer0<T>& object)
 {
 	if (object)
 	{
-		if(shareptr) RegisterRoot(object, true);
-		else object->Register(*this);
+		object->Register(*this);
 	}
 }
 //----------------------------------------------------------------------------
 template <typename T>
-void OutStream::Register (int numElements, Pointer0<T> const* objects)
+void OutStream::Register(int numElements, Pointer0<T> const* objects)
 {
 	for (int i = 0; i < numElements; ++i)
 	{
