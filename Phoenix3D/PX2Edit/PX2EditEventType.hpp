@@ -17,7 +17,10 @@ namespace PX2
 	PX2_EVENT(LoadedScene)
 	PX2_EVENT(SavedScene)
 	PX2_EVENT(CloseScene)
+	PX2_EVENT(NewUI)
 	PX2_EVENT(LoadedUI)
+	PX2_EVENT(CloseUI)
+	PX2_EVENT(NewLogic)
 	PX2_EVENT(LoadedLogic)
 
 	PX2_EVENT(ObjectTransformChanged)

@@ -6,6 +6,7 @@
 #include "PX2Object.hpp"
 #include "PX2Size.hpp"
 #include "PX2RenderStep.hpp"
+#include "PX2CameraNode.hpp"
 
 namespace PX2
 {
@@ -16,13 +17,24 @@ namespace PX2
 		UIView();
 		~UIView();
 
-		void SetCameraAutoCenter(bool autoCenter);
-		bool IsCameraAutoCenter() const;
+	public:
+		virtual void SetNode(Node *node);
+
+	public:
+		CameraNode *GetCameraNode();
+
+		void SetCameraAutoAdjust(bool autoAdjust);
+		bool IsCameraAutoAdjust() const;
+
+		void SetCameraFrustumSize(const Sizef &size);
+		const Sizef &GetCameraFrustumSize() const;
 
 	protected:
-		virtual void OnRectChange();
+		virtual void OnSizeChange();
 
-		bool mIsCameraAutoCenter;
+		bool mIsCameraAutoAdjust;
+		CameraNodePtr mCameraNode;
+		Sizef mCameraFrustumSize;
 
 		// Pick
 	public:

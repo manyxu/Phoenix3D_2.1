@@ -7,8 +7,6 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 UIManager::UIManager()
 {
-	mDefaultUIView = new0 UIView();
-	AddUIView("DefaultUIView", mDefaultUIView);
 }
 //----------------------------------------------------------------------------
 UIManager::~UIManager()
@@ -17,21 +15,10 @@ UIManager::~UIManager()
 //----------------------------------------------------------------------------
 void UIManager::Clear()
 {
-	mDefaultUIView->Clear();
-
 	std::map<std::string, UIViewPtr>::iterator it = mUIViews.begin();
 	for (; it != mUIViews.end(); it++)
 	{
 		it->second->Clear();
-	}
-}
-//----------------------------------------------------------------------------
-void UIManager::Update(double appSeconds, double elapsedSeconds)
-{
-	std::map<std::string, UIViewPtr>::iterator it = mUIViews.begin();
-	for (; it != mUIViews.end(); it++)
-	{
-		it->second->Update(appSeconds, elapsedSeconds);
 	}
 }
 //----------------------------------------------------------------------------
@@ -55,8 +42,6 @@ bool UIManager::AddUIView(const std::string &name, UIView *view)
 
 	mUIViews[name] = view;
 
-	PX2_GR.AddRenderStep(view);
-
 	return true;
 }
 //----------------------------------------------------------------------------
@@ -66,8 +51,6 @@ bool UIManager::RemoveUIView(const std::string &name)
 
 	if (it == mUIViews.end())
 	{
-		PX2_GR.RemoveRenderStep(it->second);
-
 		mUIViews.erase(it);
 
 		return true;

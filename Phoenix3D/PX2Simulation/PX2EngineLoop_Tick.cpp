@@ -17,10 +17,11 @@ void EngineLoop::Tick()
 	Project *proj = Project::GetSingletonPtr();
 	if (!proj) return;
 
-	RenderStep *renderStep = proj->GetSceneRenderStep();
-	if (renderStep) renderStep->Update(mAppTime, mElapsedTime);
+	//RenderStep *renderStep = proj->GetSceneRenderStep();
+	//if (renderStep) renderStep->Update(mAppTime, mElapsedTime);
 
-	mUIManager->Update(mAppTime, mElapsedTime);
+	//mUIManager->Update(mAppTime, mElapsedTime);
+	PX2_GR.Update(mAppTime, mElapsedTime);
 
 	PX2_GR.ComputeVisibleSet();
 

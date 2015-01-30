@@ -112,10 +112,9 @@ bool EngineLoop::Initlize()
 bool EngineLoop::InitlizeRenderer()
 {
 	Renderer *defRenderer = CreateRenderer(mPt_Data, (int)mPt_Size.Width,
-		(int)mPt_Size.Height, 2, mRendererInput);
+		(int)mPt_Size.Height, 0, mRendererInput);
 
 	Renderer::SetDefaultRenderer(defRenderer);
-	mUIManager->GetDefaultUIView()->SetRenderer(defRenderer);
 
 	return true;
 }

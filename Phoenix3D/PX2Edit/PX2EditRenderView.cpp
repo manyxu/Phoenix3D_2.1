@@ -32,7 +32,7 @@ bool EditRenderView::InitlizeRendererStep()
 
 	SetRenderer(mRenderer);
 
-	mRenderStep->SetRect(Rectf(0.0f, 0.0f, mSize.Width, mSize.Height));
+	mRenderStep->SetSize(Sizef(mSize.Width, mSize.Height));
 
 	mIsRenderCreated = true;
 
@@ -116,6 +116,16 @@ void EditRenderView::SetCamera(Camera *camera)
 		mRenderStepCtrl1->SetCamera(camera);
 }
 //----------------------------------------------------------------------------
+void EditRenderView::SetRenderStep(RenderStep *rs)
+{
+	mRenderStep = rs;
+}
+//----------------------------------------------------------------------------
+RenderStep *EditRenderView::GetRenderStep()
+{
+	return mRenderStep;
+}
+//----------------------------------------------------------------------------
 RenderStep *EditRenderView::GetRenderStepCtrl()
 {
 	return mRenderStepCtrl;
@@ -151,19 +161,17 @@ void EditRenderView::OnSize(const Sizef& size)
 	Project *proj = Project::GetSingletonPtr();
 	if (!proj) return;
 
-	Rectf rect = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
-
 	RenderStep *renderStep = proj->GetSceneRenderStep();
-	renderStep->SetRect(rect);
+	renderStep->SetSize(mSize);
 
 	if (mRenderStep)
-		mRenderStep->SetRect(rect);
+		mRenderStep->SetSize(mSize);
 
 	if (mRenderStepCtrl)
-		mRenderStepCtrl->SetRect(rect);
+		mRenderStepCtrl->SetSize(mSize);
 
 	if (mRenderStepCtrl1)
-		mRenderStepCtrl1->SetRect(rect);
+		mRenderStepCtrl1->SetSize(mSize);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnLeftDown(const APoint &pos)

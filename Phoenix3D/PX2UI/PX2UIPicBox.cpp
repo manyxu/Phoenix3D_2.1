@@ -722,8 +722,8 @@ int UIPicBox::GetStreamingSize(Stream &stream) const
 {
 	int size = TriMesh::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
 	size += PX2_ENUMSIZE(mPicBoxType);
-	size += PX2_BOOLSIZE(mIsDynamic);
 	size += sizeof(mAnchorPoint),
 	size += sizeof(mSize);
 	size += sizeof(mCornerSize);

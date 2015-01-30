@@ -72,7 +72,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("Project", "工程")
 	PX2_LM:AddItem1("Scene", "场景")
 	PX2_LM:AddItem1("TimeLine", "时间线")
-	PX2_LM:AddItem1("Stage", "场景")
+	PX2_LM:AddItem1("Stage", "舞台")
 	PX2_LM:AddItem1("ResView", "资源")
 	PX2_LM:AddItem1("InspView", "检视")
 	

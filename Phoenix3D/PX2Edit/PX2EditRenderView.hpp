@@ -37,6 +37,8 @@ namespace PX2
 	public:
 		void SetRenderer(Renderer *renderer);
 		void SetCamera(Camera *camera);
+		void SetRenderStep(RenderStep *rs);
+		RenderStep *GetRenderStep();
 		RenderStep *GetRenderStepCtrl();
 		RenderStep *GetRenderStepCtrl1();
 		void Draw();

@@ -17,18 +17,14 @@ namespace PX2
 		virtual ~UIManager();
 
 		void Clear();
-		void Update(double appSeconds, double elapsedSeconds);
 
 		// UIView
 	public:
-		UIView *GetDefaultUIView();
-
 		bool IsHasUIView(const std::string &name) const;
 		bool AddUIView(const std::string &name, UIView *view);
 		bool RemoveUIView(const std::string &name);
 
 	protected:
-		UIViewPtr mDefaultUIView;
 		std::map<std::string, UIViewPtr> mUIViews;
 	};
 

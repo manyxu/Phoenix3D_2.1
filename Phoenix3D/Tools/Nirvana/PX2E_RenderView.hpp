@@ -47,6 +47,9 @@ namespace PX2Editor
 		RenderView();
 		PX2::APoint _wxPointToAPoint(wxPoint &point);
 
+		void _CloseEidtRenderView(const std::string &name);
+		void _NewEditRenderView(const std::string &name);
+
 	protected:
 		bool mIsInited;
 

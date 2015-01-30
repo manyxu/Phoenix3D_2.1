@@ -1,8 +1,18 @@
 // PX2UIView.inl
 
 //----------------------------------------------------------------------------
-inline bool UIView::IsCameraAutoCenter() const
+inline CameraNode *UIView::GetCameraNode()
 {
-	return mIsCameraAutoCenter;
+	return mCameraNode;
+}
+//----------------------------------------------------------------------------
+inline const Sizef &UIView::GetCameraFrustumSize() const
+{
+	return mCameraFrustumSize;
+}
+//----------------------------------------------------------------------------
+inline bool UIView::IsCameraAutoAdjust() const
+{
+	return mIsCameraAutoAdjust;
 }
 //----------------------------------------------------------------------------

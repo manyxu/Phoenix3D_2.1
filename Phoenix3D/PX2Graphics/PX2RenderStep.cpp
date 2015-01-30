@@ -7,9 +7,10 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 RenderStep::RenderStep() :
 mRenderer(0),
-mIsUpdated(false)
+mIsUpdated(false),
+mIsSizeChangeReAdjustCamera(true)
 {
-	mRect.Set(0.0f, 0.0f, 1024.0f, 768.0f);
+	mSize.Set(1024.0f, 768.0f);
 }
 //----------------------------------------------------------------------------
 RenderStep::~RenderStep()
@@ -32,35 +33,34 @@ void RenderStep::Update(double appSeconds, double elapsedSeconds)
 	if (mNode) mNode->Update(appSeconds, false);
 }
 //----------------------------------------------------------------------------
-void RenderStep::SetRect(const Rectf &rect)
+void RenderStep::SetSize(const Sizef &rect)
 {
-	mRect = rect;
+	mSize = rect;
 
-	OnRectChange();
+	OnSizeChange();
 }
 //----------------------------------------------------------------------------
-Sizef RenderStep::GetSize() const
+void RenderStep::SetSizeChangeReAdjustCamera(bool doReAdjust)
 {
-	return Sizef(mRect.Width(), mRect.Height());
+	mIsSizeChangeReAdjustCamera = doReAdjust;
 }
 //----------------------------------------------------------------------------
-void RenderStep::OnRectChange()
+void RenderStep::OnSizeChange()
 {
-	if (mRenderer)
-	{
-		mRenderer->SetViewport(mRect);
-		mRenderer->ResizeWindow((int)mRect.Width(), (int)mRect.Height());
-	}
-
-	if (mCamera)
+	if (mIsSizeChangeReAdjustCamera && mCamera && mCamera->IsPerspective())
 	{
 		float fov = 0.0f;
 		float asp = 1.0f;
 		float dMin = 0.0f;
 		float dMax = 0.0f;
 		mCamera->GetFrustum(fov, asp, dMin, dMax);
-		mCamera->SetFrustum(fov, mRect.Width() / mRect.Height(), dMin, dMax);
+		mCamera->SetFrustum(fov, mSize.Width / mSize.Height, dMin, dMax);
 	}
+}
+//----------------------------------------------------------------------------
+void RenderStep::SetViewPort(const Rectf &viewPort)
+{
+	mViewPort = viewPort;
 }
 //----------------------------------------------------------------------------
 void RenderStep::SetCamera(Camera *camera)
@@ -73,13 +73,17 @@ bool RenderStep::GetPickRay(int x, int y, APoint& origin, AVector& direction)
 {
 	if (!mCamera) return false;
 
-	if (mRect.IsEmpty()) return false;
+	Rectf viewPort = mViewPort;
+	if (viewPort.IsEmpty())
+		viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
+
+	if (viewPort.IsEmpty()) return false;
 
 	// Get the current viewport and test whether (x,y) is in it.
-	float viewX = mRect.Left;
-	float viewY = mRect.Bottom;
-	float viewW = mRect.Width();
-	float viewH = mRect.Height();
+	float viewX = viewPort.Left;
+	float viewY = viewPort.Bottom;
+	float viewW = viewPort.Width();
+	float viewH = viewPort.Height();
 
 	// Get the [0,1]^2-normalized coordinates of (x,y).
 	float r = ((float)(x - viewX)) / (float)viewW;
@@ -131,6 +135,11 @@ void RenderStep::Draw()
 
 		mRenderer->InitRenderStates();
 
+		Rectf viewPort = mViewPort;
+		if (viewPort.IsEmpty())
+			viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
+		mRenderer->SetViewport(viewPort);
+
 		mRenderer->SetCamera(mCamera);
 		mRenderer->Draw(mCuller.GetVisibleSet());
 
@@ -140,6 +149,10 @@ void RenderStep::Draw()
 //----------------------------------------------------------------------------
 std::pair<float, float> RenderStep::CalPixelToWorld()
 {
+	Rectf viewPort = mViewPort;
+	if (viewPort.IsEmpty())
+		viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
+
 	std::pair<float, float> pixelToWorld;
 
 	if (mCamera)
@@ -148,8 +161,8 @@ std::pair<float, float> RenderStep::CalPixelToWorld()
 		{
 			float rMin = mCamera->GetRMin();
 			float uMin = mCamera->GetUMin();
-			float viewPortWidth = mRect.Width();
-			float viewPortHeight = mRect.Height();
+			float viewPortWidth = viewPort.Width();
+			float viewPortHeight = viewPort.Height();
 
 			float worldW = 2.0f * -rMin;
 			float worldH = 2.0f * -uMin;
@@ -164,8 +177,8 @@ std::pair<float, float> RenderStep::CalPixelToWorld()
 		{
 			float rMin = mCamera->GetRMin();
 			float uMin = mCamera->GetUMin();
-			float viewPortWidth = mRect.Width();
-			float viewPortHeight = mRect.Height();
+			float viewPortWidth = viewPort.Width();
+			float viewPortHeight = viewPort.Height();
 
 			float worldW = 2.0f * -rMin;
 			float worldH = 2.0f * -uMin;

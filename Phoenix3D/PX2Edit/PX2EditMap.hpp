@@ -31,6 +31,7 @@ namespace PX2
 		void CloseScene();
 
 		bool LoadUI(const std::string &pathname);
+		void CloseUI();
 
 	protected:
 		std::string _CalSavePath(const std::string &pathname);

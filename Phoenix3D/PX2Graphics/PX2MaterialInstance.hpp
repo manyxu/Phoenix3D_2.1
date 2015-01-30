@@ -81,8 +81,7 @@ namespace PX2
 	protected:
 		void _RefreshMaterial(const std::string &mtlFilename,
 			const std::string &intanceName);
-		void _RefreshMaterialParams(ShaderParameters *oldParam,
-			ShaderParametersPtr &newParam, Shader *shader);
+		void _RefreshMaterialParams(ShaderParametersPtr &newParam, Shader *shader);
 
 		MaterialPtr mMaterial;
 		int mTechniqueIndex;
