@@ -24,6 +24,8 @@ E_App::~E_App()
 //-----------------------------------------------------------------------------
 bool E_App::OnInit()
 {
+	PX2_ENGINELOOP.Initlize();
+
 	wxLog::SetLogLevel(0);
 
 	wxImage::AddHandler(new wxBMPHandler());
@@ -54,8 +56,6 @@ bool E_App::OnInit()
 #endif
 #endif
 
-	PX2_ENGINELOOP.Initlize();
-
 	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
 	luaMan->CallFile("DataEditor/scripts/language.lua");
 
@@ -82,8 +82,6 @@ bool E_App::OnInit()
 
 	luaMan->CallFile("DataEditor/scripts/start.lua");
 	ResTree::GetSingleton().UpdateOnPath("Data/");
-
-	mMainFrame->AddEventHandlers();
 
 	mMainFrame->Show(true);
 

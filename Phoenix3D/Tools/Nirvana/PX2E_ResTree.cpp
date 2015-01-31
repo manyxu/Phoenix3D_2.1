@@ -3,6 +3,8 @@
 #include "PX2E_ResTree.hpp"
 #include "PX2Project.hpp"
 #include "PX2Edit.hpp"
+#include "PX2NirvanaEventType.hpp"
+#include "PX2EditEventType.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -47,17 +49,14 @@ ResTree::~ResTree()
 //-----------------------------------------------------------------------------
 void ResTree::OnSelChanged(wxTreeEvent& event)
 {
-	Project *proj = Project::GetSingletonPtr();
-
-	if (!proj)
-		return;
-
 	wxTreeItemId id = event.GetItem();
 
 	ResTreeItem *item = GetItem(id);
-	if (item)
-	{
-	}
+	if (!item) return;
+
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::RefreshRes);
+	ent->SetData<std::vector<std::string> >(item->GetChildFilenamesList());
+	PX2_EW.BroadcastingLocalEvent(ent);
 }
 //-----------------------------------------------------------------------------
 ResTreeItem *ResTree::GetItem(wxTreeItemId id)
@@ -81,5 +80,7 @@ void ResTree::UpdateOnPath(const std::string &pathName)
 
 	mRootItem = new0 ResTreeItem(this, name, pathName);
 	mRootItem->RootBuild();
+
+	SelectItem(mRootItem->GetItemID());
 }
 //----------------------------------------------------------------------------

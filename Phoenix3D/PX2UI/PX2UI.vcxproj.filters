@@ -4,9 +4,6 @@
     <ClInclude Include="PX2UIView.hpp">
       <Filter>View</Filter>
     </ClInclude>
-    <ClInclude Include="PX2UIManager.hpp">
-      <Filter>Manager</Filter>
-    </ClInclude>
     <ClInclude Include="PX2UIFrame.hpp">
       <Filter>UIObj</Filter>
     </ClInclude>
@@ -20,22 +17,25 @@
     <ClInclude Include="PX2UIText.hpp">
       <Filter>UIObj</Filter>
     </ClInclude>
-    <ClInclude Include="PX2UIButtonBase.hpp">
+    <ClInclude Include="PX2UICallback.hpp">
+      <Filter>Callback</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIGridFrame.hpp">
       <Filter>UIObj</Filter>
     </ClInclude>
     <ClInclude Include="PX2UIButton.hpp">
-      <Filter>UIObj</Filter>
+      <Filter>UIObj\Buttons</Filter>
     </ClInclude>
-    <ClInclude Include="PX2UICallback.hpp">
-      <Filter>Callback</Filter>
+    <ClInclude Include="PX2UIButtonBase.hpp">
+      <Filter>UIObj\Buttons</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UICheckButton.hpp">
+      <Filter>UIObj\Buttons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UIView.cpp">
       <Filter>View</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2UIManager.cpp">
-      <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="PX2UIFrame.cpp">
       <Filter>UIObj</Filter>
@@ -49,11 +49,17 @@
     <ClCompile Include="PX2UIText.cpp">
       <Filter>UIObj</Filter>
     </ClCompile>
-    <ClCompile Include="PX2UIButtonBase.cpp">
+    <ClCompile Include="PX2UIGridFrame.cpp">
       <Filter>UIObj</Filter>
     </ClCompile>
     <ClCompile Include="PX2UIButton.cpp">
-      <Filter>UIObj</Filter>
+      <Filter>UIObj\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIButtonBase.cpp">
+      <Filter>UIObj\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UICheckButton.cpp">
+      <Filter>UIObj\Buttons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,11 +69,11 @@
     <Filter Include="UIObj">
       <UniqueIdentifier>{86e1fa19-bb0b-4cd6-87e5-fd3cc0f1951c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager">
-      <UniqueIdentifier>{be16f12f-bd2d-4365-94ab-20e6840c1936}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Callback">
       <UniqueIdentifier>{3eed6ced-db1d-4527-8eec-abe3c864563a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIObj\Buttons">
+      <UniqueIdentifier>{178ba406-e4fb-4f03-b87e-9d9ed5f71794}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -80,20 +86,17 @@
     <None Include="PX2UIPicBox.inl">
       <Filter>UIObj</Filter>
     </None>
-    <None Include="PX2UIManager.inl">
-      <Filter>Manager</Filter>
-    </None>
     <None Include="PX2UISizeFrame.inl">
       <Filter>UIObj</Filter>
     </None>
     <None Include="PX2UIText.inl">
       <Filter>UIObj</Filter>
     </None>
-    <None Include="PX2UIButtonBase.inl">
-      <Filter>UIObj</Filter>
-    </None>
     <None Include="PX2UIButton.inl">
-      <Filter>UIObj</Filter>
+      <Filter>UIObj\Buttons</Filter>
+    </None>
+    <None Include="PX2UIButtonBase.inl">
+      <Filter>UIObj\Buttons</Filter>
     </None>
   </ItemGroup>
 </Project>

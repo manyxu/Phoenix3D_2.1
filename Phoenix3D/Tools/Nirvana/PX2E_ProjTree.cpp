@@ -30,6 +30,8 @@ mItemProj(0),
 mItemScene(0),
 mItemUI(0)
 {
+	PX2_EW.ComeIn(this);
+
 	mImageList = new wxImageList(16, 16);
 
 	int imageProject = mImageList->Add(wxIcon(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
@@ -59,6 +61,43 @@ ProjTree::~ProjTree()
 		delete mImageList;
 		mImageList = 0;
 	}
+}
+//-----------------------------------------------------------------------------
+void ProjTree::SetTreeLevel(ProjTreeLevel level)
+{
+	mItemProj->SetTreeLevel(level);
+	mItemScene->SetTreeLevel(level);
+	mItemCameras->SetTreeLevel(level);
+	mItemObjects->SetTreeLevel(level);
+
+	if (OTL_GENERAL == level)
+	{
+		mItemUI->SetTreeLevel(OTL_CHILDREN);
+	}
+	else
+	{
+		mItemUI->SetTreeLevel(level);
+	}
+
+	mTreeLevel = level;
+}
+//-----------------------------------------------------------------------------
+ProjTreeLevel ProjTree::GetTreeLevel() const
+{
+	return mTreeLevel;
+}
+//-----------------------------------------------------------------------------
+void ProjTree::SetSelectItemLevel(ProjTreeLevel level)
+{
+	wxTreeItemId selectID = GetSelection();
+	ProjTreeItem *item = GetItem(selectID);
+	if (item)
+	{
+		item->SetTreeLevel(level);
+		SelectItem(item->GetItemID());
+	}
+
+	Expand(item->GetItemID());
 }
 //-----------------------------------------------------------------------------
 ProjTreeItem *ProjTree::GetItem(wxTreeItemId id)
@@ -178,8 +217,12 @@ void ProjTree::_RefreshUI()
 	}
 	if (!uiFrame) return;
 
+	ProjTreeLevel treeLevel = mTreeLevel;
+	if (treeLevel == OTL_GENERAL)
+		treeLevel = OTL_CHILDREN;
+
 	if (mItemUI)
-		mItemUI->AddChild(uiFrame, 0, mTreeLevel);
+		mItemUI->AddChild(uiFrame, 0, treeLevel);
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearUI()

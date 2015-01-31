@@ -14,13 +14,12 @@ void EngineLoop::Tick()
 	if (mEventWorld)
 		mEventWorld->Update((float)mElapsedTime);
 
+	PX2_RM.Update(mAppTime, mElapsedTime);
+	PX2_FM.Update();
+
 	Project *proj = Project::GetSingletonPtr();
 	if (!proj) return;
 
-	//RenderStep *renderStep = proj->GetSceneRenderStep();
-	//if (renderStep) renderStep->Update(mAppTime, mElapsedTime);
-
-	//mUIManager->Update(mAppTime, mElapsedTime);
 	PX2_GR.Update(mAppTime, mElapsedTime);
 
 	PX2_GR.ComputeVisibleSet();

@@ -32,6 +32,9 @@
     <ClInclude Include="PX2EditRenderView_UI.hpp">
       <Filter>Views</Filter>
     </ClInclude>
+    <ClInclude Include="PX2EditRenderView_Res.hpp">
+      <Filter>Views</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -60,6 +63,9 @@
       <Filter>Views</Filter>
     </ClCompile>
     <ClCompile Include="PX2EditRenderView_UI.cpp">
+      <Filter>Views</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EditRenderView_Res.cpp">
       <Filter>Views</Filter>
     </ClCompile>
   </ItemGroup>

@@ -18,6 +18,57 @@ UIFrame::~UIFrame()
 {
 }
 //----------------------------------------------------------------------------
+void UIFrame::SetSize(float width, float height)
+{
+	SetSize(Sizef(width, height));
+}
+//----------------------------------------------------------------------------
+void UIFrame::SetSize(const Sizef &size)
+{
+	mSize = size;
+	OnSizeChanged();
+}
+//----------------------------------------------------------------------------
+void UIFrame::OnSizeChanged()
+{
+}
+//----------------------------------------------------------------------------
+void UIFrame::SetWidth(float width)
+{
+	SetSize(Sizef(width, mSize.Height));
+}
+//----------------------------------------------------------------------------
+void UIFrame::SetHeight(float height)
+{
+	SetSize(Sizef(mSize.Width, height));
+}
+//----------------------------------------------------------------------------
+void UIFrame::SetBorderSize(float width, float height)
+{
+	SetBorderSize(Sizef(width, height));
+}
+//----------------------------------------------------------------------------
+void UIFrame::SetBorderSize(const Sizef &size)
+{
+	mBorderSize = size;
+
+	OnBorderSizeChanged();
+}
+//----------------------------------------------------------------------------
+void UIFrame::SetBorderWidth(float width)
+{
+	SetBorderSize(Sizef(width, mSize.Height));
+}
+//----------------------------------------------------------------------------
+void UIFrame::SetBorderHeight(float height)
+{
+	SetBorderSize(Sizef(mSize.Width, height));
+}
+//----------------------------------------------------------------------------
+void UIFrame::OnBorderSizeChanged()
+{
+}
+//----------------------------------------------------------------------------
 void UIFrame::OnChildPicked(int info, Movable *child)
 {
 	if (!IsEnable())

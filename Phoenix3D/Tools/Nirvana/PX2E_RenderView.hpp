@@ -19,6 +19,8 @@ namespace PX2Editor
 		{
 			RVT_SCENEUI,
 			RVT_LOGIC,
+			RVT_RES,
+			RVT_TIMELINE,
 			RVT_MAX_TYPE
 		};
 		RenderView(RenderViewType viewType, wxWindow *parent);
@@ -47,6 +49,7 @@ namespace PX2Editor
 		RenderView();
 		PX2::APoint _wxPointToAPoint(wxPoint &point);
 
+	public_internal:
 		void _CloseEidtRenderView(const std::string &name);
 		void _NewEditRenderView(const std::string &name);
 

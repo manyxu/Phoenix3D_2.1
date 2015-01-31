@@ -16,6 +16,8 @@ InspView::InspView(wxWindow *parent) :
 wxWindow(parent, wxID_ANY),
 mCurWindow(0)
 {
+	PX2_EW.ComeIn(this);
+
 	SetBackgroundColour(wxColour(255, 255, 255));
 }
 //----------------------------------------------------------------------------

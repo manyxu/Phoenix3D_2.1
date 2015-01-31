@@ -19,6 +19,7 @@ mIsRightDown(false),
 mIsMiddleDown(false),
 mIsRenderCreated(false)
 {
+	PX2_EW.ComeIn(this);
 }
 //----------------------------------------------------------------------------
 bool EditRenderView::InitlizeRendererStep()
@@ -32,11 +33,16 @@ bool EditRenderView::InitlizeRendererStep()
 
 	SetRenderer(mRenderer);
 
-	mRenderStep->SetSize(Sizef(mSize.Width, mSize.Height));
+	mRenderStep->SetSize(mSize);
 
 	mIsRenderCreated = true;
-
+	
 	return true;
+}
+//----------------------------------------------------------------------------
+bool EditRenderView::IsRenderStepCreated() const
+{
+	return mIsRenderCreated;
 }
 //----------------------------------------------------------------------------
 EditRenderView::~EditRenderView()
@@ -136,17 +142,23 @@ RenderStep *EditRenderView::GetRenderStepCtrl1()
 	return mRenderStepCtrl1;
 }
 //----------------------------------------------------------------------------
-void EditRenderView::Draw()
+void EditRenderView::Tick(double elapsedTime)
 {
 	if (mRenderStep && mIsRenderCreated)
 	{
+		double tiemInSeconds = GetTimeInSeconds();
+
+		mRenderStep->Update(tiemInSeconds, elapsedTime);
+
+		mRenderStep->ComputeVisibleSet();
+
 		Renderer *renderer = mRenderStep->GetRenderer();
 		if (renderer && renderer->PreDraw())
 		{
 			renderer->InitRenderStates();
 			renderer->ClearBuffers();
 
-
+			mRenderStep->Draw();
 
 			renderer->PostDraw();
 			renderer->DisplayColorBuffer();
@@ -159,10 +171,11 @@ void EditRenderView::OnSize(const Sizef& size)
 	mSize = size;
 
 	Project *proj = Project::GetSingletonPtr();
-	if (!proj) return;
-
-	RenderStep *renderStep = proj->GetSceneRenderStep();
-	renderStep->SetSize(mSize);
+	if (proj)
+	{
+		RenderStep *renderStep = proj->GetSceneRenderStep();
+		renderStep->SetSize(mSize);
+	}
 
 	if (mRenderStep)
 		mRenderStep->SetSize(mSize);

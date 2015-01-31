@@ -3,10 +3,10 @@
 #include "PX2UIButtonBase.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, UISizeFrame, UIButtonBase);
+PX2_IMPLEMENT_RTTI(PX2, UIFrame, UIButtonBase);
 PX2_IMPLEMENT_STREAM(UIButtonBase);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(UIButtonBase);
-PX2_IMPLEMENT_DEFAULT_NAMES(UISizeFrame, UIButtonBase);
+PX2_IMPLEMENT_DEFAULT_NAMES(UIFrame, UIButtonBase);
 
 //----------------------------------------------------------------------------
 UIButtonBase::UIButtonBase() :
@@ -164,7 +164,7 @@ void UIButtonBase::OnSizeChanged()
 //----------------------------------------------------------------------------
 void UIButtonBase::RegistProperties()
 {
-	UISizeFrame::RegistProperties();
+	UIFrame::RegistProperties();
 
 	AddPropertyClass("UIButtonBase");
 	AddProperty("Size", PT_SIZE, Any(GetSize()));
@@ -172,7 +172,7 @@ void UIButtonBase::RegistProperties()
 //----------------------------------------------------------------------------
 void UIButtonBase::OnPropertyChanged(const PropertyObject &obj)
 {
-	UISizeFrame::OnPropertyChanged(obj);
+	UIFrame::OnPropertyChanged(obj);
 
 	if ("Size" == obj.Name)
 	{
@@ -185,7 +185,7 @@ void UIButtonBase::OnPropertyChanged(const PropertyObject &obj)
 // 持久化支持
 //----------------------------------------------------------------------------
 UIButtonBase::UIButtonBase(LoadConstructor value) :
-UISizeFrame(value)
+UIFrame(value)
 {
 }
 //----------------------------------------------------------------------------
@@ -193,7 +193,7 @@ void UIButtonBase::Load(InStream& source)
 {
 	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
 
-	UISizeFrame::Load(source);
+	UIFrame::Load(source);
 	PX2_VERSION_LOAD(source);
 
 	source.ReadPointer(mPicBoxNormal);
@@ -208,7 +208,7 @@ void UIButtonBase::Load(InStream& source)
 //----------------------------------------------------------------------------
 void UIButtonBase::Link(InStream& source)
 {
-	UISizeFrame::Link(source);
+	UIFrame::Link(source);
 
 	source.ResolveLink(mPicBoxNormal);
 	source.ResolveLink(mPicBoxOver);
@@ -218,12 +218,12 @@ void UIButtonBase::Link(InStream& source)
 //----------------------------------------------------------------------------
 void UIButtonBase::PostLink()
 {
-	UISizeFrame::PostLink();
+	UIFrame::PostLink();
 }
 //----------------------------------------------------------------------------
 bool UIButtonBase::Register(OutStream& target) const
 {
-	if (UISizeFrame::Register(target))
+	if (UIFrame::Register(target))
 	{
 		target.Register(mPicBoxNormal);
 		target.Register(mPicBoxOver);
@@ -240,7 +240,7 @@ void UIButtonBase::Save(OutStream& target) const
 {
 	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
 
-	UISizeFrame::Save(target);
+	UIFrame::Save(target);
 	PX2_VERSION_SAVE(target);
 
 	target.WritePointer(mPicBoxNormal);
@@ -255,7 +255,7 @@ void UIButtonBase::Save(OutStream& target) const
 //----------------------------------------------------------------------------
 int UIButtonBase::GetStreamingSize(Stream &stream) const
 {
-	int size = UISizeFrame::GetStreamingSize(stream);
+	int size = UIFrame::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
 	size += PX2_POINTERSIZE(mPicBoxNormal);

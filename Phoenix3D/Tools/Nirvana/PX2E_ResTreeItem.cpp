@@ -136,35 +136,35 @@ void ResTreeItem::_BuildChild()
 {
 	if (mResName.empty()) return;
 
-	if (_IsAFile(mResPathName))
-	{ // 是一个文件
+	//if (_IsAFile(mResPathName))
+	//{ // 是一个文件
 
-		mResPathName = mResPathName.substr(0, mResPathName.size() - 1);
+	//	mResPathName = mResPathName.substr(0, mResPathName.size() - 1);
 
-		if (mResPathName.find(".xml") != std::string::npos
-			|| mResPathName.find(".XML") != std::string::npos)
-		{
-			mIsTexPack = PX2_RM.IsTexPack(mResPathName);
-		}
+	//	if (mResPathName.find(".xml") != std::string::npos
+	//		|| mResPathName.find(".XML") != std::string::npos)
+	//	{
+	//		mIsTexPack = PX2_RM.IsTexPack(mResPathName);
+	//	}
 
-		if (mIsTexPack)
-		{
-			PX2_RM.AddTexPack(mResPathName);
-			const TexPack &texPack = PX2_RM.GetTexPack(mResPathName);
-			if (texPack.IsValid())
-			{
-				for (int i = 0; i < (int)texPack.Elements.size(); i++)
-				{
-					std::string eleName = texPack.Elements[i].ElementName;
-					ResTreeItem *item = new0 ResTreeItem(mResTree, eleName, GetPathName());
-					item->SetBeTexPackElement(true);
-					AddChild(item);
-				}
-			}
-		}
+	//	if (mIsTexPack)
+	//	{
+	//		PX2_RM.AddTexPack(mResPathName);
+	//		const TexPack &texPack = PX2_RM.GetTexPack(mResPathName);
+	//		if (texPack.IsValid())
+	//		{
+	//			for (int i = 0; i < (int)texPack.Elements.size(); i++)
+	//			{
+	//				std::string eleName = texPack.Elements[i].ElementName;
+	//				ResTreeItem *item = new0 ResTreeItem(mResTree, eleName, GetPathName());
+	//				item->SetBeTexPackElement(true);
+	//				AddChild(item);
+	//			}
+	//		}
+	//	}
 
-		return;
-	}
+	//	return;
+	//}
 
 	wxDir d;
 
@@ -184,13 +184,15 @@ void ResTreeItem::_BuildChild()
 				if ((eachFilename != wxT(".")) && (eachFilename != wxT("..")))
 				{
 					std::string fileName = eachFilename.ToAscii();
-					std::string pathName = mResPathName + fileName + "/";
+					std::string pathName = mResPathName + fileName;
+					std::string pathName1 = pathName + "/";
 
-					ResTreeItem *item = new0 ResTreeItem(mResTree, fileName, pathName);
+					ResTreeItem *item = new0 ResTreeItem(mResTree, fileName, pathName1);
 
 					if (_IsAFile(fileName))
 					{
 						mChildFilesItems.push_back(item);
+						mChildFilenamesList.push_back(pathName);
 					}
 					else
 					{

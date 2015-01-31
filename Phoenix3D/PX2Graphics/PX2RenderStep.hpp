@@ -76,6 +76,10 @@ namespace PX2
 		void ComputeVisibleSet();
 		void Draw();
 
+	public_internal:
+		// ±à¼­Æ÷ÖÐµ÷ÓÃ
+		void _Tick(double appTime, double elapsedTime);
+
 		// Help
 	public:
 		std::pair<float, float> CalPixelToWorld();

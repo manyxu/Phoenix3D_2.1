@@ -2,7 +2,7 @@
 
 #include "PX2E_ResSplitPanel.hpp"
 #include "PX2E_ResTree.hpp"
-#include "PX2E_ResShow.hpp"
+#include "PX2E_RenderView.hpp"
 using namespace PX2Editor;
 
 //----------------------------------------------------------------------------
@@ -35,7 +35,8 @@ ResSplitPanel::ResSplitPanel(wxWindow* parent, wxWindowID id,
 	wxBoxSizer* rightSizer;
 	rightSizer = new wxBoxSizer(wxVERTICAL);
 
-	ResShow *resShow = new ResShow(mRightPanel);
+	RenderView *resShow = new RenderView(RenderView::RVT_RES, mRightPanel);
+	resShow->_NewEditRenderView("Res");
 	rightSizer->Add(resShow, 1, wxEXPAND, 5);
 
 	mRightPanel->SetSizer(rightSizer);

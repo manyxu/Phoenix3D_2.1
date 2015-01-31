@@ -20,6 +20,10 @@ namespace PX2Editor
 		ProjTree(wxWindow *parent);
 		virtual ~ProjTree();
 
+		void SetTreeLevel(ProjTreeLevel level);
+		ProjTreeLevel GetTreeLevel() const;
+		void SetSelectItemLevel(ProjTreeLevel level);
+
 		ProjTreeItem *GetItem(wxTreeItemId id);
 		ProjTreeItem *GetItem(PX2::Object *obj);
 

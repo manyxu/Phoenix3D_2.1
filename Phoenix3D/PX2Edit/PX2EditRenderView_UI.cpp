@@ -6,7 +6,6 @@
 #include "PX2StandardMesh.hpp"
 #include "PX2VertexColor4Material.hpp"
 #include "PX2Project.hpp"
-#include "PX2UIManager.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------

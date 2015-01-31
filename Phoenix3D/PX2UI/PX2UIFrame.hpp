@@ -19,6 +19,31 @@ namespace PX2
 		UIFrame();
 		virtual ~UIFrame();
 
+		// Size
+	public:
+		void SetSize(float width, float height);
+		void SetSize(const Sizef &size);
+		const Sizef &GetSize() const;
+		void SetWidth(float width);
+		float GetWidth() const;
+		void SetHeight(float height);
+		float GetHeight() const;
+
+		void SetBorderSize(float width, float height);
+		void SetBorderSize(const Sizef &size);
+		const Sizef &GetBorderSize() const;
+		void SetBorderWidth(float width);
+		float GetBorderWidth() const;
+		void SetBorderHeight(float height);
+		float GetBorderHeight() const;
+
+		virtual void OnSizeChanged();
+		virtual void OnBorderSizeChanged();
+
+	protected:
+		Sizef mSize;
+		Sizef mBorderSize;
+
 	public_internal:
 		// info为1表示Pressed，为2表示Released
 		virtual void OnChildPicked(int info, Movable *child);

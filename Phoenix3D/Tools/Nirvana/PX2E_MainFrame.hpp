@@ -28,7 +28,6 @@ namespace PX2Editor
 		virtual ~E_MainFrame();
 
 		bool Initlize();
-		void AddEventHandlers();
 
 		RenderView *GetRenderViewScene();
 

@@ -2,7 +2,6 @@
 
 #include "PX2UIPicBox.hpp"
 #include "PX2Renderer.hpp"
-#include "PX2UIManager.hpp"
 #include "PX2UIFrame.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2DynamicBufferManager.hpp"

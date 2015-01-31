@@ -13,7 +13,6 @@
 #include "PX2ScriptManager.hpp"
 #include "PX2FontManager.hpp"
 #include "PX2AddDeleteManager.hpp"
-#include "PX2UIManager.hpp"
 #include "PX2Selection.hpp"
 #include "PX2RedoUndo.hpp"
 #include "PX2Creater.hpp"
@@ -68,7 +67,6 @@ namespace PX2
 		Selection *mSelection;
 		Creater *mCreater;
 		URDoManager *mURDoMan;
-		UIManager *mUIManager;
 		AccoutManager *mAccoutManager;
 
 	protected:

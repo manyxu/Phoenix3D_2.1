@@ -91,9 +91,6 @@ bool EngineLoop::Initlize()
 	mURDoMan = new0 URDoManager();
 	PX2_UNUSED(mURDoMan);
 
-	mUIManager = new0 UIManager();
-	mUIManager->ComeInEventWorld();
-
 	mAccoutManager = new0 AccoutManager();
 
 	LuaManager *luaMan = (LuaManager*)mScriptMan;
@@ -197,7 +194,6 @@ void EngineLoop::DidEnterBackground()
 {
 	PX2_FM.Terminate();
 	PX2_AM.DeleteAllUsers();
-	PX2_UIM.Clear();
 	PX2_ADM.Clear();;
 	PX2_RM.Clear();
 	PX2_SM.Clear();
@@ -256,13 +252,6 @@ bool EngineLoop::Ternamate()
 	if (mResMan)
 	{
 		mResMan->Clear();
-	}
-
-	if (mUIManager)
-	{
-		mUIManager->Clear();
-		delete0(mUIManager);
-		UIManager::Set(0);
 	}
 
 	if (mScriptMan)

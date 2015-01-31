@@ -79,9 +79,6 @@
     <ClInclude Include="PX2E_ResTree.hpp">
       <Filter>ResView\TreeShow</Filter>
     </ClInclude>
-    <ClInclude Include="PX2E_ResShow.hpp">
-      <Filter>ResView\TreeShow</Filter>
-    </ClInclude>
     <ClInclude Include="PX2E_ResSplitPanel.hpp">
       <Filter>ResView</Filter>
     </ClInclude>
@@ -139,9 +136,6 @@
     <ClInclude Include="PX2E_TimeLineRender.hpp">
       <Filter>TimeLine</Filter>
     </ClInclude>
-    <ClInclude Include="PX2NirvanaUIEventType.hpp">
-      <Filter>Event</Filter>
-    </ClInclude>
     <ClInclude Include="PX2E_NirMan.hpp">
       <Filter>App\Manager</Filter>
     </ClInclude>
@@ -150,6 +144,12 @@
     </ClInclude>
     <ClInclude Include="PX2E_InspView.hpp">
       <Filter>InspView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_RenderView_Cont.hpp">
+      <Filter>RenderView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NirvanaEventType.hpp">
+      <Filter>Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,9 +178,6 @@
       <Filter>ProjView</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_ResTree.cpp">
-      <Filter>ResView\TreeShow</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2E_ResShow.cpp">
       <Filter>ResView\TreeShow</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_ResSplitPanel.cpp">
@@ -240,9 +237,6 @@
     <ClCompile Include="PX2E_TimeLineRender.cpp">
       <Filter>TimeLine</Filter>
     </ClCompile>
-    <ClCompile Include="PX2NirvanaUIEventType.cpp">
-      <Filter>Event</Filter>
-    </ClCompile>
     <ClCompile Include="PX2E_NirMan.cpp">
       <Filter>App\Manager</Filter>
     </ClCompile>
@@ -251,6 +245,12 @@
     </ClCompile>
     <ClCompile Include="PX2E_InspView.cpp">
       <Filter>InspView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_RenderView_Cont.cpp">
+      <Filter>RenderView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NirvanaEventType.cpp">
+      <Filter>Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

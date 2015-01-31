@@ -5,11 +5,11 @@
 #include "PX2EditRenderView_Scene.hpp"
 #include "PX2EditRenderView_UI.hpp"
 #include "PX2EditRenderView_Logic.hpp"
+#include "PX2EditRenderView_Res.hpp"
 #include "PX2Project.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2Edit.hpp"
 #include "PX2ScriptManager.hpp"
-#include "PX2UIManager.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2EngineLoop.hpp"
 using namespace PX2Editor;
@@ -48,6 +48,8 @@ mEditMenu(0)
 
 	mTimer.SetOwner(this, mTimerID);
 	mTimer.Start(25);
+
+	PX2_EW.ComeIn(this);
 }
 //----------------------------------------------------------------------------
 RenderView::~RenderView()
@@ -66,6 +68,16 @@ void RenderView::OnTimer(wxTimerEvent& event)
 
 	if (mTimerID == event.GetId())
 	{
+		std::map<std::string, PX2::EditRenderViewPtr>::iterator it
+			= mEditRenderViews.begin();
+		for (; it != mEditRenderViews.end(); it++)
+		{
+			EditRenderView *renderView = it->second;
+			if (renderView && renderView->IsRenderStepCreated())
+			{
+				renderView->Tick(dIval);
+			}
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -296,8 +308,6 @@ void RenderView::_NewEditRenderView(const std::string &name)
 	wxSize size = GetClientSize();
 	Sizef sz(size.x, size.y);
 
-	const Sizef &projSize = PX2_PROJ.GetSize();
-
 	EditRenderView *renderView = 0;
 	if ("Scene" == name)
 	{
@@ -312,6 +322,8 @@ void RenderView::_NewEditRenderView(const std::string &name)
 	}
 	else if ("UI" == name)
 	{
+		const Sizef &projSize = PX2_PROJ.GetSize();
+
 		UIView *rs_UI = PX2_PROJ.GetUIRenderStep();
 		Renderer *rs_Render_UI = rs_UI->GetRenderer();
 		Camera *rs_Camera_UI = rs_UI->GetCamera();
@@ -327,6 +339,15 @@ void RenderView::_NewEditRenderView(const std::string &name)
 
 		rs_CameraNode_UI->LocalTransform.SetTranslateXZ(
 			projSize.Width / 2.0f, projSize.Height / 2.0f);
+	}
+	else if ("Res" == name)
+	{
+		renderView = new0 EditRenderView_Res();
+
+		renderView->SetPt_Data(GetHandle());
+		renderView->SetPt_Size(sz);
+		
+		renderView->InitlizeRendererStep();
 	}
 
 	renderView->OnSize(sz);

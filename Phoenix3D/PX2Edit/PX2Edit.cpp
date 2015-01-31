@@ -1,7 +1,6 @@
 // PX2Edit.cpp
 
 #include "PX2Edit.hpp"
-#include "PX2UIManager.hpp"
 #include "PX2GraphicsRoot.hpp"
 #include "PX2EditEventType.hpp"
 using namespace PX2;

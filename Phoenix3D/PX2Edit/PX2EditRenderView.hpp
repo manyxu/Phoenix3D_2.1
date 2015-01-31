@@ -16,7 +16,7 @@ namespace PX2
 
 	class RendererInput;
 
-	class EditRenderView
+	class EditRenderView : public EventHandler
 	{
 	public:
 		EditRenderView();
@@ -28,7 +28,8 @@ namespace PX2
 		void SetPt_Size(const Sizef &size);
 		const Sizef &GetPt_Size() const;
 
-		bool InitlizeRendererStep();
+		virtual bool InitlizeRendererStep();
+		bool IsRenderStepCreated() const;
 
 	protected:
 		void *mPt_Data;
@@ -41,7 +42,7 @@ namespace PX2
 		RenderStep *GetRenderStep();
 		RenderStep *GetRenderStepCtrl();
 		RenderStep *GetRenderStepCtrl1();
-		void Draw();
+		virtual void Tick(double elapsedTime);
 
 	protected:
 		RendererInput *mRendererInput;

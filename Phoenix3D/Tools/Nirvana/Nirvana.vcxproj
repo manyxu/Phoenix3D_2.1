@@ -94,6 +94,7 @@
     <ClInclude Include="PropGrid\wxPropertyExtend.hpp" />
     <ClInclude Include="PX2DlgCreateProject.hpp" />
     <ClInclude Include="PX2E_App.hpp" />
+    <ClInclude Include="PX2E_RenderView_Cont.hpp" />
     <ClInclude Include="PX2E_StartView.hpp" />
     <ClInclude Include="PX2E_MainFrame.hpp" />
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -102,7 +103,6 @@
     <ClInclude Include="PX2E_ProjView.hpp" />
     <ClInclude Include="PX2E_ProjTree.hpp" />
     <ClInclude Include="PX2E_ProjTreeDef.hpp" />
-    <ClInclude Include="PX2E_ResShow.hpp" />
     <ClInclude Include="PX2E_ResSplitPanel.hpp" />
     <ClInclude Include="PX2E_ResTree.hpp" />
     <ClInclude Include="PX2E_ResTreeItem.hpp" />
@@ -112,7 +112,7 @@
     <ClInclude Include="PX2ObjectInspector.hpp" />
     <ClInclude Include="PX2ObjectPropertyGrid.hpp" />
     <ClInclude Include="PX2E_TimeLineView.hpp" />
-    <ClInclude Include="PX2NirvanaUIEventType.hpp" />
+    <ClInclude Include="PX2NirvanaEventType.hpp" />
     <ClInclude Include="PX2wxAui.hpp" />
     <ClInclude Include="PX2wxDockArt.hpp" />
     <ClInclude Include="PX2E_NirMan.hpp" />
@@ -130,12 +130,12 @@
     <ClCompile Include="PropGrid\wxPropertyExtend.cpp" />
     <ClCompile Include="PX2DlgCreateProject.cpp" />
     <ClCompile Include="PX2E_App.cpp" />
+    <ClCompile Include="PX2E_RenderView_Cont.cpp" />
     <ClCompile Include="PX2E_StartView.cpp" />
     <ClCompile Include="PX2E_MainFrame.cpp" />
     <ClCompile Include="PX2E_ProjTree.cpp" />
     <ClCompile Include="PX2E_ProjTreeItem.cpp" />
     <ClCompile Include="PX2E_RenderView.cpp" />
-    <ClCompile Include="PX2E_ResShow.cpp" />
     <ClCompile Include="PX2E_ResSplitPanel.cpp" />
     <ClCompile Include="PX2E_ResTree.cpp" />
     <ClCompile Include="PX2E_ResTreeItem.cpp" />
@@ -147,7 +147,7 @@
     <ClCompile Include="PX2ObjectInspector.cpp" />
     <ClCompile Include="PX2ObjectPropertyGrid.cpp" />
     <ClCompile Include="PX2E_TimeLineView.cpp" />
-    <ClCompile Include="PX2NirvanaUIEventType.cpp" />
+    <ClCompile Include="PX2NirvanaEventType.cpp" />
     <ClCompile Include="PX2wxAui.cpp" />
     <ClCompile Include="PX2wxDockArt.cpp" />
     <ClCompile Include="PX2E_NirMan.cpp" />
