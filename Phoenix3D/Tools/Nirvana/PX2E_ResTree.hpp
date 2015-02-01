@@ -22,6 +22,9 @@ namespace PX2Editor
 
 		void UpdateOnPath(const std::string &pathName);
 
+		void OnRightDown(wxMouseEvent& e);
+		void OnRightUp(wxMouseEvent& e);
+		void OnItemActivated(wxTreeEvent& event);
 		void OnSelChanged(wxTreeEvent &ent);
 
 	public_internal:
@@ -33,6 +36,10 @@ namespace PX2Editor
 
 		ResTreeItemPtr mRootItem;
 		wxImageList *mImageList;
+
+		wxSize mSize;
+
+		wxMenu *mEditMenu;
 	};
 
 }

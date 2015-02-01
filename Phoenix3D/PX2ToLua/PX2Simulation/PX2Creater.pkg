@@ -13,4 +13,8 @@
 		void AddObject(PX2::Object *parent, PX2::Object *obj,
 			bool command = true);
 		bool RemoveObject(PX2::Object *obj, bool command = true);
+		
+		Actor *ConvertToActor(Object *obj);
+		UIPicBox *ConvertToUIPicBox(Object *obj);
+		UIFrame *ConvertToUIFrame(Object *obj);
 	};

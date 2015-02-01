@@ -29,6 +29,9 @@ namespace PX2Editor
 
 		virtual void DoExecute(PX2::Event *event);
 
+		void OnRightDown(wxMouseEvent& e);
+		void OnRightUp(wxMouseEvent& e);
+		void OnItemActivated(wxTreeEvent& event);
 		void OnSelChanged(wxTreeEvent& event);
 		void OnSelChanging(wxTreeEvent& event);
 
@@ -63,6 +66,8 @@ namespace PX2Editor
 		ProjTreeItem *mItemObjects;
 		ProjTreeItem *mItemUI;
 		ProjTreeItem *mItemLogic;
+
+		wxMenu *mEditMenu;
 	};
 
 }

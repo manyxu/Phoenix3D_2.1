@@ -21,9 +21,60 @@ Creater::~Creater()
 {
 }
 //----------------------------------------------------------------------------
-Actor *Creater::CreateActor_Rectangle(Scene *scene, const PX2::APoint &pos)
+Actor *Creater::CreateActor_Rectangle(Scene *scene, const APoint &pos)
 {
-	PX2::Texture2D *tex = DynamicCast<PX2::Texture2D>(PX2_RM.BlockLoad("Data/engine/default.png"));
+	Movable *mov = CreateRectangle(scene, pos, true, false);
+
+	ActorPtr actor = new0 Actor();
+	actor->SetName("NoName");
+	actor->SetMovable(mov);
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
+Actor *Creater::CreateActor_Box(Scene *scene, const APoint &pos)
+{
+	Movable *mov = CreateBox(scene, pos, true, false);
+
+	ActorPtr actor = new0 Actor();
+	actor->SetName("NoName");
+	actor->SetMovable(mov);
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
+Actor *Creater::CreateActor_Sphere(Scene *scene, const APoint &pos)
+{
+	Movable *mov = CreateSphere(scene, pos, true, false);
+
+	ActorPtr actor = new0 Actor();
+	actor->SetName("NoName");
+	actor->SetMovable(mov);
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
+Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
+	bool isPosWorld, bool doAdd)
+{
+	APoint localPos = pos;
+
+	if (parent && isPosWorld)
+	{
+		localPos = parent->WorldTransform.Inverse() * localPos;
+	}
+
+	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
+		"Data/engine/default.png"));
 	if (!tex) return 0;
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1);
@@ -35,19 +86,26 @@ Actor *Creater::CreateActor_Rectangle(Scene *scene, const PX2::APoint &pos)
 	StdMaterialPtr mtl = new0 StdMaterial();
 	mesh->SetMaterialInstance(mtl->CreateInstance(tex, mesh->GetShine(), 0));
 
-	ActorPtr actor = new0 Actor();
-	actor->SetName("NoName");
-	actor->SetMovable(mesh);
-	actor->LocalTransform.SetTranslate(pos);
+	mesh->LocalTransform.SetTranslate(localPos);
 
-	AddObject(scene, actor);
+	if (doAdd)
+		AddObject(parent, mesh);
 
-	return actor;
+	return mesh;
 }
 //----------------------------------------------------------------------------
-Actor *Creater::CreateActor_Box(Scene *scene, const PX2::APoint &pos)
+Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
+	bool doAdd)
 {
-	PX2::Texture2D *tex = DynamicCast<PX2::Texture2D>(PX2_RM.BlockLoad("Data/engine/default.png"));
+	APoint localPos = pos;
+
+	if (parent && isPosWorld)
+	{
+		localPos = parent->WorldTransform.Inverse() * localPos;
+	}
+
+	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
+		"Data/engine/default.png"));
 	if (!tex) return 0;
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1);
@@ -59,19 +117,26 @@ Actor *Creater::CreateActor_Box(Scene *scene, const PX2::APoint &pos)
 	StdMaterialPtr mtl = new0 StdMaterial();
 	mesh->SetMaterialInstance(mtl->CreateInstance(tex, mesh->GetShine(), 0));
 
-	ActorPtr actor = new0 Actor();
-	actor->SetName("NoName");
-	actor->SetMovable(mesh);
-	actor->LocalTransform.SetTranslate(pos);
+	mesh->LocalTransform.SetTranslate(localPos);
 
-	AddObject(scene, actor);
+	if (doAdd)
+		AddObject(parent, mesh);
 
-	return actor;
+	return mesh;
 }
 //----------------------------------------------------------------------------
-Actor *Creater::CreateActor_Sphere(Scene *scene, const PX2::APoint &pos)
+Movable *Creater::CreateSphere(Node *parent, const APoint &pos, 
+	bool isPosWorld, bool doAdd)
 {
-	PX2::Texture2D *tex = DynamicCast<PX2::Texture2D>(PX2_RM.BlockLoad("Data/engine/default.png"));
+	APoint localPos = pos;
+
+	if (parent && isPosWorld)
+	{
+		localPos = parent->WorldTransform.Inverse() * localPos;
+	}
+
+	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
+		"Data/engine/default.png"));
 	if (!tex) return 0;
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1);
@@ -83,17 +148,103 @@ Actor *Creater::CreateActor_Sphere(Scene *scene, const PX2::APoint &pos)
 	StdMaterialPtr mtl = new0 StdMaterial();
 	mesh->SetMaterialInstance(mtl->CreateInstance(tex, mesh->GetShine(), 0));
 
-	ActorPtr actor = new0 Actor();
-	actor->SetName("NoName");
-	actor->SetMovable(mesh);
-	actor->LocalTransform.SetTranslate(pos);
+	mesh->LocalTransform.SetTranslate(localPos);
 
-	AddObject(scene, actor);
+	if (doAdd)
+		AddObject(parent, mesh);
 
-	return actor;
+	return mesh;
 }
 //----------------------------------------------------------------------------
-void Creater::AddObject(PX2::Object *parent, PX2::Object *obj, bool command)
+UIFrame *Creater::CreateUIFrame(Node *parent, const APoint &pos,
+	bool isPosWorld)
+{
+	APoint localPos = pos;
+
+	if (parent && isPosWorld)
+	{
+		localPos = parent->WorldTransform.Inverse() * localPos;
+	}
+
+	UIFrame *frame = new0 UIFrame();
+	frame->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, frame);
+
+	return frame;
+}
+//----------------------------------------------------------------------------
+UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos, 
+	const std::string &filename, bool isPosWorld)
+{
+	APoint localPos = pos;
+
+	if (parent && isPosWorld)
+	{
+		localPos = parent->WorldTransform.Inverse() * localPos;
+	}
+
+	UIPicBox *picBox = new0 UIPicBox(filename);
+	picBox->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, picBox);
+
+	return picBox;
+}
+//----------------------------------------------------------------------------
+UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos,
+	const std::string &texPack, const std::string &eleName, bool isPosWorld)
+{
+	APoint localPos = pos;
+
+	if (parent && isPosWorld)
+	{
+		localPos = parent->WorldTransform.Inverse() * localPos;
+	}
+
+	UIPicBox *picBox = new0 UIPicBox(texPack, eleName);
+	picBox->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, picBox);
+
+	return picBox;
+}
+//----------------------------------------------------------------------------
+UIText *Creater::CreateUIText(Node *parent, const APoint &pos, bool isPosWorld)
+{
+	APoint localPos = pos;
+
+	if (parent && isPosWorld)
+	{
+		localPos = parent->WorldTransform.Inverse() * localPos;
+	}
+
+	UIText *text = new0 UIText();
+	text->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, text);
+
+	return text;
+}
+//----------------------------------------------------------------------------
+UIButton *Creater::CreateUIButton(Node *parent, const APoint &pos, bool isPosWorld)
+{
+	APoint localPos = pos;
+
+	if (parent && isPosWorld)
+	{
+		localPos = parent->WorldTransform.Inverse() * localPos;
+	}
+
+	UIButton *but = new0 UIButton();
+	but->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, but);
+
+	return but;
+}
+//----------------------------------------------------------------------------
+void Creater::AddObject(Object *parent, Object *obj, bool command)
 {
 	Movable *mov = DynamicCast<Movable>(obj);
 	Controller *ctrl = DynamicCast<Controller>(obj);
@@ -136,7 +287,7 @@ void Creater::AddObject(PX2::Object *parent, PX2::Object *obj, bool command)
 	}
 }
 //----------------------------------------------------------------------------
-bool Creater::RemoveObject(PX2::Object *obj, bool command)
+bool Creater::RemoveObject(Object *obj, bool command)
 {
 	Movable *mov = DynamicCast<Movable>(obj);
 	Controller *ctrl = DynamicCast<Controller>(obj);
@@ -196,5 +347,20 @@ bool Creater::RemoveObject(PX2::Object *obj, bool command)
 	}
 
 	return true;
+}
+//----------------------------------------------------------------------------
+Actor *Creater::ConvertToActor(Object *obj)
+{
+	return DynamicCast<Actor>(obj);
+}
+//----------------------------------------------------------------------------
+UIPicBox *Creater::ConvertToUIPicBox(Object *obj)
+{
+	return DynamicCast<UIPicBox>(obj);
+}
+//----------------------------------------------------------------------------
+UIFrame *Creater::ConvertToUIFrame(Object *obj)
+{
+	return DynamicCast<UIFrame>(obj);
 }
 //----------------------------------------------------------------------------

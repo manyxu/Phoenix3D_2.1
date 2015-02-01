@@ -1,7 +1,7 @@
 -- language.lua
 
 function AddLanguages()
-	-- 文件菜单
+	-- 主菜单
 	PX2_LM:AddItem1("File", "文件")
 	PX2_LM:AddItem1("NewProject", "新建工程")
 	PX2_LM:AddItem1("NewScene", "新建场景")
@@ -10,7 +10,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("SaveAs", "另存为")
 	PX2_LM:AddItem1("Close", "关闭")
 	PX2_LM:AddItem1("Exit", "退出")
-	-- 编辑菜单
+	--
 	PX2_LM:AddItem1("Edit", "编辑")
 	PX2_LM:AddItem1("Repeal", "撤销")
 	PX2_LM:AddItem1("Repeat", "重复")
@@ -23,7 +23,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("Scale", "缩放")
 	PX2_LM:AddItem1("PlayAndStop", "播放/停止")
 	PX2_LM:AddItem1("ResetPlay", "重置播放")	
-	-- 视图菜单
+	--
 	PX2_LM:AddItem1("View", "视图")
 	PX2_LM:AddItem1("Window", "窗口")
 	PX2_LM:AddItem1("Stage", "舞台")
@@ -31,13 +31,13 @@ function AddLanguages()
 	PX2_LM:AddItem1("StageCenter", "舞台中心停靠")
 	PX2_LM:AddItem1("PerspectiveCamera", "使用透视相机")
 	PX2_LM:AddItem1("TopViewCamera", "使用顶视相机")
-	-- 调试菜单
+	--
 	PX2_LM:AddItem1("Debug", "调试")
 	PX2_LM:AddItem1("EditorSimulate", "在编辑器中模拟")
 	PX2_LM:AddItem1("EditorPlay", "编辑器中播放")
 	PX2_LM:AddItem1("Operation", "运行")
 	PX2_LM:AddItem1("PlayConfig", "播放配置")
-	-- 工具菜单
+	--
 	PX2_LM:AddItem1("Tool", "工具")
 	PX2_LM:AddItem1("VersionWindows", "生成版本信息_Windows")
 	PX2_LM:AddItem1("VersionAndroid", "生成版本信息_Android")
@@ -49,7 +49,7 @@ function AddLanguages()
 	-- 编辑菜单
 	PX2_LM:AddItem1("Create", "创建")
 	PX2_LM:AddItem1("Add", "添加")
-	PX2_LM:AddItem1("Scene", "场景")
+	PX2_LM:AddItem1("SceneActor", "场景角色")
 	PX2_LM:AddItem1("UI", "界面")
 	
 	PX2_LM:AddItem1("ImportSelectedRes", "导入选择资源")
@@ -68,7 +68,20 @@ function AddLanguages()
 	PX2_LM:AddItem1("RectPiece", "面片")
 	PX2_LM:AddItem1("Box", "正方体")
 	PX2_LM:AddItem1("Sphere", "球")
+	PX2_LM:AddItem1("Effect", "特效")
+	PX2_LM:AddItem1("Particles", "粒子")
+	PX2_LM:AddItem1("Billboard", "公告板")
+	PX2_LM:AddItem1("Beam", "波带")
+	PX2_LM:AddItem1("Robbion", "条带")
+	PX2_LM:AddItem1("UIPicBox", "图片")
+	PX2_LM:AddItem1("UITest", "文本")
+	PX2_LM:AddItem1("UIFrame", "层")
+	PX2_LM:AddItem1("UIButton", "按钮")
+	PX2_LM:AddItem1("UICheckBox", "选择框")
+	PX2_LM:AddItem1("UIEditBox", "编辑框")
+	PX2_LM:AddItem1("UIProgressBar", "进度条")
 	
+	-- 视图
 	PX2_LM:AddItem1("Project", "工程")
 	PX2_LM:AddItem1("Scene", "场景")
 	PX2_LM:AddItem1("TimeLine", "时间线")
@@ -79,6 +92,10 @@ function AddLanguages()
 	PX2_LM:AddItem1("StartView", "起始页")
 	PX2_LM:AddItem1("UIView", "界面")
 	PX2_LM:AddItem1("LogicView", "逻辑")
+	
+	-- Notice
+	PX2_LM:AddItem1("Notice", "注意")
+	PX2_LM:AddItem("Tip0", "你必须选择一个父节点！", "You must select a parent node to add!")
 end
 
 AddLanguages()

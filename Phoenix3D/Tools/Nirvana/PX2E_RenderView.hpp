@@ -47,7 +47,6 @@ namespace PX2Editor
 		DECLARE_EVENT_TABLE()
 
 		RenderView();
-		PX2::APoint _wxPointToAPoint(wxPoint &point);
 
 	public_internal:
 		void _CloseEidtRenderView(const std::string &name);

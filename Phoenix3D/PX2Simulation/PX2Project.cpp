@@ -35,6 +35,7 @@ mEdit_UICameraPercent(1.0f)
 
 	mUIFrame = new0 UISizeFrame();
 	mUIFrame->AttachChild(new0 UIPicBox());
+	mUIFrame->SetName("RootFrame");
 	SetUIFrame(mUIFrame);
 }
 //----------------------------------------------------------------------------

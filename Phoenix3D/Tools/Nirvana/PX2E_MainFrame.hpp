@@ -99,6 +99,9 @@ namespace PX2Editor
 			wxString paneName = "Default",
 			bool isTopStyle = false);
 
+	protected:
+		std::string mPerspConfigName;
+
 		bool mIsInitlized;
 		
 		wxMenuBar *mMainMenuBar;

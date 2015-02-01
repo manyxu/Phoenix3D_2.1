@@ -81,6 +81,26 @@ end
 function Stop()
 end
 
+-- Scene
+function SceneActor_CreateRectPiece()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Rectangle(scene, pickPos)
+end
+
+function SceneActor_CreateBox()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Box(scene, pickPos)
+end
+
+function SceneActor_CreateSphere()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Sphere(scene, pickPos)
+end
+
+-- General
 function CreateRectPiece()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()
@@ -97,4 +117,19 @@ function CreateSphere()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()
 	PX2_CREATER:CreateActor_Sphere(scene, pickPos)
+end
+
+function CreateUIPixBox()
+end
+
+function CreateUIText()
+end
+
+function CreateUIFrame()
+end
+
+function CreateUIButton()
+end
+
+function CreateUIProgressBar()
 end

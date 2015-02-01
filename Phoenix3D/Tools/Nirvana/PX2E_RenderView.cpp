@@ -83,6 +83,8 @@ void RenderView::OnTimer(wxTimerEvent& event)
 //----------------------------------------------------------------------------
 void RenderView::OnSize(wxSizeEvent& e)
 {
+	PX2_UNUSED(e);
+
 	mSize = GetSize();
 
 	Sizef sz = Sizef((float)mSize.GetWidth(), (float)mSize.GetHeight());
@@ -121,7 +123,7 @@ void RenderView::OnLeftDown(wxMouseEvent& e)
 	SetFocus();
 
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = _wxPointToAPoint(mousePos);
+	APoint pos = wxPointToAPoint(mousePos, mSize);
 
 	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
 	for (; it != mEditRenderViews.end(); it++)
@@ -133,7 +135,7 @@ void RenderView::OnLeftDown(wxMouseEvent& e)
 void RenderView::OnLeftUp(wxMouseEvent& e)
 {
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = _wxPointToAPoint(mousePos);
+	APoint pos = wxPointToAPoint(mousePos, mSize);
 
 	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
 	for (; it != mEditRenderViews.end(); it++)
@@ -147,7 +149,7 @@ void RenderView::OnMiddleDown(wxMouseEvent& e)
 	SetFocus();
 
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = _wxPointToAPoint(mousePos);
+	APoint pos = wxPointToAPoint(mousePos, mSize);
 
 	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
 	for (; it != mEditRenderViews.end(); it++)
@@ -159,7 +161,7 @@ void RenderView::OnMiddleDown(wxMouseEvent& e)
 void RenderView::OnMiddleUp(wxMouseEvent& e)
 {
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = _wxPointToAPoint(mousePos);
+	APoint pos = wxPointToAPoint(mousePos, mSize);
 
 	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
 	for (; it != mEditRenderViews.end(); it++)
@@ -187,7 +189,7 @@ void RenderView::OnRightDown(wxMouseEvent& e)
 	SetFocus();
 
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = _wxPointToAPoint(mousePos);
+	APoint pos = wxPointToAPoint(mousePos, mSize);
 
 	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
 	for (; it != mEditRenderViews.end(); it++)
@@ -199,7 +201,7 @@ void RenderView::OnRightDown(wxMouseEvent& e)
 void RenderView::OnRightUp(wxMouseEvent& e)
 {
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = _wxPointToAPoint(mousePos);
+	APoint pos = wxPointToAPoint(mousePos, mSize);
 
 	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
 	for (; it != mEditRenderViews.end(); it++)
@@ -220,7 +222,10 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 			mEditMenu = new wxMenu();
 			NirMan::GetSingleton().SetCurMenu(mEditMenu);
 
-			PX2_SM.CallString("CreateStageEditMenu()");
+			int menuID = 1;
+			char szScript[256];
+			sprintf(szScript, "CreateEditMenu(%d)", menuID);
+			PX2_SM.CallString(szScript);
 
 			if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
 		}
@@ -230,7 +235,7 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 void RenderView::OnMotion(wxMouseEvent& e)
 {
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = _wxPointToAPoint(mousePos);
+	APoint pos = wxPointToAPoint(mousePos, mSize);
 
 	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
 	for (; it != mEditRenderViews.end(); it++)
@@ -286,11 +291,6 @@ void RenderView::DoExecute(PX2::Event *event)
 			_CloseEidtRenderView("UI");
 		}
 	}
-}
-//----------------------------------------------------------------------------
-APoint RenderView::_wxPointToAPoint(wxPoint &point)
-{
-	return APoint((float)point.x, 0.0f, (float)(mSize.GetHeight() - point.y));
 }
 //----------------------------------------------------------------------------
 void RenderView::_CloseEidtRenderView(const std::string &name)

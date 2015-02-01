@@ -26,6 +26,9 @@ bool E_App::OnInit()
 {
 	PX2_ENGINELOOP.Initlize();
 
+	SetVendorName(wxT("Phoenix3D"));
+	SetAppName(wxT("Nirvana"));
+
 	wxLog::SetLogLevel(0);
 
 	wxImage::AddHandler(new wxBMPHandler());

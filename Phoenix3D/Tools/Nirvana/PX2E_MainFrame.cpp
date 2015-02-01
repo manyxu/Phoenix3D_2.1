@@ -42,6 +42,8 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mProjView(0),
 	mIsCrossCursor(false)
 {
+	mPerspConfigName = "Nirvana1.0.0";
+
 	PX2_EW.ComeIn(this);
 }
 //----------------------------------------------------------------------------
@@ -49,6 +51,14 @@ E_MainFrame::~E_MainFrame()
 {
 	if (mAuiManager)
 	{
+		wxString strPerspective = mAuiManager->SavePerspective();
+
+		wxFileOutputStream os(wxT("layout.config"));
+		wxFileConfig config;
+		config.Write("Perspective", strPerspective);
+		config.Save(os);
+		os.Close();
+
 		mAuiManager->UnInit();
 		delete mAuiManager;
 	}
@@ -87,6 +97,18 @@ bool E_MainFrame::Initlize()
 	_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
+
+
+	wxFileInputStream is(wxT("layout.config"));
+	if (is.IsOk())
+	{
+		wxFileConfig config(is);
+		wxString strPerspective;
+		if (config.Read(wxString("Perspective"), &strPerspective))
+		{
+			mAuiManager->LoadPerspective(strPerspective);
+		}
+	}
 
 	mAuiManager->Update();
 
