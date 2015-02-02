@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 01/28/15 18:47:27.
+** Generated automatically by tolua++-1.0.92 on 02/01/15 19:18:02.
 */
 
 #ifndef __cplusplus
@@ -149,70 +149,71 @@ static int tolua_collect_Texture__Format (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"CameraActor");
  tolua_usertype(tolua_S,"ShaderParameters");
  tolua_usertype(tolua_S,"OffsetProperty");
- tolua_usertype(tolua_S,"Creater");
- tolua_usertype(tolua_S,"Texture3D");
- tolua_usertype(tolua_S,"AlphaProperty");
  tolua_usertype(tolua_S,"TexPackElement");
- tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"Controlledable");
- tolua_usertype(tolua_S,"Selection");
  tolua_usertype(tolua_S,"ResHandle");
  tolua_usertype(tolua_S,"UIFrame");
- tolua_usertype(tolua_S,"APoint");
+ tolua_usertype(tolua_S,"AVector");
+ tolua_usertype(tolua_S,"Triangles");
+ tolua_usertype(tolua_S,"PX2::AVector");
+ tolua_usertype(tolua_S,"Float4");
+ tolua_usertype(tolua_S,"LanguageManager");
+ tolua_usertype(tolua_S,"RenderStep");
+ tolua_usertype(tolua_S,"ScriptManager");
+ tolua_usertype(tolua_S,"Texture2D");
+ tolua_usertype(tolua_S,"Transform");
+ tolua_usertype(tolua_S,"Vector3f");
+ tolua_usertype(tolua_S,"PX2::APoint");
+ tolua_usertype(tolua_S,"Movable");
+ tolua_usertype(tolua_S,"Project");
+ tolua_usertype(tolua_S,"CullProperty");
+ tolua_usertype(tolua_S,"SwitchNode");
+ tolua_usertype(tolua_S,"Actor");
+ tolua_usertype(tolua_S,"VertexBuffer");
+ tolua_usertype(tolua_S,"DepthProperty");
+ tolua_usertype(tolua_S,"Renderable");
+ tolua_usertype(tolua_S,"Texture::Format");
+ tolua_usertype(tolua_S,"Sizef");
+ tolua_usertype(tolua_S,"Texture3D");
+ tolua_usertype(tolua_S,"RenderTarget");
+ tolua_usertype(tolua_S,"Selection");
+ tolua_usertype(tolua_S,"Renderer");
  tolua_usertype(tolua_S,"PixelShader");
+ tolua_usertype(tolua_S,"Creater");
+ tolua_usertype(tolua_S,"Logger");
+ tolua_usertype(tolua_S,"Scene");
+ tolua_usertype(tolua_S,"UIPicBox");
+ tolua_usertype(tolua_S,"Controller");
+ tolua_usertype(tolua_S,"HPoint");
+ tolua_usertype(tolua_S,"Camera");
+ tolua_usertype(tolua_S,"Object");
+ tolua_usertype(tolua_S,"TexPack");
+ tolua_usertype(tolua_S,"TextureCube");
+ tolua_usertype(tolua_S,"VisibleSet");
+ tolua_usertype(tolua_S,"VertexShader");
+ tolua_usertype(tolua_S,"AlphaProperty");
+ tolua_usertype(tolua_S,"VertexFormat");
+ tolua_usertype(tolua_S,"CameraActor");
+ tolua_usertype(tolua_S,"APoint");
+ tolua_usertype(tolua_S,"GlobalMaterial");
  tolua_usertype(tolua_S,"Node");
  tolua_usertype(tolua_S,"Light");
  tolua_usertype(tolua_S,"TriMesh");
- tolua_usertype(tolua_S,"Float4");
- tolua_usertype(tolua_S,"Scene");
- tolua_usertype(tolua_S,"LanguageManager");
- tolua_usertype(tolua_S,"Controller");
- tolua_usertype(tolua_S,"ResourceManager");
- tolua_usertype(tolua_S,"PX2::AVector");
- tolua_usertype(tolua_S,"HPoint");
- tolua_usertype(tolua_S,"HMatrix");
- tolua_usertype(tolua_S,"Camera");
- tolua_usertype(tolua_S,"Object");
- tolua_usertype(tolua_S,"Vector2f");
- tolua_usertype(tolua_S,"Buffer::Locking");
- tolua_usertype(tolua_S,"RenderStep");
- tolua_usertype(tolua_S,"Sizef");
- tolua_usertype(tolua_S,"Project");
- tolua_usertype(tolua_S,"TexPack");
- tolua_usertype(tolua_S,"Transform");
- tolua_usertype(tolua_S,"TextureCube");
- tolua_usertype(tolua_S,"Vector3f");
- tolua_usertype(tolua_S,"VisibleSet");
- tolua_usertype(tolua_S,"PX2::APoint");
- tolua_usertype(tolua_S,"ScriptManager");
- tolua_usertype(tolua_S,"VertexShader");
- tolua_usertype(tolua_S,"GlobalMaterial");
- tolua_usertype(tolua_S,"Texture1D");
- tolua_usertype(tolua_S,"Movable");
- tolua_usertype(tolua_S,"VertexFormat");
- tolua_usertype(tolua_S,"StencilProperty");
- tolua_usertype(tolua_S,"IndexBuffer");
- tolua_usertype(tolua_S,"Renderer");
- tolua_usertype(tolua_S,"SwitchNode");
- tolua_usertype(tolua_S,"CullProperty");
- tolua_usertype(tolua_S,"Actor");
- tolua_usertype(tolua_S,"Texture2D");
  tolua_usertype(tolua_S,"MaterialInstance");
  tolua_usertype(tolua_S,"WireProperty");
- tolua_usertype(tolua_S,"VertexBuffer");
+ tolua_usertype(tolua_S,"ResourceManager");
  tolua_usertype(tolua_S,"PX2::Object");
- tolua_usertype(tolua_S,"DepthProperty");
+ tolua_usertype(tolua_S,"StencilProperty");
  tolua_usertype(tolua_S,"Float3");
- tolua_usertype(tolua_S,"AVector");
- tolua_usertype(tolua_S,"Renderable");
- tolua_usertype(tolua_S,"int64_t");
- tolua_usertype(tolua_S,"Logger");
+ tolua_usertype(tolua_S,"HMatrix");
+ tolua_usertype(tolua_S,"Vector2f");
+ tolua_usertype(tolua_S,"Buffer::Locking");
+ tolua_usertype(tolua_S,"Texture1D");
  tolua_usertype(tolua_S,"Bound");
- tolua_usertype(tolua_S,"Triangles");
- tolua_usertype(tolua_S,"Texture::Format");
+ tolua_usertype(tolua_S,"IndexBuffer");
+ tolua_usertype(tolua_S,"int64_t");
 }
 
 /* method: GetResourcePath of class  Object */
@@ -13663,6 +13664,108 @@ static int tolua_PX2_Creater_RemoveObject00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: ConvertToActor of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_ConvertToActor00
+static int tolua_PX2_Creater_ConvertToActor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ConvertToActor'", NULL);
+#endif
+  {
+   Actor* tolua_ret = (Actor*)  self->ConvertToActor(obj);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Actor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ConvertToActor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: ConvertToUIPicBox of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_ConvertToUIPicBox00
+static int tolua_PX2_Creater_ConvertToUIPicBox00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ConvertToUIPicBox'", NULL);
+#endif
+  {
+   UIPicBox* tolua_ret = (UIPicBox*)  self->ConvertToUIPicBox(obj);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIPicBox");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ConvertToUIPicBox'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: ConvertToUIFrame of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_ConvertToUIFrame00
+static int tolua_PX2_Creater_ConvertToUIFrame00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ConvertToUIFrame'", NULL);
+#endif
+  {
+   UIFrame* tolua_ret = (UIFrame*)  self->ConvertToUIFrame(obj);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIFrame");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ConvertToUIFrame'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: new of class  Scene */
 #ifndef TOLUA_DISABLE_tolua_PX2_Scene_new00
 static int tolua_PX2_Scene_new00(lua_State* tolua_S)
@@ -14446,6 +14549,9 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateActor_Sphere",tolua_PX2_Creater_CreateActor_Sphere00);
    tolua_function(tolua_S,"AddObject",tolua_PX2_Creater_AddObject00);
    tolua_function(tolua_S,"RemoveObject",tolua_PX2_Creater_RemoveObject00);
+   tolua_function(tolua_S,"ConvertToActor",tolua_PX2_Creater_ConvertToActor00);
+   tolua_function(tolua_S,"ConvertToUIPicBox",tolua_PX2_Creater_ConvertToUIPicBox00);
+   tolua_function(tolua_S,"ConvertToUIFrame",tolua_PX2_Creater_ConvertToUIFrame00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Scene","Scene","Node",tolua_collect_Scene);

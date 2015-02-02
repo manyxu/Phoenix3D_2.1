@@ -30,7 +30,6 @@ namespace PX2Editor
 		virtual ~E_MainFrame();
 
 		bool Initlize();
-		void AddEventHandlers();
 
 		RenderView *GetRenderViewScene();
 
@@ -103,6 +102,9 @@ namespace PX2Editor
 			wxAuiPaneInfo &paneInfo,
 			wxString paneName = "Default",
 			bool isTopStyle = false);
+
+	protected:
+		std::string mPerspConfigName;
 
 		bool mIsInitlized;
 		

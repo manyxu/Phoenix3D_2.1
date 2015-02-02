@@ -177,41 +177,6 @@ Object* Object::Copy(const std::string& uniqueNameAppend)
 {
 	// Save the object to a memory buffer.
 	OutStream saveStream;
-	saveStream.SetObjectCopy(false);
-
-	saveStream.Insert((Object*)this);
-	int bufferSize = 0;
-	char* buffer = 0;
-	saveStream.Save(bufferSize, buffer, BufferIO::BM_DEFAULT_WRITE);
-
-	// Load the object from the memory buffer.
-	InStream loadStream;
-	loadStream.Load(bufferSize, buffer, BufferIO::BM_DEFAULT_READ);
-	delete1(buffer);
-
-	if (uniqueNameAppend != "")
-	{
-		int numObjects = loadStream.GetNumObjects();
-		for (int i = 0; i < numObjects; i++)
-		{
-			PX2::Object *obj = loadStream.GetObjectAt(i);
-			std::string name = obj->GetName();
-			if (name.length() > 0)
-			{
-				name += uniqueNameAppend;
-				obj->SetName(name);
-			}
-		}
-	}
-
-	return loadStream.GetObjectAt(0);
-}
-//----------------------------------------------------------------------------
-Object* Object::ShareCopy(const std::string& uniqueNameAppend)
-{
-	// Save the object to a memory buffer.
-	OutStream saveStream;
-	saveStream.SetObjectCopy(true);
 
 	saveStream.Insert((Object*)this);
 	int bufferSize = 0;

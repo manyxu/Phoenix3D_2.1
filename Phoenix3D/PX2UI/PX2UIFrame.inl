@@ -1,6 +1,26 @@
 // PX2UIFrame.inl
 
 //----------------------------------------------------------------------------
+inline const Sizef &UIFrame::GetSize() const
+{
+	return mSize;
+}
+//----------------------------------------------------------------------------
+inline float UIFrame::GetWidth() const
+{
+	return mSize.Width;
+}
+//----------------------------------------------------------------------------
+inline float UIFrame::GetHeight() const
+{
+	return mSize.Height;
+}
+//----------------------------------------------------------------------------
+inline const Sizef &UIFrame::GetBorderSize() const
+{
+	return mBorderSize;
+}
+//----------------------------------------------------------------------------
 inline void UIFrame::SetUICallback(UICallback callback)
 {
 	mUICallback = callback;

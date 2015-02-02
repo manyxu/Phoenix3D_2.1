@@ -27,15 +27,26 @@ namespace PX2
 	protected:
 		bool mIsUpdated;
 
-		// Rect
+		// Size
 	public:
-		void SetRect(const Rectf &rect);
-		const Rectf &GetRect() const;
-		Sizef GetSize() const;
+		void SetSize(const Sizef &rect);
+		const Sizef &GetSize() const;
+
+		void SetSizeChangeReAdjustCamera(bool doReAdjust);
 
 	protected:
-		virtual void OnRectChange();
-		Rectf mRect;
+		virtual void OnSizeChange();
+
+		Sizef mSize;
+		bool mIsSizeChangeReAdjustCamera;
+
+		// ViewPort
+	public:
+		void SetViewPort(const Rectf &viewPort);
+		const Rectf &GetViewPort() const;
+
+	protected:
+		Rectf mViewPort;
 
 		// Renderer Camera Culler
 	public:
@@ -54,7 +65,7 @@ namespace PX2
 
 		// Node
 	public:
-		void SetNode(Node *node);
+		virtual void SetNode(Node *node);
 		Node *GetNode();
 
 	protected:
@@ -64,6 +75,10 @@ namespace PX2
 	public:
 		void ComputeVisibleSet();
 		void Draw();
+
+	public_internal:
+		// ±à¼­Æ÷ÖÐµ÷ÓÃ
+		void _Tick(double appTime, double elapsedTime);
 
 		// Help
 	public:

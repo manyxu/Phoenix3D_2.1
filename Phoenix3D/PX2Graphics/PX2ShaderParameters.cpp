@@ -375,8 +375,7 @@ bool ShaderParameters::Register (OutStream& target) const
 {
 	if (Object::Register(target))
 	{
-		if(target.IsObjectCopy()) target.Register(mShader, true);
-		else target.Register(mShader);
+		target.Register(mShader);
 
 		target.Register(mNumConstants, mConstants);
 

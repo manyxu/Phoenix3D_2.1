@@ -41,3 +41,18 @@ inline const std::string &Project::GetUIFilename() const
 	return mUIFilename;
 }
 //----------------------------------------------------------------------------
+inline UIView *Project::GetUIRenderStep()
+{
+	return mUIRenderStep;
+}
+//----------------------------------------------------------------------------
+inline void Project::SetEdit_UICameraPercent(float percent)
+{
+	mEdit_UICameraPercent = percent;
+}
+//----------------------------------------------------------------------------
+inline float Project::GetEdit_UICameraPercent() const
+{
+	return mEdit_UICameraPercent;
+}
+//----------------------------------------------------------------------------

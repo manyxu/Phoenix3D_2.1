@@ -34,6 +34,9 @@ void EditMap::NewProject(const std::string &pathname,
 
 	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::NewProject);
 	PX2_EW.BroadcastingLocalEvent(ent);
+
+	Event *entUI = EditEventSpace::CreateEventX(EditEventSpace::NewUI);
+	PX2_EW.BroadcastingLocalEvent(entUI);
 }
 //----------------------------------------------------------------------------
 bool EditMap::LoadProject(const char *pathname)
@@ -58,17 +61,10 @@ bool EditMap::LoadProject(const char *pathname)
 		const std::string &uiFilename = newProj->GetUIFilename();
 		if (!uiFilename.empty())
 		{
-			ObjectPtr uiObj = PX2_RM.BlockLoad(uiFilename);
-			UIFrame *ui = DynamicCast<UIFrame>(uiObj);
-			if (ui)
-			{
-				Project::GetSingleton().SetUIFrame(ui);
-			}
+			LoadUI(uiFilename);
 		}
 
 		mProjectFilePath = pathname;
-
-		PX2_ENGINELOOP.SetSize(newProj->GetSize());
 
 		return true;
 	}
@@ -139,7 +135,10 @@ void EditMap::CloseProject()
 	bool canDoChange = (EngineLoop::PT_NONE == PX2_ENGINELOOP.GetPlayType());
 	if (!canDoChange) return;
 
+	PX2_SELECTION.Clear();
+
 	CloseScene();
+	CloseUI();
 
 	Project *oldProj = Project::GetSingletonPtr();
 	if (oldProj)
@@ -148,6 +147,9 @@ void EditMap::CloseProject()
 		EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 
 		Project::Destory();
+
+		PX2_RM.ClearRes(mProjectFilePath);
+		mProjectFilePath.clear();
 	}
 }
 //----------------------------------------------------------------------------
@@ -235,6 +237,34 @@ void EditMap::CloseScene()
 		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::CloseScene);
 		PX2_EW.BroadcastingLocalEvent(ent);
 	}
+}
+//----------------------------------------------------------------------------
+bool EditMap::LoadUI(const std::string &pathname)
+{
+	ObjectPtr uiObj = PX2_RM.BlockLoad(pathname);
+	UIFrame *ui = DynamicCast<UIFrame>(uiObj);
+	if (ui)
+	{
+		Project::GetSingleton().SetUIFrame(ui);
+
+		Event *eventUI = EditEventSpace::CreateEventX(EditEventSpace::LoadedUI);
+		EventWorld::GetSingleton().BroadcastingLocalEvent(eventUI);
+
+		return true;
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
+void EditMap::CloseUI()
+{
+	Project *proj = Project::GetSingletonPtr();
+	if (!proj) return;
+
+	PX2_PROJ.SetUIFrame(0);
+
+	Event *eventUI = EditEventSpace::CreateEventX(EditEventSpace::CloseUI);
+	EventWorld::GetSingleton().BroadcastingLocalEvent(eventUI);
 }
 //----------------------------------------------------------------------------
 std::string EditMap::_CalSavePath(const std::string &pathname)

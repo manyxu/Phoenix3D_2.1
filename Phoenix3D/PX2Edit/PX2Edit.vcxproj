@@ -19,9 +19,10 @@
     <ClInclude Include="PX2EditPre.hpp" />
     <ClInclude Include="PX2EditParams.hpp" />
     <ClInclude Include="PX2EditRenderView.hpp" />
+    <ClInclude Include="PX2EditRenderView_Res.hpp" />
     <ClInclude Include="PX2EditRenderView_Scene.hpp" />
-    <ClInclude Include="PX2Edits.hpp" />
     <ClInclude Include="PX2EditRenderView_UI.hpp" />
+    <ClInclude Include="PX2Edits.hpp" />
     <ClInclude Include="PX2GeoObjFactory.hpp" />
     <ClInclude Include="PX2SceneNodeCtrl.hpp" />
   </ItemGroup>
@@ -32,6 +33,7 @@
     <ClCompile Include="PX2EditMap.cpp" />
     <ClCompile Include="PX2EditParams.cpp" />
     <ClCompile Include="PX2EditRenderView.cpp" />
+    <ClCompile Include="PX2EditRenderView_Res.cpp" />
     <ClCompile Include="PX2EditRenderView_Scene.cpp" />
     <ClCompile Include="PX2EditRenderView_UI.cpp" />
     <ClCompile Include="PX2GeoObjFactory.cpp" />

@@ -21,15 +21,6 @@ namespace PX2
 		OutStream ();
 		virtual ~OutStream ();
 
-		void SetObjectCopy(bool b)
-		{
-			mForCopy = b;
-		}
-		bool IsObjectCopy()
-		{
-			return mForCopy;
-		}
-
 		// 加载的顶层级别（top-level）对象
 		bool Insert (Object* object);
 		bool IsTopLevel (const Object* object) const;
@@ -98,27 +89,18 @@ public_internal:
 
 		// 帮助函数
 		int GetBytesWritten () const;
-		bool RegisterRoot (const Object* object, bool shareptr=false);
+		bool RegisterRoot (const Object* object);
 		void WriteUniqueID (const Object* object);
 
-		template <typename T> void Register (const T* object, bool shareptr=false);
-		template <typename T> void Register (int numElements, T* const* objects);
-		template <typename T> void Register (const Pointer0<T>& object, bool shareptr=false);
-		template <typename T> void Register (int numElements, Pointer0<T> const* objects);
+		template <typename T> void Register(const T* object);
+		template <typename T> void Register(int numElements, T* const* objects);
+		template <typename T> void Register(const Pointer0<T>& object);
+		template <typename T> void Register(int numElements,
+			Pointer0<T> const* objects);
 
 	private:
 		typedef std::map<const Object*, unsigned int> RegisterMap;
-
-		struct RegObjDesc
-		{
-			RegObjDesc(const Object*p, bool b) : ptr(p), shareptr(b)
-			{
-			}
-
-			const Object *ptr;
-			bool shareptr;
-		};
-		typedef std::vector<RegObjDesc> RegisterArray;
+		typedef std::vector<const Object*> RegisterArray;
 
 		// 用来进行持久化的对象列表
 		std::vector<Object*> mTopLevel;
@@ -127,8 +109,6 @@ public_internal:
 		RegisterMap mRegistered;
 		RegisterArray mOrdered;
 		BufferIO mTarget;
-
-		bool mForCopy;
 	};
 
 #include "PX2OutStream.inl"

@@ -17,8 +17,10 @@ namespace PX2Editor
 	public:
 		enum RenderViewType
 		{
-			RVT_SCENE,
+			RVT_SCENEUI,
 			RVT_LOGIC,
+			RVT_RES,
+			RVT_TIMELINE,
 			RVT_MAX_TYPE
 		};
 		RenderView(RenderViewType viewType, wxWindow *parent);
@@ -45,7 +47,10 @@ namespace PX2Editor
 		DECLARE_EVENT_TABLE()
 
 		RenderView();
-		PX2::APoint _wxPointToAPoint(wxPoint &point);
+
+	public_internal:
+		void _CloseEidtRenderView(const std::string &name);
+		void _NewEditRenderView(const std::string &name);
 
 	protected:
 		bool mIsInited;
@@ -54,7 +59,7 @@ namespace PX2Editor
 
 		int mTimerID;
 		wxTimer mTimer;
-		PX2::EditRenderViewPtr mEditRenderView;
+		std::map<std::string, PX2::EditRenderViewPtr> mEditRenderViews;
 		wxSize mSize;
 
 		wxMenu *mEditMenu;

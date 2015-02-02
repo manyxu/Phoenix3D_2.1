@@ -82,6 +82,7 @@ namespace PX2
 		bool IsHasRenderStep(RenderStep *step) const;
 		bool RemoveRenderStep(RenderStep *step);
 
+		void Update(double appSeconds, double elapsedSeconds);
 		void ComputeVisibleSet();
 		void Draw();
 

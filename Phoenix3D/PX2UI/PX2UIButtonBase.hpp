@@ -4,14 +4,14 @@
 #define PX2UIBUTTONBASE_HPP
 
 #include "PX2UIPre.hpp"
-#include "PX2UISizeFrame.hpp"
+#include "PX2UIFrame.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2UIText.hpp"
 
 namespace PX2
 {
 
-	class UIButtonBase : public UISizeFrame
+	class UIButtonBase : public UIFrame
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -46,10 +46,7 @@
     <Filter Include="TopView">
       <UniqueIdentifier>{def88b55-da7b-4180-8ab7-f703d37b830b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CenterViews">
-      <UniqueIdentifier>{e22b5954-6be6-4047-b53b-c39f5288d492}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CenterViews\RenderView">
+    <Filter Include="RenderView">
       <UniqueIdentifier>{e66a9068-715a-4e43-8afa-3569661bd933}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -62,7 +59,7 @@
       <Filter>App</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_RenderView.hpp">
-      <Filter>CenterViews\RenderView</Filter>
+      <Filter>RenderView</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_ProjView.hpp">
       <Filter>ProjView</Filter>
@@ -80,9 +77,6 @@
       <Filter>ProjView</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_ResTree.hpp">
-      <Filter>ResView\TreeShow</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2E_ResShow.hpp">
       <Filter>ResView\TreeShow</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_ResSplitPanel.hpp">
@@ -142,9 +136,6 @@
     <ClInclude Include="PX2E_TimeLineRender.hpp">
       <Filter>TimeLine</Filter>
     </ClInclude>
-    <ClInclude Include="PX2NirvanaUIEventType.hpp">
-      <Filter>Event</Filter>
-    </ClInclude>
     <ClInclude Include="PX2E_NirMan.hpp">
       <Filter>App\Manager</Filter>
     </ClInclude>
@@ -153,6 +144,12 @@
     </ClInclude>
     <ClInclude Include="PX2E_InspView.hpp">
       <Filter>InspView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_RenderView_Cont.hpp">
+      <Filter>RenderView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NirvanaEventType.hpp">
+      <Filter>Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +160,7 @@
       <Filter>App</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_RenderView.cpp">
-      <Filter>CenterViews\RenderView</Filter>
+      <Filter>RenderView</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_ResView.cpp">
       <Filter>ResView</Filter>
@@ -181,9 +178,6 @@
       <Filter>ProjView</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_ResTree.cpp">
-      <Filter>ResView\TreeShow</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2E_ResShow.cpp">
       <Filter>ResView\TreeShow</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_ResSplitPanel.cpp">
@@ -243,9 +237,6 @@
     <ClCompile Include="PX2E_TimeLineRender.cpp">
       <Filter>TimeLine</Filter>
     </ClCompile>
-    <ClCompile Include="PX2NirvanaUIEventType.cpp">
-      <Filter>Event</Filter>
-    </ClCompile>
     <ClCompile Include="PX2E_NirMan.cpp">
       <Filter>App\Manager</Filter>
     </ClCompile>
@@ -254,6 +245,12 @@
     </ClCompile>
     <ClCompile Include="PX2E_InspView.cpp">
       <Filter>InspView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_RenderView_Cont.cpp">
+      <Filter>RenderView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NirvanaEventType.cpp">
+      <Filter>Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

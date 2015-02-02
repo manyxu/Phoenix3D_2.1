@@ -30,6 +30,9 @@ namespace PX2
 		bool SaveSceneAs(const std::string &pathname);
 		void CloseScene();
 
+		bool LoadUI(const std::string &pathname);
+		void CloseUI();
+
 	protected:
 		std::string _CalSavePath(const std::string &pathname);
 		bool _SaveSceneInternal(const std::string &pathname);

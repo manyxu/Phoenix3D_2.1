@@ -275,7 +275,6 @@ namespace PX2
 		virtual void Save (OutStream& target) const;
 		virtual int GetStreamingSize (Stream &stream) const;
 		Object* Copy (const std::string& uniqueNameAppend);
-		Object* ShareCopy (const std::string& uniqueNameAppend);
 
 		unsigned short GetReadedVersion () const;
 

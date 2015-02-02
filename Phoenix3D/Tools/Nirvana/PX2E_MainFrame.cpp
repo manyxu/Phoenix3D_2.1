@@ -18,7 +18,9 @@
 #include "PX2DlgCreateProject.hpp"
 #include "PX2ObjectInspector.hpp"
 #include "PX2EditEventType.hpp"
-#include "PX2NirvanaUIEventType.hpp"
+#include "PX2NirvanaEventType.hpp"
+#include "PX2EditParams.hpp"
+#include "PX2E_RenderView_Cont.hpp"
 
 using namespace PX2Editor;
 using namespace PX2;
@@ -112,15 +114,6 @@ void E_MainFrame::SetAuiManColorForTheme()
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(r, g, b));
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::AddEventHandlers()
-{
-	PX2_EW.ComeIn(this);
-	PX2_EW.ComeIn(mRenderViewScene);
-	PX2_EW.ComeIn(mRenderViewLogic);
-	PX2_EW.ComeIn(mProjView->GetProjTree());
-	PX2_EW.ComeIn(mInspView);
-}
-//----------------------------------------------------------------------------
 void E_MainFrame::DoExecute(Event *event)
 {
 	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene))
@@ -132,7 +125,7 @@ void E_MainFrame::DoExecute(Event *event)
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
 	}
-	else if (NirvanaUIEventSpace::IsEqual(event, NirvanaUIEventSpace::TabDrag))
+	else if (NirvanaEventSpace::IsEqual(event, NirvanaEventSpace::TabDrag))
 	{
 		wxWindow *window = event->GetData<wxWindow*>();
 		_CreateView(window, "ResView", "ResView", "ResView",
@@ -504,14 +497,16 @@ void E_MainFrame::_CreateMainView()
 	objStart.Name = "StartView";
 	objs.push_back(objStart);
 
-	mRenderViewScene = new RenderView(RenderView::RVT_SCENE, this);
+	RenderView_Cot *viewCont_SceneUI = new RenderView_Cot(RenderView::RVT_SCENEUI, this);
+	mRenderViewScene = viewCont_SceneUI->GetRenderView();
 	WindowObj objRenderViewScene;
-	objRenderViewScene.TheWindow = mRenderViewScene;
+	objRenderViewScene.TheWindow = viewCont_SceneUI;
 	objRenderViewScene.Caption = PX2_LMVAL("Stage");
 	objRenderViewScene.Name = "Stage";
 	objs.push_back(objRenderViewScene);
 
-	mRenderViewLogic = new RenderView(RenderView::RVT_LOGIC, this);
+	RenderView_Cot *viewCont_Logic = new RenderView_Cot(RenderView::RVT_LOGIC, this);
+	mRenderViewLogic = viewCont_Logic->GetRenderView();
 	WindowObj objLogicView;
 	objLogicView.TheWindow = mRenderViewLogic;
 	objLogicView.Caption = PX2_LMVAL("LogicView");

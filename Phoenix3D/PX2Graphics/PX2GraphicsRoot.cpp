@@ -376,6 +376,14 @@ bool GraphicsRoot::RemoveRenderStep(RenderStep *step)
 	return false;
 }
 //----------------------------------------------------------------------------
+void GraphicsRoot::Update(double appSeconds, double elapsedSeconds)
+{
+	for (int i = 0; i < (int)mRenderSteps.size(); i++)
+	{
+		mRenderSteps[i]->Update(appSeconds, elapsedSeconds);
+	}
+}
+//----------------------------------------------------------------------------
 void GraphicsRoot::ComputeVisibleSet()
 {
 	for (int i = 0; i < (int)mRenderSteps.size(); i++)

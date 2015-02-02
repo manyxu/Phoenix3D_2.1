@@ -58,7 +58,8 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 
 	Project *proj = DynamicCast<Project>(mObject);
 	Actor *actor = DynamicCast<Actor>(mObject);
-	PX2_UNUSED(actor);
+	Movable *mov = DynamicCast<Movable>(mObject);
+	Node *node = DynamicCast<Node>(mObject);
 
 	if (!mObject)
 	{ // IT_CATALOG
@@ -73,6 +74,24 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 	else if (!proj)
 	{
 		ClearChildren();
+	}
+
+	if (OTL_GENERAL == mTreeLevel)
+	{
+	}
+	else if (OTL_CHILDREN == mTreeLevel)
+	{
+		if (node)
+		{
+			for (int i = 0; i < node->GetNumChildren(); i++)
+			{
+				Movable *child = node->GetChild(i);
+				if (child)
+				{
+					AddChild(child, mIconID, mTreeLevel);
+				}
+			}
+		}
 	}
 }
 //-----------------------------------------------------------------------------

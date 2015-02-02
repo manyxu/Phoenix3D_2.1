@@ -2,7 +2,6 @@
 
 #include "PX2UIPicBox.hpp"
 #include "PX2Renderer.hpp"
-#include "PX2UIManager.hpp"
 #include "PX2UIFrame.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2DynamicBufferManager.hpp"
@@ -722,8 +721,8 @@ int UIPicBox::GetStreamingSize(Stream &stream) const
 {
 	int size = TriMesh::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
 	size += PX2_ENUMSIZE(mPicBoxType);
-	size += PX2_BOOLSIZE(mIsDynamic);
 	size += sizeof(mAnchorPoint),
 	size += sizeof(mSize);
 	size += sizeof(mCornerSize);

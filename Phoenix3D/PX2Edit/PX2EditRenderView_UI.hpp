@@ -5,6 +5,7 @@
 
 #include "PX2EditMapPre.hpp"
 #include "PX2EditRenderView.hpp"
+#include "PX2Polysegment.hpp"
 
 namespace PX2
 {
@@ -14,6 +15,26 @@ namespace PX2
 	public:
 		EditRenderView_UI();
 		virtual ~EditRenderView_UI();
+
+	public:
+		virtual void OnSize(const Sizef& size);
+		virtual void OnLeftDown(const APoint &pos);
+		virtual void OnLeftUp(const APoint &pos);
+		virtual void OnMiddleDown(const APoint &pos);
+		virtual void OnMiddleUp(const APoint &pos);
+		virtual void OnMouseWheel(float delta);
+		virtual void OnRightDown(const APoint &pos);
+		virtual void OnRightUp(const APoint &pos);
+		virtual void OnMotion(const APoint &pos);
+
+	protected:
+		void _CreateGridGeometry();
+		void _CreateNodeCtrl();
+		void _UpdateProjectRange();
+		void _AdjustCameraPercent();
+
+		PX2::PolysegmentPtr mProjRangeSegment;
+		PX2::NodePtr mRangeNode;
 	};
 
 	typedef Pointer0<EditRenderView_UI> EditUIRenderViewPtr;

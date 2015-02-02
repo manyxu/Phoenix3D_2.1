@@ -7,13 +7,16 @@
 #include "PX2StringTokenizer.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2Renderer.hpp"
-#include "PX2UIManager.hpp"
+#include "PX2UIView.hpp"
+#include "PX2UISizeFrame.hpp"
+#include "PX2UIPicBox.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 Pointer0<Project> Project::msProject;
 //----------------------------------------------------------------------------
-Project::Project()
+Project::Project() :
+mEdit_UICameraPercent(1.0f)
 {
 	if (ScriptManager::GetSingletonPtr())
 		PX2_SM.SetUserTypePointer("PX2_PROJ", "Project", this);
@@ -26,7 +29,13 @@ Project::Project()
 	mSceneRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
 	PX2_GR.AddRenderStep(mSceneRenderStep);
 
-	mUIFrame = new0 UIFrame();
+	mUIRenderStep = new0 UIView();
+	mUIRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
+	PX2_GR.AddRenderStep(mUIRenderStep);
+
+	mUIFrame = new0 UISizeFrame();
+	mUIFrame->AttachChild(new0 UIPicBox());
+	mUIFrame->SetName("RootFrame");
 	SetUIFrame(mUIFrame);
 }
 //----------------------------------------------------------------------------
@@ -101,7 +110,8 @@ bool Project::SaveConfig(const std::string &filename)
 	XMLNode publish = projNode.NewChild("publish");
 
 	// setting
-	XMLNode settingNode = projNode.NewChild("setting");
+	XMLNode settingNode = projNode.NewChild("edit_setting");
+	settingNode.SetAttributeFloat("uicamerapercent", mEdit_UICameraPercent);
 
 	if (data.SaveFile(filename))
 	{
@@ -165,6 +175,11 @@ bool Project::Load(const std::string &filename)
 
 			// setting
 			XMLNode settingNode = rootNode.GetChild("setting");
+			if (!settingNode.IsNull())
+			{
+				if (settingNode.HasAttribute("uicamerapercent"))
+					mEdit_UICameraPercent = settingNode.AttributeToFloat("uicamerapercent");
+			}
 
 			// split file names
 			std::string outPath;
@@ -228,8 +243,7 @@ void Project::SetSceneFilename(const std::string &scenefilename)
 void Project::SetUIFrame(UIFrame *ui)
 {
 	mUIFrame = ui;
-
-	PX2_UIM.GetDefaultUIView()->SetNode(mUIFrame);
+	mUIRenderStep->SetNode(mUIFrame);
 }
 //----------------------------------------------------------------------------
 void Project::SetSize(float width, float height)

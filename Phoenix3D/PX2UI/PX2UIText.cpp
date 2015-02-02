@@ -1,7 +1,6 @@
 // PX2UIText.cpp
 
 #include "PX2UIText.hpp"
-#include "PX2UIManager.hpp"
 #include "PX2LanguageManager.hpp"
 #include "PX2FontManager.hpp"
 #include "PX2ScriptManager.hpp"

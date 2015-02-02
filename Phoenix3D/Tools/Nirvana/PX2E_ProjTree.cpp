@@ -6,6 +6,9 @@
 #include "PX2EditEventType.hpp"
 #include "PX2Selection.hpp"
 #include "PX2SimulationEventType.hpp"
+#include "PX2E_NirMan.hpp"
+#include "PX2ScriptManager.hpp"
+#include "PX2LanguageManager.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -13,8 +16,11 @@ static int sID_PROJVIEW = PX2_EDIT_GETID;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::ProjTree, wxTreeCtrl)
 BEGIN_EVENT_TABLE(ProjTree, wxTreeCtrl)
+EVT_TREE_ITEM_ACTIVATED(sID_PROJVIEW, ProjTree::OnItemActivated)
 EVT_TREE_SEL_CHANGED(sID_PROJVIEW, ProjTree::OnSelChanged)
 EVT_TREE_SEL_CHANGING(sID_PROJVIEW, ProjTree::OnSelChanging)
+EVT_RIGHT_DOWN(ProjTree::OnRightDown)
+EVT_RIGHT_UP(ProjTree::OnRightUp)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 ProjTree::ProjTree()
@@ -28,8 +34,11 @@ mTreeLevel(OTL_GENERAL),
 mImageList(0),
 mItemProj(0),
 mItemScene(0),
-mItemUI(0)
+mItemUI(0),
+mEditMenu(0)
 {
+	PX2_EW.ComeIn(this);
+
 	mImageList = new wxImageList(16, 16);
 
 	int imageProject = mImageList->Add(wxIcon(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
@@ -56,11 +65,54 @@ ProjTree::~ProjTree()
 
 	_ClearProject();
 
+	if (mEditMenu)
+	{
+		delete mEditMenu;
+		mEditMenu = 0;
+	}
+
 	if (mImageList)
 	{
 		delete mImageList;
 		mImageList = 0;
 	}
+}
+//-----------------------------------------------------------------------------
+void ProjTree::SetTreeLevel(ProjTreeLevel level)
+{
+	mItemProj->SetTreeLevel(level);
+	mItemScene->SetTreeLevel(level);
+	mItemCameras->SetTreeLevel(level);
+	mItemObjects->SetTreeLevel(level);
+
+	if (OTL_GENERAL == level)
+	{
+		mItemUI->SetTreeLevel(OTL_CHILDREN);
+	}
+	else
+	{
+		mItemUI->SetTreeLevel(level);
+	}
+
+	mTreeLevel = level;
+}
+//-----------------------------------------------------------------------------
+ProjTreeLevel ProjTree::GetTreeLevel() const
+{
+	return mTreeLevel;
+}
+//-----------------------------------------------------------------------------
+void ProjTree::SetSelectItemLevel(ProjTreeLevel level)
+{
+	wxTreeItemId selectID = GetSelection();
+	ProjTreeItem *item = GetItem(selectID);
+	if (item)
+	{
+		item->SetTreeLevel(level);
+		SelectItem(item->GetItemID());
+	}
+
+	Expand(item->GetItemID());
 }
 //-----------------------------------------------------------------------------
 ProjTreeItem *ProjTree::GetItem(wxTreeItemId id)
@@ -180,8 +232,12 @@ void ProjTree::_RefreshUI()
 	}
 	if (!uiFrame) return;
 
+	ProjTreeLevel treeLevel = mTreeLevel;
+	if (treeLevel == OTL_GENERAL)
+		treeLevel = OTL_CHILDREN;
+
 	if (mItemUI)
-		mItemUI->AddChild(uiFrame, 0, mTreeLevel);
+		mItemUI->AddChild(uiFrame, 0, treeLevel);
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearUI()
@@ -232,6 +288,45 @@ void ProjTree::_AddObject(Object *obj)
 			Expand(item->GetItemID());
 		}
 	}
+}
+//-----------------------------------------------------------------------------
+void ProjTree::OnRightDown(wxMouseEvent& e)
+{
+	PX2_UNUSED(e);
+}
+//-----------------------------------------------------------------------------
+void ProjTree::OnRightUp(wxMouseEvent& e)
+{
+	wxPoint mousePos = e.GetPosition();
+
+	if (mEditMenu)
+	{
+		delete mEditMenu;
+		mEditMenu = 0;
+	}
+
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	if (!obj) return;
+
+	if (!obj)
+	{
+		wxMessageBox(PX2_LM.GetValue("Tip0"), PX2_LM.GetValue("Notice"), wxOK);
+		return;
+	}
+
+	mEditMenu = new wxMenu();
+	NirMan::GetSingleton().SetCurMenu(mEditMenu);
+
+	int menuID = 2;
+	char szScript[256];
+	sprintf(szScript, "CreateEditMenu(%d)", menuID);
+	PX2_SM.CallString(szScript);
+
+	if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
+}
+//----------------------------------------------------------------------------
+void ProjTree::OnItemActivated(wxTreeEvent& event)
+{
 }
 //----------------------------------------------------------------------------
 void ProjTree::OnSelChanged(wxTreeEvent& event)

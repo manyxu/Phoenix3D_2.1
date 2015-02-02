@@ -3,7 +3,6 @@
 #include "PX2UIButton.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2UICallback.hpp"
-#include "PX2UIManager.hpp"
 #include "PX2UIView.hpp"
 using namespace PX2;
 

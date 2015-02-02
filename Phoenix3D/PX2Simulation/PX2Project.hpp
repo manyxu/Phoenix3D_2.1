@@ -11,6 +11,7 @@
 #include "PX2Float4.hpp"
 #include "PX2RenderStep.hpp"
 #include "PX2UIFrame.hpp"
+#include "PX2UIView.hpp"
 
 namespace PX2
 {
@@ -68,10 +69,20 @@ namespace PX2
 		void SetUIFrame(UIFrame *ui);
 		UIFrame *GetUIFrame();
 		const std::string &GetUIFilename() const;
+		UIView *GetUIRenderStep();
 
 	protected:
 		std::string mUIFilename;
 		UIFramePtr mUIFrame;
+		UIViewPtr mUIRenderStep;
+
+		// edit setting
+	public:
+		void SetEdit_UICameraPercent(float percent);
+		float GetEdit_UICameraPercent() const;
+
+	protected:
+		float mEdit_UICameraPercent;
 	};
 
 #define PX2_PROJ Project::GetSingleton()

@@ -22,7 +22,6 @@ mFontMan(0),
 mADMan(0),
 mSelection(0),
 mCreater(0),
-mUIManager(0),
 mAccoutManager(0),
 
 mIsInBackground(false),

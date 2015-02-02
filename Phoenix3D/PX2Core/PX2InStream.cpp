@@ -53,28 +53,20 @@ void InStream::Load (int bufferSize, char* buffer, int mode)
 			ReadString(name);
 		}
 
-		if(name.size() == 0) //shareptr
+		// 获得该对象的工厂创建函数。如果Object::Find(name)调用失败，确信你已经
+		// 在main或者WinMain开始时调用了InitTerm::ExecuteInitializers()。
+		// InitTerm内的初始化函数创建工厂创建函数map。
+		Object::FactoryFunction factory = Object::Find(name);
+		if (!factory)
 		{
-			mSource.Read(sizeof(Object *), &object);
-			ReadUniqueID(object, true);
+			// 寻找不到工厂创建函数.确信你加了PX2_REGISTER_STREAM(someclass)宏
+			// 在类'someclass'的头文件中。这个宏为这个类注册了工厂创建函数。
+			assertion(false, "Cannot find factory for %s.\n", name.c_str());
+			return;
 		}
-		else
-		{
-			// 获得该对象的工厂创建函数。如果Object::Find(name)调用失败，确信你已经
-			// 在main或者WinMain开始时调用了InitTerm::ExecuteInitializers()。
-			// InitTerm内的初始化函数创建工厂创建函数map。
-			Object::FactoryFunction factory = Object::Find(name);
-			if (!factory)
-			{
-				// 寻找不到工厂创建函数.确信你加了PX2_REGISTER_STREAM(someclass)宏
-				// 在类'someclass'的头文件中。这个宏为这个类注册了工厂创建函数。
-				assertion(false, "Cannot find factory for %s.\n", name.c_str());
-				return;
-			}
 
-			// 创建对象，加载成员数据
-			object = (*factory)(*this);
-		}
+		// 创建对象，加载成员数据
+		object = (*factory)(*this);
 
 		// 如果是顶层级别物体，将其加入列表。
 		if (isTopLevel)
@@ -84,12 +76,11 @@ void InStream::Load (int bufferSize, char* buffer, int mode)
 	}
 
 	// 链接对象
-	LinkArray::iterator iter = mOrdered.begin();
-	LinkArray::iterator end = mOrdered.end();
+	std::vector<Object* >::iterator iter = mOrdered.begin();
+	std::vector<Object* >::iterator end = mOrdered.end();
 	for (/**/; iter != end; ++iter)
 	{
-		if(!iter->shareptr)
-			iter->obj->Link(*this); //share obj 不需要重新link
+		(*iter)->Link(*this);
 	}
 
 	// 当对象被加载时，调用对象的缺省构造函数创建对象，PostLink()机制能做一些
@@ -98,8 +89,7 @@ void InStream::Load (int bufferSize, char* buffer, int mode)
 	end = mOrdered.end();
 	for (/**/; iter != end; ++iter)
 	{
-		if(!iter->shareptr) 
-			iter->obj->PostLink();
+		(*iter)->PostLink();
 	}
 
 	// 清空列表，为其他的调用做准备。
@@ -331,13 +321,13 @@ int InStream::GetBytesRead () const
 	return mSource.GetNumBytesProcessed();
 }
 //----------------------------------------------------------------------------
-void InStream::ReadUniqueID (Object* object, bool shareptr)
+void InStream::ReadUniqueID (Object* object)
 {
 	unsigned int uniqueID;
 	if (mSource.Read(sizeof(unsigned int), &uniqueID))
 	{
 		mLinked.insert(std::make_pair((uint64_t)uniqueID, object));
-		mOrdered.push_back(LinkDesc(object, shareptr));
+		mOrdered.push_back(object);
 	}
 }
 //----------------------------------------------------------------------------
