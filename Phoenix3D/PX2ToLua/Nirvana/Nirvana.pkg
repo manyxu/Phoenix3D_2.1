@@ -2,3 +2,4 @@
 
 $pfile "Nirvana/PX2E_MainFrame.pkg"
 $pfile "Nirvana/PX2E_NirMan.pkg"
+$pfile "Nirvana/PX2E_Define.pkg"

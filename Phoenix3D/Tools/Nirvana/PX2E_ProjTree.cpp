@@ -319,7 +319,7 @@ void ProjTree::OnRightUp(wxMouseEvent& e)
 
 	int menuID = 2;
 	char szScript[256];
-	sprintf(szScript, "CreateEditMenu(%d)", menuID);
+	sprintf(szScript, "e_CreateEditMenu(%d)", menuID);
 	PX2_SM.CallString(szScript);
 
 	if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);

@@ -24,7 +24,22 @@ E_App::~E_App()
 //-----------------------------------------------------------------------------
 bool E_App::OnInit()
 {
-		PX2_ENGINELOOP.Initlize();
+	PX2_ENGINELOOP.Initlize();
+
+	Edit *edit = new0 Edit();
+	edit->Initlize();
+
+	NirMan *nirMan = new0 NirMan();
+	nirMan->Initlize();
+
+	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
+	luaMan->CallFile("DataEditor/scripts/language.lua");
+	tolua_PX2Editor_open(luaMan->GetLuaState());
+
+	luaMan->CallFile("DataEditor/scripts/start.lua");
+
+	luaMan->SetUserTypePointer("NirMan", "NirMan", nirMan);
+	luaMan->SetUserTypePointer("PX2_EDIT", "Edit", Edit::GetSingletonPtr());
 
 	wxLog::SetLogLevel(0);
 
@@ -56,11 +71,7 @@ bool E_App::OnInit()
 #endif
 #endif
 
-	Edit *edit = new0 Edit();
-	edit->Initlize();
-
-	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
-	luaMan->CallFile("DataEditor/scripts/language.lua");
+	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", mMainFrame);
 
 	mMainFrame->Initlize();
 	SetTopWindow(mMainFrame);
@@ -70,18 +81,6 @@ bool E_App::OnInit()
 	PX2_ENGINELOOP.SetPt_Data(mMainFrame->GetRenderViewScene()->GetHandle());
 	PX2_ENGINELOOP.SetPt_Size(Sizef(1024.0f, 768.0f));
 	PX2_ENGINELOOP.InitlizeRenderer();
-
-	NirMan *nirMan = new0 NirMan();
-	nirMan->Initlize();
-	
-
-	tolua_PX2Editor_open(luaMan->GetLuaState());
-
-	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", mMainFrame);
-	luaMan->SetUserTypePointer("NirMan", "NirMan", nirMan);
-	luaMan->SetUserTypePointer("PX2_EDIT", "Edit", Edit::GetSingletonPtr());
-
-	luaMan->CallFile("DataEditor/scripts/start.lua");
 
 	mMainFrame->Show(true);
 

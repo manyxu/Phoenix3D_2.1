@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 01/28/15 18:47:26.
+** Generated automatically by tolua++-1.0.92 on 02/02/15 14:01:54.
 */
 
 #ifndef __cplusplus
@@ -37,6 +37,7 @@ static int tolua_collect_PX2__APoint (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
+ tolua_usertype(tolua_S,"wxAuiToolBar");
  tolua_usertype(tolua_S,"NirMan");
  tolua_usertype(tolua_S,"wxMenuItem");
  tolua_usertype(tolua_S,"E_MainFrame");
@@ -702,6 +703,139 @@ static int tolua_PX2Editor_NirMan_AddSeparater00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'AddSeparater'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetCurToolBar of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_SetCurToolBar00
+static int tolua_PX2Editor_NirMan_SetCurToolBar00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"wxAuiToolBar",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+  wxAuiToolBar* toolBar = ((wxAuiToolBar*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetCurToolBar'", NULL);
+#endif
+  {
+   self->SetCurToolBar(toolBar);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetCurToolBar'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetCurToolBar of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_GetCurToolBar00
+static int tolua_PX2Editor_NirMan_GetCurToolBar00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetCurToolBar'", NULL);
+#endif
+  {
+   wxAuiToolBar* tolua_ret = (wxAuiToolBar*)  self->GetCurToolBar();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"wxAuiToolBar");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetCurToolBar'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddTool of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_AddTool00
+static int tolua_PX2Editor_NirMan_AddTool00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+  const std::string icon = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+  std::string script = ((std::string)  tolua_tocppstring(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddTool'", NULL);
+#endif
+  {
+   self->AddTool(icon,script);
+   tolua_pushcppstring(tolua_S,(const char*)icon);
+   tolua_pushcppstring(tolua_S,(const char*)script);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddTool'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddToolSeparater of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_AddToolSeparater00
+static int tolua_PX2Editor_NirMan_AddToolSeparater00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddToolSeparater'", NULL);
+#endif
+  {
+   self->AddToolSeparater();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddToolSeparater'.",&tolua_err);
  return 0;
 #endif
 }
@@ -1600,8 +1734,17 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"AddSubMenu",tolua_PX2Editor_NirMan_AddSubMenu00);
    tolua_function(tolua_S,"AddMenuItem",tolua_PX2Editor_NirMan_AddMenuItem00);
    tolua_function(tolua_S,"AddSeparater",tolua_PX2Editor_NirMan_AddSeparater00);
+   tolua_function(tolua_S,"SetCurToolBar",tolua_PX2Editor_NirMan_SetCurToolBar00);
+   tolua_function(tolua_S,"GetCurToolBar",tolua_PX2Editor_NirMan_GetCurToolBar00);
+   tolua_function(tolua_S,"AddTool",tolua_PX2Editor_NirMan_AddTool00);
+   tolua_function(tolua_S,"AddToolSeparater",tolua_PX2Editor_NirMan_AddToolSeparater00);
    tolua_variable(tolua_S,"__Singleton_NirMan___",tolua_get_NirMan___Singleton_NirMan___,NULL);
   tolua_endmodule(tolua_S);
+  tolua_constant(tolua_S,"RVT_SCENEUI",RVT_SCENEUI);
+  tolua_constant(tolua_S,"RVT_LOGIC",RVT_LOGIC);
+  tolua_constant(tolua_S,"RVT_RES",RVT_RES);
+  tolua_constant(tolua_S,"RVT_TIMELINE",RVT_TIMELINE);
+  tolua_constant(tolua_S,"RVT_MAX_TYPE",RVT_MAX_TYPE);
   tolua_cclass(tolua_S,"Edit","Edit","",NULL);
   tolua_beginmodule(tolua_S,"Edit");
    tolua_constant(tolua_S,"ET_SCENE",Edit::ET_SCENE);

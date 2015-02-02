@@ -11,7 +11,8 @@ BEGIN_EVENT_TABLE(NirMan, wxEvtHandler)
 END_EVENT_TABLE();
 //----------------------------------------------------------------------------
 NirMan::NirMan():
-mCurMenu(0)
+mCurMenu(0),
+mCurToolBar(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -56,5 +57,29 @@ wxMenuItem *NirMan::AddMenuItem(wxMenu *menu, const std::string &title,
 void NirMan::AddSeparater(wxMenu *menu)
 {
 	menu->AppendSeparator();
+}
+//----------------------------------------------------------------------------
+void NirMan::SetCurToolBar(wxAuiToolBar *toolBar)
+{
+	mCurToolBar = toolBar;
+}
+//----------------------------------------------------------------------------
+wxAuiToolBar *NirMan::GetCurToolBar()
+{
+	return mCurToolBar;
+}
+//----------------------------------------------------------------------------
+void NirMan::AddTool(const std::string &icon, std::string &script)
+{
+	if (!mCurToolBar) return;
+
+	E_MainFrame::GetSingletonPtr()->AddTool(mCurToolBar, icon, script);
+}
+//----------------------------------------------------------------------------
+void NirMan::AddToolSeparater()
+{
+	if (!mCurToolBar) return;
+
+	E_MainFrame::GetSingletonPtr()->AddToolSeparater(mCurToolBar);
 }
 //----------------------------------------------------------------------------

@@ -35,7 +35,7 @@ ResSplitPanel::ResSplitPanel(wxWindow* parent, wxWindowID id,
 	wxBoxSizer* rightSizer;
 	rightSizer = new wxBoxSizer(wxVERTICAL);
 
-	RenderView *resShow = new RenderView(RenderView::RVT_RES, mRightPanel);
+	RenderView *resShow = new RenderView(RVT_RES, mRightPanel);
 	resShow->_NewEditRenderView("Res");
 	rightSizer->Add(resShow, 1, wxEXPAND, 5);
 

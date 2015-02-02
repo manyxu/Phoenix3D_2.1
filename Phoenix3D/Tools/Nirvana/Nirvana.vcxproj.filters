@@ -40,14 +40,14 @@
     <Filter Include="Event">
       <UniqueIdentifier>{139a2c43-9676-4d39-9078-0cddaf4cd218}</UniqueIdentifier>
     </Filter>
-    <Filter Include="App\Manager">
-      <UniqueIdentifier>{9df18248-b55c-4ce6-a355-d112e287f9a5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="TopView">
       <UniqueIdentifier>{def88b55-da7b-4180-8ab7-f703d37b830b}</UniqueIdentifier>
     </Filter>
     <Filter Include="RenderView">
       <UniqueIdentifier>{e66a9068-715a-4e43-8afa-3569661bd933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{9df18248-b55c-4ce6-a355-d112e287f9a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +137,7 @@
       <Filter>TimeLine</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_NirMan.hpp">
-      <Filter>App\Manager</Filter>
+      <Filter>Manager</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_TopView.hpp">
       <Filter>TopView</Filter>
@@ -151,6 +151,7 @@
     <ClInclude Include="PX2NirvanaEventType.hpp">
       <Filter>Event</Filter>
     </ClInclude>
+    <ClInclude Include="PX2E_Define.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -158,9 +159,6 @@
     </ClCompile>
     <ClCompile Include="PX2E_MainFrame.cpp">
       <Filter>App</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2E_RenderView.cpp">
-      <Filter>RenderView</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_ResView.cpp">
       <Filter>ResView</Filter>
@@ -238,7 +236,7 @@
       <Filter>TimeLine</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_NirMan.cpp">
-      <Filter>App\Manager</Filter>
+      <Filter>Manager</Filter>
     </ClCompile>
     <ClCompile Include="PX2E_TopView.cpp">
       <Filter>TopView</Filter>
@@ -251,6 +249,9 @@
     </ClCompile>
     <ClCompile Include="PX2NirvanaEventType.cpp">
       <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_RenderView.cpp">
+      <Filter>RenderView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

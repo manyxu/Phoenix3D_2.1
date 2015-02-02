@@ -4,7 +4,6 @@
 #define PX2EDITORPRERE_HPP
 
 #include "PX2CorePre.hpp"
-#include "PX2APoint.hpp"
 
 #include "wx/wxprec.h"
 
@@ -42,11 +41,5 @@
 #include <wx/srchctrl.h>
 #include <wx/renderer.h>
 #include <wx/wfstream.h>
-
-//----------------------------------------------------------------------------
-inline PX2::APoint wxPointToAPoint(wxPoint &point, wxSize &size)
-{
-	return PX2::APoint((float)point.x, 0.0f, (float)(size.GetHeight() - point.y));
-}
 
 #endif

@@ -81,7 +81,7 @@ void ResTree::OnRightUp(wxMouseEvent& e)
 	mEditMenu = new wxMenu();
 	NirMan::GetSingleton().SetCurMenu(mEditMenu);
 
-	PX2_SM.CallString("CreateResMenu()");
+	PX2_SM.CallString("e_CreateResMenu()");
 
 	if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
 }

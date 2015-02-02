@@ -1,7 +1,11 @@
 // PX2E_RenderView_Cont.cpp
 
 #include "PX2E_RenderView_Cont.hpp"
+#include "PX2E_NirMan.hpp"
+#include "PX2ScriptManager.hpp"
+#include "PX2wxAui.hpp"
 using namespace PX2Editor;
+using namespace PX2;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::RenderView_Cot, wxWindow)
 BEGIN_EVENT_TABLE(RenderView_Cot, wxWindow)
@@ -11,7 +15,27 @@ RenderView_Cot::RenderView_Cot()
 {
 }
 //----------------------------------------------------------------------------
-RenderView_Cot::RenderView_Cot(RenderView::RenderViewType type, wxWindow *parent) :
+wxAuiToolBar *RenderView_Cot::_CreateRenderViewBar(RenderViewType type)
+{
+	wxAuiToolBar *renderViewToolBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
+	renderViewToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
+	renderViewToolBar->SetSize(wxSize(-1, 24));
+
+	if (RVT_SCENEUI == type)
+	{
+		NirMan::GetSingleton().SetCurToolBar(renderViewToolBar);
+
+		if (RVT_SCENEUI == type)
+			PX2_SM.CallString("e_CreateToolBarSceneUI()");
+	}
+
+	renderViewToolBar->Realize();
+
+	return renderViewToolBar;
+}
+//----------------------------------------------------------------------------
+RenderView_Cot::RenderView_Cot(RenderViewType type, wxWindow *parent) :
 wxWindow(parent, wxID_ANY),
 mRenderView(0)
 {
@@ -23,13 +47,9 @@ mRenderView(0)
 	wxBoxSizer* bSizer55;
 	bSizer55 = new wxBoxSizer(wxVERTICAL);
 
-	mRenderViewBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-		wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
-	mRenderViewBar->SetBackgroundColour(wxColour(207, 214, 229));
-	mRenderViewBar->SetForegroundColour(wxColour(207, 214, 229));
-	mRenderViewBar->Realize();
+	mRenderViewBar = _CreateRenderViewBar(type);
 
-	bSizer55->Add(mRenderViewBar, 0, wxEXPAND | wxBOTTOM, 5);
+	bSizer55->Add(mRenderViewBar, 0, wxEXPAND, 5);
 
 	bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
 
