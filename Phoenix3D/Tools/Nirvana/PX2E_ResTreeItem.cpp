@@ -124,6 +124,11 @@ ResTreeItem *ResTreeItem::GetChildItem(const std::string& resPath)
 	return 0;
 }
 //-----------------------------------------------------------------------------
+std::vector<PX2::Pointer0<ResTreeItem>> ResTreeItem::GetChildItems()
+{
+	return mChildItems;
+}
+//-----------------------------------------------------------------------------
 bool ResTreeItem::_IsAFile(const std::string &filename)
 {
 	if (filename.find(".") != std::string::npos)

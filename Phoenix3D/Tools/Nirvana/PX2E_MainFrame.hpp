@@ -6,6 +6,7 @@
 #include "PX2EditorPre.hpp"
 #include "PX2EventHandler.hpp"
 #include "PX2Singleton_NeedNew.hpp"
+#include "PX2EditParams.hpp"
 
 namespace PX2Editor
 {
@@ -18,6 +19,7 @@ namespace PX2Editor
 	class InspView;
 	class TopView;
 	class LogicView;
+	class TimeLineView;
 	class PX2wxAuiNotebook;
 
 	class E_MainFrame : public wxFrame, public PX2::EventHandler, public PX2::Singleton<E_MainFrame>
@@ -57,6 +59,8 @@ namespace PX2Editor
 			const std::string &script);
 		void AddSeparater(wxMenu *menu);
 		wxAuiManager *GetAuiMananger();
+
+		void SetAuiManColorForTheme();
 
 	protected:
 		DECLARE_EVENT_TABLE()
@@ -118,10 +122,13 @@ namespace PX2Editor
 		ProjView *mProjView;
 		ResView *mResView;
 		InspView *mInspView;
+		TimeLineView *mTimeLineView;
 
 		PX2wxAuiNotebook *mNoteBookCenter;
 
 		bool mIsCrossCursor;
+
+		PX2::EditParams::Theme mCurTheme;
 	};
 
 }

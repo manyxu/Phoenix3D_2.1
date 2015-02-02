@@ -40,6 +40,8 @@ mEditMenu(0)
 	Icons["px2obj"] = imageObject;
 	Icons["csv"] = imageCSV;
 	Icons["lua"] = imageLua;
+
+	UpdateOnPath("Data/");
 }
 //----------------------------------------------------------------------------
 ResTree::ResTree()
@@ -104,6 +106,11 @@ void ResTree::OnSelChanged(wxTreeEvent& event)
 ResTreeItem *ResTree::GetItem(wxTreeItemId id)
 {
 	return mRootItem->GetChildItem(id);
+}
+//----------------------------------------------------------------------------
+ResTreeItem *ResTree::GetTreeRootItem()
+{
+	return mRootItem;
 }
 //----------------------------------------------------------------------------
 void ResTree::UpdateOnPath(const std::string &pathName)

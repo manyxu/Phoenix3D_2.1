@@ -3,6 +3,7 @@
 #include "PX2E_TimeLineView.hpp"
 #include "PX2E_TimeLineRender.hpp"
 using namespace PX2Editor;
+using namespace PX2;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::TimeLineView, wxWindow)
 BEGIN_EVENT_TABLE(TimeLineView, wxWindow)
@@ -47,8 +48,8 @@ wxWindow(parent, -1)
 	wxBoxSizer* bSizer57;
 	bSizer57 = new wxBoxSizer(wxVERTICAL);
 
-	TimeLineRender *timeLineRender = new TimeLineRender(this);
-	bSizer57->Add(timeLineRender, 1, wxEXPAND | wxTOP, 2);
+	mTimeLineRender = new TimeLineRender(this);
+	bSizer57->Add(mTimeLineRender, 1, wxEXPAND | wxTOP, 2);
 
 	bSizer54->Add(bSizer57, 1, wxEXPAND, 5);
 
@@ -58,5 +59,17 @@ wxWindow(parent, -1)
 //----------------------------------------------------------------------------
 TimeLineView::~TimeLineView()
 {
+}
+//----------------------------------------------------------------------------
+void TimeLineView::SetColorForTheme(EditParams::Theme theme)
+{
+	float r = theme.backColor[0] * 255.0f;
+	float g = theme.backColor[1] * 255.0f;
+	float b = theme.backColor[2] * 255.0f;
+
+	SetBackgroundColour(wxColour(r, g, b));
+	TimeLineBar->SetBackgroundColour(wxColour(r, g, b));
+	TimeLineBar->SetForegroundColour(wxColour(r, g, b));
+	mTimeLineRender->SetBackgroundColour(wxColour(r, g, b));
 }
 //----------------------------------------------------------------------------

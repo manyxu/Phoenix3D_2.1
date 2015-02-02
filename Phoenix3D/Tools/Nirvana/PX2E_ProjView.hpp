@@ -5,6 +5,8 @@
 
 #include "PX2EditorPre.hpp"
 #include "PX2E_ProjTree.hpp"
+#include "PX2EditParams.hpp"
+using namespace PX2;
 
 namespace PX2Editor
 {
@@ -18,6 +20,7 @@ namespace PX2Editor
 		virtual ~ProjView();
 
 		ProjTree *GetProjTree();
+		void SetColorForTheme(EditParams::Theme theme);
 
 	protected:
 		DECLARE_EVENT_TABLE()

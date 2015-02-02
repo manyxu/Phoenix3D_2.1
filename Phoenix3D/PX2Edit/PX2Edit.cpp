@@ -33,6 +33,7 @@ bool Edit::Initlize()
 	mGeoObjFactory = new0 GeoObjFactory();
 
 	mEditParams = new0 EditParams();
+	mEditParams->Load("D:\\PX3D\\Bin\\DataEditor\\config\\editConfig.xml");
 	
 	return true;
 }

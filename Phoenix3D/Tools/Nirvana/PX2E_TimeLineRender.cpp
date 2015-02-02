@@ -15,6 +15,7 @@ TimeLineRender::TimeLineRender(wxWindow *parent) :
 wxWindow(parent, -1)
 {
 	SetBackgroundColour(wxColour(207, 214, 229));
+	//SetBackgroundColour(wxColour(0, 214, 229));
 }
 //----------------------------------------------------------------------------
 TimeLineRender::~TimeLineRender()

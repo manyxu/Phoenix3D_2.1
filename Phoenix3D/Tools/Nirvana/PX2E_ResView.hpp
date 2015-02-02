@@ -4,6 +4,10 @@
 #define PX2E_RESVIEW_HPP
 
 #include "PX2EditorPre.hpp"
+#include "PX2EditParams.hpp"
+#include "PX2E_ResSplitPanel.hpp"
+#include "PX2E_ResTreeItem.hpp"
+using namespace PX2;
 
 namespace PX2Editor
 {
@@ -16,12 +20,17 @@ namespace PX2Editor
 		ResView(wxWindow *parent);
 		virtual ~ResView();
 
+		void SetColorForTheme(EditParams::Theme theme);
+		void SetColorTreeItem(EditParams::Theme theme, ResTreeItem *treeItem);
+
 	protected:
 		DECLARE_EVENT_TABLE()
 		ResView();
 
 		wxToolBar *mResTreeBar;
 		wxSplitterWindow *mSplitter;
+
+		ResSplitPanel *mSplitPanel;
 
 		void Splitter1OnIdle(wxIdleEvent&)
 		{

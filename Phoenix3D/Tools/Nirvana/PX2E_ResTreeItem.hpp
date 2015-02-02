@@ -33,6 +33,8 @@ namespace PX2Editor
 		ResTreeItem *GetChildItem(wxTreeItemId id);
 		ResTreeItem *GetChildItem(const std::string& resPath);
 
+		std::vector<PX2::Pointer0<ResTreeItem>> GetChildItems();
+
 		const std::vector<std::string> &GetChildFilenamesList() const { return mChildFilenamesList; }
 
 	public_internal:

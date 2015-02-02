@@ -55,6 +55,8 @@ mEditMenu(0)
 	Icons["logic"] = imageLogic;
 	Icons["camera"] = imageCamera;
 	Icons["object"] = imageObject;
+
+	//SetBackgroundColour(wxColour(0, 214, 229));
 }
 //----------------------------------------------------------------------------
 ProjTree::~ProjTree()

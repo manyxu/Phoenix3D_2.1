@@ -1,0 +1,8 @@
+<editParams>
+	<Theme themeNum="3">
+		<CurTheme ThemeType="THEME_BLUE" inactiveColor="54,78,111" activeColor="255,242,157" backColor="255,255,255" tabBackColor="44,61,91" fontColor="0,0,19"/>
+		<Theme0 ThemeType="THEME_BLUE" inactiveColor="54,78,111" activeColor="255,242,157" backColor="255,255,255" tabBackColor="44,61,91" fontColor="0,0,19" />
+		<Theme1 ThemeType="THEME_DARK" inactiveColor="0,16,19" activeColor="55,42,225" backColor="50,55,15" tabBackColor="0,0,19" fontColor="255,255,255" />
+		<Theme2 ThemeType="THEME_TINT" inactiveColor="254,242,231" activeColor="55,42,225" backColor="255,255,255" tabBackColor="244,216,219" fontColor="0,0,19" />
+	</Theme>
+</editParams>

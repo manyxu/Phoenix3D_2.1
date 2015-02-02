@@ -17,6 +17,7 @@ wxWindow(parent, wxID_ANY),
 mProjTree(0)
 {
 	SetBackgroundColour(wxColour(207, 214, 229));
+	//SetBackgroundColour(wxColour(0, 214, 229));
 
 	wxBoxSizer* bSizer54;
 	bSizer54 = new wxBoxSizer(wxVERTICAL);
@@ -26,8 +27,10 @@ mProjTree(0)
 
 	mProjTreeBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
-	mProjTreeBar->SetBackgroundColour(wxColour(207, 214, 229));
+	//mProjTreeBar->SetBackgroundColour(wxColour(207, 214, 229));
+	mProjTreeBar->SetBackgroundColour(wxColour(0, 214, 229));
 	mProjTreeBar->SetForegroundColour(wxColour(207, 214, 229));
+	//mProjTreeBar->SetForegroundColour(wxColour(0, 214, 229));
 	mProjTreeBar->Realize();
 
 	bSizer55->Add(mProjTreeBar, 0, wxEXPAND | wxBOTTOM, 5);
@@ -65,5 +68,17 @@ ProjView::~ProjView()
 ProjTree *ProjView::GetProjTree()
 {
 	return mProjTree;
+}
+//----------------------------------------------------------------------------
+void ProjView::SetColorForTheme(PX2::EditParams::Theme theme)
+{
+	float r = theme.backColor[0] * 255.0f;
+	float g = theme.backColor[1] * 255.0f;
+	float b = theme.backColor[2] * 255.0f;
+
+	SetBackgroundColour(wxColour(r, g, b));
+	mProjTreeBar->SetBackgroundColour(wxColour(r, g, b));
+	mProjTreeBar->SetForegroundColour(wxColour(r, g, b));
+	mProjTree->SetBackgroundColour(wxColour(r, g, b));
 }
 //----------------------------------------------------------------------------

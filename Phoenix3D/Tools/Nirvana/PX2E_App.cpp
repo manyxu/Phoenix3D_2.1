@@ -24,11 +24,6 @@ E_App::~E_App()
 //-----------------------------------------------------------------------------
 bool E_App::OnInit()
 {
-	PX2_ENGINELOOP.Initlize();
-
-	SetVendorName(wxT("Phoenix3D"));
-	SetAppName(wxT("Nirvana"));
-
 	wxLog::SetLogLevel(0);
 
 	wxImage::AddHandler(new wxBMPHandler());
@@ -59,6 +54,11 @@ bool E_App::OnInit()
 #endif
 #endif
 
+	PX2_ENGINELOOP.Initlize();
+
+	Edit *edit = new0 Edit();
+	edit->Initlize();
+
 	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
 	luaMan->CallFile("DataEditor/scripts/language.lua");
 
@@ -76,6 +76,7 @@ bool E_App::OnInit()
 
 	NirMan *nirMan = new0 NirMan();
 	nirMan->Initlize();
+	
 
 	tolua_PX2Editor_open(luaMan->GetLuaState());
 
@@ -84,7 +85,8 @@ bool E_App::OnInit()
 	luaMan->SetUserTypePointer("PX2_EDIT", "Edit", Edit::GetSingletonPtr());
 
 	luaMan->CallFile("DataEditor/scripts/start.lua");
-	ResTree::GetSingleton().UpdateOnPath("Data/");
+
+	mMainFrame->AddEventHandlers();
 
 	mMainFrame->Show(true);
 
