@@ -71,9 +71,6 @@ bool E_App::OnInit()
 	PX2_ENGINELOOP.SetPt_Size(Sizef(1024.0f, 768.0f));
 	PX2_ENGINELOOP.InitlizeRenderer();
 
-	Edit *edit = new0 Edit();
-	edit->Initlize();
-
 	NirMan *nirMan = new0 NirMan();
 	nirMan->Initlize();
 	
@@ -85,8 +82,6 @@ bool E_App::OnInit()
 	luaMan->SetUserTypePointer("PX2_EDIT", "Edit", Edit::GetSingletonPtr());
 
 	luaMan->CallFile("DataEditor/scripts/start.lua");
-
-	mMainFrame->AddEventHandlers();
 
 	mMainFrame->Show(true);
 
