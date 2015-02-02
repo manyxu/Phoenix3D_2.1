@@ -2,6 +2,7 @@
 
 #include "PX2E_ResView.hpp"
 #include "PX2E_ResSplitPanel.hpp"
+#include "PX2E_ResTree.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 

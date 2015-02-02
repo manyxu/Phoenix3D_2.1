@@ -6,6 +6,7 @@
 #include "PX2EditorPre.hpp"
 #include "PX2EditParams.hpp"
 #include "PX2E_ResSplitPanel.hpp"
+#include "PX2E_ResTreeItem.hpp"
 using namespace PX2;
 
 namespace PX2Editor
