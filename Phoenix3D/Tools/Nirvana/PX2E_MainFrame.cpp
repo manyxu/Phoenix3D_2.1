@@ -42,7 +42,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mProjView(0),
 	mIsCrossCursor(false)
 {
-	mPerspConfigName = "Nirvana1.0.0";
+	mPerspConfigName = "nirvana1.0.0.config";
 
 	PX2_EW.ComeIn(this);
 }
@@ -53,7 +53,7 @@ E_MainFrame::~E_MainFrame()
 	{
 		wxString strPerspective = mAuiManager->SavePerspective();
 
-		wxFileOutputStream os(wxT("layout.config"));
+		wxFileOutputStream os(mPerspConfigName);
 		wxFileConfig config;
 		config.Write("Perspective", strPerspective);
 		config.Save(os);
@@ -99,7 +99,7 @@ bool E_MainFrame::Initlize()
 	_CreateStatusBar();
 
 
-	wxFileInputStream is(wxT("layout.config"));
+	wxFileInputStream is(mPerspConfigName);
 	if (is.IsOk())
 	{
 		wxFileConfig config(is);
@@ -440,12 +440,28 @@ void E_MainFrame::_CreateMainToolBar()
 
 	mianToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
 
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/file_new.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/file_open.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject2"), wxBitmap(wxT("DataEditor/icons/file_saveall.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject2"), wxBitmap(wxT("DataEditor/icons/file_saveas.png"), wxBITMAP_TYPE_PNG));
 	mianToolBar->AddSeparator();
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject2"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/file_newscene.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/file_openscene.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/file_savescene.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/file_saveasscene.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddSeparator();
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/playinwindow.png"), wxBITMAP_TYPE_PNG));
 	mianToolBar->AddStretchSpacer();
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("Login"), wxBitmap(wxT("DataEditor/icons/proj.png"), wxBITMAP_TYPE_PNG));
+	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_windows.png"), wxBITMAP_TYPE_PNG));
+	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_linux.png"), wxBITMAP_TYPE_PNG));
+	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_mac.png"), wxBITMAP_TYPE_PNG));
+	//mianToolBar->AddSeparator();
+	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_windows.png"), wxBITMAP_TYPE_PNG));
+	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_android.png"), wxBITMAP_TYPE_PNG));
+	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_ios.png"), wxBITMAP_TYPE_PNG));
+	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_html5.png"), wxBITMAP_TYPE_PNG));
+	mianToolBar->AddSpacer(25);
+	mianToolBar->AddTool(PX2_EDIT_GETID, _("Login"), wxBitmap(wxT("DataEditor/icons/user.png"), wxBITMAP_TYPE_PNG));
 	mianToolBar->AddLabel(PX2_EDIT_GETID, "Ðí¶à");
 	mianToolBar->Realize();
 
