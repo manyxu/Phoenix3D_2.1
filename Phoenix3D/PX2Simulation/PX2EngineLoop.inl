@@ -16,9 +16,19 @@ inline const std::string &EngineLoop::GetProjectPath() const
 	return mProjectPath;
 }
 //----------------------------------------------------------------------------
-inline const Sizef &EngineLoop::GetSize() const
+inline void EngineLoop::_SetDoAdjustScreen(bool adjust)
 {
-	return mSize;
+	mIsDoAdjustScreen = adjust;
+}
+//----------------------------------------------------------------------------
+inline bool EngineLoop::IsDoAdjustScreen() const
+{
+	return mIsDoAdjustScreen;
+}
+//----------------------------------------------------------------------------
+inline const Sizef &EngineLoop::GetScreenSize() const
+{
+	return mScreenSize;
 }
 //----------------------------------------------------------------------------
 inline EngineLoop::PlayType EngineLoop::GetPlayType() const

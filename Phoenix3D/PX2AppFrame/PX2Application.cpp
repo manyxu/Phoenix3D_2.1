@@ -297,7 +297,7 @@ bool Application::Initlize()
 	mYPosition = offsetY;
 #endif
 	PX2_ENGINELOOP.InitlizeRenderer();
-	PX2_ENGINELOOP.SetSize(boostSize);
+	PX2_ENGINELOOP.SetScreenSize(boostSize);
 
 	// Load Project
 	_LoadProject(projectPath);

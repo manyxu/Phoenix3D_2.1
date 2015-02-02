@@ -44,6 +44,7 @@ namespace PX2
 		bool RemoveObject(Object *obj, bool command = true);
 
 	public:
+		Node *ConvertToNode(Object *obj);
 		Actor *ConvertToActor(Object *obj);
 		UIPicBox *ConvertToUIPicBox(Object *obj);
 		UIFrame *ConvertToUIFrame(Object *obj);

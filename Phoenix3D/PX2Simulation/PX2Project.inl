@@ -46,6 +46,11 @@ inline UIView *Project::GetUIRenderStep()
 	return mUIRenderStep;
 }
 //----------------------------------------------------------------------------
+inline const Rectf &Project::GetViewPort() const
+{
+	return mViewPort;
+}
+//----------------------------------------------------------------------------
 inline void Project::SetEdit_UICameraPercent(float percent)
 {
 	mEdit_UICameraPercent = percent;

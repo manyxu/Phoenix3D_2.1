@@ -17,6 +17,8 @@ namespace PX2
 		UIView();
 		~UIView();
 
+		virtual void Update(double appSeconds, double elapsedSeconds);
+
 	public:
 		virtual void SetNode(Node *node);
 

@@ -28,7 +28,7 @@ namespace PX2
 		void SetPt_Size(const Sizef &size);
 		const Sizef &GetPt_Size() const;
 
-		virtual bool InitlizeRendererStep();
+		virtual bool InitlizeRendererStep(const std::string &name);
 		bool IsRenderStepCreated() const;
 
 	protected:

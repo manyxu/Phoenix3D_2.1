@@ -113,7 +113,7 @@ bool ApplicationBase::Ternamate ()
 //----------------------------------------------------------------------------
 void ApplicationBase::OnSize (int width, int height)
 {
-	PX2_ENGINELOOP.SetSize(Sizef((float)width, (float)height));
+	PX2_ENGINELOOP.SetScreenSize(Sizef((float)width, (float)height));
 }
 //----------------------------------------------------------------------------
 void ApplicationBase::WillEnterForeground(bool isFirstTime)
@@ -141,10 +141,16 @@ bool ApplicationBase::_LoadProject(const std::string &projFilename)
 		const std::string &sceneFilename = newProj->GetSceneFilename();
 		if (!sceneFilename.empty())
 		{
-			_LoadScene(sceneFilename);
+			newProj->LoadScene(sceneFilename);
 		}
 
-		PX2_ENGINELOOP.SetSize(newProj->GetSize());
+		const std::string &uiFilename = newProj->GetUIFilename();
+		if (!uiFilename.empty())
+		{
+			newProj->LoadUI(uiFilename);
+		}
+
+		PX2_ENGINELOOP.Play(EngineLoop::PT_PLAY);
 
 		return true;
 	}
@@ -153,19 +159,5 @@ bool ApplicationBase::_LoadProject(const std::string &projFilename)
 		Project::Destory();
 		return false;
 	}
-}
-//----------------------------------------------------------------------------
-bool ApplicationBase::_LoadScene(const std::string &sceneFilename)
-{
-	Scene *newscene = DynamicCast<Scene>(PX2_RM.BlockLoad(sceneFilename));
-	if (newscene)
-	{
-		Project::GetSingleton().SetScene(newscene);
-		Project::GetSingleton().SetSceneFilename(sceneFilename);
-
-		return true;
-	}
-
-	return false;
 }
 //----------------------------------------------------------------------------

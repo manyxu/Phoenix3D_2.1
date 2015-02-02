@@ -383,9 +383,6 @@
     <ClCompile Include="PX2Componable.cpp">
       <Filter>Component</Filter>
     </ClCompile>
-    <ClCompile Include="PX2RenderStep.cpp">
-      <Filter>Renderers</Filter>
-    </ClCompile>
     <ClCompile Include="PX2TriStrip.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
@@ -442,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9RendererInput.cpp">
       <Filter>Renderers\Dx9Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RenderStep.cpp">
+      <Filter>RenderStep</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -841,9 +841,6 @@
     <ClInclude Include="PX2Componable.hpp">
       <Filter>Component</Filter>
     </ClInclude>
-    <ClInclude Include="PX2RenderStep.hpp">
-      <Filter>Renderers</Filter>
-    </ClInclude>
     <ClInclude Include="PX2TriStrip.hpp">
       <Filter>Geometry</Filter>
     </ClInclude>
@@ -897,6 +894,9 @@
     </ClInclude>
     <ClInclude Include="PX2RendererInput.hpp">
       <Filter>Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RenderStep.hpp">
+      <Filter>RenderStep</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1072,9 +1072,6 @@
     <None Include="PX2Componable.inl">
       <Filter>Component</Filter>
     </None>
-    <None Include="PX2RenderStep.inl">
-      <Filter>Renderers</Filter>
-    </None>
     <None Include="PX2Triangles.inl">
       <Filter>Geometry</Filter>
     </None>
@@ -1089,6 +1086,9 @@
     </None>
     <None Include="PX2VertexShader.inl">
       <Filter>Material\RenderProperty</Filter>
+    </None>
+    <None Include="PX2RenderStep.inl">
+      <Filter>RenderStep</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -1163,6 +1163,9 @@
     </Filter>
     <Filter Include="Material\RenderProperty">
       <UniqueIdentifier>{c2cb1096-17c1-4182-a73f-5dcfa5a50db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderStep">
+      <UniqueIdentifier>{92a283a1-cb5a-41c2-afc8-dea9c1abf442}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

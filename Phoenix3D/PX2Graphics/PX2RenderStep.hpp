@@ -22,7 +22,7 @@ namespace PX2
 		~RenderStep();
 
 		void Clear();
-		void Update(double appSeconds, double elapsedSeconds);
+		virtual void Update(double appSeconds, double elapsedSeconds);
 
 	protected:
 		bool mIsUpdated;

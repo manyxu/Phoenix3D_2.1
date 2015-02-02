@@ -16,22 +16,22 @@ inline EditMap *Edit::GetEditMap()
 	return mEditMap;
 }
 //----------------------------------------------------------------------------
-//----------------------------------------------------------------------------
 inline GeoObjFactory *Edit::GetGOF()
 {
 	return mGeoObjFactory;
 }
+//----------------------------------------------------------------------------
 inline EditParams *Edit::GetEditParams()
 {
 	return mEditParams;
 }
 //----------------------------------------------------------------------------
-inline void Edit::SetPickPos(const PX2::APoint &pos)
+inline void Edit::SetPickPos(const APoint &pos)
 {
 	mPickPos = pos;
 }
 //----------------------------------------------------------------------------
-inline PX2::APoint Edit::GetPickPos()
+inline const APoint &Edit::GetPickPos() const
 {
 	return mPickPos;
 }

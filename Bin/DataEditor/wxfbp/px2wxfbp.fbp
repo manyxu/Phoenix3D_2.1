@@ -7239,7 +7239,7 @@
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
         </object>
-        <object class="Panel" expanded="0">
+        <object class="Panel" expanded="1">
             <property name="aui_managed">0</property>
             <property name="bg">255,255,255</property>
             <property name="context_help"></property>
@@ -7462,11 +7462,11 @@
                                                 <property name="enabled">1</property>
                                                 <property name="fg">wxSYS_COLOUR_BTNTEXT</property>
                                                 <property name="floatable">1</property>
-                                                <property name="font">新宋体,90,90,16,74,0</property>
+                                                <property name="font">宋体,90,92,16,70,0</property>
                                                 <property name="gripper">0</property>
                                                 <property name="hidden">0</property>
                                                 <property name="id">wxID_ANY</property>
-                                                <property name="label">Phoenix - Nirvana 2015</property>
+                                                <property name="label">Nirvana 2015</property>
                                                 <property name="max_size"></property>
                                                 <property name="maximize_button">0</property>
                                                 <property name="maximum_size"></property>

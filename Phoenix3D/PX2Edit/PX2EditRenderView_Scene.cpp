@@ -25,6 +25,25 @@ mViewDetail(VD_TEXTURED)
 //----------------------------------------------------------------------------
 EditRenderView_Scene::~EditRenderView_Scene()
 {
+	// do not remove scene renderstep
+	//if (mRenderStep)
+	//{
+	//	PX2_GR.RemoveRenderStep(mRenderStep);
+	//	mRenderStep = 0;
+	//}
+
+	if (mRenderStepCtrl)
+	{
+		PX2_GR.RemoveRenderStep(mRenderStepCtrl);
+		mRenderStepCtrl = 0;
+	}
+
+	if (mRenderStepCtrl1)
+	{
+		PX2_GR.RemoveRenderStep(mRenderStepCtrl1);
+		mRenderStepCtrl1 = 0;
+	}
+
 	if (mSceneNodeCtrl)
 	{
 		PX2_EW.GoOut(mSceneNodeCtrl);
@@ -78,6 +97,7 @@ void EditRenderView_Scene::_CreateGridGeometry()
 	mGridNode->Update(GetTimeInSeconds(), true);
 
 	mRenderStepCtrl = new0 RenderStep();
+	mRenderStepCtrl->SetName("SceneGridRenderStep");
 	mRenderStepCtrl->SetNode(mGridNode);
 	PX2_GR.AddRenderStep(mRenderStepCtrl);
 }
@@ -510,6 +530,7 @@ void EditRenderView_Scene::_CreateNodeCtrl()
 	mSceneCtrlNode->Update(GetTimeInSeconds(), true);
 
 	mRenderStepCtrl1 = new0 RenderStep();
+	mRenderStepCtrl1->SetName("SceneCtrlNodeRenderStep");
 	mRenderStepCtrl1->SetNode(mSceneCtrlNode);
 	PX2_GR.AddRenderStep(mRenderStepCtrl1);
 }

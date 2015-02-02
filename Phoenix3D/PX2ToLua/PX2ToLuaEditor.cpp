@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 02/02/15 14:01:54.
+** Generated automatically by tolua++-1.0.92 on 02/02/15 15:50:05.
 */
 
 #ifndef __cplusplus
@@ -24,13 +24,6 @@ static int tolua_collect_EditMap (lua_State* tolua_S)
 	Mtolua_delete(self);
 	return 0;
 }
-
-static int tolua_collect_PX2__APoint (lua_State* tolua_S)
-{
- PX2::APoint* self = (PX2::APoint*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
 #endif
 
 
@@ -45,7 +38,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Singleton<NirMan>");
  tolua_usertype(tolua_S,"EditMap");
  tolua_usertype(tolua_S,"wxMenu");
- tolua_usertype(tolua_S,"PX2::APoint");
+ tolua_usertype(tolua_S,"APoint");
  tolua_usertype(tolua_S,"Edit");
  tolua_usertype(tolua_S,"GeoObjFactory");
  tolua_usertype(tolua_S,"wxEvtHandler");
@@ -841,6 +834,43 @@ static int tolua_PX2Editor_NirMan_AddToolSeparater00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: MessageBox of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_MessageBox00
+static int tolua_PX2Editor_NirMan_MessageBox00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+  const std::string caption = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+  const std::string content = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'MessageBox'", NULL);
+#endif
+  {
+   self->MessageBox(caption,content);
+   tolua_pushcppstring(tolua_S,(const char*)caption);
+   tolua_pushcppstring(tolua_S,(const char*)content);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'MessageBox'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* get function: __Singleton<NirMan>__ of class  NirMan */
 #ifndef TOLUA_DISABLE_tolua_get_NirMan___Singleton_NirMan___
 static int tolua_get_NirMan___Singleton_NirMan___(lua_State* tolua_S)
@@ -1178,7 +1208,7 @@ static int tolua_PX2Editor_Edit_SetPickPos00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Edit",0,&tolua_err) ||
-     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const PX2::APoint",0,&tolua_err)) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const APoint",0,&tolua_err)) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -1186,7 +1216,7 @@ static int tolua_PX2Editor_Edit_SetPickPos00(lua_State* tolua_S)
 #endif
  {
   Edit* self = (Edit*)  tolua_tousertype(tolua_S,1,0);
-  const PX2::APoint* pos = ((const PX2::APoint*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetPickPos'", NULL);
 #endif
@@ -1210,30 +1240,20 @@ static int tolua_PX2Editor_Edit_GetPickPos00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isusertype(tolua_S,1,"Edit",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,1,"const Edit",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
-  Edit* self = (Edit*)  tolua_tousertype(tolua_S,1,0);
+  const Edit* self = (const Edit*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetPickPos'", NULL);
 #endif
   {
-   PX2::APoint tolua_ret = (PX2::APoint)  self->GetPickPos();
-   {
-#ifdef __cplusplus
-    void* tolua_obj = Mtolua_new((PX2::APoint)(tolua_ret));
-     tolua_pushusertype(tolua_S,tolua_obj,"PX2::APoint");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#else
-    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(PX2::APoint));
-     tolua_pushusertype(tolua_S,tolua_obj,"PX2::APoint");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-#endif
-   }
+   const APoint& tolua_ret = (const APoint&)  self->GetPickPos();
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const APoint");
   }
  }
  return 1;
@@ -1738,6 +1758,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetCurToolBar",tolua_PX2Editor_NirMan_GetCurToolBar00);
    tolua_function(tolua_S,"AddTool",tolua_PX2Editor_NirMan_AddTool00);
    tolua_function(tolua_S,"AddToolSeparater",tolua_PX2Editor_NirMan_AddToolSeparater00);
+   tolua_function(tolua_S,"MessageBox",tolua_PX2Editor_NirMan_MessageBox00);
    tolua_variable(tolua_S,"__Singleton_NirMan___",tolua_get_NirMan___Singleton_NirMan___,NULL);
   tolua_endmodule(tolua_S);
   tolua_constant(tolua_S,"RVT_SCENEUI",RVT_SCENEUI);

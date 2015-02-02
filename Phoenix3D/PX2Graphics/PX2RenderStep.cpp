@@ -30,7 +30,14 @@ void RenderStep::Update(double appSeconds, double elapsedSeconds)
 	}
 
 	PX2_UNUSED(elapsedSeconds);
-	if (mNode) mNode->Update(appSeconds, false);
+	if (mNode)
+	{
+		mNode->Update(appSeconds, false);
+	}
+	else
+	{
+		int a = 0;
+	}
 }
 //----------------------------------------------------------------------------
 void RenderStep::SetSize(const Sizef &rect)

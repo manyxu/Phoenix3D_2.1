@@ -103,7 +103,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-		//	mAuiManager->LoadPerspective(strPerspective);
+			mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 

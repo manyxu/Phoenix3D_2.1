@@ -16,6 +16,23 @@ EditRenderView_UI::EditRenderView_UI()
 //----------------------------------------------------------------------------
 EditRenderView_UI::~EditRenderView_UI()
 {
+	if (mRenderStep)
+	{
+		PX2_GR.RemoveRenderStep(mRenderStep);
+		mRenderStep = 0;
+	}
+
+	if (mRenderStepCtrl)
+	{
+		PX2_GR.RemoveRenderStep(mRenderStepCtrl);
+		mRenderStepCtrl = 0;
+	}
+
+	if (mRenderStepCtrl1)
+	{
+		PX2_GR.RemoveRenderStep(mRenderStepCtrl1);
+		mRenderStepCtrl1 = 0;
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_UI::_CreateGridGeometry()
@@ -34,6 +51,7 @@ void EditRenderView_UI::_CreateGridGeometry()
 	mRangeNode->AttachChild(mProjRangeSegment);
 
 	mRenderStepCtrl = new0 RenderStep();
+	mRenderStepCtrl->SetName("UIRangeSegmentRenderStep");
 	mRenderStepCtrl->SetSizeChangeReAdjustCamera(false);
 	mRenderStepCtrl->SetNode(mRangeNode);
 	PX2_GR.AddRenderStep(mRenderStepCtrl);

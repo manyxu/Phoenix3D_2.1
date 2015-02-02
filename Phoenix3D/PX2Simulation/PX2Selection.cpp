@@ -60,7 +60,7 @@ void Selection::RemoveObject(PX2::Object *obj)
 	}
 }
 //----------------------------------------------------------------------------
-PX2::Object *Selection::GetObjectAt(int i)
+Object *Selection::GetObjectAt(int i)
 {
 	if (0 <= i&&i < (int)mObjects.size())
 		return mObjects[i];
@@ -89,7 +89,7 @@ void Selection::Clear()
 	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------
-PX2::Object *Selection::GetFirstObject() const
+Object *Selection::GetFirstObject() const
 {
 	if ((int)mObjects.size() > 0)
 		return mObjects[0];

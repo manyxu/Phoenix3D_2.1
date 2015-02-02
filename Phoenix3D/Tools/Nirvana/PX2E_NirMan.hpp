@@ -41,6 +41,9 @@ namespace PX2
 
 	protected:
 		wxAuiToolBar *mCurToolBar;
+
+	public:
+		void MessageBox(const std::string &caption, const std::string &content);
 	};
 
 }

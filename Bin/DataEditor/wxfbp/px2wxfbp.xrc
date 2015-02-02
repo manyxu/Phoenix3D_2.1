@@ -369,7 +369,6 @@
 						<object class="wxStaticText" name="m_staticText441">
 							<fg>#3399ff</fg>
 							<font>
-								<family>default</family>
 								<style>normal</style>
 								<weight>bold</weight>
 								<underlined>0</underlined>
@@ -506,7 +505,6 @@
 						<object class="wxStaticText" name="m_staticText442">
 							<fg>#3399ff</fg>
 							<font>
-								<family>default</family>
 								<style>normal</style>
 								<weight>bold</weight>
 								<underlined>0</underlined>
@@ -600,7 +598,6 @@
 						<object class="wxStaticText" name="m_staticText44">
 							<fg>#3399ff</fg>
 							<font>
-								<family>default</family>
 								<style>normal</style>
 								<weight>bold</weight>
 								<underlined>0</underlined>
@@ -1279,13 +1276,12 @@
 											<fg>#000000</fg>
 											<font>
 												<size>16</size>
-												<family>swiss</family>
 												<style>normal</style>
-												<weight>normal</weight>
+												<weight>bold</weight>
 												<underlined>0</underlined>
-												<face>新宋体</face>
+												<face>宋体</face>
 											</font>
-											<label>Phoenix - Nirvana 2015</label>
+											<label>Nirvana 2015</label>
 											<wrap>-1</wrap>
 										</object>
 									</object>

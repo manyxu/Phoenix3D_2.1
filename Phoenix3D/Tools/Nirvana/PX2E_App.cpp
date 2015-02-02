@@ -32,6 +32,8 @@ bool E_App::OnInit()
 	NirMan *nirMan = new0 NirMan();
 	nirMan->Initlize();
 
+	PX2_ENGINELOOP.Play(EngineLoop::PT_NONE);
+
 	LuaManager *luaMan = (LuaManager*)ScriptManager::GetSingletonPtr();
 	luaMan->CallFile("DataEditor/scripts/language.lua");
 	tolua_PX2Editor_open(luaMan->GetLuaState());

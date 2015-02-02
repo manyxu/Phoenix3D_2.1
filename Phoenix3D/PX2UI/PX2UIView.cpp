@@ -17,6 +17,7 @@ mIsCameraAutoAdjust(true)
 	SetCamera(camera);
 
 	mCameraNode = new0 CameraNode();
+	mCameraNode->SetName("DefaultCameraNode");
 	mCameraNode->SetCamera(camera);
 
 #if defined(_WIN32) || defined(WIN32)
@@ -32,19 +33,19 @@ UIView::~UIView()
 {
 }
 //----------------------------------------------------------------------------
+void UIView::Update(double appSeconds, double elapsedSeconds)
+{
+	if (mCameraNode)
+	{
+		mCameraNode->Update(appSeconds, false);
+	}
+
+	RenderStep::Update(appSeconds, elapsedSeconds);
+}
+//----------------------------------------------------------------------------
 void UIView::SetNode(Node *node)
 {
-	if (mNode)
-	{
-		mNode->DetachChild(mCameraNode);
-	}
-
 	mNode = node;
-
-	if (mNode)
-	{
-		mNode->AttachChild(mCameraNode);
-	}
 }
 //----------------------------------------------------------------------------
 void UIView::SetCameraAutoAdjust(bool autoAdjust)

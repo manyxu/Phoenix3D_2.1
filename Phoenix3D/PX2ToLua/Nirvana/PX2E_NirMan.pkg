@@ -17,4 +17,7 @@
 
 		void AddTool(const std::string &icon, std::string &script);
 		void AddToolSeparater();
+		
+	public:
+		void MessageBox(const std::string &caption, const std::string &content);
 	};

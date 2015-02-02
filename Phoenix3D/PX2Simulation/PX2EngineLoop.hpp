@@ -85,13 +85,14 @@ namespace PX2
 		Sizef mBoostSize;
 		std::string mProjectPath;
 
-		// public
+		// screen adjust
 	public:
-		void SetSize(const Sizef &size);
-		const Sizef &GetSize() const;
+		void SetScreenSize(const Sizef &screenSize);
+		const Sizef &GetScreenSize() const;
 
 	protected:
-		Sizef mSize;
+		bool mIsDoAdjustScreen;
+		Sizef mScreenSize;
 
 		// Tick
 	public:
@@ -114,9 +115,13 @@ namespace PX2
 		};
 		void Play(PlayType type);
 		PlayType GetPlayType() const;
+
+		bool IsDoAdjustScreen() const;
 		
 	protected:
+		void _SetDoAdjustScreen(bool adjust);
 		PlayType mPlayType;
+		Rectf mAdjustViewPort;
 	};
 
 #include "PX2EngineLoop.inl"
