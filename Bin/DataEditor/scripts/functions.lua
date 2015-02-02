@@ -1,75 +1,75 @@
 -- functions.lua
 
-function OnNewProject()
+function e_OnNewProject()
 	E_MainFrame:OnNewProject();
 end
 
-function OnOpenProject()
+function e_OnOpenProject()
 	E_MainFrame:OnOpenProject();
 end
 
-function OnSaveProject()
+function e_OnSaveProject()
 	E_MainFrame:OnSaveProject();
 end
 
-function OnSaveAsProject()
+function e_OnSaveAsProject()
 	E_MainFrame:OnSaveProjectAs();
 end
 
-function OnCloseProject()
+function e_OnCloseProject()
 	E_MainFrame:OnCloseProject();
 end
 
-function OnNewScene()
+function e_OnNewScene()
 	E_MainFrame:OnNewScene();
 end
 
-function OnOpenScene()
+function e_OnOpenScene()
 	E_MainFrame:OnOpenScene();
 end
 
-function OnSaveScene()
+function e_OnSaveScene()
 	E_MainFrame:OnSaveScene();
 end
 
-function OnSaveAsScene()
+function e_OnSaveAsScene()
 	E_MainFrame:OnSaveSceneAs();
 end
 
-function OnCloseScene()
+function e_OnCloseScene()
 	E_MainFrame:OnCloseScene();
 end
 
-function OnExit()
+function e_OnExit()
 end
 
-function OnSetting()
+function e_OnSetting()
 	E_MainFrame:OnSetting()
 end
 
-function OnSelect()
+function e_OnSelect()
 	E_MainFrame:OnSetEditMode(1)
 end
 
-function OnTranslate()
+function e_OnTranslate()
 	E_MainFrame:OnSetEditMode(2)
 end
 
-function OnRotate()
+function e_OnRotate()
 	E_MainFrame:OnSetEditMode(3)
 end
 
-function OnScale()
+function e_OnScale()
 	E_MainFrame:OnSetEditMode(4)
 end
 
-function ImportSelectedRes()
+function e_ImportSelectedRes()
 end
 
-function Import()
+function e_Import()
 end
 
-function ExportSelected()
+function e_ExportSelected()
 end
 
 function ResetPlay()
@@ -82,54 +82,54 @@ function Stop()
 end
 
 -- Scene
-function SceneActor_CreateRectPiece()
+function e_SceneActor_CreateRectPiece()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()
 	PX2_CREATER:CreateActor_Rectangle(scene, pickPos)
 end
 
-function SceneActor_CreateBox()
+function e_SceneActor_CreateBox()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()
 	PX2_CREATER:CreateActor_Box(scene, pickPos)
 end
 
-function SceneActor_CreateSphere()
+function e_SceneActor_CreateSphere()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()
 	PX2_CREATER:CreateActor_Sphere(scene, pickPos)
 end
 
 -- General
-function CreateRectPiece()
+function e_CreateRectPiece()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()
 	PX2_CREATER:CreateActor_Rectangle(scene, pickPos)
 end
 
-function CreateBox()
+function e_CreateBox()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()
 	PX2_CREATER:CreateActor_Box(scene, pickPos)
 end
 
-function CreateSphere()
+function e_CreateSphere()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()
 	PX2_CREATER:CreateActor_Sphere(scene, pickPos)
 end
 
-function CreateUIPixBox()
+function e_CreateUIPixBox()
 end
 
-function CreateUIText()
+function e_CreateUIText()
 end
 
-function CreateUIFrame()
+function e_CreateUIFrame()
 end
 
-function CreateUIButton()
+function e_CreateUIButton()
 end
 
-function CreateUIProgressBar()
+function e_CreateUIProgressBar()
 end
