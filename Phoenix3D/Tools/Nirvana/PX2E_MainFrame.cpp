@@ -15,6 +15,7 @@
 #include "PX2Edit.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2Project.hpp"
+#include "PX2EventWorld.hpp"
 #include "PX2DlgCreateProject.hpp"
 #include "PX2ObjectInspector.hpp"
 #include "PX2EditEventType.hpp"
@@ -66,6 +67,12 @@ E_MainFrame::~E_MainFrame()
 //----------------------------------------------------------------------------
 bool E_MainFrame::Initlize()
 {
+	EditParams *params = PX2_EDIT.GetEditParams();
+	if (params)
+	{
+		mCurTheme = params->GetCurTheme();
+	}
+
 	// Aui
 	mAuiManager = new wxAuiManager(this, wxAUI_MGR_DEFAULT
 		| wxAUI_MGR_TRANSPARENT_DRAG | wxAUI_MGR_ALLOW_ACTIVE_PANE );
@@ -75,17 +82,7 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 1);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
 
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(44, 61, 91));
-	
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(44, 61, 91));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(44, 61, 91));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(39, 39, 39));
-
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(77, 96, 130));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(77, 96, 130));
-
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(255, 242, 157));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(255, 242, 157));
+	SetAuiManColorForTheme();
 
 	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
@@ -98,7 +95,6 @@ bool E_MainFrame::Initlize()
 	_CreateViews();
 	_CreateStatusBar();
 
-
 	wxFileInputStream is(mPerspConfigName);
 	if (is.IsOk())
 	{
@@ -106,7 +102,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-			mAuiManager->LoadPerspective(strPerspective);
+		//	mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 
@@ -115,6 +111,30 @@ bool E_MainFrame::Initlize()
 	mIsInitlized = true;
 
 	return true;
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::SetAuiManColorForTheme()
+{
+	float r = mCurTheme.tabBackColor[0] * 255.0f;
+	float g = mCurTheme.tabBackColor[1] * 255.0f;
+	float b = mCurTheme.tabBackColor[2] * 255.0f;
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(r, g, b));
+
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(r, g, b));//44 61 91
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(r, g, b));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(r, g, b));
+
+	r = mCurTheme.inactiveColor[0] * 255.0f;
+	g = mCurTheme.inactiveColor[1] * 255.0f;
+	b = mCurTheme.inactiveColor[2] * 255.0f;
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(r, g, b)); //77 96 130
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(r, g, b));
+
+	r = mCurTheme.activeColor[0] * 255.0f;
+	g = mCurTheme.activeColor[1] * 255.0f;
+	b = mCurTheme.activeColor[2] * 255.0f;
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(r, g, b));//255 242 157
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(r, g, b));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::DoExecute(Event *event)
@@ -147,6 +167,24 @@ void E_MainFrame::DoExecute(Event *event)
 			SetCursor(wxCursor(wxCURSOR_ARROW));
 		}
 	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::EditThemeChange))
+	{
+		if (mAuiManager)
+		{
+			EditParams *params = PX2_EDIT.GetEditParams();
+			if (params)
+			{
+				EditParams::Theme theme = params->GetCurTheme();
+				mCurTheme = theme;
+				mProjView->SetColorForTheme(mCurTheme);
+				mTimeLineView->SetColorForTheme(mCurTheme);
+				mResView->SetColorForTheme(mCurTheme);
+				SetAuiManColorForTheme();
+				Refresh();
+			}			
+			//mAuiManager->Refresh();
+		}
+	}	
 }
 //----------------------------------------------------------------------------
 RenderView *E_MainFrame::GetRenderViewScene()
@@ -419,8 +457,6 @@ void E_MainFrame::AddSeparater(wxMenu *menu)
 	item->SetBackgroundColour(wxColour(234, 240, 255));
 	item->SetTextColour(wxColour(0, 0, 0));
 	menu->Append(item);
-
-	//wxMenuItem *item = menu->AppendSeparator();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTopView()
@@ -452,15 +488,6 @@ void E_MainFrame::_CreateMainToolBar()
 	mianToolBar->AddSeparator();
 	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/playinwindow.png"), wxBITMAP_TYPE_PNG));
 	mianToolBar->AddStretchSpacer();
-	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_windows.png"), wxBITMAP_TYPE_PNG));
-	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_linux.png"), wxBITMAP_TYPE_PNG));
-	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_mac.png"), wxBITMAP_TYPE_PNG));
-	//mianToolBar->AddSeparator();
-	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_windows.png"), wxBITMAP_TYPE_PNG));
-	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_android.png"), wxBITMAP_TYPE_PNG));
-	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_ios.png"), wxBITMAP_TYPE_PNG));
-	//mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/platform/pt_html5.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddSpacer(25);
 	mianToolBar->AddTool(PX2_EDIT_GETID, _("Login"), wxBitmap(wxT("DataEditor/icons/user.png"), wxBITMAP_TYPE_PNG));
 	mianToolBar->AddLabel(PX2_EDIT_GETID, "Ðí¶à");
 	mianToolBar->Realize();
@@ -482,7 +509,7 @@ void E_MainFrame::_CreateViews()
 void E_MainFrame::_CreateProjView()
 {
 	mProjView = new ProjView(this);
-
+	mProjView->SetColorForTheme(mCurTheme);
 	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"), PX2_LM.GetValue("Project"),
 		wxAuiPaneInfo().Left());
 }
@@ -526,6 +553,7 @@ void E_MainFrame::_CreateInsp()
 {
 	WindowObj objRes;
 	mResView = new ResView(this);
+	mResView->SetColorForTheme(mCurTheme);
 	objRes.TheWindow = mResView;
 	objRes.Caption = PX2_LM.GetValue("ResView");
 	objRes.Name = "ResView";
@@ -545,7 +573,9 @@ void E_MainFrame::_CreateInsp()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine()
 {
-	_CreateView(new TimeLineView(this), "TimeLine", PX2_LM.GetValue("TimeLine"), PX2_LM.GetValue("TimeLine"),
+	mTimeLineView = new TimeLineView(this);
+	mTimeLineView->SetColorForTheme(mCurTheme);
+	_CreateView(mTimeLineView, "TimeLine", PX2_LM.GetValue("TimeLine"), PX2_LM.GetValue("TimeLine"),
 		wxAuiPaneInfo().DefaultPane());
 }
 //----------------------------------------------------------------------------

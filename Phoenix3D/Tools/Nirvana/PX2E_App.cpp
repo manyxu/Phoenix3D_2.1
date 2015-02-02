@@ -24,6 +24,8 @@ E_App::~E_App()
 //-----------------------------------------------------------------------------
 bool E_App::OnInit()
 {
+		PX2_ENGINELOOP.Initlize();
+
 	wxLog::SetLogLevel(0);
 
 	wxImage::AddHandler(new wxBMPHandler());
@@ -53,8 +55,6 @@ bool E_App::OnInit()
 		displayWidth), wxMin(768, displayHeight));
 #endif
 #endif
-
-	PX2_ENGINELOOP.Initlize();
 
 	Edit *edit = new0 Edit();
 	edit->Initlize();
