@@ -44,6 +44,9 @@ namespace PX2
 		RenderStep *GetRenderStepCtrl1();
 		virtual void Tick(double elapsedTime);
 
+		void Enable(bool enable);
+		bool IsEnable() const;
+
 	protected:
 		RendererInput *mRendererInput;
 		Renderer *mRenderer;
@@ -52,6 +55,8 @@ namespace PX2
 		RenderStepPtr mRenderStepCtrl;
 		RenderStepPtr mRenderStepCtrl1;
 		bool mIsRenderCreated;
+
+		bool mIsEnable;
 
 	public:
 		virtual void OnSize(const Sizef& size);

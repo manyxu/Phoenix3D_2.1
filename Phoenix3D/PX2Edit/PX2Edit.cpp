@@ -58,6 +58,9 @@ bool Edit::Ternamate()
 void Edit::SetEditType(EditType type)
 {
 	mEditType = type;
+
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SetEditType);
+	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------
 void Edit::SetEditMode(EditMode mode)
@@ -65,7 +68,6 @@ void Edit::SetEditMode(EditMode mode)
 	mEditMode = mode;
 
 	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SetEditMode);
-	ent->SetData<Edit::EditMode>(mEditMode);
 	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------

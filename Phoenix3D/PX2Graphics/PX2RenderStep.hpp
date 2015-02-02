@@ -21,11 +21,18 @@ namespace PX2
 		RenderStep();
 		~RenderStep();
 
-		void Clear();
+	public:
 		virtual void Update(double appSeconds, double elapsedSeconds);
 
 	protected:
 		bool mIsUpdated;
+
+	public:
+		void Enable(bool enable);
+		bool IsEnable() const;
+
+	protected:
+		bool mIsEnable;
 
 		// Size
 	public:

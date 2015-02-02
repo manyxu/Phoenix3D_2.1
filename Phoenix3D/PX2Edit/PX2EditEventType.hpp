@@ -27,6 +27,7 @@ namespace PX2
 
 	PX2_EVENT(ObjectTransformChanged)
 	PX2_EVENT(EditThemeChange)
+	PX2_EVENT(SetEditType)
 	PX2_EVENT(SetEditMode)
 	PX2_EVENT(SceneNodeDrag) // data==1 drag; data==0 no drag
 	

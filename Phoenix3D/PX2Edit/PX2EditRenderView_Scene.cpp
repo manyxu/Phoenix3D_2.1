@@ -12,6 +12,7 @@
 #include "PX2Edit.hpp"
 #include "PX2ActorPicker.hpp"
 #include "PX2EventWorld.hpp"
+#include "PX2EditEventType.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -533,5 +534,21 @@ void EditRenderView_Scene::_CreateNodeCtrl()
 	mRenderStepCtrl1->SetName("SceneCtrlNodeRenderStep");
 	mRenderStepCtrl1->SetNode(mSceneCtrlNode);
 	PX2_GR.AddRenderStep(mRenderStepCtrl1);
+}
+//----------------------------------------------------------------------------
+void EditRenderView_Scene::DoExecute(Event *event)
+{
+	if (EditEventSpace::IsEqual(event, EditEventSpace::SetEditType))
+	{
+		Edit::EditType editType = PX2_EDIT.GetEditType();
+		if (editType == Edit::ET_UI)
+		{
+			Enable(false);
+		}
+		else
+		{
+			Enable(true);
+		}
+	}
 }
 //----------------------------------------------------------------------------

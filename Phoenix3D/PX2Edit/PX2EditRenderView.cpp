@@ -14,6 +14,7 @@ EditRenderView::EditRenderView() :
 mPt_Data(0),
 mRendererInput(0),
 mRenderer(0),
+mIsEnable(true),
 mIsLeftDown(false),
 mIsRightDown(false),
 mIsMiddleDown(false),
@@ -129,6 +130,8 @@ RenderStep *EditRenderView::GetRenderStepCtrl1()
 //----------------------------------------------------------------------------
 void EditRenderView::Tick(double elapsedTime)
 {
+	if (!IsEnable()) return;
+
 	if (mRenderStep && mIsRenderCreated)
 	{
 		double tiemInSeconds = GetTimeInSeconds();
@@ -149,6 +152,31 @@ void EditRenderView::Tick(double elapsedTime)
 			renderer->DisplayColorBuffer();
 		}
 	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView::Enable(bool enable)
+{
+	mIsEnable = enable;
+
+	if (mRenderStep)
+	{
+		mRenderStep->Enable(enable);
+	}
+
+	if (mRenderStepCtrl)
+	{
+		mRenderStepCtrl->Enable(enable);
+	}
+
+	if (mRenderStepCtrl1)
+	{
+		mRenderStepCtrl1->Enable(enable);
+	}
+}
+//----------------------------------------------------------------------------
+bool EditRenderView::IsEnable() const
+{
+	return mIsEnable;
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnSize(const Sizef& size)

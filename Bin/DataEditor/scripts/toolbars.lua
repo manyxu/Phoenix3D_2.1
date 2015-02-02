@@ -28,12 +28,3 @@ function e_CreateToolBarSceneUI()
 	NirMan:AddTool("DataEditor/icons/edittype/simulate.png", "e_SetEditMode_UI")
 	NirMan:AddTool("DataEditor/icons/edittype/play.png", "e_SetEditMode_UI")
 end
-
-function e_SetEditMode_Scene()
-end
-
-function e_SetEditMode_Terrain()
-end
-
-function e_SetEditMode_UI()
-end

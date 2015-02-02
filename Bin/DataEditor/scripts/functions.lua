@@ -81,6 +81,19 @@ end
 function Stop()
 end
 
+-- edit mode
+function e_SetEditMode_Scene()
+	PX2_EDIT:SetEditType(Edit.ET_SCENE)
+end
+
+function e_SetEditMode_Terrain()
+	PX2_EDIT:SetEditType(Edit.ET_TERRAIN)
+end
+
+function e_SetEditMode_UI()
+	PX2_EDIT:SetEditType(Edit.ET_UI)
+end
+
 -- Scene
 function e_SceneActor_CreateRectPiece()
 	local scene = PX2_PROJ:GetScene()
