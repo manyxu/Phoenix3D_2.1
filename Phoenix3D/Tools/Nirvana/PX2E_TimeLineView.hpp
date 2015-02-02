@@ -4,6 +4,8 @@
 #define PX2E_TIMELINEVIEW_HPP
 
 #include "PX2EditorPre.hpp"
+#include "PX2EditParams.hpp"
+#include "PX2E_TimeLineRender.hpp"
 
 namespace PX2Editor
 {
@@ -16,12 +18,14 @@ namespace PX2Editor
 		TimeLineView(wxWindow *parent);
 		~TimeLineView();
 
+		void SetColorForTheme(PX2::EditParams::Theme theme);
 	protected:
 		DECLARE_EVENT_TABLE()
 
 		TimeLineView();
 
 		wxToolBar *TimeLineBar;
+		TimeLineRender *mTimeLineRender;
 	};
 
 }

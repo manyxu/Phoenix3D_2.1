@@ -4,6 +4,8 @@
 #include "PX2EngineLoop.hpp"
 #include "PX2NirvanaUIEventType.hpp"
 #include "PX2E_MainFrame.hpp"
+#include "PX2Edit.hpp"
+#include "PX2EditParams.hpp"
 using namespace PX2Editor;
 
 BEGIN_EVENT_TABLE(PX2wxAuiNotebook, wxAuiNotebook)
@@ -116,12 +118,20 @@ void PX2wxAuiToolBarArt::DrawBackground(
 	wxRect rect = _rect;
 	rect.height++;
 
-	//wxColour color = wxColour(207, 214, 229);
-	wxColour color = wxColour(0, 214, 229);
-	wxColour startColour = color.ChangeLightness(125);
-	wxColour endColour = color.ChangeLightness(125);
+	EditParams *params = PX2_EDIT.GetEditParams();
+	if (params)
+	{
+		EditParams::Theme theme = params->GetCurTheme();
+		float r = theme.inactiveColor[0] * 255.0f;
+		float g = theme.inactiveColor[1] * 255.0f;
+		float b = theme.inactiveColor[2] * 255.0f;
+		//wxColour color = wxColour(207, 214, 229);
+		wxColour color = wxColour(r, g, b);
+		wxColour startColour = color.ChangeLightness(125);
+		wxColour endColour = color.ChangeLightness(125);
 
-	dc.GradientFillLinear(rect, color, color, wxSOUTH);
+		dc.GradientFillLinear(rect, color, color, wxSOUTH);
+	}
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
@@ -131,11 +141,19 @@ void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
 	wxRect rect = _rect;
 	rect.height++;
 
-	//dc.SetBrush(wxColour(214, 219, 233));
-	dc.SetBrush(wxColour(0, 219, 0));
+	EditParams *params = PX2_EDIT.GetEditParams();
+	if (params)
+	{
+		EditParams::Theme theme = params->GetCurTheme();
+		float r = theme.inactiveColor[0] * 255.0f;
+		float g = theme.inactiveColor[1] * 255.0f;
+		float b = theme.inactiveColor[2] * 255.0f;
+		//dc.SetBrush(wxColour(214, 219, 233));
+		dc.SetBrush(wxColour(r, g, b));
 
-	dc.DrawRectangle(rect.GetX() - 1, rect.GetY() - 1,
-		rect.GetWidth() + 2, rect.GetHeight() + 1);
+		dc.DrawRectangle(rect.GetX() - 1, rect.GetY() - 1,
+			rect.GetWidth() + 2, rect.GetHeight() + 1);
+	}
 }
 //----------------------------------------------------------------------------
 PX2wxAuiTabArt::PX2wxAuiTabArt(bool isTop)
@@ -197,14 +215,25 @@ void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 	const wxRect& rect)
 {
 	//dc.SetBrush(wxBrush(wxColour(44, 61, 91)));
-	dc.SetBrush(wxBrush(wxColour(0, 0, 0)));
-	dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 5);
-
-	//// draw base line
-	if (mIsTop)
+	EditParams *params = PX2_EDIT.GetEditParams();
+	if (params)
 	{
-		dc.SetBrush(wxBrush(wxColour(255, 242, 157)));
-		dc.DrawRectangle(-1, rect.GetHeight() - 4, rect.GetWidth() + 2, 4);
+		EditParams::Theme theme = params->GetCurTheme();
+		float r = theme.tabBackColor[0] * 255.0f;
+		float g = theme.tabBackColor[1] * 255.0f;
+		float b = theme.tabBackColor[2] * 255.0f;
+		dc.SetBrush(wxBrush(wxColour(r, g, b)));
+		dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 5);
+
+		//// draw base line
+		if (mIsTop)
+		{
+			r = theme.activeColor[0] * 255.0f;
+			g = theme.activeColor[1] * 255.0f;
+			b = theme.activeColor[2] * 255.0f;
+			dc.SetBrush(wxBrush(wxColour(r, g, b)));
+			dc.DrawRectangle(-1, rect.GetHeight() - 4, rect.GetWidth() + 2, 4);
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -279,42 +308,57 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	caption = page.caption;
 
 	// select pen, brush and font for the tab to be drawn
-
-	if (page.active)
+	EditParams *params = PX2_EDIT.GetEditParams();
+	if (params)
 	{
-		if (mIsTop)
+		EditParams::Theme theme = params->GetCurTheme();
+
+		if (page.active)
 		{
-			dc.SetPen(wxPen(wxColour(255, 242, 157)));
-			dc.SetBrush(wxColour(255, 242, 157));
-			dc.SetFont(m_selectedFont);
+			if (mIsTop)
+			{
+				float r = theme.activeColor[0] * 255.0f;
+				float g = theme.activeColor[1] * 255.0f;
+				float b = theme.activeColor[2] * 255.0f;
+				dc.SetPen(wxPen(wxColour(r, g, b)));
+				dc.SetBrush(wxColour(r, g, b));
+				dc.SetFont(m_selectedFont);
+			}
+			else
+			{
+				int r = theme.backColor[0] * 255.0f;
+				int g = theme.backColor[1] * 255.0f;
+				int b = theme.backColor[2] * 255.0f;
+				dc.SetPen(wxPen(wxColour(r, g, b)));
+				dc.SetBrush(wxColour(r, g, b));
+				dc.SetFont(m_selectedFont);
+			}
+
+			textx = selected_textx;
+			texty = selected_texty;
 		}
 		else
 		{
-			dc.SetPen(wxPen(wxColour(255, 255, 255)));
-			dc.SetBrush(wxColour(255, 255, 255));
-			dc.SetFont(m_selectedFont);
-		}
+			int r = theme.inactiveColor[0] * 255.0f;
+			int g = theme.inactiveColor[1] * 255.0f;
+			int b = theme.inactiveColor[2] * 255.0f;
+			if (mIsTop)
+			{
+				dc.SetPen(wxPen(wxColour(r, g, b)));
+				dc.SetBrush(wxColour(r, g, b));
+			}
+			else
+			{
+				dc.SetPen(wxPen(wxColour(r, g, b)));
+				dc.SetBrush(wxColour(r, g, b));
+			}
 
-		textx = selected_textx;
-		texty = selected_texty;
-	}
-	else
-	{
-		if (mIsTop)
-		{
-			dc.SetPen(wxPen(wxColour(54, 78, 111)));
-			dc.SetBrush(wxColour(54, 78, 111));
+			dc.SetFont(m_normalFont);
+			textx = normal_textx;
+			texty = normal_texty;
 		}
-		else
-		{
-			dc.SetPen(wxPen(wxColour(54, 78, 111)));
-			dc.SetBrush(wxColour(54, 78, 111));
-		}
-
-		dc.SetFont(m_normalFont);
-		textx = normal_textx;
-		texty = normal_texty;
 	}
+	
 
 	// -- draw line --
 

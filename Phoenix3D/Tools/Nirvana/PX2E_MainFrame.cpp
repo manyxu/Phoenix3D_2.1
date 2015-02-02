@@ -19,7 +19,6 @@
 #include "PX2ObjectInspector.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2NirvanaUIEventType.hpp"
-#include "PX2EditParams.hpp"
 
 using namespace PX2Editor;
 using namespace PX2;
@@ -54,6 +53,12 @@ E_MainFrame::~E_MainFrame()
 //----------------------------------------------------------------------------
 bool E_MainFrame::Initlize()
 {
+	EditParams *params = PX2_EDIT.GetEditParams();
+	if (params)
+	{
+		mCurTheme = params->GetCurTheme();
+	}
+
 	// Aui
 	mAuiManager = new wxAuiManager(this, wxAUI_MGR_DEFAULT
 		| wxAUI_MGR_TRANSPARENT_DRAG | wxAUI_MGR_ALLOW_ACTIVE_PANE );
@@ -63,20 +68,7 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 1);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
 
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(44, 61, 91));
-	
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(44, 61, 91));//44 61 91
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(44, 61, 91));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(44, 61, 91));
-
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(77, 96, 130));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(77, 96, 130));
-//	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(0, 0, 130));
-
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(255, 242, 157));
-	//mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(255, 242, 157));
-
-	//mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(0, 242, 157));
+	SetAuiManColorForTheme();
 
 	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
@@ -94,6 +86,30 @@ bool E_MainFrame::Initlize()
 	mIsInitlized = true;
 
 	return true;
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::SetAuiManColorForTheme()
+{
+	float r = mCurTheme.tabBackColor[0] * 255.0f;
+	float g = mCurTheme.tabBackColor[1] * 255.0f;
+	float b = mCurTheme.tabBackColor[2] * 255.0f;
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(r, g, b));
+
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(r, g, b));//44 61 91
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(r, g, b));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(r, g, b));
+
+	r = mCurTheme.inactiveColor[0] * 255.0f;
+	g = mCurTheme.inactiveColor[1] * 255.0f;
+	b = mCurTheme.inactiveColor[2] * 255.0f;
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(r, g, b)); //77 96 130
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(r, g, b));
+
+	r = mCurTheme.activeColor[0] * 255.0f;
+	g = mCurTheme.activeColor[1] * 255.0f;
+	b = mCurTheme.activeColor[2] * 255.0f;
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(r, g, b));//255 242 157
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(r, g, b));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::AddEventHandlers()
@@ -139,14 +155,17 @@ void E_MainFrame::DoExecute(Event *event)
 	{
 		if (mAuiManager)
 		{
-			/*wxString paneName = PX2_LM.GetValue("Project");
-			ProjView *projView = (ProjView *)mAuiManager->GetPane(paneName).window;
-			projView->SetBackgroundColour(wxColour(0, 214, 229));
-			mAuiManager->Update();*/
-
-			mProjView->SetBackgroundColour(wxColour(214, 0, 229));
-
-			Refresh();
+			EditParams *params = PX2_EDIT.GetEditParams();
+			if (params)
+			{
+				EditParams::Theme theme = params->GetCurTheme();
+				mCurTheme = theme;
+				mProjView->SetColorForTheme(mCurTheme);
+				mTimeLineView->SetColorForTheme(mCurTheme);
+				mResView->SetColorForTheme(mCurTheme);
+				SetAuiManColorForTheme();
+				Refresh();
+			}			
 			//mAuiManager->Refresh();
 		}
 	}	
@@ -469,7 +488,7 @@ void E_MainFrame::_CreateViews()
 void E_MainFrame::_CreateProjView()
 {
 	mProjView = new ProjView(this);
-
+	mProjView->SetColorForTheme(mCurTheme);
 	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"), PX2_LM.GetValue("Project"),
 		wxAuiPaneInfo().Left());
 }
@@ -511,6 +530,7 @@ void E_MainFrame::_CreateInsp()
 {
 	WindowObj objRes;
 	mResView = new ResView(this);
+	mResView->SetColorForTheme(mCurTheme);
 	objRes.TheWindow = mResView;
 	objRes.Caption = PX2_LM.GetValue("ResView");
 	objRes.Name = "ResView";
@@ -530,7 +550,9 @@ void E_MainFrame::_CreateInsp()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine()
 {
-	_CreateView(new TimeLineView(this), "TimeLine", PX2_LM.GetValue("TimeLine"), PX2_LM.GetValue("TimeLine"),
+	mTimeLineView = new TimeLineView(this);
+	mTimeLineView->SetColorForTheme(mCurTheme);
+	_CreateView(mTimeLineView, "TimeLine", PX2_LM.GetValue("TimeLine"), PX2_LM.GetValue("TimeLine"),
 		wxAuiPaneInfo().DefaultPane());
 }
 //----------------------------------------------------------------------------

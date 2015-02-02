@@ -70,3 +70,15 @@ ProjTree *ProjView::GetProjTree()
 	return mProjTree;
 }
 //----------------------------------------------------------------------------
+void ProjView::SetColorForTheme(PX2::EditParams::Theme theme)
+{
+	float r = theme.backColor[0] * 255.0f;
+	float g = theme.backColor[1] * 255.0f;
+	float b = theme.backColor[2] * 255.0f;
+
+	SetBackgroundColour(wxColour(r, g, b));
+	mProjTreeBar->SetBackgroundColour(wxColour(r, g, b));
+	mProjTreeBar->SetForegroundColour(wxColour(r, g, b));
+	mProjTree->SetBackgroundColour(wxColour(r, g, b));
+}
+//----------------------------------------------------------------------------

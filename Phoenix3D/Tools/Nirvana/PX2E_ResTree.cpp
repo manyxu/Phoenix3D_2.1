@@ -30,6 +30,8 @@ wxTR_DEFAULT_STYLE | wxTR_FULL_ROW_HIGHLIGHT | wxTR_NO_LINES | wxTR_TWIST_BUTTON
 	Icons["px2obj"] = imageObject;
 	Icons["csv"] = imageCSV;
 	Icons["lua"] = imageLua;
+
+	UpdateOnPath("Data/");
 }
 //----------------------------------------------------------------------------
 ResTree::ResTree()
@@ -63,6 +65,11 @@ void ResTree::OnSelChanged(wxTreeEvent& event)
 ResTreeItem *ResTree::GetItem(wxTreeItemId id)
 {
 	return mRootItem->GetChildItem(id);
+}
+//----------------------------------------------------------------------------
+ResTreeItem *ResTree::GetTreeRootItem()
+{
+	return mRootItem;
 }
 //----------------------------------------------------------------------------
 void ResTree::UpdateOnPath(const std::string &pathName)

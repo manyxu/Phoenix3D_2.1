@@ -26,22 +26,17 @@ namespace PX2
 		bool Load(std::string filename);
 
 		//编辑器主题颜色类型
-		enum ThemeType
-		{
-			THEME_BLUE,
-			THEME_DARK,
-			THEME_TINT
-		};
-
+		std::vector<std::string> mThemeTypes;
 		struct Theme
 		{
-			ThemeType type;
+			std::string type;
 			Float3 inactiveColor;
 			Float3 activeColor;
 			Float3 backColor;
 			Float3 tabBackColor;
+			Float3 fontColor;
 		};
-		void ThemeChange(ThemeType type);
+		void ThemeChange(std::string type);
 		//ThemeType GetThemeType();
 		void SetCurTheme(Theme theme);
 		Theme GetCurTheme();
@@ -50,7 +45,6 @@ namespace PX2
 	public:
 		float GridSize;
 	protected:
-		ThemeType mThemeType;
 		Theme mCurTheme;
 		std::map<int, Theme> mThemes;	
 	};

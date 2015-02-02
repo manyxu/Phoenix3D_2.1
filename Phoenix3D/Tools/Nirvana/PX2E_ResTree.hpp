@@ -24,6 +24,8 @@ namespace PX2Editor
 
 		void OnSelChanged(wxTreeEvent &ent);
 
+		ResTreeItem* GetTreeRootItem();
+
 	public_internal:
 		std::map<std::string, int> Icons;
 
