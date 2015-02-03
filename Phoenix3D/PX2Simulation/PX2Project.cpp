@@ -26,11 +26,14 @@ mEdit_UICameraPercent(1.0f)
 	mBackgroundColor = Float4::MakeColor(255, 255, 200, 255);
 	
 	mSceneRenderStep = new0 RenderStep();
+	mSceneRenderStep->SetPriority(20);
 	mSceneRenderStep->SetName("SceneRenderStep");
 	mSceneRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
 	PX2_GR.AddRenderStep(mSceneRenderStep);
 
-	mUIRenderStep = new0 UIView();
+	mUIRenderStep = new0 UIView(0);
+	mUIRenderStep->SetPriority(10);
+	mUIRenderStep->SetDoDepthClear(true);
 	mUIRenderStep->SetName("UIRenderStep");
 	mUIRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
 	PX2_GR.AddRenderStep(mUIRenderStep);

@@ -125,11 +125,7 @@ void RenderView::OnLeftDown(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
-	for (; it != mEditRenderViews.end(); it++)
-	{
-		it->second->OnLeftDown(pos);
-	}
+	PX2_INPUTMAN.GetDefaultListener()->MousePressed(MBID_LEFT, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnLeftUp(wxMouseEvent& e)
@@ -137,11 +133,7 @@ void RenderView::OnLeftUp(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
-	for (; it != mEditRenderViews.end(); it++)
-	{
-		it->second->OnLeftUp(pos);
-	}
+	PX2_INPUTMAN.GetDefaultListener()->MouseReleased(MBID_LEFT, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnMiddleDown(wxMouseEvent& e)
@@ -151,11 +143,7 @@ void RenderView::OnMiddleDown(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
-	for (; it != mEditRenderViews.end(); it++)
-	{
-		it->second->OnMiddleDown(pos);
-	}
+	PX2_INPUTMAN.GetDefaultListener()->MousePressed(MBID_MIDDLE, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnMiddleUp(wxMouseEvent& e)
@@ -163,22 +151,14 @@ void RenderView::OnMiddleUp(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
-	for (; it != mEditRenderViews.end(); it++)
-	{
-		it->second->OnMiddleUp(pos);
-	}
+	PX2_INPUTMAN.GetDefaultListener()->MouseReleased(MBID_MIDDLE, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnMouseWheel(wxMouseEvent& e)
 {
-	float delta = (float)e.GetWheelRotation()*0.03f;
+	float delta = (float)e.GetWheelRotation()*0.1f;
 
-	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
-	for (; it != mEditRenderViews.end(); it++)
-	{
-		it->second->OnMouseWheel(delta);
-	}
+	PX2_INPUTMAN.GetDefaultListener()->MouseWheeled(delta);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnRightDown(wxMouseEvent& e)
@@ -191,11 +171,7 @@ void RenderView::OnRightDown(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
-	for (; it != mEditRenderViews.end(); it++)
-	{
-		it->second->OnRightDown(pos);
-	}
+	PX2_INPUTMAN.GetDefaultListener()->MousePressed(MBID_RIGHT, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnRightUp(wxMouseEvent& e)
@@ -203,11 +179,7 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
-	for (; it != mEditRenderViews.end(); it++)
-	{
-		it->second->OnRightUp(pos);
-	}
+	PX2_INPUTMAN.GetDefaultListener()->MouseReleased(MBID_RIGHT, pos);
 
 	if (RVT_SCENEUI == mRenderViewType)
 	{
@@ -237,11 +209,7 @@ void RenderView::OnMotion(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
-	for (; it != mEditRenderViews.end(); it++)
-	{
-		it->second->OnMotion(pos);
-	}
+	PX2_INPUTMAN.GetDefaultListener()->MouseMoved(pos);
 
 	if (mIsRightDown)
 	{
@@ -319,6 +287,7 @@ void RenderView::_NewEditRenderView(const std::string &name)
 		renderView->SetRenderStep(rs_Scene);
 		renderView->SetRenderer(rsRender_Scene);
 		renderView->SetCamera(rsCamera_Scene);
+		renderView->Enable(Edit::ET_UI != PX2_EDIT.GetEditType());
 	}
 	else if ("UI" == name)
 	{
@@ -336,6 +305,7 @@ void RenderView::_NewEditRenderView(const std::string &name)
 		renderView->SetRenderStep(rs_UI);
 		renderView->SetRenderer(rs_Render_UI);
 		renderView->SetCamera(rs_Camera_UI);
+		renderView->Enable(Edit::ET_UI == PX2_EDIT.GetEditType());
 
 		rs_CameraNode_UI->LocalTransform.SetTranslateXZ(
 			projSize.Width / 2.0f, projSize.Height / 2.0f);

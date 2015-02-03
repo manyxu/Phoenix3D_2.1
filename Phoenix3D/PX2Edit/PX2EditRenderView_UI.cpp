@@ -6,12 +6,16 @@
 #include "PX2StandardMesh.hpp"
 #include "PX2VertexColor4Material.hpp"
 #include "PX2Project.hpp"
+#include "PX2EditEventType.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView_UI::EditRenderView_UI()
 {
 	_CreateGridGeometry();
+
+	Edit::EditType editType = PX2_EDIT.GetEditType();
+	Enable(editType == Edit::ET_UI);
 }
 //----------------------------------------------------------------------------
 EditRenderView_UI::~EditRenderView_UI()
@@ -157,7 +161,7 @@ void EditRenderView_UI::OnMotion(const APoint &pos)
 
 	if (delta == AVector::ZERO) return;
 
-	if (PX2_EDIT.IsCtrlDown && mIsMiddleDown)
+	if (PX2_EDIT.IsCtrlDown && (mIsMiddleDown || mIsRightDown))
 	{
 		AVector detalMove = delta;
 		detalMove.X() *= mPixelToWorld.second;
@@ -170,6 +174,24 @@ void EditRenderView_UI::OnMotion(const APoint &pos)
 		trans -= detalMove;
 
 		cameraNode->LocalTransform.SetTranslate(trans);
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_UI::DoExecute(Event *event)
+{
+	EditRenderView::DoExecute(event);
+	
+	if (EditEventSpace::IsEqual(event, EditEventSpace::SetEditType))
+	{
+		Edit::EditType editType = PX2_EDIT.GetEditType();
+		if (editType == Edit::ET_UI)
+		{
+			Enable(true);
+		}
+		else
+		{
+			Enable(false);
+		}
 	}
 }
 //----------------------------------------------------------------------------

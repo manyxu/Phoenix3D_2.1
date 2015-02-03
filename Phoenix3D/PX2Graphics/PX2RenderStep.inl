@@ -36,3 +36,23 @@ inline Node *RenderStep::GetNode()
 	return mNode;
 }
 //----------------------------------------------------------------------------
+inline void RenderStep::SetPriority(int priority)
+{
+	mPriority = priority;
+}
+//----------------------------------------------------------------------------
+inline int RenderStep::GetPriority() const
+{
+	return mPriority;
+}
+//----------------------------------------------------------------------------
+inline void RenderStep::SetDoDepthClear(bool clear)
+{
+	mIsDoClearDepth = clear;
+}
+//----------------------------------------------------------------------------
+inline bool RenderStep::IsDoDepthClear()
+{
+	return mIsDoClearDepth;
+}
+//----------------------------------------------------------------------------

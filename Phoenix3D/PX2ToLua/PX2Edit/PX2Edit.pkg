@@ -43,4 +43,7 @@
 	public:
 		void SetPickPos(const APoint &pos);
 		const APoint &GetPickPos() const;
+		
+	public:
+		bool DeleteSelection();
 	};

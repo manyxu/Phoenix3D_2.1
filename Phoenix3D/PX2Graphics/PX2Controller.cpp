@@ -166,7 +166,13 @@ void Controller::SetControlledable (Controlledable* object)
 //----------------------------------------------------------------------------
 bool Controller::LessThan (const Controller *ctrl0, const Controller *ctrl1)
 {
-	return ctrl0->GetPriority() > ctrl1->GetPriority();
+	int priority0 = ctrl0->GetPriority();
+	int priority1 = ctrl1->GetPriority();
+
+	if (priority0 == priority1)
+		return ctrl0 < ctrl1;
+
+	return priority0 > priority1;
 }
 //----------------------------------------------------------------------------
 double Controller::GetControlTimeByRangeTime (double rangeTime)

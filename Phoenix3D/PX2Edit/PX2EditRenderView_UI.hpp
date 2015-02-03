@@ -35,6 +35,10 @@ namespace PX2
 
 		PX2::PolysegmentPtr mProjRangeSegment;
 		PX2::NodePtr mRangeNode;
+
+		// Event
+	public:
+		virtual void DoExecute(Event *event);
 	};
 
 	typedef Pointer0<EditRenderView_UI> EditUIRenderViewPtr;

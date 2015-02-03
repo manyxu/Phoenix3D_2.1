@@ -7,6 +7,7 @@
 #include "PX2Application.hpp"
 #include "PX2IMEDispatcher.hpp"
 #include "PX2EngineLoop.hpp"
+#include "PX2InputManager.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -59,7 +60,7 @@ LRESULT CALLBACK MsWindowEventHandler (HWND handle, UINT message,
 		break;
 	case WM_MOUSEWHEEL:
 		wheeldelta = (float)GET_WHEEL_DELTA_WPARAM(wParam);
-		//InputEventAdapter::GetSingleton().GetInputEventListener()->OnMouseWheel(wheeldelta);
+		PX2_INPUTMAN.GetDefaultListener()->MouseWheeled(wheeldelta);
 		break;
 	case WM_IME_CHAR:	
 		if (wParam > 0x7f) 

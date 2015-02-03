@@ -60,6 +60,8 @@ namespace PX2
 
 	public:
 		virtual void OnSize(const Sizef& size);
+
+	protected:
 		virtual void OnLeftDown(const APoint &pos);
 		virtual void OnLeftUp(const APoint &pos);
 		virtual void OnMiddleDown(const APoint &pos);
@@ -69,7 +71,6 @@ namespace PX2
 		virtual void OnRightUp(const APoint &pos);
 		virtual void OnMotion(const APoint &pos);
 
-	protected:
 		Sizef mSize;
 		bool mIsLeftDown;
 		bool mIsMiddleDown;
@@ -78,6 +79,10 @@ namespace PX2
 
 	public:
 		std::pair<float, float> mPixelToWorld;
+
+		// Event
+	public:
+		virtual void DoExecute(Event *event);
 	};
 
 	typedef Pointer0<EditRenderView> EditRenderViewPtr;

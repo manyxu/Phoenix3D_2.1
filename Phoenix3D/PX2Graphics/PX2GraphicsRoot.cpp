@@ -344,6 +344,8 @@ bool GraphicsRoot::AddRenderStep(RenderStep *step)
 
 	mRenderSteps.push_back(step);
 
+	std::sort(mRenderSteps.begin(), mRenderSteps.end(), RenderStep::LessThan);
+
 	return true;
 }
 //----------------------------------------------------------------------------

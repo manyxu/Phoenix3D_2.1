@@ -21,7 +21,7 @@ namespace PX2
 {
 
 	class Event;
-	class EventHandler;
+	class ObjectEventHandler;
 
 	/// 对象系统根类
 	/** 
@@ -100,12 +100,12 @@ namespace PX2
 		void GoOutEventWorld();
 		bool IsInEventWorld();
 
-		EventHandler *GetEventHandler();
+		ObjectEventHandler *GetEventHandler();
 
 		virtual void DoExecute(Event *event);
 
 	protected:
-		Pointer0<EventHandler> mEventHandler;
+		Pointer0<ObjectEventHandler> mEventHandler;
 
 		// Visitor
 	public:

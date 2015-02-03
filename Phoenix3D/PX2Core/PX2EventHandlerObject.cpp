@@ -1,22 +1,21 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Win32InputManager.inl
-*
-*/
+// PX2EventHandlerObject.cpp
+
+#include "PX2EventHandlerObject.hpp"
+#include "PX2Object.hpp"
+using namespace PX2;
 
 //----------------------------------------------------------------------------
-inline void Win32InputManager::SetKeyboardUsed (bool used)
+ObjectEventHandler::ObjectEventHandler(Object *obj) :
+mObject(obj)
 {
-	mIsKeyboardUsed = used;
 }
 //----------------------------------------------------------------------------
-inline void Win32InputManager::SetMouseUsed (bool used)
+ObjectEventHandler::~ObjectEventHandler()
 {
-	mIsMouseUsed = used;
 }
 //----------------------------------------------------------------------------
-inline HWND Win32InputManager::GetWindowHandle ()
+void ObjectEventHandler::DoExecute(Event *event)
 {
-	return mhWnd;
+	mObject->DoExecute(event);
 }
 //----------------------------------------------------------------------------

@@ -1,27 +1,27 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Keyboard.inl
-*
-*/
+// PX2InputEventData.cpp
+
+#include "PX2InputEventData.hpp"
+using namespace PX2;
 
 //----------------------------------------------------------------------------
-inline void Keyboard::SetTextTranslation (TextTranslationMode mode)
+TouchState::TouchState()
 {
-	mTextMode = mode;
 }
 //----------------------------------------------------------------------------
-inline Keyboard::TextTranslationMode Keyboard::GetTextTranslation() const
+TouchState::~TouchState()
 {
-	return mTextMode;
 }
 //----------------------------------------------------------------------------
-inline void Keyboard::SetEventCallback(KeyListener *keyListener) 
+
+//----------------------------------------------------------------------------
+InputEventData::InputEventData() :
+ViewID(0),
+TheEventType(0),
+MWheel(0.0f)
 {
-	mListener = keyListener;
 }
 //----------------------------------------------------------------------------
-inline KeyListener* Keyboard::GetEventCallback() const
+InputEventData::~InputEventData()
 {
-	return mListener;
 }
 //----------------------------------------------------------------------------

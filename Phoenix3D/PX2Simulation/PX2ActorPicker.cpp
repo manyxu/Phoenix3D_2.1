@@ -36,34 +36,35 @@ void ActorPicker::Execute(Scene* scene, const APoint& origin,
 	for (int i = 0; i < scene->GetNumChildren(); i++)
 	{
 		Actor *actor = DynamicCast<Actor>(scene->GetChild(i));
-		assertion(actor != 0, "actor must exist.");
-
-		if (!actor->IsShow()) continue;
-
-		if (!actor->IsPickable()) continue;
-
-		Picker picker;
-
-		Movable *node = actor->GetNode();
-		Movable *helpNode = actor->GetHelpNode();
-		if (helpNode && helpNode->IsShow())
+		if (actor)
 		{
-			picker.Execute(helpNode, mOrigin, mDirection, mTMin, mTMax);
-		}
-		else
-		{
-			picker.Execute(node, mOrigin, mDirection, mTMin, mTMax);
-		}
+			if (!actor->IsShow()) continue;
 
-		if ((int)picker.Records.size() > 0)
-		{
-			PickRecord pickRecord = picker.GetClosestToZero();
+			if (!actor->IsPickable()) continue;
 
-			ActorPickRecord record;
-			record.Intersected = actor;
-			record.T = pickRecord.T;
+			Picker picker;
 
-			Records.push_back(record);
+			Movable *node = actor->GetNode();
+			Movable *helpNode = actor->GetHelpNode();
+			if (helpNode && helpNode->IsShow())
+			{
+				picker.Execute(helpNode, mOrigin, mDirection, mTMin, mTMax);
+			}
+			else
+			{
+				picker.Execute(node, mOrigin, mDirection, mTMin, mTMax);
+			}
+
+			if ((int)picker.Records.size() > 0)
+			{
+				PickRecord pickRecord = picker.GetClosestToZero();
+
+				ActorPickRecord record;
+				record.Intersected = actor;
+				record.T = pickRecord.T;
+
+				Records.push_back(record);
+			}
 		}
 	}
 }

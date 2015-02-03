@@ -80,8 +80,21 @@ namespace PX2
 
 		// Draw
 	public:
+		void SetPriority(int priority);
+		int GetPriority() const;
+
+		void SetDoDepthClear(bool clear);
+		bool IsDoDepthClear();
+
 		void ComputeVisibleSet();
 		void Draw();
+
+	public_internal:
+		static bool LessThan(const RenderStep *step0, const RenderStep *step1);
+
+	protected:
+		int mPriority;
+		bool mIsDoClearDepth;
 
 	public_internal:
 		// ±à¼­Æ÷ÖÐµ÷ÓÃ

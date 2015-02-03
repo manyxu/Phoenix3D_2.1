@@ -9,6 +9,7 @@
 #include "PX2LanguageManager.hpp"
 #include "PX2GraphicsRoot.hpp"
 #include "PX2IMEDispatcher.hpp"
+#include "PX2InputManager.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2FontManager.hpp"
@@ -60,6 +61,7 @@ namespace PX2
 		LanguageManager *mLanguageMan;
 		ScriptManager *mScriptMan;
 		GraphicsRoot *mRoot;
+		InputManager *mInputMan;
 		IMEDispatcher *mIMEDisp;
 		ResourceManager *mResMan;
 		FontManager *mFontMan;

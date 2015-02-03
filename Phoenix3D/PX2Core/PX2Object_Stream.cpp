@@ -1,7 +1,8 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+// PX2Object_Stream.cpp
 
 #include "PX2Object.hpp"
 #include "PX2EventHandler.hpp"
+#include "PX2EventHandlerObject.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -74,7 +75,7 @@ mReadedVersion(0),
 mCurStream(0),
 mID(0)
 {
-	mEventHandler = new0 EventHandler();
+	mEventHandler = new0 ObjectEventHandler(this);
 }
 //----------------------------------------------------------------------------
 void Object::Load(InStream& source)

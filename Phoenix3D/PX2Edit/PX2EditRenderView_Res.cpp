@@ -52,7 +52,7 @@ bool EditRenderView_Res::InitlizeRendererStep(const std::string &name)
 
 	mSize = mPt_Size;
 
-	mRenderStep = new0 UIView();
+	mRenderStep = new0 UIView(1);
 	mRenderStep->SetName(name);
 
 	SetRenderer(mRenderer);

@@ -23,6 +23,7 @@ namespace PX2
 
 		bool Initlize();
 		bool Ternamate();
+		void Reset();
 
 	public:
 		enum EditType
@@ -83,6 +84,10 @@ namespace PX2
 
 	protected:
 		APoint mPickPos;
+
+		// Select
+	public:
+		bool DeleteSelection();
 	};
 
 #include "PX2Edit.inl"

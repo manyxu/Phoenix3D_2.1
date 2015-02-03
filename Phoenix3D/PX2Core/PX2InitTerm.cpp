@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2InitTerm.cpp
-*
-*/
+// PX2InitTerm.cpp
 
 #include "PX2InitTerm.hpp"
 #include "PX2Assert.hpp"

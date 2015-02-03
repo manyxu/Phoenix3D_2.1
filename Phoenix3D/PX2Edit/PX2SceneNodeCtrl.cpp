@@ -532,7 +532,7 @@ void SceneNodeCtrl::DoExecute(PX2::Event *event)
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::SetEditMode))
 	{
-		Edit::EditMode mode = event->GetData<Edit::EditMode>();
+		Edit::EditMode mode = PX2_EDIT.GetEditMode();
 
 		if (Edit::EM_SELECT == mode)
 		{

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ResourceManager.hpp
-*
-*/
+// PX2ResourceManager.hpp
 
 #ifndef PX2RESOURCEMANAGER_HPP
 #define PX2RESOURCEMANAGER_HPP

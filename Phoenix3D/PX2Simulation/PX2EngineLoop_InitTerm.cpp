@@ -64,6 +64,8 @@ bool EngineLoop::Initlize()
 
 	mIMEDisp = new0 IMEDispatcher();
 
+	mInputMan = new0 InputManager();
+
 	mLanguageMan = new0 LanguageManager();
 	mResMan = new0 ResourceManager();
 
@@ -277,6 +279,12 @@ bool EngineLoop::Ternamate()
 		mRoot->Terminate();
 		delete0(mRoot);
 		GraphicsRoot::Set(0);
+	}
+
+	if (mInputMan)
+	{
+		delete0(mInputMan);
+		mInputMan = 0;
 	}
 
 	if (mResMan)
