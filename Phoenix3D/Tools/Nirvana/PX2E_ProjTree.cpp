@@ -55,8 +55,6 @@ mEditMenu(0)
 	Icons["logic"] = imageLogic;
 	Icons["camera"] = imageCamera;
 	Icons["object"] = imageObject;
-
-	//SetBackgroundColour(wxColour(0, 214, 229));
 }
 //----------------------------------------------------------------------------
 ProjTree::~ProjTree()
@@ -160,6 +158,8 @@ void ProjTree::_RefreshProject()
 	{
 		_RefreshUI();
 	}
+
+	SetItemsColour();
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearProject()
@@ -210,6 +210,7 @@ void ProjTree::_RefreshScene()
 			_AddObject(mov);
 		}
 	}
+	SetItemsColour();
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearScene()
@@ -414,6 +415,37 @@ void ProjTree::_RemoveObject(PX2::Object *obj)
 		if (parItem)
 		{
 			parItem->RemoveChild(obj);
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void ProjTree::SetItemsColour()
+{
+	EditParams *params = PX2_EDIT.GetEditParams();
+	if (params)
+	{
+		EditParams::Theme theme = params->GetCurTheme();
+
+		if (mItemProj)
+		{	
+			float r = theme.fontColor[0] * 255.0f;
+			float g = theme.fontColor[1] * 255.0f;
+			float b = theme.fontColor[2] * 255.0f;
+
+			SetItemTextColour(mItemProj->GetItemID(), wxColour(r, g, b));
+			mItemProj->SetChildItemTextColour(this);	
+		}
+		if (mItemScene)
+		{
+			mItemScene->SetChildItemTextColour(this);
+		}
+		if (mItemUI)
+		{
+			mItemUI->SetChildItemTextColour(this);
+		}
+		if (mItemLogic)
+		{
+			mItemLogic->SetChildItemTextColour(this);
 		}
 	}
 }

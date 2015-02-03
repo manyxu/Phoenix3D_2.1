@@ -122,10 +122,9 @@ void PX2wxAuiToolBarArt::DrawBackground(
 	if (params)
 	{
 		EditParams::Theme theme = params->GetCurTheme();
-		float r = theme.inactiveColor[0] * 255.0f;
-		float g = theme.inactiveColor[1] * 255.0f;
-		float b = theme.inactiveColor[2] * 255.0f;
-		//wxColour color = wxColour(207, 214, 229);
+		float r = theme.toolBarColor[0] * 255.0f;
+		float g = theme.toolBarColor[1] * 255.0f;
+		float b = theme.toolBarColor[2] * 255.0f;
 		wxColour color = wxColour(r, g, b);
 		wxColour startColour = color.ChangeLightness(125);
 		wxColour endColour = color.ChangeLightness(125);
@@ -145,10 +144,9 @@ void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
 	if (params)
 	{
 		EditParams::Theme theme = params->GetCurTheme();
-		float r = theme.inactiveColor[0] * 255.0f;
-		float g = theme.inactiveColor[1] * 255.0f;
-		float b = theme.inactiveColor[2] * 255.0f;
-		//dc.SetBrush(wxColour(214, 219, 233));
+		float r = theme.toolBarColor[0] * 255.0f;
+		float g = theme.toolBarColor[1] * 255.0f;
+		float b = theme.toolBarColor[2] * 255.0f;
 		dc.SetBrush(wxColour(r, g, b));
 
 		dc.DrawRectangle(rect.GetX() - 1, rect.GetY() - 1,
@@ -214,7 +212,6 @@ void PX2wxAuiTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
 void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 	const wxRect& rect)
 {
-	//dc.SetBrush(wxBrush(wxColour(44, 61, 91)));
 	EditParams *params = PX2_EDIT.GetEditParams();
 	if (params)
 	{
@@ -413,10 +410,26 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		text_offset = tab_x + (tab_width - textx)/ 2 ;
 	}
 
-	if (page.active)
-		dc.SetTextForeground(wxColour(0, 0, 0));
-	else
-		dc.SetTextForeground(wxColour(255, 255, 255));
+	if (params)
+	{
+		EditParams::Theme theme = params->GetCurTheme();
+		if (page.active)
+		{
+			float r = theme.captionActColor[0] * 255.0f;
+			float g = theme.captionActColor[1] * 255.0f;
+			float b = theme.captionActColor[2] * 255.0f;
+			dc.SetTextForeground(wxColour(r, g, b));
+		}
+		else
+		{
+			float r = theme.captionColor[0] * 255.0f;
+			float g = theme.captionColor[1] * 255.0f;
+			float b = theme.captionColor[2] * 255.0f;
+			dc.SetTextForeground(wxColour(r, g, b));
+		}
+	}
+	
+		
 
 	// chop text if necessary
 	wxString draw_text = wxAuiChopText(dc,

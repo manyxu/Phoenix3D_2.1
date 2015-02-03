@@ -35,6 +35,10 @@ namespace PX2
 			Float3 backColor;
 			Float3 tabBackColor;
 			Float3 fontColor;
+			Float3 captionColor;
+			Float3 captionActColor;
+			Float3 toolBarColor;
+			Float3 searchColor;
 		};
 		void ThemeChange(std::string type);
 		//ThemeType GetThemeType();

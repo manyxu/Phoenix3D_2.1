@@ -7,6 +7,7 @@
 #include "PX2EventHandler.hpp"
 #include "PX2E_ProjTreeItem.hpp"
 #include "PX2E_ProjTreeDef.hpp"
+#include "PX2EditParams.hpp"
 
 namespace PX2Editor
 {
@@ -34,6 +35,8 @@ namespace PX2Editor
 		void OnItemActivated(wxTreeEvent& event);
 		void OnSelChanged(wxTreeEvent& event);
 		void OnSelChanging(wxTreeEvent& event);
+
+		void SetItemsColour();
 
 	public_internal:
 		std::map<std::string, int> Icons;

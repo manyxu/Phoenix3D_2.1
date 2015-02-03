@@ -49,6 +49,8 @@ namespace PX2Editor
 		ProjTreeItem *GetItem(PX2::Object *obj);
 		ProjTreeItem *GetItem(wxTreeItemId id);
 
+		void SetChildItemTextColour(ProjTree *tree);
+
 	public_internal:
 		ProjTreeItem(ProjTree *tree, wxTreeItemId id, 
 			ItemType type, int iconID, const std::string &name);

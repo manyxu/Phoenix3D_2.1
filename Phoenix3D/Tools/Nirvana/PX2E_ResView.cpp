@@ -17,8 +17,6 @@ ResView::ResView()
 ResView::ResView(wxWindow *parent) :
 wxWindow(parent, -1)
 {
-	SetBackgroundColour(wxColour(207, 214, 229));
-
 	wxBoxSizer* bSizer54;
 	bSizer54 = new wxBoxSizer(wxVERTICAL);
 
@@ -27,8 +25,6 @@ wxWindow(parent, -1)
 
 	mResTreeBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
-	mResTreeBar->SetBackgroundColour(wxColour(207, 214, 229));
-	mResTreeBar->SetForegroundColour(wxColour(207, 214, 229));
 	mResTreeBar->Realize();
 
 	bSizer55->Add(mResTreeBar, 0, wxEXPAND | wxBOTTOM, 5);

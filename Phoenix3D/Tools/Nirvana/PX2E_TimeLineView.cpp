@@ -16,8 +16,6 @@ TimeLineView::TimeLineView()
 TimeLineView::TimeLineView(wxWindow *parent) :
 wxWindow(parent, -1)
 {
-	SetBackgroundColour(wxColour(207, 214, 229));
-
 	wxBoxSizer* bSizer54;
 	bSizer54 = new wxBoxSizer(wxVERTICAL);
 
@@ -26,8 +24,6 @@ wxWindow(parent, -1)
 
 	TimeLineBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
-	TimeLineBar->SetBackgroundColour(wxColour(207, 214, 229));
-	TimeLineBar->SetForegroundColour(wxColour(207, 214, 229));
 	TimeLineBar->Realize();
 
 	bSizer55->Add(TimeLineBar, 0, wxEXPAND | wxBOTTOM, 5);
@@ -66,10 +62,13 @@ void TimeLineView::SetColorForTheme(EditParams::Theme theme)
 	float r = theme.backColor[0] * 255.0f;
 	float g = theme.backColor[1] * 255.0f;
 	float b = theme.backColor[2] * 255.0f;
-
 	SetBackgroundColour(wxColour(r, g, b));
+	mTimeLineRender->SetBackgroundColour(wxColour(r, g, b));
+
+	r = theme.toolBarColor[0] * 255.0f;
+	g = theme.toolBarColor[1] * 255.0f;
+	b = theme.toolBarColor[2] * 255.0f;
 	TimeLineBar->SetBackgroundColour(wxColour(r, g, b));
 	TimeLineBar->SetForegroundColour(wxColour(r, g, b));
-	mTimeLineRender->SetBackgroundColour(wxColour(r, g, b));
 }
 //----------------------------------------------------------------------------

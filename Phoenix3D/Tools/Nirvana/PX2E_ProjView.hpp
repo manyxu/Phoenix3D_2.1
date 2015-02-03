@@ -29,6 +29,7 @@ namespace PX2Editor
 
 		wxToolBar *mProjTreeBar;
 		ProjTree *mProjTree;
+		wxSearchCtrl *mSearchCtrl;
 	};
 
 }

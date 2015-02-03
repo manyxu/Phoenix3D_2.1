@@ -181,8 +181,7 @@ void E_MainFrame::DoExecute(Event *event)
 				mResView->SetColorForTheme(mCurTheme);
 				SetAuiManColorForTheme();
 				Refresh();
-			}			
-			//mAuiManager->Refresh();
+			}
 		}
 	}	
 }
