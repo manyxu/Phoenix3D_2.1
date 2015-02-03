@@ -26,9 +26,26 @@ mItemSize(64.0f)
 //----------------------------------------------------------------------------
 EditRenderView_Res::~EditRenderView_Res()
 {
+	if (mRenderStep)
+	{
+		PX2_GR.RemoveRenderStep(mRenderStep);
+		mRenderStep = 0;
+	}
+
+	if (mRenderStepCtrl)
+	{
+		PX2_GR.RemoveRenderStep(mRenderStepCtrl);
+		mRenderStepCtrl = 0;
+	}
+
+	if (mRenderStepCtrl1)
+	{
+		PX2_GR.RemoveRenderStep(mRenderStepCtrl1);
+		mRenderStepCtrl1 = 0;
+	}
 }
 //----------------------------------------------------------------------------
-bool EditRenderView_Res::InitlizeRendererStep()
+bool EditRenderView_Res::InitlizeRendererStep(const std::string &name)
 {
 	mRenderer = PX2_ENGINELOOP.CreateRenderer(mPt_Data, (int)mPt_Size.Width,
 		(int)mPt_Size.Height, 0, mRendererInput);
@@ -36,6 +53,7 @@ bool EditRenderView_Res::InitlizeRendererStep()
 	mSize = mPt_Size;
 
 	mRenderStep = new0 UIView();
+	mRenderStep->SetName(name);
 
 	SetRenderer(mRenderer);
 

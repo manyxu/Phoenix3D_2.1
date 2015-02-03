@@ -27,8 +27,8 @@ void EngineLoop::Tick()
 	Renderer *defaultRenderer = Renderer::GetDefaultRenderer();
 	if (defaultRenderer && defaultRenderer->PreDraw())
 	{
+		defaultRenderer->SetViewport(Rectf(0.0f, 0.0f, mScreenSize.Width, mScreenSize.Height));
 		defaultRenderer->SetClearColor(proj->GetBackgroundColor());
-		defaultRenderer->InitRenderStates();
 		defaultRenderer->ClearBuffers();
 
 		PX2_GR.Draw();

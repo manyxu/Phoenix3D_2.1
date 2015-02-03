@@ -76,6 +76,10 @@ namespace PX2
 		SceneNodeCtrlPtr mSceneNodeCtrl;
 		BoundCtrlPtr mBoundCtrl;
 		PX2::NodePtr mSceneCtrlNode;
+
+		// Event
+	public:
+		virtual void DoExecute(Event *event);
 	};
 
 	typedef Pointer0<EditRenderView_Scene> EditRenderView_ScenePtr;

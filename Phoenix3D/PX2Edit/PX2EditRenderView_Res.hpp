@@ -18,7 +18,7 @@ namespace PX2
 		EditRenderView_Res();
 		virtual ~EditRenderView_Res();
 
-		bool InitlizeRendererStep();
+		virtual bool InitlizeRendererStep(const std::string &name);
 
 		virtual void Tick(double elapsedTime);
 

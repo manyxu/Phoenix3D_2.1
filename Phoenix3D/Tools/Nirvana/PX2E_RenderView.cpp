@@ -91,7 +91,7 @@ void RenderView::OnSize(wxSizeEvent& e)
 	
 	if (RVT_SCENEUI==mRenderViewType && !mEditRenderViews.empty())
 	{
-		PX2_ENGINELOOP.SetSize(sz);
+		PX2_ENGINELOOP.SetScreenSize(sz);
 	}
 
 	std::map<std::string, PX2::EditRenderViewPtr>::iterator it = mEditRenderViews.begin();
@@ -224,7 +224,7 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 
 			int menuID = 1;
 			char szScript[256];
-			sprintf(szScript, "CreateEditMenu(%d)", menuID);
+			sprintf(szScript, "e_CreateEditMenu(%d)", menuID);
 			PX2_SM.CallString(szScript);
 
 			if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
@@ -347,7 +347,7 @@ void RenderView::_NewEditRenderView(const std::string &name)
 		renderView->SetPt_Data(GetHandle());
 		renderView->SetPt_Size(sz);
 		
-		renderView->InitlizeRendererStep();
+		renderView->InitlizeRendererStep("ResRenderStep");
 	}
 
 	renderView->OnSize(sz);
@@ -356,7 +356,7 @@ void RenderView::_NewEditRenderView(const std::string &name)
 
 	if (RVT_SCENEUI == mRenderViewType && !mEditRenderViews.empty())
 	{
-		PX2_ENGINELOOP.SetSize(sz);
+		PX2_ENGINELOOP.SetScreenSize(sz);
 	}
 }
 //----------------------------------------------------------------------------

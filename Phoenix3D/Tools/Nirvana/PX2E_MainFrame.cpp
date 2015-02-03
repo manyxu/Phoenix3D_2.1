@@ -8,6 +8,8 @@
 #include "PX2E_TimeLineView.hpp"
 #include "PX2E_TopView.hpp"
 #include "PX2E_InspView.hpp"
+#include "PX2E_RenderView_Cont.hpp"
+#include "PX2E_NirMan.hpp"
 #include "PX2wxDockArt.hpp"
 #include "PX2wxAui.hpp"
 
@@ -21,7 +23,6 @@
 #include "PX2EditEventType.hpp"
 #include "PX2NirvanaEventType.hpp"
 #include "PX2EditParams.hpp"
-#include "PX2E_RenderView_Cont.hpp"
 
 using namespace PX2Editor;
 using namespace PX2;
@@ -102,7 +103,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-		//	mAuiManager->LoadPerspective(strPerspective);
+			mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 
@@ -201,28 +202,11 @@ void E_MainFrame::OnTimer(wxTimerEvent& e)
 		PX2_EDIT.IsCtrlDown = wxGetKeyState(WXK_CONTROL);
 		PX2_EDIT.IsShiftDown = wxGetKeyState(WXK_SHIFT);
 
-		//if (PX2_EDIT.IsAltDown)
-		//{
-		//	if (!mIsCrossCursor)
-		//	{
-		//		wxSetCursor(wxNullCursor);
-		//		mIsCrossCursor = true;
-		//	}
-		//}
-		//else
-		//{
-		//	if (mIsCrossCursor)
-		//	{
-		//		wxSetCursor(*wxSTANDARD_CURSOR);
-		//		mIsCrossCursor = false;
-		//	}
-		//}
-
 		PX2_ENGINELOOP.Tick();
 	}
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::OnMenuItem(wxCommandEvent &e)
+void E_MainFrame::OnCommondItem(wxCommandEvent &e)
 {
 	int id = e.GetId();
 
@@ -420,6 +404,8 @@ void E_MainFrame::_CreateMenu()
 {
 	mMainMenuBar = new wxMenuBar();
 	SetMenuBar(mMainMenuBar);
+
+	PX2_SM.CallString("e_CreateMainMenu()");
 }
 //----------------------------------------------------------------------------
 wxMenu *E_MainFrame::AddMainMenuItem(const std::string &title)
@@ -443,7 +429,7 @@ wxMenuItem *E_MainFrame::AddMenuItem(wxMenu *menu, const std::string &title,
 	menu->Append(item);
 
 	Connect(id, wxEVT_COMMAND_MENU_SELECTED, 
-		wxCommandEventHandler(E_MainFrame::OnMenuItem));
+		wxCommandEventHandler(E_MainFrame::OnCommondItem));
 
 	mIDScripts[id] = script;
 
@@ -456,6 +442,23 @@ void E_MainFrame::AddSeparater(wxMenu *menu)
 	item->SetBackgroundColour(wxColour(234, 240, 255));
 	item->SetTextColour(wxColour(0, 0, 0));
 	menu->Append(item);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::AddTool(wxAuiToolBar *toolBar, const std::string &icon,
+	std::string &script)
+{
+	int id = PX2_EDIT_GETID;
+	toolBar->AddTool(id, "", wxBitmap(icon, wxBITMAP_TYPE_PNG));
+
+	Connect(id, wxEVT_COMMAND_TOOL_CLICKED,
+		wxCommandEventHandler(E_MainFrame::OnCommondItem));
+
+	mIDScripts[id] = script;
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::AddToolSeparater(wxAuiToolBar *toolBar)
+{
+	toolBar->AddSeparator();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTopView()
@@ -475,24 +478,14 @@ void E_MainFrame::_CreateMainToolBar()
 
 	mianToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
 
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/file_new.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/file_open.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject2"), wxBitmap(wxT("DataEditor/icons/file_saveall.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject2"), wxBitmap(wxT("DataEditor/icons/file_saveas.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddSeparator();
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/file_newscene.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/file_openscene.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/file_savescene.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject1"), wxBitmap(wxT("DataEditor/icons/file_saveasscene.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddSeparator();
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("NewProject"), wxBitmap(wxT("DataEditor/icons/playinwindow.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddStretchSpacer();
-	mianToolBar->AddTool(PX2_EDIT_GETID, _("Login"), wxBitmap(wxT("DataEditor/icons/user.png"), wxBITMAP_TYPE_PNG));
-	mianToolBar->AddLabel(PX2_EDIT_GETID, "Ðí¶à");
+	NirMan::GetSingleton().SetCurToolBar(mianToolBar);
+
+	PX2_SM.CallString("e_CreateToolBarMain()");
+
 	mianToolBar->Realize();
 
 	mAuiManager->AddPane(mianToolBar, wxAuiPaneInfo().
-		Name(wxT("tb")).
+		Name(wxT("maintoolbar")).
 		ToolbarPane().Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
 		MinSize(200, 30).MaxSize(200, 30).Resizable(false));
 }
@@ -509,7 +502,8 @@ void E_MainFrame::_CreateProjView()
 {
 	mProjView = new ProjView(this);
 	mProjView->SetColorForTheme(mCurTheme);
-	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"), PX2_LM.GetValue("Project"),
+	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"),
+		PX2_LM.GetValue("Project"),
 		wxAuiPaneInfo().Left());
 }
 //----------------------------------------------------------------------------
@@ -524,7 +518,7 @@ void E_MainFrame::_CreateMainView()
 	objStart.Name = "StartView";
 	objs.push_back(objStart);
 
-	RenderView_Cot *viewCont_SceneUI = new RenderView_Cot(RenderView::RVT_SCENEUI, this);
+	RenderView_Cot *viewCont_SceneUI = new RenderView_Cot(RVT_SCENEUI, this);
 	mRenderViewScene = viewCont_SceneUI->GetRenderView();
 	WindowObj objRenderViewScene;
 	objRenderViewScene.TheWindow = viewCont_SceneUI;
@@ -532,7 +526,7 @@ void E_MainFrame::_CreateMainView()
 	objRenderViewScene.Name = "Stage";
 	objs.push_back(objRenderViewScene);
 
-	RenderView_Cot *viewCont_Logic = new RenderView_Cot(RenderView::RVT_LOGIC, this);
+	RenderView_Cot *viewCont_Logic = new RenderView_Cot(RVT_LOGIC, this);
 	mRenderViewLogic = viewCont_Logic->GetRenderView();
 	WindowObj objLogicView;
 	objLogicView.TheWindow = viewCont_Logic;

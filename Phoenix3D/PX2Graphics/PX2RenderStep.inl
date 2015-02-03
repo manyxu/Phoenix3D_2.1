@@ -1,6 +1,11 @@
 // PX2UIView.inl
 
 //----------------------------------------------------------------------------
+inline bool RenderStep::IsEnable() const
+{
+	return mIsEnable;
+}
+//----------------------------------------------------------------------------
 inline const Sizef &RenderStep::GetSize() const
 {
 	return mSize;

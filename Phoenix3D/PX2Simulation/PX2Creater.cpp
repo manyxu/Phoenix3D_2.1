@@ -349,6 +349,11 @@ bool Creater::RemoveObject(Object *obj, bool command)
 	return true;
 }
 //----------------------------------------------------------------------------
+Node *Creater::ConvertToNode(Object *obj)
+{
+	return DynamicCast<Node>(obj);
+}
+//----------------------------------------------------------------------------
 Actor *Creater::ConvertToActor(Object *obj)
 {
 	return DynamicCast<Actor>(obj);

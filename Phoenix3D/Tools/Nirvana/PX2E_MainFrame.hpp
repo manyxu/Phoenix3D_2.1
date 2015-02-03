@@ -36,7 +36,7 @@ namespace PX2Editor
 		virtual void DoExecute(PX2::Event *event);
 
 		void OnTimer(wxTimerEvent& e);
-		void OnMenuItem(wxCommandEvent &e);
+		void OnCommondItem(wxCommandEvent &e);
 
 		void OnNewProject();
 		void OnOpenProject();
@@ -60,6 +60,10 @@ namespace PX2Editor
 		void AddSeparater(wxMenu *menu);
 		wxAuiManager *GetAuiMananger();
 
+		void AddTool(wxAuiToolBar *toolBar, const std::string &icon, std::string &script);
+		void AddToolSeparater(wxAuiToolBar *toolBar);
+
+	public:
 		void SetAuiManColorForTheme();
 
 	protected:

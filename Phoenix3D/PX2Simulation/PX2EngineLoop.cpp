@@ -30,6 +30,7 @@ mAppTime(0),
 mLastAppTime(0),
 mElapsedTime(0),
 
+mIsDoAdjustScreen(true),
 mPlayType(PT_NONE)
 {
 }

@@ -6,6 +6,7 @@
 #include "PX2EditorPre.hpp"
 #include "PX2EditRenderView.hpp"
 #include "PX2EventHandler.hpp"
+#include "PX2E_Define.hpp"
 
 namespace PX2Editor
 {
@@ -15,14 +16,6 @@ namespace PX2Editor
 		DECLARE_DYNAMIC_CLASS(RenderView)
 
 	public:
-		enum RenderViewType
-		{
-			RVT_SCENEUI,
-			RVT_LOGIC,
-			RVT_RES,
-			RVT_TIMELINE,
-			RVT_MAX_TYPE
-		};
 		RenderView(RenderViewType viewType, wxWindow *parent);
 		virtual ~RenderView();
 

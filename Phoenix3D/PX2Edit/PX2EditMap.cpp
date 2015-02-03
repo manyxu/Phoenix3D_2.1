@@ -30,8 +30,6 @@ void EditMap::NewProject(const std::string &pathname,
 	proj->Save(pathname);
 	mProjectFilePath = pathname;
 
-	PX2_ENGINELOOP.SetSize(proj->GetSize());
-
 	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::NewProject);
 	PX2_EW.BroadcastingLocalEvent(ent);
 

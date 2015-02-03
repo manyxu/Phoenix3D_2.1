@@ -55,6 +55,8 @@ mEditMenu(0)
 	Icons["logic"] = imageLogic;
 	Icons["camera"] = imageCamera;
 	Icons["object"] = imageObject;
+
+	//SetBackgroundColour(wxColour(0, 214, 229));
 }
 //----------------------------------------------------------------------------
 ProjTree::~ProjTree()
@@ -147,26 +149,13 @@ void ProjTree::_RefreshProject()
 		ProjTreeItem::IT_CATALOG, Icons["logic"], 0, mTreeLevel, "Logic");
 	mItemProj->mChildItems.push_back(mItemLogic);
 
-	Scene *scene = proj->GetScene();
-	if (scene)
-	{
-		_RefreshScene();
-	}
-	
-	UIFrame *uiFrame = proj->GetUIFrame();
-	if (uiFrame)
-	{
-		_RefreshUI();
-	}
+	Expand(mItemProj->GetItemID());
 
 	SetItemsColour();
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearProject()
 {
-	_ClearScene();
-	_ClearUI();
-
 	if (mItemProj)
 	{
 		mItemProj->ClearChildren();
@@ -312,6 +301,8 @@ void ProjTree::OnRightUp(wxMouseEvent& e)
 	if (!obj)
 	{
 		wxMessageBox(PX2_LM.GetValue("Tip0"), PX2_LM.GetValue("Notice"), wxOK);
+		NirMan::GetSingleton().MessageBox(PX2_LM.GetValue("Tip0"), 
+			PX2_LM.GetValue("Notice"));
 		return;
 	}
 
@@ -320,7 +311,7 @@ void ProjTree::OnRightUp(wxMouseEvent& e)
 
 	int menuID = 2;
 	char szScript[256];
-	sprintf(szScript, "CreateEditMenu(%d)", menuID);
+	sprintf(szScript, "e_CreateEditMenu(%d)", menuID);
 	PX2_SM.CallString(szScript);
 
 	if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
@@ -363,18 +354,10 @@ void ProjTree::OnSelChanging(wxTreeEvent& event)
 //----------------------------------------------------------------------------
 void ProjTree::DoExecute(Event *event)
 {
-	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject))
+	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject) ||
+		EditEventSpace::IsEqual(event, EditEventSpace::LoadedProject))
 	{
-		_ClearProject();
 		_RefreshProject();
-	}
-	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedProject))
-	{
-		_ClearProject();
-		_RefreshProject();
-	}
-	else if (EditEventSpace::IsEqual(event, EditEventSpace::SavedProject))
-	{
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseProject))
 	{
@@ -382,17 +365,24 @@ void ProjTree::DoExecute(Event *event)
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene))
 	{
-		_ClearScene();
 		_RefreshScene();
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedScene))
 	{
-		_ClearScene();
 		_RefreshScene();
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
 		_ClearScene();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::NewUI) ||
+		EditEventSpace::IsEqual(event, EditEventSpace::LoadedUI))
+	{
+		_RefreshUI();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseUI))
+	{
+		_ClearUI();
 	}
 	else if (SimuES_E::IsEqual(event, SimuES_E::AddObject))
 	{

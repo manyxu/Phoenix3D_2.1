@@ -51,6 +51,7 @@ namespace PX2
 
 		// Scene
 	public:
+		bool LoadScene(const std::string &pathname);
 		void SetScene(Scene *scene);
 		Scene *GetScene();
 		const std::string &GetSceneFilename() const;
@@ -66,6 +67,7 @@ namespace PX2
 
 		// UI
 	public:
+		bool LoadUI(const std::string &pathname);
 		void SetUIFrame(UIFrame *ui);
 		UIFrame *GetUIFrame();
 		const std::string &GetUIFilename() const;
@@ -75,6 +77,14 @@ namespace PX2
 		std::string mUIFilename;
 		UIFramePtr mUIFrame;
 		UIViewPtr mUIRenderStep;
+
+		// Screen Adjust
+	public:
+		void SetViewPort(const Rectf &viewPort);
+		const Rectf &GetViewPort() const;
+
+	protected:
+		Rectf mViewPort;
 
 		// edit setting
 	public:

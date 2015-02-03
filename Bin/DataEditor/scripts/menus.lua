@@ -2,7 +2,7 @@
 
 -- tag 1 renderview
 -- tag 2 projview
-function CreateEditMenu(tag)
+function e_CreateEditMenu(tag)
 
 	local selObj = PX2_SELECTION:GetFirstObject()
 
@@ -14,30 +14,30 @@ function CreateEditMenu(tag)
 		local createSceneMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("SceneActor")))
 		local createSceneGeometryMenu = NirMan:AddSubMenu(createSceneMenu, (PX2_LM:GetValue("Geometry")))
 	
-		NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("RectPiece"), "SceneActor_CreateRectPiece")
-		NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("Box"), "SceneActor_CreateBox")
-		NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("Sphere"), "SceneActor_CreateSphere")
+		NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("RectPiece"), "e_SceneActor_CreateRectPiece")
+		NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("Box"), "e_SceneActor_CreateBox")
+		NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("Sphere"), "e_SceneActor_CreateSphere")
 		
 		local createUIMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("UI")))
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIPicBox"), "CreateUIPixBox")
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UITest"), "CreateUIText")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIPicBox"), "e_CreateUIPixBox")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UITest"), "e_CreateUIText")
 		NirMan:AddSeparater(createUIMenu)
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIFrame"), "CreateUIFrame")
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIButton"), "CreateUIButton")
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIProgressBar"), "CreateUIProgressBar")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIFrame"), "e_CreateUIFrame")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIButton"), "e_CreateUIButton")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIProgressBar"), "e_CreateUIProgressBar")
 	elseif 2==tag then
 		local createGeometryMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("Geometry")))
-		NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("RectPiece"), "CreateRectPiece")
-		NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("Box"), "CreateBox")
-		NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("Sphere"), "CreateSphere")
+		NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("RectPiece"), "e_CreateRectPiece")
+		NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("Box"), "e_CreateBox")
+		NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("Sphere"), "e_CreateSphere")
 		
 		local createUIMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("UI")))
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIPicBox"), "CreateUIPixBox")
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UITest"), "CreateUIText")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIPicBox"), "e_CreateUIPixBox")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UITest"), "e_CreateUIText")
 		NirMan:AddSeparater(createUIMenu)
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIFrame"), "CreateUIFrame")
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIButton"), "CreateUIButton")
-		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIProgressBar"), "CreateUIProgressBar")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIFrame"), "e_CreateUIFrame")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIButton"), "e_CreateUIButton")
+		NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIProgressBar"), "e_CreateUIProgressBar")
 	end
 
 	if 1==tag then
@@ -47,23 +47,23 @@ function CreateEditMenu(tag)
 	
 	if nil~=selObj then
 		NirMan:AddSeparater(editMenu)
-		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("ResetPlay"), "ResetPlay")
-		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Play"), "Play")
-		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Stop"), "Stop")
-		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Reset"), "Reset")
+		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("ResetPlay"), "e_ResetPlay")
+		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Play"), "e_Play")
+		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Stop"), "e_Stop")
+		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Reset"), "e_Reset")
 	end
 	
 	NirMan:AddSeparater(editMenu)
-	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("ImportSelectedRes"), "ImportSelectedRes")
-	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Import"), "Import")
-	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("ExportSelected"), "ExportSelected")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("ImportSelectedRes"), "e_ImportSelectedRes")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Import"), "e_Import")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("ExportSelected"), "e_ExportSelected")
 	
 	if 1==tag and nil~=selObj then
 		NirMan:AddSeparater(editMenu)
-		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("FindInSceneTree"), "FindInSceneTree")
-		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("FindInResTree"), "FindInResTree")
+		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("FindInSceneTree"), "e_FindInSceneTree")
+		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("FindInResTree"), "e_FindInResTree")
 	end
 end
 
-function CreateResMenu()
+function e_CreateResMenu()
 end

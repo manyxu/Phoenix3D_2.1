@@ -6,6 +6,7 @@
 #include "PX2CorePre.hpp"
 #include "PX2E_MainFrame.hpp"
 #include "PX2E_NirMan.hpp"
+#include "PX2E_Define.hpp"
 #include "PX2Edits.hpp"
 using namespace PX2Editor;
 using namespace PX2;

@@ -26,15 +26,16 @@ mEdit_UICameraPercent(1.0f)
 	mBackgroundColor = Float4::MakeColor(255, 255, 200, 255);
 	
 	mSceneRenderStep = new0 RenderStep();
+	mSceneRenderStep->SetName("SceneRenderStep");
 	mSceneRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
 	PX2_GR.AddRenderStep(mSceneRenderStep);
 
 	mUIRenderStep = new0 UIView();
+	mUIRenderStep->SetName("UIRenderStep");
 	mUIRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
 	PX2_GR.AddRenderStep(mUIRenderStep);
 
 	mUIFrame = new0 UISizeFrame();
-	mUIFrame->AttachChild(new0 UIPicBox());
 	mUIFrame->SetName("RootFrame");
 	SetUIFrame(mUIFrame);
 }
@@ -43,6 +44,9 @@ Project::~Project ()
 {
 	PX2_GR.RemoveRenderStep(mSceneRenderStep);
 	mSceneRenderStep = 0;
+
+	PX2_GR.RemoveRenderStep(mUIRenderStep);
+	mUIRenderStep = 0;
 
 	if (ScriptManager::GetSingletonPtr())
 		PX2_SM.SetUserTypePointer("PX2_PROJ", "Project", 0);
@@ -154,8 +158,10 @@ bool Project::Load(const std::string &filename)
 					StringHelp::StringToInt(stk[2]),
 					StringHelp::StringToInt(stk[3]));
 
+				Sizef size = Sizef((float)width, (float)height);
 				SetName(name);
-				SetSize(Sizef((float)width, (float)height));
+				SetSize(size);
+				mViewPort = Rectf(0.0f, 0.0f, size.Width, size.Height);
 				SetBackgroundColor(color);
 			}
 
@@ -233,6 +239,8 @@ void Project::SetScene(Scene *scene)
 	{
 		mSceneRenderStep->SetCamera(0);
 	}
+
+	mSceneRenderStep->SetSize(mSize);
 }
 //----------------------------------------------------------------------------
 void Project::SetSceneFilename(const std::string &scenefilename)
@@ -244,6 +252,7 @@ void Project::SetUIFrame(UIFrame *ui)
 {
 	mUIFrame = ui;
 	mUIRenderStep->SetNode(mUIFrame);
+	mUIRenderStep->SetSize(mSize);
 }
 //----------------------------------------------------------------------------
 void Project::SetSize(float width, float height)
@@ -254,6 +263,16 @@ void Project::SetSize(float width, float height)
 void Project::SetSize(const Sizef &size)
 {
 	mSize = size;
+
+	if (mSceneRenderStep)
+	{
+		mUIRenderStep->SetSize(mSize);
+	}
+
+	if (mUIRenderStep)
+	{
+		mUIRenderStep->SetSize(mSize);
+	}
 }
 //----------------------------------------------------------------------------
 void Project::SetBackgroundColor(const Float4 &color)
@@ -264,5 +283,46 @@ void Project::SetBackgroundColor(const Float4 &color)
 const Float4 &Project::GetBackgroundColor() const
 {
 	return mBackgroundColor;
+}
+//----------------------------------------------------------------------------
+bool Project::LoadScene(const std::string &pathname)
+{
+	Scene *newscene = DynamicCast<Scene>(PX2_RM.BlockLoad(pathname));
+	if (newscene)
+	{
+		Project::GetSingleton().SetScene(newscene);
+		Project::GetSingleton().SetSceneFilename(pathname);
+
+		return true;
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
+bool Project::LoadUI(const std::string &pathname)
+{
+	ObjectPtr uiObj = PX2_RM.BlockLoad(pathname);
+	UIFrame *ui = DynamicCast<UIFrame>(uiObj);
+	if (ui)
+	{
+		Project::GetSingleton().SetUIFrame(ui);
+
+		return true;
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
+void Project::SetViewPort(const Rectf &viewPort)
+{
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetViewPort(viewPort);
+	}
+
+	if (mUIRenderStep)
+	{
+		mUIRenderStep->SetViewPort(viewPort);
+	}
 }
 //----------------------------------------------------------------------------

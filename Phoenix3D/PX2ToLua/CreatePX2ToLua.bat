@@ -1,5 +1,5 @@
 : dir
-cd /d E:/Phoenix/Phoenix3D/PX2ToLua
+cd /d C:\Users\xuduo\Documents\codes\Phoenix\Phoenix3D\PX2ToLua
 del "PX2ToLua.cpp"
 : tolua
 tolua++.exe -n PX2 -o PX2ToLua.cpp PX2ToLua.pkg

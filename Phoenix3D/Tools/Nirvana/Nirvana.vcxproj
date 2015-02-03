@@ -94,6 +94,7 @@
     <ClInclude Include="PropGrid\wxPropertyExtend.hpp" />
     <ClInclude Include="PX2DlgCreateProject.hpp" />
     <ClInclude Include="PX2E_App.hpp" />
+    <ClInclude Include="PX2E_Define.hpp" />
     <ClInclude Include="PX2E_RenderView_Cont.hpp" />
     <ClInclude Include="PX2E_StartView.hpp" />
     <ClInclude Include="PX2E_MainFrame.hpp" />

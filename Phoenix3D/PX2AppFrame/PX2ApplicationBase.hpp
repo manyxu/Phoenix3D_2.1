@@ -60,7 +60,6 @@ namespace PX2
 
 	protected:
 		bool _LoadProject(const std::string &projFilename);
-		bool _LoadScene(const std::string &sceneFilename);
 
 		static bool msIsInitlized;
 	

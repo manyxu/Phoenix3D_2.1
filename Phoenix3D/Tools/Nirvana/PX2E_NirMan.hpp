@@ -24,14 +24,26 @@ namespace PX2
 		void SetCurMenu(wxMenu *menu);
 		wxMenu *GetCurMenu();
 
-	protected:
-		wxMenu *mCurMenu;
-
-	public:
 		wxMenu *AddSubMenu(wxMenu *menu, const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title, 
 			const std::string &script);
 		void AddSeparater(wxMenu *menu);
+
+	protected:
+		wxMenu *mCurMenu;
+
+	public:
+		void SetCurToolBar(wxAuiToolBar *toolBar);
+		wxAuiToolBar *GetCurToolBar();
+
+		void AddTool(const std::string &icon, std::string &script);
+		void AddToolSeparater();
+
+	protected:
+		wxAuiToolBar *mCurToolBar;
+
+	public:
+		void MessageBox(const std::string &caption, const std::string &content);
 	};
 
 }

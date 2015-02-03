@@ -96,6 +96,7 @@ function AddLanguages()
 	-- Notice
 	PX2_LM:AddItem1("Notice", "注意")
 	PX2_LM:AddItem("Tip0", "你必须选择一个父节点！", "You must select a parent node to add!")
+	PX2_LM:AddItem("Tip1", "父节点必须是一个Node！", "You must select a parent node to add!")
 end
 
 AddLanguages()

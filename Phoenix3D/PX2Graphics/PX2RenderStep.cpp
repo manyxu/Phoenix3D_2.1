@@ -8,7 +8,8 @@ using namespace PX2;
 RenderStep::RenderStep() :
 mRenderer(0),
 mIsUpdated(false),
-mIsSizeChangeReAdjustCamera(true)
+mIsSizeChangeReAdjustCamera(true),
+mIsEnable(true)
 {
 	mSize.Set(1024.0f, 768.0f);
 }
@@ -17,20 +18,25 @@ RenderStep::~RenderStep()
 {
 }
 //----------------------------------------------------------------------------
-void RenderStep::Clear()
-{
-	mNode = 0;
-}
-//----------------------------------------------------------------------------
 void RenderStep::Update(double appSeconds, double elapsedSeconds)
 {
+	if (!IsEnable()) return;
+
 	if (!mIsUpdated)
 	{
 		mIsUpdated = true;
 	}
 
 	PX2_UNUSED(elapsedSeconds);
-	if (mNode) mNode->Update(appSeconds, false);
+	if (mNode)
+	{
+		mNode->Update(appSeconds, false);
+	}
+}
+//----------------------------------------------------------------------------
+void RenderStep::Enable(bool enable)
+{
+	mIsEnable = enable;
 }
 //----------------------------------------------------------------------------
 void RenderStep::SetSize(const Sizef &rect)
@@ -118,6 +124,8 @@ void RenderStep::SetNode(Node *node)
 //----------------------------------------------------------------------------
 void RenderStep::ComputeVisibleSet()
 {
+	if (!IsEnable()) return;
+
 	const Camera *cam = mCuller.GetCamera();
 	if (mNode && cam)
 	{
@@ -129,6 +137,8 @@ void RenderStep::ComputeVisibleSet()
 //----------------------------------------------------------------------------
 void RenderStep::Draw()
 {
+	if (!IsEnable()) return;
+
 	if (mRenderer)
 	{
 		CameraPtr beforeCamer = mRenderer->GetCamera();

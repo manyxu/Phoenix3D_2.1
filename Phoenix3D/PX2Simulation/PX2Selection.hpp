@@ -20,12 +20,12 @@ namespace PX2
 
 		void AddObject(PX2::Object *obj);
 		void RemoveObject(PX2::Object *obj);
-		PX2::Object *GetObjectAt(int i);
+		Object *GetObjectAt(int i);
 		int GetNumObjects();
 		bool IsObjectIn(PX2::Object *obj);
 		void Clear();
 
-		PX2::Object *GetFirstObject() const;
+		Object *GetFirstObject() const;
 
 		void Translate(PX2::AVector vec);
 		void TranslateTo(PX2::APoint pos);
@@ -38,7 +38,7 @@ namespace PX2
 	private:
 		void _UpdateSelect();
 
-		std::vector<PX2::ObjectPtr> mObjects;
+		std::vector<ObjectPtr> mObjects;
 		PX2::APoint mCenter;
 		float mBoundRadius;
 	};

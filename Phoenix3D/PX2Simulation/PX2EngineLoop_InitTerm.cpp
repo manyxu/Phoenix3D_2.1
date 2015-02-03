@@ -363,14 +363,48 @@ bool EngineLoop::LoadBoost(const std::string &filename)
 	return false;
 }
 //----------------------------------------------------------------------------
-void EngineLoop::SetSize(const Sizef &size)
+void EngineLoop::SetScreenSize(const Sizef &screenSize)
 {
-	mSize = size;
+	mScreenSize = screenSize;
 
-	Renderer *dr = Renderer::GetDefaultRenderer();
-	if (dr)
+	Renderer *defaultRenderer = Renderer::GetDefaultRenderer();
+	if (defaultRenderer) defaultRenderer->ResizeWindow((int)mScreenSize.Width, 
+		(int)mScreenSize.Height);
+
+	Project *proj = Project::GetSingletonPtr();
+	if (!proj) return;
+
+	const Sizef &projSize = proj->GetSize();
+
+	if (IsDoAdjustScreen())
 	{
-		dr->ResizeWindow((int)size.Width, (int)size.Height);
+		float screenWidthOverHeight = screenSize.Width / screenSize.Height;
+		float projWidthOverHeight = projSize.Width / projSize.Height;
+
+		if (screenWidthOverHeight >= projWidthOverHeight)
+		{
+			float left = (screenWidthOverHeight - projWidthOverHeight) / 2.0f * screenSize.Height;
+
+			mAdjustViewPort.Left = left;
+			mAdjustViewPort.Bottom = 0.0f;
+			mAdjustViewPort.Right = screenSize.Width - left;
+			mAdjustViewPort.Top = screenSize.Height;
+		}
+		else
+		{
+			float bot = (1.0f / screenWidthOverHeight - 1.0f / projWidthOverHeight) / 2.0f * screenSize.Width;
+
+			mAdjustViewPort.Left = 0.0f;
+			mAdjustViewPort.Bottom = bot;
+			mAdjustViewPort.Right = screenSize.Width;
+			mAdjustViewPort.Top = screenSize.Height - bot;
+		}
+
+		proj->SetViewPort(mAdjustViewPort);
+	}
+	else
+	{
+		proj->SetViewPort(Rectf());
 	}
 }
 //----------------------------------------------------------------------------

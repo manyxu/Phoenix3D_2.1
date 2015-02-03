@@ -78,8 +78,8 @@ namespace PX2
 
 		// Pick
 	public:
-		void SetPickPos(const PX2::APoint &pos);
-		PX2::APoint GetPickPos();
+		void SetPickPos(const APoint &pos);
+		const APoint &GetPickPos() const;
 
 	protected:
 		APoint mPickPos;
