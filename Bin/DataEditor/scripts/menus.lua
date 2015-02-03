@@ -47,6 +47,10 @@ function e_CreateEditMenu(tag)
 	
 	if nil~=selObj then
 		NirMan:AddSeparater(editMenu)
+		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Copy"), "e_OnCopy")
+		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Paste"), "e_OnPaste")
+		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Delete"), "e_OnDelete")
+		NirMan:AddSeparater(editMenu)
 		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("ResetPlay"), "e_ResetPlay")
 		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Play"), "e_Play")
 		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Stop"), "e_Stop")
