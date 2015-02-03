@@ -134,7 +134,7 @@ void InputEventListener::_OnTouchData(InputEventData &data, int num,
 		float y = ys[i];
 		PX2_UNUSED(id);
 
-		const Sizef &size = PX2_GR.GetSize();
+		const Sizef &size = PX2_GR.GetScreenSize();
 		y = size.Height - y;
 
 		APoint pos = APoint(x, 0.0f, y);

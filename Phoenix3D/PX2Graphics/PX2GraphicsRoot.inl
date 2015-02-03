@@ -15,24 +15,24 @@ inline bool GraphicsRoot::IsInEditor () const
 	return mIsInEditor;
 }
 //----------------------------------------------------------------------------
-inline void GraphicsRoot::SetRect (const Rectf &rect)
+inline void GraphicsRoot::SetViewRect (const Rectf &rect)
 {
-	mRect = rect;
+	mViewRect = rect;
 }
 //----------------------------------------------------------------------------
-inline const Rectf &GraphicsRoot::GetRect () const
+inline const Rectf &GraphicsRoot::GetViewRect () const
 {
-	return mRect;
+	return mViewRect;
 }
 //----------------------------------------------------------------------------
-inline void GraphicsRoot::SetSize (const Sizef &size)
+inline void GraphicsRoot::SetScreenSize (const Sizef &size)
 {
-	mSize = size;
+	mScreenSize = size;
 }
 //----------------------------------------------------------------------------
-inline const Sizef &GraphicsRoot::GetSize () const
+inline const Sizef &GraphicsRoot::GetScreenSize () const
 {
-	return mSize;
+	return mScreenSize;
 }
 //----------------------------------------------------------------------------
 inline void GraphicsRoot::SetCamera (Camera *camera)

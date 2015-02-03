@@ -31,7 +31,7 @@ mAppTime(0),
 mLastAppTime(0),
 mElapsedTime(0),
 
-mIsDoAdjustScreen(true),
+mIsDoAdjustScreenViewRect(true),
 mPlayType(PT_NONE)
 {
 }

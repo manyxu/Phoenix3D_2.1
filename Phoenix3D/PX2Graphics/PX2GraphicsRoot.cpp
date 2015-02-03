@@ -132,41 +132,6 @@ bool GraphicsRoot::Terminate ()
 	return true;
 }
 //----------------------------------------------------------------------------
-void GraphicsRoot::SetRenderViewPort (Renderer *renderer, bool adjustCamera,
-	const Sizef *projSize, const Rectf *sceneViewPort)
-{
-	if (mRect.IsEmpty()) return;
-
-	Camera *camera = renderer->GetCamera();
-
-	if (projSize && sceneViewPort && !sceneViewPort->IsEmpty())
-	{
-		float widthScale = mRect.Width()/projSize->Width;
-		float heightScale = mRect.Height()/projSize->Height;
-
-		float newX = mRect.Left + sceneViewPort->Left*widthScale;
-		float newY = mRect.Bottom + sceneViewPort->Bottom*heightScale;
-		float newWidth = sceneViewPort->Width()*widthScale;
-		float newHeight = sceneViewPort->Height()*heightScale;
-		renderer->SetViewport(Rectf(newX, newY, newWidth, newHeight));
-	}
-	else
-	{
-		renderer->SetViewport(mRect);
-	}
-
-	if (adjustCamera && camera->IsPerspective())
-	{
-		float upFovDegrees = 0.0f;
-		float aspectRatio = 0.0f;
-		float dMin = 0.0f;
-		float dMax = 0.0f;
-		camera->GetFrustum(upFovDegrees, aspectRatio, dMin, dMax);
-		camera->SetFrustum(upFovDegrees, 
-			(float)mRect.Width()/(float)mRect.Height(), dMin, dMax);
-	}
-}
-//----------------------------------------------------------------------------
 void GraphicsRoot::AddLight (Light *light)
 {
 	bool bIn = false;

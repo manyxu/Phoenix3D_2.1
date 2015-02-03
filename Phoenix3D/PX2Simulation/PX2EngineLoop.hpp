@@ -93,7 +93,7 @@ namespace PX2
 		const Sizef &GetScreenSize() const;
 
 	protected:
-		bool mIsDoAdjustScreen;
+		bool mIsDoAdjustScreenViewRect;
 		Sizef mScreenSize;
 
 		// Tick
@@ -118,10 +118,11 @@ namespace PX2
 		void Play(PlayType type);
 		PlayType GetPlayType() const;
 
-		bool IsDoAdjustScreen() const;
+		bool IsDoAdjustScreenViewRect() const;
 		
 	protected:
-		void _SetDoAdjustScreen(bool adjust);
+		void _SetDoAdjustScreenViewRect(bool adjust);
+
 		PlayType mPlayType;
 		Rectf mAdjustViewPort;
 	};

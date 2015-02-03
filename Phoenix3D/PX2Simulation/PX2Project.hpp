@@ -80,11 +80,11 @@ namespace PX2
 
 		// Screen Adjust
 	public:
-		void SetViewPort(const Rectf &viewPort);
-		const Rectf &GetViewPort() const;
+		void SetViewRect(const Rectf &viewRect);
+		const Rectf &GetViewRect() const;
 
 	protected:
-		Rectf mViewPort;
+		Rectf mViewRect;
 
 		// edit setting
 	public:

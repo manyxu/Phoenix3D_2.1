@@ -164,7 +164,7 @@ bool Project::Load(const std::string &filename)
 				Sizef size = Sizef((float)width, (float)height);
 				SetName(name);
 				SetSize(size);
-				mViewPort = Rectf(0.0f, 0.0f, size.Width, size.Height);
+				mViewRect = Rectf(0.0f, 0.0f, size.Width, size.Height);
 				SetBackgroundColor(color);
 			}
 
@@ -316,16 +316,16 @@ bool Project::LoadUI(const std::string &pathname)
 	return false;
 }
 //----------------------------------------------------------------------------
-void Project::SetViewPort(const Rectf &viewPort)
+void Project::SetViewRect(const Rectf &viewRect)
 {
 	if (mSceneRenderStep)
 	{
-		mSceneRenderStep->SetViewPort(viewPort);
+		mSceneRenderStep->SetViewPort(viewRect);
 	}
 
 	if (mUIRenderStep)
 	{
-		mUIRenderStep->SetViewPort(viewPort);
+		mUIRenderStep->SetViewPort(viewRect);
 	}
 }
 //----------------------------------------------------------------------------

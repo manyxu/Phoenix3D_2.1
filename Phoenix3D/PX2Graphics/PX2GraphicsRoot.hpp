@@ -37,12 +37,10 @@ namespace PX2
 		PX2::Camera *GetCamera();
 
 		// Size Rect
-		void SetSize (const Sizef &size);	// screen size
-		const Sizef &GetSize () const;		
-		void SetRect (const Rectf &rect);	// view rect
-		const Rectf &GetRect () const;
-		void SetRenderViewPort (Renderer *renderer, bool adjustCamera,
-			const Sizef *projSize=0, const Rectf *sceneViewPort=0);
+		void SetScreenSize (const Sizef &size);	// screen size
+		const Sizef &GetScreenSize () const;		
+		void SetViewRect (const Rectf &rect);	// view rect
+		const Rectf &GetViewRect () const;
 
 		// Light
 		void AddLight (Light *light);
@@ -67,8 +65,8 @@ namespace PX2
 
 	private:
 		bool mIsInEditor;
-		Rectf mRect;
-		Sizef mSize;
+		Rectf mViewRect;
+		Sizef mScreenSize;
 		PX2::CameraPtr mCamera;
 		std::vector<LightPtr> mAllLights; // 保存放在场景中的所有灯光
 		static std::string PX2Path;
