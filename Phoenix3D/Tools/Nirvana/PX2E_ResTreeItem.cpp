@@ -202,6 +202,7 @@ void ResTreeItem::_BuildChild()
 					else
 					{
 						AddChild(item);
+						mChildPathsList.push_back(pathName1);
 					}
 				}
 

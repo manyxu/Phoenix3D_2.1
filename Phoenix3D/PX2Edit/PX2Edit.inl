@@ -26,13 +26,29 @@ inline EditParams *Edit::GetEditParams()
 	return mEditParams;
 }
 //----------------------------------------------------------------------------
-inline void Edit::SetPickPos(const APoint &pos)
-{
-	mPickPos = pos;
-}
-//----------------------------------------------------------------------------
 inline const APoint &Edit::GetPickPos() const
 {
 	return mPickPos;
+}
+//----------------------------------------------------------------------------
+inline void Edit::SetSelectPath_ChildFilenames(const std::vector<std::string> &
+	filenames)
+{
+	mSelectPath_ChildFilenames = filenames;
+}
+//----------------------------------------------------------------------------
+inline void Edit::SetSelectPath_ChildPaths(const std::vector<std::string> &paths)
+{
+	mSelectPath_ChildPaths = paths;
+}
+//----------------------------------------------------------------------------
+inline const std::vector<std::string> &Edit::GetSelectPath_ChildFilenames() const
+{
+	return mSelectPath_ChildFilenames;
+}
+//----------------------------------------------------------------------------
+inline const std::vector<std::string> &Edit::GetSelectPath_ChildPaths() const
+{
+	return mSelectPath_ChildPaths;
 }
 //----------------------------------------------------------------------------

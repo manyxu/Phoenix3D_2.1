@@ -110,8 +110,10 @@ void ResTree::OnSelChanged(wxTreeEvent& event)
 	ResTreeItem *item = GetItem(id);
 	if (!item) return;
 
+	PX2_EDIT.SetSelectPath_ChildFilenames(item->GetChildFilenamesList());
+	PX2_EDIT.SetSelectPath_ChildPaths(item->GetChildPathsList());
+
 	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::RefreshRes);
-	ent->SetData<std::vector<std::string> >(item->GetChildFilenamesList());
 	PX2_EW.BroadcastingLocalEvent(ent);
 }
 //-----------------------------------------------------------------------------

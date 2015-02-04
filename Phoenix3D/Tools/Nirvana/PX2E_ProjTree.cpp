@@ -19,6 +19,7 @@ BEGIN_EVENT_TABLE(ProjTree, wxTreeCtrl)
 EVT_TREE_ITEM_ACTIVATED(sID_PROJVIEW, ProjTree::OnItemActivated)
 EVT_TREE_SEL_CHANGED(sID_PROJVIEW, ProjTree::OnSelChanged)
 EVT_TREE_SEL_CHANGING(sID_PROJVIEW, ProjTree::OnSelChanging)
+EVT_TREE_DELETE_ITEM(sID_PROJVIEW, ProjTree::OnSelDelete)
 EVT_RIGHT_DOWN(ProjTree::OnRightDown)
 EVT_RIGHT_UP(ProjTree::OnRightUp)
 END_EVENT_TABLE()
@@ -274,7 +275,16 @@ void ProjTree::_AddObject(Object *obj)
 
 		if (parNode && item)
 		{
-			item->AddChild(move, 0, mTreeLevel);
+			ProjTreeLevel treeLevel = mTreeLevel;
+
+			UIFrame *uiFrame = DynamicCast<UIFrame>(parNode);
+			if (uiFrame)
+			{
+				if (treeLevel == OTL_GENERAL)
+					treeLevel = OTL_CHILDREN;
+			}
+
+			item->AddChild(move, 0, treeLevel);
 			Expand(item->GetItemID());
 		}
 	}
@@ -349,7 +359,11 @@ void ProjTree::OnSelChanged(wxTreeEvent& event)
 //----------------------------------------------------------------------------
 void ProjTree::OnSelChanging(wxTreeEvent& event)
 {
-
+}
+//----------------------------------------------------------------------------
+void ProjTree::OnSelDelete(wxTreeEvent& event)
+{
+	PX2_UNUSED(event);
 }
 //----------------------------------------------------------------------------
 void ProjTree::DoExecute(Event *event)

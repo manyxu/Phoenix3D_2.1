@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 02/02/15 16:28:15.
+** Generated automatically by tolua++-1.0.92 on 02/04/15 15:35:36.
 */
 
 #ifndef __cplusplus
@@ -13605,7 +13605,8 @@ static int tolua_PX2_Creater_CreateRectangle00(lua_State* tolua_S)
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
      !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
      !tolua_isboolean(tolua_S,5,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     !tolua_isboolean(tolua_S,6,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -13616,11 +13617,12 @@ static int tolua_PX2_Creater_CreateRectangle00(lua_State* tolua_S)
   const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
   bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
   bool doAdd = ((bool)  tolua_toboolean(tolua_S,5,true));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,6,true));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateRectangle'", NULL);
 #endif
   {
-   Movable* tolua_ret = (Movable*)  self->CreateRectangle(parent,*pos,isPosWorld,doAdd);
+   Movable* tolua_ret = (Movable*)  self->CreateRectangle(parent,*pos,isPosWorld,doAdd,usePickPos);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"Movable");
   }
  }
@@ -13645,7 +13647,8 @@ static int tolua_PX2_Creater_CreateBox00(lua_State* tolua_S)
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
      !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
      !tolua_isboolean(tolua_S,5,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     !tolua_isboolean(tolua_S,6,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -13656,11 +13659,12 @@ static int tolua_PX2_Creater_CreateBox00(lua_State* tolua_S)
   const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
   bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
   bool doAdd = ((bool)  tolua_toboolean(tolua_S,5,true));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,6,true));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateBox'", NULL);
 #endif
   {
-   Movable* tolua_ret = (Movable*)  self->CreateBox(parent,*pos,isPosWorld,doAdd);
+   Movable* tolua_ret = (Movable*)  self->CreateBox(parent,*pos,isPosWorld,doAdd,usePickPos);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"Movable");
   }
  }
@@ -13685,7 +13689,8 @@ static int tolua_PX2_Creater_CreateSphere00(lua_State* tolua_S)
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
      !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
      !tolua_isboolean(tolua_S,5,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     !tolua_isboolean(tolua_S,6,1,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -13696,11 +13701,12 @@ static int tolua_PX2_Creater_CreateSphere00(lua_State* tolua_S)
   const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
   bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
   bool doAdd = ((bool)  tolua_toboolean(tolua_S,5,true));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,6,true));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateSphere'", NULL);
 #endif
   {
-   Movable* tolua_ret = (Movable*)  self->CreateSphere(parent,*pos,isPosWorld,doAdd);
+   Movable* tolua_ret = (Movable*)  self->CreateSphere(parent,*pos,isPosWorld,doAdd,usePickPos);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"Movable");
   }
  }
@@ -13724,7 +13730,8 @@ static int tolua_PX2_Creater_CreateUIFrame00(lua_State* tolua_S)
      !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
      !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -13734,11 +13741,12 @@ static int tolua_PX2_Creater_CreateUIFrame00(lua_State* tolua_S)
   Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
   const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
   bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateUIFrame'", NULL);
 #endif
   {
-   UIFrame* tolua_ret = (UIFrame*)  self->CreateUIFrame(parent,*pos,isPosWorld);
+   UIFrame* tolua_ret = (UIFrame*)  self->CreateUIFrame(parent,*pos,isPosWorld,usePickPos);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIFrame");
   }
  }
@@ -13763,7 +13771,8 @@ static int tolua_PX2_Creater_CreateUIPicBox00(lua_State* tolua_S)
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
      !tolua_iscppstring(tolua_S,4,0,&tolua_err) ||
      !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     !tolua_isboolean(tolua_S,6,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -13774,11 +13783,12 @@ static int tolua_PX2_Creater_CreateUIPicBox00(lua_State* tolua_S)
   const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
   const std::string filename = ((const std::string)  tolua_tocppstring(tolua_S,4,0));
   bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,5,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,6,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateUIPicBox'", NULL);
 #endif
   {
-   UIPicBox* tolua_ret = (UIPicBox*)  self->CreateUIPicBox(parent,*pos,filename,isPosWorld);
+   UIPicBox* tolua_ret = (UIPicBox*)  self->CreateUIPicBox(parent,*pos,filename,isPosWorld,usePickPos);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIPicBox");
    tolua_pushcppstring(tolua_S,(const char*)filename);
   }
@@ -13804,7 +13814,8 @@ static int tolua_PX2_Creater_CreateUIPicBox01(lua_State* tolua_S)
      !tolua_iscppstring(tolua_S,4,0,&tolua_err) ||
      !tolua_iscppstring(tolua_S,5,0,&tolua_err) ||
      !tolua_isboolean(tolua_S,6,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,7,&tolua_err)
+     !tolua_isboolean(tolua_S,7,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,8,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -13815,11 +13826,12 @@ static int tolua_PX2_Creater_CreateUIPicBox01(lua_State* tolua_S)
   const std::string texPack = ((const std::string)  tolua_tocppstring(tolua_S,4,0));
   const std::string eleName = ((const std::string)  tolua_tocppstring(tolua_S,5,0));
   bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,6,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,7,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateUIPicBox'", NULL);
 #endif
   {
-   UIPicBox* tolua_ret = (UIPicBox*)  self->CreateUIPicBox(parent,*pos,texPack,eleName,isPosWorld);
+   UIPicBox* tolua_ret = (UIPicBox*)  self->CreateUIPicBox(parent,*pos,texPack,eleName,isPosWorld,usePickPos);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIPicBox");
    tolua_pushcppstring(tolua_S,(const char*)texPack);
    tolua_pushcppstring(tolua_S,(const char*)eleName);
@@ -13842,7 +13854,8 @@ static int tolua_PX2_Creater_CreateUIText00(lua_State* tolua_S)
      !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
      !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -13852,11 +13865,12 @@ static int tolua_PX2_Creater_CreateUIText00(lua_State* tolua_S)
   Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
   const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
   bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateUIText'", NULL);
 #endif
   {
-   UIText* tolua_ret = (UIText*)  self->CreateUIText(parent,*pos,isPosWorld);
+   UIText* tolua_ret = (UIText*)  self->CreateUIText(parent,*pos,isPosWorld,usePickPos);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIText");
   }
  }
@@ -13880,7 +13894,8 @@ static int tolua_PX2_Creater_CreateUIButton00(lua_State* tolua_S)
      !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
      (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
      !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,5,&tolua_err)
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -13890,11 +13905,12 @@ static int tolua_PX2_Creater_CreateUIButton00(lua_State* tolua_S)
   Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
   const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
   bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateUIButton'", NULL);
 #endif
   {
-   UIButton* tolua_ret = (UIButton*)  self->CreateUIButton(parent,*pos,isPosWorld);
+   UIButton* tolua_ret = (UIButton*)  self->CreateUIButton(parent,*pos,isPosWorld,usePickPos);
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIButton");
   }
  }
@@ -13915,8 +13931,8 @@ static int tolua_PX2_Creater_AddObject00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"PX2::Object",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,3,"PX2::Object",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"Object",0,&tolua_err) ||
      !tolua_isboolean(tolua_S,4,1,&tolua_err) ||
      !tolua_isnoobj(tolua_S,5,&tolua_err)
  )
@@ -13925,8 +13941,8 @@ static int tolua_PX2_Creater_AddObject00(lua_State* tolua_S)
 #endif
  {
   Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
-  PX2::Object* parent = ((PX2::Object*)  tolua_tousertype(tolua_S,2,0));
-  PX2::Object* obj = ((PX2::Object*)  tolua_tousertype(tolua_S,3,0));
+  Object* parent = ((Object*)  tolua_tousertype(tolua_S,2,0));
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,3,0));
   bool command = ((bool)  tolua_toboolean(tolua_S,4,true));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddObject'", NULL);
@@ -13952,7 +13968,7 @@ static int tolua_PX2_Creater_RemoveObject00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"PX2::Object",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
      !tolua_isboolean(tolua_S,3,1,&tolua_err) ||
      !tolua_isnoobj(tolua_S,4,&tolua_err)
  )
@@ -13961,7 +13977,7 @@ static int tolua_PX2_Creater_RemoveObject00(lua_State* tolua_S)
 #endif
  {
   Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
-  PX2::Object* obj = ((PX2::Object*)  tolua_tousertype(tolua_S,2,0));
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
   bool command = ((bool)  tolua_toboolean(tolua_S,3,true));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'RemoveObject'", NULL);

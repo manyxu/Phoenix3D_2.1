@@ -10,7 +10,8 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-EditRenderView_UI::EditRenderView_UI()
+EditRenderView_UI::EditRenderView_UI():
+EditRenderView(0)
 {
 	_CreateGridGeometry();
 
@@ -111,6 +112,8 @@ void EditRenderView_UI::OnSize(const Sizef& size)
 void EditRenderView_UI::OnLeftDown(const APoint &pos)
 {
 	EditRenderView::OnLeftDown(pos);
+
+	_PickPos();
 }
 //----------------------------------------------------------------------------
 void EditRenderView_UI::OnLeftUp(const APoint &pos)
@@ -121,6 +124,8 @@ void EditRenderView_UI::OnLeftUp(const APoint &pos)
 void EditRenderView_UI::OnMiddleDown(const APoint &pos)
 {
 	EditRenderView::OnMiddleDown(pos);
+
+	_PickPos();
 }
 //----------------------------------------------------------------------------
 void EditRenderView_UI::OnMiddleUp(const APoint &pos)
@@ -145,6 +150,8 @@ void EditRenderView_UI::OnMouseWheel(float delta)
 void EditRenderView_UI::OnRightDown(const APoint &pos)
 {
 	EditRenderView::OnRightDown(pos);
+
+	_PickPos();
 }
 //----------------------------------------------------------------------------
 void EditRenderView_UI::OnRightUp(const APoint &pos)
@@ -192,6 +199,27 @@ void EditRenderView_UI::DoExecute(Event *event)
 		{
 			Enable(false);
 		}
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_UI::_PickPos()
+{
+	APoint origin;
+	AVector direction;
+	mRenderStep->GetPickRay(mLastMousePoint.X(), mLastMousePoint.Z(), origin, direction);
+
+	TriMesh *xzPlane = PX2_GR.GetXZPlane();
+
+	Picker pick;
+	pick.Execute(xzPlane, origin, direction, 0.0f, Mathf::MAX_REAL);
+
+	const PickRecord &record = pick.GetClosestNonnegative();
+	if (record.Intersected)
+	{
+		APoint pickPos = origin + direction * record.T;
+		pickPos = APoint((int)pickPos[0], (int)pickPos[1], (int)pickPos[2]);
+
+		PX2_EDIT.SetPickPos(pickPos);
 	}
 }
 //----------------------------------------------------------------------------

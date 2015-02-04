@@ -12,12 +12,16 @@
 #include "PX2UICheckButton.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2UIView.hpp"
+#include "PX2InputManager.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView_Res::EditRenderView_Res() :
-mItemSize(64.0f)
+EditRenderView(2),
+mItemSize(80.0f)
 {
+	PX2_INPUTMAN.CreateAddListener(mRenderViewID);
+
 	mFrame = new0 UIFrame();
 
 	mGridFrame = new0 UIGridFrame();
@@ -49,10 +53,11 @@ bool EditRenderView_Res::InitlizeRendererStep(const std::string &name)
 {
 	mRenderer = PX2_ENGINELOOP.CreateRenderer(mPt_Data, (int)mPt_Size.Width,
 		(int)mPt_Size.Height, 0, mRendererInput);
+	mRenderer->SetClearColor(Float4::MakeColor(64, 64, 64, 255));
 
 	mSize = mPt_Size;
 
-	mRenderStep = new0 UIView(1);
+	mRenderStep = new0 UIView(2);
 	mRenderStep->SetName(name);
 
 	SetRenderer(mRenderer);
@@ -101,23 +106,23 @@ void EditRenderView_Res::Tick(double elapsedTime)
 			}
 			else if (mov)
 			{
-				mov->Update(GetTimeInSeconds());
-				float worldRadius = mov->WorldBound.GetRadius();
-				if (0.0f == worldRadius) worldRadius = 1.0f;
+				//mov->Update(GetTimeInSeconds());
+				//float worldRadius = mov->WorldBound.GetRadius();
+				//if (0.0f == worldRadius) worldRadius = 1.0f;
 
-				UIFrame *aItemFrame = DynamicCast<UIFrame>(mGridFrame->GetObjectByName(resPath));
-				if (aItemFrame)
-				{
-					UIPicBox *contextPicBox = DynamicCast<UIPicBox>(aItemFrame->GetObjectByName("ContextPicBox"));
-					if (contextPicBox)
-					{
-						contextPicBox->Show(false);
+				//UIFrame *aItemFrame = DynamicCast<UIFrame>(mGridFrame->GetObjectByName(resPath));
+				//if (aItemFrame)
+				//{
+				//	UIPicBox *contextPicBox = DynamicCast<UIPicBox>(aItemFrame->GetObjectByName("ContextPicBox"));
+				//	if (contextPicBox)
+				//	{
+				//		contextPicBox->Show(false);
 
-						aItemFrame->AttachChild(mov);
-						mov->LocalTransform.SetUniformScale(mItemSize / worldRadius);
-						mov->LocalTransform.SetTranslateY(-mItemSize / worldRadius);
-					}
-				}
+				//		aItemFrame->AttachChild(mov);
+				//		mov->LocalTransform.SetUniformScale(mItemSize / worldRadius);
+				//		mov->LocalTransform.SetTranslateY(-mItemSize / worldRadius);
+				//	}
+				//}
 			}
 
 			it = mHandlers.erase(it);
@@ -185,22 +190,20 @@ void EditRenderView_Res::OnMotion(const APoint &pos)
 {
 }
 //----------------------------------------------------------------------------
-void EditRenderView_Res::DoExecute(Event *event)
-{
-	if (EditEventSpace::IsEqual(event, EditEventSpace::RefreshRes))
-	{
-		std::vector<std::string> filenames = event->GetData<std::vector<std::string> >();
-		_RefreshRes(filenames);
-	}
-}
-//----------------------------------------------------------------------------
 void EditRenderView_Res::Visit(Object *obj, const int info)
 {
 
 }
 //----------------------------------------------------------------------------
-void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &paths)
+void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &dirPaths,
+	const std::vector<std::string> &filenames)
 {
+	std::vector<std::string > allPaths = dirPaths;
+	for (int i = 0; i < (int)filenames.size(); i++)
+	{
+		allPaths.push_back(filenames[i]);
+	}
+
 	mGridFrame->DetachAllChildren();
 
 	mHandlers.clear();
@@ -208,25 +211,25 @@ void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &paths)
 	float butWidth = mItemSize*1.1f;
 	float butHeight = mItemSize*1.1f + mItemSize*0.2f;
 	float alignWidth = mItemSize*1.2f;
-	float alignHeight = mItemSize*1.4f;
+	float alignHeight = mItemSize*1.6f;
 	mGridFrame->SetAlignItemSize(alignWidth, alignHeight);
 
-	for (int i = 0; i < (int)paths.size(); i++)
+	for (int i = 0; i < (int)allPaths.size(); i++)
 	{
-		const std::string &path = paths[i];
+		const std::string &filename = allPaths[i];
 
 		UIFrame *aItemFrame = new0 UIFrame();
 		mGridFrame->AttachChild(aItemFrame);
 
-		aItemFrame->SetName(paths[i]);
+		aItemFrame->SetName(filename);
 
 		UICheckButton *but = new0 UICheckButton();
 		aItemFrame->AttachChild(but);
 
-		but->SetUserData("ResPath", paths[i]);
+		but->SetUserData("ResPath", filename);
 
 		but->GetPicBoxAtState(UIButtonBase::BS_NORMAL)->SetTexture("Data/engine/white.png");
-		but->GetPicBoxAtState(UIButtonBase::BS_NORMAL)->SetColor(Float3(0.5f, 0.5f, 0.5f));
+		but->GetPicBoxAtState(UIButtonBase::BS_NORMAL)->SetColor(Float3::MakeColor(64, 64, 64));
 
 		but->GetPicBoxAtState(UIButtonBase::BS_HOVERED)->SetTexture("Data/engine/white.png");
 		but->GetPicBoxAtState(UIButtonBase::BS_HOVERED)->SetColor(Float3(96.0f / 255.0f, 96.0f / 255.0f, 96.0f / 255.0f));
@@ -241,56 +244,63 @@ void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &paths)
 		frameContent->LocalTransform.SetTranslate(APoint(0.0f, -1.0f, 0.1f*mItemSize));
 		aItemFrame->AttachChild(frameContent);
 
-		UIPicBox *back = new0 UIPicBox();
-		back->SetTexture("DataEditor/images/boxshadow.png");
-		back->SetSize(mItemSize*1.15f, mItemSize*1.15f);
-		back->SetPicBoxType(UIPicBox::PBT_NINE);
-		back->SetTexCornerSize(20.0f, 20.0f);
-		frameContent->AttachChild(back);
-
-		UIPicBox *over = new0 UIPicBox();
-		over->LocalTransform.SetTranslate(APoint(0.0f, -2.0f, 0.0f));
-		over->SetTexture("DataEditor/images/framebox_blue.png");
-		over->SetSize(mItemSize, mItemSize);
-		over->SetPicBoxType(UIPicBox::PBT_NINE);
-		over->SetTexCornerSize(5.0f, 5.0f);
-		frameContent->AttachChild(over);
-
 		UIPicBox *objPicBox = 0;
 
 		std::string outPath;
 		std::string outBaseName;
 		std::string ext;
-		StringHelp::SplitFullFilename(path, outPath, outBaseName, ext);
+		StringHelp::SplitFullFilename(filename, outPath, outBaseName, ext);
 
-		if ("png" == ext || "dds" == ext || "jpg" == ext)
+		if (ext.empty())
 		{
-			mHandlers[path] = PX2_RM.BackgroundLoad(path);
-			objPicBox = new0 UIPicBox();
-		}
-		else if ("xml" == ext)
-		{
-			if (PX2_RM.IsTexPack(path))
-				objPicBox = new0 UIPicBox("DataEditor/images/xml_texpack.png");
-			else
-				objPicBox = new0 UIPicBox("DataEditor/images/xml.png");
-		}
-		else if ("px2obj" == ext)
-		{
-			mHandlers[path] = PX2_RM.BackgroundLoad(path);
-			objPicBox = new0 UIPicBox("DataEditor/images/obj.png");
-		}
-		else if ("px2proj" == ext)
-		{
-			objPicBox = new0 UIPicBox("DataEditor/images/proj.png");
-		}
-		else if ("lua" == ext)
-		{
-			objPicBox = new0 UIPicBox("DataEditor/images/script.png");
+			objPicBox = new0 UIPicBox("DataEditor/images/folder.png");
 		}
 		else
 		{
-			objPicBox = new0 UIPicBox("DataEditor/images/unknow.png");
+			UIPicBox *back = new0 UIPicBox();
+			back->SetTexture("DataEditor/images/boxshadow.png");
+			back->SetSize(mItemSize*1.15f, mItemSize*1.15f);
+			back->SetPicBoxType(UIPicBox::PBT_NINE);
+			back->SetTexCornerSize(20.0f, 20.0f);
+			frameContent->AttachChild(back);
+
+			UIPicBox *over = new0 UIPicBox();
+			over->LocalTransform.SetTranslate(APoint(0.0f, -2.0f, 0.0f));
+			over->SetTexture("DataEditor/images/framebox_blue.png");
+			over->SetSize(mItemSize, mItemSize);
+			over->SetPicBoxType(UIPicBox::PBT_NINE);
+			over->SetTexCornerSize(5.0f, 5.0f);
+			frameContent->AttachChild(over);
+
+			if ("png" == ext || "dds" == ext || "jpg" == ext)
+			{
+				mHandlers[filename] = PX2_RM.BackgroundLoad(filename);
+				objPicBox = new0 UIPicBox();
+			}
+			else if ("xml" == ext)
+			{
+				if (PX2_RM.IsTexPack(filename))
+					objPicBox = new0 UIPicBox("DataEditor/images/xml_texpack.png");
+				else
+					objPicBox = new0 UIPicBox("DataEditor/images/xml.png");
+			}
+			else if ("px2obj" == ext)
+			{
+				mHandlers[filename] = PX2_RM.BackgroundLoad(filename);
+				objPicBox = new0 UIPicBox("DataEditor/images/obj.png");
+			}
+			else if ("px2proj" == ext)
+			{
+				objPicBox = new0 UIPicBox("DataEditor/images/proj.png");
+			}
+			else if ("lua" == ext)
+			{
+				objPicBox = new0 UIPicBox("DataEditor/images/script.png");
+			}
+			else
+			{
+				objPicBox = new0 UIPicBox("DataEditor/images/unknow.png");
+			}
 		}
 
 		if (objPicBox)
@@ -301,15 +311,38 @@ void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &paths)
 			frameContent->AttachChild(objPicBox);
 		}
 
-		std::string textStr = outBaseName + "." + ext;
+		std::string textStr;
+		if (ext.empty())
+		{
+			textStr = filename;
+		}
+		else
+		{
+			textStr = outBaseName + "." + ext;
+		}
+
 		UIText *text = new0 UIText();
 		frameContent->AttachChild(text);
 		text->SetFontWidthHeight(12, 12);
 		text->SetText(textStr);
 		text->SetColor(Float3::WHITE);
+		//text->SetDrawStyle(FD_SHADOW);
+		//text->SetShadowBorderSize(0.5f);
+		//text->SetBorderShadowColor(Float3::BLACK);
 		text->SetRectUseage(UIText::RU_CLIP);
 		text->SetRect(Rectf(0.0f, 0.0f, mItemSize, 12));
 		text->LocalTransform.SetTranslate(APoint(-mItemSize / 2.0f, -3.0f, -mItemSize*0.745f));
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_Res::DoExecute(Event *event)
+{
+	EditRenderView::DoExecute(event);
+
+	if (EditEventSpace::IsEqual(event, EditEventSpace::RefreshRes))
+	{
+		_RefreshRes(PX2_EDIT.GetSelectPath_ChildPaths(),
+			PX2_EDIT.GetSelectPath_ChildFilenames());
 	}
 }
 //----------------------------------------------------------------------------

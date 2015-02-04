@@ -226,6 +226,12 @@ void UIView::_DoPick(float x, float z, int pickInfo,
 		if (renderable) vec.push_back(renderable);
 	}
 
+	for (int i = 0; i < (int)vec.size(); i++)
+	{
+		UIPicBox *picBox = DynamicCast<UIPicBox>(vec[i]);
+		if (picBox) picBox->UIAfterPicked(pickInfo);
+	}
+
 	if (vec.empty() && mNotPickedCallback)
 	{
 		mNotPickedCallback(pickInfo);

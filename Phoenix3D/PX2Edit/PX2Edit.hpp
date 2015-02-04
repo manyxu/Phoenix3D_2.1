@@ -88,6 +88,17 @@ namespace PX2
 		// Select
 	public:
 		bool DeleteSelection();
+
+		// Res select
+	public:
+		void SetSelectPath_ChildFilenames(const std::vector<std::string> &filenamess);
+		void SetSelectPath_ChildPaths(const std::vector<std::string> &paths);
+		const std::vector<std::string> &GetSelectPath_ChildFilenames() const;
+		const std::vector<std::string> &GetSelectPath_ChildPaths() const;
+
+	protected:
+		std::vector<std::string> mSelectPath_ChildFilenames;
+		std::vector<std::string> mSelectPath_ChildPaths;
 	};
 
 #include "PX2Edit.inl"

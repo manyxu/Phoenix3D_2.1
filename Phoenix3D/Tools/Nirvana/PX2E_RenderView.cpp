@@ -125,7 +125,8 @@ void RenderView::OnLeftDown(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	PX2_INPUTMAN.GetDefaultListener()->MousePressed(MBID_LEFT, pos);
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->MousePressed(MBID_LEFT, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnLeftUp(wxMouseEvent& e)
@@ -133,7 +134,8 @@ void RenderView::OnLeftUp(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	PX2_INPUTMAN.GetDefaultListener()->MouseReleased(MBID_LEFT, pos);
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->MouseReleased(MBID_LEFT, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnMiddleDown(wxMouseEvent& e)
@@ -143,7 +145,8 @@ void RenderView::OnMiddleDown(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	PX2_INPUTMAN.GetDefaultListener()->MousePressed(MBID_MIDDLE, pos);
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->MousePressed(MBID_MIDDLE, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnMiddleUp(wxMouseEvent& e)
@@ -151,14 +154,16 @@ void RenderView::OnMiddleUp(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	PX2_INPUTMAN.GetDefaultListener()->MouseReleased(MBID_MIDDLE, pos);
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->MouseReleased(MBID_MIDDLE, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnMouseWheel(wxMouseEvent& e)
 {
 	float delta = (float)e.GetWheelRotation()*0.1f;
 
-	PX2_INPUTMAN.GetDefaultListener()->MouseWheeled(delta);
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->MouseWheeled(delta);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnRightDown(wxMouseEvent& e)
@@ -171,7 +176,8 @@ void RenderView::OnRightDown(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	PX2_INPUTMAN.GetDefaultListener()->MousePressed(MBID_RIGHT, pos);
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->MousePressed(MBID_RIGHT, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnRightUp(wxMouseEvent& e)
@@ -179,7 +185,8 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	PX2_INPUTMAN.GetDefaultListener()->MouseReleased(MBID_RIGHT, pos);
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->MouseReleased(MBID_RIGHT, pos);
 
 	if (RVT_SCENEUI == mRenderViewType)
 	{
@@ -209,7 +216,8 @@ void RenderView::OnMotion(wxMouseEvent& e)
 	wxPoint mousePos = e.GetPosition();
 	APoint pos = wxPointToAPoint(mousePos, mSize);
 
-	PX2_INPUTMAN.GetDefaultListener()->MouseMoved(pos);
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->MouseMoved(pos);
 
 	if (mIsRightDown)
 	{

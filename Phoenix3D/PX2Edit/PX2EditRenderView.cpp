@@ -12,7 +12,8 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-EditRenderView::EditRenderView() :
+EditRenderView::EditRenderView(int renderViewID) :
+mRenderViewID(renderViewID),
 mPt_Data(0),
 mRendererInput(0),
 mRenderer(0),
@@ -259,7 +260,6 @@ void EditRenderView::DoExecute(Event *event)
 {
 	if (IsEnable())
 	{
-
 		if (InputEventSpace::IsEqual(event, InputEventSpace::MousePressed))
 		{
 			InputEventData data = event->GetData<InputEventData>();

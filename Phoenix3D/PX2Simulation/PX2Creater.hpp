@@ -29,15 +29,23 @@ namespace PX2
 		Actor *CreateActor_Box(Scene *scene, const APoint &pos);
 		Actor *CreateActor_Sphere(Scene *scene, const APoint &pos);
 
-		Movable *CreateRectangle(Node *parent, const APoint &pos, bool isPosWorld, bool doAdd=true);
-		Movable *CreateBox(Node *parent, const APoint &pos, bool isPosWorld, bool doAdd = true);
-		Movable *CreateSphere(Node *parent, const APoint &pos, bool isPosWorld, bool doAdd = true);
+		Movable *CreateRectangle(Node *parent, const APoint &pos, bool isPosWorld, 
+			bool doAdd=true, bool usePickPos=true);
+		Movable *CreateBox(Node *parent, const APoint &pos, bool isPosWorld, 
+			bool doAdd = true, bool usePickPos = true);
+		Movable *CreateSphere(Node *parent, const APoint &pos, bool isPosWorld,
+			bool doAdd = true, bool usePickPos = true);
 
-		UIFrame *CreateUIFrame(Node *parent, const APoint &pos, bool isPosWorld);
-		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &filename, bool isPosWorld);
-		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &texPack, const std::string &eleName, bool isPosWorld);
-		UIText *CreateUIText(Node *parent, const APoint &pos, bool isPosWorld);
-		UIButton *CreateUIButton(Node *parent, const APoint &pos, bool isPosWorld);
+		UIFrame *CreateUIFrame(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &filename,
+			bool isPosWorld, bool usePickPos);
+		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &texPack, const std::string &eleName, 
+			bool isPosWorld, bool usePickPos);
+		UIText *CreateUIText(Node *parent, const APoint &pos, bool isPosWorld, 
+			bool usePickPos);
+		UIButton *CreateUIButton(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
 
 		void AddObject(Object *parent, Object *obj,
 			bool command = true);

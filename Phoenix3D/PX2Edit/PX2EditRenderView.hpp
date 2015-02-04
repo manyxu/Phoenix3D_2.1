@@ -19,7 +19,7 @@ namespace PX2
 	class EditRenderView : public EventHandler
 	{
 	public:
-		EditRenderView();
+		EditRenderView(int viewID); // viewIDCanBeTheSame
 		virtual ~EditRenderView();
 
 	public:
@@ -32,6 +32,8 @@ namespace PX2
 		bool IsRenderStepCreated() const;
 
 	protected:
+		int mRenderViewID;
+
 		void *mPt_Data;
 		Sizef mPt_Size;
 

@@ -16,9 +16,12 @@ namespace PX2
 		~InputManager();
 
 		InputEventListener *GetDefaultListener();
+		InputEventListener *CreateAddListener(int id);
+		InputEventListener *GetInputListener(int id);
 
 	protected:
 		InputEventListenerPtr mInputEventListener;
+		std::map<int, InputEventListenerPtr> mInputEventListenerMap;
 	};
 
 #include "PX2InputManager.inl"

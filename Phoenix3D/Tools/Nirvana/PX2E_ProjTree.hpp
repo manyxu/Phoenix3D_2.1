@@ -35,6 +35,7 @@ namespace PX2Editor
 		void OnItemActivated(wxTreeEvent& event);
 		void OnSelChanged(wxTreeEvent& event);
 		void OnSelChanging(wxTreeEvent& event);
+		void OnSelDelete(wxTreeEvent& event);
 
 		void SetItemsColour();
 

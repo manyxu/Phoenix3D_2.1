@@ -32,6 +32,7 @@ namespace PX2
 		void _CreateNodeCtrl();
 		void _UpdateProjectRange();
 		void _AdjustCameraPercent();
+		void _PickPos();
 
 		PX2::PolysegmentPtr mProjRangeSegment;
 		PX2::NodePtr mRangeNode;

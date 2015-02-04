@@ -93,10 +93,23 @@ function AddLanguages()
 	PX2_LM:AddItem1("UIView", "界面")
 	PX2_LM:AddItem1("LogicView", "逻辑")
 	
+	-- 一般
+	PX2_LM:AddItem1("Name", "名称")
+	PX2_LM:AddItem1("Ge", "个")
+	
 	-- Notice
 	PX2_LM:AddItem1("Notice", "注意")
 	PX2_LM:AddItem("Tip0", "你必须选择一个父节点！", "You must select a parent node to add!")
 	PX2_LM:AddItem("Tip1", "父节点必须是一个Node！", "You must select a parent node to add!")
+	
+	--编辑器
+	PX2_LM:AddItem("WelcomeToEditor", "欢迎使用Phoenix3D编辑器!", "Welcome to Phoenix3D editor!")
+	PX2_LM:AddItem("CurSelObj", "当前选择对象: ", "CurrentSelect: ")
+	PX2_LM:AddItem("CurSelRes", "当前选择资源: ", "CurrentSelectRes: ")
+	PX2_LM:AddItem("PickingPos", "正在点选位置: ", "PickingPos: ")
+	PX2_LM:AddItem("CurSelObjNull", "当前选择对象: (空)", "CurrentSelect: (null)")
+	PX2_LM:AddItem("CurSelResNull", "当前选择资源: (空)", "CurrentSelectRes: (null)")
+	PX2_LM:AddItem("PickingPosNull", "正在点选位置: (0,0,0)", "PickingPos: (0,0,0)")
 end
 
 AddLanguages()

@@ -20,9 +20,11 @@
 #include "PX2EventWorld.hpp"
 #include "PX2DlgCreateProject.hpp"
 #include "PX2ObjectInspector.hpp"
+#include "PX2SimulationEventType.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2NirvanaEventType.hpp"
 #include "PX2EditParams.hpp"
+#include "PX2Format.hpp"
 
 using namespace PX2Editor;
 using namespace PX2;
@@ -184,7 +186,61 @@ void E_MainFrame::DoExecute(Event *event)
 				Refresh();
 			}
 		}
-	}	
+	}
+	else if (SimuES_E::IsEqual(event, SimuES_E::AddSelect) ||
+		SimuES_E::IsEqual(event, SimuES_E::RemoveSelect) ||
+		SimuES_E::IsEqual(event, SimuES_E::RemoveAllSelects))
+	{
+		_UpdateStatusSelectObject(2);
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::SetPickPos))
+	{
+		const APoint &pickPos = PX2_EDIT.GetPickPos();
+		_UpdateStatusPickingPos(4);
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_UpdateStatusSelectObject(int index)
+{
+	wxStatusBar *sb = GetStatusBar();
+
+	std::string str;
+	int numObj = PX2_SELECTION.GetNumObjects();
+	if (0 == numObj)
+	{
+		str = PX2_LMVAL("CurSelObjNull");
+	}
+	else
+	{
+		Object *firObj = PX2_SELECTION.GetFirstObject();
+
+		str = PX2_LMVAL("CurSelObj");
+		str += " " + StringHelp::IntToString(numObj) + PX2_LMVAL("Ge");
+		str += " " + PX2_LMVAL("Name") + ": " + firObj->GetName();
+	}
+
+	sb->SetStatusText(str, index);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_UpdateStatusSelectRes(int index)
+{
+	wxStatusBar *sb = GetStatusBar();
+	sb->SetStatusText(PX2_LMVAL("CurSelResNull"), index);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_UpdateStatusPickingPos(int index)
+{
+	const APoint &pickPos = PX2_EDIT.GetPickPos();
+
+	wxStatusBar *sb = GetStatusBar();
+
+	std::string str;
+	str = PX2_LMVAL("PickingPos") + "(" +
+		StringHelp::FloatToString(pickPos[0]) + ", " +
+		StringHelp::FloatToString(pickPos[1]) + ", " +
+		StringHelp::FloatToString(pickPos[2]) + ")";
+
+	sb->SetStatusText(str, index);
 }
 //----------------------------------------------------------------------------
 RenderView *E_MainFrame::GetRenderViewScene()
@@ -215,7 +271,6 @@ void E_MainFrame::OnCommondItem(wxCommandEvent &e)
 	if (it != mIDScripts.end())
 	{
 		std::string callStr = it->second;
-		callStr += "()";
 		PX2_SM.CallString(callStr);
 	}
 }
@@ -644,7 +699,21 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 void E_MainFrame::_CreateStatusBar()
 {
 	wxStatusBar *status = CreateStatusBar();
-	status->SetStatusText("Welcome to Phoenix editor!");
+
+	const int numFields = 5;
+	status->SetFieldsCount(numFields);
+
+	int widths[numFields] = {0, 300, 250, -1, 300 };
+	status->SetStatusWidths(numFields, widths);
+
+	int styles[numFields] = { wxSB_FLAT, wxSB_NORMAL, wxSB_FLAT, wxSB_NORMAL, wxSB_FLAT };
+	status->SetStatusStyles(numFields, styles);
+
+	status->SetStatusText(PX2_LMVAL("WelcomeToEditor"), 1);
+
+	_UpdateStatusSelectObject(2);
+	_UpdateStatusSelectRes(3);
+	_UpdateStatusPickingPos(4);
 
 	status->SetBackgroundColour(wxColour(0, 122, 204));
 	status->SetForegroundColour(wxColour(255, 0, 0));

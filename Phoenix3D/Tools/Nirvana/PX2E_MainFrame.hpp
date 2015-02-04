@@ -78,6 +78,9 @@ namespace PX2Editor
 		void _CreateInsp();
 		void _CreateTimeLine();
 		void _CreateStatusBar();
+		void _UpdateStatusSelectObject(int index);
+		void _UpdateStatusSelectRes(int index);
+		void _UpdateStatusPickingPos(int index);
 
 		void _RefreshRenderView(bool show);
 

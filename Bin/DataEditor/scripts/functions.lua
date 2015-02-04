@@ -105,7 +105,7 @@ function e_SetEditMode_UI()
 end
 
 -- Scene
-function e_SceneActor_CreateRectPiece()
+function e_SceneActor_CreateRectangle()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()
 	PX2_CREATER:CreateActor_Rectangle(scene, pickPos)
@@ -124,85 +124,85 @@ function e_SceneActor_CreateSphere()
 end
 
 -- General
-function e_CreateRectPiece()
+function e_CreateRectangle(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
-		local mov = PX2_CREATER:CreateRectangle(node, pickPos, true, true)
+		local mov = PX2_CREATER:CreateRectangle(node, pickPos, true, true, isWorld)
 		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
 end
 
-function e_CreateBox()
+function e_CreateBox(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
-		local mov = PX2_CREATER:CreateBox(node, pickPos, true, true)
+		local mov = PX2_CREATER:CreateBox(node, pickPos, true, true, usePickPos)
 		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
 end
 
-function e_CreateSphere()
+function e_CreateSphere(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
-		local mov = PX2_CREATER:CreateSphere(node, pickPos, true, true)
+		local mov = PX2_CREATER:CreateSphere(node, pickPos, true, true, usePickPos)
 		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
 end
 
-function e_CreateUIPixBox()
+function e_CreateUIPixBox(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
-		PX2_CREATER:CreateUIPicBox(node, pickPos, "Data/engine/default.png", true)
+		PX2_CREATER:CreateUIPicBox(node, pickPos, "Data/engine/default.png", true, usePickPos)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
 end
 
-function e_CreateUIText()
+function e_CreateUIText(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
-		PX2_CREATER:CreateUIText(node, pickPos, true)
+		PX2_CREATER:CreateUIText(node, pickPos, true, usePickPos)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
 end
 
-function e_CreateUIFrame()
+function e_CreateUIFrame(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
-		PX2_CREATER:CreateUIFrame(node, pickPos, true)
+		PX2_CREATER:CreateUIFrame(node, pickPos, true, usePickPos)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
 end
 
-function e_CreateUIButton()
+function e_CreateUIButton(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
-		PX2_CREATER:CreateUIButton(node, pickPos, true)
+		PX2_CREATER:CreateUIButton(node, pickPos, true, usePickPos)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
 end
 
-function e_CreateUIProgressBar()
+function e_CreateUIProgressBar(usePickPos)
 end

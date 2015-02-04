@@ -64,7 +64,7 @@ Actor *Creater::CreateActor_Sphere(Scene *scene, const APoint &pos)
 }
 //----------------------------------------------------------------------------
 Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
-	bool isPosWorld, bool doAdd)
+	bool isPosWorld, bool doAdd, bool usePickPos)
 {
 	APoint localPos = pos;
 
@@ -72,6 +72,9 @@ Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 	{
 		localPos = parent->WorldTransform.Inverse() * localPos;
 	}
+
+	if (!usePickPos)
+		localPos = APoint::ORIGIN;
 
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
 		"Data/engine/default.png"));
@@ -95,7 +98,7 @@ Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 }
 //----------------------------------------------------------------------------
 Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
-	bool doAdd)
+	bool doAdd, bool usePickPos)
 {
 	APoint localPos = pos;
 
@@ -103,6 +106,9 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 	{
 		localPos = parent->WorldTransform.Inverse() * localPos;
 	}
+
+	if (!usePickPos)
+		localPos = APoint::ORIGIN;
 
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
 		"Data/engine/default.png"));
@@ -126,7 +132,7 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 }
 //----------------------------------------------------------------------------
 Movable *Creater::CreateSphere(Node *parent, const APoint &pos, 
-	bool isPosWorld, bool doAdd)
+	bool isPosWorld, bool doAdd, bool usePickPos)
 {
 	APoint localPos = pos;
 
@@ -134,6 +140,9 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 	{
 		localPos = parent->WorldTransform.Inverse() * localPos;
 	}
+
+	if (!usePickPos)
+		localPos = APoint::ORIGIN;
 
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
 		"Data/engine/default.png"));
@@ -157,7 +166,7 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 }
 //----------------------------------------------------------------------------
 UIFrame *Creater::CreateUIFrame(Node *parent, const APoint &pos,
-	bool isPosWorld)
+	bool isPosWorld, bool usePickPos)
 {
 	APoint localPos = pos;
 
@@ -165,6 +174,9 @@ UIFrame *Creater::CreateUIFrame(Node *parent, const APoint &pos,
 	{
 		localPos = parent->WorldTransform.Inverse() * localPos;
 	}
+
+	if (!usePickPos)
+		localPos = APoint::ORIGIN;
 
 	UIFrame *frame = new0 UIFrame();
 	frame->LocalTransform.SetTranslate(localPos);
@@ -175,7 +187,7 @@ UIFrame *Creater::CreateUIFrame(Node *parent, const APoint &pos,
 }
 //----------------------------------------------------------------------------
 UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos, 
-	const std::string &filename, bool isPosWorld)
+	const std::string &filename, bool isPosWorld, bool usePickPos)
 {
 	APoint localPos = pos;
 
@@ -183,6 +195,9 @@ UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos,
 	{
 		localPos = parent->WorldTransform.Inverse() * localPos;
 	}
+
+	if (!usePickPos)
+		localPos = APoint::ORIGIN;
 
 	UIPicBox *picBox = new0 UIPicBox(filename);
 	picBox->LocalTransform.SetTranslate(localPos);
@@ -193,7 +208,8 @@ UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos,
 }
 //----------------------------------------------------------------------------
 UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos,
-	const std::string &texPack, const std::string &eleName, bool isPosWorld)
+	const std::string &texPack, const std::string &eleName, bool isPosWorld,
+	bool usePickPos)
 {
 	APoint localPos = pos;
 
@@ -201,6 +217,9 @@ UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos,
 	{
 		localPos = parent->WorldTransform.Inverse() * localPos;
 	}
+
+	if (!usePickPos)
+		localPos = APoint::ORIGIN;
 
 	UIPicBox *picBox = new0 UIPicBox(texPack, eleName);
 	picBox->LocalTransform.SetTranslate(localPos);
@@ -210,7 +229,8 @@ UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos,
 	return picBox;
 }
 //----------------------------------------------------------------------------
-UIText *Creater::CreateUIText(Node *parent, const APoint &pos, bool isPosWorld)
+UIText *Creater::CreateUIText(Node *parent, const APoint &pos, 
+	bool isPosWorld, bool usePickPos)
 {
 	APoint localPos = pos;
 
@@ -218,6 +238,9 @@ UIText *Creater::CreateUIText(Node *parent, const APoint &pos, bool isPosWorld)
 	{
 		localPos = parent->WorldTransform.Inverse() * localPos;
 	}
+
+	if (!usePickPos)
+		localPos = APoint::ORIGIN;
 
 	UIText *text = new0 UIText();
 	text->LocalTransform.SetTranslate(localPos);
@@ -227,7 +250,8 @@ UIText *Creater::CreateUIText(Node *parent, const APoint &pos, bool isPosWorld)
 	return text;
 }
 //----------------------------------------------------------------------------
-UIButton *Creater::CreateUIButton(Node *parent, const APoint &pos, bool isPosWorld)
+UIButton *Creater::CreateUIButton(Node *parent, const APoint &pos, 
+	bool isPosWorld, bool usePickPos)
 {
 	APoint localPos = pos;
 
@@ -235,6 +259,9 @@ UIButton *Creater::CreateUIButton(Node *parent, const APoint &pos, bool isPosWor
 	{
 		localPos = parent->WorldTransform.Inverse() * localPos;
 	}
+
+	if (!usePickPos)
+		localPos = APoint::ORIGIN;
 
 	UIButton *but = new0 UIButton();
 	but->LocalTransform.SetTranslate(localPos);

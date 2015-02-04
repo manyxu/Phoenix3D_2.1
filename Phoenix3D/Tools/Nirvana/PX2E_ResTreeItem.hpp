@@ -35,6 +35,7 @@ namespace PX2Editor
 
 		std::vector<PX2::Pointer0<ResTreeItem>> GetChildItems();
 
+		const std::vector<std::string> &GetChildPathsList() const { return mChildPathsList; }
 		const std::vector<std::string> &GetChildFilenamesList() const { return mChildFilenamesList; }
 
 	public_internal:
@@ -55,6 +56,7 @@ namespace PX2Editor
 
 		ResTreeItem *mParent;
 		std::vector<PX2::Pointer0<ResTreeItem>> mChildItems;
+		std::vector<std::string> mChildPathsList;
 
 		std::vector<PX2::Pointer0<ResTreeItem> > mChildFilesItems;
 		std::vector<std::string> mChildFilenamesList;

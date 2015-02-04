@@ -34,17 +34,21 @@ namespace PX2
 		virtual void OnMotion(const APoint &pos);
 
 	public:
-		virtual void DoExecute(Event *event);
 		virtual void Visit(Object *obj, const int info);
 
 	protected:
-		void _RefreshRes(const std::vector<std::string> &resFilenames);
+		void _RefreshRes(const std::vector<std::string> &dirPaths,
+			const std::vector<std::string> &resFilenames);
 
 		UIFramePtr mFrame;
 		UIGridFramePtr mGridFrame;
 		float mItemSize;
 
 		std::map<std::string, ResHandle> mHandlers;
+
+		// Event
+	public:
+		virtual void DoExecute(Event *event);
 	};
 
 	typedef Pointer0<EditRenderView_Res> EditRenderView_ResPtr;

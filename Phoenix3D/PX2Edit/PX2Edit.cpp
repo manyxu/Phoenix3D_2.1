@@ -112,3 +112,11 @@ bool Edit::DeleteSelection()
 	return deleted;
 }
 //----------------------------------------------------------------------------
+void Edit::SetPickPos(const APoint &pos)
+{
+	mPickPos = pos;
+
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SetPickPos);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
