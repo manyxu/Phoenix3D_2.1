@@ -33,11 +33,11 @@ wxWindow(parent, -1)
 	wxBoxSizer* bSizer56;
 	bSizer56 = new wxBoxSizer(wxVERTICAL);
 
-	wxSearchCtrl *searchCtrl = new wxSearchCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(-1, 22),
+	mSearchCtrl = new wxSearchCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(-1, 22),
 		wxTE_CAPITALIZE | wxTE_CENTER | wxTE_PROCESS_ENTER | wxNO_BORDER);
-	searchCtrl->ShowSearchButton(false);
-	searchCtrl->ShowCancelButton(false);
-	bSizer56->Add(searchCtrl, 0, wxEXPAND, 5);
+	mSearchCtrl->ShowSearchButton(false);
+	mSearchCtrl->ShowCancelButton(false);
+	bSizer56->Add(mSearchCtrl, 0, wxEXPAND, 5);
 
 	bSizer54->Add(bSizer56, 0, wxEXPAND, 5);
 
@@ -70,5 +70,10 @@ void TimeLineView::SetColorForTheme(EditParams::Theme theme)
 	b = theme.toolBarColor[2] * 255.0f;
 	TimeLineBar->SetBackgroundColour(wxColour(r, g, b));
 	TimeLineBar->SetForegroundColour(wxColour(r, g, b));
+
+	r = theme.searchColor[0] * 255.0f;
+	g = theme.searchColor[1] * 255.0f;
+	b = theme.searchColor[2] * 255.0f;
+	mSearchCtrl->SetBackgroundColour(wxColour(r, g, b));
 }
 //----------------------------------------------------------------------------

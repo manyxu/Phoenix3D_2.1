@@ -26,6 +26,7 @@ namespace PX2Editor
 
 		wxToolBar *TimeLineBar;
 		TimeLineRender *mTimeLineRender;
+		wxSearchCtrl *mSearchCtrl;
 	};
 
 }

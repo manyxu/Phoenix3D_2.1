@@ -222,6 +222,12 @@ void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 		dc.SetBrush(wxBrush(wxColour(r, g, b)));
 		dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 5);
 
+		if (!mIsTop)
+		{
+			dc.SetBrush(wxBrush(wxColour(0, 0, 0)));
+			dc.DrawRectangle(0, 0, rect.GetWidth(), 1);
+		}	
+
 		//// draw base line
 		if (mIsTop)
 		{
@@ -229,7 +235,8 @@ void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 			g = theme.activeColor[1] * 255.0f;
 			b = theme.activeColor[2] * 255.0f;
 			dc.SetBrush(wxBrush(wxColour(r, g, b)));
-			dc.DrawRectangle(-1, rect.GetHeight() - 4, rect.GetWidth() + 2, 4);
+			dc.SetPen(wxPen(wxColour(r, g, b)));
+			dc.DrawRectangle(-1, rect.GetHeight() - 3, rect.GetWidth() + 2, 4);
 		}
 	}
 }
@@ -393,8 +400,29 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 
 	dc.SetPen(*wxGREY_PEN);
 
-	//dc.DrawLines(active ? WXSIZEOF(points) - 1 : WXSIZEOF(points), points);
-	//dc.DrawLines(WXSIZEOF(points), points);
+	if (!mIsTop)
+	{
+		if (page.active)
+		{
+			dc.SetBrush(wxBrush(wxColour(0, 0, 0)));
+			dc.SetPen(wxPen(wxColour(0, 0, 0)));
+			if (0 != in_rect.x)
+			{
+				dc.DrawRectangle(tab_x, tab_y - 4, 1, tab_height + 2);
+			}
+			dc.DrawRectangle(tab_x, tab_y + tab_height, tab_width, 1);
+			dc.DrawRectangle(tab_x + tab_width, tab_y - 4, 1, tab_height + 2);
+		}
+		else
+		{
+			dc.SetBrush(wxBrush(wxColour(0, 0, 0)));
+			dc.SetPen(wxPen(wxColour(0, 0, 0)));
+			dc.DrawRectangle(tab_x, tab_y - 4, tab_width + 1, 1);
+		}
+	}
+	
+//	dc.DrawLines(page.active ? WXSIZEOF(points) - 1 : WXSIZEOF(points), points);
+//	dc.DrawLines(WXSIZEOF(points), points);
 
 
 	int text_offset;
@@ -415,16 +443,30 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		EditParams::Theme theme = params->GetCurTheme();
 		if (page.active)
 		{
-			float r = theme.captionActColor[0] * 255.0f;
-			float g = theme.captionActColor[1] * 255.0f;
-			float b = theme.captionActColor[2] * 255.0f;
-			dc.SetTextForeground(wxColour(r, g, b));
+			
+			if (mIsTop)
+			{
+				float r = theme.captionActColor[0] * 255.0f;
+				float g = theme.captionActColor[1] * 255.0f;
+				float b = theme.captionActColor[2] * 255.0f;
+				dc.SetTextForeground(wxColour(r, g, b));
+
+			}
+			else
+			{
+				float r = theme.tabFontActColor[0] * 255.0f;
+				float g = theme.tabFontActColor[1] * 255.0f;
+				float b = theme.tabFontActColor[2] * 255.0f;
+				dc.SetTextForeground(wxColour(r, g, b));
+			}
+
+			
 		}
 		else
 		{
-			float r = theme.captionColor[0] * 255.0f;
-			float g = theme.captionColor[1] * 255.0f;
-			float b = theme.captionColor[2] * 255.0f;
+			float r = theme.tabFontColor[0] * 255.0f;
+			float g = theme.tabFontColor[1] * 255.0f;
+			float b = theme.tabFontColor[2] * 255.0f;
 			dc.SetTextForeground(wxColour(r, g, b));
 		}
 	}
@@ -553,7 +595,7 @@ wxSize PX2wxAuiTabArt::GetTabSize(wxDC& dc,
 	dc.SetFont(m_measuringFont);
 	dc.GetTextExtent(caption, &measured_textx, &measured_texty);
 
-	wxCoord tab_height = measured_texty + 5;
+	wxCoord tab_height = measured_texty + 1;
 	wxCoord tab_width = measured_textx  + 6;
 
 	if (closeButtonState != wxAUI_BUTTON_STATE_HIDDEN)

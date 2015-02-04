@@ -117,20 +117,36 @@ bool EditParams::Load(std::string filename)
 						StringHelp::StringToInt(stk6[2]));
 					theme.captionActColor = color;
 
-					colorStr = themeInNode.AttributeToString("toolBarColor");
+					colorStr = themeInNode.AttributeToString("tabFontColor");
 					StringTokenizer stk7(colorStr, ",");
 					color = Float3::MakeColor(
 						StringHelp::StringToInt(stk7[0]),
 						StringHelp::StringToInt(stk7[1]),
 						StringHelp::StringToInt(stk7[2]));
-					theme.toolBarColor = color;
+					theme.tabFontColor = color;
 
-					colorStr = themeInNode.AttributeToString("searchColor");
+					colorStr = themeInNode.AttributeToString("tabFontActColor");
 					StringTokenizer stk8(colorStr, ",");
 					color = Float3::MakeColor(
 						StringHelp::StringToInt(stk8[0]),
 						StringHelp::StringToInt(stk8[1]),
 						StringHelp::StringToInt(stk8[2]));
+					theme.tabFontActColor = color;
+
+					colorStr = themeInNode.AttributeToString("toolBarColor");
+					StringTokenizer stk9(colorStr, ",");
+					color = Float3::MakeColor(
+						StringHelp::StringToInt(stk9[0]),
+						StringHelp::StringToInt(stk9[1]),
+						StringHelp::StringToInt(stk9[2]));
+					theme.toolBarColor = color;
+
+					colorStr = themeInNode.AttributeToString("searchColor");
+					StringTokenizer stk10(colorStr, ",");
+					color = Float3::MakeColor(
+						StringHelp::StringToInt(stk10[0]),
+						StringHelp::StringToInt(stk10[1]),
+						StringHelp::StringToInt(stk10[2]));
 					theme.searchColor = color;
 
 					if (0 == i)

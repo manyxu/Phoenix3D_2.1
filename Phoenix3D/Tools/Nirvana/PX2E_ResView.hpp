@@ -31,6 +31,7 @@ namespace PX2Editor
 		wxSplitterWindow *mSplitter;
 
 		ResSplitPanel *mSplitPanel;
+		wxSearchCtrl *mSearchCtrl;
 
 		void Splitter1OnIdle(wxIdleEvent&)
 		{
