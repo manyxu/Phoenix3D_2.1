@@ -5,6 +5,7 @@
 #include "PX2Project.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2EditEventType.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -133,7 +134,7 @@ void EditMap::CloseProject()
 	bool canDoChange = (EngineLoop::PT_NONE == PX2_ENGINELOOP.GetPlayType());
 	if (!canDoChange) return;
 
-	PX2_SELECTION.Clear();
+	PX2_EDIT.Reset();
 
 	CloseScene();
 	CloseUI();

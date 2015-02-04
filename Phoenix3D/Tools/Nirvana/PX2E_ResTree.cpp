@@ -88,7 +88,19 @@ void ResTree::OnRightUp(wxMouseEvent& e)
 //-----------------------------------------------------------------------------
 void ResTree::OnItemActivated(wxTreeEvent& event)
 {
-	PX2_UNUSED(event);
+	wxTreeItemId id = event.GetItem();
+
+	ResTreeItemPtr item = GetItem(id);
+
+	if (!item) return;
+
+#if defined(_WIN32) || defined(WIN32)
+	WCHAR wszPath[MAX_PATH];
+	GetCurrentDirectoryW(sizeof(wszPath), wszPath);
+	std::wstring fullPath = wszPath + std::wstring(_T("\\")) + item->GetPathName();
+
+	ShellExecute(0, _T("open"), fullPath.c_str(), 0, 0, SW_SHOW);
+#endif
 }
 //-----------------------------------------------------------------------------
 void ResTree::OnSelChanged(wxTreeEvent& event)

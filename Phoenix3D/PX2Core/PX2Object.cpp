@@ -1,12 +1,9 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Object.cpp
-*
-*/
+// PX2Object.cpp
 
 #include "PX2Object.hpp"
 #include "PX2StringHelp.hpp"
 #include "PX2EventHandler.hpp"
+#include "PX2EventHandlerObject.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -17,7 +14,7 @@ mCurStream(NULL),
 mIsNameChangeable(true),
 mID(0)
 {
-	mEventHandler = new0 EventHandler();
+	mEventHandler = new0 ObjectEventHandler(this);
 }
 //----------------------------------------------------------------------------
 Object::~Object ()

@@ -16,6 +16,7 @@ mEventWorld(0),
 mLanguageMan(0),
 mRoot(0),
 mIMEDisp(0),
+mInputMan(0),
 mResMan(0),
 mScriptMan(0),
 mFontMan(0),
@@ -30,7 +31,7 @@ mAppTime(0),
 mLastAppTime(0),
 mElapsedTime(0),
 
-mIsDoAdjustScreen(true),
+mIsDoAdjustScreenViewRect(true),
 mPlayType(PT_NONE)
 {
 }

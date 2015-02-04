@@ -8,6 +8,6 @@ void EngineLoop::Play(EngineLoop::PlayType type)
 {
 	mPlayType = type;
 
-	_SetDoAdjustScreen(PT_PLAY == type);
+	_SetDoAdjustScreenViewRect(PT_PLAY == type);
 }
 //----------------------------------------------------------------------------

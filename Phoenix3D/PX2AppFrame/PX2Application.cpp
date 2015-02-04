@@ -7,6 +7,7 @@
 #include "PX2Application.hpp"
 #include "PX2IMEDispatcher.hpp"
 #include "PX2EngineLoop.hpp"
+#include "PX2InputManager.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -57,9 +58,24 @@ LRESULT CALLBACK MsWindowEventHandler (HWND handle, UINT message,
 			break;
 		}
 		break;
+	case WM_LBUTTONDOWN:
+		if (MK_LBUTTON == wParam)
+		{
+			POINT point = { (short)LOWORD(lParam), (short)HIWORD(lParam) };
+
+			PX2_INPUTMAN.GetDefaultListener()->MousePressed(MBID_LEFT, 
+				APoint((float)point.x, 0.0f, PX2_GR.GetScreenSize().Height-(float)point.y));
+		}
+		break;
+	case WM_LBUTTONUP:
+
+		PX2_INPUTMAN.GetDefaultListener()->MouseReleased(MBID_LEFT,
+			APoint((float)LOWORD(lParam), 0.0f, PX2_GR.GetScreenSize().Height - (float)HIWORD(lParam)));
+
+		break;
 	case WM_MOUSEWHEEL:
 		wheeldelta = (float)GET_WHEEL_DELTA_WPARAM(wParam);
-		//InputEventAdapter::GetSingleton().GetInputEventListener()->OnMouseWheel(wheeldelta);
+		PX2_INPUTMAN.GetDefaultListener()->MouseWheeled(wheeldelta);
 		break;
 	case WM_IME_CHAR:	
 		if (wParam > 0x7f) 

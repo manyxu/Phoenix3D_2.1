@@ -3,6 +3,9 @@
 #include "PX2Edit.hpp"
 #include "PX2GraphicsRoot.hpp"
 #include "PX2EditEventType.hpp"
+#include "PX2Selection.hpp"
+#include "PX2Creater.hpp"
+#include "PX2RedoUndo.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -55,6 +58,16 @@ bool Edit::Ternamate()
 	return true;
 }
 //----------------------------------------------------------------------------
+void Edit::Reset()
+{
+	PX2_SELECTION.Clear();
+
+	SetEditType(ET_SCENE);
+	SetEditMode(EM_NONE);
+
+	PX2_URDOMAN.Clear();
+}
+//----------------------------------------------------------------------------
 void Edit::SetEditType(EditType type)
 {
 	mEditType = type;
@@ -74,5 +87,28 @@ void Edit::SetEditMode(EditMode mode)
 int Edit::GetEditID()
 {
 	return msEditorID++;
+}
+//----------------------------------------------------------------------------
+bool Edit::DeleteSelection()
+{
+	bool deleted = false;
+
+	int numObjs = PX2_SELECTION.GetNumObjects();
+	for (int i = 0; i < numObjs; i++)
+	{
+		Object *obj = PX2_SELECTION.GetObjectAt(i);
+
+		if (PX2_CREATER.RemoveObject(obj))
+		{
+			deleted = true;
+		}
+	}
+
+	if (deleted)
+	{
+		PX2_SELECTION.Clear();
+	}
+
+	return deleted;
 }
 //----------------------------------------------------------------------------

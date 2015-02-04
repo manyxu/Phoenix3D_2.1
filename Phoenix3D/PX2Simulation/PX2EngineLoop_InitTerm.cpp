@@ -64,6 +64,8 @@ bool EngineLoop::Initlize()
 
 	mIMEDisp = new0 IMEDispatcher();
 
+	mInputMan = new0 InputManager();
+
 	mLanguageMan = new0 LanguageManager();
 	mResMan = new0 ResourceManager();
 
@@ -279,6 +281,12 @@ bool EngineLoop::Ternamate()
 		GraphicsRoot::Set(0);
 	}
 
+	if (mInputMan)
+	{
+		delete0(mInputMan);
+		mInputMan = 0;
+	}
+
 	if (mResMan)
 	{
 		delete0(mResMan);
@@ -376,7 +384,7 @@ void EngineLoop::SetScreenSize(const Sizef &screenSize)
 
 	const Sizef &projSize = proj->GetSize();
 
-	if (IsDoAdjustScreen())
+	if (IsDoAdjustScreenViewRect())
 	{
 		float screenWidthOverHeight = screenSize.Width / screenSize.Height;
 		float projWidthOverHeight = projSize.Width / projSize.Height;
@@ -400,11 +408,17 @@ void EngineLoop::SetScreenSize(const Sizef &screenSize)
 			mAdjustViewPort.Top = screenSize.Height - bot;
 		}
 
-		proj->SetViewPort(mAdjustViewPort);
+		PX2_GR.SetScreenSize(screenSize);
+		PX2_GR.SetViewRect(mAdjustViewPort);
+		proj->SetViewRect(mAdjustViewPort);
 	}
 	else
 	{
-		proj->SetViewPort(Rectf());
+		Rectf rect = Rectf(0.0f, 0.0f, screenSize.Width, screenSize.Height);
+
+		PX2_GR.SetScreenSize(screenSize);
+		PX2_GR.SetViewRect(rect);
+		proj->SetViewRect(rect);
 	}
 }
 //----------------------------------------------------------------------------

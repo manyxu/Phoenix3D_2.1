@@ -64,9 +64,6 @@
     <Filter Include="ResourceManager\Update">
       <UniqueIdentifier>{4cb5ee0d-2edb-41aa-8e54-2e189a659827}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MD5">
-      <UniqueIdentifier>{92c339ec-7471-4c6e-81da-42cf279801b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Font\FreeType">
       <UniqueIdentifier>{aadf60cf-657f-4dd7-ab2e-7c791d4774a6}</UniqueIdentifier>
     </Filter>
@@ -114,6 +111,12 @@
     </Filter>
     <Filter Include="ImageLibs\JPG">
       <UniqueIdentifier>{ad1c9ccc-134b-4c92-8139-32876b10de41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{2ac750f3-f54a-43f3-9e0b-e5d1f00de43e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MD5">
+      <UniqueIdentifier>{92c339ec-7471-4c6e-81da-42cf279801b3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -723,9 +726,6 @@
     <ClCompile Include="ImageLibs\JPG\cdjpeg.c">
       <Filter>ImageLibs\JPG</Filter>
     </ClCompile>
-    <ClCompile Include="ImageLibs\JPG\example.c">
-      <Filter>ImageLibs\JPG</Filter>
-    </ClCompile>
     <ClCompile Include="ImageLibs\JPG\jaricom.c">
       <Filter>ImageLibs\JPG</Filter>
     </ClCompile>
@@ -903,9 +903,6 @@
     <ClCompile Include="ImageLibs\JPG\wrtarga.c">
       <Filter>ImageLibs\JPG</Filter>
     </ClCompile>
-    <ClCompile Include="ImageLibs\PNG\example.c">
-      <Filter>ImageLibs\PNG</Filter>
-    </ClCompile>
     <ClCompile Include="ImageLibs\PNG\png.c">
       <Filter>ImageLibs\PNG</Filter>
     </ClCompile>
@@ -950,6 +947,18 @@
     </ClCompile>
     <ClCompile Include="ImageLibs\PNG\pngwutil.c">
       <Filter>ImageLibs\PNG</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputManager.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputEventData.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputEventListener.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2InputEvent.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1546,6 +1555,18 @@
     <ClInclude Include="ImageLibs\PNG\pngstruct.h">
       <Filter>ImageLibs\PNG</Filter>
     </ClInclude>
+    <ClInclude Include="PX2InputManager.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InputEventData.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InputEventListener.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2InputEvent.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2ResourceManager.inl">
@@ -1574,6 +1595,9 @@
     </None>
     <None Include="PX2FontCommonImpl.inl">
       <Filter>Font</Filter>
+    </None>
+    <None Include="PX2InputManager.inl">
+      <Filter>Input</Filter>
     </None>
   </ItemGroup>
 </Project>

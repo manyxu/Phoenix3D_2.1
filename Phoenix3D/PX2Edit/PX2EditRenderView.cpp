@@ -7,6 +7,8 @@
 #include "PX2Texture.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2RendererInput.hpp"
+#include "PX2InputEvent.hpp"
+#include "PX2InputEventData.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -196,35 +198,31 @@ void EditRenderView::OnSize(const Sizef& size)
 void EditRenderView::OnLeftDown(const APoint &pos)
 {
 	mIsLeftDown = true;
+	mLastMousePoint = pos;
 
 	if (mRenderStepCtrl)
 		mPixelToWorld = mRenderStepCtrl->CalPixelToWorld();
-
-	PX2_UNUSED(pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnLeftUp(const APoint &pos)
 {
 	mIsLeftDown = false;
-
-	PX2_UNUSED(pos);
+	mLastMousePoint = pos;
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnMiddleDown(const APoint &pos)
 {
 	mIsMiddleDown = true;
+	mLastMousePoint = pos;
 
 	if (mRenderStepCtrl)
 		mPixelToWorld = mRenderStepCtrl->CalPixelToWorld();
-
-	PX2_UNUSED(pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnMiddleUp(const APoint &pos)
 {
 	mIsMiddleDown = false;
-
-	PX2_UNUSED(pos);
+	mLastMousePoint = pos;
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnMouseWheel(float delta)
@@ -235,18 +233,16 @@ void EditRenderView::OnMouseWheel(float delta)
 void EditRenderView::OnRightDown(const APoint &pos)
 {
 	mIsRightDown = true;
+	mLastMousePoint = pos;
 
 	if (mRenderStepCtrl)
 		mPixelToWorld = mRenderStepCtrl->CalPixelToWorld();
-
-	PX2_UNUSED(pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnRightUp(const APoint &pos)
 {
 	mIsRightDown = false;
-
-	PX2_UNUSED(pos);
+	mLastMousePoint = pos;
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnMotion(const APoint &pos)
@@ -257,5 +253,45 @@ void EditRenderView::OnMotion(const APoint &pos)
 	mLastMousePoint = curPos;
 
 	if (delta == AVector::ZERO) return;
+}
+//----------------------------------------------------------------------------
+void EditRenderView::DoExecute(Event *event)
+{
+	if (IsEnable())
+	{
+
+		if (InputEventSpace::IsEqual(event, InputEventSpace::MousePressed))
+		{
+			InputEventData data = event->GetData<InputEventData>();
+
+			if (MBID_LEFT == data.MButtonID)
+				OnLeftDown(data.MTPos);
+			else if (MBID_RIGHT == data.MButtonID)
+				OnRightDown(data.MTPos);
+			else if (MBID_MIDDLE == data.MButtonID)
+				OnMiddleDown(data.MTPos);
+		}
+		else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseReleased))
+		{
+			InputEventData data = event->GetData<InputEventData>();
+
+			if (MBID_LEFT == data.MButtonID)
+				OnLeftUp(data.MTPos);
+			else if (MBID_RIGHT == data.MButtonID)
+				OnRightUp(data.MTPos);
+			else if (MBID_MIDDLE == data.MButtonID)
+				OnMiddleUp(data.MTPos);
+		}
+		else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseMoved))
+		{
+			InputEventData data = event->GetData<InputEventData>();
+			OnMotion(data.MTPos);
+		}
+		else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseWheeled))
+		{
+			InputEventData data = event->GetData<InputEventData>();
+			OnMouseWheel(data.MWheel);
+		}
+	}
 }
 //----------------------------------------------------------------------------

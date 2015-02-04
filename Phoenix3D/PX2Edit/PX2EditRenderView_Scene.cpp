@@ -22,6 +22,9 @@ mViewDetail(VD_TEXTURED)
 {
 	_CreateGridGeometry();
 	_CreateNodeCtrl();
+
+	Edit::EditType editType = PX2_EDIT.GetEditType();
+	Enable(editType != Edit::ET_UI);
 }
 //----------------------------------------------------------------------------
 EditRenderView_Scene::~EditRenderView_Scene()
@@ -98,6 +101,7 @@ void EditRenderView_Scene::_CreateGridGeometry()
 	mGridNode->Update(GetTimeInSeconds(), true);
 
 	mRenderStepCtrl = new0 RenderStep();
+	mRenderStepCtrl->SetPriority(30);
 	mRenderStepCtrl->SetName("SceneGridRenderStep");
 	mRenderStepCtrl->SetNode(mGridNode);
 	PX2_GR.AddRenderStep(mRenderStepCtrl);
@@ -217,6 +221,8 @@ void EditRenderView_Scene::OnMiddleDown(const APoint &pos)
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::OnMiddleUp(const APoint &pos)
 {
+	if (!IsEnable()) return;
+
 	EditRenderView::OnMiddleUp(pos);
 }
 //----------------------------------------------------------------------------
@@ -245,6 +251,8 @@ void EditRenderView_Scene::OnRightUp(const APoint &pos)
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::OnMotion(const APoint &pos)
 {
+	if (!IsEnable()) return;
+
 	APoint curPos = pos;
 	APoint lastPos = mLastMousePoint;
 	AVector delta = curPos - lastPos;
@@ -252,7 +260,7 @@ void EditRenderView_Scene::OnMotion(const APoint &pos)
 
 	if (delta == AVector::ZERO) return;
 
-	if (mIsMiddleDown)
+	if (mIsMiddleDown || mIsRightDown)
 	{
 		float speedVal = 3.0f;
 		if (PX2_EDIT.IsShiftDown) speedVal *= 2.0f;
@@ -265,8 +273,15 @@ void EditRenderView_Scene::OnMotion(const APoint &pos)
 			}
 			else if (PX2_EDIT.IsCtrlDown)
 			{
-				//_ZoomCamera(-delta.Z()*speedVal);
-				_RoundCamera(delta.X()*speedVal*0.2f, delta.Z()*speedVal*0.2f);
+				Movable *mov = DynamicCast<Movable>(PX2_SELECTION.GetFirstObject());
+				if (mov)
+				{
+					_RoundCamera(delta.X()*speedVal*0.02f, -delta.Z()*speedVal*0.02f);
+				}
+				else
+				{
+					_PanCamera(-delta.X()*mPixelToWorld.first*speedVal, delta.Z()*mPixelToWorld.second*speedVal);
+				}
 			}
 			else
 			{
@@ -531,6 +546,8 @@ void EditRenderView_Scene::_CreateNodeCtrl()
 	mSceneCtrlNode->Update(GetTimeInSeconds(), true);
 
 	mRenderStepCtrl1 = new0 RenderStep();
+	mRenderStepCtrl1->SetPriority(5);
+	mRenderStepCtrl1->SetDoDepthClear(true);
 	mRenderStepCtrl1->SetName("SceneCtrlNodeRenderStep");
 	mRenderStepCtrl1->SetNode(mSceneCtrlNode);
 	PX2_GR.AddRenderStep(mRenderStepCtrl1);
@@ -538,6 +555,8 @@ void EditRenderView_Scene::_CreateNodeCtrl()
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::DoExecute(Event *event)
 {
+	EditRenderView::DoExecute(event);
+
 	if (EditEventSpace::IsEqual(event, EditEventSpace::SetEditType))
 	{
 		Edit::EditType editType = PX2_EDIT.GetEditType();

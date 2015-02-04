@@ -276,6 +276,9 @@
     <ClInclude Include="PX2EventSystem.hpp">
       <Filter>EventSystem</Filter>
     </ClInclude>
+    <ClInclude Include="PX2EventHandlerObject.hpp">
+      <Filter>ObjectSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Assert.cpp">
@@ -481,6 +484,9 @@
     </ClCompile>
     <ClCompile Include="PX2XMLNode.cpp">
       <Filter>XML</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EventHandlerObject.cpp">
+      <Filter>ObjectSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

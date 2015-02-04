@@ -2,6 +2,7 @@
 
 #include "PX2Object.hpp"
 #include "PX2EventWorld.hpp"
+#include "PX2EventHandlerObject.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -22,7 +23,7 @@ bool Object::IsInEventWorld()
 	return mEventHandler->IsInWorld();
 }
 //----------------------------------------------------------------------------
-EventHandler *Object::GetEventHandler()
+ObjectEventHandler *Object::GetEventHandler()
 {
 	return mEventHandler;
 }

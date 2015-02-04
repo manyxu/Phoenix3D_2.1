@@ -48,19 +48,29 @@ function e_OnSetting()
 end
 
 function e_OnSelect()
-	E_MainFrame:OnSetEditMode(1)
+	E_MainFrame:OnSetEditMode(Edit.EM_SELECT)
 end
 
 function e_OnTranslate()
-	E_MainFrame:OnSetEditMode(2)
+	E_MainFrame:OnSetEditMode(Edit.EM_TRANSLATE)
 end
 
 function e_OnRotate()
-	E_MainFrame:OnSetEditMode(3)
+	E_MainFrame:OnSetEditMode(Edit.EM_ROLATE)
 end
 
 function e_OnScale()
-	E_MainFrame:OnSetEditMode(4)
+	E_MainFrame:OnSetEditMode(Edit.EM_SCALE)
+end
+
+function e_OnCopy()
+end
+
+function e_OnPaste()
+end
+
+function e_OnDelete()
+	PX2_EDIT:DeleteSelection()
 end
 
 function e_ImportSelectedRes()
@@ -72,13 +82,13 @@ end
 function e_ExportSelected()
 end
 
-function ResetPlay()
+function e_ResetPlay()
 end
 
-function Play()
+function e_Play()
 end
 
-function Stop()
+function e_Stop()
 end
 
 -- edit mode
@@ -132,6 +142,7 @@ function e_CreateBox()
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateBox(node, pickPos, true, true)
+		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
@@ -143,6 +154,7 @@ function e_CreateSphere()
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateSphere(node, pickPos, true, true)
+		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end

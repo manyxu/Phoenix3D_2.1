@@ -9,13 +9,18 @@ RenderStep::RenderStep() :
 mRenderer(0),
 mIsUpdated(false),
 mIsSizeChangeReAdjustCamera(true),
-mIsEnable(true)
+mIsEnable(true),
+mPriority(0),
+mIsDoClearDepth(false)
 {
 	mSize.Set(1024.0f, 768.0f);
+
+	ComeInEventWorld();
 }
 //----------------------------------------------------------------------------
 RenderStep::~RenderStep()
 {
+	GoOutEventWorld();
 }
 //----------------------------------------------------------------------------
 void RenderStep::Update(double appSeconds, double elapsedSeconds)
@@ -146,15 +151,27 @@ void RenderStep::Draw()
 		mRenderer->InitRenderStates();
 
 		Rectf viewPort = mViewPort;
-		if (viewPort.IsEmpty())
-			viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
+		if (viewPort.IsEmpty()) viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
 		mRenderer->SetViewport(viewPort);
+
+		if (mIsDoClearDepth) mRenderer->ClearDepthBuffer();
 
 		mRenderer->SetCamera(mCamera);
 		mRenderer->Draw(mCuller.GetVisibleSet());
 
 		mRenderer->SetCamera(beforeCamer);
 	}
+}
+//----------------------------------------------------------------------------
+bool RenderStep::LessThan(const RenderStep *step0, const RenderStep *step1)
+{
+	int priority0 = step0->GetPriority();
+	int priority1 = step1->GetPriority();
+
+	if (priority0 == priority1)
+		return step0 < step1;
+
+	return priority0 > priority1;
 }
 //----------------------------------------------------------------------------
 std::pair<float, float> RenderStep::CalPixelToWorld()

@@ -1,12 +1,8 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2PhoneInputManager.inl
-*
-*/
+// PX2InputManager.inl
 
 //----------------------------------------------------------------------------
-inline void PhoneInputManager::SetMultiTouchUsed (bool used)
+inline InputEventListener *InputManager::GetDefaultListener()
 {
-	mIsMuliTouchUsed = used;
+	return mInputEventListener;
 }
 //----------------------------------------------------------------------------

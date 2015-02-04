@@ -37,6 +37,7 @@
     <ClInclude Include="PX2EventFactory.hpp" />
     <ClInclude Include="PX2EventFactoryImplement.hpp" />
     <ClInclude Include="PX2EventHandler.hpp" />
+    <ClInclude Include="PX2EventHandlerObject.hpp" />
     <ClInclude Include="PX2EventSpace.hpp" />
     <ClInclude Include="PX2EventSpaceRegister.hpp" />
     <ClInclude Include="PX2EventSpaceRegisterMCR.hpp" />
@@ -126,6 +127,7 @@
     <ClCompile Include="PX2EventFactory.cpp" />
     <ClCompile Include="PX2EventFactoryImplement.cpp" />
     <ClCompile Include="PX2EventHandler.cpp" />
+    <ClCompile Include="PX2EventHandlerObject.cpp" />
     <ClCompile Include="PX2EventSpace.cpp" />
     <ClCompile Include="PX2Eventt.cpp" />
     <ClCompile Include="PX2EventWorld.cpp" />
