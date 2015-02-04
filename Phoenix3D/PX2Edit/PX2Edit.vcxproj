@@ -25,6 +25,7 @@
     <ClInclude Include="PX2Edits.hpp" />
     <ClInclude Include="PX2GeoObjFactory.hpp" />
     <ClInclude Include="PX2SceneNodeCtrl.hpp" />
+    <ClInclude Include="PX2SelectResData.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="PX2EditRenderView_UI.cpp" />
     <ClCompile Include="PX2GeoObjFactory.cpp" />
     <ClCompile Include="PX2SceneNodeCtrl.cpp" />
+    <ClCompile Include="PX2SelectResData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Edit.inl" />

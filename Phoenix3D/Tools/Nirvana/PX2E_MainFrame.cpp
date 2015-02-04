@@ -193,6 +193,10 @@ void E_MainFrame::DoExecute(Event *event)
 	{
 		_UpdateStatusSelectObject(2);
 	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::SelectRes))
+	{
+		_UpdateStatusSelectRes(3);
+	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::SetPickPos))
 	{
 		const APoint &pickPos = PX2_EDIT.GetPickPos();
@@ -224,8 +228,13 @@ void E_MainFrame::_UpdateStatusSelectObject(int index)
 //----------------------------------------------------------------------------
 void E_MainFrame::_UpdateStatusSelectRes(int index)
 {
+	const SelectResData &resData = PX2_EDIT.GetSelectedResource();
+
 	wxStatusBar *sb = GetStatusBar();
-	sb->SetStatusText(PX2_LMVAL("CurSelResNull"), index);
+
+	std::string str = PX2_LMVAL("CurSelRes") + resData.ResPathname;
+
+	sb->SetStatusText(str, index);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_UpdateStatusPickingPos(int index)
@@ -234,8 +243,7 @@ void E_MainFrame::_UpdateStatusPickingPos(int index)
 
 	wxStatusBar *sb = GetStatusBar();
 
-	std::string str;
-	str = PX2_LMVAL("PickingPos") + "(" +
+	std::string str = PX2_LMVAL("PickingPos") + "(" +
 		StringHelp::FloatToString(pickPos[0]) + ", " +
 		StringHelp::FloatToString(pickPos[1]) + ", " +
 		StringHelp::FloatToString(pickPos[2]) + ")";

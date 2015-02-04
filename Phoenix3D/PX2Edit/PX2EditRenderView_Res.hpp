@@ -8,6 +8,7 @@
 #include "PX2Polysegment.hpp"
 #include "PX2UIGridFrame.hpp"
 #include "PX2UnityPre.hpp"
+#include "PX2UICheckButton.hpp"
 
 namespace PX2
 {
@@ -45,6 +46,8 @@ namespace PX2
 		float mItemSize;
 
 		std::map<std::string, ResHandle> mHandlers;
+
+		PX2::UICheckButtonPtr mLastBut;
 
 		// Event
 	public:
