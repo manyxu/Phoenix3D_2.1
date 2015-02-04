@@ -37,6 +37,8 @@ namespace PX2
 			Float3 fontColor;
 			Float3 captionColor;
 			Float3 captionActColor;
+			Float3 tabFontColor;
+			Float3 tabFontActColor;
 			Float3 toolBarColor;
 			Float3 searchColor;
 		};

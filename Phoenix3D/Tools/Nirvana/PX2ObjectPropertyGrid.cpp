@@ -90,7 +90,6 @@ void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
 
 	obj->RemoveAllProperties();
 	obj->RegistProperties();
-	SetBackgroundColour(wxColour(0, 0, 0));
 
 	const std::vector<Object::PropertyObject> &props = obj->GetProperties();
 
