@@ -1,8 +1,8 @@
 <editParams>
-	<Theme idxNum="4">
-		<CurTheme ThemeType="THEME_BLUE" inactiveColor="77,96,130" activeColor="255,242,157" backColor="255,255,255" tabBackColor="44,61,91" fontColor="0,0,0" captionColor="255,255,255" captionActColor="0,0,0" tabFontColor="255,255,255" tabFontActColor="0,0,0" toolBarColor="207,214,229" searchColor="255,255,255" />
-		<Theme1 ThemeType="THEME_BLUE" inactiveColor="77,96,130" activeColor="255,242,157" backColor="255,255,255" tabBackColor="44,61,91" fontColor="0,0,0" captionColor="255,255,255" captionActColor="0,0,0" tabFontColor="255,255,255" tabFontActColor="0,0,0" toolBarColor="207,214,229" searchColor="255,255,255" />
-		<Theme2 ThemeType="THEME_DARK" inactiveColor="45,45,48" activeColor="0,122,204" backColor="30,30,30" tabBackColor="45,45,48" fontColor="255,255,255" captionColor="255,255,255" captionActColor="255,255,255" tabFontColor="255,255,255" tabFontActColor="0,151,251" toolBarColor="45,45,48" searchColor="51,51,55" />
-		<Theme3 ThemeType="THEME_TINT" inactiveColor="238,238,242" activeColor="0,122,204" backColor="255,255,255" tabBackColor="238,238,242" fontColor="0,0,0" captionColor="0,0,0" captionActColor="255,255,255" tabFontColor="0,0,0" tabFontActColor="0,151,251" toolBarColor="238,238,242" searchColor="255,255,255" />
+	<Theme curthemetype="THEME_BLUE">
+		<Theme1 ThemeType="THEME_BLUE" inactiveColor="77,96,130" activeColor="255,242,157" backColor="255,255,255" tabBackColor="44,61,91" fontColor="0,0,0" captionColor="255,255,255" captionActColor="0,0,0" tabFontColor="255,255,255" tabFontActColor="0,0,0" toolBarColor="207,214,229" toolBarHightlightColor="229,195,101" searchColor="255,255,255"/>
+		<Theme2 ThemeType="THEME_DARK" inactiveColor="45,45,48" activeColor="0,122,204" backColor="30,30,30" tabBackColor="45,45,48" fontColor="255,255,255" captionColor="255,255,255" captionActColor="255,255,255" tabFontColor="255,255,255" tabFontActColor="0,151,251" toolBarHightlightColor="62,62,64" toolBarColor="45,45,48" searchColor="51,51,55"/>
+		<Theme3 ThemeType="THEME_TINT" inactiveColor="238,238,242" activeColor="0,122,204" backColor="255,255,255" tabBackColor="238,238,242" fontColor="0,0,0" captionColor="0,0,0" captionActColor="255,255,255" tabFontColor="0,0,0" tabFontActColor="0,151,251" toolBarColor="238,238,242" toolBarHightlightColor="201,222,245" searchColor="255,255,255"/>
 	</Theme>
 </editParams>
+

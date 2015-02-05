@@ -104,6 +104,15 @@ void PX2wxAuiNotebook::UpdateTabsHeight()
 //----------------------------------------------------------------------------
 PX2wxAuiToolBarArt::PX2wxAuiToolBarArt()
 {
+	EditParams *params = PX2_EDIT.GetEditParams();
+	if (params)
+	{
+		EditParams::Theme theme = params->GetCurTheme();
+		float r = theme.toolBarHightlightColor[0] * 255.0f;
+		float g = theme.toolBarHightlightColor[1] * 255.0f;
+		float b = theme.toolBarHightlightColor[2] * 255.0f;
+		SetHightlightColor(wxColour(r, g, b));
+	}
 }
 //----------------------------------------------------------------------------
 PX2wxAuiToolBarArt::~PX2wxAuiToolBarArt()
@@ -155,6 +164,126 @@ void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
 		dc.DrawRectangle(rect.GetX() - 1, rect.GetY() - 1,
 			rect.GetWidth() + 2, rect.GetHeight() + 1);
 	}
+}
+//----------------------------------------------------------------------------
+static const unsigned char
+DISABLED_TEXT_GREY_HUE = wxColour::AlphaBlend(0, 255, 0.4);
+const wxColour DISABLED_TEXT_COLOR(DISABLED_TEXT_GREY_HUE,
+	DISABLED_TEXT_GREY_HUE,
+	DISABLED_TEXT_GREY_HUE);
+
+void PX2wxAuiToolBarArt::DrawButton(wxDC& dc,
+	wxWindow* wnd,
+	const wxAuiToolBarItem& item,
+	const wxRect& rect)
+{
+	int textWidth = 0, textHeight = 0;
+
+	if (m_flags & wxAUI_TB_TEXT)
+	{
+		dc.SetFont(m_font);
+
+		int tx, ty;
+
+		dc.GetTextExtent(wxT("ABCDHgj"), &tx, &textHeight);
+		textWidth = 0;
+		dc.GetTextExtent(item.GetLabel(), &textWidth, &ty);
+	}
+
+	int bmpX = 0, bmpY = 0;
+	int textX = 0, textY = 0;
+
+	if (m_textOrientation == wxAUI_TBTOOL_TEXT_BOTTOM)
+	{
+		bmpX = rect.x +
+			(rect.width / 2) -
+			(item.GetBitmap().GetWidth() / 2);
+
+		bmpY = rect.y +
+			((rect.height - textHeight) / 2) -
+			(item.GetBitmap().GetHeight() / 2);
+
+		textX = rect.x + (rect.width / 2) - (textWidth / 2) + 1;
+		textY = rect.y + rect.height - textHeight - 1;
+	}
+	else if (m_textOrientation == wxAUI_TBTOOL_TEXT_RIGHT)
+	{
+		bmpX = rect.x + 3;
+
+		bmpY = rect.y +
+			(rect.height / 2) -
+			(item.GetBitmap().GetHeight() / 2);
+
+		textX = bmpX + 3 + item.GetBitmap().GetWidth();
+		textY = rect.y +
+			(rect.height / 2) -
+			(textHeight / 2);
+	}
+
+
+	if (!(item.GetState() & wxAUI_BUTTON_STATE_DISABLED))
+	{
+		if (item.GetState() & wxAUI_BUTTON_STATE_PRESSED)
+		{
+			dc.SetPen(wxPen(m_highlightColour));
+			dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(150)));
+			dc.DrawRectangle(rect);
+		}
+		else if ((item.GetState() & wxAUI_BUTTON_STATE_HOVER) || item.IsSticky())
+		{
+			dc.SetPen(wxPen(m_highlightColour));
+			dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(170)));
+
+			// draw an even lighter background for checked item hovers (since
+			// the hover background is the same color as the check background)
+			if (item.GetState() & wxAUI_BUTTON_STATE_CHECKED)
+				dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(180)));
+
+			dc.DrawRectangle(rect);
+		}
+		else if (item.GetState() & wxAUI_BUTTON_STATE_CHECKED)
+		{
+			// it's important to put this code in an else statement after the
+			// hover, otherwise hovers won't draw properly for checked items
+			dc.SetPen(wxPen(m_highlightColour));
+			dc.SetBrush(wxBrush(m_highlightColour.ChangeLightness(170)));
+			dc.DrawRectangle(rect);
+		}
+	}
+
+	wxBitmap bmp;
+	if (item.GetState() & wxAUI_BUTTON_STATE_DISABLED)
+		bmp = item.GetDisabledBitmap();
+	else
+		bmp = item.GetBitmap();
+
+	if (bmp.IsOk())
+		dc.DrawBitmap(bmp, bmpX, bmpY, true);
+
+	// set the item's text color based on if it is disabled
+	EditParams *params = PX2_EDIT.GetEditParams();
+	if (params)
+	{
+		EditParams::Theme theme = params->GetCurTheme();
+		float r = theme.fontColor[0] * 255.0f;
+		float g = theme.fontColor[1] * 255.0f;
+		float b = theme.fontColor[2] * 255.0f;
+
+		dc.SetTextForeground(wxColour(r, g, b));
+		if (item.GetState() & wxAUI_BUTTON_STATE_DISABLED)
+			dc.SetTextForeground(DISABLED_TEXT_COLOR);
+
+		if ((m_flags & wxAUI_TB_TEXT) && !item.GetLabel().empty())
+		{
+			dc.DrawText(item.GetLabel(), textX, textY);
+		}
+	}
+
+}
+//----------------------------------------------------------------------------
+void PX2wxAuiToolBarArt::SetHightlightColor(wxColour color)
+{
+	m_highlightColour = color;
 }
 //----------------------------------------------------------------------------
 PX2wxAuiTabArt::PX2wxAuiTabArt(bool isTop)

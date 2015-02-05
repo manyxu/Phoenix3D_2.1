@@ -25,6 +25,8 @@ namespace PX2
 		bool Save(std::string filename);
 		bool Load(std::string filename);
 
+		void SaveCurTheme();
+
 		//编辑器主题颜色类型
 		std::vector<std::string> mThemeTypes;
 		struct Theme
@@ -40,6 +42,7 @@ namespace PX2
 			Float3 tabFontColor;
 			Float3 tabFontActColor;
 			Float3 toolBarColor;
+			Float3 toolBarHightlightColor;
 			Float3 searchColor;
 		};
 		void ThemeChange(std::string type);

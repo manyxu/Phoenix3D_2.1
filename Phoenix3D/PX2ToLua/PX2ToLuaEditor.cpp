@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 02/03/15 11:06:34.
+** Generated automatically by tolua++-1.0.92 on 02/05/15 11:30:42.
 */
 
 #ifndef __cplusplus
@@ -829,6 +829,43 @@ static int tolua_PX2Editor_NirMan_AddToolSeparater00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'AddToolSeparater'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddMenuTool of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_AddMenuTool00
+static int tolua_PX2Editor_NirMan_AddMenuTool00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+  const std::string menuTitle = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+  std::string script = ((std::string)  tolua_tocppstring(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddMenuTool'", NULL);
+#endif
+  {
+   self->AddMenuTool(menuTitle,script);
+   tolua_pushcppstring(tolua_S,(const char*)menuTitle);
+   tolua_pushcppstring(tolua_S,(const char*)script);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddMenuTool'.",&tolua_err);
  return 0;
 #endif
 }
@@ -1790,6 +1827,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetCurToolBar",tolua_PX2Editor_NirMan_GetCurToolBar00);
    tolua_function(tolua_S,"AddTool",tolua_PX2Editor_NirMan_AddTool00);
    tolua_function(tolua_S,"AddToolSeparater",tolua_PX2Editor_NirMan_AddToolSeparater00);
+   tolua_function(tolua_S,"AddMenuTool",tolua_PX2Editor_NirMan_AddMenuTool00);
    tolua_function(tolua_S,"MessageBox",tolua_PX2Editor_NirMan_MessageBox00);
    tolua_variable(tolua_S,"__Singleton_NirMan___",tolua_get_NirMan___Singleton_NirMan___,NULL);
   tolua_endmodule(tolua_S);

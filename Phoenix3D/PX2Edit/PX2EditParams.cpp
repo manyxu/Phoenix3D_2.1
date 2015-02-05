@@ -43,121 +43,120 @@ bool EditParams::Load(std::string filename)
 
 			// Theme
 			XMLNode themeNode = rootNode.GetChild("Theme");
+			std::string curThemeType = themeNode.AttributeToString("curthemetype");
+
+			XMLNode child = themeNode.IterateChild();
 
 			//All theme index
-			int themeNum = themeNode.AttributeToInt("idxNum");
-			for (int i = 0; i < themeNum; i++)
+			int i = 0;
+			while (!child.IsNull())
 			{
-				std::string nodeName = "Theme" + StringHelp::IntToString(i);
+				Theme theme;
+				theme.type = child.AttributeToString("ThemeType");
 
-				if (0 == i)
+				std::string colorStr = child.AttributeToString("inactiveColor");
+				StringTokenizer stk(colorStr, ",");
+				Float3 color = Float3::MakeColor(
+					StringHelp::StringToInt(stk[0]),
+					StringHelp::StringToInt(stk[1]),
+					StringHelp::StringToInt(stk[2]));
+				theme.inactiveColor = color;
+
+				colorStr = child.AttributeToString("activeColor");
+				StringTokenizer stk1(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk1[0]),
+					StringHelp::StringToInt(stk1[1]),
+					StringHelp::StringToInt(stk1[2]));
+				theme.activeColor = color;
+
+				colorStr = child.AttributeToString("backColor");
+				StringTokenizer stk2(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk2[0]),
+					StringHelp::StringToInt(stk2[1]),
+					StringHelp::StringToInt(stk2[2]));
+				theme.backColor = color;
+
+				colorStr = child.AttributeToString("tabBackColor");
+				StringTokenizer stk3(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk3[0]),
+					StringHelp::StringToInt(stk3[1]),
+					StringHelp::StringToInt(stk3[2]));
+				theme.tabBackColor = color;
+
+				colorStr = child.AttributeToString("fontColor");
+				StringTokenizer stk4(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk4[0]),
+					StringHelp::StringToInt(stk4[1]),
+					StringHelp::StringToInt(stk4[2]));
+				theme.fontColor = color;
+
+				colorStr = child.AttributeToString("captionColor");
+				StringTokenizer stk5(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk5[0]),
+					StringHelp::StringToInt(stk5[1]),
+					StringHelp::StringToInt(stk5[2]));
+				theme.captionColor = color;
+
+				colorStr = child.AttributeToString("captionActColor");
+				StringTokenizer stk6(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk6[0]),
+					StringHelp::StringToInt(stk6[1]),
+					StringHelp::StringToInt(stk6[2]));
+				theme.captionActColor = color;
+
+				colorStr = child.AttributeToString("tabFontColor");
+				StringTokenizer stk7(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk7[0]),
+					StringHelp::StringToInt(stk7[1]),
+					StringHelp::StringToInt(stk7[2]));
+				theme.tabFontColor = color;
+
+				colorStr = child.AttributeToString("tabFontActColor");
+				StringTokenizer stk8(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk8[0]),
+					StringHelp::StringToInt(stk8[1]),
+					StringHelp::StringToInt(stk8[2]));
+				theme.tabFontActColor = color;
+
+				colorStr = child.AttributeToString("toolBarColor");
+				StringTokenizer stk9(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk9[0]),
+					StringHelp::StringToInt(stk9[1]),
+					StringHelp::StringToInt(stk9[2]));
+				theme.toolBarColor = color;
+
+				colorStr = child.AttributeToString("toolBarHightlightColor");
+				StringTokenizer stk10(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk10[0]),
+					StringHelp::StringToInt(stk10[1]),
+					StringHelp::StringToInt(stk10[2]));
+				theme.toolBarHightlightColor = color;
+
+				colorStr = child.AttributeToString("searchColor");
+				StringTokenizer stk11(colorStr, ",");
+				color = Float3::MakeColor(
+					StringHelp::StringToInt(stk11[0]),
+					StringHelp::StringToInt(stk11[1]),
+					StringHelp::StringToInt(stk11[2]));
+				theme.searchColor = color;
+
+				if (theme.type == curThemeType)
 				{
-					nodeName = "CurTheme";
+					mCurTheme = theme;
 				}
-
-				XMLNode themeInNode = themeNode.GetChild(nodeName.c_str());
-				if (!themeInNode.IsNull())
-				{
-					Theme theme;
-					theme.type = themeInNode.AttributeToString("ThemeType");
-
-					std::string colorStr = themeInNode.AttributeToString("inactiveColor");
-					StringTokenizer stk(colorStr, ",");
-					Float3 color = Float3::MakeColor(
-						StringHelp::StringToInt(stk[0]),
-						StringHelp::StringToInt(stk[1]),
-						StringHelp::StringToInt(stk[2]));
-					theme.inactiveColor = color;
-
-					colorStr = themeInNode.AttributeToString("activeColor");
-					StringTokenizer stk1(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk1[0]),
-						StringHelp::StringToInt(stk1[1]),
-						StringHelp::StringToInt(stk1[2]));
-					theme.activeColor = color;
-
-					colorStr = themeInNode.AttributeToString("backColor");
-					StringTokenizer stk2(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk2[0]),
-						StringHelp::StringToInt(stk2[1]),
-						StringHelp::StringToInt(stk2[2]));
-					theme.backColor = color;
-
-					colorStr = themeInNode.AttributeToString("tabBackColor");
-					StringTokenizer stk3(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk3[0]),
-						StringHelp::StringToInt(stk3[1]),
-						StringHelp::StringToInt(stk3[2]));
-					theme.tabBackColor = color;
-
-					colorStr = themeInNode.AttributeToString("fontColor");
-					StringTokenizer stk4(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk4[0]),
-						StringHelp::StringToInt(stk4[1]),
-						StringHelp::StringToInt(stk4[2]));
-					theme.fontColor = color;
-
-					colorStr = themeInNode.AttributeToString("captionColor");
-					StringTokenizer stk5(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk5[0]),
-						StringHelp::StringToInt(stk5[1]),
-						StringHelp::StringToInt(stk5[2]));
-					theme.captionColor = color;
-
-					colorStr = themeInNode.AttributeToString("captionActColor");
-					StringTokenizer stk6(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk6[0]),
-						StringHelp::StringToInt(stk6[1]),
-						StringHelp::StringToInt(stk6[2]));
-					theme.captionActColor = color;
-
-					colorStr = themeInNode.AttributeToString("tabFontColor");
-					StringTokenizer stk7(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk7[0]),
-						StringHelp::StringToInt(stk7[1]),
-						StringHelp::StringToInt(stk7[2]));
-					theme.tabFontColor = color;
-
-					colorStr = themeInNode.AttributeToString("tabFontActColor");
-					StringTokenizer stk8(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk8[0]),
-						StringHelp::StringToInt(stk8[1]),
-						StringHelp::StringToInt(stk8[2]));
-					theme.tabFontActColor = color;
-
-					colorStr = themeInNode.AttributeToString("toolBarColor");
-					StringTokenizer stk9(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk9[0]),
-						StringHelp::StringToInt(stk9[1]),
-						StringHelp::StringToInt(stk9[2]));
-					theme.toolBarColor = color;
-
-					colorStr = themeInNode.AttributeToString("searchColor");
-					StringTokenizer stk10(colorStr, ",");
-					color = Float3::MakeColor(
-						StringHelp::StringToInt(stk10[0]),
-						StringHelp::StringToInt(stk10[1]),
-						StringHelp::StringToInt(stk10[2]));
-					theme.searchColor = color;
-
-					if (0 == i)
-					{
-						mCurTheme = theme;
-					}
-					else
-					{
-						mThemes[i] = theme;
-					}
-				}
+				mThemes[i] = theme;
+				i++;
+				child = rootNode.IterateChild(child);
 			}
 		}
 	}
@@ -166,6 +165,24 @@ bool EditParams::Load(std::string filename)
 		return false;
 	}
 	return true;
+}
+//-----------------------------------------------------------------------------
+void EditParams::SaveCurTheme()
+{
+	const std::string filename = "DataEditor/config/editConfig.xml";
+	char *buffer = 0;
+	int bufferSize = 0;
+	if (PX2_RM.LoadBuffer("DataEditor/config/editConfig.xml", bufferSize, buffer))
+	{
+		XMLData data;
+		if (data.LoadBuffer(buffer, bufferSize))
+		{
+			XMLNode rootNode = data.GetRootNode();
+			XMLNode themeNode = rootNode.GetChild("Theme");
+			themeNode.SetAttributeString("curthemetype", mCurTheme.type);
+			data.SaveFile(filename);
+		}
+	}
 }
 //-----------------------------------------------------------------------------
 void EditParams::ThemeChange(std::string type)

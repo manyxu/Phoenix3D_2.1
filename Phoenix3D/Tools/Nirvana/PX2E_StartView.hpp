@@ -16,6 +16,8 @@ namespace PX2Editor
 		StartView(wxWindow *parent);
 		virtual ~StartView();
 
+		void OnButtonClick(wxCommandEvent& event);
+
 	protected:
 		DECLARE_EVENT_TABLE()
 

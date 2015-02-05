@@ -63,8 +63,11 @@ namespace PX2Editor
 		void AddTool(wxAuiToolBar *toolBar, const std::string &icon, std::string &script);
 		void AddToolSeparater(wxAuiToolBar *toolBar);
 
+		void AddMenuTool(wxAuiToolBar *toolBar, const std::string &MenuTitle, std::string &script);
+
 	public:
 		void SetAuiManColorForTheme();
+		void SetToolBarHightLightColor();
 
 	protected:
 		DECLARE_EVENT_TABLE()
@@ -72,6 +75,7 @@ namespace PX2Editor
 		void _CreateMenu();
 		void _CreateTopView();
 		void _CreateMainToolBar();
+		void _CreateMenuToolBar();
 		void _CreateViews();
 		void _CreateProjView();
 		void _CreateMainView();
@@ -121,6 +125,9 @@ namespace PX2Editor
 
 		wxTimer mTimer;
 		std::map<int, std::string> mIDScripts;
+
+		wxAuiToolBar *mMianToolBar;
+		wxAuiToolBar *mMenuToolBar;
 
 		TopView *mTopView;
 		StartView *mStartView;
