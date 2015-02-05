@@ -40,6 +40,8 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	wxFrame((wxFrame*)0, -1, title, wxPoint(xPos, yPos), wxSize(width, height)),
 	mIsInitlized(false),
 	mAuiManager(0),
+	mMianToolBar(0),
+	mMenuToolBar(0),
 	mTopView(0),
 	mRenderViewScene(0),
 	mRenderViewLogic(0),
@@ -94,7 +96,8 @@ bool E_MainFrame::Initlize()
 
 	_CreateMenu();
 	//_CreateTopView();
-	_CreateMainToolBar();
+	//_CreateMenuToolBar();
+	//_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
 
@@ -140,6 +143,22 @@ void E_MainFrame::SetAuiManColorForTheme()
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(r, g, b));
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::SetToolBarHightLightColor()
+{
+	float r = mCurTheme.toolBarHightlightColor[0];
+	float g = mCurTheme.toolBarHightlightColor[1];
+	float b = mCurTheme.toolBarHightlightColor[2];
+	if (mMianToolBar)
+	{
+		PX2wxAuiToolBarArt *barArt = (PX2wxAuiToolBarArt*)mMianToolBar->GetArtProvider();
+		barArt->SetHightlightColor(wxColour(r, g, b));
+	}
+	if (mMenuToolBar)
+	{
+		PX2wxAuiToolBarArt *barArt = (PX2wxAuiToolBarArt*)mMenuToolBar->GetArtProvider();
+		barArt->SetHightlightColor(wxColour(r, g, b));
+	}
+}
 void E_MainFrame::DoExecute(Event *event)
 {
 	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene))
@@ -179,10 +198,13 @@ void E_MainFrame::DoExecute(Event *event)
 			{
 				EditParams::Theme theme = params->GetCurTheme();
 				mCurTheme = theme;
+
+				params->SaveCurTheme();
 				mProjView->SetColorForTheme(mCurTheme);
 				mTimeLineView->SetColorForTheme(mCurTheme);
 				mResView->SetColorForTheme(mCurTheme);
 				SetAuiManColorForTheme();
+				SetToolBarHightLightColor();
 				Refresh();
 			}
 		}
@@ -504,6 +526,17 @@ void E_MainFrame::AddTool(wxAuiToolBar *toolBar, const std::string &icon,
 {
 	int id = PX2_EDIT_GETID;
 	toolBar->AddTool(id, "", wxBitmap(icon, wxBITMAP_TYPE_PNG));
+	Connect(id, wxEVT_COMMAND_TOOL_CLICKED,
+		wxCommandEventHandler(E_MainFrame::OnCommondItem));
+
+	mIDScripts[id] = script;
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::AddMenuTool(wxAuiToolBar *toolBar, const std::string &MenuTitle, std::string &script)
+{
+	int id = PX2_EDIT_GETID;
+	toolBar->AddTool(id, MenuTitle, wxNullBitmap);
+	toolBar->AddSpacer(5);
 
 	Connect(id, wxEVT_COMMAND_TOOL_CLICKED,
 		wxCommandEventHandler(E_MainFrame::OnCommondItem));
@@ -528,21 +561,45 @@ void E_MainFrame::_CreateTopView()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainToolBar()
 {
-	wxAuiToolBar *mianToolBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+	mMianToolBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
+	if (mMianToolBar)
+	{
+		mMianToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
 
-	mianToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
+		NirMan::GetSingleton().SetCurToolBar(mMianToolBar);
 
-	NirMan::GetSingleton().SetCurToolBar(mianToolBar);
+		PX2_SM.CallString("e_CreateToolBarMain()");
 
-	PX2_SM.CallString("e_CreateToolBarMain()");
+		mMianToolBar->Realize();
 
-	mianToolBar->Realize();
+		mAuiManager->AddPane(mMianToolBar, wxAuiPaneInfo().
+			Name(wxT("maintoolbar")).
+			Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
+			MinSize(200, 30).MaxSize(200, 30).Resizable(false).CaptionVisible(false));
+	}	
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateMenuToolBar()
+{
+	mMenuToolBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL | wxAUI_TB_TEXT | wxAUI_TB_HORZ_TEXT);
 
-	mAuiManager->AddPane(mianToolBar, wxAuiPaneInfo().
-		Name(wxT("maintoolbar")).
-		ToolbarPane().Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
-		MinSize(200, 30).MaxSize(200, 30).Resizable(false));
+	if (mMenuToolBar)
+	{
+		mMenuToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
+
+		NirMan::GetSingleton().SetCurToolBar(mMenuToolBar);
+
+		PX2_SM.CallString("e_CreateMenuToolBar()");
+
+		mMenuToolBar->Realize();
+
+		mAuiManager->AddPane(mMenuToolBar, wxAuiPaneInfo().
+			Name(wxT("menuToolBar")).
+			ToolbarPane().Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
+			MinSize(200, 30).MaxSize(200, 30).Resizable(false));
+	}
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()

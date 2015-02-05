@@ -42,6 +42,14 @@ namespace PX2Editor
 			wxWindow* wnd,
 			const wxRect& rect);
 
+		virtual void DrawButton(
+			wxDC& dc,
+			wxWindow* wnd,
+			const wxAuiToolBarItem& item,
+			const wxRect& rect);
+
+		void SetHightlightColor(wxColour color);
+
 	protected:
 		wxColour mBackColor;
 	};

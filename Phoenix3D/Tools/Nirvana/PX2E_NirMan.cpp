@@ -83,6 +83,13 @@ void NirMan::AddToolSeparater()
 	E_MainFrame::GetSingletonPtr()->AddToolSeparater(mCurToolBar);
 }
 //----------------------------------------------------------------------------
+void NirMan::AddMenuTool(const std::string &menuTitle, std::string &script)
+{
+	if (!mCurToolBar) return;
+
+	E_MainFrame::GetSingletonPtr()->AddMenuTool(mCurToolBar, menuTitle, script);
+}
+//----------------------------------------------------------------------------
 void NirMan::MessageBox(const std::string &caption, const std::string &content)
 {
 	wxMessageBox(content, caption, wxOK);
