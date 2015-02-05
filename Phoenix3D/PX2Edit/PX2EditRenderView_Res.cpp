@@ -192,12 +192,33 @@ void EditRenderView_Res::OnMotion(const APoint &pos)
 //----------------------------------------------------------------------------
 void EditRenderView_Res::Visit(Object *obj, const int info)
 {
+	UICheckButton *but = DynamicCast<UICheckButton>(obj);
+	if (but)
+	{
+		if (mLastBut != but)
+		{
+			if (mLastBut)
+			{
+				mLastBut->Check(false);
+			}
+		}
 
+		std::string filename = but->GetUserData<std::string>("ResPath");
+
+		SelectResData resdata(SelectResData::RT_TEXPACKELEMENT);
+		resdata.ResPathname = filename;
+
+		PX2_EDIT.SetSelectedResource(resdata);
+
+		mLastBut = but;
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &dirPaths,
 	const std::vector<std::string> &filenames)
 {
+	mLastBut = 0;
+
 	std::vector<std::string > allPaths = dirPaths;
 	for (int i = 0; i < (int)filenames.size(); i++)
 	{

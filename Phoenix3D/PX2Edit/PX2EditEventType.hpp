@@ -33,6 +33,8 @@ namespace PX2
 	
 	PX2_EVENT(SetPickPos)
 
+	PX2_EVENT(SelectRes)
+
 	PX2_DECLARE_EVENT_END(EditEventSpace)
 
 }

@@ -35,6 +35,9 @@
     <ClInclude Include="PX2EditRenderView_Res.hpp">
       <Filter>Views</Filter>
     </ClInclude>
+    <ClInclude Include="PX2SelectResData.hpp">
+      <Filter>SelectRes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -68,6 +71,9 @@
     <ClCompile Include="PX2EditRenderView_Res.cpp">
       <Filter>Views</Filter>
     </ClCompile>
+    <ClCompile Include="PX2SelectResData.cpp">
+      <Filter>SelectRes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Event">
@@ -84,6 +90,9 @@
     </Filter>
     <Filter Include="Views">
       <UniqueIdentifier>{3a934333-9c01-4c3a-a083-31770afe72d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SelectRes">
+      <UniqueIdentifier>{62c7ffbb-676e-4d17-ae01-665bb386d5b4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

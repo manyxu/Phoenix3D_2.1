@@ -6,6 +6,7 @@
 #include "PX2Selection.hpp"
 #include "PX2Creater.hpp"
 #include "PX2RedoUndo.hpp"
+#include "PX2Project.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -89,6 +90,14 @@ int Edit::GetEditID()
 	return msEditorID++;
 }
 //----------------------------------------------------------------------------
+void Edit::SetPickPos(const APoint &pos)
+{
+	mPickPos = pos;
+
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SetPickPos);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
 bool Edit::DeleteSelection()
 {
 	bool deleted = false;
@@ -112,11 +121,23 @@ bool Edit::DeleteSelection()
 	return deleted;
 }
 //----------------------------------------------------------------------------
-void Edit::SetPickPos(const APoint &pos)
+void Edit::SetSelectedResource(const SelectResData &data)
 {
-	mPickPos = pos;
+	mSelectResData = data;
 
-	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SetPickPos);
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SelectRes);
 	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void Edit::PasteCopyedObject()
+{
+	if (!mCopyObject) return;
+
+	Actor *actor = DynamicCast<Actor>(mCopyObject);
+	Scene *scene = PX2_PROJ.GetScene();
+
+	if (actor && scene)
+	{
+	}
 }
 //----------------------------------------------------------------------------

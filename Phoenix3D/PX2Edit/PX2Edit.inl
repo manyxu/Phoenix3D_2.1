@@ -52,3 +52,18 @@ inline const std::vector<std::string> &Edit::GetSelectPath_ChildPaths() const
 	return mSelectPath_ChildPaths;
 }
 //----------------------------------------------------------------------------
+inline const SelectResData &Edit::GetSelectedResource() const
+{
+	return mSelectResData;
+}
+//----------------------------------------------------------------------------
+inline void Edit::SetCopyObject(PX2::Object *obj)
+{
+	mCopyObject = obj;
+}
+//----------------------------------------------------------------------------
+inline PX2::Object *Edit::GetCopyObject()
+{
+	return mCopyObject;
+}
+//----------------------------------------------------------------------------

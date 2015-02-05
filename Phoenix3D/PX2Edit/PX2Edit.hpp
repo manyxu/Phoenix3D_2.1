@@ -8,6 +8,7 @@
 #include "PX2EditDefine.hpp"
 #include "PX2GeoObjFactory.hpp"
 #include "PX2EditParams.hpp"
+#include "PX2SelectResData.hpp"
 
 namespace PX2
 {
@@ -89,16 +90,30 @@ namespace PX2
 	public:
 		bool DeleteSelection();
 
-		// Res select
+		// select
 	public:
 		void SetSelectPath_ChildFilenames(const std::vector<std::string> &filenamess);
 		void SetSelectPath_ChildPaths(const std::vector<std::string> &paths);
 		const std::vector<std::string> &GetSelectPath_ChildFilenames() const;
 		const std::vector<std::string> &GetSelectPath_ChildPaths() const;
 
+		void SetSelectedResource(const SelectResData &data);
+		const SelectResData &GetSelectedResource() const;
+
 	protected:
 		std::vector<std::string> mSelectPath_ChildFilenames;
 		std::vector<std::string> mSelectPath_ChildPaths;
+
+		SelectResData mSelectResData;
+
+		// Copy
+	public:
+		void SetCopyObject(PX2::Object *obj);
+		PX2::Object *GetCopyObject();
+		void PasteCopyedObject();
+
+	protected:
+		PX2::ObjectPtr mCopyObject;
 	};
 
 #include "PX2Edit.inl"
