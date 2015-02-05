@@ -20,6 +20,11 @@ namespace PX2
 	protected:
 		int mViewID;
 
+		// all
+	public:
+		virtual void EnterView();
+		virtual void LevelView();
+
 		//  pc
 	public:
 		virtual void KeyPressed(KeyCode code);

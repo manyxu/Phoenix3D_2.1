@@ -118,6 +118,9 @@
     <Filter Include="MD5">
       <UniqueIdentifier>{92c339ec-7471-4c6e-81da-42cf279801b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input\Ctrls">
+      <UniqueIdentifier>{fbbf7bba-7ff6-48eb-b44b-6b302dd75392}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2ResourceManager.cpp">
@@ -960,6 +963,9 @@
     <ClCompile Include="PX2InputEvent.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="PX2InputPushTransformController.cpp">
+      <Filter>Input\Ctrls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Unity.hpp" />
@@ -1567,6 +1573,9 @@
     <ClInclude Include="PX2InputEvent.hpp">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="PX2InputPushTransformController.hpp">
+      <Filter>Input\Ctrls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2ResourceManager.inl">
@@ -1598,6 +1607,9 @@
     </None>
     <None Include="PX2InputManager.inl">
       <Filter>Input</Filter>
+    </None>
+    <None Include="PX2InputPushTransformController.inl">
+      <Filter>Input\Ctrls</Filter>
     </None>
   </ItemGroup>
 </Project>

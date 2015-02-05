@@ -93,6 +93,27 @@ void UIFrame::OnChildUIAfterPicked(int info, Movable *child)
 	}
 }
 //----------------------------------------------------------------------------
+InputPushTransformController *UIFrame::CreateAddIPTCtrl(bool doResetPlay)
+{
+	DestoryIPTCtrl();
+
+	mIPTCtrl = new0 InputPushTransformController();
+	AttachController(mIPTCtrl);
+	mIPTCtrl->SetName("IPTCtrl");
+
+	if (doResetPlay) mIPTCtrl->ResetPlay();
+
+	return mIPTCtrl;
+}
+//----------------------------------------------------------------------------
+void UIFrame::DestoryIPTCtrl()
+{
+	if (mIPTCtrl)
+	{
+		DetachController(mIPTCtrl);
+	}
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 持久化支持
@@ -112,12 +133,17 @@ void UIFrame::Load(InStream& source)
 
 	source.ReadString(mUIScriptHandler);
 
+	source.ReadPointer(mIPTCtrl);
+
 	PX2_END_DEBUG_STREAM_LOAD(UIFrame, source);
 }
 //----------------------------------------------------------------------------
 void UIFrame::Link(InStream& source)
 {
 	Node::Link(source);
+
+	if (mIPTCtrl)
+		source.ResolveLink(mIPTCtrl);
 }
 //----------------------------------------------------------------------------
 void UIFrame::PostLink()
@@ -127,7 +153,14 @@ void UIFrame::PostLink()
 //----------------------------------------------------------------------------
 bool UIFrame::Register(OutStream& target) const
 {
-	return Node::Register(target);
+	if (Node::Register(target))
+	{
+		target.Register(mIPTCtrl);
+
+		return true;
+	}
+
+	return false;
 }
 //----------------------------------------------------------------------------
 void UIFrame::Save(OutStream& target) const
@@ -139,6 +172,8 @@ void UIFrame::Save(OutStream& target) const
 
 	target.WriteString(mUIScriptHandler);
 
+	target.WritePointer(mIPTCtrl);
+
 	PX2_END_DEBUG_STREAM_SAVE(UIFrame, target);
 }
 //----------------------------------------------------------------------------
@@ -148,6 +183,8 @@ int UIFrame::GetStreamingSize(Stream &stream) const
 	size += PX2_VERSION_SIZE(mVersion);
 
 	size += PX2_STRINGSIZE(mUIScriptHandler);
+	
+	size += PX2_POINTERSIZE(mIPTCtrl);
 
 	return size;
 }

@@ -6,6 +6,7 @@
 #include "PX2Node.hpp"
 #include "PX2Size.hpp"
 #include "PX2UICallback.hpp"
+#include "PX2InputPushTransformController.hpp"
 
 namespace PX2
 {
@@ -60,6 +61,15 @@ namespace PX2
 	protected:
 		UICallback mUICallback;
 		std::string mUIScriptHandler;
+
+		// InputTrans
+	public:
+		InputPushTransformController *CreateAddIPTCtrl(bool doResetPlay = true);
+		void DestoryIPTCtrl();
+		InputPushTransformController *GetIPTCtrl();
+
+	protected:
+		InputPushTransformControllerPtr mIPTCtrl;
 	};
 
 	PX2_REGISTER_STREAM(UIFrame);

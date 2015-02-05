@@ -141,6 +141,8 @@ void EditRenderView_Res::OnSize(const Sizef& size)
 	mSize = size;
 
 	mGridFrame->SetSize(mSize);
+	InputPushTransformController *ctrl = mGridFrame->GetIPTCtrl();
+
 	mGridFrame->Update(GetTimeInSeconds());
 
 	EditRenderView::OnSize(size);

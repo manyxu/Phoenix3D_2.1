@@ -24,6 +24,22 @@ void InputEventListener::OnInputEventData(InputEventData &data)
 	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------
+void InputEventListener::EnterView()
+{
+	InputEventData data;
+	data.TheEventType = InputEventSpace::EnterView;
+
+	OnInputEventData(data);
+}
+//----------------------------------------------------------------------------
+void InputEventListener::LevelView()
+{
+	InputEventData data;
+	data.TheEventType = InputEventSpace::LevelView;
+
+	OnInputEventData(data);
+}
+//----------------------------------------------------------------------------
 void InputEventListener::KeyPressed(KeyCode code)
 {
 	InputEventData data;

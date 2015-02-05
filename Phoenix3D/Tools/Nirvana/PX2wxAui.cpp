@@ -6,6 +6,7 @@
 #include "PX2E_MainFrame.hpp"
 #include "PX2Edit.hpp"
 #include "PX2EditParams.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 
 BEGIN_EVENT_TABLE(PX2wxAuiNotebook, wxAuiNotebook)
@@ -122,9 +123,11 @@ void PX2wxAuiToolBarArt::DrawBackground(
 	if (params)
 	{
 		EditParams::Theme theme = params->GetCurTheme();
+
 		float r = theme.toolBarColor[0] * 255.0f;
 		float g = theme.toolBarColor[1] * 255.0f;
 		float b = theme.toolBarColor[2] * 255.0f;
+
 		wxColour color = wxColour(r, g, b);
 		wxColour startColour = color.ChangeLightness(125);
 		wxColour endColour = color.ChangeLightness(125);
@@ -156,7 +159,11 @@ void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
 //----------------------------------------------------------------------------
 PX2wxAuiTabArt::PX2wxAuiTabArt(bool isTop)
 {
-	m_fixedTabWidth = 80;
+	if (isTop)
+		m_fixedTabWidth = 80;
+	else
+		m_fixedTabWidth = 40;
+	
 	mIsTop = isTop;
 }
 //----------------------------------------------------------------------------
@@ -172,40 +179,55 @@ wxAuiTabArt* PX2wxAuiTabArt::Clone()
 void PX2wxAuiTabArt::SetSizingInfo(const wxSize& tab_ctrl_size,
 	size_t tab_count)
 {
-	m_fixedTabWidth = 120;
-
-	int tot_width = (int)tab_ctrl_size.x - GetIndentSize() - 4;
-
-	if (m_flags & wxAUI_NB_CLOSE_BUTTON)
-		tot_width -= m_activeCloseBmp.GetWidth();
-	if (m_flags & wxAUI_NB_WINDOWLIST_BUTTON)
-		tot_width -= m_activeWindowListBmp.GetWidth();
-
-	if (tab_count > 0)
-	{
-		m_fixedTabWidth = tot_width / (int)tab_count;
-	}
-
-
-	if (m_fixedTabWidth < 120)
+	if (mIsTop)
 		m_fixedTabWidth = 120;
+	else
+		m_fixedTabWidth = 60;
 
-	if (m_fixedTabWidth > tot_width / 2)
-		m_fixedTabWidth = tot_width / 2;
+	//int tot_width = (int)tab_ctrl_size.x - GetIndentSize() - 4;
 
-	if (m_fixedTabWidth > 160)
-		m_fixedTabWidth = 120;
+	//if (m_flags & wxAUI_NB_CLOSE_BUTTON)
+	//	tot_width -= m_activeCloseBmp.GetWidth();
+	//if (m_flags & wxAUI_NB_WINDOWLIST_BUTTON)
+	//	tot_width -= m_activeWindowListBmp.GetWidth();
+
+	//if (tab_count > 0)
+	//{
+	//	m_fixedTabWidth = tot_width / (int)tab_count;
+	//}
+
+	//if (m_fixedTabWidth < 40)
+	//	m_fixedTabWidth = 40;
+
+	//if (m_fixedTabWidth > tot_width / 2)
+	//	m_fixedTabWidth = tot_width / 2;
+
+	//if (m_fixedTabWidth > 160)
+	//	m_fixedTabWidth = 120;
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
 {
-	int i, border_width = GetBorderWidth(wnd);
+	EditParams *params = PX2_EDIT.GetEditParams();
 
-	wxRect theRect(rect);
-	for (i = 0; i < border_width; ++i)
+	if (params)
 	{
-		dc.DrawRectangle(theRect.x, theRect.y, theRect.width, theRect.height);
-		theRect.Deflate(1);
+		int i, border_width = GetBorderWidth(wnd);
+
+		wxRect theRect(rect);
+		for (i = 0; i < border_width; ++i)
+		{
+			EditParams::Theme theme = params->GetCurTheme();
+
+			if (mIsTop)
+			{
+				dc.SetBrush(wxBrush(Float3TowxColour(theme.tabBackColor)));
+				dc.SetPen(wxPen(Float3TowxColour(theme.tabBackColor)));
+			}
+
+			dc.DrawRectangle(theRect.x, theRect.y, theRect.width, theRect.height);
+			theRect.Deflate(1);
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -222,12 +244,6 @@ void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 		dc.SetBrush(wxBrush(wxColour(r, g, b)));
 		dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 5);
 
-		if (!mIsTop)
-		{
-			dc.SetBrush(wxBrush(wxColour(0, 0, 0)));
-			dc.DrawRectangle(0, 0, rect.GetWidth(), 1);
-		}	
-
 		//// draw base line
 		if (mIsTop)
 		{
@@ -236,7 +252,7 @@ void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 			b = theme.activeColor[2] * 255.0f;
 			dc.SetBrush(wxBrush(wxColour(r, g, b)));
 			dc.SetPen(wxPen(wxColour(r, g, b)));
-			dc.DrawRectangle(-1, rect.GetHeight() - 3, rect.GetWidth() + 2, 4);
+			dc.DrawRectangle(-1, rect.GetHeight() - 2, rect.GetWidth() + 2, 2);
 		}
 	}
 }
@@ -363,7 +379,6 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		}
 	}
 	
-
 	// -- draw line --
 
 	wxPoint points[5];
@@ -379,54 +394,25 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 
 	if (mIsTop)
 	{
-		points[0].y -= 4;
-		points[1].y -= 4;
+		points[0].y -= 7;
+		points[1].y -= 7;
 
-		points[2].y = tab_y + tab_height - 4;
-		points[3].y = tab_y + tab_height - 4;	
+		points[2].y -= 3;
+		points[3].y -= 3;
 	}
 	else
 	{
-		points[0].y -= 4;
-		points[1].y -= 4;
+		points[0].y -= 8;
+		points[1].y -= 8;
 
-		points[2].y = tab_y + tab_height - 4;
-		points[3].y = tab_y + tab_height - 4;
+		points[2].y -= 4;
+		points[3].y -= 4;
 	}
 
 	dc.SetClippingRegion(in_rect);
-
 	dc.DrawPolygon(WXSIZEOF(points) - 1, points);
 
-	dc.SetPen(*wxGREY_PEN);
-
-	if (!mIsTop)
-	{
-		if (page.active)
-		{
-			dc.SetBrush(wxBrush(wxColour(0, 0, 0)));
-			dc.SetPen(wxPen(wxColour(0, 0, 0)));
-			if (0 != in_rect.x)
-			{
-				dc.DrawRectangle(tab_x, tab_y - 4, 1, tab_height + 2);
-			}
-			dc.DrawRectangle(tab_x, tab_y + tab_height, tab_width, 1);
-			dc.DrawRectangle(tab_x + tab_width, tab_y - 4, 1, tab_height + 2);
-		}
-		else
-		{
-			dc.SetBrush(wxBrush(wxColour(0, 0, 0)));
-			dc.SetPen(wxPen(wxColour(0, 0, 0)));
-			dc.DrawRectangle(tab_x, tab_y - 4, tab_width + 1, 1);
-		}
-	}
-	
-//	dc.DrawLines(page.active ? WXSIZEOF(points) - 1 : WXSIZEOF(points), points);
-//	dc.DrawLines(WXSIZEOF(points), points);
-
-
 	int text_offset;
-
 	int close_button_width = 0;
 	if (close_button_state != wxAUI_BUTTON_STATE_HIDDEN)
 	{
@@ -443,7 +429,6 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		EditParams::Theme theme = params->GetCurTheme();
 		if (page.active)
 		{
-			
 			if (mIsTop)
 			{
 				float r = theme.captionActColor[0] * 255.0f;
@@ -471,8 +456,6 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		}
 	}
 	
-		
-
 	// chop text if necessary
 	wxString draw_text = wxAuiChopText(dc,
 		caption,
@@ -610,3 +593,4 @@ wxSize PX2wxAuiTabArt::GetTabSize(wxDC& dc,
 
 	return wxSize(tab_width, tab_height);
 }
+//----------------------------------------------------------------------------
