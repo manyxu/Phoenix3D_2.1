@@ -41,7 +41,6 @@
     <ClInclude Include="PX2EffectModuleCallbacks_Effectable.hpp" />
     <ClInclude Include="PX2EffectModuleCallbacks_ParticleEmitter.hpp" />
     <ClInclude Include="PX2EffectModuleCallbacks_Soundable.hpp" />
-    <ClInclude Include="PX2EffectNode.hpp" />
     <ClInclude Include="PX2EffectObject.hpp" />
     <ClInclude Include="PX2EffectPre.hpp" />
     <ClInclude Include="PX2ParticleEmitter.hpp" />
@@ -78,7 +77,6 @@
     <ClCompile Include="PX2EffectModuleCallbacks_Effectable.cpp" />
     <ClCompile Include="PX2EffectModuleCallbacks_ParticleEmitter.cpp" />
     <ClCompile Include="PX2EffectModuleCallbacks_Soundable.cpp" />
-    <ClCompile Include="PX2EffectNode.cpp" />
     <ClCompile Include="PX2EffectObject.cpp" />
     <ClCompile Include="PX2ParticleEmitter.cpp" />
     <ClCompile Include="PX2ParticleEmitterController.cpp" />
@@ -103,7 +101,6 @@
     <None Include="PX2EffectModelController.inl" />
     <None Include="PX2EffectModelNode.inl" />
     <None Include="PX2EffectModule.inl" />
-    <None Include="PX2EffectNode.inl" />
     <None Include="PX2ParticleEmitter.inl" />
     <None Include="PX2ParticleEmitterController.inl" />
     <None Include="PX2RibbonEmitter.inl" />
@@ -170,7 +167,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>PX2Effect1D</TargetName>
+    <TargetName>PX2EffectD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>

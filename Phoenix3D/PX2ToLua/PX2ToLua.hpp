@@ -13,6 +13,7 @@
 #include "PX2Renderers.hpp"
 #include "PX2Unity.hpp"
 #include "PX2Simulation.hpp"
+#include "PX2Effect.hpp"
 using namespace PX2;
 
 #define PX2_LUA

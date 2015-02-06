@@ -6,6 +6,7 @@
 
 #include "PX2BeamEmitter.hpp"
 #include "PX2BeamEmitterController.hpp"
+#include "PX2Renderer.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI_V(PX2, Effectable, BeamEmitter, 1);

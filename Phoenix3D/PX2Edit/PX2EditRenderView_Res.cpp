@@ -32,19 +32,19 @@ EditRenderView_Res::~EditRenderView_Res()
 {
 	if (mRenderStep)
 	{
-		PX2_GR.RemoveRenderStep(mRenderStep);
+		PX2_GR.RemoveRenderSteps(mRenderStep);
 		mRenderStep = 0;
 	}
 
 	if (mRenderStepCtrl)
 	{
-		PX2_GR.RemoveRenderStep(mRenderStepCtrl);
+		PX2_GR.RemoveRenderSteps(mRenderStepCtrl);
 		mRenderStepCtrl = 0;
 	}
 
 	if (mRenderStepCtrl1)
 	{
-		PX2_GR.RemoveRenderStep(mRenderStepCtrl1);
+		PX2_GR.RemoveRenderSteps(mRenderStepCtrl1);
 		mRenderStepCtrl1 = 0;
 	}
 }

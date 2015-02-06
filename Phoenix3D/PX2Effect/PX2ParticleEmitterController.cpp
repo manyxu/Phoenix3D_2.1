@@ -6,6 +6,7 @@
 
 #include "PX2ParticleEmitterController.hpp"
 #include "PX2ParticleEmitter.hpp"
+#include "PX2Log.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, EffectableController, ParticleEmitterController);

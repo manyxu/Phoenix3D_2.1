@@ -6,6 +6,8 @@
 
 #include "PX2RibbonEmitter.hpp"
 #include "PX2RibbonEmitterController.hpp"
+#include "PX2Log.hpp"
+#include "PX2Renderer.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Effectable, RibbonEmitter);

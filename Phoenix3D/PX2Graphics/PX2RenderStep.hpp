@@ -63,7 +63,7 @@ namespace PX2
 		void SetCamera(Camera *camera);
 		Camera *GetCamera();
 
-		bool GetPickRay(int x, int y, APoint& origin, AVector& direction);
+		bool GetPickRay(float x, float y, APoint& origin, AVector& direction);
 
 	protected:
 		Renderer *mRenderer;

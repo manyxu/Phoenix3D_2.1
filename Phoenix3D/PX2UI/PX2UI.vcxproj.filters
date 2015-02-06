@@ -14,9 +14,6 @@
     <ClInclude Include="PX2UISizeFrame.hpp">
       <Filter>UIObj</Filter>
     </ClInclude>
-    <ClInclude Include="PX2UIText.hpp">
-      <Filter>UIObj</Filter>
-    </ClInclude>
     <ClInclude Include="PX2UICallback.hpp">
       <Filter>Callback</Filter>
     </ClInclude>
@@ -32,6 +29,21 @@
     <ClInclude Include="PX2UICheckButton.hpp">
       <Filter>UIObj\Buttons</Filter>
     </ClInclude>
+    <ClInclude Include="PX2UIProgressBar.hpp">
+      <Filter>UIObj\ProgressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIProgressBarCtrl.hpp">
+      <Filter>UIObj\ProgressBar</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIText.hpp">
+      <Filter>UIObj\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIScoreTextCtrl.hpp">
+      <Filter>UIObj\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIScoreText.hpp">
+      <Filter>UIObj\Text</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UIView.cpp">
@@ -46,9 +58,6 @@
     <ClCompile Include="PX2UISizeFrame.cpp">
       <Filter>UIObj</Filter>
     </ClCompile>
-    <ClCompile Include="PX2UIText.cpp">
-      <Filter>UIObj</Filter>
-    </ClCompile>
     <ClCompile Include="PX2UIGridFrame.cpp">
       <Filter>UIObj</Filter>
     </ClCompile>
@@ -60,6 +69,21 @@
     </ClCompile>
     <ClCompile Include="PX2UICheckButton.cpp">
       <Filter>UIObj\Buttons</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIProgressBar.cpp">
+      <Filter>UIObj\ProgressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIProgressBarCtrl.cpp">
+      <Filter>UIObj\ProgressBar</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIText.cpp">
+      <Filter>UIObj\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIScoreTextCtrl.cpp">
+      <Filter>UIObj\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIScoreText.cpp">
+      <Filter>UIObj\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +99,12 @@
     <Filter Include="UIObj\Buttons">
       <UniqueIdentifier>{178ba406-e4fb-4f03-b87e-9d9ed5f71794}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UIObj\ProgressBar">
+      <UniqueIdentifier>{e2fa7254-5e5e-4eed-8e6c-33d9b2129667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIObj\Text">
+      <UniqueIdentifier>{0bf56dce-6636-419f-bb9f-45cab23f6cc5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2UIView.inl">
@@ -89,14 +119,26 @@
     <None Include="PX2UISizeFrame.inl">
       <Filter>UIObj</Filter>
     </None>
-    <None Include="PX2UIText.inl">
-      <Filter>UIObj</Filter>
-    </None>
     <None Include="PX2UIButton.inl">
       <Filter>UIObj\Buttons</Filter>
     </None>
     <None Include="PX2UIButtonBase.inl">
       <Filter>UIObj\Buttons</Filter>
+    </None>
+    <None Include="PX2UIProgressBar.inl">
+      <Filter>UIObj\ProgressBar</Filter>
+    </None>
+    <None Include="PX2UIProgressBarCtrl.inl">
+      <Filter>UIObj\ProgressBar</Filter>
+    </None>
+    <None Include="PX2UIText.inl">
+      <Filter>UIObj\Text</Filter>
+    </None>
+    <None Include="PX2UIScoreTextCtrl.inl">
+      <Filter>UIObj\Text</Filter>
+    </None>
+    <None Include="PX2UIScoreText.inl">
+      <Filter>UIObj\Text</Filter>
     </None>
   </ItemGroup>
 </Project>

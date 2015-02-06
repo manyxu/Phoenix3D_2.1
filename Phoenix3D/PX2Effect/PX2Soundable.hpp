@@ -27,8 +27,8 @@ namespace PX2
 
 		enum SourceType
 		{
-			ST_WAV,
-			ST_MP3,
+			ST_SOUND,
+			ST_MUSIC,
 			ST_MAX_TYPE
 		};
 		void SetSourceType (SourceType st);

@@ -9,6 +9,7 @@
 #include "PX2PVMatrixConstant.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2EffectObject.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI_V(PX2, TriMesh, Effectable, 4);
@@ -128,15 +129,15 @@ void Effectable::SetMaterialType (MaterialType type)
 
 	if (MT_TEX == mMtlType)
 	{
-		SetVertexFormat(VertexFormat::GetPreCreatedVF(VertexFormat::VFT_PCT1));
+		SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1));
 	}
 	else if(MT_TEX_MASK_MULTIPLY == mMtlType)
 	{
-		SetVertexFormat(VertexFormat::GetPreCreatedVF(VertexFormat::VFT_PCT2));
+		SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PCT2));
 	}
 	else if (MT_TEX_MASK_ADD == mMtlType)
 	{
-		SetVertexFormat(VertexFormat::GetPreCreatedVF(VertexFormat::VFT_PCT2));
+		SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PCT2));
 	}
 
 	SetBlendMode(GetBlendMode());

@@ -20,6 +20,7 @@
 #include "PX2Soundable.hpp"
 #include "PX2CameraShake.hpp"
 #include "PX2EffectModel.hpp"
+#include "PX2StringHelp.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Object, EffectModule);

@@ -7,7 +7,7 @@
 #include "PX2Node.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Movable, Node, 1);
+PX2_IMPLEMENT_RTTI(PX2, Movable, Node);
 PX2_IMPLEMENT_STREAM(Node);
 PX2_IMPLEMENT_FACTORY(Node);
 
@@ -552,11 +552,7 @@ void Node::Load (InStream& source)
         source.ReadPointerVV(numChildren, &mChild[0]);
     }
 
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		source.Read(mAnchorID);
-	}
+	source.Read(mAnchorID);
 
     PX2_END_DEBUG_STREAM_LOAD(Node, source);
 }
@@ -632,18 +628,7 @@ int Node::GetStreamingSize (Stream &stream) const
     size += sizeof(numChildren);
     size += numChildren*PX2_POINTERSIZE(mChild[0]);
 
-	if (stream.IsIn())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size += sizeof(mAnchorID);
-		}
-	}
-	else
-	{
-		size += sizeof(mAnchorID);
-	}
+	size += sizeof(mAnchorID);
 
     return size;
 }

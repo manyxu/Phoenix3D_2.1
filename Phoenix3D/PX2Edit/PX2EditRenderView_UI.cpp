@@ -23,19 +23,19 @@ EditRenderView_UI::~EditRenderView_UI()
 {
 	if (mRenderStep)
 	{
-		PX2_GR.RemoveRenderStep(mRenderStep);
+		PX2_GR.RemoveRenderSteps(mRenderStep);
 		mRenderStep = 0;
 	}
 
 	if (mRenderStepCtrl)
 	{
-		PX2_GR.RemoveRenderStep(mRenderStepCtrl);
+		PX2_GR.RemoveRenderSteps(mRenderStepCtrl);
 		mRenderStepCtrl = 0;
 	}
 
 	if (mRenderStepCtrl1)
 	{
-		PX2_GR.RemoveRenderStep(mRenderStepCtrl1);
+		PX2_GR.RemoveRenderSteps(mRenderStepCtrl1);
 		mRenderStepCtrl1 = 0;
 	}
 }
@@ -59,7 +59,7 @@ void EditRenderView_UI::_CreateGridGeometry()
 	mRenderStepCtrl->SetName("UIRangeSegmentRenderStep");
 	mRenderStepCtrl->SetSizeChangeReAdjustCamera(false);
 	mRenderStepCtrl->SetNode(mRangeNode);
-	PX2_GR.AddRenderStep(mRenderStepCtrl);
+	PX2_GR.AddRenderStep(mRenderStepCtrl->GetName().c_str(), mRenderStepCtrl);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_UI::_UpdateProjectRange()
@@ -217,7 +217,7 @@ void EditRenderView_UI::_PickPos()
 	if (record.Intersected)
 	{
 		APoint pickPos = origin + direction * record.T;
-		pickPos = APoint((int)pickPos[0], (int)pickPos[1], (int)pickPos[2]);
+		pickPos = APoint(pickPos[0], pickPos[1], (int)pickPos[2]);
 
 		PX2_EDIT.SetPickPos(pickPos);
 	}

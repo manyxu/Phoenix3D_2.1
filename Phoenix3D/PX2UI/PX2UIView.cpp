@@ -213,7 +213,7 @@ void UIView::_DoPick(float x, float z, int pickInfo,
 
 	APoint origin;
 	AVector direction;
-	GetPickRay((int)x, (int)z, origin, direction);
+	GetPickRay(x, z, origin, direction);
 
 	Picker pick(true, pickInfo);
 	pick.Execute(pickMov, origin, direction, 0.0f, Mathf::MAX_REAL);

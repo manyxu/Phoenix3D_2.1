@@ -37,6 +37,9 @@
     <Filter Include="Pick">
       <UniqueIdentifier>{dfc80d16-4423-48ca-8ca1-f436730d312f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ToLua">
+      <UniqueIdentifier>{aefd709f-6067-4eb0-8561-3c0d07d40c07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -80,9 +83,6 @@
     <ClInclude Include="PX2Creater.hpp">
       <Filter>Edit\Creater</Filter>
     </ClInclude>
-    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="PX2CameraActor.hpp">
       <Filter>Actor</Filter>
     </ClInclude>
@@ -91,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="PX2ActorPickRecord.hpp">
       <Filter>Pick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
+      <Filter>ToLua</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -142,14 +145,14 @@
     <ClCompile Include="PX2EngineLoop_Play.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
     <ClCompile Include="PX2CameraActor.cpp">
       <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="PX2ActorPicker.cpp">
       <Filter>Pick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
+      <Filter>ToLua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

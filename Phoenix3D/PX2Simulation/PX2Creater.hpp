@@ -12,6 +12,11 @@
 #include "PX2UIPicBox.hpp"
 #include "PX2UIText.hpp"
 #include "PX2UIButton.hpp"
+#include "PX2ParticleEmitter.hpp"
+#include "PX2Billboard.hpp"
+#include "PX2BeamEmitter.hpp"
+#include "PX2RibbonEmitter.hpp"
+#include "PX2Soundable.hpp"
 using namespace PX2;
 
 namespace PX2
@@ -47,9 +52,24 @@ namespace PX2
 		UIButton *CreateUIButton(Node *parent, const APoint &pos, bool isPosWorld,
 			bool usePickPos);
 
+		ParticleEmitter *CreateParticleEmitter(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		Billboard *CreateBillboard(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		BeamEmitter *CreateBeamEmitter(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		RibbonEmitter *CreateRibbonEmitter(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		Soundable *CreateSoundable(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+
 		void AddObject(Object *parent, Object *obj,
 			bool command = true);
 		bool RemoveObject(Object *obj, bool command = true);
+
+	protected:
+		APoint _LocalPosCal(Node *parent, const APoint &pos,
+			bool isPosWorld, bool usePickPos);
 
 	public:
 		Node *ConvertToNode(Object *obj);

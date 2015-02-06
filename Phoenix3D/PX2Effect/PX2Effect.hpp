@@ -17,7 +17,6 @@
 #include "PX2EffectObject.hpp"
 
 // EffectNode
-#include "PX2EffectNode.hpp"
 #include "PX2EffectModelNode.hpp"
 
 // Material

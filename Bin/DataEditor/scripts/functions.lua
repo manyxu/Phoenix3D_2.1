@@ -160,6 +160,66 @@ function e_CreateSphere(usePickPos)
 	end
 end
 
+function e_CreateParticles(usePickPos)
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local node = PX2_CREATER:ConvertToNode(selectObj)
+	if nil~=node then
+		local pickPos = PX2_EDIT:GetPickPos()
+		local mov = PX2_CREATER:CreateParticleEmitter(node, pickPos, true, usePickPos)
+		mov.LocalTransform:SetUniformScale(100.0)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+	end
+end
+
+function e_CreateBillboard(usePickPos)
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local node = PX2_CREATER:ConvertToNode(selectObj)
+	if nil~=node then
+		local pickPos = PX2_EDIT:GetPickPos()
+		local mov = PX2_CREATER:CreateBillboard(node, pickPos, true, usePickPos)
+		mov.LocalTransform:SetUniformScale(100.0)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+	end
+end
+
+function e_CreateBeam(usePickPos)
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local node = PX2_CREATER:ConvertToNode(selectObj)
+	if nil~=node then
+		local pickPos = PX2_EDIT:GetPickPos()
+		local mov = PX2_CREATER:CreateBeamEmitter(node, pickPos, true, usePickPos)
+		mov.LocalTransform:SetUniformScale(100.0)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+	end
+end
+
+function e_CreateRobbion(usePickPos)
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local node = PX2_CREATER:ConvertToNode(selectObj)
+	if nil~=node then
+		local pickPos = PX2_EDIT:GetPickPos()
+		local mov = PX2_CREATER:CreateRibbonEmitter(node, pickPos, true, usePickPos)
+		mov.LocalTransform:SetUniformScale(100.0)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+	end
+end
+
+function e_CreateSoundable(usePickPos)
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local node = PX2_CREATER:ConvertToNode(selectObj)
+	if nil~=node then
+		local pickPos = PX2_EDIT:GetPickPos()
+		local mov = PX2_CREATER:CreateSoundable(node, pickPos, true, usePickPos)
+		mov.LocalTransform:SetUniformScale(100.0)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+	end
+end
+
 function e_CreateUIPixBox(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)

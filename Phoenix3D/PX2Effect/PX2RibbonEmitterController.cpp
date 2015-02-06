@@ -1,11 +1,8 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2RibbonEmitterController.cpp
-*
-*/
+// PX2RibbonEmitterController.cpp
 
 #include "PX2RibbonEmitterController.hpp"
 #include "PX2RibbonEmitter.hpp"
+#include "PX2Renderer.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, EffectableController, RibbonEmitterController);

@@ -7,15 +7,15 @@
 #ifndef PX2EFFECTMODELNODE_HPP
 #define PX2EFFECTMODELNODE_HPP
 
-#include "PX2EffectNode.hpp"
 #include "PX2TriMesh.hpp"
 #include "PX2EffectModelNodeController.hpp"
 #include "PX2Shader.hpp"
+#include "PX2Node.hpp"
 
 namespace PX2
 {
 
-	class EffectModelNode : public EffectNode
+	class EffectModelNode : public Node
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

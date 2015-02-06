@@ -8,10 +8,10 @@
 #include "PX2ResourceManager.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, EffectNode, EffectModelNode, 1);
+PX2_IMPLEMENT_RTTI(PX2, Node, EffectModelNode);
 PX2_IMPLEMENT_STREAM(EffectModelNode);
 PX2_IMPLEMENT_FACTORY(EffectModelNode);
-PX2_IMPLEMENT_DEFAULT_NAMES(EffectNode, EffectModelNode);
+PX2_IMPLEMENT_DEFAULT_NAMES(Node, EffectModelNode);
 
 //----------------------------------------------------------------------------
 EffectModelNode::EffectModelNode ()
@@ -78,7 +78,7 @@ void EffectModelNode::SetTextureFilename (const std::string &filename)
 //----------------------------------------------------------------------------
 void EffectModelNode::Reset ()
 {
-	EffectNode::Reset();
+	Node::Reset();
 
 	const Float3 &color = GetColor();
 	float alpha = GetAlpha();
@@ -285,7 +285,7 @@ void EffectModelNode::SetCoordinateType1 (CoordinateType type)
 //----------------------------------------------------------------------------
 void EffectModelNode::RegistProperties ()
 {
-	EffectNode::RegistProperties();
+	Node::RegistProperties();
 
 	AddPropertyClass("EffectModelNode");
 	AddProperty("ModelFilename", PT_STRINGBUTTON, GetModelFilename());
@@ -303,7 +303,7 @@ void EffectModelNode::RegistProperties ()
 //----------------------------------------------------------------------------
 void EffectModelNode::OnPropertyChanged (const PropertyObject &obj)
 {
-	EffectNode::OnPropertyChanged(obj);
+	Node::OnPropertyChanged(obj);
 
 	if ("ModelFilename" == obj.Name)
 	{
@@ -333,7 +333,7 @@ void EffectModelNode::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 EffectModelNode::EffectModelNode (LoadConstructor value)
 	:
-EffectNode(value),
+Node(value),
 mResetFilename(true)
 {
 	mUVSpeed = Float2::ZERO;
@@ -347,7 +347,7 @@ void EffectModelNode::Load (InStream& source)
 {
 	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
 
-	EffectNode::Load(source);
+	Node::Load(source);
 	PX2_VERSION_LOAD(source);
 
 	source.ReadString(mModelFilename);
@@ -355,27 +355,23 @@ void EffectModelNode::Load (InStream& source)
 
 	source.ReadPointer(mEMNCtrl);
 
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		source.ReadString(mTextureFileName);
-		source.ReadEnum(mCT0);
-		source.ReadEnum(mCT1);
-	}
+	source.ReadString(mTextureFileName);
+	source.ReadEnum(mCT0);
+	source.ReadEnum(mCT1);
 
 	PX2_END_DEBUG_STREAM_LOAD(EffectModelNode, source);
 }
 //----------------------------------------------------------------------------
 void EffectModelNode::Link (InStream& source)
 {
-	EffectNode::Link(source);
+	Node::Link(source);
 
 	source.ResolveLink(mEMNCtrl);
 }
 //----------------------------------------------------------------------------
 void EffectModelNode::PostLink ()
 {
-	EffectNode::PostLink();
+	Node::PostLink();
 
 	if (mEMNCtrl)
 	{
@@ -385,7 +381,7 @@ void EffectModelNode::PostLink ()
 //----------------------------------------------------------------------------
 bool EffectModelNode::Register (OutStream& target) const
 {
-	if (EffectNode::Register(target))
+	if (Node::Register(target))
 	{
 		mEMNCtrl->Register(target);
 
@@ -399,7 +395,7 @@ void EffectModelNode::Save (OutStream& target) const
 {
 	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
 
-	EffectNode::Save(target);
+	Node::Save(target);
 	PX2_VERSION_SAVE(target);
 
 	target.WriteString(mModelFilename);
@@ -416,29 +412,16 @@ void EffectModelNode::Save (OutStream& target) const
 //----------------------------------------------------------------------------
 int EffectModelNode::GetStreamingSize (Stream &stream) const
 {
-	int size = EffectNode::GetStreamingSize(stream);
+	int size = Node::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
 	size += PX2_STRINGSIZE(mModelFilename);
 	size += sizeof(mUVSpeed);
 	size += PX2_POINTERSIZE(mEMNCtrl);
 
-	if (stream.IsIn())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size += PX2_STRINGSIZE(mTextureFileName);
-			size += PX2_ENUMSIZE(mCT0);
-			size += PX2_ENUMSIZE(mCT1);
-		}
-	}
-	else
-	{
-		size += PX2_STRINGSIZE(mTextureFileName);
-		size += PX2_ENUMSIZE(mCT0);
-		size += PX2_ENUMSIZE(mCT1);
-	}
+	size += PX2_STRINGSIZE(mTextureFileName);
+	size += PX2_ENUMSIZE(mCT0);
+	size += PX2_ENUMSIZE(mCT1);
 
 	return size;
 }

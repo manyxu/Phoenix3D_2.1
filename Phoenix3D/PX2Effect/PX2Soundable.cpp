@@ -9,7 +9,7 @@
 #include "PX2SoundSystem.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Effectable, Soundable, 2);
+PX2_IMPLEMENT_RTTI(PX2, Effectable, Soundable);
 PX2_IMPLEMENT_STREAM(Soundable);
 PX2_IMPLEMENT_FACTORY(Soundable);
 PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, Soundable)
@@ -20,7 +20,7 @@ std::vector<std::string> Soundable::msModuleNames_EO;
 //----------------------------------------------------------------------------
 Soundable::Soundable (const std::string filename)
 	:
-mSourceType(ST_WAV),
+mSourceType(ST_SOUND),
 mMusicChannel(1),
 mIngoreStopSound(true),
 mIs3D(false),
@@ -73,7 +73,7 @@ void Soundable::PlaySound ()
 	if (mFilename.empty())
 		return;
 
-	if (ST_WAV == mSourceType)
+	if (ST_SOUND == mSourceType)
 	{
 		if (mIs3D)
 		{
@@ -111,7 +111,7 @@ void Soundable::SetVolume (float volume)
 
 	mVolume = volume;
 
-	if (ST_WAV == mSourceType)
+	if (ST_SOUND == mSourceType)
 	{
 		if (mSound)
 			mSound->SetVolume(volume);
@@ -410,20 +410,19 @@ void Soundable::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-Soundable::Soundable (LoadConstructor value)
-	:
+Soundable::Soundable(LoadConstructor value) :
 Effectable(value),
-	mSourceType(ST_WAV),
-	mMusicChannel(1),
-	mIngoreStopSound(true),
-	mIs3D(false),
-	mVolume(1.0f),
-	mIsLoop(false),
-	mMinDistance(5.0f),
-	mMaxDistance(25.0f),
-	mDistanceUseX(true),
-	mDistanceUseY(true),
-	mDistanceUseZ(false)
+mSourceType(ST_SOUND),
+mMusicChannel(1),
+mIngoreStopSound(true),
+mIs3D(false),
+mVolume(1.0f),
+mIsLoop(false),
+mMinDistance(5.0f),
+mMaxDistance(25.0f),
+mDistanceUseX(true),
+mDistanceUseY(true),
+mDistanceUseZ(false)
 {
 }
 //----------------------------------------------------------------------------
@@ -434,6 +433,8 @@ void Soundable::Load (InStream& source)
 	Effectable::Load(source);
 	PX2_VERSION_LOAD(source);
 
+	source.ReadEnum(mSourceType);
+	source.Read(mMusicChannel);
 	source.ReadBool(mIngoreStopSound);
 	source.ReadString(mFilename);
 	source.ReadBool(mIsLoop);
@@ -445,16 +446,6 @@ void Soundable::Load (InStream& source)
 	source.ReadBool(mDistanceUseX);
 	source.ReadBool(mDistanceUseY);
 	source.ReadBool(mDistanceUseZ);
-
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		source.ReadEnum(mSourceType);
-	}
-	if (2 <= readedVersion)
-	{
-		source.Read(mMusicChannel);
-	}
 
 	PX2_END_DEBUG_STREAM_LOAD(Soundable, source);
 }
@@ -485,6 +476,8 @@ void Soundable::Save (OutStream& target) const
 	Effectable::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WriteEnum(mSourceType);
+	target.Write(mMusicChannel);
 	target.WriteBool(mIngoreStopSound);
 	target.WriteString(mFilename);
 	target.WriteBool(mIsLoop);
@@ -497,9 +490,6 @@ void Soundable::Save (OutStream& target) const
 	target.WriteBool(mDistanceUseY);
 	target.WriteBool(mDistanceUseZ);
 
-	target.WriteEnum(mSourceType);
-	target.Write(mMusicChannel);
-
 	PX2_END_DEBUG_STREAM_SAVE(Soundable, target);
 }
 //----------------------------------------------------------------------------
@@ -508,6 +498,8 @@ int Soundable::GetStreamingSize (Stream &stream) const
 	int size = Effectable::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
+	size += PX2_ENUMSIZE(mSourceType);
+	size += sizeof(mMusicChannel);
 	size += PX2_BOOLSIZE(mIngoreStopSound);
 	size += PX2_STRINGSIZE(mFilename);
 	size += PX2_BOOLSIZE(mIsLoop);
@@ -519,24 +511,6 @@ int Soundable::GetStreamingSize (Stream &stream) const
 	size += PX2_BOOLSIZE(mDistanceUseX);
 	size += PX2_BOOLSIZE(mDistanceUseY);
 	size += PX2_BOOLSIZE(mDistanceUseZ);
-
-	if (stream.IsIn())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size += PX2_ENUMSIZE(mSourceType);
-		}
-		if (2 <= readedVersion)
-		{
-			size += sizeof(mMusicChannel);
-		}
-	}
-	else
-	{
-		size += PX2_ENUMSIZE(mSourceType);
-		size += sizeof(mMusicChannel);
-	}
 
 	return size;
 }

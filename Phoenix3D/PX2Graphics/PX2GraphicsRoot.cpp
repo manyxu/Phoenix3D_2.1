@@ -26,7 +26,6 @@ using namespace PX2;
 
 const std::string GraphicsRoot::sEmptyResPath = "EmptyResPath";
 const std::string GraphicsRoot::sTerResPath = "TerResPath";
-std::string GraphicsRoot::PX2Path;
 //----------------------------------------------------------------------------
 GraphicsRoot::GraphicsRoot ()
 {
@@ -53,24 +52,7 @@ GraphicsRoot::~GraphicsRoot ()
 //----------------------------------------------------------------------------
 bool GraphicsRoot::Initlize ()
 {
-	// 你需要创建PX2_PATH环境变量，应用程序依赖于此查找各种资源文件。
-	PX2Path = Environment::GetVariable("PX2_PATH");
-	//if (PX2Path == "")
-	//{
-	//	assertion(false, "Please set the PX2_PATH environment variable.\n");
-	//	FILE* ofile = fopen("ApplicationError.txt", "w");
-	//	fprintf(ofile, "Please set the PX2_PATH environment variable.\n");
-	//	fclose(ofile);
-	//	//return false;
-	//}
-	//PX2Path += "/";
-
 	InitTerm::ExecuteInitializers();
-
-	std::string directory;
-
-	// 应用程序当前目录
-	Environment::InsertDirectory("/");
 
 	// Camera
 #if defined (PX2_USE_DX9)
@@ -120,7 +102,9 @@ bool GraphicsRoot::Terminate ()
 
 	PX2_MATERIALMAN.Terminate();
 
-	mRenderSteps.clear();
+	mRenderStepMap.clear();
+	mRenderStepVec.clear();
+
 	mCamera = 0;
 	mAllLights.clear();
 	mCreatedVFs.clear();
@@ -302,68 +286,106 @@ void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
 	}
 }
 //----------------------------------------------------------------------------
-bool GraphicsRoot::AddRenderStep(RenderStep *step)
+bool GraphicsRoot::AddRenderStep(const char *name, RenderStep *step)
 {
-	if (IsHasRenderStep(step))
+	if (IsHasRenderStep(name))
 		return false;
 
-	mRenderSteps.push_back(step);
+	mRenderStepMap[name] = step;
+	mRenderStepVec.push_back(step);
 
-	std::sort(mRenderSteps.begin(), mRenderSteps.end(), RenderStep::LessThan);
+	std::sort(mRenderStepVec.begin(), mRenderStepVec.end(), RenderStep::LessThan);
 
 	return true;
 }
 //----------------------------------------------------------------------------
-bool GraphicsRoot::IsHasRenderStep(RenderStep *step) const
+bool GraphicsRoot::IsHasRenderStep(const char *name) const
 {
-	for (int i = 0; i < (int)mRenderSteps.size(); i++)
+	return mRenderStepMap.find(name) != mRenderStepMap.end();
+}
+//----------------------------------------------------------------------------
+bool GraphicsRoot::RemoveRenderStep(const char *name)
+{
+	std::map<FString, RenderStepPtr>::iterator it = mRenderStepMap.find(name);
+	if (it != mRenderStepMap.end())
 	{
-		if (step == mRenderSteps[i])
+		std::vector<RenderStep*>::iterator itVec = mRenderStepVec.begin();
+		for (; itVec != mRenderStepVec.end(); itVec++)
 		{
-			return true;
+			if (*itVec == it->second)
+			{
+				mRenderStepVec.erase(itVec);
+			}
 		}
+
+		mRenderStepMap.erase(it);
+		
+		return true;
 	}
 
 	return false;
 }
 //----------------------------------------------------------------------------
-bool GraphicsRoot::RemoveRenderStep(RenderStep *step)
+void GraphicsRoot::RemoveRenderSteps(RenderStep *step)
 {
-	std::vector<RenderStepPtr>::iterator it = mRenderSteps.begin();
-	for (; it != mRenderSteps.end(); it++)
+	std::vector<RenderStep*>::iterator itVec = mRenderStepVec.begin();
+	for (; itVec != mRenderStepVec.end();)
 	{
-		if (*it == step)
+		if (*itVec == step)
 		{
-			mRenderSteps.erase(it);
-
-			return true;
+			itVec = mRenderStepVec.erase(itVec);
+		}
+		else
+		{
+			itVec++;
 		}
 	}
 
-	return false;
+	std::map<FString, RenderStepPtr>::iterator it = mRenderStepMap.begin();
+	for (; it != mRenderStepMap.end();)
+	{
+		if (it->second == step)
+		{
+			it = mRenderStepMap.erase(it);
+		}
+		else
+		{
+			it++;
+		}
+	}
+}
+//----------------------------------------------------------------------------
+RenderStep *GraphicsRoot::GetRenderStep(const char *name)
+{
+	std::map<FString, RenderStepPtr>::iterator it = mRenderStepMap.find(name);
+
+	if (it != mRenderStepMap.end())
+		return it->second;
+
+	return 0;
 }
 //----------------------------------------------------------------------------
 void GraphicsRoot::Update(double appSeconds, double elapsedSeconds)
 {
-	for (int i = 0; i < (int)mRenderSteps.size(); i++)
+	for (int i = 0; i < (int)mRenderStepVec.size(); i++)
 	{
-		mRenderSteps[i]->Update(appSeconds, elapsedSeconds);
+		mRenderStepVec[i]->Update(appSeconds, elapsedSeconds);
 	}
 }
 //----------------------------------------------------------------------------
 void GraphicsRoot::ComputeVisibleSet()
 {
-	for (int i = 0; i < (int)mRenderSteps.size(); i++)
+	for (int i = 0; i < (int)mRenderStepVec.size(); i++)
 	{
-		mRenderSteps[i]->ComputeVisibleSet();
+		mRenderStepVec[i]->ComputeVisibleSet();
 	}
 }
 //----------------------------------------------------------------------------
 void GraphicsRoot::Draw()
 {
-	for (int i = 0; i < (int)mRenderSteps.size(); i++)
+	for (int i = 0; i < (int)mRenderStepVec.size(); i++)
 	{
-		mRenderSteps[i]->Draw();
+		mRenderStepVec[i]->Draw();
 	}
 }
 //----------------------------------------------------------------------------
@@ -397,6 +419,21 @@ VertexFormat *GraphicsRoot::GetVertexFormat(VertexFormatType type)
 			vf = VertexFormat::Create(2,
 				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
 				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0);
+		}
+		else if (VFT_PCT1 == type)
+		{
+			vf = VertexFormat::Create(3,
+				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
+				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0);
+		}
+		else if (VFT_PCT2 == type)
+		{
+			vf = VertexFormat::Create(4,
+				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
+				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0,
+				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 1);
 		}
 
 		mCreatedVFs[type] = vf;

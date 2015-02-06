@@ -312,27 +312,6 @@ void PX2wxAuiTabArt::SetSizingInfo(const wxSize& tab_ctrl_size,
 		m_fixedTabWidth = 120;
 	else
 		m_fixedTabWidth = 60;
-
-	//int tot_width = (int)tab_ctrl_size.x - GetIndentSize() - 4;
-
-	//if (m_flags & wxAUI_NB_CLOSE_BUTTON)
-	//	tot_width -= m_activeCloseBmp.GetWidth();
-	//if (m_flags & wxAUI_NB_WINDOWLIST_BUTTON)
-	//	tot_width -= m_activeWindowListBmp.GetWidth();
-
-	//if (tab_count > 0)
-	//{
-	//	m_fixedTabWidth = tot_width / (int)tab_count;
-	//}
-
-	//if (m_fixedTabWidth < 40)
-	//	m_fixedTabWidth = 40;
-
-	//if (m_fixedTabWidth > tot_width / 2)
-	//	m_fixedTabWidth = tot_width / 2;
-
-	//if (m_fixedTabWidth > 160)
-	//	m_fixedTabWidth = 120;
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)

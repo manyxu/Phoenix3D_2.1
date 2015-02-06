@@ -10,6 +10,16 @@ inline bool Controlledable::IsSelfCtrled () const
 	return mIsSelfCtrled;
 }
 //----------------------------------------------------------------------------
+inline void Controlledable::SetAutoPlay(bool autoPlay)
+{
+	mIsAutoPlay = autoPlay;
+}
+//----------------------------------------------------------------------------
+inline bool Controlledable::IsAutoPlay() const
+{
+	return mIsAutoPlay;
+}
+//----------------------------------------------------------------------------
 inline int Controlledable::GetNumControllers () const
 {
     return (int)mControllers.size();

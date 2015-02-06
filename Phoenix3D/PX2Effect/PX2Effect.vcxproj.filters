@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="PX2EffectPre.hpp" />
-    <ClInclude Include="PX2EffectNode.hpp">
-      <Filter>EffectNode</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Effectable.hpp">
       <Filter>Effectable</Filter>
     </ClInclude>
@@ -145,9 +142,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PX2EffectNode.cpp">
-      <Filter>EffectNode</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Effectable.cpp">
       <Filter>Effectable</Filter>
     </ClCompile>
@@ -269,9 +263,6 @@
     </None>
     <None Include="PX2SoundableController.inl">
       <Filter>Soundable</Filter>
-    </None>
-    <None Include="PX2EffectNode.inl">
-      <Filter>EffectNode</Filter>
     </None>
     <None Include="PX2BeamEmitter.inl">
       <Filter>BeamEmitter</Filter>

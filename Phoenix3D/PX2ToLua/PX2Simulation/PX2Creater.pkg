@@ -27,6 +27,17 @@
 			bool usePickPos);
 		UIButton *CreateUIButton(Node *parent, const APoint &pos, bool isPosWorld,
 			bool usePickPos);
+			
+		ParticleEmitter *CreateParticleEmitter(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		Billboard *CreateBillboard(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		BeamEmitter *CreateBeamEmitter(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		RibbonEmitter *CreateRibbonEmitter(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		Soundable *CreateSoundable(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
 
 		void AddObject(Object *parent, Object *obj,
 			bool command = true);

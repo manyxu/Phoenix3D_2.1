@@ -38,6 +38,8 @@ namespace PX2
 		virtual void Reset ();
 		void SetSelfCtrled (bool selfCtrled);
 		bool IsSelfCtrled () const;
+		void SetAutoPlay(bool autoPlay);
+		bool IsAutoPlay() const;
 
 		// 访问控制对象的控制器
 		int GetNumControllers () const;
@@ -52,6 +54,7 @@ namespace PX2
 
 	private:
 		bool mIsSelfCtrled;
+		bool mIsAutoPlay;
 		std::vector<ControllerPtr> mControllers;
 
 		double mControlUpdateTimeLast;

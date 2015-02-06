@@ -29,8 +29,10 @@ namespace PX2
 		PX2_DECLARE_STREAM(UIPicBox);
 
 	public:
-		UIPicBox(const std::string &filename = "Data/engine/default.png");
-		UIPicBox(const std::string &packName, const std::string &eleName);
+		UIPicBox(const std::string &filename = "Data/engine/default.png",
+			bool isDynamicBuffer=false);
+		UIPicBox(const std::string &packName, const std::string &eleName,
+			bool isDynamicBuffer=false);
 		virtual ~UIPicBox();
 
 		enum PicBoxType
@@ -102,6 +104,8 @@ namespace PX2
 
 		virtual void OnPicked(int info);
 		virtual void OnNotPicked(int pickInfo);
+
+		bool mIsDynamic;
 
 		PicBoxType mPicBoxType;
 		Float2 mAnchorPoint;

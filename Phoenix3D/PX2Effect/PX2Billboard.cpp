@@ -7,6 +7,7 @@
 #include "PX2Billboard.hpp"
 #include "PX2BillboardController.hpp"
 #include "PX2Effectable.hpp"
+#include "PX2Renderer.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI_V(PX2, Effectable, Billboard, 1);
