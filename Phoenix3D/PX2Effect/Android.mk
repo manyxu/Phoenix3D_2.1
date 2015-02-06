@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := PX2Effect1
+LOCAL_MODULE := PX2Effect
 
 LOCAL_SRC_FILES := \
 PX2BeamEmitter.cpp \
