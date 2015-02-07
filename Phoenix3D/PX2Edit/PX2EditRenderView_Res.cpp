@@ -280,16 +280,14 @@ void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &dirPaths,
 		}
 		else
 		{
-			UIPicBox *back = new0 UIPicBox();
-			back->SetTexture("DataEditor/images/boxshadow.png");
+			UIPicBox *back = new0 UIPicBox("DataEditor/images/boxshadow.png");
 			back->SetSize(mItemSize*1.15f, mItemSize*1.15f);
 			back->SetPicBoxType(UIPicBox::PBT_NINE);
 			back->SetTexCornerSize(20.0f, 20.0f);
 			frameContent->AttachChild(back);
 
-			UIPicBox *over = new0 UIPicBox();
+			UIPicBox *over = new0 UIPicBox("DataEditor/images/framebox_blue.png");
 			over->LocalTransform.SetTranslate(APoint(0.0f, -2.0f, 0.0f));
-			over->SetTexture("DataEditor/images/framebox_blue.png");
 			over->SetSize(mItemSize, mItemSize);
 			over->SetPicBoxType(UIPicBox::PBT_NINE);
 			over->SetTexCornerSize(5.0f, 5.0f);

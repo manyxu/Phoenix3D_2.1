@@ -40,8 +40,7 @@ mTexturePathname(filename)
 }
 //----------------------------------------------------------------------------
 UIPicBox::UIPicBox(const std::string &packName, const std::string &eleName,
-	bool isDynamicBuffer)
-:
+	bool isDynamicBuffer) :
 mIsDynamic(isDynamicBuffer),
 mPicBoxType(PBT_NORMAL),
 mAnchorPoint(0.5f, 0.5f),
