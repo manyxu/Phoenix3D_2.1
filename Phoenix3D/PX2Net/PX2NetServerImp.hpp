@@ -15,15 +15,15 @@ namespace PX2
 	class ClientContext
 	{
 	public:
-		void Init(const StreamSocket &s, unsigned int clientid);
+		void Init(px2_socket_t s, unsigned int clientID);
 
 	public:
 		px2_socket_t mSocket;
 		unsigned int mClientID;
 		long mNumPendingIO;
 
-		BufferEvent *m_pBufferEvent;
-		int m_PackageTotalLen;
+		BufferEvent *mBufferEvent;
+		int mPackageTotalLength;
 	};
 
 	class ServerImp
@@ -33,17 +33,17 @@ namespace PX2
 			BufferEventQueue *peventque);
 		virtual ~ServerImp();
 
-		virtual bool Start();
-		virtual void Shutdown();
-
-		int GetNumUsedContext();
-		int GetClientMapSize();
+		virtual bool Start() = 0;
+		virtual void Shutdown() = 0;
 
 		virtual void DisconnectClient(unsigned int clientID) = 0;
 		virtual void DisconnectAll() = 0;
 
+		int GetNumUsedContext();
+		int GetClientMapSize();
+
 	protected:
-		ClientContext *_AllocContext(const StreamSocket &socket);
+		ClientContext *_AllocContext(px2_socket_t socket);
 		void _FreeContext(ClientContext *pcontext);
 		ClientContext *_GetClientContext(unsigned int clientid);
 

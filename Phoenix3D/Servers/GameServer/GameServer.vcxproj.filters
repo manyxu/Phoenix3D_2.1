@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PX2GameServer.cpp">
+      <Filter>GameServer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameServer">
+      <UniqueIdentifier>{ef4cce24-8a7a-4fea-958f-0c8fdb270521}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2GameServer.hpp">
+      <Filter>GameServer</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -36,7 +36,7 @@ namespace PX2
 		};
 		Server(ServerType serverType, int port, int numMaxConnects, 
 			int numMaxMsgHandlers);
-		~Server();
+		virtual ~Server();
 
 		ServerType GetServerType() const;
 
@@ -93,6 +93,8 @@ namespace PX2
 		}
 
 	protected:
+		Server();
+
 		int OnReservedMsg (unsigned int clientid, const void *pbuffer, int buflen);
 		virtual int OnConnect(unsigned int clientid) = 0;
 		virtual int OnDisconnect(unsigned int clientid) = 0;
@@ -107,6 +109,8 @@ namespace PX2
 
 		ServerImpPtr mServerImp;
 	};
+
+	typedef Pointer0<Server> ServerPtr;
 
 }
 

@@ -7,6 +7,21 @@
 using namespace PX2;
 
 //-----------------------------------------------------------------------------
+// ClientContext
+//-----------------------------------------------------------------------------
+void ClientContext::Init(px2_socket_t s, unsigned int clientID)
+{
+	mSocket = s;
+	mClientID = clientID;
+	mNumPendingIO = 0;
+	mBufferEvent = 0;
+	mPackageTotalLength = 0;
+}
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// ServerImp
+//-----------------------------------------------------------------------------
 ServerImp::ServerImp(int port, int numMaxConnects, int numMaxMsgHandlers,
 	BufferEventQueue *peventque) :
 mIsShutdown(true),
@@ -38,7 +53,7 @@ int ServerImp::GetClientMapSize()
 	return int(mClientMap.size());
 }
 //-----------------------------------------------------------------------------
-ClientContext *ServerImp::_AllocContext(const StreamSocket &socket)
+ClientContext *ServerImp::_AllocContext(px2_socket_t socket)
 {
 	ScopedCS cs(&mContextMapMutex);
 
@@ -76,10 +91,10 @@ void ServerImp::_FreeContext(ClientContext *pcontext)
 	//!!!
 	assertion(INVALID_SOCKET==pcontext->mSocket, "");
 
-	if (pcontext->m_pBufferEvent)
+	if (pcontext->mBufferEvent)
 	{
-		mBufferEventQue->FreeBufferEvent(pcontext->m_pBufferEvent);
-		pcontext->m_pBufferEvent = NULL;
+		mBufferEventQue->FreeBufferEvent(pcontext->mBufferEvent);
+		pcontext->mBufferEvent = NULL;
 	}
 
 	mClientMap.erase(pcontext->mClientID);

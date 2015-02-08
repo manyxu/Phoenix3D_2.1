@@ -8,6 +8,10 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
+Server::Server()
+{
+}
+//----------------------------------------------------------------------------
 Server::Server(ServerType serverType, int port, int numMaxConnects, 
 	int numMaxMsgHandlers):
 	mServerType(serverType),
@@ -36,6 +40,10 @@ Server::Server(ServerType serverType, int port, int numMaxConnects,
 	{
 		assertion(false, "not support now");
 	}
+}
+//-----------------------------------------------------------------------------
+Server::~Server()
+{
 }
 //-----------------------------------------------------------------------------
 void Server::LogStatus()

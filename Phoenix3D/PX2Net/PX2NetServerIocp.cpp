@@ -523,16 +523,16 @@ bool ServerIocp::_OnRead(ClientContext *pcontext, OverlapBuffer *pbuf,
 		int num_readbytes = 0;
 		int srclen = pbuf->GetDataLen();
 
-		if (pcontext->m_pBufferEvent)
+		if (pcontext->mBufferEvent)
 		{
-			int need_len = pcontext->m_PackageTotalLen - pcontext->m_pBufferEvent->mDataLength;
+			int need_len = pcontext->mPackageTotalLength - pcontext->mBufferEvent->mDataLength;
 			num_readbytes = need_len <= srclen ? need_len : srclen;
 		}
 		else if (srclen >= PACKAGE_LEN_BYTES)
 		{
 			int pkglen = pbuf->PopUShort();
 			srclen = pbuf->GetDataLen();
-			pcontext->m_PackageTotalLen = pkglen;
+			pcontext->mPackageTotalLength = pkglen;
 
 			BufferEvent *pevent = mBufferEventQue->AllocBufferEvent(pkglen);
 			if (pevent == NULL)
@@ -544,7 +544,7 @@ bool ServerIocp::_OnRead(ClientContext *pcontext, OverlapBuffer *pbuf,
 			}
 
 			pevent->m_ClientID = pcontext->mClientID;
-			pcontext->m_pBufferEvent = pevent;
+			pcontext->mBufferEvent = pevent;
 
 			num_readbytes = pkglen <= srclen ? pkglen : srclen;
 		}
@@ -555,26 +555,26 @@ bool ServerIocp::_OnRead(ClientContext *pcontext, OverlapBuffer *pbuf,
 
 		if (num_readbytes > 0)
 		{
-			assertion(0!=pcontext->m_pBufferEvent, "");
+			assertion(0!=pcontext->mBufferEvent, "");
 
-			char *pdest = pcontext->m_pBufferEvent->PrepareDataSpace(num_readbytes);
+			char *pdest = pcontext->mBufferEvent->PrepareDataSpace(num_readbytes);
 			if (0 != pdest)
 			{
 				pbuf->PopData(pdest, num_readbytes);
 			}
 
-			if (pcontext->m_pBufferEvent->mDataLength >= pcontext->m_PackageTotalLen)
+			if (pcontext->mBufferEvent->mDataLength >= pcontext->mPackageTotalLength)
 			{
-				if (pcontext->m_pBufferEvent->mDataLength != pcontext->m_PackageTotalLen)
+				if (pcontext->mBufferEvent->mDataLength != pcontext->mPackageTotalLength)
 				{
 					mOLBufMgr.FreeBuffer(pbuf);
-					PX2_LOG_ERROR("wrong data received, datalen=%d, pkglen=%d",	pcontext->m_pBufferEvent->mDataLength, pcontext->m_PackageTotalLen);
+					PX2_LOG_ERROR("wrong data received, datalen=%d, pkglen=%d",	pcontext->mBufferEvent->mDataLength, pcontext->mPackageTotalLength);
 					return false;
 				}
 
-				mBufferEventQue->PostBufferEvent(pcontext->m_pBufferEvent);
+				mBufferEventQue->PostBufferEvent(pcontext->mBufferEvent);
 				
-				pcontext->m_pBufferEvent = NULL;
+				pcontext->mBufferEvent = NULL;
 			}
 		}
 		else break;
@@ -586,7 +586,9 @@ bool ServerIocp::_OnRead(ClientContext *pcontext, OverlapBuffer *pbuf,
 bool ServerIocp::_OnWrite(ClientContext *pcontext, OverlapBuffer *pbuf,
 	unsigned int nbytes)
 {
-	if (nbytes != pbuf->GetDataLen())
+	PX2_UNUSED(pcontext);
+
+	if ((int)nbytes != pbuf->GetDataLen())
 	{
 		PX2_LOG_ERROR("write error");
 
