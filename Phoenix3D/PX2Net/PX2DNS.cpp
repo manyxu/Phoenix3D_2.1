@@ -119,7 +119,7 @@ IPAddress DNS::ResolveOne (const std::string &address)
 		return entry.GetAddresses()[0];
 
 	assertion(false, "ResolveOne failed.\n");
-	PX2_LOG_SERVER_ERROR("ResolveOne failed.\n");
+	PX2_LOG_ERROR("ResolveOne failed.\n");
 
 	return IPAddress();
 }
@@ -139,7 +139,7 @@ std::string DNS::GetHostName ()
 	}
 
 	assertion(false, "Cannot get host name.\n");
-	PX2_LOG_SERVER_ERROR("Cannot get host name.");
+	PX2_LOG_ERROR("Cannot get host name.");
 
 	return "";
 }
@@ -164,31 +164,37 @@ void DNS::Error (int code, const std::string& arg)
 	PX2_UNUSED(arg);
 	PX2_UNUSED(code);
 
-	//switch (code)
-	//{
-	//case PX2_ESYSNOTREADY:
-	//	assertion(false, "Net subsystem not ready.\n");
-	//	PX2_LOG_SERVER_ERROR("Net subsystem not ready.\n");
-	//	break;
-	//case PX2_ENOTINIT:
-	//	assertion(false, "Net subsystem not initialized.\n");
-	//	break;
-	//case PX2_HOST_NOT_FOUND:
-	//	assertion(false, "Host not found.\n");
-	//	break;
-	//case PX2_TRY_AGAIN:
-	//	assertion(false, "Temporary DNS error while resolving.\n");
-	//	break;
-	//case PX2_NO_RECOVERY:
-	//	assertion(false, "Non recoverable DNS error while resolving.\n");
-	//	break;
-	//case PX2_NO_DATA:
-	//	assertion(false, "No address found.\n");
-	//	break;
-	//default:
-	//	assertion(false, "%d", code);
-	//	break;
-	//}
+	switch (code)
+	{
+	case PX2_ESYSNOTREADY:
+		assertion(false, "Net subsystem not ready.\n");
+		PX2_LOG_ERROR("Net subsystem not ready.");
+		break;
+	case PX2_ENOTINIT:
+		assertion(false, "Net subsystem not initialized.\n");
+		PX2_LOG_ERROR("Net subsystem not initialized.");
+		break;
+	case PX2_HOST_NOT_FOUND:
+		assertion(false, "Host not found.\n");
+		PX2_LOG_ERROR("Host not found.");
+		break;
+	case PX2_TRY_AGAIN:
+		assertion(false, "Temporary DNS error while resolving.\n");
+		PX2_LOG_ERROR("Temporary DNS error while resolving.");
+		break;
+	case PX2_NO_RECOVERY:
+		assertion(false, "Non recoverable DNS error while resolving.\n");
+		PX2_LOG_ERROR("Non recoverable DNS error while resolving.");
+		break;
+	case PX2_NO_DATA:
+		assertion(false, "No address found.\n");
+		PX2_LOG_ERROR("No address found.");
+		break;
+	default:
+		assertion(false, "%d \n", code);
+		PX2_LOG_ERROR("%d", code);
+		break;
+	}
 }
 //----------------------------------------------------------------------------
 void DNS::Aierror (int code, const std::string& arg)
@@ -196,38 +202,44 @@ void DNS::Aierror (int code, const std::string& arg)
 	PX2_UNUSED(arg);
 	PX2_UNUSED(code);
 
-//#if defined(PX2_HAVE_IPV6)
-//	switch (code)
-//	{
-//	case EAI_AGAIN:
-//		assertion(false, "Temporary DNS error while resolving.\n");
-//		break;
-//	case EAI_FAIL:
-//		assertion(false, "Non recoverable DNS error while resolving.\n");
-//#if !defined(_WIN32) && !defined(WIN32)
-//#if defined(EAI_NODATA)
-//	case EAI_NODATA:
-//		assertion(false, "no address found.\n");
-//		break;
-//#endif
-//#endif
-//	case EAI_NONAME:
-//		assertion(false, "Hose not found.\n");
-//		break;
-//#if defined(EAI_SYSTEM)
-//	case EAI_SYSTEM:
-//		error(lastError(), arg);
-//		break;
-//#endif
-//#if defined(_WIN32) || defined(WIN32)
-//	case WSANO_DATA:
-//		assertion(false, "Host not found.\n");
-//		break;
-//#endif
-//	default:
-//		assertion(false, "EAI:%d", code);
-//		break;
-//	}
-//#endif // PX2_HAVE_IPV6
+#if defined(PX2_HAVE_IPV6) || defined(PX2_HAVE_ADDRINFO)
+	switch (code)
+	{
+	case EAI_AGAIN:
+		assertion(false, "Temporary DNS error while resolving.\n");
+		PX2_LOG_ERROR("Temporary DNS error while resolving.");
+		break;
+	case EAI_FAIL:
+		assertion(false, "Non recoverable DNS error while resolving.\n");
+		PX2_LOG_ERROR("Non recoverable DNS error while resolving.");
+#if !defined(_WIN32) && !defined(WIN32)
+#if defined(EAI_NODATA)
+	case EAI_NODATA:
+		assertion(false, "no address found.\n");
+		PX2_LOG_ERROR("no address found.");
+		break;
+#endif
+#endif
+	case EAI_NONAME:
+		assertion(false, "Hose not found.\n");
+		PX2_LOG_ERROR("Hose not found.");
+		break;
+#if defined(EAI_SYSTEM)
+	case EAI_SYSTEM:
+		error(lastError(), arg);
+		break;
+#endif
+#if defined(_WIN32) || defined(WIN32)
+	case WSANO_DATA:
+		assertion(false, "Host not found.\n");
+		PX2_LOG_ERROR("Host not found.");
+		break;
+#endif
+	default:
+		assertion(false, "EAI:%d", code);
+		PX2_LOG_ERROR("EAI:%d", code);
+		break;
+	}
+#endif // PX2_HAVE_IPV6
 }
 //----------------------------------------------------------------------------

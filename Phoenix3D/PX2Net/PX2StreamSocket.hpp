@@ -1,15 +1,10 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2StreamSocket.hpp
-*
-*/
+// PX2NetStreamSocket.hpp
 
 #ifndef PX2STREAMSOCKET_HPP
 #define PX2STREAMSOCKET_HPP
 
 #include "PX2NetPre.hpp"
 #include "PX2Socket.hpp"
-#include "PX2StreamSocketImpl.hpp"
 
 namespace PX2
 {
@@ -21,6 +16,8 @@ namespace PX2
 		explicit StreamSocket(const SocketAddress& address);
 		explicit StreamSocket(IPAddress::Family family);
 		StreamSocket(const Socket& socket);
+		StreamSocket(px2_socket_t socket);
+		StreamSocket(SocketImpl* impl);
 		virtual ~StreamSocket();
 
 		StreamSocket& operator = (const Socket& socket);
@@ -37,8 +34,6 @@ namespace PX2
 		int ReceiveBytes(void* buffer, int length, int flags = 0);
 
 		void SendUrgent(unsigned char data);
-
-		StreamSocket (SocketImpl* impl);
 
 	private:
 		enum

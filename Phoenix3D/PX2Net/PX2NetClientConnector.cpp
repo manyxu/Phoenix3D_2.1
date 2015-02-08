@@ -4,7 +4,7 @@
 *
 */
 
-#include "PX2NetClientConnect.hpp"
+#include "PX2NetClientConnector.hpp"
 #include "PX2Log.hpp"
 #include "PX2SocketImpl.hpp"
 #include "PX2NetError.hpp"
@@ -15,7 +15,7 @@ using namespace PX2;
 const int max_recvbuf = 64*1024;
 const int max_sendbuf = 64*1024;
 //----------------------------------------------------------------------------
-int ClientConnect::ClientOnRead()
+int ClientConnector::_ClientOnRead()
 {
 	int nbytes = mSocket.ReceiveBytes(mRecvBuf+mRecvLen, max_recvbuf-mRecvLen, 0);
 
@@ -49,7 +49,7 @@ int ClientConnect::ClientOnRead()
 	return 0;
 }
 //----------------------------------------------------------------------------
-int ClientConnect::ClientOnWrite()
+int ClientConnector::_ClientOnWrite()
 {
 	if(mSendLen == 0)
 	{
@@ -76,10 +76,10 @@ int ClientConnect::ClientOnWrite()
 			return -1;
 		}
 
-		assert(pevent->m_DataLen+2 <= max_sendbuf);
-		*(unsigned short *)mSendBuf = (unsigned short)pevent->m_DataLen;
-		memcpy(mSendBuf+2, pevent->m_Buffer, pevent->m_DataLen);
-		mSendLen = pevent->m_DataLen + 2;
+		assert(pevent->mDataLength+2 <= max_sendbuf);
+		*(unsigned short *)mSendBuf = (unsigned short)pevent->mDataLength;
+		memcpy(mSendBuf+2, pevent->mBuffer, pevent->mDataLength);
+		mSendLen = pevent->mDataLength + 2;
 
 		/* 不再使用底层的检查断线机制
 		if(mMsgHandlers[msgid].need_answer)
@@ -106,7 +106,7 @@ int ClientConnect::ClientOnWrite()
 	return 0;
 }
 //----------------------------------------------------------------------------
-ClientConnect::ClientConnect(int num_msghandlers) 
+ClientConnector::ClientConnector(int num_msghandlers) 
 	: 
 mConnectState(CONNSTATE_INIT),
 mConnStateTime(0)
@@ -121,10 +121,10 @@ mConnStateTime(0)
 
 	ServerMsgDesc tmpdesc = {NULL, false, -1};
 	mMsgHandlers.resize(num_msghandlers, tmpdesc);
-	RegisterHandler(0, &ClientConnect::OnReservedMsg);
+	RegisterHandler(0, &ClientConnector::_OnReservedMsg);
 }
 //----------------------------------------------------------------------------
-ClientConnect::~ClientConnect()
+ClientConnector::~ClientConnector()
 {
 	delete mSendQue;
 	delete mRecvQue;
@@ -132,7 +132,7 @@ ClientConnect::~ClientConnect()
 	delete[] mSendBuf;
 }
 //----------------------------------------------------------------------------
-void ClientConnect::InternalConnect()
+void ClientConnector::_InternalConnect()
 {
 	mRecvLen = 0;
 	mSendLen = 0;
@@ -157,15 +157,21 @@ void ClientConnect::InternalConnect()
 	SetConnectState(CONNSTATE_CONNECTED);
 }
 //----------------------------------------------------------------------------
-int ClientConnect::Connect (const SocketAddress &addr)
+int ClientConnector::Connect(const std::string &ip, int16_t port)
+{
+	SocketAddress sa(ip, port);
+	return Connect(sa);
+}
+//----------------------------------------------------------------------------
+int ClientConnector::Connect (const SocketAddress &addr)
 {
 	mAddr = addr;
 	
-	InternalConnect();
+	_InternalConnect();
 	return 0;
 }
 //----------------------------------------------------------------------------
-void ClientConnect::InternalDisconnect()
+void ClientConnector::_InternalDisconnect()
 {
 	mRecvLen = 0;
 	mSendLen = 0;
@@ -173,22 +179,21 @@ void ClientConnect::InternalDisconnect()
 	mSocket.Shutdown();
 	mSocket.Close();
 }
-
 //----------------------------------------------------------------------------
-int ClientConnect::Disconnect()
+int ClientConnector::Disconnect()
 {
-	InternalDisconnect();
+	_InternalDisconnect();
 	SetConnectState(CONNSTATE_INIT);
 
 	return 0;
 }
 //----------------------------------------------------------------------------
-int ClientConnect::Reconnect(BufferEvent *pevent)
+int ClientConnector::Reconnect(BufferEvent *pevent)
 {
 	assert(mConnectState == CONNSTATE_CONN_ERROR);
 
-	InternalDisconnect();
-	InternalConnect();
+	_InternalDisconnect();
+	_InternalConnect();
 
 	if(mConnectState == CONNSTATE_CONN_ERROR)
 	{
@@ -209,7 +214,7 @@ int ClientConnect::Reconnect(BufferEvent *pevent)
 	return 0;
 }
 //----------------------------------------------------------------------------
-void ClientConnect::RegisterHandler(int msgid, ServerMsgHandleFunc msgfunc, bool need_answer, int other_answer_msg)
+void ClientConnector::RegisterHandler(int msgid, ServerMsgHandleFunc msgfunc, bool need_answer, int other_answer_msg)
 {
 	assert(msgid>=0 && msgid<int(mMsgHandlers.size()));
 
@@ -218,7 +223,7 @@ void ClientConnect::RegisterHandler(int msgid, ServerMsgHandleFunc msgfunc, bool
 	mMsgHandlers[msgid].other_answermsg = other_answer_msg;
 }
 //----------------------------------------------------------------------------
-int ClientConnect::OnReservedMsg(const void *pbuffer, int buflen)
+int ClientConnector::_OnReservedMsg(const void *pbuffer, int buflen)
 {
 	PX2_UNUSED(buflen);
 
@@ -233,7 +238,7 @@ int ClientConnect::OnReservedMsg(const void *pbuffer, int buflen)
 	return 0;
 }
 //----------------------------------------------------------------------------
-int ClientConnect::Update(float elapsedSeconds)
+int ClientConnector::Update(float elapsedSeconds)
 {
 	mConnStateTime += elapsedSeconds;
 	if (CONNSTATE_INIT == mConnectState || CONNSTATE_CONN_ERROR == mConnectState)
@@ -279,7 +284,7 @@ int ClientConnect::Update(float elapsedSeconds)
 	{
 		if(listRead.size() > 0)
 		{
-			if (ClientOnRead() < 0)
+			if (_ClientOnRead() < 0)
 			{
 				SetConnectState(CONNSTATE_CONN_ERROR);
 				return -1;
@@ -288,7 +293,7 @@ int ClientConnect::Update(float elapsedSeconds)
 
 		if(listWrite.size() > 0)
 		{
-			if(ClientOnWrite() < 0)
+			if(_ClientOnWrite() < 0)
 			{
 				SetConnectState(CONNSTATE_CONN_ERROR);
 				return -1;
@@ -301,11 +306,11 @@ int ClientConnect::Update(float elapsedSeconds)
 			return -1;
 		}
 	}
-	return HandleServerMsg();
+	return _HandleServerMsg();
 }
 
 //----------------------------------------------------------------------------
-void ClientConnect::ConfirmMsgCome(int msgid)
+void ClientConnector::_ConfirmMsgCome(int msgid)
 {
 	std::vector<BufferEvent *>::iterator iter = mWaitConfirmMsg.begin();
 	for(; iter!=mWaitConfirmMsg.end(); iter++)
@@ -326,16 +331,16 @@ void ClientConnect::ConfirmMsgCome(int msgid)
 	}
 }
 //----------------------------------------------------------------------------
-int ClientConnect::HandleServerBufferEvent(BufferEvent *pevent)
+int ClientConnector::_HandleServerBufferEvent(BufferEvent *pevent)
 {
-	int msgid = ReadMessageID(pevent->m_Buffer);
+	int msgid = ReadMessageID(pevent->mBuffer);
 
 	if(msgid<0 || msgid>=int(mMsgHandlers.size()))
 	{
 		return -2;
 	}
 
-	ConfirmMsgCome(msgid);
+	_ConfirmMsgCome(msgid);
 
 	ServerMsgHandleFunc func = mMsgHandlers[msgid].handler;
 	if(func == NULL)
@@ -343,19 +348,19 @@ int ClientConnect::HandleServerBufferEvent(BufferEvent *pevent)
 		return -3;
 	}
 
-	if((this->*func)(pevent->m_Buffer+MSGID_BYTES, pevent->m_DataLen-MSGID_BYTES) < 0)
+	if((this->*func)(pevent->mBuffer+MSGID_BYTES, pevent->mDataLength-MSGID_BYTES) < 0)
 	{
 		return -4;
 	}
 	return 0;
 }
 
-int ClientConnect::HandleServerMsg()
+int ClientConnector::_HandleServerMsg()
 {
 	BufferEvent *pevent;
 	while((pevent=mRecvQue->PopBufferEvent()) != NULL)
 	{
-		int ret = HandleServerBufferEvent(pevent);
+		int ret = _HandleServerBufferEvent(pevent);
 		mRecvQue->FreeBufferEvent(pevent);
 
 		if(ret < 0) return ret;

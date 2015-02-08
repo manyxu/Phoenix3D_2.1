@@ -8,7 +8,6 @@
 #include "PX2Thread.hpp"
 using namespace PX2;
 
-Pointer0<SocketImpl> SocketImplPtr;
 //----------------------------------------------------------------------------
 StreamSocketImpl::StreamSocketImpl()
 {
@@ -33,8 +32,7 @@ StreamSocketImpl::StreamSocketImpl(IPAddress::Family family)
 	}
 }
 //----------------------------------------------------------------------------
-StreamSocketImpl::StreamSocketImpl(px2_socket_t sockfd)
-	:
+StreamSocketImpl::StreamSocketImpl(px2_socket_t sockfd) :
 SocketImpl(sockfd)
 {
 }

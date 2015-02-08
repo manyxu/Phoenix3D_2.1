@@ -21,7 +21,7 @@ namespace PX2
 		if (WSAStartup(version, &data) != 0)
 		{
 			assertion(false, "Failed to initialize network subsystem.\n");
-			PX2_LOG_SERVER_ERROR("Failed to initialize network subsystem.");
+			PX2_LOG_ERROR("Failed to initialize network subsystem.");
 		}
 #endif
 	}

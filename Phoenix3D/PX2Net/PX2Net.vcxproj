@@ -78,18 +78,24 @@
     <ClInclude Include="PX2IPv6AddressImpl.hpp" />
     <ClInclude Include="PX2IPv6SocketAddressImpl.hpp" />
     <ClInclude Include="PX2Net.hpp" />
-    <ClInclude Include="PX2NetClientConnect.hpp" />
+    <ClInclude Include="PX2NetClientConnector.hpp" />
     <ClInclude Include="PX2NetDefine.hpp" />
     <ClInclude Include="PX2NetError.hpp" />
     <ClInclude Include="PX2NetEventBuffer.hpp" />
     <ClInclude Include="PX2NetInitTerm.hpp" />
+    <ClInclude Include="PX2NetIocpOverlapBuffer.h" />
     <ClInclude Include="PX2NetPre.hpp" />
+    <ClInclude Include="PX2NetServer.hpp" />
+    <ClInclude Include="PX2NetServerImp.hpp" />
+    <ClInclude Include="PX2NetServerIocp.hpp" />
+    <ClInclude Include="PX2ServerSocketImpl.hpp" />
     <ClInclude Include="PX2Socket.hpp" />
     <ClInclude Include="PX2SocketAddress.hpp" />
     <ClInclude Include="PX2SocketAddressImpl.hpp" />
     <ClInclude Include="PX2SocketImpl.hpp" />
     <ClInclude Include="PX2StreamSocket.hpp" />
     <ClInclude Include="PX2StreamSocketImpl.hpp" />
+    <ClInclude Include="PX2ServerSocket.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="google\protobuf\compiler\code_generator.cc" />
@@ -141,10 +147,16 @@
     <ClCompile Include="PX2IPv4SocketAddressImpl.cpp" />
     <ClCompile Include="PX2IPv6AddressImpl.cpp" />
     <ClCompile Include="PX2IPv6SocketAddressImpl.cpp" />
-    <ClCompile Include="PX2NetClientConnect.cpp" />
+    <ClCompile Include="PX2NetClientConnector.cpp" />
     <ClCompile Include="PX2NetError.cpp" />
     <ClCompile Include="PX2NetEventBuffer.cpp" />
     <ClCompile Include="PX2NetInitTerm.cpp" />
+    <ClCompile Include="PX2NetIocpOverlapBuffer.cpp" />
+    <ClCompile Include="PX2NetServer.cpp" />
+    <ClCompile Include="PX2NetServerImp.cpp" />
+    <ClCompile Include="PX2NetServerIocp.cpp" />
+    <ClCompile Include="PX2ServerSocket.cpp" />
+    <ClCompile Include="PX2ServerSocketImpl.cpp" />
     <ClCompile Include="PX2Socket.cpp" />
     <ClCompile Include="PX2SocketAddress.cpp" />
     <ClCompile Include="PX2SocketAddressImpl.cpp" />
@@ -153,8 +165,9 @@
     <ClCompile Include="PX2StreamSocketImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PX2NetClientConnect.inl" />
+    <None Include="PX2NetClientConnector.inl" />
     <None Include="PX2NetEventBuffer.inl" />
+    <None Include="PX2NetServerIocp.inl" />
     <None Include="PX2Socket.inl" />
     <None Include="PX2SocketImpl.inl" />
   </ItemGroup>
@@ -162,7 +175,7 @@
     <ProjectGuid>{63DA84DC-BD58-477E-BC56-17F6CCA3237C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>PX2Net1_VC100</RootNamespace>
-    <ProjectName>PX2Net1</ProjectName>
+    <ProjectName>PX2Net</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -215,7 +228,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>PX2Net1D</TargetName>
+    <TargetName>PX2NetD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>

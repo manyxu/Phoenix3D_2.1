@@ -128,11 +128,6 @@ namespace PX2
 		void Ioctl (px2_ioctl_request_t request, int &arg);
 		void Ioctl (px2_ioctl_request_t request, void *arg);
 
-#if defined(__LINUX__) || defined(__APPLE__)
-		int Fcntl (px2_fcntl_request_t request);
-		int Fcntl (px2_fcntl_request_t request, long arg);
-#endif
-
 	protected:
 		SocketImpl();
 		SocketImpl(px2_socket_t sockfd);

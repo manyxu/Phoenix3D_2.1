@@ -174,15 +174,6 @@ void Logger::LogMessage (int level, long line, const char* fileName,
 	case LT_USER:
 		errorFlag = " [USER] ";
 		break;
-	case LT_SERVER_INFO:
-		errorFlag = " [SERVER_INFO] ";
-		break;
-	case LT_SERVER_ERROR:
-		errorFlag = " [SERVER_ERROR] ";
-		break;
-	case LT_SERVER_USER:
-		errorFlag = " [SERVER_USER] ";
-		break;
 	default:
 		errorFlag = " [UNKNOWN] ";
 		break;

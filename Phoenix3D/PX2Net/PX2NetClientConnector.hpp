@@ -25,19 +25,20 @@ namespace PX2
 		CONNSTATE_WAITSERVER, //向服务器发送完消息， 等待回复消息
 	};
 
-	class ClientConnect
+	class ClientConnector
 	{
 	public:
-		typedef int (ClientConnect::*ServerMsgHandleFunc)(const void *pbuffer, int buflen);
+		typedef int (ClientConnector::*ServerMsgHandleFunc)(const void *pbuffer, int buflen);
 
 	public:
-		ClientConnect(int num_msghandlers);
-		virtual ~ClientConnect();
+		ClientConnector(int num_msghandlers);
+		virtual ~ClientConnector();
 
 		void RegisterHandler(int msgid, ServerMsgHandleFunc msgfunc, bool need_answer=true, int other_answer_msg=-1);
 
 		StreamSocket &GetSocket ();
-		int Connect (const SocketAddress &addr);
+		int Connect(const std::string &ip, int16_t port);
+		int Connect(const SocketAddress &addr);
 		int Disconnect();
 		int GetConnectState ();
 		void SetConnectState(int state);
@@ -47,25 +48,10 @@ namespace PX2
 		int Reconnect(BufferEvent *pevent=NULL); 
 
 		template<class T>
-		int SendMsgToServer(int msgid, const T &msg)
-		{
-			BufferEvent *pevent = MsgToBufferEvent(msgid, msg, mSendQue);
-			if(pevent == 0) return -1;
-			mSendQue->PostBufferEvent(pevent);
-
-			/*
-			if(mConnectState==CONNSTATE_CONNECTED && mMsgHandlers[msgid].need_answer)
-			{
-				SetConnectState(CONNSTATE_WAITSERVER);
-			}*/
-			return 0;
-		}
+		int SendMsgToServer(int msgid, const T &msg);
 
 		template<class T>
-		BufferEvent *CreateSendEvent(int msgid, const T &msg)
-		{
-			return MsgToBufferEvent(msgid, msg, mSendQue);
-		}
+		BufferEvent *CreateSendEvent(int msgid, const T &msg);
 
 		int Update(float elapsedSeconds);
 
@@ -98,19 +84,19 @@ namespace PX2
 		StreamSocket mSocket;
 
 	private:
-		void InternalConnect();
-		void InternalDisconnect();
-		void ConfirmMsgCome(int msgid); //对每条服务器消息， 判断是否是之前发出消息的返回消息， 如果是， 清理掉等待服务器消息
-		int HandleServerMsg ();
-		int HandleServerBufferEvent(BufferEvent *pevent);
-		int OnReservedMsg (const void *pbuffer, int buflen);
-		int ClientOnRead();
-		int ClientOnWrite();
+		void _InternalConnect();
+		void _InternalDisconnect();
+		void _ConfirmMsgCome(int msgid); //对每条服务器消息， 判断是否是之前发出消息的返回消息， 如果是， 清理掉等待服务器消息
+		int _HandleServerMsg ();
+		int _HandleServerBufferEvent(BufferEvent *pevent);
+		int _OnReservedMsg (const void *pbuffer, int buflen);
+		int _ClientOnRead();
+		int _ClientOnWrite();
 	};
 
-#include "PX2NetClientConnect.inl"
+#include "PX2NetClientConnector.inl"
 
-	typedef Pointer0<ClientConnect> ClientConnectPtr;
+	typedef Pointer0<ClientConnector> ClientConnectPtr;
 
 }
 

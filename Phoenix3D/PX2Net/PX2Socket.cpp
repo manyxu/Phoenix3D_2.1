@@ -11,24 +11,26 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-Socket::Socket()
-	:
+Socket::Socket() :
 mImpl(new0 StreamSocketImpl())
 {
 }
 //----------------------------------------------------------------------------
-Socket::Socket (SocketImpl *impl)
-	:
+Socket::Socket (SocketImpl *impl) :
 mImpl(impl)
 {
 	assertion(0!=mImpl, "_pImpl must not be 0.\n");
 }
 //----------------------------------------------------------------------------
-Socket::Socket(const Socket& socket)
-:
+Socket::Socket(const Socket& socket) :
 mImpl(socket.mImpl)
 {
 		assertion(0!=mImpl, "mImpl must not be 0.\n");
+}
+//----------------------------------------------------------------------------
+Socket::Socket(px2_socket_t socket) :
+mImpl(new0 StreamSocketImpl(socket))
+{
 }
 //----------------------------------------------------------------------------
 Socket& Socket::operator = (const Socket& socket)

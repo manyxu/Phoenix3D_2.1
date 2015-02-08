@@ -24,6 +24,7 @@ namespace PX2
 	public:
 		Socket();
 		Socket(const Socket& socket);
+		Socket(px2_socket_t socket);
 		Socket& operator = (const Socket& socket);
 		virtual ~Socket();
 

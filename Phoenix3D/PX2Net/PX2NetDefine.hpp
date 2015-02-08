@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2NetDefine.hpp
-*
-*/
+// PX2NetDefine.hpp
 
 #ifndef PX2NETDEFINE_HPP
 #define PX2NETDEFINE_HPP

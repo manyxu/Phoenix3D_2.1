@@ -34,9 +34,9 @@ namespace PX2
 	public:
 		unsigned int m_ClientID;
 		int m_BufferSize;
-		int m_DataLen;
+		int mDataLength;
 
-		char m_Buffer[1];
+		char mBuffer[1];
 	};
 
 
@@ -63,7 +63,7 @@ namespace PX2
 	class BufferEventQueue
 	{
 	public:
-		//minbufsize, maxbufsize must be pow of 2
+		// minbufsize, maxbufsize must be pow of 2
 		BufferEventQueue(int minbufsize, int maxbufsize, int *max_events);
 		~BufferEventQueue();
 
@@ -130,15 +130,15 @@ namespace PX2
 		BufferEvent *pevent = peventque->AllocBufferEvent(nbytes + MSGID_BYTES);
 		if(pevent == 0) return 0;
 
-		WriteMessageID(pevent->m_Buffer, msgid);
-		if(!msg.SerializeToArray(pevent->m_Buffer+MSGID_BYTES, nbytes))
+		WriteMessageID(pevent->mBuffer, msgid);
+		if(!msg.SerializeToArray(pevent->mBuffer+MSGID_BYTES, nbytes))
 		{
 			peventque->FreeBufferEvent(pevent);
-			assert(0);
+			assert(false);
 			return 0;
 		}
 
-		pevent->m_DataLen = nbytes + MSGID_BYTES;
+		pevent->mDataLength = nbytes + MSGID_BYTES;
 		return pevent;
 	}
 
@@ -153,7 +153,7 @@ namespace PX2
 
 		if(!msg.SerializeToArray(buffer+MSGLEN_BYTES+MSGID_BYTES, nbytes))
 		{
-			assert(0);
+			assert(false);
 			return -1;
 		}
 

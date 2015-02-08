@@ -1,452 +1,503 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Clinet">
-      <UniqueIdentifier>{82bd3edf-d3bf-4428-bfa6-4cd3f6d6b536}</UniqueIdentifier>
+    <Filter Include="BaseCore">
+      <UniqueIdentifier>{7f67daed-4473-43be-be6e-6c31dffd1144}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sockets">
-      <UniqueIdentifier>{aa2cf35c-346d-4ce8-8544-a08ec7a09f57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EventBuffer">
-      <UniqueIdentifier>{3e1a784d-bb79-477c-adea-158e1a67e68b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Base">
-      <UniqueIdentifier>{0fd95756-ccc5-4198-a9c4-18da24790ac5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="InitTerm">
+    <Filter Include="BaseCore\InitTerm">
       <UniqueIdentifier>{7b61dd9b-ce7b-4307-a06f-6b9016e17ee0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Address">
+    <Filter Include="BaseCore\Base">
+      <UniqueIdentifier>{0fd95756-ccc5-4198-a9c4-18da24790ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BaseCore\Address">
       <UniqueIdentifier>{32a349de-8c81-4e31-bdd4-20d2b3c53b5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Address\IPAddr">
+    <Filter Include="BaseCore\Address\IPAddr">
       <UniqueIdentifier>{0c8ded3a-d5bf-41ed-8d77-92dc1804b27f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Address\SocketAddr">
+    <Filter Include="BaseCore\Address\SocketAddr">
       <UniqueIdentifier>{94a302bd-de49-47ef-ba89-51bc037ab45c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Google">
+    <Filter Include="BaseCore\Sockets">
+      <UniqueIdentifier>{aa2cf35c-346d-4ce8-8544-a08ec7a09f57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BaseCore\Error">
+      <UniqueIdentifier>{2e5e1fae-c9ea-40bb-9d95-7fcf428cd578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Proto">
+      <UniqueIdentifier>{398d5245-805e-4245-bc5b-c8b61aa25bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Proto\Google">
       <UniqueIdentifier>{16f7f912-6829-42a8-be8c-79ad1bddded1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Google\protobuf">
+    <Filter Include="Proto\Google\protobuf">
       <UniqueIdentifier>{fc64adc0-fb5f-406e-9dda-46f748fe531b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Google\protobuf\stubs">
+    <Filter Include="Proto\Google\protobuf\stubs">
       <UniqueIdentifier>{d949b11a-54b7-454f-9aec-56bca026766f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Google\protobuf\io">
+    <Filter Include="Proto\Google\protobuf\io">
       <UniqueIdentifier>{0c6cac49-dcfb-412b-a363-9a977682db1d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Google\protobuf\testing">
+    <Filter Include="Proto\Google\protobuf\testing">
       <UniqueIdentifier>{4fa58215-aa36-4e10-97a2-4aa5414d2cc6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Google\protobuf\compiler">
+    <Filter Include="Proto\Google\protobuf\compiler">
       <UniqueIdentifier>{f4770123-58cc-40bd-8fd9-ffb1e3eb0ea7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Error">
-      <UniqueIdentifier>{2e5e1fae-c9ea-40bb-9d95-7fcf428cd578}</UniqueIdentifier>
+    <Filter Include="HighLevel">
+      <UniqueIdentifier>{cc513c61-efd3-4679-83c4-de4b34832c56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HighLevel\EventBuffer">
+      <UniqueIdentifier>{3e1a784d-bb79-477c-adea-158e1a67e68b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HighLevel\Connector">
+      <UniqueIdentifier>{82bd3edf-d3bf-4428-bfa6-4cd3f6d6b536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HighLevel\Server">
+      <UniqueIdentifier>{db289bd6-abbf-44b8-8781-25f691697108}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2NetPre.hpp" />
     <ClInclude Include="PX2NetEventBuffer.hpp">
-      <Filter>EventBuffer</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2NetClientConnect.hpp">
-      <Filter>Clinet</Filter>
+      <Filter>HighLevel\EventBuffer</Filter>
     </ClInclude>
     <ClInclude Include="PX2NetInitTerm.hpp">
-      <Filter>InitTerm</Filter>
+      <Filter>BaseCore\InitTerm</Filter>
     </ClInclude>
     <ClInclude Include="PX2Net.hpp" />
     <ClInclude Include="PX2Socket.hpp">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
     </ClInclude>
     <ClInclude Include="PX2NetDefine.hpp" />
     <ClInclude Include="PX2SocketImpl.hpp">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
     </ClInclude>
     <ClInclude Include="PX2IPAddressImpl.hpp">
-      <Filter>Address\IPAddr</Filter>
+      <Filter>BaseCore\Address\IPAddr</Filter>
     </ClInclude>
     <ClInclude Include="PX2IPv4AddressImpl.hpp">
-      <Filter>Address\IPAddr</Filter>
+      <Filter>BaseCore\Address\IPAddr</Filter>
     </ClInclude>
     <ClInclude Include="PX2IPv6AddressImpl.hpp">
-      <Filter>Address\IPAddr</Filter>
+      <Filter>BaseCore\Address\IPAddr</Filter>
     </ClInclude>
     <ClInclude Include="PX2IPAddress.hpp">
-      <Filter>Address\IPAddr</Filter>
+      <Filter>BaseCore\Address\IPAddr</Filter>
     </ClInclude>
     <ClInclude Include="PX2SocketAddress.hpp">
-      <Filter>Address\SocketAddr</Filter>
+      <Filter>BaseCore\Address\SocketAddr</Filter>
     </ClInclude>
     <ClInclude Include="PX2DNS.hpp">
-      <Filter>Base</Filter>
+      <Filter>BaseCore\Base</Filter>
     </ClInclude>
     <ClInclude Include="PX2HostEntry.hpp">
-      <Filter>Base</Filter>
+      <Filter>BaseCore\Base</Filter>
     </ClInclude>
     <ClInclude Include="PX2SocketAddressImpl.hpp">
-      <Filter>Address\SocketAddr</Filter>
+      <Filter>BaseCore\Address\SocketAddr</Filter>
     </ClInclude>
     <ClInclude Include="PX2IPv4SocketAddressImpl.hpp">
-      <Filter>Address\SocketAddr</Filter>
+      <Filter>BaseCore\Address\SocketAddr</Filter>
     </ClInclude>
     <ClInclude Include="PX2IPv6SocketAddressImpl.hpp">
-      <Filter>Address\SocketAddr</Filter>
+      <Filter>BaseCore\Address\SocketAddr</Filter>
     </ClInclude>
     <ClInclude Include="PX2StreamSocketImpl.hpp">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
     </ClInclude>
     <ClInclude Include="PX2StreamSocket.hpp">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\atomicops.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\atomicops_internals_x86_msvc.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\common.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\hash.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\map-util.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\once.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\platform_macros.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\stl_util.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\substitute.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\io\coded_stream.h">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\io\coded_stream_inl.h">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\io\package_info.h">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\io\printer.h">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\io\tokenizer.h">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\io\zero_copy_stream.h">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\io\zero_copy_stream_impl.h">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\io\zero_copy_stream_impl_lite.h">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\testing\file.h">
-      <Filter>Google\protobuf\testing</Filter>
+      <Filter>Proto\Google\protobuf\testing</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\testing\googletest.h">
-      <Filter>Google\protobuf\testing</Filter>
+      <Filter>Proto\Google\protobuf\testing</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\descriptor_database.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\dynamic_message.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\extension_set.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\message_lite.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\package_info.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\service.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\wire_format.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\wire_format_lite.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\descriptor.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\descriptor.pb.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\generated_message_util.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\message.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\reflection_ops.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\repeated_field.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\text_format.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\unknown_field_set.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\wire_format_lite_inl.h">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\io\gzip_stream.h">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\compiler\code_generator.h">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\compiler\command_line_interface.h">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\compiler\importer.h">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\compiler\package_info.h">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\compiler\parser.h">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\compiler\plugin.h">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\compiler\plugin.pb.h">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\compiler\subprocess.h">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\compiler\zip_writer.h">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\stringprintf.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\strutil.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\template_util.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="google\protobuf\stubs\type_traits.h">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClInclude>
     <ClInclude Include="PX2NetError.hpp">
-      <Filter>Error</Filter>
+      <Filter>BaseCore\Error</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NetClientConnector.hpp">
+      <Filter>HighLevel\Connector</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NetServer.hpp">
+      <Filter>HighLevel\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NetServerImp.hpp">
+      <Filter>HighLevel\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NetServerIocp.hpp">
+      <Filter>HighLevel\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2NetIocpOverlapBuffer.h">
+      <Filter>HighLevel\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerSocket.hpp">
+      <Filter>BaseCore\Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerSocketImpl.hpp">
+      <Filter>BaseCore\Sockets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2NetEventBuffer.cpp">
-      <Filter>EventBuffer</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2NetClientConnect.cpp">
-      <Filter>Clinet</Filter>
+      <Filter>HighLevel\EventBuffer</Filter>
     </ClCompile>
     <ClCompile Include="PX2NetInitTerm.cpp">
-      <Filter>InitTerm</Filter>
+      <Filter>BaseCore\InitTerm</Filter>
     </ClCompile>
     <ClCompile Include="PX2Socket.cpp">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
     </ClCompile>
     <ClCompile Include="PX2SocketImpl.cpp">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
     </ClCompile>
     <ClCompile Include="PX2IPv4AddressImpl.cpp">
-      <Filter>Address\IPAddr</Filter>
+      <Filter>BaseCore\Address\IPAddr</Filter>
     </ClCompile>
     <ClCompile Include="PX2IPv6AddressImpl.cpp">
-      <Filter>Address\IPAddr</Filter>
+      <Filter>BaseCore\Address\IPAddr</Filter>
     </ClCompile>
     <ClCompile Include="PX2IPAddress.cpp">
-      <Filter>Address\IPAddr</Filter>
+      <Filter>BaseCore\Address\IPAddr</Filter>
     </ClCompile>
     <ClCompile Include="PX2SocketAddress.cpp">
-      <Filter>Address\SocketAddr</Filter>
+      <Filter>BaseCore\Address\SocketAddr</Filter>
     </ClCompile>
     <ClCompile Include="PX2DNS.cpp">
-      <Filter>Base</Filter>
+      <Filter>BaseCore\Base</Filter>
     </ClCompile>
     <ClCompile Include="PX2HostEntry.cpp">
-      <Filter>Base</Filter>
+      <Filter>BaseCore\Base</Filter>
     </ClCompile>
     <ClCompile Include="PX2SocketAddressImpl.cpp">
-      <Filter>Address\SocketAddr</Filter>
+      <Filter>BaseCore\Address\SocketAddr</Filter>
     </ClCompile>
     <ClCompile Include="PX2IPv4SocketAddressImpl.cpp">
-      <Filter>Address\SocketAddr</Filter>
+      <Filter>BaseCore\Address\SocketAddr</Filter>
     </ClCompile>
     <ClCompile Include="PX2IPv6SocketAddressImpl.cpp">
-      <Filter>Address\SocketAddr</Filter>
+      <Filter>BaseCore\Address\SocketAddr</Filter>
     </ClCompile>
     <ClCompile Include="PX2StreamSocketImpl.cpp">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
     </ClCompile>
     <ClCompile Include="PX2StreamSocket.cpp">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
     </ClCompile>
     <ClCompile Include="PX2IPAddressImpl.cpp">
-      <Filter>Address\IPAddr</Filter>
+      <Filter>BaseCore\Address\IPAddr</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\stubs\atomicops_internals_x86_msvc.cc">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\stubs\common.cc">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\stubs\once.cc">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\stubs\substitute.cc">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\io\coded_stream.cc">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\io\printer.cc">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\io\tokenizer.cc">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\io\zero_copy_stream.cc">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\io\zero_copy_stream_impl.cc">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\io\zero_copy_stream_impl_lite.cc">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\testing\file.cc">
-      <Filter>Google\protobuf\testing</Filter>
+      <Filter>Proto\Google\protobuf\testing</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\testing\googletest.cc">
-      <Filter>Google\protobuf\testing</Filter>
+      <Filter>Proto\Google\protobuf\testing</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\descriptor_database.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\dynamic_message.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\extension_set.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\extension_set_heavy.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\message_lite.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\service.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\wire_format.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\wire_format_lite.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\descriptor.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\descriptor.pb.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\generated_message_util.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\message.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\reflection_ops.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\repeated_field.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\text_format.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\unknown_field_set.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\generated_message_reflection.cc">
-      <Filter>Google\protobuf</Filter>
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\io\gzip_stream.cc">
-      <Filter>Google\protobuf\io</Filter>
+      <Filter>Proto\Google\protobuf\io</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\compiler\code_generator.cc">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\compiler\command_line_interface.cc">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\compiler\importer.cc">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\compiler\parser.cc">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\compiler\plugin.cc">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\compiler\plugin.pb.cc">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\compiler\subprocess.cc">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\compiler\zip_writer.cc">
-      <Filter>Google\protobuf\compiler</Filter>
+      <Filter>Proto\Google\protobuf\compiler</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\stubs\stringprintf.cc">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\stubs\structurally_valid.cc">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClCompile>
     <ClCompile Include="google\protobuf\stubs\strutil.cc">
-      <Filter>Google\protobuf\stubs</Filter>
+      <Filter>Proto\Google\protobuf\stubs</Filter>
     </ClCompile>
     <ClCompile Include="PX2NetError.cpp">
-      <Filter>Error</Filter>
+      <Filter>BaseCore\Error</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NetClientConnector.cpp">
+      <Filter>HighLevel\Connector</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NetServer.cpp">
+      <Filter>HighLevel\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NetServerImp.cpp">
+      <Filter>HighLevel\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NetServerIocp.cpp">
+      <Filter>HighLevel\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2NetIocpOverlapBuffer.cpp">
+      <Filter>HighLevel\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerSocket.cpp">
+      <Filter>BaseCore\Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerSocketImpl.cpp">
+      <Filter>BaseCore\Sockets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2NetEventBuffer.inl">
-      <Filter>EventBuffer</Filter>
-    </None>
-    <None Include="PX2NetClientConnect.inl">
-      <Filter>Clinet</Filter>
+      <Filter>HighLevel\EventBuffer</Filter>
     </None>
     <None Include="PX2SocketImpl.inl">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
     </None>
     <None Include="PX2Socket.inl">
-      <Filter>Sockets</Filter>
+      <Filter>BaseCore\Sockets</Filter>
+    </None>
+    <None Include="PX2NetClientConnector.inl">
+      <Filter>HighLevel\Connector</Filter>
+    </None>
+    <None Include="PX2NetServerIocp.inl">
+      <Filter>HighLevel\Server</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -11,30 +11,30 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 void BufferEvent::PushData(const char *pdata, int datalen)
 {
-	if(m_DataLen+datalen > m_BufferSize)
+	if(mDataLength+datalen > m_BufferSize)
 	{
-		PX2_LOG_SERVER_ERROR(
-		"PushData get wrong params, datalen=%d, m_DataLen=%d, m_BufferSize=%d",
-			datalen, m_DataLen, m_BufferSize);
+		PX2_LOG_ERROR(
+		"PushData get wrong params, datalen=%d, mDataLength=%d, m_BufferSize=%d",
+			datalen, mDataLength, m_BufferSize);
 		return;
 	}
 
-	memcpy(m_Buffer+m_DataLen, pdata, datalen);
-	m_DataLen += datalen;
+	memcpy(mBuffer+mDataLength, pdata, datalen);
+	mDataLength += datalen;
 }
 //----------------------------------------------------------------------------
 char *BufferEvent::PrepareDataSpace(int datalen)
 {
-	if(m_DataLen+datalen > m_BufferSize)
+	if(mDataLength+datalen > m_BufferSize)
 	{
-		PX2_LOG_SERVER_ERROR(
-		"PrepareDataSpace get wrong params, datalen=%d, m_DataLen=%d, m_BufferSize=%d", 
-			datalen, m_DataLen, m_BufferSize);
+		PX2_LOG_ERROR(
+		"PrepareDataSpace get wrong params, datalen=%d, mDataLength=%d, m_BufferSize=%d", 
+			datalen, mDataLength, m_BufferSize);
 		return 0;
 	}
 
-	char *pret = m_Buffer + m_DataLen;
-	m_DataLen += datalen;
+	char *pret = mBuffer + mDataLength;
+	mDataLength += datalen;
 
 	return pret;
 }
@@ -91,7 +91,7 @@ void BufferEventPool::FreeBufferEvent(BufferEvent *pevent)
 {
 	if(pevent->m_BufferSize != m_BufferSize)
 	{
-		PX2_LOG_SERVER_ERROR("wrong bufferevent, input_size=%d, size=%d", 
+		PX2_LOG_ERROR("wrong bufferevent, input_size=%d, size=%d", 
 			pevent->m_BufferSize, m_BufferSize);
 		return;
 	}
@@ -136,7 +136,7 @@ m_nAllocEvent(0)
 {
 	if(!IsPowerOfTwo(minbufsize) || !IsPowerOfTwo(maxbufsize))
 	{
-		PX2_LOG_SERVER_ERROR("wrong minbufsize=%d, maxbufsize=%d", minbufsize,
+		PX2_LOG_ERROR("wrong minbufsize=%d, maxbufsize=%d", minbufsize,
 			maxbufsize);
 	}
 
@@ -170,7 +170,7 @@ BufferEvent *BufferEventQueue::AllocBufferEvent(int nbytes)
 	int index = NextIntLog2(nbytes);
 	if(index > m_MaxBufSizeIndex)
 	{
-		PX2_LOG_SERVER_ERROR("alloc too large buffer");
+		PX2_LOG_ERROR("alloc too large buffer");
 		return 0;
 	}
 
@@ -182,7 +182,7 @@ BufferEvent *BufferEventQueue::AllocBufferEvent(int nbytes)
 	}
 	else
 	{
-		PX2_LOG_SERVER_ERROR("alloc buffer return 0");
+		PX2_LOG_ERROR("alloc buffer return 0");
 	}
 
 	return pevent;
@@ -194,14 +194,14 @@ void BufferEventQueue::FreeBufferEvent(BufferEvent *pevent)
 
 	if(pevent == 0)
 	{
-		PX2_LOG_SERVER_ERROR("freebufferevent 0");
+		PX2_LOG_ERROR("freebufferevent 0");
 		return;
 	}
 
 	int index = NextIntLog2(pevent->m_BufferSize);
 	if(index<m_MinBufSizeIndex && index>m_MaxBufSizeIndex)
 	{
-		PX2_LOG_SERVER_ERROR(
+		PX2_LOG_ERROR(
 			"freebufferevent received wrong buffer, buffersize=%d",
 			pevent->m_BufferSize);
 		return;
@@ -252,11 +252,12 @@ bool BufferEventQueue::PostConnectEvent(unsigned int clientid)
 	if(pevent == 0) return false;
 
 	pevent->m_ClientID = clientid;
-	WriteMessageID(pevent->m_Buffer, BufferEvent::MSGID_RESERVED);
-	pevent->m_Buffer[MSGID_BYTES] = 0;
-	pevent->m_DataLen = MSGID_BYTES+1;
+	WriteMessageID(pevent->mBuffer, BufferEvent::MSGID_RESERVED);
+	pevent->mBuffer[MSGID_BYTES] = 0;
+	pevent->mDataLength = MSGID_BYTES+1;
 
 	PostBufferEvent(pevent);
+
 	return true;
 }
 //----------------------------------------------------------------------------
@@ -266,11 +267,12 @@ bool BufferEventQueue::PostDisconnectEvent(unsigned int clientid)
 	if(pevent == 0) return false;
 
 	pevent->m_ClientID = clientid;
-	WriteMessageID(pevent->m_Buffer, BufferEvent::MSGID_RESERVED);
-	pevent->m_Buffer[MSGID_BYTES] = 1;
-	pevent->m_DataLen = MSGID_BYTES+1;
+	WriteMessageID(pevent->mBuffer, BufferEvent::MSGID_RESERVED);
+	pevent->mBuffer[MSGID_BYTES] = 1;
+	pevent->mDataLength = MSGID_BYTES+1;
 
 	PostBufferEvent(pevent);
+
 	return true;
 }
 //----------------------------------------------------------------------------

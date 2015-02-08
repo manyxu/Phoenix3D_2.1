@@ -5,30 +5,27 @@
 */
 
 #include "PX2StreamSocket.hpp"
+#include "PX2StreamSocketImpl.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-StreamSocket::StreamSocket()
-	:
+StreamSocket::StreamSocket() :
 Socket(new0 StreamSocketImpl)
 {
 }
 //----------------------------------------------------------------------------
-StreamSocket::StreamSocket(const SocketAddress& address)
-	:
+StreamSocket::StreamSocket(const SocketAddress& address) :
 Socket(new0 StreamSocketImpl(address.GetFamily()))
 {
 	Connect(address);
 }
 //----------------------------------------------------------------------------
-StreamSocket::StreamSocket(IPAddress::Family family)
-	: 
-Socket(new StreamSocketImpl(family))
+StreamSocket::StreamSocket(IPAddress::Family family) : 
+Socket(new0 StreamSocketImpl(family))
 {
 }
 //----------------------------------------------------------------------------
-StreamSocket::StreamSocket(const Socket& socket)
-	: 
+StreamSocket::StreamSocket(const Socket& socket) : 
 Socket(socket)
 {
 	if (!dynamic_cast<StreamSocketImpl*>(GetImpl()))
@@ -37,8 +34,12 @@ Socket(socket)
 	}
 }
 //----------------------------------------------------------------------------
-StreamSocket::StreamSocket(SocketImpl* impl)
-	:
+StreamSocket::StreamSocket(px2_socket_t socket) :
+Socket(new0 StreamSocketImpl(socket))
+{
+}
+//----------------------------------------------------------------------------
+StreamSocket::StreamSocket(SocketImpl* impl) :
 Socket(impl)
 {
 	if (!dynamic_cast<StreamSocketImpl*>(GetImpl()))

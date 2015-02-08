@@ -31,29 +31,29 @@ SocketImpl::~SocketImpl ()
 //----------------------------------------------------------------------------
 SocketImpl* SocketImpl::AcceptConnection (SocketAddress &clientAddr)
 {
-	//if (mSocket == PX2_INVALID_SOCKET)
-	//{
-	//	assertion(false, "invalid socket.\n");
-	//	return 0;
-	//}
+	if (mSocket == PX2_INVALID_SOCKET)
+	{
+		assertion(false, "invalid socket.\n");
+		return 0;
+	}
 
-	//char buffer[SocketAddress::MAX_ADDRESS_LENGTH];
-	//struct sockaddr *sa = reinterpret_cast<struct sockaddr*>(buffer);
-	//px2_socklen_t saLen = sizeof(buffer);
-	//px2_socket_t sd;
+	char buffer[SocketAddress::MAX_ADDRESS_LENGTH];
+	struct sockaddr *sa = reinterpret_cast<struct sockaddr*>(buffer);
+	px2_socklen_t saLen = sizeof(buffer);
+	px2_socket_t sd;
 
-	//do
-	//{
-	//	sd = ::accept(mSocket, sa, &saLen);
-	//}
-	//while (sd == PX2_INVALID_SOCKET && LastError() == PX2_EINTR);
+	do
+	{
+		sd = ::accept(mSocket, sa, &saLen);
+	}
+	while (sd == PX2_INVALID_SOCKET && NetError::LastError() == PX2_EINTR);
 
-	//if (sd != PX2_INVALID_SOCKET)
-	//{
-	//	clientAddr = SocketAddress(sa, saLen);
-	//	return new0 StreamSocketImpl(sd);
-	//}
-	//NetError::Error(); // will throw
+	if (sd != PX2_INVALID_SOCKET)
+	{
+		clientAddr = SocketAddress(sa, saLen);
+		return new0 StreamSocketImpl(sd);
+	}
+	NetError::Error(); // will throw
 	return 0;
 }
 //----------------------------------------------------------------------------
@@ -62,85 +62,73 @@ int SocketImpl::Connect (const SocketAddress& address)
 	if (mSocket == PX2_INVALID_SOCKET)
 	{
 		Init(address.GetAF());
-
-		//int on = 1;
-		//::setsockopt(mSocket, IPPROTO_TCP, TCP_NODELAY, (const char *)&on, sizeof(on));
 	}
 
 	int rc = ::connect(mSocket, address.GetAddr(), address.GetAddrLength());
-
-	//int16_t port = address.GetPort();
-	//const std::string &ip = address.GetHost().ToString();
-
-	//struct sockaddr_in server;
-	//server.sin_family = AF_INET;
-	//server.sin_port = htons(port);
-	//server.sin_addr.s_addr = inet_addr(ip.c_str());
-
-	//mSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-
-	//SetBlocking(false);
-
-	//int rc = connect(mSocket, (struct sockaddr *)&server, sizeof(server));
+	if (0 != rc)
+	{
+		int err = NetError::LastError();
+		NetError::Error(err, address.ToString());
+	}
 
 	return rc;
 }
 //----------------------------------------------------------------------------
 void SocketImpl::Connect(const SocketAddress& address, const Timespan& timeout)
 {
-	//if (mSocket == PX2_INVALID_SOCKET)
-	//{
-	//	Init(address.GetAF());
-	//}
-	//
-	//SetBlocking(false);
+	if (mSocket == PX2_INVALID_SOCKET)
+	{
+		Init(address.GetAF());
+	}
 
-	//int rc = ::connect(mSocket, address.GetAddr(), address.GetAddrLength());
+	SetBlocking(false);
 
-	//if (rc != 0)
-	//{
-	//	int err = LastError();
+	int rc = ::connect(mSocket, address.GetAddr(), address.GetAddrLength());
 
-	//	if (err != PX2_EINPROGRESS && err != PX2_EWOULDBLOCK)
-	//	{
-	//		NetError::Error(err, address.ToString());
-	//	}
+	if (rc != 0)
+	{
+		int err = NetError::LastError();
 
-	//	if (!Poll(timeout, SELECT_READ | SELECT_WRITE | SELECT_ERROR))
-	//	{
-	//		assertion(false, "connect timed out:%s", address.ToString());
-	//	}
-	//	err = GetSocketError();
+		if (err != PX2_EINPROGRESS && err != PX2_EWOULDBLOCK)
+		{
+			NetError::Error(err, address.ToString());
+		}
 
-	//	if (err != 0)
-	//	{
-	//		NetError::Error(err);
-	//	}
-	//}
+		if (!Poll(timeout, SELECT_READ | SELECT_WRITE | SELECT_ERROR))
+		{
+			assertion(false, "connect timed out:%s", address.ToString());
+		}
 
-	//SetBlocking(true);
+		err = GetSocketError();
+		if (err != 0)
+		{
+			NetError::Error(err);
+		}
+	}
+
+	SetBlocking(true);
 }
 //----------------------------------------------------------------------------
 void SocketImpl::ConnectNB(const SocketAddress& address)
 {
-	//if (mSocket == PX2_INVALID_SOCKET)
-	//{
-	//	Init(address.GetAF());
-	//}
+	if (mSocket == PX2_INVALID_SOCKET)
+	{
+		Init(address.GetAF());
+	}
 
-	//SetBlocking(false);
+	SetBlocking(false);
 
-	//int rc = ::connect(mSocket, address.GetAddr(), address.GetAddrLength());
+	int rc = ::connect(mSocket, address.GetAddr(), address.GetAddrLength());
 
-	//if (rc != 0)
-	//{
-	//	int err = LastError();
+	if (rc != 0)
+	{
+		int err = NetError::LastError();
 
-	//	if (err != PX2_EINPROGRESS && err != PX2_EWOULDBLOCK)
-	//	{
-	//		NetError::Error(err, address.ToString());
-	//	}
-	//}
+		if (err != PX2_EINPROGRESS && err != PX2_EWOULDBLOCK)
+		{
+			NetError::Error(err, address.ToString());
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void SocketImpl::Bind(const SocketAddress& address, bool reuseAddress)
@@ -252,6 +240,8 @@ void SocketImpl::Shutdown()
 	if (mSocket != PX2_INVALID_SOCKET)
 	{
 		int rc = ::shutdown(mSocket, 2);
+
+		if (rc != 0) NetError::Error();
 	}
 }
 //----------------------------------------------------------------------------
@@ -377,8 +367,9 @@ int SocketImpl::Available()
 	int result;
 	Ioctl(FIONREAD, result);
 	return result;
-#endif
+#else
 	return -1;
+#endif
 }
 //----------------------------------------------------------------------------
 bool SocketImpl::Secure() const
@@ -388,145 +379,147 @@ bool SocketImpl::Secure() const
 //----------------------------------------------------------------------------
 bool SocketImpl::Poll(const Timespan& timeout, int mode)
 {
-//	px2_socket_t sockfd = mSocket;
-//
-//	if (sockfd == PX2_INVALID_SOCKET)
-//	{
-//		assertion(false, "Invalid socket.\n");
-//	}
-//
-//#if defined(PX2_HAVE_FD_EPOLL)
-//
-//	int epollfd = epoll_create(1);
-//	if (epollfd < 0)
-//	{
-//		char buf[1024];
-//		strerror_r(errno, buf, sizeof(buf));
-//		NetError::Error(std::string("Can't create epoll queue: ") + buf);
-//	}
-//
-//	struct epoll_event evin;
-//	memset(&evin, 0, sizeof(evin));
-//
-//	if (mode & SELECT_READ)
-//		evin.events |= EPOLLIN;
-//	if (mode & SELECT_WRITE)
-//		evin.events |= EPOLLOUT;
-//	if (mode & SELECT_ERROR)
-//		evin.events |= EPOLLERR;
-//
-//	if (epoll_ctl(epollfd, EPOLL_CTL_ADD, sockfd, &evin) < 0)
-//	{
-//		char buf[1024];
-//		strerror_r(errno, buf, sizeof(buf));
-//		::close(epollfd);
-//		NetError::Error(std::string("Can't insert socket to epoll queue: ") + buf);
-//	}
-//
-//	Timespan remainingTime(timeout);
-//	int rc;
-//	do
-//	{
-//		struct epoll_event evout;
-//		memset(&evout, 0, sizeof(evout));
-//
-//		Timestamp start;
-//		rc = epoll_wait(epollfd, &evout, 1, remainingTime.totalMilliseconds());
-//		if (rc < 0 && LastError() == PX2_EINTR)
-//		{
-//			Timestamp end;
-//			Timespan waited = end - start;
-//			if (waited < remainingTime)
-//				remainingTime -= waited;
-//			else
-//				remainingTime = 0;
-//		}
-//	}
-//	while (rc < 0 && LastError() == PX2_EINTR);
-//
-//	::close(epollfd);
-//	if (rc < 0)
-//		NetError::Error();
-//	return rc > 0; 
-//
-//#elif defined(PX2_HAVE_FD_POLL)
-//
-//	pollfd pollBuf;
-//
-//	memset(&pollBuf, 0, sizeof(pollfd));
-//	pollBuf.fd = mSocket;
-//	if (mode & SELECT_READ) pollBuf.events |= POLLIN;
-//	if (mode & SELECT_WRITE) pollBuf.events |= POLLOUT;
-//
-//	Timespan remainingTime(timeout);
-//	int rc;
-//	do
-//	{
-//		Timestamp start;
-//		rc = ::poll(&pollBuf, 1, remainingTime.totalMilliseconds());
-//
-//		if (rc < 0 && LastError() == PX2_EINTR)
-//		{
-//			Timestamp end;
-//			Timespan waited = end - start;
-//			if (waited < remainingTime)
-//				remainingTime -= waited;
-//			else
-//				remainingTime = 0;
-//		}
-//	}
-//	while (rc < 0 && LastError() == PX2_EINTR);
-//
-//#else
-//
-//	fd_set fdRead;
-//	fd_set fdWrite;
-//	fd_set fdExcept;
-//	FD_ZERO(&fdRead);
-//	FD_ZERO(&fdWrite);
-//	FD_ZERO(&fdExcept);
-//	if (mode & SELECT_READ)
-//	{
-//		FD_SET(sockfd, &fdRead);
-//	}
-//	if (mode & SELECT_WRITE)
-//	{
-//		FD_SET(sockfd, &fdWrite);
-//	}
-//	if (mode & SELECT_ERROR)
-//	{
-//		FD_SET(sockfd, &fdExcept);
-//	}
-//	Timespan remainingTime(timeout);
-//	int errorCode;
-//	int rc;
-//	do
-//	{
-//		struct timeval tv;
-//		tv.tv_sec  = (long) remainingTime.TotalSeconds();
-//		tv.tv_usec = (long) remainingTime.Useconds();
-//		Timestamp start;
-//		rc = ::select(int(sockfd) + 1, &fdRead, &fdWrite, &fdExcept, &tv);
-//		if (rc < 0 && (errorCode = LastError()) == PX2_EINTR)
-//		{
-//			Timestamp end;
-//			Timespan waited = end - start;
-//			if (waited < remainingTime)
-//				remainingTime -= waited;
-//			else
-//				remainingTime = 0;
-//		}
-//	}
-//	while (rc < 0 && errorCode == PX2_EINTR);
-//
-//	if (rc < 0)
-//		NetError::Error(errorCode);
-//
-//	return rc > 0; 
-//
-//#endif // PX2_HAVE_FD_EPOLL
+	px2_socket_t sockfd = mSocket;
+
+	if (sockfd == PX2_INVALID_SOCKET)
+	{
+		assertion(false, "Invalid socket.\n");
+	}
+
+#if defined(PX2_HAVE_FD_EPOLL)
+
+	int epollfd = epoll_create(1);
+	if (epollfd < 0)
+	{
+		char buf[1024];
+		strerror_r(errno, buf, sizeof(buf));
+		NetError::Error(std::string("Can't create epoll queue: ") + buf);
+	}
+
+	struct epoll_event evin;
+	memset(&evin, 0, sizeof(evin));
+
+	if (mode & SELECT_READ)
+		evin.events |= EPOLLIN;
+	if (mode & SELECT_WRITE)
+		evin.events |= EPOLLOUT;
+	if (mode & SELECT_ERROR)
+		evin.events |= EPOLLERR;
+
+	if (epoll_ctl(epollfd, EPOLL_CTL_ADD, sockfd, &evin) < 0)
+	{
+		char buf[1024];
+		strerror_r(errno, buf, sizeof(buf));
+		::close(epollfd);
+		NetError::Error(std::string("Can't insert socket to epoll queue: ") + buf);
+	}
+
+	Timespan remainingTime(timeout);
+	int rc;
+	do
+	{
+		struct epoll_event evout;
+		memset(&evout, 0, sizeof(evout));
+
+		Timestamp start;
+		rc = epoll_wait(epollfd, &evout, 1, remainingTime.totalMilliseconds());
+		if (rc < 0 && LastError() == PX2_EINTR)
+		{
+			Timestamp end;
+			Timespan waited = end - start;
+			if (waited < remainingTime)
+				remainingTime -= waited;
+			else
+				remainingTime = 0;
+		}
+	}
+	while (rc < 0 && LastError() == PX2_EINTR);
+
+	::close(epollfd);
+	if (rc < 0)
+		NetError::Error();
+	return rc > 0; 
+
+#elif defined(PX2_HAVE_FD_POLL)
+
+	pollfd pollBuf;
+
+	memset(&pollBuf, 0, sizeof(pollfd));
+	pollBuf.fd = mSocket;
+	if (mode & SELECT_READ) pollBuf.events |= POLLIN;
+	if (mode & SELECT_WRITE) pollBuf.events |= POLLOUT;
+
+	Timespan remainingTime(timeout);
+	int rc;
+	do
+	{
+		Timestamp start;
+		rc = ::poll(&pollBuf, 1, remainingTime.totalMilliseconds());
+
+		if (rc < 0 && LastError() == PX2_EINTR)
+		{
+			Timestamp end;
+			Timespan waited = end - start;
+			if (waited < remainingTime)
+				remainingTime -= waited;
+			else
+				remainingTime = 0;
+		}
+	}
+	while (rc < 0 && LastError() == PX2_EINTR);
+
+#elif defined WIN32 || defined _WIN32
+
+	fd_set fdRead;
+	fd_set fdWrite;
+	fd_set fdExcept;
+	FD_ZERO(&fdRead);
+	FD_ZERO(&fdWrite);
+	FD_ZERO(&fdExcept);
+	if (mode & SELECT_READ)
+	{
+		FD_SET(sockfd, &fdRead);
+	}
+	if (mode & SELECT_WRITE)
+	{
+		FD_SET(sockfd, &fdWrite);
+	}
+	if (mode & SELECT_ERROR)
+	{
+		FD_SET(sockfd, &fdExcept);
+	}
+	Timespan remainingTime(timeout);
+	int errorCode = 0;
+	int rc;
+	do
+	{
+		struct timeval tv;
+		tv.tv_sec  = (long) remainingTime.TotalSeconds();
+		tv.tv_usec = (long) remainingTime.Useconds();
+		Timestamp start;
+		rc = ::select(int(sockfd) + 1, &fdRead, &fdWrite, &fdExcept, &tv);
+		if (rc < 0 && (errorCode = NetError::LastError()) == PX2_EINTR)
+		{
+			Timestamp end;
+			Timespan waited = end - start;
+			if (waited < remainingTime)
+				remainingTime -= waited;
+			else
+				remainingTime = 0;
+		}
+	}
+	while (rc < 0 && errorCode == PX2_EINTR);
+
+	if (rc < 0)
+		NetError::Error(errorCode);
+
+	return rc > 0; 
+
+#else // PX2_HAVE_FD_EPOLL
 
 return false;
+
+#endif
 }
 //----------------------------------------------------------------------------
 void SocketImpl::SetSendBufferSize(int size)
@@ -732,8 +725,8 @@ void SocketImpl::GetRawOption(int level, int option, void* val,
 void SocketImpl::SetLinger(bool on, int seconds)
 {
 	struct linger l;
-	l.l_onoff  = on ? 1 : 0;
-	l.l_linger = seconds;
+	l.l_onoff  = (unsigned short)(on ? 1 : 0);
+	l.l_linger = (unsigned short)seconds;
 	SetRawOption(SOL_SOCKET, SO_LINGER, &l, sizeof(l));
 }
 //----------------------------------------------------------------------------
@@ -748,45 +741,41 @@ void SocketImpl::GetLinger(bool& on, int& seconds)
 //----------------------------------------------------------------------------
 void SocketImpl::SetNoDelay(bool flag)
 {
-	//int val = flag ? 1 : 0;
-	//SetOption(IPPROTO_TCP, TCP_NODELAY, val);
+	int val = flag ? 1 : 0;
+	SetOption(IPPROTO_TCP, TCP_NODELAY, val);
 }
 //----------------------------------------------------------------------------
 bool SocketImpl::GetNoDelay()
 {
-	//int val(0);
-	//GetOption(IPPROTO_TCP, TCP_NODELAY, val);
-	//return val != 0;
-
-	return false;
+	int val(0);
+	GetOption(IPPROTO_TCP, TCP_NODELAY, val);
+	return val != 0;
 }
 //----------------------------------------------------------------------------
 void SocketImpl::SetKeepAlive(bool flag)
 {
-	//int val = flag ? 1 : 0;
-	//SetOption(SOL_SOCKET, SO_KEEPALIVE, val);
+	int val = flag ? 1 : 0;
+	SetOption(SOL_SOCKET, SO_KEEPALIVE, val);
 }
 //----------------------------------------------------------------------------
 bool SocketImpl::GetKeepAlive()
 {
-	//int val(0);
-	//GetOption(SOL_SOCKET, SO_KEEPALIVE, val);
-	//return val != 0;
-	return false;
+	int val(0);
+	GetOption(SOL_SOCKET, SO_KEEPALIVE, val);
+	return val != 0;
 }
 //----------------------------------------------------------------------------
 void SocketImpl::SetReuseAddress(bool flag)
 {
-	//int val = flag ? 1 : 0;
-	//SetOption(SOL_SOCKET, SO_REUSEADDR, val);
+	int val = flag ? 1 : 0;
+	SetOption(SOL_SOCKET, SO_REUSEADDR, val);
 }
 //----------------------------------------------------------------------------
 bool SocketImpl::GetReuseAddress()
 {
-	//int val(0);
-	//GetOption(SOL_SOCKET, SO_REUSEADDR, val);
-	//return val != 0;
-	return false;
+	int val(0);
+	GetOption(SOL_SOCKET, SO_REUSEADDR, val);
+	return val != 0;
 }
 //----------------------------------------------------------------------------
 void SocketImpl::SetReusePort(bool flag)
@@ -801,31 +790,28 @@ bool SocketImpl::GetReusePort()
 //----------------------------------------------------------------------------
 void SocketImpl::SetOOBInline(bool flag)
 {
-	//int val = flag ? 1 : 0;
-	//SetOption(SOL_SOCKET, SO_OOBINLINE, val);
+	int val = flag ? 1 : 0;
+	SetOption(SOL_SOCKET, SO_OOBINLINE, val);
 }
 //----------------------------------------------------------------------------
 bool SocketImpl::GetOOBInline()
 {
-	//int val(0);
-	//GetOption(SOL_SOCKET, SO_OOBINLINE, val);
-	//return val != 0;
-
-	return false;
+	int val(0);
+	GetOption(SOL_SOCKET, SO_OOBINLINE, val);
+	return val != 0;
 }
 //----------------------------------------------------------------------------
 void SocketImpl::SetBroadcast(bool flag)
 {
-	//int val = flag ? 1 : 0;
-	//SetOption(SOL_SOCKET, SO_BROADCAST, val);
+	int val = flag ? 1 : 0;
+	SetOption(SOL_SOCKET, SO_BROADCAST, val);
 }
 //----------------------------------------------------------------------------
 bool SocketImpl::GetBroadcast()
 {
-	//int val(0);
-	//GetOption(SOL_SOCKET, SO_BROADCAST, val);
-	//return val != 0;
-	return false;
+	int val(0);
+	GetOption(SOL_SOCKET, SO_BROADCAST, val);
+	return val != 0;
 }
 //----------------------------------------------------------------------------
 void SocketImpl::SetBlocking(bool flag)
@@ -875,12 +861,6 @@ void SocketImpl::InitSocket(int af, int type, int proto)
 		NetError::Error();
 
 	SetBlocking(mIsBlocking);
-/*
-	int opt = 1;
-	if(setsockopt(mSocket, IPPROTO_TCP, TCP_NODELAY, (const char *)&opt, sizeof(int)) != 0)
-	{
-		NetError::Error();
-	}*/
 }
 //----------------------------------------------------------------------------
 void SocketImpl::Ioctl(px2_ioctl_request_t request, int& arg)
@@ -908,24 +888,6 @@ void SocketImpl::Ioctl(px2_ioctl_request_t request, void* arg)
 		NetError::Error();
 	}
 }
-//----------------------------------------------------------------------------
-#if defined(__LINUX__) || defined(__APPLE__)
-int SocketImpl::fcntl(px2_fcntl_request_t request)
-{
-	int rc = ::fcntl(mSocket, request);
-	if (rc == -1)
-		NetError::Error();
-	return rc;
-}
-//----------------------------------------------------------------------------
-int SocketImpl::fcntl(px2_fcntl_request_t request, long arg)
-{
-	int rc = ::fcntl(mSocket, request, arg);
-	if (rc == -1)
-		NetError::Error();
-	return rc;
-}
-#endif
 //----------------------------------------------------------------------------
 void SocketImpl::Reset (px2_socket_t aSocket)
 {
