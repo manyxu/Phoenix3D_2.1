@@ -71,3 +71,72 @@ end
 
 function e_CreateResMenu()
 end
+
+function e_CreateToolMenuFile()
+	local editMenu = NirMan:GetCurMenu()
+	
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("NewProject").."\tCtrl-N", "e_OnNewProject()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Open").."\tCtrl-O", "e_OnOpenProject()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Save").."\tCtrl-S", "e_OnSaveProject()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("SaveAs"), "e_OnSaveAsProject()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Close"), "e_OnCloseProject()")
+	NirMan:AddSeparater(editMenu)
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("NewScene"), "e_OnNewScene()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Open"), "e_OnOpenScene()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Save"), "e_OnSaveScene()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("SaveAs"), "e_OnSaveAsScene()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Close"), "e_OnCloseScene()")
+	NirMan:AddSeparater(editMenu)
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Exit"), "e_OnExit()")	
+end
+
+function e_CreateToolMenuEdit()
+	local editMenu = NirMan:GetCurMenu()
+	
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Repeal").."\tCtrl-Z", "e_OnRepeal()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Repeat").."\tCtrl-Y", "e_OnRepeat()")
+	NirMan:AddSeparater(editMenu)
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Copy").."\tCtrl-C", "e_OnCopy()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Paste").."\tCtrl-V", "e_OnPaste()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Delete").."\tDelete", "e_OnDelete()")
+	NirMan:AddSeparater(editMenu)
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Select").."\tQ", "e_OnSelect()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Translate").."\tW", "e_OnTranslate()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Rotate").."\tE", "e_OnRotate()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Scale").."\tR", "e_OnScale()")
+	NirMan:AddSeparater(editMenu)
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("PlayAndStop").."\tAlt-Space", "e_OnPlayAndStop()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("ResetPlay").."\tShift-Space", "e_OnResetPlay()")
+end
+
+function e_CreateToolMenuView()
+	local editMenu = NirMan:GetCurMenu()
+	
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Window"), "e_OnWindow()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("StageCenter").."\tCtrl-Enter", "e_OnStageCenter()")
+	NirMan:AddSeparater(editMenu)
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("PerspectiveCamera").."\tF5", "e_OnPerspectiveCamera()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("TopViewCamera").."\tF6", "e_OnTopViewCamera()")
+end
+
+function e_CreateToolMenuDebug()
+	local editMenu = NirMan:GetCurMenu()
+	
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("EditorSimulate"), "e_OnEditorSimulate()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("EditorPlay"), "e_OnEditorPlay()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Operation").."\tCtrl-G", "e_OnOperation()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("PlayConfig"), "e_OnPlayConfig()")
+end
+
+function e_CreateToolMenuTool()
+	local editMenu = NirMan:GetCurMenu()
+	
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("VersionWindows"), "e_OnVersionWindows()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("VersionAndroid"), "e_OnVersionAndroid()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("VersionIOS"), "e_OnVersionIOS()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Setting"), "e_OnSetting()")
+end
+
+function e_CreateToolMenuHelp()
+end
+

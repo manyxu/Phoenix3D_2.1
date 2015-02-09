@@ -12,8 +12,8 @@
 		void AddSeparater(wxMenu *menu);
 		
 	public:
-		void SetCurToolBar(wxAuiToolBar *toolBar);
-		wxAuiToolBar *GetCurToolBar();
+		void SetCurToolBar(PX2wxAuiToolBar *toolBar);
+		PX2wxAuiToolBar *GetCurToolBar();
 
 		void AddTool(const std::string &icon, std::string &script);
 		void AddToolSeparater();

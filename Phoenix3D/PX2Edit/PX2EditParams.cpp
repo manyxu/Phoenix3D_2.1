@@ -52,15 +52,15 @@ bool EditParams::Load(std::string filename)
 			while (!child.IsNull())
 			{
 				Theme theme;
-				theme.type = child.AttributeToString("ThemeType");
+				theme.type = child.AttributeToString("themetype");
 
-				std::string colorStr = child.AttributeToString("inactiveColor");
+				std::string colorStr = child.AttributeToString("inactivecolor");
 				StringTokenizer stk(colorStr, ",");
 				Float3 color = Float3::MakeColor(
 					StringHelp::StringToInt(stk[0]),
 					StringHelp::StringToInt(stk[1]),
 					StringHelp::StringToInt(stk[2]));
-				theme.inactiveColor = color;
+				theme.inactivecolor = color;
 
 				colorStr = child.AttributeToString("activeColor");
 				StringTokenizer stk1(colorStr, ",");

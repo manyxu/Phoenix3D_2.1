@@ -59,12 +59,12 @@ void NirMan::AddSeparater(wxMenu *menu)
 	menu->AppendSeparator();
 }
 //----------------------------------------------------------------------------
-void NirMan::SetCurToolBar(wxAuiToolBar *toolBar)
+void NirMan::SetCurToolBar(PX2wxAuiToolBar *toolBar)
 {
 	mCurToolBar = toolBar;
 }
 //----------------------------------------------------------------------------
-wxAuiToolBar *NirMan::GetCurToolBar()
+PX2wxAuiToolBar *NirMan::GetCurToolBar()
 {
 	return mCurToolBar;
 }

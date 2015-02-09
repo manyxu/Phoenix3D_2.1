@@ -27,6 +27,22 @@ namespace PX2Editor
 		bool mIsTop;
 	};
 
+	class PX2wxAuiToolBar : public wxAuiToolBar
+	{
+	public:
+		PX2wxAuiToolBar();
+
+		PX2wxAuiToolBar(wxWindow* parent,
+			wxWindowID id = wxID_ANY,
+			const wxPoint& pos = wxDefaultPosition,
+			const wxSize& size = wxDefaultSize,
+			long style = wxAUI_TB_DEFAULT_STYLE);
+
+		~PX2wxAuiToolBar();
+		wxAuiToolBarItemArray GetItems();
+		void SetItemsState(int state);
+	};
+
 	class PX2wxAuiToolBarArt : public wxAuiDefaultToolBarArt
 	{
 	public:

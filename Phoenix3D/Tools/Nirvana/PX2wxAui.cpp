@@ -99,7 +99,40 @@ void PX2wxAuiNotebook::UpdateTabsHeight()
 	}
 }
 //----------------------------------------------------------------------------
-
+//----------------------------------------------------------------------------
+PX2wxAuiToolBar::PX2wxAuiToolBar()
+{
+}
+//----------------------------------------------------------------------------
+PX2wxAuiToolBar::PX2wxAuiToolBar(wxWindow* parent,
+	wxWindowID id,
+	const wxPoint& pos,
+	const wxSize& size,
+	long style)
+{
+	Init();
+	Create(parent, id, pos, size, style);
+}
+//----------------------------------------------------------------------------
+PX2wxAuiToolBar::~PX2wxAuiToolBar()
+{
+}
+//----------------------------------------------------------------------------
+wxAuiToolBarItemArray PX2wxAuiToolBar::GetItems()
+{
+	return m_items;
+}
+//----------------------------------------------------------------------------
+void PX2wxAuiToolBar::SetItemsState(int state)
+{
+	size_t i, count;
+	for (i = 0, count = m_items.GetCount(); i < count; ++i)
+	{
+		wxAuiToolBarItem& item = m_items.Item(i);
+		item.SetState(state);
+	}
+}
+//----------------------------------------------------------------------------
 //----------------------------------------------------------------------------
 PX2wxAuiToolBarArt::PX2wxAuiToolBarArt()
 {
@@ -217,7 +250,7 @@ void PX2wxAuiToolBarArt::DrawButton(wxDC& dc,
 			(textHeight / 2);
 	}
 
-
+	int state = item.GetState();
 	if (!(item.GetState() & wxAUI_BUTTON_STATE_DISABLED))
 	{
 		if (item.GetState() & wxAUI_BUTTON_STATE_PRESSED)
@@ -472,9 +505,9 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		}
 		else
 		{
-			int r = theme.inactiveColor[0] * 255.0f;
-			int g = theme.inactiveColor[1] * 255.0f;
-			int b = theme.inactiveColor[2] * 255.0f;
+			int r = theme.inactivecolor[0] * 255.0f;
+			int g = theme.inactivecolor[1] * 255.0f;
+			int b = theme.inactivecolor[2] * 255.0f;
 			if (mIsTop)
 			{
 				dc.SetPen(wxPen(wxColour(r, g, b)));

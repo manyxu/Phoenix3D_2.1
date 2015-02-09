@@ -33,6 +33,7 @@ const int sID_ENGINELOOPTIMER = PX2_EDIT_GETID;
 
 BEGIN_EVENT_TABLE(E_MainFrame, wxFrame)
 EVT_TIMER(sID_ENGINELOOPTIMER, E_MainFrame::OnTimer)
+EVT_MENU_CLOSE(E_MainFrame::OnMenuClose)
 END_EVENT_TABLE();
 //----------------------------------------------------------------------------
 E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
@@ -42,6 +43,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mAuiManager(0),
 	mMianToolBar(0),
 	mMenuToolBar(0),
+	mToolMenu(0),
 	mTopView(0),
 	mRenderViewScene(0),
 	mRenderViewLogic(0),
@@ -67,6 +69,12 @@ E_MainFrame::~E_MainFrame()
 
 		mAuiManager->UnInit();
 		delete mAuiManager;
+	}
+
+	if (mToolMenu)
+	{
+		delete mToolMenu;
+		mToolMenu = 0;
 	}
 }
 //----------------------------------------------------------------------------
@@ -96,7 +104,7 @@ bool E_MainFrame::Initlize()
 
 	_CreateMenu();
 	//_CreateTopView();
-	//_CreateMenuToolBar();
+	_CreateMenuToolBar();
 	//_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
@@ -108,7 +116,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-			mAuiManager->LoadPerspective(strPerspective);
+			//mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 
@@ -130,9 +138,9 @@ void E_MainFrame::SetAuiManColorForTheme()
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(r, g, b));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(r, g, b));
 
-	r = mCurTheme.inactiveColor[0] * 255.0f;
-	g = mCurTheme.inactiveColor[1] * 255.0f;
-	b = mCurTheme.inactiveColor[2] * 255.0f;
+	r = mCurTheme.inactivecolor[0] * 255.0f;
+	g = mCurTheme.inactivecolor[1] * 255.0f;
+	b = mCurTheme.inactivecolor[2] * 255.0f;
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(r, g, b)); //77 96 130
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(r, g, b));
 
@@ -145,9 +153,9 @@ void E_MainFrame::SetAuiManColorForTheme()
 //----------------------------------------------------------------------------
 void E_MainFrame::SetToolBarHightLightColor()
 {
-	float r = mCurTheme.toolBarHightlightColor[0];
-	float g = mCurTheme.toolBarHightlightColor[1];
-	float b = mCurTheme.toolBarHightlightColor[2];
+	float r = mCurTheme.toolBarHightlightColor[0] * 255.0f;
+	float g = mCurTheme.toolBarHightlightColor[1] * 255.0f;;
+	float b = mCurTheme.toolBarHightlightColor[2] * 255.0f;;
 	if (mMianToolBar)
 	{
 		PX2wxAuiToolBarArt *barArt = (PX2wxAuiToolBarArt*)mMianToolBar->GetArtProvider();
@@ -292,6 +300,12 @@ void E_MainFrame::OnTimer(wxTimerEvent& e)
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnMenuClose(wxMenuEvent &WXUNUSED(e))
+{
+	mMenuToolBar->SetItemsState(wxAUI_BUTTON_STATE_NORMAL);
+	mMenuToolBar->Refresh();
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::OnCommondItem(wxCommandEvent &e)
 {
 	int id = e.GetId();
@@ -302,6 +316,37 @@ void E_MainFrame::OnCommondItem(wxCommandEvent &e)
 	{
 		std::string callStr = it->second;
 		PX2_SM.CallString(callStr);
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnMenuToolItem(wxMouseEvent &e)
+{
+	int id = e.GetId();
+
+	std::map<int, std::string>::iterator it = mIDScripts.find(id);
+
+	if (it != mIDScripts.end())
+	{
+		if (mToolMenu)
+		{
+			delete mToolMenu;
+			mToolMenu = 0;
+		}
+
+		mToolMenu = new wxMenu();
+		NirMan::GetSingleton().SetCurMenu(mToolMenu);
+
+		std::string callStr = it->second;
+		PX2_SM.CallString(callStr);
+		int idx = mMenuToolBar->GetToolPos(id);
+
+		wxRect parentRect = mMenuToolBar->GetRect();
+		wxRect rect = mMenuToolBar->GetItems().Item(idx).GetSizerItem()->GetRect();
+
+		if (mToolMenu)
+		{
+			PopupMenu(mToolMenu, parentRect.x + rect.x, parentRect.y + parentRect.height - rect.y);
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -499,8 +544,6 @@ wxMenu *E_MainFrame::AddMainMenuItem(const std::string &title)
 
 	mMainMenuBar->Append(menu, title);
 
-	menu->GetWindow()->SetBackgroundColour(wxColour(234, 240, 255));
-
 	return menu;
 }
 //----------------------------------------------------------------------------
@@ -509,7 +552,7 @@ wxMenuItem *E_MainFrame::AddMenuItem(wxMenu *menu, const std::string &title,
 {
 	int id = PX2_EDIT_GETID;
 	wxMenuItem *item = new wxMenuItem(menu, id, title);
-	//item->SetBackgroundColour(wxColour(234, 240, 255));
+	//item->SetBackgroundColour(wxColour(249, 243, 224));
 	//item->SetTextColour(wxColour(0, 0, 0));
 	menu->Append(item);
 
@@ -529,7 +572,7 @@ void E_MainFrame::AddSeparater(wxMenu *menu)
 	menu->Append(item);
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::AddTool(wxAuiToolBar *toolBar, const std::string &icon,
+void E_MainFrame::AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon,
 	std::string &script)
 {
 	int id = PX2_EDIT_GETID;
@@ -540,19 +583,18 @@ void E_MainFrame::AddTool(wxAuiToolBar *toolBar, const std::string &icon,
 	mIDScripts[id] = script;
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::AddMenuTool(wxAuiToolBar *toolBar, const std::string &MenuTitle, std::string &script)
+void E_MainFrame::AddMenuTool(PX2wxAuiToolBar *toolBar, const std::string &MenuTitle, std::string &script)
 {
 	int id = PX2_EDIT_GETID;
-	toolBar->AddTool(id, MenuTitle, wxNullBitmap);
-	toolBar->AddSpacer(5);
-
+	toolBar->AddTool(id, MenuTitle, wxNullBitmap, wxEmptyString, wxITEM_RADIO);
+	
 	Connect(id, wxEVT_COMMAND_TOOL_CLICKED,
-		wxCommandEventHandler(E_MainFrame::OnCommondItem));
+		wxMouseEventHandler(E_MainFrame::OnMenuToolItem));
 
 	mIDScripts[id] = script;
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::AddToolSeparater(wxAuiToolBar *toolBar)
+void E_MainFrame::AddToolSeparater(PX2wxAuiToolBar *toolBar)
 {
 	toolBar->AddSeparator();
 }
@@ -569,7 +611,7 @@ void E_MainFrame::_CreateTopView()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainToolBar()
 {
-	mMianToolBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+	mMianToolBar = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
 	if (mMianToolBar)
 	{
@@ -590,7 +632,7 @@ void E_MainFrame::_CreateMainToolBar()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenuToolBar()
 {
-	mMenuToolBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+	mMenuToolBar = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL | wxAUI_TB_TEXT | wxAUI_TB_HORZ_TEXT);
 
 	if (mMenuToolBar)

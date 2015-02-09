@@ -5,6 +5,8 @@
 
 #include "PX2EditorPre.hpp"
 #include "PX2Singleton_NeedNew.hpp"
+#include "PX2wxAui.hpp"
+using namespace PX2Editor;
 
 namespace PX2
 {
@@ -33,8 +35,8 @@ namespace PX2
 		wxMenu *mCurMenu;
 
 	public:
-		void SetCurToolBar(wxAuiToolBar *toolBar);
-		wxAuiToolBar *GetCurToolBar();
+		void SetCurToolBar(PX2wxAuiToolBar *toolBar);
+		PX2wxAuiToolBar *GetCurToolBar();
 
 		void AddTool(const std::string &icon, std::string &script);
 		void AddToolSeparater();
@@ -42,7 +44,7 @@ namespace PX2
 		void AddMenuTool(const std::string &menuTitle, std::string &script);
 
 	protected:
-		wxAuiToolBar *mCurToolBar;
+		PX2wxAuiToolBar *mCurToolBar;
 
 	public:
 		void MessageBox(const std::string &caption, const std::string &content);

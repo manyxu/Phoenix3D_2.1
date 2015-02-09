@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 02/05/15 11:30:42.
+** Generated automatically by tolua++-1.0.92 on 02/06/15 12:04:22.
 */
 
 #ifndef __cplusplus
@@ -30,9 +30,9 @@ static int tolua_collect_EditMap (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
- tolua_usertype(tolua_S,"wxAuiToolBar");
  tolua_usertype(tolua_S,"NirMan");
  tolua_usertype(tolua_S,"wxMenuItem");
+ tolua_usertype(tolua_S,"PX2wxAuiToolBar");
  tolua_usertype(tolua_S,"E_MainFrame");
  tolua_usertype(tolua_S,"wxFrame");
  tolua_usertype(tolua_S,"Singleton<NirMan>");
@@ -709,7 +709,7 @@ static int tolua_PX2Editor_NirMan_SetCurToolBar00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"wxAuiToolBar",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"PX2wxAuiToolBar",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -717,7 +717,7 @@ static int tolua_PX2Editor_NirMan_SetCurToolBar00(lua_State* tolua_S)
 #endif
  {
   NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
-  wxAuiToolBar* toolBar = ((wxAuiToolBar*)  tolua_tousertype(tolua_S,2,0));
+  PX2wxAuiToolBar* toolBar = ((PX2wxAuiToolBar*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetCurToolBar'", NULL);
 #endif
@@ -753,8 +753,8 @@ static int tolua_PX2Editor_NirMan_GetCurToolBar00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetCurToolBar'", NULL);
 #endif
   {
-   wxAuiToolBar* tolua_ret = (wxAuiToolBar*)  self->GetCurToolBar();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"wxAuiToolBar");
+   PX2wxAuiToolBar* tolua_ret = (PX2wxAuiToolBar*)  self->GetCurToolBar();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PX2wxAuiToolBar");
   }
  }
  return 1;

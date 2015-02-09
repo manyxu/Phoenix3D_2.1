@@ -21,6 +21,7 @@ namespace PX2Editor
 	class LogicView;
 	class TimeLineView;
 	class PX2wxAuiNotebook;
+	class PX2wxAuiToolBar;
 
 	class E_MainFrame : public wxFrame, public PX2::EventHandler, public PX2::Singleton<E_MainFrame>
 	{
@@ -37,6 +38,8 @@ namespace PX2Editor
 
 		void OnTimer(wxTimerEvent& e);
 		void OnCommondItem(wxCommandEvent &e);
+		void OnMenuToolItem(wxMouseEvent &e);
+		void OnMenuClose(wxMenuEvent &e);
 
 		void OnNewProject();
 		void OnOpenProject();
@@ -60,10 +63,10 @@ namespace PX2Editor
 		void AddSeparater(wxMenu *menu);
 		wxAuiManager *GetAuiMananger();
 
-		void AddTool(wxAuiToolBar *toolBar, const std::string &icon, std::string &script);
-		void AddToolSeparater(wxAuiToolBar *toolBar);
+		void AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon, std::string &script);
+		void AddToolSeparater(PX2wxAuiToolBar *toolBar);
 
-		void AddMenuTool(wxAuiToolBar *toolBar, const std::string &MenuTitle, std::string &script);
+		void AddMenuTool(PX2wxAuiToolBar *toolBar, const std::string &MenuTitle, std::string &script);
 
 	public:
 		void SetAuiManColorForTheme();
@@ -126,8 +129,10 @@ namespace PX2Editor
 		wxTimer mTimer;
 		std::map<int, std::string> mIDScripts;
 
-		wxAuiToolBar *mMianToolBar;
-		wxAuiToolBar *mMenuToolBar;
+		PX2wxAuiToolBar *mMianToolBar;
+		PX2wxAuiToolBar *mMenuToolBar;
+
+		wxMenu *mToolMenu;
 
 		TopView *mTopView;
 		StartView *mStartView;
