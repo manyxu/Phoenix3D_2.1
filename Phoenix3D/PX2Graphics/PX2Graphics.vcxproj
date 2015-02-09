@@ -1,6 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugDx9|Win32">
+      <Configuration>DebugDx9</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugDx9|x64">
+      <Configuration>DebugDx9</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugOGLES2|Win32">
+      <Configuration>DebugOGLES2</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugOGLES2|x64">
+      <Configuration>DebugOGLES2</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
@@ -393,7 +409,7 @@
     <ProjectGuid>{C409C416-7C7A-4318-B235-0B0D51BEB06E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>PX2GraphicsDx9_VC100</RootNamespace>
-    <ProjectName>PX2GraphicsDx9</ProjectName>
+    <ProjectName>PX2Graphics</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -402,7 +418,31 @@
     <CharacterSet>NotSet</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>NotSet</CharacterSet>
@@ -428,7 +468,19 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -441,14 +493,42 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|x64'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|x64'">
     <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
     <TargetName>PX2GraphicsDx9D</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
+    <TargetName>PX2GraphicsDx9D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|Win32'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
+    <TargetName>PX2GraphicsDx9D</TargetName>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
+    <TargetName>PX2GraphicsDx9D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|x64'">
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
+    <TargetName>PX2GraphicsDx9D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|x64'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
     <TargetName>PX2GraphicsDx9D</TargetName>
   </PropertyGroup>
@@ -490,7 +570,103 @@ mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
 xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_USE_DX9;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\Renderers\Dx9Renderer;..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY Renderers\*.hpp ..\PX2SDK\Include
+xcopy /DY Renderers\*.inl ..\PX2SDK\Include
+xcopy /DY Renderers\Dx9Renderer\*.hpp ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_USE_DX9;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\Renderers\Dx9Renderer;..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY Renderers\*.hpp ..\PX2SDK\Include
+xcopy /DY Renderers\*.inl ..\PX2SDK\Include
+xcopy /DY Renderers\Dx9Renderer\*.hpp ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_USE_DX9;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\Renderers\Dx9Renderer;..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY Renderers\*.hpp ..\PX2SDK\Include
+xcopy /DY Renderers\*.inl ..\PX2SDK\Include
+xcopy /DY Renderers\Dx9Renderer\*.hpp ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_USE_DX9;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\Renderers\Dx9Renderer;..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY Renderers\*.hpp ..\PX2SDK\Include
+xcopy /DY Renderers\*.inl ..\PX2SDK\Include
+xcopy /DY Renderers\Dx9Renderer\*.hpp ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|x64'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
