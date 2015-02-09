@@ -9,6 +9,7 @@
 #include "PX2E_NirMan.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2LanguageManager.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -432,11 +433,7 @@ void ProjTree::SetItemsColour()
 
 		if (mItemProj)
 		{	
-			float r = theme.fontColor[0] * 255.0f;
-			float g = theme.fontColor[1] * 255.0f;
-			float b = theme.fontColor[2] * 255.0f;
-
-			SetItemTextColour(mItemProj->GetItemID(), wxColour(r, g, b));
+			SetItemTextColour(mItemProj->GetItemID(), Float3TowxColour(theme.fontColor));
 			mItemProj->SetChildItemTextColour(this);	
 		}
 		if (mItemScene)

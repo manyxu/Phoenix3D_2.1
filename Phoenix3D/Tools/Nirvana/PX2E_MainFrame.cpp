@@ -129,42 +129,30 @@ bool E_MainFrame::Initlize()
 //----------------------------------------------------------------------------
 void E_MainFrame::SetAuiManColorForTheme()
 {
-	float r = mCurTheme.tabBackColor[0] * 255.0f;
-	float g = mCurTheme.tabBackColor[1] * 255.0f;
-	float b = mCurTheme.tabBackColor[2] * 255.0f;
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, wxColour(r, g, b));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, Float3TowxColour(mCurTheme.tabBackColor));
 
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(r, g, b));//44 61 91
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(r, g, b));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(r, g, b));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, Float3TowxColour(mCurTheme.tabBackColor));//44 61 91
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, Float3TowxColour(mCurTheme.tabBackColor));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, Float3TowxColour(mCurTheme.tabBackColor));
 
-	r = mCurTheme.inactivecolor[0] * 255.0f;
-	g = mCurTheme.inactivecolor[1] * 255.0f;
-	b = mCurTheme.inactivecolor[2] * 255.0f;
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, wxColour(r, g, b)); //77 96 130
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(r, g, b));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, Float3TowxColour(mCurTheme.inactiveColor)); //77 96 130
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, Float3TowxColour(mCurTheme.inactiveColor));
 
-	r = mCurTheme.activeColor[0] * 255.0f;
-	g = mCurTheme.activeColor[1] * 255.0f;
-	b = mCurTheme.activeColor[2] * 255.0f;
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, wxColour(r, g, b));//255 242 157
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, wxColour(r, g, b));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, Float3TowxColour(mCurTheme.activeColor));//255 242 157
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, Float3TowxColour(mCurTheme.activeColor));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::SetToolBarHightLightColor()
 {
-	float r = mCurTheme.toolBarHightlightColor[0] * 255.0f;
-	float g = mCurTheme.toolBarHightlightColor[1] * 255.0f;;
-	float b = mCurTheme.toolBarHightlightColor[2] * 255.0f;;
 	if (mMianToolBar)
 	{
 		PX2wxAuiToolBarArt *barArt = (PX2wxAuiToolBarArt*)mMianToolBar->GetArtProvider();
-		barArt->SetHightlightColor(wxColour(r, g, b));
+		barArt->SetHightlightColor(Float3TowxColour(mCurTheme.toolBarHightlightColor));
 	}
 	if (mMenuToolBar)
 	{
 		PX2wxAuiToolBarArt *barArt = (PX2wxAuiToolBarArt*)mMenuToolBar->GetArtProvider();
-		barArt->SetHightlightColor(wxColour(r, g, b));
+		barArt->SetHightlightColor(Float3TowxColour(mCurTheme.toolBarHightlightColor));
 	}
 }
 void E_MainFrame::DoExecute(Event *event)

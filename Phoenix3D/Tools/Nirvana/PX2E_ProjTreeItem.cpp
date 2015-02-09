@@ -5,6 +5,7 @@
 #include "PX2Actor.hpp"
 #include "PX2Project.hpp"
 #include "PX2Edit.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -186,15 +187,12 @@ void ProjTreeItem::SetChildItemTextColour(ProjTree *tree)
 	if (params && tree)
 	{
 		EditParams::Theme theme = params->GetCurTheme();
-		float r = theme.fontColor[0] * 255.0f;
-		float g = theme.fontColor[1] * 255.0f;
-		float b = theme.fontColor[2] * 255.0f;
 
 		std::vector<ProjTreeItem*>::iterator it =mChildItems.begin();
 		for (int i = 0; it != mChildItems.end(); it++)
 		{
 			ProjTreeItem *item = *it;
-			tree->SetItemTextColour(item->GetItemID(), wxColour(r, g, b));
+			tree->SetItemTextColour(item->GetItemID(), Float3TowxColour(theme.fontColor));
 			item->SetChildItemTextColour(tree);
 			i++;
 		}

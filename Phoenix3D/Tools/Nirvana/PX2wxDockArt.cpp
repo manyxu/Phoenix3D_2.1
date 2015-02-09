@@ -7,6 +7,7 @@
 #include "PX2wxDockArt.hpp"
 #include "PX2Edit.hpp"
 #include "PX2EditParams.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2;
 
 wxColor wxAuiLightContrastColour1(const wxColour& c)
@@ -455,17 +456,11 @@ void PX2wxDockArt::DrawCaption(wxDC& dc, wxWindow *WXUNUSED(window),
 
 		if (pane.state & wxAuiPaneInfo::optionActive)
 		{
-			float r = theme.captionActColor[0] * 255.0f;
-			float g = theme.captionActColor[1] * 255.0f;
-			float b = theme.captionActColor[2] * 255.0f;
-			dc.SetTextForeground(wxColour(r, g, b));
+			dc.SetTextForeground(Float3TowxColour(theme.captionActColor));
 		}		
 		else
 		{
-			float r = theme.captionColor[0] * 255.0f;
-			float g = theme.captionColor[1] * 255.0f;
-			float b = theme.captionColor[2] * 255.0f;
-			dc.SetTextForeground(wxColour(r, g, b));
+			dc.SetTextForeground(Float3TowxColour(theme.captionColor));
 		}	
 	}
 

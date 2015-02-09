@@ -60,9 +60,9 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk[0]),
 					StringHelp::StringToInt(stk[1]),
 					StringHelp::StringToInt(stk[2]));
-				theme.inactivecolor = color;
+				theme.inactiveColor = color;
 
-				colorStr = child.AttributeToString("activeColor");
+				colorStr = child.AttributeToString("activecolor");
 				StringTokenizer stk1(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk1[0]),
@@ -70,7 +70,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk1[2]));
 				theme.activeColor = color;
 
-				colorStr = child.AttributeToString("backColor");
+				colorStr = child.AttributeToString("backcolor");
 				StringTokenizer stk2(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk2[0]),
@@ -78,7 +78,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk2[2]));
 				theme.backColor = color;
 
-				colorStr = child.AttributeToString("tabBackColor");
+				colorStr = child.AttributeToString("tabbackcolor");
 				StringTokenizer stk3(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk3[0]),
@@ -86,7 +86,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk3[2]));
 				theme.tabBackColor = color;
 
-				colorStr = child.AttributeToString("fontColor");
+				colorStr = child.AttributeToString("fontcolor");
 				StringTokenizer stk4(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk4[0]),
@@ -94,7 +94,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk4[2]));
 				theme.fontColor = color;
 
-				colorStr = child.AttributeToString("captionColor");
+				colorStr = child.AttributeToString("captioncolor");
 				StringTokenizer stk5(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk5[0]),
@@ -102,7 +102,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk5[2]));
 				theme.captionColor = color;
 
-				colorStr = child.AttributeToString("captionActColor");
+				colorStr = child.AttributeToString("captionactcolor");
 				StringTokenizer stk6(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk6[0]),
@@ -110,7 +110,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk6[2]));
 				theme.captionActColor = color;
 
-				colorStr = child.AttributeToString("tabFontColor");
+				colorStr = child.AttributeToString("tabfontcolor");
 				StringTokenizer stk7(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk7[0]),
@@ -118,7 +118,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk7[2]));
 				theme.tabFontColor = color;
 
-				colorStr = child.AttributeToString("tabFontActColor");
+				colorStr = child.AttributeToString("tabfontactcolor");
 				StringTokenizer stk8(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk8[0]),
@@ -126,7 +126,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk8[2]));
 				theme.tabFontActColor = color;
 
-				colorStr = child.AttributeToString("toolBarColor");
+				colorStr = child.AttributeToString("toolbarcolor");
 				StringTokenizer stk9(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk9[0]),
@@ -134,7 +134,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk9[2]));
 				theme.toolBarColor = color;
 
-				colorStr = child.AttributeToString("toolBarHightlightColor");
+				colorStr = child.AttributeToString("toolbarhightlightcolor");
 				StringTokenizer stk10(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk10[0]),
@@ -142,7 +142,7 @@ bool EditParams::Load(std::string filename)
 					StringHelp::StringToInt(stk10[2]));
 				theme.toolBarHightlightColor = color;
 
-				colorStr = child.AttributeToString("searchColor");
+				colorStr = child.AttributeToString("searchcolor");
 				StringTokenizer stk11(colorStr, ",");
 				color = Float3::MakeColor(
 					StringHelp::StringToInt(stk11[0]),

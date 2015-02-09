@@ -2,6 +2,7 @@
 
 #include "PX2E_TimeLineView.hpp"
 #include "PX2E_TimeLineRender.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -59,21 +60,12 @@ TimeLineView::~TimeLineView()
 //----------------------------------------------------------------------------
 void TimeLineView::SetColorForTheme(EditParams::Theme theme)
 {
-	float r = theme.backColor[0] * 255.0f;
-	float g = theme.backColor[1] * 255.0f;
-	float b = theme.backColor[2] * 255.0f;
-	SetBackgroundColour(wxColour(r, g, b));
-	mTimeLineRender->SetBackgroundColour(wxColour(r, g, b));
+	SetBackgroundColour(Float3TowxColour(theme.backColor));
+	mTimeLineRender->SetBackgroundColour(Float3TowxColour(theme.backColor));
 
-	r = theme.toolBarColor[0] * 255.0f;
-	g = theme.toolBarColor[1] * 255.0f;
-	b = theme.toolBarColor[2] * 255.0f;
-	TimeLineBar->SetBackgroundColour(wxColour(r, g, b));
-	TimeLineBar->SetForegroundColour(wxColour(r, g, b));
+	TimeLineBar->SetBackgroundColour(Float3TowxColour(theme.toolBarColor));
+	TimeLineBar->SetForegroundColour(Float3TowxColour(theme.toolBarColor));
 
-	r = theme.searchColor[0] * 255.0f;
-	g = theme.searchColor[1] * 255.0f;
-	b = theme.searchColor[2] * 255.0f;
-	mSearchCtrl->SetBackgroundColour(wxColour(r, g, b));
+	mSearchCtrl->SetBackgroundColour(Float3TowxColour(theme.searchColor));
 }
 //----------------------------------------------------------------------------

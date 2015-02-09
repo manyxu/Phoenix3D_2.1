@@ -32,7 +32,7 @@ namespace PX2
 		struct Theme
 		{
 			std::string type;
-			Float3 inactivecolor;
+			Float3 inactiveColor;
 			Float3 activeColor;
 			Float3 backColor;
 			Float3 tabBackColor;

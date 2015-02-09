@@ -3,6 +3,7 @@
 #include "PX2E_ProjView.hpp"
 #include "PX2E_ProjTree.hpp"
 #include "PX2Project.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::ProjView, wxWindow)
@@ -66,23 +67,13 @@ ProjTree *ProjView::GetProjTree()
 //----------------------------------------------------------------------------
 void ProjView::SetColorForTheme(PX2::EditParams::Theme theme)
 {
-	float r = theme.backColor[0] * 255.0f;
-	float g = theme.backColor[1] * 255.0f;
-	float b = theme.backColor[2] * 255.0f;
-	SetBackgroundColour(wxColour(r, g, b));
-	mProjTree->SetBackgroundColour(wxColour(r, g, b));
+	SetBackgroundColour(Float3TowxColour(theme.backColor));
+	mProjTree->SetBackgroundColour(Float3TowxColour(theme.backColor));
 
-	r = theme.toolBarColor[0] * 255.0f;
-	g = theme.toolBarColor[1] * 255.0f;
-	b = theme.toolBarColor[2] * 255.0f;
-	mProjTreeBar->SetBackgroundColour(wxColour(r, g, b));
-	mProjTreeBar->SetForegroundColour(wxColour(r, g, b));
+	mProjTreeBar->SetBackgroundColour(Float3TowxColour(theme.toolBarColor));
+	mProjTreeBar->SetForegroundColour(Float3TowxColour(theme.toolBarColor));
 
-	r = theme.searchColor[0] * 255.0f;
-	g = theme.searchColor[1] * 255.0f;
-	b = theme.searchColor[2] * 255.0f;
-
-	mSearchCtrl->SetBackgroundColour(wxColour(r, g, b));
+	mSearchCtrl->SetBackgroundColour(Float3TowxColour(theme.searchColor));
 	Project *proj = Project::GetSingletonPtr();
 	if (proj)
 	{

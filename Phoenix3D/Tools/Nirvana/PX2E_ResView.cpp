@@ -3,6 +3,7 @@
 #include "PX2E_ResView.hpp"
 #include "PX2E_ResSplitPanel.hpp"
 #include "PX2E_ResTree.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -60,33 +61,21 @@ ResView::~ResView()
 //----------------------------------------------------------------------------
 void ResView::SetColorForTheme(EditParams::Theme theme)
 {
-	float r = theme.backColor[0] * 255.0f;
-	float g = theme.backColor[1] * 255.0f;
-	float b = theme.backColor[2] * 255.0f;
-	SetBackgroundColour(wxColour(r, g, b));
+	SetBackgroundColour(Float3TowxColour(theme.backColor));
 
-	r = theme.toolBarColor[0] * 255.0f;
-	g = theme.toolBarColor[1] * 255.0f;
-	b = theme.toolBarColor[2] * 255.0f;
-	mResTreeBar->SetBackgroundColour(wxColour(r, g, b));
-	mResTreeBar->SetForegroundColour(wxColour(r, g, b));
+	mResTreeBar->SetBackgroundColour(Float3TowxColour(theme.toolBarColor));
+	mResTreeBar->SetForegroundColour(Float3TowxColour(theme.toolBarColor));
 
-	r = theme.searchColor[0] * 255.0f;
-	g = theme.searchColor[1] * 255.0f;
-	b = theme.searchColor[2] * 255.0f;
-	mSearchCtrl->SetBackgroundColour(wxColour(r, g, b));
+	mSearchCtrl->SetBackgroundColour(Float3TowxColour(theme.searchColor));
 
 	ResTree *resTree = ResTree::GetSingletonPtr();
 	if (resTree)
 	{
-		resTree->SetBackgroundColour(wxColour(r, g, b));
+		resTree->SetBackgroundColour(Float3TowxColour(theme.searchColor));
 
-		resTree->SetItemBackgroundColour(resTree->GetRootItem(), wxColour(r, g, b));
+		resTree->SetItemBackgroundColour(resTree->GetRootItem(), Float3TowxColour(theme.searchColor));
 
-		r = theme.fontColor[0] * 255.0f;
-		g = theme.fontColor[1] * 255.0f;
-		b = theme.fontColor[2] * 255.0f;
-		resTree->SetItemTextColour(resTree->GetRootItem(), wxColour(r, g, b));
+		resTree->SetItemTextColour(resTree->GetRootItem(), Float3TowxColour(theme.fontColor));
 
 		ResTreeItem *treeItem = resTree->GetTreeRootItem();
 		if (treeItem)
@@ -108,15 +97,9 @@ void ResView::SetColorTreeItem(EditParams::Theme theme, ResTreeItem *treeItem)
 		for (int i = 0; it != childItems.end(); it++)
 		{
 			ResTreeItem *item = *it;
-			float r = theme.backColor[0] * 255.0f;
-			float g = theme.backColor[1] * 255.0f;
-			float b = theme.backColor[2] * 255.0f;
-			resTree->SetItemBackgroundColour(item->GetItemID(), wxColour(r, g, b));
+			resTree->SetItemBackgroundColour(item->GetItemID(), Float3TowxColour(theme.backColor));
 
-			r = theme.fontColor[0] * 255.0f;
-			g = theme.fontColor[1] * 255.0f;
-			b = theme.fontColor[2] * 255.0f;
-			resTree->SetItemTextColour(item->GetItemID(), wxColour(r, g, b));
+			resTree->SetItemTextColour(item->GetItemID(), Float3TowxColour(theme.fontColor));
 
 			SetColorTreeItem(theme, item);
 			i++;

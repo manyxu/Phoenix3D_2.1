@@ -141,10 +141,8 @@ PX2wxAuiToolBarArt::PX2wxAuiToolBarArt()
 	if (params)
 	{
 		EditParams::Theme theme = params->GetCurTheme();
-		float r = theme.toolBarHightlightColor[0] * 255.0f;
-		float g = theme.toolBarHightlightColor[1] * 255.0f;
-		float b = theme.toolBarHightlightColor[2] * 255.0f;
-		SetHightlightColor(wxColour(r, g, b));
+
+		SetHightlightColor(Float3TowxColour(theme.toolBarHightlightColor));
 	}
 }
 //----------------------------------------------------------------------------
@@ -166,11 +164,7 @@ void PX2wxAuiToolBarArt::DrawBackground(
 	{
 		EditParams::Theme theme = params->GetCurTheme();
 
-		float r = theme.toolBarColor[0] * 255.0f;
-		float g = theme.toolBarColor[1] * 255.0f;
-		float b = theme.toolBarColor[2] * 255.0f;
-
-		wxColour color = wxColour(r, g, b);
+		wxColour color = Float3TowxColour(theme.toolBarColor);
 		wxColour startColour = color.ChangeLightness(125);
 		wxColour endColour = color.ChangeLightness(125);
 
@@ -189,10 +183,8 @@ void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
 	if (params)
 	{
 		EditParams::Theme theme = params->GetCurTheme();
-		float r = theme.toolBarColor[0] * 255.0f;
-		float g = theme.toolBarColor[1] * 255.0f;
-		float b = theme.toolBarColor[2] * 255.0f;
-		dc.SetBrush(wxColour(r, g, b));
+
+		dc.SetBrush(Float3TowxColour(theme.toolBarColor));
 
 		dc.DrawRectangle(rect.GetX() - 1, rect.GetY() - 1,
 			rect.GetWidth() + 2, rect.GetHeight() + 1);
@@ -253,7 +245,6 @@ void PX2wxAuiToolBarArt::DrawButton(wxDC& dc,
 			(textHeight / 2);
 	}
 
-	int state = item.GetState();
 	if (!(item.GetState() & wxAUI_BUTTON_STATE_DISABLED))
 	{
 		if (item.GetState() & wxAUI_BUTTON_STATE_PRESSED)
@@ -298,11 +289,8 @@ void PX2wxAuiToolBarArt::DrawButton(wxDC& dc,
 	if (params)
 	{
 		EditParams::Theme theme = params->GetCurTheme();
-		float r = theme.fontColor[0] * 255.0f;
-		float g = theme.fontColor[1] * 255.0f;
-		float b = theme.fontColor[2] * 255.0f;
 
-		dc.SetTextForeground(wxColour(r, g, b));
+		dc.SetTextForeground(Float3TowxColour(theme.fontColor));
 		if (item.GetState() & wxAUI_BUTTON_STATE_DISABLED)
 			dc.SetTextForeground(DISABLED_TEXT_COLOR);
 
@@ -379,20 +367,14 @@ void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 	if (params)
 	{
 		EditParams::Theme theme = params->GetCurTheme();
-		float r = theme.tabBackColor[0] * 255.0f;
-		float g = theme.tabBackColor[1] * 255.0f;
-		float b = theme.tabBackColor[2] * 255.0f;
-		dc.SetBrush(wxBrush(wxColour(r, g, b)));
+		dc.SetBrush(wxBrush(Float3TowxColour(theme.tabBackColor)));
 		dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 5);
 
 		//// draw base line
 		if (mIsTop)
 		{
-			r = theme.activeColor[0] * 255.0f;
-			g = theme.activeColor[1] * 255.0f;
-			b = theme.activeColor[2] * 255.0f;
-			dc.SetBrush(wxBrush(wxColour(r, g, b)));
-			dc.SetPen(wxPen(wxColour(r, g, b)));
+			dc.SetBrush(wxBrush(Float3TowxColour(theme.activeColor)));
+			dc.SetPen(wxPen(Float3TowxColour(theme.activeColor)));
 			dc.DrawRectangle(-1, rect.GetHeight() - 2, rect.GetWidth() + 2, 2);
 		}
 	}
@@ -478,20 +460,14 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		{
 			if (mIsTop)
 			{
-				float r = theme.activeColor[0] * 255.0f;
-				float g = theme.activeColor[1] * 255.0f;
-				float b = theme.activeColor[2] * 255.0f;
-				dc.SetPen(wxPen(wxColour(r, g, b)));
-				dc.SetBrush(wxColour(r, g, b));
+				dc.SetPen(wxPen(Float3TowxColour(theme.activeColor)));
+				dc.SetBrush(Float3TowxColour(theme.activeColor));
 				dc.SetFont(m_selectedFont);
 			}
 			else
 			{
-				int r = theme.backColor[0] * 255.0f;
-				int g = theme.backColor[1] * 255.0f;
-				int b = theme.backColor[2] * 255.0f;
-				dc.SetPen(wxPen(wxColour(r, g, b)));
-				dc.SetBrush(wxColour(r, g, b));
+				dc.SetPen(wxPen(Float3TowxColour(theme.backColor)));
+				dc.SetBrush(Float3TowxColour(theme.backColor));
 				dc.SetFont(m_selectedFont);
 			}
 
@@ -500,21 +476,10 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		}
 		else
 		{
-			int r = theme.inactivecolor[0] * 255.0f;
-			int g = theme.inactivecolor[1] * 255.0f;
-			int b = theme.inactivecolor[2] * 255.0f;
-			if (mIsTop)
-			{
-				dc.SetPen(wxPen(wxColour(r, g, b)));
-				dc.SetBrush(wxColour(r, g, b));
-			}
-			else
-			{
-				dc.SetPen(wxPen(wxColour(r, g, b)));
-				dc.SetBrush(wxColour(r, g, b));
-			}
-
+			dc.SetPen(wxPen(Float3TowxColour(theme.inactiveColor)));
+			dc.SetBrush(Float3TowxColour(theme.inactiveColor));
 			dc.SetFont(m_normalFont);
+
 			textx = normal_textx;
 			texty = normal_texty;
 		}
@@ -572,28 +537,18 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		{
 			if (mIsTop)
 			{
-				float r = theme.captionActColor[0] * 255.0f;
-				float g = theme.captionActColor[1] * 255.0f;
-				float b = theme.captionActColor[2] * 255.0f;
-				dc.SetTextForeground(wxColour(r, g, b));
-
+				dc.SetTextForeground(Float3TowxColour(theme.captionActColor));
 			}
 			else
 			{
-				float r = theme.tabFontActColor[0] * 255.0f;
-				float g = theme.tabFontActColor[1] * 255.0f;
-				float b = theme.tabFontActColor[2] * 255.0f;
-				dc.SetTextForeground(wxColour(r, g, b));
+				dc.SetTextForeground(Float3TowxColour(theme.tabFontActColor));
 			}
 
 			
 		}
 		else
 		{
-			float r = theme.tabFontColor[0] * 255.0f;
-			float g = theme.tabFontColor[1] * 255.0f;
-			float b = theme.tabFontColor[2] * 255.0f;
-			dc.SetTextForeground(wxColour(r, g, b));
+			dc.SetTextForeground(Float3TowxColour(theme.tabFontColor));
 		}
 	}
 	
