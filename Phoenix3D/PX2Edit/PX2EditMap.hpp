@@ -3,7 +3,7 @@
 #ifndef PX2EDITMAP_HPP
 #define PX2EDITMAP_HPP
 
-#include "PX2EditMapPre.hpp"
+#include "PX2EditPre.hpp"
 
 namespace PX2
 {

@@ -3,7 +3,7 @@
 #ifndef PX2EDITUIRENDERVIEW_UI_HPP
 #define PX2EDITUIRENDERVIEW_UI_HPP
 
-#include "PX2EditMapPre.hpp"
+#include "PX2EditPre.hpp"
 #include "PX2EditRenderView.hpp"
 #include "PX2Polysegment.hpp"
 
