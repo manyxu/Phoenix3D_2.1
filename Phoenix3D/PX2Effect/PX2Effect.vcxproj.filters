@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="PX2EffectPre.hpp" />
+    <ClInclude Include="PX2Effectable.hpp">
+      <Filter>Effectable</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModule.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectObject.hpp">
+      <Filter>Effectable</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ParticleEmitter.hpp">
+      <Filter>ParticleEmitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectMaterial.hpp">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ParticleEmitterController.hpp">
+      <Filter>ParticleEmitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ParticleObject.hpp">
+      <Filter>ParticleEmitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TRange.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TRecyclingArray.hpp">
+      <Filter>DataTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Effect.hpp" />
+    <ClInclude Include="PX2Soundable.hpp">
+      <Filter>Soundable</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectableController.hpp">
+      <Filter>Effectable</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SoundableController.hpp">
+      <Filter>Soundable</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModuleCallbacks_Effectable.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModuleCallbacks_ParticleEmitter.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BeamEmitter.hpp">
+      <Filter>BeamEmitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BeamEmitterController.hpp">
+      <Filter>BeamEmitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BeamObject.hpp">
+      <Filter>BeamEmitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Billboard.hpp">
+      <Filter>Billboard</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2BillboardController.hpp">
+      <Filter>Billboard</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RibbonEmitter.hpp">
+      <Filter>RibbonEmitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RibbonEmitterController.hpp">
+      <Filter>RibbonEmitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RibbonObject.hpp">
+      <Filter>RibbonEmitter</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SoundableObject.hpp">
+      <Filter>Soundable</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModuleCallbacks_Soundable.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModuleCallbacks_BeamEmitter.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraShake.hpp">
+      <Filter>Shake</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraShakeController.hpp">
+      <Filter>Shake</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraShakeObject.hpp">
+      <Filter>Shake</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModuleCallbacks_CameraShake.hpp">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModel.hpp">
+      <Filter>EffectModel</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModelController.hpp">
+      <Filter>EffectModel</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModelNode.hpp">
+      <Filter>EffectNode</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectModelNodeController.hpp">
+      <Filter>EffectNode</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="EffectNode">
+      <UniqueIdentifier>{1bea944c-cd35-4223-9cb8-f4c38ac2bab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Module">
+      <UniqueIdentifier>{24847f30-01e9-4aaf-95f4-857982640d0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{9ee693d8-92f7-4027-ab4b-41639321d268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soundable">
+      <UniqueIdentifier>{0efe524a-3daf-40e1-a02f-8dd72bd16d29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effectable">
+      <UniqueIdentifier>{38fa61f1-8be3-4326-9972-c7c172d6b650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ParticleEmitter">
+      <UniqueIdentifier>{1406e5e7-0d17-4fdc-99a0-5adce13d98ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BeamEmitter">
+      <UniqueIdentifier>{78f21ca9-bbba-46aa-b8fb-705a782ee707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RibbonEmitter">
+      <UniqueIdentifier>{c205f3ab-8d74-4d58-af5c-ae391e63e385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataTypes">
+      <UniqueIdentifier>{cd4ad2d8-8646-41df-8132-cf82d604b0f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Billboard">
+      <UniqueIdentifier>{911c7105-5e5c-4544-8936-1aa2ef671b9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shake">
+      <UniqueIdentifier>{6fa69539-0787-4c92-8f43-44f69a6f3343}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EffectModel">
+      <UniqueIdentifier>{9cf90657-481b-4ce3-ad96-6f5230839983}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2Effectable.cpp">
+      <Filter>Effectable</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectObject.cpp">
+      <Filter>Effectable</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ParticleEmitter.cpp">
+      <Filter>ParticleEmitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectMaterial.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ParticleEmitterController.cpp">
+      <Filter>ParticleEmitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ParticleObject.cpp">
+      <Filter>ParticleEmitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Soundable.cpp">
+      <Filter>Soundable</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectableController.cpp">
+      <Filter>Effectable</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SoundableController.cpp">
+      <Filter>Soundable</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModuleCallbacks_Effectable.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModuleCallbacks_ParticleEmitter.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModule.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BeamEmitter.cpp">
+      <Filter>BeamEmitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BeamEmitterController.cpp">
+      <Filter>BeamEmitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BeamObject.cpp">
+      <Filter>BeamEmitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Billboard.cpp">
+      <Filter>Billboard</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2BillboardController.cpp">
+      <Filter>Billboard</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RibbonEmitter.cpp">
+      <Filter>RibbonEmitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RibbonEmitterController.cpp">
+      <Filter>RibbonEmitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RibbonObject.cpp">
+      <Filter>RibbonEmitter</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SoundableObject.cpp">
+      <Filter>Soundable</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModuleCallbacks_Soundable.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModuleCallbacks_BeamEmitter.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraShake.cpp">
+      <Filter>Shake</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraShakeController.cpp">
+      <Filter>Shake</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraShakeObject.cpp">
+      <Filter>Shake</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModuleCallbacks_CameraShake.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModel.cpp">
+      <Filter>EffectModel</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModelController.cpp">
+      <Filter>EffectModel</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModelNode.cpp">
+      <Filter>EffectNode</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectModelNodeController.cpp">
+      <Filter>EffectNode</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2EffectModule.inl">
+      <Filter>Module</Filter>
+    </None>
+    <None Include="PX2Effectable.inl">
+      <Filter>Effectable</Filter>
+    </None>
+    <None Include="PX2ParticleEmitterController.inl">
+      <Filter>ParticleEmitter</Filter>
+    </None>
+    <None Include="PX2ParticleEmitter.inl">
+      <Filter>ParticleEmitter</Filter>
+    </None>
+    <None Include="PX2TRecyclingArray.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2TRange.inl">
+      <Filter>DataTypes</Filter>
+    </None>
+    <None Include="PX2Soundable.inl">
+      <Filter>Soundable</Filter>
+    </None>
+    <None Include="PX2EffectableController.inl">
+      <Filter>Effectable</Filter>
+    </None>
+    <None Include="PX2SoundableController.inl">
+      <Filter>Soundable</Filter>
+    </None>
+    <None Include="PX2BeamEmitter.inl">
+      <Filter>BeamEmitter</Filter>
+    </None>
+    <None Include="PX2BeamEmitterController.inl">
+      <Filter>BeamEmitter</Filter>
+    </None>
+    <None Include="PX2Billboard.inl">
+      <Filter>Billboard</Filter>
+    </None>
+    <None Include="PX2BillboardController.inl">
+      <Filter>Billboard</Filter>
+    </None>
+    <None Include="PX2RibbonEmitterController.inl">
+      <Filter>RibbonEmitter</Filter>
+    </None>
+    <None Include="PX2RibbonEmitter.inl">
+      <Filter>RibbonEmitter</Filter>
+    </None>
+    <None Include="PX2CameraShake.inl">
+      <Filter>Shake</Filter>
+    </None>
+    <None Include="PX2CameraShakeController.inl">
+      <Filter>Shake</Filter>
+    </None>
+    <None Include="PX2EffectModel.inl">
+      <Filter>EffectModel</Filter>
+    </None>
+    <None Include="PX2EffectModelController.inl">
+      <Filter>EffectModel</Filter>
+    </None>
+    <None Include="PX2EffectModelNode.inl">
+      <Filter>EffectNode</Filter>
+    </None>
+  </ItemGroup>
+</Project>

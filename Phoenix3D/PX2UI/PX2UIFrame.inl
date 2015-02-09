@@ -41,3 +41,8 @@ inline const std::string &UIFrame::GetScriptHandler() const
 	return mUIScriptHandler;
 }
 //----------------------------------------------------------------------------
+inline InputPushTransformController *UIFrame::GetIPTCtrl()
+{
+	return mIPTCtrl;
+}
+//----------------------------------------------------------------------------

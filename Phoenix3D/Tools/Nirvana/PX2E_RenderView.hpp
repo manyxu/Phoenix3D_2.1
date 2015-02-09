@@ -23,6 +23,8 @@ namespace PX2Editor
 		void OnSize(wxSizeEvent& e);
 		void OnPaint(wxPaintEvent& e);
 		void OnEraseBackground(wxEraseEvent& rEvent);
+		void OnEnterWindow(wxMouseEvent& e);
+		void OnLeaveWindow(wxMouseEvent& e);
 		void OnLeftDown(wxMouseEvent& e);
 		void OnLeftUp(wxMouseEvent& e);
 		void OnMiddleDown(wxMouseEvent& e);

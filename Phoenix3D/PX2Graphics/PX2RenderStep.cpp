@@ -80,7 +80,7 @@ void RenderStep::SetCamera(Camera *camera)
 	mCuller.SetCamera(mCamera);
 }
 //----------------------------------------------------------------------------
-bool RenderStep::GetPickRay(int x, int y, APoint& origin, AVector& direction)
+bool RenderStep::GetPickRay(float x, float y, APoint& origin, AVector& direction)
 {
 	if (!mCamera) return false;
 

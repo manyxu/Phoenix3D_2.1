@@ -15,7 +15,8 @@ PX2_IMPLEMENT_FACTORY(UIPicBox);
 PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, UIPicBox);
 
 //----------------------------------------------------------------------------
-UIPicBox::UIPicBox(const std::string &filename) :
+UIPicBox::UIPicBox(const std::string &filename, bool isDynamicBuffer) :
+mIsDynamic(isDynamicBuffer),
 mPicBoxType(PBT_NORMAL),
 mAnchorPoint(0.5f, 0.5f),
 mSize(128.0f, 64.0f),
@@ -38,8 +39,9 @@ mTexturePathname(filename)
 	SetUVRepeat(Float2::UNIT);
 }
 //----------------------------------------------------------------------------
-UIPicBox::UIPicBox(const std::string &packName, const std::string &eleName)
-:
+UIPicBox::UIPicBox(const std::string &packName, const std::string &eleName,
+	bool isDynamicBuffer) :
+mIsDynamic(isDynamicBuffer),
 mPicBoxType(PBT_NORMAL),
 mAnchorPoint(0.5f, 0.5f),
 mSize(128.0f, 64.0f),
@@ -127,11 +129,6 @@ void UIPicBox::SetAlpha(float alpha)
 
 	const Float3 &color = GetColor();
 	GetShine()->Emissive = Float4(color[0], color[1], color[2], alpha);
-}
-//----------------------------------------------------------------------------
-UIPicBox::TexMode UIPicBox::GetTexMode() const
-{
-	return mTexMode;
 }
 //----------------------------------------------------------------------------
 void UIPicBox::SetTexture(const std::string &filename)
@@ -541,7 +538,7 @@ void UIPicBox::ReCreateVBuffer()
 	}
 
 	VertexBuffer *vBuffer = new0 VertexBuffer(numVertex, vFormat->GetStride(),
-		Buffer::BU_STATIC);
+		mIsDynamic ? Buffer::BU_DYNAMIC : Buffer::BU_STATIC);
 	IndexBuffer *iBuffer = new0 IndexBuffer(numIndex, 2);
 	SetVertexBuffer(vBuffer);
 	SetIndexBuffer(iBuffer);
@@ -635,6 +632,7 @@ void UIPicBox::OnPropertyChanged(const PropertyObject &obj)
 UIPicBox::UIPicBox(LoadConstructor value)
 :
 TriMesh(value),
+mIsDynamic(false),
 mPicBoxType(PBT_MAX_TYPE),
 mAnchorPoint(0.5f, 0.5f),
 mSize(128, 64),
@@ -650,6 +648,8 @@ void UIPicBox::Load(InStream& source)
 
 	TriMesh::Load(source);
 	PX2_VERSION_LOAD(source);
+
+	source.ReadBool(mIsDynamic);
 
 	source.ReadEnum(mPicBoxType);
 	source.ReadAggregate(mAnchorPoint),
@@ -705,6 +705,8 @@ void UIPicBox::Save(OutStream& target) const
 	TriMesh::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WriteBool(mIsDynamic);
+
 	target.WriteEnum(mPicBoxType);
 	target.WriteAggregate(mAnchorPoint);
 	target.WriteAggregate(mSize);
@@ -721,6 +723,8 @@ int UIPicBox::GetStreamingSize(Stream &stream) const
 {
 	int size = TriMesh::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
+	size += PX2_BOOLSIZE(mIsDynamic);
 
 	size += PX2_ENUMSIZE(mPicBoxType);
 	size += sizeof(mAnchorPoint),

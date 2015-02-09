@@ -11,6 +11,7 @@
 #include "PX2Rect.hpp"
 #include "PX2VertexFormat.hpp"
 #include "PX2RenderStep.hpp"
+#include "PX2FString.hpp"
 
 namespace PX2
 {
@@ -69,23 +70,25 @@ namespace PX2
 		Sizef mScreenSize;
 		PX2::CameraPtr mCamera;
 		std::vector<LightPtr> mAllLights; // 保存放在场景中的所有灯光
-		static std::string PX2Path;
 		Float4 mFogParam;
 		Float4 mFogColor;
 		Float4 mFogColorDist;
 
 		// RenderStep;
 	public:
-		bool AddRenderStep(RenderStep *step);
-		bool IsHasRenderStep(RenderStep *step) const;
-		bool RemoveRenderStep(RenderStep *step);
+		bool AddRenderStep(const char *name, RenderStep *step);
+		bool IsHasRenderStep(const char *name) const;
+		bool RemoveRenderStep(const char *name);
+		void RemoveRenderSteps(RenderStep *step);
+		RenderStep *GetRenderStep(const char *name);
 
 		void Update(double appSeconds, double elapsedSeconds);
 		void ComputeVisibleSet();
 		void Draw();
 
 	protected:
-		std::vector<RenderStepPtr> mRenderSteps;
+		std::map<FString, RenderStepPtr> mRenderStepMap;
+		std::vector<RenderStep *> mRenderStepVec;
 
 		// VertexFormat
 	public:
@@ -94,6 +97,8 @@ namespace PX2
 			VFT_PT1,
 			VFT_PT2,
 			VFT_PC,
+			VFT_PCT1,
+			VFT_PCT2,
 			VFT_MAX_TYPE
 		};
 

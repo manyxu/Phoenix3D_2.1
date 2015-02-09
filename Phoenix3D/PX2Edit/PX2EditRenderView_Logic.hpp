@@ -3,7 +3,7 @@
 #ifndef PX2EDITUIRENDERVIEW_LOGIC_HPP
 #define PX2EDITUIRENDERVIEW_LOGIC_HPP
 
-#include "PX2EditMapPre.hpp"
+#include "PX2EditPre.hpp"
 #include "PX2EditRenderView.hpp"
 
 namespace PX2

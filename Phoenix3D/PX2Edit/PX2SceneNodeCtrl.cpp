@@ -265,12 +265,11 @@ void SceneNodeCtrl::OnMotion(bool leftDown, RenderStep *renderStep,
 	// get pick ray
 	APoint rayOrigin_Now;
 	AVector rayDir_Now;
-	renderStep->GetPickRay((int)posNow.X(), (int)posNow.Z(),
-		rayOrigin_Now, rayDir_Now);
+	renderStep->GetPickRay(posNow.X(), posNow.Z(), rayOrigin_Now, rayDir_Now);
 
 	APoint rayOrigin_Before;
 	AVector rayDir_Before;
-	renderStep->GetPickRay((int)posBefore.X(), (int)posBefore.Z(),
+	renderStep->GetPickRay(posBefore.X(), posBefore.Z(),
 		rayOrigin_Before, rayDir_Before);
 
 	// pick
@@ -728,7 +727,7 @@ SceneNodeCtrl::DragType SceneNodeCtrl::GetDragType(RenderStep *renderStep,
 {
 	APoint origin;
 	AVector direction;
-	renderStep->GetPickRay(point.X(), point.Z(), origin, direction);
+	renderStep->GetPickRay((int)point.X(), (int)point.Z(), origin, direction);
 
 	PX2::Picker picker;
 

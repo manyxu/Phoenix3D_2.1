@@ -35,6 +35,11 @@ inline float UIPicBox::GetHeight() const
 	return mSize.Height;
 }
 //----------------------------------------------------------------------------
+inline UIPicBox::TexMode UIPicBox::GetTexMode() const
+{
+	return mTexMode;
+}
+//----------------------------------------------------------------------------
 inline const std::string &UIPicBox::GetTextureFilename() const
 {
 	return mTexturePackName;

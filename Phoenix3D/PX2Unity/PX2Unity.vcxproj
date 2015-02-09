@@ -210,6 +210,7 @@
     <ClCompile Include="PX2InputEventData.cpp" />
     <ClCompile Include="PX2InputEventListener.cpp" />
     <ClCompile Include="PX2InputManager.cpp" />
+    <ClCompile Include="PX2InputPushTransformController.cpp" />
     <ClCompile Include="PX2MD5.cpp" />
     <ClCompile Include="FreeType\src\autofit\autofit.c" />
     <ClCompile Include="FreeType\src\base\ftbase.c" />
@@ -277,6 +278,10 @@
     <ClCompile Include="PX2LuaManager.cpp" />
     <ClCompile Include="PX2ResourceManager.cpp" />
     <ClCompile Include="PX2ResourceUpdate.cpp" />
+    <ClCompile Include="PX2Sound.cpp" />
+    <ClCompile Include="PX2SoundSystem.cpp" />
+    <ClCompile Include="SoundFMod\PX2FMODSound.cpp" />
+    <ClCompile Include="SoundFMod\PX2FMODSoundSystem.cpp" />
     <ClCompile Include="ToLua\tolua_event.c" />
     <ClCompile Include="ToLua\tolua_is.c" />
     <ClCompile Include="ToLua\tolua_map.c" />
@@ -441,6 +446,7 @@
     <ClInclude Include="PX2InputEventData.hpp" />
     <ClInclude Include="PX2InputEventListener.hpp" />
     <ClInclude Include="PX2InputManager.hpp" />
+    <ClInclude Include="PX2InputPushTransformController.hpp" />
     <ClInclude Include="PX2MD5.hpp" />
     <ClInclude Include="FreeType\include\ft2build.h" />
     <ClInclude Include="Lua\lapi.h" />
@@ -487,8 +493,12 @@
     <ClInclude Include="PX2LuaManager.hpp" />
     <ClInclude Include="PX2ResourceUpdate.hpp" />
     <ClInclude Include="PX2ResourceManager.hpp" />
+    <ClInclude Include="PX2Sound.hpp" />
+    <ClInclude Include="PX2SoundSystem.hpp" />
     <ClInclude Include="PX2Unity.hpp" />
     <ClInclude Include="PX2UnityPre.hpp" />
+    <ClInclude Include="SoundFMod\PX2FMODSound.hpp" />
+    <ClInclude Include="SoundFMod\PX2FMODSoundSystem.hpp" />
     <ClInclude Include="ToLua\tolua++.h" />
     <ClInclude Include="ToLua\tolua_event.h" />
     <ClInclude Include="ZLib\crc32.h" />
@@ -513,9 +523,11 @@
     <None Include="PX2FontCommonImpl.inl" />
     <None Include="PX2FontManager.inl" />
     <None Include="PX2InputManager.inl" />
+    <None Include="PX2InputPushTransformController.inl" />
     <None Include="PX2LuaManager.inl" />
     <None Include="PX2ResourceManager.inl" />
     <None Include="PX2ResourceUpdate.inl" />
+    <None Include="PX2SoundSystem.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ABAB3D8F-DB63-47E6-966D-C4DF261E9E56}</ProjectGuid>
@@ -596,8 +608,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;IL_STATIC_LIB;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;.\DevIL;.\DevIL\PNG;.\ZLib;.\ZLib\minzip;.\RapidXML;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\CURL;.\CURL\config\win32;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;FT2_BUILD_LIBRARY;PX2_USE_FMOD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\DevIL;.\DevIL\PNG;.\ZLib;.\ZLib\minzip;.\RapidXML;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\CURL;.\CURL\config\win32;.\SoundFMod;..\ThirdPartiesLibs\pthread\include;..\ThirdPartiesLibs\FMOD Studio API Windows\api\lowlevel\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -39,13 +39,13 @@ EditRenderView_Scene::~EditRenderView_Scene()
 
 	if (mRenderStepCtrl)
 	{
-		PX2_GR.RemoveRenderStep(mRenderStepCtrl);
+		PX2_GR.RemoveRenderSteps(mRenderStepCtrl);
 		mRenderStepCtrl = 0;
 	}
 
 	if (mRenderStepCtrl1)
 	{
-		PX2_GR.RemoveRenderStep(mRenderStepCtrl1);
+		PX2_GR.RemoveRenderSteps(mRenderStepCtrl1);
 		mRenderStepCtrl1 = 0;
 	}
 
@@ -105,7 +105,7 @@ void EditRenderView_Scene::_CreateGridGeometry()
 	mRenderStepCtrl->SetPriority(30);
 	mRenderStepCtrl->SetName("SceneGridRenderStep");
 	mRenderStepCtrl->SetNode(mGridNode);
-	PX2_GR.AddRenderStep(mRenderStepCtrl);
+	PX2_GR.AddRenderStep(mRenderStepCtrl->GetName().c_str(), mRenderStepCtrl);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::_ClickSelect(const APoint &scrPos)
@@ -141,7 +141,7 @@ void EditRenderView_Scene::_ClickSelectScene(const APoint &scrPos,
 
 	APoint origin;
 	AVector direction;
-	renderStep->GetPickRay((int)scrPos.X(), (int)scrPos.Z(), origin, direction);
+	renderStep->GetPickRay(scrPos.X(), scrPos.Z(), origin, direction);
 
 	ActorPicker actorPicker;
 	actorPicker.Execute(scene, origin, direction, 0.0f, Mathf::MAX_REAL);
@@ -551,7 +551,7 @@ void EditRenderView_Scene::_CreateNodeCtrl()
 	mRenderStepCtrl1->SetDoDepthClear(true);
 	mRenderStepCtrl1->SetName("SceneCtrlNodeRenderStep");
 	mRenderStepCtrl1->SetNode(mSceneCtrlNode);
-	PX2_GR.AddRenderStep(mRenderStepCtrl1);
+	PX2_GR.AddRenderStep(mRenderStepCtrl1->GetName().c_str(), mRenderStepCtrl1);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::DoExecute(Event *event)

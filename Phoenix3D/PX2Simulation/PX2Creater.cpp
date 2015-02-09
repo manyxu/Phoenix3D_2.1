@@ -168,15 +168,7 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 UIFrame *Creater::CreateUIFrame(Node *parent, const APoint &pos,
 	bool isPosWorld, bool usePickPos)
 {
-	APoint localPos = pos;
-
-	if (parent && isPosWorld)
-	{
-		localPos = parent->WorldTransform.Inverse() * localPos;
-	}
-
-	if (!usePickPos)
-		localPos = APoint::ORIGIN;
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
 
 	UIFrame *frame = new0 UIFrame();
 	frame->LocalTransform.SetTranslate(localPos);
@@ -189,15 +181,7 @@ UIFrame *Creater::CreateUIFrame(Node *parent, const APoint &pos,
 UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos, 
 	const std::string &filename, bool isPosWorld, bool usePickPos)
 {
-	APoint localPos = pos;
-
-	if (parent && isPosWorld)
-	{
-		localPos = parent->WorldTransform.Inverse() * localPos;
-	}
-
-	if (!usePickPos)
-		localPos = APoint::ORIGIN;
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
 
 	UIPicBox *picBox = new0 UIPicBox(filename);
 	picBox->LocalTransform.SetTranslate(localPos);
@@ -211,15 +195,7 @@ UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos,
 	const std::string &texPack, const std::string &eleName, bool isPosWorld,
 	bool usePickPos)
 {
-	APoint localPos = pos;
-
-	if (parent && isPosWorld)
-	{
-		localPos = parent->WorldTransform.Inverse() * localPos;
-	}
-
-	if (!usePickPos)
-		localPos = APoint::ORIGIN;
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
 
 	UIPicBox *picBox = new0 UIPicBox(texPack, eleName);
 	picBox->LocalTransform.SetTranslate(localPos);
@@ -232,15 +208,7 @@ UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos,
 UIText *Creater::CreateUIText(Node *parent, const APoint &pos, 
 	bool isPosWorld, bool usePickPos)
 {
-	APoint localPos = pos;
-
-	if (parent && isPosWorld)
-	{
-		localPos = parent->WorldTransform.Inverse() * localPos;
-	}
-
-	if (!usePickPos)
-		localPos = APoint::ORIGIN;
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
 
 	UIText *text = new0 UIText();
 	text->LocalTransform.SetTranslate(localPos);
@@ -253,6 +221,85 @@ UIText *Creater::CreateUIText(Node *parent, const APoint &pos,
 UIButton *Creater::CreateUIButton(Node *parent, const APoint &pos, 
 	bool isPosWorld, bool usePickPos)
 {
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
+
+	UIButton *but = new0 UIButton();
+	but->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, but);
+
+	return but;
+}
+//----------------------------------------------------------------------------
+ParticleEmitter *Creater::CreateParticleEmitter(Node *parent,
+	const APoint &pos, bool isPosWorld, bool usePickPos)
+{
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
+
+	ParticleEmitter *mov = new0 ParticleEmitter();
+	mov->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, mov);
+
+	return mov;
+
+}
+//----------------------------------------------------------------------------
+Billboard *Creater::CreateBillboard(Node *parent,
+	const APoint &pos, bool isPosWorld, bool usePickPos)
+{
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
+
+	Billboard *mov = new0 Billboard();
+	mov->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, mov);
+
+	return mov;
+}
+//----------------------------------------------------------------------------
+BeamEmitter *Creater::CreateBeamEmitter(Node *parent,
+	const APoint &pos, bool isPosWorld, bool usePickPos)
+{
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
+
+	BeamEmitter *mov = new0 BeamEmitter();
+	mov->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, mov);
+
+	return mov;
+}
+//----------------------------------------------------------------------------
+RibbonEmitter *Creater::CreateRibbonEmitter(Node *parent,
+	const APoint &pos, bool isPosWorld, bool usePickPos)
+{
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
+
+	RibbonEmitter *mov = new0 RibbonEmitter();
+	mov->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, mov);
+
+	return mov;
+}
+//----------------------------------------------------------------------------
+Soundable *Creater::CreateSoundable(Node *parent, const APoint &pos, 
+	bool isPosWorld, bool usePickPos)
+{
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
+
+	Soundable *mov = new0 Soundable();
+	mov->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, mov);
+
+	return mov;
+}
+//----------------------------------------------------------------------------
+APoint Creater::_LocalPosCal(Node *parent, const APoint &pos,
+	bool isPosWorld, bool usePickPos)
+{
 	APoint localPos = pos;
 
 	if (parent && isPosWorld)
@@ -263,12 +310,7 @@ UIButton *Creater::CreateUIButton(Node *parent, const APoint &pos,
 	if (!usePickPos)
 		localPos = APoint::ORIGIN;
 
-	UIButton *but = new0 UIButton();
-	but->LocalTransform.SetTranslate(localPos);
-
-	AddObject(parent, but);
-
-	return but;
+	return localPos;
 }
 //----------------------------------------------------------------------------
 void Creater::AddObject(Object *parent, Object *obj, bool command)

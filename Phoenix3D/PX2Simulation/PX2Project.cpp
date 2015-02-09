@@ -27,16 +27,16 @@ mEdit_UICameraPercent(1.0f)
 	
 	mSceneRenderStep = new0 RenderStep();
 	mSceneRenderStep->SetPriority(20);
-	mSceneRenderStep->SetName("SceneRenderStep");
+	mSceneRenderStep->SetName("Scene");
 	mSceneRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
-	PX2_GR.AddRenderStep(mSceneRenderStep);
+	PX2_GR.AddRenderStep(mSceneRenderStep->GetName().c_str(), mSceneRenderStep);
 
 	mUIRenderStep = new0 UIView(0);
 	mUIRenderStep->SetPriority(10);
 	mUIRenderStep->SetDoDepthClear(true);
-	mUIRenderStep->SetName("UIRenderStep");
+	mUIRenderStep->SetName("UI");
 	mUIRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
-	PX2_GR.AddRenderStep(mUIRenderStep);
+	PX2_GR.AddRenderStep(mUIRenderStep->GetName().c_str(), mUIRenderStep);
 
 	mUIFrame = new0 UISizeFrame();
 	mUIFrame->SetName("RootFrame");
@@ -45,10 +45,10 @@ mEdit_UICameraPercent(1.0f)
 //----------------------------------------------------------------------------
 Project::~Project ()
 {
-	PX2_GR.RemoveRenderStep(mSceneRenderStep);
+	PX2_GR.RemoveRenderSteps(mSceneRenderStep);
 	mSceneRenderStep = 0;
 
-	PX2_GR.RemoveRenderStep(mUIRenderStep);
+	PX2_GR.RemoveRenderSteps(mUIRenderStep);
 	mUIRenderStep = 0;
 
 	if (ScriptManager::GetSingletonPtr())

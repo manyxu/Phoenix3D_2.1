@@ -118,6 +118,15 @@
     <Filter Include="MD5">
       <UniqueIdentifier>{92c339ec-7471-4c6e-81da-42cf279801b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input\Ctrls">
+      <UniqueIdentifier>{fbbf7bba-7ff6-48eb-b44b-6b302dd75392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{b9f4e9ca-32bf-45f7-9c31-e434383d8d74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\FMod">
+      <UniqueIdentifier>{437fce46-7ca9-4825-a222-446a8b2cdf5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2ResourceManager.cpp">
@@ -960,6 +969,21 @@
     <ClCompile Include="PX2InputEvent.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="PX2InputPushTransformController.cpp">
+      <Filter>Input\Ctrls</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Sound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SoundSystem.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundFMod\PX2FMODSound.cpp">
+      <Filter>Sound\FMod</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundFMod\PX2FMODSoundSystem.cpp">
+      <Filter>Sound\FMod</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Unity.hpp" />
@@ -1567,6 +1591,21 @@
     <ClInclude Include="PX2InputEvent.hpp">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="PX2InputPushTransformController.hpp">
+      <Filter>Input\Ctrls</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Sound.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SoundSystem.hpp">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundFMod\PX2FMODSound.hpp">
+      <Filter>Sound\FMod</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundFMod\PX2FMODSoundSystem.hpp">
+      <Filter>Sound\FMod</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2ResourceManager.inl">
@@ -1598,6 +1637,12 @@
     </None>
     <None Include="PX2InputManager.inl">
       <Filter>Input</Filter>
+    </None>
+    <None Include="PX2InputPushTransformController.inl">
+      <Filter>Input\Ctrls</Filter>
+    </None>
+    <None Include="PX2SoundSystem.inl">
+      <Filter>Sound</Filter>
     </None>
   </ItemGroup>
 </Project>

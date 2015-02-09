@@ -13,11 +13,19 @@ PX2_IMPLEMENT_DEFAULT_NAMES(UIFrame, UIGridFrame)
 UIGridFrame::UIGridFrame()
 :
 mIsBagFrameNeedUpdate(true),
-mAlignItemType(ATT_SIZE_WIDTH)
+mAlignItemType(ATT_SIZE_WIDTH),
+mContentLength(0.0f),
+mNeedMoveLength(0.0f)
 {
 	SetSize(100, 100);
 	SetBorderSize(10, 10);
 	SetAlignItemSize(20, 20);
+
+	InputPushTransformController *ctrl = CreateAddIPTCtrl();
+	ctrl->SetLockDir(AVector::UNIT_Z);
+	ctrl->SetPushTriggerSpeed(50.0f);
+	ctrl->SetMaxVelocity(400.0f);
+	ctrl->SetFriction(200.0f);
 }
 //----------------------------------------------------------------------------
 UIGridFrame::~UIGridFrame()
@@ -76,11 +84,33 @@ void UIGridFrame::SetAlignItemNum(const Float2 &itemNum)
 //----------------------------------------------------------------------------
 void UIGridFrame::UpdateWorldData(double applicationTime)
 {
+	if (!mIPTCtrl->IsPlaying()) return;
+
 	if (mIsBagFrameNeedUpdate)
 	{
-		_UpdateAlignItems();
-
 		mIsBagFrameNeedUpdate = false;
+
+		//const APoint &localPos = LocalTransform.GetTranslate();
+
+		int numValidChild = _UpdateAlignItems();
+
+		int numWidth = (int)((mSize.Width - mBorderSize.Width*2.0f) / mItemSize.Width);
+		int zIndex = (int)(Mathf::Max(0.0f, (float)(numValidChild - 1)) / numWidth);
+
+		mContentLength = 0.0f;
+		mNeedMoveLength = 0.001f;
+
+		mIPTCtrl->SetVelocity(AVector::ZERO);
+
+		if (AVector::UNIT_Z == mIPTCtrl->GetLockDir())
+		{
+			mContentLength = mBorderSize.Height*2.0f + (zIndex + 1) * mItemSize.Height;
+			if (mContentLength > mSize.Height) 
+				mNeedMoveLength = mContentLength - mSize.Height;
+			
+			mIPTCtrl->SetTransScope(AVector::ZERO,
+				AVector(0.0f, 0.0f, mNeedMoveLength));
+		}
 	}
 
 	UIFrame::UpdateWorldData(applicationTime);
@@ -146,10 +176,12 @@ int UIGridFrame::AttachChild(Movable* child)
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-UIGridFrame::UIGridFrame(LoadConstructor value)
-	:
-	UIFrame(value),
-	mIsBagFrameNeedUpdate(false)
+UIGridFrame::UIGridFrame(LoadConstructor value) :
+UIFrame(value),
+mIsBagFrameNeedUpdate(true),
+mAlignItemType(ATT_SIZE_WIDTH),
+mContentLength(0.0f),
+mNeedMoveLength(0.0f)
 {
 }
 //----------------------------------------------------------------------------

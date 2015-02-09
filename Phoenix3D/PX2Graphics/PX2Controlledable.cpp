@@ -12,9 +12,9 @@ PX2_IMPLEMENT_STREAM(Controlledable);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(Controlledable);
 
 //----------------------------------------------------------------------------
-Controlledable::Controlledable ()
-	:
-mIsSelfCtrled(false)
+Controlledable::Controlledable () :
+mIsSelfCtrled(false),
+mIsAutoPlay(false)
 {
 	mControlUpdateTimeLast = -1.0;
 	mControlUpdateTimeMin = 0.02;
@@ -146,6 +146,14 @@ void Controlledable::SortControls ()
 //----------------------------------------------------------------------------
 bool Controlledable::UpdateControllers (double applicationTime)
 {
+	if (mIsAutoPlay)
+	{
+		if (!IsPlaying())
+		{
+			ResetPlay();
+		}
+	}
+
 	bool someoneUpdated = false;
 
 	for (int i = 0; i < GetNumControllers(); ++i)
@@ -170,6 +178,7 @@ void Controlledable::RegistProperties ()
 	AddPropertyClass("Controlledable");
 
 	AddProperty("IsSelfCtrled", PT_BOOL, mIsSelfCtrled);
+	AddProperty("IsAutoPlay", PT_BOOL, mIsAutoPlay);
 }
 //----------------------------------------------------------------------------
 void Controlledable::OnPropertyChanged (const PropertyObject &obj)
@@ -179,6 +188,10 @@ void Controlledable::OnPropertyChanged (const PropertyObject &obj)
 	if ("IsSelfCtrled" == obj.Name)
 	{
 		SetSelfCtrled(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsAutoPlay" == obj.Name)
+	{
+		SetAutoPlay(PX2_ANY_AS(obj.Data, bool));
 	}
 }
 //----------------------------------------------------------------------------
@@ -248,7 +261,8 @@ Controlledable::Controlledable (LoadConstructor value)
 :
 Componable(value),
 mIsSelfCtrled(false),
-mControllers(0)
+mControllers(0),
+mIsAutoPlay(false)
 {
 	mControlUpdateTimeLast = -1.0;
 	mControlUpdateTimeMin = 0.02;
@@ -262,6 +276,7 @@ void Controlledable::Load (InStream& source)
 	PX2_VERSION_LOAD(source);
 
 	source.ReadBool(mIsSelfCtrled);
+	source.ReadBool(mIsAutoPlay);
 
 	int numCtrls;
 	source.Read(numCtrls);
@@ -312,6 +327,7 @@ void Controlledable::Save (OutStream& target) const
 	PX2_VERSION_SAVE(target);
 
 	target.WriteBool(mIsSelfCtrled);
+	target.WriteBool(mIsAutoPlay);
 
 	int numCtrls = (int)mControllers.size();
 	target.Write(numCtrls);
@@ -331,6 +347,7 @@ int Controlledable::GetStreamingSize (Stream &stream) const
 	size += PX2_VERSION_SIZE(mVersion);
 
 	size += PX2_BOOLSIZE(mIsSelfCtrled);
+	size += PX2_BOOLSIZE(mIsAutoPlay);
 
 	size += sizeof(numCtrls);
 	size += numCtrls*PX2_POINTERSIZE(mControllers[0]);

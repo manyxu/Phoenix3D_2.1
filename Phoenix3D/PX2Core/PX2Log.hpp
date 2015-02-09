@@ -28,10 +28,7 @@ namespace PX2
 	{
 		LT_INFO = 1,
 		LT_ERROR = 2,
-		LT_USER = 4,
-		LT_SERVER_INFO = 8,
-		LT_SERVER_ERROR = 16,
-		LT_SERVER_USER = 32
+		LT_USER = 4
 	};
 
 	class LogBuffer : public FixMemoryObject<LogBuffer>
@@ -106,9 +103,6 @@ namespace PX2
 #define PX2_LOG_INFO(...)			Logger::GetSingleton().LogMessage(PX2::LT_INFO, __LINE__, __FILE__, ##__VA_ARGS__)
 #define PX2_LOG_ERROR(...)			Logger::GetSingleton().LogMessage(PX2::LT_ERROR, __LINE__, __FILE__, ##__VA_ARGS__)
 #define PX2_LOG_USER(...)			Logger::GetSingleton().LogMessage(PX2::LT_USER, __LINE__, __FILE__, ##__VA_ARGS__)
-#define PX2_LOG_SERVER_INFO(...)	Logger::GetSingleton().LogMessage(PX2::LT_SERVER_INFO, __LINE__, __FILE__, ##__VA_ARGS__)
-#define PX2_LOG_SERVER_ERROR(...)	Logger::GetSingleton().LogMessage(PX2::LT_SERVER_ERROR, __LINE__, __FILE__, ##__VA_ARGS__)
-#define PX2_LOG_SERVER_USER(...)	Logger::GetSingleton().LogMessage(PX2::LT_SERVER_USER, __LINE__, __FILE__, ##__VA_ARGS__)
 
 }
 

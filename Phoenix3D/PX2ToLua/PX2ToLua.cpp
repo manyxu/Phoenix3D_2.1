@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 02/04/15 15:35:36.
+** Generated automatically by tolua++-1.0.92 on 02/06/15 18:12:10.
 */
 
 #ifndef __cplusplus
@@ -192,11 +192,16 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"TexPack");
  tolua_usertype(tolua_S,"TextureCube");
+ tolua_usertype(tolua_S,"CameraActor");
  tolua_usertype(tolua_S,"VisibleSet");
+ tolua_usertype(tolua_S,"Soundable");
+ tolua_usertype(tolua_S,"RibbonEmitter");
  tolua_usertype(tolua_S,"VertexShader");
+ tolua_usertype(tolua_S,"BeamEmitter");
+ tolua_usertype(tolua_S,"Billboard");
  tolua_usertype(tolua_S,"AlphaProperty");
  tolua_usertype(tolua_S,"VertexFormat");
- tolua_usertype(tolua_S,"CameraActor");
+ tolua_usertype(tolua_S,"ParticleEmitter");
  tolua_usertype(tolua_S,"UIButton");
  tolua_usertype(tolua_S,"AVector");
  tolua_usertype(tolua_S,"GlobalMaterial");
@@ -13923,6 +13928,206 @@ static int tolua_PX2_Creater_CreateUIButton00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: CreateParticleEmitter of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateParticleEmitter00
+static int tolua_PX2_Creater_CreateParticleEmitter00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateParticleEmitter'", NULL);
+#endif
+  {
+   ParticleEmitter* tolua_ret = (ParticleEmitter*)  self->CreateParticleEmitter(parent,*pos,isPosWorld,usePickPos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"ParticleEmitter");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateParticleEmitter'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateBillboard of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateBillboard00
+static int tolua_PX2_Creater_CreateBillboard00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateBillboard'", NULL);
+#endif
+  {
+   Billboard* tolua_ret = (Billboard*)  self->CreateBillboard(parent,*pos,isPosWorld,usePickPos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Billboard");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateBillboard'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateBeamEmitter of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateBeamEmitter00
+static int tolua_PX2_Creater_CreateBeamEmitter00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateBeamEmitter'", NULL);
+#endif
+  {
+   BeamEmitter* tolua_ret = (BeamEmitter*)  self->CreateBeamEmitter(parent,*pos,isPosWorld,usePickPos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"BeamEmitter");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateBeamEmitter'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateRibbonEmitter of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateRibbonEmitter00
+static int tolua_PX2_Creater_CreateRibbonEmitter00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateRibbonEmitter'", NULL);
+#endif
+  {
+   RibbonEmitter* tolua_ret = (RibbonEmitter*)  self->CreateRibbonEmitter(parent,*pos,isPosWorld,usePickPos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"RibbonEmitter");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateRibbonEmitter'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateSoundable of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateSoundable00
+static int tolua_PX2_Creater_CreateSoundable00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateSoundable'", NULL);
+#endif
+  {
+   Soundable* tolua_ret = (Soundable*)  self->CreateSoundable(parent,*pos,isPosWorld,usePickPos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Soundable");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateSoundable'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: AddObject of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_AddObject00
 static int tolua_PX2_Creater_AddObject00(lua_State* tolua_S)
@@ -14921,6 +15126,11 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateUIPicBox",tolua_PX2_Creater_CreateUIPicBox01);
    tolua_function(tolua_S,"CreateUIText",tolua_PX2_Creater_CreateUIText00);
    tolua_function(tolua_S,"CreateUIButton",tolua_PX2_Creater_CreateUIButton00);
+   tolua_function(tolua_S,"CreateParticleEmitter",tolua_PX2_Creater_CreateParticleEmitter00);
+   tolua_function(tolua_S,"CreateBillboard",tolua_PX2_Creater_CreateBillboard00);
+   tolua_function(tolua_S,"CreateBeamEmitter",tolua_PX2_Creater_CreateBeamEmitter00);
+   tolua_function(tolua_S,"CreateRibbonEmitter",tolua_PX2_Creater_CreateRibbonEmitter00);
+   tolua_function(tolua_S,"CreateSoundable",tolua_PX2_Creater_CreateSoundable00);
    tolua_function(tolua_S,"AddObject",tolua_PX2_Creater_AddObject00);
    tolua_function(tolua_S,"RemoveObject",tolua_PX2_Creater_RemoveObject00);
    tolua_function(tolua_S,"ConvertToNode",tolua_PX2_Creater_ConvertToNode00);

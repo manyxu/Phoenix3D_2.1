@@ -3,7 +3,7 @@
 #ifndef PX2EDITRENDERVIEW_HPP
 #define PX2EDITRENDERVIEW_HPP
 
-#include "PX2EditMapPre.hpp"
+#include "PX2EditPre.hpp"
 #include "PX2Node.hpp"
 #include "PX2Renderable.hpp"
 #include "PX2RenderStep.hpp"

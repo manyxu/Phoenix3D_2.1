@@ -57,6 +57,8 @@ namespace PX2
 
 		Sizef mItemSize;
 		Float2 mAlignItemNum;
+		float mContentLength;
+		float mNeedMoveLength;
 
 		bool mIsBagFrameNeedUpdate;
 	};

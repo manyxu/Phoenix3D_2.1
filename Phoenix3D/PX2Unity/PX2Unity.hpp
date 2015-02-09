@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Unity.hpp
-*
-*/
+// PX2Unity.hpp
 
 #ifndef PX2UNITY_HPP
 #define PX2UNITY_HPP

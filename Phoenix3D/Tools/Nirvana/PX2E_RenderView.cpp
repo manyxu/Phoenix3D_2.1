@@ -20,6 +20,8 @@ BEGIN_EVENT_TABLE(RenderView, wxWindow)
 EVT_SIZE(RenderView::OnSize)
 EVT_PAINT(RenderView::OnPaint)
 EVT_ERASE_BACKGROUND(RenderView::OnEraseBackground)
+EVT_ENTER_WINDOW(RenderView::OnEnterWindow)
+EVT_LEAVE_WINDOW(RenderView::OnLeaveWindow)
 EVT_LEFT_DOWN(RenderView::OnLeftDown)
 EVT_LEFT_UP(RenderView::OnLeftUp)
 EVT_MIDDLE_DOWN(RenderView::OnMiddleDown)
@@ -116,6 +118,18 @@ void RenderView::OnEraseBackground(wxEraseEvent& e)
 {
 	if (!mIsInited) return;
 	PX2_UNUSED(e);
+}
+//----------------------------------------------------------------------------
+void RenderView::OnEnterWindow(wxMouseEvent& e)
+{
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->EnterView();
+}
+//----------------------------------------------------------------------------
+void RenderView::OnLeaveWindow(wxMouseEvent& e)
+{
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->LevelView();
 }
 //----------------------------------------------------------------------------
 void RenderView::OnLeftDown(wxMouseEvent& e)
