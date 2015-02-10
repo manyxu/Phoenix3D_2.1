@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2Renderer.cpp
-*
-*/
+// TdOpenGLES2Renderer.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2Renderer.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -981,3 +979,5 @@ void Renderer::ClearSharePdrData ()
 	mSharePdrMaterialPasses.clear();
 }
 //----------------------------------------------------------------------------
+
+#endif

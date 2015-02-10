@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9RenderTarget.cpp
-*
-*/
+// PX2Dx9RenderTarget.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2RenderTarget.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -45,3 +43,5 @@ void PdrRenderTarget::ReadColor (int i, Renderer* renderer,
 	assertion(false, "not realized.");
 }
 //----------------------------------------------------------------------------
+
+#endif

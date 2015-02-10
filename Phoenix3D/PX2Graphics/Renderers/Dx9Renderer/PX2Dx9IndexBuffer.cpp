@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9IndexBuffer.cpp
-*
-*/
+// PX2Dx9IndexBuffer.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2Dx9IndexBuffer.hpp"
 #include "PX2Dx9Mapping.hpp"
@@ -96,3 +94,5 @@ void PdrIndexBuffer::Unlock ()
 		DXGetErrorString(hr));
 }
 //----------------------------------------------------------------------------
+
+#endif

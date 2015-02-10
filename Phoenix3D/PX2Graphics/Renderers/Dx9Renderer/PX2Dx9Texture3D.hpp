@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9Texture3D.hpp
-*
-*/
+// PX2Dx9Texture3D.hpp
+
+#ifdef PX2_USE_DX9
 
 #ifndef PX2DX9TEXTURE3D_HPP
 #define PX2DX9TEXTURE3D_HPP
@@ -31,5 +29,7 @@ namespace PX2
 	};
 
 }
+
+#endif
 
 #endif

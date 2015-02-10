@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2OpenGLES2Texture1D.cpp
-*
-*/
+// PX2OpenGLES2Texture1D.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2Texture1D.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -54,3 +52,6 @@ void PdrTexture1D::Unlock (int level)
 	assertion(false, "not realized.");
 }
 //----------------------------------------------------------------------------
+
+#endif
+

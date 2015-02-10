@@ -183,6 +183,21 @@
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9VertexBuffer.cpp" />
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9VertexFormat.cpp" />
     <ClCompile Include="Renderers\Dx9Renderer\PX2Dx9VertexShader.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2IndexBuffer.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Mapping.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2MaterialPass.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2PixelShader.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Renderer.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererData.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RenderTarget.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Shader.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture1D.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture2D.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture3D.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2TextureCube.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexBuffer.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexFormat.cpp" />
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2AlphaProperty.hpp" />
@@ -338,6 +353,22 @@
     <ClInclude Include="Renderers\Dx9Renderer\PX2Dx9VertexBuffer.hpp" />
     <ClInclude Include="Renderers\Dx9Renderer\PX2Dx9VertexFormat.hpp" />
     <ClInclude Include="Renderers\Dx9Renderer\PX2Dx9VertexShader.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2IndexBuffer.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Mapping.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2MaterialPass.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2PixelShader.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererData.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererPre.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererPrerequisites.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RenderTarget.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Shader.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture1D.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture2D.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture3D.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2TextureCube.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexBuffer.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexFormat.hpp" />
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexShader.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2BillboardNode.inl" />
@@ -494,7 +525,7 @@
     <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
-    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\OpenGLES2$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|Win32'">
     <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
@@ -513,8 +544,8 @@
     <TargetName>PX2GraphicsDx9D</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
-    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
-    <TargetName>PX2GraphicsDx9D</TargetName>
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\OpenGLES2$(Configuration)\</IntDir>
+    <TargetName>PX2GraphicsOpenGLES2D</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|Win32'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
@@ -576,8 +607,8 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_USE_DX9;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;.\Renderers\Dx9Renderer;..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_USE_OPENGLES2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\Renderers\OpenGLES2Renderer;..\PX2SDK\Include;..\ThirdPartiesLibs\OGLES;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

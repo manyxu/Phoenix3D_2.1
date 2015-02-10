@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2MaterialPass.cpp
-*
-*/
+// TdOpenGLES2MaterialPass.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2MaterialPass.hpp"
 #include "PX2Renderer.hpp"
@@ -167,3 +165,5 @@ void PdrMaterialPass::Disable (Renderer* renderer)
 {
 }
 //----------------------------------------------------------------------------
+
+#endif

@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9VertexShader.cpp
-*
-*/
+// PX2Dx9VertexShader.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2Dx9VertexShader.hpp"
 #include "PX2Renderer.hpp"
@@ -127,3 +125,5 @@ void PdrVertexShader::Disable (Renderer* renderer,
 		DXGetErrorString(hr));
 }
 //----------------------------------------------------------------------------
+
+#endif

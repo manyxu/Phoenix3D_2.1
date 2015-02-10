@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Renderer.inl
-*
-*/
+// PX2Renderer.inl
 
 //----------------------------------------------------------------------------
 inline int Renderer::GetWidth () const

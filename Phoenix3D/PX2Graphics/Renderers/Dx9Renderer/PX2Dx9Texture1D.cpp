@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9Texture1D.cpp
-*
-*/
+//	PX2Dx9Texture1D.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2Dx9Texture1D.hpp"
 #include "PX2Dx9Mapping.hpp"
@@ -87,3 +85,5 @@ void PdrTexture1D::Unlock (int level)
 		level, DXGetErrorString(hr));
 }
 //----------------------------------------------------------------------------
+
+#endif

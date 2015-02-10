@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9PixelShader.cpp
-*
-*/
+// PX2Dx9PixelShader.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2Dx9PixelShader.hpp"
 #include "PX2Renderer.hpp"
@@ -129,3 +127,5 @@ void PdrPixelShader::Disable (Renderer* renderer, const PixelShader* pshader,
 		DXGetErrorString(hr));
 }
 //----------------------------------------------------------------------------
+
+#endif

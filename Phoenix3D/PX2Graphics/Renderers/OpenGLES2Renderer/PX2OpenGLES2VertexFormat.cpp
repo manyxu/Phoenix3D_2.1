@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2VertexFormat.cpp
-*
-*/
+// TdOpenGLES2VertexFormat.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2VertexFormat.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -286,3 +284,5 @@ void PdrVertexFormat::Disable (Renderer*)
 	}
 }
 //----------------------------------------------------------------------------
+
+#endif

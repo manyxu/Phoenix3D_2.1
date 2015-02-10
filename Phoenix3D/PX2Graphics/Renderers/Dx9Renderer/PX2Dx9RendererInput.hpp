@@ -1,5 +1,7 @@
 // PX2Dx9RendererInput.hpp
 
+#ifdef PX2_USE_DX9
+
 #ifndef PX2DX9RENDERERINPUT_HPP
 #define PX2DX9RENDERERINPUT_HPP
 
@@ -22,5 +24,7 @@ namespace PX2
 	};
 
 }
+
+#endif
 
 #endif

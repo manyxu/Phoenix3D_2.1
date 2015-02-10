@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9TextureCube.cpp
-*
-*/
+//PX2Dx9TextureCube.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2Dx9TextureCube.hpp"
 #include "PX2Dx9Mapping.hpp"
@@ -94,3 +92,5 @@ void PdrTextureCube::Unlock (int face, int level)
 		face, level, DXGetErrorString(hr));
 }
 //----------------------------------------------------------------------------
+
+#endif

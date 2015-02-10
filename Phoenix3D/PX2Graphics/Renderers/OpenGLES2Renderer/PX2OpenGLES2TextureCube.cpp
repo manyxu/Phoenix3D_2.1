@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9TextureCube.cpp
-*
-*/
+// PX2Dx9TextureCube.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2TextureCube.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -57,3 +55,5 @@ void PdrTextureCube::Unlock (int face, int level)
 	assertion(false, "not realized.");
 }
 //----------------------------------------------------------------------------
+
+#endif

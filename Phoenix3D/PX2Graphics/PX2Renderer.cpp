@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Renderer.cpp
-*
-*/
+// PX2Renderer.cpp
 
 #include "PX2Renderer.hpp"
 #include "PX2GlobalMaterial.hpp"

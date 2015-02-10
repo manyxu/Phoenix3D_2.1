@@ -1,15 +1,6 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2Dx9Mapping.hpp
-*
-* 版本		:	1.0 (2011/02/01)
-*
-* 作者		：	more
-*
-*/
+// PX2Dx9Mapping.hpp
+
+#ifdef PX2_USE_DX9
 
 #ifndef PX2DX9MAPPING_HPP
 #define PX2DX9MAPPING_HPP
@@ -46,5 +37,7 @@ namespace PX2
 	extern D3DPRIMITIVETYPE gDX9PrimitiveType[Renderable::PT_MAX_QUANTITY];
 
 }
+
+#endif
 
 #endif

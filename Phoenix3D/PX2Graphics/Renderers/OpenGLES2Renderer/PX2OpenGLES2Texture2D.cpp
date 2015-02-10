@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2Texture2D.cpp
-*
-*/
+// TdOpenGLES2Texture2D.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2Texture2D.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -307,3 +305,5 @@ void PdrTexture2D::Unlock (int level)
 	assertion (false, "OpenglES does't support Unlock.");
 }
 //----------------------------------------------------------------------------
+
+#endif

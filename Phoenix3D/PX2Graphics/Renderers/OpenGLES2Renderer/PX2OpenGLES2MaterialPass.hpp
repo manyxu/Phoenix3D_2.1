@@ -1,15 +1,6 @@
-/*
-* Turandot 3D 游戏引擎 Version 1.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	TdOpenGLES2MaterialPass.hpp
-*
-* 版本		:	1.0 (2011/07/21)
-*
-* 作者		：	许多
-*
-*/
+// TdOpenGLES2MaterialPass.hpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #ifndef PX2OPENGLES2MATERIALPASS_HPP
 #define PX2OPENGLES2MATERIALPASS_HPP
@@ -42,5 +33,7 @@ namespace PX2
 	};
 
 }
+
+#endif
 
 #endif

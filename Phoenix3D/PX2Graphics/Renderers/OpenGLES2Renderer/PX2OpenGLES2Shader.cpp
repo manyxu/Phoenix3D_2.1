@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2Shader.cpp
-*
-*/
+// TdOpenGLES2Shader.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2Shader.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -151,3 +149,6 @@ void PdrShader::DisableTextures (Renderer* renderer, const Shader* shader,
 	}
 }
 //----------------------------------------------------------------------------
+
+#endif
+

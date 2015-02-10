@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9Renderer.cpp
-*
-*/
+// PX2Dx9Renderer.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2Renderer.hpp"
 #include "PX2Dx9IndexBuffer.hpp"
@@ -1825,3 +1823,5 @@ RendererData::SamplerState::SamplerState ()
 	mWrap[2] = D3DTADDRESS_WRAP;
 }
 //----------------------------------------------------------------------------
+
+#endif

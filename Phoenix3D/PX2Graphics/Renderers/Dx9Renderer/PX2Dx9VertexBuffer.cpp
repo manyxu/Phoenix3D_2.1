@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9VertexBuffer.cpp
-*
-*/
+// PX2Dx9VertexBuffer.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2DX9VertexBuffer.hpp"
 #include "PX2Dx9Mapping.hpp"
@@ -98,3 +96,5 @@ void PdrVertexBuffer::Unlock ()
 		DXGetErrorString(hr));
 }
 //----------------------------------------------------------------------------
+
+#endif

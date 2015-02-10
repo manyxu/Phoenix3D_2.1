@@ -1,5 +1,7 @@
 // PX2Dx9RendererInput.cpp
 
+#ifdef PX2_USE_DX9
+
 #include "PX2Dx9RendererInput.hpp"
 using namespace PX2;
 
@@ -23,3 +25,5 @@ bool PdrRendererInput::Ternamate()
 	return true;
 }
 //----------------------------------------------------------------------------
+
+#endif

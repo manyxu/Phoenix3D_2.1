@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2RendererData.cpp
-*
-*/
+// TdOpenGLES2RendererData.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2RendererData.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -107,3 +105,5 @@ void RendererData::SamplerState::GetCurrent (GLenum target)
 	glGetTexParameteriv(target, GL_TEXTURE_WRAP_T, &mWrap[1]);
 }
 //----------------------------------------------------------------------------
+
+#endif

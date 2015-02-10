@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2PixelShader.cpp
-*
-*/
+// TdOpenGLES2PixelShader.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2PixelShader.hpp"
 #include "PX2Renderer.hpp"
@@ -98,3 +96,5 @@ void PdrPixelShader::Disable (Renderer* renderer, const PixelShader* pshader,
 		renderer->mData->mMaxVShaderImages);
 }
 //----------------------------------------------------------------------------
+
+#endif

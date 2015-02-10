@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9RenderTarget.cpp
-*
-*/
+// PX2Dx9RenderTarget.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2Dx9RenderTarget.hpp"
 #include "PX2Dx9Mapping.hpp"
@@ -268,3 +266,5 @@ void PdrRenderTarget::ReadColor (int i, Renderer* renderer,
 	}
 }
 //----------------------------------------------------------------------------
+
+#endif

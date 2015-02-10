@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9Mapping.cpp
-*
-*/
+// PX2Dx9Mapping.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2Dx9Mapping.hpp"
 
@@ -218,3 +216,5 @@ D3DPRIMITIVETYPE gDX9PrimitiveType[Renderable::PT_MAX_QUANTITY] =
 };
 
 }
+
+#endif

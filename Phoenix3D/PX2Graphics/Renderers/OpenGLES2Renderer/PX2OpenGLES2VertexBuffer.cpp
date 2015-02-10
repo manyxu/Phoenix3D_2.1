@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2VertexBuffer.cpp
-*
-*/
+// TdOpenGLES2VertexBuffer.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2VertexBuffer.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -51,3 +49,5 @@ void PdrVertexBuffer::Unlock ()
 {
 }
 //----------------------------------------------------------------------------
+
+#endif

@@ -1,15 +1,6 @@
-/*
-* Turandot 3D 游戏引擎 Version 1.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	TdOpenGLES2Mapping.hpp
-*
-* 版本		:	1.0 (2011/07/12)
-*
-* 作者		：	许多
-*
-*/
+// TdOpenGLES2Mapping.hpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #ifndef PX2OPENGLMAPPING_HPP
 #define PX2OPENGLMAPPING_HPP
@@ -45,5 +36,7 @@ namespace PX2
 	extern GLint  gOGLWrapMode[Shader::SC_QUANTITY];
 	extern GLenum gOGLPrimitiveType[Renderable::PT_MAX_QUANTITY];
 }
+
+#endif
 
 #endif

@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2Mapping.cpp
-*
-*/
+// TdOpenGLES2Mapping.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2Mapping.hpp"
 
@@ -284,3 +282,5 @@ namespace PX2
 		GL_TRIANGLE_FAN     // PT_TRIFAN
 	};
 }
+
+#endif

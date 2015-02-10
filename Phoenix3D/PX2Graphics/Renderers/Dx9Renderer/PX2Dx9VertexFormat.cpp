@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Dx9VertexFormat.cpp
-*
-*/
+// PX2Dx9VertexFormat.cpp
+
+#ifdef PX2_USE_DX9
 
 #include "PX2Dx9VertexFormat.hpp"
 #include "PX2Dx9Mapping.hpp"
@@ -90,3 +88,6 @@ void PdrVertexFormat::Disable (Renderer* renderer)
 		DXGetErrorString(hr));
 }
 //----------------------------------------------------------------------------
+
+#endif
+

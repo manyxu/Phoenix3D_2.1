@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2IndexBuffer.cpp
-*
-*/
+// TdOpenGLES2IndexBuffer.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2IndexBuffer.hpp"
 #include "PX2OpenGLES2Mapping.hpp"
@@ -52,3 +50,5 @@ void PdrIndexBuffer::Unlock ()
 {
 }
 //----------------------------------------------------------------------------
+
+#endif

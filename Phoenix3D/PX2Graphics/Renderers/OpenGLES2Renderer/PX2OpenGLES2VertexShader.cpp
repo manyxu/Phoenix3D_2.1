@@ -1,8 +1,6 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	TdOpenGLES2VertexShader.cpp
-*
-*/
+// TdOpenGLES2VertexShader.cpp
+
+#ifdef PX2_USE_OPENGLES2
 
 #include "PX2OpenGLES2VertexShader.hpp"
 #include "PX2Renderer.hpp"
@@ -98,3 +96,5 @@ void PdrVertexShader::Disable (Renderer* renderer, const VertexShader* vshader,
 		renderer->mData->mMaxVShaderImages);
 }
 //----------------------------------------------------------------------------
+
+#endif
