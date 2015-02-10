@@ -110,9 +110,9 @@ PX2wxAuiToolBar::PX2wxAuiToolBar(wxWindow* parent,
 	const wxPoint& pos,
 	const wxSize& size,
 	long style)
+	:
+	wxAuiToolBar(parent, id, pos, size, style)
 {
-	Init();
-	Create(parent, id, pos, size, style);
 }
 //----------------------------------------------------------------------------
 PX2wxAuiToolBar::~PX2wxAuiToolBar()
