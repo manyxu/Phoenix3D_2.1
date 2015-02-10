@@ -273,7 +273,6 @@
     <ClCompile Include="PX2FontGlyphMapTrueType.cpp" />
     <ClCompile Include="PX2IMEDelegate.cpp" />
     <ClCompile Include="PX2IMEDispatcher.cpp" />
-    <ClCompile Include="PX2JNI.cpp" />
     <ClCompile Include="PX2LanguageManager.cpp" />
     <ClCompile Include="PX2LuaManager.cpp" />
     <ClCompile Include="PX2ResourceManager.cpp" />
@@ -488,7 +487,6 @@
     <ClInclude Include="PX2FontManager.hpp" />
     <ClInclude Include="PX2IMEDelegate.hpp" />
     <ClInclude Include="PX2IMEDispatcher.hpp" />
-    <ClInclude Include="PX2JNI.hpp" />
     <ClInclude Include="PX2LanguageManager.hpp" />
     <ClInclude Include="PX2LuaManager.hpp" />
     <ClInclude Include="PX2ResourceUpdate.hpp" />

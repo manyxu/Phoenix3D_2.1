@@ -10,9 +10,6 @@
     <Filter Include="CSV">
       <UniqueIdentifier>{0d04ec63-240a-4721-bb66-23208165f819}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Android">
-      <UniqueIdentifier>{79487dbc-d9e9-4add-926b-a8e1836e701e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ZLib">
       <UniqueIdentifier>{9a4c84ee-8d51-4aaf-b7ca-f9a282d0271f}</UniqueIdentifier>
     </Filter>
@@ -185,9 +182,6 @@
     </ClCompile>
     <ClCompile Include="ZLib\minzip\unzip.c">
       <Filter>ZLib\minzip</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2JNI.cpp">
-      <Filter>Android</Filter>
     </ClCompile>
     <ClCompile Include="PX2CharCodingGBK.cpp">
       <Filter>Font\CharCoding</Filter>
@@ -1029,9 +1023,6 @@
     </ClInclude>
     <ClInclude Include="ZLib\minzip\unzip.h">
       <Filter>ZLib\minzip</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2JNI.hpp">
-      <Filter>Android</Filter>
     </ClInclude>
     <ClInclude Include="PX2FontDefine.hpp">
       <Filter>Font</Filter>

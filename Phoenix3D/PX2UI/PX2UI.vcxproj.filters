@@ -44,6 +44,12 @@
     <ClInclude Include="PX2UIScoreText.hpp">
       <Filter>UIObj\Text</Filter>
     </ClInclude>
+    <ClInclude Include="PX2UIInputText.hpp">
+      <Filter>UIObj\EditBox</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIEditBox.hpp">
+      <Filter>UIObj\EditBox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UIView.cpp">
@@ -85,6 +91,12 @@
     <ClCompile Include="PX2UIScoreText.cpp">
       <Filter>UIObj\Text</Filter>
     </ClCompile>
+    <ClCompile Include="PX2UIInputText.cpp">
+      <Filter>UIObj\EditBox</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIEditBox.cpp">
+      <Filter>UIObj\EditBox</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="View">
@@ -104,6 +116,9 @@
     </Filter>
     <Filter Include="UIObj\Text">
       <UniqueIdentifier>{0bf56dce-6636-419f-bb9f-45cab23f6cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIObj\EditBox">
+      <UniqueIdentifier>{5ed569b5-0c30-4342-ba19-0afbe53bcaf1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +154,12 @@
     </None>
     <None Include="PX2UIScoreText.inl">
       <Filter>UIObj\Text</Filter>
+    </None>
+    <None Include="PX2UIInputText.inl">
+      <Filter>UIObj\EditBox</Filter>
+    </None>
+    <None Include="PX2UIEditBox.inl">
+      <Filter>UIObj\EditBox</Filter>
     </None>
   </ItemGroup>
 </Project>

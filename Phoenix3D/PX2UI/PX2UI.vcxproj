@@ -12,10 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2UICheckButton.hpp" />
+    <ClInclude Include="PX2UIEditBox.hpp" />
     <ClInclude Include="PX2UIGridFrame.hpp" />
     <ClInclude Include="PX2UIButton.hpp" />
     <ClInclude Include="PX2UICallback.hpp" />
     <ClInclude Include="PX2UIFrame.hpp" />
+    <ClInclude Include="PX2UIInputText.hpp" />
     <ClInclude Include="PX2UIPicBox.hpp" />
     <ClInclude Include="PX2UIPre.hpp" />
     <ClInclude Include="PX2UIProgressBar.hpp" />
@@ -29,10 +31,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UICheckButton.cpp" />
+    <ClCompile Include="PX2UIEditBox.cpp" />
     <ClCompile Include="PX2UIGridFrame.cpp" />
     <ClCompile Include="PX2UIButton.cpp" />
     <ClCompile Include="PX2UIButtonBase.cpp" />
     <ClCompile Include="PX2UIFrame.cpp" />
+    <ClCompile Include="PX2UIInputText.cpp" />
     <ClCompile Include="PX2UIPicBox.cpp" />
     <ClCompile Include="PX2UIProgressBar.cpp" />
     <ClCompile Include="PX2UIProgressBarCtrl.cpp" />
@@ -45,7 +49,9 @@
   <ItemGroup>
     <None Include="PX2UIButton.inl" />
     <None Include="PX2UIButtonBase.inl" />
+    <None Include="PX2UIEditBox.inl" />
     <None Include="PX2UIFrame.inl" />
+    <None Include="PX2UIInputText.inl" />
     <None Include="PX2UIPicBox.inl" />
     <None Include="PX2UIProgressBar.inl" />
     <None Include="PX2UIProgressBarCtrl.inl" />

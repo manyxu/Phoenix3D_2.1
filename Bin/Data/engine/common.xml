@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:bda9abf0e781c4f015c6774295ba4a52$ -->
+<!-- $TexturePacker:SmartUpdate:be4a55c35e96e7f8133bba9c2bc0a224$ -->
 <!--Format:
 n  => name of the sprite
 x  => sprite x pos in texture
@@ -21,6 +21,7 @@ r => 'y' only set if sprite is rotated
     <sprite n="check_dis" x="36" y="14" w="14" h="14"/>
     <sprite n="check_ed" x="36" y="30" w="14" h="14"/>
     <sprite n="check_null" x="36" y="46" w="14" h="14"/>
+    <sprite n="editbox_back" x="50" y="62" w="12" h="12"/>
     <sprite n="progress_back" x="50" y="62" w="12" h="12"/>
     <sprite n="progress_fill" x="36" y="62" w="12" h="12"/>
     <sprite n="progress_marquee" x="36" y="2" w="20" h="10"/>

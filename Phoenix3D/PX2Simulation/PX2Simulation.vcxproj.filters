@@ -40,6 +40,9 @@
     <Filter Include="ToLua">
       <UniqueIdentifier>{aefd709f-6067-4eb0-8561-3c0d07d40c07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlatformSDK">
+      <UniqueIdentifier>{f01c14fe-8a45-4869-9576-75e8eb257246}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -94,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
       <Filter>ToLua</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PlatformSDK.hpp">
+      <Filter>PlatformSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PlatformSDKEventType.hpp">
+      <Filter>PlatformSDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +162,12 @@
     </ClCompile>
     <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
       <Filter>ToLua</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PlatformSDK.cpp">
+      <Filter>PlatformSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PlatformSDKEventType.cpp">
+      <Filter>PlatformSDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

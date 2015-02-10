@@ -22,19 +22,7 @@ namespace PX2
 		// App
 		static ApplicationBase* msApplication;
 
-		// system use
-		enum AppSuitType
-		{
-			AST_960X640,
-			AST_1136X640,
-			AST_640X960,
-			AST_640X1136,
-			AST_MAX_TYPE
-		};
 		static bool IsInitlized ();
-		void SetInitScreenWidthHeight (float width, float height);
-		int GetProjSuitType () const; // 1-960x640 2-1136x640
-		
 		virtual bool Initlize ();
 		virtual bool Ternamate ();
 
@@ -68,10 +56,6 @@ namespace PX2
 		std::string mWindowTitle;
 		int mXPosition, mYPosition, mWidth, mHeight;
 		bool mAllowResize;
-
-		float mInitScreenWidth;
-		float mInitScreenHeight;
-		AppSuitType mScreenSuitType;
 	};
 
 }

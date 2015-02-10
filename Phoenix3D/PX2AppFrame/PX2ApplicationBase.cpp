@@ -21,10 +21,7 @@ mXPosition(0),
 mYPosition(0),
 mWidth(800),
 mHeight(600),
-mAllowResize(true),
-mInitScreenWidth(960.0f),
-mInitScreenHeight(640.0f),
-mScreenSuitType(AST_960X640)
+mAllowResize(true)
 {
 	mWindowTitle = "Application";
 }
@@ -36,42 +33,6 @@ ApplicationBase::~ApplicationBase ()
 bool ApplicationBase::IsInitlized ()
 {
 	return msIsInitlized;
-}
-//----------------------------------------------------------------------------
-void ApplicationBase::SetInitScreenWidthHeight (float width, float height)
-{
-	//mInitScreenWidth = width;
-	//mInitScreenHeight = height;
-
-	//if (width > height)
-	//{
-	//	float widthAdjuge = 640.0f * mInitScreenWidth/mInitScreenHeight;
-	//	if (Mathf::FAbs(1136.0f-widthAdjuge) < Mathf::FAbs(960.0f-widthAdjuge))
-	//	{
-	//		mScreenSuitType = AST_1136X640;
-	//	}
-	//	else
-	//	{
-	//		mScreenSuitType = AST_960X640;
-	//	}
-	//}
-	//else
-	//{
-	//	float heightAdjuge = 640.0f * mInitScreenHeight/mInitScreenWidth;
-	//	if (Mathf::FAbs(1136.0f-heightAdjuge) < Mathf::FAbs(960.0f-heightAdjuge))
-	//	{
-	//		mScreenSuitType = AST_640X1136;
-	//	}
-	//	else
-	//	{
-	//		mScreenSuitType = AST_640X960;
-	//	}
-	//}
-}
-//----------------------------------------------------------------------------
-int ApplicationBase::GetProjSuitType () const
-{
-	return mScreenSuitType;
 }
 //----------------------------------------------------------------------------
 bool ApplicationBase::Initlize ()

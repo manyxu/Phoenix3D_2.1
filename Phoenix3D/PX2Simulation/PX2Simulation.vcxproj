@@ -20,6 +20,8 @@
     <ClInclude Include="PX2CameraActor.hpp" />
     <ClInclude Include="PX2Creater.hpp" />
     <ClInclude Include="PX2EngineLoop.hpp" />
+    <ClInclude Include="PX2PlatformSDK.hpp" />
+    <ClInclude Include="PX2PlatformSDKEventType.hpp" />
     <ClInclude Include="PX2Project.hpp" />
     <ClInclude Include="PX2RedoUndo.hpp" />
     <ClInclude Include="PX2Scene.hpp" />
@@ -43,6 +45,8 @@
     <ClCompile Include="PX2EngineLoop_InitTerm.cpp" />
     <ClCompile Include="PX2EngineLoop_Play.cpp" />
     <ClCompile Include="PX2EngineLoop_Tick.cpp" />
+    <ClCompile Include="PX2PlatformSDK.cpp" />
+    <ClCompile Include="PX2PlatformSDKEventType.cpp" />
     <ClCompile Include="PX2Project.cpp" />
     <ClCompile Include="PX2RedoUndo.cpp" />
     <ClCompile Include="PX2Scene.cpp" />

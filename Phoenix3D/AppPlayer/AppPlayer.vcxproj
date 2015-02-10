@@ -10,6 +10,12 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AppPlayerApp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AppPlayerApp.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D0725EAD-2DC0-4D9B-8D18-C641096DBE94}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -54,15 +60,16 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;..\ThirdPartiesLibs\pthread\include;..\PX2UI\Win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;_DEBUG;_CONSOLE;PX2_USE_DX9;APPPLAY_PX2;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\PX2SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsDx9D.lib;PX2UID.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Lib\x86;..\ThirdPartiesLibs\pthread\lib\x86;..\ThirdPartiesLibs\FMOD\api\lib;..\TheGame\_OutPut</AdditionalLibraryDirectories>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxerr.lib;xinput.lib;dinput8.lib;dxguid.lib;ws2_32.lib;fmod_vc.lib;PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsDx9D.lib;PX2UnityD.lib;PX2EffectD.lib;PX2UID.lib;PX2SimulationD.lib;PX2AppFrameDx9D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Lib\x86;..\ThirdPartiesLibs\FMOD Studio API Windows\api\lowlevel\lib;..\ThirdPartiesLibs\pthread\lib\x86;..\ThirdPartiesLibs\FMOD\api\lib;..\TheGame\_OutPut</AdditionalLibraryDirectories>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,15 +89,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="PX2Main.cpp" />
-    <ClCompile Include="PX2WindowMain.cpp" />
-    <ClCompile Include="PX2WindowStandard.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="PX2WindowMain.hpp" />
-    <ClInclude Include="PX2WindowStandard.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
