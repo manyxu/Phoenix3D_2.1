@@ -469,11 +469,11 @@ namespace PX2
 		Renderer (RendererInput& input, int width, int height,
 			Texture::Format colorFormat, Texture::Format depthStencilFormat,
 			int numMultisamples);
-
 		~Renderer ();
 
 		static Renderer *CreateRenderer(void *ptData, int width, int height,
 			int numMultisamples, RendererInput* &renderInput);
+		static std::string GetRenderTag();
 		
 		void InitRenderStates ();
 

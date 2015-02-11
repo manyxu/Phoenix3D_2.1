@@ -70,6 +70,11 @@ Renderer *Renderer::CreateRenderer(void *ptData, int width, int height,
 	return renderer;
 }
 //----------------------------------------------------------------------------
+std::string Renderer::GetRenderTag()
+{
+	return "Dx9";
+}
+//----------------------------------------------------------------------------
 void Renderer::InitRenderStates ()
 {
 	mData->SetDefaultProperties(mDefaultAlphaProperty, mDefaultCullProperty,

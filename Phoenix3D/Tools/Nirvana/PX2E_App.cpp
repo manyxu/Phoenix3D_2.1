@@ -55,23 +55,18 @@ bool E_App::OnInit()
 	int displayWidth, displayHeight;
 	wxDisplaySize(&displayWidth, &displayHeight);
 
-#if defined _DEBUG
+	std::string title = "Nirvana";
+	title += Renderer::GetRenderTag();
+
 #if defined(_WIN64) || defined(WIN64)
-	mMainFrame = new E_MainFrame("NirvanaDx964D", 0, 0, wxMin(1024,
-		displayWidth), wxMin(768, displayHeight));
-#else
-	mMainFrame = new E_MainFrame("NirvanaDx9D", 0, 0, wxMin(1024,
-		displayWidth), wxMin(768, displayHeight));
+	title += "64";
 #endif
-#else
-#if defined(_WIN64) || defined(WIN64)
-	mMainFrame = new E_MainFrame("NirvanaDx964", 0, 0, wxMin(1024,
-		displayWidth), wxMin(768, displayHeight));
-#else
-	mMainFrame = new E_MainFrame("NirvanaDx9", 0, 0, wxMin(1024,
-		displayWidth), wxMin(768, displayHeight));
+
+#ifdef _DEBUG
+	title += "D";
 #endif
-#endif
+
+	mMainFrame = new E_MainFrame(title, 0, 0, wxMin(1024, displayWidth), wxMin(768, displayHeight));
 
 	luaMan->SetUserTypePointer("E_MainFrame", "E_MainFrame", mMainFrame);
 

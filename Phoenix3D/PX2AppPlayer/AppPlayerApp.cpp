@@ -1,23 +1,21 @@
 // AppPlayerApp.cpp
 
 #include "AppPlayerApp.hpp"
+#include "PX2Renderer.hpp"
 
 PX2_IMPLEMENT_APPLICATION(AppPlayerApp)
 //----------------------------------------------------------------------------
 AppPlayerApp::AppPlayerApp ()
 {
+	mWindowTitle = "AppPlayer";
+	mWindowTitle += Renderer::GetRenderTag();
+
+#if defined(_WIN64) || defined(WIN64)
+	mWindowTitle += "64";
+#endif
+
 #ifdef _DEBUG
-	#if defined(_WIN64) || defined(WIN64)
-		mWindowTitle = "AppPlayerApp64D";
-	#else
-		mWindowTitle = "AppPlayerAppD";
-	#endif
-#else
-	#if defined(_WIN64) || defined(WIN64)
-		mWindowTitle = "AppPlayerApp64";
-	#else
-		mWindowTitle = "AppPlayerApp";
-	#endif
+	mWindowTitle += "D";
 #endif
 }
 //----------------------------------------------------------------------------

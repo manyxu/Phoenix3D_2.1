@@ -249,6 +249,11 @@ Renderer *Renderer::CreateRenderer(void *ptData, int width, int height,
 	return renderer;
 }
 //----------------------------------------------------------------------------
+std::string Renderer::GetRenderTag()
+{
+	return "OGLES2";
+}
+//----------------------------------------------------------------------------
 void Renderer::InitRenderStates ()
 {
 	mData->mCurrentRS.Initialize(mDefaultAlphaProperty, mDefaultCullProperty,
