@@ -488,6 +488,9 @@
     <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexShader.cpp">
       <Filter>Renderers\OpenGLES2Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererInput.cpp">
+      <Filter>Renderers\OpenGLES2Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -989,6 +992,9 @@
       <Filter>Renderers\OpenGLES2Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexShader.hpp">
+      <Filter>Renderers\OpenGLES2Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererInput.hpp">
       <Filter>Renderers\OpenGLES2Renderer</Filter>
     </ClInclude>
   </ItemGroup>

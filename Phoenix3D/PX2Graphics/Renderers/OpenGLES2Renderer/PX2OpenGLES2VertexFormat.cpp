@@ -222,6 +222,8 @@ PdrVertexFormat::~PdrVertexFormat ()
 //----------------------------------------------------------------------------
 void PdrVertexFormat::Enable (Renderer *renderer)
 {
+	PX2_UNUSED(renderer);
+
 	if (mHasPosition)
 	{
 		PX2_GL_CHECK(glVertexAttribPointer(ALP_POSITION, mPositionChannels, mPositionType, GL_FALSE, 

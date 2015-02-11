@@ -13,8 +13,7 @@ PX2_IMPLEMENT_STREAM(LightNode);
 PX2_IMPLEMENT_FACTORY(LightNode);
 
 //----------------------------------------------------------------------------
-LightNode::LightNode (Light* light)
-:
+LightNode::LightNode (Light* light):
 mLight(light)
 {
 	if (mLight)

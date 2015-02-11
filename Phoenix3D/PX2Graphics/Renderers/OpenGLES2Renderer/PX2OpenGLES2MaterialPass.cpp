@@ -116,7 +116,7 @@ PdrMaterialPass::PdrMaterialPass (Renderer *renderer, const MaterialPass *pass)
 				const std::string &name = vshader->GetConstantName(i);
 				int location = glGetUniformLocation(mProgramObject, name.c_str());
 				vshader->SetBaseRegister(vProfile, i, location);
-				data.ES_V_CLoc[i] = location;
+				data.ES_V_CLoc[i] = (char)location;
 			}
 			int numVTexs = vshader->GetNumSamplers();
 			for (int i=0; i<numVTexs; i++)
@@ -124,7 +124,7 @@ PdrMaterialPass::PdrMaterialPass (Renderer *renderer, const MaterialPass *pass)
 				std::string sampleName = vshader->GetSamplerName(i);
 				int location = glGetUniformLocation(mProgramObject, sampleName.c_str());
 				vshader->SetTextureLoc(i, location);
-				data.ES_V_TLoc[i] = location;
+				data.ES_V_TLoc[i] = (char)location;
 			}
 
 			int pProfile = PixelShader::GetProfile();
@@ -134,7 +134,7 @@ PdrMaterialPass::PdrMaterialPass (Renderer *renderer, const MaterialPass *pass)
 				const std::string &name = pshader->GetConstantName(i);
 				int location = glGetUniformLocation(mProgramObject, name.c_str());
 				pshader->SetBaseRegister(pProfile, i, location);
-				data.ES_P_CLoc[i] = location;
+				data.ES_P_CLoc[i] = (char)location;
 			}
 			int numPTexs = pshader->GetNumSamplers();
 			for (int i=0; i<numPTexs; i++)
@@ -142,7 +142,7 @@ PdrMaterialPass::PdrMaterialPass (Renderer *renderer, const MaterialPass *pass)
 				std::string sampleName = pshader->GetSamplerName(i);
 				int location = glGetUniformLocation(mProgramObject, sampleName.c_str());
 				pshader->SetTextureLoc(i, location);
-				data.ES_P_TLoc[i] = location;
+				data.ES_P_TLoc[i] = (char)location;
 			}
 
 			renderer->mSharePdrMaterialPasses[shaderKey] = data;
@@ -158,11 +158,13 @@ PdrMaterialPass::~PdrMaterialPass ()
 //----------------------------------------------------------------------------
 void PdrMaterialPass::Enable (Renderer* renderer)
 {
+	PX2_UNUSED(renderer);
 	glUseProgram(mProgramObject);
 }
 //----------------------------------------------------------------------------
 void PdrMaterialPass::Disable (Renderer* renderer)
 {
+	PX2_UNUSED(renderer);
 }
 //----------------------------------------------------------------------------
 

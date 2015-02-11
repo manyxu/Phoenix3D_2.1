@@ -47,6 +47,29 @@ Renderer::~Renderer ()
 	Terminate();
 }
 //----------------------------------------------------------------------------
+Renderer *Renderer::CreateRenderer(void *ptData, int width, int height,
+	int numMultisamples, RendererInput* &renderInput)
+{
+	PdrRendererInput *pdrRenderInput = new0 PdrRendererInput();
+	renderInput = pdrRenderInput;
+
+	Renderer *renderer = 0;
+	Texture::Format colorFormat = Texture::TF_A8R8G8B8;
+	Texture::Format depthStencilFormat = Texture::TF_D24S8;
+
+	HWND hWnd = (HWND)ptData;
+
+	pdrRenderInput->mWindowHandle = hWnd;
+	pdrRenderInput->mDriver = Direct3DCreate9(D3D_SDK_VERSION);
+	assertion(pdrRenderInput->mDriver != 0, "Failed to create Direct3D9\n");
+	renderer = new0 Renderer(*pdrRenderInput, width, height,
+		colorFormat, depthStencilFormat, numMultisamples);
+
+	renderer->SetClearColor(Float4::WHITE);
+
+	return renderer;
+}
+//----------------------------------------------------------------------------
 void Renderer::InitRenderStates ()
 {
 	mData->SetDefaultProperties(mDefaultAlphaProperty, mDefaultCullProperty,

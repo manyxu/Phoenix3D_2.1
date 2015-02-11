@@ -36,6 +36,8 @@ void PdrIndexBuffer::Disable (Renderer*)
 //----------------------------------------------------------------------------
 void* PdrIndexBuffer::Lock (Buffer::Locking mode)
 {
+	PX2_UNUSED(mode);
+
 	PX2_GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mBuffer));
 
 	PX2_GL_CHECK(glBufferData(GL_ELEMENT_ARRAY_BUFFER, mIBuffer->GetNumBytes(), 

@@ -471,6 +471,9 @@ namespace PX2
 			int numMultisamples);
 
 		~Renderer ();
+
+		static Renderer *CreateRenderer(void *ptData, int width, int height,
+			int numMultisamples, RendererInput* &renderInput);
 		
 		void InitRenderStates ();
 

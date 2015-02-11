@@ -49,10 +49,6 @@ namespace PX2
 
 		bool Ternamate();
 
-	public_internal:
-		Renderer *CreateRenderer(void *ptData, int width, int height, 
-			int numMultisamples, RendererInput* &renderInput);
-
 	private:
 		RendererInput *mRendererInput;
 

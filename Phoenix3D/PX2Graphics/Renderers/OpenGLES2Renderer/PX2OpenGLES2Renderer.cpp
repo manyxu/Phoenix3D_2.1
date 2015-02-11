@@ -21,12 +21,14 @@ Renderer::Renderer (RendererInput& input, int width, int height,
 	Initialize(width, height, colorFormat, depthStencilFormat,
 		numMultisamples);
 
+	PdrRendererInput *pdrRenderInput = (PdrRendererInput *)(&input);
+
 	mData = new0 RendererData();
-	mData->mWindowHandle = input.mWindowHandle;
-	mData->mDisplayType = input.mRendererDC;
+	mData->mWindowHandle = pdrRenderInput->mWindowHandle;
+	mData->mDisplayType = pdrRenderInput->mRendererDC;
 
 #if defined(_WIN32) || defined(WIN32)
-	EGLDisplay display = eglGetDisplay(input.mRendererDC);
+	EGLDisplay display = eglGetDisplay(pdrRenderInput->mRendererDC);
 	if (display == EGL_NO_DISPLAY)
 	{
 		assertion(false, "eglGetDisplay error.\n");
@@ -206,6 +208,45 @@ Renderer::~Renderer ()
 		delete0(mData);
 		mData = 0;
 	}
+}
+//----------------------------------------------------------------------------
+Renderer *Renderer::CreateRenderer(void *ptData, int width, int height,
+	int numMultisamples, RendererInput* &renderInput)
+{
+	PdrRendererInput *pdrRenderInput = new0 PdrRendererInput();
+	renderInput = pdrRenderInput;
+
+	Renderer *renderer = 0;
+	Texture::Format colorFormat = Texture::TF_A8R8G8B8;
+	Texture::Format depthStencilFormat = Texture::TF_D24S8;
+
+#if defined(_WIN32) || defined(WIN32)
+
+	HWND hWnd = (HWND)ptData;
+
+	pdrRenderInput->mWindowHandle = hWnd;
+	pdrRenderInput->mRendererDC = GetDC(hWnd);
+	renderer = new0 Renderer(*pdrRenderInput, width, height,
+		colorFormat, depthStencilFormat, numMultisamples);
+
+#else
+
+#ifdef PX2_USE_OPENGLES2
+
+#ifdef __ANDROID__
+	pdrRenderInput->mWindowHandle = 0;
+	pdrRenderInput->mRendererDC = EGL_DEFAULT_DISPLAY;
+#endif
+
+	renderer = new0 Renderer(*pdrRenderInput, width, height,
+		colorFormat, depthStencilFormat, numMultisamples);
+#endif
+
+#endif
+
+	renderer->SetClearColor(Float4::WHITE);
+
+	return renderer;
 }
 //----------------------------------------------------------------------------
 void Renderer::InitRenderStates ()
@@ -715,6 +756,9 @@ void Renderer::Resize (int width, int height)
 //----------------------------------------------------------------------------
 void Renderer::ResizeWindow (int width, int height)
 {
+	PX2_UNUSED(width);
+	PX2_UNUSED(height);
+
 	mData->mCurrentRS.Initialize(mDefaultAlphaProperty, mDefaultCullProperty,
 		mDefaultDepthProperty, mDefaultOffsetProperty, mDefaultStencilProperty,
 		mDefaultWireProperty);
@@ -851,6 +895,8 @@ void Renderer::PostDraw ()
 //----------------------------------------------------------------------------
 void Renderer::Draw (const unsigned char* screenBuffer, bool reflectY)
 {
+	PX2_UNUSED(reflectY);
+
 	if (!screenBuffer)
 	{
 		return;

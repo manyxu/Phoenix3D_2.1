@@ -157,11 +157,16 @@ PdrTexture2D::~PdrTexture2D ()
 //----------------------------------------------------------------------------
 void PdrTexture2D::Enable (Renderer* renderer, int textureUnit)
 {
+	PX2_UNUSED(renderer);
+	PX2_UNUSED(textureUnit);
+
 	assertion(false, "OpenglES should not call this function.\n");
 }
 //----------------------------------------------------------------------------
 void PdrTexture2D::Enable (Renderer* renderer, int textureUnit, int loc)
 {
+	PX2_UNUSED(renderer);
+
 	PX2_GL_CHECK(glActiveTexture(GL_TEXTURE0 + textureUnit));
 	PX2_GL_CHECK(glBindTexture(GL_TEXTURE_2D, mTexture));
 	PX2_GL_CHECK(glUniform1i(loc, textureUnit));
@@ -175,6 +180,8 @@ void PdrTexture2D::Disable (Renderer*,int textureUnit)
 //----------------------------------------------------------------------------
 void* PdrTexture2D::Lock (int level, Buffer::Locking mode)
 {
+	PX2_UNUSED(mode);
+
 	mInternalFormat = gOGLTextureInternalFormat[mTex->GetFormat()];
 	Texture::Format tdFormat = mTex->GetFormat();
 	mFormat = gOGLTextureFormat[tdFormat];

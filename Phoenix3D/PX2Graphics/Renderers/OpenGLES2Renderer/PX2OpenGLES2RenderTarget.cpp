@@ -37,6 +37,7 @@ void PdrRenderTarget::Disable (Renderer* renderer)
 void PdrRenderTarget::ReadColor (int i, Renderer* renderer,
 	Texture2D*& texture)
 {
+	PX2_UNUSED(i);
 	PX2_UNUSED(renderer);
 	PX2_UNUSED(texture);
 

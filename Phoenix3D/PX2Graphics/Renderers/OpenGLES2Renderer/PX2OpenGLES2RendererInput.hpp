@@ -15,15 +15,20 @@
 #define PX2OPENGLES2RENDERERINPUT_HPP
 
 #include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2RendererInput.hpp"
 
 namespace PX2
 {
 
-	class RendererInput
+	class PdrRendererInput : public RendererInput
 	{
 	public:
-        
-#if defined(_WIN32) || defined(WIN32) || defined(__ANDROID__) || defined(__MARMALADE__)
+		PdrRendererInput();
+		virtual ~PdrRendererInput();
+
+		virtual bool Ternamate();
+
+#if defined(_WIN32) || defined(WIN32) || defined(__ANDROID__)
 		EGLNativeWindowType  mWindowHandle;
 		EGLNativeDisplayType mRendererDC;
 #endif

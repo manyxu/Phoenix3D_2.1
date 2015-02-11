@@ -9,6 +9,8 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 PdrTexture3D::PdrTexture3D (Renderer* renderer, const Texture3D* texture)
 {
+	PX2_UNUSED(renderer);
+	PX2_UNUSED(texture);
 	assertion(false, "not realized.");
 }
 //----------------------------------------------------------------------------

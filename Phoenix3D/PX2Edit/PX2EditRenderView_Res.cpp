@@ -51,7 +51,7 @@ EditRenderView_Res::~EditRenderView_Res()
 //----------------------------------------------------------------------------
 bool EditRenderView_Res::InitlizeRendererStep(const std::string &name)
 {
-	mRenderer = PX2_ENGINELOOP.CreateRenderer(mPt_Data, (int)mPt_Size.Width,
+	mRenderer = Renderer::CreateRenderer(mPt_Data, (int)mPt_Size.Width,
 		(int)mPt_Size.Height, 0, mRendererInput);
 	mRenderer->SetClearColor(Float4::MakeColor(64, 64, 64, 255));
 
