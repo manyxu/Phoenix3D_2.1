@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.appplay.ap"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="org.appplay.ap.AppPlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- meta-data define val for app-->                
+        <meta-data
+            android:name="isnettable"
+            android:value="false" /> 
+        
+        <meta-data
+            android:name="isdebug"
+            android:value="false" /> 
+        
+        <meta-data
+            android:name="pfsdkname"
+            android:value="unknown" />      
+                        
+        <meta-data
+            android:name="appname"
+            android:value="appplay" />
+            
+        <meta-data
+            android:name="istest"
+            android:value="false" />   
+            
+      	<meta-data 
+      	    android:name="url_libso"
+      	    android:value="http://www.***.com/DataUpdateAndroid/libAppPlayJNI.so"/>
+      	
+      	<meta-data
+      	    android:name="url_version"
+      	    android:value="http://www.***.com/DataUpdateAndroid/version.xml"/>
+      	
+      	<meta-data 
+      	    android:name="url_libso_test"
+      	    android:value="http://www.***.com/test/DataUpdateAndroid/libAppPlayJNI.so"/>
+      	
+      	<meta-data
+      	    android:name="url_version_test"
+      	    android:value="http://www.***.com/test/DataUpdateAndroid/version.xml"/>
+        
+    </application>
+
+</manifest>
