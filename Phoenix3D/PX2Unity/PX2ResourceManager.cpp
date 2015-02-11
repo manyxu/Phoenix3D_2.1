@@ -80,20 +80,21 @@ ResourceManager::ResourceManager ()
 mDDSKeepCompressed(true),
 mLoadRecordMutex(0),
 mLoadingDequeMutex(0),
-mResTableMutex(0),
 mLoadingThread(0),
 mQuitLoading(false),
 mIsUseGarbageCollect(true),
 mGarbageCollectTime(6.0f),
 mGarbageUpdateTime(1.0f),
+mResTableMutex(0),
 mResTable(1023),
 mTexPacks(1023),
 mPackElements(1023),
 mCurlDownLoad(0),
+mEndVersionList(19870824),
 mDataVersionList(1023),
 mDataUpdateVersionList(1023),
 mUpdateVersionList(1023),
-mEndVersionList(19870824)
+mResourceUpdateCallback(0)
 {
 	mCurlDownLoad = new0 CURLDownload();
 	mCurlDownLoad->Initlize();
