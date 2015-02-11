@@ -1,6 +1,6 @@
 <project>
 	<general name="phoenix" width="1136" height="640" color="255,255,200,255"/>
-	<scene filename=""/>
+	<scene filename="Data/scenes/scene.px2obj"/>
 	<language/>
 	<publish/>
 	<edit_setting uicamerapercent="1.000000"/>
