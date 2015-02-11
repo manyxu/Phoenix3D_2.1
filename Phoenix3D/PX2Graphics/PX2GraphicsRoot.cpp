@@ -310,11 +310,15 @@ bool GraphicsRoot::RemoveRenderStep(const char *name)
 	if (it != mRenderStepMap.end())
 	{
 		std::vector<RenderStep*>::iterator itVec = mRenderStepVec.begin();
-		for (; itVec != mRenderStepVec.end(); itVec++)
+		for (; itVec != mRenderStepVec.end();)
 		{
 			if (*itVec == it->second)
 			{
-				mRenderStepVec.erase(itVec);
+				itVec = mRenderStepVec.erase(itVec);
+			}
+			else
+			{
+				itVec++;
 			}
 		}
 
@@ -346,11 +350,8 @@ void GraphicsRoot::RemoveRenderSteps(RenderStep *step)
 	{
 		if (it->second == step)
 		{
-			it = mRenderStepMap.erase(it);
-		}
-		else
-		{
-			it++;
+			mRenderStepMap.erase(it);
+			return;
 		}
 	}
 }

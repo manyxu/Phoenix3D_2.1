@@ -62,7 +62,6 @@ namespace PX2
 		float GetGarbageCollectTime () const;
 
 		Texture2D *_initWithPngData(const char *pData, int nDatalen);
-		Texture2D *_initWithJpgData(const char *pData, int nDatalen);
 
 		// folder
 		bool CreateFloder (const std::string &parentPath, const std::string &path);
@@ -228,7 +227,7 @@ public_internal:
 		Mutex *mLoadingDequeMutex;
 		Mutex *mTexPacksMutex;
 		Thread *mLoadingThread;
-		std::deque<LoadRecord *>mLoadingDeque;
+		std::deque<LoadRecord *> mLoadingDeque;
 		bool mQuitLoading;
 		ConditionType mLoadingDequeCondition;
 

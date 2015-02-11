@@ -22,9 +22,9 @@ CURLDownload::CURLDownload ()
 	:
 mCurl(0),
 mFile(0),
+mCurDownloadSize(0),
 mUseNeedDownloadSize(false),
 mNeedDownloadSize(0),
-mCurDownloadSize(0),
 mDownType(DT_FILE),
 mDownloadMemory(0),
 mIsDownLoadOK(false),

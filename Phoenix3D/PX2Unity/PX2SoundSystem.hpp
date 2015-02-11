@@ -99,14 +99,14 @@ namespace PX2
 		int _GetNumPlaySameTime(const char *filename);
 		void _ResetNumPlaySameTime(const char *filename);
 
-		bool mIsMusicEnable;
-		bool mIsSoundEnable;
-
 		SystemType mSystemType;
 		APoint mListenPos;
 
 		int mDefaultMaxNumPlaySameTime;
 		float mDefaultSameTimeRange;
+
+		bool mIsMusicEnable;
+		bool mIsSoundEnable;
 
 		struct PlaySameTimeObj
 		{
