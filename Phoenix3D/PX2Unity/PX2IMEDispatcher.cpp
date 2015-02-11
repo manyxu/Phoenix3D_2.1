@@ -5,50 +5,16 @@
 */
 
 #include "PX2IMEDispatcher.hpp"
-#include "PX2JNI.hpp"
 #include "PX2StringHelp.hpp"
 using namespace PX2;
-
-#ifdef __MARMALADE__
-#include "s3e.h"
-#include "s3eOSReadString.h"
-
-
-static int32 CharInputHandler(void* sys, void*)
-{
-	s3eKeyboardCharEvent * event = (s3eKeyboardCharEvent*)sys;
-	if(event->m_Char == 8)
-	{
-		IMEDispatcher::GetSingleton().DispathDeleteBackward();
-	}
-	if(event->m_Char < ' ') return 0;
-
-	char dest[32];
-	int length = StringHelp::UnicodeToUTF8(dest, sizeof(dest), &event->m_Char, 1);
-	IMEDispatcher::GetSingleton().DispathInsertText(dest, length);
-    return 0;
-}
-
-static int32 KeyInputHandler(void* sys, void*)
-{
-	s3eKeyboardEvent * event = (s3eKeyboardEvent*)sys;
-
-	if(!event->m_Pressed)
-	{
-		if(event->m_Key == s3eKeyBackspace)
-		{
-			IMEDispatcher::GetSingleton().DispathDeleteBackward();
-		}
-	}
-	return 0;
-}
+#if defined(__ANDROID__)
+#include "PX2JNI.hpp"
 #endif
 
 //----------------------------------------------------------------------------
 // IMEDispatcher::Impl
 //----------------------------------------------------------------------------
-IMEDispatcher::Impl::Impl ()
-	:
+IMEDispatcher::Impl::Impl () :
 mDelegateWithIME(0)
 {
 }
@@ -77,11 +43,6 @@ IMEDispatcher::DelegateIter IMEDispatcher::Impl::FindDelegate (
 IMEDispatcher::IMEDispatcher ()
 {
 	mImpl = new0 IMEDispatcher::Impl();
-
-#ifdef __MARMALADE__
-//	s3eKeyboardRegister(S3E_KEYBOARD_KEY_EVENT, KeyInputHandler, NULL);
-//	s3eKeyboardRegister(S3E_KEYBOARD_CHAR_EVENT, CharInputHandler, NULL);
-#endif
 }
 //----------------------------------------------------------------------------
 IMEDispatcher::~IMEDispatcher ()
@@ -90,31 +51,13 @@ IMEDispatcher::~IMEDispatcher ()
 }
 
 void IMEDispatcher::Update()
-{/*
-	while(1)
-	{
-		s3eWChar wc = s3eKeyboardGetChar();
-		if(wc == S3E_WEOF) break;
-
-		char dest[32];
-		int length = StringHelp::UnicodeToUTF8(dest, sizeof(dest), &wc, 1);
-		IMEDispatcher::GetSingleton().DispathInsertText(dest, length);
-	}*/
+{
 }
-
 //----------------------------------------------------------------------------
 void IMEDispatcher::SetKeyboardState (bool open)
 {
 #if defined(__ANDROID__)
 	SetKeyboardStateJNI(open? 1 : 0);
-#elif defined(__MARMALADE__)
-	//s3eKeyboardSetInt(S3E_KEYBOARD_GET_CHAR, open?1:0);
-	
-	if(open && s3eOSReadStringAvailable() == S3E_TRUE)
-	{
-		const char *pstr = s3eOSReadStringUTF8("", 0);
-		if(pstr) DispathInsertText(pstr, strlen(pstr));
-	}
 #else
 	PX2_UNUSED(open);
 #endif

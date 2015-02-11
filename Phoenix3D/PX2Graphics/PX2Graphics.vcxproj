@@ -522,7 +522,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
     <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\OpenGLES2$(Configuration)\</OutDir>
@@ -540,8 +540,8 @@
     <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
-    <TargetName>PX2GraphicsDx9D</TargetName>
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2GraphicsD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\OpenGLES2$(Configuration)\</IntDir>

@@ -130,7 +130,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
     <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\OpenGLES2$(Configuration)\</OutDir>
@@ -148,7 +148,7 @@
     <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\OpenGLES2$(Configuration)\</IntDir>
@@ -166,7 +166,7 @@
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>PX2AppFrameDx9D</TargetName>
+    <TargetName>PX2AppFrameD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES2|Win32'">
     <TargetName>PX2AppFrameOpenGLES2D</TargetName>
