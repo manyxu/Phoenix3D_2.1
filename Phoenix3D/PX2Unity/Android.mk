@@ -7,7 +7,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_ARM_MODE := arm
+#LOCAL_ARM_MODE := arm
 
 LOCAL_MODULE := PX2Unity
 
@@ -45,52 +45,6 @@ ImageLibs/PNG/pngwio.c \
 ImageLibs/PNG/pngwrite.c \
 ImageLibs/PNG/pngwtran.c \
 ImageLibs/PNG/pngwutil.c \
-ImageLibs/JPG/jaricom.c \
-ImageLibs/JPG/jcapimin.c \
-ImageLibs/JPG/jcapistd.c \
-ImageLibs/JPG/jcarith.c \
-ImageLibs/JPG/jccoefct.c \
-ImageLibs/JPG/jccolor.c \
-ImageLibs/JPG/jcdctmgr.c \
-ImageLibs/JPG/jchuff.c \
-ImageLibs/JPG/jcinit.c \
-ImageLibs/JPG/jcmainct.c \
-ImageLibs/JPG/jcmarker.c \
-ImageLibs/JPG/jcmaster.c \
-ImageLibs/JPG/jcomapi.c \
-ImageLibs/JPG/jcparam.c \
-ImageLibs/JPG/jcprepct.c \
-ImageLibs/JPG/jcsample.c \
-ImageLibs/JPG/jctrans.c \
-ImageLibs/JPG/jdapimin.c \
-ImageLibs/JPG/jdapistd.c \
-ImageLibs/JPG/jdarith.c \
-ImageLibs/JPG/jdatadst.c \
-ImageLibs/JPG/jdatasrc.c \
-ImageLibs/JPG/jdcoefct.c \
-ImageLibs/JPG/jdcolor.c \
-ImageLibs/JPG/jddctmgr.c \
-ImageLibs/JPG/jdhuff.c \
-ImageLibs/JPG/jdinput.c \
-ImageLibs/JPG/jdmainct.c \
-ImageLibs/JPG/jdmarker.c \
-ImageLibs/JPG/jdmaster.c \
-ImageLibs/JPG/jdmerge.c \
-ImageLibs/JPG/jdpostct.c \
-ImageLibs/JPG/jdsample.c \
-ImageLibs/JPG/jdtrans.c \
-ImageLibs/JPG/jerror.c \
-ImageLibs/JPG/jfdctflt.c \
-ImageLibs/JPG/jfdctfst.c \
-ImageLibs/JPG/jfdctint.c \
-ImageLibs/JPG/jidctflt.c \
-ImageLibs/JPG/jidctfst.c \
-ImageLibs/JPG/jidctint.c \
-ImageLibs/JPG/jmemmgr.c \
-ImageLibs/JPG/jmemnobs.c \
-ImageLibs/JPG/jquant1.c \
-ImageLibs/JPG/jquant2.c \
-ImageLibs/JPG/jutils.c \
 FreeType/src/base/ftbbox.c \
 FreeType/src/base/ftbitmap.c \
 FreeType/src/base/ftfstype.c \
@@ -256,17 +210,12 @@ ToLua/tolua_map.c \
 ToLua/tolua_push.c \
 ToLua/tolua_to.c
 
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
-
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/.. \
-$(LOCAL_PATH)/ImageLibs/JPG/ \
 $(LOCAL_PATH)/ImageLibs/PNG/ \
 $(LOCAL_PATH)/ZLib/ \
 $(LOCAL_PATH)/ZLib/minzip/ \
-$(LOCAL_PATH)/ImageLibs/ \
 $(LOCAL_PATH)/FreeType/builds/ \
 $(LOCAL_PATH)/FreeType/include/ \
-$(LOCAL_PATH)/RapidXML/ \
 $(LOCAL_PATH)/Lua/ \
 $(LOCAL_PATH)/ToLua/ \
 $(LOCAL_PATH)/CURL/config/android \
@@ -274,15 +223,15 @@ $(LOCAL_PATH)/CURL/src \
 $(LOCAL_PATH)/CURL/ \
 $(PX2_ROOT)/PX2SDK/Include/ \
 
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
+
 # define the macros          
 LOCAL_CFLAGS := -D__ANDROID__
-LOCAL_CFLAGS += -DIL_STATIC_LIB
 LOCAL_CFLAGS += -DIOAPI_NO_64
 LOCAL_CFLAGS += -W -Wall
 LOCAL_CFLAGS += -fPIC -DPIC
-LOCAL_CFLAGS += "-DDARWIN_NO_CARBON"
-LOCAL_CFLAGS += "-DFT2_BUILD_LIBRARY"
+LOCAL_CFLAGS += -DDARWIN_NO_CARBON
+LOCAL_CFLAGS += -DFT2_BUILD_LIBRARY
 LOCAL_CFLAGS += -O2
-LOCAL_CFLAGS += -DRAPIDXML_NO_EXCEPTIONS
 
 include $(BUILD_STATIC_LIBRARY)

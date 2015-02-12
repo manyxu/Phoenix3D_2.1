@@ -12,12 +12,7 @@
 #include "PX2Crypt.hpp"
 #include "PX2MD5.hpp"
 
-//  DevIL
-//#include "IL/il.h"
-//#include "IL/ilu.h"
-
 #include "ImageLibs/PNG/png.h"
-#include "ImageLibs/JPG/jpeglib.h"
 
 #include "unzip.h"
 #if defined(_WIN32) || defined(WIN32)
@@ -25,7 +20,6 @@
 #include <io.h>
 #include <sys/stat.h>
 #elif defined __ANDROID__
-#include "PX2JNI.hpp"
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <dirent.h>
@@ -55,21 +49,6 @@ typedef struct
 	int offset;
 }tImageSource;
 
-struct my_error_mgr{
-	struct jpeg_error_mgr pub;
-	jmp_buf setjmp_buffer;
-};
-
-typedef struct my_error_mgr *my_error_ptr;
-
-METHODDEF(void)
-my_error_exit(j_common_ptr cinfo)
-{
-	my_error_ptr myerr = (my_error_ptr)cinfo->err;
-	(*cinfo->err->output_message) (cinfo);
-	longjmp(myerr->setjmp_buffer, 1);
-}
-
 static void pngReadCallBack(png_structp png_ptr, png_bytep data, png_size_t length)
 {
 	tImageSource* isource = (tImageSource*)png_get_io_ptr(png_ptr);
@@ -98,23 +77,24 @@ std::string ResourceManager::mDataUpdateServerType;
 //----------------------------------------------------------------------------
 ResourceManager::ResourceManager ()
 :
-mLoadingThread(0),
-mQuitLoading(false),
 mDDSKeepCompressed(true),
 mLoadRecordMutex(0),
 mLoadingDequeMutex(0),
-mResTableMutex(0),
+mLoadingThread(0),
+mQuitLoading(false),
 mIsUseGarbageCollect(true),
 mGarbageCollectTime(6.0f),
 mGarbageUpdateTime(1.0f),
+mResTableMutex(0),
 mResTable(1023),
 mTexPacks(1023),
 mPackElements(1023),
 mCurlDownLoad(0),
+mEndVersionList(19870824),
 mDataVersionList(1023),
 mDataUpdateVersionList(1023),
 mUpdateVersionList(1023),
-mEndVersionList(19870824)
+mResourceUpdateCallback(0)
 {
 	mCurlDownLoad = new0 CURLDownload();
 	mCurlDownLoad->Initlize();
@@ -1841,10 +1821,6 @@ Texture2D *ResourceManager::LoadTexFormOtherImagefile (std::string outExt,
 	{
 		texture = _initWithPngData(buffer, bufferSize);
 	}
-	else if ("jpg" == outExt || "JPG" == outExt)
-	{
-		texture = _initWithJpgData(buffer, bufferSize);
-	}
 
 	return texture;
 }
@@ -1995,99 +1971,6 @@ Texture2D *ResourceManager::_initWithPngData(const char *pData, int nDatalen)
 		png_destroy_read_struct(&png_ptr, (info_ptr) ? &info_ptr : 0, 0);
 	}
 	return texture;
-}
-//----------------------------------------------------------------------------
-Texture2D *ResourceManager::_initWithJpgData(const char *pData, int nDatalen)
-{
-	 /* these are standard libjpeg structures for reading(decompression) */
-    struct jpeg_decompress_struct cinfo;
-    /* We use our private extension JPEG error handler.
-	 * Note that this struct must live as long as the main JPEG parameter
-	 * struct, to avoid dangling-pointer problems.
-	 */
-	struct my_error_mgr jerr;
-    /* libjpeg data structure for storing one row, that is, scanline of an image */
-    JSAMPROW row_pointer[1] = {0};
-    unsigned long location = 0;
-    unsigned int i = 0;
-	Texture2D* texture = 0;
-
-    do 
-    {
-        /* We set up the normal JPEG error routines, then override error_exit. */
-		cinfo.err = jpeg_std_error(&jerr.pub);
-		jerr.pub.error_exit = my_error_exit;
-		/* Establish the setjmp return context for my_error_exit to use. */
-		if (setjmp(jerr.setjmp_buffer)) {
-			/* If we get here, the JPEG code has signaled an error.
-			 * We need to clean up the JPEG object, close the input file, and return.
-			 */
-			jpeg_destroy_decompress(&cinfo);
-			break;
-		}
-
-        /* setup decompression process and source, then read JPEG header */
-        jpeg_create_decompress( &cinfo );
-
-        jpeg_mem_src( &cinfo, (unsigned char *) pData, nDatalen );
-
-        /* reading the image header which contains image information */
-#if (JPEG_LIB_VERSION >= 90)
-        // libjpeg 0.9 adds stricter types.
-        jpeg_read_header( &cinfo, TRUE );
-#else
-        jpeg_read_header( &cinfo, true );
-#endif
-
-        // we only support RGB or grayscale
-        if (cinfo.jpeg_color_space != JCS_RGB)
-        {
-            if (cinfo.jpeg_color_space == JCS_GRAYSCALE || cinfo.jpeg_color_space == JCS_YCbCr)
-            {
-                cinfo.out_color_space = JCS_RGB;
-            }
-        }
-        else
-        {
-            break;
-        }
-
-        /* Start decompression jpeg here */
-        jpeg_start_decompress( &cinfo );
-
-        row_pointer[0] = new unsigned char[cinfo.output_width*cinfo.output_components];
-		if(!row_pointer[0]) break;
-
-		Texture::Format format = Texture::TF_R8G8B8;
-		texture = new0 Texture2D(format, cinfo.output_width, cinfo.output_height, 1);
-		char* textureData = texture->GetData(0);
-		if(!textureData)
-			break;
-
-        /* now actually read the jpeg into the raw buffer */
-        /* read one scan line at a time */
-        while( cinfo.output_scanline < cinfo.output_height )
-        {
-            jpeg_read_scanlines( &cinfo, row_pointer, 1 );
-			for( i=0; i<cinfo.output_width*cinfo.output_components;i++) 
-			{
-				textureData[location++] = row_pointer[0][i];
-			}
-        }
-
-		/* When read image file with broken data, jpeg_finish_decompress() may cause error.
-		 * Besides, jpeg_destroy_decompress() shall deallocate and release all memory associated
-		 * with the decompression object.
-		 * So it doesn't need to call jpeg_finish_decompress().
-		 */
-		//jpeg_finish_decompress( &cinfo );
-        jpeg_destroy_decompress( &cinfo );
-        /* wrap up decompression, destroy objects, free pointers and close open files */        
-    } while (0);
-
-	delete[] row_pointer[0];
-
-   return texture;
 }
 //----------------------------------------------------------------------------
 #ifdef _MSC_VER
@@ -2318,7 +2201,7 @@ Texture2D *ResourceManager::LoadTextureFromPVRTC(int dataLength, const char *dat
 				heightBlocks = height / 4;
 				break;
 			case kPVR3TexturePixelFormat_BGRA_8888:
-				return false;
+				return 0;
 			default:
 				blockSize = 1;
 				widthBlocks = width;

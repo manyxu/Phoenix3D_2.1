@@ -17,7 +17,7 @@ DistanceFactor(1.0f),
 RolloffScale(1.0f)
 {
 }
-//----------------------------------------------------------------------------
+//----------------------------------------------------------------ss------------
 
 //----------------------------------------------------------------------------
 // SoundCreateInfo3D
@@ -43,8 +43,7 @@ mIsSoundEnable(true)
 {
 }
 //----------------------------------------------------------------------------
-SoundSystem::SoundSystem(SystemType type)
-:
+SoundSystem::SoundSystem(SystemType type) :
 mSystemType(type),
 mDefaultMaxNumPlaySameTime(5),
 mDefaultSameTimeRange(1.0f),
@@ -82,6 +81,8 @@ SoundSystem *SoundSystem::Create(SystemType type,
 
 	return soundSystem;
 #else
+	PX2_UNUSED(initInfo);
+
 	assertion(false, "Not supported now.");
 	return 0;
 #endif
