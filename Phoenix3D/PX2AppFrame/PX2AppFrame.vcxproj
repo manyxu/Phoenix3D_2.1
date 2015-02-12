@@ -103,7 +103,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
-    <TargetName>PX2AppFrameDx9</TargetName>
+    <TargetName>PX2AppFrame</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
