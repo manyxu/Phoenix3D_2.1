@@ -40,7 +40,6 @@ namespace PX2
 		float GetFixedWidth() const;
 
 		virtual void OnSizeChanged();
-		virtual void OnBorderSizeChanged();
 
 		virtual void OnAttachWithIME();
 		virtual void OnDetachWithIME();

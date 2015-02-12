@@ -15,19 +15,18 @@ PX2_IMPLEMENT_FACTORY(InputPushTransformController);
 PX2_IMPLEMENT_DEFAULT_NAMES(PushTransformController, InputPushTransformController);
 
 //----------------------------------------------------------------------------
-InputPushTransformController::InputPushTransformController()
-:
+InputPushTransformController::InputPushTransformController() :
+mPushTriggerSpeed(100.0f),
 mPressedTime(0.0f),
 mReleasedTime(0.0f),
 mSampingTiming(0.0f),
-mPushTriggerSpeed(100.0f),
-mConvertCallback(0),
-mIsPressedValid(false),
 mMinPos(AVector::ZERO),
 mMaxPos(AVector::ZERO),
 mMinPosSmall(AVector::ZERO),
 mMaxPosSmall(AVector::ZERO),
-mSideMoveLength(0.0f)
+mSideMoveLength(0.0f),
+mIsPressedValid(false),
+mConvertCallback(0)
 {
 	ComeInEventWorld();
 }
@@ -390,20 +389,20 @@ bool InputPushTransformController::TransScope(APoint &pos)
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-InputPushTransformController::InputPushTransformController(LoadConstructor value)
-:
+InputPushTransformController::InputPushTransformController(
+	LoadConstructor value) :
 PushTransformController(value),
+mPushTriggerSpeed(100.0f),
 mPressedTime(0.0f),
 mReleasedTime(0.0f),
 mSampingTiming(0.0f),
-mPushTriggerSpeed(100.0f),
-mConvertCallback(0),
-mIsPressedValid(false),
 mMinPos(AVector::ZERO),
 mMaxPos(AVector::ZERO),
 mMinPosSmall(AVector::ZERO),
 mMaxPosSmall(AVector::ZERO),
-mSideMoveLength(0.0f)
+mSideMoveLength(0.0f),
+mIsPressedValid(false),
+mConvertCallback(0)
 {
 	ComeInEventWorld();
 }

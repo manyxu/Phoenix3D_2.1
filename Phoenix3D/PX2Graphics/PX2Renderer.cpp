@@ -17,10 +17,6 @@
 #include "PX2Dx9VertexShader.hpp"
 #endif
 
-#if defined (__IOS__)
-    #define PX2_USE_OPENGLES2
-#endif
-
 #ifdef PX2_USE_OPENGLES2
 #include "Renderers/OpenGLES2Renderer/PX2OpenGLES2IndexBuffer.hpp"
 #include "Renderers/OpenGLES2Renderer/PX2OpenGLES2PixelShader.hpp"

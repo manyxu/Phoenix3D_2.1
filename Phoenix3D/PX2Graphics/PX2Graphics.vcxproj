@@ -377,7 +377,6 @@
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererData.hpp" />
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererInput.hpp" />
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererPre.hpp" />
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererPrerequisites.hpp" />
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RenderTarget.hpp" />
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Shader.hpp" />
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture1D.hpp" />
