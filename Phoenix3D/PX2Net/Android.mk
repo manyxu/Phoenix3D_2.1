@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := PX2Net1
+LOCAL_MODULE := PX2Net
 
 LOCAL_CPP_EXTENSION := .cc  .cpp 
 
@@ -55,7 +55,7 @@ PX2SocketAddress.cpp \
 PX2SocketAddressImpl.cpp \
 PX2DNS.cpp \
 PX2HostEntry.cpp \
-PX2NetClientConnect.cpp \
+PX2NetClientConnector.cpp \
 PX2NetEventBuffer.cpp \
 PX2NetInitTerm.cpp \
 PX2NetError.cpp \
