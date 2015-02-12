@@ -20,8 +20,8 @@ public class AppPlayGLView extends GLSurfaceView
 	private static AppPlayTextInputWraper msTextInputWraper;
 	private static Handler msHandler;
 
-	private AppPlayRenderer mRenderer;
-	private AppPlayEditText mEditText;
+	private AppPlayRenderer mRenderer = null;
+	private AppPlayEditText mEditText = null;
 
 	public AppPlayGLView(Context context)
 	{
@@ -102,7 +102,8 @@ public class AppPlayGLView extends GLSurfaceView
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
 	{
-		mRenderer.SetSize(w, h);
+		if (null != mRenderer)
+			mRenderer.SetSize(w, h);
 		Log.d("appplay.lib", "info - AppPlayGLView::onSizeChanged");
 	}
 

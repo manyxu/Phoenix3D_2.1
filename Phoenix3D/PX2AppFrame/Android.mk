@@ -4,8 +4,9 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := PX2AppFrame
 
-FILE_LIST := $(wildcard $(LOCAL_PATH)/*cpp)
-LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%)
+LOCAL_SRC_FILES := \
+PX2Application.cpp \
+PX2ApplicationBase.cpp
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
 

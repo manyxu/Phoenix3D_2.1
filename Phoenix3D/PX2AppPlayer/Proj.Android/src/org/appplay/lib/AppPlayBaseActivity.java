@@ -34,7 +34,7 @@ public class AppPlayBaseActivity extends Activity
 	// LibSO
 	public static String sLibSO_Filename = "";
 	public static String sLibSO_Dir = "";
-	private static String sLibSO_Name="libAppPlayJNI";
+	private static String sLibSO_Name="AppPlayJNI";
 
 	// Vsersion
 	public static String sVersion_Dir = "";
@@ -60,15 +60,15 @@ public class AppPlayBaseActivity extends Activity
 		ApplicationInfo info = null;
 		try
 		{
-			info = packMgr
-					.getApplicationInfo(packageName, MODE_WORLD_WRITEABLE);
-		} catch (NameNotFoundException e)
+			info = packMgr.getApplicationInfo(packageName, MODE_WORLD_WRITEABLE);
+		} 
+		catch (NameNotFoundException e)
 		{
 			e.printStackTrace();
 		}
 
 		sLibSO_Dir = info.dataDir;
-		sLibSO_Filename = info.dataDir + "/" + sLibSO_Name + ".so";
+		sLibSO_Filename = info.dataDir + "/lib" + sLibSO_Name + ".so";
 		sVersion_Dir = info.dataDir;
 
 		sVersion_Filename = info.dataDir + "/version.xml";
@@ -77,7 +77,7 @@ public class AppPlayBaseActivity extends Activity
         Log.d("appplay.ap", "begin - AppPlayActivity::onCreate"); 
         
         AppPlayMetaData.Initlize(getApplicationContext());
-		
+        
 		if (AppPlayMetaData.sIsNettable)
 			PlatformSDK.sThePlatformSDK = PlatformSDKCreater.Create(this);
 		else
@@ -184,10 +184,10 @@ public class AppPlayBaseActivity extends Activity
 		Log.d("appplay.ap", "ResourcePath:" + apkFilePath);
 
 		// set apkPath
-		AppPlayNatives.nativeSetResourcePath(apkFilePath);
+		AppPlayNatives.nativeSetApkDataPath(apkFilePath);
 
 		// set
-		if (AppPlayMetaData.sIsTest)
+		if (AppPlayMetaData.sIsNettable && AppPlayMetaData.sIsTest)
 		{
 			AppPlayNatives.nativeSetDataUpdateServerType("ResourceServerTest");
 		}
@@ -233,6 +233,7 @@ public class AppPlayBaseActivity extends Activity
 		});
 	}
 
+
 	// updated ok, let's show our opengles view
 	public void Show_GLView()
 	{
@@ -248,7 +249,7 @@ public class AppPlayBaseActivity extends Activity
 
 					System.load(sLibSO_Filename);
 
-					Log.d("appplay.lib", "end - load sLibSO(form dir).");
+					Log.d("appplay.lib", "end - load sLibSO(form dir):" + sLibSO_Filename);
 				} else
 				{ // load so packaged with the first apk
 
@@ -260,9 +261,12 @@ public class AppPlayBaseActivity extends Activity
 					}
 					catch (UnsatisfiedLinkError ulink)
 					{
+						ulink.printStackTrace();
+						
+						Log.d("appplay.lib", "end - load so(form init packaged Failed):");
 					}
 
-					Log.d("appplay.lib", "end - load so(form init packaged).");
+					Log.d("appplay.lib", "end - load so(form init packaged):" + sLibSO_Name);
 				}
 
 				Log.d("appplay.lib", "ok - load so.");
@@ -272,8 +276,7 @@ public class AppPlayBaseActivity extends Activity
 				_SetPackageName(packageName);
 
 				// set platformsdk
-				PlatformSDKNatives
-						.SetPlatformSDK(PlatformSDKCreater.sSDK_CurrentName);
+				PlatformSDKNatives.SetPlatformSDK(PlatformSDKCreater.sSDK_CurrentName);
 
 				// -- begin FrameLayout --
 

@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.appplay.ap.util.SystemUiHider;
 import org.appplay.lib.AppPlayBaseActivity;
+import org.appplay.lib.AppPlayMetaData;
+import org.appplay.platformsdk.PlatformSDK;
+import org.appplay.platformsdk.PlatformSDKCreater;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -20,19 +23,12 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class AppPlayActivity extends AppPlayBaseActivity
-{
-	// power
-	private PowerManager powerManager = null; 
-	private WakeLock wakeLock = null;
-	
+{	
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
 		// super create     	
-        super.onCreate(savedInstanceState);       
-        
-		this.powerManager = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
-		this.wakeLock = this.powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "My Lock");
+        super.onCreate(savedInstanceState);
     }
     
     @Override
@@ -41,18 +37,12 @@ public class AppPlayActivity extends AppPlayBaseActivity
     	Log.d("appplay.ap", "AppPlayActivity::onPause");
 		 
 	    super.onPause();
-	     
-	    if (null!=wakeLock)
-	    	wakeLock.release(); 
     }
 
 	 @Override
 	 protected void onResume() 
 	 {	 
 		 super.onResume();
-
-		 if (null!=wakeLock)
-			 wakeLock.acquire(); 
 	 }
     
 }

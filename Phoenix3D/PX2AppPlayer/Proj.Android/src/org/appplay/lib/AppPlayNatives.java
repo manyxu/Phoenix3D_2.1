@@ -7,7 +7,7 @@ public class AppPlayNatives
 	public static native void nativeOnPause ();
 	public static native void nativeOnResume ();
 	public static native void nativeOnTerm ();
-	public static native void nativeSetResourcePath(String path);
+	public static native void nativeSetApkDataPath(String path);
 	public static native void nativeSetDataUpdateServerType (String type);
 	
 	public static native void nativeTouchPressed(int id, float x, float y);

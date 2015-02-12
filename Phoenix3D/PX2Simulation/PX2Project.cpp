@@ -13,7 +13,7 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-Pointer0<Project> Project::msProject;
+//Pointer0<Project> Project::msProject;
 //----------------------------------------------------------------------------
 Project::Project() :
 mEdit_UICameraPercent(1.0f)
@@ -21,7 +21,7 @@ mEdit_UICameraPercent(1.0f)
 	if (ScriptManager::GetSingletonPtr())
 		PX2_SM.SetUserTypePointer("PX2_PROJ", "Project", this);
 
-	msProject = this;
+	//msProject = this;
 
 	mBackgroundColor = Float4::MakeColor(255, 255, 200, 255);
 	
@@ -57,10 +57,10 @@ Project::~Project ()
 //----------------------------------------------------------------------------
 void Project::Destory()
 {
-	if (msProject)
+	//if (msProject)
 	{
-		msProject = 0;
-		Project::Set(0);
+	//	msProject = 0;
+	//	Project::Set(0);
 	}
 }
 //----------------------------------------------------------------------------

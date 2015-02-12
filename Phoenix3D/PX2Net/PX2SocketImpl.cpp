@@ -753,8 +753,9 @@ bool SocketImpl::GetNoDelay()
 	int val(0);
 	GetOption(IPPROTO_TCP, TCP_NODELAY, val);
 	return val != 0;
-#endif
+#else
 	return false;
+#endif
 }
 //----------------------------------------------------------------------------
 void SocketImpl::SetKeepAlive(bool flag)

@@ -2,7 +2,9 @@
 
 #include "AppPlay.hpp"
 using namespace appplay;
+#include <android/log.h>
 
+#define APPPLAY_PX2
 #ifdef APPPLAY_PX2
 #include "PX2Log.hpp"
 #include "PX2Application.hpp"
@@ -22,7 +24,12 @@ bool NativeCall::Initlize(int width, int height)
 #ifdef APPPLAY_PX2
 	if (!IsInitlized())
 	{
+		__android_log_print(ANDROID_LOG_INFO, "appplay.lib", "NativeCall::Initlize.");
+		
 		PX2::ApplicationBase::msAppInitlizeFun();
+		
+		__android_log_print(ANDROID_LOG_INFO, "appplay.lib", "NativeCall::Initlize1.");
+		
 		PX2::ApplicationBase::msApplication->Initlize();
 		PX2::ApplicationBase::msApplication->OnSize(width, height);
 		PX2::ApplicationBase::msApplication->WillEnterForeground(true);

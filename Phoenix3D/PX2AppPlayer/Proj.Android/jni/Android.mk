@@ -16,6 +16,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += PX2Effect
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2UI
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2Simulation
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2AppFrame
+LOCAL_WHOLE_STATIC_LIBRARIES += PX2AppPlayer
 LOCAL_WHOLE_STATIC_LIBRARIES += GameX
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/.. \
@@ -34,4 +35,5 @@ $(call import-module, PX2Effect)
 $(call import-module, PX2UI)
 $(call import-module, PX2Simulation)
 $(call import-module, PX2AppFrame)
+$(call import-module, PX2AppPlayer)
 $(call import-module, Samples/GameX)

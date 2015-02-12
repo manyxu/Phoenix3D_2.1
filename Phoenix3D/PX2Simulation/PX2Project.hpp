@@ -26,7 +26,7 @@ namespace PX2
 		static void Destory();
 
 	private:
-		static Pointer0<Project> msProject;
+		//static Pointer0<Project> msProject;
 
 		// Load Save
 	public:

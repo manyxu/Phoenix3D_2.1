@@ -49,10 +49,10 @@ JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeOnTerm
 
 /*
  * Class:     org_appplay_lib_AppPlayNatives
- * Method:    nativeSetResourcePath
+ * Method:    nativeSetApkDataPath
  * Signature: (Ljava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeSetResourcePath
+JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeSetApkDataPath
   (JNIEnv *, jclass, jstring);
 
 /*

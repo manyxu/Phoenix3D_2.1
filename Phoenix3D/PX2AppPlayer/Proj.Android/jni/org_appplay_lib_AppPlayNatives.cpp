@@ -3,57 +3,61 @@
 #include "org_appplay_lib_AppPlayNatives.h"
 #include "AppPlay.hpp"
 #include "AppPlayJNI.hpp"
-using namespace appplay;
+#include <android/log.h>
 
+#ifdef __cplusplus
 extern "C"
 {
+#endif
 
 	jint JNI_OnLoad(JavaVM *vm, void *reserved)
-	{
-		JNIHelper::SetJavaVM(vm);
-
+	{	
+		appplay::JNIHelper::SetJavaVM(vm);
+		
+		__android_log_print(ANDROID_LOG_INFO, "appplay.lib", "JNI_OnLoad.");
+			
 		return JNI_VERSION_1_4;
 	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeOdle
 		(JNIEnv *env, jclass)
 	{
-		NativeCall::OnOdle();
+		appplay::NativeCall::OnOdle();
 	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeInit
 		(JNIEnv *, jclass, jint width, jint height)
 	{
-		NativeCall::Initlize(width, height);
+		appplay::NativeCall::Initlize(width, height);
 	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeOnPause
 		(JNIEnv *, jclass)
 	{
-		NativeCall::DidEnterBackground();
+		appplay::NativeCall::DidEnterBackground();
 	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeOnResume
 		(JNIEnv *, jclass)
 	{
-		NativeCall::WillEnterForeground();
+		appplay::NativeCall::WillEnterForeground();
 	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeOnTerm
 		(JNIEnv *, jclass)
 	{
-		NativeCall::Ternamate();
+		appplay::NativeCall::Ternamate();
 	}
-
-	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeSetResourcePath
-		(JNIEnv *env, jclass, jstring apkPath)
+	
+	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeSetApkDataPath
+  (JNIEnv *env, jclass, jstring apkPath)
 	{
 		const char* str;
 		jboolean isCopy;
 		str = env->GetStringUTFChars(apkPath, &isCopy);
 		if (isCopy)
 		{
-			NativeCall::SetResourcePath(str);
+			appplay::NativeCall::SetResourcePath(str);
 
 			env->ReleaseStringUTFChars(apkPath, str);
 		}
@@ -67,7 +71,7 @@ extern "C"
 		str = env->GetStringUTFChars(type, &isCopy);
 		if (isCopy)
 		{
-			NativeCall::SetDataServerUpdateType(str);
+			appplay::NativeCall::SetDataServerUpdateType(str);
 
 			env->ReleaseStringUTFChars(type, str);
 		}
@@ -76,13 +80,13 @@ extern "C"
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeTouchPressed
 		(JNIEnv *, jclass, jint id, jfloat x, jfloat y)
 	{
-		NativeCall::OnTouchPressed(1, &id, &x, &y);
+		appplay::NativeCall::OnTouchPressed(1, &id, &x, &y);
 	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeTouchReleased
 		(JNIEnv *, jclass, jint id, jfloat x, jfloat y)
 	{
-		NativeCall::OnTouchReleased(1, &id, &x, &y);
+		appplay::NativeCall::OnTouchReleased(1, &id, &x, &y);
 	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeTouchMoved
@@ -97,7 +101,7 @@ extern "C"
 		env->GetFloatArrayRegion(xs, 0, size, x);
 		env->GetFloatArrayRegion(ys, 0, size, y);
 
-		NativeCall::OnTouchMoved(size, id, x, y);
+		appplay::NativeCall::OnTouchMoved(size, id, x, y);
 	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeTouchCancelled
@@ -112,7 +116,7 @@ extern "C"
 		env->GetFloatArrayRegion(xs, 0, size, x);
 		env->GetFloatArrayRegion(ys, 0, size, y);
 
-		NativeCall::OnTouchCancelled(size, id, x, y);
+		appplay::NativeCall::OnTouchCancelled(size, id, x, y);
 	}
 
 	JNIEXPORT jboolean JNICALL Java_org_appplay_lib_AppPlayNatives_nativeKeyDown
@@ -125,21 +129,23 @@ extern "C"
 		(JNIEnv *env, jclass, jstring text)
 	{
 		const char* pszText = env->GetStringUTFChars(text, NULL);
-		NativeCall::Text_InsertText(pszText, strlen(pszText));
+		appplay::NativeCall::Text_InsertText(pszText, strlen(pszText));
 		env->ReleaseStringUTFChars(text, pszText);
 	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeDeleteBackward
 		(JNIEnv *, jclass)
 	{
-		NativeCall::Text_DeleteBackward();
+		appplay::NativeCall::Text_DeleteBackward();
 	}
 
 	JNIEXPORT jstring JNICALL Java_org_appplay_lib_AppPlayNatives_nativeGetContentText
 		(JNIEnv *env, jclass)
 	{
-		const char * pszText = NativeCall::Text_GetInitContent();
+		const char * pszText = appplay::NativeCall::Text_GetInitContent();
 		return env->NewStringUTF(pszText);
 	}
 
+#ifdef __cplusplus
 }
+#endif
