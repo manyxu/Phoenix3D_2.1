@@ -20,6 +20,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += GameX
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/.. \
 $(PX2_ROOT)/ThirdPartiesLibs/OGLES/ \
+$(PX2_ROOT)/PX2Unity/AppPlay/ \
 $(PX2_ROOT)/PX2SDK/Include/
 
 include $(BUILD_SHARED_LIBRARY)

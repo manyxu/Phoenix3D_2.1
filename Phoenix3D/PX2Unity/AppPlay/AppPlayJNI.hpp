@@ -44,6 +44,17 @@ extern "C"
 	extern void SetKeyboardStateJNI(int open);
 	extern void OpenKeyboardJNI();
 	extern void CloseKeyboardJNI();
+	
+	extern void PlatformSDKLoginJNI();
+	extern void PlatformSDKLogoutJNI();
+	extern void PlatformSDKSynPayJNI (
+		const char *productID, const char *productName,
+		float productPrice, float productOriginPrice, int count,
+		const char *payDescription);
+	extern void PlatformSDKASynPayJNI (
+		const char *productID, const char *productName,
+		float productPrice, float productOriginPrice, int count,
+		const char *payDescription);
 }
 
 #endif

@@ -3,6 +3,9 @@
 #include "PX2PlatformSDK.hpp"
 #include "PX2PlatformSDKEventType.hpp"
 #include "PX2Log.hpp"
+#if defined (__ANDROID__)
+#include "AppPlayJNI.hpp"
+#endif
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -54,17 +57,17 @@ bool PlatformSDK::IsThirdPlatform() const
 	return !mPlatformSDK.empty();
 }
 //----------------------------------------------------------------------------
-void PlatformSDK::ThirdPlatformLogin()
+void PlatformSDK::PlatformSDKLogin()
 {
 #ifdef __ANDROID__
-	ThirdPlatformLoginJNI();
+	PlatformSDKLoginJNI();
 #endif
 }
 //----------------------------------------------------------------------------
-void PlatformSDK::ThirdPlatformLogout()
+void PlatformSDK::PlatformSDKLogout()
 {
 #ifdef __ANDROID__
-	ThirdPlatformLogoutJNI();
+	PlatformSDKLogoutJNI();
 #endif
 }
 //----------------------------------------------------------------------------
@@ -122,7 +125,7 @@ void PlatformSDK::SynPay(
 		productID.c_str(), productName.c_str(), productPrice, productOriginPrice, count, payDescription.c_str());
 
 #ifdef __ANDROID__
-	ThirdPlatformSynPayJNI(
+	PlatformSDKSynPayJNI(
 		productID.c_str(), productName.c_str(),
 		productPrice, productOriginPrice, count, payDescription.c_str());
 #endif
@@ -137,7 +140,7 @@ void PlatformSDK::ASynPay(
 		productID.c_str(), productName.c_str(), productPrice, productOriginPrice, count, payDescription.c_str());
 
 #ifdef __ANDROID__
-	ThirdPlatformASynPayJNI(
+	PlatformSDKASynPayJNI(
 		productID.c_str(), productName.c_str(),
 		productPrice, productOriginPrice, count, payDescription.c_str());
 #endif

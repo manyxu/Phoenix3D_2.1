@@ -21,11 +21,12 @@ int CURLDownload::msNumInsts = 0;
 CURLDownload::CURLDownload ()
 	:
 mCurl(0),
+mStartFrom(0),
+mDownType(DT_FILE),
 mFile(0),
-mCurDownloadSize(0),
 mUseNeedDownloadSize(false),
 mNeedDownloadSize(0),
-mDownType(DT_FILE),
+mCurDownloadSize(0),
 mDownloadMemory(0),
 mIsDownLoadOK(false),
 mDownLoadProgress(0.0f)
@@ -332,6 +333,7 @@ int CURLDownload::ProgressFunction (void *clientp, double dltotal,
 	PX2_UNUSED(dlnow);
 	PX2_UNUSED(ultotal);
 	PX2_UNUSED(dlnow);
+	PX2_UNUSED(ulnow);
 
 	CURLDownload *download = static_cast<CURLDownload *>(clientp);
 	if (!download)

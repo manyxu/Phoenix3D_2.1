@@ -64,8 +64,8 @@ namespace PX2
 		const std::string &GetPlatformSDK() const;
 		bool IsThirdPlatform() const;
 
-		void ThirdPlatformLogin();
-		void ThirdPlatformLogout();
+		void PlatformSDKLogin();
+		void PlatformSDKLogout();
 
 		void OnLoginSuc(int apiID, std::string loginUin, std::string sessionID, std::string nickname);
 		void OnLoginCancel();

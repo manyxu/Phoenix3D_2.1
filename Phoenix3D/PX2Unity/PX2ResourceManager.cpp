@@ -23,6 +23,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <dirent.h>
+#include "AppPlayJNI.hpp"
 #elif defined __MARMALADE__
 #include "s3e.h"
 #include <sys/stat.h>

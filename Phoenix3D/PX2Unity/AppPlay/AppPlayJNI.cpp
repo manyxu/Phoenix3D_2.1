@@ -1,7 +1,6 @@
 // AppPlayJNI.cpp
 
 #include "AppPlayJNI.hpp"
-#include "AppPlay.hpp"
 using namespace std;
 using namespace appplay;
 
@@ -15,13 +14,11 @@ extern "C"
 	{
 		if (JAVAVM->GetEnv((void**)env, JNI_VERSION_1_4) != JNI_OK)
 		{
-			General::Log("Failed to get the environment using GetEnv_()");
 			return false;
 		}
 
 		if (JAVAVM->AttachCurrentThread(env, 0) < 0)
 		{
-			General::Log("Failed to get the environment using AttachCurrentThread()");
 			return false;
 		}
 
@@ -44,7 +41,6 @@ extern "C"
 		ret = envTemp->FindClass(className);
 		if (!ret)
 		{
-			General::Log("Failed to find class of " + std::string(className));
 			return 0;
 		}
 
@@ -64,7 +60,6 @@ extern "C"
 		methodID = envTemp->GetStaticMethodID(classID, methodName, paramCode);
 		if (!methodID)
 		{
-			General::Log("Failed to find static method id of " + std::string(methodName));
 			return false;
 		}
 
@@ -88,7 +83,6 @@ extern "C"
 		methodID = envTemp->GetMethodID(classID, methodName, paramCode);
 		if (!methodID)
 		{
-			General::Log("Failed to find method id of " + std::string(methodName));
 			return false;
 		}
 
@@ -179,8 +173,6 @@ extern "C"
 
 			t.env->DeleteLocalRef(jstr);
 
-			General::Log("package name is " + sAppPlayPackageName);
-
 			return sAppPlayPackageName.c_str();
 		}
 
@@ -220,5 +212,81 @@ extern "C"
             t.env->DeleteLocalRef(t.classID);
         }
     }
+	
+	void PlatformSDKLoginJNI()
+	{
+		JNIMethodInfo t;
+
+		if (JNIHelper::GetStaticMethodInfo(t,
+			"org/appplay/lib/AppPlayBaseActivity",
+			"PlatformSDKLogin",
+			"()V"))
+		{
+			t.env->CallStaticVoidMethod(t.classID, t.methodID);
+			t.env->DeleteLocalRef(t.classID);
+		}
+	}
+
+	void PlatformSDKLogoutJNI()
+	{
+		JNIMethodInfo t;
+
+		if (JNIHelper::GetStaticMethodInfo(t,
+			"org/appplay/lib/AppPlayBaseActivity",
+			"PlatformSDKLogout",
+			"()V"))
+		{
+			t.env->CallStaticVoidMethod(t.classID, t.methodID);
+			t.env->DeleteLocalRef(t.classID);
+		}
+	}
+
+	void PlatformSDKSynPayJNI (
+		const char *productID, const char *productName,
+		float productPrice, float productOriginPrice, int count,
+		const char *payDescription)
+	{
+		JNIMethodInfo t;
+
+		if (JNIHelper::GetStaticMethodInfo(t,
+			"org/appplay/lib/AppPlayBaseActivity",
+			"PlatformSDKSynPay",
+			"(Ljava/lang/String;Ljava/lang/String;FFILjava/lang/String;)V"))
+		{
+			jstring jProductID = t.env->NewStringUTF(productID);
+			jstring jProductName = t.env->NewStringUTF(productName);
+			jstring jPayDescription = t.env->NewStringUTF(payDescription);
+			t.env->CallStaticVoidMethod(t.classID, t.methodID, jProductID, jProductName,
+				productPrice, productOriginPrice, count, jPayDescription);
+			t.env->DeleteLocalRef(t.classID);
+			t.env->DeleteLocalRef(jProductID);
+			t.env->DeleteLocalRef(jProductName);
+			t.env->DeleteLocalRef(jPayDescription);
+		}
+	}
+
+	void PlatformSDKASynPayJNI (
+		const char *productID, const char *productName,
+		float productPrice, float productOriginPrice, int count,
+		const char *payDescription)
+	{
+		JNIMethodInfo t;
+
+		if (JNIHelper::GetStaticMethodInfo(t,
+			"org/appplay/lib/AppPlayBaseActivity",
+			"PlatformSDKASynPay",
+			"(Ljava/lang/String;Ljava/lang/String;FFILjava/lang/String;)V"))
+		{
+			jstring jProductID = t.env->NewStringUTF(productID);
+			jstring jProductName = t.env->NewStringUTF(productName);
+			jstring jPayDescription = t.env->NewStringUTF(payDescription);
+			t.env->CallStaticVoidMethod(t.classID, t.methodID, jProductID, jProductName,
+				productPrice, productOriginPrice, count, jPayDescription);
+			t.env->DeleteLocalRef(t.classID);
+			t.env->DeleteLocalRef(jProductID);
+			t.env->DeleteLocalRef(jProductName);
+			t.env->DeleteLocalRef(jPayDescription);
+		}
+	}
 }
 //----------------------------------------------------------------------------

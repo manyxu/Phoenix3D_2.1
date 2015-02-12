@@ -8,7 +8,7 @@
 #include "PX2StringHelp.hpp"
 using namespace PX2;
 #if defined(__ANDROID__)
-#include "PX2JNI.hpp"
+#include "AppPlayJNI.hpp"
 #endif
 
 //----------------------------------------------------------------------------

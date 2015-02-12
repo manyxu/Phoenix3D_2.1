@@ -12,6 +12,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := PX2Unity
 
 FILE_LIST := $(wildcard $(LOCAL_PATH)/*cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/AppPlay/*cpp)
 LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%) \
 ZLib/adler32.c \
 ZLib/compress.c \
@@ -222,6 +223,7 @@ $(LOCAL_PATH)/CURL/config/android \
 $(LOCAL_PATH)/CURL/src \
 $(LOCAL_PATH)/CURL/ \
 $(PX2_ROOT)/PX2SDK/Include/ \
+$(LOCAL_PATH)/AppPlay/ \
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
 
