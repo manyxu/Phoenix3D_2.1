@@ -100,6 +100,11 @@
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>PX2SimulationD</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>PX2Simulation</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
@@ -130,6 +135,7 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;..\PX2ToLua;..\PX2Unity\Lua;..\PX2Unity\ToLua;..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,6 +143,13 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>mkdir ..\PX2SDK\Include
+xcopy /DY *.hpp ..\PX2SDK\Include
+xcopy /DY *.inl ..\PX2SDK\Include
+mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
