@@ -38,13 +38,16 @@ namespace PX2
 		{
 			BitmapFontGlyph ()
 			{
+				X = 0;
+				Y = 0;
+				numWidth = 0;
+				numHeight = 0;
 			}
 
 			int X;
 			int Y;
 			int numWidth;
 			int numHeight;
-			int Advance;
 			Rectf RectUV;
 		};
 

@@ -741,15 +741,20 @@ void SocketImpl::GetLinger(bool& on, int& seconds)
 //----------------------------------------------------------------------------
 void SocketImpl::SetNoDelay(bool flag)
 {
+#ifndef __ANDROID__
 	int val = flag ? 1 : 0;
 	SetOption(IPPROTO_TCP, TCP_NODELAY, val);
+#endif
 }
 //----------------------------------------------------------------------------
 bool SocketImpl::GetNoDelay()
 {
+#ifndef __ANDROID__
 	int val(0);
 	GetOption(IPPROTO_TCP, TCP_NODELAY, val);
 	return val != 0;
+#endif
+	return false;
 }
 //----------------------------------------------------------------------------
 void SocketImpl::SetKeepAlive(bool flag)

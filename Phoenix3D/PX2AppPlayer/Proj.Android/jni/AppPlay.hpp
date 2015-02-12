@@ -7,12 +7,6 @@
 
 namespace appplay
 {
-
-	class General
-	{
-	public:
-		static void Log(std::string str);
-	};
 	
 	class NativeCall
 	{

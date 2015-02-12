@@ -1,24 +1,9 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2GraphicsPre.hpp
-*
-* 版本		:	1.0 (2011/01/31)
-*
-* 作者		：	more
-*
-*/
+// PX2GraphicsPre.hpp
 
 #ifndef PX2GRAPHICSPRERE_HPP
 #define PX2GRAPHICSPRERE_HPP
 
 #include "PX2MathematicsPre.hpp"
-
-#if defined(__ANDROID__) || defined(__APPLE__)
-	#define PX2_USE_OPENGLES2
-#endif
 
 // 加上此宏会对输入的相机是否正交化进行检查，只进行一次正交化检查，只
 // 需要进行一次正交化。
@@ -56,10 +41,6 @@
     #ifdef _DEBUG
         //#define PX2_PDR_DEBUG
     #endif
-#endif
-
-#ifdef __ANDROID__
-	#define PX2_USE_OPENGLES2
 #endif
 
 #endif

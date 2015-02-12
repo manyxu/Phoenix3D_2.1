@@ -174,6 +174,7 @@ void DNS::Error (int code, const std::string& arg)
 		assertion(false, "Net subsystem not initialized.\n");
 		PX2_LOG_ERROR("Net subsystem not initialized.");
 		break;
+#ifndef __ANDROID__
 	case PX2_HOST_NOT_FOUND:
 		assertion(false, "Host not found.\n");
 		PX2_LOG_ERROR("Host not found.");
@@ -190,6 +191,7 @@ void DNS::Error (int code, const std::string& arg)
 		assertion(false, "No address found.\n");
 		PX2_LOG_ERROR("No address found.");
 		break;
+#endif
 	default:
 		assertion(false, "%d \n", code);
 		PX2_LOG_ERROR("%d", code);
@@ -205,6 +207,7 @@ void DNS::Aierror (int code, const std::string& arg)
 #if defined(PX2_HAVE_IPV6) || defined(PX2_HAVE_ADDRINFO)
 	switch (code)
 	{
+#ifndef __ANDROID__
 	case EAI_AGAIN:
 		assertion(false, "Temporary DNS error while resolving.\n");
 		PX2_LOG_ERROR("Temporary DNS error while resolving.");
@@ -212,6 +215,8 @@ void DNS::Aierror (int code, const std::string& arg)
 	case EAI_FAIL:
 		assertion(false, "Non recoverable DNS error while resolving.\n");
 		PX2_LOG_ERROR("Non recoverable DNS error while resolving.");
+#endif // !(__ANDROID__)
+
 #if !defined(_WIN32) && !defined(WIN32)
 #if defined(EAI_NODATA)
 	case EAI_NODATA:
@@ -220,10 +225,14 @@ void DNS::Aierror (int code, const std::string& arg)
 		break;
 #endif
 #endif
+
+#ifndef __ANDROID__
 	case EAI_NONAME:
 		assertion(false, "Hose not found.\n");
 		PX2_LOG_ERROR("Hose not found.");
 		break;
+#endif
+
 #if defined(EAI_SYSTEM)
 	case EAI_SYSTEM:
 		error(lastError(), arg);

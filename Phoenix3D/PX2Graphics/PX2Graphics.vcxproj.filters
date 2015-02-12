@@ -964,9 +964,6 @@
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererPre.hpp">
       <Filter>Renderers\OpenGLES2Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererPrerequisites.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RenderTarget.hpp">
       <Filter>Renderers\OpenGLES2Renderer</Filter>
     </ClInclude>
