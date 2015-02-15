@@ -58,14 +58,7 @@ TimeLineView::~TimeLineView()
 {
 }
 //----------------------------------------------------------------------------
-void TimeLineView::SetColorForTheme(EditParams::Theme theme)
+void TimeLineView::SetTheme(Theme *theme)
 {
-	SetBackgroundColour(Float3TowxColour(theme.backColor));
-	mTimeLineRender->SetBackgroundColour(Float3TowxColour(theme.backColor));
-
-	TimeLineBar->SetBackgroundColour(Float3TowxColour(theme.toolBarColor));
-	TimeLineBar->SetForegroundColour(Float3TowxColour(theme.toolBarColor));
-
-	mSearchCtrl->SetBackgroundColour(Float3TowxColour(theme.searchColor));
 }
 //----------------------------------------------------------------------------

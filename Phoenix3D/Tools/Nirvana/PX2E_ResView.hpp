@@ -20,9 +20,6 @@ namespace PX2Editor
 		ResView(wxWindow *parent);
 		virtual ~ResView();
 
-		void SetColorForTheme(EditParams::Theme theme);
-		void SetColorTreeItem(EditParams::Theme theme, ResTreeItem *treeItem);
-
 	protected:
 		DECLARE_EVENT_TABLE()
 		ResView();

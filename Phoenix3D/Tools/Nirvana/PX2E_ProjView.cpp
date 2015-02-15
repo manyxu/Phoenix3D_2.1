@@ -2,8 +2,9 @@
 
 #include "PX2E_ProjView.hpp"
 #include "PX2E_ProjTree.hpp"
-#include "PX2Project.hpp"
 #include "PX2E_Define.hpp"
+#include "PX2Project.hpp"
+#include "PX2wxAui.hpp"
 using namespace PX2Editor;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::ProjView, wxWindow)
@@ -24,8 +25,8 @@ mProjTree(0)
 	wxBoxSizer* bSizer55;
 	bSizer55 = new wxBoxSizer(wxVERTICAL);
 
-	mProjTreeBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-		wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
+	mProjTreeBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
 	mProjTreeBar->Realize();
 
 	bSizer55->Add(mProjTreeBar, 0, wxEXPAND | wxBOTTOM, 5);
@@ -63,21 +64,5 @@ ProjView::~ProjView()
 ProjTree *ProjView::GetProjTree()
 {
 	return mProjTree;
-}
-//----------------------------------------------------------------------------
-void ProjView::SetColorForTheme(PX2::EditParams::Theme theme)
-{
-	SetBackgroundColour(Float3TowxColour(theme.backColor));
-	mProjTree->SetBackgroundColour(Float3TowxColour(theme.backColor));
-
-	mProjTreeBar->SetBackgroundColour(Float3TowxColour(theme.toolBarColor));
-	mProjTreeBar->SetForegroundColour(Float3TowxColour(theme.toolBarColor));
-
-	mSearchCtrl->SetBackgroundColour(Float3TowxColour(theme.searchColor));
-	Project *proj = Project::GetSingletonPtr();
-	if (proj)
-	{
-		mProjTree->SetItemsColour();
-	}
 }
 //----------------------------------------------------------------------------

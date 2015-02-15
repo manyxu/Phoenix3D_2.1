@@ -1,8 +1,11 @@
 <editParams>
-	<Theme curthemetype="THEME_BLUE">
-		<Theme1 themetype="THEME_BLUE" inactivecolor="77,96,130" activecolor="255,242,157" backcolor="255,255,255" tabbackcolor="44,61,91" fontcolor="0,0,0" captioncolor="255,255,255" captionactcolor="0,0,0" tabfontcolor="255,255,255" tabfontactcolor="0,0,0" toolbarcolor="207,214,229" toolbarhightlightcolor="229,195,101" searchcolor="255,255,255"/>
-		<Theme2 themetype="THEME_DARK" inactivecolor="45,45,48" activecolor="0,122,204" backcolor="30,30,30" tabbackcolor="45,45,48" fontcolor="255,255,255" captioncolor="255,255,255" captionactcolor="255,255,255" tabfontcolor="255,255,255" tabfontactcolor="0,151,251" toolbarcolor="45,45,48" toolbarhightlightcolor="62,62,64" searchcolor="51,51,55"/>
-		<Theme3 themetype="THEME_TINT" inactivecolor="238,238,242" activecolor="0,122,204" backcolor="255,255,255" tabbackcolor="238,238,242" fontcolor="0,0,0" captioncolor="0,0,0" captionactcolor="255,255,255" tabfontcolor="0,0,0" tabfontactcolor="0,151,251" toolbarcolor="238,238,242" toolbarhightlightcolor="201,222,245" searchcolor="255,255,255"/>
-	</Theme>
+	<params>
+		<gridsize val="40.0"/>
+	</params>
+	<themes curthemename="blue">
+		<theme name="blue">
+			<inactivecolor val="77,96,130"/>
+		</theme>
+	</themes>
 </editParams>
 

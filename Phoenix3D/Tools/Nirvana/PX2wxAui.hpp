@@ -24,7 +24,7 @@ namespace PX2Editor
 		DECLARE_EVENT_TABLE()
 
 	protected:
-		bool mIsTop;
+		bool mIsCenter;
 	};
 
 	class PX2wxAuiToolBar : public wxAuiToolBar
@@ -58,11 +58,22 @@ namespace PX2Editor
 			wxWindow* wnd,
 			const wxRect& rect);
 
+		virtual void DrawSeparator(
+			wxDC& dc,
+			wxWindow* wnd,
+			const wxRect& rect);
+
 		virtual void DrawButton(
 			wxDC& dc,
 			wxWindow* wnd,
 			const wxAuiToolBarItem& item,
 			const wxRect& rect);
+
+		virtual void DrawOverflowButton(
+			wxDC& dc,
+			wxWindow* wnd,
+			const wxRect& rect,
+			int state);
 
 		void SetHightlightColor(wxColour color);
 
@@ -119,7 +130,7 @@ namespace PX2Editor
                  int* xExtent);
 
 	protected:
-		bool mIsTop;
+		bool mIsCenter;
 	};
 
 }

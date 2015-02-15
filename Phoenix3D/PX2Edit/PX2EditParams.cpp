@@ -10,6 +10,46 @@
 #include "PX2StringTokenizer.hpp"
 using namespace PX2;
 
+//-----------------------------------------------------------------------------
+// Theme
+//-----------------------------------------------------------------------------
+Theme::Theme()
+{
+	Name = "blue";
+
+	Color_Aui_Background = Float3::MakeColor(41, 57, 85);
+
+	Color_Aui_CaptionBackground = Float3::MakeColor(77, 96, 130);
+	Color_Aui_CaptionBackground_Active = Float3::MakeColor(255, 242, 157);
+
+	Color_Aui_Border = Float3::MakeColor(142, 155, 188);
+	Color_Aui_Border_Center = Float3::MakeColor(41, 57, 85);
+
+	Color_Aui_CaptionText = Float3::WHITE;
+	Color_Aui_CaptionText_Active = Float3::BLACK;
+
+	Color_AuiToolBar_Background = Float3::MakeColor(214, 219, 233);
+	Color_AuiToolbar_PlainBackgound = Float3::MakeColor(255, 0, 0);
+	Color_AuiToolbar_Separator = Float3::MakeColor(133, 145, 162);
+	Color_AuiToolbar_Text = Float3::BLACK;
+	Color_AuiToolbar_Flow = Float3::MakeColor(253, 244, 191);
+	Color_AuiToolbar_FlowBorder = Float3::MakeColor(229, 195, 101);
+
+	Color_AuiTabbar = Float3::MakeColor(77, 96, 130);
+	Color_AuiTabbar_Active = Float3::YELLOW;
+	Color_AuiTabbarText = Float3::WHITE;
+	Color_AuiTabbarText_Active = Float3::BLACK;
+}
+//-----------------------------------------------------------------------------
+Theme::~Theme()
+{
+
+}
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// EditParams
+//-----------------------------------------------------------------------------
 PX2_IMPLEMENT_RTTI(PX2, Object, EditParams);
 PX2_IMPLEMENT_STREAM(EditParams);
 PX2_IMPLEMENT_FACTORY(EditParams);
@@ -18,7 +58,10 @@ PX2_IMPLEMENT_DEFAULT_STREAM(Object, EditParams);
 //-----------------------------------------------------------------------------
 EditParams::EditParams()
 {
-	GridSize = 40;
+	GridSize = 40.0f;
+
+	mCurThemeStr = "Blue";
+	mCurTheme = 0;
 }
 //-----------------------------------------------------------------------------
 EditParams::~EditParams()
@@ -41,122 +84,26 @@ bool EditParams::Load(std::string filename)
 		{
 			XMLNode rootNode = data.GetRootNode();
 
+			// params
+			XMLNode paramsNode = rootNode.GetChild("params");
+			GridSize = paramsNode.GetChild("gridsize").AttributeToFloat("val");
+
 			// Theme
-			XMLNode themeNode = rootNode.GetChild("Theme");
-			std::string curThemeType = themeNode.AttributeToString("curthemetype");
+			XMLNode themesNode = rootNode.GetChild("themes");
+			mCurThemeStr = themesNode.AttributeToString("curthemename");
 
-			XMLNode child = themeNode.IterateChild();
-
-			//All theme index
-			int i = 0;
-			while (!child.IsNull())
+			XMLNode themeChildNode = themesNode.IterateChild();
+			while (!themeChildNode.IsNull())
 			{
-				Theme theme;
-				theme.type = child.AttributeToString("themetype");
+				Theme *theme = new Theme();
 
-				std::string colorStr = child.AttributeToString("inactivecolor");
-				StringTokenizer stk(colorStr, ",");
-				Float3 color = Float3::MakeColor(
-					StringHelp::StringToInt(stk[0]),
-					StringHelp::StringToInt(stk[1]),
-					StringHelp::StringToInt(stk[2]));
-				theme.inactiveColor = color;
+				theme->Name = themeChildNode.AttributeToString("name");
 
-				colorStr = child.AttributeToString("activecolor");
-				StringTokenizer stk1(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk1[0]),
-					StringHelp::StringToInt(stk1[1]),
-					StringHelp::StringToInt(stk1[2]));
-				theme.activeColor = color;
 
-				colorStr = child.AttributeToString("backcolor");
-				StringTokenizer stk2(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk2[0]),
-					StringHelp::StringToInt(stk2[1]),
-					StringHelp::StringToInt(stk2[2]));
-				theme.backColor = color;
+				mThemesVec.push_back(theme->Name);
+				mThemesMap[theme->Name] = theme;
 
-				colorStr = child.AttributeToString("tabbackcolor");
-				StringTokenizer stk3(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk3[0]),
-					StringHelp::StringToInt(stk3[1]),
-					StringHelp::StringToInt(stk3[2]));
-				theme.tabBackColor = color;
-
-				colorStr = child.AttributeToString("fontcolor");
-				StringTokenizer stk4(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk4[0]),
-					StringHelp::StringToInt(stk4[1]),
-					StringHelp::StringToInt(stk4[2]));
-				theme.fontColor = color;
-
-				colorStr = child.AttributeToString("captioncolor");
-				StringTokenizer stk5(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk5[0]),
-					StringHelp::StringToInt(stk5[1]),
-					StringHelp::StringToInt(stk5[2]));
-				theme.captionColor = color;
-
-				colorStr = child.AttributeToString("captionactcolor");
-				StringTokenizer stk6(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk6[0]),
-					StringHelp::StringToInt(stk6[1]),
-					StringHelp::StringToInt(stk6[2]));
-				theme.captionActColor = color;
-
-				colorStr = child.AttributeToString("tabfontcolor");
-				StringTokenizer stk7(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk7[0]),
-					StringHelp::StringToInt(stk7[1]),
-					StringHelp::StringToInt(stk7[2]));
-				theme.tabFontColor = color;
-
-				colorStr = child.AttributeToString("tabfontactcolor");
-				StringTokenizer stk8(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk8[0]),
-					StringHelp::StringToInt(stk8[1]),
-					StringHelp::StringToInt(stk8[2]));
-				theme.tabFontActColor = color;
-
-				colorStr = child.AttributeToString("toolbarcolor");
-				StringTokenizer stk9(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk9[0]),
-					StringHelp::StringToInt(stk9[1]),
-					StringHelp::StringToInt(stk9[2]));
-				theme.toolBarColor = color;
-
-				colorStr = child.AttributeToString("toolbarhightlightcolor");
-				StringTokenizer stk10(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk10[0]),
-					StringHelp::StringToInt(stk10[1]),
-					StringHelp::StringToInt(stk10[2]));
-				theme.toolBarHightlightColor = color;
-
-				colorStr = child.AttributeToString("searchcolor");
-				StringTokenizer stk11(colorStr, ",");
-				color = Float3::MakeColor(
-					StringHelp::StringToInt(stk11[0]),
-					StringHelp::StringToInt(stk11[1]),
-					StringHelp::StringToInt(stk11[2]));
-				theme.searchColor = color;
-
-				if (theme.type == curThemeType)
-				{
-					mCurTheme = theme;
-				}
-				mThemes[i] = theme;
-				i++;
-				child = rootNode.IterateChild(child);
+				themeChildNode = rootNode.IterateChild(themeChildNode);
 			}
 		}
 	}
@@ -164,94 +111,58 @@ bool EditParams::Load(std::string filename)
 	{
 		return false;
 	}
+
 	return true;
 }
 //-----------------------------------------------------------------------------
-void EditParams::SaveCurTheme()
+void EditParams::SetCurTheme(const std::string &typeStr)
 {
-	const std::string filename = "DataEditor/config/editConfig.xml";
-	char *buffer = 0;
-	int bufferSize = 0;
-	if (PX2_RM.LoadBuffer("DataEditor/config/editConfig.xml", bufferSize, buffer))
+	mCurThemeStr = typeStr;
+
+	std::map<std::string, ThemePtr>::iterator it = mThemesMap.find(typeStr);
+	if (it != mThemesMap.end())
 	{
-		XMLData data;
-		if (data.LoadBuffer(buffer, bufferSize))
-		{
-			XMLNode rootNode = data.GetRootNode();
-			XMLNode themeNode = rootNode.GetChild("Theme");
-			themeNode.SetAttributeString("curthemetype", mCurTheme.type);
-			data.SaveFile(filename);
-		}
+		mCurTheme = it->second;
+	}
+	else
+	{
+		mCurTheme = new0 Theme();
 	}
 }
 //-----------------------------------------------------------------------------
-void EditParams::ThemeChange(std::string type)
+const std::string &EditParams::GetCurThemeTypeStr() const
 {
-	//mThemeType = type;
-	std::map<int, Theme>::iterator it = mThemes.begin();
-
-	for (; it != mThemes.end(); it++)
-	{
-		if (it->second.type == type)
-		{
-			SetCurTheme(it->second);
-
-			Event *event = EditEventSpace::CreateEventX(EditEventSpace::EditThemeChange);
-			EventWorld::GetSingleton().BroadcastingLocalEvent(event);
-		}
-	}	
+	return mCurThemeStr;
 }
 //-----------------------------------------------------------------------------
-//EditParams::ThemeType EditParams::GetThemeType()
-//{
-//	return mThemeType;
-//}
+Theme *EditParams::GetCurTheme()
+{
+	return mCurTheme;
+}
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// Property
 //-----------------------------------------------------------------------------
 void EditParams::RegistProperties()
 {
 	Object::RegistProperties();
 
 	AddPropertyClass("EditParams");
-	mThemeTypes.clear();
-	mThemeTypes.push_back("THEME_BLUE");
-	mThemeTypes.push_back("THEME_DARK");
-	mThemeTypes.push_back("THEME_TINT");
-	int curTypeIdx = 0;
-	Theme curTheme = GetCurTheme();
-	std::vector<std::string>::iterator it = mThemeTypes.begin();
-	for ( int i = 0; it != mThemeTypes.end(); it++)
+
+	std::vector<std::string> themeTypes = mThemesVec;
+
+	if (!themeTypes.empty())
 	{
-		if (*it == curTheme.type)
-		{
-			curTypeIdx = i;
-		}
-		i++;
+		AddPropertyEnum("ThemeType", 0, themeTypes);
 	}
-	AddPropertyEnum("Edit_ThemeType", curTypeIdx, mThemeTypes);
 }
 //-----------------------------------------------------------------------------
 void EditParams::OnPropertyChanged(const PropertyObject &obj)
 {
 	Object::OnPropertyChanged(obj);
-	if ("Edit_ThemeType" == obj.Name)
+	if ("ThemeType" == obj.Name)
 	{
-		int curTypeIdx = *Any_Cast<int>(&obj.Data);
-		ThemeChange(mThemeTypes[curTypeIdx]);
 	}
-}
-//-----------------------------------------------------------------------------
-void EditParams::SetCurTheme(Theme theme)
-{
-	mCurTheme = theme;
-}
-//-----------------------------------------------------------------------------
-EditParams::Theme EditParams::GetCurTheme()
-{
-	return mCurTheme;
-}
-//-----------------------------------------------------------------------------
-std::map<int, EditParams::Theme> EditParams::GetThemes()
-{
-	return mThemes;
 }
 //-----------------------------------------------------------------------------

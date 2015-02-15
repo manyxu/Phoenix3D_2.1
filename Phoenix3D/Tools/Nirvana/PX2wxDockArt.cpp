@@ -10,6 +10,7 @@
 #include "PX2E_Define.hpp"
 using namespace PX2;
 
+//----------------------------------------------------------------------------
 wxColor wxAuiLightContrastColour1(const wxColour& c)
 {
 	int amount = 120;
@@ -21,7 +22,7 @@ wxColor wxAuiLightContrastColour1(const wxColour& c)
 
 	return c.ChangeLightness(amount);
 }
-
+//----------------------------------------------------------------------------
 // wxAuiBitmapFromBits1() is a utility function that creates a
 // masked bitmap from raw bits (XBM format)
 wxBitmap wxAuiBitmapFromBits1(const unsigned char bits[], int w, int h,
@@ -33,7 +34,7 @@ wxBitmap wxAuiBitmapFromBits1(const unsigned char bits[], int w, int h,
 	img.SetMaskColour(123, 123, 123);
 	return wxBitmap(img);
 }
-
+//----------------------------------------------------------------------------
 wxString wxAuiChopText1(wxDC& dc, const wxString& text, int max_size)
 {
 	wxCoord x, y;
@@ -61,7 +62,7 @@ wxString wxAuiChopText1(wxDC& dc, const wxString& text, int max_size)
 	ret += wxT("...");
 	return ret;
 }
-
+//----------------------------------------------------------------------------
 PX2wxDockArt::PX2wxDockArt()
 {
 #if defined( __WXMAC__ ) && wxOSX_USE_COCOA_OR_CARBON
@@ -123,9 +124,8 @@ PX2wxDockArt::PX2wxDockArt()
 
 	InitBitmaps();
 }
-
-void
-PX2wxDockArt::InitBitmaps()
+//----------------------------------------------------------------------------
+void PX2wxDockArt::InitBitmaps()
 {
 	// some built in bitmaps
 #if defined( __WXMAC__ )
@@ -194,7 +194,7 @@ PX2wxDockArt::InitBitmaps()
 	m_inactivePinBitmap = wxAuiBitmapFromBits1(pin_bits, 16, 16, m_inactiveCaptionTextColour);
 	m_activePinBitmap = wxAuiBitmapFromBits1(pin_bits, 16, 16, m_activeCaptionTextColour);
 }
-
+//----------------------------------------------------------------------------
 int PX2wxDockArt::GetMetric(int id)
 {
 	switch (id)
@@ -210,7 +210,7 @@ int PX2wxDockArt::GetMetric(int id)
 
 	return 0;
 }
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::SetMetric(int id, int new_val)
 {
 	switch (id)
@@ -224,7 +224,7 @@ void PX2wxDockArt::SetMetric(int id, int new_val)
 	default: wxFAIL_MSG(wxT("Invalid Metric Ordinal")); break;
 	}
 }
-
+//----------------------------------------------------------------------------
 wxColour PX2wxDockArt::GetColour(int id)
 {
 	switch (id)
@@ -244,7 +244,7 @@ wxColour PX2wxDockArt::GetColour(int id)
 
 	return wxColour();
 }
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::SetColour(int id, const wxColor& colour)
 {
 	switch (id)
@@ -268,20 +268,20 @@ void PX2wxDockArt::SetColour(int id, const wxColor& colour)
 
 	InitBitmaps();
 }
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::SetFont(int id, const wxFont& font)
 {
 	if (id == wxAUI_DOCKART_CAPTION_FONT)
 		m_captionFont = font;
 }
-
+//----------------------------------------------------------------------------
 wxFont PX2wxDockArt::GetFont(int id)
 {
 	if (id == wxAUI_DOCKART_CAPTION_FONT)
 		return m_captionFont;
 	return wxNullFont;
 }
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, const wxRect& rect)
 {
 #if defined( __WXMAC__ ) && wxOSX_USE_COCOA_OR_CARBON
@@ -358,8 +358,7 @@ void PX2wxDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, const w
 	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 #endif
 }
-
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int, const wxRect& rect)
 {
 	dc.SetPen(*wxTRANSPARENT_PEN);
@@ -372,7 +371,7 @@ void PX2wxDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int, con
 	dc.SetBrush(m_backgroundBrush);
 	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 }
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 	wxAuiPaneInfo& pane)
 {
@@ -417,20 +416,28 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 		}
 	}
 }
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::DrawCaptionBackground(wxDC& dc, const wxRect& rect, bool active)
 {
 	dc.SetBrush(wxBrush(wxColour(142, 155, 188)));
 	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height+5);
 
-	if (active)
-		dc.SetBrush(wxBrush(m_activeCaptionColour));
-	else
-		dc.SetBrush(wxBrush(m_inactiveCaptionColour));
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
+	{
+		if (active)
+		{
+			dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_CaptionBackground_Active)));
+		}
+		else
+		{
+			dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_CaptionBackground)));
+		}
+	}
 
-	dc.DrawRectangle(rect.x+1, rect.y+1, rect.width-2, rect.height-1);
+	dc.DrawRectangle(rect.x + 1, rect.y + 1, rect.width - 2, rect.height - 1);
 }
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::DrawCaption(wxDC& dc, wxWindow *WXUNUSED(window),
 	const wxString& text,
 	const wxRect& rect,
@@ -449,18 +456,17 @@ void PX2wxDockArt::DrawCaption(wxDC& dc, wxWindow *WXUNUSED(window),
 
 		caption_offset += pane.icon.GetWidth() + 3;
 	}
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params)
-	{
-		EditParams::Theme theme = params->GetCurTheme();
 
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
+	{
 		if (pane.state & wxAuiPaneInfo::optionActive)
 		{
-			dc.SetTextForeground(Float3TowxColour(theme.captionActColor));
+			dc.SetTextForeground(Float3TowxColour(theme->Color_Aui_CaptionText_Active));
 		}		
 		else
 		{
-			dc.SetTextForeground(Float3TowxColour(theme.captionColor));
+			dc.SetTextForeground(Float3TowxColour(theme->Color_Aui_CaptionText));
 		}	
 	}
 
@@ -483,16 +489,15 @@ void PX2wxDockArt::DrawCaption(wxDC& dc, wxWindow *WXUNUSED(window),
 	dc.DrawText(draw_text, rect.x + 3 + caption_offset, rect.y + (rect.height / 2) - (h / 2) - 1);
 	dc.DestroyClippingRegion();
 }
-
-void
-PX2wxDockArt::DrawIcon(wxDC& dc, const wxRect& rect, wxAuiPaneInfo& pane)
+//----------------------------------------------------------------------------
+void PX2wxDockArt::DrawIcon(wxDC& dc, const wxRect& rect, wxAuiPaneInfo& pane)
 {
 	// Draw the icon centered vertically
 	dc.DrawBitmap(pane.icon,
 		rect.x + 8, rect.y + (rect.height - pane.icon.GetHeight()) / 2,
 		true);
 }
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
 	const wxRect& rect,
 	wxAuiPaneInfo& pane)
@@ -543,7 +548,7 @@ void PX2wxDockArt::DrawGripper(wxDC& dc, wxWindow *WXUNUSED(window),
 		}
 	}
 }
-
+//----------------------------------------------------------------------------
 void PX2wxDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
 	int button,
 	int button_state,
@@ -619,3 +624,4 @@ void PX2wxDockArt::DrawPaneButton(wxDC& dc, wxWindow *WXUNUSED(window),
 
 	dc.DrawBitmap(bmp, rect.x, rect.y, true);
 }
+//----------------------------------------------------------------------------

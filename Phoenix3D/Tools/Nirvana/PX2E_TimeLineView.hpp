@@ -18,7 +18,8 @@ namespace PX2Editor
 		TimeLineView(wxWindow *parent);
 		~TimeLineView();
 
-		void SetColorForTheme(PX2::EditParams::Theme theme);
+		void SetTheme(PX2::Theme *theme);
+
 	protected:
 		DECLARE_EVENT_TABLE()
 

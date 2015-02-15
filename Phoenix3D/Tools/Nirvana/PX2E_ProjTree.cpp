@@ -152,8 +152,6 @@ void ProjTree::_RefreshProject()
 	mItemProj->mChildItems.push_back(mItemLogic);
 
 	Expand(mItemProj->GetItemID());
-
-	SetItemsColour();
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearProject()
@@ -201,7 +199,6 @@ void ProjTree::_RefreshScene()
 			_AddObject(mov);
 		}
 	}
-	SetItemsColour();
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearScene()
@@ -420,33 +417,6 @@ void ProjTree::_RemoveObject(PX2::Object *obj)
 		if (parItem)
 		{
 			parItem->RemoveChild(obj);
-		}
-	}
-}
-//----------------------------------------------------------------------------
-void ProjTree::SetItemsColour()
-{
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params)
-	{
-		EditParams::Theme theme = params->GetCurTheme();
-
-		if (mItemProj)
-		{	
-			SetItemTextColour(mItemProj->GetItemID(), Float3TowxColour(theme.fontColor));
-			mItemProj->SetChildItemTextColour(this);	
-		}
-		if (mItemScene)
-		{
-			mItemScene->SetChildItemTextColour(this);
-		}
-		if (mItemUI)
-		{
-			mItemUI->SetChildItemTextColour(this);
-		}
-		if (mItemLogic)
-		{
-			mItemLogic->SetChildItemTextColour(this);
 		}
 	}
 }

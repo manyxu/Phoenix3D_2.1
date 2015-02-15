@@ -37,8 +37,6 @@ namespace PX2Editor
 		void OnSelChanging(wxTreeEvent& event);
 		void OnSelDelete(wxTreeEvent& event);
 
-		void SetItemsColour();
-
 	public_internal:
 		std::map<std::string, int> Icons;
 

@@ -11,6 +11,35 @@
 
 namespace PX2
 {
+	class Theme
+	{
+	public:
+		Theme();
+		~Theme();
+
+		std::string Name;
+
+		Float3 Color_Aui_Background;
+		Float3 Color_Aui_CaptionBackground;
+		Float3 Color_Aui_CaptionBackground_Active;
+		Float3 Color_Aui_CaptionText;
+		Float3 Color_Aui_CaptionText_Active;
+		Float3 Color_Aui_Border;
+		Float3 Color_Aui_Border_Center;
+
+		Float3 Color_AuiToolBar_Background;
+		Float3 Color_AuiToolbar_PlainBackgound;
+		Float3 Color_AuiToolbar_Separator;
+		Float3 Color_AuiToolbar_Text;
+		Float3 Color_AuiToolbar_Flow;
+		Float3 Color_AuiToolbar_FlowBorder;
+
+		Float3 Color_AuiTabbar;
+		Float3 Color_AuiTabbar_Active;
+		Float3 Color_AuiTabbarText;
+		Float3 Color_AuiTabbarText_Active;
+	};
+	typedef Pointer0<Theme> ThemePtr;
 
 	class EditParams : public Object
 	{
@@ -25,37 +54,21 @@ namespace PX2
 		bool Save(std::string filename);
 		bool Load(std::string filename);
 
-		void SaveCurTheme();
-
-		//编辑器主题颜色类型
-		std::vector<std::string> mThemeTypes;
-		struct Theme
-		{
-			std::string type;
-			Float3 inactiveColor;
-			Float3 activeColor;
-			Float3 backColor;
-			Float3 tabBackColor;
-			Float3 fontColor;
-			Float3 captionColor;
-			Float3 captionActColor;
-			Float3 tabFontColor;
-			Float3 tabFontActColor;
-			Float3 toolBarColor;
-			Float3 toolBarHightlightColor;
-			Float3 searchColor;
-		};
-		void ThemeChange(std::string type);
-		//ThemeType GetThemeType();
-		void SetCurTheme(Theme theme);
-		Theme GetCurTheme();
-		std::map<int, Theme> GetThemes();
-		
+		// params
 	public:
 		float GridSize;
+
+		// Theme
+	public:
+		void SetCurTheme(const std::string &typeStr);
+		const std::string &GetCurThemeTypeStr() const;
+		Theme *GetCurTheme();
+
 	protected:
-		Theme mCurTheme;
-		std::map<int, Theme> mThemes;	
+		std::string mCurThemeStr;
+		ThemePtr mCurTheme;
+		std::map<std::string, ThemePtr> mThemesMap;
+		std::vector<std::string> mThemesVec;
 	};
 
 	PX2_REGISTER_STREAM(EditParams);

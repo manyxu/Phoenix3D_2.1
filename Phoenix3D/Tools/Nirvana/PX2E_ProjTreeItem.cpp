@@ -181,21 +181,3 @@ ProjTreeItem *ProjTreeItem::GetItem(wxTreeItemId id)
 	return 0;
 }
 //-----------------------------------------------------------------------------
-void ProjTreeItem::SetChildItemTextColour(ProjTree *tree)
-{
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params && tree)
-	{
-		EditParams::Theme theme = params->GetCurTheme();
-
-		std::vector<ProjTreeItem*>::iterator it =mChildItems.begin();
-		for (int i = 0; it != mChildItems.end(); it++)
-		{
-			ProjTreeItem *item = *it;
-			tree->SetItemTextColour(item->GetItemID(), Float3TowxColour(theme.fontColor));
-			item->SetChildItemTextColour(tree);
-			i++;
-		}
-	}
-}
-//-----------------------------------------------------------------------------

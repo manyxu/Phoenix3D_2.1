@@ -20,14 +20,13 @@ namespace PX2Editor
 		virtual ~ProjView();
 
 		ProjTree *GetProjTree();
-		void SetColorForTheme(EditParams::Theme theme);
 
 	protected:
 		DECLARE_EVENT_TABLE()
 
 		ProjView();
 
-		wxToolBar *mProjTreeBar;
+		wxAuiToolBar *mProjTreeBar;
 		ProjTree *mProjTree;
 		wxSearchCtrl *mSearchCtrl;
 	};

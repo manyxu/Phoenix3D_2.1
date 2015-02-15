@@ -41,8 +41,8 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	wxFrame((wxFrame*)0, -1, title, wxPoint(xPos, yPos), wxSize(width, height)),
 	mIsInitlized(false),
 	mAuiManager(0),
-	mMianToolBar(0),
-	mMenuToolBar(0),
+	mToolBarMain(0),
+	mToolBarMenu(0),
 	mToolMenu(0),
 	mTopView(0),
 	mRenderViewScene(0),
@@ -80,12 +80,6 @@ E_MainFrame::~E_MainFrame()
 //----------------------------------------------------------------------------
 bool E_MainFrame::Initlize()
 {
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params)
-	{
-		mCurTheme = params->GetCurTheme();
-	}
-
 	// Aui
 	mAuiManager = new wxAuiManager(this, wxAUI_MGR_DEFAULT
 		| wxAUI_MGR_TRANSPARENT_DRAG | wxAUI_MGR_ALLOW_ACTIVE_PANE );
@@ -95,17 +89,15 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 1);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
 
-	SetAuiManColorForTheme();
-
 	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
 	mTimer.SetOwner(this, sID_ENGINELOOPTIMER);
 	mTimer.Start(25);
 
-	_CreateMenu();
+	//_CreateMenu();
 	//_CreateTopView();
 	_CreateMenuToolBar();
-	//_CreateMainToolBar();
+	_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
 
@@ -116,7 +108,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-			mAuiManager->LoadPerspective(strPerspective);
+			//mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 
@@ -127,34 +119,6 @@ bool E_MainFrame::Initlize()
 	return true;
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::SetAuiManColorForTheme()
-{
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BACKGROUND_COLOUR, Float3TowxColour(mCurTheme.tabBackColor));
-
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, Float3TowxColour(mCurTheme.tabBackColor));//44 61 91
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, Float3TowxColour(mCurTheme.tabBackColor));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, Float3TowxColour(mCurTheme.tabBackColor));
-
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_COLOUR, Float3TowxColour(mCurTheme.inactiveColor)); //77 96 130
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_INACTIVE_CAPTION_GRADIENT_COLOUR, Float3TowxColour(mCurTheme.inactiveColor));
-
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_COLOUR, Float3TowxColour(mCurTheme.activeColor));//255 242 157
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_ACTIVE_CAPTION_GRADIENT_COLOUR, Float3TowxColour(mCurTheme.activeColor));
-}
-//----------------------------------------------------------------------------
-void E_MainFrame::SetToolBarHightLightColor()
-{
-	if (mMianToolBar)
-	{
-		PX2wxAuiToolBarArt *barArt = (PX2wxAuiToolBarArt*)mMianToolBar->GetArtProvider();
-		barArt->SetHightlightColor(Float3TowxColour(mCurTheme.toolBarHightlightColor));
-	}
-	if (mMenuToolBar)
-	{
-		PX2wxAuiToolBarArt *barArt = (PX2wxAuiToolBarArt*)mMenuToolBar->GetArtProvider();
-		barArt->SetHightlightColor(Float3TowxColour(mCurTheme.toolBarHightlightColor));
-	}
-}
 void E_MainFrame::DoExecute(Event *event)
 {
 	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene))
@@ -189,20 +153,6 @@ void E_MainFrame::DoExecute(Event *event)
 	{
 		if (mAuiManager)
 		{
-			EditParams *params = PX2_EDIT.GetEditParams();
-			if (params)
-			{
-				EditParams::Theme theme = params->GetCurTheme();
-				mCurTheme = theme;
-
-				params->SaveCurTheme();
-				mProjView->SetColorForTheme(mCurTheme);
-				mTimeLineView->SetColorForTheme(mCurTheme);
-				mResView->SetColorForTheme(mCurTheme);
-				SetAuiManColorForTheme();
-				SetToolBarHightLightColor();
-				Refresh();
-			}
 		}
 	}
 	else if (SimuES_E::IsEqual(event, SimuES_E::AddSelect) ||
@@ -290,8 +240,8 @@ void E_MainFrame::OnTimer(wxTimerEvent& e)
 //----------------------------------------------------------------------------
 void E_MainFrame::OnMenuClose(wxMenuEvent &WXUNUSED(e))
 {
-	mMenuToolBar->SetItemsState(wxAUI_BUTTON_STATE_NORMAL);
-	mMenuToolBar->Refresh();
+	mToolBarMenu->SetItemsState(wxAUI_BUTTON_STATE_NORMAL);
+	mToolBarMenu->Refresh();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::OnCommondItem(wxCommandEvent &e)
@@ -326,10 +276,10 @@ void E_MainFrame::OnMenuToolItem(wxMouseEvent &e)
 
 		std::string callStr = it->second;
 		PX2_SM.CallString(callStr);
-		int idx = mMenuToolBar->GetToolPos(id);
+		int idx = mToolBarMenu->GetToolPos(id);
 
-		wxRect parentRect = mMenuToolBar->GetRect();
-		wxRect rect = mMenuToolBar->GetItems().Item(idx).GetSizerItem()->GetRect();
+		wxRect parentRect = mToolBarMenu->GetRect();
+		wxRect rect = mToolBarMenu->GetItems().Item(idx).GetSizerItem()->GetRect();
 
 		if (mToolMenu)
 		{
@@ -592,51 +542,53 @@ void E_MainFrame::_CreateTopView()
 	mTopView = new TopView(this);
 
 	mAuiManager->AddPane(mTopView, wxAuiPaneInfo().
-		Name(wxT("tb")).
-		ToolbarPane().Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
-		MinSize(200, 32).MaxSize(200, 32).Resizable(false));
+		Name(wxT("topview")).ToolbarPane().
+		Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
+		MinSize(200, 30).MaxSize(200, 30).Top().Resizable(false).CaptionVisible(false));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainToolBar()
 {
-	mMianToolBar = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+	mToolBarMain = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
-	if (mMianToolBar)
+	if (mToolBarMain)
 	{
-		mMianToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
+		mToolBarMain->SetArtProvider(new PX2wxAuiToolBarArt());
 
-		NirMan::GetSingleton().SetCurToolBar(mMianToolBar);
+		NirMan::GetSingleton().SetCurToolBar(mToolBarMain);
 
 		PX2_SM.CallString("e_CreateToolBarMain()");
 
-		mMianToolBar->Realize();
+		mToolBarMain->Realize();
 
-		mAuiManager->AddPane(mMianToolBar, wxAuiPaneInfo().
+		mAuiManager->AddPane(mToolBarMain, wxAuiPaneInfo().
 			Name(wxT("maintoolbar")).
-			Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
-			MinSize(200, 30).MaxSize(200, 30).Resizable(false).CaptionVisible(false));
+			Gripper(false).Top().Dockable(false).PaneBorder(true).Resizable(false).
+			MinSize(200, 30).MaxSize(200, 30).Top().Resizable(false).CaptionVisible(false));
 	}	
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenuToolBar()
 {
-	mMenuToolBar = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+	mToolBarMenu = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL | wxAUI_TB_TEXT | wxAUI_TB_HORZ_TEXT);
 
-	if (mMenuToolBar)
+	if (mToolBarMenu)
 	{
-		mMenuToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
+		mToolBarMenu->SetArtProvider(new PX2wxAuiToolBarArt());
 
-		NirMan::GetSingleton().SetCurToolBar(mMenuToolBar);
+		NirMan::GetSingleton().SetCurToolBar(mToolBarMenu);
 
-		PX2_SM.CallString("e_CreateMenuToolBar()");
+		PX2_SM.CallString("e_CreateToolBarMenu()");
 
-		mMenuToolBar->Realize();
+		mToolBarMenu->Realize();
 
-		mAuiManager->AddPane(mMenuToolBar, wxAuiPaneInfo().
-			Name(wxT("menuToolBar")).
+		mToolBarMenu->SetSize(wxSize(-1, 25));
+
+		mAuiManager->AddPane(mToolBarMenu, wxAuiPaneInfo().
+			Name(wxT("menutoolbar")).
 			ToolbarPane().Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
-			MinSize(200, 30).MaxSize(200, 30).Resizable(false));
+			MinSize(200, 25).MaxSize(200, 25));
 	}
 }
 //----------------------------------------------------------------------------
@@ -651,7 +603,6 @@ void E_MainFrame::_CreateViews()
 void E_MainFrame::_CreateProjView()
 {
 	mProjView = new ProjView(this);
-	mProjView->SetColorForTheme(mCurTheme);
 	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"),
 		PX2_LM.GetValue("Project"),
 		wxAuiPaneInfo().Left());
@@ -696,7 +647,6 @@ void E_MainFrame::_CreateInsp()
 {
 	WindowObj objRes;
 	mResView = new ResView(this);
-	mResView->SetColorForTheme(mCurTheme);
 	objRes.TheWindow = mResView;
 	objRes.Caption = PX2_LM.GetValue("ResView");
 	objRes.Name = "ResView";
@@ -717,7 +667,6 @@ void E_MainFrame::_CreateInsp()
 void E_MainFrame::_CreateTimeLine()
 {
 	mTimeLineView = new TimeLineView(this);
-	mTimeLineView->SetColorForTheme(mCurTheme);
 	_CreateView(mTimeLineView, "TimeLine", PX2_LM.GetValue("TimeLine"), PX2_LM.GetValue("TimeLine"),
 		wxAuiPaneInfo().DefaultPane());
 }

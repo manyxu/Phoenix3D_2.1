@@ -37,7 +37,8 @@ bool Edit::Initlize()
 	mGeoObjFactory = new0 GeoObjFactory();
 
 	mEditParams = new0 EditParams();
-	mEditParams->Load("DataEditor/config/editConfig.xml");
+	mEditParams->Load("DataEditor/config/editconfig.xml");
+	mEditParams->SetCurTheme(mEditParams->GetCurThemeTypeStr());
 	
 	return true;
 }

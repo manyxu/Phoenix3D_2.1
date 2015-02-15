@@ -9,12 +9,15 @@
 #include "PX2E_Define.hpp"
 using namespace PX2Editor;
 
+//----------------------------------------------------------------------------
+// PX2wxAuiNotebook
+//----------------------------------------------------------------------------
 BEGIN_EVENT_TABLE(PX2wxAuiNotebook, wxAuiNotebook)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 PX2wxAuiNotebook::PX2wxAuiNotebook(wxWindow* parent, bool isTop) :
 wxAuiNotebook(parent),
-mIsTop(isTop)
+mIsCenter(isTop)
 {
 	m_selectedFont.SetWeight(wxNORMAL);
 
@@ -64,10 +67,12 @@ void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::DragFun_End(wxAuiNotebookEvent &ent)
 {
+	PX2_UNUSED(ent);
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::DragFun_Motion(wxAuiNotebookEvent &ent)
 {
+	PX2_UNUSED(ent);
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
@@ -90,7 +95,7 @@ void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::UpdateTabsHeight()
 {
-	if (!mIsTop)
+	if (!mIsCenter)
 	{
 		int numPages = m_tabs.GetPageCount();
 		if (1 == numPages)
@@ -100,6 +105,9 @@ void PX2wxAuiNotebook::UpdateTabsHeight()
 	}
 }
 //----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// PX2wxAuiToolBar
 //----------------------------------------------------------------------------
 PX2wxAuiToolBar::PX2wxAuiToolBar()
 {
@@ -134,16 +142,12 @@ void PX2wxAuiToolBar::SetItemsState(int state)
 	}
 }
 //----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// PX2wxAuiToolBarArt
 //----------------------------------------------------------------------------
 PX2wxAuiToolBarArt::PX2wxAuiToolBarArt()
 {
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params)
-	{
-		EditParams::Theme theme = params->GetCurTheme();
-
-		SetHightlightColor(Float3TowxColour(theme.toolBarHightlightColor));
-	}
 }
 //----------------------------------------------------------------------------
 PX2wxAuiToolBarArt::~PX2wxAuiToolBarArt()
@@ -159,16 +163,11 @@ void PX2wxAuiToolBarArt::DrawBackground(
 	wxRect rect = _rect;
 	rect.height++;
 
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params)
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
 	{
-		EditParams::Theme theme = params->GetCurTheme();
-
-		wxColour color = Float3TowxColour(theme.toolBarColor);
-		wxColour startColour = color.ChangeLightness(125);
-		wxColour endColour = color.ChangeLightness(125);
-
-		dc.GradientFillLinear(rect, color, color, wxSOUTH);
+		wxColour color = Float3TowxColour(theme->Color_AuiToolBar_Background);
+		dc.GradientFillLinear(rect, color, color, wxALL);
 	}
 }
 //----------------------------------------------------------------------------
@@ -179,15 +178,52 @@ void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
 	wxRect rect = _rect;
 	rect.height++;
 
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params)
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
 	{
-		EditParams::Theme theme = params->GetCurTheme();
+		dc.SetBrush(Float3TowxColour(theme->Color_AuiToolbar_PlainBackgound));
 
-		dc.SetBrush(Float3TowxColour(theme.toolBarColor));
+		dc.DrawRectangle(
+			rect.GetX() - 1, 
+			rect.GetY() - 1,
+			rect.GetWidth() + 2,
+			rect.GetHeight() + 1);
+	}
+}
+//----------------------------------------------------------------------------
+void PX2wxAuiToolBarArt::DrawSeparator(wxDC& dc, wxWindow* wnd,
+	const wxRect& _rect)
+{
+	bool horizontal = true;
+	if (m_flags & wxAUI_TB_VERTICAL)
+		horizontal = false;
 
-		dc.DrawRectangle(rect.GetX() - 1, rect.GetY() - 1,
-			rect.GetWidth() + 2, rect.GetHeight() + 1);
+	wxRect rect = _rect;
+
+	if (horizontal)
+	{
+		rect.x += (rect.width / 2);
+		rect.width = 1;
+		int new_height = (rect.height * 3) / 4;
+		rect.y += (rect.height / 2) - (new_height / 2);
+		rect.height = new_height;
+	}
+	else
+	{
+		rect.y += (rect.height / 2);
+		rect.height = 1;
+		int new_width = (rect.width * 3) / 4;
+		rect.x += (rect.width / 2) - (new_width / 2);
+		rect.width = new_width;
+	}
+
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
+	{
+		dc.GradientFillLinear(rect,
+			Float3TowxColour(theme->Color_AuiToolbar_Separator),
+			Float3TowxColour(theme->Color_AuiToolbar_Separator),
+			wxALL);
 	}
 }
 //----------------------------------------------------------------------------
@@ -196,7 +232,7 @@ DISABLED_TEXT_GREY_HUE = wxColour::AlphaBlend(0, 255, 0.4);
 const wxColour DISABLED_TEXT_COLOR(DISABLED_TEXT_GREY_HUE,
 	DISABLED_TEXT_GREY_HUE,
 	DISABLED_TEXT_GREY_HUE);
-
+//----------------------------------------------------------------------------
 void PX2wxAuiToolBarArt::DrawButton(wxDC& dc,
 	wxWindow* wnd,
 	const wxAuiToolBarItem& item,
@@ -285,12 +321,11 @@ void PX2wxAuiToolBarArt::DrawButton(wxDC& dc,
 		dc.DrawBitmap(bmp, bmpX, bmpY, true);
 
 	// set the item's text color based on if it is disabled
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params)
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
 	{
-		EditParams::Theme theme = params->GetCurTheme();
+		dc.SetTextForeground(Float3TowxColour(theme->Color_AuiToolbar_Text));
 
-		dc.SetTextForeground(Float3TowxColour(theme.fontColor));
 		if (item.GetState() & wxAUI_BUTTON_STATE_DISABLED)
 			dc.SetTextForeground(DISABLED_TEXT_COLOR);
 
@@ -300,6 +335,32 @@ void PX2wxAuiToolBarArt::DrawButton(wxDC& dc,
 		}
 	}
 
+}
+//----------------------------------------------------------------------------
+void PX2wxAuiToolBarArt::DrawOverflowButton(
+	wxDC& dc,
+	wxWindow* wnd,
+	const wxRect& rect,
+	int state)
+{
+	if (state & wxAUI_BUTTON_STATE_HOVER ||
+		state & wxAUI_BUTTON_STATE_PRESSED)
+	{
+		Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+		if (theme)
+		{
+			dc.SetPen(wxPen(Float3TowxColour(theme->Color_AuiToolbar_FlowBorder)));
+			dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
+
+			dc.SetPen(wxPen(Float3TowxColour(theme->Color_AuiToolbar_Flow)));
+			dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_AuiToolbar_Flow)));
+			dc.DrawRectangle(rect.x + 1, rect.y, rect.width, rect.height);
+		}
+	}
+
+	int x = rect.x + 1 + (rect.width - m_overflowBmp.GetWidth()) / 2;
+	int y = rect.y + 1 + (rect.height - m_overflowBmp.GetHeight()) / 2;
+	dc.DrawBitmap(m_overflowBmp, x, y, true);
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiToolBarArt::SetHightlightColor(wxColour color)
@@ -314,8 +375,12 @@ PX2wxAuiTabArt::PX2wxAuiTabArt(bool isTop)
 	else
 		m_fixedTabWidth = 40;
 	
-	mIsTop = isTop;
+	mIsCenter = isTop;
 }
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// PX2wxAuiTabArt
 //----------------------------------------------------------------------------
 PX2wxAuiTabArt::~PX2wxAuiTabArt()
 {
@@ -329,52 +394,56 @@ wxAuiTabArt* PX2wxAuiTabArt::Clone()
 void PX2wxAuiTabArt::SetSizingInfo(const wxSize& tab_ctrl_size,
 	size_t tab_count)
 {
-	if (mIsTop)
+	if (mIsCenter)
 		m_fixedTabWidth = 120;
 	else
 		m_fixedTabWidth = 60;
+
+	PX2_UNUSED(tab_ctrl_size);
+	PX2_UNUSED(tab_count);
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
 {
-	EditParams *params = PX2_EDIT.GetEditParams();
+	int i, border_width = GetBorderWidth(wnd);
 
-	if (params)
+	wxRect theRect(rect);
+	for (i = 0; i < border_width; ++i)
 	{
-		int i, border_width = GetBorderWidth(wnd);
-
-		wxRect theRect(rect);
-		for (i = 0; i < border_width; ++i)
+		Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+		if (theme)
 		{
-			EditParams::Theme theme = params->GetCurTheme();
-
-			if (mIsTop)
+			if (mIsCenter)
 			{
-				dc.SetBrush(wxBrush(Float3TowxColour(theme.tabBackColor)));
-				dc.SetPen(wxPen(Float3TowxColour(theme.tabBackColor)));
+				dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_Border_Center)));
+				dc.SetPen(wxPen(Float3TowxColour(theme->Color_Aui_Border_Center)));
 			}
-
-			dc.DrawRectangle(theRect.x, theRect.y, theRect.width, theRect.height);
-			theRect.Deflate(1);
+			else
+			{
+				dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_Border)));
+				dc.SetPen(wxPen(Float3TowxColour(theme->Color_Aui_Border)));
+			}
 		}
+
+		dc.DrawRectangle(theRect.x, theRect.y, theRect.width, theRect.height);
+		theRect.Deflate(1);
 	}
 }
 //----------------------------------------------------------------------------
 void PX2wxAuiTabArt::DrawBackground(wxDC& dc, wxWindow*,
 	const wxRect& rect)
 {
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params)
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
 	{
-		EditParams::Theme theme = params->GetCurTheme();
-		dc.SetBrush(wxBrush(Float3TowxColour(theme.tabBackColor)));
+		dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_Background)));
 		dc.DrawRectangle(-1, -5, rect.GetWidth() + 2, rect.GetHeight() + 5);
 
-		//// draw base line
-		if (mIsTop)
+		// draw base line
+		if (mIsCenter)
 		{
-			dc.SetBrush(wxBrush(Float3TowxColour(theme.activeColor)));
-			dc.SetPen(wxPen(Float3TowxColour(theme.activeColor)));
+			dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_AuiTabbar_Active)));
+			dc.SetPen(wxPen(Float3TowxColour(theme->Color_AuiTabbar_Active)));
 			dc.DrawRectangle(-1, rect.GetHeight() - 2, rect.GetWidth() + 2, 2);
 		}
 	}
@@ -451,23 +520,21 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	caption = page.caption;
 
 	// select pen, brush and font for the tab to be drawn
-	EditParams *params = PX2_EDIT.GetEditParams();
-	if (params)
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
 	{
-		EditParams::Theme theme = params->GetCurTheme();
-
 		if (page.active)
 		{
-			if (mIsTop)
+			if (mIsCenter)
 			{
-				dc.SetPen(wxPen(Float3TowxColour(theme.activeColor)));
-				dc.SetBrush(Float3TowxColour(theme.activeColor));
+				dc.SetPen(wxPen(Float3TowxColour(theme->Color_AuiTabbar_Active)));
+				dc.SetBrush(Float3TowxColour(theme->Color_AuiTabbar_Active));
 				dc.SetFont(m_selectedFont);
 			}
 			else
 			{
-				dc.SetPen(wxPen(Float3TowxColour(theme.backColor)));
-				dc.SetBrush(Float3TowxColour(theme.backColor));
+				dc.SetPen(wxPen(Float3TowxColour(theme->Color_AuiTabbar_Active)));
+				dc.SetBrush(Float3TowxColour(theme->Color_AuiTabbar_Active));
 				dc.SetFont(m_selectedFont);
 			}
 
@@ -476,8 +543,8 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		}
 		else
 		{
-			dc.SetPen(wxPen(Float3TowxColour(theme.inactiveColor)));
-			dc.SetBrush(Float3TowxColour(theme.inactiveColor));
+			dc.SetPen(wxPen(Float3TowxColour(theme->Color_AuiTabbar)));
+			dc.SetBrush(Float3TowxColour(theme->Color_AuiTabbar));
 			dc.SetFont(m_normalFont);
 
 			textx = normal_textx;
@@ -498,7 +565,7 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 	points[3].y = tab_y + tab_height;
 	points[4] = points[0];
 
-	if (mIsTop)
+	if (mIsCenter)
 	{
 		points[0].y -= 7;
 		points[1].y -= 7;
@@ -530,25 +597,22 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 		text_offset = tab_x + (tab_width - textx)/ 2 ;
 	}
 
-	if (params)
+	if (theme)
 	{
-		EditParams::Theme theme = params->GetCurTheme();
 		if (page.active)
 		{
-			if (mIsTop)
+			if (mIsCenter)
 			{
-				dc.SetTextForeground(Float3TowxColour(theme.captionActColor));
+				dc.SetTextForeground(Float3TowxColour(theme->Color_AuiTabbarText_Active));
 			}
 			else
 			{
-				dc.SetTextForeground(Float3TowxColour(theme.tabFontActColor));
+				dc.SetTextForeground(Float3TowxColour(theme->Color_AuiTabbarText_Active));
 			}
-
-			
 		}
 		else
 		{
-			dc.SetTextForeground(Float3TowxColour(theme.tabFontColor));
+			dc.SetTextForeground(Float3TowxColour(theme->Color_AuiTabbarText));
 		}
 	}
 	

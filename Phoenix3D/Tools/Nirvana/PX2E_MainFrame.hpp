@@ -68,17 +68,13 @@ namespace PX2Editor
 
 		void AddMenuTool(PX2wxAuiToolBar *toolBar, const std::string &MenuTitle, std::string &script);
 
-	public:
-		void SetAuiManColorForTheme();
-		void SetToolBarHightLightColor();
-
 	protected:
 		DECLARE_EVENT_TABLE()
 
-		void _CreateMenu();
 		void _CreateTopView();
-		void _CreateMainToolBar();
 		void _CreateMenuToolBar();
+		void _CreateMainToolBar();
+		void _CreateMenu();
 		void _CreateViews();
 		void _CreateProjView();
 		void _CreateMainView();
@@ -129,8 +125,9 @@ namespace PX2Editor
 		wxTimer mTimer;
 		std::map<int, std::string> mIDScripts;
 
-		PX2wxAuiToolBar *mMianToolBar;
-		PX2wxAuiToolBar *mMenuToolBar;
+		PX2wxAuiToolBar *mToolBarCaption;
+		PX2wxAuiToolBar *mToolBarMenu;
+		PX2wxAuiToolBar *mToolBarMain;
 
 		wxMenu *mToolMenu;
 
@@ -146,8 +143,6 @@ namespace PX2Editor
 		PX2wxAuiNotebook *mNoteBookCenter;
 
 		bool mIsCrossCursor;
-
-		PX2::EditParams::Theme mCurTheme;
 	};
 
 }

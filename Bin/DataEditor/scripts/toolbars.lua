@@ -1,7 +1,7 @@
 -- toolbars.lua
 
---main tool bar
-function e_CreateMenuToolBar()
+-- menu tool bar
+function e_CreateToolBarMenu()
 	NirMan:AddMenuTool(" "..(PX2_LM:GetValue("File")).." ", "e_CreateToolMenuFile()");
 	NirMan:AddMenuTool(" "..(PX2_LM:GetValue("Edit")).." ", "e_CreateToolMenuEdit()");
 	NirMan:AddMenuTool(" "..(PX2_LM:GetValue("View")).." ", "e_CreateToolMenuView()");
@@ -9,6 +9,8 @@ function e_CreateMenuToolBar()
 	NirMan:AddMenuTool(" "..(PX2_LM:GetValue("Tool")).." ", "e_CreateToolMenuTool()");
 	NirMan:AddMenuTool(" "..(PX2_LM:GetValue("Help")), "e_CreateToolMenuHelp()");
 end
+
+--main tool bar
 function e_CreateToolBarMain()
 	NirMan:AddTool("DataEditor/icons/file/proj_new.png", "e_OnNewProject()")
 	NirMan:AddTool("DataEditor/icons/file/proj_open.png", "e_OnOpenProject()")
