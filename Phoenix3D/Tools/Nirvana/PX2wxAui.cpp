@@ -146,7 +146,8 @@ void PX2wxAuiToolBar::SetItemsState(int state)
 //----------------------------------------------------------------------------
 // PX2wxAuiToolBarArt
 //----------------------------------------------------------------------------
-PX2wxAuiToolBarArt::PX2wxAuiToolBarArt()
+PX2wxAuiToolBarArt::PX2wxAuiToolBarArt(int type):
+mType(type)
 {
 }
 //----------------------------------------------------------------------------
@@ -166,7 +167,11 @@ void PX2wxAuiToolBarArt::DrawBackground(
 	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
 	if (theme)
 	{
-		wxColour color = Float3TowxColour(theme->Color_AuiToolBar_Background);
+		wxColour color;
+		if (0 == mType)
+			color = Float3TowxColour(theme->Color_AuiMenuBar_Background);
+		else
+			color = Float3TowxColour(theme->Color_AuiToolBar_Background);
 		dc.GradientFillLinear(rect, color, color, wxALL);
 	}
 }
@@ -363,11 +368,6 @@ void PX2wxAuiToolBarArt::DrawOverflowButton(
 	dc.DrawBitmap(m_overflowBmp, x, y, true);
 }
 //----------------------------------------------------------------------------
-void PX2wxAuiToolBarArt::SetHightlightColor(wxColour color)
-{
-	m_highlightColour = color;
-}
-//----------------------------------------------------------------------------
 PX2wxAuiTabArt::PX2wxAuiTabArt(bool isTop)
 {
 	if (isTop)
@@ -415,13 +415,13 @@ void PX2wxAuiTabArt::DrawBorder(wxDC& dc, wxWindow* wnd, const wxRect& rect)
 		{
 			if (mIsCenter)
 			{
-				dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_Border_Center)));
-				dc.SetPen(wxPen(Float3TowxColour(theme->Color_Aui_Border_Center)));
+				dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_BorderThin_Center)));
+				dc.SetPen(wxPen(Float3TowxColour(theme->Color_Aui_BorderThin_Center)));
 			}
 			else
 			{
-				dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_Border)));
-				dc.SetPen(wxPen(Float3TowxColour(theme->Color_Aui_Border)));
+				dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_BorderThin)));
+				dc.SetPen(wxPen(Float3TowxColour(theme->Color_Aui_BorderThin)));
 			}
 		}
 
@@ -533,8 +533,8 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 			}
 			else
 			{
-				dc.SetPen(wxPen(Float3TowxColour(theme->Color_AuiTabbar_Active)));
-				dc.SetBrush(Float3TowxColour(theme->Color_AuiTabbar_Active));
+				dc.SetPen(wxPen(Float3TowxColour(theme->Color_AuiTabbarBot_Active)));
+				dc.SetBrush(Float3TowxColour(theme->Color_AuiTabbarBot_Active));
 				dc.SetFont(m_selectedFont);
 			}
 
@@ -567,19 +567,8 @@ void PX2wxAuiTabArt::DrawTab(wxDC& dc,
 
 	if (mIsCenter)
 	{
-		points[0].y -= 7;
-		points[1].y -= 7;
-
 		points[2].y -= 3;
 		points[3].y -= 3;
-	}
-	else
-	{
-		points[0].y -= 8;
-		points[1].y -= 8;
-
-		points[2].y -= 4;
-		points[3].y -= 4;
 	}
 
 	dc.SetClippingRegion(in_rect);
@@ -751,6 +740,6 @@ wxSize PX2wxAuiTabArt::GetTabSize(wxDC& dc,
 
 	*xExtent = tab_width + 1;
 
-	return wxSize(tab_width, tab_height);
+	return wxSize(tab_width, 24);
 }
 //----------------------------------------------------------------------------

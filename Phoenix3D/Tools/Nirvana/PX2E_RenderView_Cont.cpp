@@ -19,7 +19,7 @@ wxAuiToolBar *RenderView_Cot::_CreateRenderViewBar(RenderViewType type)
 {
 	PX2wxAuiToolBar *renderViewToolBar = (PX2wxAuiToolBar*)new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
-	renderViewToolBar->SetArtProvider(new PX2wxAuiToolBarArt());
+	renderViewToolBar->SetArtProvider(new PX2wxAuiToolBarArt(1));
 	renderViewToolBar->SetSize(wxSize(-1, 24));
 
 	if (RVT_SCENEUI == type)

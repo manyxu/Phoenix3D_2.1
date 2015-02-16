@@ -25,10 +25,15 @@ namespace PX2
 		Float3 Color_Aui_CaptionText;
 		Float3 Color_Aui_CaptionText_Active;
 		Float3 Color_Aui_Border;
-		Float3 Color_Aui_Border_Center;
+		Float3 Color_Aui_BorderThin;
+		Float3 Color_Aui_BorderThin_Center;
+
+		Float3 Color_AuiMenuBar_Background;
 
 		Float3 Color_AuiToolBar_Background;
 		Float3 Color_AuiToolbar_PlainBackgound;
+		Float3 Color_AuiToolBar_Border;
+
 		Float3 Color_AuiToolbar_Separator;
 		Float3 Color_AuiToolbar_Text;
 		Float3 Color_AuiToolbar_Flow;
@@ -36,6 +41,7 @@ namespace PX2
 
 		Float3 Color_AuiTabbar;
 		Float3 Color_AuiTabbar_Active;
+		Float3 Color_AuiTabbarBot_Active;
 		Float3 Color_AuiTabbarText;
 		Float3 Color_AuiTabbarText_Active;
 	};

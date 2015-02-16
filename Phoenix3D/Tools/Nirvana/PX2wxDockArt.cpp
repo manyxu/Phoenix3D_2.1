@@ -284,79 +284,11 @@ wxFont PX2wxDockArt::GetFont(int id)
 //----------------------------------------------------------------------------
 void PX2wxDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, const wxRect& rect)
 {
-#if defined( __WXMAC__ ) && wxOSX_USE_COCOA_OR_CARBON
-	wxUnusedVar(window);
-	wxUnusedVar(orientation);
-
-	HIRect splitterRect = CGRectMake(rect.x, rect.y, rect.width, rect.height);
-	CGContextRef cgContext;
-	wxGCDCImpl *impl = (wxGCDCImpl*)dc.GetImpl();
-	cgContext = (CGContextRef)impl->GetGraphicsContext()->GetNativeContext();
-
-	HIThemeSplitterDrawInfo drawInfo;
-	drawInfo.version = 0;
-	drawInfo.state = kThemeStateActive;
-	drawInfo.adornment = kHIThemeSplitterAdornmentNone;
-	HIThemeDrawPaneSplitter(&splitterRect, &drawInfo, cgContext, kHIThemeOrientationNormal);
-
-#elif defined(__WXGTK__)
-	// clear out the rectangle first
-	dc.SetPen(*wxTRANSPARENT_PEN);
-	dc.SetBrush(m_sashBrush);
-	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
-
-#if 0
-	GdkRectangle gdk_rect;
-	if (orientation == wxVERTICAL)
-	{
-		gdk_rect.x = rect.x;
-		gdk_rect.y = rect.y;
-		gdk_rect.width = m_sashSize;
-		gdk_rect.height = rect.height;
-	}
-	else
-	{
-		gdk_rect.x = rect.x;
-		gdk_rect.y = rect.y;
-		gdk_rect.width = rect.width;
-		gdk_rect.height = m_sashSize;
-	}
-#endif
-
-	if (!window) return;
-	if (!window->m_wxwindow) return;
-	if (!gtk_widget_is_drawable(window->m_wxwindow)) return;
-
-	gtk_paint_handle
-		(
-		gtk_widget_get_style(window->m_wxwindow),
-#ifdef __WXGTK3__
-		static_cast<cairo_t*>(dc.GetGraphicsContext()->GetNativeContext()),
-#else
-		window->GTKGetDrawingWindow(),
-#endif
-		// flags & wxCONTROL_CURRENT ? GTK_STATE_PRELIGHT : GTK_STATE_NORMAL,
-		GTK_STATE_NORMAL,
-		GTK_SHADOW_NONE,
-#ifndef __WXGTK3__
-		NULL /* no clipping */,
-#endif
-		window->m_wxwindow,
-		"paned",
-		rect.x,
-		rect.y,
-		rect.width,
-		rect.height,
-		(orientation == wxVERTICAL) ? GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL
-		);
-
-#else
 	wxUnusedVar(window);
 	wxUnusedVar(orientation);
 	dc.SetPen(*wxTRANSPARENT_PEN);
 	dc.SetBrush(m_sashBrush);
 	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
-#endif
 }
 //----------------------------------------------------------------------------
 void PX2wxDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int, const wxRect& rect)
@@ -368,13 +300,20 @@ void PX2wxDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int, con
 	dc.SetBrush(*wxWHITE_BRUSH);
 	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 #endif
-	dc.SetBrush(m_backgroundBrush);
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
+	{
+		wxColor color = Float3TowxColour(theme->Color_Aui_Background);
+		dc.SetBrush(wxBrush(color));
+	}
 	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 }
 //----------------------------------------------------------------------------
 void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 	wxAuiPaneInfo& pane)
 {
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+
 	dc.SetPen(m_borderPen);
 	dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
@@ -385,15 +324,15 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 	{
 		for (i = 0; i < border_width; ++i)
 		{
-			dc.SetPen(*wxWHITE_PEN);
-			dc.DrawLine(rect.x, rect.y, rect.x + rect.width, rect.y);
-			dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
-			dc.SetPen(m_borderPen);
-			dc.DrawLine(rect.x, rect.y + rect.height - 1,
-				rect.x + rect.width, rect.y + rect.height - 1);
-			dc.DrawLine(rect.x + rect.width - 1, rect.y,
-				rect.x + rect.width - 1, rect.y + rect.height);
-			rect.Deflate(1);
+			//dc.SetPen(*wxWHITE_PEN);
+			//dc.DrawLine(rect.x, rect.y, rect.x + rect.width, rect.y);
+			//dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
+			//dc.SetPen(m_borderPen);
+			//dc.DrawLine(rect.x, rect.y + rect.height - 1,
+			//	rect.x + rect.width, rect.y + rect.height - 1);
+			//dc.DrawLine(rect.x + rect.width - 1, rect.y,
+			//	rect.x + rect.width - 1, rect.y + rect.height);
+			//rect.Deflate(1);
 		}
 	}
 	else
@@ -405,11 +344,18 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 			art = nb->GetArtProvider();
 
 		if (art)
+		{
 			art->DrawBorder(dc, window, rect);
+		}
 		else
 		{
 			for (i = 0; i < border_width; ++i)
 			{
+				//if (theme)
+				//{
+				//	wxColour color = Float3TowxColour(theme->Color_AuiToolBar_Border);
+				//	dc.SetBrush(color);
+				//}
 				dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 				rect.Deflate(1);
 			}

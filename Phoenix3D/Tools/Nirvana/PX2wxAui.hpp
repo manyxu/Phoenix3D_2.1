@@ -37,8 +37,8 @@ namespace PX2Editor
 			const wxPoint& pos = wxDefaultPosition,
 			const wxSize& size = wxDefaultSize,
 			long style = wxAUI_TB_DEFAULT_STYLE);
-
 		~PX2wxAuiToolBar();
+
 		wxAuiToolBarItemArray GetItems();
 		void SetItemsState(int state);
 	};
@@ -46,7 +46,7 @@ namespace PX2Editor
 	class PX2wxAuiToolBarArt : public wxAuiDefaultToolBarArt
 	{
 	public:
-		PX2wxAuiToolBarArt();
+		PX2wxAuiToolBarArt(int type); // 0 menu, 1 toolbar
 		~PX2wxAuiToolBarArt();
 
 		virtual void DrawBackground(
@@ -75,10 +75,8 @@ namespace PX2Editor
 			const wxRect& rect,
 			int state);
 
-		void SetHightlightColor(wxColour color);
-
 	protected:
-		wxColour mBackColor;
+		int mType;
 	};
 
 	class PX2wxAuiTabArt : public wxAuiSimpleTabArt

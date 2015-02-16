@@ -22,21 +22,27 @@ Theme::Theme()
 	Color_Aui_CaptionBackground = Float3::MakeColor(77, 96, 130);
 	Color_Aui_CaptionBackground_Active = Float3::MakeColor(255, 242, 157);
 
-	Color_Aui_Border = Float3::MakeColor(142, 155, 188);
-	Color_Aui_Border_Center = Float3::MakeColor(41, 57, 85);
+	Color_Aui_Border = Float3::MakeColor(41, 57, 85);
+
+	Color_Aui_BorderThin = Float3::MakeColor(142, 155, 188);
+	Color_Aui_BorderThin_Center = Float3::MakeColor(41, 57, 85);
 
 	Color_Aui_CaptionText = Float3::WHITE;
 	Color_Aui_CaptionText_Active = Float3::BLACK;
 
-	Color_AuiToolBar_Background = Float3::MakeColor(214, 219, 233);
+	Color_AuiMenuBar_Background = Float3::MakeColor(214, 219, 233);
+
+	Color_AuiToolBar_Background = Float3::MakeColor(207, 214, 229);
 	Color_AuiToolbar_PlainBackgound = Float3::MakeColor(255, 0, 0);
+	Color_AuiToolBar_Border = Float3::MakeColor(220, 224, 236);
 	Color_AuiToolbar_Separator = Float3::MakeColor(133, 145, 162);
 	Color_AuiToolbar_Text = Float3::BLACK;
 	Color_AuiToolbar_Flow = Float3::MakeColor(253, 244, 191);
 	Color_AuiToolbar_FlowBorder = Float3::MakeColor(229, 195, 101);
 
-	Color_AuiTabbar = Float3::MakeColor(77, 96, 130);
-	Color_AuiTabbar_Active = Float3::YELLOW;
+	Color_AuiTabbar = Float3::MakeColor(54, 78, 111);
+	Color_AuiTabbar_Active = Float3::MakeColor(255, 242, 157);
+	Color_AuiTabbarBot_Active = Float3::WHITE;
 	Color_AuiTabbarText = Float3::WHITE;
 	Color_AuiTabbarText_Active = Float3::BLACK;
 }

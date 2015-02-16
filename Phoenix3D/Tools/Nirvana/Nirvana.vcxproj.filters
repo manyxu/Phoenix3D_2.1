@@ -152,6 +152,9 @@
       <Filter>Event</Filter>
     </ClInclude>
     <ClInclude Include="PX2E_Define.hpp" />
+    <ClInclude Include="PX2wxFrame.hpp">
+      <Filter>wxExtent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -252,6 +255,12 @@
     </ClCompile>
     <ClCompile Include="PX2E_RenderView.cpp">
       <Filter>RenderView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2wxFrame.cpp">
+      <Filter>wxExtent</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2wxFrame_Override.cpp">
+      <Filter>wxExtent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

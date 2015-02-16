@@ -87,7 +87,11 @@ bool E_MainFrame::Initlize()
 	mAuiManager->SetArtProvider(new PX2wxDockArt());
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_CAPTION_SIZE, 24);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 1);
-	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
+	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 2);
+
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(41, 57, 85));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(41, 57, 85));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(41, 57, 85));
 
 	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
@@ -108,7 +112,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-			//mAuiManager->LoadPerspective(strPerspective);
+			mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 
@@ -553,7 +557,7 @@ void E_MainFrame::_CreateMainToolBar()
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
 	if (mToolBarMain)
 	{
-		mToolBarMain->SetArtProvider(new PX2wxAuiToolBarArt());
+		mToolBarMain->SetArtProvider(new PX2wxAuiToolBarArt(0));
 
 		NirMan::GetSingleton().SetCurToolBar(mToolBarMain);
 
@@ -563,7 +567,7 @@ void E_MainFrame::_CreateMainToolBar()
 
 		mAuiManager->AddPane(mToolBarMain, wxAuiPaneInfo().
 			Name(wxT("maintoolbar")).
-			Gripper(false).Top().Dockable(false).PaneBorder(true).Resizable(false).
+			Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
 			MinSize(200, 30).MaxSize(200, 30).Top().Resizable(false).CaptionVisible(false));
 	}	
 }
@@ -575,7 +579,7 @@ void E_MainFrame::_CreateMenuToolBar()
 
 	if (mToolBarMenu)
 	{
-		mToolBarMenu->SetArtProvider(new PX2wxAuiToolBarArt());
+		mToolBarMenu->SetArtProvider(new PX2wxAuiToolBarArt(1));
 
 		NirMan::GetSingleton().SetCurToolBar(mToolBarMenu);
 
@@ -702,7 +706,7 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	if (isTopStyle)
 	{
 		styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
-		styleFlag ^= wxAUI_NB_CLOSE_ON_ACTIVE_TAB;
+		//styleFlag ^= wxAUI_NB_CLOSE_ON_ACTIVE_TAB;
 		styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	}
 	else
