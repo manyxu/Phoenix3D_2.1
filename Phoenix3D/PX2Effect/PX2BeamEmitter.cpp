@@ -29,7 +29,9 @@ mWaveTypeUp(WT_RANDOM),
 mWaveTypeExtend(WT_RANDOM),
 mNumLowFrequency(5),
 mNumHighFrequency(3)
-{	
+{
+	SetName("BeamEmitter");
+
 	SetTex("Data/engine/default.png");
 
 	mEmitEndPos = APoint(10.0f, 0.0f, 0.0f);

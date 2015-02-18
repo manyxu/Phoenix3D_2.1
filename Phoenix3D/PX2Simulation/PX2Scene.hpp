@@ -7,6 +7,8 @@
 #include "PX2Actor.hpp"
 #include "PX2RenderStep.hpp"
 #include "PX2CameraActor.hpp"
+#include "PX2CellSpace.hpp"
+#include "PX2SimulationDataDefine.hpp"
 
 namespace PX2
 {
@@ -25,11 +27,48 @@ namespace PX2
 		CameraActor *GetUseCameraActor();
 
 		virtual int AttachChild(Movable* child);
+		virtual int DetachChild(Movable* child);
+
+		Actor *GetActorByID(int id);
 
 	protected:
 		virtual void UpdateWorldData(double applicationTime);
 
+		std::map<int, ActorPtr> mActors;
 		CameraActorPtr mCameraActor;
+
+	public:
+		static int GetNextID();
+		static const int msIDCover = 100000;
+
+	protected:
+		static int msNextID;
+
+		// scene manager
+	public:
+		enum SceneManageType
+		{
+			SMT_NONE,
+			SMT_OCTREE,
+			SMT_CELL2D,
+			SMT_MAX_TYPE
+		};
+		void SetSceneManageType(SceneManageType type);
+		SceneManageType GetSceneManageType();
+
+		void SetSize(const Sizef &size);
+		const Sizef &GetSize() const;
+
+		void GetRangeActors(std::vector<Actor*> &actors, const APoint &center,
+			float radius, bool useActorSelfRadius, const std::bitset<PX2_ACTOR_BS_SIZE> &bits);
+		void GetRangeActorsExcept(Actor *except, std::vector<Actor*> &actors,
+			const APoint &center, float radius, bool useActorSelfRadius,
+			const std::bitset<PX2_ACTOR_BS_SIZE> &bits);
+
+	protected:
+		SceneManageType mSceneManageType;
+		CellSpacePtr mCellSpace;
+		Sizef mSize;
 	};
 
 #include "PX2Scene.inl"

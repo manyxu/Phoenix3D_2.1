@@ -1,63 +1,63 @@
-// PX2Actor.inl
+// PX2Character.inl
 
 //----------------------------------------------------------------------------
-inline std::bitset<PX2_ACTOR_BS_SIZE> &Actor::GetBitSet()
+inline void Character::SetUseAutoWorldBound(bool isUseAutoWorldBound)
 {
-	return mBitSet;
+	mIsAutoWorldBound = isUseAutoWorldBound;
 }
 //----------------------------------------------------------------------------
-inline const std::bitset<PX2_ACTOR_BS_SIZE> &Actor::GetBitSet() const
+inline bool Character::IsUseAutoWorldBound() const
 {
-	return mBitSet;
+	return mIsAutoWorldBound;
 }
 //----------------------------------------------------------------------------
-inline Node *Actor::GetNode()
+inline void Character::SetAutoWorldBoundRadius(float radius)
 {
-	return mNode;
+	mAutoWorldBoundRadius = radius;
 }
 //----------------------------------------------------------------------------
-inline Node *Actor::GetHelpNode()
+inline float Character::GetAutoWorldBoundRadius() const
 {
-	return mHelpNode;
+	return mAutoWorldBoundRadius;
 }
 //----------------------------------------------------------------------------
-inline bool Actor::IsPickable() const
+inline std::map<int, AnimationPtr> &Character::GetAnimsMap()
 {
-	return mIsPickable;
+	return mAnimsMap;
 }
 //----------------------------------------------------------------------------
-inline const AVector &Actor::GetHeading() const
+inline int Character::GetDefaultAnimID() const
 {
-	return mHeading;
+	return mDefaultAnimID;
 }
 //----------------------------------------------------------------------------
-inline float Actor::GetRadius() const
+inline Animation *Character::GetDefaultAnim()
 {
-	return mRadius;
+	return mDefaultAnim;
 }
 //----------------------------------------------------------------------------
-inline float Actor::GetHeight() const
+inline float Character::GetBaseHPCurLevel() const
 {
-	return mHeight;
+	return mBaseHPCurLevel;
 }
 //----------------------------------------------------------------------------
-inline void Actor::SetSceneContainer(void *container)
+inline bool Character::IsDead() const
 {
-	mSceneContainer = container;
+	return mIsDead;
 }
 //----------------------------------------------------------------------------
-inline void Actor::SetSceneContainerIndex(int index)
+inline void Character::SetDieDoDelete(bool isDieDoDelete)
 {
-	mSceneContainerIndex = index;
+	mIsDieDoDelete = isDieDoDelete;
 }
 //----------------------------------------------------------------------------
-inline void *Actor::GetSceneContainer() const
+inline bool Character::IsDieDoDelete() const
 {
-	return mSceneContainer;
+	return mIsDieDoDelete;
 }
 //----------------------------------------------------------------------------
-inline int Actor::GetSceneContainerIndex() const
+inline float Character::GetBaseAPCurLevel() const
 {
-	return mSceneContainerIndex;
+	return mBaseAPCurLevel;
 }
 //----------------------------------------------------------------------------

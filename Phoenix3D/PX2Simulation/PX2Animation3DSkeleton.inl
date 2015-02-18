@@ -1,18 +1,19 @@
-// PX2Scene.inl
+// PX2Animation3DSkeleton.inl
 
 //----------------------------------------------------------------------------
-inline CameraActor *Scene::GetUseCameraActor()
+inline Node *Animation3DSkeleton::GetAnimNode()
 {
-	return mCameraActor;
+	return mAnimNode;
 }
 //----------------------------------------------------------------------------
-inline Scene::SceneManageType Scene::GetSceneManageType()
+inline std::map<FString, KeyframeControllerPtr> &Animation3DSkeleton
+::GetKeyframeCtrlMap()
 {
-	return mSceneManageType;
+	return mKeyframeCtrlMap;
 }
 //----------------------------------------------------------------------------
-inline const Sizef &Scene::GetSize() const
+inline KeyframeController *Animation3DSkeleton::GetRootKeyframeCtrl()
 {
-	return mSize;
+	return mKeyframeCtrlRoot;
 }
 //----------------------------------------------------------------------------

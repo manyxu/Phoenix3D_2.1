@@ -43,6 +43,21 @@
     <Filter Include="PlatformSDK">
       <UniqueIdentifier>{f01c14fe-8a45-4869-9576-75e8eb257246}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Skill">
+      <UniqueIdentifier>{0cc30aac-1a14-434b-bdf6-ba88262a68a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Skill\Steps">
+      <UniqueIdentifier>{98d6286d-8e7f-4e12-968a-f2463f883d05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Character">
+      <UniqueIdentifier>{d0434ded-042e-4053-a1ff-ecc2c85a814f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Skill\SkillActor">
+      <UniqueIdentifier>{aae17226-2562-4aeb-b306-f58b67405a5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SpacePartition">
+      <UniqueIdentifier>{a384b5d6-cace-41b0-bcd4-179446b4e2df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -104,6 +119,52 @@
     <ClInclude Include="PX2PlatformSDKEventType.hpp">
       <Filter>PlatformSDK</Filter>
     </ClInclude>
+    <ClInclude Include="PX2Skill.hpp">
+      <Filter>Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillStep.hpp">
+      <Filter>Skill\Steps</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Character.hpp">
+      <Filter>Character</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Animation3DSkeleton.hpp">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AnimationObject.hpp">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillComponent.hpp">
+      <Filter>Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillInstance.hpp">
+      <Filter>Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectActor.hpp">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillStepRangeTime.hpp">
+      <Filter>Skill\Steps</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillStepFarTrack.hpp">
+      <Filter>Skill\Steps</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillActor.hpp">
+      <Filter>Skill\SkillActor</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillActorLink.hpp">
+      <Filter>Skill\SkillActor</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkillStepLink.hpp">
+      <Filter>Skill\Steps</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CellSpaceT.hpp">
+      <Filter>SpacePartition</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CellSpace.hpp">
+      <Filter>SpacePartition</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SimulationDataDefine.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Actor.cpp">
@@ -169,6 +230,69 @@
     <ClCompile Include="PX2PlatformSDKEventType.cpp">
       <Filter>PlatformSDK</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Skill.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_Affect.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_Activate.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Skill_Range.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillStep.cpp">
+      <Filter>Skill\Steps</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character_Anim.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Animation3DSkeleton.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AnimationObject.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillComponent.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Actor_BitSet.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillInstance.cpp">
+      <Filter>Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectActor.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillStepRangeTime.cpp">
+      <Filter>Skill\Steps</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillStepFarTrack.cpp">
+      <Filter>Skill\Steps</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillActor.cpp">
+      <Filter>Skill\SkillActor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillActorLink.cpp">
+      <Filter>Skill\SkillActor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkillStepLink.cpp">
+      <Filter>Skill\Steps</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Scene_Manager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CellSpace.cpp">
+      <Filter>SpacePartition</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Character_HPAP.cpp">
+      <Filter>Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl">
@@ -194,6 +318,45 @@
     </None>
     <None Include="PX2CameraActor.inl">
       <Filter>Actor</Filter>
+    </None>
+    <None Include="PX2Skill.inl">
+      <Filter>Skill</Filter>
+    </None>
+    <None Include="PX2SkillStep.inl">
+      <Filter>Skill\Steps</Filter>
+    </None>
+    <None Include="PX2Character.inl">
+      <Filter>Character</Filter>
+    </None>
+    <None Include="PX2Animation.inl">
+      <Filter>Animation</Filter>
+    </None>
+    <None Include="PX2Animation3DSkeleton.inl">
+      <Filter>Animation</Filter>
+    </None>
+    <None Include="PX2AnimationObject.inl">
+      <Filter>Animation</Filter>
+    </None>
+    <None Include="PX2SkillInstance.inl">
+      <Filter>Skill</Filter>
+    </None>
+    <None Include="PX2SkillStepRangeTime.inl">
+      <Filter>Skill\Steps</Filter>
+    </None>
+    <None Include="PX2SkillStepFarTrack.inl">
+      <Filter>Skill\Steps</Filter>
+    </None>
+    <None Include="PX2SkillActor.inl">
+      <Filter>Skill\SkillActor</Filter>
+    </None>
+    <None Include="PX2SkillActorLink.inl">
+      <Filter>Skill\SkillActor</Filter>
+    </None>
+    <None Include="PX2SkillStepLink.inl">
+      <Filter>Skill\Steps</Filter>
+    </None>
+    <None Include="PX2CellSpaceT.inl">
+      <Filter>SpacePartition</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -1,63 +1,63 @@
-// PX2Actor.inl
+// PX2Animation.inl
 
 //----------------------------------------------------------------------------
-inline std::bitset<PX2_ACTOR_BS_SIZE> &Actor::GetBitSet()
+inline Animation::AnimType Animation::GetAnimType() const
 {
-	return mBitSet;
+	return mAnimType;
 }
 //----------------------------------------------------------------------------
-inline const std::bitset<PX2_ACTOR_BS_SIZE> &Actor::GetBitSet() const
+inline void Animation::SetNormalTime(float time)
 {
-	return mBitSet;
+	mAnimNormalTime = time;
 }
 //----------------------------------------------------------------------------
-inline Node *Actor::GetNode()
+inline float Animation::GetNormalTime() const
 {
-	return mNode;
+	return mAnimNormalTime;
 }
 //----------------------------------------------------------------------------
-inline Node *Actor::GetHelpNode()
+inline float Animation::GetTime() const
 {
-	return mHelpNode;
+	return mAnimTime;
 }
 //----------------------------------------------------------------------------
-inline bool Actor::IsPickable() const
+inline float Animation::GetFrequency() const
 {
-	return mIsPickable;
+	return mFrequency;
 }
 //----------------------------------------------------------------------------
-inline const AVector &Actor::GetHeading() const
+inline const std::string &Animation::GetFilename() const
 {
-	return mHeading;
+	return mFilename;
 }
 //----------------------------------------------------------------------------
-inline float Actor::GetRadius() const
+inline bool Animation::IsPlayOnce() const
 {
-	return mRadius;
+	return mIsPlayOnce;
 }
 //----------------------------------------------------------------------------
-inline float Actor::GetHeight() const
+inline void Animation::SetPlayedKeepPlaying(bool isPlayedKeepPlaying)
 {
-	return mHeight;
+	mIsPlayedKeepPlaying = isPlayedKeepPlaying;
 }
 //----------------------------------------------------------------------------
-inline void Actor::SetSceneContainer(void *container)
+inline bool Animation::IsPlayedKeepPlaying() const
 {
-	mSceneContainer = container;
+	return mIsPlayedKeepPlaying;
 }
 //----------------------------------------------------------------------------
-inline void Actor::SetSceneContainerIndex(int index)
+inline void Animation::SetUseBlend(bool useBlend)
 {
-	mSceneContainerIndex = index;
+	mIsUseBlend = useBlend;
 }
 //----------------------------------------------------------------------------
-inline void *Actor::GetSceneContainer() const
+inline bool Animation::IsUseBlend() const
 {
-	return mSceneContainer;
+	return mIsUseBlend;
 }
 //----------------------------------------------------------------------------
-inline int Actor::GetSceneContainerIndex() const
+inline Character *Animation::GetCharacter()
 {
-	return mSceneContainerIndex;
+	return mCharacter;
 }
 //----------------------------------------------------------------------------

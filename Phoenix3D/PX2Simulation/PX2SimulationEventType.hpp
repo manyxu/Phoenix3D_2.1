@@ -22,6 +22,11 @@ namespace PX2
 	PX2_EVENT(RemoveObject)
 	PX2_DECLARE_EVENT_END(SimuES_E)
 
+	PX2_DECLARE_EVENT_BEGIN(SimuES)
+	PX2_EVENT(Character_Die)
+	PX2_EVENT(Actor_Delete)
+	PX2_DECLARE_EVENT_END(SimuES)
+
 }
 
 #endif

@@ -3,6 +3,7 @@
 #include "PX2Scene.hpp"
 #include "PX2Project.hpp"
 #include "PX2Creater.hpp"
+#include "PX2Actor.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Node, Scene);
@@ -10,6 +11,13 @@ PX2_IMPLEMENT_STREAM(Scene);
 PX2_IMPLEMENT_FACTORY(Scene);
 PX2_IMPLEMENT_DEFAULT_NAMES(Node, Scene);
 
+//----------------------------------------------------------------------------
+int Scene::msNextID = 0;
+//----------------------------------------------------------------------------
+int Scene::GetNextID()
+{
+	return msNextID++;
+}
 //----------------------------------------------------------------------------
 Scene::Scene()
 {
@@ -43,7 +51,47 @@ void Scene::SetUseCameraActor(CameraActor *cameraActor)
 //----------------------------------------------------------------------------
 int Scene::AttachChild(Movable* child)
 {
+	Actor *actor = DynamicCast<Actor>(child);
+	if (actor)
+	{
+		int id = actor->GetID();
+		if (0 != id)
+		{
+			mActors[actor->GetID()] = actor;
+		}
+	}
+
 	return Node::AttachChild(child);
+}
+//----------------------------------------------------------------------------
+int Scene::DetachChild(Movable* child)
+{
+	Actor *actor = DynamicCast<Actor>(child);
+	if (actor)
+	{
+		int id = child->GetID();
+		if (0 != id)
+		{
+			std::map<int, ActorPtr>::iterator it = mActors.find(id);
+			if (it != mActors.end())
+			{
+				mActors.erase(it);
+			}
+		}
+	}
+
+	return Node::DetachChild(child);
+}
+//----------------------------------------------------------------------------
+Actor *Scene::GetActorByID(int id)
+{
+	std::map<int, ActorPtr>::iterator it = mActors.find(id);
+	if (it != mActors.end())
+	{
+		return it->second;
+	}
+
+	return 0;
 }
 //----------------------------------------------------------------------------
 void Scene::UpdateWorldData(double applicationTime)
@@ -55,9 +103,8 @@ void Scene::UpdateWorldData(double applicationTime)
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-Scene::Scene(LoadConstructor value)
-	:
-	Node(value)
+Scene::Scene(LoadConstructor value) :
+Node(value)
 {
 }
 //----------------------------------------------------------------------------
