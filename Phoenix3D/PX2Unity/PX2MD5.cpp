@@ -358,7 +358,7 @@ void Md5HexString(char in16[], char out32[])
 static struct {
 	char *data;						/* Data to hash */
 	int length;						/* Length of data */
-	char digest[ MD5_DIGEST_LENGTH ];	/* Digest of data */
+	unsigned char digest[ MD5_DIGEST_LENGTH ];	/* Digest of data */
 	} digestValues[] = {
 	{ "", 0,
 	  { 0xD4, 0x1D, 0x8C, 0xD9, 0x8F, 0x00, 0xB2, 0x04,

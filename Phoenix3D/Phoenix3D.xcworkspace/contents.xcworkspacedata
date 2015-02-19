@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:PX2Unity/PX2Unity.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:PX2Graphics/PX2Graphics.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:PX2Mathematics/PX2Mathematics.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:PX2Core/PX2Core.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:PX2AppPlayer/Proj.IOS/AppPlay/AppPlay.xcodeproj">
+   </FileRef>
+</Workspace>

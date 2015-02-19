@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>963FE5F6-66BB-40AC-A832-A452F04A32A4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Phoenix3D</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9ABAA7F6-FB39-4C9B-A0FD-812B17DE8778</key>
+		<string>https://github.com/PX3D/Phoenix3D.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Phoenix3D/Phoenix3D.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9ABAA7F6-FB39-4C9B-A0FD-812B17DE8778</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/PX3D/Phoenix3D.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9ABAA7F6-FB39-4C9B-A0FD-812B17DE8778</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9ABAA7F6-FB39-4C9B-A0FD-812B17DE8778</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Phoenix3D</string>
+		</dict>
+	</array>
+</dict>
+</plist>

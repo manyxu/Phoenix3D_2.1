@@ -14,6 +14,8 @@
 
 #include "ImageLibs/PNG/png.h"
 
+#include <unistd.h>
+
 #include "unzip.h"
 #if defined(_WIN32) || defined(WIN32)
 #include <windows.h>
@@ -24,8 +26,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include "AppPlayJNI.hpp"
-#elif defined __MARMALADE__
-#include "s3e.h"
+#elif defined __IOS__
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <dirent.h>
