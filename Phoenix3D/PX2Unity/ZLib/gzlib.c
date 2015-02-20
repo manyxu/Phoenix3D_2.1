@@ -5,7 +5,7 @@
 
 #include "gzguts.h"
 
-#if defined (__IOS__)
+#if defined (__APPLE__)
 #include <unistd.h>
 #endif
 

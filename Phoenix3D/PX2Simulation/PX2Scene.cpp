@@ -25,7 +25,7 @@ Scene::Scene()
 
 	CameraActor *camActor = new0 CameraActor();
 	AttachChild(camActor);
-	camActor->LocalTransform.SetTranslate(APoint(0.0f, -1.0f, 1.0f));
+	camActor->LocalTransform.SetTranslate(APoint(0.0f, -5.0f, 1.0f));
 
 	SetUseCameraActor(camActor);
 }
