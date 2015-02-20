@@ -96,8 +96,6 @@ int ApplicationBase::Main (int numArguments, char** arguments)
 //----------------------------------------------------------------------------
 bool ApplicationBase::_LoadProject(const std::string &projFilename)
 {
-    return true;
-    
 	Project *newProj = new0 Project();
 	if (newProj->Load(projFilename))
 	{
