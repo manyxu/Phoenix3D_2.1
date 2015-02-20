@@ -1,0 +1,12 @@
+<material name="StandardES_Default">
+	<technique name="T0">
+		<pass name="P0">
+			<vertexshader>
+				<var type="cg" file="VertexColorStdMaterial.fx" entry="VertexColorStd"/>
+			</vertexshader>
+			<pixelshader>
+				<var type="cg" file="VertexColorStdMaterial.fx" entry="VertexColorStd"/>
+			</pixelshader>
+		</pass>
+	</technique>
+</material>

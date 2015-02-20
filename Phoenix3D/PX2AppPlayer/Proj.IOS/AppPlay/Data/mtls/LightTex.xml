@@ -1,0 +1,12 @@
+<material name="LightTex">
+	<technique name="T0">
+		<pass name="P0">
+			<vertexshader>
+				<var type="cg" file="LightTex.fx" entry="LightTex"/>
+			</vertexshader>
+			<pixelshader>
+				<var type="cg" file="LightTex.fx" entry="LightTex"/>
+			</pixelshader>
+		</pass>
+	</technique>
+</material>

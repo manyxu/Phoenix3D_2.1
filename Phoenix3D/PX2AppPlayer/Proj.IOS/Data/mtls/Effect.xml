@@ -1,0 +1,12 @@
+<material name="Effect">
+	<technique name="T0">
+		<pass name="P0">
+			<vertexshader>
+				<var type="cg" file="Effect.fx" entry="Effect"/>
+			</vertexshader>
+			<pixelshader>
+				<var type="cg" file="Effect.fx" entry="Effect"/>
+			</pixelshader>
+		</pass>
+	</technique>
+</material>

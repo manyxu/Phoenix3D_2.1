@@ -1,0 +1,12 @@
+<material name="Sky">
+	<technique name="T0">
+		<pass name="P0">
+			<vertexshader>
+				<var type="cg" file="Sky.fx" entry="Sky"/>
+			</vertexshader>
+			<pixelshader>
+				<var type="cg" file="Sky.fx" entry="Sky"/>
+			</pixelshader>
+		</pass>
+	</technique>
+</material>
