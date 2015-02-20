@@ -52,14 +52,8 @@
     <Filter Include="Complements">
       <UniqueIdentifier>{9b6a633e-c888-4f72-b20a-54f46acad4a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Complements\SkillComp">
-      <UniqueIdentifier>{8eb73846-84c2-4e5f-973a-f6f377247849}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Complements\SkillComp\SkillActor">
-      <UniqueIdentifier>{510df5be-ffa8-44e3-b1da-f4d68a7c57bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Complements\SkillComp\Steps">
-      <UniqueIdentifier>{52f12530-a373-46dc-becf-65fb4d191e0b}</UniqueIdentifier>
+    <Filter Include="Complements\SkillCompl">
+      <UniqueIdentifier>{ddfe11f9-7f79-4ab0-bf34-9ff4a2c178a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -141,32 +135,32 @@
       <Filter>SpacePartition</Filter>
     </ClInclude>
     <ClInclude Include="PX2SimulationDataDefine.hpp" />
-    <ClInclude Include="SkillModule\PX2SkillStep.hpp">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <ClInclude Include="SkillCompl\PX2Skill.hpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="SkillModule\PX2SkillStepFarTrack.hpp">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <ClInclude Include="SkillCompl\PX2SkillActor.hpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="SkillModule\PX2SkillStepLink.hpp">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <ClInclude Include="SkillCompl\PX2SkillActorLink.hpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="SkillModule\PX2SkillStepRangeTime.hpp">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <ClInclude Include="SkillCompl\PX2SkillComponent.hpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="SkillModule\PX2SkillActor.hpp">
-      <Filter>Complements\SkillComp\SkillActor</Filter>
+    <ClInclude Include="SkillCompl\PX2SkillInstance.hpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="SkillModule\PX2SkillActorLink.hpp">
-      <Filter>Complements\SkillComp\SkillActor</Filter>
+    <ClInclude Include="SkillCompl\PX2SkillStep.hpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="SkillModule\PX2SkillComponent.hpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClInclude Include="SkillCompl\PX2SkillStepFarTrack.hpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="SkillModule\PX2Skill.hpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClInclude Include="SkillCompl\PX2SkillStepLink.hpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="SkillModule\PX2SkillInstance.hpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClInclude Include="SkillCompl\PX2SkillStepRangeTime.hpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -260,44 +254,44 @@
     <ClCompile Include="PX2Character_HPAP.cpp">
       <Filter>Character</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2SkillStep.cpp">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <ClCompile Include="SkillCompl\PX2Skill.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2SkillStepFarTrack.cpp">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <ClCompile Include="SkillCompl\PX2Skill_Activate.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2SkillStepLink.cpp">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <ClCompile Include="SkillCompl\PX2Skill_Affect.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2SkillStepRangeTime.cpp">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <ClCompile Include="SkillCompl\PX2Skill_Range.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2SkillActor.cpp">
-      <Filter>Complements\SkillComp\SkillActor</Filter>
+    <ClCompile Include="SkillCompl\PX2Skill_Step.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2SkillActorLink.cpp">
-      <Filter>Complements\SkillComp\SkillActor</Filter>
+    <ClCompile Include="SkillCompl\PX2SkillActor.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2SkillComponent.cpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClCompile Include="SkillCompl\PX2SkillActorLink.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2Skill.cpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClCompile Include="SkillCompl\PX2SkillComponent.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2Skill_Activate.cpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClCompile Include="SkillCompl\PX2SkillInstance.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2Skill_Affect.cpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClCompile Include="SkillCompl\PX2SkillStep.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2Skill_Range.cpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClCompile Include="SkillCompl\PX2SkillStepFarTrack.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2Skill_Step.cpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClCompile Include="SkillCompl\PX2SkillStepLink.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillModule\PX2SkillInstance.cpp">
-      <Filter>Complements\SkillComp</Filter>
+    <ClCompile Include="SkillCompl\PX2SkillStepRangeTime.cpp">
+      <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -340,29 +334,29 @@
     <None Include="PX2CellSpaceT.inl">
       <Filter>SpacePartition</Filter>
     </None>
-    <None Include="SkillModule\PX2SkillStep.inl">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <None Include="SkillCompl\PX2Skill.inl">
+      <Filter>Complements\SkillCompl</Filter>
     </None>
-    <None Include="SkillModule\PX2SkillStepFarTrack.inl">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <None Include="SkillCompl\PX2SkillActor.inl">
+      <Filter>Complements\SkillCompl</Filter>
     </None>
-    <None Include="SkillModule\PX2SkillStepLink.inl">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <None Include="SkillCompl\PX2SkillActorLink.inl">
+      <Filter>Complements\SkillCompl</Filter>
     </None>
-    <None Include="SkillModule\PX2SkillStepRangeTime.inl">
-      <Filter>Complements\SkillComp\Steps</Filter>
+    <None Include="SkillCompl\PX2SkillInstance.inl">
+      <Filter>Complements\SkillCompl</Filter>
     </None>
-    <None Include="SkillModule\PX2SkillActor.inl">
-      <Filter>Complements\SkillComp\SkillActor</Filter>
+    <None Include="SkillCompl\PX2SkillStep.inl">
+      <Filter>Complements\SkillCompl</Filter>
     </None>
-    <None Include="SkillModule\PX2SkillActorLink.inl">
-      <Filter>Complements\SkillComp\SkillActor</Filter>
+    <None Include="SkillCompl\PX2SkillStepFarTrack.inl">
+      <Filter>Complements\SkillCompl</Filter>
     </None>
-    <None Include="SkillModule\PX2Skill.inl">
-      <Filter>Complements\SkillComp</Filter>
+    <None Include="SkillCompl\PX2SkillStepLink.inl">
+      <Filter>Complements\SkillCompl</Filter>
     </None>
-    <None Include="SkillModule\PX2SkillInstance.inl">
-      <Filter>Complements\SkillComp</Filter>
+    <None Include="SkillCompl\PX2SkillStepRangeTime.inl">
+      <Filter>Complements\SkillCompl</Filter>
     </None>
   </ItemGroup>
 </Project>
