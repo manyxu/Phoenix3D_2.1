@@ -1,0 +1,12 @@
+<material name="EditTerrain">
+	<technique name="T0">
+		<pass name="P0">
+			<vertexshader>
+				<var type="cg" file="EditTerrain.fx" entry="EditTerrain"/>
+			</vertexshader>
+			<pixelshader>
+				<var type="cg" file="EditTerrain.fx" entry="EditTerrain"/>
+			</pixelshader>
+		</pass>
+	</technique>
+</material>

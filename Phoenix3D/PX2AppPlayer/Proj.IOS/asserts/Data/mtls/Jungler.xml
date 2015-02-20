@@ -1,0 +1,12 @@
+<material name="Jungler">
+	<technique name="T0">
+		<pass name="P0">
+			<vertexshader>
+				<var type="cg" file="Jungler.fx" entry="Jungler"/>
+			</vertexshader>
+			<pixelshader>
+				<var type="cg" file="Jungler.fx" entry="Jungler"/>
+			</pixelshader>
+		</pass>
+	</technique>
+</material>
