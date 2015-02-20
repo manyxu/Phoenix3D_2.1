@@ -14,7 +14,9 @@
 
 #include "ImageLibs/PNG/png.h"
 
+#if defined (__IOS__)
 #include <unistd.h>
+#endif
 
 #include "unzip.h"
 #if defined(_WIN32) || defined(WIN32)

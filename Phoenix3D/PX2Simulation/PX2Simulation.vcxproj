@@ -39,15 +39,15 @@
     <ClInclude Include="PX2SimulationPre.hpp" />
     <ClInclude Include="PX2User.hpp" />
     <ClInclude Include="PX2UserActor.hpp" />
-    <ClInclude Include="SkillModule\PX2Skill.hpp" />
-    <ClInclude Include="SkillModule\PX2SkillActor.hpp" />
-    <ClInclude Include="SkillModule\PX2SkillActorLink.hpp" />
-    <ClInclude Include="SkillModule\PX2SkillComponent.hpp" />
-    <ClInclude Include="SkillModule\PX2SkillInstance.hpp" />
-    <ClInclude Include="SkillModule\PX2SkillStep.hpp" />
-    <ClInclude Include="SkillModule\PX2SkillStepFarTrack.hpp" />
-    <ClInclude Include="SkillModule\PX2SkillStepLink.hpp" />
-    <ClInclude Include="SkillModule\PX2SkillStepRangeTime.hpp" />
+    <ClInclude Include="SkillCompl\PX2Skill.hpp" />
+    <ClInclude Include="SkillCompl\PX2SkillActor.hpp" />
+    <ClInclude Include="SkillCompl\PX2SkillActorLink.hpp" />
+    <ClInclude Include="SkillCompl\PX2SkillComponent.hpp" />
+    <ClInclude Include="SkillCompl\PX2SkillInstance.hpp" />
+    <ClInclude Include="SkillCompl\PX2SkillStep.hpp" />
+    <ClInclude Include="SkillCompl\PX2SkillStepFarTrack.hpp" />
+    <ClInclude Include="SkillCompl\PX2SkillStepLink.hpp" />
+    <ClInclude Include="SkillCompl\PX2SkillStepRangeTime.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp" />
@@ -80,19 +80,19 @@
     <ClCompile Include="PX2SimulationEventType.cpp" />
     <ClCompile Include="PX2User.cpp" />
     <ClCompile Include="PX2UserActor.cpp" />
-    <ClCompile Include="SkillModule\PX2Skill.cpp" />
-    <ClCompile Include="SkillModule\PX2SkillActor.cpp" />
-    <ClCompile Include="SkillModule\PX2SkillActorLink.cpp" />
-    <ClCompile Include="SkillModule\PX2SkillComponent.cpp" />
-    <ClCompile Include="SkillModule\PX2SkillInstance.cpp" />
-    <ClCompile Include="SkillModule\PX2SkillStep.cpp" />
-    <ClCompile Include="SkillModule\PX2SkillStepFarTrack.cpp" />
-    <ClCompile Include="SkillModule\PX2SkillStepLink.cpp" />
-    <ClCompile Include="SkillModule\PX2SkillStepRangeTime.cpp" />
-    <ClCompile Include="SkillModule\PX2Skill_Activate.cpp" />
-    <ClCompile Include="SkillModule\PX2Skill_Affect.cpp" />
-    <ClCompile Include="SkillModule\PX2Skill_Range.cpp" />
-    <ClCompile Include="SkillModule\PX2Skill_Step.cpp" />
+    <ClCompile Include="SkillCompl\PX2Skill.cpp" />
+    <ClCompile Include="SkillCompl\PX2SkillActor.cpp" />
+    <ClCompile Include="SkillCompl\PX2SkillActorLink.cpp" />
+    <ClCompile Include="SkillCompl\PX2SkillComponent.cpp" />
+    <ClCompile Include="SkillCompl\PX2SkillInstance.cpp" />
+    <ClCompile Include="SkillCompl\PX2SkillStep.cpp" />
+    <ClCompile Include="SkillCompl\PX2SkillStepFarTrack.cpp" />
+    <ClCompile Include="SkillCompl\PX2SkillStepLink.cpp" />
+    <ClCompile Include="SkillCompl\PX2SkillStepRangeTime.cpp" />
+    <ClCompile Include="SkillCompl\PX2Skill_Activate.cpp" />
+    <ClCompile Include="SkillCompl\PX2Skill_Affect.cpp" />
+    <ClCompile Include="SkillCompl\PX2Skill_Range.cpp" />
+    <ClCompile Include="SkillCompl\PX2Skill_Step.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl" />
@@ -108,14 +108,14 @@
     <None Include="PX2Selection.inl" />
     <None Include="PX2User.inl" />
     <None Include="PX2UserActor.inl" />
-    <None Include="SkillModule\PX2Skill.inl" />
-    <None Include="SkillModule\PX2SkillActor.inl" />
-    <None Include="SkillModule\PX2SkillActorLink.inl" />
-    <None Include="SkillModule\PX2SkillInstance.inl" />
-    <None Include="SkillModule\PX2SkillStep.inl" />
-    <None Include="SkillModule\PX2SkillStepFarTrack.inl" />
-    <None Include="SkillModule\PX2SkillStepLink.inl" />
-    <None Include="SkillModule\PX2SkillStepRangeTime.inl" />
+    <None Include="SkillCompl\PX2Skill.inl" />
+    <None Include="SkillCompl\PX2SkillActor.inl" />
+    <None Include="SkillCompl\PX2SkillActorLink.inl" />
+    <None Include="SkillCompl\PX2SkillInstance.inl" />
+    <None Include="SkillCompl\PX2SkillStep.inl" />
+    <None Include="SkillCompl\PX2SkillStepFarTrack.inl" />
+    <None Include="SkillCompl\PX2SkillStepLink.inl" />
+    <None Include="SkillCompl\PX2SkillStepRangeTime.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5F6FCB4C-6389-48A3-AE54-D5C2F89570CB}</ProjectGuid>
