@@ -24,7 +24,7 @@ namespace PX2
 	class FixedStringHashCoder
 	{
 	public:
-		unsigned int operator () (const FString &str) const;
+        int64_t operator () (const FString &str) const;
 	};
 
 	template<typename TKey, class TValue, class THashCoder>

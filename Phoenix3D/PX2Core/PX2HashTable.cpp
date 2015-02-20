@@ -19,8 +19,8 @@ unsigned int UIntHashCoder::operator () (unsigned int i) const
 //----------------------------------------------------------------------------
 // FixedStringHashCoder
 //----------------------------------------------------------------------------
-unsigned int FixedStringHashCoder::operator () (const FString &str) const
+int64_t FixedStringHashCoder::operator () (const FString &str) const
 {
-	return (unsigned int)(str.GetHandle());
+	return (int64_t)(str.GetHandle());
 }
 //----------------------------------------------------------------------------

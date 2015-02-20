@@ -45,9 +45,9 @@ int System::GetNumCPUs ()
 int System::GetCurrentThreadID ()
 {
 #if defined(_WIN32) || defined(WIN32)
-	return (int)GetCurrentThreadId();
+	return (int64_t)GetCurrentThreadId();
 #else
-	return (int)pthread_self();
+	return (int64_t)pthread_self();
 #endif
 }
 //----------------------------------------------------------------------------

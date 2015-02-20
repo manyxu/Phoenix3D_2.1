@@ -85,8 +85,8 @@ bool TRecyclingArray<T>::Delete (T *element)
 	if (mUsedQuantity == 0)
 		return false;
 
-	int elem = (int)(element);
-	elem -= (int)(&mElements[0]);
+	int64_t elem = (int64_t)(element);
+	elem -= (int64_t)(&mElements[0]);
 	int index = elem / sizeof(T);
 
 	if (index<0 || index>=mQuantity || !mUseds[index])

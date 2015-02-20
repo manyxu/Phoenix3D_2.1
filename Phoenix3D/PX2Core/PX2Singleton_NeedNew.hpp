@@ -22,8 +22,8 @@ namespace PX2
 		{
 			assertion(!msSingleton, "msSingleton must be null.");
 
-			int offset = (int)(TYPE*)1 - (int)(Singleton<TYPE>*)(TYPE*)1;
-			msSingleton = (TYPE*)((int)this + offset);
+			int64_t offset = (int64_t)(TYPE*)1 - (int64_t)(Singleton<TYPE>*)(TYPE*)1;
+			msSingleton = (TYPE*)((int64_t)this + offset);
 		}
 
 		~Singleton ()

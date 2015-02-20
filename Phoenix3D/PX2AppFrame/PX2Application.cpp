@@ -245,8 +245,9 @@ bool Application::Initlize()
 	PX2_ENGINELOOP.Initlize();
 
 	// Load boost
-	PX2_ENGINELOOP.LoadBoost("Data/boost.xml");
-	const Sizef &boostSize = PX2_ENGINELOOP.GetBoostSize();
+	//PX2_ENGINELOOP.LoadBoost("Data/boost.xml");
+	Sizef boostSize(960, 640);
+    // boostSize = PX2_ENGINELOOP.GetBoostSize();
 	mWidth = (int)boostSize.Width;
 	mHeight = (int)boostSize.Height;
 	std::string projectPath = PX2_ENGINELOOP.GetProjectPath();

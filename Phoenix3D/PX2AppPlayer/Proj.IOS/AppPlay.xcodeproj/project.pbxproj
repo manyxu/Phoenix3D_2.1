@@ -32,6 +32,7 @@
 		73A6DAAE1A96F478000BD98B /* libPX2UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA41A96F478000BD98B /* libPX2UI.a */; };
 		73A6DAAF1A96F478000BD98B /* libPX2Unity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA51A96F478000BD98B /* libPX2Unity.a */; };
 		73A6DAB21A97005D000BD98B /* AppPlayerApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DAB01A97005D000BD98B /* AppPlayerApp.cpp */; };
+		73A6DAB51A9707CE000BD98B /* AppPlay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DAB31A9707CE000BD98B /* AppPlay.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		73A6DAA51A96F478000BD98B /* libPX2Unity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Unity.a; path = "../../../PX2Unity/build/Debug-iphoneos/libPX2Unity.a"; sourceTree = "<group>"; };
 		73A6DAB01A97005D000BD98B /* AppPlayerApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppPlayerApp.cpp; path = ../AppPlayerApp.cpp; sourceTree = "<group>"; };
 		73A6DAB11A97005D000BD98B /* AppPlayerApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AppPlayerApp.hpp; path = ../AppPlayerApp.hpp; sourceTree = "<group>"; };
+		73A6DAB31A9707CE000BD98B /* AppPlay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppPlay.cpp; sourceTree = "<group>"; };
+		73A6DAB41A9707CE000BD98B /* AppPlay.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AppPlay.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 		7384563F1A95D85700876E88 /* AppPlay */ = {
 			isa = PBXGroup;
 			children = (
+				73A6DAB31A9707CE000BD98B /* AppPlay.cpp */,
+				73A6DAB41A9707CE000BD98B /* AppPlay.hpp */,
 				738456481A95D85700876E88 /* AppDelegate.h */,
 				738456491A95D85700876E88 /* AppDelegate.mm */,
 				7384564B1A95D85700876E88 /* Main_iPhone.storyboard */,
@@ -244,6 +249,7 @@
 				73A6DAB21A97005D000BD98B /* AppPlayerApp.cpp in Sources */,
 				738456571A95D85700876E88 /* ViewController.mm in Sources */,
 				7384564A1A95D85700876E88 /* AppDelegate.mm in Sources */,
+				73A6DAB51A9707CE000BD98B /* AppPlay.cpp in Sources */,
 				738456461A95D85700876E88 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

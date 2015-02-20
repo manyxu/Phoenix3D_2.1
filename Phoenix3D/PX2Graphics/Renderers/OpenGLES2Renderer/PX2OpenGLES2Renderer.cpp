@@ -89,83 +89,10 @@ Renderer::Renderer (RendererInput& input, int width, int height,
 	}
 #endif
 
-#if defined(__MARMALADE__)
-	EGLDisplay display = eglGetDisplay(input.mRendererDC);
-	if (display == EGL_NO_DISPLAY)
-	{
-		assertion(false, "eglGetDisplay error.\n");
-	}
-	mData->mDisplay = display;
-
-	EGLint majorVersion;
-	EGLint minorVersion;
-	if (EGL_FALSE == eglInitialize(display, &majorVersion, &minorVersion))
-	{
-		assertion(false, "eglInitialize error.\n");
-	}
-	const int MAX_CONFIG = 32;
-	EGLConfig configList[MAX_CONFIG];
-	EGLint numConfigs;
-	eglGetConfigs(display, configList, MAX_CONFIG, &numConfigs);
-	if(numConfigs == 0)
-	{
-		assertion(false, "eglGetConfigs error.\n");
-	}
-	int requiredRedDepth = 8;
-	bool requiredFound = s3eConfigGetInt("GL", "EGL_RED_SIZE", &requiredRedDepth) == S3E_RESULT_SUCCESS;
-
-	int config = -1;
-    int actualRedDepth = 0;
-    for (int i = 0; i < numConfigs; i++)
-    {
-        EGLint renderable = 0;
-        EGLint surfacetype = 0;
-        eglGetConfigAttrib(display, configList[i], EGL_RENDERABLE_TYPE, &renderable);
-        eglGetConfigAttrib(display, configList[i], EGL_RED_SIZE, &actualRedDepth);
-        eglGetConfigAttrib(display, configList[i], EGL_SURFACE_TYPE, &surfacetype);
-
-        if ((!requiredFound || (actualRedDepth == requiredRedDepth)) && (renderable & EGL_OPENGL_ES2_BIT) && (surfacetype & EGL_WINDOW_BIT))
-        {
-            config = i;
-            break;
-        }
-    }
-
-    if (config == -1)
-    {
-        s3eDebugErrorShow(S3E_MESSAGE_CONTINUE, "No GLES2 configs reported.  Trying random config");
-        config = 0;
-	}
-
-	int configid;
-	eglGetConfigAttrib(display, configList[config], EGL_CONFIG_ID, &configid);
-	int version = s3eGLGetInt(S3E_GL_VERSION)>>8;
-	EGLint contextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE, EGL_NONE };
-	EGLContext context = eglCreateContext(display, configList[config], EGL_NO_CONTEXT, contextAttribs);
-	if (context == EGL_NO_CONTEXT)
-	{
-		assertion(false, "eglCreateContext get null context");
-	}
-	mData->mContext = context;
-
-
-	EGLSurface surface = eglCreateWindowSurface(display, configList[config], mData->mWindowHandle, NULL);
-	if (surface == EGL_NO_SURFACE)
-	{
-		assertion(false, "eglCreateWindowSurface error.\n");
-	}
-	mData->mSurface = surface;
-
-	if (!eglMakeCurrent(display, surface, surface, context))
-	{
-		assertion(false, "eglMakeCurrent error.\n");
-	}
-#endif
-
 	 VertexShader::SetProfile(VertexShader::VP_OPENGLES2);
 	 PixelShader::SetProfile(PixelShader::PP_OPENGLES2);
 
-	 GLint maxVertexAttribs;
+	 GLint maxVertexAttribs = 0;
 	 glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &maxVertexAttribs);
 	 assertion(maxVertexAttribs>=8, "attribs num must >=8.\n");
 
