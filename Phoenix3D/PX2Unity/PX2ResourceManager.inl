@@ -7,7 +7,8 @@
 //----------------------------------------------------------------------------
 inline CURLDownload *ResourceManager::GetCURLDownload ()
 {
-	return mCurlDownLoad;
+	//return mCurlDownLoad;
+    return 0;
 }
 //----------------------------------------------------------------------------
 inline void ResourceManager::DDSKeepCompressed (bool keep)

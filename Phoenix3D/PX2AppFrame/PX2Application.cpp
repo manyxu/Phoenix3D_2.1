@@ -230,7 +230,7 @@ bool Application::OnIdle ()
 	return ApplicationBase::OnIdle();
 }
 //----------------------------------------------------------------------------
-#if defined __ANDROID__
+#if defined __ANDROID__ || defined __IOS__
 int Application::Main (int numArguments, char** arguments)
 {
 	return 0;

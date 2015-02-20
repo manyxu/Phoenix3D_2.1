@@ -153,7 +153,7 @@ int DNS::LastError()
 #ifndef __ANDROID__
 	return h_errno;
 #else
-	return -1;
+	return h_errno;
 #endif
 
 #endif
@@ -235,9 +235,10 @@ void DNS::Aierror (int code, const std::string& arg)
 
 #if defined(EAI_SYSTEM)
 	case EAI_SYSTEM:
-		error(lastError(), arg);
+		Error(LastError(), arg);
 		break;
 #endif
+            
 #if defined(_WIN32) || defined(WIN32)
 	case WSANO_DATA:
 		assertion(false, "Host not found.\n");

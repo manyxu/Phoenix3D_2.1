@@ -4,6 +4,7 @@
 *
 */
 
+#include "PX2NetPre.hpp"
 #include "PX2SocketImpl.hpp"
 #include "PX2StreamSocketImpl.hpp"
 #include "PX2NetError.hpp"
@@ -741,7 +742,7 @@ void SocketImpl::GetLinger(bool& on, int& seconds)
 //----------------------------------------------------------------------------
 void SocketImpl::SetNoDelay(bool flag)
 {
-#ifndef __ANDROID__
+#ifdef WIN32
 	int val = flag ? 1 : 0;
 	SetOption(IPPROTO_TCP, TCP_NODELAY, val);
 #endif
@@ -749,7 +750,7 @@ void SocketImpl::SetNoDelay(bool flag)
 //----------------------------------------------------------------------------
 bool SocketImpl::GetNoDelay()
 {
-#ifndef __ANDROID__
+#ifdef WIN32
 	int val(0);
 	GetOption(IPPROTO_TCP, TCP_NODELAY, val);
 	return val != 0;
@@ -830,12 +831,14 @@ void SocketImpl::SetBlocking(bool flag)
 #if defined(_WIN32) || defined(WIN32)
 	int arg = flag ? 0 : 1;
 	Ioctl(FIONBIO, arg);
-#elif defined(__LINUX__) || defined(__APPLE__)
+#elif defined(__LINUX__)
 	int arg = fcntl(F_GETFL);
 	long flags = arg & ~O_NONBLOCK;
 	if (!flag)
 		flags |= O_NONBLOCK;
 	fcntl(F_SETFL, flags);
+#elif defined (__APPLE__)
+    
 #elif defined(__ANDROID__)
 	int arg = fcntl(mSocket, F_GETFL);
 	long flags = arg & ~O_NONBLOCK;

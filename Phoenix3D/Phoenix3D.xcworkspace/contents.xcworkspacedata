@@ -2,18 +2,40 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:PX2Unity/PX2Unity.xcodeproj">
+      location = "group:PX2AppPlayer/Proj.IOS/AppPlay.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:PX2Graphics/PX2Graphics.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:PX2Mathematics/PX2Mathematics.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:PX2Core/PX2Core.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "container:PX2AppPlayer/Proj.IOS/AppPlay/AppPlay.xcodeproj">
-   </FileRef>
+   <Group
+      location = "container:"
+      name = "Libs">
+      <FileRef
+         location = "group:PX2AppFrame/PX2AppFrame.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PX2Effect/PX2Effect.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PX2Simulation/PX2Simulation.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PX2UI/PX2UI.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PX2Terrains/PX2Terrains.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PX2Net/PX2Net.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PX2Unity/PX2Unity.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PX2Graphics/PX2Graphics.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PX2Mathematics/PX2Mathematics.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:PX2Core/PX2Core.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>

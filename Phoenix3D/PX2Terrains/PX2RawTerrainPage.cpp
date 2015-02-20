@@ -409,7 +409,7 @@ void RawTerrainPage::CreateEditMtlInstPerVertex (EditTerrainMaterial *material,
 	mMtlInst->SetName("MI");
 	mMtlInst->SetVertexConstant(0, "PVWMatrix", new0 PVWMatrixConstant());
 	mMtlInst->SetVertexConstant(0, "WMatrix", new0 WMatrixConstant());
-	mMtlInst->SetVertexConstant(0, "gShineEmissive", new0 ShineEmissiveConstant(shine));
+	mMtlInst->SetVertexConstant(0, "gShineEmissive", new0 ShineEmissiveConstant());
 	mMtlInst->SetVertexConstant(0, "gShineAmbient", new0 ShineAmbientConstant(shine));
 	mMtlInst->SetVertexConstant(0, "gShineDiffuse", new0 ShineDiffuseConstant(shine));
 	mMtlInst->SetVertexConstant(0, "gShineSpecular", new0 ShineSpecularConstant(shine));

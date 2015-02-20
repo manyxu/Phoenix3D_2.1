@@ -248,7 +248,7 @@ public_internal:
 		std::string mWriteablePath;
 
 		// curl
-		CURLDownload *mCurlDownLoad;
+		//CURLDownload *mCurlDownLoad;
 
 		// data version
 		Pointer0<ResourceVersionItem> mDataVersionItem;

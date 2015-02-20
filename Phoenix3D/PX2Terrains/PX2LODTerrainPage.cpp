@@ -122,14 +122,14 @@ void LODTerrainPage::InitializeDerivedData ()
 //----------------------------------------------------------------------------
 void LODTerrainPage::SetPixelTolerance (float tolerance)
 {
-	const Sizef &size = GraphicsRoot::GetSingleton().GetSize();
+	const Rectf &rect = GraphicsRoot::GetSingleton().GetViewRect();
 	const Camera *cam = GraphicsRoot::GetSingleton().GetCamera();
 
 	float rMax = cam->GetRMax();
 	float dMin = cam->GetDMin();
 
 	mPixelTolerance = tolerance;
-	mWorldTolerance = 2.0f*rMax*mPixelTolerance/(dMin*size.Width);
+	mWorldTolerance = 2.0f*rMax*mPixelTolerance/(dMin*rect.Width());
 	mWorldTolerance *= mWorldTolerance;
 }
 //----------------------------------------------------------------------------

@@ -1,0 +1,373 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		73A6D79C1A96E6C9000BD98B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6D79B1A96E6C9000BD98B /* Foundation.framework */; };
+		73A6D7EE1A96E721000BD98B /* PX2UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7C11A96E721000BD98B /* PX2UIButton.cpp */; };
+		73A6D7EF1A96E721000BD98B /* PX2UIButtonBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7C41A96E721000BD98B /* PX2UIButtonBase.cpp */; };
+		73A6D7F01A96E721000BD98B /* PX2UICheckButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7C81A96E721000BD98B /* PX2UICheckButton.cpp */; };
+		73A6D7F11A96E721000BD98B /* PX2UIEditBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7CA1A96E721000BD98B /* PX2UIEditBox.cpp */; };
+		73A6D7F21A96E721000BD98B /* PX2UIFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7CD1A96E721000BD98B /* PX2UIFrame.cpp */; };
+		73A6D7F31A96E721000BD98B /* PX2UIGridFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7D01A96E721000BD98B /* PX2UIGridFrame.cpp */; };
+		73A6D7F41A96E721000BD98B /* PX2UIInputText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7D21A96E721000BD98B /* PX2UIInputText.cpp */; };
+		73A6D7F51A96E721000BD98B /* PX2UIPicBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7D51A96E721000BD98B /* PX2UIPicBox.cpp */; };
+		73A6D7F61A96E721000BD98B /* PX2UIProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7D91A96E721000BD98B /* PX2UIProgressBar.cpp */; };
+		73A6D7F71A96E721000BD98B /* PX2UIProgressBarCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7DC1A96E721000BD98B /* PX2UIProgressBarCtrl.cpp */; };
+		73A6D7F81A96E721000BD98B /* PX2UIScoreText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7DF1A96E721000BD98B /* PX2UIScoreText.cpp */; };
+		73A6D7F91A96E721000BD98B /* PX2UIScoreTextCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7E21A96E721000BD98B /* PX2UIScoreTextCtrl.cpp */; };
+		73A6D7FA1A96E721000BD98B /* PX2UISizeFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7E51A96E721000BD98B /* PX2UISizeFrame.cpp */; };
+		73A6D7FB1A96E721000BD98B /* PX2UIText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7E81A96E721000BD98B /* PX2UIText.cpp */; };
+		73A6D7FC1A96E721000BD98B /* PX2UIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7EB1A96E721000BD98B /* PX2UIView.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73A6D7961A96E6C9000BD98B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		73A6D7981A96E6C9000BD98B /* libPX2UI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2UI.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		73A6D79B1A96E6C9000BD98B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		73A6D7A91A96E6C9000BD98B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D7AC1A96E6C9000BD98B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D7C11A96E721000BD98B /* PX2UIButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIButton.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7C21A96E721000BD98B /* PX2UIButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIButton.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7C31A96E721000BD98B /* PX2UIButton.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIButton.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7C41A96E721000BD98B /* PX2UIButtonBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIButtonBase.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7C51A96E721000BD98B /* PX2UIButtonBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIButtonBase.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7C61A96E721000BD98B /* PX2UIButtonBase.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIButtonBase.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7C71A96E721000BD98B /* PX2UICallback.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UICallback.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7C81A96E721000BD98B /* PX2UICheckButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UICheckButton.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7C91A96E721000BD98B /* PX2UICheckButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UICheckButton.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7CA1A96E721000BD98B /* PX2UIEditBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIEditBox.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7CB1A96E721000BD98B /* PX2UIEditBox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIEditBox.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7CC1A96E721000BD98B /* PX2UIEditBox.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIEditBox.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7CD1A96E721000BD98B /* PX2UIFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIFrame.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7CE1A96E721000BD98B /* PX2UIFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIFrame.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7CF1A96E721000BD98B /* PX2UIFrame.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIFrame.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7D01A96E721000BD98B /* PX2UIGridFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIGridFrame.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7D11A96E721000BD98B /* PX2UIGridFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIGridFrame.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7D21A96E721000BD98B /* PX2UIInputText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIInputText.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7D31A96E721000BD98B /* PX2UIInputText.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIInputText.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7D41A96E721000BD98B /* PX2UIInputText.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIInputText.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7D51A96E721000BD98B /* PX2UIPicBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIPicBox.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7D61A96E721000BD98B /* PX2UIPicBox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIPicBox.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7D71A96E721000BD98B /* PX2UIPicBox.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIPicBox.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7D81A96E721000BD98B /* PX2UIPre.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIPre.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7D91A96E721000BD98B /* PX2UIProgressBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIProgressBar.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7DA1A96E721000BD98B /* PX2UIProgressBar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIProgressBar.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7DB1A96E721000BD98B /* PX2UIProgressBar.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIProgressBar.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7DC1A96E721000BD98B /* PX2UIProgressBarCtrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIProgressBarCtrl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7DD1A96E721000BD98B /* PX2UIProgressBarCtrl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIProgressBarCtrl.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7DE1A96E721000BD98B /* PX2UIProgressBarCtrl.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIProgressBarCtrl.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7DF1A96E721000BD98B /* PX2UIScoreText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIScoreText.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7E01A96E721000BD98B /* PX2UIScoreText.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIScoreText.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7E11A96E721000BD98B /* PX2UIScoreText.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIScoreText.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7E21A96E721000BD98B /* PX2UIScoreTextCtrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIScoreTextCtrl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7E31A96E721000BD98B /* PX2UIScoreTextCtrl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIScoreTextCtrl.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7E41A96E721000BD98B /* PX2UIScoreTextCtrl.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIScoreTextCtrl.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7E51A96E721000BD98B /* PX2UISizeFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UISizeFrame.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7E61A96E721000BD98B /* PX2UISizeFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UISizeFrame.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7E71A96E721000BD98B /* PX2UISizeFrame.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UISizeFrame.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7E81A96E721000BD98B /* PX2UIText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIText.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7E91A96E721000BD98B /* PX2UIText.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIText.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7EA1A96E721000BD98B /* PX2UIText.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIText.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7EB1A96E721000BD98B /* PX2UIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIView.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7EC1A96E721000BD98B /* PX2UIView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIView.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7ED1A96E721000BD98B /* PX2UIView.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIView.inl; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73A6D7951A96E6C9000BD98B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D79C1A96E6C9000BD98B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73A6D78F1A96E6C9000BD98B = {
+			isa = PBXGroup;
+			children = (
+				73A6D79D1A96E6C9000BD98B /* PX2UI */,
+				73A6D79A1A96E6C9000BD98B /* Frameworks */,
+				73A6D7991A96E6C9000BD98B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73A6D7991A96E6C9000BD98B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D7981A96E6C9000BD98B /* libPX2UI.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73A6D79A1A96E6C9000BD98B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D79B1A96E6C9000BD98B /* Foundation.framework */,
+				73A6D7A91A96E6C9000BD98B /* XCTest.framework */,
+				73A6D7AC1A96E6C9000BD98B /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73A6D79D1A96E6C9000BD98B /* PX2UI */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D7C11A96E721000BD98B /* PX2UIButton.cpp */,
+				73A6D7C21A96E721000BD98B /* PX2UIButton.hpp */,
+				73A6D7C31A96E721000BD98B /* PX2UIButton.inl */,
+				73A6D7C41A96E721000BD98B /* PX2UIButtonBase.cpp */,
+				73A6D7C51A96E721000BD98B /* PX2UIButtonBase.hpp */,
+				73A6D7C61A96E721000BD98B /* PX2UIButtonBase.inl */,
+				73A6D7C71A96E721000BD98B /* PX2UICallback.hpp */,
+				73A6D7C81A96E721000BD98B /* PX2UICheckButton.cpp */,
+				73A6D7C91A96E721000BD98B /* PX2UICheckButton.hpp */,
+				73A6D7CA1A96E721000BD98B /* PX2UIEditBox.cpp */,
+				73A6D7CB1A96E721000BD98B /* PX2UIEditBox.hpp */,
+				73A6D7CC1A96E721000BD98B /* PX2UIEditBox.inl */,
+				73A6D7CD1A96E721000BD98B /* PX2UIFrame.cpp */,
+				73A6D7CE1A96E721000BD98B /* PX2UIFrame.hpp */,
+				73A6D7CF1A96E721000BD98B /* PX2UIFrame.inl */,
+				73A6D7D01A96E721000BD98B /* PX2UIGridFrame.cpp */,
+				73A6D7D11A96E721000BD98B /* PX2UIGridFrame.hpp */,
+				73A6D7D21A96E721000BD98B /* PX2UIInputText.cpp */,
+				73A6D7D31A96E721000BD98B /* PX2UIInputText.hpp */,
+				73A6D7D41A96E721000BD98B /* PX2UIInputText.inl */,
+				73A6D7D51A96E721000BD98B /* PX2UIPicBox.cpp */,
+				73A6D7D61A96E721000BD98B /* PX2UIPicBox.hpp */,
+				73A6D7D71A96E721000BD98B /* PX2UIPicBox.inl */,
+				73A6D7D81A96E721000BD98B /* PX2UIPre.hpp */,
+				73A6D7D91A96E721000BD98B /* PX2UIProgressBar.cpp */,
+				73A6D7DA1A96E721000BD98B /* PX2UIProgressBar.hpp */,
+				73A6D7DB1A96E721000BD98B /* PX2UIProgressBar.inl */,
+				73A6D7DC1A96E721000BD98B /* PX2UIProgressBarCtrl.cpp */,
+				73A6D7DD1A96E721000BD98B /* PX2UIProgressBarCtrl.hpp */,
+				73A6D7DE1A96E721000BD98B /* PX2UIProgressBarCtrl.inl */,
+				73A6D7DF1A96E721000BD98B /* PX2UIScoreText.cpp */,
+				73A6D7E01A96E721000BD98B /* PX2UIScoreText.hpp */,
+				73A6D7E11A96E721000BD98B /* PX2UIScoreText.inl */,
+				73A6D7E21A96E721000BD98B /* PX2UIScoreTextCtrl.cpp */,
+				73A6D7E31A96E721000BD98B /* PX2UIScoreTextCtrl.hpp */,
+				73A6D7E41A96E721000BD98B /* PX2UIScoreTextCtrl.inl */,
+				73A6D7E51A96E721000BD98B /* PX2UISizeFrame.cpp */,
+				73A6D7E61A96E721000BD98B /* PX2UISizeFrame.hpp */,
+				73A6D7E71A96E721000BD98B /* PX2UISizeFrame.inl */,
+				73A6D7E81A96E721000BD98B /* PX2UIText.cpp */,
+				73A6D7E91A96E721000BD98B /* PX2UIText.hpp */,
+				73A6D7EA1A96E721000BD98B /* PX2UIText.inl */,
+				73A6D7EB1A96E721000BD98B /* PX2UIView.cpp */,
+				73A6D7EC1A96E721000BD98B /* PX2UIView.hpp */,
+				73A6D7ED1A96E721000BD98B /* PX2UIView.inl */,
+			);
+			path = PX2UI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73A6D7971A96E6C9000BD98B /* PX2UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73A6D7BB1A96E6C9000BD98B /* Build configuration list for PBXNativeTarget "PX2UI" */;
+			buildPhases = (
+				73A6D7941A96E6C9000BD98B /* Sources */,
+				73A6D7951A96E6C9000BD98B /* Frameworks */,
+				73A6D7961A96E6C9000BD98B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PX2UI;
+			productName = PX2UI;
+			productReference = 73A6D7981A96E6C9000BD98B /* libPX2UI.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73A6D7901A96E6C9000BD98B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Phoenix;
+			};
+			buildConfigurationList = 73A6D7931A96E6C9000BD98B /* Build configuration list for PBXProject "PX2UI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 73A6D78F1A96E6C9000BD98B;
+			productRefGroup = 73A6D7991A96E6C9000BD98B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73A6D7971A96E6C9000BD98B /* PX2UI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73A6D7941A96E6C9000BD98B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D7F31A96E721000BD98B /* PX2UIGridFrame.cpp in Sources */,
+				73A6D7F91A96E721000BD98B /* PX2UIScoreTextCtrl.cpp in Sources */,
+				73A6D7F61A96E721000BD98B /* PX2UIProgressBar.cpp in Sources */,
+				73A6D7FB1A96E721000BD98B /* PX2UIText.cpp in Sources */,
+				73A6D7F11A96E721000BD98B /* PX2UIEditBox.cpp in Sources */,
+				73A6D7EE1A96E721000BD98B /* PX2UIButton.cpp in Sources */,
+				73A6D7F41A96E721000BD98B /* PX2UIInputText.cpp in Sources */,
+				73A6D7F21A96E721000BD98B /* PX2UIFrame.cpp in Sources */,
+				73A6D7F71A96E721000BD98B /* PX2UIProgressBarCtrl.cpp in Sources */,
+				73A6D7F51A96E721000BD98B /* PX2UIPicBox.cpp in Sources */,
+				73A6D7EF1A96E721000BD98B /* PX2UIButtonBase.cpp in Sources */,
+				73A6D7FC1A96E721000BD98B /* PX2UIView.cpp in Sources */,
+				73A6D7FA1A96E721000BD98B /* PX2UISizeFrame.cpp in Sources */,
+				73A6D7F01A96E721000BD98B /* PX2UICheckButton.cpp in Sources */,
+				73A6D7F81A96E721000BD98B /* PX2UIScoreText.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73A6D7B91A96E6C9000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		73A6D7BA1A96E6C9000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73A6D7BC1A96E6C9000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2UI.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Unity ../PX2Graphics ../PX2Mathematics ../PX2Core";
+			};
+			name = Debug;
+		};
+		73A6D7BD1A96E6C9000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2UI.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Unity ../PX2Graphics ../PX2Mathematics ../PX2Core";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73A6D7931A96E6C9000BD98B /* Build configuration list for PBXProject "PX2UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D7B91A96E6C9000BD98B /* Debug */,
+				73A6D7BA1A96E6C9000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73A6D7BB1A96E6C9000BD98B /* Build configuration list for PBXNativeTarget "PX2UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D7BC1A96E6C9000BD98B /* Debug */,
+				73A6D7BD1A96E6C9000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73A6D7901A96E6C9000BD98B /* Project object */;
+}

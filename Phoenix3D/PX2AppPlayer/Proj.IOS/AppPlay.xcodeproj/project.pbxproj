@@ -14,13 +14,24 @@
 		7384563E1A95D85700876E88 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7384563D1A95D85700876E88 /* OpenGLES.framework */; };
 		738456441A95D85700876E88 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 738456421A95D85700876E88 /* InfoPlist.strings */; };
 		738456461A95D85700876E88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 738456451A95D85700876E88 /* main.m */; };
-		7384564A1A95D85700876E88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 738456491A95D85700876E88 /* AppDelegate.m */; };
+		7384564A1A95D85700876E88 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 738456491A95D85700876E88 /* AppDelegate.mm */; };
 		7384564D1A95D85700876E88 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7384564B1A95D85700876E88 /* Main_iPhone.storyboard */; };
 		738456501A95D85700876E88 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7384564E1A95D85700876E88 /* Main_iPad.storyboard */; };
 		738456521A95D85700876E88 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 738456511A95D85700876E88 /* Shader.fsh */; };
 		738456541A95D85700876E88 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 738456531A95D85700876E88 /* Shader.vsh */; };
-		738456571A95D85700876E88 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 738456561A95D85700876E88 /* ViewController.m */; };
+		738456571A95D85700876E88 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 738456561A95D85700876E88 /* ViewController.mm */; };
 		738456591A95D85700876E88 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 738456581A95D85700876E88 /* Images.xcassets */; };
+		73A6DAA61A96F478000BD98B /* libPX2AppFrame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DA9C1A96F478000BD98B /* libPX2AppFrame.a */; };
+		73A6DAA71A96F478000BD98B /* libPX2Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DA9D1A96F478000BD98B /* libPX2Core.a */; };
+		73A6DAA81A96F478000BD98B /* libPX2Effect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DA9E1A96F478000BD98B /* libPX2Effect.a */; };
+		73A6DAA91A96F478000BD98B /* libPX2Graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DA9F1A96F478000BD98B /* libPX2Graphics.a */; };
+		73A6DAAA1A96F478000BD98B /* libPX2Mathematics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA01A96F478000BD98B /* libPX2Mathematics.a */; };
+		73A6DAAB1A96F478000BD98B /* libPX2Net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA11A96F478000BD98B /* libPX2Net.a */; };
+		73A6DAAC1A96F478000BD98B /* libPX2Simulation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA21A96F478000BD98B /* libPX2Simulation.a */; };
+		73A6DAAD1A96F478000BD98B /* libPX2Terrains.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA31A96F478000BD98B /* libPX2Terrains.a */; };
+		73A6DAAE1A96F478000BD98B /* libPX2UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA41A96F478000BD98B /* libPX2UI.a */; };
+		73A6DAAF1A96F478000BD98B /* libPX2Unity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA51A96F478000BD98B /* libPX2Unity.a */; };
+		73A6DAB21A97005D000BD98B /* AppPlayerApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DAB01A97005D000BD98B /* AppPlayerApp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,15 +46,27 @@
 		738456451A95D85700876E88 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		738456471A95D85700876E88 /* AppPlay-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppPlay-Prefix.pch"; sourceTree = "<group>"; };
 		738456481A95D85700876E88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		738456491A95D85700876E88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		738456491A95D85700876E88 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		7384564C1A95D85700876E88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		7384564F1A95D85700876E88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		738456511A95D85700876E88 /* Shader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.fsh; path = Shaders/Shader.fsh; sourceTree = "<group>"; };
 		738456531A95D85700876E88 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
 		738456551A95D85700876E88 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		738456561A95D85700876E88 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		738456561A95D85700876E88 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		738456581A95D85700876E88 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7384565F1A95D85700876E88 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		73A6DA9C1A96F478000BD98B /* libPX2AppFrame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2AppFrame.a; path = "../../../PX2AppFrame/build/Debug-iphoneos/libPX2AppFrame.a"; sourceTree = "<group>"; };
+		73A6DA9D1A96F478000BD98B /* libPX2Core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Core.a; path = "../../../PX2Core/build/Debug-iphoneos/libPX2Core.a"; sourceTree = "<group>"; };
+		73A6DA9E1A96F478000BD98B /* libPX2Effect.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Effect.a; path = "../../../PX2Effect/build/Debug-iphoneos/libPX2Effect.a"; sourceTree = "<group>"; };
+		73A6DA9F1A96F478000BD98B /* libPX2Graphics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Graphics.a; path = "../../../PX2Graphics/build/Debug-iphoneos/libPX2Graphics.a"; sourceTree = "<group>"; };
+		73A6DAA01A96F478000BD98B /* libPX2Mathematics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Mathematics.a; path = "../../../PX2Mathematics/build/Debug-iphoneos/libPX2Mathematics.a"; sourceTree = "<group>"; };
+		73A6DAA11A96F478000BD98B /* libPX2Net.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Net.a; path = "../../../PX2Net/build/Debug-iphoneos/libPX2Net.a"; sourceTree = "<group>"; };
+		73A6DAA21A96F478000BD98B /* libPX2Simulation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Simulation.a; path = "../../../PX2Simulation/build/Debug-iphoneos/libPX2Simulation.a"; sourceTree = "<group>"; };
+		73A6DAA31A96F478000BD98B /* libPX2Terrains.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Terrains.a; path = "../../../PX2Terrains/build/Debug-iphoneos/libPX2Terrains.a"; sourceTree = "<group>"; };
+		73A6DAA41A96F478000BD98B /* libPX2UI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2UI.a; path = "../../../PX2UI/build/Debug-iphoneos/libPX2UI.a"; sourceTree = "<group>"; };
+		73A6DAA51A96F478000BD98B /* libPX2Unity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Unity.a; path = "../../../PX2Unity/build/Debug-iphoneos/libPX2Unity.a"; sourceTree = "<group>"; };
+		73A6DAB01A97005D000BD98B /* AppPlayerApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppPlayerApp.cpp; path = ../AppPlayerApp.cpp; sourceTree = "<group>"; };
+		73A6DAB11A97005D000BD98B /* AppPlayerApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AppPlayerApp.hpp; path = ../AppPlayerApp.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +74,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73A6DAA61A96F478000BD98B /* libPX2AppFrame.a in Frameworks */,
+				73A6DAA71A96F478000BD98B /* libPX2Core.a in Frameworks */,
+				73A6DAA81A96F478000BD98B /* libPX2Effect.a in Frameworks */,
+				73A6DAA91A96F478000BD98B /* libPX2Graphics.a in Frameworks */,
+				73A6DAAA1A96F478000BD98B /* libPX2Mathematics.a in Frameworks */,
+				73A6DAAB1A96F478000BD98B /* libPX2Net.a in Frameworks */,
+				73A6DAAC1A96F478000BD98B /* libPX2Simulation.a in Frameworks */,
+				73A6DAAD1A96F478000BD98B /* libPX2Terrains.a in Frameworks */,
+				73A6DAAE1A96F478000BD98B /* libPX2UI.a in Frameworks */,
+				73A6DAAF1A96F478000BD98B /* libPX2Unity.a in Frameworks */,
 				7384563E1A95D85700876E88 /* OpenGLES.framework in Frameworks */,
 				738456381A95D85700876E88 /* CoreGraphics.framework in Frameworks */,
 				7384563A1A95D85700876E88 /* UIKit.framework in Frameworks */,
@@ -65,6 +98,7 @@
 		738456291A95D85700876E88 = {
 			isa = PBXGroup;
 			children = (
+				73A6DA981A96F438000BD98B /* AppPlayer */,
 				7384563F1A95D85700876E88 /* AppPlay */,
 				738456341A95D85700876E88 /* Frameworks */,
 				738456331A95D85700876E88 /* Products */,
@@ -82,6 +116,16 @@
 		738456341A95D85700876E88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				73A6DA9C1A96F478000BD98B /* libPX2AppFrame.a */,
+				73A6DA9D1A96F478000BD98B /* libPX2Core.a */,
+				73A6DA9E1A96F478000BD98B /* libPX2Effect.a */,
+				73A6DA9F1A96F478000BD98B /* libPX2Graphics.a */,
+				73A6DAA01A96F478000BD98B /* libPX2Mathematics.a */,
+				73A6DAA11A96F478000BD98B /* libPX2Net.a */,
+				73A6DAA21A96F478000BD98B /* libPX2Simulation.a */,
+				73A6DAA31A96F478000BD98B /* libPX2Terrains.a */,
+				73A6DAA41A96F478000BD98B /* libPX2UI.a */,
+				73A6DAA51A96F478000BD98B /* libPX2Unity.a */,
 				738456351A95D85700876E88 /* Foundation.framework */,
 				738456371A95D85700876E88 /* CoreGraphics.framework */,
 				738456391A95D85700876E88 /* UIKit.framework */,
@@ -96,13 +140,13 @@
 			isa = PBXGroup;
 			children = (
 				738456481A95D85700876E88 /* AppDelegate.h */,
-				738456491A95D85700876E88 /* AppDelegate.m */,
+				738456491A95D85700876E88 /* AppDelegate.mm */,
 				7384564B1A95D85700876E88 /* Main_iPhone.storyboard */,
 				7384564E1A95D85700876E88 /* Main_iPad.storyboard */,
 				738456511A95D85700876E88 /* Shader.fsh */,
 				738456531A95D85700876E88 /* Shader.vsh */,
 				738456551A95D85700876E88 /* ViewController.h */,
-				738456561A95D85700876E88 /* ViewController.m */,
+				738456561A95D85700876E88 /* ViewController.mm */,
 				738456581A95D85700876E88 /* Images.xcassets */,
 				738456401A95D85700876E88 /* Supporting Files */,
 			);
@@ -118,6 +162,15 @@
 				738456471A95D85700876E88 /* AppPlay-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		73A6DA981A96F438000BD98B /* AppPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				73A6DAB01A97005D000BD98B /* AppPlayerApp.cpp */,
+				73A6DAB11A97005D000BD98B /* AppPlayerApp.hpp */,
+			);
+			name = AppPlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,8 +241,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				738456571A95D85700876E88 /* ViewController.m in Sources */,
-				7384564A1A95D85700876E88 /* AppDelegate.m in Sources */,
+				73A6DAB21A97005D000BD98B /* AppPlayerApp.cpp in Sources */,
+				738456571A95D85700876E88 /* ViewController.mm in Sources */,
+				7384564A1A95D85700876E88 /* AppDelegate.mm in Sources */,
 				738456461A95D85700876E88 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +282,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ALWAYS_SEARCH_USER_PATHS[arch=*]" = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -260,6 +315,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "../../PX2AppFrame ../../PX2Simulation ../../PX2UI ../../PX2Effect ../../PX2Unity ../../PX2Graphics ../../PX2Mathematics ../../PX2Core ../";
 			};
 			name = Debug;
 		};
@@ -292,6 +348,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "../../PX2AppFrame ../../PX2Simulation ../../PX2UI ../../PX2Effect ../../PX2Unity ../../PX2Graphics ../../PX2Mathematics ../../PX2Core ../";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -304,6 +361,19 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppPlay/AppPlay-Prefix.pch";
 				INFOPLIST_FILE = "AppPlay/AppPlay-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2AppFrame/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Core/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Effect/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Graphics/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Mathematics/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Net/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Simulation/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Terrains/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2UI/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Unity/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -317,6 +387,19 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppPlay/AppPlay-Prefix.pch";
 				INFOPLIST_FILE = "AppPlay/AppPlay-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2AppFrame/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Core/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Effect/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Graphics/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Mathematics/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Net/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Simulation/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Terrains/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2UI/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Unity/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -341,6 +424,7 @@
 				738456711A95D85700876E88 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

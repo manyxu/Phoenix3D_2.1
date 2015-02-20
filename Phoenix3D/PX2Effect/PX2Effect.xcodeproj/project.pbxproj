@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		73A6D9581A96ECDE000BD98B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6D9571A96ECDE000BD98B /* Foundation.framework */; };
+		73A6D9D31A96EDB0000BD98B /* PX2BeamEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D97D1A96EDB0000BD98B /* PX2BeamEmitter.cpp */; };
+		73A6D9D41A96EDB0000BD98B /* PX2BeamEmitterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9801A96EDB0000BD98B /* PX2BeamEmitterController.cpp */; };
+		73A6D9D51A96EDB0000BD98B /* PX2BeamObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9831A96EDB0000BD98B /* PX2BeamObject.cpp */; };
+		73A6D9D61A96EDB0000BD98B /* PX2Billboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9851A96EDB0000BD98B /* PX2Billboard.cpp */; };
+		73A6D9D71A96EDB0000BD98B /* PX2BillboardController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9881A96EDB0000BD98B /* PX2BillboardController.cpp */; };
+		73A6D9D81A96EDB0000BD98B /* PX2CameraShake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D98B1A96EDB0000BD98B /* PX2CameraShake.cpp */; };
+		73A6D9D91A96EDB0000BD98B /* PX2CameraShakeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D98E1A96EDB0000BD98B /* PX2CameraShakeController.cpp */; };
+		73A6D9DA1A96EDB0000BD98B /* PX2CameraShakeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9911A96EDB0000BD98B /* PX2CameraShakeObject.cpp */; };
+		73A6D9DB1A96EDB0000BD98B /* PX2Effectable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9941A96EDB0000BD98B /* PX2Effectable.cpp */; };
+		73A6D9DC1A96EDB0000BD98B /* PX2EffectableController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9971A96EDB0000BD98B /* PX2EffectableController.cpp */; };
+		73A6D9DD1A96EDB0000BD98B /* PX2EffectMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D99A1A96EDB0000BD98B /* PX2EffectMaterial.cpp */; };
+		73A6D9DE1A96EDB0000BD98B /* PX2EffectModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D99C1A96EDB0000BD98B /* PX2EffectModel.cpp */; };
+		73A6D9DF1A96EDB0000BD98B /* PX2EffectModelController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D99F1A96EDB0000BD98B /* PX2EffectModelController.cpp */; };
+		73A6D9E01A96EDB0000BD98B /* PX2EffectModelNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9A21A96EDB0000BD98B /* PX2EffectModelNode.cpp */; };
+		73A6D9E11A96EDB0000BD98B /* PX2EffectModelNodeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9A51A96EDB0000BD98B /* PX2EffectModelNodeController.cpp */; };
+		73A6D9E21A96EDB0000BD98B /* PX2EffectModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9A71A96EDB0000BD98B /* PX2EffectModule.cpp */; };
+		73A6D9E31A96EDB0000BD98B /* PX2EffectModuleCallbacks_BeamEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9AA1A96EDB0000BD98B /* PX2EffectModuleCallbacks_BeamEmitter.cpp */; };
+		73A6D9E41A96EDB0000BD98B /* PX2EffectModuleCallbacks_CameraShake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9AC1A96EDB0000BD98B /* PX2EffectModuleCallbacks_CameraShake.cpp */; };
+		73A6D9E51A96EDB0000BD98B /* PX2EffectModuleCallbacks_Effectable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9AE1A96EDB0000BD98B /* PX2EffectModuleCallbacks_Effectable.cpp */; };
+		73A6D9E61A96EDB0000BD98B /* PX2EffectModuleCallbacks_ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9B01A96EDB0000BD98B /* PX2EffectModuleCallbacks_ParticleEmitter.cpp */; };
+		73A6D9E71A96EDB0000BD98B /* PX2EffectModuleCallbacks_Soundable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9B21A96EDB0000BD98B /* PX2EffectModuleCallbacks_Soundable.cpp */; };
+		73A6D9E81A96EDB0000BD98B /* PX2EffectObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9B41A96EDB0000BD98B /* PX2EffectObject.cpp */; };
+		73A6D9E91A96EDB0000BD98B /* PX2ParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9B71A96EDB0000BD98B /* PX2ParticleEmitter.cpp */; };
+		73A6D9EA1A96EDB0000BD98B /* PX2ParticleEmitterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9BA1A96EDB0000BD98B /* PX2ParticleEmitterController.cpp */; };
+		73A6D9EB1A96EDB0000BD98B /* PX2ParticleObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9BD1A96EDB0000BD98B /* PX2ParticleObject.cpp */; };
+		73A6D9EC1A96EDB0000BD98B /* PX2RibbonEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9BF1A96EDB0000BD98B /* PX2RibbonEmitter.cpp */; };
+		73A6D9ED1A96EDB0000BD98B /* PX2RibbonEmitterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9C21A96EDB0000BD98B /* PX2RibbonEmitterController.cpp */; };
+		73A6D9EE1A96EDB0000BD98B /* PX2RibbonObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9C51A96EDB0000BD98B /* PX2RibbonObject.cpp */; };
+		73A6D9EF1A96EDB0000BD98B /* PX2Soundable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9C71A96EDB0000BD98B /* PX2Soundable.cpp */; };
+		73A6D9F01A96EDB0000BD98B /* PX2SoundableController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9CA1A96EDB0000BD98B /* PX2SoundableController.cpp */; };
+		73A6D9F11A96EDB0000BD98B /* PX2SoundableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9CD1A96EDB0000BD98B /* PX2SoundableObject.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73A6D9521A96ECDE000BD98B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		73A6D9541A96ECDE000BD98B /* libPX2Effect.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2Effect.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		73A6D9571A96ECDE000BD98B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		73A6D9651A96ECDE000BD98B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D9681A96ECDE000BD98B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D97D1A96EDB0000BD98B /* PX2BeamEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2BeamEmitter.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D97E1A96EDB0000BD98B /* PX2BeamEmitter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2BeamEmitter.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D97F1A96EDB0000BD98B /* PX2BeamEmitter.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2BeamEmitter.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9801A96EDB0000BD98B /* PX2BeamEmitterController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2BeamEmitterController.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9811A96EDB0000BD98B /* PX2BeamEmitterController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2BeamEmitterController.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9821A96EDB0000BD98B /* PX2BeamEmitterController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2BeamEmitterController.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9831A96EDB0000BD98B /* PX2BeamObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2BeamObject.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9841A96EDB0000BD98B /* PX2BeamObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2BeamObject.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9851A96EDB0000BD98B /* PX2Billboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Billboard.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9861A96EDB0000BD98B /* PX2Billboard.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Billboard.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9871A96EDB0000BD98B /* PX2Billboard.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Billboard.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9881A96EDB0000BD98B /* PX2BillboardController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2BillboardController.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9891A96EDB0000BD98B /* PX2BillboardController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2BillboardController.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D98A1A96EDB0000BD98B /* PX2BillboardController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2BillboardController.inl; sourceTree = SOURCE_ROOT; };
+		73A6D98B1A96EDB0000BD98B /* PX2CameraShake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2CameraShake.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D98C1A96EDB0000BD98B /* PX2CameraShake.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2CameraShake.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D98D1A96EDB0000BD98B /* PX2CameraShake.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2CameraShake.inl; sourceTree = SOURCE_ROOT; };
+		73A6D98E1A96EDB0000BD98B /* PX2CameraShakeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2CameraShakeController.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D98F1A96EDB0000BD98B /* PX2CameraShakeController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2CameraShakeController.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9901A96EDB0000BD98B /* PX2CameraShakeController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2CameraShakeController.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9911A96EDB0000BD98B /* PX2CameraShakeObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2CameraShakeObject.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9921A96EDB0000BD98B /* PX2CameraShakeObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2CameraShakeObject.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9931A96EDB0000BD98B /* PX2Effect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Effect.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9941A96EDB0000BD98B /* PX2Effectable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Effectable.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9951A96EDB0000BD98B /* PX2Effectable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Effectable.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9961A96EDB0000BD98B /* PX2Effectable.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Effectable.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9971A96EDB0000BD98B /* PX2EffectableController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectableController.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9981A96EDB0000BD98B /* PX2EffectableController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectableController.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9991A96EDB0000BD98B /* PX2EffectableController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EffectableController.inl; sourceTree = SOURCE_ROOT; };
+		73A6D99A1A96EDB0000BD98B /* PX2EffectMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectMaterial.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D99B1A96EDB0000BD98B /* PX2EffectMaterial.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectMaterial.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D99C1A96EDB0000BD98B /* PX2EffectModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModel.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D99D1A96EDB0000BD98B /* PX2EffectModel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModel.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D99E1A96EDB0000BD98B /* PX2EffectModel.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EffectModel.inl; sourceTree = SOURCE_ROOT; };
+		73A6D99F1A96EDB0000BD98B /* PX2EffectModelController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModelController.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9A01A96EDB0000BD98B /* PX2EffectModelController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModelController.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9A11A96EDB0000BD98B /* PX2EffectModelController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EffectModelController.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9A21A96EDB0000BD98B /* PX2EffectModelNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModelNode.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9A31A96EDB0000BD98B /* PX2EffectModelNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModelNode.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9A41A96EDB0000BD98B /* PX2EffectModelNode.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EffectModelNode.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9A51A96EDB0000BD98B /* PX2EffectModelNodeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModelNodeController.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9A61A96EDB0000BD98B /* PX2EffectModelNodeController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModelNodeController.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9A71A96EDB0000BD98B /* PX2EffectModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModule.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9A81A96EDB0000BD98B /* PX2EffectModule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModule.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9A91A96EDB0000BD98B /* PX2EffectModule.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EffectModule.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9AA1A96EDB0000BD98B /* PX2EffectModuleCallbacks_BeamEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModuleCallbacks_BeamEmitter.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9AB1A96EDB0000BD98B /* PX2EffectModuleCallbacks_BeamEmitter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModuleCallbacks_BeamEmitter.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9AC1A96EDB0000BD98B /* PX2EffectModuleCallbacks_CameraShake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModuleCallbacks_CameraShake.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9AD1A96EDB0000BD98B /* PX2EffectModuleCallbacks_CameraShake.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModuleCallbacks_CameraShake.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9AE1A96EDB0000BD98B /* PX2EffectModuleCallbacks_Effectable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModuleCallbacks_Effectable.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9AF1A96EDB0000BD98B /* PX2EffectModuleCallbacks_Effectable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModuleCallbacks_Effectable.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B01A96EDB0000BD98B /* PX2EffectModuleCallbacks_ParticleEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModuleCallbacks_ParticleEmitter.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B11A96EDB0000BD98B /* PX2EffectModuleCallbacks_ParticleEmitter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModuleCallbacks_ParticleEmitter.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B21A96EDB0000BD98B /* PX2EffectModuleCallbacks_Soundable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectModuleCallbacks_Soundable.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B31A96EDB0000BD98B /* PX2EffectModuleCallbacks_Soundable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectModuleCallbacks_Soundable.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B41A96EDB0000BD98B /* PX2EffectObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectObject.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B51A96EDB0000BD98B /* PX2EffectObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectObject.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B61A96EDB0000BD98B /* PX2EffectPre.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectPre.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B71A96EDB0000BD98B /* PX2ParticleEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ParticleEmitter.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B81A96EDB0000BD98B /* PX2ParticleEmitter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ParticleEmitter.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9B91A96EDB0000BD98B /* PX2ParticleEmitter.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2ParticleEmitter.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9BA1A96EDB0000BD98B /* PX2ParticleEmitterController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ParticleEmitterController.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9BB1A96EDB0000BD98B /* PX2ParticleEmitterController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ParticleEmitterController.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9BC1A96EDB0000BD98B /* PX2ParticleEmitterController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2ParticleEmitterController.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9BD1A96EDB0000BD98B /* PX2ParticleObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ParticleObject.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9BE1A96EDB0000BD98B /* PX2ParticleObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ParticleObject.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9BF1A96EDB0000BD98B /* PX2RibbonEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2RibbonEmitter.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9C01A96EDB0000BD98B /* PX2RibbonEmitter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2RibbonEmitter.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9C11A96EDB0000BD98B /* PX2RibbonEmitter.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2RibbonEmitter.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9C21A96EDB0000BD98B /* PX2RibbonEmitterController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2RibbonEmitterController.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9C31A96EDB0000BD98B /* PX2RibbonEmitterController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2RibbonEmitterController.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9C41A96EDB0000BD98B /* PX2RibbonEmitterController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2RibbonEmitterController.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9C51A96EDB0000BD98B /* PX2RibbonObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2RibbonObject.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9C61A96EDB0000BD98B /* PX2RibbonObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2RibbonObject.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9C71A96EDB0000BD98B /* PX2Soundable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Soundable.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9C81A96EDB0000BD98B /* PX2Soundable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Soundable.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9C91A96EDB0000BD98B /* PX2Soundable.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Soundable.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9CA1A96EDB0000BD98B /* PX2SoundableController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SoundableController.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9CB1A96EDB0000BD98B /* PX2SoundableController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SoundableController.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9CC1A96EDB0000BD98B /* PX2SoundableController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SoundableController.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9CD1A96EDB0000BD98B /* PX2SoundableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SoundableObject.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9CE1A96EDB0000BD98B /* PX2SoundableObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SoundableObject.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9CF1A96EDB0000BD98B /* PX2TRange.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2TRange.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9D01A96EDB0000BD98B /* PX2TRange.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2TRange.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9D11A96EDB0000BD98B /* PX2TRecyclingArray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2TRecyclingArray.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9D21A96EDB0000BD98B /* PX2TRecyclingArray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2TRecyclingArray.inl; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73A6D9511A96ECDE000BD98B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D9581A96ECDE000BD98B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73A6D94B1A96ECDE000BD98B = {
+			isa = PBXGroup;
+			children = (
+				73A6D9591A96ECDE000BD98B /* PX2Effect */,
+				73A6D9561A96ECDE000BD98B /* Frameworks */,
+				73A6D9551A96ECDE000BD98B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73A6D9551A96ECDE000BD98B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D9541A96ECDE000BD98B /* libPX2Effect.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73A6D9561A96ECDE000BD98B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D9571A96ECDE000BD98B /* Foundation.framework */,
+				73A6D9651A96ECDE000BD98B /* XCTest.framework */,
+				73A6D9681A96ECDE000BD98B /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73A6D9591A96ECDE000BD98B /* PX2Effect */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D97D1A96EDB0000BD98B /* PX2BeamEmitter.cpp */,
+				73A6D97E1A96EDB0000BD98B /* PX2BeamEmitter.hpp */,
+				73A6D97F1A96EDB0000BD98B /* PX2BeamEmitter.inl */,
+				73A6D9801A96EDB0000BD98B /* PX2BeamEmitterController.cpp */,
+				73A6D9811A96EDB0000BD98B /* PX2BeamEmitterController.hpp */,
+				73A6D9821A96EDB0000BD98B /* PX2BeamEmitterController.inl */,
+				73A6D9831A96EDB0000BD98B /* PX2BeamObject.cpp */,
+				73A6D9841A96EDB0000BD98B /* PX2BeamObject.hpp */,
+				73A6D9851A96EDB0000BD98B /* PX2Billboard.cpp */,
+				73A6D9861A96EDB0000BD98B /* PX2Billboard.hpp */,
+				73A6D9871A96EDB0000BD98B /* PX2Billboard.inl */,
+				73A6D9881A96EDB0000BD98B /* PX2BillboardController.cpp */,
+				73A6D9891A96EDB0000BD98B /* PX2BillboardController.hpp */,
+				73A6D98A1A96EDB0000BD98B /* PX2BillboardController.inl */,
+				73A6D98B1A96EDB0000BD98B /* PX2CameraShake.cpp */,
+				73A6D98C1A96EDB0000BD98B /* PX2CameraShake.hpp */,
+				73A6D98D1A96EDB0000BD98B /* PX2CameraShake.inl */,
+				73A6D98E1A96EDB0000BD98B /* PX2CameraShakeController.cpp */,
+				73A6D98F1A96EDB0000BD98B /* PX2CameraShakeController.hpp */,
+				73A6D9901A96EDB0000BD98B /* PX2CameraShakeController.inl */,
+				73A6D9911A96EDB0000BD98B /* PX2CameraShakeObject.cpp */,
+				73A6D9921A96EDB0000BD98B /* PX2CameraShakeObject.hpp */,
+				73A6D9931A96EDB0000BD98B /* PX2Effect.hpp */,
+				73A6D9941A96EDB0000BD98B /* PX2Effectable.cpp */,
+				73A6D9951A96EDB0000BD98B /* PX2Effectable.hpp */,
+				73A6D9961A96EDB0000BD98B /* PX2Effectable.inl */,
+				73A6D9971A96EDB0000BD98B /* PX2EffectableController.cpp */,
+				73A6D9981A96EDB0000BD98B /* PX2EffectableController.hpp */,
+				73A6D9991A96EDB0000BD98B /* PX2EffectableController.inl */,
+				73A6D99A1A96EDB0000BD98B /* PX2EffectMaterial.cpp */,
+				73A6D99B1A96EDB0000BD98B /* PX2EffectMaterial.hpp */,
+				73A6D99C1A96EDB0000BD98B /* PX2EffectModel.cpp */,
+				73A6D99D1A96EDB0000BD98B /* PX2EffectModel.hpp */,
+				73A6D99E1A96EDB0000BD98B /* PX2EffectModel.inl */,
+				73A6D99F1A96EDB0000BD98B /* PX2EffectModelController.cpp */,
+				73A6D9A01A96EDB0000BD98B /* PX2EffectModelController.hpp */,
+				73A6D9A11A96EDB0000BD98B /* PX2EffectModelController.inl */,
+				73A6D9A21A96EDB0000BD98B /* PX2EffectModelNode.cpp */,
+				73A6D9A31A96EDB0000BD98B /* PX2EffectModelNode.hpp */,
+				73A6D9A41A96EDB0000BD98B /* PX2EffectModelNode.inl */,
+				73A6D9A51A96EDB0000BD98B /* PX2EffectModelNodeController.cpp */,
+				73A6D9A61A96EDB0000BD98B /* PX2EffectModelNodeController.hpp */,
+				73A6D9A71A96EDB0000BD98B /* PX2EffectModule.cpp */,
+				73A6D9A81A96EDB0000BD98B /* PX2EffectModule.hpp */,
+				73A6D9A91A96EDB0000BD98B /* PX2EffectModule.inl */,
+				73A6D9AA1A96EDB0000BD98B /* PX2EffectModuleCallbacks_BeamEmitter.cpp */,
+				73A6D9AB1A96EDB0000BD98B /* PX2EffectModuleCallbacks_BeamEmitter.hpp */,
+				73A6D9AC1A96EDB0000BD98B /* PX2EffectModuleCallbacks_CameraShake.cpp */,
+				73A6D9AD1A96EDB0000BD98B /* PX2EffectModuleCallbacks_CameraShake.hpp */,
+				73A6D9AE1A96EDB0000BD98B /* PX2EffectModuleCallbacks_Effectable.cpp */,
+				73A6D9AF1A96EDB0000BD98B /* PX2EffectModuleCallbacks_Effectable.hpp */,
+				73A6D9B01A96EDB0000BD98B /* PX2EffectModuleCallbacks_ParticleEmitter.cpp */,
+				73A6D9B11A96EDB0000BD98B /* PX2EffectModuleCallbacks_ParticleEmitter.hpp */,
+				73A6D9B21A96EDB0000BD98B /* PX2EffectModuleCallbacks_Soundable.cpp */,
+				73A6D9B31A96EDB0000BD98B /* PX2EffectModuleCallbacks_Soundable.hpp */,
+				73A6D9B41A96EDB0000BD98B /* PX2EffectObject.cpp */,
+				73A6D9B51A96EDB0000BD98B /* PX2EffectObject.hpp */,
+				73A6D9B61A96EDB0000BD98B /* PX2EffectPre.hpp */,
+				73A6D9B71A96EDB0000BD98B /* PX2ParticleEmitter.cpp */,
+				73A6D9B81A96EDB0000BD98B /* PX2ParticleEmitter.hpp */,
+				73A6D9B91A96EDB0000BD98B /* PX2ParticleEmitter.inl */,
+				73A6D9BA1A96EDB0000BD98B /* PX2ParticleEmitterController.cpp */,
+				73A6D9BB1A96EDB0000BD98B /* PX2ParticleEmitterController.hpp */,
+				73A6D9BC1A96EDB0000BD98B /* PX2ParticleEmitterController.inl */,
+				73A6D9BD1A96EDB0000BD98B /* PX2ParticleObject.cpp */,
+				73A6D9BE1A96EDB0000BD98B /* PX2ParticleObject.hpp */,
+				73A6D9BF1A96EDB0000BD98B /* PX2RibbonEmitter.cpp */,
+				73A6D9C01A96EDB0000BD98B /* PX2RibbonEmitter.hpp */,
+				73A6D9C11A96EDB0000BD98B /* PX2RibbonEmitter.inl */,
+				73A6D9C21A96EDB0000BD98B /* PX2RibbonEmitterController.cpp */,
+				73A6D9C31A96EDB0000BD98B /* PX2RibbonEmitterController.hpp */,
+				73A6D9C41A96EDB0000BD98B /* PX2RibbonEmitterController.inl */,
+				73A6D9C51A96EDB0000BD98B /* PX2RibbonObject.cpp */,
+				73A6D9C61A96EDB0000BD98B /* PX2RibbonObject.hpp */,
+				73A6D9C71A96EDB0000BD98B /* PX2Soundable.cpp */,
+				73A6D9C81A96EDB0000BD98B /* PX2Soundable.hpp */,
+				73A6D9C91A96EDB0000BD98B /* PX2Soundable.inl */,
+				73A6D9CA1A96EDB0000BD98B /* PX2SoundableController.cpp */,
+				73A6D9CB1A96EDB0000BD98B /* PX2SoundableController.hpp */,
+				73A6D9CC1A96EDB0000BD98B /* PX2SoundableController.inl */,
+				73A6D9CD1A96EDB0000BD98B /* PX2SoundableObject.cpp */,
+				73A6D9CE1A96EDB0000BD98B /* PX2SoundableObject.hpp */,
+				73A6D9CF1A96EDB0000BD98B /* PX2TRange.hpp */,
+				73A6D9D01A96EDB0000BD98B /* PX2TRange.inl */,
+				73A6D9D11A96EDB0000BD98B /* PX2TRecyclingArray.hpp */,
+				73A6D9D21A96EDB0000BD98B /* PX2TRecyclingArray.inl */,
+			);
+			path = PX2Effect;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73A6D9531A96ECDE000BD98B /* PX2Effect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73A6D9771A96ECDE000BD98B /* Build configuration list for PBXNativeTarget "PX2Effect" */;
+			buildPhases = (
+				73A6D9501A96ECDE000BD98B /* Sources */,
+				73A6D9511A96ECDE000BD98B /* Frameworks */,
+				73A6D9521A96ECDE000BD98B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PX2Effect;
+			productName = PX2Effect;
+			productReference = 73A6D9541A96ECDE000BD98B /* libPX2Effect.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73A6D94C1A96ECDE000BD98B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Phoenix;
+			};
+			buildConfigurationList = 73A6D94F1A96ECDE000BD98B /* Build configuration list for PBXProject "PX2Effect" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 73A6D94B1A96ECDE000BD98B;
+			productRefGroup = 73A6D9551A96ECDE000BD98B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73A6D9531A96ECDE000BD98B /* PX2Effect */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73A6D9501A96ECDE000BD98B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D9EF1A96EDB0000BD98B /* PX2Soundable.cpp in Sources */,
+				73A6D9D81A96EDB0000BD98B /* PX2CameraShake.cpp in Sources */,
+				73A6D9E21A96EDB0000BD98B /* PX2EffectModule.cpp in Sources */,
+				73A6D9DD1A96EDB0000BD98B /* PX2EffectMaterial.cpp in Sources */,
+				73A6D9E11A96EDB0000BD98B /* PX2EffectModelNodeController.cpp in Sources */,
+				73A6D9E41A96EDB0000BD98B /* PX2EffectModuleCallbacks_CameraShake.cpp in Sources */,
+				73A6D9F11A96EDB0000BD98B /* PX2SoundableObject.cpp in Sources */,
+				73A6D9EE1A96EDB0000BD98B /* PX2RibbonObject.cpp in Sources */,
+				73A6D9D71A96EDB0000BD98B /* PX2BillboardController.cpp in Sources */,
+				73A6D9DE1A96EDB0000BD98B /* PX2EffectModel.cpp in Sources */,
+				73A6D9DB1A96EDB0000BD98B /* PX2Effectable.cpp in Sources */,
+				73A6D9E71A96EDB0000BD98B /* PX2EffectModuleCallbacks_Soundable.cpp in Sources */,
+				73A6D9E91A96EDB0000BD98B /* PX2ParticleEmitter.cpp in Sources */,
+				73A6D9DC1A96EDB0000BD98B /* PX2EffectableController.cpp in Sources */,
+				73A6D9E81A96EDB0000BD98B /* PX2EffectObject.cpp in Sources */,
+				73A6D9D51A96EDB0000BD98B /* PX2BeamObject.cpp in Sources */,
+				73A6D9E01A96EDB0000BD98B /* PX2EffectModelNode.cpp in Sources */,
+				73A6D9D41A96EDB0000BD98B /* PX2BeamEmitterController.cpp in Sources */,
+				73A6D9ED1A96EDB0000BD98B /* PX2RibbonEmitterController.cpp in Sources */,
+				73A6D9D61A96EDB0000BD98B /* PX2Billboard.cpp in Sources */,
+				73A6D9DF1A96EDB0000BD98B /* PX2EffectModelController.cpp in Sources */,
+				73A6D9E31A96EDB0000BD98B /* PX2EffectModuleCallbacks_BeamEmitter.cpp in Sources */,
+				73A6D9EA1A96EDB0000BD98B /* PX2ParticleEmitterController.cpp in Sources */,
+				73A6D9D91A96EDB0000BD98B /* PX2CameraShakeController.cpp in Sources */,
+				73A6D9D31A96EDB0000BD98B /* PX2BeamEmitter.cpp in Sources */,
+				73A6D9EC1A96EDB0000BD98B /* PX2RibbonEmitter.cpp in Sources */,
+				73A6D9DA1A96EDB0000BD98B /* PX2CameraShakeObject.cpp in Sources */,
+				73A6D9F01A96EDB0000BD98B /* PX2SoundableController.cpp in Sources */,
+				73A6D9EB1A96EDB0000BD98B /* PX2ParticleObject.cpp in Sources */,
+				73A6D9E51A96EDB0000BD98B /* PX2EffectModuleCallbacks_Effectable.cpp in Sources */,
+				73A6D9E61A96EDB0000BD98B /* PX2EffectModuleCallbacks_ParticleEmitter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73A6D9751A96ECDE000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		73A6D9761A96ECDE000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73A6D9781A96ECDE000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Effect.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Unity ../PX2Graphics ../PX2Mathematics ../PX2Core";
+			};
+			name = Debug;
+		};
+		73A6D9791A96ECDE000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Effect.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Unity ../PX2Graphics ../PX2Mathematics ../PX2Core";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73A6D94F1A96ECDE000BD98B /* Build configuration list for PBXProject "PX2Effect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D9751A96ECDE000BD98B /* Debug */,
+				73A6D9761A96ECDE000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73A6D9771A96ECDE000BD98B /* Build configuration list for PBXNativeTarget "PX2Effect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D9781A96ECDE000BD98B /* Debug */,
+				73A6D9791A96ECDE000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73A6D94C1A96ECDE000BD98B /* Project object */;
+}

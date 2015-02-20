@@ -91,16 +91,16 @@ mResTableMutex(0),
 mResTable(1023),
 mTexPacks(1023),
 mPackElements(1023),
-mCurlDownLoad(0),
+//mCurlDownLoad(0),
 mEndVersionList(19870824),
 mDataVersionList(1023),
 mDataUpdateVersionList(1023),
 mUpdateVersionList(1023),
 mResourceUpdateCallback(0)
 {
-	mCurlDownLoad = new0 CURLDownload();
-	mCurlDownLoad->Initlize();
-	mCurlDownLoad->SetDownType(CURLDownload::DT_FILE);
+	//mCurlDownLoad = new0 CURLDownload();
+	//mCurlDownLoad->Initlize();
+	//mCurlDownLoad->SetDownType(CURLDownload::DT_FILE);
 
 	mLoadRecordMutex = new0 Mutex();
 	mLoadingDequeMutex = new0 Mutex();
@@ -190,10 +190,10 @@ ResourceManager::~ResourceManager ()
 		delete0(mResTableMutex);
 	}
 
-	if (mCurlDownLoad)
+	//if (mCurlDownLoad)
 	{
-		mCurlDownLoad->Terminate();
-		delete0(mCurlDownLoad);
+	//	mCurlDownLoad->Terminate();
+	//	delete0(mCurlDownLoad);
 	}
 
 	mDataVersionList.Clear(); 
@@ -1610,7 +1610,8 @@ bool ResourceManager::Download (const std::string &fullPath,
 	//if (!IsFloderExist("", fullPath))
 	CreateFloder("", fullPath);
 
-	return mCurlDownLoad->Download(fullPath, url);
+	//return mCurlDownLoad->Download(fullPath, url);
+    return false;
 }
 //----------------------------------------------------------------------------
 void ResourceManager::DoResourceUpdateStuffs (const std::string &wwwAddr)

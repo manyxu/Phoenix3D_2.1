@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		73A6D8981A96EC02000BD98B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6D8971A96EC02000BD98B /* Foundation.framework */; };
+		73A6D9211A96EC68000BD98B /* PX2AccoutManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8BD1A96EC68000BD98B /* PX2AccoutManager.cpp */; };
+		73A6D9221A96EC68000BD98B /* PX2Actor_BitSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8BF1A96EC68000BD98B /* PX2Actor_BitSet.cpp */; };
+		73A6D9231A96EC68000BD98B /* PX2Actor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8C01A96EC68000BD98B /* PX2Actor.cpp */; };
+		73A6D9241A96EC68000BD98B /* PX2ActorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8C31A96EC68000BD98B /* PX2ActorPicker.cpp */; };
+		73A6D9251A96EC68000BD98B /* PX2Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8C61A96EC68000BD98B /* PX2Animation.cpp */; };
+		73A6D9261A96EC68000BD98B /* PX2Animation3DSkeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8C91A96EC68000BD98B /* PX2Animation3DSkeleton.cpp */; };
+		73A6D9271A96EC68000BD98B /* PX2AnimationObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8CC1A96EC68000BD98B /* PX2AnimationObject.cpp */; };
+		73A6D9281A96EC68000BD98B /* PX2CameraActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8CF1A96EC68000BD98B /* PX2CameraActor.cpp */; };
+		73A6D9291A96EC68000BD98B /* PX2CellSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8D21A96EC68000BD98B /* PX2CellSpace.cpp */; };
+		73A6D92A1A96EC68000BD98B /* PX2Character_Anim.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8D61A96EC68000BD98B /* PX2Character_Anim.cpp */; };
+		73A6D92B1A96EC68000BD98B /* PX2Character_HPAP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8D71A96EC68000BD98B /* PX2Character_HPAP.cpp */; };
+		73A6D92C1A96EC68000BD98B /* PX2Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8D81A96EC68000BD98B /* PX2Character.cpp */; };
+		73A6D92D1A96EC68000BD98B /* PX2Creater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8DB1A96EC68000BD98B /* PX2Creater.cpp */; };
+		73A6D92E1A96EC68000BD98B /* PX2EffectActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8DD1A96EC68000BD98B /* PX2EffectActor.cpp */; };
+		73A6D92F1A96EC68000BD98B /* PX2EngineLoop_InitTerm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8DF1A96EC68000BD98B /* PX2EngineLoop_InitTerm.cpp */; };
+		73A6D9301A96EC68000BD98B /* PX2EngineLoop_Play.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8E01A96EC68000BD98B /* PX2EngineLoop_Play.cpp */; };
+		73A6D9311A96EC68000BD98B /* PX2EngineLoop_Tick.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8E11A96EC68000BD98B /* PX2EngineLoop_Tick.cpp */; };
+		73A6D9321A96EC68000BD98B /* PX2EngineLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8E21A96EC68000BD98B /* PX2EngineLoop.cpp */; };
+		73A6D9331A96EC68000BD98B /* PX2PlatformSDK.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8E51A96EC68000BD98B /* PX2PlatformSDK.cpp */; };
+		73A6D9341A96EC68000BD98B /* PX2PlatformSDKEventType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8E71A96EC68000BD98B /* PX2PlatformSDKEventType.cpp */; };
+		73A6D9351A96EC68000BD98B /* PX2Project.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8E91A96EC68000BD98B /* PX2Project.cpp */; };
+		73A6D9361A96EC68000BD98B /* PX2RedoUndo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8EC1A96EC68000BD98B /* PX2RedoUndo.cpp */; };
+		73A6D9371A96EC68000BD98B /* PX2Scene_Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8EE1A96EC68000BD98B /* PX2Scene_Manager.cpp */; };
+		73A6D9381A96EC68000BD98B /* PX2Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8EF1A96EC68000BD98B /* PX2Scene.cpp */; };
+		73A6D9391A96EC68000BD98B /* PX2Selection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8F21A96EC68000BD98B /* PX2Selection.cpp */; };
+		73A6D93A1A96EC68000BD98B /* PX2ServerInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8F51A96EC68000BD98B /* PX2ServerInfo.cpp */; };
+		73A6D93B1A96EC68000BD98B /* PX2SimulationEventType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8F91A96EC68000BD98B /* PX2SimulationEventType.cpp */; };
+		73A6D93C1A96EC68000BD98B /* PX2User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8FC1A96EC68000BD98B /* PX2User.cpp */; };
+		73A6D93D1A96EC68000BD98B /* PX2UserActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8FF1A96EC68000BD98B /* PX2UserActor.cpp */; };
+		73A6D93E1A96EC68000BD98B /* PX2Skill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9031A96EC68000BD98B /* PX2Skill.cpp */; };
+		73A6D93F1A96EC68000BD98B /* PX2Skill_Activate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9061A96EC68000BD98B /* PX2Skill_Activate.cpp */; };
+		73A6D9401A96EC68000BD98B /* PX2Skill_Affect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9071A96EC68000BD98B /* PX2Skill_Affect.cpp */; };
+		73A6D9411A96EC68000BD98B /* PX2Skill_Range.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9081A96EC68000BD98B /* PX2Skill_Range.cpp */; };
+		73A6D9421A96EC68000BD98B /* PX2Skill_Step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9091A96EC68000BD98B /* PX2Skill_Step.cpp */; };
+		73A6D9431A96EC68000BD98B /* PX2SkillActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D90A1A96EC68000BD98B /* PX2SkillActor.cpp */; };
+		73A6D9441A96EC68000BD98B /* PX2SkillActorLink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D90D1A96EC68000BD98B /* PX2SkillActorLink.cpp */; };
+		73A6D9451A96EC68000BD98B /* PX2SkillComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9101A96EC68000BD98B /* PX2SkillComponent.cpp */; };
+		73A6D9461A96EC68000BD98B /* PX2SkillInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9121A96EC68000BD98B /* PX2SkillInstance.cpp */; };
+		73A6D9471A96EC68000BD98B /* PX2SkillStep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9151A96EC68000BD98B /* PX2SkillStep.cpp */; };
+		73A6D9481A96EC68000BD98B /* PX2SkillStepFarTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9181A96EC68000BD98B /* PX2SkillStepFarTrack.cpp */; };
+		73A6D9491A96EC68000BD98B /* PX2SkillStepLink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D91B1A96EC68000BD98B /* PX2SkillStepLink.cpp */; };
+		73A6D94A1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D91E1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp */; };
+		73A6D9F41A96EEAA000BD98B /* PX2ToLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9F21A96EEAA000BD98B /* PX2ToLua.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73A6D8921A96EC02000BD98B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		73A6D8941A96EC02000BD98B /* libPX2Simulation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2Simulation.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		73A6D8971A96EC02000BD98B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		73A6D8A51A96EC02000BD98B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D8A81A96EC02000BD98B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D8BD1A96EC68000BD98B /* PX2AccoutManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2AccoutManager.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8BE1A96EC68000BD98B /* PX2AccoutManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2AccoutManager.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8BF1A96EC68000BD98B /* PX2Actor_BitSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Actor_BitSet.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8C01A96EC68000BD98B /* PX2Actor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Actor.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8C11A96EC68000BD98B /* PX2Actor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Actor.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8C21A96EC68000BD98B /* PX2Actor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Actor.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8C31A96EC68000BD98B /* PX2ActorPicker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ActorPicker.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8C41A96EC68000BD98B /* PX2ActorPicker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ActorPicker.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8C51A96EC68000BD98B /* PX2ActorPickRecord.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ActorPickRecord.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8C61A96EC68000BD98B /* PX2Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Animation.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8C71A96EC68000BD98B /* PX2Animation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Animation.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8C81A96EC68000BD98B /* PX2Animation.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Animation.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8C91A96EC68000BD98B /* PX2Animation3DSkeleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Animation3DSkeleton.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8CA1A96EC68000BD98B /* PX2Animation3DSkeleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Animation3DSkeleton.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8CB1A96EC68000BD98B /* PX2Animation3DSkeleton.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Animation3DSkeleton.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8CC1A96EC68000BD98B /* PX2AnimationObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2AnimationObject.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8CD1A96EC68000BD98B /* PX2AnimationObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2AnimationObject.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8CE1A96EC68000BD98B /* PX2AnimationObject.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2AnimationObject.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8CF1A96EC68000BD98B /* PX2CameraActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2CameraActor.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8D01A96EC68000BD98B /* PX2CameraActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2CameraActor.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8D11A96EC68000BD98B /* PX2CameraActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2CameraActor.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8D21A96EC68000BD98B /* PX2CellSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2CellSpace.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8D31A96EC68000BD98B /* PX2CellSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2CellSpace.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8D41A96EC68000BD98B /* PX2CellSpaceT.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2CellSpaceT.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8D51A96EC68000BD98B /* PX2CellSpaceT.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2CellSpaceT.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8D61A96EC68000BD98B /* PX2Character_Anim.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Character_Anim.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8D71A96EC68000BD98B /* PX2Character_HPAP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Character_HPAP.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8D81A96EC68000BD98B /* PX2Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Character.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8D91A96EC68000BD98B /* PX2Character.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Character.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8DA1A96EC68000BD98B /* PX2Character.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Character.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8DB1A96EC68000BD98B /* PX2Creater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Creater.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8DC1A96EC68000BD98B /* PX2Creater.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Creater.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8DD1A96EC68000BD98B /* PX2EffectActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EffectActor.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8DE1A96EC68000BD98B /* PX2EffectActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EffectActor.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8DF1A96EC68000BD98B /* PX2EngineLoop_InitTerm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EngineLoop_InitTerm.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8E01A96EC68000BD98B /* PX2EngineLoop_Play.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EngineLoop_Play.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8E11A96EC68000BD98B /* PX2EngineLoop_Tick.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EngineLoop_Tick.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8E21A96EC68000BD98B /* PX2EngineLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EngineLoop.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8E31A96EC68000BD98B /* PX2EngineLoop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EngineLoop.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8E41A96EC68000BD98B /* PX2EngineLoop.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EngineLoop.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8E51A96EC68000BD98B /* PX2PlatformSDK.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2PlatformSDK.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8E61A96EC68000BD98B /* PX2PlatformSDK.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2PlatformSDK.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8E71A96EC68000BD98B /* PX2PlatformSDKEventType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2PlatformSDKEventType.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8E81A96EC68000BD98B /* PX2PlatformSDKEventType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2PlatformSDKEventType.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8E91A96EC68000BD98B /* PX2Project.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Project.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8EA1A96EC68000BD98B /* PX2Project.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Project.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8EB1A96EC68000BD98B /* PX2Project.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Project.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8EC1A96EC68000BD98B /* PX2RedoUndo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2RedoUndo.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8ED1A96EC68000BD98B /* PX2RedoUndo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2RedoUndo.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8EE1A96EC68000BD98B /* PX2Scene_Manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Scene_Manager.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8EF1A96EC68000BD98B /* PX2Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Scene.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8F01A96EC68000BD98B /* PX2Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Scene.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8F11A96EC68000BD98B /* PX2Scene.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Scene.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8F21A96EC68000BD98B /* PX2Selection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Selection.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8F31A96EC68000BD98B /* PX2Selection.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Selection.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8F41A96EC68000BD98B /* PX2Selection.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Selection.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8F51A96EC68000BD98B /* PX2ServerInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ServerInfo.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8F61A96EC68000BD98B /* PX2ServerInfo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ServerInfo.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8F71A96EC68000BD98B /* PX2Simulation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Simulation.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8F81A96EC68000BD98B /* PX2SimulationDataDefine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SimulationDataDefine.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8F91A96EC68000BD98B /* PX2SimulationEventType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SimulationEventType.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8FA1A96EC68000BD98B /* PX2SimulationEventType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SimulationEventType.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8FB1A96EC68000BD98B /* PX2SimulationPre.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SimulationPre.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8FC1A96EC68000BD98B /* PX2User.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2User.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D8FD1A96EC68000BD98B /* PX2User.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2User.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D8FE1A96EC68000BD98B /* PX2User.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2User.inl; sourceTree = SOURCE_ROOT; };
+		73A6D8FF1A96EC68000BD98B /* PX2UserActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UserActor.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D9001A96EC68000BD98B /* PX2UserActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UserActor.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D9011A96EC68000BD98B /* PX2UserActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UserActor.inl; sourceTree = SOURCE_ROOT; };
+		73A6D9031A96EC68000BD98B /* PX2Skill.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Skill.cpp; sourceTree = "<group>"; };
+		73A6D9041A96EC68000BD98B /* PX2Skill.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Skill.hpp; sourceTree = "<group>"; };
+		73A6D9051A96EC68000BD98B /* PX2Skill.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Skill.inl; sourceTree = "<group>"; };
+		73A6D9061A96EC68000BD98B /* PX2Skill_Activate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Skill_Activate.cpp; sourceTree = "<group>"; };
+		73A6D9071A96EC68000BD98B /* PX2Skill_Affect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Skill_Affect.cpp; sourceTree = "<group>"; };
+		73A6D9081A96EC68000BD98B /* PX2Skill_Range.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Skill_Range.cpp; sourceTree = "<group>"; };
+		73A6D9091A96EC68000BD98B /* PX2Skill_Step.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Skill_Step.cpp; sourceTree = "<group>"; };
+		73A6D90A1A96EC68000BD98B /* PX2SkillActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkillActor.cpp; sourceTree = "<group>"; };
+		73A6D90B1A96EC68000BD98B /* PX2SkillActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkillActor.hpp; sourceTree = "<group>"; };
+		73A6D90C1A96EC68000BD98B /* PX2SkillActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkillActor.inl; sourceTree = "<group>"; };
+		73A6D90D1A96EC68000BD98B /* PX2SkillActorLink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkillActorLink.cpp; sourceTree = "<group>"; };
+		73A6D90E1A96EC68000BD98B /* PX2SkillActorLink.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkillActorLink.hpp; sourceTree = "<group>"; };
+		73A6D90F1A96EC68000BD98B /* PX2SkillActorLink.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkillActorLink.inl; sourceTree = "<group>"; };
+		73A6D9101A96EC68000BD98B /* PX2SkillComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkillComponent.cpp; sourceTree = "<group>"; };
+		73A6D9111A96EC68000BD98B /* PX2SkillComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkillComponent.hpp; sourceTree = "<group>"; };
+		73A6D9121A96EC68000BD98B /* PX2SkillInstance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkillInstance.cpp; sourceTree = "<group>"; };
+		73A6D9131A96EC68000BD98B /* PX2SkillInstance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkillInstance.hpp; sourceTree = "<group>"; };
+		73A6D9141A96EC68000BD98B /* PX2SkillInstance.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkillInstance.inl; sourceTree = "<group>"; };
+		73A6D9151A96EC68000BD98B /* PX2SkillStep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkillStep.cpp; sourceTree = "<group>"; };
+		73A6D9161A96EC68000BD98B /* PX2SkillStep.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkillStep.hpp; sourceTree = "<group>"; };
+		73A6D9171A96EC68000BD98B /* PX2SkillStep.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkillStep.inl; sourceTree = "<group>"; };
+		73A6D9181A96EC68000BD98B /* PX2SkillStepFarTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkillStepFarTrack.cpp; sourceTree = "<group>"; };
+		73A6D9191A96EC68000BD98B /* PX2SkillStepFarTrack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkillStepFarTrack.hpp; sourceTree = "<group>"; };
+		73A6D91A1A96EC68000BD98B /* PX2SkillStepFarTrack.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkillStepFarTrack.inl; sourceTree = "<group>"; };
+		73A6D91B1A96EC68000BD98B /* PX2SkillStepLink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkillStepLink.cpp; sourceTree = "<group>"; };
+		73A6D91C1A96EC68000BD98B /* PX2SkillStepLink.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkillStepLink.hpp; sourceTree = "<group>"; };
+		73A6D91D1A96EC68000BD98B /* PX2SkillStepLink.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkillStepLink.inl; sourceTree = "<group>"; };
+		73A6D91E1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkillStepRangeTime.cpp; sourceTree = "<group>"; };
+		73A6D91F1A96EC68000BD98B /* PX2SkillStepRangeTime.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkillStepRangeTime.hpp; sourceTree = "<group>"; };
+		73A6D9201A96EC68000BD98B /* PX2SkillStepRangeTime.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkillStepRangeTime.inl; sourceTree = "<group>"; };
+		73A6D9F21A96EEAA000BD98B /* PX2ToLua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PX2ToLua.cpp; path = ../PX2ToLua/PX2ToLua.cpp; sourceTree = "<group>"; };
+		73A6D9F31A96EEAA000BD98B /* PX2ToLua.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PX2ToLua.hpp; path = ../PX2ToLua/PX2ToLua.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73A6D8911A96EC02000BD98B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D8981A96EC02000BD98B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73A6D88B1A96EC02000BD98B = {
+			isa = PBXGroup;
+			children = (
+				73A6D9F51A96EF8D000BD98B /* PX2ToLua */,
+				73A6D8991A96EC02000BD98B /* PX2Simulation */,
+				73A6D8961A96EC02000BD98B /* Frameworks */,
+				73A6D8951A96EC02000BD98B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73A6D8951A96EC02000BD98B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D8941A96EC02000BD98B /* libPX2Simulation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73A6D8961A96EC02000BD98B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D8971A96EC02000BD98B /* Foundation.framework */,
+				73A6D8A51A96EC02000BD98B /* XCTest.framework */,
+				73A6D8A81A96EC02000BD98B /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73A6D8991A96EC02000BD98B /* PX2Simulation */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D8BD1A96EC68000BD98B /* PX2AccoutManager.cpp */,
+				73A6D8BE1A96EC68000BD98B /* PX2AccoutManager.hpp */,
+				73A6D8BF1A96EC68000BD98B /* PX2Actor_BitSet.cpp */,
+				73A6D8C01A96EC68000BD98B /* PX2Actor.cpp */,
+				73A6D8C11A96EC68000BD98B /* PX2Actor.hpp */,
+				73A6D8C21A96EC68000BD98B /* PX2Actor.inl */,
+				73A6D8C31A96EC68000BD98B /* PX2ActorPicker.cpp */,
+				73A6D8C41A96EC68000BD98B /* PX2ActorPicker.hpp */,
+				73A6D8C51A96EC68000BD98B /* PX2ActorPickRecord.hpp */,
+				73A6D8C61A96EC68000BD98B /* PX2Animation.cpp */,
+				73A6D8C71A96EC68000BD98B /* PX2Animation.hpp */,
+				73A6D8C81A96EC68000BD98B /* PX2Animation.inl */,
+				73A6D8C91A96EC68000BD98B /* PX2Animation3DSkeleton.cpp */,
+				73A6D8CA1A96EC68000BD98B /* PX2Animation3DSkeleton.hpp */,
+				73A6D8CB1A96EC68000BD98B /* PX2Animation3DSkeleton.inl */,
+				73A6D8CC1A96EC68000BD98B /* PX2AnimationObject.cpp */,
+				73A6D8CD1A96EC68000BD98B /* PX2AnimationObject.hpp */,
+				73A6D8CE1A96EC68000BD98B /* PX2AnimationObject.inl */,
+				73A6D8CF1A96EC68000BD98B /* PX2CameraActor.cpp */,
+				73A6D8D01A96EC68000BD98B /* PX2CameraActor.hpp */,
+				73A6D8D11A96EC68000BD98B /* PX2CameraActor.inl */,
+				73A6D8D21A96EC68000BD98B /* PX2CellSpace.cpp */,
+				73A6D8D31A96EC68000BD98B /* PX2CellSpace.hpp */,
+				73A6D8D41A96EC68000BD98B /* PX2CellSpaceT.hpp */,
+				73A6D8D51A96EC68000BD98B /* PX2CellSpaceT.inl */,
+				73A6D8D61A96EC68000BD98B /* PX2Character_Anim.cpp */,
+				73A6D8D71A96EC68000BD98B /* PX2Character_HPAP.cpp */,
+				73A6D8D81A96EC68000BD98B /* PX2Character.cpp */,
+				73A6D8D91A96EC68000BD98B /* PX2Character.hpp */,
+				73A6D8DA1A96EC68000BD98B /* PX2Character.inl */,
+				73A6D8DB1A96EC68000BD98B /* PX2Creater.cpp */,
+				73A6D8DC1A96EC68000BD98B /* PX2Creater.hpp */,
+				73A6D8DD1A96EC68000BD98B /* PX2EffectActor.cpp */,
+				73A6D8DE1A96EC68000BD98B /* PX2EffectActor.hpp */,
+				73A6D8DF1A96EC68000BD98B /* PX2EngineLoop_InitTerm.cpp */,
+				73A6D8E01A96EC68000BD98B /* PX2EngineLoop_Play.cpp */,
+				73A6D8E11A96EC68000BD98B /* PX2EngineLoop_Tick.cpp */,
+				73A6D8E21A96EC68000BD98B /* PX2EngineLoop.cpp */,
+				73A6D8E31A96EC68000BD98B /* PX2EngineLoop.hpp */,
+				73A6D8E41A96EC68000BD98B /* PX2EngineLoop.inl */,
+				73A6D8E51A96EC68000BD98B /* PX2PlatformSDK.cpp */,
+				73A6D8E61A96EC68000BD98B /* PX2PlatformSDK.hpp */,
+				73A6D8E71A96EC68000BD98B /* PX2PlatformSDKEventType.cpp */,
+				73A6D8E81A96EC68000BD98B /* PX2PlatformSDKEventType.hpp */,
+				73A6D8E91A96EC68000BD98B /* PX2Project.cpp */,
+				73A6D8EA1A96EC68000BD98B /* PX2Project.hpp */,
+				73A6D8EB1A96EC68000BD98B /* PX2Project.inl */,
+				73A6D8EC1A96EC68000BD98B /* PX2RedoUndo.cpp */,
+				73A6D8ED1A96EC68000BD98B /* PX2RedoUndo.hpp */,
+				73A6D8EE1A96EC68000BD98B /* PX2Scene_Manager.cpp */,
+				73A6D8EF1A96EC68000BD98B /* PX2Scene.cpp */,
+				73A6D8F01A96EC68000BD98B /* PX2Scene.hpp */,
+				73A6D8F11A96EC68000BD98B /* PX2Scene.inl */,
+				73A6D8F21A96EC68000BD98B /* PX2Selection.cpp */,
+				73A6D8F31A96EC68000BD98B /* PX2Selection.hpp */,
+				73A6D8F41A96EC68000BD98B /* PX2Selection.inl */,
+				73A6D8F51A96EC68000BD98B /* PX2ServerInfo.cpp */,
+				73A6D8F61A96EC68000BD98B /* PX2ServerInfo.hpp */,
+				73A6D8F71A96EC68000BD98B /* PX2Simulation.hpp */,
+				73A6D8F81A96EC68000BD98B /* PX2SimulationDataDefine.hpp */,
+				73A6D8F91A96EC68000BD98B /* PX2SimulationEventType.cpp */,
+				73A6D8FA1A96EC68000BD98B /* PX2SimulationEventType.hpp */,
+				73A6D8FB1A96EC68000BD98B /* PX2SimulationPre.hpp */,
+				73A6D8FC1A96EC68000BD98B /* PX2User.cpp */,
+				73A6D8FD1A96EC68000BD98B /* PX2User.hpp */,
+				73A6D8FE1A96EC68000BD98B /* PX2User.inl */,
+				73A6D8FF1A96EC68000BD98B /* PX2UserActor.cpp */,
+				73A6D9001A96EC68000BD98B /* PX2UserActor.hpp */,
+				73A6D9011A96EC68000BD98B /* PX2UserActor.inl */,
+				73A6D9021A96EC68000BD98B /* SkillCompl */,
+			);
+			path = PX2Simulation;
+			sourceTree = "<group>";
+		};
+		73A6D9021A96EC68000BD98B /* SkillCompl */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D9031A96EC68000BD98B /* PX2Skill.cpp */,
+				73A6D9041A96EC68000BD98B /* PX2Skill.hpp */,
+				73A6D9051A96EC68000BD98B /* PX2Skill.inl */,
+				73A6D9061A96EC68000BD98B /* PX2Skill_Activate.cpp */,
+				73A6D9071A96EC68000BD98B /* PX2Skill_Affect.cpp */,
+				73A6D9081A96EC68000BD98B /* PX2Skill_Range.cpp */,
+				73A6D9091A96EC68000BD98B /* PX2Skill_Step.cpp */,
+				73A6D90A1A96EC68000BD98B /* PX2SkillActor.cpp */,
+				73A6D90B1A96EC68000BD98B /* PX2SkillActor.hpp */,
+				73A6D90C1A96EC68000BD98B /* PX2SkillActor.inl */,
+				73A6D90D1A96EC68000BD98B /* PX2SkillActorLink.cpp */,
+				73A6D90E1A96EC68000BD98B /* PX2SkillActorLink.hpp */,
+				73A6D90F1A96EC68000BD98B /* PX2SkillActorLink.inl */,
+				73A6D9101A96EC68000BD98B /* PX2SkillComponent.cpp */,
+				73A6D9111A96EC68000BD98B /* PX2SkillComponent.hpp */,
+				73A6D9121A96EC68000BD98B /* PX2SkillInstance.cpp */,
+				73A6D9131A96EC68000BD98B /* PX2SkillInstance.hpp */,
+				73A6D9141A96EC68000BD98B /* PX2SkillInstance.inl */,
+				73A6D9151A96EC68000BD98B /* PX2SkillStep.cpp */,
+				73A6D9161A96EC68000BD98B /* PX2SkillStep.hpp */,
+				73A6D9171A96EC68000BD98B /* PX2SkillStep.inl */,
+				73A6D9181A96EC68000BD98B /* PX2SkillStepFarTrack.cpp */,
+				73A6D9191A96EC68000BD98B /* PX2SkillStepFarTrack.hpp */,
+				73A6D91A1A96EC68000BD98B /* PX2SkillStepFarTrack.inl */,
+				73A6D91B1A96EC68000BD98B /* PX2SkillStepLink.cpp */,
+				73A6D91C1A96EC68000BD98B /* PX2SkillStepLink.hpp */,
+				73A6D91D1A96EC68000BD98B /* PX2SkillStepLink.inl */,
+				73A6D91E1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp */,
+				73A6D91F1A96EC68000BD98B /* PX2SkillStepRangeTime.hpp */,
+				73A6D9201A96EC68000BD98B /* PX2SkillStepRangeTime.inl */,
+			);
+			path = SkillCompl;
+			sourceTree = SOURCE_ROOT;
+		};
+		73A6D9F51A96EF8D000BD98B /* PX2ToLua */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D9F21A96EEAA000BD98B /* PX2ToLua.cpp */,
+				73A6D9F31A96EEAA000BD98B /* PX2ToLua.hpp */,
+			);
+			name = PX2ToLua;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73A6D8931A96EC02000BD98B /* PX2Simulation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73A6D8B71A96EC03000BD98B /* Build configuration list for PBXNativeTarget "PX2Simulation" */;
+			buildPhases = (
+				73A6D8901A96EC02000BD98B /* Sources */,
+				73A6D8911A96EC02000BD98B /* Frameworks */,
+				73A6D8921A96EC02000BD98B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PX2Simulation;
+			productName = PX2Simulation;
+			productReference = 73A6D8941A96EC02000BD98B /* libPX2Simulation.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73A6D88C1A96EC02000BD98B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Phoenix;
+			};
+			buildConfigurationList = 73A6D88F1A96EC02000BD98B /* Build configuration list for PBXProject "PX2Simulation" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 73A6D88B1A96EC02000BD98B;
+			productRefGroup = 73A6D8951A96EC02000BD98B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73A6D8931A96EC02000BD98B /* PX2Simulation */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73A6D8901A96EC02000BD98B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D9361A96EC68000BD98B /* PX2RedoUndo.cpp in Sources */,
+				73A6D9331A96EC68000BD98B /* PX2PlatformSDK.cpp in Sources */,
+				73A6D9F41A96EEAA000BD98B /* PX2ToLua.cpp in Sources */,
+				73A6D93E1A96EC68000BD98B /* PX2Skill.cpp in Sources */,
+				73A6D9451A96EC68000BD98B /* PX2SkillComponent.cpp in Sources */,
+				73A6D9321A96EC68000BD98B /* PX2EngineLoop.cpp in Sources */,
+				73A6D92C1A96EC68000BD98B /* PX2Character.cpp in Sources */,
+				73A6D9401A96EC68000BD98B /* PX2Skill_Affect.cpp in Sources */,
+				73A6D9461A96EC68000BD98B /* PX2SkillInstance.cpp in Sources */,
+				73A6D9471A96EC68000BD98B /* PX2SkillStep.cpp in Sources */,
+				73A6D9251A96EC68000BD98B /* PX2Animation.cpp in Sources */,
+				73A6D9431A96EC68000BD98B /* PX2SkillActor.cpp in Sources */,
+				73A6D92A1A96EC68000BD98B /* PX2Character_Anim.cpp in Sources */,
+				73A6D9351A96EC68000BD98B /* PX2Project.cpp in Sources */,
+				73A6D9261A96EC68000BD98B /* PX2Animation3DSkeleton.cpp in Sources */,
+				73A6D93B1A96EC68000BD98B /* PX2SimulationEventType.cpp in Sources */,
+				73A6D93C1A96EC68000BD98B /* PX2User.cpp in Sources */,
+				73A6D9421A96EC68000BD98B /* PX2Skill_Step.cpp in Sources */,
+				73A6D94A1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp in Sources */,
+				73A6D9241A96EC68000BD98B /* PX2ActorPicker.cpp in Sources */,
+				73A6D92E1A96EC68000BD98B /* PX2EffectActor.cpp in Sources */,
+				73A6D9301A96EC68000BD98B /* PX2EngineLoop_Play.cpp in Sources */,
+				73A6D9481A96EC68000BD98B /* PX2SkillStepFarTrack.cpp in Sources */,
+				73A6D9211A96EC68000BD98B /* PX2AccoutManager.cpp in Sources */,
+				73A6D9291A96EC68000BD98B /* PX2CellSpace.cpp in Sources */,
+				73A6D9381A96EC68000BD98B /* PX2Scene.cpp in Sources */,
+				73A6D92F1A96EC68000BD98B /* PX2EngineLoop_InitTerm.cpp in Sources */,
+				73A6D92D1A96EC68000BD98B /* PX2Creater.cpp in Sources */,
+				73A6D9441A96EC68000BD98B /* PX2SkillActorLink.cpp in Sources */,
+				73A6D9391A96EC68000BD98B /* PX2Selection.cpp in Sources */,
+				73A6D9341A96EC68000BD98B /* PX2PlatformSDKEventType.cpp in Sources */,
+				73A6D9271A96EC68000BD98B /* PX2AnimationObject.cpp in Sources */,
+				73A6D9311A96EC68000BD98B /* PX2EngineLoop_Tick.cpp in Sources */,
+				73A6D93F1A96EC68000BD98B /* PX2Skill_Activate.cpp in Sources */,
+				73A6D92B1A96EC68000BD98B /* PX2Character_HPAP.cpp in Sources */,
+				73A6D9371A96EC68000BD98B /* PX2Scene_Manager.cpp in Sources */,
+				73A6D9221A96EC68000BD98B /* PX2Actor_BitSet.cpp in Sources */,
+				73A6D9231A96EC68000BD98B /* PX2Actor.cpp in Sources */,
+				73A6D9411A96EC68000BD98B /* PX2Skill_Range.cpp in Sources */,
+				73A6D9491A96EC68000BD98B /* PX2SkillStepLink.cpp in Sources */,
+				73A6D9281A96EC68000BD98B /* PX2CameraActor.cpp in Sources */,
+				73A6D93D1A96EC68000BD98B /* PX2UserActor.cpp in Sources */,
+				73A6D93A1A96EC68000BD98B /* PX2ServerInfo.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73A6D8B51A96EC03000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "../PX2Core ../PX2Mathematics ../PX2Graphics ../PX2Unity ../PX2Effect ../PX2Net ../PX2UI ../PX2Unity/Lua ../PX2Unity/ToLua ../PX2ToLua ./ ./SkillCompl";
+			};
+			name = Debug;
+		};
+		73A6D8B61A96EC03000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "../PX2Core ../PX2Mathematics ../PX2Graphics ../PX2Unity ../PX2Effect ../PX2Net ../PX2UI ../PX2Unity/Lua ../PX2Unity/ToLua ../PX2ToLua ./ ./SkillCompl";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73A6D8B81A96EC03000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Simulation.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		73A6D8B91A96EC03000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Simulation.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73A6D88F1A96EC02000BD98B /* Build configuration list for PBXProject "PX2Simulation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D8B51A96EC03000BD98B /* Debug */,
+				73A6D8B61A96EC03000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73A6D8B71A96EC03000BD98B /* Build configuration list for PBXNativeTarget "PX2Simulation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D8B81A96EC03000BD98B /* Debug */,
+				73A6D8B91A96EC03000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73A6D88C1A96EC02000BD98B /* Project object */;
+}

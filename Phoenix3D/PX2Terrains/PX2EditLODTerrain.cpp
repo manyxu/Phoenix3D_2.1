@@ -20,11 +20,6 @@ EditLODTerrain::~EditLODTerrain ()
 {
 }
 //----------------------------------------------------------------------------
-void EditLODTerrain::SetRenderer (Renderer* renderer)
-{
-	mRenderer = renderer;
-}
-//----------------------------------------------------------------------------
 void EditLODTerrain::SetRowQuantity (int rowQuantity)
 {
 	mRowQuantity = rowQuantity;

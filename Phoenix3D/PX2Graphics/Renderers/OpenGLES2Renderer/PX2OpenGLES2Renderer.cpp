@@ -1,4 +1,4 @@
-// TdOpenGLES2Renderer.cpp
+// PX2OpenGLES2Renderer.cpp
 
 #ifdef PX2_USE_OPENGLES2
 
@@ -24,10 +24,11 @@ Renderer::Renderer (RendererInput& input, int width, int height,
 	PdrRendererInput *pdrRenderInput = (PdrRendererInput *)(&input);
 
 	mData = new0 RendererData();
-	mData->mWindowHandle = pdrRenderInput->mWindowHandle;
-	mData->mDisplayType = pdrRenderInput->mRendererDC;
 
 #if defined(_WIN32) || defined(WIN32)
+    mData->mWindowHandle = pdrRenderInput->mWindowHandle;
+	mData->mDisplayType = pdrRenderInput->mRendererDC;
+    
 	EGLDisplay display = eglGetDisplay(pdrRenderInput->mRendererDC);
 	if (display == EGL_NO_DISPLAY)
 	{

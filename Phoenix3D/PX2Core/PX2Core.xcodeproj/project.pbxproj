@@ -1,0 +1,789 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		738459031A95E26700876E88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738459021A95E26700876E88 /* Foundation.framework */; };
+		738459ED1A95EA1200876E88 /* PX2Ascii.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459291A95EA1200876E88 /* PX2Ascii.cpp */; };
+		738459EE1A95EA1200876E88 /* PX2Assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384592C1A95EA1200876E88 /* PX2Assert.cpp */; };
+		738459EF1A95EA1200876E88 /* PX2BufferIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384592E1A95EA1200876E88 /* PX2BufferIO.cpp */; };
+		738459F01A95EA1200876E88 /* PX2Condition1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459311A95EA1200876E88 /* PX2Condition1.cpp */; };
+		738459F11A95EA1200876E88 /* PX2DateTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459361A95EA1200876E88 /* PX2DateTime.cpp */; };
+		738459F21A95EA1200876E88 /* PX2Endian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384593C1A95EA1200876E88 /* PX2Endian.cpp */; };
+		738459F31A95EA1200876E88 /* PX2Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384593E1A95EA1200876E88 /* PX2Environment.cpp */; };
+		738459F41A95EA1200876E88 /* PX2Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459401A95EA1200876E88 /* PX2Event.cpp */; };
+		738459F51A95EA1200876E88 /* PX2EventChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459431A95EA1200876E88 /* PX2EventChannel.cpp */; };
+		738459F61A95EA1200876E88 /* PX2EventFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459471A95EA1200876E88 /* PX2EventFactory.cpp */; };
+		738459F71A95EA1200876E88 /* PX2EventFactoryImplement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459491A95EA1200876E88 /* PX2EventFactoryImplement.cpp */; };
+		738459F81A95EA1200876E88 /* PX2EventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384594B1A95EA1200876E88 /* PX2EventHandler.cpp */; };
+		738459F91A95EA1200876E88 /* PX2EventHandlerObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384594E1A95EA1200876E88 /* PX2EventHandlerObject.cpp */; };
+		738459FA1A95EA1200876E88 /* PX2EventSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459501A95EA1200876E88 /* PX2EventSpace.cpp */; };
+		738459FB1A95EA1200876E88 /* PX2Eventt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459571A95EA1200876E88 /* PX2Eventt.cpp */; };
+		738459FC1A95EA1200876E88 /* PX2EventWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459591A95EA1200876E88 /* PX2EventWorld.cpp */; };
+		738459FD1A95EA1200876E88 /* PX2Exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384595B1A95EA1200876E88 /* PX2Exception.cpp */; };
+		738459FE1A95EA1200876E88 /* PX2FileIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384595D1A95EA1200876E88 /* PX2FileIO.cpp */; };
+		738459FF1A95EA1200876E88 /* PX2Format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459631A95EA1200876E88 /* PX2Format.cpp */; };
+		73845A001A95EA1200876E88 /* PX2FString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459651A95EA1200876E88 /* PX2FString.cpp */; };
+		73845A011A95EA1200876E88 /* PX2GeneralAlloctor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459681A95EA1200876E88 /* PX2GeneralAlloctor.cpp */; };
+		73845A021A95EA1200876E88 /* PX2HashTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384596C1A95EA1200876E88 /* PX2HashTable.cpp */; };
+		73845A031A95EA1200876E88 /* PX2InitTerm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384596F1A95EA1200876E88 /* PX2InitTerm.cpp */; };
+		73845A041A95EA1200876E88 /* PX2InStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459711A95EA1200876E88 /* PX2InStream.cpp */; };
+		73845A051A95EA1200876E88 /* PX2LocalDateTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459741A95EA1200876E88 /* PX2LocalDateTime.cpp */; };
+		73845A061A95EA1200876E88 /* PX2Log.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459771A95EA1200876E88 /* PX2Log.cpp */; };
+		73845A071A95EA1200876E88 /* PX2LogConsoleHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459791A95EA1200876E88 /* PX2LogConsoleHandler.cpp */; };
+		73845A081A95EA1200876E88 /* PX2LogFileHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384597B1A95EA1200876E88 /* PX2LogFileHandler.cpp */; };
+		73845A091A95EA1200876E88 /* PX2LogOutputWindowHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384597D1A95EA1200876E88 /* PX2LogOutputWindowHandler.cpp */; };
+		73845A0A1A95EA1200876E88 /* PX2Memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384597F1A95EA1200876E88 /* PX2Memory.cpp */; };
+		73845A0B1A95EA1200876E88 /* PX2Mutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459861A95EA1200876E88 /* PX2Mutex.cpp */; };
+		73845A0C1A95EA1200876E88 /* PX2Object_Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384598D1A95EA1200876E88 /* PX2Object_Event.cpp */; };
+		73845A0D1A95EA1200876E88 /* PX2Object_Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384598E1A95EA1200876E88 /* PX2Object_Function.cpp */; };
+		73845A0E1A95EA1200876E88 /* PX2Object_NameID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384598F1A95EA1200876E88 /* PX2Object_NameID.cpp */; };
+		73845A0F1A95EA1200876E88 /* PX2Object_Property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459901A95EA1200876E88 /* PX2Object_Property.cpp */; };
+		73845A101A95EA1200876E88 /* PX2Object_Resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459911A95EA1200876E88 /* PX2Object_Resource.cpp */; };
+		73845A111A95EA1200876E88 /* PX2Object_Rtti.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459921A95EA1200876E88 /* PX2Object_Rtti.cpp */; };
+		73845A121A95EA1200876E88 /* PX2Object_Script.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459931A95EA1200876E88 /* PX2Object_Script.cpp */; };
+		73845A131A95EA1200876E88 /* PX2Object_Stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459941A95EA1200876E88 /* PX2Object_Stream.cpp */; };
+		73845A141A95EA1200876E88 /* PX2Object_UserData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459951A95EA1200876E88 /* PX2Object_UserData.cpp */; };
+		73845A151A95EA1200876E88 /* PX2Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459961A95EA1200876E88 /* PX2Object.cpp */; };
+		73845A161A95EA1200876E88 /* PX2ObjectCopyPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459991A95EA1200876E88 /* PX2ObjectCopyPool.cpp */; };
+		73845A171A95EA1200876E88 /* PX2OutStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7384599D1A95EA1200876E88 /* PX2OutStream.cpp */; };
+		73845A181A95EA1200876E88 /* PX2Rtti.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459A41A95EA1200876E88 /* PX2Rtti.cpp */; };
+		73845A191A95EA1200876E88 /* PX2Runnable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459A71A95EA1200876E88 /* PX2Runnable.cpp */; };
+		73845A1A1A95EA1200876E88 /* PX2ScopedCS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459A91A95EA1200876E88 /* PX2ScopedCS.cpp */; };
+		73845A1B1A95EA1200876E88 /* PX2ScopedCSUN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459AB1A95EA1200876E88 /* PX2ScopedCSUN.cpp */; };
+		73845A1C1A95EA1200876E88 /* PX2ScriptManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459AD1A95EA1200876E88 /* PX2ScriptManager.cpp */; };
+		73845A1D1A95EA1200876E88 /* PX2Semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459AF1A95EA1200876E88 /* PX2Semaphore.cpp */; };
+		73845A1E1A95EA1200876E88 /* PX2SmartPointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459B31A95EA1200876E88 /* PX2SmartPointer.cpp */; };
+		73845A1F1A95EA1200876E88 /* PX2Stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459B71A95EA1200876E88 /* PX2Stream.cpp */; };
+		73845A201A95EA1200876E88 /* PX2StringHelp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459BA1A95EA1200876E88 /* PX2StringHelp.cpp */; };
+		73845A211A95EA1200876E88 /* PX2StringTokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459BC1A95EA1200876E88 /* PX2StringTokenizer.cpp */; };
+		73845A221A95EA1200876E88 /* PX2System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459BF1A95EA1200876E88 /* PX2System.cpp */; };
+		73845A231A95EA1200876E88 /* PX2Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459C31A95EA1200876E88 /* PX2Thread.cpp */; };
+		73845A241A95EA1200876E88 /* PX2ThreadLocal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459C61A95EA1200876E88 /* PX2ThreadLocal.cpp */; };
+		73845A251A95EA1200876E88 /* PX2ThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459C81A95EA1200876E88 /* PX2ThreadPool.cpp */; };
+		73845A261A95EA1200876E88 /* PX2ThreadServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459CA1A95EA1200876E88 /* PX2ThreadServer.cpp */; };
+		73845A271A95EA1200876E88 /* PX2ThreadTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459CC1A95EA1200876E88 /* PX2ThreadTarget.cpp */; };
+		73845A281A95EA1200876E88 /* PX2Time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459CF1A95EA1200876E88 /* PX2Time.cpp */; };
+		73845A291A95EA1200876E88 /* PX2Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459D11A95EA1200876E88 /* PX2Timer.cpp */; };
+		73845A2A1A95EA1200876E88 /* PX2TimerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459D31A95EA1200876E88 /* PX2TimerManager.cpp */; };
+		73845A2B1A95EA1200876E88 /* PX2Timespan.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459D51A95EA1200876E88 /* PX2Timespan.cpp */; };
+		73845A2C1A95EA1200876E88 /* PX2Timestamp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459D81A95EA1200876E88 /* PX2Timestamp.cpp */; };
+		73845A2D1A95EA1200876E88 /* PX2TimeZone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459DB1A95EA1200876E88 /* PX2TimeZone.cpp */; };
+		73845A2E1A95EA1200876E88 /* PX2Visitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459DF1A95EA1200876E88 /* PX2Visitor.cpp */; };
+		73845A2F1A95EA1200876E88 /* PX2WeakPointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459E11A95EA1200876E88 /* PX2WeakPointer.cpp */; };
+		73845A301A95EA1200876E88 /* PX2XMLData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459E41A95EA1200876E88 /* PX2XMLData.cpp */; };
+		73845A311A95EA1200876E88 /* PX2XMLNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 738459E61A95EA1200876E88 /* PX2XMLNode.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		738458FD1A95E26700876E88 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		738458FF1A95E26700876E88 /* libPX2Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2Core.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		738459021A95E26700876E88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		738459101A95E26700876E88 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		738459131A95E26700876E88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		738459281A95EA1200876E88 /* PX2Any.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Any.hpp; sourceTree = SOURCE_ROOT; };
+		738459291A95EA1200876E88 /* PX2Ascii.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Ascii.cpp; sourceTree = SOURCE_ROOT; };
+		7384592A1A95EA1200876E88 /* PX2Ascii.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Ascii.hpp; sourceTree = SOURCE_ROOT; };
+		7384592B1A95EA1200876E88 /* PX2Ascii.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Ascii.inl; sourceTree = SOURCE_ROOT; };
+		7384592C1A95EA1200876E88 /* PX2Assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Assert.cpp; sourceTree = SOURCE_ROOT; };
+		7384592D1A95EA1200876E88 /* PX2Assert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Assert.hpp; sourceTree = SOURCE_ROOT; };
+		7384592E1A95EA1200876E88 /* PX2BufferIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2BufferIO.cpp; sourceTree = SOURCE_ROOT; };
+		7384592F1A95EA1200876E88 /* PX2BufferIO.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2BufferIO.hpp; sourceTree = SOURCE_ROOT; };
+		738459301A95EA1200876E88 /* PX2BufferIO.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2BufferIO.inl; sourceTree = SOURCE_ROOT; };
+		738459311A95EA1200876E88 /* PX2Condition1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Condition1.cpp; sourceTree = SOURCE_ROOT; };
+		738459321A95EA1200876E88 /* PX2Condition1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Condition1.hpp; sourceTree = SOURCE_ROOT; };
+		738459331A95EA1200876E88 /* PX2ConditionType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ConditionType.hpp; sourceTree = SOURCE_ROOT; };
+		738459341A95EA1200876E88 /* PX2Core.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Core.hpp; sourceTree = SOURCE_ROOT; };
+		738459351A95EA1200876E88 /* PX2CorePre.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2CorePre.hpp; sourceTree = SOURCE_ROOT; };
+		738459361A95EA1200876E88 /* PX2DateTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2DateTime.cpp; sourceTree = SOURCE_ROOT; };
+		738459371A95EA1200876E88 /* PX2DateTime.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2DateTime.hpp; sourceTree = SOURCE_ROOT; };
+		738459381A95EA1200876E88 /* PX2DateTime.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2DateTime.inl; sourceTree = SOURCE_ROOT; };
+		738459391A95EA1200876E88 /* PX2DesignUntity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2DesignUntity.hpp; sourceTree = SOURCE_ROOT; };
+		7384593A1A95EA1200876E88 /* PX2DoubleChainList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2DoubleChainList.hpp; sourceTree = SOURCE_ROOT; };
+		7384593B1A95EA1200876E88 /* PX2DoubleChainList.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2DoubleChainList.inl; sourceTree = SOURCE_ROOT; };
+		7384593C1A95EA1200876E88 /* PX2Endian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Endian.cpp; sourceTree = SOURCE_ROOT; };
+		7384593D1A95EA1200876E88 /* PX2Endian.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Endian.hpp; sourceTree = SOURCE_ROOT; };
+		7384593E1A95EA1200876E88 /* PX2Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Environment.cpp; sourceTree = SOURCE_ROOT; };
+		7384593F1A95EA1200876E88 /* PX2Environment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Environment.hpp; sourceTree = SOURCE_ROOT; };
+		738459401A95EA1200876E88 /* PX2Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Event.cpp; sourceTree = SOURCE_ROOT; };
+		738459411A95EA1200876E88 /* PX2Event.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Event.hpp; sourceTree = SOURCE_ROOT; };
+		738459421A95EA1200876E88 /* PX2Event.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Event.inl; sourceTree = SOURCE_ROOT; };
+		738459431A95EA1200876E88 /* PX2EventChannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EventChannel.cpp; sourceTree = SOURCE_ROOT; };
+		738459441A95EA1200876E88 /* PX2EventChannel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventChannel.hpp; sourceTree = SOURCE_ROOT; };
+		738459451A95EA1200876E88 /* PX2EventChannel.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EventChannel.inl; sourceTree = SOURCE_ROOT; };
+		738459461A95EA1200876E88 /* PX2EventData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventData.hpp; sourceTree = SOURCE_ROOT; };
+		738459471A95EA1200876E88 /* PX2EventFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EventFactory.cpp; sourceTree = SOURCE_ROOT; };
+		738459481A95EA1200876E88 /* PX2EventFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventFactory.hpp; sourceTree = SOURCE_ROOT; };
+		738459491A95EA1200876E88 /* PX2EventFactoryImplement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EventFactoryImplement.cpp; sourceTree = SOURCE_ROOT; };
+		7384594A1A95EA1200876E88 /* PX2EventFactoryImplement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventFactoryImplement.hpp; sourceTree = SOURCE_ROOT; };
+		7384594B1A95EA1200876E88 /* PX2EventHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EventHandler.cpp; sourceTree = SOURCE_ROOT; };
+		7384594C1A95EA1200876E88 /* PX2EventHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventHandler.hpp; sourceTree = SOURCE_ROOT; };
+		7384594D1A95EA1200876E88 /* PX2EventHandler.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EventHandler.inl; sourceTree = SOURCE_ROOT; };
+		7384594E1A95EA1200876E88 /* PX2EventHandlerObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EventHandlerObject.cpp; sourceTree = SOURCE_ROOT; };
+		7384594F1A95EA1200876E88 /* PX2EventHandlerObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventHandlerObject.hpp; sourceTree = SOURCE_ROOT; };
+		738459501A95EA1200876E88 /* PX2EventSpace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EventSpace.cpp; sourceTree = SOURCE_ROOT; };
+		738459511A95EA1200876E88 /* PX2EventSpace.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventSpace.hpp; sourceTree = SOURCE_ROOT; };
+		738459521A95EA1200876E88 /* PX2EventSpace.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EventSpace.inl; sourceTree = SOURCE_ROOT; };
+		738459531A95EA1200876E88 /* PX2EventSpaceRegister.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventSpaceRegister.hpp; sourceTree = SOURCE_ROOT; };
+		738459541A95EA1200876E88 /* PX2EventSpaceRegister.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EventSpaceRegister.inl; sourceTree = SOURCE_ROOT; };
+		738459551A95EA1200876E88 /* PX2EventSpaceRegisterMCR.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventSpaceRegisterMCR.hpp; sourceTree = SOURCE_ROOT; };
+		738459561A95EA1200876E88 /* PX2EventSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventSystem.hpp; sourceTree = SOURCE_ROOT; };
+		738459571A95EA1200876E88 /* PX2Eventt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Eventt.cpp; sourceTree = SOURCE_ROOT; };
+		738459581A95EA1200876E88 /* PX2Eventt.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Eventt.hpp; sourceTree = SOURCE_ROOT; };
+		738459591A95EA1200876E88 /* PX2EventWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EventWorld.cpp; sourceTree = SOURCE_ROOT; };
+		7384595A1A95EA1200876E88 /* PX2EventWorld.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EventWorld.hpp; sourceTree = SOURCE_ROOT; };
+		7384595B1A95EA1200876E88 /* PX2Exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Exception.cpp; sourceTree = SOURCE_ROOT; };
+		7384595C1A95EA1200876E88 /* PX2Exception.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Exception.hpp; sourceTree = SOURCE_ROOT; };
+		7384595D1A95EA1200876E88 /* PX2FileIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2FileIO.cpp; sourceTree = SOURCE_ROOT; };
+		7384595E1A95EA1200876E88 /* PX2FileIO.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2FileIO.hpp; sourceTree = SOURCE_ROOT; };
+		7384595F1A95EA1200876E88 /* PX2FileIO.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2FileIO.inl; sourceTree = SOURCE_ROOT; };
+		738459601A95EA1200876E88 /* PX2FixMemoryObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2FixMemoryObject.hpp; sourceTree = SOURCE_ROOT; };
+		738459611A95EA1200876E88 /* PX2FixMemoryPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2FixMemoryPool.hpp; sourceTree = SOURCE_ROOT; };
+		738459621A95EA1200876E88 /* PX2FixMemoryPool.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2FixMemoryPool.inl; sourceTree = SOURCE_ROOT; };
+		738459631A95EA1200876E88 /* PX2Format.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Format.cpp; sourceTree = SOURCE_ROOT; };
+		738459641A95EA1200876E88 /* PX2Format.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Format.hpp; sourceTree = SOURCE_ROOT; };
+		738459651A95EA1200876E88 /* PX2FString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2FString.cpp; sourceTree = SOURCE_ROOT; };
+		738459661A95EA1200876E88 /* PX2FString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2FString.hpp; sourceTree = SOURCE_ROOT; };
+		738459671A95EA1200876E88 /* PX2Function.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Function.hpp; sourceTree = SOURCE_ROOT; };
+		738459681A95EA1200876E88 /* PX2GeneralAlloctor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2GeneralAlloctor.cpp; sourceTree = SOURCE_ROOT; };
+		738459691A95EA1200876E88 /* PX2GeneralAlloctor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2GeneralAlloctor.hpp; sourceTree = SOURCE_ROOT; };
+		7384596A1A95EA1200876E88 /* PX2GeneralAlloctor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2GeneralAlloctor.inl; sourceTree = SOURCE_ROOT; };
+		7384596B1A95EA1200876E88 /* PX2GeneralAlloctorObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2GeneralAlloctorObject.hpp; sourceTree = SOURCE_ROOT; };
+		7384596C1A95EA1200876E88 /* PX2HashTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2HashTable.cpp; sourceTree = SOURCE_ROOT; };
+		7384596D1A95EA1200876E88 /* PX2HashTable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2HashTable.hpp; sourceTree = SOURCE_ROOT; };
+		7384596E1A95EA1200876E88 /* PX2Helps.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Helps.hpp; sourceTree = SOURCE_ROOT; };
+		7384596F1A95EA1200876E88 /* PX2InitTerm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2InitTerm.cpp; sourceTree = SOURCE_ROOT; };
+		738459701A95EA1200876E88 /* PX2InitTerm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2InitTerm.hpp; sourceTree = SOURCE_ROOT; };
+		738459711A95EA1200876E88 /* PX2InStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2InStream.cpp; sourceTree = SOURCE_ROOT; };
+		738459721A95EA1200876E88 /* PX2InStream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2InStream.hpp; sourceTree = SOURCE_ROOT; };
+		738459731A95EA1200876E88 /* PX2InStream.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2InStream.inl; sourceTree = SOURCE_ROOT; };
+		738459741A95EA1200876E88 /* PX2LocalDateTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LocalDateTime.cpp; sourceTree = SOURCE_ROOT; };
+		738459751A95EA1200876E88 /* PX2LocalDateTime.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LocalDateTime.hpp; sourceTree = SOURCE_ROOT; };
+		738459761A95EA1200876E88 /* PX2LocalDateTime.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2LocalDateTime.inl; sourceTree = SOURCE_ROOT; };
+		738459771A95EA1200876E88 /* PX2Log.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Log.cpp; sourceTree = SOURCE_ROOT; };
+		738459781A95EA1200876E88 /* PX2Log.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Log.hpp; sourceTree = SOURCE_ROOT; };
+		738459791A95EA1200876E88 /* PX2LogConsoleHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LogConsoleHandler.cpp; sourceTree = SOURCE_ROOT; };
+		7384597A1A95EA1200876E88 /* PX2LogConsoleHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LogConsoleHandler.hpp; sourceTree = SOURCE_ROOT; };
+		7384597B1A95EA1200876E88 /* PX2LogFileHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LogFileHandler.cpp; sourceTree = SOURCE_ROOT; };
+		7384597C1A95EA1200876E88 /* PX2LogFileHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LogFileHandler.hpp; sourceTree = SOURCE_ROOT; };
+		7384597D1A95EA1200876E88 /* PX2LogOutputWindowHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LogOutputWindowHandler.cpp; sourceTree = SOURCE_ROOT; };
+		7384597E1A95EA1200876E88 /* PX2LogOutputWindowHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LogOutputWindowHandler.hpp; sourceTree = SOURCE_ROOT; };
+		7384597F1A95EA1200876E88 /* PX2Memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Memory.cpp; sourceTree = SOURCE_ROOT; };
+		738459801A95EA1200876E88 /* PX2Memory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Memory.hpp; sourceTree = SOURCE_ROOT; };
+		738459811A95EA1200876E88 /* PX2Memory.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Memory.inl; sourceTree = SOURCE_ROOT; };
+		738459821A95EA1200876E88 /* PX2MinHeap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2MinHeap.hpp; sourceTree = SOURCE_ROOT; };
+		738459831A95EA1200876E88 /* PX2MinHeap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2MinHeap.inl; sourceTree = SOURCE_ROOT; };
+		738459841A95EA1200876E88 /* PX2MsgQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2MsgQueue.hpp; sourceTree = SOURCE_ROOT; };
+		738459851A95EA1200876E88 /* PX2MsgQueue.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2MsgQueue.inl; sourceTree = SOURCE_ROOT; };
+		738459861A95EA1200876E88 /* PX2Mutex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Mutex.cpp; sourceTree = SOURCE_ROOT; };
+		738459871A95EA1200876E88 /* PX2Mutex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Mutex.hpp; sourceTree = SOURCE_ROOT; };
+		738459881A95EA1200876E88 /* PX2MutexType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2MutexType.hpp; sourceTree = SOURCE_ROOT; };
+		738459891A95EA1200876E88 /* PX2NameID.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2NameID.hpp; sourceTree = SOURCE_ROOT; };
+		7384598A1A95EA1200876E88 /* PX2Noncopyable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Noncopyable.hpp; sourceTree = SOURCE_ROOT; };
+		7384598B1A95EA1200876E88 /* PX2NotFreeObjectPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2NotFreeObjectPool.hpp; sourceTree = SOURCE_ROOT; };
+		7384598C1A95EA1200876E88 /* PX2NotFreeObjectPool.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2NotFreeObjectPool.inl; sourceTree = SOURCE_ROOT; };
+		7384598D1A95EA1200876E88 /* PX2Object_Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object_Event.cpp; sourceTree = SOURCE_ROOT; };
+		7384598E1A95EA1200876E88 /* PX2Object_Function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object_Function.cpp; sourceTree = SOURCE_ROOT; };
+		7384598F1A95EA1200876E88 /* PX2Object_NameID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object_NameID.cpp; sourceTree = SOURCE_ROOT; };
+		738459901A95EA1200876E88 /* PX2Object_Property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object_Property.cpp; sourceTree = SOURCE_ROOT; };
+		738459911A95EA1200876E88 /* PX2Object_Resource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object_Resource.cpp; sourceTree = SOURCE_ROOT; };
+		738459921A95EA1200876E88 /* PX2Object_Rtti.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object_Rtti.cpp; sourceTree = SOURCE_ROOT; };
+		738459931A95EA1200876E88 /* PX2Object_Script.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object_Script.cpp; sourceTree = SOURCE_ROOT; };
+		738459941A95EA1200876E88 /* PX2Object_Stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object_Stream.cpp; sourceTree = SOURCE_ROOT; };
+		738459951A95EA1200876E88 /* PX2Object_UserData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object_UserData.cpp; sourceTree = SOURCE_ROOT; };
+		738459961A95EA1200876E88 /* PX2Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Object.cpp; sourceTree = SOURCE_ROOT; };
+		738459971A95EA1200876E88 /* PX2Object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Object.hpp; sourceTree = SOURCE_ROOT; };
+		738459981A95EA1200876E88 /* PX2Object.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Object.inl; sourceTree = SOURCE_ROOT; };
+		738459991A95EA1200876E88 /* PX2ObjectCopyPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ObjectCopyPool.cpp; sourceTree = SOURCE_ROOT; };
+		7384599A1A95EA1200876E88 /* PX2ObjectCopyPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ObjectCopyPool.hpp; sourceTree = SOURCE_ROOT; };
+		7384599B1A95EA1200876E88 /* PX2ObjectPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ObjectPool.hpp; sourceTree = SOURCE_ROOT; };
+		7384599C1A95EA1200876E88 /* PX2ObjectPool.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2ObjectPool.inl; sourceTree = SOURCE_ROOT; };
+		7384599D1A95EA1200876E88 /* PX2OutStream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2OutStream.cpp; sourceTree = SOURCE_ROOT; };
+		7384599E1A95EA1200876E88 /* PX2OutStream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2OutStream.hpp; sourceTree = SOURCE_ROOT; };
+		7384599F1A95EA1200876E88 /* PX2OutStream.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2OutStream.inl; sourceTree = SOURCE_ROOT; };
+		738459A01A95EA1200876E88 /* PX2PriorityQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2PriorityQueue.hpp; sourceTree = SOURCE_ROOT; };
+		738459A11A95EA1200876E88 /* PX2PriorityQueue.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2PriorityQueue.inl; sourceTree = SOURCE_ROOT; };
+		738459A21A95EA1200876E88 /* PX2Property.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Property.hpp; sourceTree = SOURCE_ROOT; };
+		738459A31A95EA1200876E88 /* PX2PropModify.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2PropModify.hpp; sourceTree = SOURCE_ROOT; };
+		738459A41A95EA1200876E88 /* PX2Rtti.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Rtti.cpp; sourceTree = SOURCE_ROOT; };
+		738459A51A95EA1200876E88 /* PX2Rtti.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Rtti.hpp; sourceTree = SOURCE_ROOT; };
+		738459A61A95EA1200876E88 /* PX2Rtti.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Rtti.inl; sourceTree = SOURCE_ROOT; };
+		738459A71A95EA1200876E88 /* PX2Runnable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Runnable.cpp; sourceTree = SOURCE_ROOT; };
+		738459A81A95EA1200876E88 /* PX2Runnable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Runnable.hpp; sourceTree = SOURCE_ROOT; };
+		738459A91A95EA1200876E88 /* PX2ScopedCS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ScopedCS.cpp; sourceTree = SOURCE_ROOT; };
+		738459AA1A95EA1200876E88 /* PX2ScopedCS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ScopedCS.hpp; sourceTree = SOURCE_ROOT; };
+		738459AB1A95EA1200876E88 /* PX2ScopedCSUN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ScopedCSUN.cpp; sourceTree = SOURCE_ROOT; };
+		738459AC1A95EA1200876E88 /* PX2ScopedCSUN.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ScopedCSUN.hpp; sourceTree = SOURCE_ROOT; };
+		738459AD1A95EA1200876E88 /* PX2ScriptManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ScriptManager.cpp; sourceTree = SOURCE_ROOT; };
+		738459AE1A95EA1200876E88 /* PX2ScriptManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ScriptManager.hpp; sourceTree = SOURCE_ROOT; };
+		738459AF1A95EA1200876E88 /* PX2Semaphore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Semaphore.cpp; sourceTree = SOURCE_ROOT; };
+		738459B01A95EA1200876E88 /* PX2Semaphore.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Semaphore.hpp; sourceTree = SOURCE_ROOT; };
+		738459B11A95EA1200876E88 /* PX2Singleton_NeedNew.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Singleton_NeedNew.hpp; sourceTree = SOURCE_ROOT; };
+		738459B21A95EA1200876E88 /* PX2Singleton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Singleton.hpp; sourceTree = SOURCE_ROOT; };
+		738459B31A95EA1200876E88 /* PX2SmartPointer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SmartPointer.cpp; sourceTree = SOURCE_ROOT; };
+		738459B41A95EA1200876E88 /* PX2SmartPointer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SmartPointer.hpp; sourceTree = SOURCE_ROOT; };
+		738459B51A95EA1200876E88 /* PX2SmartPointer.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SmartPointer.inl; sourceTree = SOURCE_ROOT; };
+		738459B61A95EA1200876E88 /* PX2Smoother.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Smoother.hpp; sourceTree = SOURCE_ROOT; };
+		738459B71A95EA1200876E88 /* PX2Stream.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Stream.cpp; sourceTree = SOURCE_ROOT; };
+		738459B81A95EA1200876E88 /* PX2Stream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Stream.hpp; sourceTree = SOURCE_ROOT; };
+		738459B91A95EA1200876E88 /* PX2Stream.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Stream.inl; sourceTree = SOURCE_ROOT; };
+		738459BA1A95EA1200876E88 /* PX2StringHelp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2StringHelp.cpp; sourceTree = SOURCE_ROOT; };
+		738459BB1A95EA1200876E88 /* PX2StringHelp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2StringHelp.hpp; sourceTree = SOURCE_ROOT; };
+		738459BC1A95EA1200876E88 /* PX2StringTokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2StringTokenizer.cpp; sourceTree = SOURCE_ROOT; };
+		738459BD1A95EA1200876E88 /* PX2StringTokenizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2StringTokenizer.hpp; sourceTree = SOURCE_ROOT; };
+		738459BE1A95EA1200876E88 /* PX2StringTokenizer.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2StringTokenizer.inl; sourceTree = SOURCE_ROOT; };
+		738459BF1A95EA1200876E88 /* PX2System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2System.cpp; sourceTree = SOURCE_ROOT; };
+		738459C01A95EA1200876E88 /* PX2System.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2System.hpp; sourceTree = SOURCE_ROOT; };
+		738459C11A95EA1200876E88 /* PX2Table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Table.hpp; sourceTree = SOURCE_ROOT; };
+		738459C21A95EA1200876E88 /* PX2Table.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Table.inl; sourceTree = SOURCE_ROOT; };
+		738459C31A95EA1200876E88 /* PX2Thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Thread.cpp; sourceTree = SOURCE_ROOT; };
+		738459C41A95EA1200876E88 /* PX2Thread.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Thread.hpp; sourceTree = SOURCE_ROOT; };
+		738459C51A95EA1200876E88 /* PX2Thread.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Thread.inl; sourceTree = SOURCE_ROOT; };
+		738459C61A95EA1200876E88 /* PX2ThreadLocal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ThreadLocal.cpp; sourceTree = SOURCE_ROOT; };
+		738459C71A95EA1200876E88 /* PX2ThreadLocal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ThreadLocal.hpp; sourceTree = SOURCE_ROOT; };
+		738459C81A95EA1200876E88 /* PX2ThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ThreadPool.cpp; sourceTree = SOURCE_ROOT; };
+		738459C91A95EA1200876E88 /* PX2ThreadPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ThreadPool.hpp; sourceTree = SOURCE_ROOT; };
+		738459CA1A95EA1200876E88 /* PX2ThreadServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ThreadServer.cpp; sourceTree = SOURCE_ROOT; };
+		738459CB1A95EA1200876E88 /* PX2ThreadServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ThreadServer.hpp; sourceTree = SOURCE_ROOT; };
+		738459CC1A95EA1200876E88 /* PX2ThreadTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ThreadTarget.cpp; sourceTree = SOURCE_ROOT; };
+		738459CD1A95EA1200876E88 /* PX2ThreadTarget.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ThreadTarget.hpp; sourceTree = SOURCE_ROOT; };
+		738459CE1A95EA1200876E88 /* PX2ThreadType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ThreadType.hpp; sourceTree = SOURCE_ROOT; };
+		738459CF1A95EA1200876E88 /* PX2Time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Time.cpp; sourceTree = SOURCE_ROOT; };
+		738459D01A95EA1200876E88 /* PX2Time.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Time.hpp; sourceTree = SOURCE_ROOT; };
+		738459D11A95EA1200876E88 /* PX2Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Timer.cpp; sourceTree = SOURCE_ROOT; };
+		738459D21A95EA1200876E88 /* PX2Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Timer.hpp; sourceTree = SOURCE_ROOT; };
+		738459D31A95EA1200876E88 /* PX2TimerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2TimerManager.cpp; sourceTree = SOURCE_ROOT; };
+		738459D41A95EA1200876E88 /* PX2TimerManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2TimerManager.hpp; sourceTree = SOURCE_ROOT; };
+		738459D51A95EA1200876E88 /* PX2Timespan.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Timespan.cpp; sourceTree = SOURCE_ROOT; };
+		738459D61A95EA1200876E88 /* PX2Timespan.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Timespan.hpp; sourceTree = SOURCE_ROOT; };
+		738459D71A95EA1200876E88 /* PX2Timespan.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Timespan.inl; sourceTree = SOURCE_ROOT; };
+		738459D81A95EA1200876E88 /* PX2Timestamp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Timestamp.cpp; sourceTree = SOURCE_ROOT; };
+		738459D91A95EA1200876E88 /* PX2Timestamp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Timestamp.hpp; sourceTree = SOURCE_ROOT; };
+		738459DA1A95EA1200876E88 /* PX2Timestamp.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Timestamp.inl; sourceTree = SOURCE_ROOT; };
+		738459DB1A95EA1200876E88 /* PX2TimeZone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2TimeZone.cpp; sourceTree = SOURCE_ROOT; };
+		738459DC1A95EA1200876E88 /* PX2TimeZone.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2TimeZone.hpp; sourceTree = SOURCE_ROOT; };
+		738459DD1A95EA1200876E88 /* PX2Tuple.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Tuple.hpp; sourceTree = SOURCE_ROOT; };
+		738459DE1A95EA1200876E88 /* PX2Tuple.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Tuple.inl; sourceTree = SOURCE_ROOT; };
+		738459DF1A95EA1200876E88 /* PX2Visitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Visitor.cpp; sourceTree = SOURCE_ROOT; };
+		738459E01A95EA1200876E88 /* PX2Visitor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Visitor.hpp; sourceTree = SOURCE_ROOT; };
+		738459E11A95EA1200876E88 /* PX2WeakPointer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2WeakPointer.cpp; sourceTree = SOURCE_ROOT; };
+		738459E21A95EA1200876E88 /* PX2WeakPointer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2WeakPointer.hpp; sourceTree = SOURCE_ROOT; };
+		738459E31A95EA1200876E88 /* PX2WeakPointer.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2WeakPointer.inl; sourceTree = SOURCE_ROOT; };
+		738459E41A95EA1200876E88 /* PX2XMLData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2XMLData.cpp; sourceTree = SOURCE_ROOT; };
+		738459E51A95EA1200876E88 /* PX2XMLData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2XMLData.hpp; sourceTree = SOURCE_ROOT; };
+		738459E61A95EA1200876E88 /* PX2XMLNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2XMLNode.cpp; sourceTree = SOURCE_ROOT; };
+		738459E71A95EA1200876E88 /* PX2XMLNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2XMLNode.hpp; sourceTree = SOURCE_ROOT; };
+		738459E91A95EA1200876E88 /* rapidxml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rapidxml.hpp; sourceTree = "<group>"; };
+		738459EA1A95EA1200876E88 /* rapidxml_iterators.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rapidxml_iterators.hpp; sourceTree = "<group>"; };
+		738459EB1A95EA1200876E88 /* rapidxml_print.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rapidxml_print.hpp; sourceTree = "<group>"; };
+		738459EC1A95EA1200876E88 /* rapidxml_utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rapidxml_utils.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		738458FC1A95E26700876E88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				738459031A95E26700876E88 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		738458F61A95E26700876E88 = {
+			isa = PBXGroup;
+			children = (
+				738459041A95E26700876E88 /* PX2Core */,
+				738459011A95E26700876E88 /* Frameworks */,
+				738459001A95E26700876E88 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		738459001A95E26700876E88 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				738458FF1A95E26700876E88 /* libPX2Core.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		738459011A95E26700876E88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				738459021A95E26700876E88 /* Foundation.framework */,
+				738459101A95E26700876E88 /* XCTest.framework */,
+				738459131A95E26700876E88 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		738459041A95E26700876E88 /* PX2Core */ = {
+			isa = PBXGroup;
+			children = (
+				738459281A95EA1200876E88 /* PX2Any.hpp */,
+				738459291A95EA1200876E88 /* PX2Ascii.cpp */,
+				7384592A1A95EA1200876E88 /* PX2Ascii.hpp */,
+				7384592B1A95EA1200876E88 /* PX2Ascii.inl */,
+				7384592C1A95EA1200876E88 /* PX2Assert.cpp */,
+				7384592D1A95EA1200876E88 /* PX2Assert.hpp */,
+				7384592E1A95EA1200876E88 /* PX2BufferIO.cpp */,
+				7384592F1A95EA1200876E88 /* PX2BufferIO.hpp */,
+				738459301A95EA1200876E88 /* PX2BufferIO.inl */,
+				738459311A95EA1200876E88 /* PX2Condition1.cpp */,
+				738459321A95EA1200876E88 /* PX2Condition1.hpp */,
+				738459331A95EA1200876E88 /* PX2ConditionType.hpp */,
+				738459341A95EA1200876E88 /* PX2Core.hpp */,
+				738459351A95EA1200876E88 /* PX2CorePre.hpp */,
+				738459361A95EA1200876E88 /* PX2DateTime.cpp */,
+				738459371A95EA1200876E88 /* PX2DateTime.hpp */,
+				738459381A95EA1200876E88 /* PX2DateTime.inl */,
+				738459391A95EA1200876E88 /* PX2DesignUntity.hpp */,
+				7384593A1A95EA1200876E88 /* PX2DoubleChainList.hpp */,
+				7384593B1A95EA1200876E88 /* PX2DoubleChainList.inl */,
+				7384593C1A95EA1200876E88 /* PX2Endian.cpp */,
+				7384593D1A95EA1200876E88 /* PX2Endian.hpp */,
+				7384593E1A95EA1200876E88 /* PX2Environment.cpp */,
+				7384593F1A95EA1200876E88 /* PX2Environment.hpp */,
+				738459401A95EA1200876E88 /* PX2Event.cpp */,
+				738459411A95EA1200876E88 /* PX2Event.hpp */,
+				738459421A95EA1200876E88 /* PX2Event.inl */,
+				738459431A95EA1200876E88 /* PX2EventChannel.cpp */,
+				738459441A95EA1200876E88 /* PX2EventChannel.hpp */,
+				738459451A95EA1200876E88 /* PX2EventChannel.inl */,
+				738459461A95EA1200876E88 /* PX2EventData.hpp */,
+				738459471A95EA1200876E88 /* PX2EventFactory.cpp */,
+				738459481A95EA1200876E88 /* PX2EventFactory.hpp */,
+				738459491A95EA1200876E88 /* PX2EventFactoryImplement.cpp */,
+				7384594A1A95EA1200876E88 /* PX2EventFactoryImplement.hpp */,
+				7384594B1A95EA1200876E88 /* PX2EventHandler.cpp */,
+				7384594C1A95EA1200876E88 /* PX2EventHandler.hpp */,
+				7384594D1A95EA1200876E88 /* PX2EventHandler.inl */,
+				7384594E1A95EA1200876E88 /* PX2EventHandlerObject.cpp */,
+				7384594F1A95EA1200876E88 /* PX2EventHandlerObject.hpp */,
+				738459501A95EA1200876E88 /* PX2EventSpace.cpp */,
+				738459511A95EA1200876E88 /* PX2EventSpace.hpp */,
+				738459521A95EA1200876E88 /* PX2EventSpace.inl */,
+				738459531A95EA1200876E88 /* PX2EventSpaceRegister.hpp */,
+				738459541A95EA1200876E88 /* PX2EventSpaceRegister.inl */,
+				738459551A95EA1200876E88 /* PX2EventSpaceRegisterMCR.hpp */,
+				738459561A95EA1200876E88 /* PX2EventSystem.hpp */,
+				738459571A95EA1200876E88 /* PX2Eventt.cpp */,
+				738459581A95EA1200876E88 /* PX2Eventt.hpp */,
+				738459591A95EA1200876E88 /* PX2EventWorld.cpp */,
+				7384595A1A95EA1200876E88 /* PX2EventWorld.hpp */,
+				7384595B1A95EA1200876E88 /* PX2Exception.cpp */,
+				7384595C1A95EA1200876E88 /* PX2Exception.hpp */,
+				7384595D1A95EA1200876E88 /* PX2FileIO.cpp */,
+				7384595E1A95EA1200876E88 /* PX2FileIO.hpp */,
+				7384595F1A95EA1200876E88 /* PX2FileIO.inl */,
+				738459601A95EA1200876E88 /* PX2FixMemoryObject.hpp */,
+				738459611A95EA1200876E88 /* PX2FixMemoryPool.hpp */,
+				738459621A95EA1200876E88 /* PX2FixMemoryPool.inl */,
+				738459631A95EA1200876E88 /* PX2Format.cpp */,
+				738459641A95EA1200876E88 /* PX2Format.hpp */,
+				738459651A95EA1200876E88 /* PX2FString.cpp */,
+				738459661A95EA1200876E88 /* PX2FString.hpp */,
+				738459671A95EA1200876E88 /* PX2Function.hpp */,
+				738459681A95EA1200876E88 /* PX2GeneralAlloctor.cpp */,
+				738459691A95EA1200876E88 /* PX2GeneralAlloctor.hpp */,
+				7384596A1A95EA1200876E88 /* PX2GeneralAlloctor.inl */,
+				7384596B1A95EA1200876E88 /* PX2GeneralAlloctorObject.hpp */,
+				7384596C1A95EA1200876E88 /* PX2HashTable.cpp */,
+				7384596D1A95EA1200876E88 /* PX2HashTable.hpp */,
+				7384596E1A95EA1200876E88 /* PX2Helps.hpp */,
+				7384596F1A95EA1200876E88 /* PX2InitTerm.cpp */,
+				738459701A95EA1200876E88 /* PX2InitTerm.hpp */,
+				738459711A95EA1200876E88 /* PX2InStream.cpp */,
+				738459721A95EA1200876E88 /* PX2InStream.hpp */,
+				738459731A95EA1200876E88 /* PX2InStream.inl */,
+				738459741A95EA1200876E88 /* PX2LocalDateTime.cpp */,
+				738459751A95EA1200876E88 /* PX2LocalDateTime.hpp */,
+				738459761A95EA1200876E88 /* PX2LocalDateTime.inl */,
+				738459771A95EA1200876E88 /* PX2Log.cpp */,
+				738459781A95EA1200876E88 /* PX2Log.hpp */,
+				738459791A95EA1200876E88 /* PX2LogConsoleHandler.cpp */,
+				7384597A1A95EA1200876E88 /* PX2LogConsoleHandler.hpp */,
+				7384597B1A95EA1200876E88 /* PX2LogFileHandler.cpp */,
+				7384597C1A95EA1200876E88 /* PX2LogFileHandler.hpp */,
+				7384597D1A95EA1200876E88 /* PX2LogOutputWindowHandler.cpp */,
+				7384597E1A95EA1200876E88 /* PX2LogOutputWindowHandler.hpp */,
+				7384597F1A95EA1200876E88 /* PX2Memory.cpp */,
+				738459801A95EA1200876E88 /* PX2Memory.hpp */,
+				738459811A95EA1200876E88 /* PX2Memory.inl */,
+				738459821A95EA1200876E88 /* PX2MinHeap.hpp */,
+				738459831A95EA1200876E88 /* PX2MinHeap.inl */,
+				738459841A95EA1200876E88 /* PX2MsgQueue.hpp */,
+				738459851A95EA1200876E88 /* PX2MsgQueue.inl */,
+				738459861A95EA1200876E88 /* PX2Mutex.cpp */,
+				738459871A95EA1200876E88 /* PX2Mutex.hpp */,
+				738459881A95EA1200876E88 /* PX2MutexType.hpp */,
+				738459891A95EA1200876E88 /* PX2NameID.hpp */,
+				7384598A1A95EA1200876E88 /* PX2Noncopyable.hpp */,
+				7384598B1A95EA1200876E88 /* PX2NotFreeObjectPool.hpp */,
+				7384598C1A95EA1200876E88 /* PX2NotFreeObjectPool.inl */,
+				7384598D1A95EA1200876E88 /* PX2Object_Event.cpp */,
+				7384598E1A95EA1200876E88 /* PX2Object_Function.cpp */,
+				7384598F1A95EA1200876E88 /* PX2Object_NameID.cpp */,
+				738459901A95EA1200876E88 /* PX2Object_Property.cpp */,
+				738459911A95EA1200876E88 /* PX2Object_Resource.cpp */,
+				738459921A95EA1200876E88 /* PX2Object_Rtti.cpp */,
+				738459931A95EA1200876E88 /* PX2Object_Script.cpp */,
+				738459941A95EA1200876E88 /* PX2Object_Stream.cpp */,
+				738459951A95EA1200876E88 /* PX2Object_UserData.cpp */,
+				738459961A95EA1200876E88 /* PX2Object.cpp */,
+				738459971A95EA1200876E88 /* PX2Object.hpp */,
+				738459981A95EA1200876E88 /* PX2Object.inl */,
+				738459991A95EA1200876E88 /* PX2ObjectCopyPool.cpp */,
+				7384599A1A95EA1200876E88 /* PX2ObjectCopyPool.hpp */,
+				7384599B1A95EA1200876E88 /* PX2ObjectPool.hpp */,
+				7384599C1A95EA1200876E88 /* PX2ObjectPool.inl */,
+				7384599D1A95EA1200876E88 /* PX2OutStream.cpp */,
+				7384599E1A95EA1200876E88 /* PX2OutStream.hpp */,
+				7384599F1A95EA1200876E88 /* PX2OutStream.inl */,
+				738459A01A95EA1200876E88 /* PX2PriorityQueue.hpp */,
+				738459A11A95EA1200876E88 /* PX2PriorityQueue.inl */,
+				738459A21A95EA1200876E88 /* PX2Property.hpp */,
+				738459A31A95EA1200876E88 /* PX2PropModify.hpp */,
+				738459A41A95EA1200876E88 /* PX2Rtti.cpp */,
+				738459A51A95EA1200876E88 /* PX2Rtti.hpp */,
+				738459A61A95EA1200876E88 /* PX2Rtti.inl */,
+				738459A71A95EA1200876E88 /* PX2Runnable.cpp */,
+				738459A81A95EA1200876E88 /* PX2Runnable.hpp */,
+				738459A91A95EA1200876E88 /* PX2ScopedCS.cpp */,
+				738459AA1A95EA1200876E88 /* PX2ScopedCS.hpp */,
+				738459AB1A95EA1200876E88 /* PX2ScopedCSUN.cpp */,
+				738459AC1A95EA1200876E88 /* PX2ScopedCSUN.hpp */,
+				738459AD1A95EA1200876E88 /* PX2ScriptManager.cpp */,
+				738459AE1A95EA1200876E88 /* PX2ScriptManager.hpp */,
+				738459AF1A95EA1200876E88 /* PX2Semaphore.cpp */,
+				738459B01A95EA1200876E88 /* PX2Semaphore.hpp */,
+				738459B11A95EA1200876E88 /* PX2Singleton_NeedNew.hpp */,
+				738459B21A95EA1200876E88 /* PX2Singleton.hpp */,
+				738459B31A95EA1200876E88 /* PX2SmartPointer.cpp */,
+				738459B41A95EA1200876E88 /* PX2SmartPointer.hpp */,
+				738459B51A95EA1200876E88 /* PX2SmartPointer.inl */,
+				738459B61A95EA1200876E88 /* PX2Smoother.hpp */,
+				738459B71A95EA1200876E88 /* PX2Stream.cpp */,
+				738459B81A95EA1200876E88 /* PX2Stream.hpp */,
+				738459B91A95EA1200876E88 /* PX2Stream.inl */,
+				738459BA1A95EA1200876E88 /* PX2StringHelp.cpp */,
+				738459BB1A95EA1200876E88 /* PX2StringHelp.hpp */,
+				738459BC1A95EA1200876E88 /* PX2StringTokenizer.cpp */,
+				738459BD1A95EA1200876E88 /* PX2StringTokenizer.hpp */,
+				738459BE1A95EA1200876E88 /* PX2StringTokenizer.inl */,
+				738459BF1A95EA1200876E88 /* PX2System.cpp */,
+				738459C01A95EA1200876E88 /* PX2System.hpp */,
+				738459C11A95EA1200876E88 /* PX2Table.hpp */,
+				738459C21A95EA1200876E88 /* PX2Table.inl */,
+				738459C31A95EA1200876E88 /* PX2Thread.cpp */,
+				738459C41A95EA1200876E88 /* PX2Thread.hpp */,
+				738459C51A95EA1200876E88 /* PX2Thread.inl */,
+				738459C61A95EA1200876E88 /* PX2ThreadLocal.cpp */,
+				738459C71A95EA1200876E88 /* PX2ThreadLocal.hpp */,
+				738459C81A95EA1200876E88 /* PX2ThreadPool.cpp */,
+				738459C91A95EA1200876E88 /* PX2ThreadPool.hpp */,
+				738459CA1A95EA1200876E88 /* PX2ThreadServer.cpp */,
+				738459CB1A95EA1200876E88 /* PX2ThreadServer.hpp */,
+				738459CC1A95EA1200876E88 /* PX2ThreadTarget.cpp */,
+				738459CD1A95EA1200876E88 /* PX2ThreadTarget.hpp */,
+				738459CE1A95EA1200876E88 /* PX2ThreadType.hpp */,
+				738459CF1A95EA1200876E88 /* PX2Time.cpp */,
+				738459D01A95EA1200876E88 /* PX2Time.hpp */,
+				738459D11A95EA1200876E88 /* PX2Timer.cpp */,
+				738459D21A95EA1200876E88 /* PX2Timer.hpp */,
+				738459D31A95EA1200876E88 /* PX2TimerManager.cpp */,
+				738459D41A95EA1200876E88 /* PX2TimerManager.hpp */,
+				738459D51A95EA1200876E88 /* PX2Timespan.cpp */,
+				738459D61A95EA1200876E88 /* PX2Timespan.hpp */,
+				738459D71A95EA1200876E88 /* PX2Timespan.inl */,
+				738459D81A95EA1200876E88 /* PX2Timestamp.cpp */,
+				738459D91A95EA1200876E88 /* PX2Timestamp.hpp */,
+				738459DA1A95EA1200876E88 /* PX2Timestamp.inl */,
+				738459DB1A95EA1200876E88 /* PX2TimeZone.cpp */,
+				738459DC1A95EA1200876E88 /* PX2TimeZone.hpp */,
+				738459DD1A95EA1200876E88 /* PX2Tuple.hpp */,
+				738459DE1A95EA1200876E88 /* PX2Tuple.inl */,
+				738459DF1A95EA1200876E88 /* PX2Visitor.cpp */,
+				738459E01A95EA1200876E88 /* PX2Visitor.hpp */,
+				738459E11A95EA1200876E88 /* PX2WeakPointer.cpp */,
+				738459E21A95EA1200876E88 /* PX2WeakPointer.hpp */,
+				738459E31A95EA1200876E88 /* PX2WeakPointer.inl */,
+				738459E41A95EA1200876E88 /* PX2XMLData.cpp */,
+				738459E51A95EA1200876E88 /* PX2XMLData.hpp */,
+				738459E61A95EA1200876E88 /* PX2XMLNode.cpp */,
+				738459E71A95EA1200876E88 /* PX2XMLNode.hpp */,
+				738459E81A95EA1200876E88 /* RapidXML */,
+			);
+			path = PX2Core;
+			sourceTree = "<group>";
+		};
+		738459E81A95EA1200876E88 /* RapidXML */ = {
+			isa = PBXGroup;
+			children = (
+				738459E91A95EA1200876E88 /* rapidxml.hpp */,
+				738459EA1A95EA1200876E88 /* rapidxml_iterators.hpp */,
+				738459EB1A95EA1200876E88 /* rapidxml_print.hpp */,
+				738459EC1A95EA1200876E88 /* rapidxml_utils.hpp */,
+			);
+			path = RapidXML;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		738458FE1A95E26700876E88 /* PX2Core */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 738459221A95E26700876E88 /* Build configuration list for PBXNativeTarget "PX2Core" */;
+			buildPhases = (
+				738458FB1A95E26700876E88 /* Sources */,
+				738458FC1A95E26700876E88 /* Frameworks */,
+				738458FD1A95E26700876E88 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PX2Core;
+			productName = PX2Core;
+			productReference = 738458FF1A95E26700876E88 /* libPX2Core.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		738458F71A95E26700876E88 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Phoenix;
+			};
+			buildConfigurationList = 738458FA1A95E26700876E88 /* Build configuration list for PBXProject "PX2Core" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 738458F61A95E26700876E88;
+			productRefGroup = 738459001A95E26700876E88 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				738458FE1A95E26700876E88 /* PX2Core */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		738458FB1A95E26700876E88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73845A301A95EA1200876E88 /* PX2XMLData.cpp in Sources */,
+				73845A1F1A95EA1200876E88 /* PX2Stream.cpp in Sources */,
+				73845A1A1A95EA1200876E88 /* PX2ScopedCS.cpp in Sources */,
+				73845A211A95EA1200876E88 /* PX2StringTokenizer.cpp in Sources */,
+				73845A291A95EA1200876E88 /* PX2Timer.cpp in Sources */,
+				73845A071A95EA1200876E88 /* PX2LogConsoleHandler.cpp in Sources */,
+				738459F31A95EA1200876E88 /* PX2Environment.cpp in Sources */,
+				73845A281A95EA1200876E88 /* PX2Time.cpp in Sources */,
+				73845A231A95EA1200876E88 /* PX2Thread.cpp in Sources */,
+				73845A2F1A95EA1200876E88 /* PX2WeakPointer.cpp in Sources */,
+				73845A221A95EA1200876E88 /* PX2System.cpp in Sources */,
+				73845A061A95EA1200876E88 /* PX2Log.cpp in Sources */,
+				73845A271A95EA1200876E88 /* PX2ThreadTarget.cpp in Sources */,
+				738459FB1A95EA1200876E88 /* PX2Eventt.cpp in Sources */,
+				738459FD1A95EA1200876E88 /* PX2Exception.cpp in Sources */,
+				738459F41A95EA1200876E88 /* PX2Event.cpp in Sources */,
+				738459F11A95EA1200876E88 /* PX2DateTime.cpp in Sources */,
+				73845A2C1A95EA1200876E88 /* PX2Timestamp.cpp in Sources */,
+				738459F21A95EA1200876E88 /* PX2Endian.cpp in Sources */,
+				73845A141A95EA1200876E88 /* PX2Object_UserData.cpp in Sources */,
+				73845A1E1A95EA1200876E88 /* PX2SmartPointer.cpp in Sources */,
+				73845A001A95EA1200876E88 /* PX2FString.cpp in Sources */,
+				73845A0A1A95EA1200876E88 /* PX2Memory.cpp in Sources */,
+				73845A191A95EA1200876E88 /* PX2Runnable.cpp in Sources */,
+				73845A031A95EA1200876E88 /* PX2InitTerm.cpp in Sources */,
+				73845A311A95EA1200876E88 /* PX2XMLNode.cpp in Sources */,
+				73845A201A95EA1200876E88 /* PX2StringHelp.cpp in Sources */,
+				73845A051A95EA1200876E88 /* PX2LocalDateTime.cpp in Sources */,
+				73845A1C1A95EA1200876E88 /* PX2ScriptManager.cpp in Sources */,
+				73845A021A95EA1200876E88 /* PX2HashTable.cpp in Sources */,
+				73845A0B1A95EA1200876E88 /* PX2Mutex.cpp in Sources */,
+				738459F01A95EA1200876E88 /* PX2Condition1.cpp in Sources */,
+				73845A101A95EA1200876E88 /* PX2Object_Resource.cpp in Sources */,
+				73845A181A95EA1200876E88 /* PX2Rtti.cpp in Sources */,
+				73845A121A95EA1200876E88 /* PX2Object_Script.cpp in Sources */,
+				73845A111A95EA1200876E88 /* PX2Object_Rtti.cpp in Sources */,
+				738459FC1A95EA1200876E88 /* PX2EventWorld.cpp in Sources */,
+				73845A2D1A95EA1200876E88 /* PX2TimeZone.cpp in Sources */,
+				73845A0D1A95EA1200876E88 /* PX2Object_Function.cpp in Sources */,
+				73845A261A95EA1200876E88 /* PX2ThreadServer.cpp in Sources */,
+				738459EE1A95EA1200876E88 /* PX2Assert.cpp in Sources */,
+				73845A091A95EA1200876E88 /* PX2LogOutputWindowHandler.cpp in Sources */,
+				738459FF1A95EA1200876E88 /* PX2Format.cpp in Sources */,
+				73845A131A95EA1200876E88 /* PX2Object_Stream.cpp in Sources */,
+				73845A0F1A95EA1200876E88 /* PX2Object_Property.cpp in Sources */,
+				73845A041A95EA1200876E88 /* PX2InStream.cpp in Sources */,
+				738459FA1A95EA1200876E88 /* PX2EventSpace.cpp in Sources */,
+				738459FE1A95EA1200876E88 /* PX2FileIO.cpp in Sources */,
+				73845A2E1A95EA1200876E88 /* PX2Visitor.cpp in Sources */,
+				73845A0E1A95EA1200876E88 /* PX2Object_NameID.cpp in Sources */,
+				73845A0C1A95EA1200876E88 /* PX2Object_Event.cpp in Sources */,
+				73845A1B1A95EA1200876E88 /* PX2ScopedCSUN.cpp in Sources */,
+				73845A2A1A95EA1200876E88 /* PX2TimerManager.cpp in Sources */,
+				73845A171A95EA1200876E88 /* PX2OutStream.cpp in Sources */,
+				738459F61A95EA1200876E88 /* PX2EventFactory.cpp in Sources */,
+				73845A081A95EA1200876E88 /* PX2LogFileHandler.cpp in Sources */,
+				738459F51A95EA1200876E88 /* PX2EventChannel.cpp in Sources */,
+				73845A161A95EA1200876E88 /* PX2ObjectCopyPool.cpp in Sources */,
+				73845A151A95EA1200876E88 /* PX2Object.cpp in Sources */,
+				73845A241A95EA1200876E88 /* PX2ThreadLocal.cpp in Sources */,
+				73845A251A95EA1200876E88 /* PX2ThreadPool.cpp in Sources */,
+				738459ED1A95EA1200876E88 /* PX2Ascii.cpp in Sources */,
+				73845A1D1A95EA1200876E88 /* PX2Semaphore.cpp in Sources */,
+				738459F71A95EA1200876E88 /* PX2EventFactoryImplement.cpp in Sources */,
+				738459F81A95EA1200876E88 /* PX2EventHandler.cpp in Sources */,
+				73845A2B1A95EA1200876E88 /* PX2Timespan.cpp in Sources */,
+				738459EF1A95EA1200876E88 /* PX2BufferIO.cpp in Sources */,
+				738459F91A95EA1200876E88 /* PX2EventHandlerObject.cpp in Sources */,
+				73845A011A95EA1200876E88 /* PX2GeneralAlloctor.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		738459201A95E26700876E88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		738459211A95E26700876E88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		738459231A95E26700876E88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Core.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		738459241A95E26700876E88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Core.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		738458FA1A95E26700876E88 /* Build configuration list for PBXProject "PX2Core" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				738459201A95E26700876E88 /* Debug */,
+				738459211A95E26700876E88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		738459221A95E26700876E88 /* Build configuration list for PBXNativeTarget "PX2Core" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				738459231A95E26700876E88 /* Debug */,
+				738459241A95E26700876E88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 738458F71A95E26700876E88 /* Project object */;
+}

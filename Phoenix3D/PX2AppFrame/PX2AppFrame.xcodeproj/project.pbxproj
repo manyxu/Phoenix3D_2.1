@@ -1,0 +1,267 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		73A6DA6A1A96F374000BD98B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DA691A96F374000BD98B /* Foundation.framework */; };
+		73A6DA951A96F3BD000BD98B /* PX2Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DA901A96F3BD000BD98B /* PX2Application.cpp */; };
+		73A6DA961A96F3BD000BD98B /* PX2ApplicationBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DA921A96F3BD000BD98B /* PX2ApplicationBase.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73A6DA641A96F374000BD98B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		73A6DA661A96F374000BD98B /* libPX2AppFrame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2AppFrame.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		73A6DA691A96F374000BD98B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		73A6DA771A96F374000BD98B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		73A6DA7A1A96F374000BD98B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		73A6DA8F1A96F3BD000BD98B /* PX2AppFramePre.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2AppFramePre.hpp; sourceTree = SOURCE_ROOT; };
+		73A6DA901A96F3BD000BD98B /* PX2Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Application.cpp; sourceTree = SOURCE_ROOT; };
+		73A6DA911A96F3BD000BD98B /* PX2Application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Application.hpp; sourceTree = SOURCE_ROOT; };
+		73A6DA921A96F3BD000BD98B /* PX2ApplicationBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ApplicationBase.cpp; sourceTree = SOURCE_ROOT; };
+		73A6DA931A96F3BD000BD98B /* PX2ApplicationBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ApplicationBase.hpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73A6DA631A96F374000BD98B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6DA6A1A96F374000BD98B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73A6DA5D1A96F374000BD98B = {
+			isa = PBXGroup;
+			children = (
+				73A6DA6B1A96F374000BD98B /* PX2AppFrame */,
+				73A6DA681A96F374000BD98B /* Frameworks */,
+				73A6DA671A96F374000BD98B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73A6DA671A96F374000BD98B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73A6DA661A96F374000BD98B /* libPX2AppFrame.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73A6DA681A96F374000BD98B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73A6DA691A96F374000BD98B /* Foundation.framework */,
+				73A6DA771A96F374000BD98B /* XCTest.framework */,
+				73A6DA7A1A96F374000BD98B /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73A6DA6B1A96F374000BD98B /* PX2AppFrame */ = {
+			isa = PBXGroup;
+			children = (
+				73A6DA8F1A96F3BD000BD98B /* PX2AppFramePre.hpp */,
+				73A6DA901A96F3BD000BD98B /* PX2Application.cpp */,
+				73A6DA911A96F3BD000BD98B /* PX2Application.hpp */,
+				73A6DA921A96F3BD000BD98B /* PX2ApplicationBase.cpp */,
+				73A6DA931A96F3BD000BD98B /* PX2ApplicationBase.hpp */,
+			);
+			path = PX2AppFrame;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73A6DA651A96F374000BD98B /* PX2AppFrame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73A6DA891A96F374000BD98B /* Build configuration list for PBXNativeTarget "PX2AppFrame" */;
+			buildPhases = (
+				73A6DA621A96F374000BD98B /* Sources */,
+				73A6DA631A96F374000BD98B /* Frameworks */,
+				73A6DA641A96F374000BD98B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PX2AppFrame;
+			productName = PX2AppFrame;
+			productReference = 73A6DA661A96F374000BD98B /* libPX2AppFrame.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73A6DA5E1A96F374000BD98B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Phoenix;
+			};
+			buildConfigurationList = 73A6DA611A96F374000BD98B /* Build configuration list for PBXProject "PX2AppFrame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 73A6DA5D1A96F374000BD98B;
+			productRefGroup = 73A6DA671A96F374000BD98B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73A6DA651A96F374000BD98B /* PX2AppFrame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73A6DA621A96F374000BD98B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6DA961A96F3BD000BD98B /* PX2ApplicationBase.cpp in Sources */,
+				73A6DA951A96F3BD000BD98B /* PX2Application.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73A6DA871A96F374000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "../PX2Terrain ../PX2UI ../PX2Simulation ../PX2Effect ../PX2Unity ../PX2Graphics ../PX2Mathematics ../PX2Core";
+			};
+			name = Debug;
+		};
+		73A6DA881A96F374000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "../PX2Terrain ../PX2UI ../PX2Simulation ../PX2Effect ../PX2Unity ../PX2Graphics ../PX2Mathematics ../PX2Core";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73A6DA8A1A96F374000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2AppFrame.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		73A6DA8B1A96F374000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2AppFrame.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73A6DA611A96F374000BD98B /* Build configuration list for PBXProject "PX2AppFrame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6DA871A96F374000BD98B /* Debug */,
+				73A6DA881A96F374000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73A6DA891A96F374000BD98B /* Build configuration list for PBXNativeTarget "PX2AppFrame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6DA8A1A96F374000BD98B /* Debug */,
+				73A6DA8B1A96F374000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73A6DA5E1A96F374000BD98B /* Project object */;
+}

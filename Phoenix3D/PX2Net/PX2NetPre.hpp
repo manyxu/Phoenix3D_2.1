@@ -22,14 +22,23 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
-#ifdef __MARMALADE__
+
+#ifdef __IOS__
+
 #include <netdb.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
+#include <sys/fcntl.h>
+
 #define INADDR_NONE 0xffffffff
+#define PX2_HAVE_ADDRINFO
+
 #else
+
 #include <sys/epoll.h>
+
 #endif
+
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/select.h>

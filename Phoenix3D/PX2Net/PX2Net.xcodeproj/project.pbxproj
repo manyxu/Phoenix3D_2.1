@@ -1,0 +1,374 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		73A6D4AF1A96D276000BD98B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6D4AE1A96D276000BD98B /* Foundation.framework */; };
+		73A6D6E61A96D576000BD98B /* PX2DNS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6071A96D576000BD98B /* PX2DNS.cpp */; };
+		73A6D6E71A96D576000BD98B /* PX2HostEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6091A96D576000BD98B /* PX2HostEntry.cpp */; };
+		73A6D6E81A96D576000BD98B /* PX2IPAddress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D60B1A96D576000BD98B /* PX2IPAddress.cpp */; };
+		73A6D6E91A96D576000BD98B /* PX2IPAddressImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D60D1A96D576000BD98B /* PX2IPAddressImpl.cpp */; };
+		73A6D6EA1A96D576000BD98B /* PX2IPv4AddressImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D60F1A96D576000BD98B /* PX2IPv4AddressImpl.cpp */; };
+		73A6D6EB1A96D576000BD98B /* PX2IPv4SocketAddressImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6111A96D576000BD98B /* PX2IPv4SocketAddressImpl.cpp */; };
+		73A6D6EC1A96D576000BD98B /* PX2IPv6AddressImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6131A96D576000BD98B /* PX2IPv6AddressImpl.cpp */; };
+		73A6D6ED1A96D576000BD98B /* PX2IPv6SocketAddressImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6151A96D576000BD98B /* PX2IPv6SocketAddressImpl.cpp */; };
+		73A6D6EE1A96D576000BD98B /* PX2NetClientConnector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6181A96D576000BD98B /* PX2NetClientConnector.cpp */; };
+		73A6D6EF1A96D576000BD98B /* PX2NetError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D61C1A96D576000BD98B /* PX2NetError.cpp */; };
+		73A6D6F01A96D576000BD98B /* PX2NetEventBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D61E1A96D576000BD98B /* PX2NetEventBuffer.cpp */; };
+		73A6D6F11A96D576000BD98B /* PX2NetInitTerm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6211A96D576000BD98B /* PX2NetInitTerm.cpp */; };
+		73A6D6F21A96D576000BD98B /* PX2Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6241A96D576000BD98B /* PX2Socket.cpp */; };
+		73A6D6F31A96D576000BD98B /* PX2SocketAddress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6271A96D576000BD98B /* PX2SocketAddress.cpp */; };
+		73A6D6F41A96D576000BD98B /* PX2SocketAddressImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6291A96D576000BD98B /* PX2SocketAddressImpl.cpp */; };
+		73A6D6F51A96D576000BD98B /* PX2SocketImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D62B1A96D576000BD98B /* PX2SocketImpl.cpp */; };
+		73A6D6F61A96D576000BD98B /* PX2StreamSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D62E1A96D576000BD98B /* PX2StreamSocket.cpp */; };
+		73A6D6F71A96D576000BD98B /* PX2StreamSocketImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D6301A96D576000BD98B /* PX2StreamSocketImpl.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73A6D4A91A96D276000BD98B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		73A6D4AB1A96D276000BD98B /* libPX2Net.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2Net.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		73A6D4AE1A96D276000BD98B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		73A6D4BC1A96D276000BD98B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D4BF1A96D276000BD98B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D6071A96D576000BD98B /* PX2DNS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2DNS.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6081A96D576000BD98B /* PX2DNS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2DNS.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6091A96D576000BD98B /* PX2HostEntry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2HostEntry.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D60A1A96D576000BD98B /* PX2HostEntry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2HostEntry.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D60B1A96D576000BD98B /* PX2IPAddress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2IPAddress.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D60C1A96D576000BD98B /* PX2IPAddress.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2IPAddress.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D60D1A96D576000BD98B /* PX2IPAddressImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2IPAddressImpl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D60E1A96D576000BD98B /* PX2IPAddressImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2IPAddressImpl.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D60F1A96D576000BD98B /* PX2IPv4AddressImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2IPv4AddressImpl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6101A96D576000BD98B /* PX2IPv4AddressImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2IPv4AddressImpl.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6111A96D576000BD98B /* PX2IPv4SocketAddressImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2IPv4SocketAddressImpl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6121A96D576000BD98B /* PX2IPv4SocketAddressImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2IPv4SocketAddressImpl.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6131A96D576000BD98B /* PX2IPv6AddressImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2IPv6AddressImpl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6141A96D576000BD98B /* PX2IPv6AddressImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2IPv6AddressImpl.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6151A96D576000BD98B /* PX2IPv6SocketAddressImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2IPv6SocketAddressImpl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6161A96D576000BD98B /* PX2IPv6SocketAddressImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2IPv6SocketAddressImpl.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6171A96D576000BD98B /* PX2Net.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Net.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6181A96D576000BD98B /* PX2NetClientConnector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2NetClientConnector.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6191A96D576000BD98B /* PX2NetClientConnector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2NetClientConnector.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D61A1A96D576000BD98B /* PX2NetClientConnector.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2NetClientConnector.inl; sourceTree = SOURCE_ROOT; };
+		73A6D61B1A96D576000BD98B /* PX2NetDefine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2NetDefine.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D61C1A96D576000BD98B /* PX2NetError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2NetError.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D61D1A96D576000BD98B /* PX2NetError.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2NetError.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D61E1A96D576000BD98B /* PX2NetEventBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2NetEventBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D61F1A96D576000BD98B /* PX2NetEventBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2NetEventBuffer.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6201A96D576000BD98B /* PX2NetEventBuffer.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2NetEventBuffer.inl; sourceTree = SOURCE_ROOT; };
+		73A6D6211A96D576000BD98B /* PX2NetInitTerm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2NetInitTerm.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6221A96D576000BD98B /* PX2NetInitTerm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2NetInitTerm.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6231A96D576000BD98B /* PX2NetPre.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2NetPre.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6241A96D576000BD98B /* PX2Socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Socket.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6251A96D576000BD98B /* PX2Socket.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Socket.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6261A96D576000BD98B /* PX2Socket.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Socket.inl; sourceTree = SOURCE_ROOT; };
+		73A6D6271A96D576000BD98B /* PX2SocketAddress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SocketAddress.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6281A96D576000BD98B /* PX2SocketAddress.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SocketAddress.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6291A96D576000BD98B /* PX2SocketAddressImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SocketAddressImpl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D62A1A96D576000BD98B /* PX2SocketAddressImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SocketAddressImpl.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D62B1A96D576000BD98B /* PX2SocketImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SocketImpl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D62C1A96D576000BD98B /* PX2SocketImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SocketImpl.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D62D1A96D576000BD98B /* PX2SocketImpl.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SocketImpl.inl; sourceTree = SOURCE_ROOT; };
+		73A6D62E1A96D576000BD98B /* PX2StreamSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2StreamSocket.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D62F1A96D576000BD98B /* PX2StreamSocket.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2StreamSocket.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D6301A96D576000BD98B /* PX2StreamSocketImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2StreamSocketImpl.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D6311A96D576000BD98B /* PX2StreamSocketImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2StreamSocketImpl.hpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73A6D4A81A96D276000BD98B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D4AF1A96D276000BD98B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73A6D4A21A96D276000BD98B = {
+			isa = PBXGroup;
+			children = (
+				73A6D4B01A96D276000BD98B /* PX2Net */,
+				73A6D4AD1A96D276000BD98B /* Frameworks */,
+				73A6D4AC1A96D276000BD98B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73A6D4AC1A96D276000BD98B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D4AB1A96D276000BD98B /* libPX2Net.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73A6D4AD1A96D276000BD98B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D4AE1A96D276000BD98B /* Foundation.framework */,
+				73A6D4BC1A96D276000BD98B /* XCTest.framework */,
+				73A6D4BF1A96D276000BD98B /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73A6D4B01A96D276000BD98B /* PX2Net */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D6071A96D576000BD98B /* PX2DNS.cpp */,
+				73A6D6081A96D576000BD98B /* PX2DNS.hpp */,
+				73A6D6091A96D576000BD98B /* PX2HostEntry.cpp */,
+				73A6D60A1A96D576000BD98B /* PX2HostEntry.hpp */,
+				73A6D60B1A96D576000BD98B /* PX2IPAddress.cpp */,
+				73A6D60C1A96D576000BD98B /* PX2IPAddress.hpp */,
+				73A6D60D1A96D576000BD98B /* PX2IPAddressImpl.cpp */,
+				73A6D60E1A96D576000BD98B /* PX2IPAddressImpl.hpp */,
+				73A6D60F1A96D576000BD98B /* PX2IPv4AddressImpl.cpp */,
+				73A6D6101A96D576000BD98B /* PX2IPv4AddressImpl.hpp */,
+				73A6D6111A96D576000BD98B /* PX2IPv4SocketAddressImpl.cpp */,
+				73A6D6121A96D576000BD98B /* PX2IPv4SocketAddressImpl.hpp */,
+				73A6D6131A96D576000BD98B /* PX2IPv6AddressImpl.cpp */,
+				73A6D6141A96D576000BD98B /* PX2IPv6AddressImpl.hpp */,
+				73A6D6151A96D576000BD98B /* PX2IPv6SocketAddressImpl.cpp */,
+				73A6D6161A96D576000BD98B /* PX2IPv6SocketAddressImpl.hpp */,
+				73A6D6171A96D576000BD98B /* PX2Net.hpp */,
+				73A6D6181A96D576000BD98B /* PX2NetClientConnector.cpp */,
+				73A6D6191A96D576000BD98B /* PX2NetClientConnector.hpp */,
+				73A6D61A1A96D576000BD98B /* PX2NetClientConnector.inl */,
+				73A6D61B1A96D576000BD98B /* PX2NetDefine.hpp */,
+				73A6D61C1A96D576000BD98B /* PX2NetError.cpp */,
+				73A6D61D1A96D576000BD98B /* PX2NetError.hpp */,
+				73A6D61E1A96D576000BD98B /* PX2NetEventBuffer.cpp */,
+				73A6D61F1A96D576000BD98B /* PX2NetEventBuffer.hpp */,
+				73A6D6201A96D576000BD98B /* PX2NetEventBuffer.inl */,
+				73A6D6211A96D576000BD98B /* PX2NetInitTerm.cpp */,
+				73A6D6221A96D576000BD98B /* PX2NetInitTerm.hpp */,
+				73A6D6231A96D576000BD98B /* PX2NetPre.hpp */,
+				73A6D6241A96D576000BD98B /* PX2Socket.cpp */,
+				73A6D6251A96D576000BD98B /* PX2Socket.hpp */,
+				73A6D6261A96D576000BD98B /* PX2Socket.inl */,
+				73A6D6271A96D576000BD98B /* PX2SocketAddress.cpp */,
+				73A6D6281A96D576000BD98B /* PX2SocketAddress.hpp */,
+				73A6D6291A96D576000BD98B /* PX2SocketAddressImpl.cpp */,
+				73A6D62A1A96D576000BD98B /* PX2SocketAddressImpl.hpp */,
+				73A6D62B1A96D576000BD98B /* PX2SocketImpl.cpp */,
+				73A6D62C1A96D576000BD98B /* PX2SocketImpl.hpp */,
+				73A6D62D1A96D576000BD98B /* PX2SocketImpl.inl */,
+				73A6D62E1A96D576000BD98B /* PX2StreamSocket.cpp */,
+				73A6D62F1A96D576000BD98B /* PX2StreamSocket.hpp */,
+				73A6D6301A96D576000BD98B /* PX2StreamSocketImpl.cpp */,
+				73A6D6311A96D576000BD98B /* PX2StreamSocketImpl.hpp */,
+			);
+			path = PX2Net;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73A6D4AA1A96D276000BD98B /* PX2Net */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73A6D4CE1A96D276000BD98B /* Build configuration list for PBXNativeTarget "PX2Net" */;
+			buildPhases = (
+				73A6D4A71A96D276000BD98B /* Sources */,
+				73A6D4A81A96D276000BD98B /* Frameworks */,
+				73A6D4A91A96D276000BD98B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PX2Net;
+			productName = PX2Net;
+			productReference = 73A6D4AB1A96D276000BD98B /* libPX2Net.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73A6D4A31A96D276000BD98B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Phoenix;
+			};
+			buildConfigurationList = 73A6D4A61A96D276000BD98B /* Build configuration list for PBXProject "PX2Net" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 73A6D4A21A96D276000BD98B;
+			productRefGroup = 73A6D4AC1A96D276000BD98B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73A6D4AA1A96D276000BD98B /* PX2Net */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73A6D4A71A96D276000BD98B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D6E61A96D576000BD98B /* PX2DNS.cpp in Sources */,
+				73A6D6EB1A96D576000BD98B /* PX2IPv4SocketAddressImpl.cpp in Sources */,
+				73A6D6F71A96D576000BD98B /* PX2StreamSocketImpl.cpp in Sources */,
+				73A6D6EA1A96D576000BD98B /* PX2IPv4AddressImpl.cpp in Sources */,
+				73A6D6F61A96D576000BD98B /* PX2StreamSocket.cpp in Sources */,
+				73A6D6F01A96D576000BD98B /* PX2NetEventBuffer.cpp in Sources */,
+				73A6D6EF1A96D576000BD98B /* PX2NetError.cpp in Sources */,
+				73A6D6F51A96D576000BD98B /* PX2SocketImpl.cpp in Sources */,
+				73A6D6E91A96D576000BD98B /* PX2IPAddressImpl.cpp in Sources */,
+				73A6D6F21A96D576000BD98B /* PX2Socket.cpp in Sources */,
+				73A6D6EC1A96D576000BD98B /* PX2IPv6AddressImpl.cpp in Sources */,
+				73A6D6F41A96D576000BD98B /* PX2SocketAddressImpl.cpp in Sources */,
+				73A6D6F31A96D576000BD98B /* PX2SocketAddress.cpp in Sources */,
+				73A6D6E81A96D576000BD98B /* PX2IPAddress.cpp in Sources */,
+				73A6D6ED1A96D576000BD98B /* PX2IPv6SocketAddressImpl.cpp in Sources */,
+				73A6D6F11A96D576000BD98B /* PX2NetInitTerm.cpp in Sources */,
+				73A6D6EE1A96D576000BD98B /* PX2NetClientConnector.cpp in Sources */,
+				73A6D6E71A96D576000BD98B /* PX2HostEntry.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73A6D4CC1A96D276000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "../PX2Core ../PX2Mathematic ../PX2Graphics ../PX2Unity ./google";
+			};
+			name = Debug;
+		};
+		73A6D4CD1A96D276000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73A6D4CF1A96D276000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Net.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		73A6D4D01A96D276000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Net.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73A6D4A61A96D276000BD98B /* Build configuration list for PBXProject "PX2Net" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D4CC1A96D276000BD98B /* Debug */,
+				73A6D4CD1A96D276000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73A6D4CE1A96D276000BD98B /* Build configuration list for PBXNativeTarget "PX2Net" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D4CF1A96D276000BD98B /* Debug */,
+				73A6D4D01A96D276000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73A6D4A31A96D276000BD98B /* Project object */;
+}

@@ -14,13 +14,14 @@
 #ifndef PX2EDITLODTERRAIN_HPP
 #define PX2EDITLODTERRAIN_HPP
 
-#include "PX2TerrainPrerequisites.hpp"
+#include "PX2TerrainsPre.hpp"
 #include "PX2LODTerrain.hpp"
+#include "PX2RawTerrainPage.hpp"
 
 namespace PX2
 {
 
-	class PX2_TERRAIN_ENTRY EditLODTerrain : public LODTerrain
+	class EditLODTerrain : public LODTerrain
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
@@ -31,7 +32,6 @@ namespace PX2
 		virtual ~EditLODTerrain ();
 		
 		// 在创建是在设这地图属性
-		void SetRenderer (Renderer* renderer);
 		void SetRowQuantity (int rowQuantity);
 		void SetColQuantity (int colQuantity);
 		void SetSize (int size);
@@ -58,8 +58,8 @@ namespace PX2
 		void SetLayer4Texture (const std::string &name);
 		std::string GetLayer4Texture ();
 
-		LODRawTerrainPagePtr** &GetRawTerrainPages ();
-		LODRawTerrainPagePtr *GetCurrentPage (float x, float y) const;
+		RawTerrainPagePtr** &GetRawTerrainPages ();
+		RawTerrainPagePtr *GetCurrentPage (float x, float y) const;
 
 	};
 

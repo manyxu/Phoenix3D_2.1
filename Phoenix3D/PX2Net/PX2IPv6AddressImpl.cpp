@@ -57,6 +57,7 @@ IPv6AddressImpl::IPv6AddressImpl(unsigned int prefix)
 mScope(0)
 {
 	unsigned i = 0;
+    
 #if defined(_WIN32) || defined(WIN32)
 	for (; prefix >= 16; ++i, prefix -= 16) 
 	{
@@ -70,7 +71,7 @@ mScope(0)
 	{
 		mAddr.s6_addr16[i++] = 0;
 	}
-#else
+#elif defined (__ANDROID__)
 	for (; prefix >= 32; ++i, prefix -= 32)
 	{
 		mAddr.s6_addr32[i] = 0xffffffff;
@@ -136,7 +137,7 @@ unsigned IPv6AddressImpl::PrefixLength() const
 		bitPos -= 16;
 	}
 	return 0;
-#else
+#elif defined __ANDROID__
 	for (int i = 3; i >= 0; --i)
 	{
 		unsigned addr = ntohl(mAddr.s6_addr32[i]);
@@ -145,6 +146,8 @@ unsigned IPv6AddressImpl::PrefixLength() const
 	}
 	return 0;
 #endif
+    
+    return 0;
 }
 //----------------------------------------------------------------------------
 int32_t IPv6AddressImpl::GetScope() const
@@ -272,7 +275,7 @@ IPv6AddressImpl IPv6AddressImpl::operator & (const IPv6AddressImpl& addr) const
 	result.mAddr.s6_addr16[5] &= addr.mAddr.s6_addr16[5];
 	result.mAddr.s6_addr16[6] &= addr.mAddr.s6_addr16[6];
 	result.mAddr.s6_addr16[7] &= addr.mAddr.s6_addr16[7];
-#else
+#elif __ANDROID__
 	result.mAddr.s6_addr32[0] &= addr.mAddr.s6_addr32[0];
 	result.mAddr.s6_addr32[1] &= addr.mAddr.s6_addr32[1];
 	result.mAddr.s6_addr32[2] &= addr.mAddr.s6_addr32[2];
@@ -295,7 +298,7 @@ IPv6AddressImpl IPv6AddressImpl::operator | (const IPv6AddressImpl& addr) const
 	result.mAddr.s6_addr16[5] |= addr.mAddr.s6_addr16[5];
 	result.mAddr.s6_addr16[6] |= addr.mAddr.s6_addr16[6];
 	result.mAddr.s6_addr16[7] |= addr.mAddr.s6_addr16[7];
-#else
+#elif __ANDROID__
 	result.mAddr.s6_addr32[0] |= addr.mAddr.s6_addr32[0];
 	result.mAddr.s6_addr32[1] |= addr.mAddr.s6_addr32[1];
 	result.mAddr.s6_addr32[2] |= addr.mAddr.s6_addr32[2];
@@ -318,7 +321,7 @@ IPv6AddressImpl IPv6AddressImpl::operator ^ (const IPv6AddressImpl& addr) const
 	result.mAddr.s6_addr16[5] ^= addr.mAddr.s6_addr16[5];
 	result.mAddr.s6_addr16[6] ^= addr.mAddr.s6_addr16[6];
 	result.mAddr.s6_addr16[7] ^= addr.mAddr.s6_addr16[7];
-#else
+##elif define __ANDROID__
 	result.mAddr.s6_addr32[0] ^= addr.mAddr.s6_addr32[0];
 	result.mAddr.s6_addr32[1] ^= addr.mAddr.s6_addr32[1];
 	result.mAddr.s6_addr32[2] ^= addr.mAddr.s6_addr32[2];
@@ -341,7 +344,7 @@ IPv6AddressImpl IPv6AddressImpl::operator ~ () const
 	result.mAddr.s6_addr16[5] ^= 0xffff;
 	result.mAddr.s6_addr16[6] ^= 0xffff;
 	result.mAddr.s6_addr16[7] ^= 0xffff;
-#else
+##elif __ANDROID__
 	result.mAddr.s6_addr32[0] ^= 0xffffffff;
 	result.mAddr.s6_addr32[1] ^= 0xffffffff;
 	result.mAddr.s6_addr32[2] ^= 0xffffffff;

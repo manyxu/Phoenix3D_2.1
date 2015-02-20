@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		73845A711A95EC4F00876E88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73845A701A95EC4F00876E88 /* Foundation.framework */; };
+		73845B0C1A95ECDD00876E88 /* PX2APoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845A961A95ECDC00876E88 /* PX2APoint.cpp */; };
+		73845B0D1A95ECDD00876E88 /* PX2AVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845A991A95ECDC00876E88 /* PX2AVector.cpp */; };
+		73845B0E1A95ECDD00876E88 /* PX2BezierCurve3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845A9E1A95ECDC00876E88 /* PX2BezierCurve3.cpp */; };
+		73845B0F1A95ECDD00876E88 /* PX2BitHacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AA01A95ECDC00876E88 /* PX2BitHacks.cpp */; };
+		73845B101A95ECDD00876E88 /* PX2BSplineBasis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AA51A95ECDC00876E88 /* PX2BSplineBasis.cpp */; };
+		73845B111A95ECDD00876E88 /* PX2BSplineVolume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AA71A95ECDC00876E88 /* PX2BSplineVolume.cpp */; };
+		73845B121A95ECDD00876E88 /* PX2ContSphere3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AAD1A95ECDC00876E88 /* PX2ContSphere3.cpp */; };
+		73845B131A95ECDD00876E88 /* PX2Curve3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AB11A95ECDC00876E88 /* PX2Curve3.cpp */; };
+		73845B141A95ECDD00876E88 /* PX2Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AB31A95ECDC00876E88 /* PX2Distance.cpp */; };
+		73845B151A95ECDD00876E88 /* PX2DistPoint3Circle3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AB51A95ECDC00876E88 /* PX2DistPoint3Circle3.cpp */; };
+		73845B161A95ECDD00876E88 /* PX2Float1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AB91A95ECDC00876E88 /* PX2Float1.cpp */; };
+		73845B171A95ECDD00876E88 /* PX2Float2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845ABB1A95ECDC00876E88 /* PX2Float2.cpp */; };
+		73845B181A95ECDD00876E88 /* PX2Float3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845ABD1A95ECDC00876E88 /* PX2Float3.cpp */; };
+		73845B191A95ECDD00876E88 /* PX2Float4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845ABF1A95ECDC00876E88 /* PX2Float4.cpp */; };
+		73845B1A1A95ECDD00876E88 /* PX2HMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AC71A95ECDC00876E88 /* PX2HMatrix.cpp */; };
+		73845B1B1A95ECDD00876E88 /* PX2HPlane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845ACA1A95ECDC00876E88 /* PX2HPlane.cpp */; };
+		73845B1C1A95ECDD00876E88 /* PX2HPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845ACD1A95ECDC00876E88 /* PX2HPoint.cpp */; };
+		73845B1D1A95ECDD00876E88 /* PX2HQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AD01A95ECDC00876E88 /* PX2HQuaternion.cpp */; };
+		73845B1E1A95ECDD00876E88 /* PX2Integrate1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AD51A95ECDC00876E88 /* PX2Integrate1.cpp */; };
+		73845B1F1A95ECDD00876E88 /* PX2Interpolate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AD91A95ECDC00876E88 /* PX2Interpolate.cpp */; };
+		73845B201A95ECDD00876E88 /* PX2Intersector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845ADB1A95ECDC00876E88 /* PX2Intersector.cpp */; };
+		73845B211A95ECDD00876E88 /* PX2IntrBox3Frustum3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845ADD1A95ECDC00876E88 /* PX2IntrBox3Frustum3.cpp */; };
+		73845B221A95ECDD00876E88 /* PX2IntrLine3Triangle3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845ADF1A95ECDC00876E88 /* PX2IntrLine3Triangle3.cpp */; };
+		73845B231A95ECDD00876E88 /* PX2Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AE31A95ECDC00876E88 /* PX2Math.cpp */; };
+		73845B241A95ECDD00876E88 /* PX2Matrix2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AE81A95ECDC00876E88 /* PX2Matrix2.cpp */; };
+		73845B251A95ECDD00876E88 /* PX2Matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AEB1A95ECDC00876E88 /* PX2Matrix3.cpp */; };
+		73845B261A95ECDD00876E88 /* PX2Matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AEE1A95ECDC00876E88 /* PX2Matrix4.cpp */; };
+		73845B271A95ECDD00876E88 /* PX2SingleCurve3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AF71A95ECDC00876E88 /* PX2SingleCurve3.cpp */; };
+		73845B281A95ECDD00876E88 /* PX2Surface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845AFD1A95ECDC00876E88 /* PX2Surface.cpp */; };
+		73845B291A95ECDD00876E88 /* PX2Vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845B031A95ECDD00876E88 /* PX2Vector2.cpp */; };
+		73845B2A1A95ECDD00876E88 /* PX2Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845B061A95ECDD00876E88 /* PX2Vector3.cpp */; };
+		73845B2B1A95ECDD00876E88 /* PX2Vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845B091A95ECDD00876E88 /* PX2Vector4.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73845A6B1A95EC4F00876E88 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		73845A6D1A95EC4F00876E88 /* libPX2Mathematics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2Mathematics.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		73845A701A95EC4F00876E88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		73845A7E1A95EC5000876E88 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		73845A811A95EC5000876E88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		73845A961A95ECDC00876E88 /* PX2APoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2APoint.cpp; sourceTree = SOURCE_ROOT; };
+		73845A971A95ECDC00876E88 /* PX2APoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2APoint.hpp; sourceTree = SOURCE_ROOT; };
+		73845A981A95ECDC00876E88 /* PX2APoint.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2APoint.inl; sourceTree = SOURCE_ROOT; };
+		73845A991A95ECDC00876E88 /* PX2AVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2AVector.cpp; sourceTree = SOURCE_ROOT; };
+		73845A9A1A95ECDC00876E88 /* PX2AVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2AVector.hpp; sourceTree = SOURCE_ROOT; };
+		73845A9B1A95ECDC00876E88 /* PX2AVector.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2AVector.inl; sourceTree = SOURCE_ROOT; };
+		73845A9C1A95ECDC00876E88 /* PX2AxisAlignedBox3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2AxisAlignedBox3.hpp; sourceTree = SOURCE_ROOT; };
+		73845A9D1A95ECDC00876E88 /* PX2AxisAlignedBox3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2AxisAlignedBox3.inl; sourceTree = SOURCE_ROOT; };
+		73845A9E1A95ECDC00876E88 /* PX2BezierCurve3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2BezierCurve3.cpp; sourceTree = SOURCE_ROOT; };
+		73845A9F1A95ECDC00876E88 /* PX2BezierCurve3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2BezierCurve3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AA01A95ECDC00876E88 /* PX2BitHacks.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2BitHacks.cpp; sourceTree = SOURCE_ROOT; };
+		73845AA11A95ECDC00876E88 /* PX2BitHacks.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2BitHacks.hpp; sourceTree = SOURCE_ROOT; };
+		73845AA21A95ECDC00876E88 /* PX2BitHacks.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2BitHacks.inl; sourceTree = SOURCE_ROOT; };
+		73845AA31A95ECDC00876E88 /* PX2Box3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Box3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AA41A95ECDC00876E88 /* PX2Box3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Box3.inl; sourceTree = SOURCE_ROOT; };
+		73845AA51A95ECDC00876E88 /* PX2BSplineBasis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2BSplineBasis.cpp; sourceTree = SOURCE_ROOT; };
+		73845AA61A95ECDC00876E88 /* PX2BSplineBasis.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2BSplineBasis.hpp; sourceTree = SOURCE_ROOT; };
+		73845AA71A95ECDC00876E88 /* PX2BSplineVolume.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2BSplineVolume.cpp; sourceTree = SOURCE_ROOT; };
+		73845AA81A95ECDC00876E88 /* PX2BSplineVolume.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2BSplineVolume.hpp; sourceTree = SOURCE_ROOT; };
+		73845AA91A95ECDC00876E88 /* PX2Circle2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Circle2.hpp; sourceTree = SOURCE_ROOT; };
+		73845AAA1A95ECDC00876E88 /* PX2Circle2.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Circle2.inl; sourceTree = SOURCE_ROOT; };
+		73845AAB1A95ECDC00876E88 /* PX2Circle3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Circle3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AAC1A95ECDC00876E88 /* PX2Circle3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Circle3.inl; sourceTree = SOURCE_ROOT; };
+		73845AAD1A95ECDC00876E88 /* PX2ContSphere3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2ContSphere3.cpp; sourceTree = SOURCE_ROOT; };
+		73845AAE1A95ECDC00876E88 /* PX2ContSphere3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ContSphere3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AAF1A95ECDC00876E88 /* PX2ConvexPolygon2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2ConvexPolygon2.hpp; sourceTree = SOURCE_ROOT; };
+		73845AB01A95ECDC00876E88 /* PX2ConvexPolygon2.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2ConvexPolygon2.inl; sourceTree = SOURCE_ROOT; };
+		73845AB11A95ECDC00876E88 /* PX2Curve3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Curve3.cpp; sourceTree = SOURCE_ROOT; };
+		73845AB21A95ECDC00876E88 /* PX2Curve3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Curve3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AB31A95ECDC00876E88 /* PX2Distance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Distance.cpp; sourceTree = SOURCE_ROOT; };
+		73845AB41A95ECDC00876E88 /* PX2Distance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Distance.hpp; sourceTree = SOURCE_ROOT; };
+		73845AB51A95ECDC00876E88 /* PX2DistPoint3Circle3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2DistPoint3Circle3.cpp; sourceTree = SOURCE_ROOT; };
+		73845AB61A95ECDC00876E88 /* PX2DistPoint3Circle3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2DistPoint3Circle3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AB71A95ECDC00876E88 /* PX2EdgeKey.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EdgeKey.hpp; sourceTree = SOURCE_ROOT; };
+		73845AB81A95ECDC00876E88 /* PX2EdgeKey.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EdgeKey.inl; sourceTree = SOURCE_ROOT; };
+		73845AB91A95ECDC00876E88 /* PX2Float1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Float1.cpp; sourceTree = SOURCE_ROOT; };
+		73845ABA1A95ECDC00876E88 /* PX2Float1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Float1.hpp; sourceTree = SOURCE_ROOT; };
+		73845ABB1A95ECDC00876E88 /* PX2Float2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Float2.cpp; sourceTree = SOURCE_ROOT; };
+		73845ABC1A95ECDC00876E88 /* PX2Float2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Float2.hpp; sourceTree = SOURCE_ROOT; };
+		73845ABD1A95ECDC00876E88 /* PX2Float3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Float3.cpp; sourceTree = SOURCE_ROOT; };
+		73845ABE1A95ECDC00876E88 /* PX2Float3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Float3.hpp; sourceTree = SOURCE_ROOT; };
+		73845ABF1A95ECDC00876E88 /* PX2Float4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Float4.cpp; sourceTree = SOURCE_ROOT; };
+		73845AC01A95ECDC00876E88 /* PX2Float4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Float4.hpp; sourceTree = SOURCE_ROOT; };
+		73845AC11A95ECDC00876E88 /* PX2Frustum3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Frustum3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AC21A95ECDC00876E88 /* PX2Frustum3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Frustum3.inl; sourceTree = SOURCE_ROOT; };
+		73845AC31A95ECDC00876E88 /* PX2GMatrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2GMatrix.hpp; sourceTree = SOURCE_ROOT; };
+		73845AC41A95ECDC00876E88 /* PX2GMatrix.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2GMatrix.inl; sourceTree = SOURCE_ROOT; };
+		73845AC51A95ECDC00876E88 /* PX2GVector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2GVector.hpp; sourceTree = SOURCE_ROOT; };
+		73845AC61A95ECDC00876E88 /* PX2GVector.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2GVector.inl; sourceTree = SOURCE_ROOT; };
+		73845AC71A95ECDC00876E88 /* PX2HMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2HMatrix.cpp; sourceTree = SOURCE_ROOT; };
+		73845AC81A95ECDC00876E88 /* PX2HMatrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2HMatrix.hpp; sourceTree = SOURCE_ROOT; };
+		73845AC91A95ECDC00876E88 /* PX2HMatrix.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2HMatrix.inl; sourceTree = SOURCE_ROOT; };
+		73845ACA1A95ECDC00876E88 /* PX2HPlane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2HPlane.cpp; sourceTree = SOURCE_ROOT; };
+		73845ACB1A95ECDC00876E88 /* PX2HPlane.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2HPlane.hpp; sourceTree = SOURCE_ROOT; };
+		73845ACC1A95ECDC00876E88 /* PX2HPlane.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2HPlane.inl; sourceTree = SOURCE_ROOT; };
+		73845ACD1A95ECDC00876E88 /* PX2HPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2HPoint.cpp; sourceTree = SOURCE_ROOT; };
+		73845ACE1A95ECDC00876E88 /* PX2HPoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2HPoint.hpp; sourceTree = SOURCE_ROOT; };
+		73845ACF1A95ECDC00876E88 /* PX2HPoint.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2HPoint.inl; sourceTree = SOURCE_ROOT; };
+		73845AD01A95ECDC00876E88 /* PX2HQuaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2HQuaternion.cpp; sourceTree = SOURCE_ROOT; };
+		73845AD11A95ECDC00876E88 /* PX2HQuaternion.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2HQuaternion.hpp; sourceTree = SOURCE_ROOT; };
+		73845AD21A95ECDC00876E88 /* PX2HQuaternion.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2HQuaternion.inl; sourceTree = SOURCE_ROOT; };
+		73845AD31A95ECDC00876E88 /* PX2Integer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Integer.hpp; sourceTree = SOURCE_ROOT; };
+		73845AD41A95ECDC00876E88 /* PX2Integer.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Integer.inl; sourceTree = SOURCE_ROOT; };
+		73845AD51A95ECDC00876E88 /* PX2Integrate1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Integrate1.cpp; sourceTree = SOURCE_ROOT; };
+		73845AD61A95ECDC00876E88 /* PX2Integrate1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Integrate1.hpp; sourceTree = SOURCE_ROOT; };
+		73845AD71A95ECDC00876E88 /* PX2InterpCurve.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2InterpCurve.hpp; sourceTree = SOURCE_ROOT; };
+		73845AD81A95ECDC00876E88 /* PX2InterpCurve.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2InterpCurve.inl; sourceTree = SOURCE_ROOT; };
+		73845AD91A95ECDC00876E88 /* PX2Interpolate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Interpolate.cpp; sourceTree = SOURCE_ROOT; };
+		73845ADA1A95ECDC00876E88 /* PX2Interpolate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Interpolate.hpp; sourceTree = SOURCE_ROOT; };
+		73845ADB1A95ECDC00876E88 /* PX2Intersector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Intersector.cpp; sourceTree = SOURCE_ROOT; };
+		73845ADC1A95ECDC00876E88 /* PX2Intersector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Intersector.hpp; sourceTree = SOURCE_ROOT; };
+		73845ADD1A95ECDC00876E88 /* PX2IntrBox3Frustum3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2IntrBox3Frustum3.cpp; sourceTree = SOURCE_ROOT; };
+		73845ADE1A95ECDC00876E88 /* PX2IntrBox3Frustum3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2IntrBox3Frustum3.hpp; sourceTree = SOURCE_ROOT; };
+		73845ADF1A95ECDC00876E88 /* PX2IntrLine3Triangle3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2IntrLine3Triangle3.cpp; sourceTree = SOURCE_ROOT; };
+		73845AE01A95ECDC00876E88 /* PX2IntrLine3Triangle3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2IntrLine3Triangle3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AE11A95ECDC00876E88 /* PX2Line3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Line3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AE21A95ECDC00876E88 /* PX2Line3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Line3.inl; sourceTree = SOURCE_ROOT; };
+		73845AE31A95ECDC00876E88 /* PX2Math.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Math.cpp; sourceTree = SOURCE_ROOT; };
+		73845AE41A95ECDC00876E88 /* PX2Math.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Math.hpp; sourceTree = SOURCE_ROOT; };
+		73845AE51A95ECDC00876E88 /* PX2Math.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Math.inl; sourceTree = SOURCE_ROOT; };
+		73845AE61A95ECDC00876E88 /* PX2Mathematics.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Mathematics.hpp; sourceTree = SOURCE_ROOT; };
+		73845AE71A95ECDC00876E88 /* PX2MathematicsPre.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2MathematicsPre.hpp; sourceTree = SOURCE_ROOT; };
+		73845AE81A95ECDC00876E88 /* PX2Matrix2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Matrix2.cpp; sourceTree = SOURCE_ROOT; };
+		73845AE91A95ECDC00876E88 /* PX2Matrix2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Matrix2.hpp; sourceTree = SOURCE_ROOT; };
+		73845AEA1A95ECDC00876E88 /* PX2Matrix2.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Matrix2.inl; sourceTree = SOURCE_ROOT; };
+		73845AEB1A95ECDC00876E88 /* PX2Matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Matrix3.cpp; sourceTree = SOURCE_ROOT; };
+		73845AEC1A95ECDC00876E88 /* PX2Matrix3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Matrix3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AED1A95ECDC00876E88 /* PX2Matrix3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Matrix3.inl; sourceTree = SOURCE_ROOT; };
+		73845AEE1A95ECDC00876E88 /* PX2Matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Matrix4.cpp; sourceTree = SOURCE_ROOT; };
+		73845AEF1A95ECDC00876E88 /* PX2Matrix4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Matrix4.hpp; sourceTree = SOURCE_ROOT; };
+		73845AF01A95ECDC00876E88 /* PX2Matrix4.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Matrix4.inl; sourceTree = SOURCE_ROOT; };
+		73845AF11A95ECDC00876E88 /* PX2Polygon2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Polygon2.hpp; sourceTree = SOURCE_ROOT; };
+		73845AF21A95ECDC00876E88 /* PX2Polygon2.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Polygon2.inl; sourceTree = SOURCE_ROOT; };
+		73845AF31A95ECDC00876E88 /* PX2Ray3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Ray3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AF41A95ECDC00876E88 /* PX2Ray3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Ray3.inl; sourceTree = SOURCE_ROOT; };
+		73845AF51A95ECDC00876E88 /* PX2Rect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Rect.hpp; sourceTree = SOURCE_ROOT; };
+		73845AF61A95ECDC00876E88 /* PX2Rect.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Rect.inl; sourceTree = SOURCE_ROOT; };
+		73845AF71A95ECDC00876E88 /* PX2SingleCurve3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SingleCurve3.cpp; sourceTree = SOURCE_ROOT; };
+		73845AF81A95ECDC00876E88 /* PX2SingleCurve3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SingleCurve3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AF91A95ECDC00876E88 /* PX2Size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Size.hpp; sourceTree = SOURCE_ROOT; };
+		73845AFA1A95ECDC00876E88 /* PX2Size.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Size.inl; sourceTree = SOURCE_ROOT; };
+		73845AFB1A95ECDC00876E88 /* PX2Sphere3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Sphere3.hpp; sourceTree = SOURCE_ROOT; };
+		73845AFC1A95ECDC00876E88 /* PX2Sphere3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Sphere3.inl; sourceTree = SOURCE_ROOT; };
+		73845AFD1A95ECDC00876E88 /* PX2Surface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Surface.cpp; sourceTree = SOURCE_ROOT; };
+		73845AFE1A95ECDC00876E88 /* PX2Surface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Surface.hpp; sourceTree = SOURCE_ROOT; };
+		73845AFF1A95ECDC00876E88 /* PX2Triangle3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Triangle3.hpp; sourceTree = SOURCE_ROOT; };
+		73845B001A95ECDD00876E88 /* PX2Triangle3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Triangle3.inl; sourceTree = SOURCE_ROOT; };
+		73845B011A95ECDD00876E88 /* PX2TriangleKey.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2TriangleKey.hpp; sourceTree = SOURCE_ROOT; };
+		73845B021A95ECDD00876E88 /* PX2TriangleKey.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2TriangleKey.inl; sourceTree = SOURCE_ROOT; };
+		73845B031A95ECDD00876E88 /* PX2Vector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Vector2.cpp; sourceTree = SOURCE_ROOT; };
+		73845B041A95ECDD00876E88 /* PX2Vector2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Vector2.hpp; sourceTree = SOURCE_ROOT; };
+		73845B051A95ECDD00876E88 /* PX2Vector2.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Vector2.inl; sourceTree = SOURCE_ROOT; };
+		73845B061A95ECDD00876E88 /* PX2Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Vector3.cpp; sourceTree = SOURCE_ROOT; };
+		73845B071A95ECDD00876E88 /* PX2Vector3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Vector3.hpp; sourceTree = SOURCE_ROOT; };
+		73845B081A95ECDD00876E88 /* PX2Vector3.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Vector3.inl; sourceTree = SOURCE_ROOT; };
+		73845B091A95ECDD00876E88 /* PX2Vector4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Vector4.cpp; sourceTree = SOURCE_ROOT; };
+		73845B0A1A95ECDD00876E88 /* PX2Vector4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Vector4.hpp; sourceTree = SOURCE_ROOT; };
+		73845B0B1A95ECDD00876E88 /* PX2Vector4.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Vector4.inl; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73845A6A1A95EC4F00876E88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73845A711A95EC4F00876E88 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73845A641A95EC4F00876E88 = {
+			isa = PBXGroup;
+			children = (
+				73845A721A95EC4F00876E88 /* PX2Mathematics */,
+				73845A6F1A95EC4F00876E88 /* Frameworks */,
+				73845A6E1A95EC4F00876E88 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73845A6E1A95EC4F00876E88 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73845A6D1A95EC4F00876E88 /* libPX2Mathematics.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73845A6F1A95EC4F00876E88 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73845A701A95EC4F00876E88 /* Foundation.framework */,
+				73845A7E1A95EC5000876E88 /* XCTest.framework */,
+				73845A811A95EC5000876E88 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73845A721A95EC4F00876E88 /* PX2Mathematics */ = {
+			isa = PBXGroup;
+			children = (
+				73845A961A95ECDC00876E88 /* PX2APoint.cpp */,
+				73845A971A95ECDC00876E88 /* PX2APoint.hpp */,
+				73845A981A95ECDC00876E88 /* PX2APoint.inl */,
+				73845A991A95ECDC00876E88 /* PX2AVector.cpp */,
+				73845A9A1A95ECDC00876E88 /* PX2AVector.hpp */,
+				73845A9B1A95ECDC00876E88 /* PX2AVector.inl */,
+				73845A9C1A95ECDC00876E88 /* PX2AxisAlignedBox3.hpp */,
+				73845A9D1A95ECDC00876E88 /* PX2AxisAlignedBox3.inl */,
+				73845A9E1A95ECDC00876E88 /* PX2BezierCurve3.cpp */,
+				73845A9F1A95ECDC00876E88 /* PX2BezierCurve3.hpp */,
+				73845AA01A95ECDC00876E88 /* PX2BitHacks.cpp */,
+				73845AA11A95ECDC00876E88 /* PX2BitHacks.hpp */,
+				73845AA21A95ECDC00876E88 /* PX2BitHacks.inl */,
+				73845AA31A95ECDC00876E88 /* PX2Box3.hpp */,
+				73845AA41A95ECDC00876E88 /* PX2Box3.inl */,
+				73845AA51A95ECDC00876E88 /* PX2BSplineBasis.cpp */,
+				73845AA61A95ECDC00876E88 /* PX2BSplineBasis.hpp */,
+				73845AA71A95ECDC00876E88 /* PX2BSplineVolume.cpp */,
+				73845AA81A95ECDC00876E88 /* PX2BSplineVolume.hpp */,
+				73845AA91A95ECDC00876E88 /* PX2Circle2.hpp */,
+				73845AAA1A95ECDC00876E88 /* PX2Circle2.inl */,
+				73845AAB1A95ECDC00876E88 /* PX2Circle3.hpp */,
+				73845AAC1A95ECDC00876E88 /* PX2Circle3.inl */,
+				73845AAD1A95ECDC00876E88 /* PX2ContSphere3.cpp */,
+				73845AAE1A95ECDC00876E88 /* PX2ContSphere3.hpp */,
+				73845AAF1A95ECDC00876E88 /* PX2ConvexPolygon2.hpp */,
+				73845AB01A95ECDC00876E88 /* PX2ConvexPolygon2.inl */,
+				73845AB11A95ECDC00876E88 /* PX2Curve3.cpp */,
+				73845AB21A95ECDC00876E88 /* PX2Curve3.hpp */,
+				73845AB31A95ECDC00876E88 /* PX2Distance.cpp */,
+				73845AB41A95ECDC00876E88 /* PX2Distance.hpp */,
+				73845AB51A95ECDC00876E88 /* PX2DistPoint3Circle3.cpp */,
+				73845AB61A95ECDC00876E88 /* PX2DistPoint3Circle3.hpp */,
+				73845AB71A95ECDC00876E88 /* PX2EdgeKey.hpp */,
+				73845AB81A95ECDC00876E88 /* PX2EdgeKey.inl */,
+				73845AB91A95ECDC00876E88 /* PX2Float1.cpp */,
+				73845ABA1A95ECDC00876E88 /* PX2Float1.hpp */,
+				73845ABB1A95ECDC00876E88 /* PX2Float2.cpp */,
+				73845ABC1A95ECDC00876E88 /* PX2Float2.hpp */,
+				73845ABD1A95ECDC00876E88 /* PX2Float3.cpp */,
+				73845ABE1A95ECDC00876E88 /* PX2Float3.hpp */,
+				73845ABF1A95ECDC00876E88 /* PX2Float4.cpp */,
+				73845AC01A95ECDC00876E88 /* PX2Float4.hpp */,
+				73845AC11A95ECDC00876E88 /* PX2Frustum3.hpp */,
+				73845AC21A95ECDC00876E88 /* PX2Frustum3.inl */,
+				73845AC31A95ECDC00876E88 /* PX2GMatrix.hpp */,
+				73845AC41A95ECDC00876E88 /* PX2GMatrix.inl */,
+				73845AC51A95ECDC00876E88 /* PX2GVector.hpp */,
+				73845AC61A95ECDC00876E88 /* PX2GVector.inl */,
+				73845AC71A95ECDC00876E88 /* PX2HMatrix.cpp */,
+				73845AC81A95ECDC00876E88 /* PX2HMatrix.hpp */,
+				73845AC91A95ECDC00876E88 /* PX2HMatrix.inl */,
+				73845ACA1A95ECDC00876E88 /* PX2HPlane.cpp */,
+				73845ACB1A95ECDC00876E88 /* PX2HPlane.hpp */,
+				73845ACC1A95ECDC00876E88 /* PX2HPlane.inl */,
+				73845ACD1A95ECDC00876E88 /* PX2HPoint.cpp */,
+				73845ACE1A95ECDC00876E88 /* PX2HPoint.hpp */,
+				73845ACF1A95ECDC00876E88 /* PX2HPoint.inl */,
+				73845AD01A95ECDC00876E88 /* PX2HQuaternion.cpp */,
+				73845AD11A95ECDC00876E88 /* PX2HQuaternion.hpp */,
+				73845AD21A95ECDC00876E88 /* PX2HQuaternion.inl */,
+				73845AD31A95ECDC00876E88 /* PX2Integer.hpp */,
+				73845AD41A95ECDC00876E88 /* PX2Integer.inl */,
+				73845AD51A95ECDC00876E88 /* PX2Integrate1.cpp */,
+				73845AD61A95ECDC00876E88 /* PX2Integrate1.hpp */,
+				73845AD71A95ECDC00876E88 /* PX2InterpCurve.hpp */,
+				73845AD81A95ECDC00876E88 /* PX2InterpCurve.inl */,
+				73845AD91A95ECDC00876E88 /* PX2Interpolate.cpp */,
+				73845ADA1A95ECDC00876E88 /* PX2Interpolate.hpp */,
+				73845ADB1A95ECDC00876E88 /* PX2Intersector.cpp */,
+				73845ADC1A95ECDC00876E88 /* PX2Intersector.hpp */,
+				73845ADD1A95ECDC00876E88 /* PX2IntrBox3Frustum3.cpp */,
+				73845ADE1A95ECDC00876E88 /* PX2IntrBox3Frustum3.hpp */,
+				73845ADF1A95ECDC00876E88 /* PX2IntrLine3Triangle3.cpp */,
+				73845AE01A95ECDC00876E88 /* PX2IntrLine3Triangle3.hpp */,
+				73845AE11A95ECDC00876E88 /* PX2Line3.hpp */,
+				73845AE21A95ECDC00876E88 /* PX2Line3.inl */,
+				73845AE31A95ECDC00876E88 /* PX2Math.cpp */,
+				73845AE41A95ECDC00876E88 /* PX2Math.hpp */,
+				73845AE51A95ECDC00876E88 /* PX2Math.inl */,
+				73845AE61A95ECDC00876E88 /* PX2Mathematics.hpp */,
+				73845AE71A95ECDC00876E88 /* PX2MathematicsPre.hpp */,
+				73845AE81A95ECDC00876E88 /* PX2Matrix2.cpp */,
+				73845AE91A95ECDC00876E88 /* PX2Matrix2.hpp */,
+				73845AEA1A95ECDC00876E88 /* PX2Matrix2.inl */,
+				73845AEB1A95ECDC00876E88 /* PX2Matrix3.cpp */,
+				73845AEC1A95ECDC00876E88 /* PX2Matrix3.hpp */,
+				73845AED1A95ECDC00876E88 /* PX2Matrix3.inl */,
+				73845AEE1A95ECDC00876E88 /* PX2Matrix4.cpp */,
+				73845AEF1A95ECDC00876E88 /* PX2Matrix4.hpp */,
+				73845AF01A95ECDC00876E88 /* PX2Matrix4.inl */,
+				73845AF11A95ECDC00876E88 /* PX2Polygon2.hpp */,
+				73845AF21A95ECDC00876E88 /* PX2Polygon2.inl */,
+				73845AF31A95ECDC00876E88 /* PX2Ray3.hpp */,
+				73845AF41A95ECDC00876E88 /* PX2Ray3.inl */,
+				73845AF51A95ECDC00876E88 /* PX2Rect.hpp */,
+				73845AF61A95ECDC00876E88 /* PX2Rect.inl */,
+				73845AF71A95ECDC00876E88 /* PX2SingleCurve3.cpp */,
+				73845AF81A95ECDC00876E88 /* PX2SingleCurve3.hpp */,
+				73845AF91A95ECDC00876E88 /* PX2Size.hpp */,
+				73845AFA1A95ECDC00876E88 /* PX2Size.inl */,
+				73845AFB1A95ECDC00876E88 /* PX2Sphere3.hpp */,
+				73845AFC1A95ECDC00876E88 /* PX2Sphere3.inl */,
+				73845AFD1A95ECDC00876E88 /* PX2Surface.cpp */,
+				73845AFE1A95ECDC00876E88 /* PX2Surface.hpp */,
+				73845AFF1A95ECDC00876E88 /* PX2Triangle3.hpp */,
+				73845B001A95ECDD00876E88 /* PX2Triangle3.inl */,
+				73845B011A95ECDD00876E88 /* PX2TriangleKey.hpp */,
+				73845B021A95ECDD00876E88 /* PX2TriangleKey.inl */,
+				73845B031A95ECDD00876E88 /* PX2Vector2.cpp */,
+				73845B041A95ECDD00876E88 /* PX2Vector2.hpp */,
+				73845B051A95ECDD00876E88 /* PX2Vector2.inl */,
+				73845B061A95ECDD00876E88 /* PX2Vector3.cpp */,
+				73845B071A95ECDD00876E88 /* PX2Vector3.hpp */,
+				73845B081A95ECDD00876E88 /* PX2Vector3.inl */,
+				73845B091A95ECDD00876E88 /* PX2Vector4.cpp */,
+				73845B0A1A95ECDD00876E88 /* PX2Vector4.hpp */,
+				73845B0B1A95ECDD00876E88 /* PX2Vector4.inl */,
+			);
+			path = PX2Mathematics;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73845A6C1A95EC4F00876E88 /* PX2Mathematics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73845A901A95EC5000876E88 /* Build configuration list for PBXNativeTarget "PX2Mathematics" */;
+			buildPhases = (
+				73845A691A95EC4F00876E88 /* Sources */,
+				73845A6A1A95EC4F00876E88 /* Frameworks */,
+				73845A6B1A95EC4F00876E88 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PX2Mathematics;
+			productName = PX2Mathematics;
+			productReference = 73845A6D1A95EC4F00876E88 /* libPX2Mathematics.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73845A651A95EC4F00876E88 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Phoenix;
+			};
+			buildConfigurationList = 73845A681A95EC4F00876E88 /* Build configuration list for PBXProject "PX2Mathematics" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 73845A641A95EC4F00876E88;
+			productRefGroup = 73845A6E1A95EC4F00876E88 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73845A6C1A95EC4F00876E88 /* PX2Mathematics */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73845A691A95EC4F00876E88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73845B2B1A95ECDD00876E88 /* PX2Vector4.cpp in Sources */,
+				73845B1B1A95ECDD00876E88 /* PX2HPlane.cpp in Sources */,
+				73845B171A95ECDD00876E88 /* PX2Float2.cpp in Sources */,
+				73845B131A95ECDD00876E88 /* PX2Curve3.cpp in Sources */,
+				73845B111A95ECDD00876E88 /* PX2BSplineVolume.cpp in Sources */,
+				73845B181A95ECDD00876E88 /* PX2Float3.cpp in Sources */,
+				73845B251A95ECDD00876E88 /* PX2Matrix3.cpp in Sources */,
+				73845B201A95ECDD00876E88 /* PX2Intersector.cpp in Sources */,
+				73845B1D1A95ECDD00876E88 /* PX2HQuaternion.cpp in Sources */,
+				73845B121A95ECDD00876E88 /* PX2ContSphere3.cpp in Sources */,
+				73845B151A95ECDD00876E88 /* PX2DistPoint3Circle3.cpp in Sources */,
+				73845B241A95ECDD00876E88 /* PX2Matrix2.cpp in Sources */,
+				73845B0C1A95ECDD00876E88 /* PX2APoint.cpp in Sources */,
+				73845B0D1A95ECDD00876E88 /* PX2AVector.cpp in Sources */,
+				73845B1C1A95ECDD00876E88 /* PX2HPoint.cpp in Sources */,
+				73845B191A95ECDD00876E88 /* PX2Float4.cpp in Sources */,
+				73845B1E1A95ECDD00876E88 /* PX2Integrate1.cpp in Sources */,
+				73845B1A1A95ECDD00876E88 /* PX2HMatrix.cpp in Sources */,
+				73845B261A95ECDD00876E88 /* PX2Matrix4.cpp in Sources */,
+				73845B291A95ECDD00876E88 /* PX2Vector2.cpp in Sources */,
+				73845B2A1A95ECDD00876E88 /* PX2Vector3.cpp in Sources */,
+				73845B0E1A95ECDD00876E88 /* PX2BezierCurve3.cpp in Sources */,
+				73845B231A95ECDD00876E88 /* PX2Math.cpp in Sources */,
+				73845B211A95ECDD00876E88 /* PX2IntrBox3Frustum3.cpp in Sources */,
+				73845B161A95ECDD00876E88 /* PX2Float1.cpp in Sources */,
+				73845B1F1A95ECDD00876E88 /* PX2Interpolate.cpp in Sources */,
+				73845B0F1A95ECDD00876E88 /* PX2BitHacks.cpp in Sources */,
+				73845B271A95ECDD00876E88 /* PX2SingleCurve3.cpp in Sources */,
+				73845B141A95ECDD00876E88 /* PX2Distance.cpp in Sources */,
+				73845B101A95ECDD00876E88 /* PX2BSplineBasis.cpp in Sources */,
+				73845B221A95ECDD00876E88 /* PX2IntrLine3Triangle3.cpp in Sources */,
+				73845B281A95ECDD00876E88 /* PX2Surface.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73845A8E1A95EC5000876E88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ALWAYS_SEARCH_USER_PATHS[arch=*]" = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = ../PX2Core;
+			};
+			name = Debug;
+		};
+		73845A8F1A95EC5000876E88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ALWAYS_SEARCH_USER_PATHS[arch=*]" = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73845A911A95EC5000876E88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Mathematics.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		73845A921A95EC5000876E88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Mathematics.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73845A681A95EC4F00876E88 /* Build configuration list for PBXProject "PX2Mathematics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73845A8E1A95EC5000876E88 /* Debug */,
+				73845A8F1A95EC5000876E88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73845A901A95EC5000876E88 /* Build configuration list for PBXNativeTarget "PX2Mathematics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73845A911A95EC5000876E88 /* Debug */,
+				73845A921A95EC5000876E88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73845A651A95EC4F00876E88 /* Project object */;
+}

@@ -1,0 +1,347 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		73A6D7051A96E1FC000BD98B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6D7041A96E1FC000BD98B /* Foundation.framework */; };
+		73A6D7511A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D72D1A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp */; };
+		73A6D7521A96E2C3000BD98B /* PX2Jungler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D72F1A96E2C3000BD98B /* PX2Jungler.cpp */; };
+		73A6D7531A96E2C3000BD98B /* PX2LODTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7321A96E2C3000BD98B /* PX2LODTerrain.cpp */; };
+		73A6D7541A96E2C3000BD98B /* PX2LODTerrainBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7351A96E2C3000BD98B /* PX2LODTerrainBlock.cpp */; };
+		73A6D7551A96E2C3000BD98B /* PX2LODTerrainPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7381A96E2C3000BD98B /* PX2LODTerrainPage.cpp */; };
+		73A6D7561A96E2C3000BD98B /* PX2LODTerrainVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D73B1A96E2C3000BD98B /* PX2LODTerrainVertex.cpp */; };
+		73A6D7571A96E2C3000BD98B /* PX2RawTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D73E1A96E2C3000BD98B /* PX2RawTerrain.cpp */; };
+		73A6D7581A96E2C3000BD98B /* PX2RawTerrainPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7401A96E2C3000BD98B /* PX2RawTerrainPage.cpp */; };
+		73A6D7591A96E2C3000BD98B /* PX2SkyMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7431A96E2C3000BD98B /* PX2SkyMaterial.cpp */; };
+		73A6D75A1A96E2C3000BD98B /* PX2SkySphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7451A96E2C3000BD98B /* PX2SkySphere.cpp */; };
+		73A6D75B1A96E2C3000BD98B /* PX2Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7481A96E2C3000BD98B /* PX2Terrain.cpp */; };
+		73A6D75C1A96E2C3000BD98B /* PX2TerrainPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D74B1A96E2C3000BD98B /* PX2TerrainPage.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73A6D6FF1A96E1FC000BD98B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		73A6D7011A96E1FC000BD98B /* libPX2Terrains.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2Terrains.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		73A6D7041A96E1FC000BD98B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		73A6D7121A96E1FC000BD98B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D7151A96E1FC000BD98B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		73A6D72D1A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EditTerrainMaterial.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D72E1A96E2C3000BD98B /* PX2EditTerrainMaterial.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EditTerrainMaterial.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D72F1A96E2C3000BD98B /* PX2Jungler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Jungler.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7301A96E2C3000BD98B /* PX2Jungler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Jungler.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7311A96E2C3000BD98B /* PX2Jungler.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Jungler.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7321A96E2C3000BD98B /* PX2LODTerrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LODTerrain.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7331A96E2C3000BD98B /* PX2LODTerrain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LODTerrain.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7341A96E2C3000BD98B /* PX2LODTerrain.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2LODTerrain.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7351A96E2C3000BD98B /* PX2LODTerrainBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LODTerrainBlock.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7361A96E2C3000BD98B /* PX2LODTerrainBlock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LODTerrainBlock.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7371A96E2C3000BD98B /* PX2LODTerrainBlock.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2LODTerrainBlock.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7381A96E2C3000BD98B /* PX2LODTerrainPage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LODTerrainPage.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7391A96E2C3000BD98B /* PX2LODTerrainPage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LODTerrainPage.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D73A1A96E2C3000BD98B /* PX2LODTerrainPage.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2LODTerrainPage.inl; sourceTree = SOURCE_ROOT; };
+		73A6D73B1A96E2C3000BD98B /* PX2LODTerrainVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LODTerrainVertex.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D73C1A96E2C3000BD98B /* PX2LODTerrainVertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LODTerrainVertex.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D73D1A96E2C3000BD98B /* PX2LODTerrainVertex.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2LODTerrainVertex.inl; sourceTree = SOURCE_ROOT; };
+		73A6D73E1A96E2C3000BD98B /* PX2RawTerrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2RawTerrain.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D73F1A96E2C3000BD98B /* PX2RawTerrain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2RawTerrain.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7401A96E2C3000BD98B /* PX2RawTerrainPage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2RawTerrainPage.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7411A96E2C3000BD98B /* PX2RawTerrainPage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2RawTerrainPage.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7421A96E2C3000BD98B /* PX2RawTerrainPage.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2RawTerrainPage.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7431A96E2C3000BD98B /* PX2SkyMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkyMaterial.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7441A96E2C3000BD98B /* PX2SkyMaterial.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkyMaterial.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7451A96E2C3000BD98B /* PX2SkySphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkySphere.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7461A96E2C3000BD98B /* PX2SkySphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkySphere.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D7471A96E2C3000BD98B /* PX2SkySphere.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkySphere.inl; sourceTree = SOURCE_ROOT; };
+		73A6D7481A96E2C3000BD98B /* PX2Terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Terrain.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D7491A96E2C3000BD98B /* PX2Terrain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Terrain.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D74A1A96E2C3000BD98B /* PX2Terrain.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Terrain.inl; sourceTree = SOURCE_ROOT; };
+		73A6D74B1A96E2C3000BD98B /* PX2TerrainPage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2TerrainPage.cpp; sourceTree = SOURCE_ROOT; };
+		73A6D74C1A96E2C3000BD98B /* PX2TerrainPage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2TerrainPage.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D74D1A96E2C3000BD98B /* PX2TerrainPage.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2TerrainPage.inl; sourceTree = SOURCE_ROOT; };
+		73A6D74E1A96E2C3000BD98B /* PX2Terrains.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Terrains.hpp; sourceTree = SOURCE_ROOT; };
+		73A6D74F1A96E2C3000BD98B /* PX2TerrainsPre.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2TerrainsPre.hpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73A6D6FE1A96E1FC000BD98B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D7051A96E1FC000BD98B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73A6D6F81A96E1FC000BD98B = {
+			isa = PBXGroup;
+			children = (
+				73A6D7061A96E1FC000BD98B /* PX2Terrains */,
+				73A6D7031A96E1FC000BD98B /* Frameworks */,
+				73A6D7021A96E1FC000BD98B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		73A6D7021A96E1FC000BD98B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D7011A96E1FC000BD98B /* libPX2Terrains.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73A6D7031A96E1FC000BD98B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D7041A96E1FC000BD98B /* Foundation.framework */,
+				73A6D7121A96E1FC000BD98B /* XCTest.framework */,
+				73A6D7151A96E1FC000BD98B /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73A6D7061A96E1FC000BD98B /* PX2Terrains */ = {
+			isa = PBXGroup;
+			children = (
+				73A6D72D1A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp */,
+				73A6D72E1A96E2C3000BD98B /* PX2EditTerrainMaterial.hpp */,
+				73A6D72F1A96E2C3000BD98B /* PX2Jungler.cpp */,
+				73A6D7301A96E2C3000BD98B /* PX2Jungler.hpp */,
+				73A6D7311A96E2C3000BD98B /* PX2Jungler.inl */,
+				73A6D7321A96E2C3000BD98B /* PX2LODTerrain.cpp */,
+				73A6D7331A96E2C3000BD98B /* PX2LODTerrain.hpp */,
+				73A6D7341A96E2C3000BD98B /* PX2LODTerrain.inl */,
+				73A6D7351A96E2C3000BD98B /* PX2LODTerrainBlock.cpp */,
+				73A6D7361A96E2C3000BD98B /* PX2LODTerrainBlock.hpp */,
+				73A6D7371A96E2C3000BD98B /* PX2LODTerrainBlock.inl */,
+				73A6D7381A96E2C3000BD98B /* PX2LODTerrainPage.cpp */,
+				73A6D7391A96E2C3000BD98B /* PX2LODTerrainPage.hpp */,
+				73A6D73A1A96E2C3000BD98B /* PX2LODTerrainPage.inl */,
+				73A6D73B1A96E2C3000BD98B /* PX2LODTerrainVertex.cpp */,
+				73A6D73C1A96E2C3000BD98B /* PX2LODTerrainVertex.hpp */,
+				73A6D73D1A96E2C3000BD98B /* PX2LODTerrainVertex.inl */,
+				73A6D73E1A96E2C3000BD98B /* PX2RawTerrain.cpp */,
+				73A6D73F1A96E2C3000BD98B /* PX2RawTerrain.hpp */,
+				73A6D7401A96E2C3000BD98B /* PX2RawTerrainPage.cpp */,
+				73A6D7411A96E2C3000BD98B /* PX2RawTerrainPage.hpp */,
+				73A6D7421A96E2C3000BD98B /* PX2RawTerrainPage.inl */,
+				73A6D7431A96E2C3000BD98B /* PX2SkyMaterial.cpp */,
+				73A6D7441A96E2C3000BD98B /* PX2SkyMaterial.hpp */,
+				73A6D7451A96E2C3000BD98B /* PX2SkySphere.cpp */,
+				73A6D7461A96E2C3000BD98B /* PX2SkySphere.hpp */,
+				73A6D7471A96E2C3000BD98B /* PX2SkySphere.inl */,
+				73A6D7481A96E2C3000BD98B /* PX2Terrain.cpp */,
+				73A6D7491A96E2C3000BD98B /* PX2Terrain.hpp */,
+				73A6D74A1A96E2C3000BD98B /* PX2Terrain.inl */,
+				73A6D74B1A96E2C3000BD98B /* PX2TerrainPage.cpp */,
+				73A6D74C1A96E2C3000BD98B /* PX2TerrainPage.hpp */,
+				73A6D74D1A96E2C3000BD98B /* PX2TerrainPage.inl */,
+				73A6D74E1A96E2C3000BD98B /* PX2Terrains.hpp */,
+				73A6D74F1A96E2C3000BD98B /* PX2TerrainsPre.hpp */,
+			);
+			path = PX2Terrains;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73A6D7001A96E1FC000BD98B /* PX2Terrains */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73A6D7241A96E1FC000BD98B /* Build configuration list for PBXNativeTarget "PX2Terrains" */;
+			buildPhases = (
+				73A6D6FD1A96E1FC000BD98B /* Sources */,
+				73A6D6FE1A96E1FC000BD98B /* Frameworks */,
+				73A6D6FF1A96E1FC000BD98B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PX2Terrains;
+			productName = PX2Terrains;
+			productReference = 73A6D7011A96E1FC000BD98B /* libPX2Terrains.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73A6D6F91A96E1FC000BD98B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Phoenix;
+			};
+			buildConfigurationList = 73A6D6FC1A96E1FC000BD98B /* Build configuration list for PBXProject "PX2Terrains" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 73A6D6F81A96E1FC000BD98B;
+			productRefGroup = 73A6D7021A96E1FC000BD98B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73A6D7001A96E1FC000BD98B /* PX2Terrains */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73A6D6FD1A96E1FC000BD98B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A6D7531A96E2C3000BD98B /* PX2LODTerrain.cpp in Sources */,
+				73A6D75A1A96E2C3000BD98B /* PX2SkySphere.cpp in Sources */,
+				73A6D7581A96E2C3000BD98B /* PX2RawTerrainPage.cpp in Sources */,
+				73A6D7541A96E2C3000BD98B /* PX2LODTerrainBlock.cpp in Sources */,
+				73A6D7571A96E2C3000BD98B /* PX2RawTerrain.cpp in Sources */,
+				73A6D75B1A96E2C3000BD98B /* PX2Terrain.cpp in Sources */,
+				73A6D7591A96E2C3000BD98B /* PX2SkyMaterial.cpp in Sources */,
+				73A6D7551A96E2C3000BD98B /* PX2LODTerrainPage.cpp in Sources */,
+				73A6D7511A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp in Sources */,
+				73A6D7561A96E2C3000BD98B /* PX2LODTerrainVertex.cpp in Sources */,
+				73A6D7521A96E2C3000BD98B /* PX2Jungler.cpp in Sources */,
+				73A6D75C1A96E2C3000BD98B /* PX2TerrainPage.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		73A6D7221A96E1FC000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		73A6D7231A96E1FC000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73A6D7251A96E1FC000BD98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Terrains.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Core ../PX2Mathematics ../PX2Graphics ../PX2Unity";
+			};
+			name = Debug;
+		};
+		73A6D7261A96E1FC000BD98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/PX2Terrains.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Core ../PX2Mathematics ../PX2Graphics ../PX2Unity";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73A6D6FC1A96E1FC000BD98B /* Build configuration list for PBXProject "PX2Terrains" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D7221A96E1FC000BD98B /* Debug */,
+				73A6D7231A96E1FC000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73A6D7241A96E1FC000BD98B /* Build configuration list for PBXNativeTarget "PX2Terrains" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73A6D7251A96E1FC000BD98B /* Debug */,
+				73A6D7261A96E1FC000BD98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73A6D6F91A96E1FC000BD98B /* Project object */;
+}
