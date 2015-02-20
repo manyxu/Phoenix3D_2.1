@@ -73,6 +73,7 @@ Object *ResManUserLoadFun(const char *filename)
 }
 //----------------------------------------------------------------------------
 std::string ResourceManager::msResPath;
+std::string ResourceManager::mWriteablePath;
 TexPack ResourceManager::msIvalidTexPack;
 TexPackElement ResourceManager::msIvalidTexPackElement;
 std::string ResourceManager::mDataUpdateServerType;
@@ -949,7 +950,7 @@ unsigned int ResourceManager::RunLoadingThread ()
 	return 0;
 }
 //----------------------------------------------------------------------------
-#if defined(__MARMALADE__) || defined(__ANDROID__)
+#if defined(__ANDROID__) || defined(__IOS__)
 static bool CheckResourceCCZFile(std::string &inoutPath)
 {
 	std::string outPath;
@@ -987,8 +988,7 @@ ResourceManager::LoadRecord &ResourceManager::InsertRecord (
 
 	std::string dstFilename = (const char*)fn;
 
-//#if defined(__APPLE__)  || defined(__ANDROID__) || defined(__MARMALADE__)
-#if defined(__MARMALADE__) || defined(__ANDROID__)
+#if defined(__ANDROID__) || defined(__IOS__)
 	CheckResourceCCZFile(dstFilename);
 #endif
 
@@ -1154,7 +1154,8 @@ bool ResourceManager::_LoadBuffer (const std::string &fn,
 		return FileIO::Load(dstFilename, true, bufferSize, buffer);
 	}
 #else
-	return FileIO::Load(dstFilename, true, bufferSize, buffer);
+    std::string fullFilename = msResPath + dstFilename;
+	return FileIO::Load(fullFilename, true, bufferSize, buffer);
 #endif
 
 #endif

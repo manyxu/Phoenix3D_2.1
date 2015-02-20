@@ -18,7 +18,6 @@ void EngineLoop::Tick()
 	PX2_FM.Update();
 
 	Project *proj = Project::GetSingletonPtr();
-	if (!proj) return;
 
 	PX2_GR.Update(mAppTime, mElapsedTime);
 
@@ -28,7 +27,7 @@ void EngineLoop::Tick()
 	if (defaultRenderer && defaultRenderer->PreDraw())
 	{
 		defaultRenderer->SetViewport(Rectf(0.0f, 0.0f, mScreenSize.Width, mScreenSize.Height));
-		defaultRenderer->SetClearColor(proj->GetBackgroundColor());
+        if (proj) defaultRenderer->SetClearColor(proj->GetBackgroundColor());
 		defaultRenderer->ClearBuffers();
 
 		PX2_GR.Draw();

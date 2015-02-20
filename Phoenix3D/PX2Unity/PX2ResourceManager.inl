@@ -46,7 +46,12 @@ inline const std::string ResourceManager::GetResourcePath ()
 	return msResPath;
 }
 //----------------------------------------------------------------------------
-inline std::string ResourceManager::GetWriteablePath ()
+inline void ResourceManager::SetWriteablePath(const std::string &path)
+{
+    mWriteablePath = path;
+}
+//----------------------------------------------------------------------------
+inline const std::string ResourceManager::GetWriteablePath ()
 {
 	return mWriteablePath;
 }

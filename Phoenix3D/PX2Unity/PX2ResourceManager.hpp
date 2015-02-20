@@ -85,7 +85,7 @@ namespace PX2
 		/**
 		* 在PC上为程序当前目录，在移动设备上由该设备API返回。
 		*/
-		std::string GetWriteablePath ();
+		static const std::string GetWriteablePath ();
 		static const std::string GetResourcePath ();
 
 		// 加载选项
@@ -194,9 +194,11 @@ public_internal:
 
 		unsigned int RunLoadingThread ();
 		void GarbageCollect (double appSeconds, double elapsedSeconds);
-		
+        
 		// 设置资源路径.在Android系统中，为apk所在目录
 		static void SetResourcePath (const std::string &resPath);
+        
+        static void SetWriteablePath(const std::string &path);
 
 		virtual void Run ();
 
@@ -245,7 +247,7 @@ public_internal:
 		HashTable<FString, TexPackElement, FixedStringHashCoder> mPackElements;
 
 		static std::string msResPath;
-		std::string mWriteablePath;
+		static std::string mWriteablePath;
 
 		// curl
 		//CURLDownload *mCurlDownLoad;

@@ -15,8 +15,6 @@
 {
     // Override point for customization after application launch.
     
-    appplay::NativeCall::Initlize(960, 640);
-    
     return YES;
 }
 							
