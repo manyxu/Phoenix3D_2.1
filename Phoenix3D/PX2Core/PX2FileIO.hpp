@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FileIO.hpp
-*
-*/
+// PX2FileIO.hpp
 
 #ifndef PX2FILEIO_HPP
 #define PX2FILEIO_HPP

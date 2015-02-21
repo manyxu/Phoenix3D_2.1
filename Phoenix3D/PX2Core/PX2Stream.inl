@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Stream.inl
-*
-*/
+// PX2Stream.inl
 
 //----------------------------------------------------------------------------
 inline Stream::StreamType Stream::GetStreamType () const

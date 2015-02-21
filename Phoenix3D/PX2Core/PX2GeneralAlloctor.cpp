@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2GeneralAlloctor.cpp
-*
-*/
+// PX2GeneralAlloctor.cpp
 
 #include "PX2GeneralAlloctor.hpp"
 #include "PX2ScopedCS.hpp"

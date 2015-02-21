@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Stream.cpp
-*
-*/
+// PX2Stream.cpp
 
 #include "PX2Stream.hpp"
 using namespace PX2;

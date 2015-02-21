@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LocalDateTime.cpp
-*
-*/
+// PX2LocalDateTime.cpp
 
 #include "PX2LocalDateTime.hpp"
 #include "PX2TimeZone.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2TimerManager.cpp
-*
-*/
+// PX2TimerManager.cpp
 
 #include "PX2TimerManager.hpp"
 using namespace PX2;

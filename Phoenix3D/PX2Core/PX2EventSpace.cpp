@@ -1,16 +1,11 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EventSpace.cpp
-*
-*/
+// PX2EventSpace.cpp
 
 #include "PX2EventSpace.hpp"
 #include "PX2EventFactory.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-EventSpace::Space::Space ()
-:
+EventSpace::Space::Space () :
 mBegin(0),
 mEnd(0)
 {

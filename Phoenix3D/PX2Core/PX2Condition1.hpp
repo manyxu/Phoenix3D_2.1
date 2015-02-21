@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Condition1.hpp
-*
-*/
+// PX2Condition1.hpp
 
 #ifndef PX2CONDITION1_HPP
 #define PX2CONDITION1_HPP

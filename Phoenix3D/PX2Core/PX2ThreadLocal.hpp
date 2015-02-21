@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ThreadLocal.hpp
-*
-*/
+// PX2ThreadLocal.hpp
 
 #ifndef PX2THREADLOCAL_HPP
 #define PX2THREADLOCAL_HPP

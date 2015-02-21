@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ObjectCopyPool.cpp
-*
-*/
+// PX2ObjectCopyPool.cpp
 
 #include "PX2ObjectCopyPool.hpp"
 #include "PX2Log.hpp"

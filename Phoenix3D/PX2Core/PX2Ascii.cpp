@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Ascii.cpp
-*
-*/
+// PX2Ascii.cpp
 
 #include "PX2Ascii.hpp"
 using namespace PX2;

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ThreadServer.hpp
-*
-*/
+// PX2ThreadServer.hpp
 
 #ifndef PX2THREADSERVER_HPP
 #define PX2THREADSERVER_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LocalDateTime.hpp
-*
-*/
+// PX2LocalDateTime.hpp
 
 #ifndef PX2LOCALDATETIME_HPP
 #define PX2LOCALDATETIME_HPP

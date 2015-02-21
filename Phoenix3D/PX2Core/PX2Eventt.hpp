@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Eventt.hpp
-*
-*/
+// PX2Eventt.hpp
 
 #ifndef PX2EVENTT_HPP
 #define PX2EVENTT_HPP

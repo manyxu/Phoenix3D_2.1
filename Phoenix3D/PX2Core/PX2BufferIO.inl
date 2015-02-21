@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BufferIO.inl
-*
-*/
+// PX2BufferIO.inl
 
 //----------------------------------------------------------------------------
 inline BufferIO::operator bool () const

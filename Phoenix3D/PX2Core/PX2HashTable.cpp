@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HashTable.cpp
-*
-*/
+// PX2HashTable.cpp
 
 #include "PX2HashTable.hpp"
 using namespace PX2;

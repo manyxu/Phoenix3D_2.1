@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ScopedCS.cpp
-*
-*/
+// PX2ScopedCS.cpp
 
 #include "PX2ScopedCSUN.hpp"
 using namespace PX2;

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ObjectPool.hpp
-*
-*/
+// PX2ObjectPool.hpp
 
 #ifndef PX2OBJECTPOOL_HPP
 #define PX2OBJECTPOOL_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Exception.hpp
-*
-*/
+// PX2Exception.hpp
 
 #ifndef PX2EXCEPTION_HPP
 #define PX2EXCEPTION_HPP

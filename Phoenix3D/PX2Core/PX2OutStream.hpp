@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2OutStream.hpp
-*
-*/
+// PX2OutStream.hpp
 
 #ifndef PX2OUTSTREAM_HPP
 #define PX2OUTSTREAM_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ThreadServer.cpp
-*
-*/
+// PX2ThreadServer.cpp
 
 #include "PX2ThreadServer.hpp"
 #include "PX2Memory.hpp"

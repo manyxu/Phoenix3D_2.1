@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2GeneralAlloctor.inl
-*
-*/
+// PX2GeneralAlloctor.inl
 
 //----------------------------------------------------------------------------
 inline size_t GeneralAlloctor::FreeListIndex(size_t numBytes) 

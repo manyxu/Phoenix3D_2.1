@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Format.cpp
-*
-*/
+// PX2Format.cpp
 
 #include "PX2Format.hpp"
 #include "PX2Assert.hpp"

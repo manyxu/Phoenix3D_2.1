@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2PropM.hpp
-*
-*/
+// PX2PropM.hpp
 
 #ifndef PX2PROPM_HPP
 #define PX2PROPM_HPP

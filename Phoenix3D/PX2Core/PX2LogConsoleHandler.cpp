@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LogConsoleHandler.cpp
-*
-*/
+// PX2LogConsoleHandler.cpp
 
 #include "PX2LogConsoleHandler.hpp"
 using namespace PX2;

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Function.hpp
-*
-*/
+// PX2Function.hpp
 
 #ifndef PX2FUNCTION_HPP
 #define PX2FUNCTION_HPP

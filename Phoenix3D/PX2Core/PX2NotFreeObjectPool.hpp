@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2NotFreeObjectPool.hpp
-*
-*/
+// PX2NotFreeObjectPool.hpp
 
 #ifndef PX2NOTFREEOBJECTPOOL_HPP
 #define PX2NOTFREEOBJECTPOOL_HPP

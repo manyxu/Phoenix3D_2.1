@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Timestamp.cpp
-*
-*/
+// PX2Timestamp.cpp
 
 #include "PX2Timestamp.hpp"
 using namespace PX2;

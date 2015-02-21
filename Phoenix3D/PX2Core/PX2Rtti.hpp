@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Rtti.hpp
-*
-*/
+// PX2Rtti.hpp
 
 #ifndef PX2RTTI_HPP
 #define PX2RTTI_HPP

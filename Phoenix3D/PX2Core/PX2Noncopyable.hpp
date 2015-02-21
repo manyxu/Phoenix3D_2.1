@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Noncopyable.hpp
-*
-*/
+// PX2Noncopyable.hpp
 
 #ifndef PX2NONCOPYABLE_HPP
 #define PX2NONCOPYABLE_HPP

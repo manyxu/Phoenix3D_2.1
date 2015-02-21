@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FString.cpp
-*
-*/
+// PX2FString.cpp
 
 #include "PX2FString.hpp"
 #include "PX2StringHelp.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Mutex.cpp
-*
-*/
+// PX2Mutex.cpp
 
 #include "PX2Mutex.hpp"
 #include "PX2Assert.hpp"

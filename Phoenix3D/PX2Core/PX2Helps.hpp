@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Helps.hpp
-*
-*/
+// PX2Helps.hpp
 
 #ifndef PX2HELPS_HPP
 #define PX2HELPS_HPP

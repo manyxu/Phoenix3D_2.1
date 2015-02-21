@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Singleton1.hpp
-*
-*/
+// PX2Singleton1.hpp
 
 #ifndef PX2SINGETON1_HPP
 #define PX2SINGETON1_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Timespan.cpp
-*
-*/
+// PX2Timespan.cpp
 
 #include "PX2Timespan.hpp"
 using namespace PX2;

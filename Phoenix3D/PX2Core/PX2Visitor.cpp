@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Visitor.cpp
-*
-*/
+// PX2Visitor.cpp
 
 #include "PX2Visitor.hpp"
 #include "PX2Any.hpp"

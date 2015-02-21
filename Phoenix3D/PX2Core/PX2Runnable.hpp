@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Runnable.hpp
-*
-*/
+// PX2Runnable.hpp
 
 #ifndef PX2RUNNABLE_HPP
 #define PX2RUNNABLE_HPP

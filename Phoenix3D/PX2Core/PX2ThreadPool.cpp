@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ThreadPool.cpp
-*
-*/
+// PX2ThreadPool.cpp
 
 #include "PX2ThreadPool.hpp"
 #include "PX2Eventt.hpp"

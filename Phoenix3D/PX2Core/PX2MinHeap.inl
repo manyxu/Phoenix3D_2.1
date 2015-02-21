@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2MinHeap.inl
-*
-*/
+// PX2MinHeap.inl
 
 //----------------------------------------------------------------------------
 template <typename Generator, typename Scalar>

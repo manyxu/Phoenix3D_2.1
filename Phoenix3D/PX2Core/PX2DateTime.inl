@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2DateTime.inl
-*
-*/
+// PX2DateTime.inl
 
 //----------------------------------------------------------------------------
 inline Timestamp DateTime::GetTimestamp() const

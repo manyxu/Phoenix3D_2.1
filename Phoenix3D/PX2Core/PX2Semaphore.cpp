@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Semaphore.cpp
-*
-*/
+// PX2Semaphore.cpp
 
 #include "PX2Semaphore.hpp"
 #include "PX2Assert.hpp"

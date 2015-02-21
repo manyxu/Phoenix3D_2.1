@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Visitor.hpp
-*
-*/
+// PX2Visitor.hpp
 
 #ifndef PX2VISITOR_HPP
 #define PX2VISITOR_HPP

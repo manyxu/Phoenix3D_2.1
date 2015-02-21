@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ScopedCSUN.hpp
-*
-*/
+// PX2ScopedCSUN.hpp
 
 #ifndef PX2SCOPEDCSUN_HPP
 #define PX2SCOPEDCSUN_HPP

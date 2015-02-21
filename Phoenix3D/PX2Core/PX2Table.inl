@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Table.inl
-*
-*/
+// PX2Table.inl
 
 //----------------------------------------------------------------------------
 template <int NUMROWS, int NUMCOLS, typename TYPE>

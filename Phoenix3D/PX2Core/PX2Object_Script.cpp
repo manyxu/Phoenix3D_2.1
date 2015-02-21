@@ -1,4 +1,4 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+// PX2Object_Script.cpp
 
 #include "PX2Object.hpp"
 #include "PX2ScriptManager.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ScopedCS.hpp
-*
-*/
+// PX2ScopedCS.hpp
 
 #ifndef PX2SCOPEDCS_HPP
 #define PX2SCOPEDCS_HPP

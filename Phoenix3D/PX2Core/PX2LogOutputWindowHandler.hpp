@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LogOutputWindowHandler.hpp
-*
-*/
+// PX2LogOutputWindowHandler.hpp
 
 #ifndef PX2LOGOUTPUTWINDOWHANDLER_HPP
 #define PX2LOGOUTPUTWINDOWHANDLER_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2NetMsgQueue.hpp
-*
-*/
+// PX2NetMsgQueue.hpp
 
 #ifndef PX2MSGQUEUE_HPP
 #define PX2MSGQUEUE_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Event.cpp
-*
-*/
+// PX2Event.cpp
 
 #include "PX2Event.hpp"
 #include "PX2Assert.hpp"

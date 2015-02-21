@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Ascii.hpp
-*
-*/
+// PX2Ascii.hpp
 
 #ifndef PX2ASCII_HPP
 #define PX2ASCII_HPP

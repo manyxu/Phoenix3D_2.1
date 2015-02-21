@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Smoother.hpp
-*
-*/
+// PX2Smoother.hpp
 
 #ifndef PX2SMOOTHER_HPP
 #define PX2SMOOTHER_HPP

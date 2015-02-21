@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventSpace.inl
-*
-*/
+// PX2EventSpace.inl
 
 //----------------------------------------------------------------------------
 inline void EventSpace::Space::Reset (int begin, int end)

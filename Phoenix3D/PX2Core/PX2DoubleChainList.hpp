@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DoubleChainList.hpp
-*
-*/
+// PX2DoubleChainList.hpp
 
 #ifndef PX2DOUBLECHAINLIST_HPP
 #define PX2DOUBLECHAINLIST_HPP

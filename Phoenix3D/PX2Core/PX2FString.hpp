@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FString.hpp
-*
-*/
+// PX2FString.hpp
 
 #ifndef PX2FSTRING_HPP
 #define PX2FSTRING_HPP

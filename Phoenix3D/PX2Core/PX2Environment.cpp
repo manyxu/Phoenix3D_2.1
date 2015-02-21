@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Environment.cpp
-*
-*/
+// PX2Environment.cpp
 
 #include "PX2Environment.hpp"
 #include "PX2Memory.hpp"

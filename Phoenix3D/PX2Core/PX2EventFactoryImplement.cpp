@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EventFactoryImpl.cpp
-*
-*/
+// PX2EventFactoryImpl.cpp
 
 #include "PX2EventFactoryImplement.hpp"
 #include "PX2EventSpace.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ThreadPool.hpp
-*
-*/
+// PX2ThreadPool.hpp
 
 #ifndef PX2THREADPOOL_HPP
 #define PX2THREADPOOL_HPP

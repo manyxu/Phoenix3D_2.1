@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Timer.hpp
-*
-*/
+// PX2Timer.hpp
 
 #ifndef PX2TIMER_HPP
 #define PX2TIMER_HPP

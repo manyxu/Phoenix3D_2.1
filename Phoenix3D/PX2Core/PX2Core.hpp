@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Core.hpp
-*
-*/
+// PX2Core.hpp
 
 #ifndef PX2CORE_HPP
 #define PX2CORE_HPP

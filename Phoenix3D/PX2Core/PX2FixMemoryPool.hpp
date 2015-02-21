@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FixMemoryPool.hpp
-*
-*/
+// PX2FixMemoryPool.hpp
 
 #ifndef PX2FIXMEMORYPOOL_HPP
 #define PX2FIXMEMORYPOOL_HPP

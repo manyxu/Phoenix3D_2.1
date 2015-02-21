@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventChannel.inl
-*
-*/
+// PX2EventChannel.inl
 
 template <int N>
 EventChannel &EventChannel::AddUserChannel ()

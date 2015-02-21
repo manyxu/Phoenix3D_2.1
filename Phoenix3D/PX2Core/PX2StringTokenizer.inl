@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2StringTokenizer.inl
-*
-*/
+// PX2StringTokenizer.inl
 
 //----------------------------------------------------------------------------
 inline StringTokenizer::Iterator StringTokenizer::Begin() const

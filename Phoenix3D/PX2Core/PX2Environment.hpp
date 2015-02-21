@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Environment.hpp
-*
-*/
+// PX2Environment.hpp
 
 #ifndef PX2ENVIRONMENT_HPP
 #define PX2ENVIRONMENT_HPP

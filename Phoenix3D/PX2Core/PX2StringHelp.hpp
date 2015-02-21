@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2StringHelp.hpp
-*
-*/
+// PX2StringHelp.hpp
 
 #ifndef PX2STRINGHELP_HPP
 #define PX2STRINGHELP_HPP

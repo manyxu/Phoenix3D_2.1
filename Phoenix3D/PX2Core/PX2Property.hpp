@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Property.hpp
-*
-*/
+// PX2Property.hpp
 
 #ifndef PX2PROPERTY_HPP
 #define PX2PROPERTY_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventHandler.cpp
-*
-*/
+// PX2EventHandler.cpp
 
 #include "PX2Event.hpp"
 #include "PX2EventHandler.hpp"

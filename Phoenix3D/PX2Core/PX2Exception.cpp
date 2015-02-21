@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Exception.cpp
-*
-*/
+// PX2Exception.cpp
 
 #include "PX2Exception.hpp"
 #include "PX2System.hpp"

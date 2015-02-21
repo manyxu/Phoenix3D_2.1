@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LogConsoleHandler.hpp
-*
-*/
+// PX2LogConsoleHandler.hpp
 
 #ifndef PX2LOGCONSOLEHANDLER_HPP
 #define PX2LOGCONSOLEHANDLER_HPP

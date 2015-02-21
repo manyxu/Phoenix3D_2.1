@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2Any.hpp
-*
-* 版本		:	1.0 (2011/03/19)
-*
-* 作者		：	more
-*
-*/
+// PX2Any.hpp
 
 #ifndef PX2ANY_HPP
 #define PX2ANY_HPP

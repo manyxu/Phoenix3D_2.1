@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2NotFreeObjectPool.inl
-*
-*/
+// PX2NotFreeObjectPool.inl
 
 //----------------------------------------------------------------------------
 template <typename T>

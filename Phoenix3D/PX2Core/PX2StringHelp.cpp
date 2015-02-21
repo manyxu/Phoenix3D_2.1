@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2StringHelp.cpp
-*
-*/
+// PX2StringHelp.cpp
 
 #include "PX2StringHelp.hpp"
 #include "PX2Assert.hpp"

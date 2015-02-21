@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LogFileHandler.hpp
-*
-*/
+// PX2LogFileHandler.hpp
 
 #ifndef PX2LOGFILEHANDLER_HPP
 #define PX2LOGFILEHANDLER_HPP

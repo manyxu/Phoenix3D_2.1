@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Timestamp.hpp
-*
-*/
+// PX2Timestamp.hpp
 
 #ifndef PX2TIMESTAMP_HPP
 #define PX2TIMESTAMP_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SmartPointer.cpp
-*
-*/
+// PX2SmartPointer.cpp
 
 #include "PX2SmartPointer.hpp"
 using namespace PX2;

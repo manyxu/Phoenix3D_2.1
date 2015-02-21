@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Log.cpp
-*
-*/
+// PX2Log.cpp
 
 #include "PX2Log.hpp"
 #include "PX2Assert.hpp"

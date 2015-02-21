@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2System.cpp
-*
-*/
+// PX2System.cpp
 
 #include "PX2System.hpp"
 

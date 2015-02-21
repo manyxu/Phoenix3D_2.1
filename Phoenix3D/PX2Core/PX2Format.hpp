@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Format.hpp
-*
-*/
+// PX2Format.hpp
 
 #ifndef PX2FORMAT_HPP
 #define PX2FORMAT_HPP

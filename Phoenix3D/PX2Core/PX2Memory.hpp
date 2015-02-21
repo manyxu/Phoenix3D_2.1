@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Memory.hpp
-*
-*/
+// PX2Memory.hpp
 
 #ifndef PX2MEMORY_HPP
 #define PX2MEMORY_HPP

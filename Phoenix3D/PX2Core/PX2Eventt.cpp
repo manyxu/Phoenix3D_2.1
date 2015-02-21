@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Signal.cpp
-*
-*/
+// PX2Signal.cpp
 
 #include "PX2Eventt.hpp"
 #include "PX2Assert.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2OutStream.cpp
-*
-*/
+// PX2OutStream.cpp
 
 #include "PX2OutStream.hpp"
 #include "PX2FileIO.hpp"

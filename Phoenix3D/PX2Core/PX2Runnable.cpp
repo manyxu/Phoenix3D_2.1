@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Runnable.cpp
-*
-*/
+// PX2Runnable.cpp
 
 #include "PX2Runnable.hpp"
 using namespace PX2;

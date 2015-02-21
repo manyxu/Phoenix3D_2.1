@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Tuple.hpp
-*
-*/
+// PX2Tuple.hpp
 
 #ifndef PX2TUPLE_HPP
 #define PX2TUPLE_HPP

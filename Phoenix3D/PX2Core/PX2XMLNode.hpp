@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2XMLNode.hpp
-*
-*/
+// PX2XMLNode.hpp
 
 #ifndef PX2XMLNODE_HPP
 #define PX2XMLNODE_HPP

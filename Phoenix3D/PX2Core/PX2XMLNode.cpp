@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2XMLNode.cpp
-*
-*/
+// PX2XMLNode.cpp
 
 #include "PX2XMLNode.hpp"
 #include "PX2Assert.hpp"

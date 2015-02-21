@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2GeneralAlloctor.hpp
-*
-*/
+// PX2GeneralAlloctor.hpp
 
 #ifndef PX2GENERALALLOCTOR_HPP
 #define PX2GENERALALLOCTOR_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2StringTokenizer.hpp
-*
-*/
+// PX2StringTokenizer.hpp
 
 #ifndef PX2STRINGTOKENIZER_HPP
 #define PX2STRINGTOKENIZER_HPP

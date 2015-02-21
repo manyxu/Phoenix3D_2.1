@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TimeZone.cpp
-*
-*/
+// PX2TimeZone.cpp
 
 #include "PX2TimeZone.hpp"
 #include "PX2Assert.hpp"

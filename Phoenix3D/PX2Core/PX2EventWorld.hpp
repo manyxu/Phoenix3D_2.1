@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EventWorld.hpp
-*
-*/
+// PX2EventWorld.hpp
 
 #ifndef PX2EVENTWORLD_HPP
 #define PX2EVENTWORLD_HPP

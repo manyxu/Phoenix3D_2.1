@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Rtti.cpp
-*
-*/
+// PX2Rtti.cpp
 
 #include "PX2Rtti.hpp"
 using namespace PX2;

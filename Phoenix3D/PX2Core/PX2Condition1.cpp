@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Condition.cpp
-*
-*/
+// PX2Condition1.cpp
 
 #include "PX2Condition1.hpp"
 #include "PX2Assert.hpp"

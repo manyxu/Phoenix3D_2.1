@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DateTime.hpp
-*
-*/
+// PX2DateTime.hpp
 
 #ifndef PX2DATETIME_HPP
 #define PX2DATETIME_HPP

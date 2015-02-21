@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ThreadTarget.cpp
-*
-*/
+// PX2ThreadTarget.cpp
 
 #include "PX2ThreadTarget.hpp"
 using namespace PX2;

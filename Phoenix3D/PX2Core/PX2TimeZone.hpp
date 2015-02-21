@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TimeZone.hpp
-*
-*/
+// PX2TimeZone.hpp
 
 #ifndef PX2TIMEZONE_HPP
 #define PX2TIMEZONE_HPP

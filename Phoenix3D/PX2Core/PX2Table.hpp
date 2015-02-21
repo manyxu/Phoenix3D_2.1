@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Table.hpp
-*
-*/
+// PX2Table.hpp
 
 #ifndef PX2TABLE_H
 #define PX2TABLE_H

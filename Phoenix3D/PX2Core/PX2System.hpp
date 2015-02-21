@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2System.hpp
-*
-*/
+// PX2System.hpp
 
 #ifndef PX2SYSTEM_HPP
 #define PX2SYSTEM_HPP

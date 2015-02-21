@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Timer.cpp
-*
-*/
+// PX2Timer.cpp
 
 #include "PX2Timer.hpp"
 #include "PX2Object.hpp"

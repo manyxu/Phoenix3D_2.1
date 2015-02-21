@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Semaphore.hpp
-*
-*/
+// PX2Semaphore.hpp
 
 #ifndef PX2SEMAPHORE_HPP
 #define PX2SEMAPHORE_HPP

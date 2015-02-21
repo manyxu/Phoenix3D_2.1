@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2StringTokenizer.cpp
-*
-*/
+// PX2StringTokenizer.cpp
 
 #include "PX2StringTokenizer.hpp"
 #include "PX2Ascii.hpp"

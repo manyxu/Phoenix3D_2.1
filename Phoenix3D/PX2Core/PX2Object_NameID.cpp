@@ -1,4 +1,4 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+// PX2Object_NameID.cpp
 
 #include "PX2Object.hpp"
 using namespace PX2;

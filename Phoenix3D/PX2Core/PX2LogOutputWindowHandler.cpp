@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LogFileHandler.cpp
-*
-*/
+// PX2LogFileHandler.cpp
 
 #include "PX2LogOutputWindowHandler.hpp"
 #if defined(_WIN32) || defined(WIN32)

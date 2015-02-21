@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2PriorityQueue.hpp
-*
-*/
+// PX2PriorityQueue.hpp
 
 #ifndef PX2PRIORITYQUEUE_HPP
 #define PX2PRIORITYQUEUE_HPP

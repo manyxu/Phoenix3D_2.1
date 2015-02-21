@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventWorld.cpp
-*
-*/
+// PX2EventWorld.cpp
 
 #include "PX2EventWorld.hpp"
 #include "PX2Event.hpp"

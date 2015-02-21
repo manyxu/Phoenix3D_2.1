@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Time.cpp
-*
-*/
+// PX2Time.cpp
 
 #include "PX2Time.hpp"
 

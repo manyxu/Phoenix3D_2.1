@@ -1,4 +1,4 @@
-// Copyright 2013-2014 LinkJoy, Inc. All Rights Reserved.
+// PX2Object_Event.cpp
 
 #include "PX2Object.hpp"
 #include "PX2EventWorld.hpp"

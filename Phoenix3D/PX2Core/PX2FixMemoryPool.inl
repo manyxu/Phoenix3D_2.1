@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FixMemoryPool.inl
-*
-*/
+// PX2FixMemoryPool.inl
 
 //----------------------------------------------------------------------------
 template <typename T>

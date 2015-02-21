@@ -1,8 +1,4 @@
-/*
-*
-* 文件名称	：	PX2CorePre.hpp
-*
-*/
+// PX2CorePre.hpp
 
 #ifndef PX2COREPRE_HPP
 #define PX2COREPRE_HPP
@@ -66,6 +62,16 @@
 #define PX2_USE_PTHREAD
 #endif
 //----------------------------------------------------------------------------
+// IOS
+//----------------------------------------------------------------------------
+#if defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__) || defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+
+#ifndef __IOS__
+#define __IOS__
+#endif
+
+#endif
+//----------------------------------------------------------------------------
 // Linux
 //----------------------------------------------------------------------------
 #if defined(__LINUX__)
@@ -85,20 +91,7 @@
 #define PX2_LITTLE_ENDIAN
 #define PX2_USE_PTHREAD
 #endif
-
 //----------------------------------------------------------------------------
-// IOS
-//----------------------------------------------------------------------------
-#if defined(__ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__) || defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-
-#ifndef __IOS__
-#define __IOS__
-#endif
-
-#endif
-//----------------------------------------------------------------------------
-
-
 
 // 常用标准头文件
 #include <cassert>

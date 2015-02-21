@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ThreadTarget.hpp
-*
-*/
+// PX2ThreadTarget.hpp
 
 #ifndef PX2THREADTARGET_HPP
 #define PX2THREADTARGET_HPP

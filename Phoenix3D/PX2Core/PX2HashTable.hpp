@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2HashTable.hpp
-*
-*/
+// PX2HashTable.hpp
 
 #ifndef PX2HASHTABLE_HPP
 #define PX2HASHTABLE_HPP

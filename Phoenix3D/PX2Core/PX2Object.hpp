@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Object.hpp
-*
-*/
+// PX2Object.hpp
 
 #ifndef PX2OBJECT_HPP
 #define PX2OBJECT_HPP

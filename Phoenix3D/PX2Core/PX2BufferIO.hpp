@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BufferIO.hpp
-*
-*/
+// PX2BufferIO.hpp
 
 #ifndef PX2BUFFERIO_HPP
 #define PX2BUFFERIO_HPP

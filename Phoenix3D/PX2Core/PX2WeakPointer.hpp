@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2WeakPointer.hpp
-*
-*/
+// PX2WeakPointer.hpp
 
 #ifndef PX2SWEAKPOINTER_HPP
 #define PX2SWEAKPOINTER_HPP

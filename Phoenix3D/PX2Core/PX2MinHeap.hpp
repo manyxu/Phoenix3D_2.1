@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2MinHeap.hpp
-*
-*/
+// PX2MinHeap.hpp
 
 #ifndef PX2MINHEAP_HPP
 #define PX2MINHEAP_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LocalDateTime.inl
-*
-*/
+// PX2LocalDateTime.inl
 
 //----------------------------------------------------------------------------
 inline int LocalDateTime::Year() const

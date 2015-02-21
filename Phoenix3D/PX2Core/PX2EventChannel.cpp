@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventChannel.cpp
-*
-*/
+// PX2EventChannel.cpp
 
 #include "PX2EventChannel.hpp"
 using namespace PX2;

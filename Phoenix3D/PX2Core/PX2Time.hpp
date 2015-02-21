@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Time.hpp
-*
-*/
+// PX2Time.hpp
 
 #ifndef PX2TIME_H
 #define PX2TIME_H

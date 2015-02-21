@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Endian.hpp
-*
-*/
+// PX2Endian.hpp
 
 #ifndef PX2ENDIAN_H
 #define PX2ENDIAN_H

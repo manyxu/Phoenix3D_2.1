@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Endian.cpp
-*
-*/
+// PX2Endian.cpp
 
 #include "PX2Assert.hpp"
 #include "PX2Endian.hpp"

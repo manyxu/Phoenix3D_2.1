@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DoubleChainList.cpp
-*
-*/
+// PX2DoubleChainList.cpp
 
 //----------------------------------------------------------------------------
 template <typename T>

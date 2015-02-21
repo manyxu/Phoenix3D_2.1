@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Thread.cpp
-*
-*/
+// PX2Thread.cpp
 
 #include "PX2Thread.hpp"
 #include "PX2Mutex.hpp"

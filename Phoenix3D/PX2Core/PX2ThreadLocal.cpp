@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ThreadLocal.cpp
-*
-*/
+// PX2ThreadLocal.cpp
 
 #include "PX2ThreadLocal.hpp"
 #include "PX2Thread.hpp"

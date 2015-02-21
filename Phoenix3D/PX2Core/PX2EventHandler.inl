@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventHandler.inl
-*
-*/
+// PX2EventHandler.inl
 
 //----------------------------------------------------------------------------
 inline bool EventHandler::IsUpdateEvent (Event *event)

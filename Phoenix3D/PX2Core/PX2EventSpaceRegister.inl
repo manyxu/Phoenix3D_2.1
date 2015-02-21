@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventSpaceRegister.inl
-*
-*/
+// PX2EventSpaceRegister.inl
 
 //----------------------------------------------------------------------------
 template <class ES>

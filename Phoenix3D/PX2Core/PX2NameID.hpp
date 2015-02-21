@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Names.hpp
-*
-*/
+// PX2Names.hpp
 
 #ifndef PX2NAMES_HPP
 #define PX2NAMES_HPP

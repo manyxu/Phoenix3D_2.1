@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Timestamp.inl
-*
-*/
+// PX2Timestamp.inl
 
 //----------------------------------------------------------------------------
 inline bool Timestamp::operator == (const Timestamp& ts) const

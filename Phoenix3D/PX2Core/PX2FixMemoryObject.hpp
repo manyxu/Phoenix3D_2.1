@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FixMemoryObject.hpp
-*
-*/
+// PX2FixMemoryObject.hpp
 
 #ifndef PX2FIXMEMORYOBJECT_HPP
 #define PX2FIXMEMORYOBJECT_HPP

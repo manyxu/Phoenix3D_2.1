@@ -113,7 +113,6 @@
 		738459361A95EA1200876E88 /* PX2DateTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2DateTime.cpp; sourceTree = SOURCE_ROOT; };
 		738459371A95EA1200876E88 /* PX2DateTime.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2DateTime.hpp; sourceTree = SOURCE_ROOT; };
 		738459381A95EA1200876E88 /* PX2DateTime.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2DateTime.inl; sourceTree = SOURCE_ROOT; };
-		738459391A95EA1200876E88 /* PX2DesignUntity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2DesignUntity.hpp; sourceTree = SOURCE_ROOT; };
 		7384593A1A95EA1200876E88 /* PX2DoubleChainList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2DoubleChainList.hpp; sourceTree = SOURCE_ROOT; };
 		7384593B1A95EA1200876E88 /* PX2DoubleChainList.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2DoubleChainList.inl; sourceTree = SOURCE_ROOT; };
 		7384593C1A95EA1200876E88 /* PX2Endian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Endian.cpp; sourceTree = SOURCE_ROOT; };
@@ -353,7 +352,6 @@
 				738459361A95EA1200876E88 /* PX2DateTime.cpp */,
 				738459371A95EA1200876E88 /* PX2DateTime.hpp */,
 				738459381A95EA1200876E88 /* PX2DateTime.inl */,
-				738459391A95EA1200876E88 /* PX2DesignUntity.hpp */,
 				7384593A1A95EA1200876E88 /* PX2DoubleChainList.hpp */,
 				7384593B1A95EA1200876E88 /* PX2DoubleChainList.inl */,
 				7384593C1A95EA1200876E88 /* PX2Endian.cpp */,

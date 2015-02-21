@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Timespan.hpp
-*
-*/
+// PX2Timespan.hpp
 
 #ifndef PX2TIMESPAN_HPP
 #define PX2TIMESPAN_HPP

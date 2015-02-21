@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SmartPointer.hpp
-*
-*/
+// PX2SmartPointer.hpp
 
 #ifndef PX2SMARTPOINTER_HPP
 #define PX2SMARTPOINTER_HPP

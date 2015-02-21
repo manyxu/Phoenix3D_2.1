@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FileIO.cpp
-*
-*/
+// PX2FileIO.cpp
 
 #include "PX2FileIO.hpp"
 #include "PX2Endian.hpp"

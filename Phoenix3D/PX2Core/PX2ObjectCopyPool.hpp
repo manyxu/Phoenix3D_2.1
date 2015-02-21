@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ObjectCopyPool.hpp
-*
-*/
+// PX2ObjectCopyPool.hpp
 
 #ifndef PX2OBJECTCOPYPOOL_HPP
 #define PX2OBJECTCOPYPOOL_HPP
