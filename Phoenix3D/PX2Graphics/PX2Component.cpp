@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Component.cpp
-*
-*/
+// PX2Component.cpp
 
 #include "PX2Component.hpp"
 using namespace PX2;

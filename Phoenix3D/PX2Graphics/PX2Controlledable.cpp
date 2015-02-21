@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Controlledable.cpp
-*
-*/
+// PX2Controlledable.cpp
 
 #include "PX2Controlledable.hpp"
 using namespace PX2;

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveFloat3Controller.hpp
-*
-*/
+// PX2InterpCurveFloat3Controller.hpp
 
 #ifndef PX2INTERPCURVEFLOAT3CONTROLLER_HPP
 #define PX2INTERPCURVEFLOAT3CONTROLLER_HPP

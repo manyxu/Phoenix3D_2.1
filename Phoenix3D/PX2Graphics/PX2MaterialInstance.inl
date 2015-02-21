@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2MaterialInstance.inl
-*
-*/
+// PX2MaterialInstance.inl
 
 //----------------------------------------------------------------------------
 inline Material* MaterialInstance::GetMaterial () const

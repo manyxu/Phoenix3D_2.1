@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TargetTransformController.hpp
-*
-*/
+// PX2TargetTransformController.hpp
 
 #ifndef PX2TARGETTRANSFORMCONTROLLER_HPP
 #define PX2TARGETTRANSFORMCONTROLLER_HPP

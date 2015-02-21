@@ -1,4 +1,4 @@
-// TdOpenGLES2Shader.cpp
+// PX2OpenGLES2Shader.cpp
 
 #ifdef PX2_USE_OPENGLES2
 

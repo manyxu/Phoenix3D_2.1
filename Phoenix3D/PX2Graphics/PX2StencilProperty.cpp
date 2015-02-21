@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2StencilProperty.cpp
-*
-*/
+// PX2StencilProperty.cpp
 
 #include "PX2StencilProperty.hpp"
 using namespace PX2;

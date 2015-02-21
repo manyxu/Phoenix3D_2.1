@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CameraModelDVectorConstant.cpp
-*
-*/
+// PX2CameraModelDVectorConstant.cpp
 
 #include "PX2CameraModelDVectorConstant.hpp"
 #include "PX2Camera.hpp"

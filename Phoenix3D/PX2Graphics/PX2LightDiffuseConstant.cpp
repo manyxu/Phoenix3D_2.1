@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LightDiffuseConstant.cpp
-*
-*/
+// PX2LightDiffuseConstant.cpp
 
 #include "PX2LightDiffuseConstant.hpp"
 #include "PX2Camera.hpp"

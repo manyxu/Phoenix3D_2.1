@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2VertexShader.cpp
-*
-*/
+// PX2VertexShader.cpp
 
 #include "PX2VertexShader.hpp"
 #include "PX2Renderer.hpp"

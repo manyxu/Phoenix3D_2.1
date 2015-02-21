@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LightWorldPositionConstant.cpp
-*
-*/
+// PX2LightWorldPositionConstant.cpp
 
 #include "PX2LightWorldPositionConstant.hpp"
 #include "PX2Camera.hpp"

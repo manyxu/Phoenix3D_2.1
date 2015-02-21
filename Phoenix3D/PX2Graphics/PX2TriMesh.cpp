@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2TriMesh.cpp
-*
-*/
+// PX2TriMesh.cpp
 
 #include "PX2TriMesh.hpp"
 using namespace PX2;

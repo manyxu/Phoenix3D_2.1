@@ -1,4 +1,4 @@
-// TdOpenGLES2RendererPre.hpp
+// PX2OpenGLES2RendererPre.hpp
 
 #ifdef PX2_USE_OPENGLES2
 

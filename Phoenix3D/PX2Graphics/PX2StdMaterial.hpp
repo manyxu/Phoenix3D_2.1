@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2StdMaterial.hpp
-*
-*/
+// PX2StdMaterial.hpp
 
 #ifndef PX2STDMATERIAL_HPP
 #define PX2STDMATERIAL_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TransformController.hpp
-*
-*/
+// PX2TransformController.hpp
 
 #ifndef PX2TRANSFORMCONTROLLER_HPP
 #define PX2TRANSFORMCONTROLLER_HPP

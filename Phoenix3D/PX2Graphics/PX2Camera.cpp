@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Camera.cpp
-*
-*/
+// PX2Camera.cpp
 
 #include "PX2Camera.hpp"
 using namespace PX2;

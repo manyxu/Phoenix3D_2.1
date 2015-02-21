@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2VisibleSet.inl
-*
-*/
+// PX2VisibleSet.inl
 
 //----------------------------------------------------------------------------
 inline void VisibleSet::SetSortFun (SortFun fun)

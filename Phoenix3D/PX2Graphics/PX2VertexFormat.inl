@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2VertexFormat.inl
-*
-*/
+// PX2VertexFormat.inl
 
 //----------------------------------------------------------------------------
 inline int VertexFormat::GetNumAttributes () const

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2TextureCube.inl
-*
-*/
+// PX2TextureCube.inl
 
 //----------------------------------------------------------------------------
 inline int TextureCube::GetWidth () const

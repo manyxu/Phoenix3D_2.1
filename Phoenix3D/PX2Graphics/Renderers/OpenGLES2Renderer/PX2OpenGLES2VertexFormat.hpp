@@ -1,4 +1,4 @@
-// TdOpenGLES2VertexFormat.hpp
+// PX2OpenGLES2VertexFormat.hpp
 
 #ifdef PX2_USE_OPENGLES2
 

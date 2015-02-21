@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LightTex2Material.cpp
-*
-*/
+// PX2LightTex2Material.cpp
 
 #include "PX2LightTex2Material.hpp"
 #include "PX2PVWMatrixConstant.hpp"

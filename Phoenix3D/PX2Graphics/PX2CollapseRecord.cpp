@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CollapseRecord.cpp
-*
-*/
+// PX2CollapseRecord.cpp
 
 #include "PX2CollapseRecord.hpp"
 #include "PX2Memory.hpp"

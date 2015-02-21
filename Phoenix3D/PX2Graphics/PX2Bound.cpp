@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Bound.cpp
-*
-*/
+// PX2Bound.cpp
 
 #include "PX2Bound.hpp"
 using namespace PX2;

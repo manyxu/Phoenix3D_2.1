@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2VertexBufferAccessor.inl
-*
-*/
+// PX2VertexBufferAccessor.inl
 
 //----------------------------------------------------------------------------
 inline char* VertexBufferAccessor::GetData () const

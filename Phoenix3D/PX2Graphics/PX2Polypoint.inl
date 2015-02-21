@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Polypoint.inl
-*
-*/
+// PX2Polypoint.inl
 
 //----------------------------------------------------------------------------
 inline int Polypoint::GetNumPoints () const

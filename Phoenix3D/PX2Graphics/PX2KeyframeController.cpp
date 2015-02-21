@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2KeyframeController.cpp
-*
-*/
+// PX2KeyframeController.cpp
 
 #include "PX2KeyframeController.hpp"
 #include "PX2Movable.hpp"

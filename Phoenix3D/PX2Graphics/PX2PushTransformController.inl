@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2PushTransformController.inl
-*
-*/
+// PX2PushTransformController.inl
 
 //----------------------------------------------------------------------------
 inline void PushTransformController::SetTransType (TransType transType)

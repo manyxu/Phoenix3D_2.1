@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BlendTransformController.cpp
-*
-*/
+// PX2BlendTransformController.cpp
 
 #include "PX2BlendTransformController.hpp"
 #include "PX2HQuaternion.hpp"

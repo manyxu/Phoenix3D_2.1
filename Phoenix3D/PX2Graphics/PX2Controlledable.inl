@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Controlledable.inl
-*
-*/
+// PX2Controlledable.inl
 
 //----------------------------------------------------------------------------
 inline bool Controlledable::IsSelfCtrled () const

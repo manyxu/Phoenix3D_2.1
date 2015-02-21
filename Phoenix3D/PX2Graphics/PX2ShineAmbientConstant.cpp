@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ShineAmbientConstant.cpp
-*
-*/
+// PX2ShineAmbientConstant.cpp
 
 #include "PX2ShineAmbientConstant.hpp"
 #include "PX2Camera.hpp"

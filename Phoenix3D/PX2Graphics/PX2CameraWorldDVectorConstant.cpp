@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CameraWorldDVectorConstant.cpp
-*
-*/
+// PX2CameraWorldDVectorConstant.cpp
 
 #include "PX2CameraWorldDVectorConstant.hpp"
 #include "PX2Camera.hpp"

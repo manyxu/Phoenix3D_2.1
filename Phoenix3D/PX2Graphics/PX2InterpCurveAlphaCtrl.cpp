@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveAlphaCtrl.cpp
-*
-*/
+// PX2InterpCurveAlphaCtrl.cpp
 
 #include "PX2InterpCurveAlphaCtrl.hpp"
 #include "PX2Movable.hpp"

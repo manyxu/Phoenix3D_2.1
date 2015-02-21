@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CollapseRecordArray.cpp
-*
-*/
+// PX2CollapseRecordArray.cpp
 
 #include "PX2CollapseRecordArray.hpp"
 using namespace PX2;

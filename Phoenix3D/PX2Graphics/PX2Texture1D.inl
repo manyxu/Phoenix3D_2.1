@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Texture1D.inl
-*
-*/
+// PX2Texture1D.inl
 
 //----------------------------------------------------------------------------
 inline int Texture1D::GetLength () const

@@ -1,4 +1,4 @@
-// TdOpenGLES2VertexBuffer.hpp
+// PX2OpenGLES2VertexBuffer.hpp
 
 #ifdef PX2_USE_OPENGLES2
 

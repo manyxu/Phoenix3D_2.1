@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SkinMaterial.hpp
-*
-*/
+// PX2SkinMaterial.hpp
 
 #ifndef PX2SKINMATERIAL_HPP
 #define PX2SKINMATERIAL_HPP

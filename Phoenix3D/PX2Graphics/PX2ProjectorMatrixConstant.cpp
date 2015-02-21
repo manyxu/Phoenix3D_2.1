@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ProjectorMatrixConstant.cpp
-*
-*/
+// PX2ProjectorMatrixConstant.cpp
 
 #include "PX2ProjectorMatrixConstant.hpp"
 #include "PX2Camera.hpp"

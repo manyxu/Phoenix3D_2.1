@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Triangles.inl
-*
-*/
+// PX2Triangles.inl
 
 //----------------------------------------------------------------------------
 inline int Triangles::GetNumVertices () const

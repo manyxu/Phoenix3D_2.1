@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Material.cpp
-*
-*/
+// PX2Material.cpp
 
 #include "PX2Material.hpp"
 #include "PX2Renderable.hpp"

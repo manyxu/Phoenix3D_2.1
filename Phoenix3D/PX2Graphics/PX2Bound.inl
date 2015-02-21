@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Bound.inl
-*
-*/
+// PX2Bound.inl
 
 //----------------------------------------------------------------------------
 inline void Bound::SetCenter (const APoint& center)

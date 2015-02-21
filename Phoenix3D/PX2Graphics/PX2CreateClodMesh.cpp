@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2CreateClodMesh.cpp
-*
-*/
+// PX2CreateClodMesh.cpp
 
 #include "PX2CreateClodMesh.hpp"
 using namespace PX2;

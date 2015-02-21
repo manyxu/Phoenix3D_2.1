@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2MaterialTechnique.inl
-*
-*/
+// PX2MaterialTechnique.inl
 
 //----------------------------------------------------------------------------
 inline void MaterialTechnique::SetTag(const std::string &tag)

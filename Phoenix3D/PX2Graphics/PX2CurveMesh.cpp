@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2CurveMesh.cpp
-*
-*/
+// PX2CurveMesh.cpp
 
 #include "PX2CurveMesh.hpp"
 #include "PX2Renderer.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FogColorDistConstant.cpp
-*
-*/
+// PX2FogColorDistConstant.cpp
 
 #include "PX2FogColorDistConstant.hpp"
 #include "PX2Camera.hpp"

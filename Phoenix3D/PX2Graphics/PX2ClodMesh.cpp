@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ClodMesh.cpp
-*
-*/
+// PX2ClodMesh.cpp
 
 #include "PX2ClodMesh.hpp"
 #include "PX2Renderer.hpp"

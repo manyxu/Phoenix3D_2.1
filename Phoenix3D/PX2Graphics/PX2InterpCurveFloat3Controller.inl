@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveFloat3Controller.inl
-*
-*/
+// PX2InterpCurveFloat3Controller.inl
 
 //----------------------------------------------------------------------------
 inline void InterpCurveFloat3Controller::SetInitValue (const Float3 &val)

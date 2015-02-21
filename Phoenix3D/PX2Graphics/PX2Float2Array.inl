@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2FloatArray.inl
-*
-*/
+// PX2FloatArray.inl
 
 //----------------------------------------------------------------------------
 inline int Float2Array::GetNumElements () const

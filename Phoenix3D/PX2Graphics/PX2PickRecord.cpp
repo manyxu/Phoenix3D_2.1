@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2PickRecord.cpp
-*
-*/
+// PX2PickRecord.cpp
 
 #include "PX2PickRecord.hpp"
 using namespace PX2;

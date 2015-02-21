@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveTransCtrl.hpp
-*
-*/
+// PX2InterpCurveTransCtrl.hpp
 
 #ifndef PX2INTERPCURVESCALESCTRL_HPP
 #define PX2INTERPCURVESCALESCTRL_HPP

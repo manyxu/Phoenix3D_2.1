@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Projector.cpp
-*
-*/
+// PX2Projector.cpp
 
 #include "PX2Projector.hpp"
 using namespace PX2;

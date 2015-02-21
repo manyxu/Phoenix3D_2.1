@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SpecializedIO.cpp
-*
-*/
+// PX2SpecializedIO.cpp
 
 #include "PX2SpecializedIO.hpp"
 

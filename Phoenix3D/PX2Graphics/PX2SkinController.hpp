@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SkinController.hpp
-*
-*/
+// PX2SkinController.hpp
 
 #ifndef PX2SKINCONTROLLER_HPP
 #define PX2SKINCONTROLLER_HPP

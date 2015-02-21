@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveFloatController.cpp
-*
-*/
+// PX2InterpCurveFloatController.cpp
 
 #include "PX2InterpCurveFloatController.hpp"
 #include "PX2StringHelp.hpp"

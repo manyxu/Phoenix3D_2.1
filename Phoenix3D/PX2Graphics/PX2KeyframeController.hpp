@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2KeyframeController.hpp
-*
-*/
+// PX2KeyframeController.hpp
 
 #ifndef PX2KEYFRAMECONTROLLER_HPP
 #define PX2KEYFRAMECONTROLLER_HPP

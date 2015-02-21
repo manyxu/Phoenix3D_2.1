@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2GraphicsRoot.inl
-*
-*/
+// PX2GraphicsRoot.inl
 
 //----------------------------------------------------------------------------
 inline void GraphicsRoot::SetInEditor (bool isInEditor)

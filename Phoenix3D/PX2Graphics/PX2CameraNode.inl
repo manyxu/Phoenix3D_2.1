@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2CameraNode.inl
-*
-*/
+// PX2CameraNode.inl
 
 //----------------------------------------------------------------------------
 inline Camera* CameraNode::GetCamera ()

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2BillboardNode.cpp
-*
-*/
+// PX2BillboardNode.cpp
 
 #include "PX2BillboardNode.hpp"
 using namespace PX2;

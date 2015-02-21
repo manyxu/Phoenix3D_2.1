@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2JunglerMaterial.hpp
-*
-*/
+// PX2JunglerMaterial.hpp
 
 #ifndef PX2JUNGLERMATERIAL_HPP
 #define PX2JUNGLERMATERIAL_HPP

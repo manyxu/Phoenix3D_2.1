@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveController.cpp
-*
-*/
+// PX2InterpCurveController.cpp
 
 #include "PX2InterpCurveController.hpp"
 #include "PX2Controlledable.hpp"

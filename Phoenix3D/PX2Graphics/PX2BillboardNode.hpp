@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BillboardNode.hpp
-*
-*/
+// PX2BillboardNode.hpp
 
 #ifndef PX2BILLBOARDNODE_HPP
 #define PX2BILLBOARDNODE_HPP

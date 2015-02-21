@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DlodNode.hpp
-*
-*/
+// PX2DlodNode.hpp
 
 #ifndef PX2DLODNODE_HPP
 #define PX2DLODNODE_HPP

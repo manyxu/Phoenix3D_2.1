@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2VisibleSet.cpp
-*
-*/
+// PX2VisibleSet.cpp
 
 #include "PX2VisibleSet.hpp"
 #include "PX2Renderable.hpp"

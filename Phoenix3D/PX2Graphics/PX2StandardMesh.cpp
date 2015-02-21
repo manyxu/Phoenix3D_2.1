@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2StandardMesh.cpp
-*
-*/
+// PX2StandardMesh.cpp
 
 #include "PX2StandardMesh.hpp"
 #include "PX2VertexColor4Material.hpp"

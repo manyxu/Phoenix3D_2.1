@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TriStrip.cpp
-*
-*/
+// PX2TriStrip.cpp
 
 #include "PX2TriStrip.hpp"
 using namespace PX2;

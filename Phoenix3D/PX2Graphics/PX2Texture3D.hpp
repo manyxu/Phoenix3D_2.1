@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Texture3D.hpp
-*
-*/
+// PX2Texture3D.hpp
 
 #ifndef PX2TEXTURE3D_HPP
 #define PX2TEXTURE3D_HPP

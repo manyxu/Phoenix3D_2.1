@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ShaderFloat.cpp
-*
-*/
+// PX2ShaderFloat.cpp
 
 #include "PX2ShaderFloat.hpp"
 using namespace PX2;

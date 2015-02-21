@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2CurveSegment.cpp
-*
-*/
+// PX2CurveSegment.cpp
 
 #include "PX2CurveSegment.hpp"
 #include "PX2Math.hpp"

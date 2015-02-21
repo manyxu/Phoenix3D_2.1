@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveSpeedCtrl.inl
-*
-*/
+// PX2InterpCurveSpeedCtrl.inl
 
 //----------------------------------------------------------------------------
 inline void InterpCurveSpeedController::SetMaxLength (float length)

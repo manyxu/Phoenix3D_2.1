@@ -1,4 +1,4 @@
-// TdOpenGLES2Texture2D.cpp
+// PX2OpenGLES2Texture2D.cpp
 
 #ifdef PX2_USE_OPENGLES2
 

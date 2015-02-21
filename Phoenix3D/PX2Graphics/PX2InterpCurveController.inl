@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveController.inl
-*
-*/
+// PX2InterpCurveController.inl
 
 //----------------------------------------------------------------------------
 inline void InterpCurveController::SetRelatively (bool r)

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ShaderKeys.hpp
-*
-*/
+// PX2ShaderKeys.hpp
 
 #ifndef PX2SHADERKEYS_HPP
 #define PX2SHADERKEYS_HPP

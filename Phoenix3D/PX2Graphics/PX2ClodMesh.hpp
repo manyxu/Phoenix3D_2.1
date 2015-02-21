@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ClodMesh.hpp
-*
-*/
+// PX2ClodMesh.hpp
 
 #ifndef PX2CLODMESH_HPP
 #define PX2CLODMESH_HPP

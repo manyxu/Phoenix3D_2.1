@@ -1,4 +1,4 @@
-// TdOpenGLES2Texture2D.hpp
+// PX2OpenGLES2Texture2D.hpp
 
 #ifdef PX2_USE_OPENGLES2
 

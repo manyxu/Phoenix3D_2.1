@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Controller.cpp
-*
-*/
+// PX2Controller.cpp
 
 #include "PX2Controller.hpp"
 #include "PX2Controlledable.hpp"

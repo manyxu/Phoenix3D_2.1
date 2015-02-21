@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Culler.inl
-*
-*/
+// PX2Culler.inl
 
 //----------------------------------------------------------------------------
 inline void Culler::SetCamera (const Camera* camera)

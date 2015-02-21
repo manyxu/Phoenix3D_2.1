@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Renderable.cpp
-*
-*/
+// PX2Renderable.cpp
 
 #include "PX2Renderable.hpp"
 #include "PX2Culler.hpp"

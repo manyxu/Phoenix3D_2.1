@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Buffer.inl
-*
-*/
+// PX2Buffer.inl
 
 //----------------------------------------------------------------------------
 inline int Buffer::GetNumElements () const

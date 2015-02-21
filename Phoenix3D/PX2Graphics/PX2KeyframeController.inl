@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2KeyframeController.inl
-*
-*/
+// PX2KeyframeController.inl
 
 //----------------------------------------------------------------------------
 inline void KeyframeController::SetTransScale (const APoint &xyzScale)

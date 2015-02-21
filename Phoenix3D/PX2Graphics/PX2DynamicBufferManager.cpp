@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2DynamicBufferManager.hpp
-*
-*/
+// PX2DynamicBufferManager.hpp
 
 #include "PX2DynamicBufferManager.hpp"
 #include "PX2Renderer.hpp"

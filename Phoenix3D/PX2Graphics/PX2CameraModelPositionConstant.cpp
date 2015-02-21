@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CameraModelPositionConstant.cpp
-*
-*/
+// PX2CameraModelPositionConstant.cpp
 
 #include "PX2CameraModelPositionConstant.hpp"
 #include "PX2Camera.hpp"

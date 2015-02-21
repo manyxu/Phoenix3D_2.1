@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2InterpCurveSpeedCtrl.cpp
-*
-*/
+// PX2InterpCurveSpeedCtrl.cpp
 
 #include "PX2InterpCurveSpeedCtrl.hpp"
 #include "PX2Movable.hpp"

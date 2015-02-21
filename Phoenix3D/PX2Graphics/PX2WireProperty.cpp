@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2WireProperty.cpp
-*
-*/
+// PX2WireProperty.cpp
 
 #include "PX2WireProperty.hpp"
 using namespace PX2;

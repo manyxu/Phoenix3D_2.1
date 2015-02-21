@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Texture.inl
-*
-*/
+// PX2Texture.inl
 
 //----------------------------------------------------------------------------
 inline Texture::Format Texture::GetFormat () const

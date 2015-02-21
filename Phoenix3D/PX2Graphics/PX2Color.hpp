@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2Color.hpp
-*
-* 版本		:	1.0 (2011/01/31)
-*
-* 作者		：	more
-*
-*/
+// PX2Color.hpp
 
 #ifndef PX2COLOR_HPP
 #define PX2COLOR_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SwitchNode.hpp
-*
-*/
+// PX2SwitchNode.hpp
 
 #ifndef PX2SWITCHNODE_HPP
 #define PX2SWITCHNODE_HPP

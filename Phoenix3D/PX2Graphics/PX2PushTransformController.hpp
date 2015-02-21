@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2PushTransformController.hpp
-*
-*/
+// PX2PushTransformController.hpp
 
 #ifndef PX2PUSHTRANSFORMCONTROLLER_HPP
 #define PX2PUSHTRANSFORMCONTROLLER_HPP

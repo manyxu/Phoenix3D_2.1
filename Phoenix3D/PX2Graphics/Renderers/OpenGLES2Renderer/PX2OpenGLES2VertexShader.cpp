@@ -1,4 +1,4 @@
-// TdOpenGLES2VertexShader.cpp
+// PX2OpenGLES2VertexShader.cpp
 
 #ifdef PX2_USE_OPENGLES2
 

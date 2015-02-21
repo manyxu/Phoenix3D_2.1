@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Buffer.cpp
-*
-*/
+// PX2Buffer.cpp
 
 #include "PX2Buffer.hpp"
 using namespace PX2;

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Controller.inl
-*
-*/
+// PX2Controller.inl
 
 //----------------------------------------------------------------------------
 inline int Controller::GetPriority () const

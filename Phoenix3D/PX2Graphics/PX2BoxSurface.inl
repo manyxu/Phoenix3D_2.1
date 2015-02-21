@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BoxSurface.inl
-*
-*/
+// PX2BoxSurface.inl
 
 //----------------------------------------------------------------------------
 inline const BSplineVolumef* BoxSurface::GetVolume () const

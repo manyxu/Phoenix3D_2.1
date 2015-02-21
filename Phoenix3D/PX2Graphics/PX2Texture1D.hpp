@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2Texture1D.hpp
-*
-* 版本		:	1.0 (2011/01/31)
-*
-* 作者		：	more
-*
-*/
+// PX2Texture1D.hpp
 
 #ifndef PX2TEXTURE1D_HPP
 #define PX2TEXTURE1D_HPP

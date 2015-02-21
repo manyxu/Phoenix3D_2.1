@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BoxSurface.cpp
-*
-*/
+// PX2BoxSurface.cpp
 
 #include "PX2BoxSurface.hpp"
 #include "PX2Renderer.hpp"

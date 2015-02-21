@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LightTexMaterial.hpp
-*
-*/
+// PX2LightTexMaterial.hpp
 
 #ifndef PX2LIGHTTEXMATERIAL_HPP
 #define PX2LIGHTTEXMATERIAL_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Node.cpp
-*
-*/
+// PX2Node.cpp
 
 #include "PX2Node.hpp"
 using namespace PX2;

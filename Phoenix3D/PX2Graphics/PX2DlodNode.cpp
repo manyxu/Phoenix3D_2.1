@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DlodNode.cpp
-*
-*/
+// PX2DlodNode.cpp
 
 #include "PX2DlodNode.hpp"
 #include "PX2Camera.hpp"

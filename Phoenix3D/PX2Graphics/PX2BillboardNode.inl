@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BillboardNode.inl
-*
-*/
+// PX2BillboardNode.inl
 
 //----------------------------------------------------------------------------
 inline void BillboardNode::AlignTo (Camera* camera)

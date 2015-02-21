@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ShineSpecularConstant.cpp
-*
-*/
+// PX2ShineSpecularConstant.cpp
 
 #include "PX2ShineSpecularConstant.hpp"
 #include "PX2Camera.hpp"

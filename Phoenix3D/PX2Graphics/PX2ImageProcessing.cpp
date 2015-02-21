@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ImageProcessing.cpp
-*
-*/
+// PX2ImageProcessing.cpp
 
 #include "PX2ImageProcessing.hpp"
 #include "PX2VertexBufferAccessor.hpp"

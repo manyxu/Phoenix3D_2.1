@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveRotateCtrl.hpp
-*
-*/
+// PX2InterpCurveRotateCtrl.hpp
 
 #ifndef PX2INTERPCURVEROTATECTRL_HPP
 #define PX2INTERPCURVEROTATECTRL_HPP

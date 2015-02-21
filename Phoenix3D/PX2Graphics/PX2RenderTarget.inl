@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2RenderTarget.inl
-*
-*/
+// PX2RenderTarget.inl
 
 //----------------------------------------------------------------------------
 inline int RenderTarget::GetNumTargets () const

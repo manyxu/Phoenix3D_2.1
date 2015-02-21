@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ClodMesh.inl
-*
-*/
+// PX2ClodMesh.inl
 
 //----------------------------------------------------------------------------
 inline int ClodMesh::GetNumRecords () const

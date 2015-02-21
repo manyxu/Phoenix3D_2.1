@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Transform.cpp
-*
-*/
+// PX2Transform.cpp
 
 #include "PX2Transform.hpp"
 using namespace PX2;

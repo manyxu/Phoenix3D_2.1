@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SkinMaterial.cpp
-*
-*/
+// PX2SkinMaterial.cpp
 
 #include "PX2SkinMaterial.hpp"
 #include "PX2PVWMatrixConstant.hpp"

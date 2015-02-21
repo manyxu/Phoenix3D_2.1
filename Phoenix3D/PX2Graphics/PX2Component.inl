@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Component.inl
-*
-*/
+// PX2Component.inl
 
 //----------------------------------------------------------------------------
 inline void Component::SetPriority(int priority)

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DlodNode.inl
-*
-*/
+// PX2DlodNode.inl
 
 //----------------------------------------------------------------------------
 inline APoint& DlodNode::ModelCenter ()

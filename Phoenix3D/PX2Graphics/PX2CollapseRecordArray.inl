@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CollapseRecordArray.inl
-*
-*/
+// PX2CollapseRecordArray.inl
 
 //----------------------------------------------------------------------------
 inline int CollapseRecordArray::GetNumRecords () const

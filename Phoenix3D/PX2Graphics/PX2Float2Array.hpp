@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2Float2Array.hpp
-*
-* 版本		:	1.0 (2011/02/02)
-*
-* 作者		：	more
-*
-*/
+// PX2Float2Array.hpp
 
 #ifndef PX2FLOAT2ARRAY_H
 #define PX2FLOAT2ARRAY_H

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ImageProcessing2.inl
-*
-*/
+// PX2ImageProcessing2.inl
 
 //----------------------------------------------------------------------------
 inline int ImageProcessing2::GetBound0 () const

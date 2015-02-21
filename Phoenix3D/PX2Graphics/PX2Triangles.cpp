@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Triangles.cpp
-*
-*/
+// PX2Triangles.cpp
 
 #include "PX2Triangles.hpp"
 #include "PX2Renderer.hpp"

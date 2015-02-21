@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2InterpCurveRotateCtrl.cpp
-*
-*/
+// PX2InterpCurveRotateCtrl.cpp
 
 #include "PX2InterpCurveRotateCtrl.hpp"
 #include "PX2Movable.hpp"

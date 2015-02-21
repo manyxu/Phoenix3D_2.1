@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Polypoint.cpp
-*
-*/
+// PX2Polypoint.cpp
 
 #include "PX2Polypoint.hpp"
 using namespace PX2;

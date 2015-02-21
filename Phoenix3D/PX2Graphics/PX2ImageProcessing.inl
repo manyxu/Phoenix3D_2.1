@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ImageProcessing.inl
-*
-*/
+// PX2ImageProcessing.inl
 
 //----------------------------------------------------------------------------
 inline int ImageProcessing::GetNumCols () const

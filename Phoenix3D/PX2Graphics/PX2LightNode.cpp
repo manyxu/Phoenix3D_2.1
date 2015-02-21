@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Movable.cpp
-*
-*/
+// PX2Movable.cpp
 
 #include "PX2LightNode.hpp"
 #include "PX2GraphicsRoot.hpp"

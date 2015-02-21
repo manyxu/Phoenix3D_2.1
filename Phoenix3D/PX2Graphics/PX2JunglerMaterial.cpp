@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2StandardMaterial.cpp
-*
-*/
+// PX2StandardMaterial.cpp
 
 #include "PX2JunglerMaterial.hpp"
 #include "PX2PVWMatrixConstant.hpp"

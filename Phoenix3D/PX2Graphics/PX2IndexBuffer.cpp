@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2IndexBuffer.cpp
-*
-*/
+// PX2IndexBuffer.cpp
 
 #include "PX2IndexBuffer.hpp"
 #include "PX2Renderer.hpp"

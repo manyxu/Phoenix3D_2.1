@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DynamicBufferObject.cpp
-*
-*/
+// PX2DynamicBufferObject.cpp
 
 #include "PX2DynamicBufferObject.hpp"
 using namespace PX2;

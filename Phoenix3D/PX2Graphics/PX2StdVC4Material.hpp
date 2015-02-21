@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2StdVC4Material.hpp
-*
-*/
+// PX2StdVC4Material.hpp
 
 #ifndef PX2STDVC4MATERIAL_HPP
 #define PX2STDVC4MATERIAL_HPP

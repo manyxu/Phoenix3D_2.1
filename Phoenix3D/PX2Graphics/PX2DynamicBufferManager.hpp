@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DynamicBufferManager.hpp
-*
-*/
+// PX2DynamicBufferManager.hpp
 
 #ifndef PX2DYNAMICBUFFERMANAGER_HPP
 #define PX2DYNAMICBUFFERMANAGER_HPP

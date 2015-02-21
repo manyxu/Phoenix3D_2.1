@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Texture2DMaterial.hpp
-*
-*/
+// PX2Texture2DMaterial.hpp
 
 #ifndef PX2TEXTURE2DMATERIAL_HPP
 #define PX2TEXTURE2DMATERIAL_HPP

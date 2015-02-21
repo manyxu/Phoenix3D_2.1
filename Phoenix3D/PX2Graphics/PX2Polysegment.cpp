@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Polysegment.cpp
-*
-*/
+// PX2Polysegment.cpp
 
 #include "PX2Polysegment.hpp"
 using namespace PX2;

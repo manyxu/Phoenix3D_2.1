@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2MaterialPass.inl
-*
-*/
+// PX2MaterialPass.inl
 
 //----------------------------------------------------------------------------
 inline void MaterialPass::SetVertexShader (VertexShader* vshader)

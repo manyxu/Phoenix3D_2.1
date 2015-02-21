@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SkinMatrixConstant.cpp
-*
-*/
+// PX2SkinMatrixConstant.cpp
 
 #include "PX2SkinMatrixConstant.hpp"
 #include "PX2Camera.hpp"

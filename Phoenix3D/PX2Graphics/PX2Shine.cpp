@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Shine.cpp
-*
-*/
+// PX2Shine.cpp
 
 #include "PX2Shine.hpp"
 using namespace PX2;

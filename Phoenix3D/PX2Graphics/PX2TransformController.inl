@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TransformController.inl
-*
-*/
+// PX2TransformController.inl
 
 //----------------------------------------------------------------------------
 inline void TransformController::SetWorld (bool isWorld)

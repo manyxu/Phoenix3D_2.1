@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ShaderParameters.inl
-*
-*/
+// PX2ShaderParameters.inl
 
 //----------------------------------------------------------------------------
 inline int ShaderParameters::GetNumConstants () const

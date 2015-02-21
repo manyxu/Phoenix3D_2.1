@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ShaderParameters.cpp
-*
-*/
+// PX2ShaderParameters.cpp
 
 #include "PX2ShaderParameters.hpp"
 #include "PX2StringHelp.hpp"

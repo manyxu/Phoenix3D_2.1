@@ -1,4 +1,4 @@
-// TdOpenGLES2MaterialPass.cpp
+// PX2OpenGLES2MaterialPass.cpp
 
 #ifdef PX2_USE_OPENGLES2
 

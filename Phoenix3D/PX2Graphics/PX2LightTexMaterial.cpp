@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Texture2MulMaterial.cpp
-*
-*/
+// PX2Texture2MulMaterial.cpp
 
 #include "PX2LightTexMaterial.hpp"
 #include "PX2PVWMatrixConstant.hpp"

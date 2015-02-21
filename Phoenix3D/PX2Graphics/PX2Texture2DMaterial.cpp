@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Texture2DMaterial.cpp
-*
-*/
+// PX2Texture2DMaterial.cpp
 
 #include "PX2Texture2DMaterial.hpp"
 #include "PX2PVWMatrixConstant.hpp"

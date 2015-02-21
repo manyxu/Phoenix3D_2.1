@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2MaterialTechnique.cpp
-*
-*/
+// PX2MaterialTechnique.cpp
 
 #include "PX2MaterialTechnique.hpp"
 using namespace PX2;

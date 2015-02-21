@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveSpeedCtrl.hpp
-*
-*/
+// PX2InterpCurveSpeedCtrl.hpp
 
 #ifndef PX2INTERPCURVESPEEDCTRL_HPP
 #define PX2INTERPCURVESPEEDCTRL_HPP

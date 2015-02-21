@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CollapseRecordArray.hpp
-*
-*/
+// PX2CollapseRecordArray.hpp
 
 #ifndef PX2COLLAPSERECORDARRAY_HPP
 #define PX2COLLAPSERECORDARRAY_HPP

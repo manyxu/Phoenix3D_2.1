@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SkinController.cpp
-*
-*/
+// PX2SkinController.cpp
 
 #include "PX2SkinController.hpp"
 #include "PX2Renderer.hpp"

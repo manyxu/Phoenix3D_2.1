@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LightAttenuationConstant.cpp
-*
-*/
+// PX2LightAttenuationConstant.cpp
 
 #include "PX2LightAttenuationConstant.hpp"
 #include "PX2Camera.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LightNode.inl
-*
-*/
+// PX2LightNode.inl
 
 //----------------------------------------------------------------------------
 inline Light* LightNode::GetLight ()

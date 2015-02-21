@@ -1,4 +1,4 @@
-// TdOpenGLES2Mapping.cpp
+// PX2OpenGLES2Mapping.cpp
 
 #ifdef PX2_USE_OPENGLES2
 

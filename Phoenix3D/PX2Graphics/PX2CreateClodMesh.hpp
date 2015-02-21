@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CreateClodMesh.hpp
-*
-*/
+// PX2CreateClodMesh.hpp
 
 #ifndef PX2CREATECLODMESH_HPP
 #define PX2CREATECLODMESH_HPP

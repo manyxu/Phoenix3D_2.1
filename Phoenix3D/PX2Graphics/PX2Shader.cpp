@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Shader.cpp
-*
-*/
+// PX2Shader.cpp
 
 #include "PX2Shader.hpp"
 using namespace PX2;

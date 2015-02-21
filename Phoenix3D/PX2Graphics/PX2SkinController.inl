@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SkinController.inl
-*
-*/
+// PX2SkinController.inl
 
 //----------------------------------------------------------------------------
 inline void SkinController::SetUseCPU (bool cpu)

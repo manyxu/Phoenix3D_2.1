@@ -1,4 +1,4 @@
-// PX2Dx9TextureCube.cpp
+// PX2OpenGLES2TextureCube.cpp
 
 #ifdef PX2_USE_OPENGLES2
 

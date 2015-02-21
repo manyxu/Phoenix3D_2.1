@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SwitchNode.inl
-*
-*/
+// PX2SwitchNode.inl
 
 //----------------------------------------------------------------------------
 inline SwitchNode *SwitchNode::Create()

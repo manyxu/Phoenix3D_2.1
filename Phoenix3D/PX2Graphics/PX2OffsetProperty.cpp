@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2OffsetProperty.cpp
-*
-*/
+// PX2OffsetProperty.cpp
 
 #include "PX2OffsetProperty.hpp"
 using namespace PX2;

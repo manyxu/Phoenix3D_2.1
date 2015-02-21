@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BlendTransformController.hpp
-*
-*/
+// PX2BlendTransformController.hpp
 
 #ifndef PX2BLENDTRANSFORMCONTROLLER_HPP
 #define PX2BLENDTRANSFORMCONTROLLER_HPP

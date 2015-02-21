@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2ImageProcessing.hpp
-*
-* 版本		:	1.0 (2011/03/19)
-*
-* 作者		：	more
-*
-*/
+// PX2ImageProcessing.hpp
 
 #ifndef PX2IMAGEPROCESSING_HPP
 #define PX2IMAGEPROCESSING_HPP

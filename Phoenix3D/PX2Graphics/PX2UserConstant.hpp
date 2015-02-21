@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2UserConstant.hpp
-*
-*/
+// PX2UserConstant.hpp
 
 #ifndef PX2USERCONSTANCE_HPP
 #define PX2USERCONSTANCE_HPP

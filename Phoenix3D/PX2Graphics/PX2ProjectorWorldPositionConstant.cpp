@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ProjectorWorldPositionConstant.cpp
-*
-*/
+// PX2ProjectorWorldPositionConstant.cpp
 
 #include "PX2ProjectorWorldPositionConstant.hpp"
 using namespace PX2;

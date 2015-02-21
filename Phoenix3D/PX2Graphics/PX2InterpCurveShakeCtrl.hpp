@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveShakeCtrl.hpp
-*
-*/
+// PX2InterpCurveShakeCtrl.hpp
 
 #ifndef PX2INTERPCURVESHAKECTRL_HPP
 #define PX2INTERPCURVESHAKECTRL_HPP

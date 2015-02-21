@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveUniformScaleCtrl.hpp
-*
-*/
+// PX2InterpCurveUniformScaleCtrl.hpp
 
 #ifndef PX2INTERPCURVEUNIFORMSCALESCTRL_HPP
 #define PX2INTERPCURVEUNIFORMSCALESCTRL_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2PushTransformController.cpp
-*
-*/
+// PX2PushTransformController.cpp
 
 #include "PX2PushTransformController.hpp"
 #include "PX2Movable.hpp"

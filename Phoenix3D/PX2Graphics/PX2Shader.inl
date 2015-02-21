@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Shader.inl
-*
-*/
+// PX2Shader.inl
 
 //----------------------------------------------------------------------------
 inline int Shader::GetNumInputs () const

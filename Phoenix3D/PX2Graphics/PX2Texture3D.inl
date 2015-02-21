@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Texture3D.inl
-*
-*/
+// PX2Texture3D.inl
 
 //----------------------------------------------------------------------------
 inline int Texture3D::GetWidth () const

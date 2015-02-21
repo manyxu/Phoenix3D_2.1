@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Renderable.inl
-*
-*/
+// PX2Renderable.inl
 
 //----------------------------------------------------------------------------
 inline Renderable::PrimitiveType Renderable::GetPrimitiveType () const

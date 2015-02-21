@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Camera.inl
-*
-*/
+// PX2Camera.inl
 
 //----------------------------------------------------------------------------
 inline APoint Camera::GetPosition () const

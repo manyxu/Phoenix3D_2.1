@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Controlledable.hpp
-*
-*/
+// PX2Controlledable.hpp
 
 #ifndef PX2CONTROLLEDOBJECT_HPP
 #define PX2CONTROLLEDOBJECT_HPP

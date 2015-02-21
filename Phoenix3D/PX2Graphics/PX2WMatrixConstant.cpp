@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2WMatrixConstant.cpp
-*
-*/
+// PX2WMatrixConstant.cpp
 
 #include "PX2WMatrixConstant.hpp"
 #include "PX2Camera.hpp"

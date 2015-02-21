@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FogParamConstant.hpp
-*
-*/
+// PX2FogParamConstant.hpp
 
 #ifndef PX2FOGPARAMCONSTANT_HPP
 #define PX2FOGPARAMCONSTANT_HPP

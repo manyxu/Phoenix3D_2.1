@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FogColorConstant.hpp
-*
-*/
+// PX2FogColorConstant.hpp
 
 #ifndef PX2FOGCOLORCONSTANT_HPP
 #define PX2FOGCOLORCONSTANT_HPP

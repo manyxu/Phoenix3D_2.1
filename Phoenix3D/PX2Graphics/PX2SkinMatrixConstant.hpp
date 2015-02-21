@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SkinMatrixConstant.hpp
-*
-*/
+// PX2SkinMatrixConstant.hpp
 
 #ifndef PX2SKINMATRIXCONSTANT_HPP
 #define PX2SKINMATRIXCONSTANT_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2InterpCurveShakeCtrl.inl
-*
-*/
+// PX2InterpCurveShakeCtrl.inl
 
 //----------------------------------------------------------------------------
 inline void InterpCurveShakeController::SetShakeRangeType (ShakeRangeType type)

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CullProperty.cpp
-*
-*/
+// PX2CullProperty.cpp
 
 #include "PX2CullProperty.hpp"
 using namespace PX2;

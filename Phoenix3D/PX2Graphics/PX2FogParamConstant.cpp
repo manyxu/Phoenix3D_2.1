@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2UserConstant.cpp
-*
-*/
+// PX2UserConstant.cpp
 
 #include "PX2FogParamConstant.hpp"
 #include "PX2Camera.hpp"

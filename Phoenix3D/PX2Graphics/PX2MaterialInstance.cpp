@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2MaterialInstance.cpp
-*
-*/
+// PX2MaterialInstance.cpp
 
 #include "PX2MaterialInstance.hpp"
 #include "PX2StringHelp.hpp"

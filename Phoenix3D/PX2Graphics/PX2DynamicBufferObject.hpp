@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DynamicBufferObject.hpp
-*
-*/
+// PX2DynamicBufferObject.hpp
 
 #ifndef PX2DYNAMICBUFFEROBJECT_HPP
 #define PX2DYNAMICBUFFEROBJECT_HPP

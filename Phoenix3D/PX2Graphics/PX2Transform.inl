@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Transform.inl
-*
-*/
+// PX2Transform.inl
 
 //----------------------------------------------------------------------------
 inline bool Transform::IsIdentity () const

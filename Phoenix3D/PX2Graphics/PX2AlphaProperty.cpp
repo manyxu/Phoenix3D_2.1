@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2AlphaProperty.cpp
-*
-*/
+// PX2AlphaProperty.cpp
 
 #include "PX2AlphaProperty.hpp"
 #include "PX2Float3.hpp"

@@ -1,4 +1,4 @@
-// TdOpenGLES2IndexBuffer.cpp
+// PX2OpenGLES2IndexBuffer.cpp
 
 #ifdef PX2_USE_OPENGLES2
 

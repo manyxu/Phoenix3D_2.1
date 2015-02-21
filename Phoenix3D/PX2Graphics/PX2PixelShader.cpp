@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2PixelShader.cpp
-*
-*/
+// PX2PixelShader.cpp
 
 #include "PX2PixelShader.hpp"
 #include "PX2Renderer.hpp"

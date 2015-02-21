@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ScreenTarget.cpp
-*
-*/
+// PX2ScreenTarget.cpp
 
 #include "PX2ScreenTarget.hpp"
 using namespace PX2;

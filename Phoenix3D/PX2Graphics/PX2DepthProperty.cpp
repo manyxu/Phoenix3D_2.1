@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DepthProperty.cpp
-*
-*/
+// PX2DepthProperty.cpp
 
 #include "PX2DepthProperty.hpp"
 using namespace PX2;

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BlendTransformController.inl
-*
-*/
+// PX2BlendTransformController.inl
 
 //----------------------------------------------------------------------------
 inline TransformController* BlendTransformController::GetController0 () const

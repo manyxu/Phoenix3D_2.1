@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Movable.inl
-*
-*/
+// PX2Movable.inl
 
 //----------------------------------------------------------------------------
 inline void Movable::SetAlphaSelfCtrled (bool selfCtrled)

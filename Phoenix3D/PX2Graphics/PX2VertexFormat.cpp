@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2VertexFormat.cpp
-*
-*/
+// PX2VertexFormat.cpp
 
 #include "PX2VertexFormat.hpp"
 #include "PX2Renderer.hpp"

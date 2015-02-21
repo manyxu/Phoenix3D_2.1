@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2FloatArray.cpp
-*
-*/
+// PX2FloatArray.cpp
 
 #include "PX2FloatArray.hpp"
 using namespace PX2;

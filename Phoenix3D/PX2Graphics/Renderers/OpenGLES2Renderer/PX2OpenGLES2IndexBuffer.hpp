@@ -1,4 +1,4 @@
-// TdOpenGLES2IndexBuffer.hpp
+// PX2OpenGLES2IndexBuffer.hpp
 
 #ifdef PX2_USE_OPENGLES2
 

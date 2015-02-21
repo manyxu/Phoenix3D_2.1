@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Node.inl
-*
-*/
+// PX2Node.inl
 
 //----------------------------------------------------------------------------
 inline void Node::SetDoPickPriority (bool doPickPriority)

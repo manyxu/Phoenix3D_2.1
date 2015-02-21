@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Picker.cpp
-*
-*/
+// PX2Picker.cpp
 
 #include "PX2Picker.hpp"
 #include "PX2SwitchNode.hpp"

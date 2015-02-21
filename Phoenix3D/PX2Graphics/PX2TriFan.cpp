@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TriFan.cpp
-*
-*/
+// PX2TriFan.cpp
 
 #include "PX2TriFan.hpp"
 using namespace PX2;

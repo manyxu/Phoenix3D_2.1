@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ShaderFloat.inl
-*
-*/
+// PX2ShaderFloat.inl
 
 //----------------------------------------------------------------------------
 inline int ShaderFloat::GetNumRegisters () const

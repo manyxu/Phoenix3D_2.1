@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ShineEmissiveConstant.cpp
-*
-*/
+// PX2ShineEmissiveConstant.cpp
 
 #include "PX2ShineEmissiveConstant.hpp"
 #include "PX2Camera.hpp"

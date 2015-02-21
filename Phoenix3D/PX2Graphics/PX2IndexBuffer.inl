@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2IndexBuffer.inl
-*
-*/
+// PX2IndexBuffer.inl
 
 //----------------------------------------------------------------------------
 inline char* IndexBuffer::GetData () const

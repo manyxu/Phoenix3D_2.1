@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TargetTransformController.cpp
-*
-*/
+// PX2TargetTransformController.cpp
 
 #include "PX2TargetTransformController.hpp"
 #include "PX2Movable.hpp"

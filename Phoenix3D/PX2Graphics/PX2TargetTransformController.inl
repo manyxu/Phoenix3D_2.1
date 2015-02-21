@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TargetTransformController.inl
-*
-*/
+// PX2TargetTransformController.inl
 
 //----------------------------------------------------------------------------
 inline APoint &TargetTransformController::GetStartPos ()

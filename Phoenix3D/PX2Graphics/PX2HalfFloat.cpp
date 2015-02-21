@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HalfFloat.cpp
-*
-*/
+// PX2HalfFloat.cpp
 
 #include "PX2HalfFloat.hpp"
 

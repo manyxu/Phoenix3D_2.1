@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TexPackData.cpp
-*
-*/
+// PX2TexPackData.cpp
 
 #include "PX2TexPackData.hpp"
 using namespace PX2;

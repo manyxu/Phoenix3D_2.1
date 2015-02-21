@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Texture1D.cpp
-*
-*/
+// PX2Texture1D.cpp
 
 #include "PX2Texture1D.hpp"
 #include "PX2BitHacks.hpp"

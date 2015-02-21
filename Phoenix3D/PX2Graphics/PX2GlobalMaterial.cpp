@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2GlobalMaterial.hpp
-*
-*/
+// PX2GlobalMaterial.hpp
 
 #include "PX2GlobalMaterial.hpp"
 using namespace PX2;

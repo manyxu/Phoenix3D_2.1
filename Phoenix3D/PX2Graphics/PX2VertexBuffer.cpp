@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2VertexBuffer.cpp
-*
-*/
+// PX2VertexBuffer.cpp
 
 #include "PX2VertexBuffer.hpp"
 #include "PX2Renderer.hpp"

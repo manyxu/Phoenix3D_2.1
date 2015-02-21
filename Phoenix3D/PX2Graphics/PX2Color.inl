@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Color.inl
-*
-*/
+// PX2Color.inl
 
 //----------------------------------------------------------------------------
 inline unsigned int Color::MakeR8G8B8 (unsigned char red, unsigned char green,

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2RenderTarget.cpp
-*
-*/
+// PX2RenderTarget.cpp
 
 #include "PX2RenderTarget.hpp"
 #include "PX2Renderer.hpp"

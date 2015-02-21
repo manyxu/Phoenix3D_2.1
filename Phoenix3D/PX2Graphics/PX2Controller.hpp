@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Controller.hpp
-*
-*/
+// PX2Controller.hpp
 
 #ifndef PX2CONTROLLER_HPP
 #define PX2CONTROLLER_HPP

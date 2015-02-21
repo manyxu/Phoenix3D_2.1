@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2MaterialPass.cpp
-*
-*/
+// PX2MaterialPass.cpp
 
 #include "PX2MaterialPass.hpp"
 #include "PX2Renderer.hpp"

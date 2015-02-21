@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LightModelDVectorConstant.cpp
-*
-*/
+// PX2LightModelDVectorConstant.cpp
 
 #include "PX2LightModelDVectorConstant.hpp"
 #include "PX2Camera.hpp"

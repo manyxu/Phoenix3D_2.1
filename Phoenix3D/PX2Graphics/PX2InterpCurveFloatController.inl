@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurveFloatController.inl
-*
-*/
+// PX2InterpCurveFloatController.inl
 
 //----------------------------------------------------------------------------
 inline void InterpCurveFloatController::SetInitValue (float val)

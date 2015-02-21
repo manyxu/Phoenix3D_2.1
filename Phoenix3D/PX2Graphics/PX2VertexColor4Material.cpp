@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2VertexColor4Material.cpp
-*
-*/
+// PX2VertexColor4Material.cpp
 
 #include "PX2VertexColor4Material.hpp"
 #include "PX2PVWMatrixConstant.hpp"

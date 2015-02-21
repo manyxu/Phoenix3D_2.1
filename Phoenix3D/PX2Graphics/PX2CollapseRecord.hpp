@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CollapseRecord.hpp
-*
-*/
+// PX2CollapseRecord.hpp
 
 #ifndef PX2COLLAPSERECORD_HPP
 #define PX2COLLAPSERECORD_HPP

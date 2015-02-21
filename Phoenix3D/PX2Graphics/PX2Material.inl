@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Material.inl
-*
-*/
+// PX2Material.inl
 
 //----------------------------------------------------------------------------
 inline int Material::GetNumTechniques () const
