@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ContSphere3.cpp
-*
-*/
+// PX2ContSphere3.cpp
 
 #include "PX2ContSphere3.hpp"
 

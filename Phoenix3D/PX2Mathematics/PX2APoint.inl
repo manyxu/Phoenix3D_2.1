@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2APoint.inl
-*
-*/
+// PX2APoint.inl
 
 //----------------------------------------------------------------------------
 inline APoint::operator const Float3& () const

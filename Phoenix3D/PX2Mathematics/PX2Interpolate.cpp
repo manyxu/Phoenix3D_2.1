@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2IntrLine3Triangle3.cpp
-*
-*/
+// PX2IntrLine3Triangle3.cpp
 
 #include "PX2Interpolate.hpp"
 using namespace PX2;

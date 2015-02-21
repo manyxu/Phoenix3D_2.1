@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurve.inl
-*
-*/
+// PX2InterpCurve.inl
 
 //----------------------------------------------------------------------------
 static std::string gsInterpCurveModeString[ICM_MAX_MODE] =

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HMatrix.inl
-*
-*/
+// PX2HMatrix.inl
 
 //----------------------------------------------------------------------------
 inline HMatrix::operator const float* () const

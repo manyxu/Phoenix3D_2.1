@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SingleCurve3.cpp
-*
-*/
+// PX2SingleCurve3.cpp
 
 #include "PX2SingleCurve3.hpp"
 #include "PX2Integrate1.hpp"

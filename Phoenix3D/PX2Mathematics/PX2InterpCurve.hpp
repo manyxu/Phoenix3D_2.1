@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2InterpCurve.hpp
-*
-*/
+// PX2InterpCurve.hpp
 
 #ifndef PX2INTERPCURVE_HPP
 #define PX2INTERPCURVE_HPP

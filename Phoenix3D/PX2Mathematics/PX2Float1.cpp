@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Float1.cpp
-*
-*/
+// PX2Float1.cpp
 
 #include "PX2MathematicsPre.hpp"
 #include "PX2Float1.hpp"

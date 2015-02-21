@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Size.hpp
-*
-*/
+// PX2Size.hpp
 
 #ifndef PX2SIZE_HPP
 #define PX2SIZE_HPP

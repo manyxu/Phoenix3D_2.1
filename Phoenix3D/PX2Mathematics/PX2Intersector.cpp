@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Intersector.cpp
-*
-*/
+// PX2Intersector.cpp
 
 #include "PX2Intersector.hpp"
 

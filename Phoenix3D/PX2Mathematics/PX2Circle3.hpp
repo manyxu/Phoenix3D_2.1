@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2Circle3.hpp
-*
-* 版本		:	1.0 (2011/10/22)
-*
-* 作者		：	more
-*
-*/
+// PX2Circle3.hpp
 
 #ifndef PX2CIRCLE3_HPP
 #define PX2CIRCLE3_HPP

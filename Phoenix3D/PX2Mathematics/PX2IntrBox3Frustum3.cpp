@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2IntrBox3Frustum3.cpp
-*
-*/
+// PX2IntrBox3Frustum3.cpp
 
 #include "PX2IntrBox3Frustum3.hpp"
 

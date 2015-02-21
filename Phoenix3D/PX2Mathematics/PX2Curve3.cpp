@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Curve3.cpp
-*
-*/
+// PX2Curve3.cpp
 
 #include "PX2Curve3.hpp"
 #include "PX2Memory.hpp"

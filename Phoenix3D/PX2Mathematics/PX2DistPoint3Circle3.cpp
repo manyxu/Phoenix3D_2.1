@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DistPoint3Circle3.cpp
-*
-*/
+// PX2DistPoint3Circle3.cpp
 
 #include "PX2DistPoint3Circle3.hpp"
 

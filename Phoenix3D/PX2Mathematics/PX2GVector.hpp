@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2GVector.hpp
-*
-* 版本		:	1.0 (2012/11/12)
-*
-* 作者		：	more
-*
-*/
+// PX2GVector.hpp
 
 #ifndef PX2GVECTOR_HPP
 #define PX2GVECTOR_HPP

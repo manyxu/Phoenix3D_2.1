@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Surface.cpp
-*
-*/
+// PX2Surface.cpp
 
 #include "PX2Surface.hpp"
 

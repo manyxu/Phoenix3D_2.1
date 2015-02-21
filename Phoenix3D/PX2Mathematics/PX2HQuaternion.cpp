@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HQuaternion.cpp
-*
-*/
+// PX2HQuaternion.cpp
 
 #include "PX2HQuaternion.hpp"
 using namespace PX2;

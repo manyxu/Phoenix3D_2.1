@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HQuaternion.inl
-*
-*/
+// PX2HQuaternion.inl
 
 //----------------------------------------------------------------------------
 inline HQuaternion::operator const float* () const

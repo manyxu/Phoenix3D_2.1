@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Rect.hpp
-*
-*/
+// PX2Rect.hpp
 
 #ifndef PX2RECT_HPP
 #define PX2RECT_HPP

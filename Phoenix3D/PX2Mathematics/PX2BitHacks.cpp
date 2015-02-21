@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2BitHacks.cpp
-*
-*/
+// PX2BitHacks.cpp
 
 #include "PX2BitHacks.hpp"
 

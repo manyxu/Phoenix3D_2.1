@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Matrix4.cpp
-*
-*/
+// PX2Matrix4.cpp
 
 #include "PX2Matrix4.hpp"
 

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2AVector.cpp
-*
-*/
+// PX2AVector.cpp
 
 #include "PX2AVector.hpp"
 using namespace PX2;

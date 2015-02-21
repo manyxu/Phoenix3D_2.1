@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HPoint.inl
-*
-*/
+// PX2HPoint.inl
 
 //----------------------------------------------------------------------------
 inline HPoint::operator const float* () const

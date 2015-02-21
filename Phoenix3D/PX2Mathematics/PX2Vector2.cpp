@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Vector2.cpp
-*
-*/
+// PX2Vector2.cpp
 
 #include "PX2Vector2.hpp"
 

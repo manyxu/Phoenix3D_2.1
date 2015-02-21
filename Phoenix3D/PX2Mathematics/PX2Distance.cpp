@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Distance.cpp
-*
-*/
+// PX2Distance.cpp
 
 #include "PX2Distance.hpp"
 

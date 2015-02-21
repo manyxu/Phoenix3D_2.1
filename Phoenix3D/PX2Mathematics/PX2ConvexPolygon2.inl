@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ConvexPolygon2.inl
-*
-*/
+// PX2ConvexPolygon2.inl
 
 //----------------------------------------------------------------------------
 template <typename Real>

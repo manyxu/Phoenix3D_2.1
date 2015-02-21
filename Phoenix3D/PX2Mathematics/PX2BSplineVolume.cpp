@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2BSplineVolume.cpp
-*
-*/
+// PX2BSplineVolume.cpp
 
 #include "PX2BSplineVolume.hpp"
 #include "PX2Memory.hpp"

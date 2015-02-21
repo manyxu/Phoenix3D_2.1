@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2AVector.inl
-*
-*/
+// PX2AVector.inl
 
 //----------------------------------------------------------------------------
 inline AVector::operator const Float3& () const

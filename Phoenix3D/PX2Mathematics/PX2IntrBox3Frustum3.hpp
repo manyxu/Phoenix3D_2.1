@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2IntrBox3Frustum3.hpp
-*
-* 版本		:	1.0 (2011/04/09)
-*
-* 作者		：	more
-*
-*/
+// PX2IntrBox3Frustum3.hpp
 
 #ifndef PX2INTRBOX3FRUSTUM3_HPP
 #define PX2INTRBOX3FRUSTUM3_HPP

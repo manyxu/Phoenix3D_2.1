@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HPoint.cpp
-*
-*/
+// PX2HPoint.cpp
 
 #include "PX2HPoint.hpp"
 using namespace PX2;

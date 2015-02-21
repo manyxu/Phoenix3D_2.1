@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HPlane.cpp
-*
-*/
+// PX2HPlane.cpp
 
 #include "PX2HPlane.hpp"
 using namespace PX2;

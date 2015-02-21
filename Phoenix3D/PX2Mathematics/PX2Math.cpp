@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Math.cpp
-*
-*/
+// PX2Math.cpp
 
 #include "PX2Math.hpp"
 

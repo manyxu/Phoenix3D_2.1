@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Integrate1.cpp
-*
-*/
+// PX2Integrate1.cpp
 
 #include "PX2Integrate1.hpp"
 #include "PX2Memory.hpp"

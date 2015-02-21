@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2Polygon2.hpp
-*
-* 版本		:	1.0 (2012/04/02)
-*
-* 作者		：	more
-*
-*/
+// PX2Polygon2.hpp
 
 #ifndef PX2POLYGON2_HPP
 #define PX2POLYGON2_HPP

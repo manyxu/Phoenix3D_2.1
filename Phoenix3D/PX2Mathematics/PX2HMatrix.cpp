@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HMatrix.cpp
-*
-*/
+// PX2HMatrix.cpp
 
 #include "PX2HMatrix.hpp"
 using namespace PX2;

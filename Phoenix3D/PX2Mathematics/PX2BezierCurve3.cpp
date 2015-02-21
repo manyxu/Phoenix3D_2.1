@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2BezierCurve3.cpp
-*
-*/
+// PX2BezierCurve3.cpp
 
 #include "PX2BezierCurve3.hpp"
 #include "PX2Memory.hpp"

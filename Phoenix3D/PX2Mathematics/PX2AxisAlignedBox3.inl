@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2AxisAlignedBox3.inl
-*
-*/
+// PX2AxisAlignedBox3.inl
 
 //----------------------------------------------------------------------------
 template <typename Real>

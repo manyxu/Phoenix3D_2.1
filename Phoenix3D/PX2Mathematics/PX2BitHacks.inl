@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BitHacks.inl
-*
-*/
+// PX2BitHacks.inl
 
 //----------------------------------------------------------------------------
 inline int ScaledFloatToInt (float value, int power)

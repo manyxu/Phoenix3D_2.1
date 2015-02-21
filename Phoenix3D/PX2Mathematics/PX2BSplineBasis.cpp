@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2AxisAlignedBox3.inl
-*
-*/
+// PX2AxisAlignedBox3.inl
 
 #include "PX2BSplineBasis.hpp"
 #include "PX2Memory.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2TriangleKey.inl
-*
-*/
+// PX2TriangleKey.inl
 
 //----------------------------------------------------------------------------
 inline TriangleKey::TriangleKey (int v0, int v1, int v2)
