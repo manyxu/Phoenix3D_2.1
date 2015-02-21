@@ -23,7 +23,6 @@
 // Design
 #include "PX2Noncopyable.hpp"
 #include "PX2Visitor.hpp"
-#include "PX2DesignUntity.hpp"
 
 // EventSystem
 #include "PX2Event.hpp"

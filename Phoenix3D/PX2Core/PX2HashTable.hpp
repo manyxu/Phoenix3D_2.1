@@ -124,7 +124,7 @@ namespace PX2
 		
 		Element *Find(const TKey &key) const
 		{
-			unsigned int index = mKeyCoderFunc(key)%mMaxSlot;
+			int64_t index = mKeyCoderFunc(key)%mMaxSlot;
 			Element *ptmp = mTable[index];
 			if (!ptmp)
 			{

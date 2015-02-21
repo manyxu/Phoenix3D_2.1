@@ -12,8 +12,7 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-LogBuffer::LogBuffer (int isWChar)
-	:
+LogBuffer::LogBuffer (int isWChar) :
 Level(0),
 IsWChar(isWChar)
 {

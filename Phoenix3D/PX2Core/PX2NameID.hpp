@@ -1,7 +1,7 @@
-// PX2Names.hpp
+// PX2NameID.hpp
 
-#ifndef PX2NAMES_HPP
-#define PX2NAMES_HPP
+#ifndef PX2NAMEID_HPP
+#define PX2NAMEID_HPP
 
 #include "PX2CorePre.hpp"
 

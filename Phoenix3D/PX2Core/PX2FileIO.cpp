@@ -308,7 +308,7 @@ bool FileIO::Load (const std::string& filename, bool binaryFile,
 		return false;
 	}
 
-	bufferSize = statistics.st_size;
+	bufferSize = (int)((int64_t)statistics.st_size);
 	buffer = new1<char>(bufferSize);
 	int numRead = (int)fread(buffer, sizeof(char), bufferSize, inFile);
 	if (fclose(inFile) != 0 || numRead != bufferSize)

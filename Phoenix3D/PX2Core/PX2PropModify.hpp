@@ -1,7 +1,7 @@
-// PX2PropM.hpp
+// PX2PropModify.hpp
 
-#ifndef PX2PROPM_HPP
-#define PX2PROPM_HPP
+#ifndef PX2PROPMODIFY_HPP
+#define PX2PROPMODIFY_HPP
 
 #include "PX2CorePre.hpp"
 #include "PX2Log.hpp"

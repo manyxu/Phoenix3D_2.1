@@ -14,27 +14,25 @@ using namespace PX2;
 #else
 #endif
 //----------------------------------------------------------------------------
-Thread::Thread ()
-	:
+Thread::Thread () :
 mRunable(0),
-	mCallback(0),
-	mUserData(0),
-	mStackSize(0),
-	mPriority(PRIO_NORMAL),
-	mTLS(0)
+mCallback(0),
+mUserData(0),
+mStackSize(0),
+mPriority(PRIO_NORMAL),
+mTLS(0)
 {
 	mID = UniqueID();
 	mName = MakeName();
 	mMutex = new0 Mutex();
 }
 //----------------------------------------------------------------------------
-Thread::Thread (const std::string& name)
-	:
+Thread::Thread (const std::string& name) :
 mRunable(0),
-	mCallback(0),
-	mUserData(0),
-	mStackSize(0),
-	mTLS(0)
+mCallback(0),
+mUserData(0),
+mStackSize(0),
+mTLS(0)
 {
 	mID = UniqueID();
 	mName = name;
