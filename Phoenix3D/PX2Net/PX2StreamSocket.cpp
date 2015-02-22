@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2StreamSocket.cpp
-*
-*/
+// PX2StreamSocket.cpp
 
 #include "PX2StreamSocket.hpp"
 #include "PX2StreamSocketImpl.hpp"

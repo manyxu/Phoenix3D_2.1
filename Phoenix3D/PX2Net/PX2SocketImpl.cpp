@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SocketImpl.cpp
-*
-*/
+// PX2SocketImpl.cpp
 
 #include "PX2NetPre.hpp"
 #include "PX2SocketImpl.hpp"

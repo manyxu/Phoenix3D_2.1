@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ClientConnect.hpp
-*
-*/
+// PX2ClientConnect.hpp
 
 #ifndef PX2NETCLIENTCONNECT_HPP
 #define PX2NETCLIENTCONNECT_HPP

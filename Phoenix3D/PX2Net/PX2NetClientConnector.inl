@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2NetClientConnect.inl
-*
-*/
+// PX2NetClientConnect.inl
 
 //----------------------------------------------------------------------------
 inline StreamSocket &ClientConnector::GetSocket ()

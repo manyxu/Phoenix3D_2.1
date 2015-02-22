@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2NetInitTerm.hpp
-*
-*/
+// PX2NetInitTerm.hpp
 
 #ifndef PX2NETINITTERM_HPP
 #define PX2NETINITTERM_HPP

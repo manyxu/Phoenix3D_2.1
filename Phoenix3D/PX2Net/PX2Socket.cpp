@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Socket.cpp
-*
-*/
+// PX2Socket.cpp
 
 #include "PX2Socket.hpp"
 #include "PX2NetDefine.hpp"

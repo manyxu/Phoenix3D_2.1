@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventBuffer.inl
-*
-*/
+// PX2EventBuffer.inl
 
 //----------------------------------------------------------------------------
 inline void BufferEvent::Init(int bufsize)

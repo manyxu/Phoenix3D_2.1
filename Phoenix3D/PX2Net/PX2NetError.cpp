@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2NetError.cpp
-*
-*/
+// PX2NetError.cpp
 
 #include "PX2NetError.hpp"
 #include "PX2Assert.hpp"

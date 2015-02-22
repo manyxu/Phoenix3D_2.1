@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EventBuffer.cpp
-*
-*/
+// PX2EventBuffer.cpp
 
 #include "PX2NetEventBuffer.hpp"
 #include "PX2Log.hpp"

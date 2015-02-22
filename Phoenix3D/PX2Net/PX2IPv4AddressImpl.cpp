@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2IPv4AddressImpl.cpp
-*
-*/
+// PX2IPv4AddressImpl.cpp
 
 #include "PX2IPv4AddressImpl.hpp"
 #include "PX2Assert.hpp"

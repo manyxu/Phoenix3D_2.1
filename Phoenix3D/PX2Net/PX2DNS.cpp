@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DNS.cpp
-*
-*/
+// PX2DNS.cpp
 
 #include "PX2DNS.hpp"
 #include "PX2SocketAddress.hpp"

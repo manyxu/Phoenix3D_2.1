@@ -1,8 +1,4 @@
-/*
- *
- * ÎÄ¼þÃû³Æ	£º	PX2IPAddress.hpp
- *
- */
+// PX2IPAddress.hpp
 
 #ifndef PX2IPADDRESS_HPP
 #define PX2IPADDRESS_HPP

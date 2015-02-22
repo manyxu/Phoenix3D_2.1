@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SocketAddress.hpp
-*
-*/
+// PX2SocketAddress.hpp
 
 #ifndef PX2SOCKETADDRESS_HPP
 #define PX2SOCKETADDRESS_HPP

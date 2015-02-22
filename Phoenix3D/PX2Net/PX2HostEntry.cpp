@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2HostEntry.cpp
-*
-*/
+// PX2HostEntry.cpp
 
 #include "PX2HostEntry.hpp"
 #include "PX2Assert.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2IPAddressImpl.cpp
-*
-*/
+// PX2IPAddressImpl.cpp
 
 #include "PX2IPAddressImpl.hpp"
 using namespace PX2;

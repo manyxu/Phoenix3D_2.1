@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2NetInitTerm.cpp
-*
-*/
+// PX2NetInitTerm.cpp
 
 #include "PX2NetInitTerm.hpp"
 #include "PX2Assert.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2NetPre.hpp
-*
-*/
+// PX2NetPre.hpp
 
 #ifndef PX2NETPRE_HPP
 #define PX2NETPRE_HPP

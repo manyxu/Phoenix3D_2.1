@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Socket.hpp
-*
-*/
+// PX2Socket.hpp
 
 #ifndef PX2SOCKET_HPP
 #define PX2SOCKET_HPP

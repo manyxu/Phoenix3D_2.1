@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EventBuffer.hpp
-*
-*/
+// PX2EventBuffer.hpp
 
 #ifndef PX2NETEVENTBUFFER_HPP
 #define PX2NETEVENTBUFFER_HPP

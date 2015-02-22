@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2IPv6SocketAddressImpl.cpp
-*
-*/
+// PX2IPv6SocketAddressImpl.cpp
 
 #include "PX2IPv6SocketAddressImpl.hpp"
 using namespace PX2;

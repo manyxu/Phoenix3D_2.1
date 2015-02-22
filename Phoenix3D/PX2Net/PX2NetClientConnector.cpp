@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ClientConnect.cpp
-*
-*/
+// PX2ClientConnect.cpp
 
 #include "PX2NetClientConnector.hpp"
 #include "PX2Log.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2NetError.hpp
-*
-*/
+// PX2NetError.hpp
 
 #ifndef PX2NETERROR_HPP
 #define PX2NETERROR_HPP

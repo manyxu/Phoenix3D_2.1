@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2IPv4SocketAddressImpl.hpp
-*
-*/
+// PX2IPv4SocketAddressImpl.hpp
 
 #ifndef PX2IP4SOCKETADDRESSIMPL_HPP
 #define PX2IP4SOCKETADDRESSIMPL_HPP

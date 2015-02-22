@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Socket.inl
-*
-*/
+// PX2Socket.inl
 
 //----------------------------------------------------------------------------
 inline SocketImpl* Socket::GetImpl() const

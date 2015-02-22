@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SocketAddress.cpp
-*
-*/
+// PX2SocketAddress.cpp
 
 #include "PX2SocketAddress.hpp"
 #include "PX2IPv4SocketAddressImpl.hpp"

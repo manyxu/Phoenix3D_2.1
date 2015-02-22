@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SocketImpl.inl
-*
-*/
+// PX2SocketImpl.inl
 
 //----------------------------------------------------------------------------
 inline px2_socket_t SocketImpl::GetSocket() const

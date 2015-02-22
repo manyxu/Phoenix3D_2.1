@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2HostEntry.hpp
-*
-*/
+// PX2HostEntry.hpp
 
 #ifndef PX2HOSTENTRY_HPP
 #define PX2HOSTENTRY_HPP

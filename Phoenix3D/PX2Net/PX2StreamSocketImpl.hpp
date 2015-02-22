@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2StreamSocketImpl.hpp
-*
-*/
+// PX2StreamSocketImpl.hpp
 
 #ifndef PX2STREAMSOCKETIMPL_HPP
 #define PX2STREAMSOCKETIMPL_HPP

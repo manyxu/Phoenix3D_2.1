@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2DNS.hpp
-*
-*/
+// PX2DNS.hpp
 
 #ifndef PX2DNS_HPP
 #define PX2DNS_HPP
