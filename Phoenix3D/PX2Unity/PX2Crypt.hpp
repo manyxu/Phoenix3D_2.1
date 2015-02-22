@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Crypt.hpp
-*
-*/
+// PX2Crypt.hpp
 
 #ifndef PX2CRYPT_HPP
 #define PX2CRYPT_HPP

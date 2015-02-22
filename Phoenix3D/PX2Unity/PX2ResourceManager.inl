@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ResourceManager.inl
-*
-*/
+// PX2ResourceManager.inl
 
 //----------------------------------------------------------------------------
 inline CURLDownload *ResourceManager::GetCURLDownload ()

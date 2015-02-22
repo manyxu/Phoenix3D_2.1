@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontGlyphMapTrueType.hpp
-*
-*/
+// PX2FontGlyphMapTrueType.hpp
 
 #ifndef PX2FONTGLYPHMAPTRUETYPE_HPP
 #define PX2FONTGLYPHMAPTRUETYPE_HPP

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Font.hpp
-*
-*/
+// PX2Font.hpp
 
 #ifndef PX2FONT_HPP
 #define PX2FONT_HPP

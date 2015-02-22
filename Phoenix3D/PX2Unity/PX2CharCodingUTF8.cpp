@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CharCodingUTF8.cpp
-*
-*/
+// PX2CharCodingUTF8.cpp
 
 #include "PX2CharCodingUTF8.hpp"
 using namespace PX2;

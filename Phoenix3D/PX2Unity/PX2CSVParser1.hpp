@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CSVParser1.hpp
-*
-*/
+// PX2CSVParser1.hpp
 
 #ifndef PX2CSVPARSER1_HPP
 #define PX2CSVPARSER1_HPP

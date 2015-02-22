@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2IMEDelegate.cpp
-*
-*/
+// PX2IMEDelegate.cpp
 
 #include "PX2IMEDelegate.hpp"
 #include "PX2IMEDispatcher.hpp"

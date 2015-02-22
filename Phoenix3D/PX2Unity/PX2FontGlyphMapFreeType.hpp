@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontGlyphMapFreeType.hpp
-*
-*/
+// PX2FontGlyphMapFreeType.hpp
 
 #ifndef PX2FONTGLYPHMAPFREETYPE_HPP
 #define PX2FONTGLYPHMAPFREETYPE_HPP

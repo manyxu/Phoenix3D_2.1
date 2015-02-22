@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CharCodingGBK.hpp
-*
-*/
+// PX2CharCodingGBK.hpp
 
 #ifndef PX2CHARCODINGGBK_HPP
 #define PX2CHARCODINGGBK_HPP

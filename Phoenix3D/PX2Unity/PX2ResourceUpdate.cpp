@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ResourceUpdate.cpp
-*
-*/
+// PX2ResourceUpdate.cpp
 
 #include "PX2ResourceUpdate.hpp"
 using namespace PX2;

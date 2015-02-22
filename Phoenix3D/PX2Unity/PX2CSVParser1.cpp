@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2CSVParser1.cpp
-*
-*/
+// PX2CSVParser1.cpp
 
 #include "PX2CSVParser1.hpp"
 #include "PX2ResourceManager.hpp"

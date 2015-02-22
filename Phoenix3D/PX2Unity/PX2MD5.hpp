@@ -1,7 +1,7 @@
-/* MD5.H - header file for MD5C.C
- */
-#ifndef _MD5_H
-#define _MD5_H
+// PX2MD5.hpp
+
+#ifndef PX2MD5_HPP
+#define PX2MD5_HPP
 
 #ifdef __cplusplus
 extern "C"{

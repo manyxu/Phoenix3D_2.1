@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CURLDownload.inl
-*
-*/
+// PX2CURLDownload.inl
 
 //----------------------------------------------------------------------------
 inline CURLDownload::DownType CURLDownload::GetDownType () const

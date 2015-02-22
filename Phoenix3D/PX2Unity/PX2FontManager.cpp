@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2FontManager.cpp
-*
-*/
+// PX2FontManager.cpp
 
 #include "PX2FontManager.hpp"
 #include "PX2FontGlyphMapFreeType.hpp"

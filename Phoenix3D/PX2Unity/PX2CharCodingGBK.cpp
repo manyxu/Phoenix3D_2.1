@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CharCodingGBK.cpp
-*
-*/
+// PX2CharCodingGBK.cpp
 
 #include "PX2CharCodingGBK.hpp"
 using namespace PX2;

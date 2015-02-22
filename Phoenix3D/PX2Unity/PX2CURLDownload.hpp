@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CURLDownload.hpp
-*
-*/
+// PX2CURLDownload.hpp
 
 #ifndef PX2CURLDOWNLOAD_HPP
 #define PX2CURLDOWNLOAD_HPP

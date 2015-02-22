@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CharCoding.hpp
-*
-*/
+// PX2CharCoding.hpp
 
 #ifndef PX2CHARCODING_HPP
 #define PX2CHARCODING_HPP

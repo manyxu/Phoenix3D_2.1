@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LuaManager.cpp
-*
-*/
+// PX2LuaManager.cpp
 
 #include "PX2LuaManager.hpp"
 #include "PX2ResourceManager.hpp"

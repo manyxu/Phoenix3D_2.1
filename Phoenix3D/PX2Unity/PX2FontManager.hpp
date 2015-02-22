@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontManager.hpp
-*
-*/
+// PX2FontManager.hpp
 
 #ifndef PX2FONTMANAGER_HPP
 #define PX2FONTMANAGER_HPP

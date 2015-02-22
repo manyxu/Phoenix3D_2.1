@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ResourceUpdate.inl
-*
-*/
+// PX2ResourceUpdate.inl
 
 //----------------------------------------------------------------------------
 inline int ResourceVersion::GetMain () const

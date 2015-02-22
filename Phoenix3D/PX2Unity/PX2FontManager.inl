@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2FontManager.inl
-*
-*/
+// PX2FontManager.inl
 
 //----------------------------------------------------------------------------
 inline Font *FontManager::GetDefaultFont ()

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LanguageManager.hpp
-*
-*/
+// PX2LanguageManager.hpp
 
 #ifndef PX2LANGUAGEMANAGER_HPP
 #define PX2LANGUAGEMANAGER_HPP

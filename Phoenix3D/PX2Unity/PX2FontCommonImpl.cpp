@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontCommonImpl.cpp
-*
-*/
+// PX2FontCommonImpl.cpp
 
 #include "PX2FontCommonImpl.hpp"
 #include "PX2FontGlyphMapTrueType.hpp"

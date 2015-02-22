@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Font.inl
-*
-*/
+// PX2Font.inl
 
 //----------------------------------------------------------------------------
 inline const std::string &Font::GetFontFilename () const

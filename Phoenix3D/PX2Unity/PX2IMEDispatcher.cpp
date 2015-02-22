@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2IMEDispatcher.hpp
-*
-*/
+// PX2IMEDispatcher.hpp
 
 #include "PX2IMEDispatcher.hpp"
 #include "PX2StringHelp.hpp"

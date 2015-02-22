@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontGlyphMapFreeType.cpp
-*
-*/
+// PX2FontGlyphMapFreeType.cpp
 
 #include "PX2FontGlyphMapFreeType.hpp"
 #include "PX2ResourceManager.hpp"

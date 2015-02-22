@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CURLDownload.cpp
-*
-*/
+// PX2CURLDownload.cpp
 
 #include "PX2CURLDownload.hpp"
 #include "PX2ScopedCS.hpp"

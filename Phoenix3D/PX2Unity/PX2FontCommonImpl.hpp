@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontCommonImpl.hpp
-*
-*/
+// PX2FontCommonImpl.hpp
 
 #ifndef PX2FONTCOMMONIMPL_HPP
 #define PX2FONTCOMMONIMPL_HPP

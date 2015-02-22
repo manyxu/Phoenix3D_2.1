@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ResourceUpdate.hpp
-*
-*/
+// PX2ResourceUpdate.hpp
 
 #ifndef PX2RESOURCEUPDATE_HPP
 #define PX2RESOURCEUPDATE_HPP

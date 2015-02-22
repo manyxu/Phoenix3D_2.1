@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Crypt.cpp
-*
-*/
+// PX2Crypt.cpp
 
 #include "PX2Crypt.hpp"
 using namespace PX2;

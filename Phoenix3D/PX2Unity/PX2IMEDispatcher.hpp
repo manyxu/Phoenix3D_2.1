@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2IMEDispatcher.hpp
-*
-*/
+// PX2IMEDispatcher.hpp
 
 #ifndef PX2IMEDISPATCHER_HPP
 #define PX2IMEDISPATCHER_HPP

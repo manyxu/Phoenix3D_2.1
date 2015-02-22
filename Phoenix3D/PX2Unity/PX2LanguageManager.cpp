@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LanguageManager.cpp
-*
-*/
+// PX2LanguageManager.cpp
 
 #include "PX2LanguageManager.hpp"
 #include "PX2ResourceManager.hpp"

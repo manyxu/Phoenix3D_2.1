@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Font.cpp
-*
-*/
+// PX2Font.cpp
 
 #include "PX2Font.hpp"
 #include "PX2Renderer.hpp"

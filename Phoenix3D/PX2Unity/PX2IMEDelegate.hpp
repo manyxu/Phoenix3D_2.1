@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2IMEDelegate.hpp
-*
-*/
+// PX2IMEDelegate.hpp
 
 #ifndef PX2IMEDELEGATE_HPP
 #define PX2IMEDELEGATE_HPP

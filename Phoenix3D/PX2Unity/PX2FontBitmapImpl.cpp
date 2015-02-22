@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontBitmapImpl.cpp
-*
-*/
+// PX2FontBitmapImpl.cpp
 
 #include "PX2FontBitmapImpl.hpp"
 #include "PX2CharCodingUTF8.hpp"

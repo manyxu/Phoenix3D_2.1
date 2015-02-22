@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ResourceManager.cpp
-*
-*/
+// PX2ResourceManager.cpp
 
 #include "PX2ResourceManager.hpp"
 #include "PX2StringHelp.hpp"

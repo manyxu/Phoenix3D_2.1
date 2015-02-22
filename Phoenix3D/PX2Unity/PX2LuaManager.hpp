@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LuaManager.hpp
-*
-*/
+// PX2LuaManager.hpp
 
 #ifndef PX2LUAMANAGER_HPP
 #define PX2LUAMANAGER_HPP

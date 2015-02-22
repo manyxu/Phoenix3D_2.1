@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontBitmapImpl.hpp
-*
-*/
+// PX2FontBitmapImpl.hpp
 
 #ifndef PX2FONTBITMAPIMPL_HPP
 #define PX2FONTBITMAPIMPL_HPP

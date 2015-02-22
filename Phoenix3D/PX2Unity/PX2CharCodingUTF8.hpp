@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CharCodingUTF8.hpp
-*
-*/
+// PX2CharCodingUTF8.hpp
 
 #ifndef PX2CHARCODINGUTF8_HPP
 #define PX2CHARCODINGUTF8_HPP

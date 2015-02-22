@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontGlyphMapTrueType.cpp
-*
-*/
+// PX2FontGlyphMapTrueType.cpp
 
 #include "PX2FontGlyphMapTrueType.hpp"
 using namespace PX2;

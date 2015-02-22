@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2FontGlyphMap.hpp
-*
-*/
+// PX2FontGlyphMap.hpp
 
 #ifndef PX2FONTGLYPHMAP_HPP
 #define PX2FONTGLYPHMAP_HPP
