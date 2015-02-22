@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Application.cpp
-*
-*/
+// PX2Application.cpp
 
 #include "PX2Application.hpp"
 #include "PX2IMEDispatcher.hpp"

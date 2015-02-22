@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Application.hpp
-*
-*/
+// PX2Application.hpp
 
 #ifndef PX2WINDOWAPPLICATION_HPP
 #define PX2WINDOWAPPLICATION_HPP

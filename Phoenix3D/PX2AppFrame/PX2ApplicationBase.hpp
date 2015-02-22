@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ApplicationBase.hpp
-*
-*/
+// PX2ApplicationBase.hpp
 
 #ifndef PX2APPLICATIONBASE_HPP
 #define PX2APPLICATIONBASE_HPP

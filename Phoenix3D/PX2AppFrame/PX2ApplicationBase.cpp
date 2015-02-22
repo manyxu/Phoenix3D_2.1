@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ApplicationBase.cpp
-*
-*/
+// PX2ApplicationBase.cpp
 
 #include "PX2ApplicationBase.hpp"
 #include "PX2EngineLoop.hpp"
