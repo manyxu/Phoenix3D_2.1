@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LODTerrain.cpp
-*
-*/
+// PX2LODTerrain.cpp
 
 #include "PX2LODTerrain.hpp"
 #include "PX2Camera.hpp"

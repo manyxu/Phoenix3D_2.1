@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LODTerrainPage.inl
-*
-*/
+// PX2LODTerrainPage.inl
 
 //----------------------------------------------------------------------------
 inline float LODTerrainPage::GetPixelTolerance () const

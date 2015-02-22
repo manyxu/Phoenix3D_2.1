@@ -1,9 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2TerrainPage.cpp
-*
-*/
-
+// PX2TerrainPage.cpp
 
 #include "PX2TerrainPage.hpp"
 #include "PX2EditTerrainMaterial.hpp"

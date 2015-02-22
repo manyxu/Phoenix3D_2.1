@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Terrain.hpp
-*
-*/
+// PX2Terrain.hpp
 
 #ifndef PX2TERRAIN_HPP
 #define PX2TERRAIN_HPP

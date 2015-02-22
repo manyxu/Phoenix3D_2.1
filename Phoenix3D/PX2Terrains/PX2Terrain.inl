@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Terrain.inl
-*
-*/
+// PX2Terrain.inl
 
 //----------------------------------------------------------------------------
 inline EditTerrainMaterial *Terrain::GetEidtMaterial ()

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Terrain.cpp
-*
-*/
+// PX2Terrain.cpp
 
 #include "PX2Terrain.hpp"
 using namespace PX2;

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LODTerrainBlock.hpp
-*
-*/
+// PX2LODTerrainBlock.hpp
 
 #ifndef PX2LODTERRAINBLOCK_HPP
 #define PX2LODTERRAINBLOCK_HPP

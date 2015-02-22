@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LodTerrainVertex.cpp
-*
-*/
+// PX2LodTerrainVertex.cpp
 
 #include "PX2LODTerrainVertex.hpp"
 using namespace PX2;

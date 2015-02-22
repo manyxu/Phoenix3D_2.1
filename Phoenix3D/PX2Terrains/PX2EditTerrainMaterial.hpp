@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EditTerrainMaterial.hpp
-*
-*/
+// PX2EditTerrainMaterial.hpp
 
 #ifndef PX2EDITTERRAINMATERIAL_HPP
 #define PX2EDITTERRAINMATERIAL_HPP

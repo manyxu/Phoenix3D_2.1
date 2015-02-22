@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LODTerrainVertex.hpp
-*
-*/
+// PX2LODTerrainVertex.hpp
 
 #ifndef PX2LODTERRAINVERTEX_HPP
 #define PX2LODTERRAINVERTEX_HPP

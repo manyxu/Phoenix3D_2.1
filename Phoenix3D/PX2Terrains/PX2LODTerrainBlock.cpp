@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LodTerrainBlock.cpp
-*
-*/
+// PX2LodTerrainBlock.cpp
 
 #include "PX2Camera.hpp"
 #include "PX2IntrBox3Frustum3.hpp"

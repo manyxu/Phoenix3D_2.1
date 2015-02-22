@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Jungler.inl
-*
-*/
+// PX2Jungler.inl
 
 //----------------------------------------------------------------------------
 inline MaterialInstance *Jungler::GetMtlInst ()

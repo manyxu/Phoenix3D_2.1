@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2LODTerrainPage.hpp
-*
-*/
+// PX2LODTerrainPage.hpp
 
 #ifndef PX2LODTERRAINPAGE_HPP
 #define PX2LODTERRAINPAGE_HPP

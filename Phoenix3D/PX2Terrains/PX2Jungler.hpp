@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Jungler.hpp
-*
-*/
+// PX2Jungler.hpp
 
 #ifndef PX2JUNGLER_HPP
 #define PX2JUNGLER_HPP

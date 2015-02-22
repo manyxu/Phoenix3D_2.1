@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SkyMaterial.hpp
-*
-*/
+// PX2SkyMaterial.hpp
 
 #ifndef PX2SKYMATERIAL_HPP
 #define PX2SKYMATERIAL_HPP

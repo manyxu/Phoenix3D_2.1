@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2TerrainPage.inl
-*
-*/
+// PX2TerrainPage.inl
 
 //----------------------------------------------------------------------------
 inline int TerrainPage::GetJunglerNum ()

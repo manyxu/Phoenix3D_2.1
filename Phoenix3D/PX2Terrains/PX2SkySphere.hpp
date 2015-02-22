@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SkySphere.hpp
-*
-*/
+// PX2SkySphere.hpp
 
 #ifndef PX2SKYSPHERE_HPP
 #define PX2SKYSPHERE_HPP

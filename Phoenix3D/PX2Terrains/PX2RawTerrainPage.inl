@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2RawTerrainPage.inl
-*
-*/
+// PX2RawTerrainPage.inl
 
 //----------------------------------------------------------------------------
 inline Texture2D *RawTerrainPage::GetTextureAlpha ()

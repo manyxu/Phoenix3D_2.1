@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TerrainPage.hpp
-*
-*/
+// PX2TerrainPage.hpp
 
 #ifndef PX2TERRAINPAGE_HPP
 #define PX2TERRAINPAGE_HPP

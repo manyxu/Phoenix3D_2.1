@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SkySphere.inl
-*
-*/
+// PX2SkySphere.inl
 
 //----------------------------------------------------------------------------
 inline Float4 SkySphere::GetSunParams ()

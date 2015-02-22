@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EditTerrainMaterial.cpp
-*
-*/
+// PX2EditTerrainMaterial.cpp
 
 #include "PX2EditTerrainMaterial.hpp"
 using namespace PX2;

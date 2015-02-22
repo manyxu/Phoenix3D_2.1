@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SkySphere.cpp
-*
-*/
+// PX2SkySphere.cpp
 
 #include "PX2SkySphere.hpp"
 #include "PX2StandardMesh.hpp"

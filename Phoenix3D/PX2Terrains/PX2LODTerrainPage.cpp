@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LODTerrainPage.cpp
-*
-*/
+// PX2LODTerrainPage.cpp
 
 #include "PX2LODTerrainPage.hpp"
 #include "PX2LODTerrainBlock.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LodTerrainVertex.inl
-*
-*/
+// PX2LodTerrainVertex.inl
 
 //----------------------------------------------------------------------------
 inline void LODTerrainVertex::SetDependent (int i,

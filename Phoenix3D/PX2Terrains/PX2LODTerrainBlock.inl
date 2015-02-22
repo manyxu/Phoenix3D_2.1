@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2LodTerrainBlock.inl
-*
-*/
+// PX2LodTerrainBlock.inl
 
 //----------------------------------------------------------------------------
 inline int LODTerrainBlock::GetX () const

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SkyMaterial.cpp
-*
-*/
+// PX2SkyMaterial.cpp
 
 #include "PX2SkyMaterial.hpp"
 #include "PX2ShaderKeys.hpp"

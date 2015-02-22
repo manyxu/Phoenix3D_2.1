@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2RawTerrainPage.cpp
-*
-*/
+// PX2RawTerrainPage.cpp
 
 #include "PX2RawTerrainPage.hpp"
 #include "PX2ResourceManager.hpp"

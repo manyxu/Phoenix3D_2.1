@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Jungler.cpp
-*
-*/
+// PX2Jungler.cpp
 
 #include "PX2Jungler.hpp"
 #include "PX2JunglerMaterial.hpp"
