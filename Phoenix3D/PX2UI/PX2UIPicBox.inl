@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2UIPicBox.inl
-*
-*/
+// PX2UIPicBox.inl
 
 //----------------------------------------------------------------------------
 inline UIPicBox::PicBoxType UIPicBox::GetPicBoxType()

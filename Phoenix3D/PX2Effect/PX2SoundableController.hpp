@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SoundableController.hpp
-*
-*/
+// PX2SoundableController.hpp
 
 #ifndef PX2SOUNDABLECONTROLLER_HPP
 #define PX2SOUNDABLECONTROLLER_HPP

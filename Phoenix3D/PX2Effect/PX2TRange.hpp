@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TRange.hpp
-*
-*/
+// PX2TRange.hpp
 
 #ifndef PX2TRANGE_HPP
 #define PX2TRANGE_HPP

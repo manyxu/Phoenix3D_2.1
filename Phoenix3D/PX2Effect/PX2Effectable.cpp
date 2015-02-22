@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Effectable.cpp
-*
-*/
+// PX2Effectable.cpp
 
 #include "PX2Effectable.hpp"
 #include "PX2PVWMatrixConstant.hpp"

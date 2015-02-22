@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModuleCallbacks_Soundable.hpp
-*
-*/
+// PX2EffectModuleCallbacks_Soundable.hpp
 
 #ifndef PX2EFFECTMODULECALLBACKS_SOUNDABLE_HPP
 #define PX2EFFECTMODULECALLBACKS_SOUNDABLE_HPP

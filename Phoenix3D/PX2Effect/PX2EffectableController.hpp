@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BeamEmitterController.hpp
-*
-*/
+// PX2BeamEmitterController.hpp
 
 #ifndef PX2EFFECTABLECONTROLLER_HPP
 #define PX2EFFECTABLECONTROLLER_HPP

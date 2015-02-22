@@ -33,7 +33,6 @@ namespace PX2
 		std::vector<UserActorPtr> mUserActors;
 	};
 
-#include "PX2User.inl"
 	typedef Pointer0<User> UserPtr;
 
 }

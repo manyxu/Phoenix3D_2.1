@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ToLua.hpp
-*
-*/
+// PX2ToLua.hpp
 
 #ifndef PX2TOLUA_HPP
 #define PX2TOLUA_HPP

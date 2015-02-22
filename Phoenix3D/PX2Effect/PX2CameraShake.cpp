@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CameraShake.cpp
-*
-*/
+// PX2CameraShake.cpp
 
 #include "PX2CameraShake.hpp"
 #include "PX2CameraShakeController.hpp"
@@ -15,8 +11,7 @@ PX2_IMPLEMENT_FACTORY(CameraShake);
 PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, CameraShake);
 
 //----------------------------------------------------------------------------
-CameraShakeChannel::CameraShakeChannel ()
-	:
+CameraShakeChannel::CameraShakeChannel () :
 UseX(true),
 UseY(true),
 UseZ(true),

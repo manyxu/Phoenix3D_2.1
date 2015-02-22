@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2CameraShakeObject.cpp
-*
-*/
+// PX2CameraShakeObject.cpp
 
 #include "PX2CameraShakeObject.hpp"
 using namespace PX2;

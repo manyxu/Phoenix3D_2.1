@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EffectModuleCallbacks_BeamEmitter.cpp
-*
-*/
+// PX2EffectModuleCallbacks_BeamEmitter.cpp
 
 #include "PX2EffectModuleCallbacks_BeamEmitter.hpp"
 #include "PX2BeamEmitter.hpp"

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CameraShakeObject.hpp
-*
-*/
+// PX2CameraShakeObject.hpp
 
 #ifndef PX2CAMERASHAKEOBJECT_HPP
 #define PX2CAMERASHAKEOBJECT_HPP

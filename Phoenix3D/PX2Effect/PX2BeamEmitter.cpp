@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BeamEmitter.cpp
-*
-*/
+// PX2BeamEmitter.cpp
 
 #include "PX2BeamEmitter.hpp"
 #include "PX2BeamEmitterController.hpp"
@@ -18,8 +14,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, BeamEmitter);
 std::vector<std::string> BeamEmitter::msModuleNames_EA;
 std::vector<std::string> BeamEmitter::msModuleNames_EO;
 //----------------------------------------------------------------------------
-BeamEmitter::BeamEmitter ()
-	:
+BeamEmitter::BeamEmitter () :
 mNumMaxBeams(10),
 mEmitRate(10),
 mIsStartUseLocal(true),

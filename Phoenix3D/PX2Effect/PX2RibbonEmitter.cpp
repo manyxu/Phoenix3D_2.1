@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2RibbonEmitter.cpp
-*
-*/
+// PX2RibbonEmitter.cpp
 
 #include "PX2RibbonEmitter.hpp"
 #include "PX2RibbonEmitterController.hpp"

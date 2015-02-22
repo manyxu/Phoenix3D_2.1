@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Effectable.hpp
-*
-*/
+// PX2Effectable.hpp
 
 #ifndef PX2EFFECTABLE_HPP
 #define PX2EFFECTABLE_HPP

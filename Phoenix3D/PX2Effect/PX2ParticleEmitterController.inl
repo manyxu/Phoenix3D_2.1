@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ParticleEmitterController.inl
-*
-*/
+// PX2ParticleEmitterController.inl
 
 //----------------------------------------------------------------------------
 inline int ParticleEmitterController::GetMaxNumParticles () const

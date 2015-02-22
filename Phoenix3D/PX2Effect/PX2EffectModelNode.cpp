@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModelNode.cpp
-*
-*/
+// PX2EffectModelNode.cpp
 
 #include "PX2EffectModelNode.hpp"
 #include "PX2ResourceManager.hpp"

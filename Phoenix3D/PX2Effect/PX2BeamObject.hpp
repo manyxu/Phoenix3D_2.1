@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BeamObject.hpp
-*
-*/
+// PX2BeamObject.hpp
 
 #ifndef PX2BEAMOBJECT_HPP
 #define PX2BEAMOBJECT_HPP

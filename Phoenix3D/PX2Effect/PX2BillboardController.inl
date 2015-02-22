@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BillboardControl.inl
-*
-*/
+// PX2BillboardControl.inl
 
 //----------------------------------------------------------------------------
 inline const EffectObject *BillboardController::GetBillboardObject () const

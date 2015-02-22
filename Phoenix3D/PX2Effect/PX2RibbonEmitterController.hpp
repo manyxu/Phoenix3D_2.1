@@ -1,8 +1,4 @@
-/*
- *
- * ÎÄ¼þÃû³Æ	£º	PX2RibbonEmitterController.hpp
- *
- */
+// PX2RibbonEmitterController.hpp
 
 #ifndef PX2RIBBONEMITTERCONTROLLER_HPP
 #define PX2RIBBONEMITTERCONTROLLER_HPP

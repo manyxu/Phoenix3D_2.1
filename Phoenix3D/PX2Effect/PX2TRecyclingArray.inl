@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TRecyclingArray.inl
-*
-*/
+// PX2TRecyclingArray.inl
 
 //----------------------------------------------------------------------------
 template <class T>

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Billboard.cpp
-*
-*/
+// PX2Billboard.cpp
 
 #include "PX2Billboard.hpp"
 #include "PX2BillboardController.hpp"
@@ -19,8 +15,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, Billboard);
 std::vector<std::string> Billboard::msModuleNames_EA;
 std::vector<std::string> Billboard::msModuleNames_EO;
 //----------------------------------------------------------------------------
-Billboard::Billboard ()
-	:
+Billboard::Billboard () :
 mIsDynamic(true),
 mIsUseTexAsSize(false),
 mIsDoAlphaDisAfterStop(true),

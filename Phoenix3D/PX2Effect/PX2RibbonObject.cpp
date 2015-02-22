@@ -1,15 +1,10 @@
-/*
- *
- * ÎÄ¼þÃû³Æ	£º	PX2RibbonObject.cpp
- *
- */
+// PX2RibbonObject.cpp
 
 #include "PX2RibbonObject.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-RibbonObject::RibbonObject ()
-	:
+RibbonObject::RibbonObject () :
 Length(0.0f),
 LengthOnCompleteOneSegment(0.0f)
 {

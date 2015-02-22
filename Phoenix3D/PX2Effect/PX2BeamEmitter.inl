@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2BeamEmitter.inl
-*
-*/
+// PX2BeamEmitter.inl
 
 //----------------------------------------------------------------------------
 inline void BeamEmitter::SetEmitRate (float rate)

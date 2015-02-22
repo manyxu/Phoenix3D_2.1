@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2RibbonEmitter.inl
-*
-*/
+// PX2RibbonEmitter.inl
 
 //----------------------------------------------------------------------------
 inline float RibbonEmitter::GetLength () const

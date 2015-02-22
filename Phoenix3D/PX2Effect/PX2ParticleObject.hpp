@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ParticleObject.hpp
-*
-*/
+// PX2ParticleObject.hpp
 
 #ifndef PX2PARTICLEOBJECT_HPP
 #define PX2PARTICLEOBJECT_HPP

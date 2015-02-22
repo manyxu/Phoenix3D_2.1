@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Effectable.inl
-*
-*/
+// PX2Effectable.inl
 
 //----------------------------------------------------------------------------
 inline EffectableController *Effectable::GetEffectableController () const

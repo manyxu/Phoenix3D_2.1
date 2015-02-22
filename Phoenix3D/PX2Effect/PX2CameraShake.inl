@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2CameraShake.inl
-*
-*/
+// PX2CameraShake.inl
 
 //----------------------------------------------------------------------------
 inline void CameraShake::SetUseX (bool use)

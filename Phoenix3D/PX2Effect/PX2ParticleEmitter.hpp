@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ParticleEmitter.hpp
-*
-*/
+// PX2ParticleEmitter.hpp
 
 #ifndef PX2PARTICLEEMITTER_HPP
 #define PX2PARTICLEEMITTER_HPP

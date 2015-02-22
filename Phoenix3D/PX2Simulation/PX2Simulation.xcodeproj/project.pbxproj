@@ -135,7 +135,6 @@
 		73A6D8FB1A96EC68000BD98B /* PX2SimulationPre.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SimulationPre.hpp; sourceTree = SOURCE_ROOT; };
 		73A6D8FC1A96EC68000BD98B /* PX2User.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2User.cpp; sourceTree = SOURCE_ROOT; };
 		73A6D8FD1A96EC68000BD98B /* PX2User.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2User.hpp; sourceTree = SOURCE_ROOT; };
-		73A6D8FE1A96EC68000BD98B /* PX2User.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2User.inl; sourceTree = SOURCE_ROOT; };
 		73A6D8FF1A96EC68000BD98B /* PX2UserActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UserActor.cpp; sourceTree = SOURCE_ROOT; };
 		73A6D9001A96EC68000BD98B /* PX2UserActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UserActor.hpp; sourceTree = SOURCE_ROOT; };
 		73A6D9011A96EC68000BD98B /* PX2UserActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UserActor.inl; sourceTree = SOURCE_ROOT; };
@@ -281,7 +280,6 @@
 				73A6D8FB1A96EC68000BD98B /* PX2SimulationPre.hpp */,
 				73A6D8FC1A96EC68000BD98B /* PX2User.cpp */,
 				73A6D8FD1A96EC68000BD98B /* PX2User.hpp */,
-				73A6D8FE1A96EC68000BD98B /* PX2User.inl */,
 				73A6D8FF1A96EC68000BD98B /* PX2UserActor.cpp */,
 				73A6D9001A96EC68000BD98B /* PX2UserActor.hpp */,
 				73A6D9011A96EC68000BD98B /* PX2UserActor.inl */,

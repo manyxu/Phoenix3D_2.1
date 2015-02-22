@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BillboardController.cpp
-*
-*/
+// PX2BillboardController.cpp
 
 #include "PX2BillboardController.hpp"
 #include "PX2Billboard.hpp"
@@ -14,8 +10,7 @@ PX2_IMPLEMENT_FACTORY(BillboardController);
 PX2_IMPLEMENT_DEFAULT_NAMES(EffectableController, BillboardController);
 
 //----------------------------------------------------------------------------
-BillboardController::BillboardController ()
-	:
+BillboardController::BillboardController () :
 mBillboardObject(0)
 {
 }

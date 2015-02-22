@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2BeamEmitter.hpp
-*
-*/
+// PX2BeamEmitter.hpp
 
 #ifndef PX2BEAMEMITTER_HPP
 #define PX2BEAMEMITTER_HPP

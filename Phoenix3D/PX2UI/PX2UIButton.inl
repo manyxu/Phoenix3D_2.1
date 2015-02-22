@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2UIButton.inl
-*
-*/
+// PX2UIButton.inl
 
 //----------------------------------------------------------------------------
 inline UIButton::AfterReleasedType UIButton::GetAfterReleasedType() const

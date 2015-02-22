@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ParticleObject.cpp
-*
-*/
+// PX2ParticleObject.cpp
 
 #include "PX2ParticleObject.hpp"
 #include "PX2Renderable.hpp"

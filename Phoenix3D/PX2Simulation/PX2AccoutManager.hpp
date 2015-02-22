@@ -1,4 +1,4 @@
-// ÎÄ¼şÃû³Æ	£º	PX2AccoutManager.hpp
+// PX2AccoutManager.hpp
 
 
 #ifndef PX2ACCOUTMANAGER_HPP

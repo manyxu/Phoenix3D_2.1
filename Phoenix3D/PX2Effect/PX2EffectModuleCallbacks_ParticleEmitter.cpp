@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModuleCallbacks_ParticleEmitter.cpp
-*
-*/
+// PX2EffectModuleCallbacks_ParticleEmitter.cpp
 
 #include "PX2EffectModuleCallbacks_ParticleEmitter.hpp"
 #include "PX2EffectModule.hpp"

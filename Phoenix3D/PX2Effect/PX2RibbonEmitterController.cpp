@@ -11,8 +11,7 @@ PX2_IMPLEMENT_FACTORY(RibbonEmitterController);
 PX2_IMPLEMENT_DEFAULT_NAMES(EffectableController, RibbonEmitterController);
 
 //----------------------------------------------------------------------------
-RibbonEmitterController::RibbonEmitterController ()
-	:
+RibbonEmitterController::RibbonEmitterController () :
 StartRandomIndex(0),
 mSmoother(0)
 {

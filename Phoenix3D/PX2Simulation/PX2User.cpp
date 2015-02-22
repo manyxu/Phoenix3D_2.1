@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2User.cpp
-*
-*/
+// PX2User.cpp
 
 #include "PX2User.hpp"
 using namespace PX2;

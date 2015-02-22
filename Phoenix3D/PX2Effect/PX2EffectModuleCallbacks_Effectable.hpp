@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModuleCallbacks_Effectable.hpp
-*
-*/
+// PX2EffectModuleCallbacks_Effectable.hpp
 
 #ifndef PX2EFFECTMODULECALLBACKS_EFFECTABLE_HPP
 #define PX2EFFECTMODULECALLBACKS_EFFECTABLE_HPP

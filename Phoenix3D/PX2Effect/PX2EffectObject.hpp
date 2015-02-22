@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectObject.hpp
-*
-*/
+// PX2EffectObject.hpp
 
 #ifndef PX2EFFECTOBJECT_HPP
 #define PX2EFFECTOBJECT_HPP

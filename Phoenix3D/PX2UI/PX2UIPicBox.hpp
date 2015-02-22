@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2UIPicBox.hpp
-*
-*/
+// PX2UIPicBox.hpp
 
 #ifndef PX2UIPICBOX_HPP
 #define PX2UIPICBOX_HPP

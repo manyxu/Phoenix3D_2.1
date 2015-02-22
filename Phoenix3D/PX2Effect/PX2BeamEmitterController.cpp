@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BeamEmitterController.cpp
-*
-*/
+// PX2BeamEmitterController.cpp
 
 #include "PX2BeamEmitterController.hpp"
 #include "PX2BeamEmitter.hpp"
@@ -15,8 +11,7 @@ PX2_IMPLEMENT_FACTORY(BeamEmitterController);
 PX2_IMPLEMENT_DEFAULT_NAMES(EffectableController, BeamEmitterController);
 
 //----------------------------------------------------------------------------
-BeamEmitterController::BeamEmitterController ()
-	:
+BeamEmitterController::BeamEmitterController () :
 mNumNewBeamExcess(0)
 {
 }

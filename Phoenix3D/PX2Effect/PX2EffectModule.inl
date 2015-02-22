@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModule.inl
-*
-*/
+// PX2EffectModule.inl
 
 //----------------------------------------------------------------------------
 inline void EffectModule::SetTypeName (const std::string &typeName)

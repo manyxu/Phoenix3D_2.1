@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2CameraShakeController.cpp
-*
-*/
+// PX2CameraShakeController.cpp
 
 #include "PX2CameraShakeController.hpp"
 #include "PX2CameraShake.hpp"

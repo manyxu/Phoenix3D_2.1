@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModule.cpp
-*
-*/
+// PX2EffectModule.cpp
 
 #include "PX2EffectModule.hpp"
 #include "PX2EffectObject.hpp"

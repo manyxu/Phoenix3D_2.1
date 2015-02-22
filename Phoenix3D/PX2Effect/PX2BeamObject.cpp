@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2BeamObject.hpp
-*
-*/
+// PX2BeamObject.hpp
 
 #include "PX2BeamObject.hpp"
 using namespace PX2;

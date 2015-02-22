@@ -1,4 +1,4 @@
-// PX2Selection.hpp
+// PX2RedoUndo.hpp
 
 #ifndef PX2REDOUNDO_HPP
 #define PX2REDOUNDO_HPP

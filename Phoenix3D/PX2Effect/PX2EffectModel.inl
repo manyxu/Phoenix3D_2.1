@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModel.inl
-*
-*/
+// PX2EffectModel.inl
 
 //----------------------------------------------------------------------------
 inline EffectModel::ModelType EffectModel::GetModelType () const

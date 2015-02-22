@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ParticleEmitter.inl
-*
-*/
+// PX2ParticleEmitter.inl
 
 //----------------------------------------------------------------------------
 inline void ParticleEmitter::SetBlast (bool blast)

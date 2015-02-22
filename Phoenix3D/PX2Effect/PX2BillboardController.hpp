@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2BillboardControl.hpp
-*
-*/
+// PX2BillboardControl.hpp
 
 #ifndef PX2BILLBOARDCONTROL_HPP
 #define PX2BILLBOARDCONTROL_HPP

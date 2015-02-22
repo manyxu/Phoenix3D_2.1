@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModel.hpp
-*
-*/
+// PX2EffectModel.hpp
 
 #ifndef PX2EFFECTMODEL_HPP
 #define PX2EFFECTMODEL_HPP

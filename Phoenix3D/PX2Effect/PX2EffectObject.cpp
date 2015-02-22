@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectObject.cpp
-*
-*/
+// PX2EffectObject.cpp
 
 #include "PX2EffectObject.hpp"
 using namespace PX2;

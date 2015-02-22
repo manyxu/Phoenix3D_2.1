@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectableController.cpp
-*
-*/
+// PX2EffectableController.cpp
 
 #include "PX2EffectableController.hpp"
 #include "PX2Effectable.hpp"

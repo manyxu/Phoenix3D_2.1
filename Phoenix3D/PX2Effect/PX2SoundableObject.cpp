@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SoundableObject.cpp
-*
-*/
+// PX2SoundableObject.cpp
 
 #include "PX2SoundableObject.hpp"
 using namespace PX2;

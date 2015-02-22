@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2EffectableController.inl
-*
-*/
+// PX2EffectableController.inl
 
 //----------------------------------------------------------------------------
 inline int EffectableController::GetNumModules ()

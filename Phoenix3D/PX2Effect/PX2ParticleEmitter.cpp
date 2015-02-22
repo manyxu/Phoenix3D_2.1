@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2ParticleEmitter.cpp
-*
-*/
+// PX2ParticleEmitter.cpp
 
 #include "PX2ParticleEmitter.hpp"
 #include "PX2ParticleEmitterController.hpp"

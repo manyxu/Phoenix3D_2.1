@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2UIMaterial.cpp
-*
-*/
+// PX2UIMaterial.cpp
 
 #include "PX2EffectMaterial.hpp"
 #include "PX2PVWMatrixConstant.hpp"

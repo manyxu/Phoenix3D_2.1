@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2CameraShakeController.inl
-*
-*/
+// PX2CameraShakeController.inl
 
 //----------------------------------------------------------------------------
 inline const CameraShakeObject *CameraShakeController

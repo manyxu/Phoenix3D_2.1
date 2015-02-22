@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModuleCallbacks_Effectable.cpp
-*
-*/
+// PX2EffectModuleCallbacks_Effectable.cpp
 
 #include "PX2EffectModuleCallbacks_Effectable.hpp"
 #include "PX2EffectModule.hpp"

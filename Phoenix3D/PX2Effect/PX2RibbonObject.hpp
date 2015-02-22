@@ -1,8 +1,4 @@
-/*
- *
- * ÎÄ¼þÃû³Æ	£º	PX2RibbonObject.hpp
- *
- */
+// PX2RibbonObject.hpp
 
 #ifndef PX2RIBBONOBJECT_HPP
 #define PX2RIBBONOBJECT_HPP

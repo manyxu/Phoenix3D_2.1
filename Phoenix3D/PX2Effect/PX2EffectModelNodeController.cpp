@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2CameraShakeController.cpp
-*
-*/
+// PX2CameraShakeController.cpp
 
 #include "PX2EffectModelNodeController.hpp"
 #include "PX2EffectModelNode.hpp"

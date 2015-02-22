@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2TRecyclingArray.hpp
-*
-*/
+// PX2TRecyclingArray.hpp
 
 #ifndef PX2TRECYCLINGARRAY_HPP
 #define PX2TRECYCLINGARRAY_HPP

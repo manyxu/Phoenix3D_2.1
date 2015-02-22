@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2RibbonEmitterController.inl
-*
-*/
+// PX2RibbonEmitterController.inl
 
 //----------------------------------------------------------------------------
 inline const std::list<RibbonObject> &RibbonEmitterController::

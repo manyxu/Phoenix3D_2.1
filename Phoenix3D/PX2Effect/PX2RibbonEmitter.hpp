@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2RibbonEmitter.hpp
-*
-*/
+// PX2RibbonEmitter.hpp
 
 #ifndef PX2RIBBONEMITTER_HPP
 #define PX2RIBBONEMITTER_HPP

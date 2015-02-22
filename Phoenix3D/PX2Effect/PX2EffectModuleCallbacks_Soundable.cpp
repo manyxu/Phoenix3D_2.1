@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModuleCallbacks_Soundable.cpp
-*
-*/
+// PX2EffectModuleCallbacks_Soundable.cpp
 
 #include "PX2EffectModuleCallbacks_Soundable.hpp"
 #include "PX2EffectModule.hpp"

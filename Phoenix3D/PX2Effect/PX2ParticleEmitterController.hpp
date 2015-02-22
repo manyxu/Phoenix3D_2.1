@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectableController.hpp
-*
-*/
+// PX2EffectableController.hpp
 
 #ifndef PX2PARTICLEEMITTERCONTROLLER_HPP
 #define PX2PARTICLEEMITTERCONTROLLER_HPP

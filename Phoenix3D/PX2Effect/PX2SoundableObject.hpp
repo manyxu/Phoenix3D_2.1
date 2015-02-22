@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SoundableObject.hpp
-*
-*/
+// PX2SoundableObject.hpp
 
 #ifndef PX2SOUNDABLEOBJECT_HPP
 #define PX2SOUNDABLEOBJECT_HPP

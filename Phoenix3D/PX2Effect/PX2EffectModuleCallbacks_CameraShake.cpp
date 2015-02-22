@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModuleCallbacks_CameraShake.cpp
-*
-*/
+// PX2EffectModuleCallbacks_CameraShake.cpp
 
 #include "PX2EffectModuleCallbacks_CameraShake.hpp"
 #include "PX2CameraShake.hpp"

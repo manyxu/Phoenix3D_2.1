@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectMaterial.hpp
-*
-*/
+// PX2EffectMaterial.hpp
 
 #ifndef PX2EFFECTMATERIAL_HPP
 #define PX2EFFECTMATERIAL_HPP

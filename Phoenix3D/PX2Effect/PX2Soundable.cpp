@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Soundable.cpp
-*
-*/
+// PX2Soundable.cpp
 
 #include "PX2Soundable.hpp"
 #include "PX2SoundableController.hpp"

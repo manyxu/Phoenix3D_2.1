@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Billboard.inl
-*
-*/
+// PX2Billboard.inl
 
 //----------------------------------------------------------------------------
 inline bool Billboard::IsDynamic () const

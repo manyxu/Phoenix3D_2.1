@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModuleCallbacks_BeamEmitter.hpp
-*
-*/
+// PX2EffectModuleCallbacks_BeamEmitter.hpp
 
 #ifndef PX2EFFECTMODULECALLBACKS_BEAMEMITTER_HPP
 #define PX2EFFECTMODULECALLBACKS_BEAMEMITTER_HPP

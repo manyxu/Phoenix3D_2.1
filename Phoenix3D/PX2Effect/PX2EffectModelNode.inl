@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2EffectModelNode.inl
-*
-*/
+// PX2EffectModelNode.inl
 
 //----------------------------------------------------------------------------
 inline const std::string &EffectModelNode::GetModelFilename () const
