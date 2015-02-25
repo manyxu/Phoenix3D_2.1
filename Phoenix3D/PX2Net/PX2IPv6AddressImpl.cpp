@@ -271,7 +271,7 @@ IPv6AddressImpl IPv6AddressImpl::operator & (const IPv6AddressImpl& addr) const
 	result.mAddr.s6_addr16[5] &= addr.mAddr.s6_addr16[5];
 	result.mAddr.s6_addr16[6] &= addr.mAddr.s6_addr16[6];
 	result.mAddr.s6_addr16[7] &= addr.mAddr.s6_addr16[7];
-#elif __ANDROID__
+#elif defined __ANDROID__
 	result.mAddr.s6_addr32[0] &= addr.mAddr.s6_addr32[0];
 	result.mAddr.s6_addr32[1] &= addr.mAddr.s6_addr32[1];
 	result.mAddr.s6_addr32[2] &= addr.mAddr.s6_addr32[2];
@@ -294,7 +294,7 @@ IPv6AddressImpl IPv6AddressImpl::operator | (const IPv6AddressImpl& addr) const
 	result.mAddr.s6_addr16[5] |= addr.mAddr.s6_addr16[5];
 	result.mAddr.s6_addr16[6] |= addr.mAddr.s6_addr16[6];
 	result.mAddr.s6_addr16[7] |= addr.mAddr.s6_addr16[7];
-#elif __ANDROID__
+#elif defined __ANDROID__
 	result.mAddr.s6_addr32[0] |= addr.mAddr.s6_addr32[0];
 	result.mAddr.s6_addr32[1] |= addr.mAddr.s6_addr32[1];
 	result.mAddr.s6_addr32[2] |= addr.mAddr.s6_addr32[2];
@@ -317,7 +317,7 @@ IPv6AddressImpl IPv6AddressImpl::operator ^ (const IPv6AddressImpl& addr) const
 	result.mAddr.s6_addr16[5] ^= addr.mAddr.s6_addr16[5];
 	result.mAddr.s6_addr16[6] ^= addr.mAddr.s6_addr16[6];
 	result.mAddr.s6_addr16[7] ^= addr.mAddr.s6_addr16[7];
-##elif define __ANDROID__
+#elif defined __ANDROID__
 	result.mAddr.s6_addr32[0] ^= addr.mAddr.s6_addr32[0];
 	result.mAddr.s6_addr32[1] ^= addr.mAddr.s6_addr32[1];
 	result.mAddr.s6_addr32[2] ^= addr.mAddr.s6_addr32[2];
@@ -340,7 +340,7 @@ IPv6AddressImpl IPv6AddressImpl::operator ~ () const
 	result.mAddr.s6_addr16[5] ^= 0xffff;
 	result.mAddr.s6_addr16[6] ^= 0xffff;
 	result.mAddr.s6_addr16[7] ^= 0xffff;
-##elif __ANDROID__
+#elif defined __ANDROID__
 	result.mAddr.s6_addr32[0] ^= 0xffffffff;
 	result.mAddr.s6_addr32[1] ^= 0xffffffff;
 	result.mAddr.s6_addr32[2] ^= 0xffffffff;
