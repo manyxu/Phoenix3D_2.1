@@ -287,19 +287,20 @@ void PX2wxDockArt::DrawSash(wxDC& dc, wxWindow *window, int orientation, const w
 	wxUnusedVar(window);
 	wxUnusedVar(orientation);
 	dc.SetPen(*wxTRANSPARENT_PEN);
-	dc.SetBrush(m_sashBrush);
+
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
+	if (theme)
+	{
+		wxColor color = Float3TowxColour(theme->Color_Aui_Border);
+		dc.SetBrush(wxBrush(color));
+	}
+
 	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 }
 //----------------------------------------------------------------------------
 void PX2wxDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int, const wxRect& rect)
 {
 	dc.SetPen(*wxTRANSPARENT_PEN);
-#ifdef __WXMAC__
-	// we have to clear first, otherwise we are drawing a light striped pattern
-	// over an already darker striped background
-	dc.SetBrush(*wxWHITE_BRUSH);
-	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
-#endif
 	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
 	if (theme)
 	{
@@ -314,8 +315,12 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 {
 	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
 
-	dc.SetPen(m_borderPen);
-	dc.SetBrush(*wxTRANSPARENT_BRUSH);
+	if (theme)
+	{
+		wxColour color = Float3TowxColour(theme->Color_Aui_Border);
+		dc.SetPen(wxPen(color));
+		dc.SetBrush(wxBrush(color));
+	}
 
 	wxRect rect = _rect;
 	int i, border_width = GetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE);
@@ -324,15 +329,15 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 	{
 		for (i = 0; i < border_width; ++i)
 		{
-			//dc.SetPen(*wxWHITE_PEN);
-			//dc.DrawLine(rect.x, rect.y, rect.x + rect.width, rect.y);
-			//dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
-			//dc.SetPen(m_borderPen);
-			//dc.DrawLine(rect.x, rect.y + rect.height - 1,
-			//	rect.x + rect.width, rect.y + rect.height - 1);
-			//dc.DrawLine(rect.x + rect.width - 1, rect.y,
-			//	rect.x + rect.width - 1, rect.y + rect.height);
-			//rect.Deflate(1);
+			dc.SetPen(*wxWHITE_PEN);
+			dc.DrawLine(rect.x, rect.y, rect.x + rect.width, rect.y);
+			dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
+			dc.SetPen(m_borderPen);
+			dc.DrawLine(rect.x, rect.y + rect.height - 1,
+				rect.x + rect.width, rect.y + rect.height - 1);
+			dc.DrawLine(rect.x + rect.width - 1, rect.y,
+				rect.x + rect.width - 1, rect.y + rect.height);
+			rect.Deflate(1);
 		}
 	}
 	else
@@ -351,11 +356,12 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 		{
 			for (i = 0; i < border_width; ++i)
 			{
-				//if (theme)
-				//{
-				//	wxColour color = Float3TowxColour(theme->Color_AuiToolBar_Border);
-				//	dc.SetBrush(color);
-				//}
+				if (theme)
+				{
+					wxColour color = Float3TowxColour(theme->Color_Aui_Border);
+					dc.SetBrush(color);
+					dc.SetPen(wxPen(color));
+				}
 				dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
 				rect.Deflate(1);
 			}

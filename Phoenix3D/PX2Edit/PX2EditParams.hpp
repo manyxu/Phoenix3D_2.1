@@ -20,30 +20,32 @@ namespace PX2
 		std::string Name;
 
 		Float3 Color_Aui_Background;
+
 		Float3 Color_Aui_CaptionBackground;
 		Float3 Color_Aui_CaptionBackground_Active;
 		Float3 Color_Aui_CaptionText;
 		Float3 Color_Aui_CaptionText_Active;
+
 		Float3 Color_Aui_Border;
 		Float3 Color_Aui_BorderThin;
 		Float3 Color_Aui_BorderThin_Center;
 
-		Float3 Color_AuiMenuBar_Background;
+		Float3 Color_Aui_MenuBar_Background;
 
-		Float3 Color_AuiToolBar_Background;
-		Float3 Color_AuiToolbar_PlainBackgound;
-		Float3 Color_AuiToolBar_Border;
+		Float3 Color_Aui_ToolBar_Background;
+		Float3 Color_Aui_Toolbar_PlainBackgound;
+		Float3 Color_Aui_ToolBar_Border;
 
-		Float3 Color_AuiToolbar_Separator;
-		Float3 Color_AuiToolbar_Text;
-		Float3 Color_AuiToolbar_Flow;
-		Float3 Color_AuiToolbar_FlowBorder;
+		Float3 Color_Aui_Toolbar_Separator;
+		Float3 Color_Aui_Toolbar_Text;
+		Float3 Color_Aui_Toolbar_Flow;
+		Float3 Color_Aui_Toolbar_FlowBorder;
 
-		Float3 Color_AuiTabbar;
-		Float3 Color_AuiTabbar_Active;
-		Float3 Color_AuiTabbarBot_Active;
-		Float3 Color_AuiTabbarText;
-		Float3 Color_AuiTabbarText_Active;
+		Float3 Color_Aui_Tabbar;
+		Float3 Color_Aui_Tabbar_Active;
+		Float3 Color_Aui_TabbarBot_Active;
+		Float3 Color_Aui_TabbarText;
+		Float3 Color_Aui_TabbarText_Active;
 	};
 	typedef Pointer0<Theme> ThemePtr;
 
@@ -58,8 +60,8 @@ namespace PX2
 		EditParams();
 		~EditParams();
 
-		bool Save(std::string filename);
-		bool Load(std::string filename);
+		bool Save(const std::string &filename);
+		bool Load(const std::string &filename);
 
 		// params
 	public:
@@ -72,6 +74,8 @@ namespace PX2
 		Theme *GetCurTheme();
 
 	protected:
+		Float3 StringToFloat3(const std::string &valStr);
+
 		std::string mCurThemeStr;
 		ThemePtr mCurTheme;
 		std::map<std::string, ThemePtr> mThemesMap;

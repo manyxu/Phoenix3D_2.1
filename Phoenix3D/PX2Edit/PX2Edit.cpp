@@ -45,6 +45,8 @@ bool Edit::Initlize()
 //----------------------------------------------------------------------------
 bool Edit::Ternamate()
 {
+	mEditParams->Save("DataEditor/config/editconfig.xml");
+
 	if (mEditMap)
 	{
 		delete0(mEditMap);

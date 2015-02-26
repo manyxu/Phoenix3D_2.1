@@ -58,6 +58,12 @@ namespace PX2Editor
 			wxWindow* wnd,
 			const wxRect& rect);
 
+		virtual void DrawLabel(
+			wxDC& dc,
+			wxWindow* wnd,
+			const wxAuiToolBarItem& item,
+			const wxRect& rect);
+
 		virtual void DrawSeparator(
 			wxDC& dc,
 			wxWindow* wnd,

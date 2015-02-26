@@ -13,9 +13,6 @@
     <ClInclude Include="PX2EditMap.hpp">
       <Filter>Map</Filter>
     </ClInclude>
-    <ClInclude Include="PX2EditParams.hpp">
-      <Filter>Param</Filter>
-    </ClInclude>
     <ClInclude Include="PX2GeoObjFactory.hpp">
       <Filter>NodeCtrls</Filter>
     </ClInclude>
@@ -37,6 +34,9 @@
     </ClInclude>
     <ClInclude Include="PX2SelectResData.hpp">
       <Filter>SelectRes</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EditParams.hpp">
+      <Filter>Param</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

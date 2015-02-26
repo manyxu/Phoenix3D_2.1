@@ -30,26 +30,25 @@ Theme::Theme()
 	Color_Aui_CaptionText = Float3::WHITE;
 	Color_Aui_CaptionText_Active = Float3::BLACK;
 
-	Color_AuiMenuBar_Background = Float3::MakeColor(214, 219, 233);
+	Color_Aui_MenuBar_Background = Float3::MakeColor(214, 219, 233);
 
-	Color_AuiToolBar_Background = Float3::MakeColor(207, 214, 229);
-	Color_AuiToolbar_PlainBackgound = Float3::MakeColor(255, 0, 0);
-	Color_AuiToolBar_Border = Float3::MakeColor(220, 224, 236);
-	Color_AuiToolbar_Separator = Float3::MakeColor(133, 145, 162);
-	Color_AuiToolbar_Text = Float3::BLACK;
-	Color_AuiToolbar_Flow = Float3::MakeColor(253, 244, 191);
-	Color_AuiToolbar_FlowBorder = Float3::MakeColor(229, 195, 101);
+	Color_Aui_ToolBar_Background = Float3::MakeColor(207, 214, 229);
+	Color_Aui_Toolbar_PlainBackgound = Float3::MakeColor(255, 0, 0);
+	Color_Aui_ToolBar_Border = Float3::MakeColor(220, 224, 236);
+	Color_Aui_Toolbar_Separator = Float3::MakeColor(133, 145, 162);
+	Color_Aui_Toolbar_Text = Float3::BLACK;
+	Color_Aui_Toolbar_Flow = Float3::MakeColor(253, 244, 191);
+	Color_Aui_Toolbar_FlowBorder = Float3::MakeColor(229, 195, 101);
 
-	Color_AuiTabbar = Float3::MakeColor(54, 78, 111);
-	Color_AuiTabbar_Active = Float3::MakeColor(255, 242, 157);
-	Color_AuiTabbarBot_Active = Float3::WHITE;
-	Color_AuiTabbarText = Float3::WHITE;
-	Color_AuiTabbarText_Active = Float3::BLACK;
+	Color_Aui_Tabbar = Float3::MakeColor(54, 78, 111);
+	Color_Aui_Tabbar_Active = Float3::MakeColor(255, 242, 157);
+	Color_Aui_TabbarBot_Active = Float3::WHITE;
+	Color_Aui_TabbarText = Float3::WHITE;
+	Color_Aui_TabbarText_Active = Float3::BLACK;
 }
 //-----------------------------------------------------------------------------
 Theme::~Theme()
 {
-
 }
 //-----------------------------------------------------------------------------
 
@@ -74,12 +73,12 @@ EditParams::~EditParams()
 {
 }
 //-----------------------------------------------------------------------------
-bool EditParams::Save(std::string filename)
+bool EditParams::Save(const std::string &filename)
 {
 	return true;
 }
 //-----------------------------------------------------------------------------
-bool EditParams::Load(std::string filename)
+bool EditParams::Load(const std::string &filename)
 {
 	char *buffer = 0;
 	int bufferSize = 0;
@@ -101,10 +100,51 @@ bool EditParams::Load(std::string filename)
 			XMLNode themeChildNode = themesNode.IterateChild();
 			while (!themeChildNode.IsNull())
 			{
-				Theme *theme = new Theme();
+				Theme *theme = new0 Theme();
 
 				theme->Name = themeChildNode.AttributeToString("name");
 
+				XMLNode themeValNode = themeChildNode.IterateChild();
+				while (!themeValNode.IsNull())
+				{
+					std::string themValName = themeValNode.GetName();
+
+					if ("aui_backgournd" == themValName)
+						theme->Color_Aui_Background = StringToFloat3(themeValNode.AttributeToString("val"));
+
+					else if ("aui_captionbackground" == themValName)
+						theme->Color_Aui_CaptionBackground = StringToFloat3(themeValNode.AttributeToString("val"));
+					else if ("aui_captionbackground_active" == themValName)
+						theme->Color_Aui_CaptionBackground_Active = StringToFloat3(themeValNode.AttributeToString("val"));
+
+					else if ("aui_border" == themValName)
+						theme->Color_Aui_Border = StringToFloat3(themeValNode.AttributeToString("val"));
+
+					else if ("aui_borderthin" == themValName)
+						theme->Color_Aui_BorderThin = StringToFloat3(themeValNode.AttributeToString("val"));
+
+					else if ("aui_borderthin_center" == themValName)
+						theme->Color_Aui_BorderThin_Center = StringToFloat3(themeValNode.AttributeToString("val"));
+
+					else if ("aui_menubar_background" == themValName)
+						theme->Color_Aui_MenuBar_Background = StringToFloat3(themeValNode.AttributeToString("val"));
+
+					else if ("aui_toolbar_background" == themValName)
+						theme->Color_Aui_ToolBar_Background = StringToFloat3(themeValNode.AttributeToString("val"));
+					else if ("aui_toolbar_text" == themValName)
+						theme->Color_Aui_Toolbar_Text = StringToFloat3(themeValNode.AttributeToString("val"));
+
+					else if ("aui_tabbar" == themValName)
+						theme->Color_Aui_Tabbar = StringToFloat3(themeValNode.AttributeToString("val"));
+					else if ("aui_tabbar_active" == themValName)
+						theme->Color_Aui_Tabbar_Active = StringToFloat3(themeValNode.AttributeToString("val"));
+					else if ("aui_tabbartext" == themValName)
+						theme->Color_Aui_TabbarText = StringToFloat3(themeValNode.AttributeToString("val"));
+					else if ("aui_tabbartext_active" == themValName)
+						theme->Color_Aui_TabbarText_Active = StringToFloat3(themeValNode.AttributeToString("val"));
+
+					themeValNode = themeChildNode.IterateChild(themeValNode);
+				}
 
 				mThemesVec.push_back(theme->Name);
 				mThemesMap[theme->Name] = theme;
@@ -146,6 +186,17 @@ Theme *EditParams::GetCurTheme()
 	return mCurTheme;
 }
 //-----------------------------------------------------------------------------
+Float3 EditParams::StringToFloat3(const std::string &valStr)
+{
+	StringTokenizer stk(valStr, ",");
+	Float3 color = Float3::MakeColor(
+		StringHelp::StringToInt(stk[0]),
+		StringHelp::StringToInt(stk[1]),
+		StringHelp::StringToInt(stk[2]));
+
+	return color;
+}
+//----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 // Property

@@ -87,11 +87,9 @@ bool E_MainFrame::Initlize()
 	mAuiManager->SetArtProvider(new PX2wxDockArt());
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_CAPTION_SIZE, 24);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 1);
-	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
+	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 2);
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(41, 57, 85));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(41, 57, 85));
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_GRIPPER_COLOUR, wxColour(41, 57, 85));
 
 	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
@@ -561,7 +559,7 @@ void E_MainFrame::_CreateMainToolBar()
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
 	if (mToolBarMain)
 	{
-		mToolBarMain->SetArtProvider(new PX2wxAuiToolBarArt(0));
+		mToolBarMain->SetArtProvider(new PX2wxAuiToolBarArt(1));
 
 		NirMan::GetSingleton().SetCurToolBar(mToolBarMain);
 
@@ -583,7 +581,7 @@ void E_MainFrame::_CreateMenuToolBar()
 
 	if (mToolBarMenu)
 	{
-		mToolBarMenu->SetArtProvider(new PX2wxAuiToolBarArt(1));
+		mToolBarMenu->SetArtProvider(new PX2wxAuiToolBarArt(0));
 
 		NirMan::GetSingleton().SetCurToolBar(mToolBarMenu);
 
@@ -706,7 +704,6 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	PX2wxAuiTabArt *tabArt = new PX2wxAuiTabArt(isTopStyle);
 	noteBook->SetArtProvider(tabArt);
 	long styleFlag = 0;
-	styleFlag ^= wxAUI_NB_TAB_MOVE;
 	if (isTopStyle)
 	{
 		styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
