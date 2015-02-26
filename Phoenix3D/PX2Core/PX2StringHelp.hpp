@@ -15,6 +15,9 @@ namespace PX2
 	public:
 		static bool Initlize();
 
+		// 将文件路径标准化（将"\\"换成'/'）
+		static std::string StandardiseFilename(const std::string &path);
+
 		// 将文件路径标准化（将"\\"换成'/'）, 如果末尾没有'/',添加'/'
 		static std::string StandardisePath (const std::string &path);
 

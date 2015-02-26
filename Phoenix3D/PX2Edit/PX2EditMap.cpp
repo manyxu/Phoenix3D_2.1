@@ -38,7 +38,7 @@ void EditMap::NewProject(const std::string &pathname,
 	PX2_EW.BroadcastingLocalEvent(entUI);
 }
 //----------------------------------------------------------------------------
-bool EditMap::LoadProject(const char *pathname)
+bool EditMap::LoadProject(const std::string &pathname)
 {
 	bool canDoChange = (EngineLoop::PT_NONE == PX2_ENGINELOOP.GetPlayType());
 	if (!canDoChange) return false;
@@ -102,7 +102,7 @@ bool EditMap::SaveProject()
 	return false;
 }
 //----------------------------------------------------------------------------
-bool EditMap::SaveProjectAs(const char *pathname)
+bool EditMap::SaveProjectAs(const std::string &pathname)
 {
 	bool canDoChange = (EngineLoop::PT_NONE == PX2_ENGINELOOP.GetPlayType());
 

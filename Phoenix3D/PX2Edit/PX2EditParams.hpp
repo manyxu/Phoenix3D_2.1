@@ -57,6 +57,7 @@ namespace PX2
 	public:
 		EditParams();
 		~EditParams();
+
 		bool Save(std::string filename);
 		bool Load(std::string filename);
 

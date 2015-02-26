@@ -146,8 +146,8 @@ namespace PX2
 		
 		Element *Insert(const TKey &key)
 		{
-			unsigned int hash = mKeyCoderFunc(key);
-			unsigned int index = hash % mMaxSlot;
+			int64_t hash = mKeyCoderFunc(key);
+			int64_t index = hash % mMaxSlot;
 			Element *ptmp = mTable[index];
 			if (!ptmp)
 			{

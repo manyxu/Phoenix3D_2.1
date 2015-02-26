@@ -50,7 +50,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mProjView(0),
 	mIsCrossCursor(false)
 {
-	mPerspConfigName = "nirvana1.0.0.config";
+	mPerspConfigName = "nirvana1.0.2.config";
 
 	PX2_EW.ComeIn(this);
 }
@@ -87,7 +87,7 @@ bool E_MainFrame::Initlize()
 	mAuiManager->SetArtProvider(new PX2wxDockArt());
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_CAPTION_SIZE, 24);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 1);
-	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 2);
+	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 3);
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(41, 57, 85));
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_SASH_COLOUR, wxColour(41, 57, 85));
@@ -321,7 +321,9 @@ void E_MainFrame::OnOpenProject()
 
 	if (wxID_OK == dlg.ShowModal())
 	{
-		PX2_EDIT.GetEditMap()->LoadProject(dlg.GetPath());
+		std::string path = dlg.GetPath();
+		path = StringHelp::StandardiseFilename(path);
+		PX2_EDIT.GetEditMap()->LoadProject(path);
 	}
 }
 //----------------------------------------------------------------------------
@@ -365,7 +367,9 @@ void E_MainFrame::OnSaveProjectAs()
 
 	if (wxID_OK == dlg.ShowModal())
 	{
-		map->SaveProjectAs(dlg.GetPath());
+		std::string path = dlg.GetPath();
+		path = StringHelp::StandardiseFilename(path);
+		map->SaveProjectAs(path);
 	}
 }
 //----------------------------------------------------------------------------
@@ -609,7 +613,7 @@ void E_MainFrame::_CreateProjView()
 	mProjView = new ProjView(this);
 	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"),
 		PX2_LM.GetValue("Project"),
-		wxAuiPaneInfo().Left());
+		wxAuiPaneInfo().Left().CaptionVisible(false));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainView()
@@ -665,14 +669,14 @@ void E_MainFrame::_CreateInsp()
 	objs.push_back(objRes);
 	objs.push_back(objInsp);
 
-	_CreateView(objs, PX2_LM.GetValue("ResView"), wxAuiPaneInfo().Right(), "Right");
+	_CreateView(objs, PX2_LM.GetValue("ResView"), wxAuiPaneInfo().Right().CaptionVisible(false), "Right");
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine()
 {
 	mTimeLineView = new TimeLineView(this);
 	_CreateView(mTimeLineView, "TimeLine", PX2_LM.GetValue("TimeLine"), PX2_LM.GetValue("TimeLine"),
-		wxAuiPaneInfo().DefaultPane());
+		wxAuiPaneInfo().DefaultPane().CaptionVisible(false));
 }
 //----------------------------------------------------------------------------
 PX2wxAuiNotebook *E_MainFrame::_CreateView(wxWindow *window0, const std::string &name0,
@@ -714,6 +718,10 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 		styleFlag ^= wxAUI_NB_BOTTOM;
 		styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	}
+
+	styleFlag ^= wxAUI_NB_TAB_MOVE;
+	styleFlag ^= wxAUI_NB_TAB_EXTERNAL_MOVE;
+	styleFlag ^= wxAUI_NB_TAB_SPLIT;
 
 	noteBook->SetWindowStyleFlag(styleFlag);
 	noteBook->SetTabCtrlHeight(24);

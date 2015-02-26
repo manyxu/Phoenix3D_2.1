@@ -353,8 +353,10 @@ bool ResourceManager::LoadBuffer (const std::string &filename, int &bufferSize,
 	buffer = loadRec.Buffer;
 	bufferSize = loadRec.BufferSize;
 
-	if (buffer && 0!=bufferSize)
+	if (buffer && 0 != bufferSize)
+	{
 		return true;
+	}
 	else
 	{
 		loadRec.Buffer = 0;
@@ -1131,15 +1133,6 @@ bool ResourceManager::_LoadBuffer (const std::string &fn,
 		hasUpdate = true;
 	}
 
-#ifdef __MARMALADE__
-	if (!hasUpdate)
-	{
-		assert(strstr(dstFilename.c_str(), "Data") == dstFilename.c_str());
-		dstFilename = dstFilename.substr(5);
-	}
-	return FileIO::Load(dstFilename, true, bufferSize, buffer);
-#else
-
 #ifdef __ANDROID__
 	if (!hasUpdate)
 	{
@@ -1151,11 +1144,11 @@ bool ResourceManager::_LoadBuffer (const std::string &fn,
 	{
 		return FileIO::Load(dstFilename, true, bufferSize, buffer);
 	}
-#else
+#elif defined (_WIN32) || defined (WIN32)
+	return FileIO::Load(dstFilename, true, bufferSize, buffer);
+#elif defined (__IOS__)
     std::string fullFilename = msResPath + dstFilename;
 	return FileIO::Load(fullFilename, true, bufferSize, buffer);
-#endif
-
 #endif
 }
 //----------------------------------------------------------------------------

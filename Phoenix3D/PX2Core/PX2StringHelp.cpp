@@ -42,6 +42,15 @@ bool StringHelp::Initlize()
 	return true;
 }
 //----------------------------------------------------------------------------
+std::string StringHelp::StandardiseFilename(const std::string &path)
+{
+	std::string strPath = path;
+
+	std::replace(strPath.begin(), strPath.end(), '\\', '/');
+
+	return strPath;
+}
+//----------------------------------------------------------------------------
 std::string StringHelp::StandardisePath (const std::string &path)
 {
 	std::string strPath = path;

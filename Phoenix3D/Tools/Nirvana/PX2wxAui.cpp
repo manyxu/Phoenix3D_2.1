@@ -21,77 +21,77 @@ mIsCenter(isTop)
 {
 	m_selectedFont.SetWeight(wxNORMAL);
 
-	Connect(wxEVT_COMMAND_AUINOTEBOOK_BEGIN_DRAG,
-		wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Begin));
+	//Connect(wxEVT_COMMAND_AUINOTEBOOK_BEGIN_DRAG,
+	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Begin));
 
-	Connect(wxEVT_COMMAND_AUINOTEBOOK_END_DRAG,
-		wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_End));
+	//Connect(wxEVT_COMMAND_AUINOTEBOOK_END_DRAG,
+	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_End));
 
-	Connect(wxEVT_COMMAND_AUINOTEBOOK_DRAG_MOTION,
-		wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Motion));
-	Connect(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED,
-		wxAuiNotebookEventHandler(PX2wxAuiNotebook::Tab_Click));
+	//Connect(wxEVT_COMMAND_AUINOTEBOOK_DRAG_MOTION,
+	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Motion));
+	//Connect(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED,
+	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::Tab_Click));
 }
 //----------------------------------------------------------------------------
 PX2wxAuiNotebook::~PX2wxAuiNotebook()
 {
 }
 //----------------------------------------------------------------------------
-void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
-{
-	Freeze();
-	wxAuiTabCtrl* src_tabs = (wxAuiTabCtrl*)evt.GetEventObject();
-	if (src_tabs)
-	{
-		int numPages = m_tabs.GetPageCount();
-
-		if (numPages > 1)
-		{
-			src_tabs->SetCursor(wxCursor(wxCURSOR_ARROW));
-			int src_idx = evt.GetSelection();
-			wxWindow *window = GetPage(src_idx);
-			RemovePage(src_idx);
-			Update();
-
-			Event *ent = NirvanaEventSpace::CreateEventX(NirvanaEventSpace::TabDrag);
-			ent->SetData<wxWindow*>(window);
-			PX2_EW.BroadcastingLocalEvent(ent);
-		}
-		
-		UpdateTabsHeight();
-		Thaw();
-		Refresh();
-	}
-	
-}
-//----------------------------------------------------------------------------
-void PX2wxAuiNotebook::DragFun_End(wxAuiNotebookEvent &ent)
-{
-	PX2_UNUSED(ent);
-}
-//----------------------------------------------------------------------------
-void PX2wxAuiNotebook::DragFun_Motion(wxAuiNotebookEvent &ent)
-{
-	PX2_UNUSED(ent);
-}
-//----------------------------------------------------------------------------
-void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
-{
-	int numPages = m_tabs.GetPageCount();
-
-	if (numPages > 1)
-	{
-		wxAuiManager *auiMan = E_MainFrame::GetSingleton().GetAuiMananger();
-		if (auiMan)
-		{
-			int src_idx = ent.GetSelection();
-			wxString title = GetPageText(src_idx);
-			wxString paneName = "Right";
-			auiMan->GetPane(paneName).caption = title;
-			auiMan->Update();
-		}
-	}
-}
+//void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
+//{
+//	Freeze();
+//	wxAuiTabCtrl* src_tabs = (wxAuiTabCtrl*)evt.GetEventObject();
+//	if (src_tabs)
+//	{
+//		int numPages = m_tabs.GetPageCount();
+//
+//		if (numPages > 1)
+//		{
+//			src_tabs->SetCursor(wxCursor(wxCURSOR_ARROW));
+//			int src_idx = evt.GetSelection();
+//			wxWindow *window = GetPage(src_idx);
+//			RemovePage(src_idx);
+//			Update();
+//
+//			Event *ent = NirvanaEventSpace::CreateEventX(NirvanaEventSpace::TabDrag);
+//			ent->SetData<wxWindow*>(window);
+//			PX2_EW.BroadcastingLocalEvent(ent);
+//		}
+//		
+//		UpdateTabsHeight();
+//		Thaw();
+//		Refresh();
+//	}
+//	
+//}
+////----------------------------------------------------------------------------
+//void PX2wxAuiNotebook::DragFun_End(wxAuiNotebookEvent &ent)
+//{
+//	PX2_UNUSED(ent);
+//}
+////----------------------------------------------------------------------------
+//void PX2wxAuiNotebook::DragFun_Motion(wxAuiNotebookEvent &ent)
+//{
+//	PX2_UNUSED(ent);
+//}
+////----------------------------------------------------------------------------
+//void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
+//{
+//	int numPages = m_tabs.GetPageCount();
+//
+//	if (numPages > 1)
+//	{
+//		wxAuiManager *auiMan = E_MainFrame::GetSingleton().GetAuiMananger();
+//		if (auiMan)
+//		{
+//			int src_idx = ent.GetSelection();
+//			wxString title = GetPageText(src_idx);
+//			wxString paneName = "Right";
+//			auiMan->GetPane(paneName).caption = title;
+//			auiMan->Update();
+//		}
+//	}
+//}
 //----------------------------------------------------------------------------
 void PX2wxAuiNotebook::UpdateTabsHeight()
 {

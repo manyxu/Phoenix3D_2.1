@@ -1,10 +1,11 @@
 // PX2E_RenderView.cpp
 
 #include "PX2E_StartView.hpp"
-#include "PX2Assert.hpp"
-#include "PX2DlgCreateProject.hpp"
 #include "PX2E_MainFrame.hpp"
+#include "PX2DlgCreateProject.hpp"
+#include "PX2Assert.hpp"
 #include "PX2Edit.hpp"
+#include "PX2StringHelp.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -56,7 +57,9 @@ void StartView::OnButtonClick(wxCommandEvent& event)
 
 		if (wxID_OK == dlg.ShowModal())
 		{
-			PX2_EDIT.GetEditMap()->LoadProject(dlg.GetPath());
+			std::string path = dlg.GetPath();
+			path = StringHelp::StandardiseFilename(path);
+			PX2_EDIT.GetEditMap()->LoadProject(path);
 		}
 	}
 }
