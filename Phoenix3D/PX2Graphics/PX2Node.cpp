@@ -545,12 +545,7 @@ void Node::Load (InStream& source)
     if (numChildren > 0)
     {
         mChild.resize(numChildren);
-        for(int i=0; i<numChildren; i++)
-        {
-            source.ReadPointer(mChild[i]);
-        }
-        
-        //source.ReadPointerVV(numChildren, &mChild[0]);
+        source.ReadPointerVV(numChildren, &mChild[0]);
     }
 
 	source.Read(mAnchorID);
