@@ -92,7 +92,6 @@
     <ClCompile Include="SkillCompl\PX2Skill_Activate.cpp" />
     <ClCompile Include="SkillCompl\PX2Skill_Affect.cpp" />
     <ClCompile Include="SkillCompl\PX2Skill_Range.cpp" />
-    <ClCompile Include="SkillCompl\PX2Skill_Step.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl" />

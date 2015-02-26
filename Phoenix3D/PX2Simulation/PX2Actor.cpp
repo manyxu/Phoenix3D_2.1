@@ -260,10 +260,10 @@ void Actor::Link(InStream& source)
 }
 //----------------------------------------------------------------------------
 void Actor::PostLink()
-{
-    AttachChild(mNode);
-    
+{   
 	Node::PostLink();
+
+	AttachChild(mNode);
 
 	if (mMovableFilename.empty())
 	{

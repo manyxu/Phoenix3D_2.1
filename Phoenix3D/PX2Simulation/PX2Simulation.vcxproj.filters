@@ -266,9 +266,6 @@
     <ClCompile Include="SkillCompl\PX2Skill_Range.cpp">
       <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="SkillCompl\PX2Skill_Step.cpp">
-      <Filter>Complements\SkillCompl</Filter>
-    </ClCompile>
     <ClCompile Include="SkillCompl\PX2SkillActor.cpp">
       <Filter>Complements\SkillCompl</Filter>
     </ClCompile>

@@ -3,7 +3,6 @@
 #include "PX2ApplicationBase.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2Project.hpp"
-#include "PX2Creater.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -100,11 +99,6 @@ bool ApplicationBase::_LoadProject(const std::string &projFilename)
 		if (!sceneFilename.empty())
 		{
 			newProj->LoadScene(sceneFilename);
-            
-            //Scene *scene = new0 Scene();
-            //newProj->SetScene(scene);
-            
-            //Creater::GetSingleton().CreateActor_Box(scene, APoint::ORIGIN);
 		}
 
 		const std::string &uiFilename = newProj->GetUIFilename();
