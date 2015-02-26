@@ -220,7 +220,6 @@ mRadius(1.0f),
 mHeight(1.0f)
 {
 	mNode = new0 Node();
-	AttachChild(mNode);
 	mNode->SetName("Node");
 }
 //----------------------------------------------------------------------------
@@ -262,6 +261,8 @@ void Actor::Link(InStream& source)
 //----------------------------------------------------------------------------
 void Actor::PostLink()
 {
+    AttachChild(mNode);
+    
 	Node::PostLink();
 
 	if (mMovableFilename.empty())

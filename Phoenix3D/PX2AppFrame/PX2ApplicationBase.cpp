@@ -99,12 +99,12 @@ bool ApplicationBase::_LoadProject(const std::string &projFilename)
 		const std::string &sceneFilename = newProj->GetSceneFilename();
 		if (!sceneFilename.empty())
 		{
-			//newProj->LoadScene(sceneFilename);
+			newProj->LoadScene(sceneFilename);
             
-            Scene *scene = new0 Scene();
-            newProj->SetScene(scene);
+            //Scene *scene = new0 Scene();
+            //newProj->SetScene(scene);
             
-            Creater::GetSingleton().CreateActor_Box(scene, APoint::ORIGIN);
+            //Creater::GetSingleton().CreateActor_Box(scene, APoint::ORIGIN);
 		}
 
 		const std::string &uiFilename = newProj->GetUIFilename();
