@@ -30,7 +30,7 @@ namespace PX2
 		struct Element
 		{
 			TKey key;
-			unsigned int hash;
+			int64_t hash;
 			TValue value;
 			Element *pnext;
 		};

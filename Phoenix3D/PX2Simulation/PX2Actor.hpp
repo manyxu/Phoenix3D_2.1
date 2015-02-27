@@ -56,9 +56,10 @@ namespace PX2
 		virtual void SetMovableFilename(const std::string &filename,
 			bool shareVI = false);
 		virtual void SetMovable (Movable *mov);
+		Movable *GetMovable ();
 
-		Node *GetNode ();
-		Node *GetHelpNode ();
+		Node *CreateHelpNode ();
+		Node *GetNodeHelp();
 
 		void SetPickable(bool isPickable);
 		bool IsPickable() const;
@@ -70,8 +71,6 @@ namespace PX2
 		const AVector &GetHeading() const;
 
 	protected:
-		NodePtr mNode;
-
 		bool mIsShareVI;
 		std::string mMovableFilename;
 		MovablePtr mMovable;

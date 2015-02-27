@@ -1,9 +1,10 @@
 // PX2_NirMan.cpp
 
 #include "PX2E_NirMan.hpp"
+#include "PX2E_MainFrame.hpp"
 #include "PX2Edit.hpp"
 #include "PX2ScriptManager.hpp"
-#include "PX2E_MainFrame.hpp"
+#include "PX2NirvanaEventType.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -88,6 +89,13 @@ void NirMan::AddMenuTool(const std::string &menuTitle, std::string &script)
 	if (!mCurToolBar) return;
 
 	E_MainFrame::GetSingletonPtr()->AddMenuTool(mCurToolBar, menuTitle, script);
+}
+//----------------------------------------------------------------------------
+void NirMan::SetProjTreeLevel(int level)
+{
+	Event *ent = NirvanaEventSpace::CreateEventX(NirvanaEventSpace::SetProjTreeLevel);
+	ent->SetData<int>(level);
+	PX2_EW.BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------
 void NirMan::MessageBox(const std::string &caption, const std::string &content)

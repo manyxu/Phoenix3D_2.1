@@ -145,6 +145,9 @@ public_internal:
 		// 设置父节点，节点在attach/detach的时候调用此函数。
 		void SetParent (Movable* parent);
 
+		void SetSaveWriteIngore(bool doSaveWrite);
+		bool IsSaveWriteIngore() const;
+
 	protected:
 		Movable* mParent;
 
@@ -168,6 +171,8 @@ public_internal:
 		bool mIsDoPick;
 		bool mIsPickIngoreCullingMode;
 		bool mIsNotPickedParentChildrenNotPicked;
+
+		bool mIsSaveWriteIngore;
 	};
 
 	PX2_REGISTER_STREAM(Movable);

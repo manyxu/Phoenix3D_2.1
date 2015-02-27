@@ -603,7 +603,14 @@ void Node::Save (OutStream& target) const
     {
         if (mChild[i])
         {
-            target.WritePointer(mChild[i]);
+			if (mChild[i]->IsSaveWriteIngore())
+			{
+				target.WritePointer((Movable*)0);
+			}
+			else
+			{
+				target.WritePointer(mChild[i]);
+			}
         }
         else
         {
@@ -622,7 +629,7 @@ int Node::GetStreamingSize (Stream &stream) const
 	size += PX2_VERSION_SIZE(mVersion);
     int numChildren = (int)mChild.size();
     size += sizeof(numChildren);
-    size += numChildren*PX2_POINTERSIZE(mChild[0]);
+	if (numChildren > 0) size += numChildren*PX2_POINTERSIZE(mChild[0]);
 
 	size += sizeof(mAnchorID);
 

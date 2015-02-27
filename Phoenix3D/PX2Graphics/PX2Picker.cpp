@@ -42,6 +42,9 @@ void Picker::Execute (Movable* scene, const APoint& origin,
 	mTMin = tmin;
 	mTMax = tmax;
 	Records.clear();
+
+	if (!scene) return;
+
 	bool hasMeshPicked = false;
 	ExecuteRecursive(scene, hasMeshPicked);
 }

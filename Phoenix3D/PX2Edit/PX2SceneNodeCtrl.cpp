@@ -899,58 +899,7 @@ void BoundCtrl::UpdateCtrl()
 			Actor *actor = DynamicCast<Actor>(obj);
 			Movable *movable = DynamicCast<Movable>(obj);
 
-			if (actor)
-			{
-				mCtrlsGroup->SetActiveChild(0);
-
-				Movable *node = actor->GetNode();
-				Movable *helpNode = actor->GetHelpNode();
-
-				bool calHelpMovBound = true;
-
-				if (node)
-				{
-					if (0.0f != node->WorldBound.GetRadius())
-					{
-						calHelpMovBound = false;
-
-						if (firstBound)
-						{
-							bound = node->WorldBound;
-							firstBound = false;
-						}
-						else
-						{
-							bound.GrowToContain(node->WorldBound);
-						}
-					}
-					else
-					{
-						calHelpMovBound = true;
-					}
-				}
-				else
-				{
-					calHelpMovBound = true;
-				}
-
-				if (calHelpMovBound && helpNode && helpNode->IsShow())
-				{
-					if (0.0f != helpNode->WorldBound.GetRadius())
-					{
-						if (firstBound)
-						{
-							bound = helpNode->WorldBound;
-							firstBound = false;
-						}
-						else
-						{
-							bound.GrowToContain(helpNode->WorldBound);
-						}
-					}
-				}
-			}
-			else if (movable)
+			if (movable)
 			{
 				mCtrlsGroup->SetActiveChild(0);
 				pos += movable->WorldTransform.GetTranslate();

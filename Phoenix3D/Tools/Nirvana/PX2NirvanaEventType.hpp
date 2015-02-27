@@ -10,6 +10,7 @@ namespace PX2
 
 	PX2_DECLARE_EVENT_BEGIN(NirvanaEventSpace)
 	PX2_EVENT(TabDrag)
+	PX2_EVENT(SetProjTreeLevel)
 	PX2_DECLARE_EVENT_END(NirvanaEventSpace)
 
 }

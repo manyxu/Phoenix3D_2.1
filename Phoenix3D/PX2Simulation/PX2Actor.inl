@@ -11,12 +11,12 @@ inline const std::bitset<PX2_ACTOR_BS_SIZE> &Actor::GetBitSet() const
 	return mBitSet;
 }
 //----------------------------------------------------------------------------
-inline Node *Actor::GetNode()
+inline Movable *Actor::GetMovable()
 {
-	return mNode;
+	return mMovable;
 }
 //----------------------------------------------------------------------------
-inline Node *Actor::GetHelpNode()
+inline Node *Actor::GetNodeHelp()
 {
 	return mHelpNode;
 }

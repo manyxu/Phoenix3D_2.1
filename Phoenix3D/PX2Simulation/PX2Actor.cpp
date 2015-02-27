@@ -18,16 +18,7 @@ mHeight(1.0f),
 mSceneContainer(0),
 mSceneContainerIndex(0)
 {
-	SetName("Actor");
-
-	mNode = new0 Node();
-	AttachChild(mNode);
-	mNode->SetName("Node");
-
-	mHelpNode = new0 Node();
-	AttachChild(mHelpNode);
-	mHelpNode->SetName("HelpNode");
-	mHelpNode->Show(false);
+	SetName("Atr");
 }
 //----------------------------------------------------------------------------
 Actor::~Actor()
@@ -44,14 +35,16 @@ void Actor::UpdateWorldData (double applicationTime)
 void Actor::SetMovable (Movable *mov)
 {
 	if (mMovable)
-		mNode->DetachChild(mMovable);
+		DetachChild(mMovable);
 
 	mMovable = mov;
 
 	if (mMovable)
-		mNode->AttachChild(mMovable);
+		AttachChild(mMovable);
 
 	CollectAnchors();
+
+	mov->SetSaveWriteIngore(false);
 }
 //----------------------------------------------------------------------------
 void Actor::SetMovableFilename(const std::string &filename, bool shareVI)
@@ -72,16 +65,33 @@ void Actor::SetMovableFilename(const std::string &filename, bool shareVI)
 	}
 
 	Movable *mov = DynamicCast<Movable>(obj);
-	if (mov) SetMovable(mov);
+	if (mov)
+	{
+		SetMovable(mov);
+		mov->SetSaveWriteIngore(true);
+	}
+}
+//----------------------------------------------------------------------------
+Node *Actor::CreateHelpNode()
+{
+	if (!mHelpNode)
+	{
+		mHelpNode = new0 Node();
+		AttachChild(mHelpNode);
+		mHelpNode->SetName("HelpNode");
+		mHelpNode->Show(false);
+	}
+
+	return mHelpNode;
 }
 //----------------------------------------------------------------------------
 void Actor::SetPickable(bool isPickable)
 {
 	mIsPickable = isPickable;
 
-	if (mNode)
+	if (mMovable)
 	{
-		mNode->SetDoPick(isPickable);
+		mMovable->SetDoPick(isPickable);
 	}
 
 	if (mHelpNode)
@@ -99,44 +109,19 @@ void Actor::SetFace(const AVector &dir, const AVector &uping)
 
 	Matrix3f matRot(right, dir, up, true);
 
-	if (mNode)
-	{
-		mNode->LocalTransform.SetRotate(matRot);
-	}
-
-	if (mHelpNode)
-	{
-		mHelpNode->LocalTransform.SetRotate(matRot);
-	}
+	LocalTransform.SetRotate(matRot);
 }
 //----------------------------------------------------------------------------
 AVector Actor::GetFace()
 {
-	if (mNode)
-	{
-		HMatrix matRot = mNode->LocalTransform.GetRotate();
-		HPoint dir;
-		matRot.GetColumn(1, dir);
+	HMatrix matRot = LocalTransform.GetRotate();
+	HPoint dir;
+	matRot.GetColumn(1, dir);
 
-		AVector vecDir = AVector(dir[0], dir[1], dir[2]);
-		vecDir.Normalize();
+	AVector vecDir = AVector(dir[0], dir[1], dir[2]);
+	vecDir.Normalize();
 
-		return vecDir;
-	}
-
-	if (mHelpNode)
-	{
-		HMatrix matRot = mHelpNode->LocalTransform.GetRotate();
-		HPoint dir;
-		matRot.GetColumn(1, dir);
-
-		AVector vecDir = AVector(dir[0], dir[1], dir[2]);
-		vecDir.Normalize();
-
-		return vecDir;
-	}
-
-	return AVector::ZERO;
+	return vecDir;
 }
 //----------------------------------------------------------------------------
 void Actor::SetHeading(const AVector &heading)
@@ -147,7 +132,7 @@ void Actor::SetHeading(const AVector &heading)
 void Actor::CollectAnchors()
 {
 	mAnchorMap.clear();
-	_CollectAnchor(mNode);
+	_CollectAnchor(this);
 }
 //----------------------------------------------------------------------------
 APoint Actor::GetAnchorPos(int id)
@@ -219,8 +204,6 @@ mIsPickable(true),
 mRadius(1.0f),
 mHeight(1.0f)
 {
-	mNode = new0 Node();
-	mNode->SetName("Node");
 }
 //----------------------------------------------------------------------------
 void Actor::Load(InStream& source)
@@ -262,8 +245,6 @@ void Actor::Link(InStream& source)
 void Actor::PostLink()
 {   
 	Node::PostLink();
-
-	AttachChild(mNode);
 
 	if (mMovableFilename.empty())
 	{

@@ -44,15 +44,15 @@ void ActorPicker::Execute(Scene* scene, const APoint& origin,
 
 			Picker picker;
 
-			Movable *node = actor->GetNode();
-			Movable *helpNode = actor->GetHelpNode();
+			Movable *mov = actor->GetMovable();
+			Movable *helpNode = actor->GetNodeHelp();
 			if (helpNode && helpNode->IsShow())
 			{
 				picker.Execute(helpNode, mOrigin, mDirection, mTMin, mTMax);
 			}
 			else
 			{
-				picker.Execute(node, mOrigin, mDirection, mTMin, mTMax);
+				picker.Execute(mov, mOrigin, mDirection, mTMin, mTMax);
 			}
 
 			if ((int)picker.Records.size() > 0)

@@ -101,3 +101,13 @@ inline bool Movable::IsNotPickedParentChildrenNotPicked () const
 	return mIsNotPickedParentChildrenNotPicked;
 }
 //----------------------------------------------------------------------------
+inline void Movable::SetSaveWriteIngore(bool doSaveWrite)
+{
+	mIsSaveWriteIngore = doSaveWrite;
+}
+//----------------------------------------------------------------------------
+inline bool Movable::IsSaveWriteIngore() const
+{
+	return mIsSaveWriteIngore;
+}
+//----------------------------------------------------------------------------

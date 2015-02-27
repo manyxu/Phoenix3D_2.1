@@ -1,15 +1,16 @@
 // PX2E_ProjTree.cpp
 
 #include "PX2E_ProjTree.hpp"
+#include "PX2E_NirMan.hpp"
+#include "PX2E_Define.hpp"
+#include "PX2NirvanaEventType.hpp"
 #include "PX2Project.hpp"
 #include "PX2Edit.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2Selection.hpp"
 #include "PX2SimulationEventType.hpp"
-#include "PX2E_NirMan.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2LanguageManager.hpp"
-#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -32,7 +33,7 @@ ProjTree::ProjTree()
 ProjTree::ProjTree(wxWindow *parent) :
 wxTreeCtrl(parent, sID_PROJVIEW, wxDefaultPosition, wxDefaultSize,
 wxTR_DEFAULT_STYLE | wxTR_FULL_ROW_HIGHLIGHT | wxTR_NO_LINES | wxNO_BORDER),
-mTreeLevel(OTL_GENERAL),
+mTreeLevel(PTL_GENERAL),
 mImageList(0),
 mItemProj(0),
 mItemScene(0),
@@ -82,14 +83,16 @@ ProjTree::~ProjTree()
 //-----------------------------------------------------------------------------
 void ProjTree::SetTreeLevel(ProjTreeLevel level)
 {
+	if (!mItemProj) return;
+
 	mItemProj->SetTreeLevel(level);
 	mItemScene->SetTreeLevel(level);
 	mItemCameras->SetTreeLevel(level);
 	mItemObjects->SetTreeLevel(level);
 
-	if (OTL_GENERAL == level)
+	if (PTL_GENERAL == level)
 	{
-		mItemUI->SetTreeLevel(OTL_CHILDREN);
+		mItemUI->SetTreeLevel(PTL_CHILDREN);
 	}
 	else
 	{
@@ -222,8 +225,8 @@ void ProjTree::_RefreshUI()
 	if (!uiFrame) return;
 
 	ProjTreeLevel treeLevel = mTreeLevel;
-	if (treeLevel == OTL_GENERAL)
-		treeLevel = OTL_CHILDREN;
+	if (treeLevel == PTL_GENERAL)
+		treeLevel = PTL_CHILDREN;
 
 	if (mItemUI)
 		mItemUI->AddChild(uiFrame, 0, treeLevel);
@@ -278,8 +281,8 @@ void ProjTree::_AddObject(Object *obj)
 			UIFrame *uiFrame = DynamicCast<UIFrame>(parNode);
 			if (uiFrame)
 			{
-				if (treeLevel == OTL_GENERAL)
-					treeLevel = OTL_CHILDREN;
+				if (treeLevel == PTL_GENERAL)
+					treeLevel = PTL_CHILDREN;
 			}
 
 			item->AddChild(move, 0, treeLevel);
@@ -405,6 +408,11 @@ void ProjTree::DoExecute(Event *event)
 	{
 		Object *object = event->GetData<Object*>();
 		_RemoveObject(object);
+	}
+	else if (NirvanaEventSpace::IsEqual(event, NirvanaEventSpace::SetProjTreeLevel))
+	{
+		int level = event->GetData<int>();
+		SetTreeLevel((ProjTreeLevel)level);
 	}
 }
 //----------------------------------------------------------------------------

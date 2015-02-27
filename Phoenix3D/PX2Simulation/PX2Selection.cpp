@@ -195,8 +195,8 @@ void Selection::_UpdateSelect()
 		{
 			pos += actor->LocalTransform.GetTranslate();
 
-			Movable *mov = actor->GetNode();
-			Movable *helpMov = actor->GetHelpNode();
+			Movable *mov = actor->GetMovable();
+			Movable *helpMov = actor->GetNodeHelp();
 
 			bool calHelpMovBound = true;
 

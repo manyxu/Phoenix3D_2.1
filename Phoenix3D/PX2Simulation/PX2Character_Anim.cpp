@@ -94,7 +94,7 @@ void Character::PlayAnim(Animation *anim)
 	if (mCurPlayingAnim)
 		mCurPlayingAnim->Stop();
 
-	Node *charNode = GetNode();
+	Node *charNode = DynamicCast<Node>(GetMovable());
 	if (mCurPlayingAnim && charNode)
 	{
 		Animation3DSkeleton *anim3dSk = DynamicCast<Animation3DSkeleton>(mCurPlayingAnim);

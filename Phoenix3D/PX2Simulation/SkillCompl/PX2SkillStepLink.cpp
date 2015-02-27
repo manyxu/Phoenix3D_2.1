@@ -81,7 +81,8 @@ void SkillStepLink::OnEnter(SkillInstance *instance)
 		skillActorLink->LocalTransform.SetTranslate(charPos);
 		skillActorLink->SetLinkSpeed(GetSpeed());
 
-		skillActorLink->GetHelpNode()->Show(false);
+		Node *helpNode = skillActorLink->GetNodeHelp();
+		if (helpNode) helpNode->Show(false);
 
 		scene->AttachChild(skillActorLink);
 

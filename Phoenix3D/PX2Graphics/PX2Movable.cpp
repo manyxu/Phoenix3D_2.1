@@ -9,29 +9,29 @@ PX2_IMPLEMENT_STREAM(Movable);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(Movable);
 
 //----------------------------------------------------------------------------
-Movable::Movable ()
-    :
-    WorldTransformIsCurrent(false),
-    WorldBoundIsCurrent(false),
-    Culling(CULL_DYNAMIC),
-    mParent(0),
-	mIsAlphaSelfCtrled(false),
-	mAlpha(1.0f),
-	mIsColorSelfCtrled(false),
-	mColor(Float3::WHITE),
-	mIsBrightnessSelfCtrled(false),
-	mBrightness(1.0f),
-	mUpdateTime(-1.0f),
-	mUpdateTiming(0.0f),
-	mUpdateTimingInit(-1.0f),
-	mUpdatePriority(0),
-	mIsDoPick(true),
-	mIsPickIngoreCullingMode(false),
-	mIsNotPickedParentChildrenNotPicked(false),
-	mIsIngoreParent_Translate(false),
-	mIsIngoreParent_Rotate(false),
-	mIsIngoreParent_Scale(false),
-	IsSkinCtrlSetWroldTrans(false)
+Movable::Movable() :
+WorldTransformIsCurrent(false),
+WorldBoundIsCurrent(false),
+Culling(CULL_DYNAMIC),
+mParent(0),
+mIsAlphaSelfCtrled(false),
+mAlpha(1.0f),
+mIsColorSelfCtrled(false),
+mColor(Float3::WHITE),
+mIsBrightnessSelfCtrled(false),
+mBrightness(1.0f),
+mUpdateTime(-1.0f),
+mUpdateTiming(0.0f),
+mUpdateTimingInit(-1.0f),
+mUpdatePriority(0),
+mIsDoPick(true),
+mIsPickIngoreCullingMode(false),
+mIsNotPickedParentChildrenNotPicked(false),
+mIsIngoreParent_Translate(false),
+mIsIngoreParent_Rotate(false),
+mIsIngoreParent_Scale(false),
+IsSkinCtrlSetWroldTrans(false),
+mIsSaveWriteIngore(false)
 {
 }
 //----------------------------------------------------------------------------
@@ -392,30 +392,30 @@ void Movable::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-Movable::Movable (LoadConstructor value)
-    :
-    Controlledable(value),
-    WorldTransformIsCurrent(false),
-    WorldBoundIsCurrent(false),
-    Culling(CULL_DYNAMIC),
-    mParent(0),
-	mIsAlphaSelfCtrled(false),
-	mAlpha(1.0f),
-	mIsColorSelfCtrled(false),
-	mColor(Float3::WHITE),
-	mIsBrightnessSelfCtrled(false),
-	mBrightness(1.0f),
-	mUpdateTime(-1.0f),
-	mUpdateTiming(0.0f),
-	mUpdateTimingInit(-1.0f),
-	mUpdatePriority(0),
-	mIsDoPick(true),
-	mIsPickIngoreCullingMode(false),
-	mIsNotPickedParentChildrenNotPicked(false),
-	mIsIngoreParent_Translate(false),
-	mIsIngoreParent_Rotate(false),
-	mIsIngoreParent_Scale(false),
-	IsSkinCtrlSetWroldTrans(false)
+Movable::Movable(LoadConstructor value) :
+Controlledable(value),
+WorldTransformIsCurrent(false),
+WorldBoundIsCurrent(false),
+Culling(CULL_DYNAMIC),
+mParent(0),
+mIsAlphaSelfCtrled(false),
+mAlpha(1.0f),
+mIsColorSelfCtrled(false),
+mColor(Float3::WHITE),
+mIsBrightnessSelfCtrled(false),
+mBrightness(1.0f),
+mUpdateTime(-1.0f),
+mUpdateTiming(0.0f),
+mUpdateTimingInit(-1.0f),
+mUpdatePriority(0),
+mIsDoPick(true),
+mIsPickIngoreCullingMode(false),
+mIsNotPickedParentChildrenNotPicked(false),
+mIsIngoreParent_Translate(false),
+mIsIngoreParent_Rotate(false),
+mIsIngoreParent_Scale(false),
+IsSkinCtrlSetWroldTrans(false),
+mIsSaveWriteIngore(false)
 {
 }
 //----------------------------------------------------------------------------

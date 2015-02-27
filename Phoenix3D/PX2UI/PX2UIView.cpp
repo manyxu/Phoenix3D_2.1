@@ -117,6 +117,8 @@ void UIView::OnSizeChange()
 //----------------------------------------------------------------------------
 void UIView::DoExecute(Event *event)
 {
+	if (!IsEnable()) return;
+
 	RenderStep::DoExecute(event);
 
 	if (InputEventSpace::IsEqual(event, InputEventSpace::MouseMoved) ||

@@ -267,5 +267,23 @@ end
 function e_CreateUIProgressBar(usePickPos)
 end
 
+-- project view
 function e_ProjectView_Detail_General()
+	NirMan:SetProjTreeLevel(0)
+end
+
+function e_ProjectView_Detail_Children()
+	NirMan:SetProjTreeLevel(1)
+end
+
+function e_ProjectView_Detail_Controls()
+	NirMan:SetProjTreeLevel(2)
+end
+
+function e_ProjectView_Detail_Materials()
+	NirMan:SetProjTreeLevel(3)
+end
+
+function e_ProjectView_Detail_Details()
+	NirMan:SetProjTreeLevel(4)
 end

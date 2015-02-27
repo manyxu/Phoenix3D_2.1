@@ -118,7 +118,8 @@ void SkillStepFarTrack::OnEnter(SkillInstance *instance)
 		skillActor->SetDegree(GetDegree());
 		skillActor->SetAlignTrace(IsAlignTrace());
 
-		skillActor->GetHelpNode()->Show(false);
+		Node *helpNode = skillActor->GetNodeHelp();
+		if (helpNode) helpNode->Show(false);
 
 		scene->AttachChild(skillActor);
 

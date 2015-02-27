@@ -22,6 +22,7 @@ namespace PX2
 		bool Initlize();
 		bool Ternamate();
 
+		// menu
 	public:
 		void SetCurMenu(wxMenu *menu);
 		wxMenu *GetCurMenu();
@@ -34,6 +35,7 @@ namespace PX2
 	protected:
 		wxMenu *mCurMenu;
 
+		// toolbar
 	public:
 		void SetCurToolBar(PX2wxAuiToolBar *toolBar);
 		PX2wxAuiToolBar *GetCurToolBar();
@@ -46,6 +48,11 @@ namespace PX2
 	protected:
 		PX2wxAuiToolBar *mCurToolBar;
 
+		// ProjTreeLevel
+	public:
+		void SetProjTreeLevel(int level);
+
+		// messagebox
 	public:
 		void MessageBox(const std::string &caption, const std::string &content);
 	};
