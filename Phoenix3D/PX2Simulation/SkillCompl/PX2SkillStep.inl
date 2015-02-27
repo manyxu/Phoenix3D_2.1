@@ -71,3 +71,8 @@ inline SkillStep *SkillStep::GetNextStep()
 	return mNextStep;
 }
 //----------------------------------------------------------------------------
+inline void SkillStep::SetSkill(Skill *skill)
+{
+	mSkill = skill;
+}
+//----------------------------------------------------------------------------

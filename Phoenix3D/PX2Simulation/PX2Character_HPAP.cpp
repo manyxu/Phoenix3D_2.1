@@ -5,6 +5,10 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
+void Character::OnCalMHP()
+{
+}
+//----------------------------------------------------------------------------
 void Character::SetBaseHPCurLevel(float hp)
 {
 	mBaseHPCurLevel = hp;
@@ -13,6 +17,10 @@ void Character::SetBaseHPCurLevel(float hp)
 inline float Character::GetHPPercent() const
 {
 	return (float)GetHP() / (float)GetMHP();
+}
+//----------------------------------------------------------------------------
+void Character::OnCalMAP()
+{
 }
 //----------------------------------------------------------------------------
 void Character::SetDead(bool dead)

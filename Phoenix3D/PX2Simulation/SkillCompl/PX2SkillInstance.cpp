@@ -409,3 +409,60 @@ int SkillInstance::GetNextID()
 	return msNextID;
 }
 //----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// 持久化支持
+//----------------------------------------------------------------------------
+SkillInstance::SkillInstance(LoadConstructor value) :
+Object(value)
+{
+	mCurInstanceID = GetNextID();
+}
+//----------------------------------------------------------------------------
+void SkillInstance::Load(InStream& source)
+{
+	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
+
+	Object::Load(source);
+	PX2_VERSION_LOAD(source);
+
+	PX2_END_DEBUG_STREAM_LOAD(SkillInstance, source);
+}
+//----------------------------------------------------------------------------
+void SkillInstance::Link(InStream& source)
+{
+	Object::Link(source);
+}
+//----------------------------------------------------------------------------
+void SkillInstance::PostLink()
+{
+	Object::PostLink();
+}
+//----------------------------------------------------------------------------
+bool SkillInstance::Register(OutStream& target) const
+{
+	if (Object::Register(target))
+	{
+		return true;
+	}
+	return false;
+}
+//----------------------------------------------------------------------------
+void SkillInstance::Save(OutStream& target) const
+{
+	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
+
+	Object::Save(target);
+	PX2_VERSION_SAVE(target);
+
+	PX2_END_DEBUG_STREAM_SAVE(SkillInstance, target);
+}
+//----------------------------------------------------------------------------
+int SkillInstance::GetStreamingSize(Stream &stream) const
+{
+	int size = Object::GetStreamingSize(stream);
+	size += PX2_VERSION_SIZE(mVersion);
+
+	return size;
+}
+//----------------------------------------------------------------------------

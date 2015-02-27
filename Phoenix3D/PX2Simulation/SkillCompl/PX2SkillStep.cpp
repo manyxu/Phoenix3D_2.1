@@ -35,6 +35,12 @@ SkillStep_EffectObj::~SkillStep_EffectObj()
 //----------------------------------------------------------------------------
 // SkillStep
 //----------------------------------------------------------------------------
+PX2_IMPLEMENT_RTTI(PX2, Object, SkillStep);
+PX2_IMPLEMENT_STREAM(SkillStep);
+PX2_IMPLEMENT_FACTORY(SkillStep);
+PX2_IMPLEMENT_DEFAULT_NAMES(Object, SkillStep);
+
+//----------------------------------------------------------------------------
 SkillStep::SkillStep() :
 mSkill(0),
 mCurEnteredSkillInstance(0),
@@ -45,6 +51,19 @@ mSkillCallOverValue(0.0f),
 mIsSkillCallOverAtThisStep(false),
 mCurActAnimID(0)
 {
+}
+//----------------------------------------------------------------------------
+SkillStep::SkillStep(Mode mode) :
+mMode(mode),
+mSkill(0),
+mCurEnteredSkillInstance(0),
+mProbability(0.0f),
+mSkillCallOverTimeType(TT_ANIMPERCENT),
+mSkillCallOverValue(0.0f),
+mIsSkillCallOverAtThisStep(false),
+mCurActAnimID(0)
+{
+
 }
 //----------------------------------------------------------------------------
 SkillStep::~SkillStep()
@@ -157,6 +176,11 @@ bool SkillStep::SetNextStep(SkillStep *next)
 		mNextStep->SetSkill(GetSkill());
 
 	return true;
+}
+//----------------------------------------------------------------------------
+void Skill::ClearSkillInstance()
+{
+	mSkillInstances.clear();
 }
 //----------------------------------------------------------------------------
 bool Skill::SetFirstSkillStep(SkillStep *step)

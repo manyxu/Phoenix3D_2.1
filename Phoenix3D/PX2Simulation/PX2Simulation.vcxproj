@@ -110,6 +110,7 @@
     <None Include="SkillCompl\PX2Skill.inl" />
     <None Include="SkillCompl\PX2SkillActor.inl" />
     <None Include="SkillCompl\PX2SkillActorLink.inl" />
+    <None Include="SkillCompl\PX2SkillComponent.inl" />
     <None Include="SkillCompl\PX2SkillInstance.inl" />
     <None Include="SkillCompl\PX2SkillStep.inl" />
     <None Include="SkillCompl\PX2SkillStepFarTrack.inl" />

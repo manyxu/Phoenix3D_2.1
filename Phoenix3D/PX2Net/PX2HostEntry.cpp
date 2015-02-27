@@ -9,6 +9,7 @@ HostEntry::HostEntry()
 {
 }
 //----------------------------------------------------------------------------
+#ifndef __ANDROID__
 HostEntry::HostEntry(struct hostent* entry)
 {
 	assertion(0!=entry, "entry must not be null.\n");
@@ -33,6 +34,7 @@ HostEntry::HostEntry(struct hostent* entry)
 		}
 	}
 }
+#endif
 //----------------------------------------------------------------------------
 #if defined(PX2_HAVE_ADDRINFO)
 HostEntry::HostEntry(struct addrinfo* ainfo)

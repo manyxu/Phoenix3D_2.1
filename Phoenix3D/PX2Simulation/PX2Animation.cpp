@@ -1,6 +1,7 @@
 // PX2Animation.cpp
 
 #include "PX2Animation.hpp"
+#include "PX2Character.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Object, Animation);
@@ -85,6 +86,12 @@ bool Animation::IsPlaying() const
 void Animation::Stop()
 {
 	mIsPlaying = false;
+}
+//----------------------------------------------------------------------------
+void Animation::LetCharacterPlay()
+{
+	if (mCharacter)
+		mCharacter->PlayAnim(this);
 }
 //----------------------------------------------------------------------------
 void Animation::OnPlay (Character *actor)

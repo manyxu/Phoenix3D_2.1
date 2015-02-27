@@ -355,5 +355,8 @@
     <None Include="SkillCompl\PX2SkillStepRangeTime.inl">
       <Filter>Complements\SkillCompl</Filter>
     </None>
+    <None Include="SkillCompl\PX2SkillComponent.inl">
+      <Filter>Complements\SkillCompl</Filter>
+    </None>
   </ItemGroup>
 </Project>

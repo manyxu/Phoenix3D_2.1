@@ -6,6 +6,11 @@
 #include "PX2Animation3DSkeleton.hpp"
 using namespace PX2;
 
+PX2_IMPLEMENT_RTTI(PX2, Actor, Character);
+PX2_IMPLEMENT_STREAM(Character);
+PX2_IMPLEMENT_FACTORY(Character);
+PX2_IMPLEMENT_DEFAULT_NAMES(Actor, Character);
+
 //----------------------------------------------------------------------------
 Character::Character() :
 mDefaultAnimID(0),
@@ -236,5 +241,60 @@ void Character::_CalAnimNode(Movable *mov)
 			_CalAnimNode(node->GetChild(i));
 		}
 	}
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// 持久化支持
+//----------------------------------------------------------------------------
+Character::Character(LoadConstructor value) :
+Actor(value)
+{
+}
+//----------------------------------------------------------------------------
+void Character::Load(InStream& source)
+{
+	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
+
+	Actor::Load(source);
+	PX2_VERSION_LOAD(source);
+
+	PX2_END_DEBUG_STREAM_LOAD(Character, source);
+}
+//----------------------------------------------------------------------------
+void Character::Link(InStream& source)
+{
+	Actor::Link(source);
+}
+//----------------------------------------------------------------------------
+void Character::PostLink()
+{
+	Actor::PostLink();
+}
+//----------------------------------------------------------------------------
+bool Character::Register(OutStream& target) const
+{
+	if (Actor::Register(target))
+		return true;
+
+	return false;
+}
+//----------------------------------------------------------------------------
+void Character::Save(OutStream& target) const
+{
+	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
+
+	Actor::Save(target);
+	PX2_VERSION_SAVE(target);
+
+	PX2_END_DEBUG_STREAM_SAVE(Character, target);
+}
+//----------------------------------------------------------------------------
+int Character::GetStreamingSize(Stream &stream) const
+{
+	int size = Actor::GetStreamingSize(stream);
+	size += PX2_VERSION_SIZE(mVersion);
+
+	return size;
 }
 //----------------------------------------------------------------------------

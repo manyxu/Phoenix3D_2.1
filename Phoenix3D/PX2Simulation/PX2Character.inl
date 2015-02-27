@@ -36,6 +36,11 @@ inline Animation *Character::GetDefaultAnim()
 	return mDefaultAnim;
 }
 //----------------------------------------------------------------------------
+inline Animation *Character::GetCurPlayingAnim()
+{
+	return mCurPlayingAnim;
+}
+//----------------------------------------------------------------------------
 inline float Character::GetBaseHPCurLevel() const
 {
 	return mBaseHPCurLevel;

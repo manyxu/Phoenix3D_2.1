@@ -1,6 +1,16 @@
 // PX2Actor.inl
 
 //----------------------------------------------------------------------------
+inline int Actor::GetTypeID() const
+{
+	return mTypeID;
+}
+//----------------------------------------------------------------------------
+inline int Actor::GetGroup() const
+{
+	return mGroup;
+}
+//----------------------------------------------------------------------------
 inline std::bitset<PX2_ACTOR_BS_SIZE> &Actor::GetBitSet()
 {
 	return mBitSet;

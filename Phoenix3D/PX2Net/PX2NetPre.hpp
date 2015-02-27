@@ -18,6 +18,11 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <sys/select.h>
+#include <errno.h>
+#include <fcntl.h>
 
 #ifdef __IOS__
 
@@ -34,12 +39,6 @@
 #include <sys/epoll.h>
 
 #endif
-
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sys/select.h>
-#include <errno.h>
-#include <fcntl.h>
 
 #endif
 

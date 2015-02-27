@@ -131,3 +131,13 @@ inline Skill::AffectGroupType Skill::GetAffectGroupType() const
 	return mAffectGroupType;
 }
 //----------------------------------------------------------------------------
+inline int Skill::GetNumInstances() const
+{
+	return (int)mSkillInstances.size();
+}
+//----------------------------------------------------------------------------
+inline SkillStep *Skill::GetFirstSkillStep()
+{
+	return mFirstSkillStep;
+}
+//----------------------------------------------------------------------------

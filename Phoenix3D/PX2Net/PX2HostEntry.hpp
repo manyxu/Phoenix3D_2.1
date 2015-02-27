@@ -19,7 +19,10 @@ namespace PX2
 		typedef std::vector<IPAddress>   AddressList;
 
 		HostEntry();
+
+#ifndef __ANDROID__
 		HostEntry(struct hostent* entry);
+#endif
 
 #if defined(PX2_HAVE_ADDRINFO)
 		HostEntry(struct addrinfo* info);

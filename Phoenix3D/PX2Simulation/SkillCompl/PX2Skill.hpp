@@ -19,7 +19,6 @@ namespace PX2
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
-		PX2_DECLARE_PROPERTY;
 		PX2_DECLARE_STREAM(Skill);
 
 	public:
@@ -135,8 +134,6 @@ namespace PX2
 		bool mIsActivatting;
 		int mActivatedTimes;
 
-		std::vector<Pointer0<SkillInstance> > mSkillInstances;
-
 		// affect
 	public:
 		enum AffectGroupType
@@ -164,6 +161,9 @@ namespace PX2
 	public:
 		int GetNumInstances() const;
 		void ClearSkillInstance();
+
+	protected:
+		std::vector<Pointer0<SkillInstance> > mSkillInstances;
 
 		// SkillStep
 	public:

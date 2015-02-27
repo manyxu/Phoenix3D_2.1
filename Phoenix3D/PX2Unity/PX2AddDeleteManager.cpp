@@ -51,12 +51,24 @@ void AddDeleteManager::Clear()
 	mDeletingObjs.clear();
 }
 //----------------------------------------------------------------------------
-void AddDeleteManager::AddAddingObjResetPlay(Movable *mov, float delayTime)
+void AddDeleteManager::AddResetPlayObj(Movable *mov, float delayTime)
 {
 	AddingObj *addingObj = new0 AddingObj();
 	addingObj->TheMov = mov;
 	addingObj->DelayTime = delayTime;
 	addingObj->DoResetPlay = true;
+
+	mAddingObjs.push_back(addingObj);
+}
+//----------------------------------------------------------------------------
+void AddDeleteManager::AddAddingObj(Node *parent, Movable *mov, float delayTime,
+	bool doResetPlay)
+{
+	AddingObj *addingObj = new0 AddingObj();
+	addingObj->TheNode = parent;
+	addingObj->TheMov = mov;
+	addingObj->DelayTime = delayTime;
+	addingObj->DoResetPlay = doResetPlay;
 
 	mAddingObjs.push_back(addingObj);
 }
@@ -95,18 +107,11 @@ void AddDeleteManager::Update(double appSeconds, double elapsedSeconds)
 
 			if ((*it)->UpdateTime > (*it)->DelayTime)
 			{
-				if ((*it)->TheNode && (*it)->TheMov)
+				if ((*it)->TheNode)
 				{
-					(*it)->TheNode->AttachChild((*it)->TheMov);
+					if ((*it)->TheMov)
+						(*it)->TheNode->AttachChild((*it)->TheMov);
 
-					if ((*it)->DoResetPlay)
-					{
-						(*it)->TheMov->ResetPlay();
-					}
-				}
-
-				if ((0 == (*it)->TheNode) && (*it)->TheMov)
-				{
 					if ((*it)->DoResetPlay)
 					{
 						(*it)->TheMov->ResetPlay();

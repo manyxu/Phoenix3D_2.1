@@ -13,7 +13,6 @@ namespace PX2
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
-		PX2_DECLARE_PROPERTY;
 		PX2_DECLARE_STREAM(SkillComponent);
 
 	public:
@@ -66,6 +65,7 @@ namespace PX2
 		int mNumAimingMe;
 	};
 
+#include "PX2SkillComponent.inl"
 	PX2_REGISTER_STREAM(SkillComponent);
 	typedef Pointer0<SkillComponent> SkillComponentPtr;
 

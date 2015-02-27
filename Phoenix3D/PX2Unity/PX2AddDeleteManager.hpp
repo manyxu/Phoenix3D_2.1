@@ -45,7 +45,7 @@ namespace PX2
 
 		void Clear();
 
-		void AddAddingObjResetPlay(Movable *mov, float delayTime);
+		void AddResetPlayObj(Movable *mov, float delayTime);
 		void AddAddingObj(Node *parent, Movable *mov, float delayTime,
 			bool doResetPlay);
 

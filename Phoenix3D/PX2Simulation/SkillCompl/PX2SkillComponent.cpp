@@ -2,6 +2,8 @@
 
 #include "PX2SkillComponent.hpp"
 #include "PX2Character.hpp"
+#include "PX2Project.hpp"
+#include "PX2Scene.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Component, SkillComponent);
@@ -235,5 +237,88 @@ void SkillComponent::ResetAllSkillsCD()
 			skill->ResetCD();
 		}
 	}
+}
+//----------------------------------------------------------------------------
+void SkillComponent::SetAimTarget(int targetID)
+{
+	mAimTargetID = targetID;
+}
+//----------------------------------------------------------------------------
+Character *SkillComponent::GetAimTargetCharacter() const
+{
+	Scene *scene = PX2_PROJ.GetScene();
+	if (!scene) return 0;
+
+	return DynamicCast<Character>(scene->GetActorByID(mAimTargetID));
+}
+//----------------------------------------------------------------------------
+Character *SkillComponent::GetAimTargetCharacterAlive() const
+{
+	Scene *scene = PX2_PROJ.GetScene();
+	if (!scene) return 0;
+
+	Character *charac = DynamicCast<Character>(scene->GetActorByID(mAimTargetID));
+	if (charac && !charac->IsDead())
+	{
+		return charac;
+	}
+
+	return 0;
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// 持久化支持
+//----------------------------------------------------------------------------
+SkillComponent::SkillComponent(LoadConstructor value) :
+Component(value)
+{
+}
+//----------------------------------------------------------------------------
+void SkillComponent::Load(InStream& source)
+{
+	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
+
+	Component::Load(source);
+	PX2_VERSION_LOAD(source);
+
+	PX2_END_DEBUG_STREAM_LOAD(SkillComponent, source);
+}
+//----------------------------------------------------------------------------
+void SkillComponent::Link(InStream& source)
+{
+	Component::Link(source);
+}
+//----------------------------------------------------------------------------
+void SkillComponent::PostLink()
+{
+	Component::PostLink();
+}
+//----------------------------------------------------------------------------
+bool SkillComponent::Register(OutStream& target) const
+{
+	if (Component::Register(target))
+	{
+		return true;
+	}
+	return false;
+}
+//----------------------------------------------------------------------------
+void SkillComponent::Save(OutStream& target) const
+{
+	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
+
+	Component::Save(target);
+	PX2_VERSION_SAVE(target);
+
+	PX2_END_DEBUG_STREAM_SAVE(SkillComponent, target);
+}
+//----------------------------------------------------------------------------
+int SkillComponent::GetStreamingSize(Stream &stream) const
+{
+	int size = Component::GetStreamingSize(stream);
+	size += PX2_VERSION_SIZE(mVersion);
+
+	return size;
 }
 //----------------------------------------------------------------------------
