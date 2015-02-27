@@ -20,5 +20,8 @@
 		void AddMenuTool(const std::string &menuTitle, std::string &script);
 		
 	public:
+		void SetProjTreeLevel(int level);
+		
+	public:
 		void MessageBox(const std::string &caption, const std::string &content);
 	};
