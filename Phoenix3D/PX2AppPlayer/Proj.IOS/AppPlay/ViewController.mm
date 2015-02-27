@@ -9,31 +9,6 @@
 #import "ViewController.h"
 #include "AppPlay.hpp"
 
-const char *GetBundleFileName (const char *pszRelativePath)
-{
-    NSString *fullpath = nil;
-    NSString *relPath = [NSString stringWithUTF8String:pszRelativePath];
-    
-    // only if it is not an absolute path
-    if( ! [relPath isAbsolutePath] )
-    {
-        NSString *file = [relPath lastPathComponent];
-        NSString *imageDirectory = [relPath stringByDeletingLastPathComponent];
-        
-        fullpath = [[NSBundle mainBundle] pathForResource:file
-												   ofType:nil
-											  inDirectory:imageDirectory];
-    }
-    
-    if (fullpath == nil)
-    {
-        fullpath = relPath;
-    }
-    
-    return [fullpath UTF8String];
-
-}
-
 @interface ViewController ()
 {
 }
@@ -61,8 +36,6 @@ const char *GetBundleFileName (const char *pszRelativePath)
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     [self setupGL];
-    
-    std::string path = GetBundleFileName("Data/boost.xml");
     
     NSString *resPath = [[NSBundle mainBundle] resourcePath];
     std::string strResPath = [resPath UTF8String];
@@ -122,7 +95,6 @@ const char *GetBundleFileName (const char *pszRelativePath)
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
     appplay::NativeCall::OnOdle();
-
 }
 
 @end

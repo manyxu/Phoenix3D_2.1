@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		730846401A97763B00B9B655 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 7308463F1A97763B00B9B655 /* Data */; };
+		7309DBB61AA07294004D007A /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 7309DBB51AA07294004D007A /* Data */; };
 		738456361A95D85700876E88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738456351A95D85700876E88 /* Foundation.framework */; };
 		738456381A95D85700876E88 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738456371A95D85700876E88 /* CoreGraphics.framework */; };
 		7384563A1A95D85700876E88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 738456391A95D85700876E88 /* UIKit.framework */; };
@@ -35,7 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7308463F1A97763B00B9B655 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
+		7309DBB51AA07294004D007A /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = ../../../Bin/Data; sourceTree = "<group>"; };
 		738456321A95D85700876E88 /* AppPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		738456351A95D85700876E88 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		738456371A95D85700876E88 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -99,7 +99,7 @@
 		730845AC1A97736D00B9B655 /* asserts */ = {
 			isa = PBXGroup;
 			children = (
-				7308463F1A97763B00B9B655 /* Data */,
+				7309DBB51AA07294004D007A /* Data */,
 			);
 			name = asserts;
 			sourceTree = "<group>";
@@ -237,7 +237,7 @@
 			files = (
 				738456501A95D85700876E88 /* Main_iPad.storyboard in Resources */,
 				7384564D1A95D85700876E88 /* Main_iPhone.storyboard in Resources */,
-				730846401A97763B00B9B655 /* Data in Resources */,
+				7309DBB61AA07294004D007A /* Data in Resources */,
 				738456591A95D85700876E88 /* Images.xcassets in Resources */,
 				738456441A95D85700876E88 /* InfoPlist.strings in Resources */,
 			);

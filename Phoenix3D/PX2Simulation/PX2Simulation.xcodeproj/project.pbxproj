@@ -41,7 +41,6 @@
 		73A6D93F1A96EC68000BD98B /* PX2Skill_Activate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9061A96EC68000BD98B /* PX2Skill_Activate.cpp */; };
 		73A6D9401A96EC68000BD98B /* PX2Skill_Affect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9071A96EC68000BD98B /* PX2Skill_Affect.cpp */; };
 		73A6D9411A96EC68000BD98B /* PX2Skill_Range.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9081A96EC68000BD98B /* PX2Skill_Range.cpp */; };
-		73A6D9421A96EC68000BD98B /* PX2Skill_Step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9091A96EC68000BD98B /* PX2Skill_Step.cpp */; };
 		73A6D9431A96EC68000BD98B /* PX2SkillActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D90A1A96EC68000BD98B /* PX2SkillActor.cpp */; };
 		73A6D9441A96EC68000BD98B /* PX2SkillActorLink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D90D1A96EC68000BD98B /* PX2SkillActorLink.cpp */; };
 		73A6D9451A96EC68000BD98B /* PX2SkillComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9101A96EC68000BD98B /* PX2SkillComponent.cpp */; };
@@ -66,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7309DBB21AA0708E004D007A /* PX2SkillComponent.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PX2SkillComponent.inl; path = SkillCompl/PX2SkillComponent.inl; sourceTree = SOURCE_ROOT; };
 		73A6D8941A96EC02000BD98B /* libPX2Simulation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2Simulation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		73A6D8971A96EC02000BD98B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		73A6D8A51A96EC02000BD98B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -144,7 +144,6 @@
 		73A6D9061A96EC68000BD98B /* PX2Skill_Activate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Skill_Activate.cpp; sourceTree = "<group>"; };
 		73A6D9071A96EC68000BD98B /* PX2Skill_Affect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Skill_Affect.cpp; sourceTree = "<group>"; };
 		73A6D9081A96EC68000BD98B /* PX2Skill_Range.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Skill_Range.cpp; sourceTree = "<group>"; };
-		73A6D9091A96EC68000BD98B /* PX2Skill_Step.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Skill_Step.cpp; sourceTree = "<group>"; };
 		73A6D90A1A96EC68000BD98B /* PX2SkillActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkillActor.cpp; sourceTree = "<group>"; };
 		73A6D90B1A96EC68000BD98B /* PX2SkillActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkillActor.hpp; sourceTree = "<group>"; };
 		73A6D90C1A96EC68000BD98B /* PX2SkillActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkillActor.inl; sourceTree = "<group>"; };
@@ -215,6 +214,7 @@
 		73A6D8991A96EC02000BD98B /* PX2Simulation */ = {
 			isa = PBXGroup;
 			children = (
+				7309DBB21AA0708E004D007A /* PX2SkillComponent.inl */,
 				73A6D8BD1A96EC68000BD98B /* PX2AccoutManager.cpp */,
 				73A6D8BE1A96EC68000BD98B /* PX2AccoutManager.hpp */,
 				73A6D8BF1A96EC68000BD98B /* PX2Actor_BitSet.cpp */,
@@ -297,7 +297,6 @@
 				73A6D9061A96EC68000BD98B /* PX2Skill_Activate.cpp */,
 				73A6D9071A96EC68000BD98B /* PX2Skill_Affect.cpp */,
 				73A6D9081A96EC68000BD98B /* PX2Skill_Range.cpp */,
-				73A6D9091A96EC68000BD98B /* PX2Skill_Step.cpp */,
 				73A6D90A1A96EC68000BD98B /* PX2SkillActor.cpp */,
 				73A6D90B1A96EC68000BD98B /* PX2SkillActor.hpp */,
 				73A6D90C1A96EC68000BD98B /* PX2SkillActor.inl */,
@@ -402,7 +401,6 @@
 				73A6D9261A96EC68000BD98B /* PX2Animation3DSkeleton.cpp in Sources */,
 				73A6D93B1A96EC68000BD98B /* PX2SimulationEventType.cpp in Sources */,
 				73A6D93C1A96EC68000BD98B /* PX2User.cpp in Sources */,
-				73A6D9421A96EC68000BD98B /* PX2Skill_Step.cpp in Sources */,
 				73A6D94A1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp in Sources */,
 				73A6D9241A96EC68000BD98B /* PX2ActorPicker.cpp in Sources */,
 				73A6D92E1A96EC68000BD98B /* PX2EffectActor.cpp in Sources */,
