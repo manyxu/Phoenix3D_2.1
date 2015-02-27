@@ -2,10 +2,9 @@
 
 # set params
 NDK_ROOT_LOCAL=/cygdrive/c/Users/void/Documents/codes/Android/android-ndk-r8e
-PX2_ROOT_LOCAL=/cygdrive/c/Users/void/Documents/codes/Phoenix3D/Phoenix3D
-APPPLAY_MYAPP_BIN_ROOT_LOCAL=/cygdrive/c/Users/void/Documents/codes/Phoenix3D/Bin
+PX2_ROOT_LOCAL=/cygdrive/c/Users/void/Documents/GitHub/Phoenix3D/Phoenix3D
+APPPLAY_MYAPP_BIN_ROOT_LOCAL=/cygdrive/c/Users/void/Documents/GitHub/Phoenix3D/Bin
 APPPLAY_MYAPP_DATAFROM=Data
-
 if [ $NDK_ROOT"xyz" != "xyz" ]; then
 	echo "use global definition of NDK_ROOT: $NDK_ROOT"
 	NDK_ROOT_LOCAL=$NDK_ROOT
@@ -44,9 +43,9 @@ cp -rf $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/versionList.dat $AP
 
 # engine
 for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/engine/*
-do
+do 
 if [ -d $file ]; then
-cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/engine
+	cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/engine
 fi
 if [ -f $file ]; then
 cp $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/engine
@@ -55,7 +54,7 @@ done
 
 # mtls
 for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/mtls/*
-do
+do 
 if [ -d $file ]; then
 cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/mtls
 fi
@@ -66,7 +65,7 @@ done
 
 # projects
 for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/projects/*
-do
+do 
 if [ -d $file ]; then
 cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/projects
 fi
@@ -77,7 +76,7 @@ done
 
 # scenes
 for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/scenes/*
-do
+do 
 if [ -d $file ]; then
 cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/scenes
 fi
@@ -88,7 +87,7 @@ done
 
 # scripts
 for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/scripts/*
-do
+do 
 if [ -d $file ]; then
 cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/scripts
 fi
@@ -114,6 +113,6 @@ export NDK_MODULE_PATH=$PX2_ROOT_LOCAL\
 :$PX2_ROOT_LOCAL/Samples/GameX/\
 :$APPPLAY_MYAPP_ANDROID_ROOT
 
-$NDK_ROOT_LOCAL/ndk-build -C $APPPLAY_MYAPP_ANDROID_ROOT
+$NDK_ROOT_LOCAL/ndk-build -C $APPPLAY_MYAPP_ANDROID_ROOT 
 
 echo "end build"
