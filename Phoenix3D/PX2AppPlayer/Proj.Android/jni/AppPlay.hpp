@@ -30,6 +30,8 @@ namespace appplay
 		// res path
 		static void SetResourcePath(std::string path);
 		static void SetDataServerUpdateType(std::string type);
+        
+        static void SetWriteablePath(std::string path);
 
 		// text
 		static void Text_InsertText(const char *text, int length);

@@ -144,14 +144,10 @@ int DNS::LastError()
 {
 #if defined(_WIN32) || defined(WIN32)
 	return ::GetLastError();
-#else
-
-#ifndef __ANDROID__
+#elif defined (__ANDROID__)
+	return 0;
+#elif defined (__IOS__)
 	return h_errno;
-#else
-	return h_errno;
-#endif
-
 #endif
 }
 //----------------------------------------------------------------------------

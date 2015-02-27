@@ -150,6 +150,15 @@ void NativeCall::SetDataServerUpdateType(std::string type)
 
 }
 //----------------------------------------------------------------------------
+void NativeCall::SetWriteablePath(std::string path)
+{
+    
+#ifdef APPPLAY_PX2
+	PX2::ResourceManager::SetWriteablePath(path);
+#endif
+    
+}
+//----------------------------------------------------------------------------
 void NativeCall::Text_InsertText(const char *text, int length)
 {
 
