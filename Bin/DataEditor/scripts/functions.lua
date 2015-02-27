@@ -266,3 +266,6 @@ end
 
 function e_CreateUIProgressBar(usePickPos)
 end
+
+function e_ProjectView_Detail_General()
+end

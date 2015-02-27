@@ -346,7 +346,7 @@ void GraphicsRoot::RemoveRenderSteps(RenderStep *step)
 	}
 
 	std::map<FString, RenderStepPtr>::iterator it = mRenderStepMap.begin();
-	for (; it != mRenderStepMap.end();)
+	for (; it != mRenderStepMap.end(); it++)
 	{
 		if (it->second == step)
 		{

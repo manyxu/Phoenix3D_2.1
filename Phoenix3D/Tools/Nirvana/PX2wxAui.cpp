@@ -149,6 +149,8 @@ void PX2wxAuiToolBar::SetItemsState(int state)
 PX2wxAuiToolBarArt::PX2wxAuiToolBarArt(int type):
 mType(type)
 {
+	SetElementSize(wxAUI_TBART_GRIPPER_SIZE, 0);
+	SetElementSize(wxAUI_TBART_OVERFLOW_SIZE, 0);
 }
 //----------------------------------------------------------------------------
 PX2wxAuiToolBarArt::~PX2wxAuiToolBarArt()
@@ -162,7 +164,7 @@ void PX2wxAuiToolBarArt::DrawBackground(
 	const wxRect& _rect)
 {
 	wxRect rect = _rect;
-	rect.height++;
+	rect.height += 1;
 
 	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
 	if (theme)
@@ -173,26 +175,6 @@ void PX2wxAuiToolBarArt::DrawBackground(
 		else
 			color = Float3TowxColour(theme->Color_Aui_ToolBar_Background);
 		dc.GradientFillLinear(rect, color, color, wxALL);
-	}
-}
-//----------------------------------------------------------------------------
-void PX2wxAuiToolBarArt::DrawPlainBackground(wxDC& dc,
-	wxWindow*,
-	const wxRect& _rect)
-{
-	wxRect rect = _rect;
-	rect.height++;
-
-	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
-	if (theme)
-	{
-		dc.SetBrush(Float3TowxColour(theme->Color_Aui_Toolbar_PlainBackgound));
-
-		dc.DrawRectangle(
-			rect.GetX() - 1, 
-			rect.GetY() - 1,
-			rect.GetWidth() + 2,
-			rect.GetHeight() + 1);
 	}
 }
 //----------------------------------------------------------------------------

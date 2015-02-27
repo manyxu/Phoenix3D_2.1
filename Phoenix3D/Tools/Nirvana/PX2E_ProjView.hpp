@@ -11,6 +11,8 @@ using namespace PX2;
 namespace PX2Editor
 {
 
+	class PX2wxAuiToolBar;
+
 	class ProjView : public wxWindow
 	{
 		DECLARE_DYNAMIC_CLASS(ProjView)
@@ -26,7 +28,7 @@ namespace PX2Editor
 
 		ProjView();
 
-		wxAuiToolBar *mProjTreeBar;
+		PX2wxAuiToolBar *mProjTreeBar;
 		ProjTree *mProjTree;
 		wxSearchCtrl *mSearchCtrl;
 	};

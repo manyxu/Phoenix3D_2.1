@@ -50,7 +50,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mProjView(0),
 	mIsCrossCursor(false)
 {
-	mPerspConfigName = "nirvana1.0.2.config";
+	mPerspConfigName = "nirvana1.0.3.config";
 
 	PX2_EW.ComeIn(this);
 }
@@ -89,7 +89,7 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE, 1);
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 2);
 
-	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(41, 57, 85));
+	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(255, 57, 85));
 
 	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
@@ -548,7 +548,7 @@ void E_MainFrame::_CreateTopView()
 	mTopView = new TopView(this);
 
 	mAuiManager->AddPane(mTopView, wxAuiPaneInfo().
-		Name(wxT("topview")).ToolbarPane().
+		Name(wxT("topview")).ToolbarPane().PaneBorder(false).
 		Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
 		MinSize(200, 30).MaxSize(200, 30).Top().Resizable(false).CaptionVisible(false));
 }
@@ -569,8 +569,8 @@ void E_MainFrame::_CreateMainToolBar()
 
 		mAuiManager->AddPane(mToolBarMain, wxAuiPaneInfo().
 			Name(wxT("maintoolbar")).
-			Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
-			MinSize(200, 30).MaxSize(200, 30).Top().Resizable(false).CaptionVisible(false));
+			Gripper(true).Top().Dockable(false).PaneBorder(true).
+			MinSize(200, 28).MaxSize(200, 28).Top().Resizable(false).CaptionVisible(false));
 	}	
 }
 //----------------------------------------------------------------------------
@@ -593,8 +593,8 @@ void E_MainFrame::_CreateMenuToolBar()
 
 		mAuiManager->AddPane(mToolBarMenu, wxAuiPaneInfo().
 			Name(wxT("menutoolbar")).
-			ToolbarPane().Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
-			MinSize(200, 25).MaxSize(200, 25));
+			ToolbarPane().Gripper(true).Top().Dockable(false).Resizable(false).
+			MinSize(200, 25).MaxSize(200, 25).PaneBorder(true));
 	}
 }
 //----------------------------------------------------------------------------

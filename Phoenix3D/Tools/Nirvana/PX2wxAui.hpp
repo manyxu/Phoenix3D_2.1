@@ -54,10 +54,6 @@ namespace PX2Editor
 			wxWindow* wnd,
 			const wxRect& rect);
 
-		virtual void DrawPlainBackground(wxDC& dc,
-			wxWindow* wnd,
-			const wxRect& rect);
-
 		virtual void DrawLabel(
 			wxDC& dc,
 			wxWindow* wnd,

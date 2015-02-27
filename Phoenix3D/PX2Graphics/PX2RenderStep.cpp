@@ -32,11 +32,16 @@ void RenderStep::Update(double appSeconds, double elapsedSeconds)
 		mIsUpdated = true;
 	}
 
+	CameraPtr beforeCamer = mRenderer->GetCamera();
+	mRenderer->SetCamera(mCamera);
+
 	PX2_UNUSED(elapsedSeconds);
 	if (mNode)
 	{
 		mNode->Update(appSeconds, false);
 	}
+
+	mRenderer->SetCamera(beforeCamer);
 }
 //----------------------------------------------------------------------------
 void RenderStep::Enable(bool enable)

@@ -3,7 +3,9 @@
 #include "PX2E_ProjView.hpp"
 #include "PX2E_ProjTree.hpp"
 #include "PX2E_Define.hpp"
+#include "PX2E_NirMan.hpp"
 #include "PX2Project.hpp"
+#include "PX2ScriptManager.hpp"
 #include "PX2wxAui.hpp"
 using namespace PX2Editor;
 
@@ -25,8 +27,13 @@ mProjTree(0)
 	wxBoxSizer* bSizer55;
 	bSizer55 = new wxBoxSizer(wxVERTICAL);
 
-	mProjTreeBar = new wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+	mProjTreeBar = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
+	mProjTreeBar->SetArtProvider(new PX2wxAuiToolBarArt(1));
+
+	NirMan::GetSingleton().SetCurToolBar(mProjTreeBar);
+	PX2_SM.CallString("e_CreateTooBarProject()");
+
 	mProjTreeBar->Realize();
 
 	bSizer55->Add(mProjTreeBar, 0, wxEXPAND | wxBOTTOM, 5);

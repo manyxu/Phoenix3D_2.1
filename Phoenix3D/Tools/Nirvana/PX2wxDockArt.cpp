@@ -327,16 +327,46 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 
 	if (pane.IsToolbar())
 	{
+		if (theme)
+		{
+			wxColour color = Float3TowxColour(theme->Color_Aui_MenuBar_Background);
+			dc.SetPen(wxPen(color));
+			dc.SetBrush(wxBrush(color));
+		}
+
 		for (i = 0; i < border_width; ++i)
 		{
-			dc.SetPen(*wxWHITE_PEN);
 			dc.DrawLine(rect.x, rect.y, rect.x + rect.width, rect.y);
+
 			dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
-			dc.SetPen(m_borderPen);
-			dc.DrawLine(rect.x, rect.y + rect.height - 1,
-				rect.x + rect.width, rect.y + rect.height - 1);
-			dc.DrawLine(rect.x + rect.width - 1, rect.y,
-				rect.x + rect.width - 1, rect.y + rect.height);
+
+			dc.DrawLine(rect.x, rect.y + rect.height - 1, rect.x + rect.width, rect.y + rect.height - 1);
+
+			dc.DrawLine(rect.x + rect.width - 1, rect.y - 1, rect.x + rect.width - 1, rect.y + rect.height - 1);
+			dc.DrawLine(rect.x + rect.width - 1, rect.y, rect.x + rect.width - 1, rect.y + rect.height);
+
+			rect.Deflate(1);
+		}
+	}
+	else if ("maintoolbar" == pane.name)
+	{
+		if (theme)
+		{
+			wxColour color = Float3TowxColour(theme->Color_Aui_ToolBar_Border);
+			dc.SetPen(wxPen(color));
+			dc.SetBrush(wxBrush(color));
+		}
+
+		for (i = 0; i < border_width; ++i)
+		{
+			dc.DrawLine(rect.x, rect.y, rect.x + rect.width, rect.y);
+
+			dc.DrawLine(rect.x, rect.y, rect.x, rect.y + rect.height);
+
+			dc.DrawLine(rect.x, rect.y + rect.height - 1, rect.x + rect.width, rect.y + rect.height - 1);
+
+			dc.DrawLine(rect.x + rect.width - 1, rect.y, rect.x + rect.width - 1, rect.y + rect.height);
+
 			rect.Deflate(1);
 		}
 	}

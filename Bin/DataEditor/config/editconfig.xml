@@ -12,6 +12,7 @@
 			<aui_borderthin_center val="41, 57, 85"/>
 			<aui_menubar_background val="214, 219, 233"/>
 			<aui_toolbar_background val="207, 214, 233"/>
+			<aui_toolbar_border val="207, 214, 233"/>
 			<aui_toolbar_text val="0, 0, 0"/>
 			<aui_tabbar val="54, 78, 111"/>
 			<aui_tabbar_active val="255, 242, 157"/>
@@ -27,6 +28,7 @@
 			<aui_borderthin_center val="45, 45, 48"/>
 			<aui_menubar_background val="45, 45, 48"/>
 			<aui_toolbar_background val="45, 45, 48"/>
+			<aui_toolbar_border val="45, 45, 48"/>
 			<aui_toolbar_text val="255, 255, 255"/>
 			<aui_tabbar val="45, 45, 48"/>
 			<aui_tabbar_active val="0, 122, 204"/>

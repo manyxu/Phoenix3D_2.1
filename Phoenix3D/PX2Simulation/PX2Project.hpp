@@ -25,9 +25,6 @@ namespace PX2
 		// 使用该接口删除Project
 		static void Destory();
 
-	private:
-		//static Pointer0<Project> msProject;
-
 		// Load Save
 	public:
 		bool Save(const std::string &filename); //< only used in editor

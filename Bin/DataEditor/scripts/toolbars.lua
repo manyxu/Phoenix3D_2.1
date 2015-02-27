@@ -38,3 +38,8 @@ function e_CreateToolBarSceneUI()
 	NirMan:AddTool("DataEditor/icons/edittype/simulate.png", "e_SetEditMode_UI()")
 	NirMan:AddTool("DataEditor/icons/edittype/play.png", "e_SetEditMode_UI()")
 end
+
+-- project view toolbar
+function e_CreateTooBarProject()
+	NirMan:AddTool("DataEditor/icons/edittype/sceneedit.png", "e_ProjectView_Detail_General()")
+end

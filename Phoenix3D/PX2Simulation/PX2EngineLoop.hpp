@@ -18,6 +18,7 @@
 #include "PX2RedoUndo.hpp"
 #include "PX2Creater.hpp"
 #include "PX2AccoutManager.hpp"
+#include "PX2Project.hpp"
 
 namespace PX2
 {
@@ -121,6 +122,10 @@ namespace PX2
 
 		PlayType mPlayType;
 		Rectf mAdjustViewPort;
+
+		// Project Keep
+	public_internal:
+		Pointer0<Project> msProject;
 	};
 
 #include "PX2EngineLoop.inl"

@@ -10,10 +10,9 @@
 #include "PX2UIView.hpp"
 #include "PX2UISizeFrame.hpp"
 #include "PX2UIPicBox.hpp"
+#include "PX2EngineLoop.hpp"
 using namespace PX2;
 
-//----------------------------------------------------------------------------
-//Pointer0<Project> Project::msProject;
 //----------------------------------------------------------------------------
 Project::Project() :
 mEdit_UICameraPercent(1.0f)
@@ -21,7 +20,7 @@ mEdit_UICameraPercent(1.0f)
 	if (ScriptManager::GetSingletonPtr())
 		PX2_SM.SetUserTypePointer("PX2_PROJ", "Project", this);
 
-	//msProject = this;
+	PX2_ENGINELOOP.msProject = this;
 
 	mBackgroundColor = Float4::MakeColor(255, 255, 200, 255);
 	
@@ -57,10 +56,10 @@ Project::~Project ()
 //----------------------------------------------------------------------------
 void Project::Destory()
 {
-	//if (msProject)
+	if (PX2_ENGINELOOP.msProject)
 	{
-	//	msProject = 0;
-	//	Project::Set(0);
+		PX2_ENGINELOOP.msProject = 0;
+		Project::Set(0);
 	}
 }
 //----------------------------------------------------------------------------

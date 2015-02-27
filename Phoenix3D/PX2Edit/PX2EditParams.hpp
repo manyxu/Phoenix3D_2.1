@@ -33,7 +33,6 @@ namespace PX2
 		Float3 Color_Aui_MenuBar_Background;
 
 		Float3 Color_Aui_ToolBar_Background;
-		Float3 Color_Aui_Toolbar_PlainBackgound;
 		Float3 Color_Aui_ToolBar_Border;
 
 		Float3 Color_Aui_Toolbar_Separator;

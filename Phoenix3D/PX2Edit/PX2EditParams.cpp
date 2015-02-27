@@ -33,7 +33,6 @@ Theme::Theme()
 	Color_Aui_MenuBar_Background = Float3::MakeColor(214, 219, 233);
 
 	Color_Aui_ToolBar_Background = Float3::MakeColor(207, 214, 229);
-	Color_Aui_Toolbar_PlainBackgound = Float3::MakeColor(255, 0, 0);
 	Color_Aui_ToolBar_Border = Float3::MakeColor(220, 224, 236);
 	Color_Aui_Toolbar_Separator = Float3::MakeColor(133, 145, 162);
 	Color_Aui_Toolbar_Text = Float3::BLACK;
@@ -131,6 +130,8 @@ bool EditParams::Load(const std::string &filename)
 
 					else if ("aui_toolbar_background" == themValName)
 						theme->Color_Aui_ToolBar_Background = StringToFloat3(themeValNode.AttributeToString("val"));
+					else if ("aui_toolbar_border" == themValName)
+						theme->Color_Aui_ToolBar_Border = StringToFloat3(themeValNode.AttributeToString("val"));
 					else if ("aui_toolbar_text" == themValName)
 						theme->Color_Aui_Toolbar_Text = StringToFloat3(themeValNode.AttributeToString("val"));
 
