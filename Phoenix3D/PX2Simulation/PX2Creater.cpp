@@ -75,6 +75,17 @@ Actor *Creater::CreateActor_Effect(Scene *scene, const APoint &pos)
 	return actor;
 }
 //----------------------------------------------------------------------------
+Character *Creater::CreateActor_Character(Scene *scene, const APoint &pos)
+{
+	CharacterPtr chara = new0 Character();
+	chara->SetName("Character");
+	chara->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, chara);
+
+	return chara;
+}
+//----------------------------------------------------------------------------
 Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 	bool isPosWorld, bool doAdd, bool usePickPos)
 {

@@ -4,6 +4,7 @@
 #include "PX2E_NirMan.hpp"
 #include "PX2E_Define.hpp"
 #include "PX2EffectActor.hpp"
+#include "PX2Character.hpp"
 #include "PX2NirvanaEventType.hpp"
 #include "PX2Project.hpp"
 #include "PX2Edit.hpp"
@@ -290,6 +291,10 @@ void ProjTree::_AddObject(Object *obj)
 		if (actor->IsDerived(CameraActor::TYPE))
 		{
 			mItemCameras->AddChild(obj, 0, mTreeLevel);
+		}
+		else if (actor->IsDerived(Character::TYPE))
+		{
+			mItemCharacters->AddChild(obj, 0, mTreeLevel);
 		}
 		else if (actor->IsDerived(EffectActor::TYPE))
 		{

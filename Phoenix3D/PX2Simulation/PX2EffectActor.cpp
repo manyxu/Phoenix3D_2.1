@@ -25,7 +25,6 @@ EffectActor::EffectActor()
 	mtl->GetCullProperty(0, 0)->Enabled = false;
 	mesh->LocalTransform.SetUniformScale(0.5f);
 	mesh->SetMaterialInstance(mtl->CreateInstance());
-
 	CreateHelpNode()->AttachChild(mesh);
 }
 //----------------------------------------------------------------------------

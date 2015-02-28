@@ -4,6 +4,9 @@
 #include "PX2TriMesh.hpp"
 #include "PX2SkinController.hpp"
 #include "PX2Animation3DSkeleton.hpp"
+#include "PX2StandardMesh.hpp"
+#include "PX2VertexColor4Material.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Actor, Character);
@@ -21,6 +24,18 @@ mIsDead(false)
 {
 	PX2_INIT_PM_F(HP);
 	PX2_INIT_PM_F(AP);
+
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
+
+	StandardMesh stdMesh(vf);
+	stdMesh.SetVertexColor(Float4(1.0f, 0.0f, 0.0f, 1.0f));
+	TriMesh *mesh = stdMesh.Box(0.5f, 0.5f, 0.5f);
+	PX2::VertexColor4MaterialPtr mtl = new0 VertexColor4Material();
+	mtl->GetWireProperty(0, 0)->Enabled = true;
+	mtl->GetCullProperty(0, 0)->Enabled = false;
+	mesh->LocalTransform.SetUniformScale(0.5f);
+	mesh->SetMaterialInstance(mtl->CreateInstance());
+	CreateHelpNode()->AttachChild(mesh);
 }
 //----------------------------------------------------------------------------
 Character::~Character()

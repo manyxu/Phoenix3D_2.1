@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 02/28/15 16:27:27.
+** Generated automatically by tolua++-1.0.92 on 02/28/15 19:32:12.
 */
 
 #ifndef __cplusplus
@@ -155,7 +155,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Controlledable");
  tolua_usertype(tolua_S,"ResHandle");
  tolua_usertype(tolua_S,"UIFrame");
- tolua_usertype(tolua_S,"Node");
+ tolua_usertype(tolua_S,"AVector");
  tolua_usertype(tolua_S,"Triangles");
  tolua_usertype(tolua_S,"PX2::AVector");
  tolua_usertype(tolua_S,"Float4");
@@ -194,33 +194,34 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"TexPack");
  tolua_usertype(tolua_S,"CameraActor");
- tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"Soundable");
- tolua_usertype(tolua_S,"VisibleSet");
+ tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"RibbonEmitter");
+ tolua_usertype(tolua_S,"VisibleSet");
  tolua_usertype(tolua_S,"BeamEmitter");
- tolua_usertype(tolua_S,"VertexShader");
  tolua_usertype(tolua_S,"Billboard");
+ tolua_usertype(tolua_S,"VertexShader");
  tolua_usertype(tolua_S,"ParticleEmitter");
+ tolua_usertype(tolua_S,"Character");
  tolua_usertype(tolua_S,"AlphaProperty");
  tolua_usertype(tolua_S,"VertexFormat");
  tolua_usertype(tolua_S,"UIEditBox");
  tolua_usertype(tolua_S,"UIButton");
- tolua_usertype(tolua_S,"AVector");
+ tolua_usertype(tolua_S,"Texture1D");
  tolua_usertype(tolua_S,"GlobalMaterial");
  tolua_usertype(tolua_S,"APoint");
+ tolua_usertype(tolua_S,"Node");
  tolua_usertype(tolua_S,"Light");
- tolua_usertype(tolua_S,"TriMesh");
  tolua_usertype(tolua_S,"MaterialInstance");
  tolua_usertype(tolua_S,"WireProperty");
- tolua_usertype(tolua_S,"ResourceManager");
+ tolua_usertype(tolua_S,"TriMesh");
  tolua_usertype(tolua_S,"PX2::Object");
  tolua_usertype(tolua_S,"StencilProperty");
  tolua_usertype(tolua_S,"Float3");
+ tolua_usertype(tolua_S,"ResourceManager");
  tolua_usertype(tolua_S,"HMatrix");
  tolua_usertype(tolua_S,"Vector2f");
  tolua_usertype(tolua_S,"Buffer::Locking");
- tolua_usertype(tolua_S,"Texture1D");
  tolua_usertype(tolua_S,"Bound");
  tolua_usertype(tolua_S,"IndexBuffer");
  tolua_usertype(tolua_S,"int64_t");
@@ -13637,6 +13638,42 @@ static int tolua_PX2_Creater_CreateActor_Effect00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: CreateActor_Character of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateActor_Character00
+static int tolua_PX2_Creater_CreateActor_Character00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateActor_Character'", NULL);
+#endif
+  {
+   Character* tolua_ret = (Character*)  self->CreateActor_Character(scene,*pos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Character");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateActor_Character'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: CreateRectangle of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateRectangle00
 static int tolua_PX2_Creater_CreateRectangle00(lua_State* tolua_S)
@@ -15278,6 +15315,7 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateActor_Box",tolua_PX2_Creater_CreateActor_Box00);
    tolua_function(tolua_S,"CreateActor_Sphere",tolua_PX2_Creater_CreateActor_Sphere00);
    tolua_function(tolua_S,"CreateActor_Effect",tolua_PX2_Creater_CreateActor_Effect00);
+   tolua_function(tolua_S,"CreateActor_Character",tolua_PX2_Creater_CreateActor_Character00);
    tolua_function(tolua_S,"CreateRectangle",tolua_PX2_Creater_CreateRectangle00);
    tolua_function(tolua_S,"CreateBox",tolua_PX2_Creater_CreateBox00);
    tolua_function(tolua_S,"CreateSphere",tolua_PX2_Creater_CreateSphere00);
