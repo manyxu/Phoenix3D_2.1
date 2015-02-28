@@ -1,6 +1,7 @@
 // PX2Shader.cpp
 
 #include "PX2Shader.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Object, Shader);
@@ -635,7 +636,14 @@ const std::string* Shader::GetProgram (int profile) const
 {
     if (0 <= profile && profile < MAX_PROFILES)
     {
-        return mProgram[profile];
+		if (mProgramFilename[profile] && !mProgramFilename[profile]->empty())
+		{
+			return PX2_GR.GetShaderStr(mProgramFilename[profile]->c_str());
+		}
+		else
+		{
+			return mProgram[profile];
+		}
     }
 
     assertion(false, "Invalid profile.\n");

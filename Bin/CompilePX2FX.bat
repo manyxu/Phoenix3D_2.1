@@ -1,2 +1,2 @@
-cd C:\Users\xuduo\Documents\codes\Phoenix\Bin\Data\mtls\ui
+cd C:\Users\void\Documents\GitHub\Phoenix3D\Bin\Data\mtls\ui
 ..\\..\\..\\FxCompilerD.exe ui.xml

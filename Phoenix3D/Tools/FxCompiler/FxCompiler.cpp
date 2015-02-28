@@ -612,12 +612,13 @@ bool FxCompiler::ProcessShaderNode_Program(XMLNode programNode, Shader *shader)
 					Parse(compiledFilename, profileName, program);
 
 					shader->SetProgram(i, program.Text);
+					//shader->SetProgramFilename(i, "Data/mtls/" + entryname + "/" + compiledFilename);
 				}
 			}
 			else if ("gles2" == type)
 			{
-				int profile = (int)VertexShader::P_OPENGLES2;
-				shader->SetProgramFilename(profile, "Data/mtls/" + entryname + filename);
+				int profile = (int)Shader::P_OPENGLES2;
+				shader->SetProgramFilename(profile, "Data/mtls/" + entryname + "/" + filename);
 			}
 		}
 

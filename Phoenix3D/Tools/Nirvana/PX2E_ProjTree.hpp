@@ -66,6 +66,7 @@ namespace PX2Editor
 		ProjTreeItem *mItemScene;
 		ProjTreeItem *mItemCameras;
 		ProjTreeItem *mItemObjects;
+		ProjTreeItem *mItemEffects;
 		ProjTreeItem *mItemUI;
 		ProjTreeItem *mItemLogic;
 

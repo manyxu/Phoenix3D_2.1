@@ -15,7 +15,8 @@ using namespace PX2;
 
 //----------------------------------------------------------------------------
 Project::Project() :
-mEdit_UICameraPercent(1.0f)
+mEdit_UICameraPercent(1.0f),
+mScreenOrientation(SO_LANDSCAPE)
 {
 	if (ScriptManager::GetSingletonPtr())
 		PX2_SM.SetUserTypePointer("PX2_PROJ", "Project", this);
@@ -63,6 +64,27 @@ void Project::Destory()
 	}
 }
 //----------------------------------------------------------------------------
+void Project::SetScreenOrientation(ScreenOrientation so)
+{
+	mScreenOrientation = so;
+}
+//----------------------------------------------------------------------------
+Project::ScreenOrientation Project::_FromSOStr(const std::string &str)
+{
+	if ("landscape" == str) return SO_LANDSCAPE;
+	else if ("portrait" == str) return SO_PORTRAIT;
+
+	return SO_PORTRAIT;
+}
+//----------------------------------------------------------------------------
+std::string Project::_ToSOStr(Project::ScreenOrientation so)
+{
+	if (SO_LANDSCAPE == so) return "landscape";
+	else if (SO_PORTRAIT == so) return "portrait";
+
+	return "portrait";
+}
+//----------------------------------------------------------------------------
 bool Project::Save(const std::string &filename)
 {
 	if (!SaveConfig(filename))
@@ -96,6 +118,7 @@ bool Project::SaveConfig(const std::string &filename)
 	// general
 	XMLNode generalNode = projNode.NewChild("general");
 	generalNode.SetAttributeString("name", GetName().c_str());
+	generalNode.SetAttributeString("screenorientation", _ToSOStr(mScreenOrientation));
 	generalNode.SetAttributeInt("width", (int)mSize.Width);
 	generalNode.SetAttributeInt("height", (int)mSize.Height);
 	std::string colorStr =
@@ -150,6 +173,9 @@ bool Project::Load(const std::string &filename)
 			if (!generalNode.IsNull())
 			{
 				name = generalNode.AttributeToString("name");
+
+				SetScreenOrientation(_FromSOStr(generalNode.AttributeToString("screenorientation")));
+
 				width = generalNode.AttributeToInt("width");
 				height = generalNode.AttributeToInt("height");
 				std::string colorStr = generalNode.AttributeToString("color");

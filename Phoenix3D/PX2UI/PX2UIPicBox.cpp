@@ -15,8 +15,8 @@ PX2_IMPLEMENT_FACTORY(UIPicBox);
 PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, UIPicBox);
 
 //----------------------------------------------------------------------------
-UIPicBox::UIPicBox(const std::string &filename, bool isDynamicBuffer) :
-mIsDynamic(isDynamicBuffer),
+UIPicBox::UIPicBox(const std::string &filename, int isDynamicBuffer) :
+mIsDynamic(isDynamicBuffer>0),
 mPicBoxType(PBT_NORMAL),
 mAnchorPoint(0.5f, 0.5f),
 mSize(128.0f, 64.0f),
@@ -40,8 +40,8 @@ mTexturePathname(filename)
 }
 //----------------------------------------------------------------------------
 UIPicBox::UIPicBox(const std::string &packName, const std::string &eleName,
-	bool isDynamicBuffer) :
-mIsDynamic(isDynamicBuffer),
+	int isDynamicBuffer) :
+mIsDynamic(isDynamicBuffer>0),
 mPicBoxType(PBT_NORMAL),
 mAnchorPoint(0.5f, 0.5f),
 mSize(128.0f, 64.0f),

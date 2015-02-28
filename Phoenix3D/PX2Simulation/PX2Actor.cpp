@@ -79,7 +79,6 @@ Node *Actor::CreateHelpNode()
 		mHelpNode = new0 Node();
 		AttachChild(mHelpNode);
 		mHelpNode->SetName("HelpNode");
-		mHelpNode->Show(false);
 	}
 
 	return mHelpNode;

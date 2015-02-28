@@ -1,5 +1,3 @@
-// UI_gles2_vs.fx
-
 uniform mat4 PVWMatrix;
 attribute mediump vec3 modelPosition;
 attribute mediump vec2 modelTCoord0;

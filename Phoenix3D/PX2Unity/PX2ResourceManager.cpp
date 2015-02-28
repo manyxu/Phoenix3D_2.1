@@ -65,9 +65,16 @@ static void pngReadCallBack(png_structp png_ptr, png_bytep data, png_size_t leng
 }
 
 //----------------------------------------------------------------------------
-Object *ResManUserLoadFun(const char *filename)
+Object *ResManUserObjectLoadFun(const char *filename)
 {
 	return ResourceManager::GetSingleton().BlockLoad(filename);
+}
+//----------------------------------------------------------------------------
+bool ResManUserBufferLoadFun(const char *filename, int &bufferSize,
+	char* &buffer)
+{
+	return ResourceManager::GetSingleton().LoadBuffer(filename, bufferSize,
+		buffer);
 }
 //----------------------------------------------------------------------------
 std::string ResourceManager::msResPath;
@@ -106,7 +113,8 @@ mResourceUpdateCallback(0)
 	mResTableMutex = new0 Mutex();
 	mTexPacksMutex = new0 Mutex();
 
-	GraphicsRoot::SetUserLoadFun(ResManUserLoadFun);
+	GraphicsRoot::SetUserLoadFun(ResManUserObjectLoadFun);
+	GraphicsRoot::SetBufferLoadFun(ResManUserBufferLoadFun);
 
 	CreateCondition(mLoadingDequeCondition);
 	mLoadingThread = new0 Thread("ResLoadThread");
@@ -341,9 +349,10 @@ bool ResourceManager::IsFloderExist (const std::string &parentPath,
 bool ResourceManager::LoadBuffer (const std::string &filename, int &bufferSize, 
 	char* &buffer)
 {
-	if (filename == "")
+	if (filename.empty())
 	{
 		assertion(false, "filename must not be null");
+		return false;
 	}
 
 	LoadRecord &loadRec = InsertRecord(filename.c_str(), true);

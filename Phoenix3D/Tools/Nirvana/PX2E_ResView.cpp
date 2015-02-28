@@ -4,6 +4,8 @@
 #include "PX2E_ResSplitPanel.hpp"
 #include "PX2E_ResTree.hpp"
 #include "PX2E_Define.hpp"
+#include "PX2E_NirMan.hpp"
+#include "PX2ScriptManager.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -24,8 +26,13 @@ wxWindow(parent, -1)
 	wxBoxSizer* bSizer55;
 	bSizer55 = new wxBoxSizer(wxVERTICAL);
 
-	mResTreeBar = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-		wxTB_HORIZONTAL | wxTB_FLAT | wxTB_NODIVIDER);
+	mResTreeBar = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
+	mResTreeBar->SetArtProvider(new PX2wxAuiToolBarArt(1));
+
+	NirMan::GetSingleton().SetCurToolBar(mResTreeBar);
+	PX2_SM.CallString("e_CreateTooBarRes()");
+
 	mResTreeBar->Realize();
 
 	bSizer55->Add(mResTreeBar, 0, wxEXPAND | wxBOTTOM, 5);

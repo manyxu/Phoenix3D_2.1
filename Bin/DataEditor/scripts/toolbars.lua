@@ -47,3 +47,10 @@ function e_CreateTooBarProject()
 	NirMan:AddTool("DataEditor/icons/projview/mtl.png", "e_ProjectView_Detail_Materials()")
 	NirMan:AddTool("DataEditor/icons/projview/detail.png", "e_ProjectView_Detail_Details()")
 end
+
+-- res view toolbar
+function e_CreateTooBarRes()
+	NirMan:AddTool("DataEditor/icons/resview/res_refresh.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/resview/res_clear.png", "e_ResView_Clear()")
+	NirMan:AddToolSeparater()
+end

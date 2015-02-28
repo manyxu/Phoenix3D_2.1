@@ -1,6 +1,11 @@
 // PX2Project.inl
 
 //----------------------------------------------------------------------------
+inline Project::ScreenOrientation Project::GetScreenOrientation() const
+{
+	return mScreenOrientation;
+}
+//----------------------------------------------------------------------------
 inline const Sizef & Project::GetSize() const
 {
 	return mSize;

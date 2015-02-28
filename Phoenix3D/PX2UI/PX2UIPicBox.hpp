@@ -26,9 +26,9 @@ namespace PX2
 
 	public:
 		UIPicBox(const std::string &filename = "Data/engine/default.png",
-			bool isDynamicBuffer=false);
+			int isDynamicBuffer=0);
 		UIPicBox(const std::string &packName, const std::string &eleName,
-			bool isDynamicBuffer=false);
+			int isDynamicBuffer=0);
 		virtual ~UIPicBox();
 
 		enum PicBoxType

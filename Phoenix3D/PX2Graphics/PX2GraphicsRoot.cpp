@@ -452,3 +452,33 @@ void GraphicsRoot::SetUserLoadFun(ObjectLoadFun userLoadFun)
 	msUserLoadFun = userLoadFun;
 }
 //----------------------------------------------------------------------------
+BufferLoadFun GraphicsRoot::msBufferLoadFun = 0;
+//----------------------------------------------------------------------------
+void GraphicsRoot::SetBufferLoadFun(BufferLoadFun bufferLoadFun)
+{
+	msBufferLoadFun = bufferLoadFun;
+}
+//----------------------------------------------------------------------------
+const std::string *GraphicsRoot::GetShaderStr(const char *filename)
+{
+	std::map<FString, std::string>::iterator it = mShadersMap.find(filename);
+	if (it != mShadersMap.end())
+	{
+		return &(it->second);
+	}
+	else
+	{
+		int bufferSize = 0;
+		char *buffer = 0;
+		PX2_GR.msBufferLoadFun(filename, bufferSize, buffer);
+		if (0 != bufferSize && buffer)
+		{
+			std::string str(buffer);
+			mShadersMap[filename] = str;
+			return &(mShadersMap[filename]);
+		}
+	}
+
+	return 0;
+}
+//----------------------------------------------------------------------------

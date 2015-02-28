@@ -3,6 +3,7 @@
 #include "PX2E_ProjTree.hpp"
 #include "PX2E_NirMan.hpp"
 #include "PX2E_Define.hpp"
+#include "PX2EffectActor.hpp"
 #include "PX2NirvanaEventType.hpp"
 #include "PX2Project.hpp"
 #include "PX2Edit.hpp"
@@ -50,6 +51,7 @@ mEditMenu(0)
 	int imageLogic = mImageList->Add(wxIcon(wxT("DataEditor/icons/logic.png"), wxBITMAP_TYPE_PNG));
 	int imageCamera = mImageList->Add(wxIcon(wxT("DataEditor/icons/logic.png"), wxBITMAP_TYPE_PNG));
 	int imageObject = mImageList->Add(wxIcon(wxT("DataEditor/icons/logic.png"), wxBITMAP_TYPE_PNG));
+	int imageEffect = mImageList->Add(wxIcon(wxT("DataEditor/icons/projview/effect.png"), wxBITMAP_TYPE_PNG));
 	SetImageList(mImageList);
 
 	Icons["proj"] = imageProject;
@@ -58,6 +60,7 @@ mEditMenu(0)
 	Icons["logic"] = imageLogic;
 	Icons["camera"] = imageCamera;
 	Icons["object"] = imageObject;
+	Icons["effect"] = imageEffect;
 
 	//SetBackgroundColour(wxColour(0, 214, 229));
 }
@@ -175,13 +178,14 @@ void ProjTree::_ClearProject()
 //----------------------------------------------------------------------------
 void ProjTree::_RefreshScene()
 {
-	mItemCameras = new ProjTreeItem(this, mItemScene,
-		ProjTreeItem::IT_CATALOG, Icons["camera"], 0, mTreeLevel, "Camera");
+	mItemCameras = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["camera"], 0, mTreeLevel, PX2_LM.GetValue("pv_Camera") );
 	mItemScene->mChildItems.push_back(mItemCameras);
 
-	mItemObjects = new ProjTreeItem(this, mItemScene,
-		ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, "Object");
+	mItemObjects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Object") );
 	mItemScene->mChildItems.push_back(mItemObjects);
+
+	mItemEffects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, PX2_LM.GetValue("pv_Effect") );
+	mItemScene->mChildItems.push_back(mItemEffects);
 
 	Scene *scene = 0;
 	Project *proj = Project::GetSingletonPtr();
@@ -263,6 +267,10 @@ void ProjTree::_AddObject(Object *obj)
 		if (actor->IsDerived(CameraActor::TYPE))
 		{
 			mItemCameras->AddChild(obj, 0, mTreeLevel);
+		}
+		else if (actor->IsDerived(EffectActor::TYPE))
+		{
+			mItemEffects->AddChild(obj, 0, mTreeLevel);
 		}
 		else
 		{

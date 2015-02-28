@@ -48,6 +48,8 @@ namespace PX2
 		void _ClickSelect(const APoint &scrPos);
 		void _ClickSelectScene(const APoint &scrPos, SelectMode mode);
 
+		void _ClickSelectPos(const APoint &scrPos);
+
 		ViewType mViewType;
 		ViewDetail mViewDetail;
 		APoint mSelectPoint;

@@ -26,7 +26,7 @@ EffectActor::EffectActor()
 	mesh->LocalTransform.SetUniformScale(0.5f);
 	mesh->SetMaterialInstance(mtl->CreateInstance());
 
-	mHelpNode->AttachChild(mesh);
+	CreateHelpNode()->AttachChild(mesh);
 }
 //----------------------------------------------------------------------------
 EffectActor::~EffectActor()

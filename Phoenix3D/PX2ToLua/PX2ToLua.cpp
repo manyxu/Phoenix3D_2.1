@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 02/06/15 18:12:10.
+** Generated automatically by tolua++-1.0.92 on 02/28/15 16:27:27.
 */
 
 #ifndef __cplusplus
@@ -166,6 +166,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Transform");
  tolua_usertype(tolua_S,"Vector3f");
  tolua_usertype(tolua_S,"PX2::APoint");
+ tolua_usertype(tolua_S,"UICheckButton");
  tolua_usertype(tolua_S,"Movable");
  tolua_usertype(tolua_S,"Project");
  tolua_usertype(tolua_S,"CullProperty");
@@ -177,6 +178,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Renderable");
  tolua_usertype(tolua_S,"Texture::Format");
  tolua_usertype(tolua_S,"Sizef");
+ tolua_usertype(tolua_S,"UIProgressBar");
  tolua_usertype(tolua_S,"Texture3D");
  tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"Selection");
@@ -191,17 +193,18 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Camera");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"TexPack");
- tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"CameraActor");
- tolua_usertype(tolua_S,"VisibleSet");
+ tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"Soundable");
+ tolua_usertype(tolua_S,"VisibleSet");
  tolua_usertype(tolua_S,"RibbonEmitter");
- tolua_usertype(tolua_S,"VertexShader");
  tolua_usertype(tolua_S,"BeamEmitter");
+ tolua_usertype(tolua_S,"VertexShader");
  tolua_usertype(tolua_S,"Billboard");
+ tolua_usertype(tolua_S,"ParticleEmitter");
  tolua_usertype(tolua_S,"AlphaProperty");
  tolua_usertype(tolua_S,"VertexFormat");
- tolua_usertype(tolua_S,"ParticleEmitter");
+ tolua_usertype(tolua_S,"UIEditBox");
  tolua_usertype(tolua_S,"UIButton");
  tolua_usertype(tolua_S,"AVector");
  tolua_usertype(tolua_S,"GlobalMaterial");
@@ -13598,6 +13601,42 @@ static int tolua_PX2_Creater_CreateActor_Sphere00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: CreateActor_Effect of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateActor_Effect00
+static int tolua_PX2_Creater_CreateActor_Effect00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateActor_Effect'", NULL);
+#endif
+  {
+   Actor* tolua_ret = (Actor*)  self->CreateActor_Effect(scene,*pos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Actor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateActor_Effect'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: CreateRectangle of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateRectangle00
 static int tolua_PX2_Creater_CreateRectangle00(lua_State* tolua_S)
@@ -13923,6 +13962,126 @@ static int tolua_PX2_Creater_CreateUIButton00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'CreateUIButton'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateUICheckButton of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateUICheckButton00
+static int tolua_PX2_Creater_CreateUICheckButton00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateUICheckButton'", NULL);
+#endif
+  {
+   UICheckButton* tolua_ret = (UICheckButton*)  self->CreateUICheckButton(parent,*pos,isPosWorld,usePickPos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UICheckButton");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateUICheckButton'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateUIEditBox of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateUIEditBox00
+static int tolua_PX2_Creater_CreateUIEditBox00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateUIEditBox'", NULL);
+#endif
+  {
+   UIEditBox* tolua_ret = (UIEditBox*)  self->CreateUIEditBox(parent,*pos,isPosWorld,usePickPos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIEditBox");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateUIEditBox'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateUIProgressBar of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateUIProgressBar00
+static int tolua_PX2_Creater_CreateUIProgressBar00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateUIProgressBar'", NULL);
+#endif
+  {
+   UIProgressBar* tolua_ret = (UIProgressBar*)  self->CreateUIProgressBar(parent,*pos,isPosWorld,usePickPos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIProgressBar");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateUIProgressBar'.",&tolua_err);
  return 0;
 #endif
 }
@@ -15118,6 +15277,7 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateActor_Rectangle",tolua_PX2_Creater_CreateActor_Rectangle00);
    tolua_function(tolua_S,"CreateActor_Box",tolua_PX2_Creater_CreateActor_Box00);
    tolua_function(tolua_S,"CreateActor_Sphere",tolua_PX2_Creater_CreateActor_Sphere00);
+   tolua_function(tolua_S,"CreateActor_Effect",tolua_PX2_Creater_CreateActor_Effect00);
    tolua_function(tolua_S,"CreateRectangle",tolua_PX2_Creater_CreateRectangle00);
    tolua_function(tolua_S,"CreateBox",tolua_PX2_Creater_CreateBox00);
    tolua_function(tolua_S,"CreateSphere",tolua_PX2_Creater_CreateSphere00);
@@ -15126,6 +15286,9 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateUIPicBox",tolua_PX2_Creater_CreateUIPicBox01);
    tolua_function(tolua_S,"CreateUIText",tolua_PX2_Creater_CreateUIText00);
    tolua_function(tolua_S,"CreateUIButton",tolua_PX2_Creater_CreateUIButton00);
+   tolua_function(tolua_S,"CreateUICheckButton",tolua_PX2_Creater_CreateUICheckButton00);
+   tolua_function(tolua_S,"CreateUIEditBox",tolua_PX2_Creater_CreateUIEditBox00);
+   tolua_function(tolua_S,"CreateUIProgressBar",tolua_PX2_Creater_CreateUIProgressBar00);
    tolua_function(tolua_S,"CreateParticleEmitter",tolua_PX2_Creater_CreateParticleEmitter00);
    tolua_function(tolua_S,"CreateBillboard",tolua_PX2_Creater_CreateBillboard00);
    tolua_function(tolua_S,"CreateBeamEmitter",tolua_PX2_Creater_CreateBeamEmitter00);

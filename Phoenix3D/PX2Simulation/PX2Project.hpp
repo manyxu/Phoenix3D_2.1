@@ -25,6 +25,23 @@ namespace PX2
 		// 使用该接口删除Project
 		static void Destory();
 
+		// ScreenOrientation
+	public:
+		enum ScreenOrientation
+		{
+			SO_LANDSCAPE,
+			SO_PORTRAIT,
+			SO_MAX_TYPE
+		};
+		void SetScreenOrientation(ScreenOrientation so);
+		ScreenOrientation GetScreenOrientation() const;
+
+	protected:
+		ScreenOrientation _FromSOStr(const std::string &str);
+		std::string _ToSOStr(ScreenOrientation so);
+
+		ScreenOrientation mScreenOrientation;
+
 		// Load Save
 	public:
 		bool Save(const std::string &filename); //< only used in editor

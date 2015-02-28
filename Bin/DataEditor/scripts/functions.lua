@@ -123,6 +123,12 @@ function e_SceneActor_CreateSphere()
 	PX2_CREATER:CreateActor_Sphere(scene, pickPos)
 end
 
+function e_SceneActor_CreateEffect()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Effect(scene, pickPos)
+end
+
 -- General
 function e_CreateRectangle(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
@@ -264,7 +270,37 @@ function e_CreateUIButton(usePickPos)
 	end
 end
 
+function e_CreateUICheckButton(usePickPos)
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local node = PX2_CREATER:ConvertToNode(selectObj)
+	if nil~=node then
+		local pickPos = PX2_EDIT:GetPickPos()
+		PX2_CREATER:CreateUICheckButton(node, pickPos, true, usePickPos)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+	end
+end
+
+function e_CreateUIEditBox(usePickPos)
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local node = PX2_CREATER:ConvertToNode(selectObj)
+	if nil~=node then
+		local pickPos = PX2_EDIT:GetPickPos()
+		PX2_CREATER:CreateUIEditBox(node, pickPos, true, usePickPos)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+	end
+end
+
 function e_CreateUIProgressBar(usePickPos)
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local node = PX2_CREATER:ConvertToNode(selectObj)
+	if nil~=node then
+		local pickPos = PX2_EDIT:GetPickPos()
+		PX2_CREATER:CreateUIProgressBar(node, pickPos, true, usePickPos)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+	end
 end
 
 -- project view
@@ -286,4 +322,11 @@ end
 
 function e_ProjectView_Detail_Details()
 	NirMan:SetProjTreeLevel(4)
+end
+
+-- res view
+function e_ResView_Refresh()
+end
+
+function e_ResView_Clear()
 end

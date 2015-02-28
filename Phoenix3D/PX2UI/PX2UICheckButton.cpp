@@ -16,25 +16,21 @@ UICheckButton::UICheckButton()
 {
 	SetName("UICheckButton");
 
-	UIPicBox *picNormal = new0 UIPicBox();
+	UIPicBox *picNormal = new0 UIPicBox("Data/engine/common.xml", "check_null");
 	picNormal->SetName("Normal");
 	picNormal->SetPicBoxType(UIPicBox::PBT_NORMAL);
-	picNormal->SetTexture("Data/engine/common.xml", "check_null");
 
-	UIPicBox *picOver = new0 UIPicBox();
+	UIPicBox *picOver = new0 UIPicBox("Data/engine/common.xml", "check_null");
 	picOver->SetName("Over");
 	picOver->SetPicBoxType(UIPicBox::PBT_NORMAL);
-	picOver->SetTexture("Data/engine/common.xml", "check_null");
 
-	UIPicBox *picDown = new0 UIPicBox();
+	UIPicBox *picDown = new0 UIPicBox("Data/engine/common.xml", "check_ed");
 	picDown->SetName("Down");
 	picDown->SetPicBoxType(UIPicBox::PBT_NORMAL);
-	picDown->SetTexture("Data/engine/common.xml", "check_ed");
 
-	UIPicBox *picDis = new0 UIPicBox();
+	UIPicBox *picDis = new0 UIPicBox("Data/engine/common.xml", "button_dis");
 	picDis->SetName("Dis");
 	picDis->SetPicBoxType(UIPicBox::PBT_NORMAL);
-	picDis->SetTexture("Data/engine/common.xml", "button_dis");
 
 	SetPicBox(BS_NORMAL, picNormal);
 	SetPicBox(BS_HOVERED, picOver);

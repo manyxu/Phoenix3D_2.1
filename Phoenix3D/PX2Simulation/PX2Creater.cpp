@@ -2,6 +2,7 @@
 
 #include "PX2Creater.hpp"
 #include "PX2Actor.hpp"
+#include "PX2EffectActor.hpp"
 #include "PX2Scene.hpp"
 #include "PX2Controller.hpp"
 #include "PX2Animation.hpp"
@@ -23,7 +24,7 @@ Creater::~Creater()
 //----------------------------------------------------------------------------
 Actor *Creater::CreateActor_Rectangle(Scene *scene, const APoint &pos)
 {
-	Movable *mov = CreateRectangle(scene, pos, true, false);
+	Movable *mov = CreateRectangle(scene, APoint::ORIGIN, true, false);
 
 	ActorPtr actor = new0 Actor();
 	actor->SetName("NoName");
@@ -37,7 +38,7 @@ Actor *Creater::CreateActor_Rectangle(Scene *scene, const APoint &pos)
 //----------------------------------------------------------------------------
 Actor *Creater::CreateActor_Box(Scene *scene, const APoint &pos)
 {
-	Movable *mov = CreateBox(scene, pos, true, false);
+	Movable *mov = CreateBox(scene, APoint::ORIGIN, true, false);
 
 	ActorPtr actor = new0 Actor();
 	actor->SetName("NoName");
@@ -51,11 +52,22 @@ Actor *Creater::CreateActor_Box(Scene *scene, const APoint &pos)
 //----------------------------------------------------------------------------
 Actor *Creater::CreateActor_Sphere(Scene *scene, const APoint &pos)
 {
-	Movable *mov = CreateSphere(scene, pos, true, false);
+	Movable *mov = CreateSphere(scene, APoint::ORIGIN, true, false);
 
 	ActorPtr actor = new0 Actor();
 	actor->SetName("NoName");
 	actor->SetMovable(mov);
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
+Actor *Creater::CreateActor_Effect(Scene *scene, const APoint &pos)
+{
+	ActorPtr actor = new0 EffectActor();
+	actor->SetName("Effect");
 	actor->LocalTransform.SetTranslate(pos);
 
 	AddObject(scene, actor);
@@ -197,7 +209,7 @@ UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos,
 {
 	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
 
-	UIPicBox *picBox = new0 UIPicBox(texPack, eleName);
+	UIPicBox *picBox = new0 UIPicBox(texPack, eleName, false);
 	picBox->LocalTransform.SetTranslate(localPos);
 
 	AddObject(parent, picBox);
@@ -229,6 +241,45 @@ UIButton *Creater::CreateUIButton(Node *parent, const APoint &pos,
 	AddObject(parent, but);
 
 	return but;
+}
+//----------------------------------------------------------------------------
+UICheckButton *Creater::CreateUICheckButton(Node *parent, const APoint &pos, 
+	bool isPosWorld, bool usePickPos)
+{
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
+
+	UICheckButton *checkButton = new0 UICheckButton();
+	checkButton->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, checkButton);
+
+	return checkButton;
+}
+//----------------------------------------------------------------------------
+UIEditBox *Creater::CreateUIEditBox(Node *parent, const APoint &pos, bool isPosWorld,
+	bool usePickPos)
+{
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
+
+	UIEditBox *editBox = new0 UIEditBox();
+	editBox->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, editBox);
+
+	return editBox;
+}
+//----------------------------------------------------------------------------
+UIProgressBar *Creater::CreateUIProgressBar(Node *parent, const APoint &pos,
+	bool isPosWorld, bool usePickPos)
+{
+	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
+
+	UIProgressBar *progBar = new0 UIProgressBar();
+	progBar->LocalTransform.SetTranslate(localPos);
+
+	AddObject(parent, progBar);
+
+	return progBar;
 }
 //----------------------------------------------------------------------------
 ParticleEmitter *Creater::CreateParticleEmitter(Node *parent,

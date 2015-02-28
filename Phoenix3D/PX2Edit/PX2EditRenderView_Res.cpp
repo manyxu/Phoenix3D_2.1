@@ -296,7 +296,7 @@ void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &dirPaths,
 			if ("png" == ext || "dds" == ext || "jpg" == ext)
 			{
 				mHandlers[filename] = PX2_RM.BackgroundLoad(filename);
-				objPicBox = new0 UIPicBox();
+				objPicBox = new0 UIPicBox("Data/engine/default.png");
 			}
 			else if ("xml" == ext)
 			{

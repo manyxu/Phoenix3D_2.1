@@ -17,6 +17,8 @@ namespace PX2
 {
 
 	typedef Object *(*ObjectLoadFun) (const char *filename);
+	typedef bool (*BufferLoadFun)(const char *filename, int &bufferSize,
+		char* &buffer);
 
 	class Renderer;
 	class VisibleSet;
@@ -122,6 +124,15 @@ namespace PX2
 	public:
 		static void SetUserLoadFun(ObjectLoadFun userLoadFun);
 		static ObjectLoadFun msUserLoadFun;
+
+		static void SetBufferLoadFun(BufferLoadFun bufferLoadFun);
+		static BufferLoadFun msBufferLoadFun;
+
+	public:
+		const std::string *GetShaderStr(const char *filename);
+	
+	protected:
+		std::map<FString, std::string> mShadersMap;
 	};
 
 #include "PX2GraphicsRoot.inl"

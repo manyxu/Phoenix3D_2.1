@@ -191,6 +191,41 @@ void EditRenderView_Scene::_ClickSelectScene(const APoint &scrPos,
 	if (PX2_EDIT.IsCtrlDown) mode = SM_MULTI;
 }
 //----------------------------------------------------------------------------
+void EditRenderView_Scene::_ClickSelectPos(const APoint &scrPos)
+{
+	Scene *scene = PX2_PROJ.GetScene();
+	RenderStep *renderStep = PX2_PROJ.GetSceneRenderStep();
+
+	APoint origin;
+	AVector direction;
+	renderStep->GetPickRay(scrPos.X(), scrPos.Z(), origin, direction);
+
+	ActorPicker actorPicker;
+	actorPicker.Execute(scene, origin, direction, 0.0f, Mathf::MAX_REAL);
+
+	if (actorPicker.Records.size() > 0)
+	{
+		const ActorPickRecord &record = actorPicker.GetClosestToZero();
+		Object *recordObj = record.Intersected;
+		mSelectPoint = origin + direction*record.T;
+		PX2_EDIT.SetPickPos(mSelectPoint);
+	}
+	else
+	{
+		PX2::TriMesh *xyPlane = PX2_GR.GetXYPlane();
+		xyPlane->LocalTransform.SetTranslateZ(0.0f);
+
+		Picker picker;
+		picker.Execute(xyPlane, origin, direction, 0.0f, Mathf::MAX_REAL);
+		if ((int)picker.Records.size() > 0)
+		{
+			const PickRecord &rec = picker.GetClosestToZero();
+			mSelectPoint = origin + direction*rec.T;
+			PX2_EDIT.SetPickPos(mSelectPoint);
+		}
+	}
+}
+//----------------------------------------------------------------------------
 void EditRenderView_Scene::OnSize(const Sizef& size)
 {
 	EditRenderView::OnSize(size);
@@ -203,7 +238,8 @@ void EditRenderView_Scene::OnLeftDown(const APoint &pos)
 	if (mSceneNodeCtrl)
 		mSceneNodeCtrl->OnLeftDown(mRenderStepCtrl, pos);
 
-	if (SceneNodeCtrl::DT_NONE == mSceneNodeCtrl->GetDragType())
+	SceneNodeCtrl::DragType dargType = mSceneNodeCtrl->GetDragType();
+	if (SceneNodeCtrl::DT_NONE == dargType)
 		_ClickSelect(pos);
 }
 //----------------------------------------------------------------------------
@@ -243,6 +279,8 @@ void EditRenderView_Scene::OnMouseWheel(float delta)
 void EditRenderView_Scene::OnRightDown(const APoint &pos)
 {
 	EditRenderView::OnRightDown(pos);
+
+	_ClickSelectPos(pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::OnRightUp(const APoint &pos)

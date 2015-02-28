@@ -20,25 +20,21 @@ mRecoverBeginTime(0.0f)
 {
 	SetName("UIButton");
 
-	UIPicBox *picNormal = new0 UIPicBox();
+	UIPicBox *picNormal = new0 UIPicBox("Data/engine/common.xml", "but_normal");
 	picNormal->SetName("Normal");
 	picNormal->SetPicBoxType(UIPicBox::PBT_NINE);
-	picNormal->SetTexture("Data/engine/common.xml", "but_normal");
 
-	UIPicBox *picOver = new0 UIPicBox();
+	UIPicBox *picOver = new0 UIPicBox("Data/engine/common.xml", "but_over");
 	picOver->SetName("Over");
 	picOver->SetPicBoxType(UIPicBox::PBT_NINE);
-	picOver->SetTexture("Data/engine/common.xml", "but_over");
 
-	UIPicBox *picDown = new0 UIPicBox();
+	UIPicBox *picDown = new0 UIPicBox("Data/engine/common.xml", "but_down");
 	picDown->SetName("Down");
 	picDown->SetPicBoxType(UIPicBox::PBT_NINE);
-	picDown->SetTexture("Data/engine/common.xml", "but_down");
 
-	UIPicBox *picDis = new0 UIPicBox();
+	UIPicBox *picDis = new0 UIPicBox("Data/engine/common.xml", "but_dis");
 	picDis->SetName("Dis");
 	picDis->SetPicBoxType(UIPicBox::PBT_NINE);
-	picDis->SetTexture("Data/engine/common.xml", "but_dis");
 
 	SetPicBox(BS_NORMAL, picNormal);
 	SetPicBox(BS_HOVERED, picOver);

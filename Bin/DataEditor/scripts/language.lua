@@ -79,7 +79,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("UITest", "文本")
 	PX2_LM:AddItem1("UIFrame", "层")
 	PX2_LM:AddItem1("UIButton", "按钮")
-	PX2_LM:AddItem1("UICheckBox", "选择框")
+	PX2_LM:AddItem1("UICheckButton", "选择框")
 	PX2_LM:AddItem1("UIEditBox", "编辑框")
 	PX2_LM:AddItem1("UIProgressBar", "进度条")
 	
@@ -94,6 +94,12 @@ function AddLanguages()
 	PX2_LM:AddItem1("StartView", "起始页")
 	PX2_LM:AddItem1("UIView", "界面")
 	PX2_LM:AddItem1("LogicView", "逻辑")
+	
+	-- ProjView
+	PX2_LM:AddItem1("pv_Camera", "像机(Camera)")
+	PX2_LM:AddItem1("pv_Effect", "特效(Effect)")
+	PX2_LM:AddItem1("pv_Object", "物件(Object)")
+	PX2_LM:AddItem1("pv_Effect", "特效(Effect)")
 	
 	-- 一般
 	PX2_LM:AddItem1("Name", "名称")

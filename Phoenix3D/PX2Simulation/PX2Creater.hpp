@@ -12,6 +12,9 @@
 #include "PX2UIPicBox.hpp"
 #include "PX2UIText.hpp"
 #include "PX2UIButton.hpp"
+#include "PX2UIEditBox.hpp"
+#include "PX2UICheckButton.hpp"
+#include "PX2UIProgressBar.hpp"
 #include "PX2ParticleEmitter.hpp"
 #include "PX2Billboard.hpp"
 #include "PX2BeamEmitter.hpp"
@@ -33,6 +36,7 @@ namespace PX2
 		Actor *CreateActor_Rectangle(Scene *scene, const APoint &pos);
 		Actor *CreateActor_Box(Scene *scene, const APoint &pos);
 		Actor *CreateActor_Sphere(Scene *scene, const APoint &pos);
+		Actor *CreateActor_Effect(Scene *scene, const APoint &pos);
 
 		Movable *CreateRectangle(Node *parent, const APoint &pos, bool isPosWorld, 
 			bool doAdd=true, bool usePickPos=true);
@@ -45,11 +49,17 @@ namespace PX2
 			bool usePickPos);
 		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &filename,
 			bool isPosWorld, bool usePickPos);
-		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &texPack, const std::string &eleName, 
-			bool isPosWorld, bool usePickPos);
+		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &texPack,
+			const std::string &eleName, bool isPosWorld, bool usePickPos);
 		UIText *CreateUIText(Node *parent, const APoint &pos, bool isPosWorld, 
 			bool usePickPos);
 		UIButton *CreateUIButton(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		UICheckButton *CreateUICheckButton(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		UIEditBox *CreateUIEditBox(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
+		UIProgressBar *CreateUIProgressBar(Node *parent, const APoint &pos, bool isPosWorld,
 			bool usePickPos);
 
 		ParticleEmitter *CreateParticleEmitter(Node *parent, const APoint &pos, bool isPosWorld,

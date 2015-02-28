@@ -1,9 +1,9 @@
 ps_2_0
-// cgc version 3.1.0013, build date Apr 18 2012
+// cgc version 3.1.0010, build date Feb  8 2012
 // command line args: -profile ps_2_0
 // source file: ui_cg.fx
 //vendor NVIDIA Corporation
-//version 3.1.0.13
+//version 3.1.0.10
 //profile ps_2_0
 //program p_ui
 //semantic PVWMatrix

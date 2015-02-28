@@ -5,9 +5,9 @@
 
 #include "PX2EditorPre.hpp"
 #include "PX2EditParams.hpp"
+#include "PX2wxAui.hpp"
 #include "PX2E_ResSplitPanel.hpp"
 #include "PX2E_ResTreeItem.hpp"
-using namespace PX2;
 
 namespace PX2Editor
 {
@@ -24,7 +24,7 @@ namespace PX2Editor
 		DECLARE_EVENT_TABLE()
 		ResView();
 
-		wxToolBar *mResTreeBar;
+		PX2wxAuiToolBar *mResTreeBar;
 		wxSplitterWindow *mSplitter;
 
 		ResSplitPanel *mSplitPanel;
