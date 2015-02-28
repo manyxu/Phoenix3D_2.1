@@ -18,6 +18,7 @@ namespace PX2Editor
 
 		virtual bool OnInit();
 		virtual int OnExit();
+		virtual int FilterEvent(wxEvent& event);
 
 	protected:
 		E_MainFrame *mMainFrame;

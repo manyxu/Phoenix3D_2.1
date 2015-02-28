@@ -40,6 +40,7 @@ namespace PX2Editor
 		void OnCommondItem(wxCommandEvent &e);
 		void OnMenuToolItem(wxMouseEvent &e);
 		void OnMenuClose(wxMenuEvent &e);
+		void OnShortcutKeyDown();
 
 		void OnNewProject();
 		void OnOpenProject();

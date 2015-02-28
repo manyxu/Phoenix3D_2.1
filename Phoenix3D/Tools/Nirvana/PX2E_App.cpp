@@ -107,3 +107,12 @@ int E_App::OnExit()
 	return 0;
 }
 //-----------------------------------------------------------------------------
+int E_App::FilterEvent(wxEvent& event)
+{
+	if (event.GetEventType() == wxEVT_KEY_DOWN)
+	{
+		mMainFrame->OnShortcutKeyDown();
+	}
+	return -1;
+}
+//-----------------------------------------------------------------------------
