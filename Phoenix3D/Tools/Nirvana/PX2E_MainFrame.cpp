@@ -246,6 +246,30 @@ void E_MainFrame::OnMenuClose(wxMenuEvent &WXUNUSED(e))
 	mToolBarMenu->Refresh();
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnShortcutKeyDown()
+{
+	if (!IsActive())
+	{
+		return;
+	}
+
+	if (wxGetKeyState(WXK_CONTROL))
+	{
+		if (wxGetKeyState(WXK_CONTROL_N))
+		{
+			OnNewProject();
+		}
+		else if (wxGetKeyState(WXK_CONTROL_O))
+		{
+			OnOpenProject();
+		}	
+		else if (wxGetKeyState(WXK_CONTROL_S))
+		{
+			OnSaveProject();
+		}
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::OnCommondItem(wxCommandEvent &e)
 {
 	int id = e.GetId();
