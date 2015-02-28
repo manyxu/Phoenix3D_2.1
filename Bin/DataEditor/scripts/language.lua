@@ -97,9 +97,12 @@ function AddLanguages()
 	
 	-- ProjView
 	PX2_LM:AddItem1("pv_Camera", "像机(Camera)")
-	PX2_LM:AddItem1("pv_Effect", "特效(Effect)")
+	PX2_LM:AddItem1("pv_Sky", "天空(Sky)")
+	PX2_LM:AddItem1("pv_Terrain", "地形(Terrain)")
+	PX2_LM:AddItem1("pv_Character", "角色(Character)")
 	PX2_LM:AddItem1("pv_Object", "物件(Object)")
 	PX2_LM:AddItem1("pv_Effect", "特效(Effect)")
+	PX2_LM:AddItem1("pv_Sound", "音效(Sound)")
 	
 	-- 一般
 	PX2_LM:AddItem1("Name", "名称")

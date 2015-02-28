@@ -49,16 +49,25 @@ mEditMenu(0)
 	int imageScene = mImageList->Add(wxIcon(wxT("DataEditor/icons/scene.png"), wxBITMAP_TYPE_PNG));
 	int imageUI = mImageList->Add(wxIcon(wxT("DataEditor/icons/ui.png"), wxBITMAP_TYPE_PNG));
 	int imageLogic = mImageList->Add(wxIcon(wxT("DataEditor/icons/logic.png"), wxBITMAP_TYPE_PNG));
+
 	int imageCamera = mImageList->Add(wxIcon(wxT("DataEditor/icons/logic.png"), wxBITMAP_TYPE_PNG));
+	int imageSky = mImageList->Add(wxIcon(wxT("DataEditor/icons/projview/effect.png"), wxBITMAP_TYPE_PNG));
+	int imageTerrain = mImageList->Add(wxIcon(wxT("DataEditor/icons/projview/effect.png"), wxBITMAP_TYPE_PNG));
+	int imageCharacter = mImageList->Add(wxIcon(wxT("DataEditor/icons/projview/effect.png"), wxBITMAP_TYPE_PNG));
 	int imageObject = mImageList->Add(wxIcon(wxT("DataEditor/icons/logic.png"), wxBITMAP_TYPE_PNG));
 	int imageEffect = mImageList->Add(wxIcon(wxT("DataEditor/icons/projview/effect.png"), wxBITMAP_TYPE_PNG));
+
 	SetImageList(mImageList);
 
 	Icons["proj"] = imageProject;
 	Icons["scene"] = imageScene;
 	Icons["ui"] = imageUI;
 	Icons["logic"] = imageLogic;
+
 	Icons["camera"] = imageCamera;
+	Icons["sky"] = imageCamera;
+	Icons["terrain"] = imageCamera;
+	Icons["character"] = imageCharacter;
 	Icons["object"] = imageObject;
 	Icons["effect"] = imageEffect;
 
@@ -90,7 +99,9 @@ void ProjTree::SetTreeLevel(ProjTreeLevel level)
 
 	mItemProj->SetTreeLevel(level);
 	mItemScene->SetTreeLevel(level);
+
 	mItemCameras->SetTreeLevel(level);
+
 	mItemObjects->SetTreeLevel(level);
 
 	if (PTL_GENERAL == level)
@@ -181,11 +192,23 @@ void ProjTree::_RefreshScene()
 	mItemCameras = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["camera"], 0, mTreeLevel, PX2_LM.GetValue("pv_Camera") );
 	mItemScene->mChildItems.push_back(mItemCameras);
 
-	mItemObjects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Object") );
+	mItemSky = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Sky"));
+	mItemScene->mChildItems.push_back(mItemSky);
+
+	mItemTerrain = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Terrain"));
+	mItemScene->mChildItems.push_back(mItemTerrain);
+
+	mItemCharacters = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Character"));
+	mItemScene->mChildItems.push_back(mItemCharacters);
+
+	mItemObjects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Object"));
 	mItemScene->mChildItems.push_back(mItemObjects);
 
-	mItemEffects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, PX2_LM.GetValue("pv_Effect") );
+	mItemEffects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, PX2_LM.GetValue("pv_Effect"));
 	mItemScene->mChildItems.push_back(mItemEffects);
+
+	mItemSounds = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, PX2_LM.GetValue("pv_Sound"));
+	mItemScene->mChildItems.push_back(mItemSounds);
 
 	Scene *scene = 0;
 	Project *proj = Project::GetSingletonPtr();
