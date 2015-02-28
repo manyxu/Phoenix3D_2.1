@@ -14,6 +14,7 @@
 #include "PX2EMFloat3Property.hpp"
 #include "PX2EMFloat3RangeProperty.hpp"
 #include "PX2ResourceManager.hpp"
+#include "PX2NirvanaEventType.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -290,14 +291,13 @@ void ObjectPropertyGrid::OnPropertyGridChange(wxPropertyGridEvent &event)
 			//// do change
 			obj->OnPropertyChanged(propObj);
 
-			//// appended events
-			//if (propLabel == "Name")
-			//{
-			//	Event *ent = EditorEventSpace::CreateEventX(
-			//		EditorEventSpace::ObjectNameChanged);
-			//	ent->SetData<Object*>(obj);
-			//	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
-			//}
+			// appended events
+			if (propLabel == "Name")
+			{
+				Event *ent = NirvanaEventSpace::CreateEventX(NirvanaEventSpace::ObjectNameChanged);
+				ent->SetData<Object*>(obj);
+				EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
+			}
 
 			//EffectModule *em = DynamicCast<EffectModule>(obj);
 			//if (em)

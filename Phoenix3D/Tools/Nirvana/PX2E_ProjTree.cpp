@@ -149,7 +149,7 @@ void ProjTree::_RefreshProject()
 {
 	Project *proj = Project::GetSingletonPtr();
 
-	wxTreeItemId projectID = AddRoot("Project", 0);
+	wxTreeItemId projectID = AddRoot(proj->GetName(), 0);
 	mItemProj = new ProjTreeItem(this, projectID, ProjTreeItem::IT_CATALOG, 
 		Icons["proj"], "Project");
 	mItemProj->SetObject(proj);
@@ -449,6 +449,12 @@ void ProjTree::DoExecute(Event *event)
 	{
 		int level = event->GetData<int>();
 		SetTreeLevel((ProjTreeLevel)level);
+	}
+	else if (NirvanaEventSpace::IsEqual(event, NirvanaEventSpace::ObjectNameChanged))
+	{
+		Object *obj = event->GetData<Object*>();
+		ProjTreeItem *item = GetItem(obj);
+		if (item) item->SetName(obj->GetName());
 	}
 }
 //----------------------------------------------------------------------------
