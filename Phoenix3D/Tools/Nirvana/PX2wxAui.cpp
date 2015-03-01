@@ -7,104 +7,8 @@
 #include "PX2Edit.hpp"
 #include "PX2EditParams.hpp"
 #include "PX2E_Define.hpp"
+#include "PX2LanguageManager.hpp"
 using namespace PX2Editor;
-
-//----------------------------------------------------------------------------
-// PX2wxAuiNotebook
-//----------------------------------------------------------------------------
-BEGIN_EVENT_TABLE(PX2wxAuiNotebook, wxAuiNotebook)
-END_EVENT_TABLE()
-//----------------------------------------------------------------------------
-PX2wxAuiNotebook::PX2wxAuiNotebook(wxWindow* parent, bool isTop) :
-wxAuiNotebook(parent),
-mIsCenter(isTop)
-{
-	m_selectedFont.SetWeight(wxNORMAL);
-
-	//Connect(wxEVT_COMMAND_AUINOTEBOOK_BEGIN_DRAG,
-	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Begin));
-
-	//Connect(wxEVT_COMMAND_AUINOTEBOOK_END_DRAG,
-	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_End));
-
-	//Connect(wxEVT_COMMAND_AUINOTEBOOK_DRAG_MOTION,
-	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Motion));
-	//Connect(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED,
-	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::Tab_Click));
-}
-//----------------------------------------------------------------------------
-PX2wxAuiNotebook::~PX2wxAuiNotebook()
-{
-}
-//----------------------------------------------------------------------------
-//void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
-//{
-//	Freeze();
-//	wxAuiTabCtrl* src_tabs = (wxAuiTabCtrl*)evt.GetEventObject();
-//	if (src_tabs)
-//	{
-//		int numPages = m_tabs.GetPageCount();
-//
-//		if (numPages > 1)
-//		{
-//			src_tabs->SetCursor(wxCursor(wxCURSOR_ARROW));
-//			int src_idx = evt.GetSelection();
-//			wxWindow *window = GetPage(src_idx);
-//			RemovePage(src_idx);
-//			Update();
-//
-//			Event *ent = NirvanaEventSpace::CreateEventX(NirvanaEventSpace::TabDrag);
-//			ent->SetData<wxWindow*>(window);
-//			PX2_EW.BroadcastingLocalEvent(ent);
-//		}
-//		
-//		UpdateTabsHeight();
-//		Thaw();
-//		Refresh();
-//	}
-//	
-//}
-////----------------------------------------------------------------------------
-//void PX2wxAuiNotebook::DragFun_End(wxAuiNotebookEvent &ent)
-//{
-//	PX2_UNUSED(ent);
-//}
-////----------------------------------------------------------------------------
-//void PX2wxAuiNotebook::DragFun_Motion(wxAuiNotebookEvent &ent)
-//{
-//	PX2_UNUSED(ent);
-//}
-////----------------------------------------------------------------------------
-//void PX2wxAuiNotebook::Tab_Click(wxAuiNotebookEvent &ent)
-//{
-//	int numPages = m_tabs.GetPageCount();
-//
-//	if (numPages > 1)
-//	{
-//		wxAuiManager *auiMan = E_MainFrame::GetSingleton().GetAuiMananger();
-//		if (auiMan)
-//		{
-//			int src_idx = ent.GetSelection();
-//			wxString title = GetPageText(src_idx);
-//			wxString paneName = "Right";
-//			auiMan->GetPane(paneName).caption = title;
-//			auiMan->Update();
-//		}
-//	}
-//}
-//----------------------------------------------------------------------------
-void PX2wxAuiNotebook::UpdateTabsHeight()
-{
-	if (!mIsCenter)
-	{
-		int numPages = m_tabs.GetPageCount();
-		if (1 == numPages)
-		{
-			SetTabCtrlHeight(0);
-		}
-	}
-}
-//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // PX2wxAuiToolBar
@@ -380,6 +284,30 @@ void PX2wxAuiToolBarArt::DrawOverflowButton(
 	dc.DrawBitmap(m_overflowBmp, x, y, true);
 }
 //----------------------------------------------------------------------------
+static const unsigned char maximize_bits[] = {
+	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x07, 0xf0, 0xf7, 0xf7, 0x07, 0xf0,
+	0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0xf7, 0x07, 0xf0,
+	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
+
+static const unsigned char restore_bits[] = {
+	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x1f, 0xf0, 0x1f, 0xf0, 0xdf, 0xf7,
+	0x07, 0xf4, 0x07, 0xf4, 0xf7, 0xf5, 0xf7, 0xf1, 0xf7, 0xfd, 0xf7, 0xfd,
+	0x07, 0xfc, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
+
+static const unsigned char pin_bits[] = {
+	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x1f, 0xfc, 0xdf, 0xfc, 0xdf, 0xfc,
+	0xdf, 0xfc, 0xdf, 0xfc, 0xdf, 0xfc, 0x0f, 0xf8, 0x7f, 0xff, 0x7f, 0xff,
+	0x7f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
+wxBitmap wxAuiTabArt_BitmapFromBits(const unsigned char bits[], int w, int h,
+	const wxColour& color)
+{
+	wxImage img = wxBitmap((const char*)bits, w, h).ConvertToImage();
+	img.Replace(0, 0, 0, 123, 123, 123);
+	img.Replace(255, 255, 255, color.Red(), color.Green(), color.Blue());
+	img.SetMaskColour(123, 123, 123);
+	return wxBitmap(img);
+}
+//----------------------------------------------------------------------------
 PX2wxAuiTabArt::PX2wxAuiTabArt(bool isTop)
 {
 	if (isTop)
@@ -388,6 +316,174 @@ PX2wxAuiTabArt::PX2wxAuiTabArt(bool isTop)
 		m_fixedTabWidth = 40;
 	
 	mIsCenter = isTop;
+
+	m_inactiveMaximizeBitmap = wxAuiTabArt_BitmapFromBits(maximize_bits, 16, 16, *wxBLACK);
+	m_activeMaximizeBitmap = wxAuiTabArt_BitmapFromBits(maximize_bits, 16, 16, *wxBLACK);
+
+	m_inactiveRestoreBitmap = wxAuiTabArt_BitmapFromBits(restore_bits, 16, 16, *wxBLACK);
+	m_activeRestoreBitmap = wxAuiTabArt_BitmapFromBits(restore_bits, 16, 16, *wxBLACK);
+
+	m_inactivePinBitmap = wxAuiTabArt_BitmapFromBits(pin_bits, 16, 16, *wxBLACK);
+	m_activePinBitmap = wxAuiTabArt_BitmapFromBits(pin_bits, 16, 16, *wxBLACK);
+}
+//----------------------------------------------------------------------------
+#define EVT_AUI_RANGE1(id1, id2, event, func) \
+    wx__DECLARE_EVT2(event, id1, id2, wxAuiNotebookEventHandler(func))
+
+const int wxAuiBaseTabCtrlId1 = 5380;
+
+//----------------------------------------------------------------------------
+// PX2wxAuiNotebook
+//----------------------------------------------------------------------------
+BEGIN_EVENT_TABLE(PX2wxAuiNotebook, wxAuiNotebook)
+EVT_AUI_RANGE1(wxAuiBaseTabCtrlId1, wxAuiBaseTabCtrlId1 + 500, wxEVT_AUINOTEBOOK_PAGE_CHANGING, PX2wxAuiNotebook::OnTabClicked)
+END_EVENT_TABLE()
+//----------------------------------------------------------------------------
+PX2wxAuiNotebook::PX2wxAuiNotebook(wxWindow* parent, bool isTop) :
+wxAuiNotebook(parent),
+mIsCenter(isTop)
+{
+	m_selectedFont.SetWeight(wxNORMAL);
+
+	//Connect(wxEVT_COMMAND_AUINOTEBOOK_BEGIN_DRAG,
+	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Begin));
+
+	//Connect(wxEVT_COMMAND_AUINOTEBOOK_END_DRAG,
+	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_End));
+
+	//Connect(wxEVT_COMMAND_AUINOTEBOOK_DRAG_MOTION,
+	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::DragFun_Motion));
+	//Connect(wxEVT_COMMAND_AUINOTEBOOK_PAGE_CHANGED,
+	//	wxAuiNotebookEventHandler(PX2wxAuiNotebook::Tab_Click));
+}
+//----------------------------------------------------------------------------
+PX2wxAuiNotebook::~PX2wxAuiNotebook()
+{
+}
+//----------------------------------------------------------------------------
+//void PX2wxAuiNotebook::DragFun_Begin(wxAuiNotebookEvent &evt)
+//{
+//	Freeze();
+//
+//	wxAuiTabCtrl* src_tabs = (wxAuiTabCtrl*)evt.GetEventObject();
+//	if (src_tabs)
+//	{
+//		int numPages = m_tabs.GetPageCount();
+//		wxPoint pos = src_tabs->GetPosition();
+//		wxSize size = src_tabs->GetSize();
+//
+//		if (numPages > 1)
+//		{
+//			src_tabs->SetCursor(wxCursor(wxCURSOR_ARROW));
+//			int src_idx = evt.GetSelection();
+//			wxWindow *window = GetPage(src_idx);
+//			RemovePage(src_idx);
+//			Update();
+//
+//			DargData data;
+//			data.TheWindow = window;
+//			data.Pos = pos;
+//			data.Size = size;
+//			data.Caption = src_tabs->GetName();
+//
+//			Event *ent = NirvanaEventSpace::CreateEventX(NirvanaEventSpace::TabDrag);
+//			ent->SetData<DargData>(data);
+//			PX2_EW.BroadcastingLocalEvent(ent);
+//		}
+//
+//		UpdateTabsHeight();
+//		Thaw();
+//		Refresh();
+//	}
+//}
+
+int msTabMenuID_PinPage = 1;
+int msTabMenuID_PinPages = 2;
+//----------------------------------------------------------------------------
+void PX2wxAuiNotebook::OnTabClicked(wxAuiNotebookEvent& evt)
+{
+	wxAuiTabCtrl* ctrl = (wxAuiTabCtrl*)evt.GetEventObject();
+	wxASSERT(ctrl != NULL);
+
+	int pageCount = ctrl->GetPageCount();
+
+	int selection = evt.GetSelection();
+	if (selection < pageCount)
+	{
+		wxWindow* wnd = ctrl->GetWindowFromIdx(evt.GetSelection());
+		wxASSERT(wnd != NULL);
+
+		SetSelectionToWindow(wnd);
+	}
+	else
+	{
+		Freeze();
+
+		bool pinPages = false;
+
+		if (selection == (pageCount + msTabMenuID_PinPage))
+		{
+			if (1 == pageCount)
+			{
+				pinPages = true;
+			}
+		}
+		else if (selection == (pageCount + msTabMenuID_PinPages))
+		{
+			pinPages = true;
+		}
+
+		int activePage = ctrl->GetActivePage();
+
+		if (!pinPages)
+		{
+			wxWindow *window = GetPage(activePage);
+			if (window)
+			{
+				RemovePage(activePage);
+				Update();
+
+				PinData data;
+				data.TheBook = (wxAuiNotebook*)ctrl->GetParent();
+				data.TheWindow = window;
+				data.Pos = data.TheBook->GetPosition();
+				data.Size = data.TheBook->GetSize();
+				data.Caption = ctrl->GetName();
+
+				Event *ent = NirvanaEventSpace::CreateEventX(NirvanaEventSpace::PinPage);
+				ent->SetData<PinData>(data);
+				PX2_EW.BroadcastingLocalEvent(ent);
+			}
+		}
+		else
+		{
+			PinData data;
+			data.TheBook = (wxAuiNotebook*)ctrl->GetParent();
+			data.TheWindow = 0;
+			data.Pos = data.TheBook->GetPosition();
+			data.Size = data.TheBook->GetSize();
+			data.Caption = ctrl->GetName();
+
+			Event *ent = NirvanaEventSpace::CreateEventX(NirvanaEventSpace::PinPages);
+			ent->SetData<PinData>(data);
+			PX2_EW.BroadcastingLocalEvent(ent);
+		}
+
+		Thaw();
+		Refresh();
+	}
+}
+//----------------------------------------------------------------------------
+void PX2wxAuiNotebook::UpdateTabsHeight()
+{
+	if (!mIsCenter)
+	{
+		int numPages = m_tabs.GetPageCount();
+		if (1 == numPages)
+		{
+			SetTabCtrlHeight(0);
+		}
+	}
 }
 //----------------------------------------------------------------------------
 
@@ -699,6 +795,12 @@ void PX2wxAuiTabArt::DrawButton(wxDC& dc,
 		else
 			bmp = m_activeWindowListBmp;
 		break;
+	case wxAUI_BUTTON_PIN:
+		if (button_state & wxAUI_BUTTON_STATE_DISABLED)
+			bmp = m_disabledCloseBmp;
+		else
+			bmp = m_activePinBitmap;
+		break;
 	}
 
 	if (!bmp.IsOk())
@@ -753,5 +855,77 @@ wxSize PX2wxAuiTabArt::GetTabSize(wxDC& dc,
 	*xExtent = tab_width + 1;
 
 	return wxSize(tab_width, 24);
+}
+//----------------------------------------------------------------------------
+class PX2wxAuiCommandCapture : public wxEvtHandler
+{
+public:
+
+	PX2wxAuiCommandCapture() { m_lastId = 0; }
+	int GetCommandId() const { return m_lastId; }
+
+	bool ProcessEvent(wxEvent& evt)
+	{
+		if (evt.GetEventType() == wxEVT_MENU)
+		{
+			m_lastId = evt.GetId();
+			return true;
+		}
+
+		if (GetNextHandler())
+			return GetNextHandler()->ProcessEvent(evt);
+
+		return false;
+	}
+
+private:
+	int m_lastId;
+};
+
+int PX2wxAuiTabArt::ShowDropDown(wxWindow* wnd,
+	const wxAuiNotebookPageArray& pages,
+	int /*active_idx*/)
+{
+	wxMenu menuPopup;
+
+	size_t i, count = pages.GetCount();
+	for (i = 0; i < count; ++i)
+	{
+		const wxAuiNotebookPage& page = pages.Item(i);
+		wxString caption = page.caption;
+
+		// if there is no caption, make it a space.  This will prevent
+		// an assert in the menu code.
+		if (caption.IsEmpty())
+			caption = wxT(" ");
+
+		wxMenuItem* item = new wxMenuItem(NULL, 1000 + i, caption);
+		//if (page.bitmap.IsOk()) item->SetBitmap(page.bitmap);
+
+		menuPopup.Append(item);
+	}
+	menuPopup.AppendSeparator();
+	menuPopup.Append(1000 + count + msTabMenuID_PinPage, PX2_LM.GetValue("PinPage"));
+	menuPopup.Append(1000 + count + msTabMenuID_PinPages, PX2_LM.GetValue("PinPages"));
+
+
+	// find out where to put the popup menu of window items
+	wxPoint pt = ::wxGetMousePosition();
+	pt = wnd->ScreenToClient(pt);
+
+	// find out the screen coordinate at the bottom of the tab ctrl
+	wxRect cli_rect = wnd->GetClientRect();
+	pt.y = cli_rect.y + cli_rect.height;
+
+	PX2wxAuiCommandCapture* cc = new PX2wxAuiCommandCapture;
+	wnd->PushEventHandler(cc);
+	wnd->PopupMenu(&menuPopup, pt);
+	int command = cc->GetCommandId();
+	wnd->PopEventHandler(true);
+
+	if (command >= 1000)
+		return command - 1000;
+
+	return -1;
 }
 //----------------------------------------------------------------------------

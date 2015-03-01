@@ -27,4 +27,23 @@ inline wxColour Float3TowxColour(const PX2::Float3 &color)
 		unsigned char(color[1] * 255.0f), unsigned char(color[2] * 255.0f));
 }
 
+struct PinData
+{
+public:
+	PinData()
+	{
+		TheBook = 0;
+		TheWindow = 0;
+	}
+	~PinData()
+	{
+	}
+
+	wxAuiNotebook *TheBook;
+	wxWindow *TheWindow;
+	wxPoint Pos;
+	wxSize Size;
+	wxString Caption;
+};
+
 #endif

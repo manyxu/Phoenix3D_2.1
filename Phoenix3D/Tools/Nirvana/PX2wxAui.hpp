@@ -8,25 +8,6 @@
 namespace PX2Editor
 {
 
-	class PX2wxAuiNotebook : public wxAuiNotebook
-	{
-	public:
-		PX2wxAuiNotebook(wxWindow* parent, bool isTop);
-		~PX2wxAuiNotebook();
-
-		//void DragFun_Begin(wxAuiNotebookEvent &ent);
-		//void DragFun_End(wxAuiNotebookEvent &ent);
-		//void DragFun_Motion(wxAuiNotebookEvent &ent);
-		//void Tab_Click(wxAuiNotebookEvent &ent);
-
-		void UpdateTabsHeight();
-
-		DECLARE_EVENT_TABLE()
-
-	protected:
-		bool mIsCenter;
-	};
-
 	class PX2wxAuiToolBar : public wxAuiToolBar
 	{
 	public:
@@ -81,6 +62,27 @@ namespace PX2Editor
 		int mType;
 	};
 
+	class PX2wxAuiNotebook : public wxAuiNotebook
+	{
+	public:
+		PX2wxAuiNotebook(wxWindow* parent, bool isTop);
+		~PX2wxAuiNotebook();
+
+		void DragFun_Begin(wxAuiNotebookEvent &ent);
+		void DragFun_End(wxAuiNotebookEvent &ent);
+		void DragFun_Motion(wxAuiNotebookEvent &ent);
+		void Tab_Click(wxAuiNotebookEvent &ent);
+
+		void UpdateTabsHeight();
+
+		DECLARE_EVENT_TABLE()
+
+	protected:
+		void OnTabClicked(wxAuiNotebookEvent& evt);
+
+		bool mIsCenter;
+	};
+
 	class PX2wxAuiTabArt : public wxAuiSimpleTabArt
 	{
 	public:
@@ -129,8 +131,20 @@ namespace PX2Editor
                  int closeButtonState,
                  int* xExtent);
 
+		virtual int ShowDropDown(
+			wxWindow* wnd,
+			const wxAuiNotebookPageArray& items,
+			int activeIdx);
+
 	protected:
 		bool mIsCenter;
+
+		wxBitmap m_inactivePinBitmap;
+		wxBitmap m_activePinBitmap;
+		wxBitmap m_inactiveMaximizeBitmap;
+		wxBitmap m_activeMaximizeBitmap;
+		wxBitmap m_inactiveRestoreBitmap;
+		wxBitmap m_activeRestoreBitmap;
 	};
 
 }

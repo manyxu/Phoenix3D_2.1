@@ -48,7 +48,7 @@ namespace PX2
 	};
 
 	PX2_REGISTER_STREAM(StdVC4Material);
-	typedef Pointer0<StdVC4Material> StdMaterialVC4Ptr;
+	typedef Pointer0<StdVC4Material> StdVC4MaterialPtr;
 
 }
 

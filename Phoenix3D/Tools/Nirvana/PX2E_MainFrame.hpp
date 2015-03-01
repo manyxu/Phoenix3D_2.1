@@ -40,6 +40,10 @@ namespace PX2Editor
 		void OnCommondItem(wxCommandEvent &e);
 		void OnMenuToolItem(wxMouseEvent &e);
 		void OnMenuClose(wxMenuEvent &e);
+		void OnAllowNotebookDnD(wxAuiNotebookEvent& evt);
+		void OnNotebookPageClose(wxAuiNotebookEvent& evt);
+		void OnNotebookPageClosed(wxAuiNotebookEvent& evt);
+
 		void OnShortcutKeyDown();
 
 		void OnNewProject();
@@ -77,16 +81,16 @@ namespace PX2Editor
 		void _CreateMainToolBar();
 		void _CreateMenu();
 		void _CreateViews();
-		void _CreateProjView();
-		void _CreateMainView();
-		void _CreateInsp();
-		void _CreateTimeLine();
+
+		void _CreateMainView(bool isTopStype);
+		void _CreateProjView(bool isTopStype);
+		void _CreateInsp(bool isTopStype);
+		void _CreateTimeLine(bool isTopStype);
 		void _CreateStatusBar();
+
 		void _UpdateStatusSelectObject(int index);
 		void _UpdateStatusSelectRes(int index);
 		void _UpdateStatusPickingPos(int index);
-
-		void _RefreshRenderView(bool show);
 
 		struct WindowObj
 		{
@@ -104,15 +108,16 @@ namespace PX2Editor
 			PX2wxAuiNotebook *NoteBook;
 		};
 
-		PX2wxAuiNotebook *_CreateView(wxWindow *window0, const std::string &name0, const std::string &caption0,
-			const std::string &caption,
+		PX2wxAuiNotebook *_CreateView(wxWindow *window0,
+			const std::string &paneName, const std::string &panelCaption,
 			wxAuiPaneInfo &paneInfo,
-			bool isTopStyle=true);
+			bool isTopStyle);
 
-		PX2wxAuiNotebook *_CreateView(std::vector<WindowObj> &objs, const std::string &caption,
+		PX2wxAuiNotebook *_CreateView(std::vector<WindowObj> &objs,
+			const std::string &panelName,
+			const std::string &panelCaption,
 			wxAuiPaneInfo &paneInfo,
-			wxString paneName = "Default",
-			bool isTopStyle = true);
+			bool isTopStyle);
 
 	protected:
 		std::string mPerspConfigName;

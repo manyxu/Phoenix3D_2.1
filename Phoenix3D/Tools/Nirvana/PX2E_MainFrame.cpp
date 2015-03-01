@@ -34,6 +34,9 @@ const int sID_ENGINELOOPTIMER = PX2_EDIT_GETID;
 BEGIN_EVENT_TABLE(E_MainFrame, wxFrame)
 EVT_TIMER(sID_ENGINELOOPTIMER, E_MainFrame::OnTimer)
 EVT_MENU_CLOSE(E_MainFrame::OnMenuClose)
+EVT_AUINOTEBOOK_ALLOW_DND(wxID_ANY, E_MainFrame::OnAllowNotebookDnD)
+EVT_AUINOTEBOOK_PAGE_CLOSE(wxID_ANY, E_MainFrame::OnNotebookPageClose)
+EVT_AUINOTEBOOK_PAGE_CLOSED(wxID_ANY, E_MainFrame::OnNotebookPageClosed)
 END_EVENT_TABLE();
 //----------------------------------------------------------------------------
 E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
@@ -82,7 +85,8 @@ bool E_MainFrame::Initlize()
 {
 	// Aui
 	mAuiManager = new wxAuiManager(this, wxAUI_MGR_DEFAULT
-		| wxAUI_MGR_TRANSPARENT_DRAG | wxAUI_MGR_ALLOW_ACTIVE_PANE );
+		| wxAUI_MGR_TRANSPARENT_DRAG | wxAUI_MGR_ALLOW_ACTIVE_PANE |
+		wxAUI_MGR_ALLOW_FLOATING | wxAUI_MGR_LIVE_RESIZE);
 
 	mAuiManager->SetArtProvider(new PX2wxDockArt());
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_CAPTION_SIZE, 24);
@@ -90,8 +94,6 @@ bool E_MainFrame::Initlize()
 	mAuiManager->GetArtProvider()->SetMetric(wxAUI_DOCKART_SASH_SIZE, 2);
 
 	mAuiManager->GetArtProvider()->SetColor(wxAUI_DOCKART_BORDER_COLOUR, wxColour(255, 57, 85));
-
-	mAuiManager->SetFlags(mAuiManager->GetFlags() | wxAUI_MGR_LIVE_RESIZE);
 
 	mTimer.SetOwner(this, sID_ENGINELOOPTIMER);
 	mTimer.Start(25);
@@ -110,7 +112,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-			mAuiManager->LoadPerspective(strPerspective);
+			//mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 
@@ -132,11 +134,35 @@ void E_MainFrame::DoExecute(Event *event)
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
 	}
-	else if (NirvanaEventSpace::IsEqual(event, NirvanaEventSpace::TabDrag))
+	else if (NirvanaEventSpace::IsEqual(event, NirvanaEventSpace::PinPage))
 	{
-		wxWindow *window = event->GetData<wxWindow*>();
-		_CreateView(window, "ResView", "ResView", "ResView",
-			wxAuiPaneInfo().Right().BestSize(200, 200).Float());
+		PinData dragData = event->GetData<PinData>();
+
+		wxWindow *window = dragData.TheWindow;
+
+		wxString windowName = window->GetName();
+		wxString caption = dragData.Caption;
+
+		wxSize size = window->GetSize();
+		wxPoint pos = window->GetPosition();
+
+		std::string strCaption = caption.ToStdString();
+		std::string strWindowName = windowName.ToStdString();
+
+		PX2wxAuiNotebook *book = _CreateView(window, strWindowName, strCaption,
+			wxAuiPaneInfo().Right().FloatingSize(size.GetWidth(), size.GetHeight()).Float(),
+			false);
+		book->SetSize(size);
+
+		mAuiManager->Update();
+	}
+	else if (NirvanaEventSpace::IsEqual(event, NirvanaEventSpace::PinPages))
+	{
+		PinData pinData = event->GetData<PinData>();
+
+		wxAuiPaneInfo &info = mAuiManager->GetPane(pinData.TheBook);
+		info.Float().FloatingPosition(pinData.Pos).FloatingSize(pinData.Size);
+
 		mAuiManager->Update();
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::SceneNodeDrag))
@@ -244,6 +270,21 @@ void E_MainFrame::OnMenuClose(wxMenuEvent &WXUNUSED(e))
 {
 	mToolBarMenu->SetItemsState(wxAUI_BUTTON_STATE_NORMAL);
 	mToolBarMenu->Refresh();
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnAllowNotebookDnD(wxAuiNotebookEvent& evt)
+{
+	evt.Allow();
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnNotebookPageClose(wxAuiNotebookEvent& evt)
+{
+
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnNotebookPageClosed(wxAuiNotebookEvent& evt)
+{
+
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::OnShortcutKeyDown()
@@ -520,8 +561,6 @@ wxMenuItem *E_MainFrame::AddMenuItem(wxMenu *menu, const std::string &title,
 {
 	int id = PX2_EDIT_GETID;
 	wxMenuItem *item = new wxMenuItem(menu, id, title);
-	//item->SetBackgroundColour(wxColour(249, 243, 224));
-	//item->SetTextColour(wxColour(0, 0, 0));
 	menu->Append(item);
 
 	Connect(id, wxEVT_COMMAND_MENU_SELECTED, 
@@ -624,21 +663,20 @@ void E_MainFrame::_CreateMenuToolBar()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()
 {
-	_CreateProjView();
-	_CreateMainView();
-	_CreateInsp();
-	_CreateTimeLine();
+	_CreateProjView(true);
+	_CreateMainView(true);
+	_CreateInsp(true);
+	_CreateTimeLine(true);
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateProjView()
+void E_MainFrame::_CreateProjView(bool isTopStyle)
 {
 	mProjView = new ProjView(this);
 	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"),
-		PX2_LM.GetValue("Project"),
-		wxAuiPaneInfo().Left().CaptionVisible(false));
+		wxAuiPaneInfo().Left().CaptionVisible(false), isTopStyle);
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateMainView()
+void E_MainFrame::_CreateMainView(bool isTopStyle)
 {
 	std::vector<WindowObj> objs;
 
@@ -665,15 +703,11 @@ void E_MainFrame::_CreateMainView()
 	objLogicView.Name = "Logic";
 	objs.push_back(objLogicView);
 
-	mNoteBookCenter = _CreateView(objs, "Center", wxAuiPaneInfo().CenterPane(), 
-		"Center", true);
+	mNoteBookCenter = _CreateView(objs, "Center", "Center",
+		wxAuiPaneInfo().CenterPane(), isTopStyle);
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_RefreshRenderView(bool show)
-{
-}
-//----------------------------------------------------------------------------
-void E_MainFrame::_CreateInsp()
+void E_MainFrame::_CreateInsp(bool isTopStyle)
 {
 	WindowObj objRes;
 	mResView = new ResView(this);
@@ -691,37 +725,36 @@ void E_MainFrame::_CreateInsp()
 	objs.push_back(objRes);
 	objs.push_back(objInsp);
 
-	_CreateView(objs, PX2_LM.GetValue("ResView"), wxAuiPaneInfo().Right().CaptionVisible(false), "Right");
+	_CreateView(objs, "Right", PX2_LM.GetValue("ResView"), 
+		wxAuiPaneInfo().Right().CaptionVisible(false), isTopStyle);
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateTimeLine()
+void E_MainFrame::_CreateTimeLine(bool isTopStyle)
 {
 	mTimeLineView = new TimeLineView(this);
-	_CreateView(mTimeLineView, "TimeLine", PX2_LM.GetValue("TimeLine"), PX2_LM.GetValue("TimeLine"),
-		wxAuiPaneInfo().DefaultPane().CaptionVisible(false));
+	_CreateView(mTimeLineView, "TimeLine", PX2_LM.GetValue("TimeLine"),
+		wxAuiPaneInfo().DefaultPane().CaptionVisible(false), isTopStyle);
 }
 //----------------------------------------------------------------------------
-PX2wxAuiNotebook *E_MainFrame::_CreateView(wxWindow *window0, const std::string &name0,
-	const std::string &caption0, const std::string &caption,
+PX2wxAuiNotebook *E_MainFrame::_CreateView(wxWindow *window0,
+	const std::string &paneName, const std::string &panelCaption,
 	wxAuiPaneInfo &paneInfo, bool isTopStyle)
 {
 	WindowObj obj;
 	obj.TheWindow = window0;
-	obj.Name = name0;
-	obj.Caption = caption0;
+	obj.Name = paneName;
+	obj.Caption = panelCaption;
 
 	std::vector<WindowObj> winObjs;
 	winObjs.push_back(obj);
 
-	wxString paneName = caption;
-
-	return _CreateView(winObjs, caption, paneInfo, paneName, isTopStyle);
+	return _CreateView(winObjs, paneName, panelCaption, paneInfo, isTopStyle);
 }
 //----------------------------------------------------------------------------
 PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
-	const std::string &caption,
+	const std::string &panelName,
+	const std::string &panelCaption,
 	wxAuiPaneInfo &paneInfo,
-	wxString paneName,
 	bool isTopStyle)
 {
 	PX2wxAuiNotebook* noteBook = new PX2wxAuiNotebook(this, isTopStyle);
@@ -731,21 +764,22 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	if (isTopStyle)
 	{
 		styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
-		//styleFlag ^= wxAUI_NB_CLOSE_ON_ACTIVE_TAB;
-		styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	}
 	else
 	{
 		styleFlag ^= wxAUI_NB_BOTTOM;
-		styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	}
 
 	styleFlag ^= wxAUI_NB_TAB_MOVE;
 	styleFlag ^= wxAUI_NB_TAB_EXTERNAL_MOVE;
+	styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;
 	styleFlag ^= wxAUI_NB_TAB_SPLIT;
+	styleFlag ^= wxAUI_NB_SCROLL_BUTTONS;
+	styleFlag ^= wxAUI_NB_CLOSE_BUTTON;
 
 	noteBook->SetWindowStyleFlag(styleFlag);
 	noteBook->SetTabCtrlHeight(24);
+
 	noteBook->Freeze();
 
 	wxBitmap bitMap = wxArtProvider::GetBitmap(wxART_NORMAL_FILE, wxART_OTHER, wxSize(16, 16));
@@ -760,13 +794,16 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 		winObj.TheWindow = obj.TheWindow;
 		winObj.NoteBook = noteBook;
 		mWindowObjs[obj.Name] = winObj;
+
+		obj.TheWindow->SetName(obj.Name);
 	}
 
 	noteBook->UpdateTabsHeight();
 	noteBook->Thaw();
 
 	paneInfo.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
-		.PinButton(true).FloatingSize(220, 150).MinSize(100, 100).Caption(caption).Name(paneName);
+		.PinButton(true).MinSize(100, 100).Name(panelName).
+		Caption(panelCaption).CaptionVisible(!isTopStyle).Floatable(true);
 	mAuiManager->AddPane(noteBook, paneInfo);
 
 	noteBook->Refresh();

@@ -122,6 +122,10 @@ function AddLanguages()
 	PX2_LM:AddItem("CurSelObjNull", "当前选择对象: (空)", "CurrentSelect: (null)")
 	PX2_LM:AddItem("CurSelResNull", "当前选择资源: (空)", "CurrentSelectRes: (null)")
 	PX2_LM:AddItem("PickingPosNull", "正在点选位置: (0,0,0)", "PickingPos: (0,0,0)")
+	
+	-- 编辑器TabBar
+	PX2_LM:AddItem1("PinPage", "弹出页")
+	PX2_LM:AddItem1("PinPages", "弹出页组")
 end
 
 AddLanguages()
