@@ -370,7 +370,7 @@ BOOL PX2SceneExport::OnInitDialog (HWND hWnd)
 		mSettings.IncludeTargentBiNormal);
 	CheckDlgButton(hWnd,IDC_CHECK_TEXTURECOORDS,mSettings.IncludeTexCoords);
 
-	CheckDlgButton(hWnd, IDC_CHECK_USELOCALTIME, mSettings.IsUseSingleTex);
+	CheckDlgButton(hWnd, IDC_CHECK_USESINGLETEX, mSettings.IsUseSingleTex);
 
 	SendMessage(GetDlgItem(hWnd,IDC_COMMBO_NUMTCS),CB_ADDSTRING,0,(LPARAM)"1");
 	SendMessage(GetDlgItem(hWnd,IDC_COMMBO_NUMTCS),CB_ADDSTRING,0,(LPARAM)"2");
@@ -403,6 +403,7 @@ BOOL PX2SceneExport::OnInitDialog (HWND hWnd)
 	int startFrame = mMax->GetAnimRange().Start()/GetTicksPerFrame();
 	int endFrame = mMax->GetAnimRange().End()/GetTicksPerFrame();
 	int numFrames = mMax->GetAnimRange().Duration()/GetTicksPerFrame();
+	PX2_UNUSED(numFrames);
 
 	// spinner controls
 	ISpinnerControl* spinner = GetISpinner(GetDlgItem(hWnd,
@@ -599,7 +600,7 @@ void PX2SceneExport::OnOK (HWND hWnd)
 
 	if (!mSettings.IncludeModifiers)
 	{
-		mSettings.IncludeSkins = false;
+		mEffectiveSettings.IncludeSkins = false;
 	}
 
 	GetDlgItemText(hWnd, IDC_EDIT_SRCROOTDIR, mSettings.SrcRootDir, 256);

@@ -145,6 +145,36 @@ bool SceneBuilder::Traverse(INode *maxNode, PX2::Node *relatParent)
 {
 	// movbale对应maxNode的父节点
 
+	bool isHasSkin = false;
+
+	// Modifier
+	if (mSettings->IncludeModifiers)
+	{
+		ModifierInfo *modInfo = new0 ModifierInfo;
+		CollectModifiers(maxNode, modInfo->Modifiers);
+		if (modInfo->Modifiers.empty())
+		{
+			delete0(modInfo);
+		}
+		else
+		{
+			modInfo->Node = maxNode;
+			mModifierList.push_back(modInfo);
+
+			for (int i=0; i<(int)modInfo->Modifiers.size(); i++)
+			{
+				Modifier *modifier = modInfo->Modifiers[i];
+				Class_ID id = modifier->ClassID();
+				if (id == SKIN_CLASSID ||
+					id == Class_ID(PHYSIQUE_CLASS_ID_A, PHYSIQUE_CLASS_ID_B))
+				{
+					isHasSkin = true;
+				}
+			}
+		}
+	}
+
+	// Node
 	char *nodeName = maxNode->GetName();
 
 	if(stricmp(nodeName, "PHYSICSDATA") == 0)
@@ -166,7 +196,7 @@ bool SceneBuilder::Traverse(INode *maxNode, PX2::Node *relatParent)
 		{
 		case GEOMOBJECT_CLASS_ID:
 			if (IsNodeRenderable(maxNode, objectState.obj))
-				child = BuildGeometry(maxNode, relatParent);
+				child = BuildGeometry(maxNode, relatParent, isHasSkin);
 			else
 				child = BuildNode(maxNode, relatParent);
 			break;
@@ -199,22 +229,6 @@ bool SceneBuilder::Traverse(INode *maxNode, PX2::Node *relatParent)
 			BuildFrameController(maxNode, child);
 	}
 
-	// Modifier
-	if (mSettings->IncludeModifiers)
-	{
-		ModifierInfo *modInfo = new0 ModifierInfo;
-		CollectModifiers(maxNode, modInfo->Modifiers);
-		if (modInfo->Modifiers.empty())
-		{
-			delete0(modInfo);
-		}
-		else
-		{
-			modInfo->Node = maxNode;
-			mModifierList.push_back(modInfo);
-		}
-	}
-
 	// Child
 	int numChildren = maxNode->NumberOfChildren();
 	if (numChildren == 0)
@@ -234,7 +248,7 @@ bool SceneBuilder::Traverse(INode *maxNode, PX2::Node *relatParent)
 	return true;
 }
 //----------------------------------------------------------------------------
-PX2::Movable *SceneBuilder::BuildGeometry (INode *maxNode, PX2::Node *relatParent)
+PX2::Movable *SceneBuilder::BuildGeometry (INode *maxNode, PX2::Node *relatParent, bool hasSkin)
 {
 	// 建立并且链接几何图形物体到场景
 	// maxNode：
@@ -254,7 +268,8 @@ PX2::Movable *SceneBuilder::BuildGeometry (INode *maxNode, PX2::Node *relatParen
 	{
 		ObjectState objectState = maxNode->GetChildNode(i)
 			->EvalWorldState(mTimeStart);
-		if (objectState.obj->SuperClassID() == GEOMOBJECT_CLASS_ID)
+		if (objectState.obj->SuperClassID() == GEOMOBJECT_CLASS_ID ||
+			objectState.obj->SuperClassID() == HELPER_CLASS_ID)
 		{
 			link = BuildNode(maxNode, relatParent);
 			break;
@@ -265,7 +280,7 @@ PX2::Movable *SceneBuilder::BuildGeometry (INode *maxNode, PX2::Node *relatParen
 	{
 		if (mSettings->IncludeMeshes && !maxNode->IsHidden())
 		{
-			child = BuildMesh(maxNode, relatParent);
+			child = BuildMesh(maxNode, relatParent, hasSkin);
 		}
 		else
 		{
@@ -278,7 +293,7 @@ PX2::Movable *SceneBuilder::BuildGeometry (INode *maxNode, PX2::Node *relatParen
 	{
 		if (mSettings->IncludeMeshes && !maxNode->IsHidden())
 		{
-			child = BuildMesh(maxNode, link);
+			child = BuildMesh(maxNode, link, hasSkin);
 		}
 		else
 		{
@@ -296,6 +311,16 @@ PX2::Node *SceneBuilder::BuildNode(INode *maxNode, PX2::Node *relatParent)
 	child->LocalTransform = GetLocalTransform(maxNode, mTimeStart);
 
 	relatParent->AttachChild(child);
+
+	TSTR strUserData;
+	maxNode->GetUserPropBuffer(strUserData);
+	if (strstr(strUserData, "a"))
+	{
+		int anchorID = 0;
+		maxNode->GetUserPropInt("a", anchorID);
+
+		child->SetAnchorID(anchorID);
+	}
 
 	return child;
 }

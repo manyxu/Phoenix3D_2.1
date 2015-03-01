@@ -28,6 +28,7 @@ UniMaterialMesh::UniMaterialMesh ()
 	mAFace = 0;
 	mTFace = 0;
 	mTFace1 = 0;
+	mExportColor = false;
 	mNumTexcoordToExport = 1;
 	mExportTargentBinormal = false;
 	mExportSkin = false;
@@ -328,6 +329,11 @@ void UniMaterialMesh::DuplicateGeometry()
 	delete1(vArray);
 }
 //----------------------------------------------------------------------------
+void UniMaterialMesh::SetExportColor (bool color)
+{
+	mExportColor = color;
+}
+//----------------------------------------------------------------------------
 void UniMaterialMesh::SetExportTargentBinormal (bool exp)
 {
 	mExportTargentBinormal = exp;
@@ -351,10 +357,6 @@ TriMesh *UniMaterialMesh::ToTriMesh()
 	// VertexBuffer
 	VertexFormat *vFormat = new0 VertexFormat();
 	vFormat->Add(VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0);
-	if (mColorMap)
-	{
-		vFormat->Add(VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0);
-	}
 	if (mNormalMap)
 	{
 		vFormat->Add(VertexFormat::AU_NORMAL, VertexFormat::AT_FLOAT3, 0);
@@ -363,6 +365,10 @@ TriMesh *UniMaterialMesh::ToTriMesh()
 	{
 		vFormat->Add(VertexFormat::AU_TANGENT, VertexFormat::AT_FLOAT3, 0);
 		vFormat->Add(VertexFormat::AU_BINORMAL, VertexFormat::AT_FLOAT3, 0);
+	}
+	if (mExportColor)
+	{
+		vFormat->Add(VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0);
 	}
 	if (mTextureCoordMap)
 	{
@@ -403,6 +409,11 @@ TriMesh *UniMaterialMesh::ToTriMesh()
 			vBA.Color<Float4>(0, i) = Float4(mColorMap[i][0], mColorMap[i][1],
 				mColorMap[i][2], mColorMap[i][3]);
 		}
+		else
+		{
+			if (mExportColor)
+				vBA.Color<Float4>(0, i) = Float4::WHITE;
+		}
 
 		if (mAlphaMap)
 		{
@@ -418,8 +429,18 @@ TriMesh *UniMaterialMesh::ToTriMesh()
 			}
 			else if (mNumTexcoordToExport == 2)
 			{
-				vBA.TCoord<Float2>(0, i) = Float2(mTextureCoordMap[i][0], 1.0f-mTextureCoordMap[i][1]);
-				vBA.TCoord<Float2>(1, i) = Float2(mTextureCoordMap1[i][0], 1.0f-mTextureCoordMap1[i][1]);
+				Float2 texCoord0 = Float2(mTextureCoordMap[i][0], 1.0f-mTextureCoordMap[i][1]);
+
+				vBA.TCoord<Float2>(0, i) = texCoord0;
+
+				if (mTextureCoordMap1)
+				{
+					vBA.TCoord<Float2>(1, i) = Float2(mTextureCoordMap1[i][0], 1.0f-mTextureCoordMap1[i][1]);
+				}
+				else
+				{
+					vBA.TCoord<Float2>(1, i) = texCoord0;
+				}
 			}
 		}
 	}
@@ -439,7 +460,23 @@ TriMesh *UniMaterialMesh::ToTriMesh()
 	{
 		triMesh->UpdateModelSpace(Renderable::GU_USE_GEOMETRY);
 	}
-	triMesh->SetMaterialInstance(mMaterialInstance);
+
+	MaterialInstance *mi = 0;
+
+	PX2::Material *mtl = mMaterialInstance->GetMaterial();
+	PX2::SkinMaterial *skinMtl = DynamicCast<SkinMaterial>(mtl);
+	if (skinMtl && !mExportSkin)
+	{
+		PX2::StdMaterial *stdMtl = new0 StdMaterial();
+		mi = stdMtl->CreateInstance(DynamicCast<Texture2D>(mMaterialInstance->GetPixelTexture(0, 0)),
+			mShine, 0);
+	}
+	else
+	{
+		mi = mMaterialInstance;
+	}
+
+	triMesh->SetMaterialInstance(mi);
 	triMesh->SetShine(mShine);
 
 	return triMesh;

@@ -44,6 +44,7 @@ const TCHAR* SceneBuilder::msMapGeneric = _T("map_generic");
 void SceneBuilder::CollectMaterials(INode *node)
 {
 	Mtl *mtl = node->GetMtl();
+	bool hasModifiers = IsNodeHasModifierSkin(node);
 
 	if (mtl)
 	{
@@ -134,8 +135,16 @@ void SceneBuilder::ConvertMaterial (Mtl &mtl, MtlTree &mtlTree)
 			strcpy(strBitMapName, bI.Name());
 
 			std::string fullName = std::string(strBitMapName);
-			std::string::size_type sizeT = fullName.find_first_not_of(mSettings->SrcRootDir);
-			resourcePath_Diffuse = std::string(strBitMapName).substr(sizeT);
+			std::string srcRootDirStr = std::string(mSettings->SrcRootDir);
+			std::string::size_type sizeT = srcRootDirStr.length();
+
+			if (srcRootDirStr.length()>0 && ('\\'!=srcRootDirStr[srcRootDirStr.length()-1] &&
+				'/'!=srcRootDirStr[srcRootDirStr.length()-1]))
+			{
+				sizeT += 1;
+			}
+
+			resourcePath_Diffuse = std::string(strBitMapName).substr(sizeT);			
 
 			StdUVGen* uvGen = tex->GetUVGen();
 			PX2_UNUSED(uvGen);
@@ -172,60 +181,7 @@ void SceneBuilder::ConvertMaterial (Mtl &mtl, MtlTree &mtlTree)
 
 		if (tex2d_Diffuse)
 		{
-			if (!mSettings->IncludeSkins)
-			{
-				PX2::MaterialPtr px2mlt;
-
-				if (mSettings->IsUseSingleTex)
-				{
-					px2mlt = new0 PX2::Texture2DMaterial();
-				}
-				else
-				{
-					px2mlt = new0 PX2::StdMaterial();
-
-				}
-
-				px2mlt->GetPixelShader(0, 0)->SetFilter(0, PX2::Shader::SF_LINEAR_LINEAR);
-				px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 0, uvCoord0);
-				px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 1, uvCoord1);
-
-				if (doubleSide)
-				{
-					px2mlt->GetCullProperty(0, 0)->Enabled = false;
-				}
-
-				px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = false;
-				px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = false;
-
-				if (opacity < 1.0f)
-				{
-					px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = true;
-				}
-				else if (isEnableOP)
-				{
-					px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = true;
-					px2mlt->GetAlphaProperty(0, 0)->Compare = PX2::AlphaProperty::CM_GREATER;
-					px2mlt->GetAlphaProperty(0, 0)->Reference = 0.25f;
-				}
-
-				px2mlt->_CalShaderKey();
-
-				PX2::Texture2DMaterial *px2Tex2DMtl = PX2::DynamicCast<PX2::Texture2DMaterial>(px2mlt);
-				PX2::StdMaterial *px2StdMtl = PX2::DynamicCast<PX2::StdMaterial>(px2mlt);
-
-				if (px2Tex2DMtl)
-				{
-					PX2::MaterialInstance *instance = px2Tex2DMtl->CreateInstance(tex2d_Diffuse);
-					mtlTree.SetMaterialInstance(instance);
-				}
-				else if (px2StdMtl)
-				{
-					PX2::MaterialInstance *instance = px2StdMtl->CreateInstance(tex2d_Diffuse, shine, 0);
-					mtlTree.SetMaterialInstance(instance);
-				}
-			}
-			else
+			if (mSettings->IncludeSkins)
 			{
 				PX2::MaterialPtr px2mlt;
 
@@ -274,7 +230,70 @@ void SceneBuilder::ConvertMaterial (Mtl &mtl, MtlTree &mtlTree)
 				}
 				else
 				{
-					PX2::MaterialInstance *instance = skinMtl->CreateInstance(tex2d_Diffuse, shine);
+					PX2::MaterialInstance *instance = skinMtl->CreateInstance(0, tex2d_Diffuse, shine);
+					mtlTree.SetMaterialInstance(instance);
+				}
+			}
+			else
+			{
+				PX2::MaterialPtr px2mlt;
+
+				if (mSettings->IsUseSingleTex)
+				{
+					px2mlt = new0 PX2::Texture2DMaterial();
+				}
+				else if (mSettings->IncludeVertexColors)
+				{
+					px2mlt = new0 PX2::StdVC4Material();
+				}
+				else
+				{
+					px2mlt = new0 PX2::StdMaterial();
+
+				}
+
+				px2mlt->GetPixelShader(0, 0)->SetFilter(0, PX2::Shader::SF_LINEAR_LINEAR);
+				px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 0, uvCoord0);
+				px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 1, uvCoord1);
+
+				if (doubleSide)
+				{
+					px2mlt->GetCullProperty(0, 0)->Enabled = false;
+				}
+
+				px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = false;
+				px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = false;
+
+				if (opacity < 1.0f)
+				{
+					px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = true;
+				}
+				else if (isEnableOP)
+				{
+					px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = true;
+					px2mlt->GetAlphaProperty(0, 0)->Compare = PX2::AlphaProperty::CM_GREATER;
+					px2mlt->GetAlphaProperty(0, 0)->Reference = 0.25f;
+				}
+
+				px2mlt->_CalShaderKey();
+
+				PX2::Texture2DMaterial *px2Tex2DMtl = PX2::DynamicCast<PX2::Texture2DMaterial>(px2mlt);
+				PX2::StdMaterial *px2StdMtl = PX2::DynamicCast<PX2::StdMaterial>(px2mlt);
+				PX2::StdVC4Material *px2StdVC4Mtl = PX2::DynamicCast<PX2::StdVC4Material>(px2mlt);
+
+				if (px2Tex2DMtl)
+				{
+					PX2::MaterialInstance *instance = px2Tex2DMtl->CreateInstance(tex2d_Diffuse);
+					mtlTree.SetMaterialInstance(instance);
+				}
+				else if (px2StdMtl)
+				{
+					PX2::MaterialInstance *instance = px2StdMtl->CreateInstance(tex2d_Diffuse, shine, 0);
+					mtlTree.SetMaterialInstance(instance);
+				}
+				else if (px2StdVC4Mtl)
+				{
+					PX2::MaterialInstance *instance = px2StdVC4Mtl->CreateInstance(0, tex2d_Diffuse, shine, 0);
 					mtlTree.SetMaterialInstance(instance);
 				}
 			}
@@ -444,55 +463,55 @@ void SceneBuilder::ConvertMaterial (Mtl &mtl, MtlTree &mtlTree)
 		}
 
 		PX2::MaterialInstancePtr inst;
-		PX2::VertexColorStdMaterialPtr vcStdMtl;
-		if (outBaseName == "VertexColorStd")
-		{
-			vcStdMtl = new0 PX2::VertexColorStdMaterial();
+		//PX2::VertexColorStdMaterialPtr vcStdMtl;
+		//if (outBaseName == "VertexColorStd")
+		//{
+		//	vcStdMtl = new0 PX2::VertexColorStdMaterial();
 
-			if (doubleSide)
-			{
-				vcStdMtl->GetCullProperty(0, 0)->Enabled = false;
-			}
+		//	if (doubleSide)
+		//	{
+		//		vcStdMtl->GetCullProperty(0, 0)->Enabled = false;
+		//	}
 
-			if (0 == blendMode)
-			{
-				vcStdMtl->GetAlphaProperty(0, 0)->BlendEnabled = false;
-				vcStdMtl->GetAlphaProperty(0, 0)->CompareEnabled = false;
-				vcStdMtl->GetAlphaProperty(0, 0)->CompareEnabled = false;
-			}
-			else if (1 == blendMode)
-			{
-				vcStdMtl->GetAlphaProperty(0, 0)->BlendEnabled = false;
-				vcStdMtl->GetAlphaProperty(0, 0)->Compare = PX2::AlphaProperty::CM_GREATER;
-				vcStdMtl->GetAlphaProperty(0, 0)->Reference = 0.25f;
-			}
-			else if (2 == blendMode)
-			{
-				vcStdMtl->GetAlphaProperty(0, 0)->BlendEnabled = true;
-				vcStdMtl->GetAlphaProperty(0, 0)->CompareEnabled = false;
-			}
-			else if (3 == blendMode)
-			{
-				vcStdMtl->GetAlphaProperty(0, 0)->BlendEnabled = true;
-				vcStdMtl->GetAlphaProperty(0, 0)->CompareEnabled = false;
-				vcStdMtl->GetAlphaProperty(0, 0)->SrcBlend = PX2::AlphaProperty::SBM_ONE;
-				vcStdMtl->GetAlphaProperty(0, 0)->DstBlend = PX2::AlphaProperty::DBM_ONE;
-			}
+		//	if (0 == blendMode)
+		//	{
+		//		vcStdMtl->GetAlphaProperty(0, 0)->BlendEnabled = false;
+		//		vcStdMtl->GetAlphaProperty(0, 0)->CompareEnabled = false;
+		//		vcStdMtl->GetAlphaProperty(0, 0)->CompareEnabled = false;
+		//	}
+		//	else if (1 == blendMode)
+		//	{
+		//		vcStdMtl->GetAlphaProperty(0, 0)->BlendEnabled = false;
+		//		vcStdMtl->GetAlphaProperty(0, 0)->Compare = PX2::AlphaProperty::CM_GREATER;
+		//		vcStdMtl->GetAlphaProperty(0, 0)->Reference = 0.25f;
+		//	}
+		//	else if (2 == blendMode)
+		//	{
+		//		vcStdMtl->GetAlphaProperty(0, 0)->BlendEnabled = true;
+		//		vcStdMtl->GetAlphaProperty(0, 0)->CompareEnabled = false;
+		//	}
+		//	else if (3 == blendMode)
+		//	{
+		//		vcStdMtl->GetAlphaProperty(0, 0)->BlendEnabled = true;
+		//		vcStdMtl->GetAlphaProperty(0, 0)->CompareEnabled = false;
+		//		vcStdMtl->GetAlphaProperty(0, 0)->SrcBlend = PX2::AlphaProperty::SBM_ONE;
+		//		vcStdMtl->GetAlphaProperty(0, 0)->DstBlend = PX2::AlphaProperty::DBM_ONE;
+		//	}
 
-			inst = vcStdMtl->CreateInstance(diffTex, 0, shineStandard);
-			inst->SetName("MI_ES_Default");
-		}
+		//	inst = vcStdMtl->CreateInstance(diffTex, 0, shineStandard);
+		//	inst->SetName("MI_ES_Default");
+		//}
 
-		if (inst)
-		{
-			mtlTree.SetMaterialInstance(inst);
-		}
-		else
-		{
-			PX2::MaterialInstance *instance = PX2::VertexColor4Material::CreateUniqueInstance();
-			instance->SetName("MI_VertexColor4");
-			mtlTree.SetMaterialInstance(instance);
-		}
+		//if (inst)
+		//{
+		//	mtlTree.SetMaterialInstance(inst);
+		//}
+		//else
+		//{
+		//	PX2::MaterialInstance *instance = PX2::VertexColor4Material::CreateUniqueInstance();
+		//	instance->SetName("MI_VertexColor4");
+		//	mtlTree.SetMaterialInstance(instance);
+		//}
 	}
 	else
 	{

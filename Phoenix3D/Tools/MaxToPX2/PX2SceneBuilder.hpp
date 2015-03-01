@@ -85,9 +85,9 @@ private:
 	
 	// Traverse and build
 	bool Traverse (INode *maxNode, PX2::Node *relatParent); // movbale对应maxNode的父节点
-	PX2::Movable *BuildGeometry (INode *maxNode, PX2::Node *relatParent);
+	PX2::Movable *BuildGeometry (INode *maxNode, PX2::Node *relatParent, bool hasSkin);
 	PX2::Node *BuildNode (INode *maxNode, PX2::Node *relatParent);
-	PX2::Movable *BuildMesh (INode *maxNode, PX2::Node *relatParentOrEqualNode);
+	PX2::Movable *BuildMesh (INode *maxNode, PX2::Node *relatParentOrEqualNode, bool hasSkin);
 	PX2::Transform GetLocalTransform (INode *node, TimeValue iTime);
 
 	// Mesh
@@ -170,6 +170,8 @@ private:
 	// Modifier
 	void ApplyModifiers ();
 	void CollectModifiers (INode *node, std::vector<Modifier*> &modifiers);
+	bool IsNodeHasModifierSkin (INode *node);
+	int GetNumModifiers (INode *node);
 	void ProcessSkin (INode *node, Modifier *skinMod);
 	void ProcessPhysique (INode *node, Modifier *phyMod);
 

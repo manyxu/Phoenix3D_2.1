@@ -41,6 +41,7 @@ public:
 	// 点只拥有一个UV坐标。
 	void DuplicateGeometry ();
 
+	void SetExportColor (bool color);
 	void SetExportTargentBinormal (bool exp);
 	void SetNumTexcoordToExport (int num);
 	void SetExportSkin (bool skin);
@@ -83,6 +84,7 @@ private:
 	int *mTFace1;
 
 	bool mExportTargentBinormal;
+	bool mExportColor;
 	int mNumTexcoordToExport;
 	bool mExportSkin;
 

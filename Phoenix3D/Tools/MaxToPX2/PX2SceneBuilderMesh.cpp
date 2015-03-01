@@ -38,7 +38,7 @@ TriObject *SceneBuilder::GetTriObject(INode* maxNode, bool *needDel)
 }
 //----------------------------------------------------------------------------
 PX2::Movable *SceneBuilder::BuildMesh(INode *maxNode,
-									 PX2::Node *relatParentOrEqualNode)
+									 PX2::Node *relatParentOrEqualNode, bool hasSkin)
 {
 	// 将Max的三角形网格数据转换到一个或者更多的等价的Phoenix2三角形网格。
 	//
@@ -92,6 +92,8 @@ PX2::Movable *SceneBuilder::BuildMesh(INode *maxNode,
 
 		for (i=0; i<(int)uMeshs.size(); i++)
 		{
+			uMeshs[i]->SetExportSkin(hasSkin);
+
 			PX2::TriMesh *triMesh = uMeshs[i]->ToTriMesh();
 
 			if (triMesh)
@@ -110,6 +112,8 @@ PX2::Movable *SceneBuilder::BuildMesh(INode *maxNode,
 	}
 	else if ((int)uMeshs.size() == 1)
 	{
+		uMeshs[0]->SetExportSkin(hasSkin);
+
 		PX2::TriMesh *triMesh = uMeshs[0]->ToTriMesh();
 		if (triMesh)
 		{
@@ -196,6 +200,7 @@ void SceneBuilder::SplitGeometry(Mesh *maxMesh, int mtlIndex,
 
 		if (mSettings->IncludeVertexColors && maxMesh->numCVerts>0)
 		{
+			triMesh->SetExportColor(true);
 			PackColors(triMesh, maxMesh, faceIndexs);
 		}
 
@@ -286,17 +291,23 @@ void SceneBuilder::SplitGeometry(Mesh *maxMesh, int mtlIndex,
 				UniMaterialMesh *triMesh = new0 UniMaterialMesh;
 				if (mtlIndex >= 0)
 				{
+					PX2::MaterialInstance *mi = 0;
+
 					if (subQuantity > 0)
 					{
 						MtlTree &subtree = tree.GetMChild(subID);
 						triMesh->SetShineProperty(subtree.GetShine());
-						triMesh->SetMaterialInstance(subtree.GetMaterialInstance());
+
+						mi = subtree.GetMaterialInstance();
 					}
 					else
 					{
 						triMesh->SetShineProperty(tree.GetShine());
-						triMesh->SetMaterialInstance(tree.GetMaterialInstance());
+
+						mi = tree.GetMaterialInstance();
 					}
+
+					triMesh->SetMaterialInstance(mi);
 				}
 
 				PackVertices(triMesh, maxMesh, faceIndexPartByMtl[subID], normalsAll);
@@ -315,7 +326,6 @@ void SceneBuilder::SplitGeometry(Mesh *maxMesh, int mtlIndex,
 				{
 					triMesh->SetExportTargentBinormal(false);
 				}
-				triMesh->SetExportSkin(mSettings->IncludeSkins);
 
 				if (mSettings->IncludeTexCoords && maxMesh->numTVerts>0)
 				{
