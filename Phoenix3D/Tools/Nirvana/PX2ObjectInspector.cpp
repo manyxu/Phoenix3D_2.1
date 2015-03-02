@@ -13,8 +13,13 @@ END_EVENT_TABLE()
 ObjectInspector::ObjectInspector(wxWindow *parent) :
 wxWindow(parent, wxID_ANY),
 mObjectPropGrid(0),
+mMakingWindow(0),
 mInitSized(false)
 {
+	mObjectPropGrid = new ObjectPropertyGrid(this);
+
+	mMakingWindow = new MakingWindow(this);
+	mMakingWindow->Show(false);
 }
 //-----------------------------------------------------------------------------
 ObjectInspector::~ObjectInspector()
@@ -45,11 +50,13 @@ void ObjectInspector::OnSize(wxSizeEvent& e)
 
 	if (!mInitSized)
 	{
-		mObjectPropGrid = new ObjectPropertyGrid(this);
 		mObjectPropGrid->SetSize(size);
 
 		if (mObjectPropGrid)
 			mObjectPropGrid->SetObject(mObject);
+
+		if (mMakingWindow)
+			mMakingWindow->SetSize(size);
 
 		mInitSized = true;
 	}

@@ -32,13 +32,15 @@ mCurWindow(0)
 
 	mInspTreeBar->Realize();
 
-	bSizer55->Add(mInspTreeBar, 0, wxEXPAND | wxBOTTOM, 5);
+	bSizer55->Add(mInspTreeBar, 0, wxEXPAND | wxBOTTOM, 0);
 
-	bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
+	bSizer54->Add(bSizer55, 0, wxEXPAND, 0);
 
 	mCurSizer = new wxBoxSizer(wxVERTICAL);
+	mCurWindow = new ObjectInspector(this);
+	mCurSizer->Add(mCurWindow, 1, wxEXPAND | wxTOP, 0);
 
-	bSizer54->Add(mCurSizer, 1, wxEXPAND, 5);
+	bSizer54->Add(mCurSizer, 1, wxEXPAND, 0);
 
 	this->SetSizer(bSizer54);
 	this->Layout();
@@ -89,31 +91,19 @@ void InspView::_ChangeToWindow(std::string str, int userData)
 
 	if (mCurWindow)
 	{
-		mCurSizer->Clear();
-
-		delete mCurWindow;
-		mCurWindow = 0;
+		mCurWindow->Show(false);
 	}
 
 	mStrTag = str;
 
 	if ("Object" == str)
 	{
-		ObjectInspector *inspec = new ObjectInspector(this);
-		inspec->SetObject(mObject);
-		mCurWindow = inspec;
+		mCurWindow->SetObject(mObject);
+		mCurWindow->Show(true);
 	}
 	else if ("P" == str || "S" == str || "U" == str)
 	{
 		/**/
 	}
-
-	if (mCurWindow)
-	{
-		mCurSizer->Add(mCurWindow, 1, wxEXPAND | wxTOP, 2);
-	}
-
-	Layout();
-	Update();
 }
 //----------------------------------------------------------------------------

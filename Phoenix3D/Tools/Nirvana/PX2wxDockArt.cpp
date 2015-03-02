@@ -313,25 +313,19 @@ void PX2wxDockArt::DrawBackground(wxDC& dc, wxWindow *WXUNUSED(window), int, con
 void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 	wxAuiPaneInfo& pane)
 {
-	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
-
-	if (theme)
-	{
-		wxColour color = Float3TowxColour(theme->Color_Aui_Border);
-		dc.SetPen(wxPen(color));
-		dc.SetBrush(wxBrush(color));
-	}
+	dc.SetPen(m_borderPen);
+	dc.SetBrush(*wxTRANSPARENT_BRUSH);
 
 	wxRect rect = _rect;
 	int i, border_width = GetMetric(wxAUI_DOCKART_PANE_BORDER_SIZE);
 
+	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
 	if (pane.IsToolbar())
 	{
 		if (theme)
 		{
 			wxColour color = Float3TowxColour(theme->Color_Aui_MenuBar_Background);
 			dc.SetPen(wxPen(color));
-			dc.SetBrush(wxBrush(color));
 		}
 
 		for (i = 0; i < border_width; ++i)
@@ -354,7 +348,6 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 		{
 			wxColour color = Float3TowxColour(theme->Color_Aui_ToolBar_Border);
 			dc.SetPen(wxPen(color));
-			dc.SetBrush(wxBrush(color));
 		}
 
 		for (i = 0; i < border_width; ++i)
@@ -389,7 +382,6 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 				if (theme)
 				{
 					wxColour color = Float3TowxColour(theme->Color_Aui_Border);
-					dc.SetBrush(color);
 					dc.SetPen(wxPen(color));
 				}
 				dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
@@ -401,9 +393,6 @@ void PX2wxDockArt::DrawBorder(wxDC& dc, wxWindow* window, const wxRect& _rect,
 //----------------------------------------------------------------------------
 void PX2wxDockArt::DrawCaptionBackground(wxDC& dc, const wxRect& rect, bool active)
 {
-	dc.SetBrush(wxBrush(wxColour(142, 155, 188)));
-	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height+5);
-
 	Theme *theme = PX2_EDIT.GetEditParams()->GetCurTheme();
 	if (theme)
 	{
@@ -416,6 +405,9 @@ void PX2wxDockArt::DrawCaptionBackground(wxDC& dc, const wxRect& rect, bool acti
 			dc.SetBrush(wxBrush(Float3TowxColour(theme->Color_Aui_CaptionBackground)));
 		}
 	}
+
+	//dc.SetBrush(wxBrush(wxColour(142, 155, 188)));
+	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height + 5);
 
 	dc.DrawRectangle(rect.x + 1, rect.y + 1, rect.width - 2, rect.height - 1);
 }

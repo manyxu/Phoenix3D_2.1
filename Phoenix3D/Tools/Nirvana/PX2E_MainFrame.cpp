@@ -10,6 +10,7 @@
 #include "PX2E_InspView.hpp"
 #include "PX2E_RenderView_Cont.hpp"
 #include "PX2E_NirMan.hpp"
+#include "PX2E_LogView.hpp"
 #include "PX2wxDockArt.hpp"
 #include "PX2wxAui.hpp"
 
@@ -60,6 +61,8 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 //----------------------------------------------------------------------------
 E_MainFrame::~E_MainFrame()
 {
+	Logger::GetSingleton().RemoveHandler(mLogView->GetLogTextCtrl());
+
 	if (mAuiManager)
 	{
 		wxString strPerspective = mAuiManager->SavePerspective();
@@ -101,7 +104,7 @@ bool E_MainFrame::Initlize()
 	//_CreateMenu();
 	//_CreateTopView();
 	_CreateMenuToolBar();
-	_CreateMainToolBar();
+	//_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
 
@@ -684,10 +687,10 @@ void E_MainFrame::_CreateMenuToolBar()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()
 {
-	_CreateTimeLine(true);
+	_CreateTimeLine(false);
 	_CreateMainView(true);
-	_CreateProjView(true);
-	_CreateInsp(true);
+	_CreateProjView(false);
+	_CreateInsp(false);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateProjView(bool isTopStyle)
@@ -742,9 +745,17 @@ void E_MainFrame::_CreateInsp(bool isTopStyle)
 	objInsp.Caption = PX2_LM.GetValue("InspView");
 	objInsp.Name = "InspView";
 
+	WindowObj objLog;
+	mLogView = new LogView(this);
+	objLog.TheWindow = mLogView;
+	objLog.Caption = PX2_LM.GetValue("LogView");
+	objLog.Name = "LogView";
+	Logger::GetSingleton().AddHandler(mLogView->GetLogTextCtrl());
+
 	std::vector<WindowObj> objs;
 	objs.push_back(objRes);
 	objs.push_back(objInsp);
+	objs.push_back(objLog);
 
 	_CreateView(objs, "Right", PX2_LM.GetValue("ResView"), 
 		wxAuiPaneInfo().Right().CaptionVisible(false).TopDockable(false), isTopStyle);
@@ -791,6 +802,7 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 		styleFlag ^= wxAUI_NB_BOTTOM;
 	}
 
+	styleFlag ^= wxAUI_NB_WINDOWLIST_BUTTON;
 	styleFlag ^= wxAUI_NB_TAB_MOVE;
 	styleFlag ^= wxAUI_NB_TAB_EXTERNAL_MOVE;
 	styleFlag ^= wxAUI_NB_TAB_FIXED_WIDTH;

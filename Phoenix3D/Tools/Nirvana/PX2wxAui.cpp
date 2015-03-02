@@ -505,7 +505,7 @@ void PX2wxAuiTabArt::SetSizingInfo(const wxSize& tab_ctrl_size,
 	if (mIsCenter)
 		m_fixedTabWidth = 120;
 	else
-		m_fixedTabWidth = 60;
+		m_fixedTabWidth = 80;
 
 	PX2_UNUSED(tab_ctrl_size);
 	PX2_UNUSED(tab_count);
@@ -906,7 +906,7 @@ int PX2wxAuiTabArt::ShowDropDown(wxWindow* wnd,
 	}
 	menuPopup.AppendSeparator();
 	menuPopup.Append(1000 + count + msTabMenuID_PinPage, PX2_LM.GetValue("PinPage"));
-	menuPopup.Append(1000 + count + msTabMenuID_PinPages, PX2_LM.GetValue("PinPages"));
+	//menuPopup.Append(1000 + count + msTabMenuID_PinPages, PX2_LM.GetValue("PinPages"));
 
 
 	// find out where to put the popup menu of window items

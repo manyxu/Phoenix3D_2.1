@@ -6,6 +6,7 @@
 #include "PX2EditorPre.hpp"
 #include "PX2ObjectInspector.hpp"
 #include "PX2ObjectPropertyGrid.hpp"
+#include "PX2_MakingWindow.hpp"
 
 namespace PX2Editor
 {
@@ -28,6 +29,7 @@ namespace PX2Editor
 		bool mInitSized;
 		PX2::ObjectPtr mObject;
 		ObjectPropertyGrid *mObjectPropGrid;
+		MakingWindow *mMakingWindow;
 	};
 
 }

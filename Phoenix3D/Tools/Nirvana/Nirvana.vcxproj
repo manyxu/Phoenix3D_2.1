@@ -338,6 +338,8 @@
     <ClInclude Include="PX2E_TimeLineRender.hpp" />
     <ClInclude Include="PX2E_TopView.hpp" />
     <ClInclude Include="PX2E_InspView.hpp" />
+    <ClInclude Include="PX2E_LogTextCtrl.hpp" />
+    <ClInclude Include="PX2E_LogView.hpp" />
     <ClInclude Include="PX2ObjectInspector.hpp" />
     <ClInclude Include="PX2ObjectPropertyGrid.hpp" />
     <ClInclude Include="PX2E_TimeLineView.hpp" />
@@ -346,6 +348,7 @@
     <ClInclude Include="PX2wxDockArt.hpp" />
     <ClInclude Include="PX2E_NirMan.hpp" />
     <ClInclude Include="PX2wxFrame.hpp" />
+    <ClInclude Include="PX2_MakingWindow.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\PX2ToLua\PX2ToLuaEditor.cpp" />
@@ -360,6 +363,7 @@
     <ClCompile Include="PropGrid\wxPropertyExtend.cpp" />
     <ClCompile Include="PX2DlgCreateProject.cpp" />
     <ClCompile Include="PX2E_App.cpp" />
+    <ClCompile Include="PX2E_LogTextCtrl.cpp" />
     <ClCompile Include="PX2E_RenderView_Cont.cpp" />
     <ClCompile Include="PX2E_StartView.cpp" />
     <ClCompile Include="PX2E_MainFrame.cpp" />
@@ -374,6 +378,7 @@
     <ClCompile Include="PX2E_TimeLineRender.cpp" />
     <ClCompile Include="PX2E_TopView.cpp" />
     <ClCompile Include="PX2E_InspView.cpp" />
+    <ClCompile Include="PX2E_LogView.cpp" />
     <ClCompile Include="PX2ObjectInspector.cpp" />
     <ClCompile Include="PX2ObjectPropertyGrid.cpp" />
     <ClCompile Include="PX2E_TimeLineView.cpp" />
@@ -383,6 +388,7 @@
     <ClCompile Include="PX2E_NirMan.cpp" />
     <ClCompile Include="PX2wxFrame.cpp" />
     <ClCompile Include="PX2wxFrame_Override.cpp" />
+    <ClCompile Include="PX2_MakingWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2E_ResView.hpp" />

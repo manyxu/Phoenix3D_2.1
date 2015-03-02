@@ -49,6 +49,12 @@
     <Filter Include="Manager">
       <UniqueIdentifier>{9df18248-b55c-4ce6-a355-d112e287f9a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LogView">
+      <UniqueIdentifier>{d722014f-a4ab-4c68-81a9-e9040df08463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InspView\Making">
+      <UniqueIdentifier>{6073b50b-4298-4fad-ae28-f9696472fe32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2EditorPre.hpp" />
@@ -154,6 +160,15 @@
     </ClInclude>
     <ClInclude Include="PX2ObjectInspector.hpp">
       <Filter>InspView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_LogTextCtrl.hpp">
+      <Filter>LogView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_LogView.hpp">
+      <Filter>LogView</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2_MakingWindow.hpp">
+      <Filter>InspView\Making</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +276,15 @@
     </ClCompile>
     <ClCompile Include="PX2ObjectInspector.cpp">
       <Filter>InspView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_LogView.cpp">
+      <Filter>LogView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_LogTextCtrl.cpp">
+      <Filter>LogView</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2_MakingWindow.cpp">
+      <Filter>InspView\Making</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

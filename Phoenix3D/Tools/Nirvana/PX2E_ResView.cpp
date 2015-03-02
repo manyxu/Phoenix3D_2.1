@@ -35,7 +35,7 @@ wxWindow(parent, -1)
 
 	mResTreeBar->Realize();
 
-	bSizer55->Add(mResTreeBar, 0, wxEXPAND | wxBOTTOM, 5);
+	bSizer55->Add(mResTreeBar, 0, wxEXPAND | wxBOTTOM, 0);
 
 	bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
 

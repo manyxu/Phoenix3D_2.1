@@ -20,6 +20,7 @@ namespace PX2Editor
 	class TopView;
 	class LogicView;
 	class TimeLineView;
+	class LogView;
 	class PX2wxAuiNotebook;
 	class PX2wxAuiToolBar;
 
@@ -82,10 +83,10 @@ namespace PX2Editor
 		void _CreateMenu();
 		void _CreateViews();
 
-		void _CreateMainView(bool isTopStype);
-		void _CreateProjView(bool isTopStype);
-		void _CreateInsp(bool isTopStype);
-		void _CreateTimeLine(bool isTopStype);
+		void _CreateMainView(bool isTopStyle);
+		void _CreateProjView(bool isTopStyle);
+		void _CreateInsp(bool isTopStyle);
+		void _CreateTimeLine(bool isTopStyle);
 		void _CreateStatusBar();
 
 		void _UpdateStatusSelectObject(int index);
@@ -145,6 +146,7 @@ namespace PX2Editor
 		ResView *mResView;
 		InspView *mInspView;
 		TimeLineView *mTimeLineView;
+		LogView *mLogView;
 
 		PX2wxAuiNotebook *mNoteBookCenter;
 
