@@ -78,7 +78,7 @@
     <IntDir>_OutPut\Max2012\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>Max2012ToPX264D</TargetName>
     <TargetExt>.dle</TargetExt>
-    <OutDir>D:\Autodesk\3ds Max 2012\plugins</OutDir>
+    <OutDir>..\..\..\Bin\Plugins</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

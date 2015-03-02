@@ -610,7 +610,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
-    <TargetName>PX2GraphicsDx9D</TargetName>
+    <TargetName>PX2GraphicsD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|x64'">
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
@@ -738,7 +738,7 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_USE_DX9;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\;.\Renderers\Dx9Renderer;..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
