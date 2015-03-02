@@ -6,12 +6,11 @@
 #include "PX2Selection.hpp"
 #include "PX2E_NirMan.hpp"
 #include "PX2ScriptManager.hpp"
-
 using namespace PX2Editor;
 using namespace PX2;
 
 BEGIN_EVENT_TABLE(InspView, wxWindow)
-EVT_SIZE(InspView::OnSize)
+//EVT_SIZE(InspView::OnSize)
 END_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -23,7 +22,7 @@ mCurWindow(0)
 	bSizer54 = new wxBoxSizer(wxVERTICAL);
 
 	wxBoxSizer* bSizer55;
-	bSizer55 = new wxBoxSizer(wxHORIZONTAL);
+	bSizer55 = new wxBoxSizer(wxVERTICAL);
 
 	mInspTreeBar = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
 		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
@@ -36,13 +35,18 @@ mCurWindow(0)
 
 	bSizer55->Add(mInspTreeBar, 0, wxEXPAND | wxBOTTOM, 5);
 
-	//bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
+	bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
 
-	PX2_EW.ComeIn(this);
-	SetBackgroundColour(wxColour(255, 255, 255));
+	mCurSizer = new wxBoxSizer(wxVERTICAL);
+
+	bSizer54->Add(mCurSizer, 1, wxEXPAND, 5);
 
 	this->SetSizer(bSizer54);
 	this->Layout();
+
+	PX2_EW.ComeIn(this);
+
+	SetBackgroundColour(wxColour(255, 255, 255));
 }
 //----------------------------------------------------------------------------
 InspView::~InspView()
@@ -98,6 +102,8 @@ void InspView::_ChangeToWindow(std::string str, int userData)
 
 	if (mCurWindow)
 	{
+		mCurSizer->Clear();
+
 		delete mCurWindow;
 		mCurWindow = 0;
 	}
@@ -118,9 +124,12 @@ void InspView::_ChangeToWindow(std::string str, int userData)
 	if (mCurWindow)
 	{
 		wxSize size = GetClientSize();
-		size.SetHeight(size.GetHeight() - 10);
 		mCurWindow->SetSize(size);
-		mCurWindow->SetPosition(wxPoint(0, mInspTreeBar->GetSize().GetHeight()));
+
+
+		mCurSizer->Add(mCurWindow, 1, wxEXPAND | wxTOP, 2);
 	}
+
+	Layout();
 }
 //----------------------------------------------------------------------------

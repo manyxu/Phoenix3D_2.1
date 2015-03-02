@@ -61,8 +61,6 @@ namespace PX2
 		void SetGarbageCollectTime (float seconds);
 		float GetGarbageCollectTime () const;
 
-		Texture2D *_initWithPngData(const char *pData, int nDatalen);
-
 		// folder
 		bool CreateFloder (const std::string &parentPath, const std::string &path);
 		bool IsFloderExist (const std::string &parentPath, const std::string &path);
@@ -214,6 +212,7 @@ public_internal:
 		Texture2D *LoadTextureFromDDS (const std::string &filename);
 		Texture2D *LoadTextureFromPVRTC(int bufferSize, const char *buffer);
 		Texture2D *LoadTextureFromPVRTC_CCZ(int bufferSize, const char *buffer);
+		Texture2D *_initWithPngData(const char *pData, int nDatalen);
 		bool GetFileDataFromZip (const std::string &packageName, 
 			const std::string &filename, int &bufferSize, char* &buffer);
 		void ShareCopyProcess (Node *node, Node *nodeFrom, bool vb, bool ib,

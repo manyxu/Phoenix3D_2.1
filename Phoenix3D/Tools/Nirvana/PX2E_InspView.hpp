@@ -29,6 +29,7 @@ namespace PX2Editor
 
 		PX2::ObjectPtr mObject;
 		std::string mStrTag;
+		wxBoxSizer *mCurSizer;
 		wxWindow *mCurWindow;
 		PX2wxAuiToolBar *mInspTreeBar;
 	};

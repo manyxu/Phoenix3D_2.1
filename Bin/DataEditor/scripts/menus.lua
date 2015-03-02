@@ -57,6 +57,10 @@ function e_CreateEditMenu(tag)
 	if 1==tag then
 		local addMenu = NirMan:AddSubMenu(editMenu, (PX2_LM:GetValue("Add")))
 		local addSceneMenu = NirMan:AddSubMenu(addMenu, (PX2_LM:GetValue("SceneActor")))
+		NirMan:AddMenuItem(addSceneMenu, PX2_LM:GetValue("Object"), "e_AddSceneActor_Actor")
+		NirMan:AddMenuItem(addSceneMenu, PX2_LM:GetValue("Character"), "e_AddSceneActor_Character")
+		NirMan:AddMenuItem(addSceneMenu, PX2_LM:GetValue("Effect"), "e_AddSceneActor_Effect")
+		NirMan:AddMenuItem(addSceneMenu, PX2_LM:GetValue("Sound"), "e_AddSceneActor_Effect")
 	end
 	
 	if nil~=selObj then
