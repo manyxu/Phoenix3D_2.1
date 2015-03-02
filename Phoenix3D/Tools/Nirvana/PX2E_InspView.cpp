@@ -10,7 +10,6 @@ using namespace PX2Editor;
 using namespace PX2;
 
 BEGIN_EVENT_TABLE(InspView, wxWindow)
-//EVT_SIZE(InspView::OnSize)
 END_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -55,18 +54,6 @@ InspView::~InspView()
 	{
 		delete mCurWindow;
 		mCurWindow = 0;
-	}
-}
-//----------------------------------------------------------------------------
-void InspView::OnSize(wxSizeEvent& e)
-{
-	PX2_UNUSED(e);
-
-	wxSize size = GetClientSize();
-
-	if (mCurWindow)
-	{
-		mCurWindow->SetSize(size);
 	}
 }
 //----------------------------------------------------------------------------
@@ -121,15 +108,9 @@ void InspView::_ChangeToWindow(std::string str, int userData)
 		/**/
 	}
 
-	if (mCurWindow)
-	{
-		wxSize size = GetClientSize();
-		mCurWindow->SetSize(size);
-
-
-		mCurSizer->Add(mCurWindow, 1, wxEXPAND | wxTOP, 2);
-	}
+	if (mCurWindow) mCurSizer->Add(mCurWindow, 1, wxEXPAND | wxTOP, 2);
 
 	Layout();
+	Update();
 }
 //----------------------------------------------------------------------------

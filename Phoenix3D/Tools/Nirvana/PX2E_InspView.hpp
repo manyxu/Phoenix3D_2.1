@@ -17,8 +17,6 @@ namespace PX2Editor
 		InspView(wxWindow *parent);
 		~InspView();
 
-		void OnSize(wxSizeEvent& e);
-
 		virtual void DoExecute(PX2::Event *event);
 
 	protected:
