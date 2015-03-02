@@ -609,10 +609,10 @@ bool FxCompiler::ProcessShaderNode_Program(XMLNode programNode, Shader *shader)
 
 					compiledFilename = entryname + "." + profileName + ".txt";
 
-					Parse(compiledFilename, profileName, program);
+					//Parse(compiledFilename, profileName, program);
 
-					shader->SetProgram(i, program.Text);
-					//shader->SetProgramFilename(i, "Data/mtls/" + entryname + "/" + compiledFilename);
+					//shader->SetProgram(i, program.Text);
+					shader->SetProgramFilename(i, "Data/mtls/" + entryname + "/" + compiledFilename);
 				}
 			}
 			else if ("gles2" == type)

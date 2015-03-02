@@ -108,7 +108,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\ThirdPartiesLibs\Max2012\lib;..\..\ThirdPartiesLibs\Microsoft DirectX SDK (June 2010)\Lib\x86;..\..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>MaxToPX2.def</ModuleDefinitionFile>
-      <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;core.lib;geom.lib;gfx.lib;mesh.lib;maxutil.lib;maxscrpt.lib;paramblk2.lib;msxml2.lib;bmm.lib;igame.lib;d3d9.lib;d3dx9.lib;dxerr.lib;xinput.lib;dinput8.lib;dxguid.lib;PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsDx9D.lib;PX2InputD.lib;PX2EventSystemD.lib;PX2UnityD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;comctl32.lib;core.lib;geom.lib;gfx.lib;mesh.lib;maxutil.lib;maxscrpt.lib;paramblk2.lib;msxml2.lib;bmm.lib;igame.lib;d3d9.lib;d3dx9.lib;dxerr.lib;xinput.lib;dinput8.lib;dxguid.lib;PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsD.lib;PX2UnityD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <BaseAddress>0x02F60000</BaseAddress>
       <ImportLibrary>$(OutDir)Max2012ToPX2.lib</ImportLibrary>
     </Link>
