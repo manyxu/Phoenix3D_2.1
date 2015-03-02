@@ -160,7 +160,7 @@ void EditMap::NewScene()
 	CloseScene();
 
 	Scene *scene = new0 Scene();
-	scene->SetName("Scene");
+	scene->SetName(PX2_LM.GetValue("pv_Scene"));
 	PX2_PROJ.SetScene(scene);
 	PX2_PROJ.SetSceneFilename("");
 

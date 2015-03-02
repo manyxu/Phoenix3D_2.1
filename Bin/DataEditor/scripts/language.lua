@@ -97,6 +97,10 @@ function AddLanguages()
 	PX2_LM:AddItem1("LogicView", "逻辑")
 	
 	-- ProjView
+	PX2_LM:AddItem1("pv_Project", "工程(Project)")
+	PX2_LM:AddItem1("pv_Scene", "场景(Scene)")
+	PX2_LM:AddItem1("pv_UI", "界面(UI)")
+	PX2_LM:AddItem1("pv_Logic", "逻辑(Logic)")
 	PX2_LM:AddItem1("pv_Camera", "像机(Camera)")
 	PX2_LM:AddItem1("pv_Sky", "天空(Sky)")
 	PX2_LM:AddItem1("pv_Terrain", "地形(Terrain)")

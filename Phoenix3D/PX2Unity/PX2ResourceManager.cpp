@@ -38,9 +38,9 @@ using namespace PX2;
 using namespace std;
 
 #define PX2_RGB_PREMULTIPLY_ALPHA(vr,vg,vb,va) \
-	(unsigned)(((unsigned)((unsigned char)(vr) * ((unsigned char)(va) + 1)) >> 8) | \
+	(unsigned)(((unsigned)((unsigned char)(vb) * ((unsigned char)(va) + 1)) >> 8) | \
 	((unsigned)((unsigned char)(vg) * ((unsigned char)(va) + 1) >> 8) << 8) | \
-	((unsigned)((unsigned char)(vb) * ((unsigned char)(va) + 1) >> 8) << 16) | \
+	((unsigned)((unsigned char)(vr) * ((unsigned char)(va) + 1) >> 8) << 16) | \
 	((unsigned)(unsigned char)(va) << 24))
 typedef struct
 {
@@ -1958,9 +1958,12 @@ Texture2D *ResourceManager::_initWithPngData(const char *pData, int nDatalen)
 			unsigned char *tmp = (unsigned char *)textureData;
 			for(unsigned short i = 0; i < height; i++)
 			{
-				for(unsigned int j = 0; j < rowbytes; j ++)
+				for(unsigned int j = 0; j < rowbytes;)
 				{
+					*tmp++ = row_pointers[i][j + 2];
+					*tmp++ = row_pointers[i][j + 1];
 					*tmp++ = row_pointers[i][j];
+					j = j + 3;
 				}
 			}
 		}
