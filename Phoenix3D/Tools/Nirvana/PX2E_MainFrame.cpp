@@ -684,17 +684,17 @@ void E_MainFrame::_CreateMenuToolBar()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()
 {
-	_CreateProjView(true);
-	_CreateMainView(true);
-	_CreateInsp(true);
 	_CreateTimeLine(true);
+	_CreateMainView(true);
+	_CreateProjView(true);
+	_CreateInsp(true);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateProjView(bool isTopStyle)
 {
 	mProjView = new ProjView(this);
 	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"),
-		wxAuiPaneInfo().Left().CaptionVisible(false), isTopStyle);
+		wxAuiPaneInfo().Left().CaptionVisible(false).TopDockable(false), isTopStyle);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainView(bool isTopStyle)
@@ -747,14 +747,14 @@ void E_MainFrame::_CreateInsp(bool isTopStyle)
 	objs.push_back(objInsp);
 
 	_CreateView(objs, "Right", PX2_LM.GetValue("ResView"), 
-		wxAuiPaneInfo().Right().CaptionVisible(false), isTopStyle);
+		wxAuiPaneInfo().Right().CaptionVisible(false).TopDockable(false), isTopStyle);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine(bool isTopStyle)
 {
 	mTimeLineView = new TimeLineView(this);
 	_CreateView(mTimeLineView, "TimeLine", PX2_LM.GetValue("TimeLine"),
-		wxAuiPaneInfo().DefaultPane().Bottom().CaptionVisible(false), isTopStyle);
+		wxAuiPaneInfo().DefaultPane().Bottom().CaptionVisible(false).TopDockable(false), isTopStyle);
 }
 //----------------------------------------------------------------------------
 PX2wxAuiNotebook *E_MainFrame::_CreateView(wxWindow *window0,

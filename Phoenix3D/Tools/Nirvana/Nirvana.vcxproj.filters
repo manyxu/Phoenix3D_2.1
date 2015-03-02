@@ -124,9 +124,6 @@
     <ClInclude Include="PX2ObjectPropertyGrid.hpp">
       <Filter>InspView\ObjectProperty</Filter>
     </ClInclude>
-    <ClInclude Include="PX2ObjectInspector.hpp">
-      <Filter>InspView\ObjectProperty</Filter>
-    </ClInclude>
     <ClInclude Include="PX2wxAui.hpp">
       <Filter>wxExtent\Aui</Filter>
     </ClInclude>
@@ -154,6 +151,9 @@
     <ClInclude Include="PX2E_Define.hpp" />
     <ClInclude Include="PX2wxFrame.hpp">
       <Filter>wxExtent</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ObjectInspector.hpp">
+      <Filter>InspView</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -226,9 +226,6 @@
     <ClCompile Include="PX2ObjectPropertyGrid.cpp">
       <Filter>InspView\ObjectProperty</Filter>
     </ClCompile>
-    <ClCompile Include="PX2ObjectInspector.cpp">
-      <Filter>InspView\ObjectProperty</Filter>
-    </ClCompile>
     <ClCompile Include="PX2wxAui.cpp">
       <Filter>wxExtent\Aui</Filter>
     </ClCompile>
@@ -261,6 +258,9 @@
     </ClCompile>
     <ClCompile Include="PX2wxFrame_Override.cpp">
       <Filter>wxExtent</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ObjectInspector.cpp">
+      <Filter>InspView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

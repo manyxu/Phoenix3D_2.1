@@ -368,7 +368,6 @@ Actor *Creater::AddActor(Scene *scene, const std::string &resPath,
 		Actor *actor = new0 Actor();
 		actor->SetMovableFilename(resPath);
 		actor->LocalTransform.SetTranslate(pos);
-		scene->AttachChild(actor);
 
 		AddObject(scene, actor);
 
@@ -387,7 +386,6 @@ Character *Creater::AddCharacter(Scene *scene, const std::string &resPath,
 		Character *chara = new0 Character();
 		chara->SetMovableFilename(resPath);
 		chara->LocalTransform.SetTranslate(pos);
-		scene->AttachChild(chara);
 
 		AddObject(scene, chara);
 
@@ -406,7 +404,6 @@ EffectActor *Creater::AddEffectActor(Scene *scene, const std::string &resPath,
 		EffectActor *ea = new0 EffectActor();
 		ea->SetMovableFilename(resPath);
 		ea->LocalTransform.SetTranslate(pos);
-		scene->AttachChild(ea);
 
 		AddObject(scene, ea);
 

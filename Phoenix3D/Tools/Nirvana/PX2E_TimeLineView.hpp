@@ -10,6 +10,8 @@
 namespace PX2Editor
 {
 
+	class PX2wxAuiToolBar;
+
 	class TimeLineView : public wxWindow
 	{
 		DECLARE_DYNAMIC_CLASS(TimeLineView)
@@ -25,7 +27,7 @@ namespace PX2Editor
 
 		TimeLineView();
 
-		wxToolBar *TimeLineBar;
+		PX2wxAuiToolBar *mTimeLineBar;
 		TimeLineRender *mTimeLineRender;
 		wxSearchCtrl *mSearchCtrl;
 	};
