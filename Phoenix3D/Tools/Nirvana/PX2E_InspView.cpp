@@ -4,6 +4,9 @@
 #include "PX2ObjectInspector.hpp"
 #include "PX2SimulationEventType.hpp"
 #include "PX2Selection.hpp"
+#include "PX2E_NirMan.hpp"
+#include "PX2ScriptManager.hpp"
+
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -16,9 +19,30 @@ InspView::InspView(wxWindow *parent) :
 wxWindow(parent, wxID_ANY),
 mCurWindow(0)
 {
-	PX2_EW.ComeIn(this);
+	wxBoxSizer* bSizer54;
+	bSizer54 = new wxBoxSizer(wxVERTICAL);
 
+	wxBoxSizer* bSizer55;
+	bSizer55 = new wxBoxSizer(wxHORIZONTAL);
+
+	mInspTreeBar = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL);
+	mInspTreeBar->SetArtProvider(new PX2wxAuiToolBarArt(1));
+
+	NirMan::GetSingleton().SetCurToolBar(mInspTreeBar);
+	PX2_SM.CallString("e_CreateTooBarRes()");
+
+	mInspTreeBar->Realize();
+
+	bSizer55->Add(mInspTreeBar, 0, wxEXPAND | wxBOTTOM, 5);
+
+	//bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
+
+	PX2_EW.ComeIn(this);
 	SetBackgroundColour(wxColour(255, 255, 255));
+
+	this->SetSizer(bSizer54);
+	this->Layout();
 }
 //----------------------------------------------------------------------------
 InspView::~InspView()
@@ -94,7 +118,9 @@ void InspView::_ChangeToWindow(std::string str, int userData)
 	if (mCurWindow)
 	{
 		wxSize size = GetClientSize();
+		size.SetHeight(size.GetHeight() - 10);
 		mCurWindow->SetSize(size);
+		mCurWindow->SetPosition(wxPoint(0, mInspTreeBar->GetSize().GetHeight()));
 	}
 }
 //----------------------------------------------------------------------------

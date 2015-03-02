@@ -6,6 +6,7 @@
 #include "PX2EditorPre.hpp"
 #include "PX2Actor.hpp"
 #include "PX2EventHandler.hpp"
+#include "PX2wxAui.hpp"
 
 namespace PX2Editor
 {
@@ -29,6 +30,7 @@ namespace PX2Editor
 		PX2::ObjectPtr mObject;
 		std::string mStrTag;
 		wxWindow *mCurWindow;
+		PX2wxAuiToolBar *mInspTreeBar;
 	};
 
 }
