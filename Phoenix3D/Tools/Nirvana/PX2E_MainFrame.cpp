@@ -112,7 +112,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-			//mAuiManager->LoadPerspective(strPerspective);
+			mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 
@@ -653,7 +653,8 @@ void E_MainFrame::_CreateMainToolBar()
 		mAuiManager->AddPane(mToolBarMain, wxAuiPaneInfo().
 			Name(wxT("maintoolbar")).
 			Gripper(true).Top().Dockable(false).PaneBorder(true).
-			MinSize(200, 28).MaxSize(200, 28).Top().Resizable(false).CaptionVisible(false));
+			MinSize(200, 28).MaxSize(200, 28).Top().Resizable(false).CaptionVisible(false).
+			BottomDockable(false).LeftDockable(false).RightDockable(false).Floatable(false));
 	}	
 }
 //----------------------------------------------------------------------------
@@ -753,7 +754,7 @@ void E_MainFrame::_CreateTimeLine(bool isTopStyle)
 {
 	mTimeLineView = new TimeLineView(this);
 	_CreateView(mTimeLineView, "TimeLine", PX2_LM.GetValue("TimeLine"),
-		wxAuiPaneInfo().DefaultPane().CaptionVisible(false), isTopStyle);
+		wxAuiPaneInfo().DefaultPane().Bottom().CaptionVisible(false), isTopStyle);
 }
 //----------------------------------------------------------------------------
 PX2wxAuiNotebook *E_MainFrame::_CreateView(wxWindow *window0,
@@ -823,7 +824,7 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 
 	paneInfo.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
 		.PinButton(true).MinSize(100, 100).Name(panelName).
-		Caption(panelCaption).CaptionVisible(!isTopStyle).Floatable(true);
+		Caption(panelCaption).CaptionVisible(!isTopStyle).Floatable(true).TopDockable(false);
 	mAuiManager->AddPane(noteBook, paneInfo);
 
 	noteBook->Refresh();

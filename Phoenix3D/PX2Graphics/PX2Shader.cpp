@@ -851,8 +851,8 @@ void Shader::Save (OutStream& target) const
     {
         for (int i = 0; i < MAX_PROFILES; ++i)
         {
-            target.WriteN(mNumConstants, mBaseRegister[i]);
-            target.WriteN(mNumSamplers, mTextureUnit[i]);
+			target.WriteN(mNumConstants, mBaseRegister[i]);
+			target.WriteN(mNumSamplers, mTextureUnit[i]);
             target.WriteString(*mProgram[i]);
 			target.WriteString(*mProgramFilename[i]);
         }
@@ -911,8 +911,8 @@ int Shader::GetStreamingSize (Stream &stream) const
     {
         for (i = 0; i < MAX_PROFILES; ++i)
         {
-            size += mNumConstants*sizeof(mBaseRegister[i]);
-            size += mNumSamplers*sizeof(mTextureUnit[i]);
+            size += mNumConstants*sizeof(int);
+            size += mNumSamplers*sizeof(int);
             size += PX2_STRINGSIZE(*mProgram[i]);
 			size += PX2_STRINGSIZE(*mProgramFilename[i]);
         }

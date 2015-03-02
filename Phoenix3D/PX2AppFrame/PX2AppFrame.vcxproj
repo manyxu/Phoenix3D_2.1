@@ -93,7 +93,7 @@
     <TargetName>PX2AppFrameD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>PX2AppFrameDx9D</TargetName>
+    <TargetName>PX2AppFrameD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</OutDir>
