@@ -2,6 +2,13 @@
 
 	class Edit
 	{
+	public:
+		Edit();
+		~Edit();
+
+		bool Initlize();
+		bool Ternamate();
+		void Reset();
 
 	public:
 		enum EditType
@@ -27,12 +34,14 @@
 		EditMode GetEditMode() const;
 
 		EditMap *GetEditMap();
-
 	public:
 		GeoObjFactory *GetGOF();
 
 		static int GetEditID();
 
+	public:
+		EditParams *GetEditParams();
+		
 		// key
 	public:
 		bool IsAltDown;
@@ -43,7 +52,24 @@
 	public:
 		void SetPickPos(const APoint &pos);
 		const APoint &GetPickPos() const;
-		
+
+		// Select
 	public:
 		bool DeleteSelection();
+
+		// select
+	public:
+		void SetSelectPath_ChildFilenames(const std::vector<std::string> &filenamess);
+		void SetSelectPath_ChildPaths(const std::vector<std::string> &paths);
+		const std::vector<std::string> &GetSelectPath_ChildFilenames() const;
+		const std::vector<std::string> &GetSelectPath_ChildPaths() const;
+
+		void SetSelectedResource(const SelectResData &data);
+		const SelectResData &GetSelectedResource() const;
+
+		// Copy
+	public:
+		void SetCopyObject(PX2::Object *obj);
+		PX2::Object *GetCopyObject();
+		void PasteCopyedObject();
 	};

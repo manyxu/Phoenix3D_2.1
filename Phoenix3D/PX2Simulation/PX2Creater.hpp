@@ -21,6 +21,7 @@
 #include "PX2RibbonEmitter.hpp"
 #include "PX2Soundable.hpp"
 #include "PX2Character.hpp"
+#include "PX2EffectActor.hpp"
 using namespace PX2;
 
 namespace PX2
@@ -74,6 +75,10 @@ namespace PX2
 			bool usePickPos);
 		Soundable *CreateSoundable(Node *parent, const APoint &pos, bool isPosWorld,
 			bool usePickPos);
+
+		Actor *AddActor(Scene *scene, const std::string &resPath, const APoint &pos);
+		Character *AddCharacter(Scene *scene, const std::string &resPath, const APoint &pos);
+		EffectActor *AddEffectActor(Scene *scene, const std::string &resPath, const APoint &pos);
 
 		void AddObject(Object *parent, Object *obj,
 			bool command = true);

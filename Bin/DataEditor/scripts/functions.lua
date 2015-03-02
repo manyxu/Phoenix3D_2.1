@@ -309,6 +309,31 @@ function e_CreateUIProgressBar(usePickPos)
 	end
 end
 
+-- add
+function e_AddSceneActor_Actor()
+	local scene = PX2_PROJ:GetScene()
+	local resPath = PX2_EDIT:GetSelectedResource().ResPathname;
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:AddActor(scene, resPath, pickPos)
+end
+
+function e_AddSceneActor_Character()
+	local scene = PX2_PROJ:GetScene()
+	local resPath = PX2_EDIT:GetSelectedResource().ResPathname;
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:AddCharacter(scene, resPath, pickPos)
+end
+
+function e_AddSceneActor_Effect()
+	local scene = PX2_PROJ:GetScene()
+	local resPath = PX2_EDIT:GetSelectedResource().ResPathname;
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:AddEffectActor(scene, resPath, pickPos)
+end
+
+function e_AddSceneActor_Sound()
+end
+
 -- project view
 function e_ProjectView_Detail_General()
 	NirMan:SetProjTreeLevel(0)

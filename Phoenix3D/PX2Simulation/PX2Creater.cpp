@@ -359,6 +359,63 @@ Soundable *Creater::CreateSoundable(Node *parent, const APoint &pos,
 	return mov;
 }
 //----------------------------------------------------------------------------
+Actor *Creater::AddActor(Scene *scene, const std::string &resPath,
+	const APoint &pos)
+{
+	Movable *mov = DynamicCast<Movable>(PX2_RM.BlockLoad(resPath));
+	if (mov)
+	{
+		Actor *actor = new0 Actor();
+		actor->SetMovableFilename(resPath);
+		actor->LocalTransform.SetTranslate(pos);
+		scene->AttachChild(actor);
+
+		AddObject(scene, actor);
+
+		return actor;
+	}
+
+	return 0;
+}
+//----------------------------------------------------------------------------
+Character *Creater::AddCharacter(Scene *scene, const std::string &resPath,
+	const APoint &pos)
+{
+	Movable *mov = DynamicCast<Movable>(PX2_RM.BlockLoad(resPath));
+	if (mov)
+	{
+		Character *chara = new0 Character();
+		chara->SetMovableFilename(resPath);
+		chara->LocalTransform.SetTranslate(pos);
+		scene->AttachChild(chara);
+
+		AddObject(scene, chara);
+
+		return chara;
+	}
+
+	return 0;
+}
+//----------------------------------------------------------------------------
+EffectActor *Creater::AddEffectActor(Scene *scene, const std::string &resPath,
+	const APoint &pos)
+{
+	Movable *mov = DynamicCast<Movable>(PX2_RM.BlockLoad(resPath));
+	if (mov)
+	{
+		EffectActor *ea = new0 EffectActor();
+		ea->SetMovableFilename(resPath);
+		ea->LocalTransform.SetTranslate(pos);
+		scene->AttachChild(ea);
+
+		AddObject(scene, ea);
+
+		return ea;
+	}
+
+	return 0;
+}
+//----------------------------------------------------------------------------
 APoint Creater::_LocalPosCal(Node *parent, const APoint &pos,
 	bool isPosWorld, bool usePickPos)
 {

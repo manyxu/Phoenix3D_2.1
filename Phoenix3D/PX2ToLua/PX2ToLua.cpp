@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 02/28/15 19:32:12.
+** Generated automatically by tolua++-1.0.92 on 03/02/15 18:03:08.
 */
 
 #ifndef __cplusplus
@@ -170,6 +170,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Movable");
  tolua_usertype(tolua_S,"Project");
  tolua_usertype(tolua_S,"CullProperty");
+ tolua_usertype(tolua_S,"EffectActor");
  tolua_usertype(tolua_S,"SwitchNode");
  tolua_usertype(tolua_S,"Actor");
  tolua_usertype(tolua_S,"VertexBuffer");
@@ -14324,6 +14325,123 @@ static int tolua_PX2_Creater_CreateSoundable00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: AddActor of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_AddActor00
+static int tolua_PX2_Creater_AddActor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"const APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const std::string resPath = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddActor'", NULL);
+#endif
+  {
+   Actor* tolua_ret = (Actor*)  self->AddActor(scene,resPath,*pos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Actor");
+   tolua_pushcppstring(tolua_S,(const char*)resPath);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddActor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddCharacter of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_AddCharacter00
+static int tolua_PX2_Creater_AddCharacter00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"const APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const std::string resPath = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddCharacter'", NULL);
+#endif
+  {
+   Character* tolua_ret = (Character*)  self->AddCharacter(scene,resPath,*pos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Character");
+   tolua_pushcppstring(tolua_S,(const char*)resPath);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddCharacter'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddEffectActor of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_AddEffectActor00
+static int tolua_PX2_Creater_AddEffectActor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,4,&tolua_err) || !tolua_isusertype(tolua_S,4,"const APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const std::string resPath = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddEffectActor'", NULL);
+#endif
+  {
+   EffectActor* tolua_ret = (EffectActor*)  self->AddEffectActor(scene,resPath,*pos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"EffectActor");
+   tolua_pushcppstring(tolua_S,(const char*)resPath);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddEffectActor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: AddObject of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_AddObject00
 static int tolua_PX2_Creater_AddObject00(lua_State* tolua_S)
@@ -15332,6 +15450,9 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateBeamEmitter",tolua_PX2_Creater_CreateBeamEmitter00);
    tolua_function(tolua_S,"CreateRibbonEmitter",tolua_PX2_Creater_CreateRibbonEmitter00);
    tolua_function(tolua_S,"CreateSoundable",tolua_PX2_Creater_CreateSoundable00);
+   tolua_function(tolua_S,"AddActor",tolua_PX2_Creater_AddActor00);
+   tolua_function(tolua_S,"AddCharacter",tolua_PX2_Creater_AddCharacter00);
+   tolua_function(tolua_S,"AddEffectActor",tolua_PX2_Creater_AddEffectActor00);
    tolua_function(tolua_S,"AddObject",tolua_PX2_Creater_AddObject00);
    tolua_function(tolua_S,"RemoveObject",tolua_PX2_Creater_RemoveObject00);
    tolua_function(tolua_S,"ConvertToNode",tolua_PX2_Creater_ConvertToNode00);
