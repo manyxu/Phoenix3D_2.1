@@ -108,7 +108,10 @@ void InspView::_ChangeToWindow(std::string str, int userData)
 		/**/
 	}
 
-	if (mCurWindow) mCurSizer->Add(mCurWindow, 1, wxEXPAND | wxTOP, 2);
+	if (mCurWindow)
+	{
+		mCurSizer->Add(mCurWindow, 1, wxEXPAND | wxTOP, 2);
+	}
 
 	Layout();
 	Update();
