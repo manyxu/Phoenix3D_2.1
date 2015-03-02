@@ -156,17 +156,17 @@ void ProjTree::_RefreshProject()
 
 	// scene
 	mItemScene = new ProjTreeItem(this, mItemProj,
-		ProjTreeItem::IT_CATALOG, Icons["scene"], 0, mTreeLevel, "NoScene");
+		ProjTreeItem::IT_CATALOG, Icons["scene"], 0, mTreeLevel, PX2_LM.GetValue("pv_Scene"));
 	mItemProj->mChildItems.push_back(mItemScene);
 
 	// ui
 	mItemUI = new ProjTreeItem(this, mItemProj,
-		ProjTreeItem::IT_CATALOG, Icons["ui"], 0, mTreeLevel, "UI");
+		ProjTreeItem::IT_CATALOG, Icons["ui"], 0, mTreeLevel, PX2_LM.GetValue("pv_UI"));
 	mItemProj->mChildItems.push_back(mItemUI);
 
 	// logic
 	mItemLogic = new ProjTreeItem(this, mItemProj,
-		ProjTreeItem::IT_CATALOG, Icons["logic"], 0, mTreeLevel, "Logic");
+		ProjTreeItem::IT_CATALOG, Icons["logic"], 0, mTreeLevel, PX2_LM.GetValue("pv_Logic"));
 	mItemProj->mChildItems.push_back(mItemLogic);
 
 	Expand(mItemProj->GetItemID());
