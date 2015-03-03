@@ -20,6 +20,7 @@ namespace PX2Editor
 		~InspView();
 
 		virtual void DoExecute(PX2::Event *event);
+		void ChangeShowWindow(int windowType);
 
 	protected:
 		DECLARE_EVENT_TABLE()

@@ -62,6 +62,8 @@ namespace PX2Editor
 		void OnSetEditMode(int type);
 		void OnSetting();
 
+		void InspChangeWindow(int windowType);
+
 	public:
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,

@@ -21,6 +21,8 @@ namespace PX2Editor
 
 		void SetObject(PX2::Object *obj);
 
+		void ChangeShowWindow(int windowType);//1 ObjectProperty 2 Making
+
 	protected:
 		DECLARE_EVENT_TABLE()
 

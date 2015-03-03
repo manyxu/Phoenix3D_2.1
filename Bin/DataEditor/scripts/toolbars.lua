@@ -54,3 +54,8 @@ function e_CreateTooBarRes()
 	NirMan:AddTool("DataEditor/icons/resview/res_clear.png", "e_ResView_Clear()")
 	NirMan:AddToolSeparater()
 end
+--insp view toolbar
+function e_createTooBarInsp()
+	NirMan:AddTool("DataEditor/icons/resview/res_refresh.png", "e_InspView_ChangeWindow(1)")
+	NirMan:AddTool("DataEditor/icons/resview/res_clear.png", "e_InspView_ChangeWindow(2)")
+end

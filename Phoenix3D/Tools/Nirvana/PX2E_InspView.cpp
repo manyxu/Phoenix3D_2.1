@@ -28,7 +28,7 @@ mCurWindow(0)
 	mInspTreeBar->SetArtProvider(new PX2wxAuiToolBarArt(1));
 
 	NirMan::GetSingleton().SetCurToolBar(mInspTreeBar);
-	PX2_SM.CallString("e_CreateTooBarRes()");
+	PX2_SM.CallString("e_createTooBarInsp()");
 
 	mInspTreeBar->Realize();
 
@@ -105,5 +105,10 @@ void InspView::_ChangeToWindow(std::string str, int userData)
 	{
 		/**/
 	}
+}
+//----------------------------------------------------------------------------
+void InspView::ChangeShowWindow(int windowType)
+{
+	mCurWindow->ChangeShowWindow(windowType);
 }
 //----------------------------------------------------------------------------
