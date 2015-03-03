@@ -370,3 +370,8 @@ end
 
 function e_ResView_Clear()
 end
+
+--Insp view
+function e_InspView_ChangeWindow(windowType)
+	E_MainFrame:InspChangeWindow(windowType)
+end

@@ -3,3 +3,4 @@
 $#include "PX2ToLuaEditor.hpp"
 $pfile "Nirvana/Nirvana.pkg"
 $pfile "PX2Edit/PX2Edits.pkg"
+$pfile "Nirvana/PX2E_MainFrame.pkg"

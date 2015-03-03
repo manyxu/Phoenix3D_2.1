@@ -38,6 +38,19 @@ void ObjectInspector::SetObject(PX2::Object *obj)
 	if (mObjectPropGrid)
 		mObjectPropGrid->SetObject(mObject);
 }
+void ObjectInspector::ChangeShowWindow(int windowType)
+{
+	if (windowType == 1)
+	{
+		mObjectPropGrid->Show(true);
+		mMakingWindow->Show(false);
+	}
+	else if (windowType == 2)
+	{
+		mObjectPropGrid->Show(false);
+		mMakingWindow->Show(true);
+	}
+}
 //-----------------------------------------------------------------------------
 void ObjectInspector::OnSize(wxSizeEvent& e)
 {

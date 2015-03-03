@@ -561,6 +561,11 @@ void E_MainFrame::OnSetting()
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::InspChangeWindow(int windowType)
+{
+	mInspView->ChangeShowWindow(windowType);
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenu()
 {
 	mMainMenuBar = new wxMenuBar();

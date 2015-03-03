@@ -55,6 +55,7 @@ function e_CreateTooBarRes()
 	NirMan:AddToolSeparater()
 end
 
+-- timeline toolbar
 function e_CreateToolBarTimeLine()
 	NirMan:AddTool("DataEditor/icons/timeline/fit_horz.png", "e_ResView_Refresh()")
 	NirMan:AddTool("DataEditor/icons/timeline/fit_vert.png", "e_ResView_Refresh()")
@@ -74,4 +75,10 @@ function e_CreateToolBarTimeLine()
 	NirMan:AddTool("DataEditor/icons/timeline/curve_flattentangentstoaxis.png", "e_ResView_Refresh()")
 	NirMan:AddTool("DataEditor/icons/timeline/curve_straightentangents.png", "e_ResView_Refresh()")
 	NirMan:AddTool("DataEditor/icons/timeline/curve_showallctrls.png", "e_ResView_Refresh()")
+end
+
+--insp view toolbar
+function e_createTooBarInsp()
+	NirMan:AddTool("DataEditor/icons/resview/res_refresh.png", "e_InspView_ChangeWindow(1)")
+	NirMan:AddTool("DataEditor/icons/resview/res_clear.png", "e_InspView_ChangeWindow(2)")
 end
