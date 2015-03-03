@@ -35,6 +35,9 @@ namespace PX2
 
 	PX2_EVENT(SelectRes)
 
+	PX2_EVENT(FindActorInProjectTree)
+	PX2_EVENT(FindActorInResTree)
+
 	PX2_DECLARE_EVENT_END(EditEventSpace)
 
 }

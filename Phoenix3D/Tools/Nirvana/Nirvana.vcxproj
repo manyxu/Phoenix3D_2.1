@@ -323,6 +323,7 @@
     <ClInclude Include="PX2DlgCreateProject.hpp" />
     <ClInclude Include="PX2E_App.hpp" />
     <ClInclude Include="PX2E_Define.hpp" />
+    <ClInclude Include="PX2E_DlgSetCurveVal.hpp" />
     <ClInclude Include="PX2E_RenderView_Cont.hpp" />
     <ClInclude Include="PX2E_StartView.hpp" />
     <ClInclude Include="PX2E_MainFrame.hpp" />
@@ -335,14 +336,12 @@
     <ClInclude Include="PX2E_ResSplitPanel.hpp" />
     <ClInclude Include="PX2E_ResTree.hpp" />
     <ClInclude Include="PX2E_ResTreeItem.hpp" />
-    <ClInclude Include="PX2E_TimeLineRender.hpp" />
     <ClInclude Include="PX2E_TopView.hpp" />
     <ClInclude Include="PX2E_InspView.hpp" />
     <ClInclude Include="PX2E_LogTextCtrl.hpp" />
     <ClInclude Include="PX2E_LogView.hpp" />
     <ClInclude Include="PX2ObjectInspector.hpp" />
     <ClInclude Include="PX2ObjectPropertyGrid.hpp" />
-    <ClInclude Include="PX2E_TimeLineView.hpp" />
     <ClInclude Include="PX2NirvanaEventType.hpp" />
     <ClInclude Include="PX2wxAui.hpp" />
     <ClInclude Include="PX2wxDockArt.hpp" />
@@ -363,6 +362,7 @@
     <ClCompile Include="PropGrid\wxPropertyExtend.cpp" />
     <ClCompile Include="PX2DlgCreateProject.cpp" />
     <ClCompile Include="PX2E_App.cpp" />
+    <ClCompile Include="PX2E_DlgSetCurveVal.cpp" />
     <ClCompile Include="PX2E_LogTextCtrl.cpp" />
     <ClCompile Include="PX2E_RenderView_Cont.cpp" />
     <ClCompile Include="PX2E_StartView.cpp" />
@@ -375,13 +375,11 @@
     <ClCompile Include="PX2E_ResTreeItem.cpp" />
     <ClCompile Include="PX2E_ResView.cpp" />
     <ClCompile Include="PX2E_ProjView.cpp" />
-    <ClCompile Include="PX2E_TimeLineRender.cpp" />
     <ClCompile Include="PX2E_TopView.cpp" />
     <ClCompile Include="PX2E_InspView.cpp" />
     <ClCompile Include="PX2E_LogView.cpp" />
     <ClCompile Include="PX2ObjectInspector.cpp" />
     <ClCompile Include="PX2ObjectPropertyGrid.cpp" />
-    <ClCompile Include="PX2E_TimeLineView.cpp" />
     <ClCompile Include="PX2NirvanaEventType.cpp" />
     <ClCompile Include="PX2wxAui.cpp" />
     <ClCompile Include="PX2wxDockArt.cpp" />

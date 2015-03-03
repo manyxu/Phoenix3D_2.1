@@ -4,6 +4,8 @@
 #include "PX2Renderer.hpp"
 using namespace PX2;
 
+PX2_IMPLEMENT_RTTI(PX2, Object, RenderStep);
+
 //----------------------------------------------------------------------------
 RenderStep::RenderStep() :
 mRenderer(0),

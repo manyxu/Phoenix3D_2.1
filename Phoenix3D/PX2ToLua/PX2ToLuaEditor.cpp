@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/02/15 18:03:09.
+** Generated automatically by tolua++-1.0.92 on 03/03/15 11:14:32.
 */
 
 #ifndef __cplusplus
@@ -1794,6 +1794,68 @@ static int tolua_PX2Editor_Edit_GetSelectedResource00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: OnFindSelectInProjTree of class  Edit */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_Edit_OnFindSelectInProjTree00
+static int tolua_PX2Editor_Edit_OnFindSelectInProjTree00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Edit",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Edit* self = (Edit*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnFindSelectInProjTree'", NULL);
+#endif
+  {
+   self->OnFindSelectInProjTree();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'OnFindSelectInProjTree'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: OnFindSelectInResTree of class  Edit */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_Edit_OnFindSelectInResTree00
+static int tolua_PX2Editor_Edit_OnFindSelectInResTree00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Edit",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Edit* self = (Edit*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnFindSelectInResTree'", NULL);
+#endif
+  {
+   self->OnFindSelectInResTree();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'OnFindSelectInResTree'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: SetCopyObject of class  Edit */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_Edit_SetCopyObject00
 static int tolua_PX2Editor_Edit_SetCopyObject00(lua_State* tolua_S)
@@ -2648,6 +2710,8 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetSelectPath_ChildPaths",tolua_PX2Editor_Edit_GetSelectPath_ChildPaths00);
    tolua_function(tolua_S,"SetSelectedResource",tolua_PX2Editor_Edit_SetSelectedResource00);
    tolua_function(tolua_S,"GetSelectedResource",tolua_PX2Editor_Edit_GetSelectedResource00);
+   tolua_function(tolua_S,"OnFindSelectInProjTree",tolua_PX2Editor_Edit_OnFindSelectInProjTree00);
+   tolua_function(tolua_S,"OnFindSelectInResTree",tolua_PX2Editor_Edit_OnFindSelectInResTree00);
    tolua_function(tolua_S,"SetCopyObject",tolua_PX2Editor_Edit_SetCopyObject00);
    tolua_function(tolua_S,"GetCopyObject",tolua_PX2Editor_Edit_GetCopyObject00);
    tolua_function(tolua_S,"PasteCopyedObject",tolua_PX2Editor_Edit_PasteCopyedObject00);

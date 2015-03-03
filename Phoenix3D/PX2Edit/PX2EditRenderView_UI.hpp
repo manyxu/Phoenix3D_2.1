@@ -42,7 +42,7 @@ namespace PX2
 		virtual void DoExecute(Event *event);
 	};
 
-	typedef Pointer0<EditRenderView_UI> EditUIRenderViewPtr;
+	typedef Pointer0<EditRenderView_UI> EditRenderView_UIPtr;
 
 }
 

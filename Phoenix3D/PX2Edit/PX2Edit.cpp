@@ -22,10 +22,12 @@ IsAltDown(false),
 IsCtrlDown(false),
 IsShiftDown(false)
 {
+	mTimeLineEidt = new0 TimeLineEdit();
 }
 //----------------------------------------------------------------------------
 Edit::~Edit()
 {
+	delete0(mTimeLineEidt);
 }
 //----------------------------------------------------------------------------
 bool Edit::Initlize()
@@ -141,6 +143,26 @@ void Edit::PasteCopyedObject()
 
 	if (actor && scene)
 	{
+	}
+}
+//----------------------------------------------------------------------------
+void Edit::OnFindSelectInProjTree()
+{
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	if (obj)
+	{
+		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::FindActorInProjectTree);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+}
+//----------------------------------------------------------------------------
+void Edit::OnFindSelectInResTree()
+{
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	if (obj)
+	{
+		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::FindActorInResTree);
+		PX2_EW.BroadcastingLocalEvent(ent);
 	}
 }
 //----------------------------------------------------------------------------

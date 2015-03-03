@@ -10,7 +10,7 @@ function e_CreateToolBarMenu()
 	NirMan:AddMenuTool(" "..(PX2_LM:GetValue("Help")), "e_CreateToolMenuHelp()");
 end
 
---main tool bar
+-- file tool bar
 function e_CreateToolBarMain()
 	NirMan:AddTool("DataEditor/icons/file/proj_new.png", "e_OnNewProject()")
 	NirMan:AddTool("DataEditor/icons/file/proj_open.png", "e_OnOpenProject()")
@@ -53,4 +53,25 @@ function e_CreateTooBarRes()
 	NirMan:AddTool("DataEditor/icons/resview/res_refresh.png", "e_ResView_Refresh()")
 	NirMan:AddTool("DataEditor/icons/resview/res_clear.png", "e_ResView_Clear()")
 	NirMan:AddToolSeparater()
+end
+
+function e_CreateToolBarTimeLine()
+	NirMan:AddTool("DataEditor/icons/timeline/fit_horz.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/fit_vert.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/fit_all.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/fit_select.png", "e_ResView_Refresh()")
+	NirMan:AddToolSeparater()
+	NirMan:AddTool("DataEditor/icons/timeline/pan.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/zoom.png", "e_ResView_Refresh()")
+	NirMan:AddToolSeparater()
+	NirMan:AddTool("DataEditor/icons/timeline/curve_auto.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/curve_clamped.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/curve_user.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/curve_break.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/curve_linear.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/curve_constant.png", "e_ResView_Refresh()")
+	NirMan:AddToolSeparater()
+	NirMan:AddTool("DataEditor/icons/timeline/curve_flattentangentstoaxis.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/curve_straightentangents.png", "e_ResView_Refresh()")
+	NirMan:AddTool("DataEditor/icons/timeline/curve_showallctrls.png", "e_ResView_Refresh()")
 end

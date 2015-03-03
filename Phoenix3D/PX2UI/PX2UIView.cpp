@@ -7,6 +7,8 @@
 #include "PX2InputEventData.hpp"
 using namespace PX2;
 
+PX2_IMPLEMENT_RTTI(PX2, RenderStep, UIView);
+
 //----------------------------------------------------------------------------
 float UIView::msUICameraZ = -2000.0f;
 //----------------------------------------------------------------------------

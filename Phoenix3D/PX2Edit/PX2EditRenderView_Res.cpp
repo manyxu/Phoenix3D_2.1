@@ -20,6 +20,7 @@ EditRenderView_Res::EditRenderView_Res() :
 EditRenderView(2),
 mItemSize(80.0f)
 {
+	// mRenderViewID is 2
 	PX2_INPUTMAN.CreateAddListener(mRenderViewID);
 
 	mFrame = new0 UIFrame();
@@ -57,7 +58,7 @@ bool EditRenderView_Res::InitlizeRendererStep(const std::string &name)
 
 	mSize = mPt_Size;
 
-	mRenderStep = new0 UIView(2);
+	mRenderStep = new0 UIView(mRenderViewID);
 	mRenderStep->SetName(name);
 
 	SetRenderer(mRenderer);
@@ -142,7 +143,6 @@ void EditRenderView_Res::OnSize(const Sizef& size)
 
 	mGridFrame->SetSize(mSize);
 	InputPushTransformController *ctrl = mGridFrame->GetIPTCtrl();
-
 	mGridFrame->Update(GetTimeInSeconds());
 
 	EditRenderView::OnSize(size);

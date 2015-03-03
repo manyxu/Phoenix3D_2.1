@@ -67,3 +67,8 @@ inline PX2::Object *Edit::GetCopyObject()
 	return mCopyObject;
 }
 //----------------------------------------------------------------------------
+inline TimeLineEdit *Edit::GetTimeLineEdit()
+{
+	return mTimeLineEidt;
+}
+//----------------------------------------------------------------------------

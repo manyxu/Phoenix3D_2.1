@@ -9,6 +9,7 @@
 #include "PX2GeoObjFactory.hpp"
 #include "PX2EditParams.hpp"
 #include "PX2SelectResData.hpp"
+#include "PX2EditTimeLineEdit.hpp"
 
 namespace PX2
 {
@@ -90,7 +91,7 @@ namespace PX2
 	public:
 		bool DeleteSelection();
 
-		// select
+		// select res
 	public:
 		void SetSelectPath_ChildFilenames(const std::vector<std::string> &filenamess);
 		void SetSelectPath_ChildPaths(const std::vector<std::string> &paths);
@@ -106,6 +107,11 @@ namespace PX2
 
 		SelectResData mSelectResData;
 
+		// select res find
+	public:
+		void OnFindSelectInProjTree();
+		void OnFindSelectInResTree();
+
 		// Copy
 	public:
 		void SetCopyObject(PX2::Object *obj);
@@ -114,6 +120,13 @@ namespace PX2
 
 	protected:
 		PX2::ObjectPtr mCopyObject;
+
+		// TimeLine
+	public:
+		TimeLineEdit *GetTimeLineEdit();
+
+	protected:
+		TimeLineEdit *mTimeLineEidt;
 	};
 
 #include "PX2Edit.inl"

@@ -5,7 +5,6 @@
 #include "PX2E_ResView.hpp"
 #include "PX2E_ProjView.hpp"
 #include "PX2E_StartView.hpp"
-#include "PX2E_TimeLineView.hpp"
 #include "PX2E_TopView.hpp"
 #include "PX2E_InspView.hpp"
 #include "PX2E_RenderView_Cont.hpp"
@@ -687,10 +686,10 @@ void E_MainFrame::_CreateMenuToolBar()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()
 {
-	_CreateTimeLine(false);
 	_CreateMainView(true);
 	_CreateProjView(false);
 	_CreateInsp(false);
+	_CreateTimeLine(false);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateProjView(bool isTopStyle)
@@ -763,8 +762,11 @@ void E_MainFrame::_CreateInsp(bool isTopStyle)
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine(bool isTopStyle)
 {
-	mTimeLineView = new TimeLineView(this);
-	_CreateView(mTimeLineView, "TimeLine", PX2_LM.GetValue("TimeLine"),
+	RenderView_Cot *viewCont_TimeLine = new RenderView_Cot(RVT_TIMELINE, this);
+	mTimeLineView = viewCont_TimeLine->GetRenderView();
+	mTimeLineView->_NewEditRenderView("TimeLine");
+
+	_CreateView(viewCont_TimeLine, "TimeLine", PX2_LM.GetValue("TimeLine"),
 		wxAuiPaneInfo().DefaultPane().Bottom().CaptionVisible(false).TopDockable(false), isTopStyle);
 }
 //----------------------------------------------------------------------------

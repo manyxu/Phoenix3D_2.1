@@ -16,6 +16,8 @@ namespace PX2
 
 	class UIView : public RenderStep
 	{
+		PX2_DECLARE_RTTI;
+
 	public:
 		UIView(int viewID);
 		~UIView();

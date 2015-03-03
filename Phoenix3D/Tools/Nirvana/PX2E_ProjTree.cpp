@@ -366,6 +366,11 @@ void ProjTree::OnRightUp(wxMouseEvent& e)
 //----------------------------------------------------------------------------
 void ProjTree::OnItemActivated(wxTreeEvent& event)
 {
+	wxTreeItemId id = event.GetItem();
+	bool isExpanded = IsExpanded(id);
+
+	if (isExpanded) Collapse(id);
+	else Expand(id);
 }
 //----------------------------------------------------------------------------
 void ProjTree::OnSelChanged(wxTreeEvent& event)
@@ -455,6 +460,16 @@ void ProjTree::DoExecute(Event *event)
 		Object *obj = event->GetData<Object*>();
 		ProjTreeItem *item = GetItem(obj);
 		if (item) item->SetName(obj->GetName());
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::FindActorInProjectTree))
+	{
+		Object *obj = PX2_SELECTION.GetFirstObject();
+		ProjTreeItem *item = GetItem(obj);
+		if (item)
+		{
+			SelectItem(item->GetItemID());
+			SetFocus();
+		}
 	}
 }
 //----------------------------------------------------------------------------

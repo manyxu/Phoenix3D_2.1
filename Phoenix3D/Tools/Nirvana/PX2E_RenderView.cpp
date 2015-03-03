@@ -6,6 +6,7 @@
 #include "PX2EditRenderView_UI.hpp"
 #include "PX2EditRenderView_Logic.hpp"
 #include "PX2EditRenderView_Res.hpp"
+#include "PX2EditRenderView_TimeLine.hpp"
 #include "PX2Project.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2Edit.hpp"
@@ -297,6 +298,8 @@ void RenderView::_NewEditRenderView(const std::string &name)
 {
 	wxSize size = GetClientSize();
 	Sizef sz(size.x, size.y);
+	if (sz.Width < 100.0f) sz.Width = 100;
+	if (sz.Height < 100.0f) sz.Height = 100;
 
 	EditRenderView *renderView = 0;
 	if ("Scene" == name)
@@ -340,6 +343,15 @@ void RenderView::_NewEditRenderView(const std::string &name)
 		renderView->SetPt_Size(sz);
 		
 		renderView->InitlizeRendererStep("ResRenderStep");
+	}
+	else if ("TimeLine" == name)
+	{
+		renderView = new0 EditRenderView_TimeLine();
+
+		renderView->SetPt_Data(GetHandle());
+		renderView->SetPt_Size(sz);
+
+		renderView->InitlizeRendererStep("TimeLineRenderStep");
 	}
 
 	renderView->OnSize(sz);

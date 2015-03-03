@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PX2EditTimeLineEdit.hpp" />
     <ClInclude Include="PX2Edit.hpp" />
     <ClInclude Include="PX2EditDefine.hpp" />
     <ClInclude Include="PX2EditEventType.hpp" />
@@ -29,6 +30,7 @@
     <ClInclude Include="PX2EditRenderView.hpp" />
     <ClInclude Include="PX2EditRenderView_Res.hpp" />
     <ClInclude Include="PX2EditRenderView_Scene.hpp" />
+    <ClInclude Include="PX2EditRenderView_TimeLine.hpp" />
     <ClInclude Include="PX2EditRenderView_UI.hpp" />
     <ClInclude Include="PX2Edits.hpp" />
     <ClInclude Include="PX2GeoObjFactory.hpp" />
@@ -36,6 +38,7 @@
     <ClInclude Include="PX2SelectResData.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PX2EditTimeLineEdit.cpp" />
     <ClCompile Include="PX2Edit.cpp" />
     <ClCompile Include="PX2EditEventType.cpp" />
     <ClCompile Include="PX2EditRenderView_Logic.cpp" />
@@ -44,6 +47,7 @@
     <ClCompile Include="PX2EditRenderView.cpp" />
     <ClCompile Include="PX2EditRenderView_Res.cpp" />
     <ClCompile Include="PX2EditRenderView_Scene.cpp" />
+    <ClCompile Include="PX2EditRenderView_TimeLine.cpp" />
     <ClCompile Include="PX2EditRenderView_UI.cpp" />
     <ClCompile Include="PX2GeoObjFactory.cpp" />
     <ClCompile Include="PX2SceneNodeCtrl.cpp" />

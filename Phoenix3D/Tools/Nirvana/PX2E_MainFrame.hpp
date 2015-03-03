@@ -19,7 +19,6 @@ namespace PX2Editor
 	class InspView;
 	class TopView;
 	class LogicView;
-	class TimeLineView;
 	class LogView;
 	class PX2wxAuiNotebook;
 	class PX2wxAuiToolBar;
@@ -145,7 +144,7 @@ namespace PX2Editor
 		ProjView *mProjView;
 		ResView *mResView;
 		InspView *mInspView;
-		TimeLineView *mTimeLineView;
+		RenderView *mTimeLineView;
 		LogView *mLogView;
 
 		PX2wxAuiNotebook *mNoteBookCenter;

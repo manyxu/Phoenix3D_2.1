@@ -133,12 +133,6 @@
     <ClInclude Include="PX2wxAui.hpp">
       <Filter>wxExtent\Aui</Filter>
     </ClInclude>
-    <ClInclude Include="PX2E_TimeLineView.hpp">
-      <Filter>TimeLine</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2E_TimeLineRender.hpp">
-      <Filter>TimeLine</Filter>
-    </ClInclude>
     <ClInclude Include="PX2E_NirMan.hpp">
       <Filter>Manager</Filter>
     </ClInclude>
@@ -169,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="PX2_MakingWindow.hpp">
       <Filter>InspView\Making</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2E_DlgSetCurveVal.hpp">
+      <Filter>TimeLine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -244,12 +241,6 @@
     <ClCompile Include="PX2wxAui.cpp">
       <Filter>wxExtent\Aui</Filter>
     </ClCompile>
-    <ClCompile Include="PX2E_TimeLineView.cpp">
-      <Filter>TimeLine</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2E_TimeLineRender.cpp">
-      <Filter>TimeLine</Filter>
-    </ClCompile>
     <ClCompile Include="PX2E_NirMan.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
@@ -285,6 +276,9 @@
     </ClCompile>
     <ClCompile Include="PX2_MakingWindow.cpp">
       <Filter>InspView\Making</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2E_DlgSetCurveVal.cpp">
+      <Filter>TimeLine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

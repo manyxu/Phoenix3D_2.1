@@ -17,6 +17,8 @@ namespace PX2
 
 	class RenderStep : public Object
 	{
+		PX2_DECLARE_RTTI;
+
 	public:
 		RenderStep();
 		~RenderStep();

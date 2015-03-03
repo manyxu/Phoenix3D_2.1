@@ -66,6 +66,10 @@
 
 		void SetSelectedResource(const SelectResData &data);
 		const SelectResData &GetSelectedResource() const;
+		
+	public:
+		void OnFindSelectInProjTree();
+		void OnFindSelectInResTree();
 
 		// Copy
 	public:

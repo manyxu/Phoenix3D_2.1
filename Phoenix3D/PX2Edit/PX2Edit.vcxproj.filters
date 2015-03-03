@@ -38,6 +38,12 @@
     <ClInclude Include="PX2EditParams.hpp">
       <Filter>Param</Filter>
     </ClInclude>
+    <ClInclude Include="PX2EditRenderView_TimeLine.hpp">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EditTimeLineEdit.hpp">
+      <Filter>TimeLine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -74,6 +80,12 @@
     <ClCompile Include="PX2SelectResData.cpp">
       <Filter>SelectRes</Filter>
     </ClCompile>
+    <ClCompile Include="PX2EditRenderView_TimeLine.cpp">
+      <Filter>Views</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EditTimeLineEdit.cpp">
+      <Filter>TimeLine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Event">
@@ -93,6 +105,9 @@
     </Filter>
     <Filter Include="SelectRes">
       <UniqueIdentifier>{62c7ffbb-676e-4d17-ae01-665bb386d5b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimeLine">
+      <UniqueIdentifier>{6025f991-07dd-463e-a977-1a7faea56e7c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

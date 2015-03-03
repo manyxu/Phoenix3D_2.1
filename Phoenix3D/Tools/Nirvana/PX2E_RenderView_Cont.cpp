@@ -25,9 +25,12 @@ wxAuiToolBar *RenderView_Cot::_CreateRenderViewBar(RenderViewType type)
 	if (RVT_SCENEUI == type)
 	{
 		NirMan::GetSingleton().SetCurToolBar(renderViewToolBar);
-
-		if (RVT_SCENEUI == type)
-			PX2_SM.CallString("e_CreateToolBarSceneUI()");
+		PX2_SM.CallString("e_CreateToolBarSceneUI()");
+	}
+	else if(RVT_TIMELINE == type)
+	{
+		NirMan::GetSingleton().SetCurToolBar(renderViewToolBar);
+		PX2_SM.CallString("e_CreateToolBarTimeLine()");
 	}
 
 	renderViewToolBar->Realize();

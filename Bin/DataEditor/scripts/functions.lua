@@ -334,6 +334,15 @@ end
 function e_AddSceneActor_Sound()
 end
 
+-- scene view
+function e_FindInSceneTree()
+	PX2_EDIT:OnFindSelectInProjTree()
+end
+
+function e_FindInResTree()
+	PX2_EDIT:OnFindSelectInResTree()
+end
+
 -- project view
 function e_ProjectView_Detail_General()
 	NirMan:SetProjTreeLevel(0)
