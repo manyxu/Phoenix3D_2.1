@@ -102,6 +102,8 @@ void EditRenderView_TimeLine::Tick(double elapsedTime)
 		if (renderer && renderer->PreDraw())
 		{
 			renderer->InitRenderStates();
+
+			mRenderer->SetClearColor(Float4::MakeColor(64, 64, 64, 255));
 			renderer->ClearBuffers();
 
 			mRenderStep->Draw();
@@ -111,6 +113,12 @@ void EditRenderView_TimeLine::Tick(double elapsedTime)
 				mRenderer->Draw(mFontStrs[i].x, mFontStrs[i].y, Float4::WHITE,
 					mFontStrs[i].str);
 			}
+
+			// draw left
+			mRenderer->SetClearColor(Float4::BLACK);
+			mRenderer->ClearBuffers(0, -1, mLeftWidth, mSize.Height + 1);
+			mRenderer->SetClearColor(Float4(0.6f, 0.6f, 0.6f, 1.0f));
+			mRenderer->ClearColorBuffer(0, 0, mLeftWidth - 1, mSize.Height + 1);
 
 			renderer->PostDraw();
 			renderer->DisplayColorBuffer();
@@ -282,6 +290,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 	int segNum = 0;
 	mFontStrs.clear();
 	int iTemp = 4;
+	int zTemp = 4;
 
 	VertexBufferAccessor vba(mGridPoly);
 	float zPosTemp = 0.0f;
@@ -297,7 +306,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		mRenderer->SetCamera(mRenderStep->GetCamera());
 		Vector2f scrv = mRenderer->PointWorldToViewPort(APoint(0.0f, 0.0f, zPosTemp));
 		FontStr fs;
-		fs.x = iTemp;
+		fs.x = iTemp + mLeftWidth;
 		fs.y = height - (int)scrv.Y();
 		fs.str = StringHelp::FloatToString(zPosTemp);
 		mFontStrs.push_back(fs);
@@ -317,7 +326,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		Vector2f scrv = mRenderer->PointWorldToViewPort(APoint(0.0f, 0.0f,
 			zPosTemp));
 		FontStr fs;
-		fs.x = iTemp;
+		fs.x = iTemp + mLeftWidth;
 		fs.y = height - (int)scrv.Y();
 		fs.str = StringHelp::FloatToString(zPosTemp);
 		mFontStrs.push_back(fs);
@@ -337,7 +346,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		Vector2f scrv = mRenderer->PointWorldToViewPort(APoint(xPosTemp, 0.0f, 0.0f));
 		FontStr fs;
 		fs.x = (int)scrv.X() + iTemp;
-		fs.y = height - iTemp;
+		fs.y = height - zTemp;
 		fs.str = StringHelp::FloatToString(xPosTemp);
 		mFontStrs.push_back(fs);
 
@@ -357,7 +366,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 			0.0f));
 		FontStr fs;
 		fs.x = (int)scrv.X() + iTemp;
-		fs.y = height - iTemp;
+		fs.y = height - zTemp;
 		fs.str = StringHelp::FloatToString(xPosTemp);
 		mFontStrs.push_back(fs);
 
@@ -377,15 +386,15 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 
 	Vector2f scrv = mRenderer->PointWorldToViewPort(APoint::ORIGIN);
 	FontStr fs;
-	fs.x = iTemp;
+	fs.x = iTemp + mLeftWidth;
 	fs.y = height - (int)scrv.Y();
-	fs.str = "0";
+	fs.str = "0.0";
 	mFontStrs.push_back(fs);
 
 	FontStr fs1;
 	fs1.x = (int)scrv.X() + iTemp;
-	fs1.y = height - iTemp;
-	fs1.str = "0";
+	fs1.y = height - zTemp;
+	fs1.str = "0.0";
 	mFontStrs.push_back(fs1);
 
 	mGridPoly->SetNumSegments(segNum);

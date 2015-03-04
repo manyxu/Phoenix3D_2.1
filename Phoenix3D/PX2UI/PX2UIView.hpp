@@ -64,6 +64,8 @@ namespace PX2
 	public:
 		void SetNotPickedCallback(NotPickedCallback callback);
 
+		std::vector<RenderablePtr> &GetPickedRenderables();
+
 	public_internal:
 		std::list<UIButtonPtr > mPressedButs;
 

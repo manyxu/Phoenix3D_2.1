@@ -60,6 +60,9 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 
 	Project *proj = DynamicCast<Project>(mObject);
 	Scene *scene = DynamicCast<Scene>(mObject);
+	if (proj || scene)
+		return;
+
 	Actor *actor = DynamicCast<Actor>(mObject);
 	Movable *mov = DynamicCast<Movable>(mObject);
 	Node *node = DynamicCast<Node>(mObject);
@@ -71,10 +74,9 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 			ProjTreeItem *item = mChildItems[i];
 			if (item) item->SetTreeLevel(level);
 		}
-
 		return;
 	}
-	else if (!proj)
+	else
 	{
 		ClearChildren();
 	}
@@ -84,9 +86,10 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 	}
 	else if (PTL_CHILDREN == mTreeLevel)
 	{
-		if (!scene && node)
+		if (!scene && !proj && node)
 		{
-			for (int i = 0; i < node->GetNumChildren(); i++)
+			int numChildren = node->GetNumChildren();
+			for (int i = 0; i < numChildren; i++)
 			{
 				Movable *child = node->GetChild(i);
 				if (child)

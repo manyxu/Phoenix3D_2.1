@@ -38,6 +38,8 @@ namespace PX2
 	PX2_EVENT(FindActorInProjectTree)
 	PX2_EVENT(FindActorInResTree)
 
+	PX2_EVENT(TimeLine_UIPosDrag)
+
 	PX2_DECLARE_EVENT_END(EditEventSpace)
 
 }

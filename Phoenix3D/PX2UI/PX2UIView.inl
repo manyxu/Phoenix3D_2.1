@@ -26,3 +26,8 @@ inline bool UIView::IsCameraAutoAdjust() const
 	return mIsCameraAutoAdjust;
 }
 //----------------------------------------------------------------------------
+inline std::vector<RenderablePtr> &UIView::GetPickedRenderables()
+{
+	return mPickedRenderables;
+}
+//----------------------------------------------------------------------------

@@ -1,0 +1,33 @@
+// PX2Billboard.pkg
+
+	class Billboard : public Effectable
+	{
+		Billboard ();
+		virtual ~Billboard ();
+
+		void SetDynamic (bool isDynamic);
+		bool IsDynamic () const;
+
+		void SetAnchorPoint (float anchX, float anchZ);
+		void SetAnchorPoint (const Float2 &anchor);
+		const Float2 &GetAnchorPoint () const;
+
+		void SetUseTexAsSize (bool use);
+		bool IsUseTexAsSize () const;
+
+		void SetUseTrim (bool useTrim);
+		bool IsUseTrim () const;
+
+		void SetDoAlphaDisAfterStop (bool doAlphaDis);
+		bool IsDoAlphaDisAfterStop () const;
+		void SetDoAlphaDisAfterStopSpeed (float speed);
+		float GetDoAlphaDisAfterStopSpeed () const;
+
+		void SetSizeImmediate (float sizeX, float sizeY, float sizeZ);
+
+		virtual const std::vector<std::string> &GetAllModuleNames_EA () const;
+		virtual const std::vector<std::string> &GetAllModuleNames_EO () const;
+
+		static std::vector<std::string> msModuleNames_EA;
+		static std::vector<std::string> msModuleNames_EO;
+	};

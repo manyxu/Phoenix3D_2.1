@@ -14,8 +14,7 @@ PX2_IMPLEMENT_ABSTRACT_FACTORY(Effectable);
 PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, Effectable);
 
 //----------------------------------------------------------------------------
-Effectable::Effectable ()
-	:
+Effectable::Effectable () :
 mIsFixedBound(true),
 mFixedBoundRadius(2.0f),
 mIsLocal(false),
@@ -125,7 +124,7 @@ void Effectable::SetMaterialType (MaterialType type)
 
 	if (MT_TEX == mMtlType)
 	{
-		SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1));
+		SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PCT1));
 	}
 	else if(MT_TEX_MASK_MULTIPLY == mMtlType)
 	{

@@ -1,0 +1,29 @@
+// PX2EffectModelNode.hpp
+
+	class EffectModelNode : public Node
+	{
+		EffectModelNode ();
+		virtual ~EffectModelNode ();
+
+		void SetModelFilename (const std::string &filename);
+		const std::string &GetModelFilename () const;
+
+		enum CoordinateType
+		{
+			CT_CLAMP,
+			CT_REPEAT,
+			CT_MAX_TYPE
+		};
+		void SetCoordinateType0 (CoordinateType type);
+		CoordinateType GetCoordinateType0 () const;
+		void SetCoordinateType1 (CoordinateType type);
+		CoordinateType GetCoordinateType1 () const;
+
+		void SetUVSpeed (const Float2 &uv);
+		const Float2 &GetUVSpeed () const;
+
+		void SetTextureFilename (const std::string &filename);
+		const std::string &GetTextureFilename () const;
+
+		virtual void Reset ();
+	};

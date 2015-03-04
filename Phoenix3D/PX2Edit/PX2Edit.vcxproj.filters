@@ -44,6 +44,21 @@
     <ClInclude Include="PX2EditTimeLineEdit.hpp">
       <Filter>TimeLine</Filter>
     </ClInclude>
+    <ClInclude Include="PX2Curve.hpp">
+      <Filter>TimeLine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CurveCtrl.hpp">
+      <Filter>TimeLine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CurveGroup.hpp">
+      <Filter>TimeLine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UICurveGroup.hpp">
+      <Filter>TimeLine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2UIObjectCtrl.hpp">
+      <Filter>TimeLine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -86,6 +101,21 @@
     <ClCompile Include="PX2EditTimeLineEdit.cpp">
       <Filter>TimeLine</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Curve.cpp">
+      <Filter>TimeLine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CurveCtrl.cpp">
+      <Filter>TimeLine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CurveGroup.cpp">
+      <Filter>TimeLine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UICurveGroup.cpp">
+      <Filter>TimeLine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2UIObjectCtrl.cpp">
+      <Filter>TimeLine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Event">
@@ -112,5 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Edit.inl" />
+    <None Include="PX2UIObjectCtrl.inl">
+      <Filter>TimeLine</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PX2Curve.hpp" />
+    <ClInclude Include="PX2CurveCtrl.hpp" />
+    <ClInclude Include="PX2CurveGroup.hpp" />
     <ClInclude Include="PX2EditTimeLineEdit.hpp" />
     <ClInclude Include="PX2Edit.hpp" />
     <ClInclude Include="PX2EditDefine.hpp" />
@@ -36,8 +39,13 @@
     <ClInclude Include="PX2GeoObjFactory.hpp" />
     <ClInclude Include="PX2SceneNodeCtrl.hpp" />
     <ClInclude Include="PX2SelectResData.hpp" />
+    <ClInclude Include="PX2UICurveGroup.hpp" />
+    <ClInclude Include="PX2UIObjectCtrl.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PX2Curve.cpp" />
+    <ClCompile Include="PX2CurveCtrl.cpp" />
+    <ClCompile Include="PX2CurveGroup.cpp" />
     <ClCompile Include="PX2EditTimeLineEdit.cpp" />
     <ClCompile Include="PX2Edit.cpp" />
     <ClCompile Include="PX2EditEventType.cpp" />
@@ -52,9 +60,12 @@
     <ClCompile Include="PX2GeoObjFactory.cpp" />
     <ClCompile Include="PX2SceneNodeCtrl.cpp" />
     <ClCompile Include="PX2SelectResData.cpp" />
+    <ClCompile Include="PX2UICurveGroup.cpp" />
+    <ClCompile Include="PX2UIObjectCtrl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Edit.inl" />
+    <None Include="PX2UIObjectCtrl.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F0F8CD0C-AB92-445A-96DA-0ECEEBB06223}</ProjectGuid>

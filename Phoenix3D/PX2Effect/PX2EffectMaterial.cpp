@@ -14,35 +14,6 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Material, EffectMaterial);
 bool EffectMaterial::msIsRegisterInitFinal = false;
 std::vector<EffectMaterialPtr> EffectMaterial::msPreCreatedMtls;
 //----------------------------------------------------------------------------
-void EffectMaterial::Init()
-{
-	msPreCreatedMtls.resize(9);
-	for (int i=0; i<=8; i++)
-	{
-		msPreCreatedMtls[i] = new0 EffectMaterial();
-		msPreCreatedMtls[i]->GetCullProperty(0, 0)->Enabled = false;
-		msPreCreatedMtls[i]->SetBlendMode(i);
-	}
-}
-//----------------------------------------------------------------------------
-void EffectMaterial::Final()
-{
-	msPreCreatedMtls.clear();
-}
-//----------------------------------------------------------------------------
-bool EffectMaterial::RegisterInitFinal()
-{
-	if (!msIsRegisterInitFinal)
-	{
-		InitTerm::AddInitializer(Init);
-		InitTerm::AddTerminator(Final);
-
-		msIsRegisterInitFinal = true;
-	}
-
-	return msIsRegisterInitFinal;
-}
-//----------------------------------------------------------------------------
 EffectMaterial *EffectMaterial::GetPreCreatedMtl(int mode)
 {
 	assertion(mode<(int)msPreCreatedMtls.size(), 

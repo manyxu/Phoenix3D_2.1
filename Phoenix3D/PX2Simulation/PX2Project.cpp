@@ -13,6 +13,8 @@
 #include "PX2EngineLoop.hpp"
 using namespace PX2;
 
+PX2_IMPLEMENT_RTTI(PX2, Node, Project);
+
 //----------------------------------------------------------------------------
 Project::Project() :
 mEdit_UICameraPercent(1.0f),

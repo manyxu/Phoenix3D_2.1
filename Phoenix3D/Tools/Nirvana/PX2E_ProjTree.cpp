@@ -98,11 +98,11 @@ void ProjTree::SetTreeLevel(ProjTreeLevel level)
 {
 	if (!mItemProj) return;
 
-	mItemProj->SetTreeLevel(level);
+	mItemProj->SetTreeLevel(level);	
+	
 	mItemScene->SetTreeLevel(level);
 
 	mItemCameras->SetTreeLevel(level);
-
 	mItemObjects->SetTreeLevel(level);
 
 	if (PTL_GENERAL == level)

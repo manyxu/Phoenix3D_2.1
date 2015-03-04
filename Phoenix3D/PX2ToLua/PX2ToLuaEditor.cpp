@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/03/15 20:01:37.
+** Generated automatically by tolua++-1.0.92 on 03/04/15 15:50:37.
 */
 
 #ifndef __cplusplus

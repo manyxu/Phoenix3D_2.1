@@ -26,13 +26,7 @@ namespace PX2
 
 		void SetBlendMode (int mode);
 
-public_internal:
-		static bool RegisterInitFinal ();
-
 	private:
-		static void Init ();
-		static void Final ();
-
 		static int msDx9VRegisters[1];
 		static int msOglVRegisters[1];
 		static int msOpenGLES2VRegisters[1];
@@ -48,8 +42,6 @@ public_internal:
 
 	PX2_REGISTER_STREAM(EffectMaterial);
 	typedef Pointer0<EffectMaterial> EffectMaterialPtr;
-	static bool gsEffectMaterialInitFinal = EffectMaterial::RegisterInitFinal();
-
 }
 
 #endif

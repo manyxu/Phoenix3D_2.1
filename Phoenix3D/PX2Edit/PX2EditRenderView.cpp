@@ -265,33 +265,47 @@ void EditRenderView::DoExecute(Event *event)
 	{
 		InputEventData data = event->GetData<InputEventData>();
 
-		if (MBID_LEFT == data.MButtonID)
-			OnLeftDown(data.MTPos);
-		else if (MBID_RIGHT == data.MButtonID)
-			OnRightDown(data.MTPos);
-		else if (MBID_MIDDLE == data.MButtonID)
-			OnMiddleDown(data.MTPos);
+		if (data.ViewID == mRenderViewID)
+		{
+			if (MBID_LEFT == data.MButtonID)
+				OnLeftDown(data.MTPos);
+			else if (MBID_RIGHT == data.MButtonID)
+				OnRightDown(data.MTPos);
+			else if (MBID_MIDDLE == data.MButtonID)
+				OnMiddleDown(data.MTPos);
+		}
 	}
 	else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseReleased))
 	{
 		InputEventData data = event->GetData<InputEventData>();
 
-		if (MBID_LEFT == data.MButtonID)
-			OnLeftUp(data.MTPos);
-		else if (MBID_RIGHT == data.MButtonID)
-			OnRightUp(data.MTPos);
-		else if (MBID_MIDDLE == data.MButtonID)
-			OnMiddleUp(data.MTPos);
+		if (data.ViewID == mRenderViewID)
+		{
+			if (MBID_LEFT == data.MButtonID)
+				OnLeftUp(data.MTPos);
+			else if (MBID_RIGHT == data.MButtonID)
+				OnRightUp(data.MTPos);
+			else if (MBID_MIDDLE == data.MButtonID)
+				OnMiddleUp(data.MTPos);
+		}
 	}
 	else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseMoved))
 	{
 		InputEventData data = event->GetData<InputEventData>();
-		OnMotion(data.MTPos);
+
+		if (data.ViewID == mRenderViewID)
+		{
+			OnMotion(data.MTPos);
+		}
 	}
 	else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseWheeled))
 	{
 		InputEventData data = event->GetData<InputEventData>();
-		OnMouseWheel(data.MWheel);
+		
+		if (data.ViewID == mRenderViewID)
+		{
+			OnMouseWheel(data.MWheel);
+		}
 	}
 }
 //----------------------------------------------------------------------------
