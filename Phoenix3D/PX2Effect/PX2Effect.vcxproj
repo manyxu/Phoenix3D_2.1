@@ -30,7 +30,6 @@
     <ClInclude Include="PX2Effect.hpp" />
     <ClInclude Include="PX2Effectable.hpp" />
     <ClInclude Include="PX2EffectableController.hpp" />
-    <ClInclude Include="PX2EffectMaterial.hpp" />
     <ClInclude Include="PX2EffectModel.hpp" />
     <ClInclude Include="PX2EffectModelController.hpp" />
     <ClInclude Include="PX2EffectModelNode.hpp" />
@@ -66,7 +65,6 @@
     <ClCompile Include="PX2CameraShakeObject.cpp" />
     <ClCompile Include="PX2Effectable.cpp" />
     <ClCompile Include="PX2EffectableController.cpp" />
-    <ClCompile Include="PX2EffectMaterial.cpp" />
     <ClCompile Include="PX2EffectModel.cpp" />
     <ClCompile Include="PX2EffectModelController.cpp" />
     <ClCompile Include="PX2EffectModelNode.cpp" />

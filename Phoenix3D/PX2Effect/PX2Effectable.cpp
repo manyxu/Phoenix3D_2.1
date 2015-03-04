@@ -15,6 +15,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, Effectable);
 
 //----------------------------------------------------------------------------
 Effectable::Effectable () :
+mIsUpdate(false),
 mIsFixedBound(true),
 mFixedBoundRadius(2.0f),
 mIsLocal(false),
@@ -46,20 +47,46 @@ mIsBufferEverGenerated(false)
 	mUV1_Speed = Float2::ZERO;
 
 	SetFixedBound(mIsFixedBound);
-	SetMaterialType(mMtlType);
-	SetBlendMode(BM_BLEND_SCRCALPHA_DSTONEMIUSSRCALPHA);
-	SetTex("Data/engine/default.png");
-
 	SetFaceType(mFaceType);
+
+	SetMaterialType(mMtlType);
+
+	SetBlendMode(BM_BLEND_SCRCALPHA_DSTONEMIUSSRCALPHA);
+	SetBackCull(mIsBackCull);
+	
+	SetTex("Data/engine/default.png");
 }
 //----------------------------------------------------------------------------
 Effectable::~Effectable ()
 {
 }
 //----------------------------------------------------------------------------
-void Effectable::Update (double applicationTime, bool initiator)
+void Effectable::UpdateWorldData(double applicationTime)
 {
-	TriMesh::Update(applicationTime, initiator);
+	if (!mIsUpdate)
+	{
+		SetBlendMode(mBlendMode);
+		SetBackCull(mIsBackCull);
+
+		std::string outPath;
+		std::string outBaseName;
+		std::string outExt;
+		StringHelp::SplitFullFilename(mTexFilename, outPath, outBaseName, outExt);
+
+		Effectable::TexMode texMode = GetTexMode();
+		if (Effectable::TM_TEXPACK_ELE == texMode && "xml" == outExt)
+		{
+			SetTexPack_Ele(mTexFilename, mTexPackEleName);
+		}
+		else if (Effectable::TM_TEXPACK_ANIM == texMode && "xml" == outExt)
+		{
+			SetTexPackAnim(mTexFilename);
+		}
+
+		mIsUpdate = true;
+	}
+
+	TriMesh::UpdateWorldData(applicationTime);
 }
 //----------------------------------------------------------------------------
 void Effectable::SetFixedBound (bool fixed)
@@ -94,20 +121,17 @@ void Effectable::SetFixedBoundRadius (float radius)
 //----------------------------------------------------------------------------
 void Effectable::SetLocal (bool l)
 {
-	if (!mEffectMtlInst)
-		return;
+	if (!mMaterialInstance) return;
 
 	mIsLocal = l;
 
 	if (mIsLocal)
 	{
-		mEffectMtlInst->SetVertexConstant(0, "gPVWMatrix",
-			new0 PVWMatrixConstant());
+		mMaterialInstance->SetVertexConstant(0, "PVWMatrix", new0 PVWMatrixConstant());
 	}
 	else
 	{
-		mEffectMtlInst->SetVertexConstant(0, "gPVWMatrix", 
-			new0 PVMatrixConstant());
+		mMaterialInstance->SetVertexConstant(0, "PVWMatrix", new0 PVMatrixConstant());
 	}
 
 	Reset();
@@ -135,32 +159,27 @@ void Effectable::SetMaterialType (MaterialType type)
 		SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PCT2));
 	}
 
-	SetBlendMode(GetBlendMode());
+	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/effect/effect.px2obj", "default", false);
+	SetMaterialInstance(mi);
 }
 //----------------------------------------------------------------------------
 void Effectable::SetBackCull (bool isBackCull)
 {
 	mIsBackCull = isBackCull;
 
-	if (mEffectMtl)
+	if (mMaterialInstance)
 	{
-		mEffectMtl->GetCullProperty(0, 0)->Enabled = isBackCull;
+		Material *mtl = mMaterialInstance->GetMaterial();
+		mtl->GetCullProperty(0, 0)->Enabled = isBackCull;
 	}
 }
 //----------------------------------------------------------------------------
 void Effectable::SetBlendMode (BlendMode mode)
 {
-	if(mBlendMode == mode) return;
-
 	mBlendMode = mode;
 
-	mEffectMtl = new0 EffectMaterial();
-	mEffectMtl->SetBlendMode(mode);
-	mEffectMtl->GetCullProperty(0, 0)->Enabled = mIsBackCull;
-	mEffectMtl->SetName("EffectMtl");
-	mEffectMtlInst = new0 MaterialInstance(mEffectMtl, 0);
-	mEffectMtlInst->SetName("EffectMtlInst");
-	SetMaterialInstance(mEffectMtlInst);
+	_SetBlendMode(mBlendMode);
+
 	SetLocal(mIsLocal);
 	SetCoordinateType0(mCoordinateType0);
 	SetCoordinateType1(mCoordinateType1);
@@ -186,6 +205,101 @@ void Effectable::SetBlendMode (BlendMode mode)
 	}
 }
 //----------------------------------------------------------------------------
+void Effectable::_SetBlendMode(BlendMode mode)
+{
+	bool BlendEnabled = false;
+	AlphaProperty::SrcBlendMode SrcBlend = AlphaProperty::SBM_SRC_ALPHA;
+	AlphaProperty::DstBlendMode DstBlend = AlphaProperty::DBM_ONE_MINUS_SRC_ALPHA;
+	bool CompareEnabled = false;
+	AlphaProperty::CompareMode Compare = AlphaProperty::CM_ALWAYS;
+	float Reference = 0.0f;
+
+	if (0 == mode)
+	{
+		BlendEnabled = false;
+		CompareEnabled = false;
+	}
+	else if (1 == mode)
+	{
+		BlendEnabled = false;
+		CompareEnabled = true;
+		Reference = 0.33f;
+		Compare = AlphaProperty::CM_GEQUAL;
+	}
+	else if (2 == mode)
+	{
+		BlendEnabled = true;
+		SrcBlend = AlphaProperty::SBM_SRC_ALPHA;
+		DstBlend = AlphaProperty::DBM_ONE_MINUS_SRC_ALPHA;
+		CompareEnabled = true;
+		Reference = 0.0f;
+		Compare = AlphaProperty::CM_GREATER;
+	}
+	else if (3 == mode)
+	{
+		BlendEnabled = true;
+		SrcBlend = AlphaProperty::SBM_SRC_ALPHA;
+		DstBlend = AlphaProperty::DBM_ONE;
+		CompareEnabled = false;
+	}
+	else if (4 == mode)
+	{
+		BlendEnabled = true;
+		SrcBlend = AlphaProperty::SBM_SRC_COLOR;
+		DstBlend = AlphaProperty::DBM_ONE_MINUS_SRC_COLOR;
+		CompareEnabled = false;
+	}
+	else if (5 == mode)
+	{
+		BlendEnabled = true;
+		SrcBlend = AlphaProperty::SBM_SRC_COLOR;
+		DstBlend = AlphaProperty::DBM_ONE;
+		CompareEnabled = false;
+	}
+	else if (6 == mode)
+	{
+		BlendEnabled = true;
+		SrcBlend = AlphaProperty::SBM_ONE;
+		DstBlend = AlphaProperty::DBM_ONE;
+		CompareEnabled = false;
+	}
+	else if (7 == mode)
+	{
+		BlendEnabled = true;
+		SrcBlend = AlphaProperty::SBM_ONE;
+		DstBlend = AlphaProperty::DBM_ONE_MINUS_SRC_ALPHA;
+		CompareEnabled = false;
+	}
+	else if (8 == mode)
+	{
+		BlendEnabled = true;
+		SrcBlend = AlphaProperty::SBM_ONE;
+		DstBlend = AlphaProperty::DBM_ONE_MINUS_SRC_COLOR;
+		CompareEnabled = false;
+	}
+
+	Material *mtl = mMaterialInstance->GetMaterial();
+
+	AlphaProperty *aProp = mtl->GetAlphaProperty(0, 0);
+	aProp->BlendEnabled = BlendEnabled;
+	aProp->SrcBlend = SrcBlend;
+	aProp->DstBlend = DstBlend;
+	aProp->CompareEnabled = CompareEnabled;
+	aProp->Compare = Compare;
+	aProp->Reference = Reference;
+
+	if (0 == mode || 1 == mode)
+	{
+		mtl->GetDepthProperty(0, 0)->Writable = true;
+		mtl->GetDepthProperty(0, 0)->Enabled = true;
+	}
+	else
+	{
+		mtl->GetDepthProperty(0, 0)->Writable = false;
+		mtl->GetDepthProperty(0, 0)->Enabled = true;
+	}
+}
+//----------------------------------------------------------------------------
 void Effectable::SetTexMode (TexMode mode)
 {
 	mTexMode = mode;
@@ -204,7 +318,7 @@ bool Effectable::SetTex (const std::string &filename)
 	{
 		mTexFilename = filename;
 
-		mEffectMtlInst->SetPixelTexture(0, "gDiffuseSampler", tex);
+		mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
 		return true;
 	}
 	else
@@ -234,7 +348,7 @@ bool Effectable::SetTexPack_Ele (const std::string &packFileName,
 
 	if (tex)
 	{
-		mEffectMtlInst->SetPixelTexture(0, "gDiffuseSampler", tex);
+		mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
 		
 		return true;
 	}
@@ -257,7 +371,9 @@ bool Effectable::SetTexAnim (const std::string &filename)
 	{
 		mTexFilename = filename;
 
-		mEffectMtlInst->SetPixelTexture(0, "gDiffuseSampler", tex);
+		if (mMaterialInstance)
+			mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
+		
 		return true;
 	}
 	else
@@ -323,7 +439,9 @@ bool Effectable::SetTexPackAnim (const std::string &texPackFilename)
 
 	if (tex)
 	{
-		mEffectMtlInst->SetPixelTexture(0, "gDiffuseSampler", tex);
+		if (mMaterialInstance)
+			mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
+		
 		return true;
 	}
 	else
@@ -357,7 +475,9 @@ bool Effectable::AddTexPackAnim_Frame (const std::string &texPackFilename,
 
 	if (tex)
 	{
-		mEffectMtlInst->SetPixelTexture(0, "gDiffuseSampler", tex);
+		if (mMaterialInstance)
+			mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
+		
 		return true;
 	}
 	else
@@ -437,16 +557,18 @@ void Effectable::SetCoordinateType0 (CoordinateType type)
 {
 	mCoordinateType0 = type;
 
-	if (mEffectMtl)
+	if (mMaterialInstance)
 	{
+		Material *mtl = mMaterialInstance->GetMaterial();
+
 		if (CT_CLAMP == type)
 		{
-			mEffectMtl->GetPixelShader()->SetCoordinate(0, 0, Shader::SC_CLAMP);
+			mtl->GetPixelShader(0, 0)->SetCoordinate(0, 0, Shader::SC_CLAMP);
 		}
 		else
 		{
-			mEffectMtl->GetPixelShader()->SetCoordinate(0, 0, Shader::SC_REPEAT);
-			mEffectMtl->GetPixelShader()->SetCoordinate(0, 1, Shader::SC_REPEAT);
+			mtl->GetPixelShader(0, 0)->SetCoordinate(0, 0, Shader::SC_REPEAT);
+			mtl->GetPixelShader(0, 0)->SetCoordinate(0, 1, Shader::SC_REPEAT);
 		}
 	}
 }
@@ -455,15 +577,17 @@ void Effectable::SetCoordinateType1 (CoordinateType type)
 {
 	mCoordinateType1 = type;
 
-	if (mEffectMtl)
+	if (mMaterialInstance)
 	{
+		Material *mtl = mMaterialInstance->GetMaterial();
+
 		if (CT_CLAMP == type)
 		{
-			mEffectMtl->GetPixelShader()->SetCoordinate(0, 1, Shader::SC_CLAMP);
+			mtl->GetPixelShader(0, 0)->SetCoordinate(0, 1, Shader::SC_CLAMP);
 		}
 		else
 		{
-			mEffectMtl->GetPixelShader()->SetCoordinate(0, 1, Shader::SC_REPEAT);
+			mtl->GetPixelShader(0, 0)->SetCoordinate(0, 1, Shader::SC_REPEAT);
 		}
 	}
 }
@@ -794,30 +918,30 @@ void Effectable::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-Effectable::Effectable (LoadConstructor value)
-	:
+Effectable::Effectable (LoadConstructor value) :
 TriMesh(value),
-	mIsFixedBound(true),
-	mFixedBoundRadius(2.0f),
-	mIsLocal(false),
-	mEmitSizeX(1.0f),
-	mEmitSizeY(1.0f),
-	mEmitSizeZ(1.0f),
-	mEmitColor(Float3::WHITE),
-	mEmitAlpha(1.0f),
-	mEmitLife(1.0f),
-	mFaceType(FT_CAMERA),
-	mMtlType(MT_TEX),
-	mBlendMode(BM_MAX_MODE),
-	mTexMode(TM_TEX),
-	mAnimInterval(1.0f),
-	mIsAnimStartDoRandom(false),
-	mUserNumAnimFrames(-1),
-	mIsAnimFramesPlayOnce(false),
-	mCoordinateType0(CT_CLAMP),
-	mCoordinateType1(CT_CLAMP),
-	mIsBackCull(false),
-	mIsBufferEverGenerated(false)
+mIsUpdate(false),
+mIsFixedBound(true),
+mFixedBoundRadius(2.0f),
+mIsLocal(false),
+mEmitSizeX(1.0f),
+mEmitSizeY(1.0f),
+mEmitSizeZ(1.0f),
+mEmitColor(Float3::WHITE),
+mEmitAlpha(1.0f),
+mEmitLife(1.0f),
+mFaceType(FT_CAMERA),
+mMtlType(MT_TEX),
+mBlendMode(BM_MAX_MODE),
+mTexMode(TM_TEX),
+mAnimInterval(1.0f),
+mIsAnimStartDoRandom(false),
+mUserNumAnimFrames(-1),
+mIsAnimFramesPlayOnce(false),
+mCoordinateType0(CT_CLAMP),
+mCoordinateType1(CT_CLAMP),
+mIsBackCull(false),
+mIsBufferEverGenerated(false)
 {
 	mTexAnim_Repeat = Float2(1.0f, 1.0f);
 	mEmitUV0_Offset = Float2::ZERO;
@@ -848,8 +972,6 @@ void Effectable::Load (InStream& source)
 	source.ReadEnum(mFaceType);
 	source.ReadEnum(mMtlType);
 	source.ReadEnum(mBlendMode);
-	source.ReadPointer(mEffectMtl);
-	source.ReadPointer(mEffectMtlInst);
 
 	source.ReadEnum(mTexMode);
 	source.ReadString(mTexFilename);
@@ -915,41 +1037,18 @@ void Effectable::Link (InStream& source)
 {
 	TriMesh::Link(source);
 
-	source.ResolveLink(mEffectMtl);
-	source.ResolveLink(mEffectMtlInst);
 	source.ResolveLink(mEffectableCtrl);
 }
 //----------------------------------------------------------------------------
 void Effectable::PostLink ()
 {
 	TriMesh::PostLink();
-
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		std::string outPath;
-		std::string outBaseName;
-		std::string outExt;
-		StringHelp::SplitFullFilename(mTexFilename, outPath, outBaseName, outExt);
-
-		Effectable::TexMode texMode = GetTexMode();
-		if (Effectable::TM_TEXPACK_ELE == texMode && "xml"==outExt)
-		{
-			SetTexPack_Ele(mTexFilename, mTexPackEleName);
-		}
-		else if (Effectable::TM_TEXPACK_ANIM == texMode && "xml"==outExt)
-		{
-			SetTexPackAnim(mTexFilename);
-		}
-	}
 }
 //----------------------------------------------------------------------------
 bool Effectable::Register (OutStream& target) const
 {
 	if (TriMesh::Register(target))
 	{
-		target.Register(mEffectMtl);
-		target.Register(mEffectMtlInst);
 		target.Register(mEffectableCtrl);
 
 		return true;
@@ -978,8 +1077,6 @@ void Effectable::Save (OutStream& target) const
 	target.WriteEnum(mFaceType);
 	target.WriteEnum(mMtlType);
 	target.WriteEnum(mBlendMode);
-	target.WritePointer(mEffectMtl);
-	target.WritePointer(mEffectMtlInst);
 
 	target.WriteEnum(mTexMode);
 	target.WriteString(mTexFilename);
@@ -1044,8 +1141,6 @@ int Effectable::GetStreamingSize (Stream &stream) const
 	size += PX2_ENUMSIZE(mFaceType);
 	size += PX2_ENUMSIZE(mMtlType);
 	size += PX2_ENUMSIZE(mBlendMode);
-	size += PX2_POINTERSIZE(mEffectMtl);
-	size += PX2_POINTERSIZE(mEffectMtlInst);
 
 	size += PX2_ENUMSIZE(mTexMode);
 	size += PX2_STRINGSIZE(mTexFilename);

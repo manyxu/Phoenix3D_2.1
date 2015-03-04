@@ -6,7 +6,6 @@
 #include "PX2EffectPre.hpp"
 #include "PX2TriMesh.hpp"
 #include "PX2EffectableController.hpp"
-#include "PX2EffectMaterial.hpp"
 #include "PX2TexPackData.hpp"
 #include "PX2DynamicBufferManager.hpp"
 
@@ -22,8 +21,6 @@ namespace PX2
 
 	public:
 		virtual ~Effectable ();
-
-		void Update (double applicationTime, bool initiator);
 
 		EffectableController *GetEffectableController () const;
 
@@ -193,10 +190,15 @@ public_internal:
 		const TexPackElement &GetTexPackElement () const;
 		const std::vector<TexPackElement> &GetTexPackAnim_Frames () const;
 
+		virtual void UpdateWorldData(double applicationTime);
+
 	protected:
 		Effectable ();
 		int GetUV (int startRandomIndex, float age, float &uBegin,
 			float &uEnd, float &vBegin, float &vEnd);
+		void _SetBlendMode(BlendMode mode);
+
+		bool mIsUpdate;
 
 		bool mIsFixedBound;
 		APoint mFixedCenter;
@@ -211,8 +213,6 @@ public_internal:
 		FaceType mFaceType;
 		MaterialType mMtlType;
 		BlendMode mBlendMode;
-		EffectMaterialPtr mEffectMtl;
-		MaterialInstancePtr mEffectMtlInst;
 
 		TexMode mTexMode;		
 		std::string mTexFilename;		// TM_TEX TM_TEX_ANIM TM_TEXPACK_ELE TM_TEXPACK_ANIM

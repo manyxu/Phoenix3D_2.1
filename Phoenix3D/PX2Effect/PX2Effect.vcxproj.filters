@@ -14,9 +14,6 @@
     <ClInclude Include="PX2ParticleEmitter.hpp">
       <Filter>ParticleEmitter</Filter>
     </ClInclude>
-    <ClInclude Include="PX2EffectMaterial.hpp">
-      <Filter>Material</Filter>
-    </ClInclude>
     <ClInclude Include="PX2ParticleEmitterController.hpp">
       <Filter>ParticleEmitter</Filter>
     </ClInclude>
@@ -110,9 +107,6 @@
     <Filter Include="Module">
       <UniqueIdentifier>{24847f30-01e9-4aaf-95f4-857982640d0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Material">
-      <UniqueIdentifier>{9ee693d8-92f7-4027-ab4b-41639321d268}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Soundable">
       <UniqueIdentifier>{0efe524a-3daf-40e1-a02f-8dd72bd16d29}</UniqueIdentifier>
     </Filter>
@@ -150,9 +144,6 @@
     </ClCompile>
     <ClCompile Include="PX2ParticleEmitter.cpp">
       <Filter>ParticleEmitter</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2EffectMaterial.cpp">
-      <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2ParticleEmitterController.cpp">
       <Filter>ParticleEmitter</Filter>

@@ -15,6 +15,7 @@ MaterialInstance::MaterialInstance (const Material* material,
 											int techniqueIndex)
 											:
 mMaterial((Material*)material),  // conceptual constness
+mIsShareMtl(false),
 mTechniqueIndex(techniqueIndex),
 mNumPasses(0),
 mVertexParameters(0),
@@ -43,22 +44,23 @@ mPixelParameters(0)
 }
 //----------------------------------------------------------------------------
 MaterialInstance::MaterialInstance(const std::string &mtlFilename, 
-	const std::string &intanceName) :
+	const std::string &tagName, bool shareMtl) :
+	mIsShareMtl(shareMtl),
 	mMaterialFilename(mtlFilename),
-	mInstanceTagName(intanceName),
+	mInstanceTagName(tagName),
 	mNumPasses(0),
 	mVertexParameters(0),
 	mPixelParameters(0)
 {
 	_RefreshMaterial(mMaterialFilename, mInstanceTagName,
-		mVertexParameters, mPixelParameters);
+		mVertexParameters, mPixelParameters, mIsShareMtl);
 }
 //----------------------------------------------------------------------------
 void MaterialInstance::_RefreshMaterial(const std::string &mtlFilename,
 	const std::string &tagName, ShaderParametersPtr* &vp,
-	ShaderParametersPtr* &pp)
+	ShaderParametersPtr* &pp, bool shareMtl)
 {
-	mMaterial = PX2_MATERIALMAN.GetMaterial(mtlFilename.c_str());
+	mMaterial = PX2_MATERIALMAN.GetMaterial(mtlFilename.c_str(), shareMtl);
 	assertion(mMaterial != 0, "Material must be specified.\n");
 
 	MaterialTechnique* technique = mMaterial->GetTechnique(tagName,
@@ -391,6 +393,7 @@ void MaterialInstance::OnPropertyChanged (const PropertyObject &obj)
 MaterialInstance::MaterialInstance (LoadConstructor value)
 :
 Object(value),
+mIsShareMtl(false),
 mTechniqueIndex(0),
 mNumPasses(0),
 mVertexParameters(0),
@@ -404,6 +407,8 @@ void MaterialInstance::Load (InStream& source)
 
 	Object::Load(source);
 	PX2_VERSION_LOAD(source);
+
+	source.ReadBool(mIsShareMtl);
 
 	source.ReadString(mMaterialFilename);
 	source.ReadString(mInstanceTagName);
@@ -440,7 +445,7 @@ void MaterialInstance::PostLink ()
 	if (!mMaterialFilename.empty() && !mInstanceTagName.empty())
 	{
 		_RefreshMaterial(mMaterialFilename, mInstanceTagName,
-			mVertexParameters, mPixelParameters);
+			mVertexParameters, mPixelParameters, mIsShareMtl);
 	}
 }
 //----------------------------------------------------------------------------
@@ -468,6 +473,8 @@ void MaterialInstance::Save (OutStream& target) const
 	Object::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WriteBool(mIsShareMtl);
+
 	target.WriteString(mMaterialFilename);
 	target.WriteString(mInstanceTagName);
 
@@ -487,6 +494,8 @@ int MaterialInstance::GetStreamingSize (Stream &stream) const
 {
 	int size = Object::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
+	size += PX2_BOOLSIZE(mIsShareMtl);
 
 	size += PX2_STRINGSIZE(mMaterialFilename);
 	size += PX2_STRINGSIZE(mInstanceTagName);

@@ -31,39 +31,70 @@ bool MaterialManager::Terminate()
 	return true;
 }
 //----------------------------------------------------------------------------
-Material *MaterialManager::GetMaterial(const FString &filename)
+Material *MaterialManager::GetMaterial(const FString &filename, bool share)
 {
-	Material *mtl = 0;
-	std::map<FString, MaterialPtr>::iterator it = mMaterialMap.find(filename);
-	if (it != mMaterialMap.end())
+	if (share)
 	{
-		mtl = it->second;
+		Material *mtl = 0;
+		std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(filename);
+		if (it != mMaterialMap.end())
+		{
+			mtl = it->second.TheMaterial;
+		}
+		else
+		{
+			mtl = DynamicCast<Material>(GraphicsRoot::msUserLoadFun(filename));
+			mMaterialMap[filename].TheMaterial = mtl;
+			mMaterialMap[filename].ShaderKey = mNextShaderKey;
+
+			_SetMaterialShaderKey(mtl, mNextShaderKey);
+
+			mNextShaderKey++;
+		}
+
+		return mtl;
 	}
 	else
 	{
+		Material *mtl = 0;
 		mtl = DynamicCast<Material>(GraphicsRoot::msUserLoadFun(filename));
-		mMaterialMap[filename] = mtl;
 
-		int numTechniques = mtl->GetNumTechniques();
-		for (int i = 0; i < numTechniques; i++)
+		std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(filename);
+		if (it != mMaterialMap.end())
 		{
-			MaterialTechnique *tech = mtl->GetTechnique(i);
-			int numPass = tech->GetNumPasses();
-			for (int i = 0; i < numPass; i++)
-			{
-				MaterialPass *mtlPass = tech->GetPass(i);
-				VertexShader *vs = mtlPass->GetVertexShader();
-				PixelShader *ps = mtlPass->GetPixelShader();
+			_SetMaterialShaderKey(mtl, it->second.ShaderKey);
+		}
+		else
+		{
+			mMaterialMap[filename].TheMaterial = mtl;
+			mMaterialMap[filename].ShaderKey = mNextShaderKey;
 
-				vs->SetShaderKey(mNextShaderKey);
-				ps->SetShaderKey(mNextShaderKey);
+			_SetMaterialShaderKey(mtl, mNextShaderKey);
 
-				mNextShaderKey++;
-			}
+			mNextShaderKey++;
+		}
+
+		return mtl;
+	}
+}
+//----------------------------------------------------------------------------
+void MaterialManager::_SetMaterialShaderKey(Material *mtl, int shaderKey)
+{
+	int numTechniques = mtl->GetNumTechniques();
+	for (int i = 0; i < numTechniques; i++)
+	{
+		MaterialTechnique *tech = mtl->GetTechnique(i);
+		int numPass = tech->GetNumPasses();
+		for (int i = 0; i < numPass; i++)
+		{
+			MaterialPass *mtlPass = tech->GetPass(i);
+			VertexShader *vs = mtlPass->GetVertexShader();
+			PixelShader *ps = mtlPass->GetPixelShader();
+
+			vs->SetShaderKey(shaderKey);
+			ps->SetShaderKey(shaderKey);
 		}
 	}
-
-	return mtl;
 }
 //----------------------------------------------------------------------------
 ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,

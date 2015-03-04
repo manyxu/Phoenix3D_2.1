@@ -20,11 +20,24 @@ namespace PX2
 		bool Initlize();
 		bool Terminate();
 
-		Material *GetMaterial(const FString &filename);
+		Material *GetMaterial(const FString &filename, bool share);
 		ShaderFloat *CreateShaderFloat(const FString &name, int numRegister);
 
 	protected:
-		std::map<FString, MaterialPtr> mMaterialMap;
+		void _SetMaterialShaderKey(Material *mtl, int shaderKey);
+
+		struct _MtlObject
+		{
+			_MtlObject()
+			{
+				ShaderKey = 0;
+			}
+
+			MaterialPtr TheMaterial;
+			int ShaderKey;
+		};
+
+		std::map<FString, _MtlObject> mMaterialMap;
 		int mNextShaderKey;
 	};
 #define PX2_MATERIALMAN MaterialManager::GetSingleton()

@@ -1,5 +1,5 @@
 <project>
-	<general name="phoenix" screenorientation="landscape" width="960" height="640" color="100,100,100,255"/>
+	<general name="phoenix" screenorientation="landscape" width="960" height="640" color="255,255,200,255"/>
 	<scene filename="Data/scenes/scene.px2obj"/>
 	<language/>
 	<publish/>
