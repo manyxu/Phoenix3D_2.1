@@ -102,8 +102,10 @@ void ProjTree::SetTreeLevel(ProjTreeLevel level)
 	
 	mItemScene->SetTreeLevel(level);
 
-	mItemCameras->SetTreeLevel(level);
-	mItemObjects->SetTreeLevel(level);
+	for (int i = 0; i < (int)mCalItems.size(); i++)
+	{ 
+		mCalItems[i]->SetTreeLevel(level);
+	}
 
 	if (PTL_GENERAL == level)
 	{
@@ -174,6 +176,8 @@ void ProjTree::_RefreshProject()
 //----------------------------------------------------------------------------
 void ProjTree::_ClearProject()
 {
+	mCalItems.clear();
+
 	if (mItemProj)
 	{
 		mItemProj->ClearChildren();
@@ -210,6 +214,15 @@ void ProjTree::_RefreshScene()
 
 	mItemSounds = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, PX2_LM.GetValue("pv_Sound"));
 	mItemScene->mChildItems.push_back(mItemSounds);
+
+	mCalItems.clear();
+	mCalItems.push_back(mItemCameras);
+	mCalItems.push_back(mItemSky);
+	mCalItems.push_back(mItemTerrain);
+	mCalItems.push_back(mItemCharacters);
+	mCalItems.push_back(mItemObjects);
+	mCalItems.push_back(mItemEffects);
+	mCalItems.push_back(mItemSounds);
 
 	Scene *scene = 0;
 	Project *proj = Project::GetSingletonPtr();

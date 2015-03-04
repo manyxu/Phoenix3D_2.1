@@ -64,6 +64,7 @@ namespace PX2Editor
 
 		ProjTreeItem *mItemProj;
 		ProjTreeItem *mItemScene;
+
 		ProjTreeItem *mItemCameras;
 		ProjTreeItem *mItemSky;
 		ProjTreeItem *mItemTerrain;
@@ -71,6 +72,8 @@ namespace PX2Editor
 		ProjTreeItem *mItemObjects;
 		ProjTreeItem *mItemEffects;
 		ProjTreeItem *mItemSounds;
+		std::vector<ProjTreeItem*> mCalItems;
+
 		ProjTreeItem *mItemUI;
 		ProjTreeItem *mItemLogic;
 

@@ -178,7 +178,6 @@ function e_CreateParticles(usePickPos)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateParticleEmitter(node, pickPos, true, usePickPos)
-		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
@@ -190,7 +189,6 @@ function e_CreateBillboard(usePickPos)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateBillboard(node, pickPos, true, usePickPos)
-		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
@@ -202,7 +200,6 @@ function e_CreateBeam(usePickPos)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateBeamEmitter(node, pickPos, true, usePickPos)
-		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
@@ -214,7 +211,6 @@ function e_CreateRobbion(usePickPos)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateRibbonEmitter(node, pickPos, true, usePickPos)
-		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
@@ -226,7 +222,6 @@ function e_CreateSoundable(usePickPos)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateSoundable(node, pickPos, true, usePickPos)
-		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
 	end
