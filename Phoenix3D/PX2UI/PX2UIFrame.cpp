@@ -12,6 +12,7 @@ PX2_IMPLEMENT_FACTORY(UIFrame);
 UIFrame::UIFrame() :
 mUICallback(0)
 {
+	SetName("UIFrame");
 }
 //----------------------------------------------------------------------------
 UIFrame::~UIFrame()

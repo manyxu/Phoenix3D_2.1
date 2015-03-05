@@ -359,3 +359,44 @@ void Project::SetViewRect(const Rectf &viewRect)
 	}
 }
 //----------------------------------------------------------------------------
+void Project::RegistProperties()
+{
+	Node::RegistProperties();
+
+	AddPropertyClass("Project");
+
+	std::vector<std::string> screenOrientations;
+	screenOrientations.push_back("SO_LANDSCAPE");
+	screenOrientations.push_back("SO_PORTRAIT");
+
+	AddPropertyEnum("ScreenOrientation", (int)mScreenOrientation,
+		screenOrientations);
+
+	AddProperty("Size", PT_SIZE, mSize);
+
+	Float3 color(mBackgroundColor[0], mBackgroundColor[1], mBackgroundColor[1]);
+	AddProperty("BackgroundColor", PT_COLOR3FLOAT3, color);
+
+	AddProperty("ViewRect", PT_RECT, mViewRect, false);
+}
+//----------------------------------------------------------------------------
+void Project::OnPropertyChanged(const PropertyObject &obj)
+{
+	Node::OnPropertyChanged(obj);
+
+	if ("ScreenOrientation" == obj.Name)
+	{
+		SetScreenOrientation((ScreenOrientation)PX2_ANY_AS(obj.Data, int));
+	}
+	else if ("Size" == obj.Name)
+	{
+		SetSize(PX2_ANY_AS(obj.Data, Sizef));
+	}
+	else if ("BackgroundColor" == obj.Name)
+	{
+		Float3 backColor = PX2_ANY_AS(obj.Data, Float3);
+		mBackgroundColor = Float4(backColor[0], backColor[1], backColor[2],
+			1.0f);
+	}
+}
+//----------------------------------------------------------------------------

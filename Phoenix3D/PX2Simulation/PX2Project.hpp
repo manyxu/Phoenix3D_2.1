@@ -19,6 +19,7 @@ namespace PX2
 	class Project : public Node, public Singleton<Project>
 	{
 		PX2_DECLARE_RTTI;
+		PX2_DECLARE_PROPERTY;
 
 	public:
 		Project ();

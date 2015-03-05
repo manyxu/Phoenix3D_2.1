@@ -1,6 +1,6 @@
 <boost name="boost">
 	<config>
-		<var width="640" height="1136"/>
+		<var width="640" height="960"/>
 	</config>
 	<play>
 		<var projectpath="Data/projects/gamex.px2proj"/>
