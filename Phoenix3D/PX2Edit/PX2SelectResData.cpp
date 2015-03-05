@@ -4,9 +4,8 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-SelectResData::SelectResData(SelectResType type)
-	:
-	mSelectResType(type)
+SelectResData::SelectResData(SelectResType type) :
+mSelectResType(type)
 {
 }
 //----------------------------------------------------------------------------

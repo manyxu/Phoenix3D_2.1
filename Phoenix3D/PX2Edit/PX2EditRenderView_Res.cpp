@@ -210,7 +210,7 @@ void EditRenderView_Res::Visit(Object *obj, const int info)
 
 		std::string filename = but->GetUserData<std::string>("ResPath");
 
-		SelectResData resdata(SelectResData::RT_TEXPACKELEMENT);
+		SelectResData resdata(SelectResData::RT_NORMAL);
 		resdata.ResPathname = filename;
 
 		PX2_EDIT.SetSelectedResource(resdata);
