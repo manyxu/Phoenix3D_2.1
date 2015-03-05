@@ -17,7 +17,7 @@ namespace PX2
 		// project scene
 	public:
 		void NewProject(const std::string &pathname, 
-			const std::string &projName, int width, int height);
+			const std::string &projName, int so, int width, int height);
 		bool LoadProject(const std::string &pathname);
 		bool SaveProject();
 		bool SaveProjectAs(const std::string &pathname);

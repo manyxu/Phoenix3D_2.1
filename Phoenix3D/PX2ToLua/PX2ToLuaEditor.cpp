@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/05/15 11:30:48.
+** Generated automatically by tolua++-1.0.92 on 03/05/15 17:31:46.
 */
 
 #ifndef __cplusplus
@@ -2697,7 +2697,8 @@ static int tolua_PX2Editor_EditMap_NewProject00(lua_State* tolua_S)
      !tolua_iscppstring(tolua_S,3,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
      !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,6,&tolua_err)
+     !tolua_isnumber(tolua_S,6,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,7,&tolua_err)
  )
   goto tolua_lerror;
  else
@@ -2706,13 +2707,14 @@ static int tolua_PX2Editor_EditMap_NewProject00(lua_State* tolua_S)
   EditMap* self = (EditMap*)  tolua_tousertype(tolua_S,1,0);
   const std::string pathname = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
   const std::string projName = ((const std::string)  tolua_tocppstring(tolua_S,3,0));
-  int width = ((int)  tolua_tonumber(tolua_S,4,0));
-  int height = ((int)  tolua_tonumber(tolua_S,5,0));
+  int so = ((int)  tolua_tonumber(tolua_S,4,0));
+  int width = ((int)  tolua_tonumber(tolua_S,5,0));
+  int height = ((int)  tolua_tonumber(tolua_S,6,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'NewProject'", NULL);
 #endif
   {
-   self->NewProject(pathname,projName,width,height);
+   self->NewProject(pathname,projName,so,width,height);
    tolua_pushcppstring(tolua_S,(const char*)pathname);
    tolua_pushcppstring(tolua_S,(const char*)projName);
   }

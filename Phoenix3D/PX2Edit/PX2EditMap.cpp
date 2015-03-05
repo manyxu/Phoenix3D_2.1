@@ -17,8 +17,8 @@ EditMap::~EditMap()
 {
 }
 //----------------------------------------------------------------------------
-void EditMap::NewProject(const std::string &pathname,
-	const std::string &projName, int width, int height)
+void EditMap::NewProject(const std::string &pathname, 
+	const std::string &projName, int so, int width, int height)
 {
 	bool canDoChange = (EngineLoop::PT_NONE == PX2_ENGINELOOP.GetPlayType());
 	if (!canDoChange) return;
@@ -27,6 +27,7 @@ void EditMap::NewProject(const std::string &pathname,
 
 	Project *proj = new0 Project();
 	proj->SetName(projName);
+	proj->SetScreenOrientation((Project::ScreenOrientation)so);
 	proj->SetSize((float)width, (float)height);
 	proj->Save(pathname);
 	mProjectFilePath = pathname;

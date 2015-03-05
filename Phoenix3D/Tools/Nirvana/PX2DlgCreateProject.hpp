@@ -16,6 +16,7 @@ namespace PX2
 		void OnButton(wxCommandEvent& event);
 
 		std::string mProjName;
+		int mScreenOrientation;
 		int mProjWidth;
 		int mProjHeight;
 		std::string mProjPath;
@@ -24,6 +25,7 @@ namespace PX2
 		DECLARE_EVENT_TABLE();
 
 		wxTextCtrl *mName;
+		wxChoice *mChoiceScreenOrientation;
 		wxTextCtrl *mWidth;
 		wxTextCtrl *mHeight;
 		wxDirPickerCtrl *mDirPicker;

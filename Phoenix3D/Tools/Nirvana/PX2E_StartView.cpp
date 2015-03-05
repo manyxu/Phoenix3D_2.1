@@ -37,12 +37,13 @@ void StartView::OnButtonClick(wxCommandEvent& event)
 		{
 			std::string name = dlg.mProjName;
 			std::string projPath = dlg.mProjPath;
+			int so = dlg.mScreenOrientation;
 			int width = dlg.mProjWidth;
 			int height = dlg.mProjHeight;
 
 			std::string path = projPath + "/" + name + ".px2proj";
 
-			PX2_EDIT.GetEditMap()->NewProject(path, name, width, height);
+			PX2_EDIT.GetEditMap()->NewProject(path, name, so, width, height);
 		}
 	}
 	if (XRCID("m_button21") == event.GetId())

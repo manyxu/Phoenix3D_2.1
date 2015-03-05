@@ -2,7 +2,7 @@
 <resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
 	<object class="wxDialog" name="TerrainNew">
 		<style>wxDEFAULT_DIALOG_STYLE</style>
-		<size>359,203</size>
+		<size>366,243</size>
 		<title>创建地形</title>
 		<centered>1</centered>
 		<object class="wxBoxSizer">
@@ -870,7 +870,7 @@
 	</object>
 	<object class="wxDialog" name="CreateProject">
 		<style>wxCAPTION|wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE</style>
-		<size>331,176</size>
+		<size>345,242</size>
 		<title>CreateProject</title>
 		<centered>1</centered>
 		<object class="wxBoxSizer">
@@ -918,6 +918,35 @@
 				</object>
 			</object>
 			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxBoxSizer">
+					<orient>wxHORIZONTAL</orient>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="m_staticText31">
+							<label>ScreenOrientation</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<object class="wxChoice" name="mScreenOrientation">
+							<selection>0</selection>
+							<content>
+								<item>landscape</item>
+								<item>portrait</item>
+							</content>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
 				<option>0</option>
 				<flag>wxEXPAND</flag>
 				<border>5</border>
@@ -939,7 +968,7 @@
 						<border>5</border>
 						<object class="wxTextCtrl" name="mWidth">
 							<size>100,-1</size>
-							<value>960</value>
+							<value>1136</value>
 							<maxlength>0</maxlength>
 						</object>
 					</object>
@@ -987,7 +1016,7 @@
 						<border>5</border>
 						<object class="wxDirPickerCtrl" name="mDirPicker">
 							<value>Data/projects</value>
-							<message>Select a folder</message>
+							<message>Select Folder</message>
 							<style>wxDIRP_DEFAULT_STYLE</style>
 						</object>
 					</object>

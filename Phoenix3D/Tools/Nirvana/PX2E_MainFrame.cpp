@@ -384,13 +384,15 @@ void E_MainFrame::OnNewProject()
 	if (wxID_OK == dlg.ShowModal())
 	{
 		std::string name = dlg.mProjName;
+		int screenOriention = dlg.mScreenOrientation;
 		std::string projPath = dlg.mProjPath;
 		int width = dlg.mProjWidth;
 		int height = dlg.mProjHeight;
 
 		std::string path = projPath + "/" + name + ".px2proj";
 
-		PX2_EDIT.GetEditMap()->NewProject(path, name, width, height);
+		PX2_EDIT.GetEditMap()->NewProject(path, name, screenOriention, width,
+			height);
 	}
 }
 //----------------------------------------------------------------------------
