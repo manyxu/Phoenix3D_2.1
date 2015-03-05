@@ -82,13 +82,24 @@ end
 function e_ExportSelected()
 end
 
-function e_ResetPlay()
+function e_AnimResetPlay()
+	PX2_EDIT:AnimResetPlay()
 end
 
-function e_Play()
+function e_AnimPlayStop()
+	PX2_EDIT:AnimPlayStop()
 end
 
-function e_Stop()
+function e_AnimPlay()
+	PX2_EDIT:AnimPlay()
+end
+
+function e_AnimStop()
+	PX2_EDIT:AnimStop()
+end
+
+function e_AnimReset()
+	PX2_EDIT:AnimReset()
 end
 
 -- edit mode

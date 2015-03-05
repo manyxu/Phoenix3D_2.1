@@ -258,7 +258,10 @@ void Project::SetScene(Scene *scene)
 
 		if (camActor)
 		{
-			mSceneRenderStep->SetCamera(camActor->GetCamera());
+			Camera *camera = camActor->GetCamera();
+
+			Renderer::GetDefaultRenderer()->SetCamera(camera);
+			mSceneRenderStep->SetCamera(camera);
 		}
 		else
 		{

@@ -146,6 +146,111 @@ void Edit::PasteCopyedObject()
 	}
 }
 //----------------------------------------------------------------------------
+void Edit::AnimPlay()
+{
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	Controller *ctrl = DynamicCast<Controller>(obj);
+	Controlledable *ctrlable = DynamicCast<Controlledable>(obj);
+	Animation *anim = DynamicCast<Animation>(obj);
+
+	if (ctrl)
+	{
+		ctrl->Play();
+	}
+	else if (ctrlable)
+	{
+		ctrlable->Play();
+	}
+	else if (anim)
+	{
+		anim->LetCharacterPlay();
+	}
+}
+//----------------------------------------------------------------------------
+void Edit::AnimResetPlay()
+{
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	Controller *ctrl = DynamicCast<Controller>(obj);
+	Controlledable *ctrlable = DynamicCast<Controlledable>(obj);
+	Animation *anim = DynamicCast<Animation>(obj);
+
+	if (ctrl)
+	{
+		ctrl->ResetPlay();
+	}
+	else if (ctrlable)
+	{
+		ctrlable->ResetPlay();
+	}
+	else if (anim)
+	{
+		anim->LetCharacterPlay();
+	}
+}
+//----------------------------------------------------------------------------
+void Edit::AnimStop()
+{
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	Controller *ctrl = DynamicCast<Controller>(obj);
+	Controlledable *ctrlable = DynamicCast<Controlledable>(obj);
+	Animation *anim = DynamicCast<Animation>(obj);
+
+	if (ctrl)
+	{
+		ctrl->Stop();
+	}
+	else if (ctrlable)
+	{
+		ctrlable->Stop();
+	}
+	else if (anim)
+	{
+		anim->LetCharacterPlay();
+	}
+}
+//----------------------------------------------------------------------------
+void Edit::AnimReset()
+{
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	Controller *ctrl = DynamicCast<Controller>(obj);
+	Controlledable *ctrlable = DynamicCast<Controlledable>(obj);
+
+	if (ctrl)
+	{
+		ctrl->Reset();
+	}
+	else if (ctrlable)
+	{
+		ctrlable->Reset();
+	}
+}
+//----------------------------------------------------------------------------
+bool Edit::IsAnimPlaying()
+{
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	Controller *ctrl = DynamicCast<Controller>(obj);
+	Controlledable *ctrlable = DynamicCast<Controlledable>(obj);
+
+	if (ctrl)
+	{
+		return ctrl->IsPlaying();
+	}
+	else if (ctrlable)
+	{
+		ctrlable->IsPlaying();
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
+void Edit::AnimPlayStop()
+{
+	if (IsAnimPlaying())
+		AnimStop();
+	else
+		AnimPlay();
+}
+//----------------------------------------------------------------------------
 void Edit::OnFindSelectInProjTree()
 {
 	Object *obj = PX2_SELECTION.GetFirstObject();

@@ -121,6 +121,16 @@ namespace PX2
 	protected:
 		PX2::ObjectPtr mCopyObject;
 
+		// anim
+	public:
+		void AnimResetPlay();
+		void AnimPlay();
+		void AnimStop();
+		void AnimReset();
+		
+		bool IsAnimPlaying();
+		void AnimPlayStop();
+
 		// TimeLine
 	public:
 		TimeLineEdit *GetTimeLineEdit();

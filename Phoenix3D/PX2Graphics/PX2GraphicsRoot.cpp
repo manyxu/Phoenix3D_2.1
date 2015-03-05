@@ -291,6 +291,9 @@ bool GraphicsRoot::AddRenderStep(const char *name, RenderStep *step)
 	if (IsHasRenderStep(name))
 		return false;
 
+	if ("Scene" == name) mRenderStepScene = step;
+	if ("UI" == name) mRenderStepUI = step;
+
 	mRenderStepMap[name] = step;
 	mRenderStepVec.push_back(step);
 

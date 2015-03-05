@@ -71,6 +71,16 @@ inline const Float4 &GraphicsRoot::GetFogColorDist () const
 	return mFogColorDist;
 }
 //----------------------------------------------------------------------------
+inline RenderStep *GraphicsRoot::GetRenderStepScene()
+{
+	return mRenderStepScene;
+}
+//----------------------------------------------------------------------------
+inline RenderStep *GraphicsRoot::GetRenderStepUI()
+{
+	return mRenderStepUI;
+}
+//----------------------------------------------------------------------------
 inline TriMesh *GraphicsRoot::GetXYPlane()
 {
 	return mTriMeshXY;

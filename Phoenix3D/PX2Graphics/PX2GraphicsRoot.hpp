@@ -83,12 +83,16 @@ namespace PX2
 		bool RemoveRenderStep(const char *name);
 		void RemoveRenderSteps(RenderStep *step);
 		RenderStep *GetRenderStep(const char *name);
+		RenderStep *GetRenderStepScene();
+		RenderStep *GetRenderStepUI();
 
 		void Update(double appSeconds, double elapsedSeconds);
 		void ComputeVisibleSet();
 		void Draw();
 
 	protected:
+		RenderStepPtr mRenderStepScene;
+		RenderStepPtr mRenderStepUI;
 		std::map<FString, RenderStepPtr> mRenderStepMap;
 		std::vector<RenderStep *> mRenderStepVec;
 

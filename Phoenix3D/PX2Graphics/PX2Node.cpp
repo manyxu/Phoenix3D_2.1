@@ -413,7 +413,7 @@ void Node::UpdateWorldData(double applicationTime, double elapsedTime)
 
 	for (int i=0; i<(int)mUpdateChild.size(); i++)
 	{
-		mUpdateChild[i]->Update(applicationTime, false);
+		mUpdateChild[i]->Update(applicationTime, elapsedTime, false);
 	}
 }
 //----------------------------------------------------------------------------

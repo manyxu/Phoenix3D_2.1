@@ -76,4 +76,14 @@
 		void SetCopyObject(PX2::Object *obj);
 		PX2::Object *GetCopyObject();
 		void PasteCopyedObject();
+		
+		// anim
+	public:
+		void AnimPlay();
+		void AnimResetPlay();
+		void AnimStop();
+		void AnimReset();
+		
+		bool IsAnimPlaying();
+		void AnimPlayStop();
 	};
