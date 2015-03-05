@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ActorInspector.cpp
-*
-*/
+// PX2ActorInspector.cpp
 
 #include "PX2ObjectPropertyGrid.hpp"
 #include "PX2LanguageManager.hpp"
@@ -15,6 +11,7 @@
 #include "PX2EMFloat3RangeProperty.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2NirvanaEventType.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -22,7 +19,7 @@ IMPLEMENT_DYNAMIC_CLASS(ObjectPropertyGrid, wxWindow)
 BEGIN_EVENT_TABLE(ObjectPropertyGrid, wxWindow)
 EVT_SIZE(ObjectPropertyGrid::OnSize)
 EVT_MOVE(ObjectPropertyGrid::OnMove)
-EVT_PG_CHANGED(PGT_ACTOR, ObjectPropertyGrid::OnPropertyGridChange)
+EVT_PG_CHANGED(wxID_ANY, ObjectPropertyGrid::OnPropertyGridChange)
 END_EVENT_TABLE()
 //-----------------------------------------------------------------------------
 ObjectPropertyGrid::ObjectPropertyGrid()
@@ -31,7 +28,7 @@ ObjectPropertyGrid::ObjectPropertyGrid()
 //-----------------------------------------------------------------------------
 ObjectPropertyGrid::ObjectPropertyGrid(wxWindow *parent)
 :
-PropertyGrid(parent, PGT_ACTOR)
+PropertyGrid(parent)
 {
 }
 //-----------------------------------------------------------------------------
@@ -54,29 +51,28 @@ void ObjectPropertyGrid::SetObject(PX2::Object *actor)
 //-----------------------------------------------------------------------------
 void StringButCallback(Property *p)
 {
-	//const SelectResData &data = EditSystem::GetSingleton().GetSelectedResource();
-	//SelectResData::SelectResType selectResType = data.GetSelectResType();
+	const SelectResData &data = PX2_EDIT.GetSelectedResource();
+	SelectResData::SelectResType selectResType = data.GetSelectResType();
 
-	//if (data.ResPathname.empty())
-	//	return;
+	if (data.ResPathname.empty()) return;
 
-	//if (SelectResData::RT_NORMAL == selectResType)
-	//{
-	//	p->SetValue(data.ResPathname);
-	//}
-	//else if (SelectResData::RT_TEXPACKELEMENT == selectResType)
-	//{
-	//	const TexPack &texPack = PX2_RM.GetTexPack(data.ResPathname);
+	if (SelectResData::RT_NORMAL == selectResType)
+	{
+		p->SetValue(data.ResPathname);
+	}
+	else if (SelectResData::RT_TEXPACKELEMENT == selectResType)
+	{
+		const TexPack &texPack = PX2_RM.GetTexPack(data.ResPathname);
 
-	//	if (texPack.IsValid())
-	//	{
-	//		p->SetValue(data.EleName);
-	//	}
-	//	else if (PX2_RM.AddTexPack(data.ResPathname))
-	//	{
-	//		p->SetValue(data.EleName);
-	//	}
-	//}
+		if (texPack.IsValid())
+		{
+			p->SetValue(data.EleName);
+		}
+		else if (PX2_RM.AddTexPack(data.ResPathname))
+		{
+			p->SetValue(data.EleName);
+		}
+	}
 }
 //-----------------------------------------------------------------------------
 void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
@@ -104,13 +100,13 @@ void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
 	textColors.push_back(wxColour(163, 73, 164));
 
 	std::vector<wxColour> backColors;
-	backColors.push_back(wxColour(239, 228, 176));
-	backColors.push_back(wxColour(153, 217, 234));
-	backColors.push_back(wxColour(200, 191, 231));
-	backColors.push_back(wxColour(153, 217, 234));
-	backColors.push_back(wxColour(255, 174, 210));
-	backColors.push_back(wxColour(255, 201, 14));
-	backColors.push_back(wxColour(181, 230, 29));
+	backColors.push_back(wxColour(237, 28, 36));
+	textColors.push_back(wxColour(255, 127, 39));
+	backColors.push_back(wxColour(255, 242, 0));
+	backColors.push_back(wxColour(34, 177, 76));
+	backColors.push_back(wxColour(0, 162, 232));
+	backColors.push_back(wxColour(63, 72, 204));
+	backColors.push_back(wxColour(163, 73, 164));
 
 	PropertyPage *page = AddPropertyPage("General");
 
@@ -128,9 +124,9 @@ void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
 			prop = page->AddProperty(propObj.Name, propObj.Tag, Property::PT_CATEGORY, 0, propObj.Enable);
 
 			int colorIndex = numClasses % 7;
-
 			lastTextColor = textColors[colorIndex];
-			lastBackColor = backColors[colorIndex];
+
+			mPropGrid->SetPropertyTextColour(wxString(propObj.Tag), lastTextColor, false);
 		}
 		else if (Object::PT_INT == propObj.Type)
 		{
@@ -344,11 +340,6 @@ void ObjectPropertyGrid::OnPropertyGridChange(wxPropertyGridEvent &event)
 void ObjectPropertyGrid::OnPropertyGridChanging(wxPropertyGridEvent &event)
 {
 	PropertyGrid::OnPropertyGridChange(event);
-}
-//-----------------------------------------------------------------------------
-void ObjectPropertyGrid::OnPropertyGridSelect(wxPropertyGridEvent &event)
-{
-	PropertyGrid::OnPropertyGridSelect(event);
 }
 //-----------------------------------------------------------------------------
 void ObjectPropertyGrid::OnSize(wxSizeEvent &e)

@@ -23,7 +23,6 @@ namespace PX2Editor
 
 		virtual void OnPropertyGridChange(wxPropertyGridEvent &event);
 		virtual void OnPropertyGridChanging(wxPropertyGridEvent &event);
-		virtual void OnPropertyGridSelect(wxPropertyGridEvent &event);
 
 		void OnSize(wxSizeEvent &e);
 

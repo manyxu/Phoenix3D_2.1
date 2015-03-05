@@ -22,6 +22,7 @@ Component::~Component ()
 bool Component::Update(double applicationTime, double elapsedTime)
 {
 	PX2_UNUSED(applicationTime);
+	PX2_UNUSED(elapsedTime);
 
 	return false;
 }

@@ -115,6 +115,7 @@ function AddLanguages()
 	-- 一般
 	PX2_LM:AddItem1("Name", "名称")
 	PX2_LM:AddItem1("Ge", "个")
+	PX2_LM:AddItem1("Use", "用")
 	
 	-- Notice
 	PX2_LM:AddItem1("Notice", "注意")

@@ -8,6 +8,7 @@
 #include "PX2PropertyPage.hpp"
 #include "PX2StringHelp.hpp"
 #include "wxPropertyExtend.hpp"
+#include "PX2LanguageManager.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -39,9 +40,12 @@ wxPGWindowList wxStringButtonEditor::CreateControls( wxPropertyGrid* propGrid,
 							 const wxPoint& pos,
 							 const wxSize& sz ) const
 {
+	wxSize size = sz;
 	wxPGMultiButton* buttons = new wxPGMultiButton( propGrid, sz );
 
-	buttons->Add( wxT("Use") );
+	buttons->Add(PX2_LM.GetValue("Use"));
+
+	buttons->SetSize(wxSize(50, -1));
 
 	wxPGWindowList wndList = wxPGTextCtrlEditor::CreateControls
 		( propGrid, property, pos, buttons->GetPrimarySize() );

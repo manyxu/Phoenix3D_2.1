@@ -107,5 +107,13 @@ void PropertyPage::OnPropertyGridChanging (wxPropertyGridEvent &event)
 void PropertyPage::OnPropertyGridSelect (wxPropertyGridEvent &event)
 {
 	PX2_UNUSED(event);
+
+	wxPGProperty* property = event.GetProperty();
+	if (property)
+	{
+	}
+	else
+	{
+	}
 }
 //-----------------------------------------------------------------------------

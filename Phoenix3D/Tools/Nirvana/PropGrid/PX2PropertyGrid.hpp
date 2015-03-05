@@ -23,32 +23,10 @@ namespace PX2Editor
 	class PropertyGrid : public wxWindow, public PX2::EventHandler
 	{
 	public:
-		enum PropertyGridType
-		{
-			PGT_DEFAULT,
-			PGT_ACTOR,
-			PGT_TERRAINACTOR,
-			PGT_EFFECT,
-			PGT_LIGHTACTOR,
-			PGT_PROJSCENEUI,
-			PGT_TEXTURE,
-			PGT_SKYACTOR,
-			PGT_CONTROL,
-			PGT_CONTROLKEYPOINTSVALUE,
-			PGT_UIPICBOX,
-			PGT_UIANIMPICBOX,
-			PGT_UISTATICTEXT,
-			PGT_UIFRAME,
-			PGT_UIBUTTON,
-			PGT_MAX_TYPE
-		};
-
-		PropertyGrid (wxWindow *parent, PropertyGridType type);
+		PropertyGrid (wxWindow *parent);
 		virtual ~PropertyGrid ();
 
 		DECLARE_DYNAMIC_CLASS(PropertyGrid)
-
-		PropertyGridType GetInspectorType () { return mPropertyGridType; }
 
 		void Clear ();
 
@@ -84,7 +62,6 @@ namespace PX2Editor
 
 		std::vector<PropertyPagePtr> mPages;
 		PropertyPagePtr mActivePage;
-		PropertyGridType mPropertyGridType;
 
 public_internal:
 		wxPropertyGridManager *mPropGridManager;

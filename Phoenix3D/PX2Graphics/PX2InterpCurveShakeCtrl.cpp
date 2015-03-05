@@ -23,11 +23,11 @@ InterpCurveShakeController::~InterpCurveShakeController ()
 }
 //----------------------------------------------------------------------------
 bool InterpCurveShakeController::Update (double applicationTime, 
-	double elapsedTime)
+	double elapsedTime1)
 {
 	if (Active)
 	{
-		float elapsedTime = (float)elapsedTime;
+		float elapsedTime = (float)elapsedTime1;
 		float maxPlayTime = GetMaxPlayTime();
 
 		if (IsPlaying())

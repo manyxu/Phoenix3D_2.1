@@ -12,9 +12,9 @@ IMPLEMENT_DYNAMIC_CLASS(PX2Editor::PropertyGrid, wxWindow)
 BEGIN_EVENT_TABLE(PropertyGrid, wxWindow)
 	EVT_SIZE(PropertyGrid::OnSize)
 	EVT_MOVE(PropertyGrid::OnMove)
-	EVT_PG_CHANGED(PGT_MAX_TYPE, PropertyGrid::OnPropertyGridChange)
-	EVT_PG_CHANGING(PGT_MAX_TYPE, PropertyGrid::OnPropertyGridChanging)
-	EVT_PG_SELECTED(PGT_MAX_TYPE, PropertyGrid::OnPropertyGridSelect)
+	EVT_PG_CHANGED(wxID_ANY, PropertyGrid::OnPropertyGridChange)
+	EVT_PG_CHANGING(wxID_ANY, PropertyGrid::OnPropertyGridChanging)
+	//EVT_PG_SELECTED(wxID_ANY, PropertyGrid::OnPropertyGridSelect)
 END_EVENT_TABLE()
 //-----------------------------------------------------------------------------
 PropertyGrid::PropertyGrid ()
@@ -24,10 +24,9 @@ mPropGridManager(0)
 {
 }
 //-----------------------------------------------------------------------------
-PropertyGrid::PropertyGrid (wxWindow *parent, PropertyGridType type)
+PropertyGrid::PropertyGrid (wxWindow *parent)
 	:
 wxWindow(parent, -1),
-mPropertyGridType(type),
 mPropGridManager(0)
 {
 	Create();
@@ -49,9 +48,11 @@ PropertyGrid::~PropertyGrid ()
 //-----------------------------------------------------------------------------
 void PropertyGrid::Create ()
 {
-	int style = wxPG_BOLD_MODIFIED | wxPG_SPLITTER_AUTO_CENTER | wxPG_DESCRIPTION |	wxPGMAN_DEFAULT_STYLE;
+	int style = wxPG_BOLD_MODIFIED | wxPG_SPLITTER_AUTO_CENTER |
+		wxPG_DESCRIPTION | wxPGMAN_DEFAULT_STYLE | wxPG_EX_MULTIPLE_SELECTION |
+		wxPG_NO_INTERNAL_BORDER;
 
-	mPropGridManager = new wxPropertyGridManager(this, mPropertyGridType,
+	mPropGridManager = new wxPropertyGridManager(this, wxID_ANY,
 		wxDefaultPosition, wxDefaultSize, style);
 
 	mPropGrid = mPropGridManager->GetGrid();
@@ -69,6 +70,18 @@ void PropertyGrid::Create ()
 	mPropGrid->SetUnspecifiedValueAppearance(cell);
 
 	mPropGridManager->SetDescBoxHeight(40);
+
+	wxColour my_grey_1(212, 208, 200);
+	wxColour my_grey_3(113, 111, 100);
+	mPropGridManager->Freeze();
+	mPropGridManager->GetGrid()->SetMarginColour(*wxWHITE);
+	mPropGridManager->GetGrid()->SetCaptionBackgroundColour(wxColour(207, 214, 229));
+	mPropGridManager->GetGrid()->SetCellBackgroundColour(*wxWHITE);
+	mPropGridManager->GetGrid()->SetCellTextColour(*wxBLACK);
+	mPropGridManager->GetGrid()->SetLineColour(my_grey_1); //wxColour(160,160,160)
+	mPropGridManager->Thaw();
+
+	mPropGridManager->Refresh();
 }
 //-----------------------------------------------------------------------------
 void PropertyGrid::Clear ()
@@ -81,6 +94,8 @@ PropertyPage *PropertyGrid::AddPropertyPage (std::string name)
 {
 	PropertyPage *page = new0 PropertyPage(this, name);
 	mPages.push_back(page);
+
+	mPropGridManager->SelectPage(0);
 
 	return page;
 }
@@ -146,6 +161,7 @@ void PropertyGrid::OnSize(wxSizeEvent& e)
 {
 	wxSize size = e.GetSize();
 	mPropGridManager->SetSize(size);
+	mPropGridManager->Refresh();
 }
 //-----------------------------------------------------------------------------
 void PropertyGrid::OnMove(wxMoveEvent& e)
