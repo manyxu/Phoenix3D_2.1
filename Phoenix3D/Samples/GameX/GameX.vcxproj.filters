@@ -1,10 +1,149 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="GameXPre.hpp" />
-    <ClInclude Include="GameX.hpp" />
+    <ClInclude Include="X_UIMan.hpp">
+      <Filter>UIMan</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Man.hpp">
+      <Filter>Man</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Net.hpp">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Pre.hpp" />
+    <ClInclude Include="X_NetData.hpp">
+      <Filter>Net</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Event.hpp">
+      <Filter>Event</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Define.hpp" />
+    <ClInclude Include="X_User.hpp">
+      <Filter>UserActor</Filter>
+    </ClInclude>
+    <ClInclude Include="X_UserActor.hpp">
+      <Filter>UserActor</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Chara.hpp">
+      <Filter>Gameable\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Def.hpp">
+      <Filter>Def</Filter>
+    </ClInclude>
+    <ClInclude Include="X_DefMan.hpp">
+      <Filter>Def</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Skill.hpp">
+      <Filter>Gameable\Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="X_BatMan.hpp">
+      <Filter>Bat</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Heads.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameX.cpp" />
+    <ClCompile Include="X_UIMan.cpp">
+      <Filter>UIMan</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Man.cpp">
+      <Filter>Man</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Net.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="X_NetData.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Net_GameServer.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Net_AccoutServer.cpp">
+      <Filter>Net</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Event.cpp">
+      <Filter>Event</Filter>
+    </ClCompile>
+    <ClCompile Include="X_User.cpp">
+      <Filter>UserActor</Filter>
+    </ClCompile>
+    <ClCompile Include="X_UserActor.cpp">
+      <Filter>UserActor</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Chara.cpp">
+      <Filter>Gameable\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Def.cpp">
+      <Filter>Def</Filter>
+    </ClCompile>
+    <ClCompile Include="X_DefMan.cpp">
+      <Filter>Def</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Skill.cpp">
+      <Filter>Gameable\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Chara_LevelType.cpp">
+      <Filter>Gameable\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Chara_ModelAnim.cpp">
+      <Filter>Gameable\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Chara_Skill.cpp">
+      <Filter>Gameable\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Chara_Bat.cpp">
+      <Filter>Gameable\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="X_BatMan.cpp">
+      <Filter>Bat</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="UIMan">
+      <UniqueIdentifier>{c7ba7625-5301-4dd8-993d-ea50b6324713}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Man">
+      <UniqueIdentifier>{34cfb335-7813-4691-a2fb-2a313d32adad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Net">
+      <UniqueIdentifier>{3338448e-32d6-414d-a81b-df9953670d63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Event">
+      <UniqueIdentifier>{cf27301b-7a08-4200-bb65-06234b17d7d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UserActor">
+      <UniqueIdentifier>{f1f53439-1f51-4316-850c-38e919dc3b67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameable">
+      <UniqueIdentifier>{f47a4604-c778-44cd-88db-21b3fab521a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameable\Chara">
+      <UniqueIdentifier>{665c5222-930a-4385-b881-6cc582fc0a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Def">
+      <UniqueIdentifier>{a89a6bbf-2268-4fa8-85c8-552c90b7d93d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameable\Skill">
+      <UniqueIdentifier>{025a497e-b445-420d-b7f8-8e563687c571}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Bat">
+      <UniqueIdentifier>{b6f24a84-9a1d-418d-a45d-84220ac41252}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="X_User.inl">
+      <Filter>UserActor</Filter>
+    </None>
+    <None Include="X_Skill.inl">
+      <Filter>Gameable\Skill</Filter>
+    </None>
+    <None Include="X_Chara.inl">
+      <Filter>Gameable\Chara</Filter>
+    </None>
+    <None Include="X_BatMan.inl">
+      <Filter>Bat</Filter>
+    </None>
+    <None Include="X_UserActor.inl">
+      <Filter>UserActor</Filter>
+    </None>
   </ItemGroup>
 </Project>

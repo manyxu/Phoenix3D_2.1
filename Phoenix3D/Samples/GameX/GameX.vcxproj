@@ -19,11 +19,48 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameX.hpp" />
-    <ClInclude Include="GameXPre.hpp" />
+    <ClInclude Include="X_BatMan.hpp" />
+    <ClInclude Include="X_Chara.hpp" />
+    <ClInclude Include="X_Def.hpp" />
+    <ClInclude Include="X_Define.hpp" />
+    <ClInclude Include="X_DefMan.hpp" />
+    <ClInclude Include="X_Event.hpp" />
+    <ClInclude Include="X_Heads.hpp" />
+    <ClInclude Include="X_Man.hpp" />
+    <ClInclude Include="X_Net.hpp" />
+    <ClInclude Include="X_NetData.hpp" />
+    <ClInclude Include="X_Pre.hpp" />
+    <ClInclude Include="X_Skill.hpp" />
+    <ClInclude Include="X_UIMan.hpp" />
+    <ClInclude Include="X_User.hpp" />
+    <ClInclude Include="X_UserActor.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameX.cpp" />
+    <ClCompile Include="X_BatMan.cpp" />
+    <ClCompile Include="X_Chara.cpp" />
+    <ClCompile Include="X_Chara_Bat.cpp" />
+    <ClCompile Include="X_Chara_LevelType.cpp" />
+    <ClCompile Include="X_Chara_ModelAnim.cpp" />
+    <ClCompile Include="X_Chara_Skill.cpp" />
+    <ClCompile Include="X_Def.cpp" />
+    <ClCompile Include="X_DefMan.cpp" />
+    <ClCompile Include="X_Event.cpp" />
+    <ClCompile Include="X_Man.cpp" />
+    <ClCompile Include="X_Net.cpp" />
+    <ClCompile Include="X_NetData.cpp" />
+    <ClCompile Include="X_Net_AccoutServer.cpp" />
+    <ClCompile Include="X_Net_GameServer.cpp" />
+    <ClCompile Include="X_Skill.cpp" />
+    <ClCompile Include="X_UIMan.cpp" />
+    <ClCompile Include="X_User.cpp" />
+    <ClCompile Include="X_UserActor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="X_BatMan.inl" />
+    <None Include="X_Chara.inl" />
+    <None Include="X_Skill.inl" />
+    <None Include="X_User.inl" />
+    <None Include="X_UserActor.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B70DF3CF-DD7B-4E90-A6A4-AF3AE85CFDD9}</ProjectGuid>

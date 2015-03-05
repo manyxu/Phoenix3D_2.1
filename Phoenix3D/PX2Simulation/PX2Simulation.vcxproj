@@ -210,6 +210,8 @@
       <Command>mkdir ..\PX2SDK\Include
 xcopy /DY *.hpp ..\PX2SDK\Include
 xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY SkillCompl\*.hpp ..\PX2SDK\Include
+xcopy /DY SkillCompl\*.inl ..\PX2SDK\Include
 mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
 xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
     </PostBuildEvent>
