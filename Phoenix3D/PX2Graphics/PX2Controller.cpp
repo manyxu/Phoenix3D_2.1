@@ -19,10 +19,6 @@ Phase(0.0),
 Frequency(1.0),
 Active(true),
 mObject(0),
-mApplicationTime(0.0f),
-mLastApplicationTime(0.0f),
-mIsTimeInited(false),
-mInitedApplicationIime(0.0f),
 mPriority(0),
 mMaxPlayTime(-1.0f),
 mDelayPlayTime(0.0f),
@@ -82,10 +78,6 @@ void Controller::Reset ()
 {
 	Stop();
 
-	mIsTimeInited = false;
-	mApplicationTime = 0.0f;
-	mLastApplicationTime = 0.0f;
-	mInitedApplicationIime = 0.0f;
 	mPlayedTime = 0.0f;
 }
 //----------------------------------------------------------------------------
@@ -94,23 +86,11 @@ void Controller::SetPriority (int priority)
 	mPriority = priority;
 }
 //----------------------------------------------------------------------------
-bool Controller::Update(double applicationTime, double elapsedTime)
+bool Controller::Update(double applicationTime, double elapsedTime1)
 {
-	PX2_UNUSED(elapsedTime);
-
 	if (Active)
 	{
-		if (!mIsTimeInited)
-		{
-			mInitedApplicationIime = applicationTime;
-			mApplicationTime = applicationTime;
-			mIsTimeInited = true;
-		}
-
-		mLastApplicationTime = mApplicationTime;
-		mApplicationTime = applicationTime;
-
-		float elapsedTime = (float)GetElapsedTime();
+		float elapsedTime = (float)elapsedTime1;
 		if (elapsedTime > 0.2f)
 			elapsedTime = 0.2f;
 
@@ -127,7 +107,7 @@ bool Controller::Update(double applicationTime, double elapsedTime)
 				Stop();
 			}
 
-			_Update(applicationTime);
+			_Update(applicationTime, elapsedTime);
 
 			if (!IsPlaying())
 			{
@@ -223,9 +203,10 @@ double Controller::GetControlTimeByRangeTime (double rangeTime)
 	return MinTime;
 }
 //----------------------------------------------------------------------------
-void Controller::_Update (double applicationTime)
+void Controller::_Update(double applicationTime, double elapsedTime)
 {
 	PX2_UNUSED(applicationTime);
+	PX2_UNUSED(elapsedTime);
 }
 //----------------------------------------------------------------------------
 
@@ -335,10 +316,6 @@ Phase(0.0),
 Frequency(1.0),
 Active(true),
 mObject(0),
-mApplicationTime(0.0f),
-mLastApplicationTime(0.0f),
-mIsTimeInited(false),
-mInitedApplicationIime(0.0f),
 mPriority(0),
 mMaxPlayTime(-1.0f),
 mDelayPlayTime(0.0f),

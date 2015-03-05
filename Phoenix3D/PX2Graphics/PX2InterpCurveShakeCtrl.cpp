@@ -22,21 +22,12 @@ InterpCurveShakeController::~InterpCurveShakeController ()
 {
 }
 //----------------------------------------------------------------------------
-bool InterpCurveShakeController::Update (double applicationTime)
+bool InterpCurveShakeController::Update (double applicationTime, 
+	double elapsedTime)
 {
 	if (Active)
 	{
-		if (!mIsTimeInited)
-		{
-			mInitedApplicationIime = applicationTime;
-			mApplicationTime = applicationTime;
-			mIsTimeInited = true;
-		}
-
-		mLastApplicationTime = mApplicationTime;
-		mApplicationTime = applicationTime;
-
-		float elapsedTime = (float)GetElapsedTime();
+		float elapsedTime = (float)elapsedTime;
 		float maxPlayTime = GetMaxPlayTime();
 
 		if (IsPlaying())
@@ -50,7 +41,7 @@ bool InterpCurveShakeController::Update (double applicationTime)
 				Stop();
 			}
 
-			_Update(applicationTime);
+			_Update(applicationTime, elapsedTime);
 
 			if (!IsPlaying())
 			{
@@ -72,9 +63,11 @@ bool InterpCurveShakeController::Update (double applicationTime)
 	return false;
 }
 //----------------------------------------------------------------------------
-void InterpCurveShakeController::_Update (double applicationTime)
+void InterpCurveShakeController::_Update(double applicationTime, double 
+	elapsedTime)
 {	
 	PX2_UNUSED(applicationTime);
+	PX2_UNUSED(elapsedTime);
 
 	if (mPoses.GetNumPoints() != mValues.GetNumPoints())
 	{

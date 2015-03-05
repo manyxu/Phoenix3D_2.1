@@ -102,7 +102,7 @@ bool TargetTransformController::Update(double applicationTime,
 		return false;
 
 	PX2_UNUSED(applicationTime);
-	float elapsedTime = (float)GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 
 	if (IsPlaying())
 	{

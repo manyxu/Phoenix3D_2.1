@@ -32,7 +32,7 @@ bool BillboardController::Update(double applicationTime, double elapsedTime1)
 		return false;
 
 	Billboard *billboard = DynamicCast<Billboard>(mObject);
-	float elapsedTime = GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 
 	if (IsPlaying())
 	{

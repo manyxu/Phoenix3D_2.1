@@ -77,9 +77,10 @@ bool UIScoreStaticTextCtrl::Update(double applicationTime, double elapsedTime)
 	return InterpCurveFloatController::Update(applicationTime, elapsedTime);
 }
 //----------------------------------------------------------------------------
-void UIScoreStaticTextCtrl::_Update(double applicationTime)
+void UIScoreStaticTextCtrl::_Update(double applicationTime,
+	double elapsedTime)
 {
-	InterpCurveFloatController::_Update(applicationTime);
+	InterpCurveFloatController::_Update(applicationTime, elapsedTime);
 
 	float fCurValue = GetCurValueRelatived();
 	int curValue = (int)fCurValue;

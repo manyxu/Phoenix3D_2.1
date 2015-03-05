@@ -27,16 +27,13 @@ void CameraShakeController::Reset ()
 //----------------------------------------------------------------------------
 bool CameraShakeController::Update(double applicationTime, double elapsedTime1)
 {
-	if (0.0f == applicationTime)
-		return true;
-
 	if (!EffectableController::Update(applicationTime, elapsedTime1))
 	{
 		return false;
 	}
 
 	CameraShake *cs = (CameraShake*)GetControlledable();
-	float elapsedTime = GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 
 	if (IsPlaying())
 	{

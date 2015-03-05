@@ -235,10 +235,10 @@ float _GetGridSpacing(int gridNum)
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 {
-	float width = mSize.Width;
-	float height = mSize.Height;
+	int width = (int)mSize.Width;
+	int height = (int)mSize.Height;
 
-	if (width <= 0.0f && height <= 0.0f) return;
+	if (width <= 0 && height <= 0) return;
 
 	Camera *camera = mRenderStep->GetCamera();
 	APoint pos = camera->GetPosition();

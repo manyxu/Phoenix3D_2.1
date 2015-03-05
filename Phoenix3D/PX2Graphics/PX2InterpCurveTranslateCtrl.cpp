@@ -32,9 +32,10 @@ void InterpCurveTranslateController::Reset ()
 	}
 }
 //----------------------------------------------------------------------------
-void InterpCurveTranslateController::_Update (double applicationTime)
+void InterpCurveTranslateController::_Update (double applicationTime,
+	double elapsedTime)
 {
-	InterpCurveFloat3Controller::_Update(applicationTime);
+	InterpCurveFloat3Controller::_Update(applicationTime, elapsedTime);
 
 	const Float3 &curValue = GetCurValueRelatived();
 	

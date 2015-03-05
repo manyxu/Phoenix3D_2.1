@@ -75,7 +75,7 @@ bool InputPushTransformController::Update(double applicationTime,
 	if (!Controller::Update(applicationTime, elapsedTime1))
 		return false;
 
-	float elapsedTime = (float)GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 
 	if (mIsPressedValid)
 	{

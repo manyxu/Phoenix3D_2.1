@@ -30,16 +30,13 @@ void BeamEmitterController::Reset ()
 bool BeamEmitterController::Update(double applicationTime, 
 	double elapsedTime1)
 {
-	if (0.0f == applicationTime)
-		return true;
-
 	BeamEmitter *emitter = DynamicCast<BeamEmitter>(mObject);
 
 	// module update
 	if (!EffectableController::Update(applicationTime, elapsedTime1))
 		return false;
 
-	float elapsedTime = GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 
 	float emitRate = emitter->GetEmitRate();
 	int numMaxBeams = emitter->GetNumMaxBeams();

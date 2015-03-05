@@ -21,9 +21,10 @@ InterpCurveAlphaController::~InterpCurveAlphaController ()
 {
 }
 //----------------------------------------------------------------------------
-void InterpCurveAlphaController::_Update (double applicationTime)
+void InterpCurveAlphaController::_Update(double applicationTime,
+	double elapsedTime)
 {
-	InterpCurveFloatController::_Update(applicationTime);
+	InterpCurveFloatController::_Update(applicationTime, elapsedTime);
 
 	float curValue = GetCurValueRelatived();
 

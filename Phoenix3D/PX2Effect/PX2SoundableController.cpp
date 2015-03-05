@@ -31,7 +31,7 @@ bool SoundableController::Update(double applicationTime, double elapsedTime1)
 		return false;
 
 	Soundable *soundable = (Soundable*)GetControlledable();
-	float elapsedTime = GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 
 	if (IsPlaying())
 	{

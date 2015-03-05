@@ -27,7 +27,7 @@ namespace PX2
 
 	protected:
 		virtual bool Update(double applicationTime, double elapsedTime);
-		virtual void _Update(double applicationTime);
+		virtual void _Update(double applicationTime, double elapsedTime);
 
 		float mSpeed;
 		int mNum;

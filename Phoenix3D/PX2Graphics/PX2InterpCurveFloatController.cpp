@@ -23,9 +23,11 @@ InterpCurveFloatController::~InterpCurveFloatController ()
 {
 }
 //----------------------------------------------------------------------------
-void InterpCurveFloatController::_Update (double applicationTime)
+void InterpCurveFloatController::_Update(double applicationTime,
+	double elapsedTime)
 {
 	PX2_UNUSED(applicationTime);
+	PX2_UNUSED(elapsedTime);
 
 	float playedTimeMinusDelay = GetPlayedTimeMinusDelay();
 	float ctrlTime = (float)GetControlTimeByRangeTime(playedTimeMinusDelay);

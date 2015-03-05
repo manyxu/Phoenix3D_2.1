@@ -59,15 +59,16 @@ void InterpCurveSpeedController::OnDetach ()
 	}
 }
 //----------------------------------------------------------------------------
-void InterpCurveSpeedController::_Update (double applicationTime)
+void InterpCurveSpeedController::_Update(double applicationTime, 
+	double elapsedTime1)
 {
-	InterpCurveFloat3Controller::_Update(applicationTime);
+	InterpCurveFloat3Controller::_Update(applicationTime, elapsedTime1);
 
 	if (0.0f >= GetPlayedTimeMinusDelay())
 		return;
 
 	const AVector &curValue = GetCurValueRelatived();
-	float elapsedTime = (float)GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 
 	AVector dis = curValue * elapsedTime;
 	float disLength = dis.Normalize();

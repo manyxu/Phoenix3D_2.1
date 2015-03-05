@@ -30,7 +30,7 @@ namespace PX2
 		InterpCurveFloat3 mValues;
 
 	protected:
-		virtual void _Update (double applicationTime);
+		virtual void _Update(double applicationTime, double elapsedTime);
 
 		Float3 mInitValue;
 		Float3 mCurValueRaw; // 不处理Relative关系的值

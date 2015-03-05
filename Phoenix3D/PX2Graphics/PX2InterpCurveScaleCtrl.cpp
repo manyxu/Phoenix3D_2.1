@@ -21,9 +21,11 @@ InterpCurveScaleController::~InterpCurveScaleController ()
 {
 }
 //----------------------------------------------------------------------------
-void InterpCurveScaleController::_Update (double applicationTime)
+void InterpCurveScaleController::_Update (double applicationTime, 
+	double elapsedTime)
 {	
 	PX2_UNUSED(applicationTime);
+	PX2_UNUSED(elapsedTime);
 
 	float ctrlTime = (float)GetControlTimeByRangeTime(GetPlayedTimeMinusDelay());
 	mCurValueRaw = mValues.Eval(ctrlTime, Float3::ZERO);

@@ -52,7 +52,7 @@ bool PushTransformController::Update(double applicationTime,
 	if (mVelocity == AVector::ZERO)
 		return true;
 
-	float elapsedTime = (float)GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 
 	AVector velocityDis = mVelocity*elapsedTime;
 	AVector movedDis;

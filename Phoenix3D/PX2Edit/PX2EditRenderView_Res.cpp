@@ -142,7 +142,6 @@ void EditRenderView_Res::OnSize(const Sizef& size)
 	mSize = size;
 
 	mGridFrame->SetSize(mSize);
-	InputPushTransformController *ctrl = mGridFrame->GetIPTCtrl();
 	mGridFrame->Update(GetTimeInSeconds());
 
 	EditRenderView::OnSize(size);
@@ -176,6 +175,7 @@ void EditRenderView_Res::OnMiddleUp(const APoint &pos)
 //----------------------------------------------------------------------------
 void EditRenderView_Res::OnMouseWheel(float delta)
 {
+	PX2_UNUSED(delta);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Res::OnRightDown(const APoint &pos)
@@ -190,10 +190,13 @@ void EditRenderView_Res::OnRightUp(const APoint &pos)
 //----------------------------------------------------------------------------
 void EditRenderView_Res::OnMotion(const APoint &pos)
 {
+	PX2_UNUSED(pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Res::Visit(Object *obj, const int info)
 {
+	PX2_UNUSED(info);
+
 	UICheckButton *but = DynamicCast<UICheckButton>(obj);
 	if (but)
 	{

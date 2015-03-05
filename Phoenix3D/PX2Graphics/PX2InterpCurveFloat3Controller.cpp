@@ -24,9 +24,11 @@ InterpCurveFloat3Controller::~InterpCurveFloat3Controller ()
 {
 }
 //----------------------------------------------------------------------------
-void InterpCurveFloat3Controller::_Update (double applicationTime)
+void InterpCurveFloat3Controller::_Update (double applicationTime,
+	double elapsedTime)
 {
 	PX2_UNUSED(applicationTime);
+	PX2_UNUSED(elapsedTime);
 
 	float ctrlTime = (float)GetControlTimeByRangeTime(GetPlayedTimeMinusDelay());
 	mCurValueRaw = mValues.Eval(ctrlTime, Float3::ZERO);

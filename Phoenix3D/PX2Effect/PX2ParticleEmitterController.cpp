@@ -114,7 +114,7 @@ bool ParticleEmitterController::Update(double applicationTime,
 	if (!EffectableController::Update(applicationTime, elapsedTime1))
 		return false;
 
-	float elapsedTime = GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 	float playedTimeMinusDelay = GetPlayedTimeMinusDelay();
 
 	float emitRate = emitter->GetEmitRate();

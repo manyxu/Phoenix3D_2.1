@@ -21,9 +21,10 @@ InterpCurveRotateController::~InterpCurveRotateController ()
 {
 }
 //----------------------------------------------------------------------------
-void InterpCurveRotateController::_Update (double applicationTime)
+void InterpCurveRotateController::_Update (double applicationTime,
+	double elapsedTime)
 {
-	InterpCurveFloat3Controller::_Update(applicationTime);
+	InterpCurveFloat3Controller::_Update(applicationTime, elapsedTime);
 
 	const Float3 &curValue = GetCurValueRelatived();
 

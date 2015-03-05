@@ -16,32 +16,9 @@ inline float Controller::GetDelayPlayTime () const
 	return mDelayPlayTime;
 }
 //----------------------------------------------------------------------------
-inline float Controller::GetRunTime () const
-{
-	if (!mIsTimeInited)
-		return 0.0f;
-
-	return (float)mApplicationTime - (float)mInitedApplicationIime;
-}
-//----------------------------------------------------------------------------
 inline Controlledable* Controller::GetControlledable () const
 {
     return mObject;
-}
-//----------------------------------------------------------------------------
-inline double Controller::GetApplicationTime () const
-{
-    return mApplicationTime;
-}
-//----------------------------------------------------------------------------
-inline bool Controller::IsTimeInited ()
-{
-	return mIsTimeInited;
-}
-//----------------------------------------------------------------------------
-inline float Controller::GetElapsedTime () const
-{
-	return (float)mApplicationTime - (float)mLastApplicationTime;
 }
 //----------------------------------------------------------------------------
 inline float Controller::GetPlayedTime () const

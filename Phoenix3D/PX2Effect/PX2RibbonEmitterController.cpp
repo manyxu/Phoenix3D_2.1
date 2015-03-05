@@ -33,15 +33,12 @@ void RibbonEmitterController::Reset ()
 bool RibbonEmitterController::Update(double applicationTime, 
 	double elapsedTime1)
 {
-	if (0.0f == applicationTime)
-		return true;
-
 	if (!EffectableController::Update(applicationTime, elapsedTime1))
 	{
 		return false;
 	}
 
-	float elapsedTime = GetElapsedTime();
+	float elapsedTime = (float)elapsedTime1;
 	RibbonEmitter *rb = (RibbonEmitter*)GetControlledable();
 	float ribbonLength = rb->GetLength();
 	float ribbonSegLength = rb->GetSegLength();

@@ -23,7 +23,7 @@ namespace PX2
 		virtual void OnDetach ();
 
 	protected:
-		virtual void _Update (double applicationTime);
+		virtual void _Update(double applicationTime, double elapsedTime);
 	};
 
 	PX2_REGISTER_STREAM(InterpCurveUniformScaleController);

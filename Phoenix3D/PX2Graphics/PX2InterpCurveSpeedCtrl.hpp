@@ -27,7 +27,7 @@ namespace PX2
 		virtual void OnDetach ();
 
 	protected:
-		virtual void _Update (double applicationTime);
+		virtual void _Update (double applicationTime, double elapsedTime);
 
 		APoint mInitPos;
 		float mMaxLength;
