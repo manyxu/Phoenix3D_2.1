@@ -82,7 +82,7 @@ void UIGridFrame::SetAlignItemNum(const Float2 &itemNum)
 	mIsBagFrameNeedUpdate = true;
 }
 //----------------------------------------------------------------------------
-void UIGridFrame::UpdateWorldData(double applicationTime)
+void UIGridFrame::UpdateWorldData(double applicationTime, double elapsedTime)
 {
 	if (!mIPTCtrl->IsPlaying()) return;
 
@@ -113,7 +113,7 @@ void UIGridFrame::UpdateWorldData(double applicationTime)
 		}
 	}
 
-	UIFrame::UpdateWorldData(applicationTime);
+	UIFrame::UpdateWorldData(applicationTime, elapsedTime);
 }
 //----------------------------------------------------------------------------
 int UIGridFrame::_UpdateAlignItems()

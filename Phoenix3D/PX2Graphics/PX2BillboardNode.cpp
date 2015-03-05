@@ -19,9 +19,10 @@ BillboardNode::~BillboardNode ()
 {
 }
 //----------------------------------------------------------------------------
-void BillboardNode::UpdateWorldData (double applicationTime)
+void BillboardNode::UpdateWorldData(double applicationTime, 
+	double elapsedTime)
 {
-	Movable::UpdateWorldData(applicationTime);
+	Movable::UpdateWorldData(applicationTime, elapsedTime);
 
 	if (mCamera)
 	{

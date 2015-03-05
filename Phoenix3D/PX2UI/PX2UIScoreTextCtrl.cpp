@@ -72,9 +72,9 @@ void UIScoreStaticTextCtrl::SetNum(int num)
 	Play();
 }
 //----------------------------------------------------------------------------
-bool UIScoreStaticTextCtrl::Update(double applicationTime)
+bool UIScoreStaticTextCtrl::Update(double applicationTime, double elapsedTime)
 {
-	return InterpCurveFloatController::Update(applicationTime);
+	return InterpCurveFloatController::Update(applicationTime, elapsedTime);
 }
 //----------------------------------------------------------------------------
 void UIScoreStaticTextCtrl::_Update(double applicationTime)

@@ -30,7 +30,7 @@ namespace PX2
 		void OnDisCheck();
 
 	protected:
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 		virtual void OnChildUIAfterPicked(int info, Movable *child);
 		virtual void OnNotPicked(int info);
 	};

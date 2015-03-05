@@ -105,7 +105,7 @@ namespace PX2
 
 	protected:
 		void _Init();
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		void ReCreateFont();
 		void ReCreate();

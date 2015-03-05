@@ -94,8 +94,10 @@ void Controller::SetPriority (int priority)
 	mPriority = priority;
 }
 //----------------------------------------------------------------------------
-bool Controller::Update (double applicationTime)
+bool Controller::Update(double applicationTime, double elapsedTime)
 {
+	PX2_UNUSED(elapsedTime);
+
 	if (Active)
 	{
 		if (!mIsTimeInited)

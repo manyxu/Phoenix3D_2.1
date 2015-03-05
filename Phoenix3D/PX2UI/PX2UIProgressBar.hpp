@@ -45,7 +45,7 @@ namespace PX2
 		UIProgressBarCtrl *GetProgressBarCtrl();
 
 	protected:
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		UIPicBoxPtr mBackPicBox;
 		UIPicBoxPtr mProgressPicBox;

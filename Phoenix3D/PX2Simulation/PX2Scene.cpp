@@ -94,9 +94,9 @@ Actor *Scene::GetActorByID(int id)
 	return 0;
 }
 //----------------------------------------------------------------------------
-void Scene::UpdateWorldData(double applicationTime)
+void Scene::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	Node::UpdateWorldData(applicationTime);
+	Node::UpdateWorldData(applicationTime, elapsedTime);
 }
 //----------------------------------------------------------------------------
 

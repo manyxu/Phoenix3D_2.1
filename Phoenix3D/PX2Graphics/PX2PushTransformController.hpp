@@ -45,7 +45,7 @@ namespace PX2
 		void SetFriction (float fricton);
 		float GetFriction ();
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 
 		// 派生类重载此函数，实现具体的移动
 		virtual void OnMoving (const AVector &dis);

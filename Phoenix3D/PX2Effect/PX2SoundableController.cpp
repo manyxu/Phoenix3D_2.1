@@ -24,10 +24,10 @@ void SoundableController::Reset ()
 	mSoundableObject = 0;
 }
 //----------------------------------------------------------------------------
-bool SoundableController::Update (double applicationTime)
+bool SoundableController::Update(double applicationTime, double elapsedTime1)
 {
 	// module update
-	if (!EffectableController::Update(applicationTime))
+	if (!EffectableController::Update(applicationTime, elapsedTime1))
 		return false;
 
 	Soundable *soundable = (Soundable*)GetControlledable();

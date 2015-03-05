@@ -120,9 +120,10 @@ void UICheckButton::OnDisCheck()
 	}
 }
 //----------------------------------------------------------------------------
-void UICheckButton::UpdateWorldData(double applicationTime)
+void UICheckButton::UpdateWorldData(double applicationTime,
+	double elapsedTime)
 {
-	UIButtonBase::UpdateWorldData(applicationTime);
+	UIButtonBase::UpdateWorldData(applicationTime, elapsedTime);
 }
 //----------------------------------------------------------------------------
 void UICheckButton::OnChildUIAfterPicked(int info, Movable *child)

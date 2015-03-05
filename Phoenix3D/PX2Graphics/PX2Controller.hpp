@@ -56,7 +56,7 @@ namespace PX2
 		double GetApplicationTime () const;
 
 		// 动画更新，applicationTime是以毫秒作计算单位的
-		virtual bool Update (double applicationTime);
+		virtual bool Update (double applicationTime, double elapsedTime);
 		bool IsTimeInited ();
 		float GetElapsedTime () const; //< 获得帧流逝时间，在Update调用后调用
 		float GetRunTime () const;

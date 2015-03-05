@@ -37,9 +37,9 @@ void UISizeFrame::OnBorderSizeChanged()
 	mIsRelativeChanged = true;
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::UpdateWorldData(double applicationTime)
+void UISizeFrame::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	UIFrame::UpdateWorldData(applicationTime);
+	UIFrame::UpdateWorldData(applicationTime, elapsedTime);
 
 	if (mIsRelativeChanged)
 	{

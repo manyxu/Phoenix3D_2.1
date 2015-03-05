@@ -190,7 +190,7 @@ public_internal:
 		const TexPackElement &GetTexPackElement () const;
 		const std::vector<TexPackElement> &GetTexPackAnim_Frames () const;
 
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime1);
 
 	protected:
 		Effectable ();

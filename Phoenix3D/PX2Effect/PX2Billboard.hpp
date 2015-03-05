@@ -50,7 +50,7 @@ public_internal:
 		virtual void GenBuffers ();
 
 	protected:
-		virtual void UpdateWorldData (double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime1);
 
 		bool mIsDynamic;
 		Float2 mAnchorPoint;

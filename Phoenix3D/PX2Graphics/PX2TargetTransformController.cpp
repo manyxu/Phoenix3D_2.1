@@ -91,9 +91,10 @@ void TargetTransformController::OnDetach ()
 {
 }
 //----------------------------------------------------------------------------
-bool TargetTransformController::Update (double applicationTime)
+bool TargetTransformController::Update(double applicationTime, 
+	double elapsedTime1)
 {
-	if (!Controller::Update(applicationTime))
+	if (!Controller::Update(applicationTime, elapsedTime1))
 		return false;
 
 	Movable *mov = DynamicCast<Movable>(GetControlledable());

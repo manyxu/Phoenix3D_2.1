@@ -23,7 +23,7 @@
 
 		virtual void Reset ();
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update (double applicationTime, double elapsedTime);
 
 public_internal:
 		const std::list<RibbonObject> &GetRibbonObjects () const;

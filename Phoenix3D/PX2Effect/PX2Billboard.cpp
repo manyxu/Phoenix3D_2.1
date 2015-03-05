@@ -305,9 +305,9 @@ void Billboard::GenBuffers ()
 	}
 }
 //----------------------------------------------------------------------------
-void Billboard::UpdateWorldData (double applicationTime)
+void Billboard::UpdateWorldData(double applicationTime, double elapsedTime1)
 {
-	Movable::UpdateWorldData(applicationTime);
+	Movable::UpdateWorldData(applicationTime, elapsedTime1);
 
 	Renderer *defaultRenderer = Renderer::GetDefaultRenderer();
 	Camera *camera = defaultRenderer->GetCamera();

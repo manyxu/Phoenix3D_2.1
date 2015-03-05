@@ -61,7 +61,7 @@ Effectable::~Effectable ()
 {
 }
 //----------------------------------------------------------------------------
-void Effectable::UpdateWorldData(double applicationTime)
+void Effectable::UpdateWorldData(double applicationTime, double elapsedTime1)
 {
 	if (!mIsUpdate)
 	{
@@ -86,7 +86,7 @@ void Effectable::UpdateWorldData(double applicationTime)
 		mIsUpdate = true;
 	}
 
-	TriMesh::UpdateWorldData(applicationTime);
+	TriMesh::UpdateWorldData(applicationTime, elapsedTime1);
 }
 //----------------------------------------------------------------------------
 void Effectable::SetFixedBound (bool fixed)

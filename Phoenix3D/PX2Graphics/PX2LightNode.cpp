@@ -44,9 +44,9 @@ void LightNode::SetLight (Light* light)
 	}
 }
 //----------------------------------------------------------------------------
-void LightNode::UpdateWorldData (double applicationTime)
+void LightNode::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	Node::UpdateWorldData(applicationTime);
+	Node::UpdateWorldData(applicationTime, elapsedTime);
 
 	if (mLight)
 	{

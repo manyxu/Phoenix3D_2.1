@@ -62,9 +62,9 @@ void UIProgressBarCtrl::SetProgress(float progress)
 	Play();
 }
 //----------------------------------------------------------------------------
-bool UIProgressBarCtrl::Update(double applicationTime)
+bool UIProgressBarCtrl::Update(double applicationTime, double elapsedTime)
 {
-	return InterpCurveFloatController::Update(applicationTime);
+	return InterpCurveFloatController::Update(applicationTime, elapsedTime);
 }
 //----------------------------------------------------------------------------
 void UIProgressBarCtrl::_Update(double applicationTime)

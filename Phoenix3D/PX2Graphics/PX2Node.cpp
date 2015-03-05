@@ -393,9 +393,9 @@ bool MovableUpdateLessThan (const Movable *mov0,
 	return priority0 > priority1;
 }
 //----------------------------------------------------------------------------
-void Node::UpdateWorldData (double applicationTime)
+void Node::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-    Movable::UpdateWorldData(applicationTime);
+	Movable::UpdateWorldData(applicationTime, elapsedTime);
 
 	if (mIsNeedCalUpdateChild)
 	{

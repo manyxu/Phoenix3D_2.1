@@ -25,11 +25,9 @@ Actor::~Actor()
 {
 }
 //----------------------------------------------------------------------------
-void Actor::UpdateWorldData (double applicationTime)
+void Actor::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	UpdateComponents(applicationTime);
-
-	Node::UpdateWorldData(applicationTime);
+	Node::UpdateWorldData(applicationTime, elapsedTime);
 }
 //----------------------------------------------------------------------------
 void Actor::SetMovable (Movable *mov)

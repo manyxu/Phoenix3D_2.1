@@ -23,7 +23,7 @@ namespace PX2
 
 		const SoundableObject *GetSoundableObject () const;
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update (double applicationTime, double elapsedTime);
 
 	protected:
 		SoundableObjectPtr mSoundableObject;

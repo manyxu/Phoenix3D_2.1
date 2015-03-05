@@ -303,9 +303,9 @@ void UIText::SetFontHeight(int height)
 	mIsNeedReCreateFont = true;
 }
 //----------------------------------------------------------------------------
-void UIText::UpdateWorldData(double applicationTime)
+void UIText::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	TriMesh::UpdateWorldData(applicationTime);
+	TriMesh::UpdateWorldData(applicationTime, elapsedTime);
 
 	if (mIsNeedReCreateFont)
 	{

@@ -32,7 +32,7 @@ namespace PX2
 		BillboardAlignType GetAlignType () const;
 
 	protected:
-		virtual void UpdateWorldData (double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		CameraPtr mCamera;
 		BillboardAlignType mAlignType;

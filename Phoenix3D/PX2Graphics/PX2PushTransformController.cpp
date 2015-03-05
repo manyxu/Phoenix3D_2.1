@@ -43,9 +43,10 @@ void PushTransformController::SetVelocity (const AVector &vec)
 	mVelocity = vecTemp*vecLength;
 }
 //----------------------------------------------------------------------------
-bool PushTransformController::Update (double applicationTime)
+bool PushTransformController::Update(double applicationTime, 
+	double elapsedTime1)
 {
-	if (!Controller::Update(applicationTime))
+	if (!Controller::Update(applicationTime, elapsedTime1))
 		return false;
 
 	if (mVelocity == AVector::ZERO)

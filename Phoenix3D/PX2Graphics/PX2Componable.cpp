@@ -90,13 +90,13 @@ void Componable::SortComponents()
 	//std::sort(mComponents.begin(), mComponents.end(), Component::LessThan);
 }
 //----------------------------------------------------------------------------
-bool Componable::UpdateComponents(double applicationTime)
+bool Componable::UpdateComponents(double applicationTime, double elapsedTime)
 {
 	bool someoneUpdated = false;
 
 	for (int i = 0; i < GetNumComponents(); ++i)
 	{
-		if (mComponents[i]->Update(applicationTime))
+		if (mComponents[i]->Update(applicationTime, elapsedTime))
 		{
 			someoneUpdated = true;
 		}

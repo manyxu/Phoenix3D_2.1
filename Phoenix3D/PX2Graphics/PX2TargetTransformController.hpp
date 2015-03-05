@@ -53,7 +53,7 @@ namespace PX2
 		virtual void OnAttach ();
 		virtual void OnDetach ();
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 
 	protected:
 		APoint mStartPos;

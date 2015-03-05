@@ -21,7 +21,7 @@ namespace PX2
 		~Actor();
 
 	protected:
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		// BitSet
 	public:

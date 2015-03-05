@@ -33,7 +33,7 @@ namespace PX2
 		void SortComponents(); // 按照优先级从大到小排序
 
 	protected:
-		bool UpdateComponents(double applicationTime);
+		bool UpdateComponents(double applicationTime, double elapsedTime);
 
 		std::vector<ComponentPtr> mComponents;
 	};

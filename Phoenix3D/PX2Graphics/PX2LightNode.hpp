@@ -48,7 +48,7 @@ namespace PX2
 		virtual void OnDetach ();
 
 	protected:
-		virtual void UpdateWorldData (double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		LightPtr mLight;
 	};

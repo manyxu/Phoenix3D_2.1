@@ -158,9 +158,10 @@ float UIProgressBar::GetProgressAnimSpeed()
 	return mPBCtrl->GetProgressSpeed();
 }
 //----------------------------------------------------------------------------
-void UIProgressBar::UpdateWorldData(double applicationTime)
+void UIProgressBar::UpdateWorldData(double applicationTime, 
+	double elapsedTime)
 {
-	UIFrame::UpdateWorldData(applicationTime);
+	UIFrame::UpdateWorldData(applicationTime, elapsedTime);
 }
 //----------------------------------------------------------------------------
 

@@ -22,7 +22,7 @@ namespace PX2
 
 		const EffectObject *GetEffectModelObject () const;
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 	};
 
 	PX2_REGISTER_STREAM(EffectModelNodeController);

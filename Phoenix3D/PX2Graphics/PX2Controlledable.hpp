@@ -46,7 +46,7 @@ namespace PX2
 		void DetachController (Controller* controller);
 		void DetachAllControllers ();
 		void SortControls (); // 按照优先级从大到小排序
-		bool UpdateControllers (double applicationTime);
+		bool UpdateControllers (double applicationTime, double elapsedTime);
 
 	private:
 		bool mIsSelfCtrled;

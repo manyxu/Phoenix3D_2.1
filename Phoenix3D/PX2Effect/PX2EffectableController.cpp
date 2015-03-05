@@ -153,9 +153,9 @@ void EffectableController::ModulesUpdateEffectObject (EffectObject *obj)
 	}
 }
 //----------------------------------------------------------------------------
-bool EffectableController::Update (double applicationTime)
+bool EffectableController::Update(double applicationTime, double elapsedTime)
 {
-	if (!Controller::Update(applicationTime))
+	if (!Controller::Update(applicationTime, elapsedTime))
 		return false;
 
 	float playedTimeMinusDelay = GetPlayedTimeMinusDelay();

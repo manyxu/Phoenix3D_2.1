@@ -25,10 +25,10 @@ void BillboardController::Reset ()
 	mBillboardObject = 0;
 }
 //----------------------------------------------------------------------------
-bool BillboardController::Update (double applicationTime)
+bool BillboardController::Update(double applicationTime, double elapsedTime1)
 {
 	// module update
-	if (!EffectableController::Update(applicationTime))
+	if (!EffectableController::Update(applicationTime, elapsedTime1))
 		return false;
 
 	Billboard *billboard = DynamicCast<Billboard>(mObject);

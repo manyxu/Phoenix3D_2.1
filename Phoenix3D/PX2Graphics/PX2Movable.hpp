@@ -74,7 +74,7 @@ namespace PX2
 		/**
 		* 函数向下更新场景变换，向上更新世界包围盒。
 		*/
-		void Update (double applicationTime = -Mathd::MAX_REAL,
+		void Update (double applicationTime = -Mathd::MAX_REAL, double elapsedTime=0.0f,
 			bool initiator = true);
 		void SetUpdateOnce (bool once);
 		bool IsUpdateOnce () const;
@@ -133,7 +133,7 @@ namespace PX2
 
 	protected:
 		// 几何状态更新
-		virtual void UpdateWorldData (double applicationTime);
+		virtual void UpdateWorldData (double applicationTime, double elapsedTime);
 		virtual void UpdateWorldBound () = 0;
 		void PropagateBoundToRoot ();
 

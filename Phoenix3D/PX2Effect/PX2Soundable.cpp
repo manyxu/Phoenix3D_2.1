@@ -247,9 +247,9 @@ void Soundable::GenBuffers ()
 	}
 }
 //----------------------------------------------------------------------------
-void Soundable::UpdateWorldData (double applicationTime)
+void Soundable::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	Movable::UpdateWorldData(applicationTime);
+	Movable::UpdateWorldData(applicationTime, elapsedTime);
 
 	if (mSound)
 		mSound->SetPosition(WorldTransform.GetTranslate());

@@ -28,9 +28,10 @@ BlendTransformController::~BlendTransformController ()
 {
 }
 //----------------------------------------------------------------------------
-bool BlendTransformController::Update (double applicationTime)
+bool BlendTransformController::Update(double applicationTime,
+	double elapsedTime)
 {
-	if (!Controller::Update(applicationTime))
+	if (!Controller::Update(applicationTime, elapsedTime))
 	{
 		return false;
 	}
@@ -39,10 +40,10 @@ bool BlendTransformController::Update (double applicationTime)
 		return false;
 
 	if (mController0)
-		mController0->Update(applicationTime);
+		mController0->Update(applicationTime, elapsedTime);
 
 	if (mController1)
-		mController1->Update(applicationTime);
+		mController1->Update(applicationTime, elapsedTime);
 
 	if (mController0 && mController1)
 	{

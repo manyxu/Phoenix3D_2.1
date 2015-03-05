@@ -22,7 +22,7 @@ namespace PX2
 
 		virtual void Reset ();
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update (double applicationTime, double elapsedTime);
 
 public_internal:
 		const std::vector<BeamObject> &GetBeamObjects () const;

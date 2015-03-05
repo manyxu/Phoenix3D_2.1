@@ -69,9 +69,10 @@ void InputPushTransformController::SetTransScopeSmall(const AVector &min,
 	mSideMoveLength = (mMinPosSmall - mMinPos).Length();
 }
 //----------------------------------------------------------------------------
-bool InputPushTransformController::Update(double applicationTime)
+bool InputPushTransformController::Update(double applicationTime, 
+	double elapsedTime1)
 {
-	if (!Controller::Update(applicationTime))
+	if (!Controller::Update(applicationTime, elapsedTime1))
 		return false;
 
 	float elapsedTime = (float)GetElapsedTime();

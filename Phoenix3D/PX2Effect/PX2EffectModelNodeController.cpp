@@ -18,12 +18,13 @@ EffectModelNodeController::~EffectModelNodeController ()
 {
 }
 //----------------------------------------------------------------------------
-bool EffectModelNodeController::Update (double applicationTime)
+bool EffectModelNodeController::Update(double applicationTime,
+	double elapsedTime1)
 {
 	if (0.0f == applicationTime)
 		return true;
 
-	if (!EffectableController::Update(applicationTime))
+	if (!EffectableController::Update(applicationTime, elapsedTime1))
 	{
 		return false;
 	}

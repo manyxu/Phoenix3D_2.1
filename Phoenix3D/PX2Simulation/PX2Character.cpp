@@ -42,9 +42,9 @@ Character::~Character()
 {
 }
 //----------------------------------------------------------------------------
-void Character::UpdateWorldData(double applicationTime)
+void Character::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	Actor::UpdateWorldData(applicationTime);
+	Actor::UpdateWorldData(applicationTime, elapsedTime);
 
 	// auto worldbound
 	if (mMovable)

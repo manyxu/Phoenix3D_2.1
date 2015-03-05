@@ -25,12 +25,12 @@ void CameraShakeController::Reset ()
 	mCameraShakeObject = 0;
 }
 //----------------------------------------------------------------------------
-bool CameraShakeController::Update (double applicationTime)
+bool CameraShakeController::Update(double applicationTime, double elapsedTime1)
 {
 	if (0.0f == applicationTime)
 		return true;
 
-	if (!EffectableController::Update(applicationTime))
+	if (!EffectableController::Update(applicationTime, elapsedTime1))
 	{
 		return false;
 	}

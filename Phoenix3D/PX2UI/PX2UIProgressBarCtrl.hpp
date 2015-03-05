@@ -28,7 +28,7 @@ namespace PX2
 		float GetProgress() const;
 
 	protected:
-		virtual bool Update(double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 		virtual void _Update(double applicationTime);
 
 		float mSpeed;

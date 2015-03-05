@@ -33,7 +33,7 @@ namespace PX2
 		inline float GetWeight () const;
 
 		// The animation update.  The application time is in milliseconds.
-		virtual bool Update (double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 
 	protected:
 		virtual void SetControlledable (Controlledable* object);

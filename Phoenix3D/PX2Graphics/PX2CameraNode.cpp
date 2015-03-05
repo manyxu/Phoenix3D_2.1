@@ -45,9 +45,9 @@ void CameraNode::SetCamera (Camera* camera)
 	}
 }
 //----------------------------------------------------------------------------
-void CameraNode::UpdateWorldData (double applicationTime)
+void CameraNode::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	Node::UpdateWorldData(applicationTime);
+	Node::UpdateWorldData(applicationTime, elapsedTime);
 
 	if (mCamera && mEnableUpdate)
 	{

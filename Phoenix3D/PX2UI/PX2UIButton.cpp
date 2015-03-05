@@ -176,9 +176,9 @@ void UIButton::OnReleasedNotValied()
 	}
 }
 //----------------------------------------------------------------------------
-void UIButton::UpdateWorldData(double applicationTime)
+void UIButton::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	UIButtonBase::UpdateWorldData(applicationTime);
+	UIButtonBase::UpdateWorldData(applicationTime, elapsedTime);
 
 	if (mIsRecoverBegin)
 	{

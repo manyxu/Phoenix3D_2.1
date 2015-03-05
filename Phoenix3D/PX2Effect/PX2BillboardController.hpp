@@ -25,7 +25,7 @@ namespace PX2
 		const EffectObject *GetBillboardObject () const;
 		EffectObject *GetBillboardObject ();
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update (double applicationTime, double elapsedTime);
 
 	protected:
 		EffectObjectPtr mBillboardObject;

@@ -24,7 +24,7 @@ namespace PX2
 
 		const CameraShakeObject *GetCameraShakeObject () const;
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update (double applicationTime, double elapsedTime);
 
 	protected:
 		CameraShakeObjectPtr mCameraShakeObject;

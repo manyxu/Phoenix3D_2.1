@@ -112,7 +112,7 @@ namespace PX2
 
 	protected:
 		// 几何图形更新
-		virtual void UpdateWorldData (double applicationTime);
+		virtual void UpdateWorldData (double applicationTime, double elapsedTime);
 		virtual void UpdateWorldBound ();
 
 		// 场景继承裁剪

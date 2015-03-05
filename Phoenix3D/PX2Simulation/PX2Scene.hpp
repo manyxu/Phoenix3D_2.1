@@ -32,7 +32,7 @@ namespace PX2
 		Actor *GetActorByID(int id);
 
 	protected:
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		std::map<int, ActorPtr> mActors;
 		CameraActorPtr mCameraActor;

@@ -21,9 +21,9 @@ TransformController::~TransformController ()
 {
 }
 //----------------------------------------------------------------------------
-bool TransformController::Update (double applicationTime)
+bool TransformController::Update(double applicationTime, double elapsedTime)
 {
-	if (!Controller::Update(applicationTime))
+	if (!Controller::Update(applicationTime, elapsedTime))
 	{
 		return false;
 	}

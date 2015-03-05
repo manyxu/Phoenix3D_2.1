@@ -26,7 +26,7 @@ namespace PX2
 		int GetNum() const;
 
 	protected:
-		virtual bool Update(double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 		virtual void _Update(double applicationTime);
 
 		float mSpeed;

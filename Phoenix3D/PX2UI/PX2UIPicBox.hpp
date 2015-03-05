@@ -91,7 +91,7 @@ namespace PX2
 
 	protected:
 		void _Init();
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		void UpdateBuffers(float elapsedTime);
 		void UpdateVertexBuffer(float elapsedTime, const std::vector<Float2> &uvs);

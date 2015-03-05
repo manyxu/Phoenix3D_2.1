@@ -28,7 +28,7 @@ namespace PX2
 		TRecyclingArray<ParticleObject>* &GetArray ();
 
 		// √Î
-		virtual bool Update (double applicationTime);
+		virtual bool Update (double applicationTime, double elapsedTime);
 
 	protected:
 		void NewAParticle (float ctrlTime);

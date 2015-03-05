@@ -21,7 +21,7 @@ namespace PX2
 		Component();
 		~Component();
 
-		virtual bool Update(double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 
 		void SetPriority (int priority);
 		int GetPriority () const;

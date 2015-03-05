@@ -27,7 +27,8 @@ void BeamEmitterController::Reset ()
 	mBeamObjects.clear();
 }
 //----------------------------------------------------------------------------
-bool BeamEmitterController::Update (double applicationTime)
+bool BeamEmitterController::Update(double applicationTime, 
+	double elapsedTime1)
 {
 	if (0.0f == applicationTime)
 		return true;
@@ -35,7 +36,7 @@ bool BeamEmitterController::Update (double applicationTime)
 	BeamEmitter *emitter = DynamicCast<BeamEmitter>(mObject);
 
 	// module update
-	if (!EffectableController::Update(applicationTime))
+	if (!EffectableController::Update(applicationTime, elapsedTime1))
 		return false;
 
 	float elapsedTime = GetElapsedTime();

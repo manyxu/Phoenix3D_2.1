@@ -50,7 +50,7 @@ namespace PX2
 		virtual int AttachChild(Movable* child);
 
 	protected:
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 		int _UpdateAlignItems();
 
 		AlignItemType mAlignItemType;

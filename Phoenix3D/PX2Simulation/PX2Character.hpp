@@ -24,7 +24,7 @@ namespace PX2
 		virtual ~Character();
 
 	protected:
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 		void _AnimationBlend();
 
 		// Movable

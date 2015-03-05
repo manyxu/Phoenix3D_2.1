@@ -33,7 +33,7 @@ namespace PX2
 		inline HMatrix* GetTMMatrixs () const;
 		inline HMatrix* GetGPUMatrix () const;
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 
 	protected:
 		bool mIsUseCPU;

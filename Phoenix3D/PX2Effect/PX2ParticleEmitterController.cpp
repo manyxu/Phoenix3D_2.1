@@ -105,12 +105,13 @@ void ParticleEmitterController::SetMaxNumParticles (int num)
 	ResetPlay();
 }
 //----------------------------------------------------------------------------
-bool ParticleEmitterController::Update (double applicationTime)
+bool ParticleEmitterController::Update(double applicationTime,
+	double elapsedTime1)
 {
 	ParticleEmitter *emitter = DynamicCast<ParticleEmitter>(mObject);
 
 	// module update
-	if (!EffectableController::Update(applicationTime))
+	if (!EffectableController::Update(applicationTime, elapsedTime1))
 		return false;
 
 	float elapsedTime = GetElapsedTime();

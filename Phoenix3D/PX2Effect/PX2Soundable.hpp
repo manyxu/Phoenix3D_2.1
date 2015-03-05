@@ -77,7 +77,7 @@ public_internal:
 		virtual void GenBuffers ();
 
 	protected:
-		virtual void UpdateWorldData (double applicationTime);
+		virtual void UpdateWorldData (double applicationTime, double elapsedTime);
 		virtual void GetVisibleSet (Culler& culler, bool);
 
 		SourceType mSourceType;

@@ -38,7 +38,7 @@ namespace PX2
 		bool IsSmallTransScope();
 		AVector GetSmallTransDir();
 
-		virtual bool Update(double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 		virtual void OnMoving(const AVector &dis);
 
 		// 将接触的点转换为mPressedPos,mReleasedPos的函数

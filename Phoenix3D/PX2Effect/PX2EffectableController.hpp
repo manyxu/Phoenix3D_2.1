@@ -36,7 +36,7 @@ namespace PX2
 		void ModulesUpdateEffectable (float ctrlTime);
 		void ModulesUpdateEffectObject (EffectObject *obj);
 
-		virtual bool Update (double applicationTime);
+		virtual bool Update (double applicationTime, double elapsedTime);
 
 	protected:
 		virtual void OnNewAEffectObject (EffectObject *obj);

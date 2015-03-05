@@ -38,9 +38,9 @@ SkinController::~SkinController ()
 	delete1(mGPUMatrixs);
 }
 //----------------------------------------------------------------------------
-bool SkinController::Update (double applicationTime)
+bool SkinController::Update(double applicationTime, double elapsedTime)
 {
-	if (!Controller::Update(applicationTime))
+	if (!Controller::Update(applicationTime, elapsedTime))
 	{
 		return false;
 	}

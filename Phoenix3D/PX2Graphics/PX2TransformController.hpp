@@ -32,7 +32,7 @@ namespace PX2
 		* 以“毫秒”为单位。更新知识简单的将mLocalTransform拷贝到mObject的
 		* LocalTransform中。
 		*/
-		virtual bool Update (double applicationTime);
+		virtual bool Update (double applicationTime, double elapsedTime);
 
 	protected:
 		Transform mTransform;

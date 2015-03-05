@@ -140,7 +140,8 @@ void Controlledable::SortControls ()
 	std::sort(mControllers.begin(), mControllers.end(), Controller::LessThan);
 }
 //----------------------------------------------------------------------------
-bool Controlledable::UpdateControllers (double applicationTime)
+bool Controlledable::UpdateControllers(double applicationTime, 
+	double elapsedTime)
 {
 	if (mIsAutoPlay)
 	{
@@ -154,7 +155,7 @@ bool Controlledable::UpdateControllers (double applicationTime)
 
 	for (int i = 0; i < GetNumControllers(); ++i)
 	{
-		if (mControllers[i]->Update(applicationTime))
+		if (mControllers[i]->Update(applicationTime, elapsedTime))
 		{
 			someoneUpdated = true;
 		}

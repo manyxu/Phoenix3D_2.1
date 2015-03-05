@@ -51,7 +51,7 @@ namespace PX2
 		/*
 		* 时间为毫秒
 		*/
-		virtual bool Update (double applicationTime);
+		virtual bool Update(double applicationTime, double elapsedTime);
 
 	protected:
 		// 根据给定的时间计算当前的帧

@@ -40,7 +40,7 @@ void RenderStep::Update(double appSeconds, double elapsedSeconds)
 	PX2_UNUSED(elapsedSeconds);
 	if (mNode)
 	{
-		mNode->Update(appSeconds, false);
+		mNode->Update(appSeconds, elapsedSeconds, false);
 	}
 
 	mRenderer->SetCamera(beforeCamer);

@@ -30,12 +30,13 @@ void RibbonEmitterController::Reset ()
 	mRibbonObjects.clear();
 }
 //----------------------------------------------------------------------------
-bool RibbonEmitterController::Update (double applicationTime)
+bool RibbonEmitterController::Update(double applicationTime, 
+	double elapsedTime1)
 {
 	if (0.0f == applicationTime)
 		return true;
 
-	if (!EffectableController::Update(applicationTime))
+	if (!EffectableController::Update(applicationTime, elapsedTime1))
 	{
 		return false;
 	}

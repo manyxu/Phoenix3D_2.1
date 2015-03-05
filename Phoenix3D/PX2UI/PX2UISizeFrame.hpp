@@ -27,7 +27,7 @@ namespace PX2
 			const Sizef &parentBorderSize);
 
 	protected:
-		virtual void UpdateWorldData(double applicationTime);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		// Relative
 	public:

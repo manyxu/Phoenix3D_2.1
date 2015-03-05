@@ -293,9 +293,9 @@ void UIPicBox::_Init()
 	GetShine()->Emissive = Float4::WHITE;
 }
 //----------------------------------------------------------------------------
-void UIPicBox::UpdateWorldData(double applicationTime)
+void UIPicBox::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	TriMesh::UpdateWorldData(applicationTime);
+	TriMesh::UpdateWorldData(applicationTime, elapsedTime);
 
 	if (mIsBufferNeedUpdate)
 	{

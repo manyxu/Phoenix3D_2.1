@@ -50,7 +50,7 @@ namespace PX2
 		bool IsEnableUpdate ();
 
 	protected:
-		virtual void UpdateWorldData (double applicationTime);
+		virtual void UpdateWorldData (double applicationTime, double elapsedTime);
 
 		CameraPtr mCamera;
 		bool mEnableUpdate;

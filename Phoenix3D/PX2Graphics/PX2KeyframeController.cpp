@@ -208,9 +208,9 @@ float KeyframeController::GetScale (float normTime, int i0, int i1)
 	return mScales[i0] + normTime*(mScales[i1] - mScales[i0]);
 }
 //----------------------------------------------------------------------------
-bool KeyframeController::Update (double applicationTime)
+bool KeyframeController::Update(double applicationTime, double elapsedTime)
 {
-	if (!Controller::Update(applicationTime))
+	if (!Controller::Update(applicationTime, elapsedTime))
 	{
 		return false;
 	}

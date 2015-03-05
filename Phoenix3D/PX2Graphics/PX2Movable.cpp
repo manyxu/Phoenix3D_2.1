@@ -65,7 +65,8 @@ bool Movable::IsShow () const
 	return Culling!=CULL_ALWAYS;
 }
 //----------------------------------------------------------------------------
-void Movable::Update (double applicationTime, bool initiator)
+void Movable::Update(double applicationTime, double elapsedTime, 
+	bool initiator)
 {
 	bool doUpdateTrans = true;
 	if (mUpdateTime > 0.0f)
@@ -88,7 +89,7 @@ void Movable::Update (double applicationTime, bool initiator)
 
 	if (doUpdateTrans)
 	{
-		UpdateWorldData(applicationTime);
+		UpdateWorldData(applicationTime, elapsedTime);
 		UpdateWorldBound();
 		if (initiator)
 		{
@@ -129,10 +130,11 @@ void Movable::OnNotPicked (int pickInfo)
 	PX2_UNUSED(pickInfo);
 }
 //----------------------------------------------------------------------------
-void Movable::UpdateWorldData (double applicationTime)
+void Movable::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	// ¸üÐÂ¿ØÖÆÆ÷
-	UpdateControllers(applicationTime);
+	UpdateComponents(applicationTime, elapsedTime);
+
+	UpdateControllers(applicationTime, elapsedTime);
 
 	if (LocalTransform.IsRSMatrix())
 	{
