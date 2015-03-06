@@ -1,7 +1,7 @@
 // PX2UIView.cpp
 
 #include "PX2UIView.hpp"
-#include "PX2UISizeFrame.hpp"
+#include "PX2UIRelativeFrame.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2InputEvent.hpp"
 #include "PX2InputEventData.hpp"

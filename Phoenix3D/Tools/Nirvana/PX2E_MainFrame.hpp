@@ -58,8 +58,15 @@ namespace PX2Editor
 		void OnSaveSceneAs();
 		void OnCloseScene();
 
-		void OnSetEditMode(int type);
+		void OnEditorSimulate();
+		void OnEditorPlay();
+		void OnEditorStop();
+		void OnPlay();
+		void OnPlayConfig();
+
 		void OnSetting();
+
+		void OnSetEditMode(int type);
 
 		void InspChangeWindow(int windowType);
 

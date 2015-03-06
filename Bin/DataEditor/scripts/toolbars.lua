@@ -22,7 +22,7 @@ function e_CreateToolBarMain()
 	NirMan:AddTool("DataEditor/icons/file/scene_save.png", "e_OnSaveScene()")
 	NirMan:AddTool("DataEditor/icons/file/scene_saveas.png", "e_OnSaveAsScene()")
 	NirMan:AddToolSeparater()
-	NirMan:AddTool("DataEditor/icons/edittype/playinwindow.png", "e_SetEditMode_UI()")
+	NirMan:AddTool("DataEditor/icons/edittype/playinwindow.png", "e_OnPlay()")
 end
 
 -- scene view toolbar

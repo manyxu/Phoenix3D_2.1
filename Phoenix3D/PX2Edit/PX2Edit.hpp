@@ -33,10 +33,13 @@ namespace PX2
 			ET_SCENE,
 			ET_TERRAIN,
 			ET_UI,
+			ET_SIMULATE,
+			ET_PLAY,
 			ET_MAXTYPE
 		};
 		void SetEditType(EditType type);
 		EditType GetEditType() const;
+		bool CanDoEdit() const;
 
 		enum EditMode
 		{

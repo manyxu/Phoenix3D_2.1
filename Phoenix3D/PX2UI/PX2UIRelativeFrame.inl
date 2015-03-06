@@ -1,22 +1,22 @@
-// PX2UISizeFrame.inl
+// PX2UIRelativeFrame.inl
 
 //----------------------------------------------------------------------------
-inline UISizeFrame::RelativeType UISizeFrame::GetRelativeType_H() const
+inline UIRelativeFrame::RelativeType UIRelativeFrame::GetRelativeType_H() const
 {
 	return mPosRelativeType_H;
 }
 //----------------------------------------------------------------------------
-inline UISizeFrame::RelativeType UISizeFrame::GetRelativeType_V() const
+inline UIRelativeFrame::RelativeType UIRelativeFrame::GetRelativeType_V() const
 {
 	return mPosRelativeType_V;
 }
 //----------------------------------------------------------------------------
-inline float UISizeFrame::GetRelativeValue_H() const
+inline float UIRelativeFrame::GetRelativeValue_H() const
 {
 	return mRelativeVal_H;
 }
 //----------------------------------------------------------------------------
-inline float UISizeFrame::GetRelativeValue_V() const
+inline float UIRelativeFrame::GetRelativeValue_V() const
 {
 	return mRelativeVal_V;
 }

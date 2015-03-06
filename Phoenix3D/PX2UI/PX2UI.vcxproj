@@ -32,7 +32,7 @@
     <ClInclude Include="PX2UIProgressBarCtrl.hpp" />
     <ClInclude Include="PX2UIScoreText.hpp" />
     <ClInclude Include="PX2UIScoreTextCtrl.hpp" />
-    <ClInclude Include="PX2UISizeFrame.hpp" />
+    <ClInclude Include="PX2UIRelativeFrame.hpp" />
     <ClInclude Include="PX2UIText.hpp" />
     <ClInclude Include="PX2UIView.hpp" />
     <ClInclude Include="PX2UIButtonBase.hpp" />
@@ -50,7 +50,7 @@
     <ClCompile Include="PX2UIProgressBarCtrl.cpp" />
     <ClCompile Include="PX2UIScoreText.cpp" />
     <ClCompile Include="PX2UIScoreTextCtrl.cpp" />
-    <ClCompile Include="PX2UISizeFrame.cpp" />
+    <ClCompile Include="PX2UIRelativeFrame.cpp" />
     <ClCompile Include="PX2UIText.cpp" />
     <ClCompile Include="PX2UIView.cpp" />
   </ItemGroup>
@@ -65,7 +65,7 @@
     <None Include="PX2UIProgressBarCtrl.inl" />
     <None Include="PX2UIScoreText.inl" />
     <None Include="PX2UIScoreTextCtrl.inl" />
-    <None Include="PX2UISizeFrame.inl" />
+    <None Include="PX2UIRelativeFrame.inl" />
     <None Include="PX2UIText.inl" />
     <None Include="PX2UIView.inl" />
   </ItemGroup>

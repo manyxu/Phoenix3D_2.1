@@ -76,13 +76,29 @@ namespace PX2
 
 		// boost
 	public:
+		enum PlayLogicMode
+		{
+			PLM_SIMPLE,
+			PLM_LOGIC,
+			PLM_MAX_MODE
+		};
+
 		bool LoadBoost(const std::string &filename);
 		const Sizef &GetBoostSize() const;
 		const std::string &GetProjectPath() const;
+		PlayLogicMode GetPlayLogicMode() const;
+		std::string GetPlayLogicModeStr() const;
+
+		void SetBoostSize(const Sizef &size);
+		void SetPlayLogicMode(PlayLogicMode mode);
+		bool WriteBoost();
 
 	protected:
+		PlayLogicMode _StrToPlayLogicMode(const std::string &str);
+
 		Sizef mBoostSize;
 		std::string mProjectPath;
+		PlayLogicMode mPlayLogicMode;
 
 		// screen adjust
 	public:

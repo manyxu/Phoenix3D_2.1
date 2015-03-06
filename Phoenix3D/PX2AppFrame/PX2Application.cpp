@@ -240,8 +240,7 @@ bool Application::Initlize()
 
 	PX2_ENGINELOOP.Initlize();
 
-	// Load boost
-	PX2_ENGINELOOP.LoadBoost("Data/boost.xml");
+	// boost
 	Sizef boostSize(960, 640);
     boostSize = PX2_ENGINELOOP.GetBoostSize();
 	mWidth = (int)boostSize.Width;

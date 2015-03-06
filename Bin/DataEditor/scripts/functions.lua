@@ -102,6 +102,26 @@ function e_AnimReset()
 	PX2_EDIT:AnimReset()
 end
 
+function e_OnEditorSimulate()
+	E_MainFrame:OnEditorSimulate()
+end
+
+function e_OnEditorPlay()
+	E_MainFrame:OnEditorPlay()
+end
+
+function e_OnEditorStop()
+	E_MainFrame:OnEditorStop()
+end
+
+function e_OnPlay()
+	E_MainFrame:OnPlay()
+end
+
+function e_OnPlayConfig()
+	E_MainFrame:OnPlayConfig()
+end
+
 -- edit mode
 function e_SetEditMode_Scene()
 	PX2_EDIT:SetEditType(Edit.ET_SCENE)

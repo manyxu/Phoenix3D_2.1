@@ -11,9 +11,6 @@
     <ClInclude Include="PX2UIPicBox.hpp">
       <Filter>UIObj</Filter>
     </ClInclude>
-    <ClInclude Include="PX2UISizeFrame.hpp">
-      <Filter>UIObj</Filter>
-    </ClInclude>
     <ClInclude Include="PX2UICallback.hpp">
       <Filter>Callback</Filter>
     </ClInclude>
@@ -50,6 +47,9 @@
     <ClInclude Include="PX2UIEditBox.hpp">
       <Filter>UIObj\EditBox</Filter>
     </ClInclude>
+    <ClInclude Include="PX2UIRelativeFrame.hpp">
+      <Filter>UIObj</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UIView.cpp">
@@ -59,9 +59,6 @@
       <Filter>UIObj</Filter>
     </ClCompile>
     <ClCompile Include="PX2UIPicBox.cpp">
-      <Filter>UIObj</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2UISizeFrame.cpp">
       <Filter>UIObj</Filter>
     </ClCompile>
     <ClCompile Include="PX2UIGridFrame.cpp">
@@ -97,6 +94,9 @@
     <ClCompile Include="PX2UIEditBox.cpp">
       <Filter>UIObj\EditBox</Filter>
     </ClCompile>
+    <ClCompile Include="PX2UIRelativeFrame.cpp">
+      <Filter>UIObj</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="View">
@@ -131,9 +131,6 @@
     <None Include="PX2UIPicBox.inl">
       <Filter>UIObj</Filter>
     </None>
-    <None Include="PX2UISizeFrame.inl">
-      <Filter>UIObj</Filter>
-    </None>
     <None Include="PX2UIButton.inl">
       <Filter>UIObj\Buttons</Filter>
     </None>
@@ -160,6 +157,9 @@
     </None>
     <None Include="PX2UIEditBox.inl">
       <Filter>UIObj\EditBox</Filter>
+    </None>
+    <None Include="PX2UIRelativeFrame.inl">
+      <Filter>UIObj</Filter>
     </None>
   </ItemGroup>
 </Project>

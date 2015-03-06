@@ -1,6 +1,11 @@
 // PX2Edit.inl
 
 //----------------------------------------------------------------------------
+inline bool Edit::CanDoEdit() const
+{
+	return ET_SIMULATE != mEditType && ET_PLAY != mEditType;
+}
+//----------------------------------------------------------------------------
 inline Edit::EditType Edit::GetEditType() const
 {
 	return mEditType;

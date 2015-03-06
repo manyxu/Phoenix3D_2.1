@@ -33,9 +33,10 @@ function AddLanguages()
 	PX2_LM:AddItem1("TopViewCamera", "使用顶视相机")
 	--
 	PX2_LM:AddItem1("Debug", "调试")
-	PX2_LM:AddItem1("EditorSimulate", "在编辑器中模拟")
+	PX2_LM:AddItem1("EditorSimulate", "编辑器中仿真")
 	PX2_LM:AddItem1("EditorPlay", "编辑器中播放")
-	PX2_LM:AddItem1("Operation", "运行")
+	PX2_LM:AddItem1("EditorStop", "停止")
+	PX2_LM:AddItem1("WindowPlay", "弹出窗口播放")
 	PX2_LM:AddItem1("PlayConfig", "播放配置")
 	--
 	PX2_LM:AddItem1("Tool", "工具")

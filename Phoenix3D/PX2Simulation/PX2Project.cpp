@@ -8,7 +8,7 @@
 #include "PX2ScriptManager.hpp"
 #include "PX2Renderer.hpp"
 #include "PX2UIView.hpp"
-#include "PX2UISizeFrame.hpp"
+#include "PX2UIRelativeFrame.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2EngineLoop.hpp"
 using namespace PX2;
@@ -40,7 +40,7 @@ mScreenOrientation(SO_LANDSCAPE)
 	mUIRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
 	PX2_GR.AddRenderStep(mUIRenderStep->GetName().c_str(), mUIRenderStep);
 
-	mUIFrame = new0 UISizeFrame();
+	mUIFrame = new0 UIRelativeFrame();
 	mUIFrame->SetName("RootFrame");
 	SetUIFrame(mUIFrame);
 }

@@ -1,7 +1,7 @@
-// PX2UISizeFrame.hpp
+// PX2UIRelativeFrame.hpp
 
-#ifndef PX2UISIZEFRAME_HPP
-#define PX2UISIZEFRAME_HPP
+#ifndef PX2UIRELATIVEFRAME_HPP
+#define PX2UIRELATIVEFRAME_HPP
 
 #include "PX2UIFrame.hpp"
 #include "PX2Size.hpp"
@@ -9,14 +9,14 @@
 namespace PX2
 {
 
-	class UISizeFrame : public UIFrame
+	class UIRelativeFrame : public UIFrame
 	{
 		PX2_DECLARE_RTTI;
-		PX2_DECLARE_STREAM(UISizeFrame);
+		PX2_DECLARE_STREAM(UIRelativeFrame);
 
 	public:
-		UISizeFrame();
-		virtual ~UISizeFrame();
+		UIRelativeFrame();
+		virtual ~UIRelativeFrame();
 
 		virtual void OnSizeChanged();
 		virtual void OnBorderSizeChanged();
@@ -62,9 +62,9 @@ namespace PX2
 		bool mIsRelativeChanged;
 	};
 
-#include "PX2UISizeFrame.inl"
-	PX2_REGISTER_STREAM(UISizeFrame);
-	typedef Pointer0<UISizeFrame> UISizeFramePtr;
+#include "PX2UIRelativeFrame.inl"
+	PX2_REGISTER_STREAM(UIRelativeFrame);
+	typedef Pointer0<UIRelativeFrame> UIRelativeFramePtr;
 
 }
 

@@ -1070,7 +1070,7 @@
 	</object>
 	<object class="wxDialog" name="PlayConfig">
 		<style>wxDEFAULT_DIALOG_STYLE</style>
-		<size>307,189</size>
+		<size>319,208</size>
 		<title>播放配置</title>
 		<centered>1</centered>
 		<object class="wxBoxSizer">
@@ -1124,6 +1124,10 @@
 										<item>640 x 1136</item>
 										<item>960 x 640</item>
 										<item>640 x 960</item>
+										<item>800 x 400</item>
+										<item>400 x 800</item>
+										<item>600 x 400</item>
+										<item>400 x 600</item>
 									</content>
 								</object>
 							</object>
@@ -1182,10 +1186,10 @@
 								<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
 								<object class="wxComboBox" name="mEP_CtrlType">
-									<value>Simple</value>
+									<value>simple</value>
 									<content>
-										<item>Simple</item>
-										<item>Logic</item>
+										<item>simple</item>
+										<item>logic</item>
 									</content>
 								</object>
 							</object>
@@ -1238,11 +1242,6 @@
 				</object>
 			</object>
 		</object>
-	</object>
-	<object class="wxDialog" name="EditorConfig">
-		<style>wxDEFAULT_DIALOG_STYLE</style>
-		<title>配置</title>
-		<centered>1</centered>
 	</object>
 	<object class="wxPanel" name="StartPage">
 		<style>wxTAB_TRAVERSAL</style>

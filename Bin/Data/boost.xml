@@ -1,9 +1,9 @@
 <boost name="boost">
 	<config>
-		<var width="640" height="960"/>
+		<var width="400" height="800"/>
 	</config>
 	<play>
-		<var projectpath="Data/projects/gamex.px2proj"/>
+		<var projectpath="Data/projects/gamex.px2proj" playlogicmode="logic"/>
 	</play>
 </boost>
 
