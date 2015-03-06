@@ -6,6 +6,7 @@
 #include "PX2EditPre.hpp"
 #include "PX2EditRenderView.hpp"
 #include "PX2Polysegment.hpp"
+#include "PX2UIObjectCtrl.hpp"
 
 namespace PX2
 {
@@ -36,6 +37,9 @@ namespace PX2
 
 		PX2::PolysegmentPtr mProjRangeSegment;
 		PX2::NodePtr mRangeNode;
+
+		UIObjectCtrlPtr mUIObjectCtrl;
+		PX2::NodePtr mUIObjectNode;
 
 		// Event
 	public:

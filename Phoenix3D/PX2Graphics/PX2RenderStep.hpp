@@ -82,7 +82,7 @@ namespace PX2
 
 		// Draw
 	public:
-		void SetPriority(int priority);
+		void SetPriority(int priority); // 越大月在前
 		int GetPriority() const;
 
 		void SetDoDepthClear(bool clear);

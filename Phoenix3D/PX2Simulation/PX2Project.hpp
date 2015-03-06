@@ -62,9 +62,13 @@ namespace PX2
 		void SetBackgroundColor(const Float4 &color);
 		const Float4 &GetBackgroundColor() const;
 
+		void SetProjBackgroundColor(const Float4 &color);
+		const Float4 &GetProjBackgroundColor() const;
+
 	protected:
 		Sizef mSize;
 		Float4 mBackgroundColor;
+		Float4 mProjBackgroundColor;
 
 		// Scene
 	public:

@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class Renderer;
+	class RenderStep;
 
 	class UIObjectCtrl : public PX2::EventHandler
 	{
@@ -38,19 +38,16 @@ namespace PX2
 		PX2::Movable *GetCtrlsGroup ();
 
 		// PX2 Event
-		virtual void DoEnter ();
 		virtual void DoExecute (PX2::Event *event);
-		virtual void DoLeave ();
 
-		void OnLeftMouseDown (PX2::Renderer *renderer, const PX2::Vector2f &point);
-		void OnLeftMouseUp (PX2::Renderer *renderer, const PX2::Vector2f &point);
-		void OnMouseWheel (PX2::Renderer *renderer, float wheelDelta);
-		void OnMouseMove (bool leftDown, PX2::Renderer *renderer, PX2::Vector2f posNow, 
-			PX2::Vector2f posBefore);
+		void OnLeftDown(RenderStep *renderStep, const PX2::APoint &pos);
+		void OnLeftUp(RenderStep *renderStep, const PX2::APoint &pos);
+		void OnMotion(bool leftDown, RenderStep *renderStep,
+			PX2::APoint posNow, PX2::APoint posBefore);
 
 	protected:
 		void UpdateOnSelectUI();
-		int _GetDragIndex (PX2::Renderer *renderer, const PX2::Vector2f &point);
+		int _GetDragIndex (RenderStep *renderStep, const PX2::APoint &pos);
 
 		ShapeType mShapeType;
 
@@ -61,7 +58,7 @@ namespace PX2
 		float mSmallRectSize;
 	};
 
-#include "PX2UIObjectCtrl.inl"
+	typedef Pointer0<UIObjectCtrl> UIObjectCtrlPtr;
 
 }
 

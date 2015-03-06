@@ -30,7 +30,11 @@ namespace PX2
 		UIPicBox *GetProgressPicBox();
 		UIPicBox *GetOverPicBox();
 
+		void SetAnchorPoint(const Float2 &anchorPoint);
+		const Float2 &GetAnchorPoint() const;
+
 		virtual void OnSizeChanged();
+		virtual void OnBorderSizeChanged();
 
 		// 0-1.0f
 		void SetProgress(float progress, bool callLogic = true);
@@ -46,10 +50,14 @@ namespace PX2
 
 	protected:
 		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
+		void _Adjust();
+
+		bool mIsNeedAdujst;
 
 		UIPicBoxPtr mBackPicBox;
 		UIPicBoxPtr mProgressPicBox;
 		UIPicBoxPtr mOverPicBox;
+		Float2 mAnchorPoint;
 		float mProgress;
 		UIProgressBarCtrlPtr mPBCtrl;
 	};

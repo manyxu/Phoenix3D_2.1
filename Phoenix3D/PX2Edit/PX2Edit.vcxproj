@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Edit.inl" />
-    <None Include="PX2UIObjectCtrl.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F0F8CD0C-AB92-445A-96DA-0ECEEBB06223}</ProjectGuid>

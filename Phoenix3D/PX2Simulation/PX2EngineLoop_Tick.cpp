@@ -30,6 +30,13 @@ void EngineLoop::Tick()
         if (proj) defaultRenderer->SetClearColor(proj->GetBackgroundColor());
 		defaultRenderer->ClearBuffers();
 
+		if (proj)
+		{
+			defaultRenderer->SetViewport(mAdjustViewPort);
+			defaultRenderer->SetClearColor(proj->GetProjBackgroundColor());
+			defaultRenderer->ClearBuffers();
+		}
+
 		PX2_GR.Draw();
 
 		defaultRenderer->PostDraw();

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 03/06/15 11:29:57.
+** Generated automatically by tolua++-1.0.92 on 03/06/15 16:06:08.
 */
 
 #ifndef __cplusplus
@@ -244,7 +244,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Movable");
  tolua_usertype(tolua_S,"Project");
  tolua_usertype(tolua_S,"CullProperty");
- tolua_usertype(tolua_S,"EffectActor");
+ tolua_usertype(tolua_S,"UIRelativeFrame");
  tolua_usertype(tolua_S,"SwitchNode");
  tolua_usertype(tolua_S,"Actor");
  tolua_usertype(tolua_S,"VertexBuffer");
@@ -265,10 +265,11 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"UIPicBox");
  tolua_usertype(tolua_S,"Controller");
  tolua_usertype(tolua_S,"HPoint");
+ tolua_usertype(tolua_S,"CameraActor");
  tolua_usertype(tolua_S,"Camera");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"TexPack");
- tolua_usertype(tolua_S,"CameraActor");
+ tolua_usertype(tolua_S,"EffectActor");
  tolua_usertype(tolua_S,"UIEditBox");
  tolua_usertype(tolua_S,"UIButton");
  tolua_usertype(tolua_S,"ParticleEmitter");
@@ -23904,6 +23905,46 @@ static int tolua_PX2_Creater_CreateUIFrame00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: CreateUIRelativeFrame of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateUIRelativeFrame00
+static int tolua_PX2_Creater_CreateUIRelativeFrame00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isboolean(tolua_S,4,0,&tolua_err) ||
+     !tolua_isboolean(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  bool isPosWorld = ((bool)  tolua_toboolean(tolua_S,4,0));
+  bool usePickPos = ((bool)  tolua_toboolean(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateUIRelativeFrame'", NULL);
+#endif
+  {
+   UIRelativeFrame* tolua_ret = (UIRelativeFrame*)  self->CreateUIRelativeFrame(parent,*pos,isPosWorld,usePickPos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"UIRelativeFrame");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateUIRelativeFrame'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: CreateUIPicBox of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateUIPicBox00
 static int tolua_PX2_Creater_CreateUIPicBox00(lua_State* tolua_S)
@@ -25962,6 +26003,7 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateBox",tolua_PX2_Creater_CreateBox00);
    tolua_function(tolua_S,"CreateSphere",tolua_PX2_Creater_CreateSphere00);
    tolua_function(tolua_S,"CreateUIFrame",tolua_PX2_Creater_CreateUIFrame00);
+   tolua_function(tolua_S,"CreateUIRelativeFrame",tolua_PX2_Creater_CreateUIRelativeFrame00);
    tolua_function(tolua_S,"CreateUIPicBox",tolua_PX2_Creater_CreateUIPicBox00);
    tolua_function(tolua_S,"CreateUIPicBox",tolua_PX2_Creater_CreateUIPicBox01);
    tolua_function(tolua_S,"CreateUIText",tolua_PX2_Creater_CreateUIText00);

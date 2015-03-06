@@ -129,20 +129,6 @@ UIPicBox *UIButtonBase::GetPicBoxAtState(ButtonState state)
 	return 0;
 }
 //----------------------------------------------------------------------------
-void UIButtonBase::SetText(const std::string &text)
-{
-	if (!mText)
-	{
-		mText = new0 UIText();
-		AttachChild(mText);
-		mText->LocalTransform.SetTranslateY(-1.0f);
-		mText->SetRectUseage(UIText::RU_ALIGNS);
-		mText->SetAligns(TEXTALIGN_HCENTER | TEXTALIGN_VCENTER);
-	}
-
-	mText->SetText(text);
-}
-//----------------------------------------------------------------------------
 void UIButtonBase::OnSizeChanged()
 {
 	if (mPicBoxNormal)
@@ -200,7 +186,6 @@ void UIButtonBase::Load(InStream& source)
 	source.ReadPointer(mPicBoxOver);
 	source.ReadPointer(mPicBoxDown);
 	source.ReadPointer(mPicBoxDisabled);
-	source.ReadAggregate(mSize);
 	source.ReadEnum(mButtonState);
 
 	PX2_END_DEBUG_STREAM_LOAD(UIButtonBase, source);
@@ -247,7 +232,6 @@ void UIButtonBase::Save(OutStream& target) const
 	target.WritePointer(mPicBoxOver);
 	target.WritePointer(mPicBoxDown);
 	target.WritePointer(mPicBoxDisabled);
-	target.WriteAggregate(mSize);
 	target.WriteEnum(mButtonState);
 
 	PX2_END_DEBUG_STREAM_SAVE(UIButtonBase, target);
@@ -262,7 +246,6 @@ int UIButtonBase::GetStreamingSize(Stream &stream) const
 	size += PX2_POINTERSIZE(mPicBoxOver);
 	size += PX2_POINTERSIZE(mPicBoxDown);
 	size += PX2_POINTERSIZE(mPicBoxDisabled);
-	size += sizeof(mSize);
 	size += PX2_ENUMSIZE(mButtonState);
 
 	return size;

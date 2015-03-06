@@ -16,6 +16,11 @@ inline UIPicBox *UIProgressBar::GetOverPicBox()
 	return mOverPicBox;
 }
 //----------------------------------------------------------------------------
+inline const Float2 &UIProgressBar::GetAnchorPoint() const
+{
+	return mAnchorPoint;
+}
+//----------------------------------------------------------------------------
 inline float UIProgressBar::GetProgress() const
 {
 	return mProgress;

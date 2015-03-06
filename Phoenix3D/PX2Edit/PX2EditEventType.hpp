@@ -26,6 +26,8 @@ namespace PX2
 	PX2_EVENT(RefreshRes)
 
 	PX2_EVENT(ObjectTransformChanged)
+	PX2_EVENT(ObjectSizeChanged)
+
 	PX2_EVENT(EditThemeChange)
 	PX2_EVENT(SetEditType)
 	PX2_EVENT(SetEditMode)

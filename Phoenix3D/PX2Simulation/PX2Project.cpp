@@ -8,7 +8,6 @@
 #include "PX2ScriptManager.hpp"
 #include "PX2Renderer.hpp"
 #include "PX2UIView.hpp"
-#include "PX2UIRelativeFrame.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2EngineLoop.hpp"
 using namespace PX2;
@@ -25,7 +24,8 @@ mScreenOrientation(SO_LANDSCAPE)
 
 	PX2_ENGINELOOP.msProject = this;
 
-	mBackgroundColor = Float4::MakeColor(255, 255, 200, 255);
+	mBackgroundColor = Float4::BLACK;
+	mProjBackgroundColor = Float4::WHITE;
 	
 	mSceneRenderStep = new0 RenderStep();
 	mSceneRenderStep->SetPriority(20);
@@ -40,7 +40,7 @@ mScreenOrientation(SO_LANDSCAPE)
 	mUIRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
 	PX2_GR.AddRenderStep(mUIRenderStep->GetName().c_str(), mUIRenderStep);
 
-	mUIFrame = new0 UIRelativeFrame();
+	mUIFrame = new0 UIFrame();
 	mUIFrame->SetName("RootFrame");
 	SetUIFrame(mUIFrame);
 }
@@ -128,7 +128,13 @@ bool Project::SaveConfig(const std::string &filename)
 		StringHelp::IntToString((int)(mBackgroundColor[1] * 255.0f)) + "," +
 		StringHelp::IntToString((int)(mBackgroundColor[2] * 255.0f)) + "," +
 		StringHelp::IntToString((int)(mBackgroundColor[3] * 255.0f));
-	generalNode.SetAttributeString("color", colorStr);
+	generalNode.SetAttributeString("backcolor", colorStr);
+	std::string projColorStr =
+		StringHelp::IntToString((int)(mProjBackgroundColor[0] * 255.0f)) + "," +
+		StringHelp::IntToString((int)(mProjBackgroundColor[1] * 255.0f)) + "," +
+		StringHelp::IntToString((int)(mProjBackgroundColor[2] * 255.0f)) + "," +
+		StringHelp::IntToString((int)(mProjBackgroundColor[3] * 255.0f));
+	generalNode.SetAttributeString("projcolor", projColorStr);
 
 	// scene
 	XMLNode sceneNode = projNode.NewChild("scene");
@@ -180,7 +186,8 @@ bool Project::Load(const std::string &filename)
 
 				width = generalNode.AttributeToInt("width");
 				height = generalNode.AttributeToInt("height");
-				std::string colorStr = generalNode.AttributeToString("color");
+
+				std::string colorStr = generalNode.AttributeToString("backcolor");
 				StringTokenizer stk(colorStr, ",");
 				Float4 color = Float4::MakeColor(
 					StringHelp::StringToInt(stk[0]),
@@ -188,11 +195,20 @@ bool Project::Load(const std::string &filename)
 					StringHelp::StringToInt(stk[2]),
 					StringHelp::StringToInt(stk[3]));
 
+				std::string projcolorStr = generalNode.AttributeToString("projcolor");
+				StringTokenizer stkprojcolor(projcolorStr, ",");
+				Float4 projcolor = Float4::MakeColor(
+					StringHelp::StringToInt(stkprojcolor[0]),
+					StringHelp::StringToInt(stkprojcolor[1]),
+					StringHelp::StringToInt(stkprojcolor[2]),
+					StringHelp::StringToInt(stkprojcolor[3]));
+
 				Sizef size = Sizef((float)width, (float)height);
 				SetName(name);
 				SetSize(size);
 				mViewRect = Rectf(0.0f, 0.0f, size.Width, size.Height);
 				SetBackgroundColor(color);
+				SetProjBackgroundColor(projcolor);
 			}
 
 			// scene
@@ -285,12 +301,14 @@ void Project::SetUIFrame(UIFrame *ui)
 {
 	mUIFrame = ui;
 	mUIRenderStep->SetNode(mUIFrame);
-	mUIRenderStep->SetSize(mSize);
+
+	if (mUIFrame)
+		mUIFrame->SetSize(mSize);
 }
 //----------------------------------------------------------------------------
 void Project::SetSize(float width, float height)
 {
-	mSize = Sizef(width, height);
+	SetSize(Sizef(width, height));
 }
 //----------------------------------------------------------------------------
 void Project::SetSize(const Sizef &size)
@@ -305,6 +323,12 @@ void Project::SetSize(const Sizef &size)
 	if (mUIRenderStep)
 	{
 		mUIRenderStep->SetSize(mSize);
+
+		UIFrame *uiFrame = DynamicCast<UIFrame>(mUIRenderStep->GetNode());
+		if (uiFrame)
+		{
+			uiFrame->SetSize(mSize);
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -316,6 +340,16 @@ void Project::SetBackgroundColor(const Float4 &color)
 const Float4 &Project::GetBackgroundColor() const
 {
 	return mBackgroundColor;
+}
+//----------------------------------------------------------------------------
+void Project::SetProjBackgroundColor(const Float4 &color)
+{
+	mProjBackgroundColor = color;
+}
+//----------------------------------------------------------------------------
+const Float4 &Project::GetProjBackgroundColor() const
+{
+	return mProjBackgroundColor;
 }
 //----------------------------------------------------------------------------
 bool Project::LoadScene(const std::string &pathname)
@@ -377,6 +411,10 @@ void Project::RegistProperties()
 	Float3 color(mBackgroundColor[0], mBackgroundColor[1], mBackgroundColor[1]);
 	AddProperty("BackgroundColor", PT_COLOR3FLOAT3, color);
 
+	Float3 colorProj(mProjBackgroundColor[0], mProjBackgroundColor[1],
+		mProjBackgroundColor[2]);
+	AddProperty("ProjBackgroundColor", PT_COLOR3FLOAT3, colorProj);
+
 	AddProperty("ViewRect", PT_RECT, mViewRect, false);
 }
 //----------------------------------------------------------------------------
@@ -397,6 +435,12 @@ void Project::OnPropertyChanged(const PropertyObject &obj)
 		Float3 backColor = PX2_ANY_AS(obj.Data, Float3);
 		mBackgroundColor = Float4(backColor[0], backColor[1], backColor[2],
 			1.0f);
+	}
+	else if ("ProjBackgroundColor" == obj.Name)
+	{
+		Float3 progBackColor = PX2_ANY_AS(obj.Data, Float3);
+		mProjBackgroundColor = Float4(progBackColor[0], progBackColor[1],
+			progBackColor[2], 1.0f);
 	}
 }
 //----------------------------------------------------------------------------

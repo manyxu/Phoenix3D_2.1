@@ -17,6 +17,7 @@ mPosRelativeType_V(PT_NONE),
 mRelativeVal_V(0.0f),
 mIsRelativeChanged(false)
 {
+	SetName("UIRelativeFrame");
 }
 //----------------------------------------------------------------------------
 UIRelativeFrame::~UIRelativeFrame()
@@ -52,6 +53,41 @@ void UIRelativeFrame::OnParentSizeChanged(const Sizef &parentSize,
 {
 	PX2_UNUSED(parentSize);
 	PX2_UNUSED(parentBorderSize);
+
+	mIsRelativeChanged = true;
+}
+//----------------------------------------------------------------------------
+void UIRelativeFrame::SetRelativeType_H(RelativeType type)
+{
+	mPosRelativeType_H = type;
+	mIsRelativeChanged = true;
+}
+//----------------------------------------------------------------------------
+void UIRelativeFrame::SetRelativeType_V(RelativeType type)
+{
+	mPosRelativeType_V = type;
+	mIsRelativeChanged = true;
+}
+//----------------------------------------------------------------------------
+void UIRelativeFrame::SetRelativeValue_H(float val)
+{
+	mRelativeVal_H = val;
+	mIsRelativeChanged = true;
+}
+//----------------------------------------------------------------------------
+void UIRelativeFrame::SetRelativeValue_V(float val)
+{
+	mRelativeVal_V = val;
+	mIsRelativeChanged = true;
+}
+//----------------------------------------------------------------------------
+void UIRelativeFrame::_UpdateRelative()
+{
+	UIFrame *parent = DynamicCast<UIFrame>(GetParent());
+	if (!parent) return;
+
+	const Sizef &parentSize = parent->GetSize();
+	const Sizef &parentBorderSize = parent->GetSize();
 
 	// pos h
 	if (LT_ZERO == mPosRelativeType_H)
@@ -92,44 +128,51 @@ void UIRelativeFrame::OnParentSizeChanged(const Sizef &parentSize,
 		localPos.Z() = parentSize.Height - parentBorderSize.Height + mRelativeVal_V;
 		LocalTransform.SetTranslate(localPos);
 	}
-}
-//----------------------------------------------------------------------------
-void UIRelativeFrame::SetRelativeType_H(RelativeType type)
-{
-	mPosRelativeType_H = type;
-	mIsRelativeChanged = true;
-}
-//----------------------------------------------------------------------------
-void UIRelativeFrame::SetRelativeType_V(RelativeType type)
-{
-	mPosRelativeType_V = type;
-	mIsRelativeChanged = true;
-}
-//----------------------------------------------------------------------------
-void UIRelativeFrame::SetRelativeValue_H(float val)
-{
-	mRelativeVal_H = val;
-	mIsRelativeChanged = true;
-}
-//----------------------------------------------------------------------------
-void UIRelativeFrame::SetRelativeValue_V(float val)
-{
-	mRelativeVal_V = val;
-	mIsRelativeChanged = true;
-}
-//----------------------------------------------------------------------------
-void UIRelativeFrame::_UpdateRelative()
-{
-	for (int i = 0; i < GetNumChildren(); i++)
-	{
-		UIRelativeFrame *sizeFrame = DynamicCast<UIRelativeFrame>(GetChild(i));
-		if (sizeFrame)
-		{
-			sizeFrame->OnParentSizeChanged(GetSize(), GetBorderSize());
-		}
-	}
 
 	mIsRelativeChanged = false;
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// Property
+//----------------------------------------------------------------------------
+void UIRelativeFrame::RegistProperties()
+{
+	UIFrame::RegistProperties();
+
+	AddPropertyClass("UIRelativeFrame");
+
+	std::vector<std::string> relativesStr;
+	relativesStr.push_back("PT_NONE");
+	relativesStr.push_back("LT_ZERO");
+	relativesStr.push_back("LT_HALF");
+	relativesStr.push_back("LT_ONE");
+	AddPropertyEnum("RelativeType_H", (int)mPosRelativeType_H, relativesStr);
+	AddProperty("RelativeVal_H", PT_FLOAT, (float)mRelativeVal_H);
+	AddPropertyEnum("RelativeType_V", (int)mPosRelativeType_V, relativesStr);
+	AddProperty("RelativeVal_V", PT_FLOAT, (float)mRelativeVal_V);
+}
+//----------------------------------------------------------------------------
+void UIRelativeFrame::OnPropertyChanged(const PropertyObject &obj)
+{
+	UIFrame::OnPropertyChanged(obj);
+
+	if ("RelativeType_H" == obj.Name)
+	{
+		SetRelativeType_H((RelativeType)PX2_ANY_AS(obj.Data, int));
+	}
+	else if ("RelativeVal_H" == obj.Name)
+	{
+		SetRelativeValue_H(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("RelativeType_V" == obj.Name)
+	{
+		SetRelativeType_V((RelativeType)PX2_ANY_AS(obj.Data, int));
+	}
+	else if ("RelativeVal_V" == obj.Name)
+	{
+		SetRelativeValue_V(PX2_ANY_AS(obj.Data, float));
+	}
 }
 //----------------------------------------------------------------------------
 
@@ -153,8 +196,11 @@ void UIRelativeFrame::Load(InStream& source)
 	UIFrame::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	source.ReadAggregate(mSize);
-	source.ReadAggregate(mBorderSize);
+	source.ReadEnum(mPosRelativeType_H);
+	source.Read(mRelativeVal_H);
+
+	source.ReadEnum(mPosRelativeType_V);
+	source.Read(mRelativeVal_V);
 
 	PX2_END_DEBUG_STREAM_LOAD(UIRelativeFrame, source);
 }
@@ -181,8 +227,11 @@ void UIRelativeFrame::Save(OutStream& target) const
 	UIFrame::Save(target);
 	PX2_VERSION_SAVE(target);
 
-	target.WriteAggregate(mSize);
-	target.WriteAggregate(mBorderSize);
+	target.WriteEnum(mPosRelativeType_H);
+	target.Write(mRelativeVal_H);
+
+	target.WriteEnum(mPosRelativeType_V);
+	target.Write(mRelativeVal_V);
 
 	PX2_END_DEBUG_STREAM_SAVE(UIRelativeFrame, target);
 }
@@ -192,8 +241,10 @@ int UIRelativeFrame::GetStreamingSize(Stream &stream) const
 	int size = UIFrame::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
-	size += sizeof(mSize);
-	size += sizeof(mBorderSize);
+	size += PX2_ENUMSIZE(mPosRelativeType_H);
+	size += sizeof(mRelativeVal_H);
+	size += PX2_ENUMSIZE(mPosRelativeType_V);
+	size += sizeof(mRelativeVal_V);
 
 	return size;
 }

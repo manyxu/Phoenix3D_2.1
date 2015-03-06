@@ -14,6 +14,7 @@ EditRenderView_UI::EditRenderView_UI():
 EditRenderView(0)
 {
 	_CreateGridGeometry();
+	_CreateNodeCtrl();
 
 	Edit::EditType editType = PX2_EDIT.GetEditType();
 	Enable(editType == Edit::ET_UI);
@@ -56,10 +57,28 @@ void EditRenderView_UI::_CreateGridGeometry()
 	mRangeNode->AttachChild(mProjRangeSegment);
 
 	mRenderStepCtrl = new0 RenderStep();
+	mRenderStepCtrl->SetPriority(-5);
 	mRenderStepCtrl->SetName("UIRangeSegmentRenderStep");
 	mRenderStepCtrl->SetSizeChangeReAdjustCamera(false);
 	mRenderStepCtrl->SetNode(mRangeNode);
 	PX2_GR.AddRenderStep(mRenderStepCtrl->GetName().c_str(), mRenderStepCtrl);
+}
+//----------------------------------------------------------------------------
+void EditRenderView_UI::_CreateNodeCtrl()
+{
+	mUIObjectCtrl = new0 UIObjectCtrl();
+	PX2_EW.ComeIn(mUIObjectCtrl);
+
+	mUIObjectNode = new0 Node();
+	mUIObjectNode->AttachChild(mUIObjectCtrl->GetCtrlsGroup());
+	mUIObjectNode->Update(GetTimeInSeconds(), 0.0f, true);
+
+	mRenderStepCtrl1 = new0 RenderStep();
+	mRenderStepCtrl1->SetPriority(-10);
+	mRenderStepCtrl1->SetDoDepthClear(true);
+	mRenderStepCtrl1->SetName("UICtrlRenderStep");
+	mRenderStepCtrl1->SetNode(mUIObjectNode);
+	PX2_GR.AddRenderStep(mRenderStepCtrl1->GetName().c_str(), mRenderStepCtrl1);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_UI::_UpdateProjectRange()
@@ -114,11 +133,17 @@ void EditRenderView_UI::OnLeftDown(const APoint &pos)
 	EditRenderView::OnLeftDown(pos);
 
 	_PickPos();
+
+	if (mUIObjectCtrl)
+		mUIObjectCtrl->OnLeftDown(mRenderStepCtrl1, pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_UI::OnLeftUp(const APoint &pos)
 {
 	EditRenderView::OnLeftUp(pos);
+
+	if (mUIObjectCtrl)
+		mUIObjectCtrl->OnLeftUp(mRenderStepCtrl1, pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_UI::OnMiddleDown(const APoint &pos)
@@ -181,6 +206,9 @@ void EditRenderView_UI::OnMotion(const APoint &pos)
 		trans -= detalMove;
 
 		cameraNode->LocalTransform.SetTranslate(trans);
+
+		if (mUIObjectCtrl)
+			mUIObjectCtrl->OnMotion(mIsLeftDown, mRenderStepCtrl, curPos, lastPos);
 	}
 }
 //----------------------------------------------------------------------------
@@ -217,7 +245,7 @@ void EditRenderView_UI::_PickPos()
 	if (record.Intersected)
 	{
 		APoint pickPos = origin + direction * record.T;
-		pickPos = APoint(pickPos[0], pickPos[1], (int)pickPos[2]);
+		pickPos = APoint(pickPos[0], pickPos[1], pickPos[2]);
 
 		PX2_EDIT.SetPickPos(pickPos);
 	}

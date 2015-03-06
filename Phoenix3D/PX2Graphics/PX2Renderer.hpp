@@ -315,6 +315,7 @@ namespace PX2
 
 		// ViewPort
 		void SetViewport (const Rectf &rect);
+		const Rectf &GetViewPort() const;
 
 		/// 获得选择射线
 		/**
@@ -389,6 +390,7 @@ namespace PX2
 		Texture::Format mColorFormat;
 		Texture::Format mDepthStencilFormat;
 		int mNumMultisamples;
+		Rectf mViewPort;
 
 		// 全局渲染状态
 		AlphaProperty* mDefaultAlphaProperty; // 缺省状态

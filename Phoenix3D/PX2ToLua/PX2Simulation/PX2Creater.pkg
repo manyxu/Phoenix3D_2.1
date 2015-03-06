@@ -21,6 +21,8 @@
 
 		UIFrame *CreateUIFrame(Node *parent, const APoint &pos, bool isPosWorld,
 			bool usePickPos);
+		UIRelativeFrame *CreateUIRelativeFrame(Node *parent, const APoint &pos, bool isPosWorld,
+			bool usePickPos);
 		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &filename,
 			bool isPosWorld, bool usePickPos);
 		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &texPack, const std::string &eleName, 

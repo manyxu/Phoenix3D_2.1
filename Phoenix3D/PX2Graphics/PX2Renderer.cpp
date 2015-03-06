@@ -1887,6 +1887,8 @@ void Renderer::OnRestoreDevice()
 //----------------------------------------------------------------------------
 void Renderer::SetViewport (const Rectf &rect)
 {
+	mViewPort = rect;
+
 	SetViewport((int)rect.Left, (int)rect.Bottom, (int)rect.Width(),
 		(int)rect.Height());
 }

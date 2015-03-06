@@ -122,7 +122,7 @@ void UIFrame::RegistProperties()
 	AddPropertyClass("UIFrame");
 
 	AddProperty("Size", PT_SIZE, mSize);
-	AddProperty("BorderSize", PT_SIZE, mSize);
+	AddProperty("BorderSize", PT_SIZE, mBorderSize);
 
 	AddProperty("ScriptHandler", PT_STRING, GetScriptHandler());
 }
@@ -164,6 +164,9 @@ void UIFrame::Load(InStream& source)
 
 	source.ReadString(mUIScriptHandler);
 
+	source.ReadAggregate(mSize);
+	source.ReadAggregate(mBorderSize);
+
 	source.ReadPointer(mIPTCtrl);
 
 	PX2_END_DEBUG_STREAM_LOAD(UIFrame, source);
@@ -203,6 +206,9 @@ void UIFrame::Save(OutStream& target) const
 
 	target.WriteString(mUIScriptHandler);
 
+	target.WriteAggregate(mSize);
+	target.WriteAggregate(mBorderSize);
+
 	target.WritePointer(mIPTCtrl);
 
 	PX2_END_DEBUG_STREAM_SAVE(UIFrame, target);
@@ -214,6 +220,9 @@ int UIFrame::GetStreamingSize(Stream &stream) const
 	size += PX2_VERSION_SIZE(mVersion);
 
 	size += PX2_STRINGSIZE(mUIScriptHandler);
+
+	size += sizeof(mSize);
+	size += sizeof(mBorderSize);
 	
 	size += PX2_POINTERSIZE(mIPTCtrl);
 

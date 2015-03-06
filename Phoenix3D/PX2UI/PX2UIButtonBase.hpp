@@ -35,8 +35,6 @@ namespace PX2
 		void SetPicBox(ButtonState state, UIPicBox *pic);
 		UIPicBox *GetPicBoxAtState(ButtonState state);
 
-		void SetText(const std::string &text);
-
 		virtual void OnSizeChanged();
 
 	protected:
@@ -46,7 +44,6 @@ namespace PX2
 		UIPicBoxPtr mPicBoxOver;
 		UIPicBoxPtr mPicBoxDown;
 		UIPicBoxPtr mPicBoxDisabled;
-		UITextPtr mText;
 
 		ButtonState mButtonState;
 	};

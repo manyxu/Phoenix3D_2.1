@@ -164,8 +164,16 @@ void EditRenderView_Scene::_ClickSelectScene(const APoint &scrPos,
 
 		if (SM_SINGLE == mode)
 		{
-			PX2_SELECTION.Clear();
-			PX2_SELECTION.AddObject(recordObj);
+			int numObjs = PX2_SELECTION.GetNumObjects();
+			if (1 == numObjs && recordObj==PX2_SELECTION.GetFirstObject())
+			{
+				/*_*/;
+			}
+			else
+			{
+				PX2_SELECTION.Clear();
+				PX2_SELECTION.AddObject(recordObj);
+			}
 		}
 		else if (SM_MULTI == mode)
 		{
@@ -584,7 +592,7 @@ void EditRenderView_Scene::_CreateNodeCtrl()
 	mSceneCtrlNode->Update(GetTimeInSeconds(), true);
 
 	mRenderStepCtrl1 = new0 RenderStep();
-	mRenderStepCtrl1->SetPriority(5);
+	mRenderStepCtrl1->SetPriority(-5);
 	mRenderStepCtrl1->SetDoDepthClear(true);
 	mRenderStepCtrl1->SetName("SceneCtrlNodeRenderStep");
 	mRenderStepCtrl1->SetNode(mSceneCtrlNode);

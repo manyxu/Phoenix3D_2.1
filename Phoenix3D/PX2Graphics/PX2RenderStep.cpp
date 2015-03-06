@@ -27,8 +27,6 @@ RenderStep::~RenderStep()
 //----------------------------------------------------------------------------
 void RenderStep::Update(double appSeconds, double elapsedSeconds)
 {
-	if (!IsEnable()) return;
-
 	if (!mIsUpdated)
 	{
 		mIsUpdated = true;

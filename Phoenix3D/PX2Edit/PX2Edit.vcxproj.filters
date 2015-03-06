@@ -57,7 +57,7 @@
       <Filter>TimeLine</Filter>
     </ClInclude>
     <ClInclude Include="PX2UIObjectCtrl.hpp">
-      <Filter>TimeLine</Filter>
+      <Filter>NodeCtrls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +114,7 @@
       <Filter>TimeLine</Filter>
     </ClCompile>
     <ClCompile Include="PX2UIObjectCtrl.cpp">
-      <Filter>TimeLine</Filter>
+      <Filter>NodeCtrls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,8 +142,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Edit.inl" />
-    <None Include="PX2UIObjectCtrl.inl">
-      <Filter>TimeLine</Filter>
-    </None>
   </ItemGroup>
 </Project>

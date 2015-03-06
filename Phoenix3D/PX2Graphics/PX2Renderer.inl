@@ -204,6 +204,11 @@ inline const HMatrix& Renderer::GetPostProjectionMatrix () const
 	return mCamera->GetPostProjectionMatrix();
 }
 //----------------------------------------------------------------------------
+inline const Rectf &Renderer::GetViewPort() const
+{
+	return mViewPort;
+}
+//----------------------------------------------------------------------------
 inline void Renderer::SetClearColor (const Float4& clearColor)
 {
 	mClearColor = clearColor;

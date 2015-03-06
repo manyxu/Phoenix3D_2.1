@@ -12,6 +12,7 @@ namespace PX2
 	class UIRelativeFrame : public UIFrame
 	{
 		PX2_DECLARE_RTTI;
+		PX2_DECLARE_PROPERTY;
 		PX2_DECLARE_STREAM(UIRelativeFrame);
 
 	public:
@@ -41,11 +42,12 @@ namespace PX2
 		};
 		void SetRelativeType_H(RelativeType type);
 		RelativeType GetRelativeType_H() const;
-		void SetRelativeType_V(RelativeType type);
-		RelativeType GetRelativeType_V() const;
 
 		void SetRelativeValue_H(float val);
 		float GetRelativeValue_H() const;
+
+		void SetRelativeType_V(RelativeType type);
+		RelativeType GetRelativeType_V() const;
 
 		void SetRelativeValue_V(float val);
 		float GetRelativeValue_V() const;
