@@ -21,6 +21,16 @@ inline const std::bitset<PX2_ACTOR_BS_SIZE> &Actor::GetBitSet() const
 	return mBitSet;
 }
 //----------------------------------------------------------------------------
+inline const std::string &Actor::GetMovableFilename() const
+{
+	return mMovableFilename;
+}
+//----------------------------------------------------------------------------
+inline bool Actor::IsShareVI() const
+{
+	return mIsShareVI;
+}
+//----------------------------------------------------------------------------
 inline Movable *Actor::GetMovable()
 {
 	return mMovable;

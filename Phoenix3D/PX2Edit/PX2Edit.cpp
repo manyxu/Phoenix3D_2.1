@@ -7,6 +7,7 @@
 #include "PX2Creater.hpp"
 #include "PX2RedoUndo.hpp"
 #include "PX2Project.hpp"
+#include "PX2ResourceManager.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -138,11 +139,16 @@ void Edit::PasteCopyedObject()
 {
 	if (!mCopyObject) return;
 
-	Actor *actor = DynamicCast<Actor>(mCopyObject);
-	Scene *scene = PX2_PROJ.GetScene();
+	Movable *mov = DynamicCast<Movable>(mCopyObject);
 
-	if (actor && scene)
+	if (mov && mov->GetParent())
 	{
+		Node *parentNode = DynamicCast<Node>(mov->GetParent());
+		if (parentNode)
+		{
+			MovablePtr newMov = DynamicCast<Movable>(PX2_RM.ShareCopy(mov, true, true, false));	
+			PX2_CREATER.AddObject(parentNode, newMov);
+		}
 	}
 }
 //----------------------------------------------------------------------------

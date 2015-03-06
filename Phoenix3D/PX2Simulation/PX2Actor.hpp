@@ -55,6 +55,9 @@ namespace PX2
 	public:
 		virtual void SetMovableFilename(const std::string &filename,
 			bool shareVI = false);
+		const std::string &GetMovableFilename() const;
+		bool IsShareVI() const;
+
 		virtual void SetMovable (Movable *mov);
 		Movable *GetMovable ();
 

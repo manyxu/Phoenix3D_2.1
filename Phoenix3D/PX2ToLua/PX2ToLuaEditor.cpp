@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/06/15 21:37:42.
+** Generated automatically by tolua++-1.0.92 on 03/06/15 22:20:07.
 */
 
 #ifndef __cplusplus
@@ -38,7 +38,7 @@ static int tolua_collect_Edit (lua_State* tolua_S)
 static void tolua_reg_types (lua_State* tolua_S)
 {
  tolua_usertype(tolua_S,"EditMap");
- tolua_usertype(tolua_S,"PX2::Object");
+ tolua_usertype(tolua_S,"EditParams");
  tolua_usertype(tolua_S,"SelectResData");
  tolua_usertype(tolua_S,"NirMan");
  tolua_usertype(tolua_S,"std::vector<std::string>");
@@ -47,7 +47,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"E_MainFrame");
  tolua_usertype(tolua_S,"wxFrame");
  tolua_usertype(tolua_S,"Singleton<NirMan>");
- tolua_usertype(tolua_S,"EditParams");
+ tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"wxMenu");
  tolua_usertype(tolua_S,"APoint");
  tolua_usertype(tolua_S,"Edit");
@@ -2609,7 +2609,7 @@ static int tolua_PX2Editor_Edit_SetCopyObject00(lua_State* tolua_S)
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Edit",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"PX2::Object",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -2617,7 +2617,7 @@ static int tolua_PX2Editor_Edit_SetCopyObject00(lua_State* tolua_S)
 #endif
  {
   Edit* self = (Edit*)  tolua_tousertype(tolua_S,1,0);
-  PX2::Object* obj = ((PX2::Object*)  tolua_tousertype(tolua_S,2,0));
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetCopyObject'", NULL);
 #endif
@@ -2653,8 +2653,8 @@ static int tolua_PX2Editor_Edit_GetCopyObject00(lua_State* tolua_S)
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetCopyObject'", NULL);
 #endif
   {
-   PX2::Object* tolua_ret = (PX2::Object*)  self->GetCopyObject();
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"PX2::Object");
+   Object* tolua_ret = (Object*)  self->GetCopyObject();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Object");
   }
  }
  return 1;

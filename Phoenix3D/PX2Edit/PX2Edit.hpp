@@ -117,8 +117,8 @@ namespace PX2
 
 		// Copy
 	public:
-		void SetCopyObject(PX2::Object *obj);
-		PX2::Object *GetCopyObject();
+		void SetCopyObject(Object *obj);
+		Object *GetCopyObject();
 		void PasteCopyedObject();
 
 	protected:

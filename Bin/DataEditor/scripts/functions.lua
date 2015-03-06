@@ -64,9 +64,11 @@ function e_OnScale()
 end
 
 function e_OnCopy()
+	PX2_EDIT:SetCopyObject(PX2_SELECTION:GetFirstObject())
 end
 
 function e_OnPaste()
+	PX2_EDIT:PasteCopyedObject()
 end
 
 function e_OnDelete()
