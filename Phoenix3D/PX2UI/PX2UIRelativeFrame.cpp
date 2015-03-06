@@ -1,16 +1,16 @@
 // PX2UIFrame.cpp
 
-#include "PX2UISizeFrame.hpp"
+#include "PX2UIRelativeFrame.hpp"
 #include "PX2Time.hpp"
 using namespace PX2;
 using namespace std;
 
-PX2_IMPLEMENT_RTTI(PX2, UIFrame, UISizeFrame);
-PX2_IMPLEMENT_STREAM(UISizeFrame);
-PX2_IMPLEMENT_FACTORY(UISizeFrame);
+PX2_IMPLEMENT_RTTI(PX2, UIFrame, UIRelativeFrame);
+PX2_IMPLEMENT_STREAM(UIRelativeFrame);
+PX2_IMPLEMENT_FACTORY(UIRelativeFrame);
 
 //----------------------------------------------------------------------------
-UISizeFrame::UISizeFrame() :
+UIRelativeFrame::UIRelativeFrame() :
 mPosRelativeType_H(PT_NONE),
 mRelativeVal_H(0.0f),
 mPosRelativeType_V(PT_NONE),
@@ -19,25 +19,25 @@ mIsRelativeChanged(false)
 {
 }
 //----------------------------------------------------------------------------
-UISizeFrame::~UISizeFrame()
+UIRelativeFrame::~UIRelativeFrame()
 {
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::OnSizeChanged()
-{
-	UIFrame::OnSizeChanged();
-
-	mIsRelativeChanged = true;
-}
-//----------------------------------------------------------------------------
-void UISizeFrame::OnBorderSizeChanged()
+void UIRelativeFrame::OnSizeChanged()
 {
 	UIFrame::OnSizeChanged();
 
 	mIsRelativeChanged = true;
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::UpdateWorldData(double applicationTime, double elapsedTime)
+void UIRelativeFrame::OnBorderSizeChanged()
+{
+	UIFrame::OnSizeChanged();
+
+	mIsRelativeChanged = true;
+}
+//----------------------------------------------------------------------------
+void UIRelativeFrame::UpdateWorldData(double applicationTime, double elapsedTime)
 {
 	UIFrame::UpdateWorldData(applicationTime, elapsedTime);
 
@@ -47,7 +47,7 @@ void UISizeFrame::UpdateWorldData(double applicationTime, double elapsedTime)
 	}
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::OnParentSizeChanged(const Sizef &parentSize,
+void UIRelativeFrame::OnParentSizeChanged(const Sizef &parentSize,
 	const Sizef &parentBorderSize)
 {
 	PX2_UNUSED(parentSize);
@@ -94,35 +94,35 @@ void UISizeFrame::OnParentSizeChanged(const Sizef &parentSize,
 	}
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::SetRelativeType_H(RelativeType type)
+void UIRelativeFrame::SetRelativeType_H(RelativeType type)
 {
 	mPosRelativeType_H = type;
 	mIsRelativeChanged = true;
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::SetRelativeType_V(RelativeType type)
+void UIRelativeFrame::SetRelativeType_V(RelativeType type)
 {
 	mPosRelativeType_V = type;
 	mIsRelativeChanged = true;
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::SetRelativeValue_H(float val)
+void UIRelativeFrame::SetRelativeValue_H(float val)
 {
 	mRelativeVal_H = val;
 	mIsRelativeChanged = true;
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::SetRelativeValue_V(float val)
+void UIRelativeFrame::SetRelativeValue_V(float val)
 {
 	mRelativeVal_V = val;
 	mIsRelativeChanged = true;
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::_UpdateRelative()
+void UIRelativeFrame::_UpdateRelative()
 {
 	for (int i = 0; i < GetNumChildren(); i++)
 	{
-		UISizeFrame *sizeFrame = DynamicCast<UISizeFrame>(GetChild(i));
+		UIRelativeFrame *sizeFrame = DynamicCast<UIRelativeFrame>(GetChild(i));
 		if (sizeFrame)
 		{
 			sizeFrame->OnParentSizeChanged(GetSize(), GetBorderSize());
@@ -136,7 +136,7 @@ void UISizeFrame::_UpdateRelative()
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-UISizeFrame::UISizeFrame(LoadConstructor value) :
+UIRelativeFrame::UIRelativeFrame(LoadConstructor value) :
 UIFrame(value),
 mPosRelativeType_H(PT_NONE),
 mRelativeVal_H(0.0f),
@@ -146,7 +146,7 @@ mIsRelativeChanged(false)
 {
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::Load(InStream& source)
+void UIRelativeFrame::Load(InStream& source)
 {
 	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
 
@@ -156,25 +156,25 @@ void UISizeFrame::Load(InStream& source)
 	source.ReadAggregate(mSize);
 	source.ReadAggregate(mBorderSize);
 
-	PX2_END_DEBUG_STREAM_LOAD(UISizeFrame, source);
+	PX2_END_DEBUG_STREAM_LOAD(UIRelativeFrame, source);
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::Link(InStream& source)
+void UIRelativeFrame::Link(InStream& source)
 {
 	UIFrame::Link(source);
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::PostLink()
+void UIRelativeFrame::PostLink()
 {
 	UIFrame::PostLink();
 }
 //----------------------------------------------------------------------------
-bool UISizeFrame::Register(OutStream& target) const
+bool UIRelativeFrame::Register(OutStream& target) const
 {
 	return UIFrame::Register(target);
 }
 //----------------------------------------------------------------------------
-void UISizeFrame::Save(OutStream& target) const
+void UIRelativeFrame::Save(OutStream& target) const
 {
 	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
 
@@ -184,10 +184,10 @@ void UISizeFrame::Save(OutStream& target) const
 	target.WriteAggregate(mSize);
 	target.WriteAggregate(mBorderSize);
 
-	PX2_END_DEBUG_STREAM_SAVE(UISizeFrame, target);
+	PX2_END_DEBUG_STREAM_SAVE(UIRelativeFrame, target);
 }
 //----------------------------------------------------------------------------
-int UISizeFrame::GetStreamingSize(Stream &stream) const
+int UIRelativeFrame::GetStreamingSize(Stream &stream) const
 {
 	int size = UIFrame::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
