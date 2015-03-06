@@ -100,10 +100,10 @@ bool E_MainFrame::Initlize()
 	mTimer.SetOwner(this, sID_ENGINELOOPTIMER);
 	mTimer.Start(25);
 
-	//_CreateMenu();
+	_CreateMenu();
 	//_CreateTopView();
-	_CreateMenuToolBar();
-	//_CreateMainToolBar();
+	//_CreateMenuToolBar();
+	_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
 
@@ -114,7 +114,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-			mAuiManager->LoadPerspective(strPerspective);
+			//mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 
@@ -270,8 +270,11 @@ void E_MainFrame::OnTimer(wxTimerEvent& e)
 //----------------------------------------------------------------------------
 void E_MainFrame::OnMenuClose(wxMenuEvent &WXUNUSED(e))
 {
-	mToolBarMenu->SetItemsState(wxAUI_BUTTON_STATE_NORMAL);
-	mToolBarMenu->Refresh();
+	if (mToolBarMenu)
+	{
+		mToolBarMenu->SetItemsState(wxAUI_BUTTON_STATE_NORMAL);
+		mToolBarMenu->Refresh();
+	}
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::OnAllowNotebookDnD(wxAuiNotebookEvent& evt)
@@ -661,7 +664,7 @@ void E_MainFrame::_CreateMainToolBar()
 
 		mAuiManager->AddPane(mToolBarMain, wxAuiPaneInfo().
 			Name(wxT("maintoolbar")).
-			Gripper(true).Top().Dockable(false).PaneBorder(true).
+			ToolbarPane().Gripper(true).Top().Dockable(false).PaneBorder(true).
 			MinSize(200, 28).MaxSize(200, 28).Top().Resizable(false).CaptionVisible(false).
 			BottomDockable(false).LeftDockable(false).RightDockable(false).Floatable(false));
 	}	
