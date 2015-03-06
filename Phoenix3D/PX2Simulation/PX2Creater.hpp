@@ -9,7 +9,6 @@
 #include "PX2APoint.hpp"
 #include "PX2Actor.hpp"
 #include "PX2UIFrame.hpp"
-#include "PX2UIRelativeFrame.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2UIText.hpp"
 #include "PX2UIButton.hpp"
@@ -50,8 +49,6 @@ namespace PX2
 			bool doAdd = true, bool usePickPos = true);
 
 		UIFrame *CreateUIFrame(Node *parent, const APoint &pos, bool isPosWorld,
-			bool usePickPos);
-		UIRelativeFrame *CreateUIRelativeFrame(Node *parent, const APoint &pos, bool isPosWorld,
 			bool usePickPos);
 		UIPicBox *CreateUIPicBox(Node *parent, const APoint &pos, const std::string &filename,
 			bool isPosWorld, bool usePickPos);

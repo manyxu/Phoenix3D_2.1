@@ -291,17 +291,6 @@ function e_CreateUIFrame(usePickPos)
 	end
 end
 
-function e_CreateUIRelativeFrame(usePickPos)
-	local selectObj = PX2_SELECTION:GetFirstObject()
-	local node = PX2_CREATER:ConvertToNode(selectObj)
-	if nil~=node then
-		local pickPos = PX2_EDIT:GetPickPos()
-		PX2_CREATER:CreateUIRelativeFrame(node, pickPos, true, usePickPos)
-	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
-	end
-end
-
 function e_CreateUIButton(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)

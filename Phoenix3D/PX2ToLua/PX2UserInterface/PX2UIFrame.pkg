@@ -1,9 +1,0 @@
-// PX2UIFrame.pkg
-
-	class UIFrame : public Node
-	{
-		UIFrame ();
-		virtual ~UIFrame ();
-	
-		virtual Object* GetObjectByName (const std::string& name);
-	};

@@ -1,7 +1,0 @@
-// PX2UIButton.pkg
-
-	class UIButton : public UIButtonBase
-	{
-		UIButton ();
-		virtual ~UIButton ();
-	};

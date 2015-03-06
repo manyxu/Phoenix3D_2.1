@@ -201,19 +201,6 @@ UIFrame *Creater::CreateUIFrame(Node *parent, const APoint &pos,
 	return frame;
 }
 //----------------------------------------------------------------------------
-UIRelativeFrame *Creater::CreateUIRelativeFrame(Node *parent, const APoint &pos,
-	bool isPosWorld, bool usePickPos)
-{
-	APoint localPos = _LocalPosCal(parent, pos, isPosWorld, usePickPos);
-
-	UIRelativeFrame *relativeFrame = new0 UIRelativeFrame();
-	relativeFrame->LocalTransform.SetTranslate(localPos);
-
-	AddObject(parent, relativeFrame);
-
-	return relativeFrame;
-}
-//----------------------------------------------------------------------------
 UIPicBox *Creater::CreateUIPicBox(Node *parent, const APoint &pos, 
 	const std::string &filename, bool isPosWorld, bool usePickPos)
 {

@@ -1,8 +1,8 @@
 <project>
-	<general name="gamex" screenorientation="landscape" width="640" height="1136" backcolor="192,192,192,255" projcolor="255,255,255,255"/>
+	<general name="gamex" screenorientation="portrait" width="640" height="1136" backcolor="127,127,127,255" projcolor="255,255,255,255"/>
 	<scene filename=""/>
 	<language/>
 	<publish/>
-	<edit_setting uicamerapercent="1.300000"/>
+	<edit_setting uicamerapercent="1.000000"/>
 </project>
 

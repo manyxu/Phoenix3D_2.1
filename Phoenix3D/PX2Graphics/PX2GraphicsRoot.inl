@@ -31,6 +31,16 @@ inline const Sizef &GraphicsRoot::GetScreenSize () const
 	return mScreenSize;
 }
 //----------------------------------------------------------------------------
+inline void GraphicsRoot::SetProjectSize(const Sizef &size)
+{
+	mProjectSize = size;
+}
+//----------------------------------------------------------------------------
+inline const Sizef &GraphicsRoot::GetProjectSize() const
+{
+	return mProjectSize;
+}
+//----------------------------------------------------------------------------
 inline void GraphicsRoot::SetCamera (Camera *camera)
 {
 	mCamera = camera;

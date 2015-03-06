@@ -21,6 +21,26 @@ inline const Sizef &UIFrame::GetBorderSize() const
 	return mBorderSize;
 }
 //----------------------------------------------------------------------------
+inline UIFrame::RelativeType UIFrame::GetRelativeType_H() const
+{
+	return mPosRelativeType_H;
+}
+//----------------------------------------------------------------------------
+inline UIFrame::RelativeType UIFrame::GetRelativeType_V() const
+{
+	return mPosRelativeType_V;
+}
+//----------------------------------------------------------------------------
+inline float UIFrame::GetRelativeValue_H() const
+{
+	return mRelativeVal_H;
+}
+//----------------------------------------------------------------------------
+inline float UIFrame::GetRelativeValue_V() const
+{
+	return mRelativeVal_V;
+}
+//----------------------------------------------------------------------------
 inline void UIFrame::SetUICallback(UICallback callback)
 {
 	mUICallback = callback;

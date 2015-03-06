@@ -21,6 +21,8 @@ namespace PX2
 		UIFrame();
 		virtual ~UIFrame();
 
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
+
 		// Size
 	public:
 		void SetSize(float width, float height);
@@ -45,6 +47,39 @@ namespace PX2
 	protected:
 		Sizef mSize;
 		Sizef mBorderSize;
+
+		// Relative
+	public:
+		enum RelativeType
+		{
+			PT_NONE,
+			LT_ZERO,
+			LT_HALF,
+			LT_ONE,
+			LT_MAX_TYPE
+		};
+		void SetRelativeType_H(RelativeType type);
+		RelativeType GetRelativeType_H() const;
+
+		void SetRelativeValue_H(float val);
+		float GetRelativeValue_H() const;
+
+		void SetRelativeType_V(RelativeType type);
+		RelativeType GetRelativeType_V() const;
+
+		void SetRelativeValue_V(float val);
+		float GetRelativeValue_V() const;
+
+	protected:
+		RelativeType mPosRelativeType_H;
+		RelativeType mPosRelativeType_V;
+		float mRelativeVal_H;
+		float mRelativeVal_V;
+
+	protected:
+		void _UpdateRelative();
+
+		bool mIsRelativeChanged;
 
 	public_internal:
 		// info为1表示Pressed，为2表示Released

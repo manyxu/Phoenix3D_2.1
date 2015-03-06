@@ -24,7 +24,7 @@ mScreenOrientation(SO_LANDSCAPE)
 
 	PX2_ENGINELOOP.msProject = this;
 
-	mBackgroundColor = Float4::BLACK;
+	mBackgroundColor = Float4(0.5f, 0.5f, 0.5f, 1.0f);
 	mProjBackgroundColor = Float4::WHITE;
 	
 	mSceneRenderStep = new0 RenderStep();
@@ -301,9 +301,6 @@ void Project::SetUIFrame(UIFrame *ui)
 {
 	mUIFrame = ui;
 	mUIRenderStep->SetNode(mUIFrame);
-
-	if (mUIFrame)
-		mUIFrame->SetSize(mSize);
 }
 //----------------------------------------------------------------------------
 void Project::SetSize(float width, float height)
@@ -315,6 +312,8 @@ void Project::SetSize(const Sizef &size)
 {
 	mSize = size;
 
+	PX2_GR.SetProjectSize(size);
+
 	if (mSceneRenderStep)
 	{
 		mUIRenderStep->SetSize(mSize);
@@ -323,12 +322,6 @@ void Project::SetSize(const Sizef &size)
 	if (mUIRenderStep)
 	{
 		mUIRenderStep->SetSize(mSize);
-
-		UIFrame *uiFrame = DynamicCast<UIFrame>(mUIRenderStep->GetNode());
-		if (uiFrame)
-		{
-			uiFrame->SetSize(mSize);
-		}
 	}
 }
 //----------------------------------------------------------------------------

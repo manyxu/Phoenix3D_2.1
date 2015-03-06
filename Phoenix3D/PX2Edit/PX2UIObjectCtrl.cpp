@@ -7,7 +7,6 @@
 #include "PX2UIButton.hpp"
 #include "PX2UIProgressBar.hpp"
 #include "PX2UIEditBox.hpp"
-#include "PX2UIRelativeFrame.hpp"
 #include "PX2SimulationEventType.hpp"
 #include "PX2Selection.hpp"
 #include "PX2EditEventType.hpp"
@@ -98,7 +97,7 @@ void UIObjectCtrl::UpdateOnSelectUI()
 	UIButtonBase *but = DynamicCast<UIButtonBase>(obj);
 	UIProgressBar *pb = DynamicCast<UIProgressBar>(obj);
 
-	if (obj->IsExactly(UIFrame::TYPE) || obj->IsExactly(UIRelativeFrame::TYPE))
+	if (obj->IsExactly(UIFrame::TYPE))
 	{ // UIFrame
 		isCross = true;
 	}

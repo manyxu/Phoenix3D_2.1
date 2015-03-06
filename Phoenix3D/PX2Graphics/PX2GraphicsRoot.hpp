@@ -45,6 +45,9 @@ namespace PX2
 		void SetViewRect (const Rectf &rect);	// view rect
 		const Rectf &GetViewRect () const;
 
+		void SetProjectSize(const Sizef &size);
+		const Sizef &GetProjectSize() const;
+
 		// Light
 		void AddLight (Light *light);
 		void RemoveLight (Light *light);
@@ -70,6 +73,7 @@ namespace PX2
 		bool mIsInEditor;
 		Rectf mViewRect;
 		Sizef mScreenSize;
+		Sizef mProjectSize;
 		PX2::CameraPtr mCamera;
 		std::vector<LightPtr> mAllLights; // 保存放在场景中的所有灯光
 		Float4 mFogParam;
