@@ -94,6 +94,8 @@ bool EngineLoop::Initlize()
 	mScriptMan->SetUserTypePointer("PX2_SELECTION", "Selection", Selection::GetSingletonPtr());
 	mScriptMan->SetUserTypePointer("PX2_CREATER", "Creater", Creater::GetSingletonPtr());
 
+	LoadBoost("Data/boost.xml");
+
 	return true;
 }
 //----------------------------------------------------------------------------
@@ -305,11 +307,61 @@ bool EngineLoop::LoadBoost(const std::string &filename)
 		mBoostSize.Width = data.GetNodeByPath("config.var").AttributeToFloat("width");
 		mBoostSize.Height = data.GetNodeByPath("config.var").AttributeToFloat("height");
 		mProjectPath = data.GetNodeByPath("play.var").AttributeToString("projectpath");
+		mPlayLogicMode = _StrToPlayLogicMode(data.GetNodeByPath("play.var").AttributeToString("playlogicmode"));
 
 		return true;
 	}
 
 	return false;
+}
+//----------------------------------------------------------------------------
+std::string EngineLoop::GetPlayLogicModeStr() const
+{
+	if (PLM_SIMPLE == mPlayLogicMode)
+		return "simple";
+
+	return "logic";
+}
+//----------------------------------------------------------------------------
+EngineLoop::PlayLogicMode EngineLoop::_StrToPlayLogicMode(const std::string &str)
+{
+	if ("simple" == str)
+		EngineLoop::PLM_SIMPLE;
+	
+	return PLM_LOGIC;
+}
+//----------------------------------------------------------------------------
+void EngineLoop::SetBoostSize(const Sizef &size)
+{
+	mBoostSize = size;
+}
+//----------------------------------------------------------------------------
+void EngineLoop::SetPlayLogicMode(PlayLogicMode mode)
+{
+	mPlayLogicMode = mode;
+}
+//----------------------------------------------------------------------------
+bool EngineLoop::WriteBoost()
+{
+	XMLData data;
+
+	data.Create();
+
+	XMLNode boostNode = data.NewChild("boost");
+	boostNode.SetAttributeString("name", "boost");
+
+	XMLNode configNode = boostNode.NewChild("config");
+
+	XMLNode varNode_config = configNode.NewChild("var");
+	varNode_config.SetAttributeInt("width", (int)mBoostSize.Width);
+	varNode_config.SetAttributeInt("height", (int)mBoostSize.Height);
+
+	XMLNode playNode = boostNode.NewChild("play");
+	XMLNode varNode_play = playNode.NewChild("var");
+	varNode_play.SetAttributeString("projectpath", mProjectPath);
+	varNode_play.SetAttributeString("playlogicmode", GetPlayLogicModeStr());
+
+	return data.SaveFile("Data/boost.xml");
 }
 //----------------------------------------------------------------------------
 void EngineLoop::SetScreenSize(const Sizef &screenSize)

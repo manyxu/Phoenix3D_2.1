@@ -27,12 +27,13 @@ mAccoutManager(0),
 
 mIsInBackground(false),
 
+mPlayLogicMode(PLM_SIMPLE),
+
 mAppTime(0),
 mLastAppTime(0),
 mElapsedTime(0),
 
-mIsDoAdjustScreenViewRect(true),
-mPlayType(PT_NONE)
+mIsDoAdjustScreenViewRect(true)
 {
 }
 //----------------------------------------------------------------------------

@@ -141,7 +141,9 @@ function e_CreateToolMenuDebug()
 	
 	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("EditorSimulate"), "e_OnEditorSimulate()")
 	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("EditorPlay"), "e_OnEditorPlay()")
-	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Operation").."\tCtrl-G", "e_OnOperation()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("EditorStop"), "e_OnEditorStop()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Run").."\tCtrl-G", "e_OnPlay()")
+	NirMan:AddSeparater(editMenu)
 	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("PlayConfig"), "e_OnPlayConfig()")
 end
 

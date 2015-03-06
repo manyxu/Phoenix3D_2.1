@@ -13,12 +13,14 @@
 #include "PX2wxDockArt.hpp"
 #include "PX2wxAui.hpp"
 
+#include "PX2DlgCreateProject.hpp"
+#include "PX2DlgPlayConfig.hpp"
+
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2Project.hpp"
 #include "PX2EventWorld.hpp"
-#include "PX2DlgCreateProject.hpp"
 #include "PX2ObjectInspector.hpp"
 #include "PX2SimulationEventType.hpp"
 #include "PX2EditEventType.hpp"
@@ -53,7 +55,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mProjView(0),
 	mIsCrossCursor(false)
 {
-	mPerspConfigName = "nirvana1.0.3.config";
+	mPerspConfigName = "nirvana1.0.0.config";
 
 	PX2_EW.ComeIn(this);
 }
@@ -114,7 +116,7 @@ bool E_MainFrame::Initlize()
 		wxString strPerspective;
 		if (config.Read(wxString("Perspective"), &strPerspective))
 		{
-			//mAuiManager->LoadPerspective(strPerspective);
+			mAuiManager->LoadPerspective(strPerspective);
 		}
 	}
 
@@ -550,6 +552,54 @@ void E_MainFrame::OnCloseScene()
 void E_MainFrame::OnSetEditMode(int mode)
 {
 	PX2_EDIT.SetEditMode((Edit::EditMode)mode);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnEditorSimulate()
+{
+	bool isCanDoEdit = PX2_EDIT.CanDoEdit();
+	if (isCanDoEdit) PX2_EDIT.SetEditType(Edit::ET_SIMULATE);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnEditorPlay()
+{
+	bool isCanDoEdit = PX2_EDIT.CanDoEdit();
+	if (isCanDoEdit) PX2_EDIT.SetEditType(Edit::ET_PLAY);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnEditorStop()
+{
+	bool isCanDoEdit = PX2_EDIT.CanDoEdit();
+	if (!isCanDoEdit) PX2_EDIT.SetEditType(Edit::ET_SCENE);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnPlay()
+{
+	Project *proj = Project::GetSingletonPtr();
+	if (!proj) return;
+
+#if defined(_WIN32) || defined(WIN32)
+
+#ifdef _DEBUG
+#if defined(_WIN64) || defined(WIN64)
+	WinExec("AppPlayer64D.exe", SW_SHOW);
+#else
+	WinExec("AppPlayerD.exe", SW_SHOW);
+#endif
+#else
+#if defined(_WIN64) || defined(WIN64)
+	WinExec("AppPlayer64.exe", SW_SHOW);
+#else
+	WinExec("AppPlayer.exe", SW_SHOW);
+#endif
+#endif
+
+#endif
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnPlayConfig()
+{
+	DlgPlayConfig dlg(this);
+	dlg.ShowModal();
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::OnSetting()
