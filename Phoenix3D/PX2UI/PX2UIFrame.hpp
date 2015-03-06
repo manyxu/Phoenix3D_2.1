@@ -14,6 +14,7 @@ namespace PX2
 	class UIFrame : public Node
 	{
 		PX2_DECLARE_RTTI;
+		PX2_DECLARE_PROPERTY;
 		PX2_DECLARE_STREAM(UIFrame);
 
 	public:

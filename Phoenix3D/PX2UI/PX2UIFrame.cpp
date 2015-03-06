@@ -115,6 +115,36 @@ void UIFrame::DestoryIPTCtrl()
 	}
 }
 //----------------------------------------------------------------------------
+void UIFrame::RegistProperties()
+{
+	Node::RegistProperties();
+
+	AddPropertyClass("UIFrame");
+
+	AddProperty("Size", PT_SIZE, mSize);
+	AddProperty("BorderSize", PT_SIZE, mSize);
+
+	AddProperty("ScriptHandler", PT_STRING, GetScriptHandler());
+}
+//----------------------------------------------------------------------------
+void UIFrame::OnPropertyChanged(const PropertyObject &obj)
+{
+	Node::OnPropertyChanged(obj);
+
+	if ("Size" == obj.Name)
+	{
+		SetSize(PX2_ANY_AS(obj.Data, Sizef));
+	}
+	else if ("BorderSize" == obj.Name)
+	{
+		SetBorderSize(PX2_ANY_AS(obj.Data, Sizef));
+	}
+	else if ("ScriptHandler" == obj.Name)
+	{
+		SetScriptHandler(PX2_ANY_AS(obj.Data, std::string));
+	}
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 持久化支持
