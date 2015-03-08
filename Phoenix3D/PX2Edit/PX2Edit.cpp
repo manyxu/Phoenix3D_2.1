@@ -152,6 +152,65 @@ void Edit::PasteCopyedObject()
 	}
 }
 //----------------------------------------------------------------------------
+bool Edit::Import(const char *pathname)
+{
+	int numObjs = PX2_SELECTION.GetNumObjects();
+	if (1 != numObjs) return false;
+
+	Object *selectObj = PX2_SELECTION.GetFirstObject();
+
+	InStream inStream;
+	if (inStream.Load(pathname))
+	{
+		Object *obj = inStream.GetObjectAt(0);
+		PX2_CREATER.AddObject(selectObj, obj);
+
+		return true;
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
+bool Edit::Export(PX2::Object *obj, const char *pathname)
+{
+	if (!obj) return false;
+
+	Controller *ctrl = DynamicCast<Controller>(obj);
+	Movable *mov = DynamicCast<Movable>(obj);
+
+	Controlledable *ctrlAble = 0;
+	Node *node = 0;
+
+	if (ctrl)
+	{
+		ctrlAble = ctrl->GetControlledable();
+		ctrlAble->DetachController(ctrl);
+	}
+	else if (mov)
+	{
+		node = DynamicCast<Node>(mov->GetParent());
+		if (node) node->DetachChild(mov);
+	}
+
+	OutStream outStream;
+	outStream.Insert(obj);
+	if (outStream.Save(pathname))
+	{
+		if (ctrl && ctrlAble)
+		{
+			ctrlAble->AttachController(ctrl);
+		}
+		else if (mov && node)
+		{
+			node->AttachChild(mov);
+		}
+
+		return true;
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
 void Edit::AnimPlay()
 {
 	Object *obj = PX2_SELECTION.GetFirstObject();

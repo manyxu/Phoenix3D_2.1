@@ -29,6 +29,9 @@ namespace PX2Editor
 
 		ResTreeItem* GetTreeRootItem();
 
+		void ResRefresh();
+		void ResClear();
+
 	public_internal:
 		std::map<std::string, int> Icons;
 

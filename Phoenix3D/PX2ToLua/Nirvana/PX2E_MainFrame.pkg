@@ -14,6 +14,9 @@
 		void OnSaveSceneAs();
 		void OnCloseScene();
 		
+		void OnImport();
+		void OnExport();
+		
 		void OnEditorSimulate();
 		void OnEditorPlay();
 		void OnEditorStop();
@@ -25,9 +28,12 @@
 		
 		void InspChangeWindow(int windowType);
 		
+		void OnResRefresh();
+		void OnResClear();
+		void OnResOpen();
+		void OnResCopyResPath();
+		
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title, const std::string &script);
 		void AddSeparater(wxMenu *menu);
-		
-		
 	};

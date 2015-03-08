@@ -16,14 +16,14 @@ mIsNeedAdujst(true)
 	SetName("UIProgressBar");
 
 	UIPicBoxPtr backPicBox = new0 UIPicBox("Data/engine/common.xml", "progress_back");
-	backPicBox->LocalTransform.SetTranslate(APoint(0.0f, 2.0f, 0.0f));
+	backPicBox->LocalTransform.SetTranslate(APoint(0.0f, 0.0f, 0.0f));
 	backPicBox->SetPicBoxType(UIPicBox::PBT_NINE);
 	backPicBox->SetName("Back");
 	backPicBox->SetAnchorPoint(0.0f, 0.5f);
 	SetBackPicBox(backPicBox);
 
 	UIPicBoxPtr progressPicBox = new0 UIPicBox("Data/engine/common.xml", "progress_fill");
-	progressPicBox->LocalTransform.SetTranslate(APoint(0.0f, 1.0f, 0.0f));
+	progressPicBox->LocalTransform.SetTranslate(APoint(0.0f, -0.5f, 0.0f));
 	progressPicBox->SetPicBoxType(UIPicBox::PBT_NINE);
 	progressPicBox->SetTexCornerSize(2.0f, 2.0f);
 	progressPicBox->SetName("Progress");
@@ -31,7 +31,7 @@ mIsNeedAdujst(true)
 	SetProgressPicBox(progressPicBox);
 
 	UIPicBoxPtr overPicBox = new0 UIPicBox("Data/engine/common.xml", "progress_marquee");
-	overPicBox->LocalTransform.SetTranslate(APoint(0.0f, 0.0f, 0.0f));
+	overPicBox->LocalTransform.SetTranslate(APoint(0.0f, -1.0f, 0.0f));
 	overPicBox->SetPicBoxType(UIPicBox::PBT_NINE);
 	overPicBox->SetTexCornerSize(4.0f, 4.0f);
 	overPicBox->SetName("Over");

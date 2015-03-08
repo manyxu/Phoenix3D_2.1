@@ -212,6 +212,11 @@ void EditRenderView::OnLeftUp(const APoint &pos)
 	mLastMousePoint = pos;
 }
 //----------------------------------------------------------------------------
+void EditRenderView::OnLeftDClick(const APoint &pos)
+{
+	mLastMousePoint = pos;
+}
+//----------------------------------------------------------------------------
 void EditRenderView::OnMiddleDown(const APoint &pos)
 {
 	mIsMiddleDown = true;

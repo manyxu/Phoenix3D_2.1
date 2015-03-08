@@ -124,6 +124,11 @@ namespace PX2
 	protected:
 		PX2::ObjectPtr mCopyObject;
 
+		// export
+	public:
+		bool Import(const char *pathname);
+		bool Export(PX2::Object *obj, const char *pathname);
+
 		// anim
 	public:
 		void AnimResetPlay();

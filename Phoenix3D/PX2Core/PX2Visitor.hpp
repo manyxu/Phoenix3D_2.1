@@ -17,7 +17,7 @@ namespace PX2
 		Visitor ();
 		virtual ~Visitor ();
 
-		virtual void Visit (Object *obj, const int info);
+		virtual void Visit (Object *obj, int info);
 		virtual void Visit (Object *obj, const std::string &info);
 		virtual void Visit (Object *obj, const Any &info);
 	};

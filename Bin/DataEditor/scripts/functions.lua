@@ -47,6 +47,13 @@ function e_OnSetting()
 	E_MainFrame:OnSetting()
 end
 
+function e_OnImport()
+	
+end
+
+function e_OnExport()
+end
+
 function e_OnSelect()
 	E_MainFrame:OnSetEditMode(Edit.EM_SELECT)
 end
@@ -75,13 +82,15 @@ function e_OnDelete()
 	PX2_EDIT:DeleteSelection()
 end
 
-function e_ImportSelectedRes()
+function e_OnImportSelectedRes()
 end
 
-function e_Import()
+function e_OnImport()
+	E_MainFrame:OnImport()
 end
 
-function e_ExportSelected()
+function e_OnExport()
+	E_MainFrame:OnExport()
 end
 
 function e_AnimResetPlay()
@@ -177,7 +186,7 @@ function e_CreateRectangle(usePickPos)
 		local mov = PX2_CREATER:CreateRectangle(node, pickPos, true, true, isWorld)
 		mov.LocalTransform:SetUniformScale(100.0)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -189,7 +198,7 @@ function e_CreateBox(usePickPos)
 		local mov = PX2_CREATER:CreateBox(node, pickPos, true, true, usePickPos)
 		mov.LocalTransform:SetUniformScale(100.0)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -201,7 +210,7 @@ function e_CreateSphere(usePickPos)
 		local mov = PX2_CREATER:CreateSphere(node, pickPos, true, true, usePickPos)
 		mov.LocalTransform:SetUniformScale(100.0)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -212,7 +221,7 @@ function e_CreateParticles(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateParticleEmitter(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -223,7 +232,7 @@ function e_CreateBillboard(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateBillboard(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -234,7 +243,7 @@ function e_CreateBeam(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateBeamEmitter(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -245,7 +254,7 @@ function e_CreateRobbion(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateRibbonEmitter(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -256,7 +265,7 @@ function e_CreateSoundable(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateSoundable(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -267,7 +276,7 @@ function e_CreateUIPixBox(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		PX2_CREATER:CreateUIPicBox(node, pickPos, "Data/engine/default.png", true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -278,7 +287,7 @@ function e_CreateUIText(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		PX2_CREATER:CreateUIText(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -289,7 +298,7 @@ function e_CreateUIFrame(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		PX2_CREATER:CreateUIFrame(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -300,7 +309,7 @@ function e_CreateUIButton(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		PX2_CREATER:CreateUIButton(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -311,7 +320,7 @@ function e_CreateUICheckButton(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		PX2_CREATER:CreateUICheckButton(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -322,7 +331,7 @@ function e_CreateUIEditBox(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		PX2_CREATER:CreateUIEditBox(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -333,7 +342,7 @@ function e_CreateUIProgressBar(usePickPos)
 		local pickPos = PX2_EDIT:GetPickPos()
 		PX2_CREATER:CreateUIProgressBar(node, pickPos, true, usePickPos)
 	else
-		NirMan:MessageBox(PX2_LM:GetValue("Tip1"), PX2_LM:GetValue("Notice"))
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
 end
 
@@ -394,9 +403,15 @@ end
 
 -- res view
 function e_ResView_Refresh()
+	E_MainFrame:OnResRefresh()
 end
 
 function e_ResView_Clear()
+	E_MainFrame:OnResClear()
+end
+
+function e_ResView_Open()
+	E_MainFrame:OnResOpen()
 end
 
 --Insp view

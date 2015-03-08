@@ -25,10 +25,13 @@ function e_CreateMainMenu()
 	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Paste").."\tCtrl-V", "e_OnPaste()")
 	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Delete").."\tDelete", "e_OnDelete()")
 	E_MainFrame:AddSeparater(itemEdit)
-	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Select").."\tQ", "e_OnSelect()")
-	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Translate").."\tW", "e_OnTranslate()")
-	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Rotate").."\tE", "e_OnRotate()")
-	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Scale").."\tR", "e_OnScale()")
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Import").."\tCtrl-I", "e_OnImport()")
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Export").."\tCtrl-E", "e_OnExport()")
+	E_MainFrame:AddSeparater(itemEdit)
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Select").."\tF1", "e_OnSelect()")
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Translate").."\tF2", "e_OnTranslate()")
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Rotate").."\tF3", "e_OnRotate()")
+	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("Scale").."\tF4", "e_OnScale()")
 	E_MainFrame:AddSeparater(itemEdit)
 	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("PlayAndStop").."\tAlt-Space", "e_OnPlayAndStop()")
 	E_MainFrame:AddMenuItem(itemEdit, PX2_LM:GetValue("ResetPlay").."\tShift-Space", "e_OnResetPlay()")
@@ -55,4 +58,8 @@ function e_CreateMainMenu()
 	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("Setting"), "e_OnSetting()")
 	--help
 	local itemHelp = E_MainFrame:AddMainMenuItem((PX2_LM:GetValue("Help")))
+end
+
+function e_ResView_CopyResPath()
+	
 end

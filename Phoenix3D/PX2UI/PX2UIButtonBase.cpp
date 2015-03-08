@@ -144,6 +144,11 @@ void UIButtonBase::OnSizeChanged()
 		mPicBoxDisabled->SetSize(mSize);
 }
 //----------------------------------------------------------------------------
+void UIButtonBase::UpdateWorldData(double applicationTime, double elapsedTime)
+{
+	UIFrame::UpdateWorldData(applicationTime, elapsedTime);
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // Property
@@ -171,7 +176,8 @@ void UIButtonBase::OnPropertyChanged(const PropertyObject &obj)
 // 持久化支持
 //----------------------------------------------------------------------------
 UIButtonBase::UIButtonBase(LoadConstructor value) :
-UIFrame(value)
+UIFrame(value),
+mButtonState(BS_NORMAL)
 {
 }
 //----------------------------------------------------------------------------

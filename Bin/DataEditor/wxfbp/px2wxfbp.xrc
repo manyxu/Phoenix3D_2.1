@@ -1276,10 +1276,10 @@
 						<object class="wxBoxSizer">
 							<orient>wxVERTICAL</orient>
 							<object class="spacer">
-								<option>1</option>
+								<option>0</option>
 								<flag>wxEXPAND</flag>
 								<border>5</border>
-								<size>0,0</size>
+								<size>0,50</size>
 							</object>
 							<object class="sizeritem">
 								<option>1</option>
@@ -1316,10 +1316,10 @@
 								</object>
 							</object>
 							<object class="spacer">
-								<option>1</option>
+								<option>0</option>
 								<flag>wxEXPAND</flag>
 								<border>5</border>
-								<size>0,0</size>
+								<size>0,50</size>
 							</object>
 						</object>
 					</object>

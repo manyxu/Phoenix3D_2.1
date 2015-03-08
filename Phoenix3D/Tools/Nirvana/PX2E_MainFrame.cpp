@@ -10,6 +10,7 @@
 #include "PX2E_RenderView_Cont.hpp"
 #include "PX2E_NirMan.hpp"
 #include "PX2E_LogView.hpp"
+#include "PX2E_ResTree.hpp"
 #include "PX2wxDockArt.hpp"
 #include "PX2wxAui.hpp"
 
@@ -103,8 +104,6 @@ bool E_MainFrame::Initlize()
 	mTimer.Start(25);
 
 	_CreateMenu();
-	//_CreateTopView();
-	//_CreateMenuToolBar();
 	_CreateMainToolBar();
 	_CreateViews();
 	_CreateStatusBar();
@@ -549,6 +548,55 @@ void E_MainFrame::OnCloseScene()
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnImport()
+{
+	int numObjs = PX2_SELECTION.GetNumObjects();
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	if (1 != numObjs)
+	{
+		NirMan::GetSingleton().MessageBox(PX2_LMVAL("Notice"), PX2_LMVAL("Tip0"));
+		return;
+	}
+
+	wxFileDialog dlg(this,
+		PX2_LM.GetValue("Import"),
+		wxEmptyString,
+		wxEmptyString,
+		wxT("object (*.px2obj)|*.px2obj|model (*.PX2OBJ)|*.PX2OBJ"));
+
+	dlg.CenterOnParent();
+
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		PX2_EDIT.Import(dlg.GetPath());
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnExport()
+{
+	int numObjs = PX2_SELECTION.GetNumObjects();
+	Object *obj = PX2_SELECTION.GetFirstObject();
+	if (1 != numObjs)
+	{
+		NirMan::GetSingleton().MessageBox(PX2_LM.GetValue("Notice"), PX2_LM.GetValue("Tip3"));
+		return;
+	}
+
+	wxFileDialog dlg(this,
+		PX2_LM.GetValue("Export"),
+		wxT("Data/"),
+		wxEmptyString,
+		wxT("object (*.px2obj)|*.px2obj|model (*.PX2OBJ)|*.PX2OBJ"),
+		wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+
+	dlg.CenterOnParent();
+
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		PX2_EDIT.Export(obj, dlg.GetPath());
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::OnSetEditMode(int mode)
 {
 	PX2_EDIT.SetEditMode((Edit::EditMode)mode);
@@ -621,6 +669,54 @@ void E_MainFrame::InspChangeWindow(int windowType)
 	mInspView->ChangeShowWindow(windowType);
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnResRefresh()
+{
+	ResTree::GetSingleton().ResRefresh();
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnResClear()
+{
+	ResTree::GetSingleton().ResClear();
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnResOpen()
+{
+	const SelectResData &resData = PX2_EDIT.GetSelectedResource();
+	SelectResData::SelectResType type = resData.GetSelectResType();
+
+	if (SelectResData::RT_NORMAL == type)
+	{
+		std::string filename = resData.ResPathname;
+
+#if defined(_WIN32) || defined(WIN32)
+		WCHAR wszPath[MAX_PATH];
+		GetCurrentDirectoryW(sizeof(wszPath), wszPath);
+		std::wstring fullPath = wszPath + std::wstring(_T("\\")) + filename;
+
+		ShellExecute(0, _T("open"), fullPath.c_str(), 0, 0, SW_SHOW);
+#endif
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnResCopyResPath()
+{
+	const SelectResData &resData = PX2_EDIT.GetSelectedResource();
+	SelectResData::SelectResType type = resData.GetSelectResType();
+
+	if (type == SelectResData::RT_NORMAL)
+	{
+		wxTextDataObject *data = new wxTextDataObject(resData.ResPathname);
+		wxTheClipboard->SetData(data);
+		wxTheClipboard->Close();
+	}
+	else
+	{
+		wxTextDataObject *data = new wxTextDataObject(resData.EleName);
+		wxTheClipboard->SetData(data);
+		wxTheClipboard->Close();
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenu()
 {
 	mMainMenuBar = new wxMenuBar();
@@ -672,30 +768,9 @@ void E_MainFrame::AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon,
 	mIDScripts[id] = script;
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::AddMenuTool(PX2wxAuiToolBar *toolBar, const std::string &MenuTitle, std::string &script)
-{
-	int id = PX2_EDIT_GETID;
-	toolBar->AddTool(id, MenuTitle, wxNullBitmap, wxEmptyString, wxITEM_RADIO);
-	
-	Connect(id, wxEVT_COMMAND_TOOL_CLICKED,
-		wxMouseEventHandler(E_MainFrame::OnMenuToolItem));
-
-	mIDScripts[id] = script;
-}
-//----------------------------------------------------------------------------
 void E_MainFrame::AddToolSeparater(PX2wxAuiToolBar *toolBar)
 {
 	toolBar->AddSeparator();
-}
-//----------------------------------------------------------------------------
-void E_MainFrame::_CreateTopView()
-{
-	mTopView = new TopView(this);
-
-	mAuiManager->AddPane(mTopView, wxAuiPaneInfo().
-		Name(wxT("topview")).ToolbarPane().PaneBorder(false).
-		Gripper(false).Top().Dockable(false).PaneBorder(false).Resizable(false).
-		MinSize(200, 30).MaxSize(200, 30).Top().Resizable(false).CaptionVisible(false));
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainToolBar()
@@ -720,35 +795,14 @@ void E_MainFrame::_CreateMainToolBar()
 	}	
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateMenuToolBar()
-{
-	mToolBarMenu = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-		wxAUI_TB_DEFAULT_STYLE | wxAUI_TB_HORIZONTAL | wxAUI_TB_TEXT | wxAUI_TB_HORZ_TEXT);
-
-	if (mToolBarMenu)
-	{
-		mToolBarMenu->SetArtProvider(new PX2wxAuiToolBarArt(0));
-
-		NirMan::GetSingleton().SetCurToolBar(mToolBarMenu);
-
-		PX2_SM.CallString("e_CreateToolBarMenu()");
-
-		mToolBarMenu->Realize();
-
-		mToolBarMenu->SetSize(wxSize(-1, 25));
-
-		mAuiManager->AddPane(mToolBarMenu, wxAuiPaneInfo().
-			Name(wxT("menutoolbar")).
-			ToolbarPane().Gripper(true).Top().Dockable(false).Resizable(false).
-			MinSize(200, 25).MaxSize(200, 25).PaneBorder(true));
-	}
-}
-//----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()
 {
 	_CreateMainView(true);
 	_CreateProjView(false);
-	_CreateInsp(false);
+	_CreatePreView(false);
+	_CreateResView(false);
+	_CreateInspView(false);
+	_CreateLogView(false);
 	_CreateTimeLine(false);
 }
 //----------------------------------------------------------------------------
@@ -756,7 +810,7 @@ void E_MainFrame::_CreateProjView(bool isTopStyle)
 {
 	mProjView = new ProjView(this);
 	_CreateView(mProjView, "ProjView", PX2_LM.GetValue("Project"),
-		wxAuiPaneInfo().Left().CaptionVisible(false).TopDockable(false), isTopStyle);
+		wxAuiPaneInfo().Left().CaptionVisible(false), isTopStyle);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainView(bool isTopStyle)
@@ -790,34 +844,38 @@ void E_MainFrame::_CreateMainView(bool isTopStyle)
 		wxAuiPaneInfo().CenterPane(), isTopStyle);
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateInsp(bool isTopStyle)
+void E_MainFrame::_CreateInspView(bool isTopStyle)
 {
-	WindowObj objRes;
-	mResView = new ResView(this);
-	objRes.TheWindow = mResView;
-	objRes.Caption = PX2_LM.GetValue("ResView");
-	objRes.Name = "ResView";
-
-	WindowObj objInsp;
 	mInspView = new InspView(this);
-	objInsp.TheWindow = mInspView;
-	objInsp.Caption = PX2_LM.GetValue("InspView");
-	objInsp.Name = "InspView";
 
-	WindowObj objLog;
+	_CreateView(mInspView, "InspView", PX2_LM.GetValue("InspView"),
+		wxAuiPaneInfo().Right(), isTopStyle);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateLogView(bool isTopStyle)
+{
 	mLogView = new LogView(this);
-	objLog.TheWindow = mLogView;
-	objLog.Caption = PX2_LM.GetValue("LogView");
-	objLog.Name = "LogView";
-	Logger::GetSingleton().AddHandler(mLogView->GetLogTextCtrl());
 
-	std::vector<WindowObj> objs;
-	objs.push_back(objRes);
-	objs.push_back(objInsp);
-	objs.push_back(objLog);
+	_CreateView(mLogView, "LogView", PX2_LM.GetValue("LogView"),
+		wxAuiPaneInfo().Right(), isTopStyle);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreatePreView(bool isTopStyle)
+{
+	RenderView_Cot *viewCont_PreView = new RenderView_Cot(RVT_PREVIEW, this);
+	mPreView = viewCont_PreView->GetRenderView();
+	mPreView->_NewEditRenderView("PreView");
 
-	_CreateView(objs, "Right", PX2_LM.GetValue("ResView"), 
-		wxAuiPaneInfo().Right().CaptionVisible(false).TopDockable(false), isTopStyle);
+	_CreateView(viewCont_PreView, "PreView", PX2_LM.GetValue("PreView"),
+		wxAuiPaneInfo().DefaultPane().Right(), isTopStyle);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateResView(bool isTopStyle)
+{
+	mResView = new ResView(this);
+	
+	_CreateView(mResView, "ResView", PX2_LM.GetValue("ResView"),
+		wxAuiPaneInfo().DefaultPane().Right(), isTopStyle);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine(bool isTopStyle)
@@ -827,7 +885,7 @@ void E_MainFrame::_CreateTimeLine(bool isTopStyle)
 	mTimeLineView->_NewEditRenderView("TimeLine");
 
 	_CreateView(viewCont_TimeLine, "TimeLine", PX2_LM.GetValue("TimeLine"),
-		wxAuiPaneInfo().DefaultPane().Bottom().CaptionVisible(false).TopDockable(false), isTopStyle);
+		wxAuiPaneInfo().DefaultPane().Bottom(), isTopStyle);
 }
 //----------------------------------------------------------------------------
 PX2wxAuiNotebook *E_MainFrame::_CreateView(wxWindow *window0,
@@ -897,8 +955,8 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 	noteBook->Thaw();
 
 	paneInfo.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
-		.PinButton(true).MinSize(100, 100).Name(panelName).
-		Caption(panelCaption).CaptionVisible(!isTopStyle).Floatable(true).TopDockable(false);
+		.PinButton(true).MinSize(200., 100).Name(panelName).
+		Caption(panelCaption).CaptionVisible(!isTopStyle).Floatable(true);
 	mAuiManager->AddPane(noteBook, paneInfo);
 
 	noteBook->Refresh();

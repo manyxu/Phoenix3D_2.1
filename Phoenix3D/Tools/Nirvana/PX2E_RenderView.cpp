@@ -7,6 +7,7 @@
 #include "PX2EditRenderView_Logic.hpp"
 #include "PX2EditRenderView_Res.hpp"
 #include "PX2EditRenderView_TimeLine.hpp"
+#include "PX2EditRenderView_PreView.hpp"
 #include "PX2Project.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2Edit.hpp"
@@ -25,6 +26,7 @@ EVT_ENTER_WINDOW(RenderView::OnEnterWindow)
 EVT_LEAVE_WINDOW(RenderView::OnLeaveWindow)
 EVT_LEFT_DOWN(RenderView::OnLeftDown)
 EVT_LEFT_UP(RenderView::OnLeftUp)
+//EVT_LEFT_DCLICK(RenderView::OnLeftDClick)
 EVT_MIDDLE_DOWN(RenderView::OnMiddleDown)
 EVT_MIDDLE_UP(RenderView::OnMiddleUp)
 EVT_MOUSEWHEEL(RenderView::OnMouseWheel)
@@ -203,7 +205,7 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->MouseReleased(MBID_RIGHT, pos);
 
-	if (RVT_SCENEUI == mRenderViewType)
+	if (RVT_SCENEUI == mRenderViewType || RVT_RES == mRenderViewType)
 	{
 		if (!mIsRightDownOnMotion)
 		{
@@ -216,9 +218,8 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 			mEditMenu = new wxMenu();
 			NirMan::GetSingleton().SetCurMenu(mEditMenu);
 
-			int menuID = 1;
 			char szScript[256];
-			sprintf(szScript, "e_CreateEditMenu(%d)", menuID);
+			sprintf(szScript, "e_CreateEditMenu(%d)", (int)mRenderViewType);
 			PX2_SM.CallString(szScript);
 
 			if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
@@ -343,6 +344,15 @@ void RenderView::_NewEditRenderView(const std::string &name)
 		renderView->SetPt_Size(sz);
 		
 		renderView->InitlizeRendererStep("ResRenderStep");
+	}
+	else if ("PreView" == name)
+	{
+		renderView = new0 EditRenderView_PreView();
+
+		renderView->SetPt_Data(GetHandle());
+		renderView->SetPt_Size(sz);
+
+		renderView->InitlizeRendererStep("PreViewRenderStep");
 	}
 	else if ("TimeLine" == name)
 	{

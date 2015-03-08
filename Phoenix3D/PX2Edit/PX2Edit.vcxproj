@@ -22,6 +22,7 @@
     <ClInclude Include="PX2Curve.hpp" />
     <ClInclude Include="PX2CurveCtrl.hpp" />
     <ClInclude Include="PX2CurveGroup.hpp" />
+    <ClInclude Include="PX2EditRenderView_PreView.hpp" />
     <ClInclude Include="PX2EditTimeLineEdit.hpp" />
     <ClInclude Include="PX2Edit.hpp" />
     <ClInclude Include="PX2EditDefine.hpp" />
@@ -46,6 +47,7 @@
     <ClCompile Include="PX2Curve.cpp" />
     <ClCompile Include="PX2CurveCtrl.cpp" />
     <ClCompile Include="PX2CurveGroup.cpp" />
+    <ClCompile Include="PX2EditRenderView_PreView.cpp" />
     <ClCompile Include="PX2EditTimeLineEdit.cpp" />
     <ClCompile Include="PX2Edit.cpp" />
     <ClCompile Include="PX2EditEventType.cpp" />

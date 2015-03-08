@@ -13,6 +13,8 @@
 namespace PX2
 {
 
+	class SelectResData;
+
 	class EditRenderView_Res : public EditRenderView, public Visitor
 	{
 	public:
@@ -27,6 +29,7 @@ namespace PX2
 		virtual void OnSize(const Sizef& size);
 		virtual void OnLeftDown(const APoint &pos);
 		virtual void OnLeftUp(const APoint &pos);
+		virtual void OnLeftDClick(const APoint &pos);
 		virtual void OnMiddleDown(const APoint &pos);
 		virtual void OnMiddleUp(const APoint &pos);
 		virtual void OnMouseWheel(float delta);
@@ -35,15 +38,32 @@ namespace PX2
 		virtual void OnMotion(const APoint &pos);
 
 	public:
-		virtual void Visit(Object *obj, const int info);
+		virtual void Visit(Object *obj, int info);
 
 	protected:
 		void _RefreshRes(const std::vector<std::string> &dirPaths,
 			const std::vector<std::string> &resFilenames);
+		void _SelectRes(const SelectResData& resData);
+		void _SetPicBox(UIPicBox *picBox, const std::string &filename,
+			const std::string &ext, bool backLoad);
 
-		UIFramePtr mFrame;
+		UIFramePtr mRootFrame;
+		UIFramePtr mGridParentFrame;
 		UIGridFramePtr mGridFrame;
 		float mItemSize;
+
+		// pre
+		float mPreViewHeight;
+		UIFramePtr mPreViewFrame;
+		UIPicBoxPtr mPreViewBackPicBox;
+
+		UIFramePtr mPreViewLeftFrame;
+		UIPicBoxPtr mPreViewPicBox;
+		UIPicBoxPtr mPreViewPicOver;
+
+		UIFramePtr mPreViewRightFrame;
+		UITextPtr mPreViewPathText;
+		UITextPtr mPreViewSizeText;
 
 		std::map<std::string, ResHandle> mHandlers;
 

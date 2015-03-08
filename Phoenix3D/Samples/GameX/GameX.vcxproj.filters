@@ -96,6 +96,9 @@
     <ClCompile Include="X_BatMan.cpp">
       <Filter>Bat</Filter>
     </ClCompile>
+    <ClCompile Include="X_UIMan_Start.cpp">
+      <Filter>UIMan\Start</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="UIMan">
@@ -127,6 +130,9 @@
     </Filter>
     <Filter Include="Bat">
       <UniqueIdentifier>{b6f24a84-9a1d-418d-a45d-84220ac41252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UIMan\Start">
+      <UniqueIdentifier>{b7c0636f-c6e1-4941-809d-38c0d3b64d5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

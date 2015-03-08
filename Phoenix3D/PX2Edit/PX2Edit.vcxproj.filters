@@ -59,6 +59,9 @@
     <ClInclude Include="PX2UIObjectCtrl.hpp">
       <Filter>NodeCtrls</Filter>
     </ClInclude>
+    <ClInclude Include="PX2EditRenderView_PreView.hpp">
+      <Filter>Views</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="PX2UIObjectCtrl.cpp">
       <Filter>NodeCtrls</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EditRenderView_PreView.cpp">
+      <Filter>Views</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

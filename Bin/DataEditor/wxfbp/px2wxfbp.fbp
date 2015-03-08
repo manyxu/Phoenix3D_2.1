@@ -28,6 +28,7 @@
         <property name="use_microsoft_bom">0</property>
         <object class="Dialog" expanded="0">
             <property name="aui_managed">0</property>
+            <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg"></property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
@@ -1083,6 +1084,7 @@
         </object>
         <object class="Dialog" expanded="0">
             <property name="aui_managed">0</property>
+            <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg"></property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
@@ -1821,6 +1823,7 @@
         </object>
         <object class="Panel" expanded="0">
             <property name="aui_managed">0</property>
+            <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg"></property>
             <property name="context_help"></property>
             <property name="context_menu">1</property>
@@ -4751,6 +4754,7 @@
         </object>
         <object class="Dialog" expanded="0">
             <property name="aui_managed">0</property>
+            <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg"></property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
@@ -5201,6 +5205,7 @@
         </object>
         <object class="Dialog" expanded="0">
             <property name="aui_managed">0</property>
+            <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg"></property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
@@ -6415,6 +6420,7 @@
         </object>
         <object class="Dialog" expanded="0">
             <property name="aui_managed">0</property>
+            <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg"></property>
             <property name="center">wxBOTH</property>
             <property name="context_help"></property>
@@ -7361,6 +7367,7 @@
         </object>
         <object class="Panel" expanded="0">
             <property name="aui_managed">0</property>
+            <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg">255,255,255</property>
             <property name="context_help"></property>
             <property name="context_menu">1</property>
@@ -7457,9 +7464,9 @@
                                 <object class="sizeritem" expanded="0">
                                     <property name="border">5</property>
                                     <property name="flag">wxEXPAND</property>
-                                    <property name="proportion">1</property>
+                                    <property name="proportion">0</property>
                                     <object class="spacer" expanded="0">
-                                        <property name="height">0</property>
+                                        <property name="height">50</property>
                                         <property name="permission">protected</property>
                                         <property name="width">0</property>
                                     </object>
@@ -7642,9 +7649,9 @@
                                 <object class="sizeritem" expanded="0">
                                     <property name="border">5</property>
                                     <property name="flag">wxEXPAND</property>
-                                    <property name="proportion">1</property>
+                                    <property name="proportion">0</property>
                                     <object class="spacer" expanded="0">
-                                        <property name="height">0</property>
+                                        <property name="height">50</property>
                                         <property name="permission">protected</property>
                                         <property name="width">0</property>
                                     </object>

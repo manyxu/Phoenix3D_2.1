@@ -15,18 +15,67 @@
 #include "PX2InputManager.hpp"
 using namespace PX2;
 
+#if defined(_WIN32) || defined(WIN32)
+#include <windows.h>
+#endif
+
 //----------------------------------------------------------------------------
 EditRenderView_Res::EditRenderView_Res() :
 EditRenderView(2),
-mItemSize(80.0f)
+mItemSize(80.0f),
+mPreViewHeight(128.0f)
 {
 	// mRenderViewID is 2
 	PX2_INPUTMAN.CreateAddListener(mRenderViewID);
 
-	mFrame = new0 UIFrame();
+	mRootFrame = new0 UIFrame();
+
+	mGridParentFrame = new0 UIFrame();
+	mRootFrame->AttachChild(mGridParentFrame);
 
 	mGridFrame = new0 UIGridFrame();
-	mFrame->AttachChild(mGridFrame);
+	mGridParentFrame->AttachChild(mGridFrame);
+
+	mPreViewFrame = new0 UIFrame();
+	mRootFrame->AttachChild(mPreViewFrame);
+	mPreViewFrame->LocalTransform.SetTranslateY(-100.0f);
+
+	mPreViewBackPicBox = new0 UIPicBox("Data/engine/white.png");
+	mPreViewFrame->AttachChild(mPreViewBackPicBox);
+	mPreViewBackPicBox->SetColor(Float3(0.2f, 0.2f, 0.2f));
+	mPreViewBackPicBox->SetAnchorPoint(0.0f, 0.0f);
+
+	Sizef preViewPicBoxSize = Sizef(mPreViewHeight*0.8f, mPreViewHeight*0.8f);
+	mPreViewLeftFrame = new0 UIFrame();
+	mPreViewFrame->AttachChild(mPreViewLeftFrame);
+	mPreViewPicBox = new0 UIPicBox("Data/engine/white.png");
+	mPreViewLeftFrame->AttachChild(mPreViewPicBox);
+	mPreViewPicBox->SetColor(Float3(0.6f, 0.6f, 0.6f));
+	mPreViewPicBox->SetSize(preViewPicBoxSize);
+	mPreViewLeftFrame->LocalTransform.SetTranslateXZ(mPreViewHeight / 2.0f, mPreViewHeight / 2.0f);
+
+	mPreViewPicOver = new0 UIPicBox("DataEditor/images/framebox_blue.png");
+	mPreViewLeftFrame->AttachChild(mPreViewPicOver);
+	mPreViewPicOver->SetPicBoxType(UIPicBox::PBT_NINE);
+	mPreViewPicOver->SetSize(preViewPicBoxSize);
+	mPreViewPicOver->LocalTransform.SetTranslateY(-1.0f);
+
+	mPreViewRightFrame = new0 UIFrame();
+	mPreViewFrame->AttachChild(mPreViewRightFrame);
+	mPreViewRightFrame->LocalTransform.SetTranslateXZ(mPreViewHeight, 0.0f);
+	mPreViewPathText = new0 UIText();
+	mPreViewRightFrame->AttachChild(mPreViewPathText);
+	mPreViewPathText->SetFontScale(0.6f);
+	mPreViewPathText->SetColor(Float3::WHITE);
+	mPreViewPathText->SetText("FILE: EMPTY");
+	mPreViewPathText->LocalTransform.SetTranslateZ(mPreViewHeight*0.8f);
+	mPreViewSizeText = new0 UIText();
+	mPreViewRightFrame->AttachChild(mPreViewSizeText);
+	mPreViewSizeText->SetFontScale(0.6f);
+	mPreViewSizeText->SetColor(Float3::WHITE);
+	mPreViewSizeText->SetText("INFO: NULL");
+	mPreViewSizeText->LocalTransform.SetTranslateZ(mPreViewHeight*0.8f-20.0f);
+
 }
 //----------------------------------------------------------------------------
 EditRenderView_Res::~EditRenderView_Res()
@@ -67,7 +116,7 @@ bool EditRenderView_Res::InitlizeRendererStep(const std::string &name)
 
 	mIsRenderCreated = true;
 
-	mRenderStep->SetNode(mFrame);
+	mRenderStep->SetNode(mRootFrame);
 
 	return true;
 }
@@ -141,8 +190,16 @@ void EditRenderView_Res::OnSize(const Sizef& size)
 {
 	mSize = size;
 
-	mGridFrame->SetSize(mSize);
+	float sizeHeight = mSize.Height - mPreViewHeight;
+	if (sizeHeight < 0.0f)
+		sizeHeight = 0.0f;
+
+	mGridFrame->SetSize(Sizef(mSize.Width, sizeHeight));
 	mGridFrame->Update(GetTimeInSeconds());
+
+	mGridParentFrame->LocalTransform.SetTranslateZ(mPreViewHeight);
+
+	mPreViewBackPicBox->SetSize(Sizef(mSize.Width, mPreViewHeight));
 
 	EditRenderView::OnSize(size);
 
@@ -161,6 +218,11 @@ void EditRenderView_Res::OnLeftDown(const APoint &pos)
 void EditRenderView_Res::OnLeftUp(const APoint &pos)
 {
 	EditRenderView::OnLeftUp(pos);
+}
+//----------------------------------------------------------------------------
+void EditRenderView_Res::OnLeftDClick(const APoint &pos)
+{
+	EditRenderView::OnLeftDClick(pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Res::OnMiddleDown(const APoint &pos)
@@ -193,30 +255,54 @@ void EditRenderView_Res::OnMotion(const APoint &pos)
 	PX2_UNUSED(pos);
 }
 //----------------------------------------------------------------------------
-void EditRenderView_Res::Visit(Object *obj, const int info)
+void EditRenderView_Res::Visit(Object *obj, int info)
 {
 	PX2_UNUSED(info);
 
 	UICheckButton *but = DynamicCast<UICheckButton>(obj);
 	if (but)
 	{
-		if (mLastBut != but)
+		if (UICT_CHECKED == info)
 		{
-			if (mLastBut)
+			if (mLastBut != but)
 			{
-				mLastBut->Check(false);
+				if (mLastBut)
+				{
+					mLastBut->Check(false);
+				}
 			}
+
+			std::string filename = but->GetUserData<std::string>("ResPath");
+
+			SelectResData resData(SelectResData::RT_NORMAL);
+			resData.ResPathname = filename;
+
+			_SelectRes(resData);
+
+			mLastBut = but;
 		}
-
-		std::string filename = but->GetUserData<std::string>("ResPath");
-
-		SelectResData resdata(SelectResData::RT_NORMAL);
-		resdata.ResPathname = filename;
-
-		PX2_EDIT.SetSelectedResource(resdata);
-
-		mLastBut = but;
+		else if (UICT_DOUBLECLICK == info)
+		{
+			//std::string filename = but->GetUserData<std::string>("ResPath");
+		}
 	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_Res::_SelectRes(const SelectResData& resData)
+{
+	PX2_EDIT.SetSelectedResource(resData);
+
+	std::string filename = resData.ResPathname;
+
+	std::string pathText = "FILE: " + filename;
+	mPreViewPathText->SetText(pathText);
+	mPreViewPathText->SetColor(Float3::YELLOW);
+
+	std::string outPath;
+	std::string outBaseName;
+	std::string ext;
+	StringHelp::SplitFullFilename(filename, outPath, outBaseName, ext);
+	_SetPicBox(mPreViewPicBox, resData.ResPathname, ext, false);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &dirPaths,
@@ -296,35 +382,9 @@ void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &dirPaths,
 			over->SetTexCornerSize(5.0f, 5.0f);
 			frameContent->AttachChild(over);
 
-			if ("png" == ext || "dds" == ext || "jpg" == ext)
-			{
-				mHandlers[filename] = PX2_RM.BackgroundLoad(filename);
-				objPicBox = new0 UIPicBox("Data/engine/default.png");
-			}
-			else if ("xml" == ext)
-			{
-				if (PX2_RM.IsTexPack(filename))
-					objPicBox = new0 UIPicBox("DataEditor/images/xml_texpack.png");
-				else
-					objPicBox = new0 UIPicBox("DataEditor/images/xml.png");
-			}
-			else if ("px2obj" == ext)
-			{
-				mHandlers[filename] = PX2_RM.BackgroundLoad(filename);
-				objPicBox = new0 UIPicBox("DataEditor/images/obj.png");
-			}
-			else if ("px2proj" == ext)
-			{
-				objPicBox = new0 UIPicBox("DataEditor/images/proj.png");
-			}
-			else if ("lua" == ext)
-			{
-				objPicBox = new0 UIPicBox("DataEditor/images/script.png");
-			}
-			else
-			{
-				objPicBox = new0 UIPicBox("DataEditor/images/unknow.png");
-			}
+			objPicBox = new0 UIPicBox();
+
+			_SetPicBox(objPicBox, filename, ext, true);
 		}
 
 		if (objPicBox)
@@ -356,6 +416,55 @@ void EditRenderView_Res::_RefreshRes(const std::vector<std::string> &dirPaths,
 		text->SetRectUseage(UIText::RU_CLIP);
 		text->SetRect(Rectf(0.0f, 0.0f, mItemSize, 12));
 		text->LocalTransform.SetTranslate(APoint(-mItemSize / 2.0f, -3.0f, -mItemSize*0.745f));
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_Res::_SetPicBox(UIPicBox *objPicBox,
+	const std::string &filename, const std::string &ext, bool backLoad)
+{
+	if ("png" == ext || "dds" == ext || "jpg" == ext)
+	{
+		if (backLoad)
+		{
+			mHandlers[filename] = PX2_RM.BackgroundLoad(filename);
+			objPicBox->SetTexture("Data/engine/default.png");
+		}
+		else
+		{
+			objPicBox->SetTexture(filename);
+		}
+	
+	}
+	else if ("xml" == ext)
+	{
+		if (PX2_RM.IsTexPack(filename))
+			objPicBox->SetTexture("DataEditor/images/xml_texpack.png");
+		else
+			objPicBox->SetTexture("DataEditor/images/xml.png");
+	}
+	else if ("px2obj" == ext)
+	{
+		if (backLoad)
+		{
+			mHandlers[filename] = PX2_RM.BackgroundLoad(filename);
+			objPicBox->SetTexture("DataEditor/images/obj.png");
+		}
+		else
+		{
+			objPicBox->SetTexture("DataEditor/images/obj.png");
+		}
+	}
+	else if ("px2proj" == ext)
+	{
+		objPicBox->SetTexture("DataEditor/images/proj.png");
+	}
+	else if ("lua" == ext)
+	{
+		objPicBox->SetTexture("DataEditor/images/script.png");
+	}
+	else
+	{
+		objPicBox->SetTexture("DataEditor/images/unknow.png");
 	}
 }
 //----------------------------------------------------------------------------

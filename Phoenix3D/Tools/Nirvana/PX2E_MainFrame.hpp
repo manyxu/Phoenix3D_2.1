@@ -58,6 +58,9 @@ namespace PX2Editor
 		void OnSaveSceneAs();
 		void OnCloseScene();
 
+		void OnImport();
+		void OnExport();
+
 		void OnEditorSimulate();
 		void OnEditorPlay();
 		void OnEditorStop();
@@ -69,6 +72,11 @@ namespace PX2Editor
 		void OnSetEditMode(int type);
 
 		void InspChangeWindow(int windowType);
+		
+		void OnResRefresh();
+		void OnResClear();
+		void OnResOpen();
+		void OnResCopyResPath();
 
 	public:
 		wxMenu *AddMainMenuItem(const std::string &title);
@@ -80,20 +88,19 @@ namespace PX2Editor
 		void AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon, std::string &script);
 		void AddToolSeparater(PX2wxAuiToolBar *toolBar);
 
-		void AddMenuTool(PX2wxAuiToolBar *toolBar, const std::string &MenuTitle, std::string &script);
-
 	protected:
 		DECLARE_EVENT_TABLE()
 
-		void _CreateTopView();
-		void _CreateMenuToolBar();
 		void _CreateMainToolBar();
 		void _CreateMenu();
 		void _CreateViews();
 
 		void _CreateMainView(bool isTopStyle);
 		void _CreateProjView(bool isTopStyle);
-		void _CreateInsp(bool isTopStyle);
+		void _CreateInspView(bool isTopStyle);
+		void _CreateLogView(bool isTopStyle);
+		void _CreatePreView(bool isTopStyle);
+		void _CreateResView(bool isTopStyle);
 		void _CreateTimeLine(bool isTopStyle);
 		void _CreateStatusBar();
 
@@ -153,6 +160,7 @@ namespace PX2Editor
 		ProjView *mProjView;
 		ResView *mResView;
 		InspView *mInspView;
+		RenderView *mPreView;
 		RenderView *mTimeLineView;
 		LogView *mLogView;
 

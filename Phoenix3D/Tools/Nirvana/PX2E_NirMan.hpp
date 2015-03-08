@@ -43,8 +43,6 @@ namespace PX2
 		void AddTool(const std::string &icon, std::string &script);
 		void AddToolSeparater();
 
-		void AddMenuTool(const std::string &menuTitle, std::string &script);
-
 	protected:
 		PX2wxAuiToolBar *mCurToolBar;
 

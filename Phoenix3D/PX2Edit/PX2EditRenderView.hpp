@@ -66,6 +66,7 @@ namespace PX2
 	protected:
 		virtual void OnLeftDown(const APoint &pos);
 		virtual void OnLeftUp(const APoint &pos);
+		virtual void OnLeftDClick(const APoint &pos);
 		virtual void OnMiddleDown(const APoint &pos);
 		virtual void OnMiddleUp(const APoint &pos);
 		virtual void OnMouseWheel(float delta);

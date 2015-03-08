@@ -9,6 +9,7 @@
 #include "PX2EditEventType.hpp"
 #include "PX2Selection.hpp"
 #include "PX2LanguageManager.hpp"
+#include "PX2ResourceManager.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -145,5 +146,15 @@ void ResTree::UpdateOnPath(const std::string &pathName)
 	mRootItem->RootBuild();
 
 	SelectItem(mRootItem->GetItemID());
+}
+//----------------------------------------------------------------------------
+void ResTree::ResRefresh()
+{
+	UpdateOnPath("Data/");
+}
+//----------------------------------------------------------------------------
+void ResTree::ResClear()
+{
+	PX2_RM.Clear();
 }
 //----------------------------------------------------------------------------

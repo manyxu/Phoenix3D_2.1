@@ -20,6 +20,10 @@ mInitSized(false)
 
 	mMakingWindow = new MakingWindow(this);
 	mMakingWindow->Show(false);
+
+	wxSize size = GetSize();
+	mObjectPropGrid->SetSize(size);
+	mMakingWindow->SetSize(size);
 }
 //-----------------------------------------------------------------------------
 ObjectInspector::~ObjectInspector()
@@ -40,12 +44,12 @@ void ObjectInspector::SetObject(PX2::Object *obj)
 }
 void ObjectInspector::ChangeShowWindow(int windowType)
 {
-	if (windowType == 1)
+	if (1 == windowType)
 	{
 		mObjectPropGrid->Show(true);
 		mMakingWindow->Show(false);
 	}
-	else if (windowType == 2)
+	else if (2 == windowType)
 	{
 		mObjectPropGrid->Show(false);
 		mMakingWindow->Show(true);

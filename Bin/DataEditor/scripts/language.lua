@@ -17,6 +17,9 @@ function AddLanguages()
 	PX2_LM:AddItem1("Copy", "复制")
 	PX2_LM:AddItem1("Paste", "粘贴")
 	PX2_LM:AddItem1("Delete", "删除")
+	PX2_LM:AddItem1("ImportSelectedRes", "导入选择资源")
+	PX2_LM:AddItem1("Import", "导入")
+	PX2_LM:AddItem1("Export", "导出")
 	PX2_LM:AddItem1("Select", "选择")
 	PX2_LM:AddItem1("Translate", "位移")
 	PX2_LM:AddItem1("Rotate", "旋转")
@@ -52,10 +55,6 @@ function AddLanguages()
 	PX2_LM:AddItem1("Add", "添加")
 	PX2_LM:AddItem1("SceneActor", "场景角色")
 	PX2_LM:AddItem1("UI", "界面")
-	
-	PX2_LM:AddItem1("ImportSelectedRes", "导入选择资源")
-	PX2_LM:AddItem1("Import", "导入")
-	PX2_LM:AddItem1("ExportSelected", "导出选择")
 	
 	PX2_LM:AddItem1("ResetPlay", "重置播放")
 	PX2_LM:AddItem1("Play", "播放")
@@ -100,6 +99,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("UIView", "界面")
 	PX2_LM:AddItem1("LogicView", "逻辑")
 	PX2_LM:AddItem1("LogView", "日志")
+	PX2_LM:AddItem1("PreView", "预览")
 	
 	-- ProjView
 	PX2_LM:AddItem1("pv_Project", "工程(Project)")
@@ -114,6 +114,9 @@ function AddLanguages()
 	PX2_LM:AddItem1("pv_Effect", "特效(Effect)")
 	PX2_LM:AddItem1("pv_Sound", "音效(Sound)")
 	
+	-- ResView
+	PX2_LM:AddItem1("CopyResPath", "拷贝资源路径到剪贴簿")
+	
 	-- 一般
 	PX2_LM:AddItem1("Name", "名称")
 	PX2_LM:AddItem1("Ge", "个")
@@ -121,8 +124,9 @@ function AddLanguages()
 	
 	-- Notice
 	PX2_LM:AddItem1("Notice", "注意")
-	PX2_LM:AddItem("Tip0", "你必须选择一个父节点！", "You must select a parent node to add!")
-	PX2_LM:AddItem("Tip1", "父节点必须是一个Node！", "You must select a parent node to add!")
+	PX2_LM:AddItem("Tip0", "必须选择父节点！", "You must select a parent node to add!")
+	PX2_LM:AddItem("Tip1", "父节点必须是Node！", "Parent must be a node!")
+	PX2_LM:AddItem("Tip3", "必须选择1个导出物件！", "You must select a object to export!")
 	
 	--编辑器
 	PX2_LM:AddItem("WelcomeToEditor", "欢迎使用Phoenix3D编辑器!", "Welcome to Phoenix3D editor!")

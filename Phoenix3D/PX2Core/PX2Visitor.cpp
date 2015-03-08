@@ -13,7 +13,7 @@ Visitor::~Visitor ()
 {
 }
 //----------------------------------------------------------------------------
-void Visitor::Visit (Object *obj, const int info)
+void Visitor::Visit (Object *obj, int info)
 {
 	PX2_UNUSED(obj);
 	PX2_UNUSED(info);

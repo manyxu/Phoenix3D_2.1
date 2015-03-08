@@ -52,6 +52,7 @@
     <ClCompile Include="X_Net_GameServer.cpp" />
     <ClCompile Include="X_Skill.cpp" />
     <ClCompile Include="X_UIMan.cpp" />
+    <ClCompile Include="X_UIMan_Start.cpp" />
     <ClCompile Include="X_User.cpp" />
     <ClCompile Include="X_UserActor.cpp" />
   </ItemGroup>

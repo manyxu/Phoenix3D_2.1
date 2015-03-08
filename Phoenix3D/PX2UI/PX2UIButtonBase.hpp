@@ -39,6 +39,7 @@ namespace PX2
 
 	protected:
 		UIButtonBase();
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		UIPicBoxPtr mPicBoxNormal;
 		UIPicBoxPtr mPicBoxOver;

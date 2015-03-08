@@ -79,6 +79,6 @@ end
 
 --insp view toolbar
 function e_createTooBarInsp()
-	NirMan:AddTool("DataEditor/icons/resview/res_refresh.png", "e_InspView_ChangeWindow(1)")
-	NirMan:AddTool("DataEditor/icons/resview/res_clear.png", "e_InspView_ChangeWindow(2)")
+	NirMan:AddTool("DataEditor/icons/insp/grid.png", "e_InspView_ChangeWindow(1)")
+	NirMan:AddTool("DataEditor/icons/insp/panes.png", "e_InspView_ChangeWindow(2)")
 end
