@@ -115,6 +115,14 @@ namespace PX2
 		void OnFindSelectInProjTree();
 		void OnFindSelectInResTree();
 
+		// PreView Object
+	public:
+		void SetPreViewObject(Object *obj);
+		PX2::Object *GetPreViewObject();
+
+	protected:
+		PX2::ObjectPtr mPreObject;
+
 		// Copy
 	public:
 		void SetCopyObject(Object *obj);

@@ -67,6 +67,12 @@ bool Edit::Ternamate()
 //----------------------------------------------------------------------------
 void Edit::Reset()
 {
+	mPreObject = 0;
+	mCopyObject = 0;
+	mSelectPath_ChildFilenames.clear();
+	mSelectPath_ChildPaths.clear();
+
+
 	PX2_SELECTION.Clear();
 
 	SetEditType(ET_SCENE);
@@ -334,5 +340,14 @@ void Edit::OnFindSelectInResTree()
 		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::FindActorInResTree);
 		PX2_EW.BroadcastingLocalEvent(ent);
 	}
+}
+//----------------------------------------------------------------------------
+void Edit::SetPreViewObject(Object *obj)
+{
+	mPreObject = obj;
+
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SetPreViewObject);
+	ent->SetData<PX2::Object*>(obj);
+	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------

@@ -62,6 +62,11 @@ inline const SelectResData &Edit::GetSelectedResource() const
 	return mSelectResData;
 }
 //----------------------------------------------------------------------------
+inline PX2::Object *Edit::GetPreViewObject()
+{
+	return mPreObject;
+}
+//----------------------------------------------------------------------------
 inline void Edit::SetCopyObject(Object *obj)
 {
 	mCopyObject = obj;

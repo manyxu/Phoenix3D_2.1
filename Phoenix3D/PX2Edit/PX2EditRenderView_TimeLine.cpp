@@ -79,9 +79,9 @@ bool EditRenderView_TimeLine::InitlizeRendererStep(const std::string &name)
 
 	mRenderStep->SetSize(mSize);
 
-	mIsRenderCreated = true;
-
 	mRenderStep->SetNode(mFrame);
+
+	mIsRenderCreated = true;
 
 	return true;
 }

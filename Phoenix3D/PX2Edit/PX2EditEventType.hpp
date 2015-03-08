@@ -37,6 +37,8 @@ namespace PX2
 
 	PX2_EVENT(SelectRes)
 
+	PX2_EVENT(SetPreViewObject)
+
 	PX2_EVENT(FindActorInProjectTree)
 	PX2_EVENT(FindActorInResTree)
 

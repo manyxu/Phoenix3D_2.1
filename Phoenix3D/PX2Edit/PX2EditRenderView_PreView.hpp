@@ -7,6 +7,10 @@
 #include "PX2EditRenderView.hpp"
 #include "PX2Polysegment.hpp"
 #include "PX2UIObjectCtrl.hpp"
+#include "PX2UIFrame.hpp"
+#include "PX2UIPicBox.hpp"
+#include "PX2UIText.hpp"
+#include "PX2UIView.hpp"
 
 namespace PX2
 {
@@ -17,7 +21,20 @@ namespace PX2
 		EditRenderView_PreView();
 		virtual ~EditRenderView_PreView();
 
+		virtual bool InitlizeRendererStep(const std::string &name);
+
 		virtual void Tick(double elapsedTime);
+
+		void SetObject(PX2::Object *obj);
+
+	protected:
+		UIViewPtr mUIView;
+		UIFramePtr mPicFrame;
+		UIPicBoxPtr mUIPicBox;
+		UITextPtr mUIText;
+
+		NodePtr mModelNode;
+		MovablePtr mModel;
 
 	public:
 		virtual void OnSize(const Sizef& size);

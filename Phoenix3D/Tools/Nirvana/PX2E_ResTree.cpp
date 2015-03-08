@@ -112,11 +112,78 @@ void ResTree::OnSelChanged(wxTreeEvent& event)
 	ResTreeItem *item = GetItem(id);
 	if (!item) return;
 
-	PX2_EDIT.SetSelectPath_ChildFilenames(item->GetChildFilenamesList());
-	PX2_EDIT.SetSelectPath_ChildPaths(item->GetChildPathsList());
+	if (mIsUseOnlyDir)
+	{
+		PX2_EDIT.SetSelectPath_ChildFilenames(item->GetChildFilenamesList());
+		PX2_EDIT.SetSelectPath_ChildPaths(item->GetChildPathsList());
 
-	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::RefreshRes);
-	PX2_EW.BroadcastingLocalEvent(ent);
+		Event *ent = EditEventSpace::CreateEventX(EditEventSpace::RefreshRes);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+	else
+	{
+		if (item->IsTexPackElement())
+		{
+			std::string eleName = item->GetName();
+			std::string pathName = item->GetPathName();
+
+			const TexPackElement &ele = PX2_RM.GetTexPackElement(pathName, eleName);
+			if (ele.IsValid())
+			{
+				ObjectPtr obj = PX2_RM.BlockLoad(ele.ImagePathFull);
+
+				SelectResData data(SelectResData::RT_TEXPACKELEMENT);
+				data.ResPathname = pathName;
+				data.EleName = eleName;
+				data.TheObject = obj;
+				PX2_EDIT.SetSelectedResource(data);
+				PX2_EDIT.SetPreViewObject(obj);
+			}
+
+			return;
+		}
+
+		std::string resPath = item->GetPathName();
+		if (resPath.find(".wav") != std::string::npos ||
+			resPath.find(".WAV") != std::string::npos ||
+			resPath.find(".ogg") != std::string::npos ||
+			resPath.find(".OGG") != std::string::npos ||
+			resPath.find(".mp3") != std::string::npos ||
+			resPath.find(".MP3") != std::string::npos)
+		{
+			SelectResData data;
+			data.ResPathname = resPath;
+			PX2_EDIT.SetSelectedResource(data);
+		}
+		else if (resPath.find(".xml") != std::string::npos || resPath.find(".XML") != std::string::npos)
+		{
+			SelectResData data;
+			data.ResPathname = resPath;
+			PX2_EDIT.SetSelectedResource(data);
+		}
+		else if (resPath.find(".lua") != std::string::npos)
+		{
+		}
+		else if (resPath.find(".px2Logic") != std::string::npos)
+		{
+			SelectResData data;
+			data.ResPathname = resPath;
+
+			PX2_EDIT.SetSelectedResource(data);
+		}
+		else if (resPath.find(".") != std::string::npos)
+		{
+			SelectResData data;
+			data.ResPathname = resPath;
+
+			PX2::ObjectPtr object = ResourceManager::GetSingleton().BlockLoad(
+				resPath.c_str());
+			data.TheObject = object;
+
+			PX2_EDIT.SetSelectedResource(data);
+			PX2_EDIT.SetPreViewObject(object);
+		}
+	}
 }
 //-----------------------------------------------------------------------------
 ResTreeItem *ResTree::GetItem(wxTreeItemId id)
