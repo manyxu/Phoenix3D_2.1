@@ -31,7 +31,7 @@ wxWindow(parent, -1)
 	mResTreeBar->SetArtProvider(new PX2wxAuiToolBarArt(1));
 
 	NirMan::GetSingleton().SetCurToolBar(mResTreeBar);
-	PX2_SM.CallString("e_CreateTooBarRes()");
+	PX2_SM.CallString("e_CreateToolBarRes()");
 
 	mResTreeBar->Realize();
 
@@ -53,7 +53,7 @@ wxWindow(parent, -1)
 	wxBoxSizer* bSizer57;
 	bSizer57 = new wxBoxSizer(wxVERTICAL);
 
-	mSplitPanel = new ResSplitPanel(this);
+	mSplitPanel = new ResSplitPanel(this, false);
 	bSizer57->Add(mSplitPanel, 1, wxEXPAND | wxTOP, 2);
 
 	bSizer54->Add(bSizer57, 1, wxEXPAND, 5);

@@ -23,10 +23,11 @@ EVT_RIGHT_DOWN(ResTree::OnRightDown)
 EVT_RIGHT_UP(ResTree::OnRightUp)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
-ResTree::ResTree(wxWindow *parent) :
+ResTree::ResTree(wxWindow *parent, bool isUseOnlyDir) :
 wxTreeCtrl(parent, sID_RESTREE, wxDefaultPosition, wxDefaultSize,
-wxTR_DEFAULT_STYLE | wxTR_FULL_ROW_HIGHLIGHT | wxTR_NO_LINES | wxTR_TWIST_BUTTONS | wxNO_BORDER),
-mEditMenu(0)
+wxTR_DEFAULT_STYLE | wxTR_FULL_ROW_HIGHLIGHT | wxTR_NO_LINES | wxNO_BORDER),
+mEditMenu(0),
+mIsUseOnlyDir(isUseOnlyDir)
 {
 	mImageList = new wxImageList(16, 16);
 	int imageFolder = mImageList->Add(wxIcon(wxT("DataEditor/icons/folder.png"), wxBITMAP_TYPE_PNG));
@@ -143,7 +144,7 @@ void ResTree::UpdateOnPath(const std::string &pathName)
 	}
 
 	mRootItem = new0 ResTreeItem(this, name, pathName);
-	mRootItem->RootBuild();
+	mRootItem->RootBuild(mIsUseOnlyDir);
 
 	SelectItem(mRootItem->GetItemID());
 }

@@ -15,7 +15,7 @@ namespace PX2Editor
 		DECLARE_DYNAMIC_CLASS(ResTree)
 
 	public:
-		ResTree(wxWindow *parent);
+		ResTree(wxWindow *parent, bool isUseOnlyDir);
 		virtual ~ResTree();
 
 		ResTreeItem *GetItem(wxTreeItemId id);
@@ -45,6 +45,8 @@ namespace PX2Editor
 		wxSize mSize;
 
 		wxMenu *mEditMenu;
+
+		bool mIsUseOnlyDir;
 	};
 
 }

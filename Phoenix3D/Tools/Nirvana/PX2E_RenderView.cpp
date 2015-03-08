@@ -40,7 +40,7 @@ RenderView::RenderView()
 }
 //----------------------------------------------------------------------------
 RenderView::RenderView(RenderViewType viewType, wxWindow *parent) :
-wxWindow(parent, wxID_ANY),
+wxWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER),
 mRenderViewType(viewType),
 mTimerID(-1),
 mIsInited(false),

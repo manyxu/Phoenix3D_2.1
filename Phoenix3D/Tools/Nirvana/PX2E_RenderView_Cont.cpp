@@ -27,6 +27,11 @@ wxAuiToolBar *RenderView_Cot::_CreateRenderViewBar(RenderViewType type)
 		NirMan::GetSingleton().SetCurToolBar(renderViewToolBar);
 		PX2_SM.CallString("e_CreateToolBarSceneUI()");
 	}
+	else if (RVT_PREVIEW == type)
+	{
+		NirMan::GetSingleton().SetCurToolBar(renderViewToolBar);
+		PX2_SM.CallString("e_CreateToolBarPreView()");
+	}
 	else if(RVT_TIMELINE == type)
 	{
 		NirMan::GetSingleton().SetCurToolBar(renderViewToolBar);
@@ -39,11 +44,9 @@ wxAuiToolBar *RenderView_Cot::_CreateRenderViewBar(RenderViewType type)
 }
 //----------------------------------------------------------------------------
 RenderView_Cot::RenderView_Cot(RenderViewType type, wxWindow *parent) :
-wxWindow(parent, wxID_ANY),
+wxWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER),
 mRenderView(0)
 {
-	SetBackgroundColour(wxColour(207, 214, 229));
-
 	wxBoxSizer* bSizer54;
 	bSizer54 = new wxBoxSizer(wxVERTICAL);
 
@@ -52,17 +55,17 @@ mRenderView(0)
 
 	mRenderViewBar = _CreateRenderViewBar(type);
 
-	bSizer55->Add(mRenderViewBar, 0, wxEXPAND, 5);
+	bSizer55->Add(mRenderViewBar, 0, wxEXPAND, 0);
 
-	bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
+	bSizer54->Add(bSizer55, 0, wxEXPAND, 0);
 
 	wxBoxSizer* bSizer57;
 	bSizer57 = new wxBoxSizer(wxVERTICAL);
 
 	mRenderView = new RenderView(type, this);
-	bSizer57->Add(mRenderView, 1, wxEXPAND | wxTOP, 2);
+	bSizer57->Add(mRenderView, 1, wxEXPAND | wxTOP, 0);
 
-	bSizer54->Add(bSizer57, 1, wxEXPAND, 5);
+	bSizer54->Add(bSizer57, 1, wxEXPAND, 0);
 
 	this->SetSizer(bSizer54);
 	this->Layout();

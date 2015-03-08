@@ -36,6 +36,34 @@ EditRenderView_PreView::~EditRenderView_PreView()
 	}
 }
 //----------------------------------------------------------------------------
+void EditRenderView_PreView::Tick(double elapsedTime)
+{
+	if (!IsEnable()) return;
+
+	if (mRenderStep && mIsRenderCreated)
+	{
+		double tiemInSeconds = GetTimeInSeconds();
+
+		mRenderStep->Update(tiemInSeconds, elapsedTime);
+
+		mRenderStep->ComputeVisibleSet();
+
+		Renderer *renderer = mRenderStep->GetRenderer();
+		if (renderer && renderer->PreDraw())
+		{
+			renderer->InitRenderStates();
+
+			mRenderer->SetClearColor(Float4::MakeColor(64, 64, 64, 255));
+			renderer->ClearBuffers();
+
+			mRenderStep->Draw();
+
+			renderer->PostDraw();
+			renderer->DisplayColorBuffer();
+		}
+	}
+}
+//----------------------------------------------------------------------------
 void EditRenderView_PreView::OnSize(const Sizef& size)
 {
 	mSize = size;

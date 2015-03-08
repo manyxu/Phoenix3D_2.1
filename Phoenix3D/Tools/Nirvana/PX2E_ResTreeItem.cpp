@@ -9,6 +9,7 @@ using namespace PX2;
 //-----------------------------------------------------------------------------
 ResTreeItem::ResTreeItem(ResTree *resTree, std::string name, std::string pathName) :
 mResTree(resTree),
+mIsOnlyDir(false),
 mResName(name),
 mResPathName(pathName),
 mItemID(0),
@@ -22,7 +23,7 @@ ResTreeItem::~ResTreeItem()
 {
 }
 //-----------------------------------------------------------------------------
-void ResTreeItem::RootBuild()
+void ResTreeItem::RootBuild(bool isOnlyDir)
 {
 	mResTree->DeleteAllItems();
 
@@ -30,7 +31,7 @@ void ResTreeItem::RootBuild()
 	int iconID = mResTree->Icons["folder"];
 	mItemID = mResTree->AddRoot(mResName, iconID);
 
-	_BuildChild();
+	_BuildChild(isOnlyDir);
 
 	mResTree->Expand(mItemID);
 }
@@ -41,7 +42,7 @@ void ResTreeItem::AddChild(ResTreeItem *item)
 
 	item->SetParent(this);
 
-	item->_BuildChild();
+	item->_BuildChild(mIsOnlyDir);
 }
 //-----------------------------------------------------------------------------
 int ResTreeItem::GetChildNum()
@@ -137,39 +138,44 @@ bool ResTreeItem::_IsAFile(const std::string &filename)
 	return false;
 }
 //-----------------------------------------------------------------------------
-void ResTreeItem::_BuildChild()
+void ResTreeItem::_BuildChild(bool isOnlyDir)
 {
+	mIsOnlyDir = isOnlyDir;
+
 	if (mResName.empty()) return;
+	
+	if (!mIsOnlyDir)
+	{
+		if (_IsAFile(mResPathName))
+		{ // 是一个文件
 
-	//if (_IsAFile(mResPathName))
-	//{ // 是一个文件
+			mResPathName = mResPathName.substr(0, mResPathName.size() - 1);
 
-	//	mResPathName = mResPathName.substr(0, mResPathName.size() - 1);
+			if (mResPathName.find(".xml") != std::string::npos
+				|| mResPathName.find(".XML") != std::string::npos)
+			{
+				mIsTexPack = PX2_RM.IsTexPack(mResPathName);
+			}
 
-	//	if (mResPathName.find(".xml") != std::string::npos
-	//		|| mResPathName.find(".XML") != std::string::npos)
-	//	{
-	//		mIsTexPack = PX2_RM.IsTexPack(mResPathName);
-	//	}
+			if (mIsTexPack)
+			{
+				PX2_RM.AddTexPack(mResPathName);
+				const TexPack &texPack = PX2_RM.GetTexPack(mResPathName);
+				if (texPack.IsValid())
+				{
+					for (int i = 0; i < (int)texPack.Elements.size(); i++)
+					{
+						std::string eleName = texPack.Elements[i].ElementName;
+						ResTreeItem *item = new0 ResTreeItem(mResTree, eleName, GetPathName());
+						item->SetBeTexPackElement(true);
+						AddChild(item);
+					}
+				}
+			}
 
-	//	if (mIsTexPack)
-	//	{
-	//		PX2_RM.AddTexPack(mResPathName);
-	//		const TexPack &texPack = PX2_RM.GetTexPack(mResPathName);
-	//		if (texPack.IsValid())
-	//		{
-	//			for (int i = 0; i < (int)texPack.Elements.size(); i++)
-	//			{
-	//				std::string eleName = texPack.Elements[i].ElementName;
-	//				ResTreeItem *item = new0 ResTreeItem(mResTree, eleName, GetPathName());
-	//				item->SetBeTexPackElement(true);
-	//				AddChild(item);
-	//			}
-	//		}
-	//	}
-
-	//	return;
-	//}
+			return;
+		}
+	}
 
 	wxDir d;
 
@@ -196,6 +202,11 @@ void ResTreeItem::_BuildChild()
 
 					if (_IsAFile(fileName))
 					{
+						if (!mIsOnlyDir)
+						{
+							AddChild(item);
+						}
+
 						mChildFilesItems.push_back(item);
 						mChildFilenamesList.push_back(pathName);
 					}

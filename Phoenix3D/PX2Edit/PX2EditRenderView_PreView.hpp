@@ -17,6 +17,8 @@ namespace PX2
 		EditRenderView_PreView();
 		virtual ~EditRenderView_PreView();
 
+		virtual void Tick(double elapsedTime);
+
 	public:
 		virtual void OnSize(const Sizef& size);
 		virtual void OnLeftDown(const APoint &pos);

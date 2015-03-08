@@ -49,10 +49,15 @@ function e_CreateTooBarProject()
 end
 
 -- res view toolbar
-function e_CreateTooBarRes()
+function e_CreateToolBarRes()
 	NirMan:AddTool("DataEditor/icons/resview/res_refresh.png", "e_ResView_Refresh()")
 	NirMan:AddTool("DataEditor/icons/resview/res_clear.png", "e_ResView_Clear()")
 	NirMan:AddToolSeparater()
+end
+
+-- pre view toolbar
+function e_CreateToolBarPreView ()
+	NirMan:AddTool("DataEditor/icons/resview/res_refresh.png", "e_ResView_Refresh()")
 end
 
 -- timeline toolbar

@@ -21,7 +21,7 @@ namespace PX2Editor
 		std::string GetName() { return mResName; }
 		std::string GetPathName() { return mResPathName; }
 
-		void RootBuild();
+		void RootBuild(bool isOnlyDir);
 		void AddChild(ResTreeItem *item);
 		int GetChildNum();
 		bool IsTexPack() { return mIsTexPack; }
@@ -40,12 +40,13 @@ namespace PX2Editor
 
 	public_internal:
 		void SetParent(ResTreeItem *parent);
-		void _BuildChild();
+		void _BuildChild(bool isOnlyDir);
 		bool _IsAFile(const std::string &filename);
 
 	protected:
 		ResTreeItem();
 
+		bool mIsOnlyDir;
 		ResTree *mResTree;
 
 		wxTreeItemId mItemID;

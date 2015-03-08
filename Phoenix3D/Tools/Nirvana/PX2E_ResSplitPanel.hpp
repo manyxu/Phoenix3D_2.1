@@ -12,7 +12,7 @@ namespace PX2Editor
 	{
 	public:
 
-		ResSplitPanel(wxWindow* parent, wxWindowID id = wxID_ANY, 
+		ResSplitPanel(wxWindow* parent, bool useSplit, wxWindowID id = wxID_ANY, 
 			const wxPoint& pos = wxDefaultPosition,
 			const wxSize& size = wxSize(500, 300), long style = wxTAB_TRAVERSAL);
 		~ResSplitPanel();
