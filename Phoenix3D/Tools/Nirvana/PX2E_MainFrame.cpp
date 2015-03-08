@@ -802,7 +802,6 @@ void E_MainFrame::_CreateViews()
 	_CreatePreView(false);
 	_CreateResView(false);
 	_CreateInspView(false);
-	_CreateLogView(false);
 	_CreateTimeLine(false);
 }
 //----------------------------------------------------------------------------
@@ -846,17 +845,24 @@ void E_MainFrame::_CreateMainView(bool isTopStyle)
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateInspView(bool isTopStyle)
 {
+	std::vector<WindowObj> objs;
+
 	mInspView = new InspView(this);
+	WindowObj objInsp;
+	objInsp.TheWindow = mInspView;
+	objInsp.Caption = PX2_LMVAL("InspView");
+	objInsp.Name = "InspView";
 
-	_CreateView(mInspView, "InspView", PX2_LM.GetValue("InspView"),
-		wxAuiPaneInfo().Right(), isTopStyle);
-}
-//----------------------------------------------------------------------------
-void E_MainFrame::_CreateLogView(bool isTopStyle)
-{
 	mLogView = new LogView(this);
+	WindowObj objLog;
+	objLog.TheWindow = mLogView;
+	objLog.Caption = PX2_LMVAL("ConsoleView");
+	objLog.Name = "ConsoleView";
 
-	_CreateView(mLogView, "LogView", PX2_LM.GetValue("LogView"),
+	objs.push_back(objInsp);
+	objs.push_back(objLog);
+
+	_CreateView(objs, "InspView", PX2_LM.GetValue("InspView"),
 		wxAuiPaneInfo().Right(), isTopStyle);
 }
 //----------------------------------------------------------------------------

@@ -98,7 +98,6 @@ namespace PX2Editor
 		void _CreateMainView(bool isTopStyle);
 		void _CreateProjView(bool isTopStyle);
 		void _CreateInspView(bool isTopStyle);
-		void _CreateLogView(bool isTopStyle);
 		void _CreatePreView(bool isTopStyle);
 		void _CreateResView(bool isTopStyle);
 		void _CreateTimeLine(bool isTopStyle);

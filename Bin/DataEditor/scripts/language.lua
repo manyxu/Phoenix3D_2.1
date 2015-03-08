@@ -98,7 +98,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("StartView", "起始页")
 	PX2_LM:AddItem1("UIView", "界面")
 	PX2_LM:AddItem1("LogicView", "逻辑")
-	PX2_LM:AddItem1("LogView", "日志")
+	PX2_LM:AddItem1("ConsoleView", "控制台")
 	PX2_LM:AddItem1("PreView", "预览")
 	
 	-- ProjView
