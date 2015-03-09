@@ -11,9 +11,9 @@ inline const Sizef &EngineLoop::GetBoostSize() const
 	return mBoostSize;
 }
 //----------------------------------------------------------------------------
-inline const std::string &EngineLoop::GetProjectPath() const
+inline const std::string &EngineLoop::GetProjectName() const
 {
-	return mProjectPath;
+	return mProjectName;
 }
 //----------------------------------------------------------------------------
 inline void EngineLoop::_SetDoAdjustScreenViewRect(bool adjust)

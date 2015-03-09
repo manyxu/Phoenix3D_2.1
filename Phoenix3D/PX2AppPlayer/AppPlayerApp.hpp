@@ -13,6 +13,8 @@ public:
 	
 	AppPlayerApp ();
 	virtual ~AppPlayerApp ();
+
+	virtual bool Initlize();
 };
 
 PX2_REGISTER_APPLICATION(AppPlayerApp)

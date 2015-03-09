@@ -245,11 +245,10 @@ bool Application::Initlize()
     boostSize = PX2_ENGINELOOP.GetBoostSize();
 	mWidth = (int)boostSize.Width;
 	mHeight = (int)boostSize.Height;
-	std::string projectPath = PX2_ENGINELOOP.GetProjectPath();
 	PX2_ENGINELOOP.SetPt_Size(boostSize);
 
 #if defined(_WIN32) || defined(WIN32)
-	static char sWindowClass[] = "Phoenix2 ApplicationBase";
+	static char sWindowClass[] = "Phoenix3D ApplicationBase";
 	WNDCLASS wc;
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	wc.lpfnWndProc = MsWindowEventHandler;
@@ -311,12 +310,9 @@ bool Application::Initlize()
 	PX2_ENGINELOOP.InitlizeRenderer();
 	PX2_ENGINELOOP.SetScreenSize(boostSize);
 
-	// Load Project
-	_LoadProject(projectPath);
-
 	msIsInitlized = true;
 
-	return false;
+	return true;
 }
 //----------------------------------------------------------------------------
 bool Application::Ternamate()

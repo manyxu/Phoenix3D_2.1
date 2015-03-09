@@ -306,7 +306,7 @@ bool EngineLoop::LoadBoost(const std::string &filename)
 	{
 		mBoostSize.Width = data.GetNodeByPath("config.var").AttributeToFloat("width");
 		mBoostSize.Height = data.GetNodeByPath("config.var").AttributeToFloat("height");
-		mProjectPath = data.GetNodeByPath("play.var").AttributeToString("projectpath");
+		mProjectName = data.GetNodeByPath("play.var").AttributeToString("projectname");
 		mPlayLogicMode = _StrToPlayLogicMode(data.GetNodeByPath("play.var").AttributeToString("playlogicmode"));
 
 		return true;
@@ -358,7 +358,7 @@ bool EngineLoop::WriteBoost()
 
 	XMLNode playNode = boostNode.NewChild("play");
 	XMLNode varNode_play = playNode.NewChild("var");
-	varNode_play.SetAttributeString("projectpath", mProjectPath);
+	varNode_play.SetAttributeString("projectname", mProjectName);
 	varNode_play.SetAttributeString("playlogicmode", GetPlayLogicModeStr());
 
 	return data.SaveFile("Data/boost.xml");

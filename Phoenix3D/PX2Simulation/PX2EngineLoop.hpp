@@ -85,7 +85,7 @@ namespace PX2
 
 		bool LoadBoost(const std::string &filename);
 		const Sizef &GetBoostSize() const;
-		const std::string &GetProjectPath() const;
+		const std::string &GetProjectName() const;
 		PlayLogicMode GetPlayLogicMode() const;
 		std::string GetPlayLogicModeStr() const;
 
@@ -97,7 +97,7 @@ namespace PX2
 		PlayLogicMode _StrToPlayLogicMode(const std::string &str);
 
 		Sizef mBoostSize;
-		std::string mProjectPath;
+		std::string mProjectName;
 		PlayLogicMode mPlayLogicMode;
 
 		// screen adjust

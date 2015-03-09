@@ -406,9 +406,10 @@ void E_MainFrame::OnNewProject()
 			PX2_RM.CreateFloder("Data/", pathName + "images/");
 			PX2_RM.CreateFloder("Data/", pathName + "models/");
 			PX2_RM.CreateFloder("Data/", pathName + "scenes/");
+			PX2_RM.CreateFloder("Data/", pathName + "scripts/");
 
-			std::string path = "Data/" + pathName + "project.px2proj";
-			PX2_EDIT.GetEditMap()->NewProject(path, "project", screenOriention,
+			std::string path = "Data/" + pathName + name +".px2proj";
+			PX2_EDIT.GetEditMap()->NewProject(path, name, screenOriention,
 				width, height);
 		}
 	}
@@ -418,7 +419,7 @@ void E_MainFrame::OnOpenProject()
 {
 	wxFileDialog dlg(this,
 		wxT("Open project"),
-		wxEmptyString,
+		"Data/",
 		wxEmptyString,
 		wxT("Project (*.px2proj)|*.px2proj"));
 
