@@ -60,6 +60,8 @@ namespace PX2
 		virtual bool Initlize();
 		virtual bool Ternamate();
 
+		virtual void SetTitle(const std::string &title);
+
 #if defined(_WIN32) || defined(WIN32)
 		// ´°¿Ú
 		HWND mhWnd;

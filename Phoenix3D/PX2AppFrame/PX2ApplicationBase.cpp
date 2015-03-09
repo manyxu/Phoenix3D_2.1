@@ -37,12 +37,12 @@ bool ApplicationBase::Initlize ()
 	return true;
 }
 //----------------------------------------------------------------------------
-int ApplicationBase::GetWidth ()
+int ApplicationBase::GetWidth() const
 {
 	return mWidth;
 }
 //----------------------------------------------------------------------------
-int ApplicationBase::GetHeight ()
+int ApplicationBase::GetHeight() const
 {
 	return mHeight;
 }
@@ -66,6 +66,16 @@ bool ApplicationBase::Ternamate ()
 	PX2_ENGINELOOP.Ternamate();
 
 	return true;
+}
+//----------------------------------------------------------------------------
+void ApplicationBase::SetTitle(const std::string &title)
+{
+	mWindowTitle = title;
+}
+//----------------------------------------------------------------------------
+const std::string &ApplicationBase::GetTitle() const
+{
+	return mWindowTitle;
 }
 //----------------------------------------------------------------------------
 void ApplicationBase::OnSize (int width, int height)

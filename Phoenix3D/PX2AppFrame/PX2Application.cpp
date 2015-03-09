@@ -320,3 +320,10 @@ bool Application::Ternamate()
 	return ApplicationBase::Ternamate();
 }
 //----------------------------------------------------------------------------
+void Application::SetTitle(const std::string &title)
+{
+	ApplicationBase::SetTitle(title);
+
+
+}
+//----------------------------------------------------------------------------

@@ -22,13 +22,16 @@ namespace PX2
 		virtual bool Initlize ();
 		virtual bool Ternamate ();
 
+		virtual void SetTitle(const std::string &title);
+		const std::string &GetTitle() const;
+
 		virtual void OnSize (int width, int height);
 		virtual void WillEnterForeground (bool isFirstTime);
 		virtual void DidEnterBackground ();
 		bool IsIsInBackground () const;
 
-		int GetWidth ();
-		int GetHeight ();
+		int GetWidth () const;
+		int GetHeight() const;
 
 		virtual bool OnIdle ();
 
