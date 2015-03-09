@@ -6,13 +6,13 @@
 #include "PX2Assert.hpp"
 #include "PX2Edit.hpp"
 #include "PX2StringHelp.hpp"
+#include "PX2E_MainFrame.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
 IMPLEMENT_DYNAMIC_CLASS(PX2Editor::StartView, wxPanel)
 BEGIN_EVENT_TABLE(StartView, wxPanel)
-EVT_BUTTON(XRCID("m_button20"), StartView::OnButtonClick)
-EVT_BUTTON(XRCID("m_button21"), StartView::OnButtonClick)
+EVT_BUTTON(wxID_ANY, StartView::OnButton)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 StartView::StartView()
@@ -28,40 +28,15 @@ StartView::~StartView()
 {
 }
 //----------------------------------------------------------------------------
-void StartView::OnButtonClick(wxCommandEvent& event)
+void StartView::OnButton(wxCommandEvent& event)
 {
-	if (XRCID("m_button20") == event.GetId())
+	if (XRCID("mNewProject") == event.GetId())
 	{
-		DlgCreateProject dlg(this);
-		if (wxID_OK == dlg.ShowModal())
-		{
-			std::string name = dlg.mProjName;
-			std::string projPath = dlg.mProjPath;
-			int so = dlg.mScreenOrientation;
-			int width = dlg.mProjWidth;
-			int height = dlg.mProjHeight;
-
-			std::string path = projPath + "/" + name + ".px2proj";
-
-			PX2_EDIT.GetEditMap()->NewProject(path, name, so, width, height);
-		}
+		E_MainFrame::GetSingleton().OnNewProject();
 	}
-	if (XRCID("m_button21") == event.GetId())
+	if (XRCID("mOpenProject") == event.GetId())
 	{
-		wxFileDialog dlg(this,
-			wxT("Open project"),
-			wxEmptyString,
-			wxEmptyString,
-			wxT("Project (*.px2proj)|*.px2proj"));
-
-		dlg.CenterOnParent();
-
-		if (wxID_OK == dlg.ShowModal())
-		{
-			std::string path = dlg.GetPath();
-			path = StringHelp::StandardiseFilename(path);
-			PX2_EDIT.GetEditMap()->LoadProject(path);
-		}
+		E_MainFrame::GetSingleton().OnOpenProject();
 	}
 }
 //----------------------------------------------------------------------------

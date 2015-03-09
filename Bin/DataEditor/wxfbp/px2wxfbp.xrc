@@ -1356,7 +1356,7 @@
 								<option>0</option>
 								<flag>wxALL</flag>
 								<border>5</border>
-								<object class="wxButton" name="m_button20">
+								<object class="wxButton" name="mNewProject">
 									<label>新建项目...</label>
 									<default>0</default>
 								</object>
@@ -1365,7 +1365,7 @@
 								<option>0</option>
 								<flag>wxALL</flag>
 								<border>5</border>
-								<object class="wxButton" name="m_button21">
+								<object class="wxButton" name="mOpenProject">
 									<label>打开项目...</label>
 									<default>0</default>
 								</object>
