@@ -159,7 +159,7 @@ void Effectable::SetMaterialType (MaterialType type)
 		SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PCT2));
 	}
 
-	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/effect/effect.px2obj", "default", false);
+	MaterialInstance *mi = new0 MaterialInstance("Data/engine_mtls/effect/effect.px2obj", "default", false);
 	SetMaterialInstance(mi);
 }
 //----------------------------------------------------------------------------

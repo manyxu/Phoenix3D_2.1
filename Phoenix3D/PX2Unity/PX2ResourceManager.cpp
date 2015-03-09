@@ -338,12 +338,12 @@ bool ResourceManager::IsFloderExist (const std::string &parentPath,
 	std::string dirPath = parentPath;
 	dirPath.append(path);
 
-	if (0 == access(dirPath.c_str(), 0))
+	if (-1 != access(dirPath.c_str(), 0))
 	{
-		return false;
+		return true;
 	}
 
-	return true;
+	return false;
 }
 //----------------------------------------------------------------------------
 bool ResourceManager::LoadBuffer (const std::string &filename, int &bufferSize, 

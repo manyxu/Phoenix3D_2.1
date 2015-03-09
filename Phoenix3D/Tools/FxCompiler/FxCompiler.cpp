@@ -233,7 +233,7 @@ bool FxCompiler::Compile (const std::string &XMLName)
 	std::string mtlName = materialNode.AttributeToString("name");
 	string mtlFilename = mtlName + string(".px2obj");
 
-	std::string resourcePath = "Data/mtls/" + mtlName + "/" + mtlFilename;
+	std::string resourcePath = "Data/engine_mtls/" + mtlName + "/" + mtlFilename;
 
 	mCurMaterial->SetResourcePath(resourcePath);
 
@@ -612,13 +612,13 @@ bool FxCompiler::ProcessShaderNode_Program(XMLNode programNode, Shader *shader)
 					//Parse(compiledFilename, profileName, program);
 
 					//shader->SetProgram(i, program.Text);
-					shader->SetProgramFilename(i, "Data/mtls/" + entryname + "/" + compiledFilename);
+					shader->SetProgramFilename(i, "Data/engine_mtls/" + entryname + "/" + compiledFilename);
 				}
 			}
 			else if ("gles2" == type)
 			{
 				int profile = (int)Shader::P_OPENGLES2;
-				shader->SetProgramFilename(profile, "Data/mtls/" + entryname + "/" + filename);
+				shader->SetProgramFilename(profile, "Data/engine_mtls/" + entryname + "/" + filename);
 			}
 		}
 

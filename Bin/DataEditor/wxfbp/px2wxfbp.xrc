@@ -870,7 +870,7 @@
 	</object>
 	<object class="wxDialog" name="CreateProject">
 		<style>wxCAPTION|wxCLOSE_BOX|wxDEFAULT_DIALOG_STYLE</style>
-		<size>345,242</size>
+		<size>345,203</size>
 		<title>CreateProject</title>
 		<centered>1</centered>
 		<object class="wxBoxSizer">
@@ -911,7 +911,7 @@
 						<border>5</border>
 						<object class="wxTextCtrl" name="mName">
 							<size>100,-1</size>
-							<value>Default</value>
+							<value>myproject</value>
 							<maxlength>0</maxlength>
 						</object>
 					</object>
@@ -990,34 +990,6 @@
 							<size>100,-1</size>
 							<value>640</value>
 							<maxlength>0</maxlength>
-						</object>
-					</object>
-				</object>
-			</object>
-			<object class="sizeritem">
-				<option>0</option>
-				<flag>wxEXPAND</flag>
-				<border>5</border>
-				<object class="wxBoxSizer">
-					<orient>wxHORIZONTAL</orient>
-					<object class="sizeritem">
-						<option>0</option>
-						<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<object class="wxStaticText" name="m_staticText37">
-							<size>35,-1</size>
-							<label>Dir</label>
-							<wrap>-1</wrap>
-						</object>
-					</object>
-					<object class="sizeritem">
-						<option>1</option>
-						<flag>wxALL</flag>
-						<border>5</border>
-						<object class="wxDirPickerCtrl" name="mDirPicker">
-							<value>Data/projects</value>
-							<message>Select Folder</message>
-							<style>wxDIRP_DEFAULT_STYLE</style>
 						</object>
 					</object>
 				</object>

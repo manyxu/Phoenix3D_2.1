@@ -389,14 +389,28 @@ void E_MainFrame::OnNewProject()
 	{
 		std::string name = dlg.mProjName;
 		int screenOriention = dlg.mScreenOrientation;
-		std::string projPath = dlg.mProjPath;
 		int width = dlg.mProjWidth;
 		int height = dlg.mProjHeight;
 
-		std::string path = projPath + "/" + name + ".px2proj";
+		std::string pathName = name + "/";
 
-		PX2_EDIT.GetEditMap()->NewProject(path, name, screenOriention, width,
-			height);
+		bool isProjectFolderExist = PX2_RM.IsFloderExist("Data/", pathName);
+		if (isProjectFolderExist)
+		{
+			NirMan::GetSingleton().MessageBox(PX2_LMVAL("Notice"), PX2_LMVAL("Tip4"));
+			return;
+		}
+		else
+		{
+			PX2_RM.CreateFloder("Data/", pathName);
+			PX2_RM.CreateFloder("Data/", pathName + "images/");
+			PX2_RM.CreateFloder("Data/", pathName + "models/");
+			PX2_RM.CreateFloder("Data/", pathName + "scenes/");
+
+			std::string path = "Data/" + pathName + "project.px2proj";
+			PX2_EDIT.GetEditMap()->NewProject(path, "project", screenOriention,
+				width, height);
+		}
 	}
 }
 //----------------------------------------------------------------------------

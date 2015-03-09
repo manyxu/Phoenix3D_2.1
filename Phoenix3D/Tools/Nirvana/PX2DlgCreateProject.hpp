@@ -19,7 +19,6 @@ namespace PX2
 		int mScreenOrientation;
 		int mProjWidth;
 		int mProjHeight;
-		std::string mProjPath;
 
 	protected:
 		DECLARE_EVENT_TABLE();
@@ -28,7 +27,6 @@ namespace PX2
 		wxChoice *mChoiceScreenOrientation;
 		wxTextCtrl *mWidth;
 		wxTextCtrl *mHeight;
-		wxDirPickerCtrl *mDirPicker;
 		wxButton *mOK;
 		wxButton *mCancel;
 	};

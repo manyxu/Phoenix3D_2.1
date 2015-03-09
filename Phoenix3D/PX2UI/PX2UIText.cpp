@@ -19,7 +19,7 @@ mFontType(FT_FREETYPE)
 {
 	SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1));
 
-	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj",
+	MaterialInstance *mi = new0 MaterialInstance("Data/engine_mtls/ui/ui.px2obj",
 		"default", false);
 	SetMaterialInstance(mi);
 	ShaderFloat *shaderFloat = mi->GetPixelConstant(0, "UVParam");

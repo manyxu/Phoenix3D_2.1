@@ -27,9 +27,6 @@ DlgCreateProject::DlgCreateProject(wxWindow *parent)
 	mHeight = (wxTextCtrl*)FindWindow(XRCID("mHeight"));
 	assertion(mName != 0, "Window must be find!");
 
-	mDirPicker = (wxDirPickerCtrl*)FindWindow(XRCID("mDirPicker"));
-	assertion(mDirPicker != 0, "Window must be find!");
-
 	mOK = (wxButton*)FindWindow(XRCID("mOK"));
 	assertion(mOK != 0, "Window must be find!");
 
@@ -50,7 +47,6 @@ void DlgCreateProject::OnButton(wxCommandEvent& event)
 		mScreenOrientation = mChoiceScreenOrientation->GetSelection();
 		mProjWidth = (int)dWidth;
 		mProjHeight = (int)dHeight;
-		mProjPath = mDirPicker->GetPath();
 
 		EndDialog(wxID_OK);
 	}

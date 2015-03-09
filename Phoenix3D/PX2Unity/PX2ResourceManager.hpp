@@ -62,6 +62,8 @@ namespace PX2
 		float GetGarbageCollectTime () const;
 
 		// folder
+		// CreateFloder("Data/", "myproject/")
+		// IsFloderExist("Data/", "myproject/")
 		bool CreateFloder (const std::string &parentPath, const std::string &path);
 		bool IsFloderExist (const std::string &parentPath, const std::string &path);
 

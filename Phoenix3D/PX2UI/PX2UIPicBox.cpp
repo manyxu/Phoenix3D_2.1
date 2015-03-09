@@ -27,7 +27,7 @@ mTexturePathname(filename)
 {
 	_Init();
 
-	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj",
+	MaterialInstance *mi = new0 MaterialInstance("Data/engine_mtls/ui/ui.px2obj",
 		"default", false);
 	SetMaterialInstance(mi);
 
@@ -51,7 +51,7 @@ mTexMode(TM_TEXPACK_ELE)
 {
 	_Init();
 
-	MaterialInstance *mi = new0 MaterialInstance("Data/mtls/ui/ui.px2obj",
+	MaterialInstance *mi = new0 MaterialInstance("Data/engine_mtls/ui/ui.px2obj",
 		"default", false);
 	SetMaterialInstance(mi);
 
