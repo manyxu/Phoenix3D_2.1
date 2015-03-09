@@ -6,9 +6,9 @@ using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView_Logic::EditRenderView_Logic():
-EditRenderView(1)
+EditRenderView(RVT_LOGIC)
 {
-	PX2_INPUTMAN.CreateAddListener(1);
+	PX2_INPUTMAN.CreateAddListener(RVT_LOGIC);
 }
 //----------------------------------------------------------------------------
 EditRenderView_Logic::~EditRenderView_Logic()

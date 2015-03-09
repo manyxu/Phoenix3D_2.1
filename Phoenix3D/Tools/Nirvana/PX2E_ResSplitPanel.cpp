@@ -4,6 +4,7 @@
 #include "PX2E_ResTree.hpp"
 #include "PX2E_RenderView.hpp"
 using namespace PX2Editor;
+using namespace PX2;
 
 //----------------------------------------------------------------------------
 ResSplitPanel::ResSplitPanel(wxWindow* parent, bool useSplit, wxWindowID id,

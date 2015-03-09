@@ -67,11 +67,9 @@ bool Edit::Ternamate()
 //----------------------------------------------------------------------------
 void Edit::Reset()
 {
-	mPreObject = 0;
 	mCopyObject = 0;
 	mSelectPath_ChildFilenames.clear();
 	mSelectPath_ChildPaths.clear();
-
 
 	PX2_SELECTION.Clear();
 

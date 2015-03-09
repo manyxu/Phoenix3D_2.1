@@ -11,7 +11,7 @@ using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView_UI::EditRenderView_UI():
-EditRenderView(0)
+EditRenderView(RVT_SCENEUI)
 {
 	_CreateGridGeometry();
 	_CreateNodeCtrl();

@@ -14,7 +14,7 @@ namespace PX2Editor
 		DECLARE_DYNAMIC_CLASS(RenderView_Cot)
 
 	public:
-		RenderView_Cot(RenderViewType type, wxWindow *parent);
+		RenderView_Cot(PX2::RenderViewType type, wxWindow *parent);
 		virtual ~RenderView_Cot();
 
 		RenderView *GetRenderView();
@@ -23,7 +23,7 @@ namespace PX2Editor
 		DECLARE_EVENT_TABLE()
 
 		RenderView_Cot();
-		wxAuiToolBar *_CreateRenderViewBar(RenderViewType type);
+		wxAuiToolBar *_CreateRenderViewBar(PX2::RenderViewType type);
 
 		wxAuiToolBar *mRenderViewBar;
 		RenderView *mRenderView;

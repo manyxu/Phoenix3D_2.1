@@ -7,6 +7,7 @@
 #include "PX2EditRenderView.hpp"
 #include "PX2EventHandler.hpp"
 #include "PX2E_Define.hpp"
+#include "PX2EditDefine.hpp"
 
 namespace PX2Editor
 {
@@ -16,7 +17,7 @@ namespace PX2Editor
 		DECLARE_DYNAMIC_CLASS(RenderView)
 
 	public:
-		RenderView(RenderViewType viewType, wxWindow *parent);
+		RenderView(PX2::RenderViewType viewType, wxWindow *parent);
 		virtual ~RenderView();
 
 		void OnTimer(wxTimerEvent& event);
@@ -50,7 +51,7 @@ namespace PX2Editor
 	protected:
 		bool mIsInited;
 
-		RenderViewType mRenderViewType;
+		PX2::RenderViewType mRenderViewType;
 
 		int mTimerID;
 		wxTimer mTimer;

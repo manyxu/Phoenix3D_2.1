@@ -27,14 +27,29 @@ namespace PX2
 
 		void SetObject(PX2::Object *obj);
 
+		enum PreViewType
+		{
+			PVT_NONE,
+			PVT_TEXTURE,
+			PVT_MODEL,
+			PVT_MAX_TYPE
+		};
+
 	protected:
+		void _ReSizeTexture();
+
 		UIViewPtr mUIView;
 		UIFramePtr mPicFrame;
 		UIPicBoxPtr mUIPicBox;
 		UITextPtr mUIText;
 
+		CameraPtr mModelCamera;
+		CameraNodePtr mModelCameraNode;
+		NodePtr mModelRootNode;
 		NodePtr mModelNode;
 		MovablePtr mModel;
+
+		PreViewType mPreViewType;
 
 	public:
 		virtual void OnSize(const Sizef& size);

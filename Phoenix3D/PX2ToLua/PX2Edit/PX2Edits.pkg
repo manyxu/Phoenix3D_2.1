@@ -2,3 +2,4 @@
 
 $pfile "PX2Edit/PX2Edit.pkg"
 $pfile "PX2Edit/PX2EditMap.pkg"
+$pfile "PX2Edit/PX2EditDefine.pkg"

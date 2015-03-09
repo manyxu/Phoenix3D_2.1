@@ -350,22 +350,28 @@ end
 function e_AddSceneActor_Actor()
 	local scene = PX2_PROJ:GetScene()
 	local resPath = PX2_EDIT:GetSelectedResource().ResPathname;
-	local pickPos = PX2_EDIT:GetPickPos()
-	PX2_CREATER:AddActor(scene, resPath, pickPos)
+	if "" ~= resPath then
+		local pickPos = PX2_EDIT:GetPickPos()
+		PX2_CREATER:AddActor(scene, resPath, pickPos)
+	end
 end
 
 function e_AddSceneActor_Character()
 	local scene = PX2_PROJ:GetScene()
 	local resPath = PX2_EDIT:GetSelectedResource().ResPathname;
-	local pickPos = PX2_EDIT:GetPickPos()
-	PX2_CREATER:AddCharacter(scene, resPath, pickPos)
+	if "" ~= resPath then
+		local pickPos = PX2_EDIT:GetPickPos()
+		PX2_CREATER:AddCharacter(scene, resPath, pickPos)
+	end
 end
 
 function e_AddSceneActor_Effect()
 	local scene = PX2_PROJ:GetScene()
 	local resPath = PX2_EDIT:GetSelectedResource().ResPathname;
-	local pickPos = PX2_EDIT:GetPickPos()
-	PX2_CREATER:AddEffectActor(scene, resPath, pickPos)
+	if "" ~= resPath then
+		local pickPos = PX2_EDIT:GetPickPos()
+		PX2_CREATER:AddEffectActor(scene, resPath, pickPos)
+	end
 end
 
 function e_AddSceneActor_Sound()

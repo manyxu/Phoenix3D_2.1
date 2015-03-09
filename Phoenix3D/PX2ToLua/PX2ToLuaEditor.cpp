@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/07/15 23:20:47.
+** Generated automatically by tolua++-1.0.92 on 03/09/15 11:45:01.
 */
 
 #ifndef __cplusplus
@@ -3727,11 +3727,6 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"MessageBox",tolua_PX2Editor_NirMan_MessageBox00);
    tolua_variable(tolua_S,"__Singleton_NirMan___",tolua_get_NirMan___Singleton_NirMan___,NULL);
   tolua_endmodule(tolua_S);
-  tolua_constant(tolua_S,"RVT_SCENEUI",RVT_SCENEUI);
-  tolua_constant(tolua_S,"RVT_LOGIC",RVT_LOGIC);
-  tolua_constant(tolua_S,"RVT_RES",RVT_RES);
-  tolua_constant(tolua_S,"RVT_TIMELINE",RVT_TIMELINE);
-  tolua_constant(tolua_S,"RVT_MAX_TYPE",RVT_MAX_TYPE);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Edit","Edit","",tolua_collect_Edit);
   #else
@@ -3809,6 +3804,15 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"SaveSceneAs",tolua_PX2Editor_EditMap_SaveSceneAs00);
    tolua_function(tolua_S,"CloseScene",tolua_PX2Editor_EditMap_CloseScene00);
   tolua_endmodule(tolua_S);
+  tolua_constant(tolua_S,"SM_SINGLE",SM_SINGLE);
+  tolua_constant(tolua_S,"SM_MULTI",SM_MULTI);
+  tolua_constant(tolua_S,"SM_MAX_TYPE",SM_MAX_TYPE);
+  tolua_constant(tolua_S,"RVT_SCENEUI",RVT_SCENEUI);
+  tolua_constant(tolua_S,"RVT_LOGIC",RVT_LOGIC);
+  tolua_constant(tolua_S,"RVT_RES",RVT_RES);
+  tolua_constant(tolua_S,"RVT_PREVIEW",RVT_PREVIEW);
+  tolua_constant(tolua_S,"RVT_TIMELINE",RVT_TIMELINE);
+  tolua_constant(tolua_S,"RVT_MAX_TYPE",RVT_MAX_TYPE);
  tolua_endmodule(tolua_S);
  return 1;
 }

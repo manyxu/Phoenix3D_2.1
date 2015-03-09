@@ -1,10 +1,4 @@
-// PX2EditDefine.hpp
-
-#ifndef PX2EDITDEFINE_HPP
-#define PX2EDITDEFINE_HPP
-
-namespace PX2
-{
+// PX2EditDefine.pkg
 
 	enum SelectMode
 	{
@@ -22,7 +16,3 @@ namespace PX2
 		RVT_TIMELINE,
 		RVT_MAX_TYPE
 	};
-
-}
-
-#endif

@@ -75,7 +75,6 @@ mPreViewHeight(128.0f)
 	mPreViewSizeText->SetColor(Float3::WHITE);
 	mPreViewSizeText->SetText("INFO: NULL");
 	mPreViewSizeText->LocalTransform.SetTranslateZ(mPreViewHeight*0.8f-20.0f);
-
 }
 //----------------------------------------------------------------------------
 EditRenderView_Res::~EditRenderView_Res()

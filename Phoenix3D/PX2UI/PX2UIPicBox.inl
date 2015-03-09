@@ -38,7 +38,17 @@ inline UIPicBox::TexMode UIPicBox::GetTexMode() const
 //----------------------------------------------------------------------------
 inline const std::string &UIPicBox::GetTextureFilename() const
 {
+	return mTexturePathname;
+}
+//----------------------------------------------------------------------------
+inline const std::string &UIPicBox::GetTexturePackName() const
+{
 	return mTexturePackName;
+}
+//----------------------------------------------------------------------------
+inline const std::string &UIPicBox::GetElementName() const
+{
+	return mElementName;
 }
 //----------------------------------------------------------------------------
 inline const Sizef &UIPicBox::GetTexCornerSize() const

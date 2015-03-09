@@ -11,6 +11,7 @@
 #include "PX2Project.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2Edit.hpp"
+#include "PX2EditDefine.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2EngineLoop.hpp"
@@ -94,7 +95,7 @@ void RenderView::OnSize(wxSizeEvent& e)
 
 	Sizef sz = Sizef((float)mSize.GetWidth(), (float)mSize.GetHeight());
 	
-	if (RVT_SCENEUI==mRenderViewType && !mEditRenderViews.empty())
+	if ((RVT_SCENEUI == mRenderViewType) && !mEditRenderViews.empty())
 	{
 		PX2_ENGINELOOP.SetScreenSize(sz);
 	}
@@ -368,7 +369,7 @@ void RenderView::_NewEditRenderView(const std::string &name)
 
 	mEditRenderViews[name] = renderView;
 
-	if (RVT_SCENEUI == mRenderViewType && !mEditRenderViews.empty())
+	if ((RVT_SCENEUI == mRenderViewType) && !mEditRenderViews.empty())
 	{
 		PX2_ENGINELOOP.SetScreenSize(sz);
 	}

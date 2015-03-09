@@ -13,10 +13,11 @@ using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView_PreView::EditRenderView_PreView() :
-EditRenderView(4)
+EditRenderView(RVT_PREVIEW),
+mPreViewType(PVT_NONE)
 {
 	// mRenderViewID is 4
-	PX2_INPUTMAN.CreateAddListener(mRenderViewID);
+	PX2_INPUTMAN.CreateAddListener(RVT_PREVIEW);
 
 	mPicFrame = new0 UIFrame();
 
@@ -25,8 +26,18 @@ EditRenderView(4)
 
 	mUIText = new0 UIText();
 	mPicFrame->AttachChild(mUIText);
+	mUIText->SetRectUseage(UIText::RU_ALIGNS);
+	mUIText->SetAligns(TEXTALIGN_RIGHT | TEXTALIGN_TOP);
+	mUIText->SetColor(Float3::WHITE);
+
+	mModelRootNode = new0 Node();
 
 	mModelNode = new0 Node();
+	mModelRootNode->AttachChild(mModelNode);
+
+	mModelCamera = new0 Camera();
+	mModelCameraNode = new0 CameraNode(mModelCamera);
+	mModelNode->AttachChild(mModelCameraNode);
 }
 //----------------------------------------------------------------------------
 EditRenderView_PreView::~EditRenderView_PreView()
@@ -61,13 +72,17 @@ bool EditRenderView_PreView::InitlizeRendererStep(const std::string &name)
 	mUIView = new0 UIView(mRenderViewID);
 	mRenderStep = mUIView;
 	mRenderStep->SetName(name);
-
 	mRenderer->SetCamera(mUIView->GetCamera());
 	SetRenderer(mRenderer);
-
 	mRenderStep->SetSize(mSize);
-
 	mRenderStep->SetNode(mPicFrame);
+
+	mModelCamera->SetFrustum(35.0f, (float)mSize.Width / (float)mSize.Height, 1.0f, 1000.0f);
+	mRenderStepCtrl = new0 RenderStep();
+	mRenderStepCtrl->SetSize(mSize);
+	mRenderStepCtrl->SetRenderer(mRenderer);
+	mRenderStepCtrl->SetNode(mModelRootNode);
+	mRenderStepCtrl->SetCamera(mModelCamera);
 
 	mIsRenderCreated = true;
 
@@ -78,7 +93,86 @@ void EditRenderView_PreView::Tick(double elapsedTime)
 {
 	if (!IsEnable()) return;
 
-	EditRenderView::Tick(elapsedTime);
+	if (mRenderStep && mIsRenderCreated)
+	{
+		double tiemInSeconds = GetTimeInSeconds();
+
+		if (PVT_TEXTURE == mPreViewType)
+		{
+			mRenderStep->Update(tiemInSeconds, elapsedTime);
+			mRenderStep->ComputeVisibleSet();
+		}
+		else if (PVT_MODEL == mPreViewType)
+		{
+			mRenderStepCtrl->Update(tiemInSeconds, elapsedTime);
+			mRenderStepCtrl->ComputeVisibleSet();
+		}
+
+		Renderer *renderer = mRenderStep->GetRenderer();
+		if (renderer && renderer->PreDraw())
+		{
+			renderer->InitRenderStates();
+			renderer->ClearBuffers();
+
+			if (PVT_TEXTURE == mPreViewType)
+				mRenderStep->Draw();
+			else if (PVT_MODEL == mPreViewType)
+				mRenderStepCtrl->Draw();
+
+			renderer->PostDraw();
+			renderer->DisplayColorBuffer();
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_PreView::_ReSizeTexture()
+{
+	if (!mUIPicBox) return;
+
+	float texWidth = 128.0f;
+	float texHeight = 128.0f;
+
+	UIPicBox::TexMode tm = mUIPicBox->GetTexMode();
+	if (UIPicBox::TM_TEX == tm)
+	{
+		const std::string &textureFilename = mUIPicBox->GetTextureFilename();
+		if (!textureFilename.empty())
+		{
+			Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(textureFilename));
+
+			if (tex)
+			{
+				texWidth = (float)tex->GetWidth();
+				texHeight = (float)tex->GetHeight();
+			}
+		}
+	}
+	else if (UIPicBox::TM_TEXPACK_ELE == tm)
+	{
+		const TexPackElement &element = PX2_RM.GetTexPackElement(mUIPicBox->GetTexturePackName(), mUIPicBox->GetElementName());
+		if (element.IsValid())
+		{
+			texWidth = (float)element.W;
+			texHeight = (float)element.H;
+		}
+	}
+
+	float texWidthOverHeight = texWidth / texHeight;
+
+	float sizeWidthOverHeight = mSize.Width / mSize.Height;
+
+	if (texWidthOverHeight > sizeWidthOverHeight)
+	{
+		mUIPicBox->SetSize(mSize.Width, mSize.Width / texWidthOverHeight);
+	}
+	else
+	{
+		mUIPicBox->SetSize(mSize.Height * texWidthOverHeight, mSize.Height);
+	}
+
+	mUIPicBox->LocalTransform.SetTranslateXZ(mSize.Width/2.0f, mSize.Height/2.0f);
+
+	if (mUIText) mUIText->SetRect(Rectf(0.0f, 0.0f, mSize.Width, mSize.Height));
 }
 //----------------------------------------------------------------------------
 void EditRenderView_PreView::OnSize(const Sizef& size)
@@ -87,10 +181,13 @@ void EditRenderView_PreView::OnSize(const Sizef& size)
 
 	EditRenderView::OnSize(size);
 
+	_ReSizeTexture();
+
+	mModelCamera->SetFrustum(35.0f, (float)mSize.Width / (float)mSize.Height, 1.0f, 1000.0f);
+
 	if (mRenderStep)
 	{
-		mRenderStep->GetRenderer()->ResizeWindow((int)size.Width,
-			(int)size.Height);
+		mRenderStep->GetRenderer()->ResizeWindow((int)size.Width, (int)size.Height);
 	}
 }
 //----------------------------------------------------------------------------
@@ -156,6 +253,8 @@ void EditRenderView_PreView::SetObject(PX2::Object *obj)
 	Movable *mov = DynamicCast<Movable>(obj);
 	if (d2Tex)
 	{
+		mPreViewType = PVT_TEXTURE;
+
 		const SelectResData &data = PX2_EDIT.GetSelectedResource();
 		SelectResData::SelectResType selectResType = data.GetSelectResType();
 
@@ -164,8 +263,6 @@ void EditRenderView_PreView::SetObject(PX2::Object *obj)
 		if (selectResType == SelectResData::RT_NORMAL)
 		{
 			mUIPicBox->SetTexture(data.ResPathname);
-			mUIPicBox->SetSize(mSize);
-			mUIPicBox->LocalTransform.SetTranslate(APoint(mSize.Width / 2.0f, 0.0f, mSize.Height / 2.0f));
 
 			Texture2D *tex2D = DynamicCast<Texture2D>(PX2_RM.BlockLoad(data.ResPathname));
 			if (tex2D)
@@ -183,22 +280,49 @@ void EditRenderView_PreView::SetObject(PX2::Object *obj)
 			{
 				mUIPicBox->SetTexture(data.ResPathname, data.EleName);
 				mUIPicBox->SetSize((float)texPackEle.W, (float)texPackEle.H);
-				mUIPicBox->LocalTransform.SetTranslate(APoint(texPackEle.W / 2.0f, 0.0f, texPackEle.H / 2.0f));
 
 				texStr = "width:" + StringHelp::IntToString(texPackEle.W) + " " + "height:" + StringHelp::IntToString(texPackEle.H) + " ";
 			}
 		}
-		mUIText->SetRect(Rectf(0.0f, 0.0f, mSize.Width, mSize.Height));
 		mUIText->SetText(texStr);
+
+		_ReSizeTexture();
 	}
 	else if (mov)
 	{
+		mPreViewType = PVT_MODEL;
+
 		mUIText->SetText("");
 
-		mModel = mov;
 		mModelNode->DetachAllChildren();
-		mModelNode->AttachChild(mov);
-		mov->ResetPlay();
+		mModel = mov;
+		mModelNode->AttachChild(mModel);
+		mModel->ResetPlay();
+
+		const APoint &boundCenter = mModel->WorldBound.GetCenter();
+		float boundRadius = mModel->WorldBound.GetRadius();
+
+		APoint pos = boundCenter + AVector(-boundRadius*2.0f, -boundRadius*2.0f, boundRadius*2.0f);
+		AVector dir = boundCenter - pos;
+
+		if (boundRadius > 0.0f)
+		{
+			dir.Normalize();
+			AVector up = AVector(Float3(0.0f, 0.0f, 1.0f));
+			AVector right = dir.Cross(up);
+			right.Normalize();
+			up = right.Cross(dir);
+			up.Normalize();
+
+			AVector::Orthonormalize(dir, up, right);
+
+			mModelCameraNode->LocalTransform.SetTranslate(APoint(0.0f, -10.0f, 0.0f));
+			mModelCamera->SetAxes(AVector::UNIT_Y, AVector::UNIT_Z, AVector::UNIT_X);
+		}
+	}
+	else
+	{
+		mPreViewType = PVT_NONE;
 	}
 }
 //----------------------------------------------------------------------------

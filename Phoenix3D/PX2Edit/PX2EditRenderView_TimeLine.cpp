@@ -13,7 +13,7 @@ using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView_TimeLine::EditRenderView_TimeLine() :
-EditRenderView(3),
+EditRenderView(RVT_TIMELINE),
 mMoveMode(MM_PAN),
 mLeftWidth(100.0f),
 mPixelOverCamIn(0.0f),
@@ -26,7 +26,7 @@ mZStart(0.0f),
 mZEnd(0.0f)
 {
 	// mRenderViewID is 3
-	PX2_INPUTMAN.CreateAddListener(mRenderViewID);
+	PX2_INPUTMAN.CreateAddListener(RVT_TIMELINE);
 
 	mFrame = new0 UIFrame();
 

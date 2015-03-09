@@ -1,11 +1,3 @@
 // PX2E_Define.pkg
 
-enum RenderViewType
-{
-	RVT_SCENEUI,
-	RVT_LOGIC,
-	RVT_RES,
-	RVT_TIMELINE,
-	RVT_MAX_TYPE
-};
 

@@ -17,7 +17,7 @@ using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView_Scene::EditRenderView_Scene() :
-EditRenderView(0),
+EditRenderView(RVT_SCENEUI),
 mViewType(VT_PERSPECTIVE),
 mViewDetail(VD_TEXTURED)
 {
