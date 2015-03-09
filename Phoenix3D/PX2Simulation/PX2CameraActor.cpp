@@ -54,17 +54,26 @@ float CameraActor::GetFOV() const
 	return 0.0f;
 }
 //----------------------------------------------------------------------------
-void CameraActor::GetRDUVector(AVector &r, AVector &d, AVector &u)
+void CameraActor::LookAt(const APoint &pos)
 {
-	const HMatrix &rotMat = LocalTransform.GetRotate();
-	HPoint r0, d0, u0;
-	rotMat.GetColumn(0, r0);
-	rotMat.GetColumn(1, d0);
-	rotMat.GetColumn(2, u0);
+	APoint localPos = LocalTransform.GetTranslate();
+	AVector dir = pos - localPos;
 
-	r = AVector(r0[0], r0[1], r0[2]);
-	d = AVector(d0[0], d0[1], d0[2]);
-	u = AVector(u0[0], u0[1], u0[2]);
+	float length = dir.Normalize();
+	if (length > 0.0f)
+	{
+		AVector right = dir.UnitCross(AVector::UNIT_Z);
+		AVector up = right.UnitCross(dir);
+
+		LocalTransform.SetRotate(HMatrix(right, dir, up, AVector::ZERO, true));
+	}
+}
+//----------------------------------------------------------------------------
+void CameraActor::LookAt(const Movable *mov)
+{
+	if (!mov) return;
+
+	LookAt(mov->LocalTransform.GetTranslate());
 }
 //----------------------------------------------------------------------------
 

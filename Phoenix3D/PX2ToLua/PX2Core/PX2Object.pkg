@@ -2,9 +2,66 @@
 
 	class Object
 	{
+		// Enable Disable
+	public:
+		virtual void Enable(bool enable);
+		bool IsEnable() const;
+
+		// 运行识别信息
+	public:
+		virtual const Rtti& GetRttiType () const;
+		virtual unsigned short GetRttiVersion () const;
+		bool IsExactly (const Rtti& type) const;
+		bool IsDerived (const Rtti& type) const;
+		bool IsExactlyTypeOf (const Object* object) const;
+		bool IsDerivedTypeOf (const Object* object) const;
+		static const Rtti TYPE;
+
+		// 用户数据
+	public:
+		void SetUserDataFloat (const std::string &name, float val);
+		float GetUserDataFloat (const std::string &name, bool *isValied=0) const;
+
+		// 资源路径
+	public:
+		void SetResourcePath (const std::string& name);
 		const std::string& GetResourcePath () const;
 
-		void SetName (const std::string& name);
-		const std::string& GetName () const;
-		virtual Object* GetObjectByName (const std::string& name);
+		Stream *mCurStream; //当前用于序列化的
+
+		// 名称
+	public:
+		void SetName(const std::string& name);
+		const std::string& GetName() const;
+		virtual Object* GetObjectByName(const std::string& name);
+		virtual void GetAllObjectsByName(const std::string& name,
+			std::vector<Object*>& objects);
+
+		// ID
+	public:
+		void SetID(int id);
+		int GetID() const;
+		virtual Object* GetObjectByID(int id);
+		virtual void GetAllObjectsByID(int id,
+			std::vector<Object*>& objects);
+
+		// 事件
+	public:
+		void ComeInEventWorld();
+		void GoOutEventWorld();
+		bool IsInEventWorld();
+
+		ObjectEventHandler *GetEventHandler();
+
+		virtual void DoExecute(Event *event);
+
+		// Scripts
+	public:
+		void SetUserScriptName(const std::string &scriptName);
+		const std::string &GetUserScriptName() const;
+		const std::string &GetScriptName() const;
+
+		bool RegistToScriptSystem();
+		bool UnRegistToScriptSystem();
+		bool IsRegistedToScriptSystem();
 	};

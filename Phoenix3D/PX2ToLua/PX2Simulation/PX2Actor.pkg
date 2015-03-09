@@ -1,27 +1,10 @@
-// PX2Actor.hpp
-
-#ifndef PX2ACTOR_HPP
-#define PX2ACTOR_HPP
-
-#include "PX2SimulationPre.hpp"
-#include "PX2SimulationDataDefine.hpp"
-#include "PX2Node.hpp"
-
-namespace PX2
-{
+// PX2Actor.pkg
 
 	class Actor : public Node
 	{
-		PX2_DECLARE_RTTI;
-		PX2_DECLARE_NAMES;
-		PX2_DECLARE_STREAM(Actor);
-
 	public:
 		Actor();
 		~Actor();
-
-	protected:
-		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		// BitSet
 	public:
@@ -44,12 +27,6 @@ namespace PX2
 		std::bitset<PX2_ACTOR_BS_SIZE> &GetBitSet();
 		const std::bitset<PX2_ACTOR_BS_SIZE> &GetBitSet() const;
 		bool IsContainAllBits(const std::bitset<PX2_ACTOR_BS_SIZE> &bits) const;
-
-	protected:
-		int mTypeID;
-		int mGroup;
-
-		std::bitset<PX2_ACTOR_BS_SIZE> mBitSet;
 
 		// Movable
 	public:
@@ -74,28 +51,12 @@ namespace PX2
 		virtual void SetHeading(const AVector &heading);
 		const AVector &GetHeading() const;
 
-	protected:
-		bool mIsShareVI;
-		std::string mMovableFilename;
-		MovablePtr mMovable;
-		
-		NodePtr mHelpNode;
-
-		bool mIsPickable;
-
-		AVector mHeading;
-
 		// Anchor
 	public:
 		void CollectAnchors();
 
 		APoint GetAnchorPos(int id);
 		Node *GetAnchor(int id);
-
-	protected:
-		void _CollectAnchor(Movable *mov);
-
-		std::map<int, Node*> mAnchorMap;
 
 		// Params
 	public:
@@ -104,29 +65,9 @@ namespace PX2
 
 		virtual void SetHegiht(float height);
 		float GetHeight() const;
-
-	protected:
-		float mRadius;
-		float mHeight;
-
+		
 		// scene manager
 	public:
 		void *GetSceneContainer() const;
 		int GetSceneContainerIndex() const;
-
-	public_internal:
-		void SetSceneContainer(void *container);
-		void SetSceneContainerIndex(int index);
-
-	protected:
-		void *mSceneContainer;
-		int mSceneContainerIndex;
 	};
-
-#include "PX2Actor.inl"
-	PX2_REGISTER_STREAM(Actor);
-	typedef Pointer0<Actor> ActorPtr;
-
-}
-
-#endif

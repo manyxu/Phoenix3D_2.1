@@ -23,7 +23,8 @@ namespace PX2
 		void SetFOV(float fov);
 		float GetFOV() const;
 
-		void GetRDUVector(AVector &r, AVector &d, AVector &u);
+		void LookAt(const APoint &pos);
+		void LookAt(const Movable *mov);
 
 		Camera *GetCamera();
 

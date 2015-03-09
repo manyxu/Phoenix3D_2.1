@@ -1,6 +1,7 @@
 // PX2Core.pkg
 
 //$pfile "PX2Core/PX2Tuple.pkg"
+$pfile "PX2Core/PX2Rtti.pkg"
 $pfile "PX2Core/PX2Object.pkg"
 $pfile "PX2Core/PX2Time.pkg"
 $pfile "PX2Core/PX2Log.pkg"

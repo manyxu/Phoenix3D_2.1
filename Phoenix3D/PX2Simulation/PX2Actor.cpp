@@ -109,6 +109,19 @@ void Actor::SetFace(const AVector &dir, const AVector &uping)
 	LocalTransform.SetRotate(matRot);
 }
 //----------------------------------------------------------------------------
+void Actor::GetRDUVector(AVector &r, AVector &d, AVector &u)
+{
+	const HMatrix &rotMat = LocalTransform.GetRotate();
+	HPoint r0, d0, u0;
+	rotMat.GetColumn(0, r0);
+	rotMat.GetColumn(1, d0);
+	rotMat.GetColumn(2, u0);
+
+	r = AVector(r0[0], r0[1], r0[2]);
+	d = AVector(d0[0], d0[1], d0[2]);
+	u = AVector(u0[0], u0[1], u0[2]);
+}
+//----------------------------------------------------------------------------
 AVector Actor::GetFace()
 {
 	HMatrix matRot = LocalTransform.GetRotate();

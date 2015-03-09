@@ -407,6 +407,8 @@ void E_MainFrame::OnNewProject()
 			PX2_RM.CreateFloder("Data/", pathName + "models/");
 			PX2_RM.CreateFloder("Data/", pathName + "scenes/");
 			PX2_RM.CreateFloder("Data/", pathName + "scripts/");
+			std::string scriptPath = "Data/" + pathName + "scripts/" + "start.lua";
+			fopen(scriptPath.c_str(), "wb");
 
 			std::string path = "Data/" + pathName + name +".px2proj";
 			PX2_EDIT.GetEditMap()->NewProject(path, name, screenOriention,

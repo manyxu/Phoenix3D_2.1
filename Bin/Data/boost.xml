@@ -1,9 +1,9 @@
 <boost name="boost">
 	<config>
-		<var width="400" height="800"/>
+		<var width="1136" height="640"/>
 	</config>
 	<play>
-		<var projectname="gamex" playlogicmode="logic"/>
+		<var projectname="sample_earth" playlogicmode="logic"/>
 	</play>
 </boost>
 

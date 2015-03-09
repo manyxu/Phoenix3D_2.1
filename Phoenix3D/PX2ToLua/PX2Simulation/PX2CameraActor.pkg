@@ -1,0 +1,16 @@
+// PX2CameraActor.pkg
+
+	class CameraActor : public Actor
+	{
+	public:
+		CameraActor();
+		~CameraActor();
+
+		void SetFOV(float fov);
+		float GetFOV() const;
+
+		void LookAt(const APoint &pos);
+		void LookAt(const Movable *mov);
+
+		Camera *GetCamera();
+	};
