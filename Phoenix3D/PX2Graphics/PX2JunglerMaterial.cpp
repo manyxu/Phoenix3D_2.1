@@ -109,9 +109,9 @@ MaterialInstance* JunglerMaterial::CreateInstance (
 	instance->SetVertexConstant(0, "gShineEmissive", 
 		new0 ShineEmissiveConstant());
 	instance->SetVertexConstant(0, "gShineAmbient",
-		new0 ShineAmbientConstant(shine));
+		new0 ShineAmbientConstant());
 	instance->SetVertexConstant(0, "gShineDiffuse",
-		new0 ShineDiffuseConstant(shine));
+		new0 ShineDiffuseConstant());
 	instance->SetVertexConstant(0, "gLightColour",
 		new0 LightDiffuseConstant(dirLight));
 	instance->SetVertexConstant(0, "gLightAttenuation",

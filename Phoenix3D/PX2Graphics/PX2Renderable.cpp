@@ -6,7 +6,6 @@
 #include "PX2Texture2DMaterial.hpp"
 #include "PX2ShaderParameters.hpp"
 #include "PX2SkinMaterial.hpp"
-#include "PX2StdMaterial.hpp"
 #include "PX2StdVC4Material.hpp"
 #include "PX2Texture2DMaterial.hpp"
 #include "PX2LightTexMaterial.hpp"
@@ -198,44 +197,6 @@ void Renderable::SetLightTexture (Texture2D *tex)
 	{
 		Material *material = DynamicCast<Material>(mi->GetMaterial());
 		Texture2DMaterial *tex2DMtl = DynamicCast<Texture2DMaterial>(material);
-		StdMaterial *stdMtl = DynamicCast<StdMaterial>(material);
-		if (tex2DMtl || stdMtl)
-		{
-			Texture2D *tex2d = DynamicCast<Texture2D>(mi->GetPixelTexture(0, 0));
-			if (tex2d && !mIsUseLightTexture)
-			{
-
-				mNormalTexPath = tex2d->GetResourcePath();
-			}
-		}
-	}
-}
-//----------------------------------------------------------------------------
-void Renderable::SetUseStdMtl ()
-{
-	MaterialInstance *mi = GetMaterialInstance();
-	if (mi)
-	{
-		Material *mtl = mi->GetMaterial();
-		Texture2DMaterial *tex2dMtl = DynamicCast<Texture2DMaterial>(mtl);
-		if (tex2dMtl)
-		{
-			Texture2D *tex2d = DynamicCast<Texture2D>(mi->GetPixelTexture(0, 0));
-			if (tex2d)
-			{
-				StdMaterial *stdMtlDef = new0 StdMaterial(); 
-
-				stdMtlDef->GetCullProperty(0, 0)->Enabled = mtl->GetCullProperty(0, 0)->Enabled;
-
-				stdMtlDef->GetAlphaProperty(0, 0)->BlendEnabled = mtl->GetAlphaProperty(0, 0)->BlendEnabled;
-				stdMtlDef->GetAlphaProperty(0, 0)->CompareEnabled = mtl->GetAlphaProperty(0, 0)->CompareEnabled;
-				stdMtlDef->GetAlphaProperty(0, 0)->Reference = mtl->GetAlphaProperty(0, 0)->Reference;
-				stdMtlDef->GetAlphaProperty(0, 0)->Compare = mtl->GetAlphaProperty(0, 0)->Compare;
-
-				stdMtlDef->_CalShaderKey();
-				SetMaterialInstance(stdMtlDef->CreateInstance(tex2d, 0, 0));
-			}
-		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -266,9 +227,8 @@ void Renderable::SetUseLightTexture (bool use, Texture2D *lightTex)
 				mNormalMaterialInstance = GetMaterialInstance();
 				Material *normalMtl = mNormalMaterialInstance->GetMaterial();
 				Texture2DMaterial *tex2DMtl = DynamicCast<Texture2DMaterial>(normalMtl);
-				StdMaterial *stdMtl = DynamicCast<StdMaterial>(normalMtl);
 
-				if (tex2DMtl || stdMtl)
+				if (tex2DMtl)
 				{
 					VertexBufferAccessor vba(this);
 					if (!vba.HasTCoord(1))
@@ -319,67 +279,25 @@ void Renderable::SetAlpha (float alpha)
 {
 	Movable::SetAlpha(alpha);
 
-	if (mMaterialInstance)
-	{
-		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterialInstance->GetMaterial());
-		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterialInstance->GetMaterial());
-		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterialInstance->GetMaterial());
-
-		if (stdMtl || stdVC4Mtl || sktMtl1)
-		{
-			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterialInstance->GetVertexConstant(0, "gShineDiffuse"));
-			if (sDiffConst)
-			{
-				sDiffConst->GetShine()->Diffuse[3] = alpha;
-			}
-		}
-	}
+	mDefaultShine->Diffuse[3] = alpha;
 }
 //----------------------------------------------------------------------------
 void Renderable::SetColor (const Float3 &color)
 {
 	Movable::SetColor(color);
 
-	if (mMaterialInstance)
-	{
-		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterialInstance->GetMaterial());
-		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterialInstance->GetMaterial());
-		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterialInstance->GetMaterial());
-
-		if (stdMtl || stdVC4Mtl || sktMtl1)
-		{
-			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterialInstance->GetVertexConstant(0, "gShineDiffuse"));
-			if (sDiffConst)
-			{
-				sDiffConst->GetShine()->Emissive[0] = mColor[0] * mBrightness;
-				sDiffConst->GetShine()->Emissive[1] = mColor[1] * mBrightness;
-				sDiffConst->GetShine()->Emissive[2] = mColor[2] * mBrightness;
-			}
-		}	
-	}
+	mDefaultShine->Emissive[0] = mColor[0] * mBrightness;
+	mDefaultShine->Emissive[1] = mColor[1] * mBrightness;
+	mDefaultShine->Emissive[2] = mColor[2] * mBrightness;
 }
 //----------------------------------------------------------------------------
 void Renderable::SetBrightness (float brightness)
 {
 	Movable::SetBrightness(brightness);
 
-	if (mMaterialInstance)
-	{
-		StdMaterial *stdMtl = DynamicCast<StdMaterial>(mMaterialInstance->GetMaterial());
-		StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mMaterialInstance->GetMaterial());
-		SkinMaterial *sktMtl1 = DynamicCast<SkinMaterial>(mMaterialInstance->GetMaterial());
-
-		if (stdMtl || stdVC4Mtl || sktMtl1)
-		{
-			ShineDiffuseConstant *sDiffConst = DynamicCast<ShineDiffuseConstant>(mMaterialInstance->GetVertexConstant(0, "gShineDiffuse"));
-			if (sDiffConst)
-			{
-				sDiffConst->GetShine()->Emissive[0] = mColor[0] * mBrightness;
-				sDiffConst->GetShine()->Emissive[1] = mColor[1] * mBrightness;
-				sDiffConst->GetShine()->Emissive[2] = mColor[2] * mBrightness;
-			}
-		}
-	}
+	mDefaultShine->Emissive[0] = mColor[0] * mBrightness;
+	mDefaultShine->Emissive[1] = mColor[1] * mBrightness;
+	mDefaultShine->Emissive[2] = mColor[2] * mBrightness;
 }
 //----------------------------------------------------------------------------
 void Renderable::SetFogInfulenceParam_Height (float param)

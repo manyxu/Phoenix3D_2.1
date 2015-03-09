@@ -46,6 +46,7 @@ mPixelParameters(0)
 MaterialInstance::MaterialInstance(const std::string &mtlFilename, 
 	const std::string &tagName, bool shareMtl) :
 	mIsShareMtl(shareMtl),
+	mTechniqueIndex(0),
 	mMaterialFilename(mtlFilename),
 	mInstanceTagName(tagName),
 	mNumPasses(0),

@@ -109,8 +109,9 @@ Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 	TriMesh *mesh = stdMesh.Rectangle(2, 2, 1.0f, 1.0f, Float2(0.5f, 0.5f));
 	mesh->SetName("NoName");
 
-	StdMaterialPtr mtl = new0 StdMaterial();
-	mesh->SetMaterialInstance(mtl->CreateInstance(tex, mesh->GetShine(), 0));
+	MaterialInstance *mi = new0 MaterialInstance(
+		"Data/engine_mtls/std/std.px2obj", "default", false);
+	mesh->SetMaterialInstance(mi);
 
 	mesh->LocalTransform.SetTranslate(localPos);
 
@@ -143,8 +144,9 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 	TriMesh *mesh = stdMesh.Box(1, 1, 1);
 	mesh->SetName("NoName");
 
-	StdMaterialPtr mtl = new0 StdMaterial();
-	mesh->SetMaterialInstance(mtl->CreateInstance(tex, mesh->GetShine(), 0));
+	MaterialInstance *mi = new0 MaterialInstance(
+		"Data/engine_mtls/std/std.px2obj", "default", false);
+	mesh->SetMaterialInstance(mi);
 
 	mesh->LocalTransform.SetTranslate(localPos);
 
@@ -177,8 +179,9 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 	TriMesh *mesh = stdMesh.Sphere(32, 32, 1);
 	mesh->SetName("NoName");
 
-	StdMaterialPtr mtl = new0 StdMaterial();
-	mesh->SetMaterialInstance(mtl->CreateInstance(tex, mesh->GetShine(), 0));
+	MaterialInstance *mi = new0 MaterialInstance(
+		"Data/engine_mtls/std/std.px2obj", "default", false);
+	mesh->SetMaterialInstance(mi);
 
 	mesh->LocalTransform.SetTranslate(localPos);
 

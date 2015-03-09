@@ -16,9 +16,6 @@
     <Filter Include="Accounts">
       <UniqueIdentifier>{296d9fa0-aa17-40b5-87dc-9b0ca6aaf600}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{f4c91037-3f89-4acc-ae19-4207a680d3ec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Event">
       <UniqueIdentifier>{053bb2c4-2081-4c3b-9a3f-7242278f084c}</UniqueIdentifier>
     </Filter>
@@ -55,6 +52,9 @@
     <Filter Include="Complements\SkillCompl">
       <UniqueIdentifier>{ddfe11f9-7f79-4ab0-bf34-9ff4a2c178a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EngineLoop">
+      <UniqueIdentifier>{f4c91037-3f89-4acc-ae19-4207a680d3ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -83,7 +83,7 @@
       <Filter>Accounts</Filter>
     </ClInclude>
     <ClInclude Include="PX2EngineLoop.hpp">
-      <Filter>Engine</Filter>
+      <Filter>EngineLoop</Filter>
     </ClInclude>
     <ClInclude Include="PX2Simulation.hpp" />
     <ClInclude Include="PX2Selection.hpp">
@@ -189,13 +189,13 @@
       <Filter>Accounts</Filter>
     </ClCompile>
     <ClCompile Include="PX2EngineLoop.cpp">
-      <Filter>Engine</Filter>
+      <Filter>EngineLoop</Filter>
     </ClCompile>
     <ClCompile Include="PX2EngineLoop_InitTerm.cpp">
-      <Filter>Engine</Filter>
+      <Filter>EngineLoop</Filter>
     </ClCompile>
     <ClCompile Include="PX2EngineLoop_Tick.cpp">
-      <Filter>Engine</Filter>
+      <Filter>EngineLoop</Filter>
     </ClCompile>
     <ClCompile Include="PX2Selection.cpp">
       <Filter>Edit\Select</Filter>
@@ -210,7 +210,7 @@
       <Filter>Edit\Creater</Filter>
     </ClCompile>
     <ClCompile Include="PX2EngineLoop_Play.cpp">
-      <Filter>Engine</Filter>
+      <Filter>EngineLoop</Filter>
     </ClCompile>
     <ClCompile Include="PX2CameraActor.cpp">
       <Filter>Actor</Filter>
@@ -305,7 +305,7 @@
       <Filter>Accounts</Filter>
     </None>
     <None Include="PX2EngineLoop.inl">
-      <Filter>Engine</Filter>
+      <Filter>EngineLoop</Filter>
     </None>
     <None Include="PX2Selection.inl">
       <Filter>Edit\Select</Filter>

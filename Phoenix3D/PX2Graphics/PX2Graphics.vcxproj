@@ -154,7 +154,6 @@
     <ClCompile Include="PX2SkinMaterial.cpp" />
     <ClCompile Include="PX2SpecializedIO.cpp" />
     <ClCompile Include="PX2StandardMesh.cpp" />
-    <ClCompile Include="PX2StdMaterial.cpp" />
     <ClCompile Include="PX2StdVC4Material.cpp" />
     <ClCompile Include="PX2StencilProperty.cpp" />
     <ClCompile Include="PX2SwitchNode.cpp" />
@@ -324,7 +323,6 @@
     <ClInclude Include="PX2SkinMaterial.hpp" />
     <ClInclude Include="PX2SpecializedIO.hpp" />
     <ClInclude Include="PX2StandardMesh.hpp" />
-    <ClInclude Include="PX2StdMaterial.hpp" />
     <ClInclude Include="PX2StdVC4Material.hpp" />
     <ClInclude Include="PX2StencilProperty.hpp" />
     <ClInclude Include="PX2SwitchNode.hpp" />

@@ -129,9 +129,9 @@ MaterialInstance* StdVC4Material::CreateInstance (ShaderFloat *uvFloat,
 	instance->SetVertexConstant(0, "PVWMatrix", new0 PVWMatrixConstant());
 	instance->SetVertexConstant(0, "WMatrix", new0 WMatrixConstant());
 	instance->SetVertexConstant(0, "gShineEmissive", new0 ShineEmissiveConstant());
-	instance->SetVertexConstant(0, "gShineAmbient", new0 ShineAmbientConstant(shine));
-	instance->SetVertexConstant(0, "gShineDiffuse", new0 ShineDiffuseConstant(shine));
-	instance->SetVertexConstant(0, "gShineSpecular", new0 ShineSpecularConstant(shine));
+	instance->SetVertexConstant(0, "gShineAmbient", new0 ShineAmbientConstant());
+	instance->SetVertexConstant(0, "gShineDiffuse", new0 ShineDiffuseConstant());
+	instance->SetVertexConstant(0, "gShineSpecular", new0 ShineSpecularConstant());
 	instance->SetVertexConstant(0, "gLightAmbient", new0 LightAmbientConstant(light));
 	instance->SetVertexConstant(0, "gLightDiffuse", new0 LightDiffuseConstant(light));
 	instance->SetVertexConstant(0, "gLightSpecular", new0 LightSpecularConstant(light));

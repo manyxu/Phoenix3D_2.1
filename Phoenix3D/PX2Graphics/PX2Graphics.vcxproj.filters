@@ -359,9 +359,6 @@
     <ClCompile Include="PX2SkinMaterial.cpp">
       <Filter>LocalMaterials\Lighting</Filter>
     </ClCompile>
-    <ClCompile Include="PX2StdMaterial.cpp">
-      <Filter>LocalMaterials\Lighting</Filter>
-    </ClCompile>
     <ClCompile Include="PX2JunglerMaterial.cpp">
       <Filter>LocalMaterials\NotUse</Filter>
     </ClCompile>
@@ -414,25 +411,25 @@
       <Filter>Material</Filter>
     </ClCompile>
     <ClCompile Include="PX2AlphaProperty.cpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2CullProperty.cpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2DepthProperty.cpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2OffsetProperty.cpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2StencilProperty.cpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2VertexShader.cpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2WireProperty.cpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2RendererInput.cpp">
       <Filter>Renderers</Filter>
@@ -865,9 +862,6 @@
     <ClInclude Include="PX2SkinMaterial.hpp">
       <Filter>LocalMaterials\Lighting</Filter>
     </ClInclude>
-    <ClInclude Include="PX2StdMaterial.hpp">
-      <Filter>LocalMaterials\Lighting</Filter>
-    </ClInclude>
     <ClInclude Include="PX2JunglerMaterial.hpp">
       <Filter>LocalMaterials\NotUse</Filter>
     </ClInclude>
@@ -920,25 +914,25 @@
       <Filter>Material</Filter>
     </ClInclude>
     <ClInclude Include="PX2AlphaProperty.hpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2CullProperty.hpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2DepthProperty.hpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2OffsetProperty.hpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2StencilProperty.hpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2VertexShader.hpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2WireProperty.hpp">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2RendererInput.hpp">
       <Filter>Renderers</Filter>
@@ -1181,7 +1175,7 @@
       <Filter>Geometry</Filter>
     </None>
     <None Include="PX2VertexShader.inl">
-      <Filter>Material\RenderProperty</Filter>
+      <Filter>RenderProperty</Filter>
     </None>
     <None Include="PX2RenderStep.inl">
       <Filter>RenderStep</Filter>
@@ -1257,14 +1251,14 @@
     <Filter Include="Geometry">
       <UniqueIdentifier>{c8d888be-e356-4b46-b455-270f132defd5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Material\RenderProperty">
-      <UniqueIdentifier>{c2cb1096-17c1-4182-a73f-5dcfa5a50db7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="RenderStep">
       <UniqueIdentifier>{92a283a1-cb5a-41c2-afc8-dea9c1abf442}</UniqueIdentifier>
     </Filter>
     <Filter Include="Renderers\OpenGLES2Renderer">
       <UniqueIdentifier>{31fd354c-7eea-4884-af82-5e7e3cd652e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderProperty">
+      <UniqueIdentifier>{c2cb1096-17c1-4182-a73f-5dcfa5a50db7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

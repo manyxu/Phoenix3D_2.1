@@ -16,7 +16,6 @@
 #include "PX2LightTexMaterial.hpp"
 #include "PX2LightTex2Material.hpp"
 #include "PX2SkinMaterial.hpp"
-#include "PX2StdMaterial.hpp"
 #include "PX2MaterialManager.hpp"
 #include "PX2TriMesh.hpp"
 #include "PX2VertexFormat.hpp"
@@ -214,7 +213,6 @@ void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
 
 		PX2::Material *mtl = inst->GetMaterial();
 
-		PX2::StdMaterial *stdMtl = DynamicCast<StdMaterial>(mtl);
 		PX2::StdVC4Material *stdVC4Mtl = DynamicCast<StdVC4Material>(mtl);
 		PX2::LightTexMaterial *lightTexMtl = DynamicCast<LightTexMaterial>(mtl);
 		PX2::LightTex2Material *lightTex2Mtl = DynamicCast<LightTex2Material>(mtl);
@@ -237,7 +235,7 @@ void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
 			if (specConstant)
 				specConstant->SetLight(lightDir);
 		}
-		else if ((stdMtl||stdVC4Mtl) && lightDir)
+		else if (stdVC4Mtl && lightDir)
 		{
 			lightWorldDVectorConstant = DynamicCast<LightWorldDVectorConstant>(inst->GetVertexConstant(0, "LightWorldDirection"));
 

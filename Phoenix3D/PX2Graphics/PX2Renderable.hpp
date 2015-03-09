@@ -171,8 +171,6 @@ namespace PX2
 		void SetUseLightTexture (bool light, Texture2D *lightTex);
 		bool IsUseLightTexture () const;
 
-		void SetUseStdMtl ();
-
 		virtual void SetAlpha (float alpha);
 		virtual void SetColor (const Float3 &color);
 		virtual void SetBrightness (float brightness);

@@ -1,0 +1,80 @@
+<material name="std">
+	<technique name="T0" tag="default">
+		<pass name="P0">
+			<shader type="vs" name="std" ni="3" no="4" nc="12" ns="0">
+				<i>
+					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
+					<var index="1" name="modelNormal" vt="float3" vs="NORMAL"/>
+					<var index="2" name="modelTCoord0" vt="float2" vs="TEXCOORD0"/>
+				</i>
+				<o>
+					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
+					<var index="1" name="vertexColor" vt="float4" vs="COLOR0"/>
+					<var index="2" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="3" name="vertexTCoord1" vt="float2" vs="TEXCOORD0"/>
+				</o>
+				<c>
+					<var index="0" name="PVWMatrix" nr="4"/>
+					<var index="1" name="WMatrix" nr="4"/>
+					<var index="2" name="CameraWorldPosition" nr="1"/>
+					<var index="3" name="LightWorldDirection" nr="1"/>
+					<var index="4" name="ShineEmissive" nr="1"/>
+					<var index="5" name="ShineAmbient" nr="1"/>
+					<var index="6" name="ShineDiffuse" nr="1"/>
+					<var index="7" name="ShineSpecular" nr="1"/>
+					<var index="8" name="LightAmbient" nr="1"/>
+					<var index="9" name="LightDiffuse" nr="1"/>
+					<var index="10" name="LightSpecular" nr="1"/>
+					<var index="11" name="FogParam" nr="1"/>
+				</c>
+				<p>
+					<var type="cg" file="std_cg.fx" entry="std"/>
+					<var type="gles2" file="std_gles2_vs.fx" entry="std"/>
+				</p>
+			</shader>
+			<shader type="ps" name="std" ni="3" no="1" nc="2" ns="1">
+				<i>
+					<var index="0" name="vertexColor" vt="float4" vs="COLOR0"/>
+					<var index="1" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
+					<var index="2" name="vertexTCoord1" vt="float2" vs="VS_TEXCOORD1"/>
+				</i>
+				<o>
+					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
+				</o>
+				<c>
+					<var index="0" name="FogColor" nr="1"/>
+					<var index="1" name="FogColorDist" nr="1"/>
+				</c>
+				<s>
+					<var index="0" name="Sample0" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+				</s>
+				<p>
+					<var type="cg" file="std_cg.fx" entry="std"/>
+					<var type="gles2" file="std_gles2_ps.fx" entry="std"/>
+				</p>
+			</shader>
+			<renderproperty>
+				<Alpha>
+					<p param="BlendEnabled" value="false"/>
+					<p param="SrcBlend" value="SBM_SRC_ALPHA"/>
+					<p param="DstBlend" value="DBM_ONE_MINUS_SRC_ALPHA"/>
+					<p param="CompareEnabled" value="false"/>
+					<p param="Compare" value="CM_GEQUAL"/>
+					<p param="Reference" value="0"/>
+				</Alpha>
+				<Depth>
+					<p param="Enabled" value="true"/>
+					<p param="Writable" value="true"/>
+					<p param="Compare" value="CM_LEQUAL"/>
+				</Depth>
+				<Cull>
+					<p param="Enabled" value="true"/>
+					<p param="CCWOrder" value="true"/>
+				</Cull>
+				<Wire>
+					<p param="Enabled" value="false"/>
+				</Wire>
+			</renderproperty>
+		</pass>
+	</technique>
+</material>

@@ -85,6 +85,7 @@ int ShineEmissiveConstant::GetStreamingSize (Stream &stream) const
 {
 	int size = ShaderFloat::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
 	return size;
 }
 //----------------------------------------------------------------------------

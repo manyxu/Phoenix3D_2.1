@@ -5,6 +5,11 @@
 #include "PX2PVMatrixConstant.hpp"
 #include "PX2PVWMatrixConstant.hpp"
 #include "PX2ShineEmissiveConstant.hpp"
+#include "PX2ShineAmbientConstant.hpp"
+#include "PX2ShineDiffuseConstant.hpp"
+#include "PX2ShineSpecularConstant.hpp"
+#include "PX2CameraWorldPositionConstant.hpp"
+#include "PX2CameraModelPositionConstant.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -108,7 +113,29 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,
 	{
 		return new0 ShineEmissiveConstant();
 	}
-
-	return new0 ShaderFloat(numRegister);
+	else if (FString("ShineAmbient") == name)
+	{
+		return new0 ShineAmbientConstant();
+	}
+	else if (FString("ShineDiffuse") == name)
+	{
+		return new0 ShineDiffuseConstant();
+	}
+	else if (FString("ShineSpecular") == name)
+	{
+		return new0 ShineSpecularConstant();
+	}
+	else if (FString("CameraWorldPosition") == name)
+	{
+		return new0 CameraWorldPositionConstant();
+	}
+	else if (FString("CameraModelPosition") == name)
+	{
+		return new0 CameraModelPositionConstant();
+	}
+	else
+	{
+		return new0 ShaderFloat(numRegister);
+	}
 }
 //----------------------------------------------------------------------------

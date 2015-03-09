@@ -12,6 +12,8 @@ void EngineLoop::Play(EngineLoop::PlayType type)
 
 	_SetDoAdjustScreenViewRect(PT_PLAY == type);
 
+	if (!Project::GetSingletonPtr()) return;
+
 	std::string startFilename = "Data/" + mProjectName + "/scripts/start.lua";
 	PX2_SM.CallFile(startFilename.c_str());
 }

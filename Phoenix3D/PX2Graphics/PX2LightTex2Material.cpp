@@ -102,7 +102,7 @@ MaterialInstance* LightTex2Material::CreateInstance (Texture2D* texture0,
 	instance->SetVertexConstant(0, 0, new0 PVWMatrixConstant());
 	instance->SetVertexConstant(0, 1, new0 WMatrixConstant());
 	instance->SetVertexConstant(0, 2, new0 CameraWorldPositionConstant());
-	instance->SetVertexConstant(0, 3, new0 ShineSpecularConstant(shine));
+	instance->SetVertexConstant(0, 3, new0 ShineSpecularConstant());
 	instance->SetVertexConstant(0, 4, new0 LightWorldDVectorConstant(dirLight));
 	instance->SetVertexConstant(0, 5, new0 LightSpecularConstant(dirLight));
 	instance->SetVertexConstant(0, 6, new0 FogParamConstant());
