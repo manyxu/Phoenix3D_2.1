@@ -36,6 +36,7 @@ UIObjectCtrl::UIObjectCtrl ()
 //----------------------------------------------------------------------------
 UIObjectCtrl::~UIObjectCtrl ()
 {
+	PX2_EW.GoOut(this);
 }
 //----------------------------------------------------------------------------
 void UIObjectCtrl::SetShapeType (ShapeType type)

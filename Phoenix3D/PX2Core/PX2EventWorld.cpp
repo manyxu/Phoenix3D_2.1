@@ -123,10 +123,10 @@ void EventWorld::Update (float detalTime)
 	}
 	mHandlersComingIn.clear();
 
-	for (int i=0; i<(int)mHandlersGoingOut.size(); i++)
+	for (int i = 0; i < (int)mHandlersGoingOut.size(); i++)
 	{
 		EventHandlerList::iterator it = mHandlers.begin();
-		for (; it!=mHandlers.end();)
+		for (; it != mHandlers.end();)
 		{
 			if (*it == mHandlersGoingOut[i])
 			{

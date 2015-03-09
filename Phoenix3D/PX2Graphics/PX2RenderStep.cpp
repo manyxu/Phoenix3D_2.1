@@ -22,7 +22,6 @@ mIsDoClearDepth(false)
 //----------------------------------------------------------------------------
 RenderStep::~RenderStep()
 {
-	GoOutEventWorld();
 }
 //----------------------------------------------------------------------------
 void RenderStep::Update(double appSeconds, double elapsedSeconds)

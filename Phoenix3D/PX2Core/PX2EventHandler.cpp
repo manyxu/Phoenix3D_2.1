@@ -16,8 +16,6 @@ mWorld(0)
 //----------------------------------------------------------------------------
 EventHandler::~EventHandler()
 {
-	if (IsInWorld())
-		Leave();
 }
 //----------------------------------------------------------------------------
 void EventHandler::SetChannel (const EventChannel &channel)

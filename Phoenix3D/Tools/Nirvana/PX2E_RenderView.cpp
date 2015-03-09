@@ -365,9 +365,12 @@ void RenderView::_NewEditRenderView(const std::string &name)
 		renderView->InitlizeRendererStep("TimeLineRenderStep");
 	}
 
-	renderView->OnSize(sz);
+	if (renderView)
+	{
+		renderView->OnSize(sz);
 
-	mEditRenderViews[name] = renderView;
+		mEditRenderViews[name] = renderView;
+	}
 
 	if ((RVT_SCENEUI == mRenderViewType) && !mEditRenderViews.empty())
 	{

@@ -47,6 +47,7 @@ SceneNodeCtrl::SceneNodeCtrl()
 //----------------------------------------------------------------------------
 SceneNodeCtrl::~SceneNodeCtrl()
 {
+	PX2_EW.GoOut(this);
 }
 //----------------------------------------------------------------------------
 void SceneNodeCtrl::SetAxisMode(SceneNodeCtrl::AxisMode mode)
