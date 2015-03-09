@@ -162,6 +162,9 @@
     <ClInclude Include="SkillCompl\PX2SkillStepRangeTime.hpp">
       <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
+    <ClInclude Include="PX2LightActor.hpp">
+      <Filter>Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Actor.cpp">
@@ -290,6 +293,9 @@
     <ClCompile Include="SkillCompl\PX2SkillStepRangeTime.cpp">
       <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
+    <ClCompile Include="PX2LightActor.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl">
@@ -357,6 +363,9 @@
     </None>
     <None Include="SkillCompl\PX2SkillComponent.inl">
       <Filter>Complements\SkillCompl</Filter>
+    </None>
+    <None Include="PX2LightActor.inl">
+      <Filter>Actor</Filter>
     </None>
   </ItemGroup>
 </Project>

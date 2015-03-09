@@ -34,6 +34,7 @@
     <ClInclude Include="PX2Creater.hpp" />
     <ClInclude Include="PX2EffectActor.hpp" />
     <ClInclude Include="PX2EngineLoop.hpp" />
+    <ClInclude Include="PX2LightActor.hpp" />
     <ClInclude Include="PX2PlatformSDK.hpp" />
     <ClInclude Include="PX2PlatformSDKEventType.hpp" />
     <ClInclude Include="PX2Project.hpp" />
@@ -77,6 +78,7 @@
     <ClCompile Include="PX2EngineLoop_InitTerm.cpp" />
     <ClCompile Include="PX2EngineLoop_Play.cpp" />
     <ClCompile Include="PX2EngineLoop_Tick.cpp" />
+    <ClCompile Include="PX2LightActor.cpp" />
     <ClCompile Include="PX2PlatformSDK.cpp" />
     <ClCompile Include="PX2PlatformSDKEventType.cpp" />
     <ClCompile Include="PX2Project.cpp" />
@@ -110,6 +112,7 @@
     <None Include="PX2CellSpaceT.inl" />
     <None Include="PX2Character.inl" />
     <None Include="PX2EngineLoop.inl" />
+    <None Include="PX2LightActor.inl" />
     <None Include="PX2Project.inl" />
     <None Include="PX2Scene.inl" />
     <None Include="PX2Selection.inl" />
