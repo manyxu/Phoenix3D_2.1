@@ -3,7 +3,7 @@
 		<var width="400" height="800"/>
 	</config>
 	<play>
-		<var projectpath="Data/projects/gamex.px2proj" playlogicmode="logic"/>
+		<var projectname="gamex" playlogicmode="logic"/>
 	</play>
 </boost>
 
