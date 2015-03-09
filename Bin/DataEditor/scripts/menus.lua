@@ -89,13 +89,10 @@ function e_CreateEditMenu(tag)
 			NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("FindInResTree"), "e_FindInResTree()")
 		end
 	end
-	
-	if 2==tag then
-		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Open"), "e_ResView_Open()")
-		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("CopyResPath"), "e_ResView_CopyResPath()")
-	end
 end
 
 function e_CreateResMenu()
-
+	local editMenu = NirMan:GetCurMenu()
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Open"), "e_ResView_Open()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("CopyResPath"), "e_ResView_CopyResPath()")
 end
