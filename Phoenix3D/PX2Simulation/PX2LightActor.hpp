@@ -22,12 +22,12 @@ namespace PX2
 		virtual ~LightActor();
 
 		Light *GetLight();
+		LightNode *GetLightNode();
 
-		virtual void OnAttach();
-		virtual void OnDetach();
+	public_internal:
+		virtual void SetParent(Movable* parent);
 
 	protected:
-
 		LightPtr mLight;
 		LightNodePtr mLightNode;
 	};

@@ -82,13 +82,14 @@ void TargetTransformController::Stop ()
 	mIsPlaying = false;
 }
 //----------------------------------------------------------------------------
-void TargetTransformController::OnAttach ()
+void TargetTransformController::SetControlledable(Controlledable* object)
 {
-	SetStartPos(mTransform.GetTranslate());
-}
-//----------------------------------------------------------------------------
-void TargetTransformController::OnDetach ()
-{
+	if (object)
+	{
+		SetStartPos(mTransform.GetTranslate());
+	}
+
+	TransformController::SetControlledable(object);
 }
 //----------------------------------------------------------------------------
 bool TargetTransformController::Update(double applicationTime, 

@@ -64,9 +64,6 @@ namespace PX2
 		void SetDistanceUseZ (bool use);
 		bool IsDistanceUseZ () const;
 
-		virtual void OnAttach ();
-		virtual void OnDetach ();
-
 		virtual const std::vector<std::string> &GetAllModuleNames_EA () const;
 		virtual const std::vector<std::string> &GetAllModuleNames_EO () const;
 

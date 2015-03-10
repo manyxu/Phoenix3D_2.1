@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 03/09/15 16:30:19.
+** Generated automatically by tolua++-1.0.92 on 03/10/15 10:45:47.
 */
 
 #ifndef __cplusplus
@@ -23510,68 +23510,6 @@ static int tolua_PX2_Soundable_IsDistanceUseZ00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: OnAttach of class  Soundable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Soundable_OnAttach00
-static int tolua_PX2_Soundable_OnAttach00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Soundable",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Soundable* self = (Soundable*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnAttach'", NULL);
-#endif
-  {
-   self->OnAttach();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'OnAttach'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: OnDetach of class  Soundable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Soundable_OnDetach00
-static int tolua_PX2_Soundable_OnDetach00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Soundable",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Soundable* self = (Soundable*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnDetach'", NULL);
-#endif
-  {
-   self->OnDetach();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'OnDetach'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
 /* method: GetAllModuleNames_EA of class  Soundable */
 #ifndef TOLUA_DISABLE_tolua_PX2_Soundable_GetAllModuleNames_EA00
 static int tolua_PX2_Soundable_GetAllModuleNames_EA00(lua_State* tolua_S)
@@ -28493,8 +28431,6 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"IsDistanceUseY",tolua_PX2_Soundable_IsDistanceUseY00);
    tolua_function(tolua_S,"SetDistanceUseZ",tolua_PX2_Soundable_SetDistanceUseZ00);
    tolua_function(tolua_S,"IsDistanceUseZ",tolua_PX2_Soundable_IsDistanceUseZ00);
-   tolua_function(tolua_S,"OnAttach",tolua_PX2_Soundable_OnAttach00);
-   tolua_function(tolua_S,"OnDetach",tolua_PX2_Soundable_OnDetach00);
    tolua_function(tolua_S,"GetAllModuleNames_EA",tolua_PX2_Soundable_GetAllModuleNames_EA00);
    tolua_function(tolua_S,"GetAllModuleNames_EO",tolua_PX2_Soundable_GetAllModuleNames_EO00);
    tolua_variable(tolua_S,"msModuleNames_EA",tolua_get_Soundable_msModuleNames_EA,tolua_set_Soundable_msModuleNames_EA);

@@ -9,8 +9,7 @@ PX2_IMPLEMENT_FACTORY(Component);
 PX2_IMPLEMENT_DEFAULT_NAMES(Object, Component);
 
 //----------------------------------------------------------------------------
-Component::Component ()
-	:
+Component::Component () :
 mPriority(0)
 {
 }
@@ -27,22 +26,18 @@ bool Component::Update(double applicationTime, double elapsedTime)
 	return false;
 }
 //----------------------------------------------------------------------------
-void Component::OnAttach()
+void Component::SetCompable(Componable *compable)
 {
-}
-//----------------------------------------------------------------------------
-void Component::OnDetach()
-{
+	mCompable = compable;
 }
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-Component::Component(LoadConstructor value)
-	:
-	Object(value),
-	mPriority(0)
+Component::Component(LoadConstructor value) :
+Object(value),
+mPriority(0)
 {
 }
 //----------------------------------------------------------------------------

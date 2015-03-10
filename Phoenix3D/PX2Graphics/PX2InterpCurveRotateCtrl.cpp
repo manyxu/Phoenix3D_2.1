@@ -36,30 +36,34 @@ void InterpCurveRotateController::_Update (double applicationTime,
 	}
 }
 //----------------------------------------------------------------------------
-void InterpCurveRotateController::OnAttach ()
+void InterpCurveRotateController::SetControlledable(Controlledable* object)
 {
-	if (IsAttachUpdateInit())
+	if (object)
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsAttachUpdateInit())
 		{
-			Matrix3f mat = movable->LocalTransform.GetRotate();
-			mat.ExtractEulerXYZ(mInitValue[0], mInitValue[1], mInitValue[2]);
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable)
+			{
+				Matrix3f mat = movable->LocalTransform.GetRotate();
+				mat.ExtractEulerXYZ(mInitValue[0], mInitValue[1], mInitValue[2]);
+			}
 		}
 	}
-}
-//----------------------------------------------------------------------------
-void InterpCurveRotateController::OnDetach ()
-{
-	if (IsDetachResetInit())
+	else
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsDetachResetInit())
 		{
-			movable->LocalTransform.SetRotate(Matrix3f().MakeEulerXYZ(
-				mInitValue[0],	mInitValue[1], mInitValue[2]));
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable)
+			{
+				movable->LocalTransform.SetRotate(Matrix3f().MakeEulerXYZ(
+					mInitValue[0], mInitValue[1], mInitValue[2]));
+			}
 		}
 	}
+
+	InterpCurveFloat3Controller::SetControlledable(object);
 }
 //----------------------------------------------------------------------------
 

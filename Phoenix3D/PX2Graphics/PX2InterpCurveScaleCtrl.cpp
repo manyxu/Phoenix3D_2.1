@@ -47,28 +47,32 @@ void InterpCurveScaleController::_Update (double applicationTime,
 	}
 }
 //----------------------------------------------------------------------------
-void InterpCurveScaleController::OnAttach ()
+void InterpCurveScaleController::SetControlledable(Controlledable* object)
 {
-	if (IsAttachUpdateInit())
+	if (object)
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsAttachUpdateInit())
 		{
-			mInitValue = movable->LocalTransform.GetScale();
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable)
+			{
+				mInitValue = movable->LocalTransform.GetScale();
+			}
 		}
 	}
-}
-//----------------------------------------------------------------------------
-void InterpCurveScaleController::OnDetach ()
-{
-	if (IsDetachResetInit())
+	else
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsDetachResetInit())
 		{
-			movable->LocalTransform.SetScale(mInitValue);
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable)
+			{
+				movable->LocalTransform.SetScale(mInitValue);
+			}
 		}
 	}
+
+	InterpCurveFloat3Controller::SetControlledable(object);
 }
 //----------------------------------------------------------------------------
 

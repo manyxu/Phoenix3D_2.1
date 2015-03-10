@@ -51,11 +51,6 @@ inline Movable* Movable::GetParent ()
     return mParent;
 }
 //----------------------------------------------------------------------------
-inline void Movable::SetParent (Movable* parent)
-{
-    mParent = parent;
-}
-//----------------------------------------------------------------------------
 inline void Movable::SetUpdateTime (float time)
 {
 	mUpdateTime = time;

@@ -103,7 +103,6 @@ int Node::AttachChild (Movable* child)
 	mIsNeedCalUpdateChild = true;
 
     child->SetParent(this);
-	child->OnAttach();
 
 	// 将孩子插入到第一个可用位置
     std::vector<MovablePtr>::iterator iter = mChild.begin();
@@ -140,7 +139,6 @@ void Node::InsertChild (Movable *before, Movable *child)
 	mIsNeedCalUpdateChild = true;
 
 	child->SetParent(this);
-	child->OnAttach();
 
 	// 将孩子插入到第一个可用位置
 	std::vector<MovablePtr>::iterator iter = mChild.begin();
@@ -171,7 +169,6 @@ int Node::DetachChild (Movable* child)
             if (*iter == child)
             {
                 (*iter)->SetParent(0);
-				(*iter)->OnDetach();
                 *iter = 0;
 
 				mIsNeedCalUpdateChild = true;
@@ -192,7 +189,6 @@ bool Node::DetachChildByName (const std::string &name)
 		if (child != 0 && child->GetName() == name)
 		{
 			child->SetParent(0);
-			child->OnDetach();
 			mChild[i] = 0;
 
 			mIsNeedCalUpdateChild = true;
@@ -213,7 +209,6 @@ MovablePtr Node::DetachChildAt (int i)
         if (child)
         {
             child->SetParent(0);
-			child->OnDetach();
             mChild[i] = 0;
 
 			mIsNeedCalUpdateChild = true;
@@ -232,7 +227,6 @@ void Node::DetachAllChildren ()
 		 if (child)
 		 {
 			 child->SetParent(0);
-			 child->OnDetach();
 			 mChild[i] = 0;
 		 }
 	}

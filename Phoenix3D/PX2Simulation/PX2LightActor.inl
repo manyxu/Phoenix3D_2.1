@@ -6,3 +6,8 @@ inline Light *LightActor::GetLight()
 	return mLight;
 }
 //----------------------------------------------------------------------------
+inline LightNode *LightActor::GetLightNode()
+{
+	return mLightNode;
+}
+//----------------------------------------------------------------------------

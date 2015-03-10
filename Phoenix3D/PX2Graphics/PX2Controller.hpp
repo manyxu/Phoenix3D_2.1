@@ -75,9 +75,6 @@ namespace PX2
 		double Frequency;   //< default = 1
 		bool Active;        //< default = true
 
-		virtual void OnAttach ();
-		virtual void OnDetach ();
-
 public_internal:
 		/// 设置被控制的对象
 		virtual void SetControlledable (Controlledable* object);

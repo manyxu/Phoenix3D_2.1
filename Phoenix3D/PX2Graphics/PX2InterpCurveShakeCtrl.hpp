@@ -35,10 +35,10 @@ namespace PX2
 		void SetShakeRangeType (ShakeRangeType type);
 		ShakeRangeType GetShakeRangeType ();
 
-		virtual void OnAttach ();
-		virtual void OnDetach ();
-
 		virtual bool Update (double applicationTime, double elapsedTime);
+
+	public_internal:
+		virtual void SetControlledable(Controlledable* object);
 
 	protected:
 		virtual void _Update(double applicationTime, double elapsedTime);

@@ -35,28 +35,26 @@ void InterpCurveAlphaController::_Update(double applicationTime,
 	}
 }
 //----------------------------------------------------------------------------
-void InterpCurveAlphaController::OnAttach ()
+void InterpCurveAlphaController::SetControlledable(Controlledable* object)
 {
-	if (IsAttachUpdateInit())
+	if (object)
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsAttachUpdateInit())
 		{
-			mInitValue = movable->GetAlpha();
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable) mInitValue = movable->GetAlpha();
 		}
 	}
-}
-//----------------------------------------------------------------------------
-void InterpCurveAlphaController::OnDetach ()
-{
-	if (IsDetachResetInit())
+	else
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsDetachResetInit())
 		{
-			movable->SetAlpha(mInitValue);
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable) movable->SetAlpha(mInitValue);
 		}
 	}
+
+	InterpCurveFloatController::SetControlledable(object);
 }
 //----------------------------------------------------------------------------
 

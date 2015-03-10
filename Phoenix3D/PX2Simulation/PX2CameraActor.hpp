@@ -27,6 +27,7 @@ namespace PX2
 		void LookAt(const Movable *mov);
 
 		Camera *GetCamera();
+		CameraNode *GetCameraNode();
 
 	protected:
 		CameraPtr mCamera;

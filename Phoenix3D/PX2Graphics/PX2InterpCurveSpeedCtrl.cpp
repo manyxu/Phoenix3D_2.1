@@ -35,28 +35,32 @@ void InterpCurveSpeedController::Reset ()
 	}
 }
 //----------------------------------------------------------------------------
-void InterpCurveSpeedController::OnAttach ()
+void InterpCurveSpeedController::SetControlledable(Controlledable* object)
 {
-	if (IsAttachUpdateInit())
+	if (object)
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsAttachUpdateInit())
 		{
-			mInitPos = movable->LocalTransform.GetTranslate();
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable)
+			{
+				mInitPos = movable->LocalTransform.GetTranslate();
+			}
 		}
 	}
-}
-//----------------------------------------------------------------------------
-void InterpCurveSpeedController::OnDetach ()
-{
-	if (IsDetachResetInit())
+	else
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsDetachResetInit())
 		{
-			movable->LocalTransform.SetTranslate(mInitPos);
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable)
+			{
+				movable->LocalTransform.SetTranslate(mInitPos);
+			}
 		}
 	}
+
+	InterpCurveFloat3Controller::SetControlledable(object);
 }
 //----------------------------------------------------------------------------
 void InterpCurveSpeedController::_Update(double applicationTime, 

@@ -57,14 +57,18 @@ void LightNode::UpdateWorldData(double applicationTime, double elapsedTime)
 	}
 }
 //----------------------------------------------------------------------------
-void LightNode::OnAttach ()
+void LightNode::SetParent(Movable* parent)
 {
-	GraphicsRoot::GetSingleton().AddLight(mLight);
-}
-//----------------------------------------------------------------------------
-void LightNode::OnDetach ()
-{
-	GraphicsRoot::GetSingleton().RemoveLight(mLight);
+	if (parent)
+	{
+		GraphicsRoot::GetSingleton().AddLight(mLight);
+	}
+	else
+	{
+		GraphicsRoot::GetSingleton().RemoveLight(mLight);
+	}
+
+	Node::SetParent(parent);
 }
 //----------------------------------------------------------------------------
 

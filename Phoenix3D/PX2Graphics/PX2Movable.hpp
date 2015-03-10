@@ -84,14 +84,6 @@ namespace PX2
 		void SetParentTransformIngore (bool trans, bool rotate, bool scale);
 		void GetParentTransformIngore (bool &trans, bool &rotate, bool &scale);
 
-		// 挂接
-		/*
-		* 当节点被加载到场景中时，重载此函数可以实现自己想要的操作。通常是在
-		* 父节点的Attach，Detach里调用这两个函数。默认函数体为空。
-		*/
-		virtual void OnAttach ();
-		virtual void OnDetach (); 
-
 		// Pick
 	public:
 		virtual void OnPicked (int pickInfo); // called during Picker::Execute
@@ -143,7 +135,7 @@ public_internal:
 		virtual void GetVisibleSet (Culler& culler, bool noCull) = 0;
 
 		// 设置父节点，节点在attach/detach的时候调用此函数。
-		void SetParent (Movable* parent);
+		virtual void SetParent (Movable* parent);
 
 		void SetSaveWriteIngore(bool doSaveWrite);
 		bool IsSaveWriteIngore() const;

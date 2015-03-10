@@ -112,14 +112,6 @@ void Movable::GetParentTransformIngore (bool &trans, bool &rotate, bool &scale)
 	scale = mIsIngoreParent_Scale;
 }
 //----------------------------------------------------------------------------
-void Movable::OnAttach ()
-{
-}
-//----------------------------------------------------------------------------
-void Movable::OnDetach ()
-{
-}
-//----------------------------------------------------------------------------
 void Movable::OnPicked (int pickInfo)
 {
 	PX2_UNUSED(pickInfo);
@@ -244,6 +236,11 @@ void Movable::OnGetVisibleSet (Culler& culler, bool noCull)
         GetVisibleSet(culler, noCull);
     }
     culler.SetPlaneState(savePlaneState);
+}
+//----------------------------------------------------------------------------
+void Movable::SetParent(Movable* parent)
+{
+	mParent = parent;
 }
 //----------------------------------------------------------------------------
 void Movable::SetAlpha (float alpha)

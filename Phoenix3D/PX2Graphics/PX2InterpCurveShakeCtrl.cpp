@@ -140,24 +140,22 @@ void InterpCurveShakeController::ReCalcCurve ()
 	}
 }
 //----------------------------------------------------------------------------
-void InterpCurveShakeController::OnAttach ()
+void InterpCurveShakeController::SetControlledable(Controlledable* object)
 {
-	Movable* movable = StaticCast<Movable>(mObject);
-	if (movable)
+	if (object)
 	{
-		mInitPos = movable->LocalTransform.GetTranslate();
+		Movable* movable = StaticCast<Movable>(mObject);
+		if (movable) mInitPos = movable->LocalTransform.GetTranslate();
 	}
-}
-//----------------------------------------------------------------------------
-void InterpCurveShakeController::OnDetach ()
-{
-	Movable* movable = StaticCast<Movable>(mObject);
-	if (movable)
+	else
 	{
-		movable->LocalTransform.SetTranslate(mInitPos);
+		Movable* movable = StaticCast<Movable>(mObject);
+		if (movable) movable->LocalTransform.SetTranslate(mInitPos);
+
+		mPoses.Reset();
 	}
 
-	mPoses.Reset();
+	InterpCurveFloatController::SetControlledable(object);
 }
 //----------------------------------------------------------------------------
 

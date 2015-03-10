@@ -46,36 +46,40 @@ void InterpCurveTranslateController::_Update (double applicationTime,
 	}
 }
 //----------------------------------------------------------------------------
-void InterpCurveTranslateController::OnAttach ()
+void InterpCurveTranslateController::SetControlledable(Controlledable* object)
 {
-	if (IsAttachUpdateInit())
+	if (object)
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsAttachUpdateInit())
 		{
-			mInitValue = movable->LocalTransform.GetTranslate();
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable)
+			{
+				mInitValue = movable->LocalTransform.GetTranslate();
+			}
 		}
 	}
-}
-//----------------------------------------------------------------------------
-void InterpCurveTranslateController::OnDetach ()
-{
-	if (IsDetachResetInit())
+	else
 	{
-		Movable* movable = StaticCast<Movable>(mObject);
-		if (movable)
+		if (IsDetachResetInit())
 		{
-			movable->LocalTransform.SetTranslate(mInitValue);
+			Movable* movable = StaticCast<Movable>(mObject);
+			if (movable)
+			{
+				movable->LocalTransform.SetTranslate(mInitValue);
+			}
 		}
 	}
+
+	InterpCurveFloat3Controller::SetControlledable(object);
 }
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-InterpCurveTranslateController::InterpCurveTranslateController (LoadConstructor value)
-	:
+InterpCurveTranslateController::InterpCurveTranslateController (
+	LoadConstructor value) :
 InterpCurveFloat3Controller(value)
 {
 }

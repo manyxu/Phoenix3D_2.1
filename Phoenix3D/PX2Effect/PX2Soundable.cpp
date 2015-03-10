@@ -222,14 +222,6 @@ const std::vector<std::string> &Soundable::GetAllModuleNames_EO () const
 	return msModuleNames_EO;
 }
 //----------------------------------------------------------------------------
-void Soundable::OnAttach ()
-{
-}
-//----------------------------------------------------------------------------
-void Soundable::OnDetach ()
-{
-}
-//----------------------------------------------------------------------------
 void Soundable::GenBuffers ()
 {
 	Effectable::GenBuffers();

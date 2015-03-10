@@ -35,9 +35,10 @@ namespace PX2
 		// The animation update.  The application time is in milliseconds.
 		virtual bool Update(double applicationTime, double elapsedTime);
 
-	protected:
-		virtual void SetControlledable (Controlledable* object);
+	public_internal:
+		virtual void SetControlledable(Controlledable* object);
 
+	protected:
 		TransformControllerPtr mController0, mController1;
 		float mWeight;
 		bool mRSMatrices, mGeometricRotation, mGeometricScale;

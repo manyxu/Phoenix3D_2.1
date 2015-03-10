@@ -21,8 +21,8 @@ namespace PX2
 
 		virtual void Reset ();
 
-		virtual void OnAttach ();
-		virtual void OnDetach ();
+	public_internal:
+		virtual void SetControlledable(Controlledable* object);
 
 	protected:
 		virtual void _Update (double applicationTime, double elapsedTime);

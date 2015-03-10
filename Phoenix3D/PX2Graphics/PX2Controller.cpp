@@ -129,14 +129,6 @@ bool Controller::Update(double applicationTime, double elapsedTime1)
 	return false;
 }
 //----------------------------------------------------------------------------
-void Controller::OnAttach ()
-{
-}
-//----------------------------------------------------------------------------
-void Controller::OnDetach ()
-{
-}
-//----------------------------------------------------------------------------
 void Controller::SetControlledable (Controlledable* object)
 {
 	mObject = object;

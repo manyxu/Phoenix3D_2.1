@@ -34,14 +34,18 @@ LightActor::~LightActor()
 {
 }
 //----------------------------------------------------------------------------
-void LightActor::OnAttach()
+void LightActor::SetParent(Movable* parent)
 {
-	if (mLight) GraphicsRoot::GetSingleton().AddLight(mLight);
-}
-//----------------------------------------------------------------------------
-void LightActor::OnDetach()
-{
-	if (mLight) GraphicsRoot::GetSingleton().RemoveLight(mLight);
+	if (parent)
+	{
+		if (mLight) GraphicsRoot::GetSingleton().AddLight(mLight);
+	}
+	else
+	{
+		if (mLight) GraphicsRoot::GetSingleton().RemoveLight(mLight);
+	}
+
+	Actor::SetParent(parent);
 }
 //----------------------------------------------------------------------------
 
@@ -97,6 +101,9 @@ void LightActor::Load(InStream& source)
 	Actor::Load(source);
 	PX2_VERSION_LOAD(source);
 
+	source.ReadPointer(mLight);
+	source.ReadPointer(mLightNode);
+
 	PX2_END_DEBUG_STREAM_LOAD(LightActor, source);
 }
 //----------------------------------------------------------------------------
@@ -105,6 +112,7 @@ void LightActor::Link(InStream& source)
 	Actor::Link(source);
 
 	source.ResolveLink(mLight);
+	source.ResolveLink(mLightNode);
 }
 //----------------------------------------------------------------------------
 void LightActor::PostLink()
@@ -117,6 +125,7 @@ bool LightActor::Register(OutStream& target) const
 	if (Actor::Register(target))
 	{
 		target.Register(mLight);
+		target.Register(mLightNode);
 
 		return true;
 	}
@@ -130,6 +139,9 @@ void LightActor::Save(OutStream& target) const
 	Actor::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WritePointer(mLight);
+	target.WritePointer(mLightNode);
+
 	PX2_END_DEBUG_STREAM_SAVE(LightActor, target);
 }
 //----------------------------------------------------------------------------
@@ -137,6 +149,9 @@ int LightActor::GetStreamingSize(Stream &stream) const
 {
 	int size = Actor::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
+	size += PX2_POINTERSIZE(mLight);
+	size += PX2_POINTERSIZE(mLightNode);
 
 	return size;
 }

@@ -19,8 +19,8 @@ namespace PX2
 		InterpCurveRotateController ();
 		virtual ~InterpCurveRotateController ();
 
-		virtual void OnAttach ();
-		virtual void OnDetach ();
+	public_internal:
+		virtual void SetControlledable(Controlledable* object);
 
 	protected:
 		virtual void _Update(double applicationTime, double elapsedTime);

@@ -14,6 +14,14 @@ Componable::Componable()
 //----------------------------------------------------------------------------
 Componable::~Componable()
 {
+	for (int i = 0; i < GetNumComponents(); i++)
+	{
+		if (mComponents[i])
+		{
+			mComponents[i]->SetCompable(0);
+			mComponents[i] = 0;
+		}
+	}
 }
 //----------------------------------------------------------------------------
 Component *Componable::GetComponentByName(const std::string &name) const
@@ -52,7 +60,6 @@ void Componable::AttachComponent(Component* component)
 
 	mComponents.push_back(component);
 	component->SetCompable(this);
-	component->OnAttach();
 
 	SortComponents();
 }
@@ -65,7 +72,6 @@ void Componable::DetachComponent(Component* component)
 	{
 		if (component == *it)
 		{
-			component->OnDetach();
 			component->SetCompable(0);
 			mComponents.erase(it);
 			return;
@@ -77,8 +83,6 @@ void Componable::DetachAllComponents()
 {
 	for (int i = 0; i < GetNumComponents(); ++i)
 	{
-		// Unbind
-		mComponents[i]->OnDetach();
 		mComponents[i]->SetCompable(0);
 	}
 

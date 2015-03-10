@@ -18,6 +18,14 @@ mIsAutoPlay(false)
 //----------------------------------------------------------------------------
 Controlledable::~Controlledable ()
 {
+	for (int i = 0; i < (int)mControllers.size(); i++)
+	{
+		if (mControllers[i])
+		{
+			mControllers[i]->SetControlledable(0);
+			mControllers[i] = 0;
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void Controlledable::ResetPlay ()
@@ -102,7 +110,6 @@ void Controlledable::AttachController (Controller* controller)
 
 	mControllers.push_back(controller);
 	controller->SetControlledable(this);
-	controller->OnAttach();
 
 	SortControls();
 }
@@ -115,7 +122,6 @@ void Controlledable::DetachController (Controller* controller)
 	{
 		if (controller == *it)
 		{
-			controller->OnDetach();
 			controller->SetControlledable(0);
 			mControllers.erase(it);
 			return;
@@ -127,8 +133,6 @@ void Controlledable::DetachAllControllers ()
 {
 	for (int i=0; i<GetNumControllers(); ++i)
 	{
-		// Unbind
-		mControllers[i]->OnDetach();
 		mControllers[i]->SetControlledable(0);
 	}
 

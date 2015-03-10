@@ -50,10 +50,10 @@ namespace PX2
 		bool IsPlaying () const;
 		virtual void Stop ();
 
-		virtual void OnAttach ();
-		virtual void OnDetach ();
-
 		virtual bool Update(double applicationTime, double elapsedTime);
+
+	public_internal:
+		virtual void SetControlledable(Controlledable* object);
 
 	protected:
 		APoint mStartPos;

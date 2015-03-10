@@ -26,13 +26,10 @@ namespace PX2
 		void SetPriority (int priority);
 		int GetPriority () const;
 
-		virtual void OnAttach ();
-		virtual void OnDetach ();
-
 		Componable *GetCompable();
 
 	public_internal:
-		void SetCompable(Componable *actor);
+		virtual void SetCompable(Componable *actor);
 
 	protected:
 		Componable *mCompable;

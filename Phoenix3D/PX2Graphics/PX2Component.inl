@@ -16,8 +16,3 @@ inline Componable *Component::GetCompable()
 	return mCompable;
 }
 //----------------------------------------------------------------------------
-inline void Component::SetCompable(Componable *compable)
-{
-	mCompable = compable;
-}
-//----------------------------------------------------------------------------

@@ -44,8 +44,8 @@ namespace PX2
 		inline Light* GetLight ();
 		inline const Light* GetLight () const;
 
-		virtual void OnAttach ();
-		virtual void OnDetach ();
+	public_internal:
+		virtual void SetParent(Movable* parent);
 
 	protected:
 		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
