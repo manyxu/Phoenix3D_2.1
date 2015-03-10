@@ -23,7 +23,7 @@ UserConstant::~UserConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void UserConstant::Update (const Renderable*, const Camera*)
+void UserConstant::Update(const ShaderStruct*)
 {
 	float val = (float)GetTimeInSeconds();
 	(*this)[0] = val;

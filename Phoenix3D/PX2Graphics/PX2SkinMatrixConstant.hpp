@@ -21,7 +21,7 @@ namespace PX2
 		SkinMatrixConstant (int numMatrix=37);
 		virtual ~SkinMatrixConstant ();
 
-		virtual void Update (const Renderable* renderable, const Camera* camera);
+		virtual void Update(const ShaderStruct *struc);
 
 	private:		
 		SkinController *mSkinContrl;

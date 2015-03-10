@@ -20,7 +20,7 @@ namespace PX2
 		ShineDiffuseConstant ();
 		virtual ~ShineDiffuseConstant ();
 
-		virtual void Update (const Renderable* renderable, const Camera* camera);
+		virtual void Update(const ShaderStruct *struc);
 	};
 
 	PX2_REGISTER_STREAM(ShineDiffuseConstant);

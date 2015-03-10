@@ -5,12 +5,10 @@
 
 #include "PX2GraphicsPre.hpp"
 #include "PX2Object.hpp"
+#include "PX2ShaderStruct.hpp"
 
 namespace PX2
 {
-
-	class Camera;
-	class Renderable;
 	
 	/// 着色器常量寄存器类
 	/**
@@ -66,10 +64,7 @@ namespace PX2
 		inline void EnableUpdater ();
 		inline void DisableUpdater ();
 		inline bool AllowUpdater () const;
-		virtual void Update (const Renderable* renderable, const Camera* camera);
-
-		virtual void Float_OnRegistProperties (Object *parObj);
-		virtual void Float_OnPropertyChanged (Object *parObj, const PropertyObject &obj);
+		virtual void Update (const ShaderStruct *struc);
 
 	protected:
 		int mNumElements;

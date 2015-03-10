@@ -23,8 +23,11 @@ VWMatrixConstant::~VWMatrixConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void VWMatrixConstant::Update (const Renderable* renderable, const Camera* camera)
+void VWMatrixConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+	const Camera *camera = struc->TheCamera;
+
 	const HMatrix& viewMatrix = camera->GetViewMatrix();
 	const HMatrix& worldMatrix = renderable->WorldTransform.Matrix();
 	HMatrix viewWorldMatrix = viewMatrix*worldMatrix;

@@ -30,8 +30,10 @@ Projector* ProjectorMatrixConstant::GetProjector ()
 	return mProjector;
 }
 //----------------------------------------------------------------------------
-void ProjectorMatrixConstant::Update (const Renderable* renderable, const Camera*)
+void ProjectorMatrixConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+
 	const HMatrix& PVMatrix = mProjector->GetProjectionViewMatrix();
 	const HMatrix& WMatrix = renderable->WorldTransform.Matrix();
 	HMatrix PVWMatrix = PVMatrix*WMatrix;

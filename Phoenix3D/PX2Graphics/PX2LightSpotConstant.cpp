@@ -32,7 +32,7 @@ Light* LightSpotConstant::GetLight ()
 	return mLight;
 }
 //----------------------------------------------------------------------------
-void LightSpotConstant::Update (const Renderable*, const Camera*)
+void LightSpotConstant::Update(const ShaderStruct *)
 {
 	mData[0] = mLight->Angle;
 	mData[1] = mLight->CosAngle;

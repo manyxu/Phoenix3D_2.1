@@ -23,9 +23,11 @@ CameraModelDVectorConstant::~CameraModelDVectorConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void CameraModelDVectorConstant::Update (const Renderable* renderable,
-										 const Camera* camera)
+void CameraModelDVectorConstant::Update(const ShaderStruct *struc)
 {
+	const Camera *camera = struc->TheCamera;
+	const Renderable *renderable = struc->TheRenderable;
+
 	const AVector& worldDVector = camera->GetDVector();
 	const HMatrix& worldInvMatrix = renderable->WorldTransform.Inverse();
 	AVector modelDVector = worldInvMatrix*worldDVector;

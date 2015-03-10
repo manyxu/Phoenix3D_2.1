@@ -9,8 +9,7 @@ PX2_IMPLEMENT_FACTORY(ProjectorWorldPositionConstant);
 
 //----------------------------------------------------------------------------
 ProjectorWorldPositionConstant::ProjectorWorldPositionConstant (
-	Projector* projector)
-	:
+	Projector* projector) :
 ShaderFloat(1),
 mProjector(projector)
 {
@@ -26,7 +25,7 @@ Projector* ProjectorWorldPositionConstant::GetProjector ()
 	return mProjector;
 }
 //----------------------------------------------------------------------------
-void ProjectorWorldPositionConstant::Update (const Renderable*, const Camera*)
+void ProjectorWorldPositionConstant::Update(const ShaderStruct *)
 {
 	const APoint& worldPosition = mProjector->GetPosition();
 

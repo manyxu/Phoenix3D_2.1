@@ -23,7 +23,7 @@ namespace PX2
 		void SetLight (Light *light);
 		Light* GetLight ();
 
-		virtual void Update (const Renderable* renderable, const Camera* camera);
+		virtual void Update(const ShaderStruct *struc);
 
 	protected:
 		LightPtr mLight;

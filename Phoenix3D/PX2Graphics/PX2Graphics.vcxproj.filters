@@ -5,23 +5,11 @@
     <ClCompile Include="PX2Bound.cpp">
       <Filter>DataTypes</Filter>
     </ClCompile>
-    <ClCompile Include="PX2CameraModelDVectorConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2CameraModelPositionConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Camera.cpp">
       <Filter>SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="PX2CameraNode.cpp">
       <Filter>SceneGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2CameraWorldDVectorConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2CameraWorldPositionConstant.cpp">
-      <Filter>ShaderFloats</Filter>
     </ClCompile>
     <ClCompile Include="PX2BoxSurface.cpp">
       <Filter>CurvesSurfaces</Filter>
@@ -66,7 +54,7 @@
       <Filter>DataTypes</Filter>
     </ClCompile>
     <ClCompile Include="PX2GlobalMaterial.cpp">
-      <Filter>GlobalMaterials</Filter>
+      <Filter>Materials\GlobalMaterials</Filter>
     </ClCompile>
     <ClCompile Include="PX2HalfFloat.cpp">
       <Filter>DataTypes</Filter>
@@ -86,47 +74,20 @@
     <ClCompile Include="PX2Light.cpp">
       <Filter>SceneGraph</Filter>
     </ClCompile>
-    <ClCompile Include="PX2LightAmbientConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightAttenuationConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightDiffuseConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightModelDVectorConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightModelPositionConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightWorldDVectorConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightWorldPositionConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightSpotConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightSpecularConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
     <ClCompile Include="PX2LightNode.cpp">
       <Filter>SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="PX2Material.cpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClCompile>
     <ClCompile Include="PX2MaterialInstance.cpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClCompile>
     <ClCompile Include="PX2MaterialPass.cpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClCompile>
     <ClCompile Include="PX2MaterialTechnique.cpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClCompile>
     <ClCompile Include="PX2Movable.cpp">
       <Filter>SceneGraph</Filter>
@@ -141,25 +102,10 @@
       <Filter>SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="PX2PixelShader.cpp">
-      <Filter>Material</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2PMatrixConstant.cpp">
-      <Filter>ShaderFloats</Filter>
+      <Filter>Materials</Filter>
     </ClCompile>
     <ClCompile Include="PX2Projector.cpp">
       <Filter>SceneGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2ProjectorWorldPositionConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2ProjectorMatrixConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2PVMatrixConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2PVWMatrixConstant.cpp">
-      <Filter>ShaderFloats</Filter>
     </ClCompile>
     <ClCompile Include="PX2Renderable.cpp">
       <Filter>SceneGraph</Filter>
@@ -171,28 +117,13 @@
       <Filter>SceneGraph</Filter>
     </ClCompile>
     <ClCompile Include="PX2Shader.cpp">
-      <Filter>Material</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2ShaderFloat.cpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClCompile>
     <ClCompile Include="PX2ShaderParameters.cpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClCompile>
     <ClCompile Include="PX2Shine.cpp">
       <Filter>SceneGraph</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2ShineAmbientConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2ShineDiffuseConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2ShineEmissiveConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2ShineSpecularConstant.cpp">
-      <Filter>ShaderFloats</Filter>
     </ClCompile>
     <ClCompile Include="PX2SkinController.cpp">
       <Filter>Controllers</Filter>
@@ -229,15 +160,6 @@
     </ClCompile>
     <ClCompile Include="PX2VertexFormat.cpp">
       <Filter>Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2VMatrixConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2VWMatrixConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2WMatrixConstant.cpp">
-      <Filter>ShaderFloats</Filter>
     </ClCompile>
     <ClCompile Include="PX2VisibleSet.cpp">
       <Filter>SceneGraph</Filter>
@@ -285,7 +207,7 @@
       <Filter>Renderers\Dx9Renderer</Filter>
     </ClCompile>
     <ClCompile Include="PX2UserConstant.cpp">
-      <Filter>ShaderFloats</Filter>
+      <Filter>Materials\ShaderFloats</Filter>
     </ClCompile>
     <ClCompile Include="PX2InterpCurveController.cpp">
       <Filter>Controllers\InterpCurveCtrls</Filter>
@@ -339,40 +261,31 @@
       <Filter>Controllers</Filter>
     </ClCompile>
     <ClCompile Include="PX2SkinMatrixConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2FogParamConstant.cpp">
-      <Filter>ShaderFloats</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2FogColorConstant.cpp">
-      <Filter>ShaderFloats</Filter>
+      <Filter>Materials\ShaderFloats</Filter>
     </ClCompile>
     <ClCompile Include="PX2Controlledable.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
     <ClCompile Include="PX2LightTex2Material.cpp">
-      <Filter>LocalMaterials\Lighting</Filter>
+      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="PX2LightTexMaterial.cpp">
-      <Filter>LocalMaterials\Lighting</Filter>
+      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="PX2SkinMaterial.cpp">
-      <Filter>LocalMaterials\Lighting</Filter>
+      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="PX2JunglerMaterial.cpp">
-      <Filter>LocalMaterials\NotUse</Filter>
+      <Filter>Materials\LocalMaterials\NotUse</Filter>
     </ClCompile>
     <ClCompile Include="PX2Texture2DMaterial.cpp">
-      <Filter>LocalMaterials\Simple</Filter>
+      <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClCompile>
     <ClCompile Include="PX2VertexColor4Material.cpp">
-      <Filter>LocalMaterials\Simple</Filter>
+      <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClCompile>
     <ClCompile Include="PX2StdVC4Material.cpp">
-      <Filter>LocalMaterials\Lighting</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2FogColorDistConstant.cpp">
-      <Filter>ShaderFloats</Filter>
+      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="PX2Component.cpp">
       <Filter>Component</Filter>
@@ -408,28 +321,28 @@
       <Filter>Geometry</Filter>
     </ClCompile>
     <ClCompile Include="PX2MaterialManager.cpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClCompile>
     <ClCompile Include="PX2AlphaProperty.cpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2CullProperty.cpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2DepthProperty.cpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2OffsetProperty.cpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2StencilProperty.cpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2VertexShader.cpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2WireProperty.cpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClCompile>
     <ClCompile Include="PX2RendererInput.cpp">
       <Filter>Renderers</Filter>
@@ -488,6 +401,96 @@
     <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererInput.cpp">
       <Filter>Renderers\OpenGLES2Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="PX2LightAmbientConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightAttenuationConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightDiffuseConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightModelDVectorConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightModelPositionConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightSpecularConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightSpotConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightWorldDVectorConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightWorldPositionConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraModelDVectorConstant.cpp">
+      <Filter>Materials\ShaderFloats\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraModelPositionConstant.cpp">
+      <Filter>Materials\ShaderFloats\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraWorldDVectorConstant.cpp">
+      <Filter>Materials\ShaderFloats\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraWorldPositionConstant.cpp">
+      <Filter>Materials\ShaderFloats\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FogColorConstant.cpp">
+      <Filter>Materials\ShaderFloats\Fog</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FogColorDistConstant.cpp">
+      <Filter>Materials\ShaderFloats\Fog</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FogParamConstant.cpp">
+      <Filter>Materials\ShaderFloats\Fog</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShineAmbientConstant.cpp">
+      <Filter>Materials\ShaderFloats\Shine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShineDiffuseConstant.cpp">
+      <Filter>Materials\ShaderFloats\Shine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShineEmissiveConstant.cpp">
+      <Filter>Materials\ShaderFloats\Shine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShineSpecularConstant.cpp">
+      <Filter>Materials\ShaderFloats\Shine</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PMatrixConstant.cpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PVMatrixConstant.cpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PVWMatrixConstant.cpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VMatrixConstant.cpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VWMatrixConstant.cpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2WMatrixConstant.cpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShaderFloat.cpp">
+      <Filter>Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ShaderStruct.cpp">
+      <Filter>Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ProjectorMatrixConstant.cpp">
+      <Filter>Materials\ShaderFloats\Projector</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ProjectorWorldPositionConstant.cpp">
+      <Filter>Materials\ShaderFloats\Projector</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -495,23 +498,11 @@
     <ClInclude Include="PX2Bound.hpp">
       <Filter>DataTypes</Filter>
     </ClInclude>
-    <ClInclude Include="PX2CameraModelDVectorConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2CameraModelPositionConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Camera.hpp">
       <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="PX2CameraNode.hpp">
       <Filter>SceneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2CameraWorldDVectorConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2CameraWorldPositionConstant.hpp">
-      <Filter>ShaderFloats</Filter>
     </ClInclude>
     <ClInclude Include="PX2BoxSurface.hpp">
       <Filter>CurvesSurfaces</Filter>
@@ -556,7 +547,7 @@
       <Filter>DataTypes</Filter>
     </ClInclude>
     <ClInclude Include="PX2GlobalMaterial.hpp">
-      <Filter>GlobalMaterials</Filter>
+      <Filter>Materials\GlobalMaterials</Filter>
     </ClInclude>
     <ClInclude Include="PX2HalfFloat.hpp">
       <Filter>DataTypes</Filter>
@@ -576,47 +567,20 @@
     <ClInclude Include="PX2Light.hpp">
       <Filter>SceneGraph</Filter>
     </ClInclude>
-    <ClInclude Include="PX2LightAmbientConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightAttenuationConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightDiffuseConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightModelDVectorConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightModelPositionConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightWorldDVectorConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightWorldPositionConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightSpotConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightSpecularConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
     <ClInclude Include="PX2LightNode.hpp">
       <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="PX2Material.hpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClInclude>
     <ClInclude Include="PX2MaterialInstance.hpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClInclude>
     <ClInclude Include="PX2MaterialPass.hpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClInclude>
     <ClInclude Include="PX2MaterialTechnique.hpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClInclude>
     <ClInclude Include="PX2Movable.hpp">
       <Filter>SceneGraph</Filter>
@@ -631,25 +595,10 @@
       <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="PX2PixelShader.hpp">
-      <Filter>Material</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2PMatrixConstant.hpp">
-      <Filter>ShaderFloats</Filter>
+      <Filter>Materials</Filter>
     </ClInclude>
     <ClInclude Include="PX2Projector.hpp">
       <Filter>SceneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2ProjectorWorldPositionConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2ProjectorMatrixConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2PVMatrixConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2PVWMatrixConstant.hpp">
-      <Filter>ShaderFloats</Filter>
     </ClInclude>
     <ClInclude Include="PX2Renderable.hpp">
       <Filter>SceneGraph</Filter>
@@ -664,28 +613,13 @@
       <Filter>SceneGraph</Filter>
     </ClInclude>
     <ClInclude Include="PX2Shader.hpp">
-      <Filter>Material</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2ShaderFloat.hpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClInclude>
     <ClInclude Include="PX2ShaderParameters.hpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClInclude>
     <ClInclude Include="PX2Shine.hpp">
       <Filter>SceneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2ShineAmbientConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2ShineDiffuseConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2ShineEmissiveConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2ShineSpecularConstant.hpp">
-      <Filter>ShaderFloats</Filter>
     </ClInclude>
     <ClInclude Include="PX2SkinController.hpp">
       <Filter>Controllers</Filter>
@@ -722,15 +656,6 @@
     </ClInclude>
     <ClInclude Include="PX2VertexFormat.hpp">
       <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2VMatrixConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2VWMatrixConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2WMatrixConstant.hpp">
-      <Filter>ShaderFloats</Filter>
     </ClInclude>
     <ClInclude Include="PX2VisibleSet.hpp">
       <Filter>SceneGraph</Filter>
@@ -785,7 +710,7 @@
       <Filter>Renderers\Dx9Renderer</Filter>
     </ClInclude>
     <ClInclude Include="PX2UserConstant.hpp">
-      <Filter>ShaderFloats</Filter>
+      <Filter>Materials\ShaderFloats</Filter>
     </ClInclude>
     <ClInclude Include="PX2InterpCurveController.hpp">
       <Filter>Controllers\InterpCurveCtrls</Filter>
@@ -827,7 +752,7 @@
       <Filter>Detail</Filter>
     </ClInclude>
     <ClInclude Include="PX2ShaderKeys.hpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClInclude>
     <ClInclude Include="PX2DynamicBufferManager.hpp">
       <Filter>DynamicBuffer</Filter>
@@ -842,40 +767,31 @@
       <Filter>Controllers</Filter>
     </ClInclude>
     <ClInclude Include="PX2SkinMatrixConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2FogParamConstant.hpp">
-      <Filter>ShaderFloats</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2FogColorConstant.hpp">
-      <Filter>ShaderFloats</Filter>
+      <Filter>Materials\ShaderFloats</Filter>
     </ClInclude>
     <ClInclude Include="PX2Controlledable.hpp">
       <Filter>Controllers</Filter>
     </ClInclude>
     <ClInclude Include="PX2LightTex2Material.hpp">
-      <Filter>LocalMaterials\Lighting</Filter>
+      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="PX2LightTexMaterial.hpp">
-      <Filter>LocalMaterials\Lighting</Filter>
+      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="PX2SkinMaterial.hpp">
-      <Filter>LocalMaterials\Lighting</Filter>
+      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="PX2JunglerMaterial.hpp">
-      <Filter>LocalMaterials\NotUse</Filter>
+      <Filter>Materials\LocalMaterials\NotUse</Filter>
     </ClInclude>
     <ClInclude Include="PX2Texture2DMaterial.hpp">
-      <Filter>LocalMaterials\Simple</Filter>
+      <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClInclude>
     <ClInclude Include="PX2VertexColor4Material.hpp">
-      <Filter>LocalMaterials\Simple</Filter>
+      <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClInclude>
     <ClInclude Include="PX2StdVC4Material.hpp">
-      <Filter>LocalMaterials\Lighting</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2FogColorDistConstant.hpp">
-      <Filter>ShaderFloats</Filter>
+      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="PX2Component.hpp">
       <Filter>Component</Filter>
@@ -911,28 +827,28 @@
       <Filter>Geometry</Filter>
     </ClInclude>
     <ClInclude Include="PX2MaterialManager.hpp">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </ClInclude>
     <ClInclude Include="PX2AlphaProperty.hpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2CullProperty.hpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2DepthProperty.hpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2OffsetProperty.hpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2StencilProperty.hpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2VertexShader.hpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2WireProperty.hpp">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </ClInclude>
     <ClInclude Include="PX2RendererInput.hpp">
       <Filter>Renderers</Filter>
@@ -987,6 +903,96 @@
     </ClInclude>
     <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererInput.hpp">
       <Filter>Renderers\OpenGLES2Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightAmbientConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightAttenuationConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightDiffuseConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightModelDVectorConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightModelPositionConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightSpecularConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightSpotConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightWorldDVectorConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightWorldPositionConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraModelDVectorConstant.hpp">
+      <Filter>Materials\ShaderFloats\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraModelPositionConstant.hpp">
+      <Filter>Materials\ShaderFloats\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraWorldDVectorConstant.hpp">
+      <Filter>Materials\ShaderFloats\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraWorldPositionConstant.hpp">
+      <Filter>Materials\ShaderFloats\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FogColorConstant.hpp">
+      <Filter>Materials\ShaderFloats\Fog</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FogColorDistConstant.hpp">
+      <Filter>Materials\ShaderFloats\Fog</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FogParamConstant.hpp">
+      <Filter>Materials\ShaderFloats\Fog</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShineAmbientConstant.hpp">
+      <Filter>Materials\ShaderFloats\Shine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShineDiffuseConstant.hpp">
+      <Filter>Materials\ShaderFloats\Shine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShineEmissiveConstant.hpp">
+      <Filter>Materials\ShaderFloats\Shine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShineSpecularConstant.hpp">
+      <Filter>Materials\ShaderFloats\Shine</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PMatrixConstant.hpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PVMatrixConstant.hpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PVWMatrixConstant.hpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VMatrixConstant.hpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VWMatrixConstant.hpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2WMatrixConstant.hpp">
+      <Filter>Materials\ShaderFloats\PVW</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShaderFloat.hpp">
+      <Filter>Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShaderStruct.hpp">
+      <Filter>Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ProjectorMatrixConstant.hpp">
+      <Filter>Materials\ShaderFloats\Projector</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ProjectorWorldPositionConstant.hpp">
+      <Filter>Materials\ShaderFloats\Projector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1048,16 +1054,16 @@
       <Filter>SceneGraph</Filter>
     </None>
     <None Include="PX2Material.inl">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </None>
     <None Include="PX2MaterialInstance.inl">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </None>
     <None Include="PX2MaterialPass.inl">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </None>
     <None Include="PX2MaterialTechnique.inl">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </None>
     <None Include="PX2Movable.inl">
       <Filter>SceneGraph</Filter>
@@ -1075,13 +1081,10 @@
       <Filter>Renderers</Filter>
     </None>
     <None Include="PX2Shader.inl">
-      <Filter>Material</Filter>
-    </None>
-    <None Include="PX2ShaderFloat.inl">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </None>
     <None Include="PX2ShaderParameters.inl">
-      <Filter>Material</Filter>
+      <Filter>Materials</Filter>
     </None>
     <None Include="PX2SkinController.inl">
       <Filter>Controllers</Filter>
@@ -1175,10 +1178,13 @@
       <Filter>Geometry</Filter>
     </None>
     <None Include="PX2VertexShader.inl">
-      <Filter>RenderProperty</Filter>
+      <Filter>Materials\RenderProperty</Filter>
     </None>
     <None Include="PX2RenderStep.inl">
       <Filter>RenderStep</Filter>
+    </None>
+    <None Include="PX2ShaderFloat.inl">
+      <Filter>Materials</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -1188,17 +1194,8 @@
     <Filter Include="CurvesSurfaces">
       <UniqueIdentifier>{6d0fc2fe-609e-4f0f-a9d8-1afacfaa4fa0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LocalMaterials">
-      <UniqueIdentifier>{aa853b43-9a9e-4739-813e-e6273f3b4c66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GlobalMaterials">
-      <UniqueIdentifier>{0f87100a-eb43-4fd9-b8cb-db7517d836fb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SceneGraph">
       <UniqueIdentifier>{02cce708-da8e-4e68-8f46-41496d0df9a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ShaderFloats">
-      <UniqueIdentifier>{b5de0dbe-2232-43e1-b9db-26661e0a0a17}</UniqueIdentifier>
     </Filter>
     <Filter Include="DataTypes">
       <UniqueIdentifier>{9747d364-d2df-430d-9346-def66f787ccb}</UniqueIdentifier>
@@ -1233,20 +1230,8 @@
     <Filter Include="DynamicBuffer">
       <UniqueIdentifier>{f0ed51d7-31a8-4342-bb3c-d368c9636a3e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LocalMaterials\Lighting">
-      <UniqueIdentifier>{8ba94c52-64a5-4fb2-aaf7-705539154363}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LocalMaterials\NotUse">
-      <UniqueIdentifier>{29e137d5-54e9-4e09-b062-efc02b7150d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LocalMaterials\Simple">
-      <UniqueIdentifier>{31f75ea6-d60d-499b-ad2d-6b4988badfb4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Component">
       <UniqueIdentifier>{f1128f9a-439b-4520-849e-f7fa1ed0c924}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Material">
-      <UniqueIdentifier>{43e15e94-c428-498b-826c-e111a61ba082}</UniqueIdentifier>
     </Filter>
     <Filter Include="Geometry">
       <UniqueIdentifier>{c8d888be-e356-4b46-b455-270f132defd5}</UniqueIdentifier>
@@ -1257,8 +1242,47 @@
     <Filter Include="Renderers\OpenGLES2Renderer">
       <UniqueIdentifier>{31fd354c-7eea-4884-af82-5e7e3cd652e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RenderProperty">
+    <Filter Include="Materials">
+      <UniqueIdentifier>{43e15e94-c428-498b-826c-e111a61ba082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\ShaderFloats">
+      <UniqueIdentifier>{b5de0dbe-2232-43e1-b9db-26661e0a0a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\ShaderFloats\Light">
+      <UniqueIdentifier>{26ae118b-79b9-41aa-9ab2-4c64f0cd075a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\ShaderFloats\Camera">
+      <UniqueIdentifier>{a0f87095-ed10-4fdf-9c9c-b3dcb1b635e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\ShaderFloats\Fog">
+      <UniqueIdentifier>{0c1fe4b8-d3b8-426b-be0b-b4c479dbce60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\ShaderFloats\Shine">
+      <UniqueIdentifier>{dae45c04-b81b-44ed-abbf-91a2f8b633c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\ShaderFloats\PVW">
+      <UniqueIdentifier>{94e7a6c6-4f33-46d1-a414-864fead68971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\RenderProperty">
       <UniqueIdentifier>{c2cb1096-17c1-4182-a73f-5dcfa5a50db7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\LocalMaterials">
+      <UniqueIdentifier>{aa853b43-9a9e-4739-813e-e6273f3b4c66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\LocalMaterials\Lighting">
+      <UniqueIdentifier>{8ba94c52-64a5-4fb2-aaf7-705539154363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\LocalMaterials\NotUse">
+      <UniqueIdentifier>{29e137d5-54e9-4e09-b062-efc02b7150d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\LocalMaterials\Simple">
+      <UniqueIdentifier>{31f75ea6-d60d-499b-ad2d-6b4988badfb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\GlobalMaterials">
+      <UniqueIdentifier>{0f87100a-eb43-4fd9-b8cb-db7517d836fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\ShaderFloats\Projector">
+      <UniqueIdentifier>{47df9e27-959d-4fee-acf3-d35dab30b1a5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

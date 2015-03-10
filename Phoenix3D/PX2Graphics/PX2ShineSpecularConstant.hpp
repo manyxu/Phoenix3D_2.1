@@ -20,7 +20,7 @@ namespace PX2
 		ShineSpecularConstant ();
 		virtual ~ShineSpecularConstant ();
 
-		virtual void Update (const Renderable* renderable, const Camera* camera);
+		virtual void Update(const ShaderStruct *struc);
 	};
 
 	PX2_REGISTER_STREAM(ShineSpecularConstant);

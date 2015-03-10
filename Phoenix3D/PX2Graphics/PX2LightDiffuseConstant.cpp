@@ -32,7 +32,7 @@ Light* LightDiffuseConstant::GetLight ()
 	return mLight;
 }
 //----------------------------------------------------------------------------
-void LightDiffuseConstant::Update (const Renderable*, const Camera*)
+void LightDiffuseConstant::Update(const ShaderStruct *)
 {
 	const float* source = (const float*)mLight->Diffuse;
 	float* target = mData;

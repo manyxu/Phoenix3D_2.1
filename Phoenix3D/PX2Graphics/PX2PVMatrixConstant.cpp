@@ -23,10 +23,11 @@ PVMatrixConstant::~PVMatrixConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void PVMatrixConstant::Update (const Renderable*, const Camera* camera)
+void PVMatrixConstant::Update(const ShaderStruct *struc)
 {
-	const HMatrix& projViewMatrix = camera->GetProjectionViewMatrix();
+	const Camera *camera = struc->TheCamera;
 
+	const HMatrix& projViewMatrix = camera->GetProjectionViewMatrix();
 
 #ifdef PX2_USE_OPENGLES2
 	// you must trans on 0penGLES2

@@ -24,9 +24,9 @@ SkinMatrixConstant::~SkinMatrixConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void SkinMatrixConstant::Update (const Renderable *renderable, const Camera* camera)
+void SkinMatrixConstant::Update(const ShaderStruct *struc)
 {
-	PX2_UNUSED(camera);
+	const Renderable *renderable = struc->TheRenderable;
 
 	if (!mSkinContrl)
 	{

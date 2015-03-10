@@ -23,8 +23,10 @@ CameraWorldDVectorConstant::~CameraWorldDVectorConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void CameraWorldDVectorConstant::Update (const Renderable*, const Camera* camera)
+void CameraWorldDVectorConstant::Update(const ShaderStruct *struc)
 {
+	const Camera *camera = struc->TheCamera;
+
 	const AVector& worldDVector = camera->GetDVector();
 
 	const float* source = (const float*)worldDVector;

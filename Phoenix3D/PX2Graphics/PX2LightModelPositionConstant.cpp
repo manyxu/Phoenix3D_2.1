@@ -32,9 +32,10 @@ Light* LightModelPositionConstant::GetLight ()
 	return mLight;
 }
 //----------------------------------------------------------------------------
-void LightModelPositionConstant::Update (const Renderable* renderable,
-										 const Camera*)
+void LightModelPositionConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+
 	const APoint& worldPosition = mLight->Position;
 	const HMatrix& worldInvMatrix = renderable->WorldTransform.Inverse();
 	APoint modelPosition = worldInvMatrix*worldPosition;

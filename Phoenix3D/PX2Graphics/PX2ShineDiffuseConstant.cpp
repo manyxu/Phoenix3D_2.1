@@ -21,8 +21,10 @@ ShineDiffuseConstant::~ShineDiffuseConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void ShineDiffuseConstant::Update(const Renderable *renderable, const Camera*)
+void ShineDiffuseConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+
 	const float* source = (const float*)renderable->GetShine()->Diffuse;
     float* target = mData;
     for (int i = 0; i < 4; ++i)

@@ -32,7 +32,7 @@ Light* LightAmbientConstant::GetLight ()
     return mLight;
 }
 //----------------------------------------------------------------------------
-void LightAmbientConstant::Update (const Renderable*, const Camera*)
+void LightAmbientConstant::Update(const ShaderStruct *)
 {
     const float* source = (const float*)mLight->Ambient;
     float* target = mData;

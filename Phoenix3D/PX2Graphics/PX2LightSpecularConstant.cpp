@@ -32,7 +32,7 @@ Light* LightSpecularConstant::GetLight ()
 	return mLight;
 }
 //----------------------------------------------------------------------------
-void LightSpecularConstant::Update (const Renderable*, const Camera*)
+void LightSpecularConstant::Update(const ShaderStruct *)
 {
 	const float* source = (const float*)mLight->Specular;
 	float* target = mData;

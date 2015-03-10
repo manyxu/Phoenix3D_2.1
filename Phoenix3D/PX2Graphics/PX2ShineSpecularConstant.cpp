@@ -21,8 +21,10 @@ ShineSpecularConstant::~ShineSpecularConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void ShineSpecularConstant::Update(const Renderable *renderable, const Camera*)
+void ShineSpecularConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+
 	const float* source = (const float*)renderable->GetShine()->Specular;
 	float* target = mData;
 	for (int i = 0; i < 4; ++i)

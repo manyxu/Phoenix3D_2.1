@@ -32,7 +32,7 @@ Light* LightWorldDVectorConstant::GetLight ()
 	return mLight;
 }
 //----------------------------------------------------------------------------
-void LightWorldDVectorConstant::Update (const Renderable*, const Camera*)
+void LightWorldDVectorConstant::Update(const ShaderStruct *)
 {
 	const AVector& worldDVector = mLight->DVector;
 

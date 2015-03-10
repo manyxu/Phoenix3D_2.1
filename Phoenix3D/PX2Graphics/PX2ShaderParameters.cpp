@@ -148,8 +148,7 @@ Texture* ShaderParameters::GetTexture (int handle) const
 	return 0;
 }
 //----------------------------------------------------------------------------
-void ShaderParameters::UpdateConstants (const Renderable* renderable,
-										const Camera* camera)
+void ShaderParameters::UpdateConstants(const ShaderStruct *shaderStruc)
 {
 	ShaderFloatPtr* constants = mConstants;
 	for (int i = 0; i < mNumConstants; ++i, ++constants)
@@ -157,7 +156,7 @@ void ShaderParameters::UpdateConstants (const Renderable* renderable,
 		ShaderFloat* constant = *constants;
 		if (constant->AllowUpdater())
 		{
-			constant->Update(renderable, camera);
+			constant->Update(shaderStruc);
 		}
 	}
 }
@@ -179,7 +178,6 @@ void ShaderParameters::RegistProperties ()
 		{
 			std::string name = mShader->GetConstantName(i);
 			AddProperty("ShaderFloat", Object::PT_STRING, name, false);
-			sf->Float_OnRegistProperties(this);
 		}
 	}
 
@@ -199,15 +197,6 @@ void ShaderParameters::RegistProperties ()
 void ShaderParameters::OnPropertyChanged (const PropertyObject &obj)
 {
 	Object::OnPropertyChanged(obj);
-
-	for (int i=0; i<GetNumConstants(); i++)
-	{
-		ShaderFloat *sf = GetConstant(i);
-		if (sf)
-		{
-			sf->Float_OnPropertyChanged(this, obj);
-		}
-	}
 
 	if (Object::PT_STRINGBUTTON == obj.Type)
 	{

@@ -84,20 +84,9 @@ ShaderFloat& ShaderFloat::operator= (const float* data)
 	return *this;
 }
 //----------------------------------------------------------------------------
-void ShaderFloat::Update (const Renderable*, const Camera*)
+void ShaderFloat::Update(const ShaderStruct *)
 {
 	// 派生类实现
-}
-//----------------------------------------------------------------------------
-void ShaderFloat::Float_OnRegistProperties (Object *parObj)
-{
-	PX2_UNUSED(parObj);
-}
-//----------------------------------------------------------------------------
-void ShaderFloat::Float_OnPropertyChanged (Object *parObj, const PropertyObject &obj)
-{
-	PX2_UNUSED(parObj);
-	PX2_UNUSED(obj);
 }
 //----------------------------------------------------------------------------
 

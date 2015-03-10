@@ -19,7 +19,7 @@ namespace PX2
 		PMatrixConstant ();
 		virtual ~PMatrixConstant ();
 
-		virtual void Update (const Renderable* renderable, const Camera* camera);
+		virtual void Update(const ShaderStruct *struc);
 	};
 
 	PX2_REGISTER_STREAM(PMatrixConstant);

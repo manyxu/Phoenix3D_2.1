@@ -32,7 +32,7 @@ Light* LightAttenuationConstant::GetLight ()
     return mLight;
 }
 //----------------------------------------------------------------------------
-void LightAttenuationConstant::Update (const Renderable*, const Camera*)
+void LightAttenuationConstant::Update(const ShaderStruct *)
 {
     mData[0] = mLight->Constant;
     mData[1] = mLight->Linear;

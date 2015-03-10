@@ -23,8 +23,10 @@ WMatrixConstant::~WMatrixConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void WMatrixConstant::Update (const Renderable* renderable, const Camera*)
+void WMatrixConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+
 	const HMatrix& worldMatrix = renderable->WorldTransform.Matrix();
 
 #ifdef PX2_USE_OPENGLES2

@@ -20,7 +20,7 @@ namespace PX2
 		FogParamConstant ();
 		virtual ~FogParamConstant ();
 
-		virtual void Update (const Renderable* renderable, const Camera* camera);
+		virtual void Update(const ShaderStruct *struc);
 	};
 
 	PX2_REGISTER_STREAM(FogParamConstant);

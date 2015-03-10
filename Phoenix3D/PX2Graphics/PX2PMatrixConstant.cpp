@@ -23,8 +23,10 @@ PMatrixConstant::~PMatrixConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void PMatrixConstant::Update (const Renderable*, const Camera* camera)
+void PMatrixConstant::Update(const ShaderStruct *struc)
 {
+	const Camera *camera = struc->TheCamera;
+
 	const HMatrix& projMatrix = camera->GetProjectionMatrix();
 
 #ifdef PX2_USE_OPENGLES2

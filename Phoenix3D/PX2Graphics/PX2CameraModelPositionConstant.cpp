@@ -23,9 +23,11 @@ CameraModelPositionConstant::~CameraModelPositionConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void CameraModelPositionConstant::Update (const Renderable* renderable,
-										  const Camera* camera)
+void CameraModelPositionConstant::Update(const ShaderStruct *struc)
 {
+	const Camera *camera = struc->TheCamera;
+	const Renderable *renderable = struc->TheRenderable;
+
 	const APoint& worldPosition = camera->GetPosition();
 	const HMatrix& worldInvMatrix = renderable->WorldTransform.Inverse();
 	APoint modelPosition = worldInvMatrix*worldPosition;

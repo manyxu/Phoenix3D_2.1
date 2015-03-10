@@ -22,8 +22,10 @@ ShineEmissiveConstant::~ShineEmissiveConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void ShineEmissiveConstant::Update(const Renderable* renderable, const Camera*)
+void ShineEmissiveConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+
 	const float* source = (const float*)renderable->GetShine()->Emissive;
 	float* target = mData;
 	for (int i = 0; i < 4; ++i)

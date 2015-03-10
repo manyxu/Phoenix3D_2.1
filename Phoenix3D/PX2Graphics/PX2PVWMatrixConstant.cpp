@@ -23,8 +23,11 @@ PVWMatrixConstant::~PVWMatrixConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void PVWMatrixConstant::Update (const Renderable* renderable, const Camera* camera)
+void PVWMatrixConstant::Update(const ShaderStruct *struc)
 {
+	const Camera *camera = struc->TheCamera;
+	const Renderable *renderable = struc->TheRenderable;
+
 	const HMatrix& projViewMatrix = camera->GetProjectionViewMatrix();
 	const HMatrix& worldMatrix = renderable->WorldTransform.Matrix();
 	HMatrix projViewWorldMatrix = projViewMatrix*worldMatrix;

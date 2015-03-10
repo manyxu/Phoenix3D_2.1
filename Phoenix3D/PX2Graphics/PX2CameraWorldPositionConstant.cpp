@@ -23,8 +23,10 @@ CameraWorldPositionConstant::~CameraWorldPositionConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void CameraWorldPositionConstant::Update (const Renderable*, const Camera* camera)
+void CameraWorldPositionConstant::Update(const ShaderStruct *struc)
 {
+	const Camera *camera = struc->TheCamera;
+
 	const APoint& worldPosition = camera->GetPosition();
 
 	const float* source = (const float*)worldPosition;

@@ -7,6 +7,7 @@
 #include "PX2Shader.hpp"
 #include "PX2ShaderFloat.hpp"
 #include "PX2Texture.hpp"
+#include "PX2ShaderStruct.hpp"
 
 namespace PX2
 {
@@ -51,7 +52,7 @@ namespace PX2
 		Texture* GetTexture (int handle) const;
 
 		// 在绘制的时候更新常量
-		void UpdateConstants (const Renderable* renderable, const Camera* camera);
+		void UpdateConstants (const ShaderStruct *shaderStruc);
 
 	protected:
 		ShaderPtr mShader;

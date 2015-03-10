@@ -32,7 +32,7 @@ Light* LightWorldPositionConstant::GetLight ()
 	return mLight;
 }
 //----------------------------------------------------------------------------
-void LightWorldPositionConstant::Update (const Renderable*, const Camera*)
+void LightWorldPositionConstant::Update(const ShaderStruct *)
 {
 	const APoint& worldPosition = mLight->Position;
 

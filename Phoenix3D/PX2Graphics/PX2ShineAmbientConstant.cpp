@@ -22,8 +22,10 @@ ShineAmbientConstant::~ShineAmbientConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void ShineAmbientConstant::Update(const Renderable *renderable, const Camera*)
+void ShineAmbientConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+
 	const float* source = (const float*)renderable->GetShine()->Ambient;
 	float* target = mData;
 	for (int i = 0; i < 4; ++i)

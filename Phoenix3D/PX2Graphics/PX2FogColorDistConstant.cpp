@@ -23,7 +23,7 @@ FogColorDistConstant::~FogColorDistConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void FogColorDistConstant::Update (const Renderable*, const Camera*)
+void FogColorDistConstant::Update(const ShaderStruct *struc)
 {
 	const float* source = (const float*)PX2_GR.GetFogColorDist();
 	float* target = mData;

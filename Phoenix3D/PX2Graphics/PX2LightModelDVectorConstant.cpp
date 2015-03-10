@@ -32,9 +32,10 @@ Light* LightModelDVectorConstant::GetLight ()
 	return mLight;
 }
 //----------------------------------------------------------------------------
-void LightModelDVectorConstant::Update (const Renderable* renderable, 
-										const Camera*)
+void LightModelDVectorConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+
 	const HMatrix& worldInvMatrix = renderable->WorldTransform.Inverse();
 	AVector modelDVector = worldInvMatrix*mLight->DVector;
 	modelDVector.Normalize();

@@ -23,8 +23,10 @@ FogParamConstant::~FogParamConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void FogParamConstant::Update (const Renderable *renderable, const Camera*)
+void FogParamConstant::Update(const ShaderStruct *struc)
 {
+	const Renderable *renderable = struc->TheRenderable;
+
 	Float4 fogParam = renderable->UpdateFogParam();
 	const float* source = (const float*)fogParam;
 	float* target = mData;

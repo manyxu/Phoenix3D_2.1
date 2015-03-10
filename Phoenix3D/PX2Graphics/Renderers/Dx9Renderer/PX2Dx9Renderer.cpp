@@ -1343,8 +1343,11 @@ void Renderer::Enable (const Renderable* renderable,
 	PixelShader* pshader = pass->GetPixelShader();
 
 	// 更新着色器常量
-	vparams->UpdateConstants(renderable, mCamera);
-	pparams->UpdateConstants(renderable, mCamera);
+	ShaderStruct struc;
+	struc.TheRenderable = (Renderable*)renderable;
+	struc.TheCamera = (Camera*)mCamera;
+	vparams->UpdateConstants(&struc);
+	pparams->UpdateConstants(&struc);
 
 	// 设置渲染状态
 	SetAlphaProperty(pass->GetAlphaProperty());
