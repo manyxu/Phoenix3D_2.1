@@ -52,6 +52,7 @@ namespace PX2
 		*		逆矩阵被重新计算，然后mInverseNeedsUpdate被设置为false。
 		*/
 		void SetRotate (const HMatrix& rotate);
+		void SetRotate(float x, float y, float z);
 		void SetMatrix (const HMatrix& matrix);
 		void SetTranslate (const APoint& translate);
 		void SetTranslate (float x, float y, float z);
@@ -62,6 +63,7 @@ namespace PX2
 		void SetScale (const APoint& scale);
 		void SetUniformScale (float scale);
 		inline const HMatrix& GetRotate () const;
+		void GetRotate(float &x, float &y, float &z);
 		inline const HMatrix& GetMatrix () const;
 		inline const APoint& GetTranslate () const;
 		inline const APoint& GetScale () const;

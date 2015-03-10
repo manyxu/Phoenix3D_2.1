@@ -52,6 +52,11 @@ void Transform::SetRotate (const HMatrix& rotate)
 	UpdateHMatrix();
 }
 //----------------------------------------------------------------------------
+void Transform::SetRotate(float x, float y, float z)
+{
+	SetRotate(Matrix3f().MakeEulerXYZ(x, y, z));
+}
+//----------------------------------------------------------------------------
 void Transform::SetMatrix (const HMatrix& matrix)
 {
 	mMatrix = matrix;
@@ -134,6 +139,12 @@ void Transform::SetUniformScale (float scale)
 	mIsIdentity = false;
 	mIsUniformScale = true;
 	UpdateHMatrix();
+}
+//----------------------------------------------------------------------------
+void Transform::GetRotate(float &x, float &y, float &z)
+{
+	Matrix3f mat = GetRotate();
+	mat.ExtractEulerXYZ(x, y, z);
 }
 //----------------------------------------------------------------------------
 float Transform::GetNorm () const

@@ -381,6 +381,42 @@ TriMesh* StandardMesh::Box (float xExtent, float yExtent, float zExtent)
 	return mesh;
 }
 //----------------------------------------------------------------------------
+Node *StandardMesh::BoxPieces(int samples, float extent)
+{
+	Node *node = new0 Node();
+
+	TriMesh *rectFront = Rectangle(samples, samples, extent, extent);
+	node->AttachChild(rectFront);
+	rectFront->LocalTransform.SetRotate(Mathf::HALF_PI, 0.0f, 0.0f);
+	rectFront->LocalTransform.SetTranslateY(-extent);
+
+	TriMesh *rectBack = Rectangle(samples, samples, extent, extent);
+	node->AttachChild(rectBack);
+	rectBack->LocalTransform.SetRotate(-Mathf::HALF_PI, 0.0f, 0.0f);
+	rectBack->LocalTransform.SetTranslateY(extent);
+
+	TriMesh *rectLeft = Rectangle(samples, samples, extent, extent);
+	node->AttachChild(rectLeft);
+	rectLeft->LocalTransform.SetRotate(0.0f, -Mathf::HALF_PI, 0.0f);
+	rectLeft->LocalTransform.SetTranslateX(-extent);
+
+	TriMesh *rectRight = Rectangle(samples, samples, extent, extent);
+	node->AttachChild(rectRight);
+	rectRight->LocalTransform.SetRotate(0.0f, Mathf::HALF_PI, 0.0f);
+	rectRight->LocalTransform.SetTranslateX(extent);
+
+	TriMesh *rectTop = Rectangle(samples, samples, extent, extent);
+	node->AttachChild(rectTop);
+	rectTop->LocalTransform.SetTranslateZ(extent);
+
+	TriMesh *rectBot = Rectangle(samples, samples, extent, extent);
+	node->AttachChild(rectBot);
+	rectBot->LocalTransform.SetRotate(0.0f, Mathf::PI, 0.0f);
+	rectBot->LocalTransform.SetTranslateZ(-extent);
+
+	return node;
+}
+//----------------------------------------------------------------------------
 TriMesh* StandardMesh::Cylinder (int axisSamples, int radialSamples,
 								 float radius, float height, bool open)
 {

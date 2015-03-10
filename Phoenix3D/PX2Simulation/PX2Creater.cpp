@@ -143,21 +143,29 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PNT1);
 
 	StandardMesh stdMesh(vf);
-	TriMesh *mesh = stdMesh.Box(1, 1, 1);
-	mesh->SetName("NoName");
+	Node *meshNode = stdMesh.BoxPieces(2, 1);
+	meshNode->SetName("NoName");
 
-	MaterialInstance *mi = new0 MaterialInstance(
-		"Data/engine_mtls/std/std.px2obj", "default", false);
-	mesh->SetMaterialInstance(mi);
+	for (int i = 0; i < meshNode->GetNumChildren(); i++)
+	{
+		TriMesh *mesh = DynamicCast<TriMesh>(meshNode->GetChild(i));
 
-	mi->SetPixelTexture(0, "Sample0", tex);
+		if (mesh)
+		{
+			MaterialInstance *mi = new0 MaterialInstance(
+				"Data/engine_mtls/std/std.px2obj", "default", false);
+			mesh->SetMaterialInstance(mi);
 
-	mesh->LocalTransform.SetTranslate(localPos);
+			mi->SetPixelTexture(0, "Sample0", tex);
+		}
+	}
+
+	meshNode->LocalTransform.SetTranslate(localPos);
 
 	if (doAdd)
-		AddObject(parent, mesh);
+		AddObject(parent, meshNode);
 
-	return mesh;
+	return meshNode;
 }
 //----------------------------------------------------------------------------
 Movable *Creater::CreateSphere(Node *parent, const APoint &pos, 

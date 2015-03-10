@@ -61,6 +61,7 @@ namespace PX2
 		// 'zExtent'.  The mesh has 8 vertices and 12 triangles.  For example,
 		// the box corner in the first octant is (xExtent, yExtent, zExtent).
 		TriMesh* Box (float xExtent, float yExtent, float zExtent);
+		Node *StandardMesh::BoxPieces(int samples, float extent);
 
 		// The cylinder has center (0,0,0), the specified 'radius', and the
 		// specified 'height'.  The cylinder axis is a line segment of the
