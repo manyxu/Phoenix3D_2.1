@@ -7,7 +7,7 @@
 #include "PX2LightWorldDVectorConstant.hpp"
 #include "PX2LightDiffuseConstant.hpp"
 #include "PX2LightSpecularConstant.hpp"
-#include "PX2FogColorConstant.hpp"
+#include "PX2FogColorHeightConstant.hpp"
 #include "PX2FogParamConstant.hpp"
 #include "PX2ShaderKeys.hpp"
 #include "PX2FogColorDistConstant.hpp"
@@ -108,7 +108,7 @@ MaterialInstance* LightTex2Material::CreateInstance (Texture2D* texture0,
 	instance->SetVertexConstant(0, 6, new0 FogParamConstant());
 	instance->SetPixelTexture(0, 0, texture0);
 	instance->SetPixelTexture(0, 1, texture1);
-	instance->SetPixelConstant(0, 0, new0 FogColorConstant());
+	instance->SetPixelConstant(0, 0, new0 FogColorHeightConstant());
 	instance->SetPixelConstant(0, 1, new0 FogColorDistConstant());
 
 	PixelShader* pshader = GetPixelShader();

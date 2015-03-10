@@ -103,7 +103,7 @@ Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 		"Data/engine/default.png"));
 	if (!tex) return 0;
 
-	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1);
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PNT1);
 
 	StandardMesh stdMesh(vf);
 	TriMesh *mesh = stdMesh.Rectangle(2, 2, 1.0f, 1.0f, Float2(0.5f, 0.5f));
@@ -112,6 +112,8 @@ Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 	MaterialInstance *mi = new0 MaterialInstance(
 		"Data/engine_mtls/std/std.px2obj", "default", false);
 	mesh->SetMaterialInstance(mi);
+
+	mi->SetPixelTexture(0, "Sample0", tex);
 
 	mesh->LocalTransform.SetTranslate(localPos);
 
@@ -138,7 +140,7 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 		"Data/engine/default.png"));
 	if (!tex) return 0;
 
-	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1);
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PNT1);
 
 	StandardMesh stdMesh(vf);
 	TriMesh *mesh = stdMesh.Box(1, 1, 1);
@@ -147,6 +149,8 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 	MaterialInstance *mi = new0 MaterialInstance(
 		"Data/engine_mtls/std/std.px2obj", "default", false);
 	mesh->SetMaterialInstance(mi);
+
+	mi->SetPixelTexture(0, "Sample0", tex);
 
 	mesh->LocalTransform.SetTranslate(localPos);
 
@@ -173,7 +177,7 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 		"Data/engine/default.png"));
 	if (!tex) return 0;
 
-	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1);
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PNT1);
 
 	StandardMesh stdMesh(vf);
 	TriMesh *mesh = stdMesh.Sphere(32, 32, 1);
@@ -182,6 +186,8 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 	MaterialInstance *mi = new0 MaterialInstance(
 		"Data/engine_mtls/std/std.px2obj", "default", false);
 	mesh->SetMaterialInstance(mi);
+
+	mi->SetPixelTexture(0, "Sample0", tex);
 
 	mesh->LocalTransform.SetTranslate(localPos);
 

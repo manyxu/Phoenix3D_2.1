@@ -11,20 +11,20 @@
 					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
 					<var index="1" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="2" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
-					<var index="3" name="vertexTCoord1" vt="float2" vs="TEXCOORD0"/>
+					<var index="3" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
 				</o>
 				<c>
 					<var index="0" name="PVWMatrix" nr="4"/>
 					<var index="1" name="WMatrix" nr="4"/>
 					<var index="2" name="CameraWorldPosition" nr="1"/>
-					<var index="3" name="LightWorldDirection" nr="1"/>
+					<var index="3" name="LightWorldDVector_Dir" nr="1"/>
 					<var index="4" name="ShineEmissive" nr="1"/>
 					<var index="5" name="ShineAmbient" nr="1"/>
 					<var index="6" name="ShineDiffuse" nr="1"/>
 					<var index="7" name="ShineSpecular" nr="1"/>
-					<var index="8" name="LightAmbient" nr="1"/>
-					<var index="9" name="LightDiffuse" nr="1"/>
-					<var index="10" name="LightSpecular" nr="1"/>
+					<var index="8" name="LightAmbient_Dir" nr="1"/>
+					<var index="9" name="LightDiffuse_Dir" nr="1"/>
+					<var index="10" name="LightSpecular_Dir" nr="1"/>
 					<var index="11" name="FogParam" nr="1"/>
 				</c>
 				<p>
@@ -42,7 +42,7 @@
 					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
 				</o>
 				<c>
-					<var index="0" name="FogColor" nr="1"/>
+					<var index="0" name="FogColorHeight" nr="1"/>
 					<var index="1" name="FogColorDist" nr="1"/>
 				</c>
 				<s>

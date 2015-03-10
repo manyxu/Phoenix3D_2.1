@@ -11,7 +11,8 @@
 #include "PX2ShineSpecularConstant.hpp"
 #include "PX2FogParamConstant.hpp"
 #include "PX2LightWorldDVectorConstant.hpp"
-#include "PX2FogColorConstant.hpp"
+#include "PX2FogColorDistConstant.hpp"
+#include "PX2FogColorHeightConstant.hpp"
 #include "PX2CameraWorldPositionConstant.hpp"
 #include "PX2LightAmbientConstant.hpp"
 #include "PX2LightDiffuseConstant.hpp"
@@ -141,7 +142,7 @@ MaterialInstance* StdVC4Material::CreateInstance (ShaderFloat *uvFloat,
 
 	instance->SetPixelTexture(0, "BaseSampler", texture);
 	instance->SetPixelConstant(0, "UVOffset", uvFloat);
-	instance->SetPixelConstant(0, "FogColor", new0 FogColorConstant());
+	instance->SetPixelConstant(0, "FogColor", new0 FogColorHeightConstant());
 	instance->SetPixelConstant(0, "FogColorDist", new0 FogColorDistConstant());
 
 	return instance;

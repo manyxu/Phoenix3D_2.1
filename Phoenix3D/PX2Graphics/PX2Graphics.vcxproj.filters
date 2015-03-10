@@ -260,9 +260,6 @@
     <ClCompile Include="PX2BlendTransformController.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="PX2SkinMatrixConstant.cpp">
-      <Filter>Materials\ShaderFloats</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Controlledable.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
@@ -440,9 +437,6 @@
     <ClCompile Include="PX2CameraWorldPositionConstant.cpp">
       <Filter>Materials\ShaderFloats\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="PX2FogColorConstant.cpp">
-      <Filter>Materials\ShaderFloats\Fog</Filter>
-    </ClCompile>
     <ClCompile Include="PX2FogColorDistConstant.cpp">
       <Filter>Materials\ShaderFloats\Fog</Filter>
     </ClCompile>
@@ -490,6 +484,12 @@
     </ClCompile>
     <ClCompile Include="PX2ProjectorWorldPositionConstant.cpp">
       <Filter>Materials\ShaderFloats\Projector</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkinMatrixConstant.cpp">
+      <Filter>Materials\ShaderFloats\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FogColorHeightConstant.cpp">
+      <Filter>Materials\ShaderFloats\Fog</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -766,9 +766,6 @@
     <ClInclude Include="PX2BlendTransformController.hpp">
       <Filter>Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="PX2SkinMatrixConstant.hpp">
-      <Filter>Materials\ShaderFloats</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Controlledable.hpp">
       <Filter>Controllers</Filter>
     </ClInclude>
@@ -943,9 +940,6 @@
     <ClInclude Include="PX2CameraWorldPositionConstant.hpp">
       <Filter>Materials\ShaderFloats\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="PX2FogColorConstant.hpp">
-      <Filter>Materials\ShaderFloats\Fog</Filter>
-    </ClInclude>
     <ClInclude Include="PX2FogColorDistConstant.hpp">
       <Filter>Materials\ShaderFloats\Fog</Filter>
     </ClInclude>
@@ -993,6 +987,12 @@
     </ClInclude>
     <ClInclude Include="PX2ProjectorWorldPositionConstant.hpp">
       <Filter>Materials\ShaderFloats\Projector</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkinMatrixConstant.hpp">
+      <Filter>Materials\ShaderFloats\Skin</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FogColorHeightConstant.hpp">
+      <Filter>Materials\ShaderFloats\Fog</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1283,6 +1283,9 @@
     </Filter>
     <Filter Include="Materials\ShaderFloats\Projector">
       <UniqueIdentifier>{47df9e27-959d-4fee-acf3-d35dab30b1a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials\ShaderFloats\Skin">
+      <UniqueIdentifier>{302c2653-1ce2-4e7d-a5c3-0857a9b80252}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

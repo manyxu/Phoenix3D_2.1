@@ -32,7 +32,8 @@ void SkinMatrixConstant::Update(const ShaderStruct *struc)
 	{
 		for (int i=0; i<renderable->GetNumControllers(); i++)
 		{
-			SkinController *skinCtrl = DynamicCast<SkinController>(renderable->GetController(i));
+			SkinController *skinCtrl = DynamicCast<SkinController>(
+				renderable->GetController(i));
 			if (skinCtrl)
 			{
 				mSkinContrl = skinCtrl;

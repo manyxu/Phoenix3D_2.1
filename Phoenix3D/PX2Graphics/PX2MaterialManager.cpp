@@ -4,12 +4,20 @@
 #include "PX2GraphicsRoot.hpp"
 #include "PX2PVMatrixConstant.hpp"
 #include "PX2PVWMatrixConstant.hpp"
+#include "PX2WMatrixConstant.hpp"
 #include "PX2ShineEmissiveConstant.hpp"
 #include "PX2ShineAmbientConstant.hpp"
 #include "PX2ShineDiffuseConstant.hpp"
 #include "PX2ShineSpecularConstant.hpp"
 #include "PX2CameraWorldPositionConstant.hpp"
 #include "PX2CameraModelPositionConstant.hpp"
+#include "PX2LightWorldDVectorConstant.hpp"
+#include "PX2LightAmbientConstant.hpp"
+#include "PX2LightDiffuseConstant.hpp"
+#include "PX2LightSpecularConstant.hpp"
+#include "PX2FogParamConstant.hpp"
+#include "PX2FogColorHeightConstant.hpp"
+#include "PX2FogColorDistConstant.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -109,6 +117,10 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,
 	{
 		return new0 PVWMatrixConstant();
 	}
+	else if (FString("WMatrix") == name)
+	{
+		return new0 WMatrixConstant();
+	}
 	else if (FString("ShineEmissive") == name)
 	{
 		return new0 ShineEmissiveConstant();
@@ -132,6 +144,34 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,
 	else if (FString("CameraModelPosition") == name)
 	{
 		return new0 CameraModelPositionConstant();
+	}
+	else if (FString("LightWorldDVector_Dir") == name)
+	{
+		return new0 LightWorldDVectorConstant(PX2_GR.GetLight_Dir());
+	}
+	else if (FString("LightAmbient_Dir") == name)
+	{
+		return new0 LightAmbientConstant(PX2_GR.GetLight_Dir());
+	}
+	else if (FString("LightDiffuse_Dir") == name)
+	{
+		return new0 LightDiffuseConstant(PX2_GR.GetLight_Dir());
+	}
+	else if (FString("LightSpecular_Dir") == name)
+	{
+		return new0 LightSpecularConstant(PX2_GR.GetLight_Dir());
+	}
+	else if (FString("FogParam") == name)
+	{
+		return new0 FogParamConstant();
+	}
+	else if (FString("FogColorDist") == name)
+	{
+		return new0 FogColorDistConstant();
+	}
+	else if (FString("FogColorHeight") == name)
+	{
+		return new0 FogColorHeightConstant();
 	}
 	else
 	{

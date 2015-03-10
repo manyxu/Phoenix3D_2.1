@@ -29,9 +29,17 @@ const std::string GraphicsRoot::sTerResPath = "TerResPath";
 GraphicsRoot::GraphicsRoot ()
 {
 	mIsInEditor = false;
-	mFogParam = Float4(0.0f, 120.0f, 0.0f, 0.0f);
-	mFogColor = Float4::RED;
+	mFogParam = Float4(-10.0f, 0.0f, 0.0f, 120.0f);
+	mFogColorHeight = Float4::RED;
 	mFogColorDist = Float4::BLUE;
+
+	mLight_DirEmpty = new0 Light(Light::LT_DIRECTIONAL);
+
+	mLight_DirEmpty->Ambient = Float4(0.5f, 0.5f, 0.5f, 1.0f);
+	mLight_DirEmpty->Diffuse = Float4(0.5f, 0.5f, 0.5f, 1.0f); 
+	mLight_DirEmpty->Specular = Float4(0.5f, 0.5f, 0.5f, 1.0f);
+	mLight_DirEmpty->SetDirection(AVector::UNIT_X);
+	mLight_Dir = mLight_DirEmpty;
 
 	MaterialManager *mi = new0 MaterialManager();
 	PX2_UNUSED(mi);
@@ -106,6 +114,7 @@ bool GraphicsRoot::Terminate ()
 
 	mCamera = 0;
 	mAllLights.clear();
+	mLight_Dir = 0;
 	mCreatedVFs.clear();
 
 	Environment::RemoveAllDirectories();
@@ -117,6 +126,8 @@ bool GraphicsRoot::Terminate ()
 //----------------------------------------------------------------------------
 void GraphicsRoot::AddLight (Light *light)
 {
+	if (!light) return;
+
 	bool bIn = false;
 	for (int i=0; i<(int)mAllLights.size(); i++)
 	{
@@ -126,6 +137,11 @@ void GraphicsRoot::AddLight (Light *light)
 
 	if (!bIn)
 	{
+		if (Light::LT_DIRECTIONAL == light->GetType())
+		{
+			mLight_Dir = light;
+		}
+
 		mAllLights.push_back(light);
 	}
 }
@@ -137,6 +153,9 @@ void GraphicsRoot::RemoveLight (Light *light)
 	{
 		if (*it == light)
 		{
+			if (light == mLight_Dir)
+				mLight_Dir = mLight_DirEmpty;
+
 			mAllLights.erase(it);
 			return;
 		}
@@ -436,6 +455,13 @@ VertexFormat *GraphicsRoot::GetVertexFormat(VertexFormatType type)
 				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
 				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0,
 				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 1);
+		}
+		else if (VFT_PNT1 == type)
+		{
+			vf = VertexFormat::Create(3,
+				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_NORMAL, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0);
 		}
 
 		mCreatedVFs[type] = vf;

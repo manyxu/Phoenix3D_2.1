@@ -36,9 +36,6 @@ namespace PX2
 		void SetInEditor (bool isInEditor);
 		bool IsInEditor () const;
 
-		void SetCamera (Camera *camera);
-		PX2::Camera *GetCamera();
-
 		// Size Rect
 		void SetScreenSize (const Sizef &size);	// screen size
 		const Sizef &GetScreenSize () const;		
@@ -54,12 +51,13 @@ namespace PX2
 		void ClearAllLights ();
 		int GetNumLights ();
 		Light *GetLight (int index);
+		Light *GetLight_Dir();
 
 		// Fog
 		void SetFogParam (const Float4 &param);
 		const Float4 &GetFogParam () const;
-		void SetFogColor (const Float4 &fogColor);
-		const Float4 &GetFogColor () const;
+		void SetFogColorHeight (const Float4 &fogColor);
+		const Float4 &GetFogColorHeight () const;
 		void SetFogColorDist (const Float4 &fogColor);
 		const Float4 &GetFogColorDist () const;
 
@@ -76,9 +74,11 @@ namespace PX2
 		Sizef mProjectSize;
 		PX2::CameraPtr mCamera;
 		std::vector<LightPtr> mAllLights; // 保存放在场景中的所有灯光
+		LightPtr mLight_DirEmpty;
+		LightPtr mLight_Dir;
 		Float4 mFogParam;
-		Float4 mFogColor;
 		Float4 mFogColorDist;
+		Float4 mFogColorHeight;
 
 		// RenderStep;
 	public:
@@ -109,6 +109,7 @@ namespace PX2
 			VFT_PC,
 			VFT_PCT1,
 			VFT_PCT2,
+			VFT_PNT1,
 			VFT_MAX_TYPE
 		};
 

@@ -82,7 +82,7 @@
     <ClCompile Include="PX2DynamicBufferObject.cpp" />
     <ClCompile Include="PX2Float2Array.cpp" />
     <ClCompile Include="PX2FloatArray.cpp" />
-    <ClCompile Include="PX2FogColorConstant.cpp" />
+    <ClCompile Include="PX2FogColorHeightConstant.cpp" />
     <ClCompile Include="PX2FogColorDistConstant.cpp" />
     <ClCompile Include="PX2FogParamConstant.cpp" />
     <ClCompile Include="PX2GlobalMaterial.cpp" />
@@ -244,7 +244,7 @@
     <ClInclude Include="PX2CurveSegment.hpp" />
     <ClInclude Include="PX2DynamicBufferManager.hpp" />
     <ClInclude Include="PX2DynamicBufferObject.hpp" />
-    <ClInclude Include="PX2FogColorConstant.hpp" />
+    <ClInclude Include="PX2FogColorHeightConstant.hpp" />
     <ClInclude Include="PX2FogColorDistConstant.hpp" />
     <ClInclude Include="PX2FogParamConstant.hpp" />
     <ClInclude Include="PX2InterpCurveAlphaCtrl.hpp" />

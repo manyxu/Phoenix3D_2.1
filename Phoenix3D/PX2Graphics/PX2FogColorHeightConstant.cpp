@@ -1,31 +1,33 @@
-// PX2UserConstant.cpp
+// PX2FogColorHeightConstant.cpp
 
-#include "PX2FogColorConstant.hpp"
+#include "PX2FogColorHeightConstant.hpp"
 #include "PX2Camera.hpp"
 #include "PX2Renderable.hpp"
 #include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, ShaderFloat, FogColorConstant);
-PX2_IMPLEMENT_STREAM(FogColorConstant);
-PX2_IMPLEMENT_FACTORY(FogColorConstant);
-PX2_IMPLEMENT_DEFAULT_NAMES(ShaderFloat, FogColorConstant);
+PX2_IMPLEMENT_RTTI(PX2, ShaderFloat, FogColorHeightConstant);
+PX2_IMPLEMENT_STREAM(FogColorHeightConstant);
+PX2_IMPLEMENT_FACTORY(FogColorHeightConstant);
+PX2_IMPLEMENT_DEFAULT_NAMES(ShaderFloat, FogColorHeightConstant);
 
 //----------------------------------------------------------------------------
-FogColorConstant::FogColorConstant ()
+FogColorHeightConstant::FogColorHeightConstant ()
 	:
 ShaderFloat(1)
 {
 	EnableUpdater();
 }
 //----------------------------------------------------------------------------
-FogColorConstant::~FogColorConstant ()
+FogColorHeightConstant::~FogColorHeightConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void FogColorConstant::Update(const ShaderStruct *struc)
+void FogColorHeightConstant::Update(const ShaderStruct *struc)
 {
-	const float* source = (const float*)PX2_GR.GetFogColor();
+	PX2_UNUSED(struc);
+
+	const float* source = (const float*)PX2_GR.GetFogColorHeight();
 	float* target = mData;
 	for (int i = 0; i < 4; ++i)
 	{
@@ -37,33 +39,32 @@ void FogColorConstant::Update(const ShaderStruct *struc)
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-FogColorConstant::FogColorConstant (LoadConstructor value)
-	:
+FogColorHeightConstant::FogColorHeightConstant (LoadConstructor value) :
 ShaderFloat(value)
 {
 }
 //----------------------------------------------------------------------------
-void FogColorConstant::Load (InStream& source)
+void FogColorHeightConstant::Load (InStream& source)
 {
 	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
 
 	ShaderFloat::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	PX2_END_DEBUG_STREAM_LOAD(FogColorConstant, source);
+	PX2_END_DEBUG_STREAM_LOAD(FogColorHeightConstant, source);
 }
 //----------------------------------------------------------------------------
-void FogColorConstant::Link (InStream& source)
+void FogColorHeightConstant::Link (InStream& source)
 {
 	ShaderFloat::Link(source);
 }
 //----------------------------------------------------------------------------
-void FogColorConstant::PostLink ()
+void FogColorHeightConstant::PostLink ()
 {
 	ShaderFloat::PostLink();
 }
 //----------------------------------------------------------------------------
-bool FogColorConstant::Register (OutStream& target) const
+bool FogColorHeightConstant::Register (OutStream& target) const
 {
 	if (ShaderFloat::Register(target))
 	{
@@ -72,17 +73,17 @@ bool FogColorConstant::Register (OutStream& target) const
 	return false;
 }
 //----------------------------------------------------------------------------
-void FogColorConstant::Save (OutStream& target) const
+void FogColorHeightConstant::Save (OutStream& target) const
 {
 	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
 
 	ShaderFloat::Save(target);
 	PX2_VERSION_SAVE(target);
 
-	PX2_END_DEBUG_STREAM_SAVE(FogColorConstant, target);
+	PX2_END_DEBUG_STREAM_SAVE(FogColorHeightConstant, target);
 }
 //----------------------------------------------------------------------------
-int FogColorConstant::GetStreamingSize (Stream &stream) const
+int FogColorHeightConstant::GetStreamingSize (Stream &stream) const
 {
 	int size = ShaderFloat::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);

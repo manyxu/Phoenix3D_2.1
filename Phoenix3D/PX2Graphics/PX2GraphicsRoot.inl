@@ -41,14 +41,9 @@ inline const Sizef &GraphicsRoot::GetProjectSize() const
 	return mProjectSize;
 }
 //----------------------------------------------------------------------------
-inline void GraphicsRoot::SetCamera (Camera *camera)
+inline Light *GraphicsRoot::GetLight_Dir()
 {
-	mCamera = camera;
-}
-//----------------------------------------------------------------------------
-inline PX2::Camera *GraphicsRoot::GetCamera()
-{
-	return mCamera;
+	return mLight_Dir;
 }
 //----------------------------------------------------------------------------
 inline void GraphicsRoot::SetFogParam (const Float4 &param)
@@ -61,14 +56,14 @@ inline const Float4 &GraphicsRoot::GetFogParam () const
 	return mFogParam;
 }
 //----------------------------------------------------------------------------
-inline void GraphicsRoot::SetFogColor (const Float4 &fogColor)
+inline void GraphicsRoot::SetFogColorHeight (const Float4 &fogColor)
 {
-	mFogColor = fogColor;
+	mFogColorHeight = fogColor;
 }
 //----------------------------------------------------------------------------
-inline const Float4 &GraphicsRoot::GetFogColor () const
+inline const Float4 &GraphicsRoot::GetFogColorHeight () const
 {
-	return mFogColor;
+	return mFogColorHeight;
 }
 //----------------------------------------------------------------------------
 inline void GraphicsRoot::SetFogColorDist (const Float4 &fogColor)
