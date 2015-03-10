@@ -1,20 +1,15 @@
 -- menus.lua
 
--- tag -1 projview
--- tag 0 RVT_SCENEUI
--- tag 1 RVT_LOGIC
--- tag 2 RVT_RES
--- tag 3 RVT_TIMELINE
 function e_CreateEditMenu(tag)
 
 	local selObj = PX2_SELECTION:GetFirstObject()
 
 	local editMenu = NirMan:GetCurMenu()
 	
-	if -1==tag or 0==tag then
+	if PVT_PROJECT==tag or RVT_SCENEUI==tag then
 		local createMenu = NirMan:AddSubMenu(editMenu, (PX2_LM:GetValue("Create")))
 		
-		if -1==tag then
+		if PVT_PROJECT==tag then
 			local createGeometryMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("Geometry")))
 			NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("RectPiece"), "e_CreateRectangle(false)")
 			NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("Box"), "e_CreateBox(false)")
@@ -36,7 +31,7 @@ function e_CreateEditMenu(tag)
 			NirMan:AddMenuItem(createEffect, PX2_LM:GetValue("Beam"), "e_CreateBeam(false)")
 			NirMan:AddMenuItem(createEffect, PX2_LM:GetValue("Robbion"), "e_CreateRobbion(false)")
 			NirMan:AddMenuItem(createEffect, PX2_LM:GetValue("Soundable"), "e_CreateSoundable(false)")
-		elseif 0==tag then
+		elseif RVT_SCENEUI==tag then
 			local createSceneMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("SceneActor")))
 			
 			local createSceneGeometryMenu = NirMan:AddSubMenu(createSceneMenu, (PX2_LM:GetValue("Geometry")))
@@ -58,7 +53,7 @@ function e_CreateEditMenu(tag)
 			NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIProgressBar"), "e_CreateUIProgressBar(true)")
 		end
 
-		if 0==tag then
+		if RVT_SCENEUI==tag then
 			local addMenu = NirMan:AddSubMenu(editMenu, (PX2_LM:GetValue("Add")))
 			local addSceneMenu = NirMan:AddSubMenu(addMenu, (PX2_LM:GetValue("SceneActor")))
 			NirMan:AddMenuItem(addSceneMenu, PX2_LM:GetValue("Object"), "e_AddSceneActor_Actor()")
@@ -83,7 +78,7 @@ function e_CreateEditMenu(tag)
 		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Import"), "e_OnImport()")
 		NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Export"), "e_OnExport()")
 		
-		if 0==tag and nil~=selObj then
+		if RVT_SCENEUI==tag and nil~=selObj then
 			NirMan:AddSeparater(editMenu)
 			NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("FindInSceneTree"), "e_FindInSceneTree()")
 			NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("FindInResTree"), "e_FindInResTree()")

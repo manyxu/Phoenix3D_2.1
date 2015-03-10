@@ -4,7 +4,7 @@
 			<shader type="vs" name="effect" ni="3" no="3" nc="1" ns="0">
 				<i>
 					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
-					<var index="1" name="modelColor0" vt="float4" vs="COLOR0"/>
+					<var index="1" name="modelColor" vt="float4" vs="COLOR0"/>
 					<var index="2" name="modelTCoord0" vt="float2" vs="TEXCOORD0"/>
 				</i>
 				<o>
