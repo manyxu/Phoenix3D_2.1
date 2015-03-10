@@ -61,6 +61,7 @@ void MaterialInstance::_RefreshMaterial(const std::string &mtlFilename,
 	const std::string &tagName, ShaderParametersPtr* &vp,
 	ShaderParametersPtr* &pp, bool shareMtl)
 {
+	// we reload the mtl
 	mMaterial = PX2_MATERIALMAN.GetMaterial(mtlFilename.c_str(), shareMtl);
 	assertion(mMaterial != 0, "Material must be specified.\n");
 
@@ -107,6 +108,20 @@ void MaterialInstance::_RefreshMaterialParams(ShaderParametersPtr &newParam,
 			}
 		}
 	}
+
+	//std::vector<std::string, Texture1DPtr>
+
+	//for (int i = 0; i < shader->GetNumSamplers(); i++)
+	//{
+	//	const std::string &sampleName = shader->GetSamplerName(i);
+	//	
+	//	// 旧的已经存在
+	//	Texture *texture = newParam->GetTexture(sampleName);
+	//	if (texture)
+	//	{
+	//		newParam->SetTexture(i, texture);
+	//	}
+	//}
 }
 //----------------------------------------------------------------------------
 MaterialInstance::~MaterialInstance ()

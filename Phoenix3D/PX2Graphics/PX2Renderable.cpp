@@ -69,8 +69,7 @@ mFogIP_Distance(1.0f)
 }
 //----------------------------------------------------------------------------
 Renderable::Renderable (PrimitiveType type, VertexFormat* vformat,
-				VertexBuffer* vbuffer, IndexBuffer* ibuffer)
-				:
+				VertexBuffer* vbuffer, IndexBuffer* ibuffer) :
 mRenderUsageBits(0),
 mEyeDistance(0.0f),
 mType(type),
