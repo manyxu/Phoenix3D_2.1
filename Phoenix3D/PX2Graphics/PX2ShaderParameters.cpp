@@ -53,6 +53,8 @@ int ShaderParameters::SetConstant (const std::string& name,
 		if (mShader->GetConstantName(i) == name)
 		{
 			mConstants[i] = sfloat;
+			sfloat->SetName(name);
+
 			return i;
 		}
 	}
