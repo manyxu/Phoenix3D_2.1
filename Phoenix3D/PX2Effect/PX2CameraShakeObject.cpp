@@ -4,8 +4,7 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-CameraShakeObject::CameraShakeObject ()
-	:
+CameraShakeObject::CameraShakeObject () :
 StrengthInit(1.0f),
 Strength(1.0f)
 {

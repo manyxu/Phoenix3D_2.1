@@ -263,12 +263,6 @@
     <ClCompile Include="PX2Controlledable.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="PX2LightTex2Material.cpp">
-      <Filter>Materials\LocalMaterials\Lighting</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2LightTexMaterial.cpp">
-      <Filter>Materials\LocalMaterials\Lighting</Filter>
-    </ClCompile>
     <ClCompile Include="PX2SkinMaterial.cpp">
       <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClCompile>
@@ -280,9 +274,6 @@
     </ClCompile>
     <ClCompile Include="PX2VertexColor4Material.cpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2StdVC4Material.cpp">
-      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="PX2Component.cpp">
       <Filter>Component</Filter>
@@ -769,12 +760,6 @@
     <ClInclude Include="PX2Controlledable.hpp">
       <Filter>Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="PX2LightTex2Material.hpp">
-      <Filter>Materials\LocalMaterials\Lighting</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2LightTexMaterial.hpp">
-      <Filter>Materials\LocalMaterials\Lighting</Filter>
-    </ClInclude>
     <ClInclude Include="PX2SkinMaterial.hpp">
       <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClInclude>
@@ -786,9 +771,6 @@
     </ClInclude>
     <ClInclude Include="PX2VertexColor4Material.hpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2StdVC4Material.hpp">
-      <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClInclude>
     <ClInclude Include="PX2Component.hpp">
       <Filter>Component</Filter>

@@ -7,8 +7,7 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-ParticleObject::ParticleObject ()
-	:
+ParticleObject::ParticleObject () :
 RotSpeedInit(0.0f),
 RotSpeed(0.0f),
 RotDegreeInit(0.0f),

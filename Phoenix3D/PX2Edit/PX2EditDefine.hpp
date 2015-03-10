@@ -20,6 +20,8 @@ namespace PX2
 		RVT_RES,
 		RVT_PREVIEW,
 		RVT_TIMELINE,
+		// --------------
+		PVT_PROJECT,
 		RVT_MAX_TYPE
 	};
 

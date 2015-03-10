@@ -6,7 +6,7 @@
 #include "PX2Renderer.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Effectable, Billboard, 1);
+PX2_IMPLEMENT_RTTI(PX2, Effectable, Billboard);
 PX2_IMPLEMENT_STREAM(Billboard);
 PX2_IMPLEMENT_FACTORY(Billboard);
 PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, Billboard);
@@ -383,8 +383,7 @@ const std::vector<std::string> &Billboard::GetAllModuleNames_EO () const
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-Billboard::Billboard (LoadConstructor value)
-	:
+Billboard::Billboard (LoadConstructor value) :
 Effectable(value),
 mIsDynamic(true),
 mIsUseTexAsSize(false),
@@ -407,11 +406,7 @@ void Billboard::Load (InStream& source)
 	source.ReadBool(mIsDoAlphaDisAfterStop);
 	source.Read(mDoAlphaDisAfterStopSpeed);
 
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		source.ReadBool(mIsUseTrim);
-	}
+	source.ReadBool(mIsUseTrim);
 
 	PX2_END_DEBUG_STREAM_LOAD(Billboard, source);
 }
@@ -464,18 +459,7 @@ int Billboard::GetStreamingSize (Stream &stream) const
 	size += PX2_BOOLSIZE(mIsDoAlphaDisAfterStop);
 	size += sizeof(mDoAlphaDisAfterStopSpeed);
 
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size +=PX2_BOOLSIZE(mIsUseTrim);
-		}
-	}
-	else
-	{
-		size += PX2_BOOLSIZE(mIsUseTrim);
-	}
+	size += PX2_BOOLSIZE(mIsUseTrim);
 
 	return size;
 }

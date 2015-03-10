@@ -60,7 +60,7 @@ VertexColor4Material::~VertexColor4Material ()
 MaterialInstance* VertexColor4Material::CreateInstance () const
 {
 	MaterialInstance* instance = new0 MaterialInstance(this, 0);
-	instance->SetVertexConstant(0, 0, new0 PVWMatrixConstant());
+	instance->SetVertexConstant(0, "PVWMatrix", new0 PVWMatrixConstant());
 	return instance;
 }
 //----------------------------------------------------------------------------

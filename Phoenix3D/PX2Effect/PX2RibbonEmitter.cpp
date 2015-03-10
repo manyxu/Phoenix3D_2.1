@@ -15,8 +15,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, RibbonEmitter);
 std::vector<std::string> RibbonEmitter::msModuleNames_EA;
 std::vector<std::string> RibbonEmitter::msModuleNames_EO;
 //----------------------------------------------------------------------------
-RibbonEmitter::RibbonEmitter ()
-	:
+RibbonEmitter::RibbonEmitter () :
 mLength(20.0f),
 mSegLength(2.0f),
 mNumMaxVertexs(0),
@@ -253,8 +252,7 @@ void RibbonEmitter::GenBuffers ()
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-RibbonEmitter::RibbonEmitter (LoadConstructor value)
-	:
+RibbonEmitter::RibbonEmitter (LoadConstructor value) :
 Effectable(value),
 mLength(20.0f),
 mSegLength(2.0f),

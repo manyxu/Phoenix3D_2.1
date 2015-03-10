@@ -6,10 +6,7 @@
 #include "PX2Texture2DMaterial.hpp"
 #include "PX2ShaderParameters.hpp"
 #include "PX2SkinMaterial.hpp"
-#include "PX2StdVC4Material.hpp"
 #include "PX2Texture2DMaterial.hpp"
-#include "PX2LightTexMaterial.hpp"
-#include "PX2LightTex2Material.hpp"
 #include "PX2VertexColor4Material.hpp"
 #include "PX2ShineDiffuseConstant.hpp"
 #include "PX2GraphicsRoot.hpp"
@@ -190,88 +187,10 @@ Light *Renderable::GetLight (int i)
 void Renderable::SetLightTexture (Texture2D *tex)
 {
 	PX2_UNUSED(tex);
-
-	MaterialInstance *mi = GetMaterialInstance();
-	if (mi)
-	{
-		Material *material = DynamicCast<Material>(mi->GetMaterial());
-		Texture2DMaterial *tex2DMtl = DynamicCast<Texture2DMaterial>(material);
-	}
 }
 //----------------------------------------------------------------------------
 void Renderable::SetUseLightTexture (bool use, Texture2D *lightTex)
 {
-	if (!IsBakeTarget())
-		return;
-
-	if (!GraphicsRoot::msUserLoadFun)
-		return;
-	
-	MaterialInstance *mi = GetMaterialInstance();
-	if (!mi)
-		return;
-
-	if (mIsUseLightTexture == use)
-		return;
-
-	if (use)
-	{
-		if (!mNormalTexPath.empty() && lightTex)
-		{
-			Texture2D *normalTex = DynamicCast<Texture2D>(GraphicsRoot::msUserLoadFun(
-				mNormalTexPath.c_str()));
-
-			if (normalTex && lightTex)
-			{
-				mNormalMaterialInstance = GetMaterialInstance();
-				Material *normalMtl = mNormalMaterialInstance->GetMaterial();
-				Texture2DMaterial *tex2DMtl = DynamicCast<Texture2DMaterial>(normalMtl);
-
-				if (tex2DMtl)
-				{
-					VertexBufferAccessor vba(this);
-					if (!vba.HasTCoord(1))
-					{
-						LightTexMaterialPtr mtl = new0 LightTexMaterial();
-						mtl->GetCullProperty(0, 0)->Enabled = normalMtl->GetCullProperty(0, 0)->Enabled;
-
-						mtl->GetAlphaProperty(0, 0)->BlendEnabled = normalMtl->GetAlphaProperty(0, 0)->BlendEnabled;
-						mtl->GetAlphaProperty(0, 0)->CompareEnabled = normalMtl->GetAlphaProperty(0, 0)->CompareEnabled;
-						mtl->GetAlphaProperty(0, 0)->Reference = normalMtl->GetAlphaProperty(0, 0)->Reference;
-						mtl->GetAlphaProperty(0, 0)->Compare = normalMtl->GetAlphaProperty(0, 0)->Compare;
-
-						mtl->_CalShaderKey();
-						MaterialInstance *mi = mtl->CreateInstance(normalTex, lightTex, GetBakeShine(), 0);
-						SetMaterialInstance(mi);
-					}
-					else
-					{
-						LightTex2MaterialPtr mtl = new0 LightTex2Material();
-						mtl->GetCullProperty(0, 0)->Enabled = normalMtl->GetCullProperty(0, 0)->Enabled;
-
-						mtl->GetAlphaProperty(0, 0)->BlendEnabled = normalMtl->GetAlphaProperty(0, 0)->BlendEnabled;
-						mtl->GetAlphaProperty(0, 0)->CompareEnabled = normalMtl->GetAlphaProperty(0, 0)->CompareEnabled;
-						mtl->GetAlphaProperty(0, 0)->Reference = normalMtl->GetAlphaProperty(0, 0)->Reference;
-						mtl->GetAlphaProperty(0, 0)->Compare = normalMtl->GetAlphaProperty(0, 0)->Compare;
-
-						mtl->_CalShaderKey();
-						MaterialInstance *mi = mtl->CreateInstance(normalTex, lightTex, GetBakeShine(), 0);
-						SetMaterialInstance(mi);
-					}
-				}
-
-				mIsUseLightTexture = use;
-			}
-		}
-	}
-	else
-	{
-		if (mNormalMaterialInstance)
-		{
-			SetMaterialInstance(mNormalMaterialInstance);
-			mIsUseLightTexture = use;
-		}
-	}
 }
 //----------------------------------------------------------------------------
 void Renderable::SetAlpha (float alpha)

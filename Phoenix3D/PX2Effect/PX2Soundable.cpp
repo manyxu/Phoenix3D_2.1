@@ -14,8 +14,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, Soundable)
 std::vector<std::string> Soundable::msModuleNames_EA;
 std::vector<std::string> Soundable::msModuleNames_EO;
 //----------------------------------------------------------------------------
-Soundable::Soundable (const std::string filename)
-	:
+Soundable::Soundable (const std::string filename) :
 mSourceType(ST_SOUND),
 mMusicChannel(1),
 mIngoreStopSound(true),

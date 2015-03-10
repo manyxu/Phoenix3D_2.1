@@ -39,21 +39,12 @@ namespace PX2
 		// 文件名的比较。
 		int SetVertexConstant (int pass, const std::string& name,
 			ShaderFloat* sfloat);
-
 		int SetPixelConstant (int pass, const std::string& name,
 			ShaderFloat* sfloat);
-
 		int SetVertexTexture (int pass, const std::string& name,
 			Texture* texture);
-
 		int SetPixelTexture (int pass, const std::string& name,
 			Texture* texture);
-
-		// 'handle'由上面的Set*函数返回。
-		void SetVertexConstant (int pass, int handle, ShaderFloat* sfloat);
-		void SetPixelConstant (int pass, int handle, ShaderFloat* sfloat);
-		void SetVertexTexture (int pass, int handle, Texture* texture);
-		void SetPixelTexture (int pass, int handle, Texture* texture);
 
 		// 获得着色器常量和纹理
 		ShaderFloat* GetVertexConstant (int pass, const std::string& name) const;

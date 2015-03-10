@@ -11,8 +11,7 @@ PX2_IMPLEMENT_FACTORY(ParticleEmitterController);
 PX2_IMPLEMENT_DEFAULT_NAMES(EffectableController, ParticleEmitterController);
 
 //----------------------------------------------------------------------------
-ParticleEmitterController::ParticleEmitterController ()
-	:
+ParticleEmitterController::ParticleEmitterController () :
 mParticleArray(0),
 mCreatedParticlesQuantity(0),
 mNumNewParticlesExcess(0.0f)
@@ -281,8 +280,7 @@ void ParticleEmitterController::OnNewAEffectObject (EffectObject *obj)
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-ParticleEmitterController::ParticleEmitterController (LoadConstructor value)
-	:
+ParticleEmitterController::ParticleEmitterController (LoadConstructor value) :
 EffectableController(value),
 mParticleArray(0),
 mMaxNumParticles(0),

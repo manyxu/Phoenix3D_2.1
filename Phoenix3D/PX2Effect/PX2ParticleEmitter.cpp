@@ -6,7 +6,7 @@
 #include "PX2EffectModuleCallbacks_ParticleEmitter.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Effectable, ParticleEmitter, 5);
+PX2_IMPLEMENT_RTTI(PX2, Effectable, ParticleEmitter);
 PX2_IMPLEMENT_STREAM(ParticleEmitter);
 PX2_IMPLEMENT_FACTORY(ParticleEmitter);
 PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, ParticleEmitter);
@@ -15,8 +15,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, ParticleEmitter);
 std::vector<std::string> ParticleEmitter::msModuleNames_EA;
 std::vector<std::string> ParticleEmitter::msModuleNames_EO;
 //----------------------------------------------------------------------------
-ParticleEmitter::ParticleEmitter ()
-	:
+ParticleEmitter::ParticleEmitter () :
 mIsBlast(false),
 mDrawType(DT_NORMAL),
 mRotateAxisType(RAT_D),
@@ -523,20 +522,12 @@ void ParticleEmitter::Load (InStream& source)
 	Effectable::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	int readedVersion = GetReadedVersion();
-
-	if (3 <= readedVersion)
-	{
-		source.ReadBool(mIsBlast);
-	}
+	source.ReadBool(mIsBlast);
 
 	source.ReadEnum(mDrawType);
 	source.ReadString(mModelFilename);
 
-	if (1 <= readedVersion)
-	{
-		source.ReadAggregate(mAnchorPoint);
-	}
+	source.ReadAggregate(mAnchorPoint);
 
 	source.ReadEnum(mRotateAxisType);
 	source.ReadAggregate(mRotateAxis);
@@ -544,24 +535,16 @@ void ParticleEmitter::Load (InStream& source)
 	source.Read(mEmitRotateSpeed);
 	source.ReadAggregate(mEmitDir);
 
-	if (3 <= readedVersion)
-	{
-		source.ReadBool(mIsEmitDirDynamic);
-	}
+	source.ReadBool(mIsEmitDirDynamic);
 
-	if (2 <= readedVersion)
-	{
-		source.ReadBool(mIsEmitDirLocal);
-	}
+	source.ReadBool(mIsEmitDirLocal);
+
 	source.Read(mEmitSpeed);
 	source.ReadAggregate(mAccelerateDir);
 	source.Read(mAccelerate);
 	
-	if (1 <= readedVersion)
-	{
-		source.ReadAggregate(mAttactPoint);
-		source.ReadAggregate(mAttackStrength);
-	}
+	source.ReadAggregate(mAttactPoint);
+	source.ReadAggregate(mAttackStrength);
 
 	source.Read(mEmitRate);
 
@@ -573,19 +556,13 @@ void ParticleEmitter::Load (InStream& source)
 	source.Read(mPlacerInHeight);
 	source.Read(mPlacerOutHeight);
 
-	if (4 <= readedVersion)
-	{
-		source.ReadEnum(mEmitDirType);
-	}
+	source.ReadEnum(mEmitDirType);
 
-	if (5 <= readedVersion)
-	{	
-		source.ReadAggregate(mObstruct);
-		source.ReadEnum(mCollisionType);
-		source.ReadEnum(mCollisionOption);
-		source.Read(mCollisionHeight);
-		source.Read(mCollisionSpeedPercent);
-	}
+	source.ReadAggregate(mObstruct);
+	source.ReadEnum(mCollisionType);
+	source.ReadEnum(mCollisionOption);
+	source.Read(mCollisionHeight);
+	source.Read(mCollisionSpeedPercent);
 
 	PX2_END_DEBUG_STREAM_LOAD(ParticleEmitter, source);
 }
@@ -659,34 +636,12 @@ int ParticleEmitter::GetStreamingSize (Stream &stream) const
 	int size = Effectable::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-		if (3 <= readedVersion)
-		{
-			size += PX2_BOOLSIZE(mIsBlast);
-		}
-	}
-	else
-	{
-		size += PX2_BOOLSIZE(mIsBlast);
-	}
+	size += PX2_BOOLSIZE(mIsBlast);
 
 	size += PX2_ENUMSIZE(mDrawType);
 	size += PX2_STRINGSIZE(mModelFilename);
 
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size += sizeof(mAnchorPoint);
-		}
-	}
-	else
-	{
-		size += sizeof(mAnchorPoint);
-	}
+	size += sizeof(mAnchorPoint);
 
 	size += PX2_ENUMSIZE(mRotateAxisType);
 	size += sizeof(mRotateAxis);
@@ -696,48 +651,14 @@ int ParticleEmitter::GetStreamingSize (Stream &stream) const
 	size += sizeof(mEmitSpeed);
 	size += sizeof(mAccelerateDir);
 
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-		if (3 <= readedVersion)
-		{
-			size += PX2_BOOLSIZE(mIsEmitDirDynamic);
-		}
-	}
-	else
-	{
-		size += PX2_BOOLSIZE(mIsEmitDirDynamic);
-	}
+	size += PX2_BOOLSIZE(mIsEmitDirDynamic);
 
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-		if (2 <= readedVersion)
-		{
-			size += PX2_BOOLSIZE(mIsEmitDirLocal);
-		}
-	}
-	else
-	{
-		size += PX2_BOOLSIZE(mIsEmitDirLocal);
-	}
+	size += PX2_BOOLSIZE(mIsEmitDirLocal);
 
 	size += sizeof(mAccelerate);
 
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size += sizeof(mAttactPoint);
-			size += sizeof(mAttackStrength);
-		}
-	}
-	else
-	{
-		size += sizeof(mAttactPoint);
-		size += sizeof(mAttackStrength);
-	}
+	size += sizeof(mAttactPoint);
+	size += sizeof(mAttackStrength);
 
 	size += sizeof(mEmitRate);
 
@@ -749,33 +670,13 @@ int ParticleEmitter::GetStreamingSize (Stream &stream) const
 	size += sizeof(mPlacerInHeight);
 	size += sizeof(mPlacerOutHeight);
 
-	if (stream.IsIn())
-	{
-		int readedVersion = GetReadedVersion();
-		if (4 <= readedVersion)
-		{
-			size += PX2_ENUMSIZE(mEmitDirType);
-		}
+	size += PX2_ENUMSIZE(mEmitDirType);
 
-		if (5 <= readedVersion)
-		{
-			size += sizeof(mObstruct);
-			size += PX2_ENUMSIZE(mCollisionType);
-			size += PX2_ENUMSIZE(mCollisionOption);
-			size += sizeof(mCollisionHeight);
-			size += sizeof(mCollisionSpeedPercent);
-		}
-	}
-	else
-	{
-		size += PX2_ENUMSIZE(mEmitDirType);
-
-		size += sizeof(mObstruct);
-		size += PX2_ENUMSIZE(mCollisionType);
-		size += PX2_ENUMSIZE(mCollisionOption);
-		size += sizeof(mCollisionHeight);
-		size += sizeof(mCollisionSpeedPercent);
-	}
+	size += sizeof(mObstruct);
+	size += PX2_ENUMSIZE(mCollisionType);
+	size += PX2_ENUMSIZE(mCollisionOption);
+	size += sizeof(mCollisionHeight);
+	size += sizeof(mCollisionSpeedPercent);
 
 	return size;
 }

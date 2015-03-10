@@ -13,6 +13,7 @@
 #include "PX2SimulationEventType.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2LanguageManager.hpp"
+#include "PX2EditDefine.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -369,7 +370,7 @@ void ProjTree::OnRightUp(wxMouseEvent& e)
 	mEditMenu = new wxMenu();
 	NirMan::GetSingleton().SetCurMenu(mEditMenu);
 
-	int menuID = 2;
+	int menuID = (int)PVT_PROJECT;
 	char szScript[256];
 	sprintf(szScript, "e_CreateEditMenu(%d)", menuID);
 	PX2_SM.CallString(szScript);

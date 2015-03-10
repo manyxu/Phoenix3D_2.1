@@ -8,7 +8,7 @@
 #include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, TriMesh, Effectable, 4);
+PX2_IMPLEMENT_RTTI(PX2, TriMesh, Effectable);
 PX2_IMPLEMENT_STREAM(Effectable);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(Effectable);
 PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, Effectable);
@@ -980,33 +980,26 @@ void Effectable::Load (InStream& source)
 	source.Read(mAnimInterval);
 	source.ReadBool(mIsAnimStartDoRandom);
 
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
+	source.Read(mUserNumAnimFrames);
+
+	int numFrames = (int)mTexPackAnim_Frames.size();
+	source.Read(numFrames);
+	mTexPackAnim_Frames.resize(numFrames);
+	for (int i = 0; i < numFrames; i++)
 	{
-		source.Read(mUserNumAnimFrames);
-	}
-	
-	if (2 <= readedVersion)
-	{
-		int numFrames = (int)mTexPackAnim_Frames.size();
-		source.Read(numFrames);
-		mTexPackAnim_Frames.resize(numFrames);
-		for (int i=0; i<numFrames; i++)
-		{
-			source.Read(mTexPackAnim_Frames[i].X);
-			source.Read(mTexPackAnim_Frames[i].Y);
-			source.Read(mTexPackAnim_Frames[i].W);
-			source.Read(mTexPackAnim_Frames[i].H);
-			source.Read(mTexPackAnim_Frames[i].OX);
-			source.Read(mTexPackAnim_Frames[i].OY);
-			source.Read(mTexPackAnim_Frames[i].OW);
-			source.Read(mTexPackAnim_Frames[i].OH);
-			source.ReadBool(mTexPackAnim_Frames[i].Rolated);
-			source.Read(mTexPackAnim_Frames[i].TexWidth);
-			source.Read(mTexPackAnim_Frames[i].TexHeight);
-			source.ReadString(mTexPackAnim_Frames[i].ElementName);
-			source.ReadString(mTexPackAnim_Frames[i].ImagePathFull);
-		}
+		source.Read(mTexPackAnim_Frames[i].X);
+		source.Read(mTexPackAnim_Frames[i].Y);
+		source.Read(mTexPackAnim_Frames[i].W);
+		source.Read(mTexPackAnim_Frames[i].H);
+		source.Read(mTexPackAnim_Frames[i].OX);
+		source.Read(mTexPackAnim_Frames[i].OY);
+		source.Read(mTexPackAnim_Frames[i].OW);
+		source.Read(mTexPackAnim_Frames[i].OH);
+		source.ReadBool(mTexPackAnim_Frames[i].Rolated);
+		source.Read(mTexPackAnim_Frames[i].TexWidth);
+		source.Read(mTexPackAnim_Frames[i].TexHeight);
+		source.ReadString(mTexPackAnim_Frames[i].ElementName);
+		source.ReadString(mTexPackAnim_Frames[i].ImagePathFull);
 	}
 
 	source.ReadAggregate(mEmitUV0_Offset);
@@ -1018,17 +1011,11 @@ void Effectable::Load (InStream& source)
 
 	source.ReadPointer(mEffectableCtrl);
 
-	if (3 <= readedVersion)
-	{
-		source.ReadBool(mIsAnimFramesPlayOnce);
-		source.ReadEnum(mCoordinateType0);
-	}
+	source.ReadBool(mIsAnimFramesPlayOnce);
+	source.ReadEnum(mCoordinateType0);
 
-	if (4 <= readedVersion)
-	{
-		source.ReadEnum(mCoordinateType1);
-		source.ReadBool(mIsBackCull);
-	}
+	source.ReadEnum(mCoordinateType1);
+	source.ReadBool(mIsBackCull);
 
 	PX2_END_DEBUG_STREAM_LOAD(Effectable, source);
 }
@@ -1149,65 +1136,25 @@ int Effectable::GetStreamingSize (Stream &stream) const
 	size += sizeof(mAnimInterval);
 	size += PX2_BOOLSIZE(mIsAnimStartDoRandom);
 
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size += sizeof(mUserNumAnimFrames);
-		}
-	}
-	else
-	{
-		size += sizeof(mUserNumAnimFrames);
-	}
+	size += sizeof(mUserNumAnimFrames);
 
-	if (Stream::ST_IN == stream.GetStreamType())
+	int numFrames = (int)mTexPackAnim_Frames.size();
+	size += sizeof(numFrames);
+	for (int i = 0; i < numFrames; i++)
 	{
-		int readedVersion = GetReadedVersion();
-		if (2 <= readedVersion)
-		{
-			int numFrames = (int)mTexPackAnim_Frames.size();
-			size += sizeof(numFrames);
-			for (int i=0; i<numFrames; i++)
-			{
-				size += sizeof(mTexPackAnim_Frames[i].X);
-				size += sizeof(mTexPackAnim_Frames[i].Y);
-				size += sizeof(mTexPackAnim_Frames[i].W);
-				size += sizeof(mTexPackAnim_Frames[i].H);
-				size += sizeof(mTexPackAnim_Frames[i].OX);
-				size += sizeof(mTexPackAnim_Frames[i].OY);
-				size += sizeof(mTexPackAnim_Frames[i].OW);
-				size += sizeof(mTexPackAnim_Frames[i].OH);
-				size += PX2_BOOLSIZE(mTexPackAnim_Frames[i].Rolated);
-				size += sizeof(mTexPackAnim_Frames[i].TexWidth);
-				size += sizeof(mTexPackAnim_Frames[i].TexHeight);
-				size += PX2_STRINGSIZE(mTexPackAnim_Frames[i].ElementName);
-				size += PX2_STRINGSIZE(mTexPackAnim_Frames[i].ImagePathFull);
-			}
-		}
-	}
-	else
-	{
-		int numFrames = (int)mTexPackAnim_Frames.size();
-
-		size += sizeof(numFrames);
-		for (int i=0; i<numFrames; i++)
-		{
-			size += sizeof(mTexPackAnim_Frames[i].X);
-			size += sizeof(mTexPackAnim_Frames[i].Y);
-			size += sizeof(mTexPackAnim_Frames[i].W);
-			size += sizeof(mTexPackAnim_Frames[i].H);
-			size += sizeof(mTexPackAnim_Frames[i].OX);
-			size += sizeof(mTexPackAnim_Frames[i].OY);
-			size += sizeof(mTexPackAnim_Frames[i].OW);
-			size += sizeof(mTexPackAnim_Frames[i].OH);
-			size += PX2_BOOLSIZE(mTexPackAnim_Frames[i].Rolated);
-			size += sizeof(mTexPackAnim_Frames[i].TexWidth);
-			size += sizeof(mTexPackAnim_Frames[i].TexHeight);
-			size += PX2_STRINGSIZE(mTexPackAnim_Frames[i].ElementName);
-			size += PX2_STRINGSIZE(mTexPackAnim_Frames[i].ImagePathFull);
-		}
+		size += sizeof(mTexPackAnim_Frames[i].X);
+		size += sizeof(mTexPackAnim_Frames[i].Y);
+		size += sizeof(mTexPackAnim_Frames[i].W);
+		size += sizeof(mTexPackAnim_Frames[i].H);
+		size += sizeof(mTexPackAnim_Frames[i].OX);
+		size += sizeof(mTexPackAnim_Frames[i].OY);
+		size += sizeof(mTexPackAnim_Frames[i].OW);
+		size += sizeof(mTexPackAnim_Frames[i].OH);
+		size += PX2_BOOLSIZE(mTexPackAnim_Frames[i].Rolated);
+		size += sizeof(mTexPackAnim_Frames[i].TexWidth);
+		size += sizeof(mTexPackAnim_Frames[i].TexHeight);
+		size += PX2_STRINGSIZE(mTexPackAnim_Frames[i].ElementName);
+		size += PX2_STRINGSIZE(mTexPackAnim_Frames[i].ImagePathFull);
 	}
 
 	size += sizeof(mEmitUV0_Offset);
@@ -1219,28 +1166,10 @@ int Effectable::GetStreamingSize (Stream &stream) const
 
 	size += PX2_POINTERSIZE(mEffectableCtrl);
 
-	if (stream.IsIn())
-	{
-		int readedVersion = GetReadedVersion();
-		if (3 <= readedVersion)
-		{
-			size += PX2_BOOLSIZE(mIsAnimFramesPlayOnce);
-			size += PX2_ENUMSIZE(mCoordinateType0);
-		}
-
-		if (4 <= readedVersion)
-		{
-			size += PX2_ENUMSIZE(mCoordinateType1);
-			size += PX2_BOOLSIZE(mIsBackCull);
-		}
-	}
-	else
-	{
-		size += PX2_BOOLSIZE(mIsAnimFramesPlayOnce);
-		size += PX2_ENUMSIZE(mCoordinateType0);
-		size += PX2_ENUMSIZE(mCoordinateType1);
-		size += PX2_BOOLSIZE(mIsBackCull);
-	}
+	size += PX2_BOOLSIZE(mIsAnimFramesPlayOnce);
+	size += PX2_ENUMSIZE(mCoordinateType0);
+	size += PX2_ENUMSIZE(mCoordinateType1);
+	size += PX2_BOOLSIZE(mIsBackCull);
 
 	return size;
 }

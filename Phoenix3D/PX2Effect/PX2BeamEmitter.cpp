@@ -5,7 +5,7 @@
 #include "PX2Renderer.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Effectable, BeamEmitter, 1);
+PX2_IMPLEMENT_RTTI(PX2, Effectable, BeamEmitter);
 PX2_IMPLEMENT_STREAM(BeamEmitter);
 PX2_IMPLEMENT_FACTORY(BeamEmitter);
 PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, BeamEmitter);
@@ -399,11 +399,7 @@ void BeamEmitter::Load (InStream& source)
 
 	source.ReadBool(mIsSimpleLineWave);
 
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		source.Read(mDoAlphaDisAfterStopSpeed);
-	}
+	source.Read(mDoAlphaDisAfterStopSpeed);
 
 	source.ReadEnum(mWaveTypeUp);
 	source.ReadEnum(mWaveTypeExtend);
@@ -481,18 +477,8 @@ int BeamEmitter::GetStreamingSize (Stream &stream) const
 	size += sizeof(mEmitEndPos);
 
 	size += PX2_BOOLSIZE(mIsSimpleLineWave);
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size += sizeof(mDoAlphaDisAfterStopSpeed);
-		}
-	}
-	else
-	{
-		size += sizeof(mDoAlphaDisAfterStopSpeed);
-	}
+
+	size += sizeof(mDoAlphaDisAfterStopSpeed);
 
 	size += PX2_ENUMSIZE(mWaveTypeUp);
 	size += PX2_ENUMSIZE(mWaveTypeExtend);

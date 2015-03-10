@@ -173,8 +173,7 @@ bool RibbonEmitterController::Update(double applicationTime,
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-RibbonEmitterController::RibbonEmitterController (LoadConstructor value)
-	:
+RibbonEmitterController::RibbonEmitterController (LoadConstructor value) :
 EffectableController(value),
 StartRandomIndex(0)
 {

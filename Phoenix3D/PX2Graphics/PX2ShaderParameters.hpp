@@ -39,10 +39,6 @@ namespace PX2
 		int SetConstant (const std::string& name, ShaderFloat* sfloat);
 		int SetTexture (const std::string& name, Texture* texture);
 
-		// 通过上面函数返回的索引，直接设置着色器常量
-		void SetConstant (int handle, ShaderFloat* sfloat);
-		void SetTexture (int handle, Texture* texture);
-
 		// 成员访问
 		ShaderFloat* GetConstant (const std::string& name) const;
 		Texture* GetTexture (const std::string& name) const;

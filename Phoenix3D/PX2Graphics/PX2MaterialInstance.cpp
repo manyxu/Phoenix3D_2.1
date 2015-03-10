@@ -104,7 +104,7 @@ void MaterialInstance::_RefreshMaterialParams(ShaderParametersPtr &newParam,
 				constantName.c_str(), numRegister);
 			if (shaderFloat)
 			{
-				newParam->SetConstant(i, shaderFloat);
+				newParam->SetConstant(constantName, shaderFloat);
 			}
 		}
 	}
@@ -163,8 +163,8 @@ ShaderParameters* MaterialInstance::GetPixelParameters (int pass) const
 	return 0;
 }
 //----------------------------------------------------------------------------
-int MaterialInstance::SetVertexConstant (int pass,
-											 const std::string& name, ShaderFloat* sfloat)
+int MaterialInstance::SetVertexConstant (int pass, const std::string& name, 
+	ShaderFloat* sfloat)
 {
 	if (0 <= pass && pass < mNumPasses)
 	{
@@ -209,50 +209,6 @@ int MaterialInstance::SetPixelTexture (int pass, const std::string& name,
 
 	assertion(false, "Invalid pass index.\n");
 	return -1;
-}
-//----------------------------------------------------------------------------
-void MaterialInstance::SetVertexConstant (int pass, int handle,
-											  ShaderFloat* sfloat)
-{
-	if (0 <= pass && pass < mNumPasses)
-	{
-		return mVertexParameters[pass]->SetConstant(handle, sfloat);
-	}
-
-	assertion(false, "Invalid pass index.\n");
-}
-//----------------------------------------------------------------------------
-void MaterialInstance::SetPixelConstant (int pass, int handle,
-											 ShaderFloat* sfloat)
-{
-	if (0 <= pass && pass < mNumPasses)
-	{
-		return mPixelParameters[pass]->SetConstant(handle, sfloat);
-	}
-
-	assertion(false, "Invalid pass index.\n");
-}
-//----------------------------------------------------------------------------
-void MaterialInstance::SetVertexTexture (int pass, int handle,
-											 Texture* texture)
-{
-	if (0 <= pass && pass < mNumPasses)
-	{
-		return mVertexParameters[pass]->SetTexture(handle, texture);
-	}
-
-	assertion(false, "Invalid pass index.\n");
-}
-//----------------------------------------------------------------------------
-void MaterialInstance::SetPixelTexture (int pass, int handle,
-											Texture* texture)
-{
-	if (0 <= pass && pass < mNumPasses)
-	{
-		return mPixelParameters[pass]->SetTexture(handle, texture);
-	}
-
-	assertion(false, "Invalid pass index.\n");
 }
 //----------------------------------------------------------------------------
 ShaderFloat* MaterialInstance::GetVertexConstant (int pass,

@@ -6,7 +6,7 @@
 #include "PX2ResourceManager.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Effectable, EffectModel, 1);
+PX2_IMPLEMENT_RTTI(PX2, Effectable, EffectModel);
 PX2_IMPLEMENT_STREAM(EffectModel);
 PX2_IMPLEMENT_FACTORY(EffectModel);
 PX2_IMPLEMENT_DEFAULT_NAMES(Effectable, EffectModel);
@@ -263,8 +263,7 @@ void EffectModel::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-EffectModel::EffectModel (LoadConstructor value)
-	:
+EffectModel::EffectModel (LoadConstructor value) :
 Effectable(value),
 mModelType(MT_SPHERE),
 mRadiusSample(16),
@@ -286,11 +285,7 @@ void EffectModel::Load (InStream& source)
 	source.Read(mZSample);
 	source.ReadEnum(mHeightAlphaType);
 
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		source.ReadString(mModelFilename);
-	}
+	source.ReadString(mModelFilename);
 
 	PX2_END_DEBUG_STREAM_LOAD(EffectModel, source);
 }
@@ -341,19 +336,8 @@ int EffectModel::GetStreamingSize (Stream &stream) const
 	size += sizeof(mRadiusSample);
 	size += sizeof(mZSample);
 	size += PX2_ENUMSIZE(mHeightAlphaType);
-
-	if (stream.IsIn())
-	{
-		int readedVersion = GetReadedVersion();
-		if (1 <= readedVersion)
-		{
-			size += PX2_STRINGSIZE(mModelFilename);
-		}
-	}
-	else
-	{
-		size += PX2_STRINGSIZE(mModelFilename);
-	}
+	
+	size += PX2_STRINGSIZE(mModelFilename);
 
 	return size;
 }

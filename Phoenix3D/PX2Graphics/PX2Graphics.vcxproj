@@ -155,7 +155,6 @@
     <ClCompile Include="PX2SkinMaterial.cpp" />
     <ClCompile Include="PX2SpecializedIO.cpp" />
     <ClCompile Include="PX2StandardMesh.cpp" />
-    <ClCompile Include="PX2StdVC4Material.cpp" />
     <ClCompile Include="PX2StencilProperty.cpp" />
     <ClCompile Include="PX2SwitchNode.cpp" />
     <ClCompile Include="PX2TargetTransformController.cpp" />
@@ -164,8 +163,6 @@
     <ClCompile Include="PX2Texture1D.cpp" />
     <ClCompile Include="PX2Texture2D.cpp" />
     <ClCompile Include="PX2Texture2DMaterial.cpp" />
-    <ClCompile Include="PX2LightTexMaterial.cpp" />
-    <ClCompile Include="PX2LightTex2Material.cpp" />
     <ClCompile Include="PX2Texture3D.cpp" />
     <ClCompile Include="PX2TextureCube.cpp" />
     <ClCompile Include="PX2Transform.cpp" />
@@ -325,7 +322,6 @@
     <ClInclude Include="PX2SkinMaterial.hpp" />
     <ClInclude Include="PX2SpecializedIO.hpp" />
     <ClInclude Include="PX2StandardMesh.hpp" />
-    <ClInclude Include="PX2StdVC4Material.hpp" />
     <ClInclude Include="PX2StencilProperty.hpp" />
     <ClInclude Include="PX2SwitchNode.hpp" />
     <ClInclude Include="PX2TargetTransformController.hpp" />
@@ -334,8 +330,6 @@
     <ClInclude Include="PX2Texture1D.hpp" />
     <ClInclude Include="PX2Texture2D.hpp" />
     <ClInclude Include="PX2Texture2DMaterial.hpp" />
-    <ClInclude Include="PX2LightTexMaterial.hpp" />
-    <ClInclude Include="PX2LightTex2Material.hpp" />
     <ClInclude Include="PX2Texture3D.hpp" />
     <ClInclude Include="PX2TextureCube.hpp" />
     <ClInclude Include="PX2Transform.hpp" />

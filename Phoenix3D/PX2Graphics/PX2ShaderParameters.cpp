@@ -76,28 +76,6 @@ int ShaderParameters::SetTexture (const std::string& name, Texture* texture)
 	return -1;
 }
 //----------------------------------------------------------------------------
-void ShaderParameters::SetConstant (int handle, ShaderFloat* sfloat)
-{
-	if (0 <= handle && handle < mNumConstants)
-	{
-		mConstants[handle] = sfloat;
-		return;
-	}
-
-	assertion(false, "Invalid constant handle.\n");
-}
-//----------------------------------------------------------------------------
-void ShaderParameters::SetTexture (int handle, Texture* texture)
-{
-	if (0 <= handle && handle < mNumTextures)
-	{
-		mTextures[handle] = texture;
-		return;
-	}
-
-	assertion(false, "Invalid texture handle.\n");
-}
-//----------------------------------------------------------------------------
 ShaderFloat* ShaderParameters::GetConstant (const std::string& name) const
 {
 	for (int i = 0; i < mNumConstants; ++i)

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/09/15 16:30:22.
+** Generated automatically by tolua++-1.0.92 on 03/10/15 20:14:54.
 */
 
 #ifndef __cplusplus
@@ -3812,6 +3812,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"RVT_RES",RVT_RES);
   tolua_constant(tolua_S,"RVT_PREVIEW",RVT_PREVIEW);
   tolua_constant(tolua_S,"RVT_TIMELINE",RVT_TIMELINE);
+  tolua_constant(tolua_S,"PVT_PROJECT",PVT_PROJECT);
   tolua_constant(tolua_S,"RVT_MAX_TYPE",RVT_MAX_TYPE);
  tolua_endmodule(tolua_S);
  return 1;
