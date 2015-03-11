@@ -243,6 +243,7 @@ public_internal:
 
 	protected:
 		// 几何图形更新
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 		virtual void UpdateWorldBound ();
 		virtual void UpdateModelBound ();
 

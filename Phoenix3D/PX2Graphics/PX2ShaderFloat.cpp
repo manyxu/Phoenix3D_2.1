@@ -65,6 +65,12 @@ void ShaderFloat::GetRegister (int i, float* data)
 	*data   = *source;
 }
 //----------------------------------------------------------------------------
+float *ShaderFloat::GetRegister(int i)
+{
+	assertion(0 <= i && i < mNumElements / 4, "Invalid register\n");
+	return mData + 4 * i;
+}
+//----------------------------------------------------------------------------
 void ShaderFloat::GetRegisters (float* data)
 {
 	float* source = mData;

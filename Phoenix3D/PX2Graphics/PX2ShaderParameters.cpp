@@ -53,7 +53,6 @@ int ShaderParameters::SetConstant (const std::string& name,
 		if (mShader->GetConstantName(i) == name)
 		{
 			mConstants[i] = sfloat;
-			sfloat->SetName(name);
 
 			return i;
 		}
@@ -78,6 +77,20 @@ int ShaderParameters::SetTexture (const std::string& name, Texture* texture)
 	return -1;
 }
 //----------------------------------------------------------------------------
+int ShaderParameters::_SetTexture(const std::string& name, Texture* texture)
+{
+	for (int i = 0; i < mNumTextures; ++i)
+	{
+		if (mShader->GetSamplerName(i) == name)
+		{
+			mTextures[i] = texture;
+			return i;
+		}
+	}
+
+	return -1;
+}
+//----------------------------------------------------------------------------
 ShaderFloat* ShaderParameters::GetConstant (const std::string& name) const
 {
 	for (int i = 0; i < mNumConstants; ++i)
@@ -90,6 +103,11 @@ ShaderFloat* ShaderParameters::GetConstant (const std::string& name) const
 
 	assertion(false, "Cannot find constant.\n");
 	return 0;
+}
+//----------------------------------------------------------------------------
+const std::string &ShaderParameters::GetConstantName(int handle) const
+{
+	return mShader->GetConstantName(handle);
 }
 //----------------------------------------------------------------------------
 Texture* ShaderParameters::GetTexture (const std::string& name) const
@@ -126,6 +144,22 @@ Texture* ShaderParameters::GetTexture (int handle) const
 
 	assertion(false, "Invalid texture handle.\n");
 	return 0;
+}
+//----------------------------------------------------------------------------
+const std::string &ShaderParameters::GetTextureResPath(int handle) const
+{
+	if (0 <= handle && handle < mNumTextures)
+	{
+		return mTextureResPath[handle];
+	}
+
+	assertion(false, "Invalid texture handle.\n");
+	return 0;
+}
+//----------------------------------------------------------------------------
+const std::string &ShaderParameters::GetSampleName(int handle) const
+{
+	return mShader->GetSamplerName(handle);
 }
 //----------------------------------------------------------------------------
 void ShaderParameters::UpdateConstants(const ShaderStruct *shaderStruc)

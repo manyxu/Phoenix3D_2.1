@@ -46,6 +46,7 @@ namespace PX2
 		void SetRegister (int i, const float* data);
 		void SetRegisters (const float* data);
 		void GetRegister (int i, float* data);
+		float *GetRegister(int i);
 		void GetRegisters (float* data);
 
 		/// ÉèÖÃ¼Ä´æÆ÷Öµ

@@ -21,7 +21,9 @@ namespace PX2
 		bool Terminate();
 
 		Material *GetMaterial(const FString &filename, bool share);
+		void AddMaterial(const FString &filename, Material *mtl);
 		ShaderFloat *CreateShaderFloat(const FString &name, int numRegister);
+		int QueryShaderKey();
 
 	protected:
 		void _SetMaterialShaderKey(Material *mtl, int shaderKey);

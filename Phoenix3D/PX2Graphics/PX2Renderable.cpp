@@ -12,13 +12,12 @@
 #include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Movable, Renderable, 9);
+PX2_IMPLEMENT_RTTI(PX2, Movable, Renderable);
 PX2_IMPLEMENT_STREAM(Renderable);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(Renderable);
 
 //----------------------------------------------------------------------------
-Renderable::Renderable (PrimitiveType type)
-:
+Renderable::Renderable (PrimitiveType type) :
 mRenderUsageBits(0),
 mEyeDistance(0.0f),
 mType(type),
@@ -253,6 +252,14 @@ void Renderable::OnForceBind ()
 {
 }
 //----------------------------------------------------------------------------
+void Renderable::UpdateWorldData(double applicationTime, double elapsedTime)
+{
+	if (mMaterialInstance)
+		mMaterialInstance->Update(applicationTime, elapsedTime);
+
+	Movable::UpdateWorldData(applicationTime, elapsedTime);
+}
+//----------------------------------------------------------------------------
 void Renderable::UpdateWorldBound ()
 {
 	mModelBound.TransformBy(BoundWorldTransform, WorldBound);
@@ -478,8 +485,7 @@ void Renderable::GetAllObjectsByName (const std::string& name,
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-Renderable::Renderable (LoadConstructor value)
-:
+Renderable::Renderable (LoadConstructor value) :
 Movable(value),
 mRenderUsageBits(0),
 mEyeDistance(0.0f),
@@ -530,52 +536,24 @@ void Renderable::Load (InStream& source)
 	source.ReadEnum(mLayer);
 	SetRenderLayer(mLayer);
 
-	int readedVersion = GetReadedVersion();
-	if (1 <= readedVersion)
-	{
-		source.ReadBool(AllowRed);
-		source.ReadBool(AllowGreen);
-		source.ReadBool(AllowBlue);
-		source.ReadBool(AllowAlpha);
-	}
-	if (2 <= readedVersion)
-	{
-		source.ReadPointer(mDefaultShine);
-	}
-	if (3 <= readedVersion)
-	{
-		source.ReadBool(mIsUseLightTexture);
-		source.ReadString(mLightTexPath);
-		source.ReadString(mNormalTexPath);
-	}
-	if (4 <= readedVersion)
-	{
-		source.ReadEnum(mBakeSizeType);
-	}
-	if (5 <= readedVersion)
-	{
-		source.ReadBool(mIsBackObject);
-		source.ReadBool(mIsBackTarget);
-		source.ReadPointer(mNormalMaterialInstance);
-	}
-	if (6 <= readedVersion)
-	{
-		source.Read(mSubLayer);
-	}
-	if (7 <= readedVersion)
-	{
-		source.ReadPointer(mBakeShine);
-	}
-	if (8 <= readedVersion)
-	{
-		source.ReadEnum(mPhysicsType);
-		source.ReadAggregate(mPhysicsParam);
-	}
-	if (9 <= readedVersion)
-	{
-		source.Read(mFogIP_Height);
-		source.Read(mFogIP_Distance);
-	}
+	source.ReadBool(AllowRed);
+	source.ReadBool(AllowGreen);
+	source.ReadBool(AllowBlue);
+	source.ReadBool(AllowAlpha);
+	source.ReadPointer(mDefaultShine);
+	source.ReadBool(mIsUseLightTexture);
+	source.ReadString(mLightTexPath);
+	source.ReadString(mNormalTexPath);
+	source.ReadEnum(mBakeSizeType);
+	source.ReadBool(mIsBackObject);
+	source.ReadBool(mIsBackTarget);
+	source.ReadPointer(mNormalMaterialInstance);
+	source.Read(mSubLayer);
+	source.ReadPointer(mBakeShine);
+	source.ReadEnum(mPhysicsType);
+	source.ReadAggregate(mPhysicsParam);
+	source.Read(mFogIP_Height);
+	source.Read(mFogIP_Distance);
 
 	PX2_END_DEBUG_STREAM_LOAD(Renderable, source);
 }
@@ -675,77 +653,24 @@ int Renderable::GetStreamingSize (Stream &stream) const
 	size += PX2_POINTERSIZE(mMaterialInstance);
 	size += PX2_ENUMSIZE(mLayer);
 
-	if (Stream::ST_IN == stream.GetStreamType())
-	{
-		int readedVersion = GetReadedVersion();
-
-		if (1 <= readedVersion)
-		{
-			size += PX2_BOOLSIZE(AllowRed);
-			size += PX2_BOOLSIZE(AllowGreen);
-			size += PX2_BOOLSIZE(AllowBlue);
-			size += PX2_BOOLSIZE(AllowAlpha);
-		}
-		if (2 <= readedVersion)
-		{
-			size += PX2_POINTERSIZE(mDefaultShine);
-		}
-		if (3 <= readedVersion)
-		{
-			size += PX2_BOOLSIZE(mIsUseLightTexture);
-			size += PX2_STRINGSIZE(mLightTexPath);
-			size += PX2_STRINGSIZE(mNormalTexPath);
-		}
-		if (4 <= readedVersion)
-		{
-			size += PX2_ENUMSIZE(mBakeSizeType);
-		}
-		if (5 <= readedVersion)
-		{
-			size += PX2_BOOLSIZE(mIsBackObject);
-			size += PX2_BOOLSIZE(mIsBackTarget);
-			size += PX2_POINTERSIZE(mNormalMaterialInstance);
-		}
-		if (6 <= readedVersion)
-		{
-			size += sizeof(mSubLayer);
-		}
-		if (7 <= readedVersion)
-		{
-			size += PX2_POINTERSIZE(mBakeShine);
-		}
-		if (8 <= readedVersion)
-		{
-			size += PX2_ENUMSIZE(mPhysicsType);
-			size += sizeof(mPhysicsParam);
-		}
-		if (9 <= readedVersion)
-		{
-			size += sizeof(mFogIP_Height);
-			size += sizeof(mFogIP_Distance);
-		}
-	}
-	else
-	{
-		size += PX2_BOOLSIZE(AllowRed);
-		size += PX2_BOOLSIZE(AllowGreen);
-		size += PX2_BOOLSIZE(AllowBlue);
-		size += PX2_BOOLSIZE(AllowAlpha);
-		size += PX2_POINTERSIZE(mDefaultShine);
-		size += PX2_BOOLSIZE(mIsUseLightTexture);
-		size += PX2_STRINGSIZE(mLightTexPath);
-		size += PX2_STRINGSIZE(mNormalTexPath);
-		size += PX2_BOOLSIZE(mBakeSizeType);
-		size += PX2_BOOLSIZE(mIsBackObject);
-		size += PX2_BOOLSIZE(mIsBackTarget);
-		size += PX2_BOOLSIZE(mNormalMaterialInstance);
-		size += sizeof(mSubLayer);
-		size += PX2_POINTERSIZE(mBakeShine);
-		size += PX2_ENUMSIZE(mPhysicsType);
-		size += sizeof(mPhysicsParam);
-		size += sizeof(mFogIP_Height);
-		size += sizeof(mFogIP_Distance);
-	}
+	size += PX2_BOOLSIZE(AllowRed);
+	size += PX2_BOOLSIZE(AllowGreen);
+	size += PX2_BOOLSIZE(AllowBlue);
+	size += PX2_BOOLSIZE(AllowAlpha);
+	size += PX2_POINTERSIZE(mDefaultShine);
+	size += PX2_BOOLSIZE(mIsUseLightTexture);
+	size += PX2_STRINGSIZE(mLightTexPath);
+	size += PX2_STRINGSIZE(mNormalTexPath);
+	size += PX2_BOOLSIZE(mBakeSizeType);
+	size += PX2_BOOLSIZE(mIsBackObject);
+	size += PX2_BOOLSIZE(mIsBackTarget);
+	size += PX2_BOOLSIZE(mNormalMaterialInstance);
+	size += sizeof(mSubLayer);
+	size += PX2_POINTERSIZE(mBakeShine);
+	size += PX2_ENUMSIZE(mPhysicsType);
+	size += sizeof(mPhysicsParam);
+	size += sizeof(mFogIP_Height);
+	size += sizeof(mFogIP_Distance);
 
 	return size;
 }

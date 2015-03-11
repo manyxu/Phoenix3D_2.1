@@ -15,7 +15,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, Effectable);
 
 //----------------------------------------------------------------------------
 Effectable::Effectable () :
-mIsUpdate(false),
+mIsNeedUpdate(false),
 mIsFixedBound(true),
 mFixedBoundRadius(2.0f),
 mIsLocal(false),
@@ -59,34 +59,6 @@ mIsBufferEverGenerated(false)
 //----------------------------------------------------------------------------
 Effectable::~Effectable ()
 {
-}
-//----------------------------------------------------------------------------
-void Effectable::UpdateWorldData(double applicationTime, double elapsedTime1)
-{
-	if (!mIsUpdate)
-	{
-		SetBlendMode(mBlendMode);
-		SetBackCull(mIsBackCull);
-
-		std::string outPath;
-		std::string outBaseName;
-		std::string outExt;
-		StringHelp::SplitFullFilename(mTexFilename, outPath, outBaseName, outExt);
-
-		Effectable::TexMode texMode = GetTexMode();
-		if (Effectable::TM_TEXPACK_ELE == texMode && "xml" == outExt)
-		{
-			SetTexPack_Ele(mTexFilename, mTexPackEleName);
-		}
-		else if (Effectable::TM_TEXPACK_ANIM == texMode && "xml" == outExt)
-		{
-			SetTexPackAnim(mTexFilename);
-		}
-
-		mIsUpdate = true;
-	}
-
-	TriMesh::UpdateWorldData(applicationTime, elapsedTime1);
 }
 //----------------------------------------------------------------------------
 void Effectable::SetFixedBound (bool fixed)
@@ -608,6 +580,18 @@ void Effectable::GenBuffers ()
 	mIsBufferEverGenerated = true;
 }
 //----------------------------------------------------------------------------
+void Effectable::UpdateWorldData(double applicationTime, double elapsedTime)
+{
+	TriMesh::UpdateWorldData(applicationTime, elapsedTime);
+
+	if (mIsNeedUpdate)
+	{
+		SetLocal(IsLocal());
+
+		mIsNeedUpdate = false;
+	}
+}
+//----------------------------------------------------------------------------
 int Effectable::GetUV (int startRandomIndex, float age, 
 	float &uBegin, float &uEnd, float &vBegin, float &vEnd)
 {
@@ -920,7 +904,7 @@ void Effectable::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 Effectable::Effectable (LoadConstructor value) :
 TriMesh(value),
-mIsUpdate(false),
+mIsNeedUpdate(true),
 mIsFixedBound(true),
 mFixedBoundRadius(2.0f),
 mIsLocal(false),

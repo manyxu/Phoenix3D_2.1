@@ -190,15 +190,15 @@ public_internal:
 		const TexPackElement &GetTexPackElement () const;
 		const std::vector<TexPackElement> &GetTexPackAnim_Frames () const;
 
-		virtual void UpdateWorldData(double applicationTime, double elapsedTime1);
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 	protected:
 		Effectable ();
 		int GetUV (int startRandomIndex, float age, float &uBegin,
 			float &uEnd, float &vBegin, float &vEnd);
 		void _SetBlendMode(BlendMode mode);
-
-		bool mIsUpdate;
+		
+		bool mIsNeedUpdate;
 
 		bool mIsFixedBound;
 		APoint mFixedCenter;

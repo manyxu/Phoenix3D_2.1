@@ -45,10 +45,16 @@ namespace PX2
 
 		// handle由上面的Set*函数返回获得
 		ShaderFloat* GetConstant (int handle) const;
+		const std::string &GetConstantName(int handle) const;
 		Texture* GetTexture (int handle) const;
+		const std::string &GetTextureResPath(int handle) const;
+		const std::string &GetSampleName(int handle) const;
 
 		// 在绘制的时候更新常量
 		void UpdateConstants (const ShaderStruct *shaderStruc);
+
+	public_internal:
+		int _SetTexture(const std::string& name, Texture* texture);
 
 	protected:
 		ShaderPtr mShader;

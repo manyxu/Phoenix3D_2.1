@@ -58,11 +58,14 @@ namespace PX2
 		Texture* GetVertexTexture (int pass, int handle) const;
 		Texture* GetPixelTexture (int pass, int handle) const;
 
+		virtual void Update(double appTime, double elapsedTime);
+
 	protected:
-		void _RefreshMaterial(const std::string &mtlFilename,
+		MaterialTechnique *_RefreshMaterial(const std::string &mtlFilename,
 			const std::string &intanceName, ShaderParametersPtr* &vp,
-			ShaderParametersPtr* &pp, bool shareMtl);
-		void _RefreshMaterialParams(ShaderParametersPtr &newParam, Shader *shader);
+			ShaderParametersPtr* &pp, bool shareMtl, MaterialPtr &outMtl, int &outTechIndex);
+		void _CreateConstants(ShaderParametersPtr &newParam, Shader *shader);
+		void _CopyParams(ShaderParameters *from, ShaderParameters *to);
 
 		bool mIsShareMtl;
 
@@ -75,6 +78,8 @@ namespace PX2
 		int mNumPasses;
 		ShaderParametersPtr* mVertexParameters;
 		ShaderParametersPtr* mPixelParameters;
+
+		bool mIsNeedUpdated;
 	};
 
 	PX2_REGISTER_STREAM(MaterialInstance);

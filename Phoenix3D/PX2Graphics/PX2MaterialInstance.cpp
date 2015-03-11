@@ -19,7 +19,8 @@ mIsShareMtl(false),
 mTechniqueIndex(techniqueIndex),
 mNumPasses(0),
 mVertexParameters(0),
-mPixelParameters(0)
+mPixelParameters(0),
+mIsNeedUpdated(false)
 {
 	assertion(material != 0, "Material must be specified.\n");
 	assertion(
@@ -51,22 +52,27 @@ MaterialInstance::MaterialInstance(const std::string &mtlFilename,
 	mInstanceTagName(tagName),
 	mNumPasses(0),
 	mVertexParameters(0),
-	mPixelParameters(0)
+	mPixelParameters(0),
+	mIsNeedUpdated(false)
 {
-	_RefreshMaterial(mMaterialFilename, mInstanceTagName,
-		mVertexParameters, mPixelParameters, mIsShareMtl);
+	MaterialTechnique *tech = _RefreshMaterial(mMaterialFilename, mInstanceTagName,
+		mVertexParameters, mPixelParameters, mIsShareMtl, mMaterial, mTechniqueIndex);
+
+	mNumPasses = tech->GetNumPasses();
 }
 //----------------------------------------------------------------------------
-void MaterialInstance::_RefreshMaterial(const std::string &mtlFilename,
+MaterialTechnique *MaterialInstance::_RefreshMaterial(
+	const std::string &mtlFilename,
 	const std::string &tagName, ShaderParametersPtr* &vp,
-	ShaderParametersPtr* &pp, bool shareMtl)
+	ShaderParametersPtr* &pp, bool shareMtl, MaterialPtr &outMtl, 
+	int &outTechIndex)
 {
 	// we reload the mtl
-	mMaterial = PX2_MATERIALMAN.GetMaterial(mtlFilename.c_str(), shareMtl);
-	assertion(mMaterial != 0, "Material must be specified.\n");
+	outMtl = PX2_MATERIALMAN.GetMaterial(mtlFilename.c_str(), shareMtl);
+	assertion(outMtl != 0, "Material must be specified.\n");
 
-	MaterialTechnique* technique = mMaterial->GetTechnique(tagName,
-		mTechniqueIndex);
+	MaterialTechnique* technique = outMtl->GetTechnique(tagName,
+		outTechIndex);
 
 	int newNumPass = technique->GetNumPasses();
 	if (0 == vp)
@@ -80,14 +86,14 @@ void MaterialInstance::_RefreshMaterial(const std::string &mtlFilename,
 		VertexShader *vs = pass->GetVertexShader();
 		PixelShader *ps = pass->GetPixelShader();
 
-		_RefreshMaterialParams(vp[p], vs);
-		_RefreshMaterialParams(pp[p], ps);
+		_CreateConstants(vp[p], vs);
+		_CreateConstants(pp[p], ps);
 	}
 
-	mNumPasses = newNumPass;
+	return technique;
 }
 //----------------------------------------------------------------------------
-void MaterialInstance::_RefreshMaterialParams(ShaderParametersPtr &newParam, 
+void MaterialInstance::_CreateConstants(ShaderParametersPtr &newParam,
 	Shader *shader)
 {
 	if (0 == newParam)
@@ -108,20 +114,6 @@ void MaterialInstance::_RefreshMaterialParams(ShaderParametersPtr &newParam,
 			}
 		}
 	}
-
-	//std::vector<std::string, Texture1DPtr>
-
-	//for (int i = 0; i < shader->GetNumSamplers(); i++)
-	//{
-	//	const std::string &sampleName = shader->GetSamplerName(i);
-	//	
-	//	// 旧的已经存在
-	//	Texture *texture = newParam->GetTexture(sampleName);
-	//	if (texture)
-	//	{
-	//		newParam->SetTexture(i, texture);
-	//	}
-	//}
 }
 //----------------------------------------------------------------------------
 MaterialInstance::~MaterialInstance ()
@@ -305,6 +297,96 @@ Texture* MaterialInstance::GetPixelTexture (int pass, int handle) const
 	return 0;
 }
 //----------------------------------------------------------------------------
+void MaterialInstance::Update(double appTime, double elapsedTime)
+{
+	if (mIsNeedUpdated)
+	{
+		if (!mMaterialFilename.empty() && !mInstanceTagName.empty())
+		{
+			MaterialPtr newMaterial;
+			int newTechIndex = 0;
+			ShaderParametersPtr *newVertexParameters = 0;
+			ShaderParametersPtr *newPixelParameters = 0;
+
+			MaterialTechnique *tech = _RefreshMaterial(mMaterialFilename, mInstanceTagName,
+				newVertexParameters, newPixelParameters, mIsShareMtl, newMaterial, newTechIndex);
+			int newNumPasses = tech->GetNumPasses();
+
+			if (newNumPasses <= mNumPasses)
+			{
+				for (int i = 0; i < newNumPasses; i++)
+				{
+					_CopyParams(mVertexParameters[i], newVertexParameters[i]);
+					_CopyParams(mPixelParameters[i], newPixelParameters[i]);
+
+					newMaterial->GetPass(newTechIndex, i)->SetAlphaProperty(mMaterial->GetAlphaProperty(mTechniqueIndex, i));
+					newMaterial->GetPass(newTechIndex, i)->SetCullProperty(mMaterial->GetCullProperty(mTechniqueIndex, i));
+					newMaterial->GetPass(newTechIndex, i)->SetDepthProperty(mMaterial->GetDepthProperty(mTechniqueIndex, i));
+					newMaterial->GetPass(newTechIndex, i)->SetOffsetProperty(mMaterial->GetOffsetProperty(mTechniqueIndex, i));
+					newMaterial->GetPass(newTechIndex, i)->SetStencilProperty(mMaterial->GetStencilProperty(mTechniqueIndex, i));
+					newMaterial->GetPass(newTechIndex, i)->SetWireProperty(mMaterial->GetWireProperty(mTechniqueIndex, i));
+				}
+			}
+
+			for (int i = 0; i < mNumPasses; i++)
+			{
+				mVertexParameters[i] = 0;
+				mPixelParameters[i] = 0;
+			}
+			delete1(mVertexParameters);
+			delete1(mPixelParameters);
+
+			mNumPasses = newNumPasses;
+			mMaterial = newMaterial;
+			mTechniqueIndex = newTechIndex;
+			mVertexParameters = newVertexParameters;
+			mPixelParameters = newPixelParameters;
+		}
+
+		mIsNeedUpdated = false;
+	}
+}
+//----------------------------------------------------------------------------
+void MaterialInstance::_CopyParams(ShaderParameters *from,
+	ShaderParameters *to)
+{
+	int fromNumConstans = from->GetNumConstants();
+	for (int i = 0; i < fromNumConstans; i++)
+	{
+		ShaderFloat *fromFloat = from->GetConstant(i);
+		if (fromFloat)
+		{
+			const std::string &fromConstName = from->GetConstantName(i);
+
+			ShaderFloat *toFloat = to->GetConstant(fromConstName);
+
+			int fromNumRegisters = fromFloat->GetNumRegisters();
+			if (fromNumRegisters == toFloat->GetNumRegisters())
+			{
+				for (int r = 0; r < fromNumRegisters; r++)
+				{
+					toFloat->SetRegister(r, fromFloat->GetRegister(r));
+				}
+			}
+			else
+			{
+				assertion(false, "numRegist doest not be the same.\n");
+			}
+		}
+	}
+
+	int fromNumSamples = from->GetNumTextures();
+	for (int i = 0; i < fromNumSamples; i++)
+	{
+		const std::string &fromSampleName = from->GetSampleName(i);
+		Texture *texture = from->GetTexture(i);
+		if (texture)
+		{
+			to->_SetTexture(fromSampleName, texture);
+		}
+	}
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 名称
@@ -362,14 +444,14 @@ void MaterialInstance::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 // 持久化
 //----------------------------------------------------------------------------
-MaterialInstance::MaterialInstance (LoadConstructor value)
-:
+MaterialInstance::MaterialInstance (LoadConstructor value) :
 Object(value),
 mIsShareMtl(false),
 mTechniqueIndex(0),
 mNumPasses(0),
 mVertexParameters(0),
-mPixelParameters(0)
+mPixelParameters(0),
+mIsNeedUpdated(true)
 {
 }
 //----------------------------------------------------------------------------
@@ -385,11 +467,8 @@ void MaterialInstance::Load (InStream& source)
 	source.ReadString(mMaterialFilename);
 	source.ReadString(mInstanceTagName);
 
-	if (mMaterialFilename.empty() && mInstanceTagName.empty())
-	{
-		source.ReadPointer(mMaterial);
-		source.Read(mTechniqueIndex);
-	}
+	source.ReadPointer(mMaterial);
+	source.Read(mTechniqueIndex);
 
 	source.ReadPointerRR(mNumPasses, mVertexParameters);
 	source.ReadPointerVR(mNumPasses, mPixelParameters);
@@ -401,10 +480,7 @@ void MaterialInstance::Link (InStream& source)
 {
 	Object::Link(source);
 
-	if (mMaterialFilename.empty() && mInstanceTagName.empty())
-	{
-		source.ResolveLink(mMaterial);
-	}
+	source.ResolveLink(mMaterial);
 
 	source.ResolveLink(mNumPasses, mVertexParameters);
 	source.ResolveLink(mNumPasses, mPixelParameters);
@@ -414,10 +490,9 @@ void MaterialInstance::PostLink ()
 {
 	Object::PostLink();
 
-	if (!mMaterialFilename.empty() && !mInstanceTagName.empty())
+	if (mMaterial && !mMaterialFilename.empty() && !mInstanceTagName.empty())
 	{
-		_RefreshMaterial(mMaterialFilename, mInstanceTagName,
-			mVertexParameters, mPixelParameters, mIsShareMtl);
+		PX2_MATERIALMAN.AddMaterial(mMaterialFilename.c_str(), mMaterial);
 	}
 }
 //----------------------------------------------------------------------------
@@ -425,10 +500,7 @@ bool MaterialInstance::Register (OutStream& target) const
 {
 	if (Object::Register(target))
 	{
-		if (mMaterialFilename.empty() && mInstanceTagName.empty())
-		{
-			target.Register(mMaterial);
-		}
+		target.Register(mMaterial);
 
 		target.Register(mNumPasses, mVertexParameters);
 		target.Register(mNumPasses, mPixelParameters);
@@ -450,11 +522,8 @@ void MaterialInstance::Save (OutStream& target) const
 	target.WriteString(mMaterialFilename);
 	target.WriteString(mInstanceTagName);
 
-	if (mMaterialFilename.empty() && mInstanceTagName.empty())
-	{
-		target.WritePointer(mMaterial);
-		target.Write(mTechniqueIndex);
-	}
+	target.WritePointer(mMaterial);
+	target.Write(mTechniqueIndex);
 
 	target.WritePointerW(mNumPasses, mVertexParameters);
 	target.WritePointerN(mNumPasses, mPixelParameters);
@@ -472,11 +541,8 @@ int MaterialInstance::GetStreamingSize (Stream &stream) const
 	size += PX2_STRINGSIZE(mMaterialFilename);
 	size += PX2_STRINGSIZE(mInstanceTagName);
 
-	if (mMaterialFilename.empty() && mInstanceTagName.empty())
-	{
-		size += PX2_POINTERSIZE(mMaterial);
-		size += sizeof(mTechniqueIndex);
-	}
+	size += PX2_POINTERSIZE(mMaterial);
+	size += sizeof(mTechniqueIndex);
 
 	size += sizeof(mNumPasses);
 	size += mNumPasses*PX2_POINTERSIZE(mVertexParameters[0]);

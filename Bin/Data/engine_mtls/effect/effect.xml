@@ -9,7 +9,7 @@
 				</i>
 				<o>
 					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
-					<var index="1" name="vertexColor0" vt="float4" vs="COLOR0"/>
+					<var index="1" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="2" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
 				</o>
 				<c>
@@ -22,7 +22,7 @@
 			</shader>
 			<shader type="ps" name="effect" ni="2" no="1" nc="0" ns="1">
 				<i>
-					<var index="0" name="vertexColor0" vt="float4" vs="COLOR0"/>
+					<var index="0" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="1" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
 				</i>
 				<o>
