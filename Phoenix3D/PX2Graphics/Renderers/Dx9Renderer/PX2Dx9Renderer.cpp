@@ -713,6 +713,8 @@ void Renderer::ResizeWindow (int width, int height)
 	if (width<=0 || height<=0)
 		return;
 
+	OnLostDevice();
+
 	mWidth = width;
 	mHeight = height;
 	mData->mPresent.BackBufferWidth = mWidth;
@@ -721,32 +723,6 @@ void Renderer::ResizeWindow (int width, int height)
 	mData->mDeviceLost = true;
 	mData->mFont->OnLostDevice();
 
-	// 释放所有D3DPOOL_DEFAULT的资源。在Dx9中，着色器不需要重新创建，Dx9纹
-	// 理也是managed所有不需要重新创建。在DX10之后，我们就不要做设备丢失检
-	// 测了。^_^现在我们只是简单的将所有资源都释放，释放完之后重建。
-
-	// 先释放有D3DPOOL_DEFAULT资源。
-	std::set<const VertexFormat*> saveVertexFormats;
-	std::set<const VertexBuffer*> saveVertexBuffers;
-	std::set<const IndexBuffer*> saveIndexBuffers;
-	std::set<const Texture1D*> saveTexture1Ds;
-	std::set<const Texture2D*> saveTexture2Ds;
-	std::set<const Texture3D*> saveTexture3Ds;
-	std::set<const TextureCube*> saveTextureCubes;
-	std::set<const RenderTarget*> saveRenderTargets;
-	std::set<const VertexShader*> saveVertexShaders;
-	std::set<const PixelShader*> savePixelShaders;
-
-	DestroyResources(mVertexFormats, saveVertexFormats);
-	DestroyResources(mVertexBuffers, saveVertexBuffers);
-	DestroyResources(mIndexBuffers, saveIndexBuffers);
-	DestroyResources(mTexture1Ds, saveTexture1Ds);
-	DestroyResources(mTexture2Ds, saveTexture2Ds);
-	DestroyResources(mTexture3Ds, saveTexture3Ds);
-	DestroyResources(mTextureCubes, saveTextureCubes);
-	DestroyResources(mRenderTargets, saveRenderTargets);
-	DestroyResources(mVertexShaders, saveVertexShaders);
-	DestroyResources(mPixelShaders, savePixelShaders);
 	mData->DestroyUniqueFont();
 
 	// 重新置回设备
@@ -763,18 +739,7 @@ void Renderer::ResizeWindow (int width, int height)
 
 	// 重新创建资源
 	mData->CreateUniqueFont();
-	RecreateResources(this, saveVertexFormats);
-	RecreateResources(this, saveVertexBuffers);
-	RecreateResources(this, saveIndexBuffers);
-	RecreateResources(this, saveTexture1Ds);
-	RecreateResources(this, saveTexture2Ds);
-	RecreateResources(this, saveTexture3Ds);
-	RecreateResources(this, saveTextureCubes);
-	RecreateResources(this, saveRenderTargets);
-	RecreateResources(this, saveVertexShaders);
-	RecreateResources(this, savePixelShaders);
 }
-
 //----------------------------------------------------------------------------
 // 深度，颜色，模板缓冲区Clear
 //----------------------------------------------------------------------------

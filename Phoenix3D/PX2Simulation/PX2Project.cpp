@@ -10,6 +10,7 @@
 #include "PX2UIView.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2EngineLoop.hpp"
+#include "PX2RenderStepScene.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Node, Project);
@@ -27,7 +28,7 @@ mScreenOrientation(SO_LANDSCAPE)
 	mBackgroundColor = Float4(0.5f, 0.5f, 0.5f, 1.0f);
 	mProjBackgroundColor = Float4::WHITE;
 	
-	mSceneRenderStep = new0 RenderStep();
+	mSceneRenderStep = new0 RenderStepScene();
 	mSceneRenderStep->SetPriority(20);
 	mSceneRenderStep->SetName("Scene");
 	mSceneRenderStep->SetRenderer(Renderer::GetDefaultRenderer());

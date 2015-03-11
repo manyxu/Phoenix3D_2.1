@@ -47,7 +47,7 @@ void UIView::Update(double appSeconds, double elapsedSeconds)
 {
 	if (mCameraNode)
 	{
-		mCameraNode->Update(appSeconds, false);
+		mCameraNode->Update(appSeconds, elapsedSeconds, false);
 	}
 
 	RenderStep::Update(appSeconds, elapsedSeconds);

@@ -8,7 +8,7 @@ function Start()
 	local cameraActor = scene:GetUseCameraActor()
 	
 	local sphereActor = PX2_CREATER:CreateActor_Sphere(scene, APoint.ORIGIN)
-	sphereActor.LocalTransform:SetUniformScale(3.0);
+	sphereActor.LocalTransform:SetUniformScale(1.0);
 	
 	cameraActor:LookAt(sphereActor)
 end

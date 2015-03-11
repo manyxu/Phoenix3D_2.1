@@ -9,6 +9,7 @@
 #include "PX2Rect.hpp"
 #include "PX2Culler.hpp"
 #include "PX2Node.hpp"
+#include "PX2RenderTarget.hpp"
 
 namespace PX2
 {
@@ -88,8 +89,8 @@ namespace PX2
 		void SetDoDepthClear(bool clear);
 		bool IsDoDepthClear();
 
-		void ComputeVisibleSet();
-		void Draw();
+		virtual void ComputeVisibleSet();
+		virtual void Draw();
 
 	public_internal:
 		static bool LessThan(const RenderStep *step0, const RenderStep *step1);

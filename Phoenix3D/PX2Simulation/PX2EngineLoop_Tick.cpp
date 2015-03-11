@@ -21,6 +21,8 @@ void EngineLoop::Tick()
 
 	PX2_GR.Update(mAppTime, mElapsedTime);
 
+	if (mIsInBackground) return;
+
 	PX2_GR.ComputeVisibleSet();
 
 	Renderer *defaultRenderer = Renderer::GetDefaultRenderer();

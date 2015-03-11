@@ -39,6 +39,7 @@
     <ClInclude Include="PX2PlatformSDKEventType.hpp" />
     <ClInclude Include="PX2Project.hpp" />
     <ClInclude Include="PX2RedoUndo.hpp" />
+    <ClInclude Include="PX2RenderStepScene.hpp" />
     <ClInclude Include="PX2Scene.hpp" />
     <ClInclude Include="PX2Selection.hpp" />
     <ClInclude Include="PX2ServerInfo.hpp" />
@@ -83,6 +84,7 @@
     <ClCompile Include="PX2PlatformSDKEventType.cpp" />
     <ClCompile Include="PX2Project.cpp" />
     <ClCompile Include="PX2RedoUndo.cpp" />
+    <ClCompile Include="PX2RenderStepScene.cpp" />
     <ClCompile Include="PX2Scene.cpp" />
     <ClCompile Include="PX2Scene_Manager.cpp" />
     <ClCompile Include="PX2Selection.cpp" />

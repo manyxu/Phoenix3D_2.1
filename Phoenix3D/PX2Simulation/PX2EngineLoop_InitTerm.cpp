@@ -149,9 +149,9 @@ void EngineLoop::DidEnterBackground()
 	//PX2_SS.EnableMusic(false);
 	//PX2_SS.EnableSounds(false);
 
-#ifdef PX2_USE_OPENGLES2
+//#ifdef PX2_USE_OPENGLES2
 	Renderer::GetDefaultRenderer()->OnLostDevice();
-#endif
+//#endif
 
 	mIsInBackground = true;
 }

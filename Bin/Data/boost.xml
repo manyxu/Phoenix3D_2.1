@@ -1,6 +1,6 @@
 <boost name="boost">
 	<config>
-		<var width="1136" height="640"/>
+		<var width="1000" height="640"/>
 	</config>
 	<play>
 		<var projectname="sample_earth" playlogicmode="logic"/>

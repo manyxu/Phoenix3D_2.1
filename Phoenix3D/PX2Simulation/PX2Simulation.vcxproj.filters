@@ -165,6 +165,9 @@
     <ClInclude Include="PX2LightActor.hpp">
       <Filter>Actor</Filter>
     </ClInclude>
+    <ClInclude Include="PX2RenderStepScene.hpp">
+      <Filter>EngineLoop</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Actor.cpp">
@@ -295,6 +298,9 @@
     </ClCompile>
     <ClCompile Include="PX2LightActor.cpp">
       <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RenderStepScene.cpp">
+      <Filter>EngineLoop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
