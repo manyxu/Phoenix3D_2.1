@@ -23,8 +23,8 @@ mIsUseShaderMap(false)
 	mEffect_UIFrame->SetRelativeType_H(UIFrame::LT_HALF);
 	mEffect_UIFrame->SetRelativeType_V(UIFrame::LT_HALF);
 
-	SetUseBloom(false);
-	SetUseShaderMap(true);
+	//SetUseBloom(false);
+	//SetUseShaderMap(true);
 }
 //----------------------------------------------------------------------------
 RenderStepScene::~RenderStepScene()
@@ -98,7 +98,7 @@ void RenderStepScene::Draw()
 	if (!mEffect_RenderTarget_Normal)
 	{
 		mRenderer->InitRenderStates();
-		mRenderer->ClearColorBuffer();
+		//mRenderer->ClearBuffers();
 		mRenderer->SetCamera(mCamera);
 		mRenderer->Draw(mCuller.GetVisibleSet());
 	}
@@ -177,7 +177,7 @@ void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 
 	Texture::Format tformat = Texture::TF_A8R8G8B8;
 	mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, 512, 512,
-		false, false);
+		false, true);
 
 	mEffect_Camera_Shadow = new0 Camera(false);
 	mEffect_Camera_Shadow->SetFrame(APoint(0.0f, -10.0f, 0.0f),
@@ -189,6 +189,6 @@ void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 	mEffect_UIFrame->AttachChild(mEffect_UIPicBox_Shadow);
 
 	mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow
-		->GetColorTexture(0));
+		->GetDepthStencilTexture());
 }
 //----------------------------------------------------------------------------

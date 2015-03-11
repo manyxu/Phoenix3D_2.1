@@ -1,5 +1,5 @@
 <project>
-	<general name="sample_earth" screenorientation="landscape" width="1136" height="640" backcolor="127,127,127,255" projcolor="100,255,255,255"/>
+	<general name="sample_earth" screenorientation="landscape" width="1136" height="640" backcolor="127,127,127,255" projcolor="64,64,64,255"/>
 	<scene filename="Data/sample_earth/scenes/scene.px2obj"/>
 	<language/>
 	<publish/>

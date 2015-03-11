@@ -11,8 +11,7 @@ using namespace PX2;
 
 //----------------------------------------------------------------------------
 PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
-								  const RenderTarget* renderTarget)
-								  :
+								  const RenderTarget* renderTarget) :
 mSaveColorSurface(0),
 mSaveDepthStencilSurface(0)
 {
