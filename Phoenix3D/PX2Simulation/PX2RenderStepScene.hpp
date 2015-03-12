@@ -44,11 +44,12 @@ namespace PX2
 		RenderTargetPtr mEffect_RenderTarget_Normal;
 		UIPicBoxPtr mEffect_UIPicBox_Normal;
 
-		CameraPtr mEffect_Camera_Shadow;
 		Culler mEffect_Culler_Shadow;
 		RenderTargetPtr mEffect_RenderTarget_Shadow;
 		UIPicBoxPtr mEffect_UIPicBox_Shadow;
 	};
+
+	typedef Pointer0<RenderStepScene> RenderStepScenePtr;
 
 }
 

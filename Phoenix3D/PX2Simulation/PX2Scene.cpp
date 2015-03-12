@@ -26,8 +26,11 @@ Scene::Scene()
 	CameraActor *camActor = new0 CameraActor();
 	AttachChild(camActor);
 	camActor->LocalTransform.SetTranslate(APoint(0.0f, -5.0f, 1.0f));
-
 	SetUseCameraActor(camActor);
+
+	mDefaultAmbientRegionActor = new0 AmbientRegionActor();
+	mDefaultAmbientRegionActor->SetName("DefaultAmbientRegion");
+	AttachChild(mDefaultAmbientRegionActor);
 }
 //----------------------------------------------------------------------------
 Scene::~Scene()
@@ -116,6 +119,7 @@ void Scene::Load(InStream& source)
 	PX2_VERSION_LOAD(source);
 
 	source.ReadPointer(mCameraActor);
+	source.ReadPointer(mDefaultAmbientRegionActor);
 
 	PX2_END_DEBUG_STREAM_LOAD(Scene, source);
 }
@@ -126,6 +130,9 @@ void Scene::Link(InStream& source)
 
 	if (mCameraActor)
 		source.ResolveLink(mCameraActor);
+
+	if (mDefaultAmbientRegionActor)
+		source.ResolveLink(mDefaultAmbientRegionActor);
 }
 //----------------------------------------------------------------------------
 void Scene::PostLink()
@@ -137,7 +144,11 @@ bool Scene::Register(OutStream& target) const
 {
 	if (Node::Register(target))
 	{
-		target.Register(mCameraActor);
+		if (mCameraActor) 
+			target.Register(mCameraActor);
+
+		if (mDefaultAmbientRegionActor) 
+			target.Register(mDefaultAmbientRegionActor);
 		
 		return true;
 	}
@@ -153,6 +164,7 @@ void Scene::Save(OutStream& target) const
 	PX2_VERSION_SAVE(target);
 
 	target.WritePointer(mCameraActor);
+	target.WritePointer(mDefaultAmbientRegionActor);
 
 	PX2_END_DEBUG_STREAM_SAVE(Scene, target);
 }
@@ -163,6 +175,7 @@ int Scene::GetStreamingSize(Stream &stream) const
 	size += PX2_VERSION_SIZE(mVersion);
 
 	size += PX2_POINTERSIZE(mCameraActor);
+	size += PX2_POINTERSIZE(mDefaultAmbientRegionActor);
 
 	return size;
 }

@@ -41,6 +41,8 @@ function e_CreateEditMenu(tag)
 			
 			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Character"), "e_SceneActor_CreateCharacter()")
 			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Effect"), "e_SceneActor_CreateEffect()")
+			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Trigger"), "e_SceneActor_CreateTrigger()")
+			--NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("AmbientRegion"), "e_SceneActor_CreateAmbientRegion()")
 			
 			local createUIMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("UI")))
 			NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIPicBox"), "e_CreateUIPixBox(true)")

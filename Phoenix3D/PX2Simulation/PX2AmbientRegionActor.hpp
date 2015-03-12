@@ -4,6 +4,10 @@
 #define PX2AMBIENTREGIONACTOR_HPP
 
 #include "PX2TriggerActor.hpp"
+#include "PX2Light.hpp"
+#include "PX2LightNode.hpp"
+#include "PX2Camera.hpp"
+#include "PX2CameraNode.hpp"
 
 namespace PX2
 {
@@ -19,8 +23,17 @@ namespace PX2
 		AmbientRegionActor();
 		virtual ~AmbientRegionActor();
 
+	protected:
+		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
+
+		bool mIsNeedUpdated;
+
 		// Default Dir Light
 	public:
+		void SetLightCameraLookPostion(const APoint &pos);
+		void SetLightCameraLookDistance(float dist);
+		void SetLightCameraExtent(float extent);
+
 		void SetHorAngle(float angle);
 		float GetHorAngle() const;
 		void SetVerAngle(float angle);
@@ -37,8 +50,14 @@ namespace PX2
 		void SetSpecularPow(float pow);
 		float GetSpecularPow() const;
 
+		void SetIntensity(float intensity);
+		float GetIntensity() const;
+
+	public_internal:
+		virtual void SetParent(Movable* parent);
+
 	protected:
-		void _UpdateDirLight();
+		void _UpdateDirLightCamera();
 
 		float mHorAngle;
 		float mVerAngle;
@@ -47,6 +66,11 @@ namespace PX2
 		Float3 mDiffuseColor;
 		Float3 mSpecularColor;
 		float mSpecularPow;
+		float mIntensity;
+
+		APoint mLightCameraLookPosition;
+		float mLightCameraLookDistance;
+		float mLightCameraExtent;
 
 		// Bake
 	public:

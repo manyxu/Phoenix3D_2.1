@@ -22,6 +22,7 @@
 #include "PX2Soundable.hpp"
 #include "PX2Character.hpp"
 #include "PX2EffectActor.hpp"
+#include "PX2TriggerActor.hpp"
 using namespace PX2;
 
 namespace PX2
@@ -40,6 +41,7 @@ namespace PX2
 		Actor *CreateActor_Sphere(Scene *scene, const APoint &pos);
 		Actor *CreateActor_Effect(Scene *scene, const APoint &pos);
 		Character *CreateActor_Character(Scene *scene, const APoint &pos);
+		TriggerActor *CreateActor_Trigger(Scene *scene, const APoint &pos);
 
 		Movable *CreateRectangle(Node *parent, const APoint &pos, bool isPosWorld, 
 			bool doAdd=true, bool usePickPos=true);

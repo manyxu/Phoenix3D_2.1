@@ -20,13 +20,7 @@ namespace PX2
 		LightDiffuseConstant (Light* light);
 		virtual ~LightDiffuseConstant ();
 
-		void SetLight (Light *light);
-		Light* GetLight ();
-
 		virtual void Update(const ShaderStruct *struc);
-
-	protected:
-		LightPtr mLight;
 	};
 
 	PX2_REGISTER_STREAM(LightDiffuseConstant);

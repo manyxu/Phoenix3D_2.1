@@ -55,6 +55,9 @@
     <Filter Include="EngineLoop">
       <UniqueIdentifier>{f4c91037-3f89-4acc-ae19-4207a680d3ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Actor\Ambient">
+      <UniqueIdentifier>{168a1e2f-9fe3-4156-a50b-7964891965e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -167,6 +170,12 @@
     </ClInclude>
     <ClInclude Include="PX2RenderStepScene.hpp">
       <Filter>EngineLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TriggerActor.hpp">
+      <Filter>Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AmbientRegionActor.hpp">
+      <Filter>Actor\Ambient</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -302,6 +311,12 @@
     <ClCompile Include="PX2RenderStepScene.cpp">
       <Filter>EngineLoop</Filter>
     </ClCompile>
+    <ClCompile Include="PX2TriggerActor.cpp">
+      <Filter>Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AmbientRegionActor.cpp">
+      <Filter>Actor\Ambient</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl">
@@ -372,6 +387,12 @@
     </None>
     <None Include="PX2LightActor.inl">
       <Filter>Actor</Filter>
+    </None>
+    <None Include="PX2TriggerActor.inl">
+      <Filter>Actor</Filter>
+    </None>
+    <None Include="PX2AmbientRegionActor.inl">
+      <Filter>Actor\Ambient</Filter>
     </None>
   </ItemGroup>
 </Project>

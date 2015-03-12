@@ -30,12 +30,6 @@ GraphicsRoot::GraphicsRoot ()
 	mFogColorHeight = Float4::RED;
 	mFogColorDist = Float4::BLUE;
 
-	mLight_Dir = new0 Light(Light::LT_DIRECTIONAL);
-	mLight_Dir->Ambient = Float4(0.5f, 0.5f, 0.5f, 1.0f);
-	mLight_Dir->Diffuse = Float4(0.5f, 0.5f, 0.5f, 1.0f);
-	mLight_Dir->Specular = Float4(0.5f, 0.5f, 0.5f, 1.0f);
-	mLight_Dir->SetDirection(AVector::UNIT_X);
-
 	MaterialManager *mi = new0 MaterialManager();
 	PX2_UNUSED(mi);
 }
@@ -67,6 +61,8 @@ bool GraphicsRoot::Initlize ()
 	Camera::SetDefaultDepthType(Camera::PM_DEPTH_MINUS_ONE_TO_ONE);
 #endif
 
+	mLight_Dir_Projector = new0 Projector(Camera::GetDefaultDepthType(), false);
+
 	PX2_MATERIALMAN.Initlize();
 
 	// create help meshs
@@ -92,6 +88,12 @@ bool GraphicsRoot::Initlize ()
 	mTriMeshYZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
 	mTriMeshYZ->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
 	mTriMeshYZ->Update(GetTimeInSeconds(), false);
+
+	mLight_Dir = new0 Light(Light::LT_DIRECTIONAL);
+	mLight_Dir->Ambient = Float4(0.5f, 0.5f, 0.5f, 1.0f);
+	mLight_Dir->Diffuse = Float4(0.5f, 0.5f, 0.5f, 1.0f);
+	mLight_Dir->Specular = Float4(0.5f, 0.5f, 0.5f, 1.0f);
+	mLight_Dir->SetDirection(AVector::UNIT_X);
 
 	return true;
 }

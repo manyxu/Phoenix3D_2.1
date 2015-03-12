@@ -27,7 +27,6 @@ Actor *Creater::CreateActor_Rectangle(Scene *scene, const APoint &pos)
 	Movable *mov = CreateRectangle(scene, APoint::ORIGIN, true, false);
 
 	ActorPtr actor = new0 Actor();
-	actor->SetName("NoName");
 	actor->SetMovable(mov);
 	actor->LocalTransform.SetTranslate(pos);
 
@@ -41,7 +40,6 @@ Actor *Creater::CreateActor_Box(Scene *scene, const APoint &pos)
 	Movable *mov = CreateBox(scene, APoint::ORIGIN, true, false);
 
 	ActorPtr actor = new0 Actor();
-	actor->SetName("NoName");
 	actor->SetMovable(mov);
 	actor->LocalTransform.SetTranslate(pos);
 
@@ -55,7 +53,6 @@ Actor *Creater::CreateActor_Sphere(Scene *scene, const APoint &pos)
 	Movable *mov = CreateSphere(scene, APoint::ORIGIN, true, false);
 
 	ActorPtr actor = new0 Actor();
-	actor->SetName("NoName");
 	actor->SetMovable(mov);
 	actor->LocalTransform.SetTranslate(pos);
 
@@ -67,7 +64,6 @@ Actor *Creater::CreateActor_Sphere(Scene *scene, const APoint &pos)
 Actor *Creater::CreateActor_Effect(Scene *scene, const APoint &pos)
 {
 	ActorPtr actor = new0 EffectActor();
-	actor->SetName("Effect");
 	actor->LocalTransform.SetTranslate(pos);
 
 	AddObject(scene, actor);
@@ -78,12 +74,21 @@ Actor *Creater::CreateActor_Effect(Scene *scene, const APoint &pos)
 Character *Creater::CreateActor_Character(Scene *scene, const APoint &pos)
 {
 	CharacterPtr chara = new0 Character();
-	chara->SetName("Character");
 	chara->LocalTransform.SetTranslate(pos);
 
 	AddObject(scene, chara);
 
 	return chara;
+}
+//----------------------------------------------------------------------------
+TriggerActor *Creater::CreateActor_Trigger(Scene *scene, const APoint &pos)
+{
+	TriggerActor *actor = new0 TriggerActor();
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
 }
 //----------------------------------------------------------------------------
 Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
@@ -113,7 +118,7 @@ Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 		"Data/engine_mtls/std/std.px2obj", "default", false);
 	mesh->SetMaterialInstance(mi);
 
-	mi->SetPixelTexture(0, "Sample0", tex);
+	mi->SetPixelTexture(0, "SampleBase", tex);
 
 	mesh->LocalTransform.SetTranslate(localPos);
 
@@ -156,7 +161,7 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 				"Data/engine_mtls/std/std.px2obj", "default", false);
 			mesh->SetMaterialInstance(mi);
 
-			mi->SetPixelTexture(0, "Sample0", tex);
+			mi->SetPixelTexture(0, "SampleBase", tex);
 		}
 	}
 
@@ -195,7 +200,7 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 		"Data/engine_mtls/std/std.px2obj", "default", false);
 	mesh->SetMaterialInstance(mi);
 
-	mi->SetPixelTexture(0, "Sample0", tex);
+	mi->SetPixelTexture(0, "SampleBase", tex);
 
 	mesh->LocalTransform.SetTranslate(localPos);
 

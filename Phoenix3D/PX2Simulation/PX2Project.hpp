@@ -12,6 +12,7 @@
 #include "PX2RenderStep.hpp"
 #include "PX2UIFrame.hpp"
 #include "PX2UIView.hpp"
+#include "PX2RenderStepScene.hpp"
 
 namespace PX2
 {
@@ -76,7 +77,7 @@ namespace PX2
 		void SetScene(Scene *scene);
 		Scene *GetScene();
 		const std::string &GetSceneFilename() const;
-		RenderStep *GetSceneRenderStep();
+		RenderStepScene *GetSceneRenderStep();
 
 	public_internal:
 		void SetSceneFilename(const std::string &scenefilename);
@@ -84,7 +85,7 @@ namespace PX2
 	protected:
 		std::string mSceneFilename;
 		ScenePtr mScene;
-		RenderStepPtr mSceneRenderStep;
+		RenderStepScenePtr mSceneRenderStep;
 
 		// UI
 	public:

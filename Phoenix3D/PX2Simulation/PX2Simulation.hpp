@@ -11,6 +11,12 @@
 
 // Actor
 #include "PX2Actor.hpp"
+#include "PX2AmbientRegionActor.hpp"
+#include "PX2CameraActor.hpp"
+#include "PX2EffectActor.hpp"
+#include "PX2LightActor.hpp"
+#include "PX2TriggerActor.hpp"
+#include "PX2Character.hpp"
 
 // Animation
 #include "PX2Animation.hpp"

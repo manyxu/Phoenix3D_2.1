@@ -23,6 +23,11 @@ LightConstant::~LightConstant()
 {
 }
 //----------------------------------------------------------------------------
+void LightConstant::SetDefaultDir(bool isDefaultDir)
+{
+	mIsDefualtDir = isDefaultDir;
+}
+//----------------------------------------------------------------------------
 void LightConstant::SetLight(Light *light)
 {
 	mLight = light;

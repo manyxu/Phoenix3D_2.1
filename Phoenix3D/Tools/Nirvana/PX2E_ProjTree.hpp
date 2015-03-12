@@ -72,6 +72,8 @@ namespace PX2Editor
 		ProjTreeItem *mItemObjects;
 		ProjTreeItem *mItemEffects;
 		ProjTreeItem *mItemSounds;
+		ProjTreeItem *mItemTriggers;
+		ProjTreeItem *mItemAmbientRegions;
 		std::vector<ProjTreeItem*> mCalItems;
 
 		ProjTreeItem *mItemUI;

@@ -24,6 +24,7 @@
     <ClInclude Include="PX2Actor.hpp" />
     <ClInclude Include="PX2ActorPicker.hpp" />
     <ClInclude Include="PX2ActorPickRecord.hpp" />
+    <ClInclude Include="PX2AmbientRegionActor.hpp" />
     <ClInclude Include="PX2Animation.hpp" />
     <ClInclude Include="PX2Animation3DSkeleton.hpp" />
     <ClInclude Include="PX2AnimationObject.hpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="PX2SimulationDataDefine.hpp" />
     <ClInclude Include="PX2SimulationEventType.hpp" />
     <ClInclude Include="PX2SimulationPre.hpp" />
+    <ClInclude Include="PX2TriggerActor.hpp" />
     <ClInclude Include="PX2User.hpp" />
     <ClInclude Include="PX2UserActor.hpp" />
     <ClInclude Include="SkillCompl\PX2Skill.hpp" />
@@ -65,6 +67,7 @@
     <ClCompile Include="PX2Actor.cpp" />
     <ClCompile Include="PX2ActorPicker.cpp" />
     <ClCompile Include="PX2Actor_BitSet.cpp" />
+    <ClCompile Include="PX2AmbientRegionActor.cpp" />
     <ClCompile Include="PX2Animation.cpp" />
     <ClCompile Include="PX2Animation3DSkeleton.cpp" />
     <ClCompile Include="PX2AnimationObject.cpp" />
@@ -90,6 +93,7 @@
     <ClCompile Include="PX2Selection.cpp" />
     <ClCompile Include="PX2ServerInfo.cpp" />
     <ClCompile Include="PX2SimulationEventType.cpp" />
+    <ClCompile Include="PX2TriggerActor.cpp" />
     <ClCompile Include="PX2User.cpp" />
     <ClCompile Include="PX2UserActor.cpp" />
     <ClCompile Include="SkillCompl\PX2Skill.cpp" />
@@ -107,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl" />
+    <None Include="PX2AmbientRegionActor.inl" />
     <None Include="PX2Animation.inl" />
     <None Include="PX2Animation3DSkeleton.inl" />
     <None Include="PX2AnimationObject.inl" />
@@ -118,6 +123,7 @@
     <None Include="PX2Project.inl" />
     <None Include="PX2Scene.inl" />
     <None Include="PX2Selection.inl" />
+    <None Include="PX2TriggerActor.inl" />
     <None Include="PX2User.inl" />
     <None Include="PX2UserActor.inl" />
     <None Include="SkillCompl\PX2Skill.inl" />

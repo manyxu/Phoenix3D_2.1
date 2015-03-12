@@ -557,7 +557,6 @@ void Node::Link (InStream& source)
         if (mChild[i])
         {
             source.ResolveLink(mChild[i]);
-            SetChild(i, mChild[i]);
         }
     }
 }
@@ -565,6 +564,15 @@ void Node::Link (InStream& source)
 void Node::PostLink ()
 {
     Movable::PostLink();
+
+	const int numChildren = (int)mChild.size();
+	for (int i = 0; i < numChildren; ++i)
+	{
+		if (mChild[i])
+		{
+			mChild[i]->SetParent(this);
+		}
+	}
 }
 //----------------------------------------------------------------------------
 bool Node::Register (OutStream& target) const

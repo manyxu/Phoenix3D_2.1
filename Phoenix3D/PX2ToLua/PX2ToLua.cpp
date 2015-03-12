@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 03/10/15 20:14:52.
+** Generated automatically by tolua++-1.0.92 on 03/12/15 19:14:05.
 */
 
 #ifndef __cplusplus
@@ -28,6 +28,13 @@ static int tolua_collect_Effectable (lua_State* tolua_S)
 static int tolua_collect_Transform (lua_State* tolua_S)
 {
  Transform* self = (Transform*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
+static int tolua_collect_SwitchNode (lua_State* tolua_S)
+{
+ SwitchNode* self = (SwitchNode*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -214,9 +221,9 @@ static int tolua_collect_Movable (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_SwitchNode (lua_State* tolua_S)
+static int tolua_collect_TriggerActor (lua_State* tolua_S)
 {
- SwitchNode* self = (SwitchNode*) tolua_tousertype(tolua_S,1,0);
+ TriggerActor* self = (TriggerActor*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -257,6 +264,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"std::vector<std::string>");
  tolua_usertype(tolua_S,"ScriptManager");
  tolua_usertype(tolua_S,"Texture2D");
+ tolua_usertype(tolua_S,"TriggerActor");
  tolua_usertype(tolua_S,"Float2");
  tolua_usertype(tolua_S,"Effectable");
  tolua_usertype(tolua_S,"Transform");
@@ -4165,6 +4173,38 @@ static int tolua_PX2_Transform_SetRotate00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: SetRotate of class  Transform */
+#ifndef TOLUA_DISABLE_tolua_PX2_Transform_SetRotate01
+static int tolua_PX2_Transform_SetRotate01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Transform* self = (Transform*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+  float z = ((float)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetRotate'", NULL);
+#endif
+  {
+   self->SetRotate(x,y,z);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2_Transform_SetRotate00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: SetMatrix of class  Transform */
 #ifndef TOLUA_DISABLE_tolua_PX2_Transform_SetMatrix00
 static int tolua_PX2_Transform_SetMatrix00(lua_State* tolua_S)
@@ -4226,6 +4266,172 @@ static int tolua_PX2_Transform_SetTranslate00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'SetTranslate'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetTranslate of class  Transform */
+#ifndef TOLUA_DISABLE_tolua_PX2_Transform_SetTranslate01
+static int tolua_PX2_Transform_SetTranslate01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Transform* self = (Transform*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+  float z = ((float)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetTranslate'", NULL);
+#endif
+  {
+   self->SetTranslate(x,y,z);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2_Transform_SetTranslate00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetTranslateX of class  Transform */
+#ifndef TOLUA_DISABLE_tolua_PX2_Transform_SetTranslateX00
+static int tolua_PX2_Transform_SetTranslateX00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Transform* self = (Transform*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetTranslateX'", NULL);
+#endif
+  {
+   self->SetTranslateX(x);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetTranslateX'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetTranslateY of class  Transform */
+#ifndef TOLUA_DISABLE_tolua_PX2_Transform_SetTranslateY00
+static int tolua_PX2_Transform_SetTranslateY00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Transform* self = (Transform*)  tolua_tousertype(tolua_S,1,0);
+  float y = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetTranslateY'", NULL);
+#endif
+  {
+   self->SetTranslateY(y);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetTranslateY'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetTranslateZ of class  Transform */
+#ifndef TOLUA_DISABLE_tolua_PX2_Transform_SetTranslateZ00
+static int tolua_PX2_Transform_SetTranslateZ00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Transform* self = (Transform*)  tolua_tousertype(tolua_S,1,0);
+  float z = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetTranslateZ'", NULL);
+#endif
+  {
+   self->SetTranslateZ(z);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetTranslateZ'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetTranslateXZ of class  Transform */
+#ifndef TOLUA_DISABLE_tolua_PX2_Transform_SetTranslateXZ00
+static int tolua_PX2_Transform_SetTranslateXZ00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Transform* self = (Transform*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float z = ((float)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetTranslateXZ'", NULL);
+#endif
+  {
+   self->SetTranslateXZ(x,z);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetTranslateXZ'.",&tolua_err);
  return 0;
 #endif
 }
@@ -4326,6 +4532,41 @@ static int tolua_PX2_Transform_GetRotate00(lua_State* tolua_S)
  tolua_error(tolua_S,"#ferror in function 'GetRotate'.",&tolua_err);
  return 0;
 #endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetRotate of class  Transform */
+#ifndef TOLUA_DISABLE_tolua_PX2_Transform_GetRotate01
+static int tolua_PX2_Transform_GetRotate01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Transform",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Transform* self = (Transform*)  tolua_tousertype(tolua_S,1,0);
+  float x = ((float)  tolua_tonumber(tolua_S,2,0));
+  float y = ((float)  tolua_tonumber(tolua_S,3,0));
+  float z = ((float)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetRotate'", NULL);
+#endif
+  {
+   self->GetRotate(x,y,z);
+   tolua_pushnumber(tolua_S,(lua_Number)x);
+   tolua_pushnumber(tolua_S,(lua_Number)y);
+   tolua_pushnumber(tolua_S,(lua_Number)z);
+  }
+ }
+ return 3;
+tolua_lerror:
+ return tolua_PX2_Transform_GetRotate00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -24868,6 +25109,42 @@ static int tolua_PX2_Creater_CreateActor_Character00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: CreateActor_Trigger of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateActor_Trigger00
+static int tolua_PX2_Creater_CreateActor_Trigger00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateActor_Trigger'", NULL);
+#endif
+  {
+   TriggerActor* tolua_ret = (TriggerActor*)  self->CreateActor_Trigger(scene,*pos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TriggerActor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateActor_Trigger'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: CreateRectangle of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateRectangle00
 static int tolua_PX2_Creater_CreateRectangle00(lua_State* tolua_S)
@@ -27386,6 +27663,415 @@ static int tolua_PX2_CameraActor_GetCamera00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: new of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_new00
+static int tolua_PX2_TriggerActor_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"TriggerActor",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   TriggerActor* tolua_ret = (TriggerActor*)  Mtolua_new((TriggerActor)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TriggerActor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_new00_local
+static int tolua_PX2_TriggerActor_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"TriggerActor",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   TriggerActor* tolua_ret = (TriggerActor*)  Mtolua_new((TriggerActor)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TriggerActor");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: delete of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_delete00
+static int tolua_PX2_TriggerActor_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"TriggerActor",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  TriggerActor* self = (TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetAreaType of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_SetAreaType00
+static int tolua_PX2_TriggerActor_SetAreaType00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"TriggerActor",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  TriggerActor* self = (TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+  TriggerActor::AreaType type = ((TriggerActor::AreaType) (int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetAreaType'", NULL);
+#endif
+  {
+   self->SetAreaType(type);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetAreaType'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetAreaType of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_GetAreaType00
+static int tolua_PX2_TriggerActor_GetAreaType00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const TriggerActor",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const TriggerActor* self = (const TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetAreaType'", NULL);
+#endif
+  {
+   TriggerActor::AreaType tolua_ret = (TriggerActor::AreaType)  self->GetAreaType();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetAreaType'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetAreaParam of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_SetAreaParam00
+static int tolua_PX2_TriggerActor_SetAreaParam00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"TriggerActor",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const AVector",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  TriggerActor* self = (TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+  const AVector* vec = ((const AVector*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetAreaParam'", NULL);
+#endif
+  {
+   self->SetAreaParam(*vec);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetAreaParam'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetAreaParam of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_GetAreaParam00
+static int tolua_PX2_TriggerActor_GetAreaParam00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const TriggerActor",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const TriggerActor* self = (const TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetAreaParam'", NULL);
+#endif
+  {
+   const AVector& tolua_ret = (const AVector&)  self->GetAreaParam();
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const AVector");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetAreaParam'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: IsPointIn of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_IsPointIn00
+static int tolua_PX2_TriggerActor_IsPointIn00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const TriggerActor",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const PX2::APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const TriggerActor* self = (const TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+  const PX2::APoint* point = ((const PX2::APoint*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsPointIn'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->IsPointIn(*point);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IsPointIn'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetTrigerType of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_SetTrigerType00
+static int tolua_PX2_TriggerActor_SetTrigerType00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"TriggerActor",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  TriggerActor* self = (TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+  TriggerActor::TrigerType type = ((TriggerActor::TrigerType) (int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetTrigerType'", NULL);
+#endif
+  {
+   self->SetTrigerType(type);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetTrigerType'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetTrigerType of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_GetTrigerType00
+static int tolua_PX2_TriggerActor_GetTrigerType00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const TriggerActor",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const TriggerActor* self = (const TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetTrigerType'", NULL);
+#endif
+  {
+   TriggerActor::TrigerType tolua_ret = (TriggerActor::TrigerType)  self->GetTrigerType();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetTrigerType'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: Triger of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_Triger00
+static int tolua_PX2_TriggerActor_Triger00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"TriggerActor",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  TriggerActor* self = (TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Triger'", NULL);
+#endif
+  {
+   self->Triger();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'Triger'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: ResetTriger of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_ResetTriger00
+static int tolua_PX2_TriggerActor_ResetTriger00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"TriggerActor",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  TriggerActor* self = (TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ResetTriger'", NULL);
+#endif
+  {
+   self->ResetTriger();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ResetTriger'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: IsTrigered of class  TriggerActor */
+#ifndef TOLUA_DISABLE_tolua_PX2_TriggerActor_IsTrigered00
+static int tolua_PX2_TriggerActor_IsTrigered00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const TriggerActor",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const TriggerActor* self = (const TriggerActor*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsTrigered'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->IsTrigered();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IsTrigered'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* Open function */
 TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
 {
@@ -27568,11 +28254,18 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"IsRSMatrix",tolua_PX2_Transform_IsRSMatrix00);
    tolua_function(tolua_S,"IsUniformScale",tolua_PX2_Transform_IsUniformScale00);
    tolua_function(tolua_S,"SetRotate",tolua_PX2_Transform_SetRotate00);
+   tolua_function(tolua_S,"SetRotate",tolua_PX2_Transform_SetRotate01);
    tolua_function(tolua_S,"SetMatrix",tolua_PX2_Transform_SetMatrix00);
    tolua_function(tolua_S,"SetTranslate",tolua_PX2_Transform_SetTranslate00);
+   tolua_function(tolua_S,"SetTranslate",tolua_PX2_Transform_SetTranslate01);
+   tolua_function(tolua_S,"SetTranslateX",tolua_PX2_Transform_SetTranslateX00);
+   tolua_function(tolua_S,"SetTranslateY",tolua_PX2_Transform_SetTranslateY00);
+   tolua_function(tolua_S,"SetTranslateZ",tolua_PX2_Transform_SetTranslateZ00);
+   tolua_function(tolua_S,"SetTranslateXZ",tolua_PX2_Transform_SetTranslateXZ00);
    tolua_function(tolua_S,"SetScale",tolua_PX2_Transform_SetScale00);
    tolua_function(tolua_S,"SetUniformScale",tolua_PX2_Transform_SetUniformScale00);
    tolua_function(tolua_S,"GetRotate",tolua_PX2_Transform_GetRotate00);
+   tolua_function(tolua_S,"GetRotate",tolua_PX2_Transform_GetRotate01);
    tolua_function(tolua_S,"GetMatrix",tolua_PX2_Transform_GetMatrix00);
    tolua_function(tolua_S,"GetTranslate",tolua_PX2_Transform_GetTranslate00);
    tolua_function(tolua_S,"GetScale",tolua_PX2_Transform_GetScale00);
@@ -28487,6 +29180,7 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateActor_Sphere",tolua_PX2_Creater_CreateActor_Sphere00);
    tolua_function(tolua_S,"CreateActor_Effect",tolua_PX2_Creater_CreateActor_Effect00);
    tolua_function(tolua_S,"CreateActor_Character",tolua_PX2_Creater_CreateActor_Character00);
+   tolua_function(tolua_S,"CreateActor_Trigger",tolua_PX2_Creater_CreateActor_Trigger00);
    tolua_function(tolua_S,"CreateRectangle",tolua_PX2_Creater_CreateRectangle00);
    tolua_function(tolua_S,"CreateBox",tolua_PX2_Creater_CreateBox00);
    tolua_function(tolua_S,"CreateSphere",tolua_PX2_Creater_CreateSphere00);
@@ -28591,6 +29285,33 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"LookAt",tolua_PX2_CameraActor_LookAt00);
    tolua_function(tolua_S,"LookAt",tolua_PX2_CameraActor_LookAt01);
    tolua_function(tolua_S,"GetCamera",tolua_PX2_CameraActor_GetCamera00);
+  tolua_endmodule(tolua_S);
+  #ifdef __cplusplus
+  tolua_cclass(tolua_S,"TriggerActor","TriggerActor","Actor",tolua_collect_TriggerActor);
+  #else
+  tolua_cclass(tolua_S,"TriggerActor","TriggerActor","Actor",NULL);
+  #endif
+  tolua_beginmodule(tolua_S,"TriggerActor");
+   tolua_function(tolua_S,"new",tolua_PX2_TriggerActor_new00);
+   tolua_function(tolua_S,"new_local",tolua_PX2_TriggerActor_new00_local);
+   tolua_function(tolua_S,".call",tolua_PX2_TriggerActor_new00_local);
+   tolua_function(tolua_S,"delete",tolua_PX2_TriggerActor_delete00);
+   tolua_constant(tolua_S,"AT_SPHERE",TriggerActor::AT_SPHERE);
+   tolua_constant(tolua_S,"AT_BOX",TriggerActor::AT_BOX);
+   tolua_constant(tolua_S,"AT_MAX_TYPE",TriggerActor::AT_MAX_TYPE);
+   tolua_function(tolua_S,"SetAreaType",tolua_PX2_TriggerActor_SetAreaType00);
+   tolua_function(tolua_S,"GetAreaType",tolua_PX2_TriggerActor_GetAreaType00);
+   tolua_function(tolua_S,"SetAreaParam",tolua_PX2_TriggerActor_SetAreaParam00);
+   tolua_function(tolua_S,"GetAreaParam",tolua_PX2_TriggerActor_GetAreaParam00);
+   tolua_function(tolua_S,"IsPointIn",tolua_PX2_TriggerActor_IsPointIn00);
+   tolua_constant(tolua_S,"TT_ENTER_ONCE",TriggerActor::TT_ENTER_ONCE);
+   tolua_constant(tolua_S,"TT_ENTER_EVERYENTER",TriggerActor::TT_ENTER_EVERYENTER);
+   tolua_constant(tolua_S,"TT_MAX_TYPE",TriggerActor::TT_MAX_TYPE);
+   tolua_function(tolua_S,"SetTrigerType",tolua_PX2_TriggerActor_SetTrigerType00);
+   tolua_function(tolua_S,"GetTrigerType",tolua_PX2_TriggerActor_GetTrigerType00);
+   tolua_function(tolua_S,"Triger",tolua_PX2_TriggerActor_Triger00);
+   tolua_function(tolua_S,"ResetTriger",tolua_PX2_TriggerActor_ResetTriger00);
+   tolua_function(tolua_S,"IsTrigered",tolua_PX2_TriggerActor_IsTrigered00);
   tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

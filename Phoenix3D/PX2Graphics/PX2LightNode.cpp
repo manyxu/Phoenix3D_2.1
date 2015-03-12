@@ -10,7 +10,8 @@ PX2_IMPLEMENT_FACTORY(LightNode);
 
 //----------------------------------------------------------------------------
 LightNode::LightNode (Light* light):
-mLight(light)
+mLight(light),
+mIsNeedUpdate(false)
 {
 	if (mLight)
 	{
@@ -55,19 +56,15 @@ void LightNode::UpdateWorldData(double applicationTime, double elapsedTime)
 		WorldTransform.GetRotate().GetColumn(1, mLight->UVector);
 		WorldTransform.GetRotate().GetColumn(2, mLight->RVector);
 	}
+
+	if (mIsNeedUpdate)
+	{
+		mIsNeedUpdate = false;
+	}
 }
 //----------------------------------------------------------------------------
 void LightNode::SetParent(Movable* parent)
 {
-	if (parent)
-	{
-		GraphicsRoot::GetSingleton().AddLight(mLight);
-	}
-	else
-	{
-		GraphicsRoot::GetSingleton().RemoveLight(mLight);
-	}
-
 	Node::SetParent(parent);
 }
 //----------------------------------------------------------------------------
@@ -99,9 +96,9 @@ void LightNode::GetAllObjectsByName (const std::string& name,
 //----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-LightNode::LightNode (LoadConstructor value)
-:
-Node(value)
+LightNode::LightNode (LoadConstructor value) :
+Node(value),
+mIsNeedUpdate(true)
 {
 }
 //----------------------------------------------------------------------------

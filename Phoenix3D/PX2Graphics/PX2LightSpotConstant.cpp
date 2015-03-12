@@ -64,7 +64,6 @@ bool LightSpotConstant::Register (OutStream& target) const
 {
 	if (LightConstant::Register(target))
 	{
-		target.Register(mLight);
 		return true;
 	}
 	return false;

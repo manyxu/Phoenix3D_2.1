@@ -46,6 +46,21 @@ inline Light *GraphicsRoot::GetLight_Dir()
 	return mLight_Dir;
 }
 //----------------------------------------------------------------------------
+inline Projector *GraphicsRoot::GetLight_Dir_Projector()
+{
+	return mLight_Dir_Projector;
+}
+//----------------------------------------------------------------------------
+inline void GraphicsRoot::SetLight_Dir_DepthTexture(Texture *tex)
+{
+	mLight_Dir_DepthTexture = tex;
+}
+//----------------------------------------------------------------------------
+inline Texture *GraphicsRoot::GetLight_Dir_DepthTexture()
+{
+	return mLight_Dir_DepthTexture;
+}
+//----------------------------------------------------------------------------
 inline void GraphicsRoot::SetFogParam (const Float4 &param)
 {
 	mFogParam = param;

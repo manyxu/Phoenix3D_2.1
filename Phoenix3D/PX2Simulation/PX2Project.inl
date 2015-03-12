@@ -31,7 +31,7 @@ inline const std::string &Project::GetSceneFilename() const
 	return mSceneFilename;
 }
 //----------------------------------------------------------------------------
-inline RenderStep *Project::GetSceneRenderStep()
+inline RenderStepScene *Project::GetSceneRenderStep()
 {
 	return mSceneRenderStep;
 }

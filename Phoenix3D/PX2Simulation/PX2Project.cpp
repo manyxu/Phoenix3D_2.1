@@ -10,7 +10,6 @@
 #include "PX2UIView.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2EngineLoop.hpp"
-#include "PX2RenderStepScene.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Node, Project);

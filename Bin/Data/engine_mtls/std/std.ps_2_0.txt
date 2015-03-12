@@ -8,24 +8,32 @@ ps_2_0
 //program p_std
 //semantic p_std.FogColorHeight
 //semantic p_std.FogColorDist
-//semantic Sample0
+//semantic SampleBase
+//semantic SampleShadowDepth
 //var float4 vertexColor : $vin.COLOR : COL0 : 0 : 1
 //var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 1 : 1
 //var float2 vertexTCoord1 : $vin.TEXCOORD1 : TEX1 : 2 : 1
-//var float4 pixelColor : $vout.COLOR : COL : 3 : 1
-//var float4 FogColorHeight :  : c[0] : 4 : 1
-//var float4 FogColorDist :  : c[1] : 5 : 1
-//var sampler2D Sample0 :  : texunit 0 : -1 : 1
+//var float4 vertexTCoord2 : $vin.TEXCOORD2 : TEX2 : 3 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 4 : 1
+//var float4 FogColorHeight :  : c[0] : 5 : 1
+//var float4 FogColorDist :  : c[1] : 6 : 1
+//var sampler2D SampleBase :  : texunit 0 : -1 : 1
+//var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
 //const c[2] = 1
 dcl_2d s0
+dcl_2d s1
 def c2, 1.00000000, 0, 0, 0
 dcl t0.xy
 dcl v0
+dcl t2.xyz
 dcl t1.xy
+texld r1, t2, s1
 mov r0.x, t0
 add r0.y, -t0, c2.x
+add r1.x, t2.z, -r1
 texld r0, r0, s0
 mul r0, r0, v0
+cmp r0.x, -r1, r0, c2
 add r0.xyz, r0, -c0
 mad r0.xyz, t1.y, r0, c0
 add r0.xyz, r0, -c1

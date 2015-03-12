@@ -56,8 +56,6 @@ void LightAmbientConstant::Load (InStream& source)
 void LightAmbientConstant::Link (InStream& source)
 {
     LightConstant::Link(source);
-
-    source.ResolveLink(mLight);
 }
 //----------------------------------------------------------------------------
 void LightAmbientConstant::PostLink ()
@@ -69,8 +67,6 @@ bool LightAmbientConstant::Register (OutStream& target) const
 {
     if (LightConstant::Register(target))
     {
-        target.Register(mLight);
-
         return true;
     }
     return false;

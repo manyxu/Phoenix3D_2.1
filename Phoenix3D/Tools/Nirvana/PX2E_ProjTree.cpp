@@ -5,6 +5,8 @@
 #include "PX2E_Define.hpp"
 #include "PX2EffectActor.hpp"
 #include "PX2Character.hpp"
+#include "PX2TriggerActor.hpp"
+#include "PX2AmbientRegionActor.hpp"
 #include "PX2NirvanaEventType.hpp"
 #include "PX2Project.hpp"
 #include "PX2Edit.hpp"
@@ -58,6 +60,8 @@ mEditMenu(0)
 	int imageCharacter = mImageList->Add(wxIcon(wxT("DataEditor/icons/projview/effect.png"), wxBITMAP_TYPE_PNG));
 	int imageObject = mImageList->Add(wxIcon(wxT("DataEditor/icons/logic.png"), wxBITMAP_TYPE_PNG));
 	int imageEffect = mImageList->Add(wxIcon(wxT("DataEditor/icons/projview/effect.png"), wxBITMAP_TYPE_PNG));
+	int imageTrigger = mImageList->Add(wxIcon(wxT("DataEditor/icons/projview/trigger.png"), wxBITMAP_TYPE_PNG));
+	int imageAmbientRegion = mImageList->Add(wxIcon(wxT("DataEditor/icons/projview/ambientregion.png"), wxBITMAP_TYPE_PNG));
 
 	SetImageList(mImageList);
 
@@ -72,8 +76,8 @@ mEditMenu(0)
 	Icons["character"] = imageCharacter;
 	Icons["object"] = imageObject;
 	Icons["effect"] = imageEffect;
-
-	//SetBackgroundColour(wxColour(0, 214, 229));
+	Icons["trigger"] = imageTrigger;
+	Icons["ambientregion"] = imageAmbientRegion;
 }
 //----------------------------------------------------------------------------
 ProjTree::~ProjTree()
@@ -216,6 +220,12 @@ void ProjTree::_RefreshScene()
 	mItemSounds = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, PX2_LM.GetValue("pv_Sound"));
 	mItemScene->mChildItems.push_back(mItemSounds);
 
+	mItemTriggers = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["trigger"], 0, mTreeLevel, PX2_LM.GetValue("pv_Trigger"));
+	mItemScene->mChildItems.push_back(mItemTriggers);
+
+	mItemAmbientRegions = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["ambientregion"], 0, mTreeLevel, PX2_LM.GetValue("pv_AmbientRegion"));
+	mItemScene->mChildItems.push_back(mItemAmbientRegions);
+
 	mCalItems.clear();
 	mCalItems.push_back(mItemCameras);
 	mCalItems.push_back(mItemSky);
@@ -224,6 +234,8 @@ void ProjTree::_RefreshScene()
 	mCalItems.push_back(mItemObjects);
 	mCalItems.push_back(mItemEffects);
 	mCalItems.push_back(mItemSounds);
+	mCalItems.push_back(mItemTriggers);
+	mCalItems.push_back(mItemAmbientRegions);
 
 	Scene *scene = 0;
 	Project *proj = Project::GetSingletonPtr();
@@ -244,6 +256,8 @@ void ProjTree::_RefreshScene()
 			_AddObject(mov);
 		}
 	}
+
+	Expand(mItemScene->GetItemID());
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearScene()
@@ -272,6 +286,8 @@ void ProjTree::_RefreshUI()
 
 	if (mItemUI)
 		mItemUI->AddChild(uiFrame, 0, treeLevel);
+
+	Expand(mItemUI->GetItemID());
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearUI()
@@ -313,6 +329,15 @@ void ProjTree::_AddObject(Object *obj)
 		else if (actor->IsDerived(EffectActor::TYPE))
 		{
 			mItemEffects->AddChild(obj, 0, mTreeLevel);
+		}
+		else if (actor->IsDerived(TriggerActor::TYPE) &&
+			!actor->IsDerived(AmbientRegionActor::TYPE))
+		{
+			mItemTriggers->AddChild(obj, 0, mTreeLevel);
+		}
+		else if (actor->IsDerived(AmbientRegionActor::TYPE))
+		{
+			mItemAmbientRegions->AddChild(obj, 0, mTreeLevel);
 		}
 		else
 		{

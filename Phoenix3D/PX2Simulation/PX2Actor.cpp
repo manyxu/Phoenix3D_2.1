@@ -287,6 +287,8 @@ bool Actor::Register(OutStream& target) const
 
 		if (mHelpNode)
 			target.Register(mHelpNode);
+
+		return true;
 	}
 
 	return false;

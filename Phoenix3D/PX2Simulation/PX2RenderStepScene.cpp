@@ -20,11 +20,11 @@ mIsUseShaderMap(false)
 
 	mEffect_UIFrame = new0 UIFrame();
 	mEffect_UIView->SetNode(mEffect_UIFrame);
-	mEffect_UIFrame->SetRelativeType_H(UIFrame::LT_HALF);
-	mEffect_UIFrame->SetRelativeType_V(UIFrame::LT_HALF);
+	//mEffect_UIFrame->SetRelativeType_H(UIFrame::LT_HALF);
+	//mEffect_UIFrame->SetRelativeType_V(UIFrame::LT_HALF);
 
 	//SetUseBloom(false);
-	//SetUseShaderMap(true);
+	SetUseShaderMap(true);
 }
 //----------------------------------------------------------------------------
 RenderStepScene::~RenderStepScene()
@@ -61,7 +61,7 @@ void RenderStepScene::Update(double appSeconds, double elapsedSeconds)
 			const Sizef &normalSize = mEffect_UIPicBox_Shadow->GetSize();
 			if (projSize != normalSize)
 			{
-				mEffect_UIPicBox_Shadow->SetSize(projSize);
+				//mEffect_UIPicBox_Shadow->SetSize(projSize);
 			}
 		}
 	}
@@ -74,13 +74,13 @@ void RenderStepScene::ComputeVisibleSet()
 {
 	RenderStep::ComputeVisibleSet();
 
-	if (mEffect_Camera_Shadow)
-	{
-		mEffect_Culler_Shadow.SetCamera(mEffect_Camera_Shadow);
+	Scene *scene = PX2_PROJ.GetScene();
+	if (!scene) return;
 
-		mEffect_Culler_Shadow.ComputeVisibleSet(mNode);
-		mEffect_Culler_Shadow.GetVisibleSet().Sort();
-	}
+	Projector *lightCamera = PX2_GR.GetLight_Dir_Projector();
+	mEffect_Culler_Shadow.SetCamera(lightCamera);
+	mEffect_Culler_Shadow.ComputeVisibleSet(mNode);
+	mEffect_Culler_Shadow.GetVisibleSet().Sort();
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::Draw()
@@ -88,6 +88,9 @@ void RenderStepScene::Draw()
 	if (!IsEnable()) return;
 
 	if (!mRenderer) return;
+
+	Scene *scene = PX2_PROJ.GetScene();
+	if (!scene) return;
 
 	CameraPtr beforeCamer = mRenderer->GetCamera();
 
@@ -98,7 +101,6 @@ void RenderStepScene::Draw()
 	if (!mEffect_RenderTarget_Normal)
 	{
 		mRenderer->InitRenderStates();
-		//mRenderer->ClearBuffers();
 		mRenderer->SetCamera(mCamera);
 		mRenderer->Draw(mCuller.GetVisibleSet());
 	}
@@ -117,7 +119,9 @@ void RenderStepScene::Draw()
 		mRenderer->Enable(mEffect_RenderTarget_Shadow);
 		mRenderer->InitRenderStates();
 		mRenderer->ClearBuffers();
-		mRenderer->SetCamera(mEffect_Camera_Shadow);
+
+		Projector *lightProjector = PX2_GR.GetLight_Dir_Projector();
+		mRenderer->SetCamera(lightProjector);
 		mRenderer->Draw(mEffect_Culler_Shadow.GetVisibleSet());
 		mRenderer->Disable(mEffect_RenderTarget_Shadow);
 	}
@@ -176,19 +180,14 @@ void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 	mIsUseShaderMap = useShaderMap;
 
 	Texture::Format tformat = Texture::TF_A8R8G8B8;
-	mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, 512, 512,
-		false, true);
-
-	mEffect_Camera_Shadow = new0 Camera(false);
-	mEffect_Camera_Shadow->SetFrame(APoint(0.0f, -10.0f, 0.0f),
-		AVector::UNIT_Y, AVector::UNIT_Z, AVector::UNIT_X);
-	mEffect_Camera_Shadow->SetFrustum(0.1f, Mathf::FAbs(1000.0f),
-		-10.0f, 10.0f, -10.0f, 10.0f);
+	mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, 512, 512, false, true);
 
 	mEffect_UIPicBox_Shadow = new0 UIPicBox("Data/engine/default.png");
 	mEffect_UIFrame->AttachChild(mEffect_UIPicBox_Shadow);
 
-	mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow
-		->GetDepthStencilTexture());
+	mEffect_UIPicBox_Shadow->SetAnchorPoint(Float2::ZERO);
+	mEffect_UIPicBox_Shadow->SetSize(Sizef(256.0f, 256.0f));
+	mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
+	PX2_GR.SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetDepthStencilTexture());
 }
 //----------------------------------------------------------------------------

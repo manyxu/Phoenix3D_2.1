@@ -55,8 +55,6 @@ void LightDiffuseConstant::Load (InStream& source)
 void LightDiffuseConstant::Link (InStream& source)
 {
 	LightConstant::Link(source);
-
-	source.ResolveLink(mLight);
 }
 //----------------------------------------------------------------------------
 void LightDiffuseConstant::PostLink ()

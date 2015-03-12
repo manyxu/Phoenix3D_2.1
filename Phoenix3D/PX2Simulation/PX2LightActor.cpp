@@ -13,12 +13,13 @@ PX2_IMPLEMENT_FACTORY(LightActor);
 //----------------------------------------------------------------------------
 LightActor::LightActor()
 {
+	SetName("LitAtr");
+
 	mLight = new0 Light(Light::LT_POINT);
 	mLightNode = new0 LightNode(mLight);
 	SetMovable(mLightNode);
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
-
 	StandardMesh stdMesh(vf);
 	stdMesh.SetVertexColor(Float4(1.0f, 1.0f, 0.0f, 1.0f));
 	TriMesh *mesh = stdMesh.Octahedron();

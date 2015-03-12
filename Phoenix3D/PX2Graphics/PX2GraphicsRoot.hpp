@@ -12,6 +12,7 @@
 #include "PX2VertexFormat.hpp"
 #include "PX2RenderStep.hpp"
 #include "PX2FString.hpp"
+#include "PX2Projector.hpp"
 
 namespace PX2
 {
@@ -45,21 +46,18 @@ namespace PX2
 		void SetProjectSize(const Sizef &size);
 		const Sizef &GetProjectSize() const;
 
-		// Light
+		// DirLight
+		Light *GetLight_Dir();
+		Projector *GetLight_Dir_Projector();
+		void SetLight_Dir_DepthTexture(Texture *tex);
+		Texture *GetLight_Dir_DepthTexture();
+
+		// PointLight
 		void AddLight (Light *light);
 		void RemoveLight (Light *light);
 		void ClearAllLights ();
 		int GetNumLights ();
 		Light *GetLight (int index);
-		Light *GetLight_Dir();
-
-		// Fog
-		void SetFogParam (const Float4 &param);
-		const Float4 &GetFogParam () const;
-		void SetFogColorHeight (const Float4 &fogColor);
-		const Float4 &GetFogColorHeight () const;
-		void SetFogColorDist (const Float4 &fogColor);
-		const Float4 &GetFogColorDist () const;
 
 		// environment
 		void ComputeEnvironment (VisibleSet &vs);
@@ -75,6 +73,19 @@ namespace PX2
 		PX2::CameraPtr mCamera;
 		std::vector<LightPtr> mAllLights; // 保存放在场景中的所有灯光
 		LightPtr mLight_Dir;
+		ProjectorPtr mLight_Dir_Projector;
+		TexturePtr mLight_Dir_DepthTexture;
+
+		// Fog
+	public:
+		void SetFogParam(const Float4 &param);
+		const Float4 &GetFogParam() const;
+		void SetFogColorHeight(const Float4 &fogColor);
+		const Float4 &GetFogColorHeight() const;
+		void SetFogColorDist(const Float4 &fogColor);
+		const Float4 &GetFogColorDist() const;
+
+	protected:
 		Float4 mFogParam;
 		Float4 mFogColorDist;
 		Float4 mFogColorHeight;

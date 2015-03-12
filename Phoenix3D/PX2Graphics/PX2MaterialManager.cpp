@@ -5,6 +5,7 @@
 #include "PX2PVMatrixConstant.hpp"
 #include "PX2PVWMatrixConstant.hpp"
 #include "PX2WMatrixConstant.hpp"
+#include "PX2ProjectorMatrixConstant.hpp"
 #include "PX2ShineEmissiveConstant.hpp"
 #include "PX2ShineAmbientConstant.hpp"
 #include "PX2ShineDiffuseConstant.hpp"
@@ -146,6 +147,11 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,
 	else if (FString("WMatrix") == name)
 	{
 		shaderFloat = new0 WMatrixConstant();
+	}
+	else if (FString("ProjectPVBSMatrix_Dir") == name)
+	{
+		shaderFloat = new0 ProjectorMatrixConstant(PX2_GR.GetLight_Dir_Projector(),
+			true, 0);
 	}
 	else if (FString("ShineEmissive") == name)
 	{

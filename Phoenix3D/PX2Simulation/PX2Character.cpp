@@ -22,6 +22,8 @@ mIsDieDoDelete(true),
 mBaseAPCurLevel(0.0f),
 mIsDead(false)
 {
+	SetName("Chara");
+
 	PX2_INIT_PM_F(HP);
 	PX2_INIT_PM_F(AP);
 

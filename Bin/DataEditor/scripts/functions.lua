@@ -177,6 +177,15 @@ function e_SceneActor_CreateEffect()
 	PX2_CREATER:CreateActor_Effect(scene, pickPos)
 end
 
+function e_SceneActor_CreateTrigger()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Trigger(scene, pickPos)
+end
+
+function e_SceneActor_CreateAmbientRegion()
+end
+
 -- General
 function e_CreateRectangle(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()

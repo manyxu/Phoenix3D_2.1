@@ -6,6 +6,11 @@ inline CameraActor *Scene::GetUseCameraActor()
 	return mCameraActor;
 }
 //----------------------------------------------------------------------------
+inline AmbientRegionActor *Scene::GetDefaultAmbientRegionActor()
+{
+	return mDefaultAmbientRegionActor;
+}
+//----------------------------------------------------------------------------
 inline Scene::SceneManageType Scene::GetSceneManageType()
 {
 	return mSceneManageType;

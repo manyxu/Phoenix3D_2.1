@@ -114,6 +114,15 @@ void MaterialInstance::_CreateConstants(ShaderParametersPtr &newParam,
 			}
 		}
 	}
+
+	for (int i = 0; i < shader->GetNumSamplers(); i++)
+	{
+		const std::string &sampleName = shader->GetSamplerName(i);
+		if ("SampleShadowDepth" == sampleName)
+		{
+			newParam->SetTexture("SampleShadowDepth", PX2_GR.GetLight_Dir_DepthTexture());
+		}
+	}
 }
 //----------------------------------------------------------------------------
 MaterialInstance::~MaterialInstance ()

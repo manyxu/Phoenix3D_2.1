@@ -31,3 +31,8 @@ inline float AmbientRegionActor::GetSpecularPow() const
 	return mSpecularPow;
 }
 //----------------------------------------------------------------------------
+inline float AmbientRegionActor::GetIntensity() const
+{
+	return mIntensity;
+}
+//----------------------------------------------------------------------------

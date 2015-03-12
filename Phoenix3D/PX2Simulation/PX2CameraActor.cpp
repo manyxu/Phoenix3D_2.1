@@ -11,7 +11,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Actor, CameraActor);
 //----------------------------------------------------------------------------
 CameraActor::CameraActor()
 {
-	SetName("CameraActor");
+	SetName("CamAtr");
 
 	mCamera = new0 Camera();
 	mCamera->SetFrustum(35.0f, 960.0f / 640.0f, 1.0f, 1000.0f);

@@ -8,8 +8,10 @@ void v_std
 	out float4 vertexColor : COLOR,
     out float2 vertexTCoord0 : TEXCOORD0,
 	out float2 vertexTCoord1 : TEXCOORD1,
+	out float4 vertexTCoord2 : TEXCOORD2,
     uniform float4x4 PVWMatrix,
 	uniform float4x4 WMatrix,
+    uniform float4x4 ProjectPVBSMatrix_Dir,
 	uniform float4 CameraWorldPosition,
 	uniform float4 LightWorldDVector_Dir,
 	uniform float4 ShineEmissive,
@@ -29,15 +31,20 @@ void v_std
     vertexTCoord0 = modelTCoord0;
 	
 	// params
-	float3 worldPosition = mul(WMatrix, float4(modelPosition, 1.0f)).xyz;
+	float4 worldPosition = mul(WMatrix, float4(modelPosition, 1.0f));
 	float3 worldNormal = normalize(mul((float3x3)WMatrix, modelNormal));	
 	
-	float3 viewVector = normalize(CameraWorldPosition.xyz - worldPosition);
-	float dist = distance(CameraWorldPosition.xyz, worldPosition);
+	float3 viewVector = normalize(CameraWorldPosition.xyz - worldPosition.xyz);
+	float dist = distance(CameraWorldPosition.xyz, worldPosition.xyz);
 	
 	// light
 	float3 halfVector = normalize((viewVector - LightWorldDVector_Dir.xyz)/2.0);
 	float dotH = dot(worldNormal, halfVector);
+	
+	vertexColor.rgb = ShineEmissive.rgb + LightAmbient_Dir.a * (ShineAmbient.rgb * LightAmbient_Dir.rgb +
+		ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.rgb), 0) +
+							ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0), ShineSpecular.a*LightSpecular_Dir.a));		
+	vertexColor.a = ShineDiffuse.a;
 	
 	// fog
 	float fogValueHeight = (-FogParam.x + worldPosition.z)/(FogParam.y - FogParam.x);
@@ -45,21 +52,26 @@ void v_std
 	
 	float fogValueDist = (FogParam.w - dist)/(FogParam.w - FogParam.z);
 	fogValueDist = clamp(fogValueDist, 0, 1.0);
-
-	// pass Datas
-	vertexColor.rgb = ShineEmissive.rgb + ShineAmbient.rgb * LightAmbient_Dir.rgb +
-		ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.rgb), 0) +
-							ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0), ShineSpecular.a*LightSpecular_Dir.a);		
-	vertexColor.a = ShineDiffuse.a;
 	
 	vertexTCoord1.x = fogValueDist;
 	vertexTCoord1.y = fogValueHeight;
+	
+	// shadow
+    vertexTCoord2 = mul(ProjectPVBSMatrix_Dir, float4(modelPosition, 1.0f));
 }
 
-sampler2D Sample0 = sampler_state
+sampler2D SampleBase = sampler_state
 {
    MinFilter = Nearest;
    MagFilter = Nearest;
+   WrapS     = Clamp;
+   WrapT     = Clamp;
+};
+
+sampler2D SampleShadowDepth = sampler_state
+{
+   MinFilter = Nearest;
+   MagFilter = Linear;
    WrapS     = Clamp;
    WrapT     = Clamp;
 };
@@ -69,17 +81,30 @@ void p_std
 	in float4 vertexColor : COLOR,
     in float2 vertexTCoord0 : TEXCOORD0,
 	in float2 vertexTCoord1 : TEXCOORD1,
+	in float4 vertexTCoord2 : TEXCOORD2,
     out float4 pixelColor : COLOR,
 	uniform float4 FogColorHeight,
 	uniform float4 FogColorDist
 )
 {
-    // Sample the texture image.
+    // base
     float2 texCoord = vertexTCoord0;
     texCoord.y = 1.0 - vertexTCoord0.y;
-	float4 lastColor = tex2D(Sample0, texCoord);
+	float4 lastColor = tex2D(SampleBase, texCoord);
+	
+	// light
 	lastColor *= vertexColor;
-			
+	
+	// shadow
+	float2 TexelSize = float2(512.0f, 512.0f);
+	float4 texCord = vertexTCoord2;
+	float depth = texCord.z;
+	float rvalue = tex2D(SampleShadowDepth, texCord.xy).r;
+	
+	if (depth > rvalue)
+		lastColor.r = 1.0f;
+	
+	// fog
 	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.y);
 	lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.x);
 		

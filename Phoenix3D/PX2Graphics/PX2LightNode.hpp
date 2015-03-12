@@ -50,6 +50,7 @@ namespace PX2
 	protected:
 		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
+		bool mIsNeedUpdate;
 		LightPtr mLight;
 	};
 
