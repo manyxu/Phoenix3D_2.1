@@ -482,6 +482,9 @@
     <ClCompile Include="PX2FogColorHeightConstant.cpp">
       <Filter>Materials\ShaderFloats\Fog</Filter>
     </ClCompile>
+    <ClCompile Include="PX2LightConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -975,6 +978,9 @@
     </ClInclude>
     <ClInclude Include="PX2FogColorHeightConstant.hpp">
       <Filter>Materials\ShaderFloats\Fog</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

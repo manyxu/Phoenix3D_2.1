@@ -74,7 +74,6 @@ namespace PX2
 		Sizef mProjectSize;
 		PX2::CameraPtr mCamera;
 		std::vector<LightPtr> mAllLights; // 保存放在场景中的所有灯光
-		LightPtr mLight_DirEmpty;
 		LightPtr mLight_Dir;
 		Float4 mFogParam;
 		Float4 mFogColorDist;

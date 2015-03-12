@@ -5,15 +5,14 @@
 #include "PX2Renderable.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, ShaderFloat, LightSpotConstant);
+PX2_IMPLEMENT_RTTI(PX2, LightConstant, LightSpotConstant);
 PX2_IMPLEMENT_STREAM(LightSpotConstant);
 PX2_IMPLEMENT_FACTORY(LightSpotConstant);
+PX2_IMPLEMENT_DEFAULT_NAMES(LightConstant, LightSpotConstant);
 
 //----------------------------------------------------------------------------
-LightSpotConstant::LightSpotConstant (Light* light)
-:
-ShaderFloat(1),
-mLight(light)
+LightSpotConstant::LightSpotConstant (Light* light) :
+LightConstant(light)
 {
 	EnableUpdater();
 }
@@ -22,18 +21,10 @@ LightSpotConstant::~LightSpotConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void LightSpotConstant::SetLight (Light *light)
+void LightSpotConstant::Update(const ShaderStruct *struc)
 {
-	mLight = light;
-}
-//----------------------------------------------------------------------------
-Light* LightSpotConstant::GetLight ()
-{
-	return mLight;
-}
-//----------------------------------------------------------------------------
-void LightSpotConstant::Update(const ShaderStruct *)
-{
+	LightConstant::Update(struc);
+
 	mData[0] = mLight->Angle;
 	mData[1] = mLight->CosAngle;
 	mData[2] = mLight->SinAngle;
@@ -42,35 +33,10 @@ void LightSpotConstant::Update(const ShaderStruct *)
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
-// Ãû³Æ
-//----------------------------------------------------------------------------
-Object* LightSpotConstant::GetObjectByName (const std::string& name)
-{
-	Object* found = ShaderFloat::GetObjectByName(name);
-	if (found)
-	{
-		return found;
-	}
-
-	PX2_GET_OBJECT_BY_NAME(mLight, name, found);
-	return 0;
-}
-//----------------------------------------------------------------------------
-void LightSpotConstant::GetAllObjectsByName (const std::string& name,
-											 std::vector<Object*>& objects)
-{
-	ShaderFloat::GetAllObjectsByName(name, objects);
-
-	PX2_GET_ALL_OBJECTS_BY_NAME(mLight, name, objects);
-}
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
 // ³Ö¾Ã»¯
 //----------------------------------------------------------------------------
-LightSpotConstant::LightSpotConstant (LoadConstructor value)
-:
-ShaderFloat(value)
+LightSpotConstant::LightSpotConstant (LoadConstructor value) :
+LightConstant(value)
 {
 }
 //----------------------------------------------------------------------------
@@ -78,29 +44,25 @@ void LightSpotConstant::Load (InStream& source)
 {
 	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
 
-	ShaderFloat::Load(source);
+	LightConstant::Load(source);
 	PX2_VERSION_LOAD(source);
-
-	source.ReadPointer(mLight);
 
 	PX2_END_DEBUG_STREAM_LOAD(LightSpotConstant, source);
 }
 //----------------------------------------------------------------------------
 void LightSpotConstant::Link (InStream& source)
 {
-	ShaderFloat::Link(source);
-
-	source.ResolveLink(mLight);
+	LightConstant::Link(source);
 }
 //----------------------------------------------------------------------------
 void LightSpotConstant::PostLink ()
 {
-	ShaderFloat::PostLink();
+	LightConstant::PostLink();
 }
 //----------------------------------------------------------------------------
 bool LightSpotConstant::Register (OutStream& target) const
 {
-	if (ShaderFloat::Register(target))
+	if (LightConstant::Register(target))
 	{
 		target.Register(mLight);
 		return true;
@@ -112,19 +74,17 @@ void LightSpotConstant::Save (OutStream& target) const
 {
 	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
 
-	ShaderFloat::Save(target);
+	LightConstant::Save(target);
 	PX2_VERSION_SAVE(target);
-
-	target.WritePointer(mLight);
 
 	PX2_END_DEBUG_STREAM_SAVE(LightSpotConstant, target);
 }
 //----------------------------------------------------------------------------
 int LightSpotConstant::GetStreamingSize (Stream &stream) const
 {
-	int size = ShaderFloat::GetStreamingSize(stream);
+	int size = LightConstant::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
-	size += PX2_POINTERSIZE(mLight);
+
 	return size;
 }
 //----------------------------------------------------------------------------

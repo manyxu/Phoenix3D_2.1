@@ -30,13 +30,11 @@ GraphicsRoot::GraphicsRoot ()
 	mFogColorHeight = Float4::RED;
 	mFogColorDist = Float4::BLUE;
 
-	mLight_DirEmpty = new0 Light(Light::LT_DIRECTIONAL);
-
-	mLight_DirEmpty->Ambient = Float4(0.5f, 0.5f, 0.5f, 1.0f);
-	mLight_DirEmpty->Diffuse = Float4(0.5f, 0.5f, 0.5f, 1.0f); 
-	mLight_DirEmpty->Specular = Float4(0.5f, 0.5f, 0.5f, 1.0f);
-	mLight_DirEmpty->SetDirection(AVector::UNIT_X);
-	mLight_Dir = mLight_DirEmpty;
+	mLight_Dir = new0 Light(Light::LT_DIRECTIONAL);
+	mLight_Dir->Ambient = Float4(0.5f, 0.5f, 0.5f, 1.0f);
+	mLight_Dir->Diffuse = Float4(0.5f, 0.5f, 0.5f, 1.0f);
+	mLight_Dir->Specular = Float4(0.5f, 0.5f, 0.5f, 1.0f);
+	mLight_Dir->SetDirection(AVector::UNIT_X);
 
 	MaterialManager *mi = new0 MaterialManager();
 	PX2_UNUSED(mi);
@@ -150,9 +148,6 @@ void GraphicsRoot::RemoveLight (Light *light)
 	{
 		if (*it == light)
 		{
-			if (light == mLight_Dir)
-				mLight_Dir = mLight_DirEmpty;
-
 			mAllLights.erase(it);
 			return;
 		}

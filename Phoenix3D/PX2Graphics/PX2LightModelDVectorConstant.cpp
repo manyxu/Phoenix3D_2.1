@@ -5,15 +5,14 @@
 #include "PX2Renderable.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, ShaderFloat, LightModelDVectorConstant);
+PX2_IMPLEMENT_RTTI(PX2, LightConstant, LightModelDVectorConstant);
 PX2_IMPLEMENT_STREAM(LightModelDVectorConstant);
 PX2_IMPLEMENT_FACTORY(LightModelDVectorConstant);
+PX2_IMPLEMENT_DEFAULT_NAMES(LightConstant, LightModelDVectorConstant)
 
 //----------------------------------------------------------------------------
-LightModelDVectorConstant::LightModelDVectorConstant (Light* light)
-:
-ShaderFloat(1),
-mLight(light)
+LightModelDVectorConstant::LightModelDVectorConstant (Light* light) :
+LightConstant(light)
 {
 	EnableUpdater();
 }
@@ -22,18 +21,10 @@ LightModelDVectorConstant::~LightModelDVectorConstant ()
 {
 }
 //----------------------------------------------------------------------------
-void LightModelDVectorConstant::SetLight (Light *light)
-{
-	mLight = light;
-}
-//----------------------------------------------------------------------------
-Light* LightModelDVectorConstant::GetLight ()
-{
-	return mLight;
-}
-//----------------------------------------------------------------------------
 void LightModelDVectorConstant::Update(const ShaderStruct *struc)
 {
+	LightConstant::Update(struc);
+
 	const Renderable *renderable = struc->TheRenderable;
 
 	const HMatrix& worldInvMatrix = renderable->WorldTransform.Inverse();
@@ -50,35 +41,10 @@ void LightModelDVectorConstant::Update(const ShaderStruct *struc)
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
-// 名称支持
-//----------------------------------------------------------------------------
-Object* LightModelDVectorConstant::GetObjectByName (const std::string& name)
-{
-	Object* found = ShaderFloat::GetObjectByName(name);
-	if (found)
-	{
-		return found;
-	}
-
-	PX2_GET_OBJECT_BY_NAME(mLight, name, found);
-	return 0;
-}
-//----------------------------------------------------------------------------
-void LightModelDVectorConstant::GetAllObjectsByName (const std::string& name,
-													 std::vector<Object*>& objects)
-{
-	ShaderFloat::GetAllObjectsByName(name, objects);
-
-	PX2_GET_ALL_OBJECTS_BY_NAME(mLight, name, objects);
-}
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-LightModelDVectorConstant::LightModelDVectorConstant (LoadConstructor value)
-:
-ShaderFloat(value)
+LightModelDVectorConstant::LightModelDVectorConstant (LoadConstructor value) :
+LightConstant(value)
 {
 }
 //----------------------------------------------------------------------------
@@ -86,31 +52,26 @@ void LightModelDVectorConstant::Load (InStream& source)
 {
 	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
 
-	ShaderFloat::Load(source);
+	LightConstant::Load(source);
 	PX2_VERSION_LOAD(source);
-
-	source.ReadPointer(mLight);
 
 	PX2_END_DEBUG_STREAM_LOAD(LightModelDVectorConstant, source);
 }
 //----------------------------------------------------------------------------
 void LightModelDVectorConstant::Link (InStream& source)
 {
-	ShaderFloat::Link(source);
-
-	source.ResolveLink(mLight);
+	LightConstant::Link(source);
 }
 //----------------------------------------------------------------------------
 void LightModelDVectorConstant::PostLink ()
 {
-	ShaderFloat::PostLink();
+	LightConstant::PostLink();
 }
 //----------------------------------------------------------------------------
 bool LightModelDVectorConstant::Register (OutStream& target) const
 {
-	if (ShaderFloat::Register(target))
+	if (LightConstant::Register(target))
 	{
-		target.Register(mLight);
 		return true;
 	}
 	return false;
@@ -120,19 +81,17 @@ void LightModelDVectorConstant::Save (OutStream& target) const
 {
 	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
 
-	ShaderFloat::Save(target);
+	LightConstant::Save(target);
 	PX2_VERSION_SAVE(target);
-
-	target.WritePointer(mLight);
 
 	PX2_END_DEBUG_STREAM_SAVE(LightModelDVectorConstant, target);
 }
 //----------------------------------------------------------------------------
 int LightModelDVectorConstant::GetStreamingSize (Stream &stream) const
 {
-	int size = ShaderFloat::GetStreamingSize(stream);
+	int size = LightConstant::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
-	size += PX2_POINTERSIZE(mLight);
+
 	return size;
 }
 //----------------------------------------------------------------------------

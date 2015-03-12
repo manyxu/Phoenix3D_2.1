@@ -137,69 +137,77 @@ void MaterialManager::_SetMaterialShaderKey(Material *mtl, int shaderKey)
 ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,
 	int numRegister)
 {
+	ShaderFloat *shaderFloat = 0;
+
 	if (FString("PVWMatrix") == name)
 	{
-		return new0 PVWMatrixConstant();
+		shaderFloat = new0 PVWMatrixConstant();
 	}
 	else if (FString("WMatrix") == name)
 	{
-		return new0 WMatrixConstant();
+		shaderFloat = new0 WMatrixConstant();
 	}
 	else if (FString("ShineEmissive") == name)
 	{
-		return new0 ShineEmissiveConstant();
+		shaderFloat = new0 ShineEmissiveConstant();
 	}
 	else if (FString("ShineAmbient") == name)
 	{
-		return new0 ShineAmbientConstant();
+		shaderFloat = new0 ShineAmbientConstant();
 	}
 	else if (FString("ShineDiffuse") == name)
 	{
-		return new0 ShineDiffuseConstant();
+		shaderFloat = new0 ShineDiffuseConstant();
 	}
 	else if (FString("ShineSpecular") == name)
 	{
-		return new0 ShineSpecularConstant();
+		shaderFloat = new0 ShineSpecularConstant();
 	}
 	else if (FString("CameraWorldPosition") == name)
 	{
-		return new0 CameraWorldPositionConstant();
+		shaderFloat = new0 CameraWorldPositionConstant();
 	}
 	else if (FString("CameraModelPosition") == name)
 	{
-		return new0 CameraModelPositionConstant();
+		shaderFloat = new0 CameraModelPositionConstant();
 	}
 	else if (FString("LightWorldDVector_Dir") == name)
 	{
-		return new0 LightWorldDVectorConstant(PX2_GR.GetLight_Dir());
+		shaderFloat = new0 LightWorldDVectorConstant(PX2_GR.GetLight_Dir());
+		((LightConstant*)shaderFloat)->SetDefaultDir(true);
 	}
 	else if (FString("LightAmbient_Dir") == name)
 	{
-		return new0 LightAmbientConstant(PX2_GR.GetLight_Dir());
+		shaderFloat = new0 LightAmbientConstant(PX2_GR.GetLight_Dir());
+		((LightConstant*)shaderFloat)->SetDefaultDir(true);
 	}
 	else if (FString("LightDiffuse_Dir") == name)
 	{
-		return new0 LightDiffuseConstant(PX2_GR.GetLight_Dir());
+		shaderFloat = new0 LightDiffuseConstant(PX2_GR.GetLight_Dir());
+		((LightConstant*)shaderFloat)->SetDefaultDir(true);
 	}
 	else if (FString("LightSpecular_Dir") == name)
 	{
-		return new0 LightSpecularConstant(PX2_GR.GetLight_Dir());
+		shaderFloat = new0 LightSpecularConstant(PX2_GR.GetLight_Dir());
+		((LightConstant*)shaderFloat)->SetDefaultDir(true);
 	}
 	else if (FString("FogParam") == name)
 	{
-		return new0 FogParamConstant();
+		shaderFloat = new0 FogParamConstant();
 	}
 	else if (FString("FogColorDist") == name)
 	{
-		return new0 FogColorDistConstant();
+		shaderFloat = new0 FogColorDistConstant();
 	}
 	else if (FString("FogColorHeight") == name)
 	{
-		return new0 FogColorHeightConstant();
+		shaderFloat = new0 FogColorHeightConstant();
 	}
 	else
 	{
-		return new0 ShaderFloat(numRegister);
+		shaderFloat = new0 ShaderFloat(numRegister);
 	}
+
+	return shaderFloat;
 }
 //----------------------------------------------------------------------------

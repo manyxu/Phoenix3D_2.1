@@ -5,12 +5,12 @@
 
 #include "PX2GraphicsPre.hpp"
 #include "PX2ShaderFloat.hpp"
-#include "PX2Light.hpp"
+#include "PX2LightConstant.hpp"
 
 namespace PX2
 {
 
-	class LightAmbientConstant : public ShaderFloat
+	class LightAmbientConstant : public LightConstant
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
@@ -20,13 +20,7 @@ namespace PX2
 		LightAmbientConstant(Light* light);
 		virtual ~LightAmbientConstant();
 
-		void SetLight(Light *light);
-		Light* GetLight();
-
 		virtual void Update(const ShaderStruct *struc);
-
-	protected:
-		LightPtr mLight;
 	};
 
 	PX2_REGISTER_STREAM(LightAmbientConstant);

@@ -5,12 +5,12 @@
 
 #include "PX2GraphicsPre.hpp"
 #include "PX2ShaderFloat.hpp"
-#include "PX2Light.hpp"
+#include "PX2LightConstant.hpp"
 
 namespace PX2
 {
 
-	class LightDiffuseConstant : public ShaderFloat
+	class LightDiffuseConstant : public LightConstant
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
