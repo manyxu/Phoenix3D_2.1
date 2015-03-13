@@ -21,11 +21,12 @@ Renderer::Renderer (RendererInput& input, int width, int height,
 	Initialize(width, height, colorFormat, depthStencilFormat,
 		numMultisamples);
 
-	PdrRendererInput *pdrRenderInput = (PdrRendererInput *)(&input);
-
 	mData = new0 RendererData();
 
 #if defined(_WIN32) || defined(WIN32)
+    
+    PdrRendererInput *pdrRenderInput = (PdrRendererInput *)(&input);
+    
     mData->mWindowHandle = pdrRenderInput->mWindowHandle;
 	mData->mDisplayType = pdrRenderInput->mRendererDC;
     
