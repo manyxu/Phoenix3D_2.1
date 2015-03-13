@@ -35,6 +35,13 @@ namespace PX2
 	extern GLuint gOGLTextureType[Texture::TF_QUANTITY];
 	extern GLint  gOGLWrapMode[Shader::SC_QUANTITY];
 	extern GLenum gOGLPrimitiveType[Renderable::PT_MAX_QUANTITY];
+
+	// Support for binding and rebinding.  BindTexture binds the input texture
+	// to the specified target and returns the previously bound texture for
+	// that target.  GetBoundTexture returns the currently bound texture for
+	// the specified target.
+	GLuint BindTexture(Shader::SamplerType target, GLuint texture);
+	GLuint GetBoundTexture(Shader::SamplerType target);
 }
 
 #endif

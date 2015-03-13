@@ -20,7 +20,7 @@ namespace PX2
 		PX2_DECLARE_STREAM(Projector);
 
 	public:
-		Projector (DepthType depthType, bool isPerspective = true);
+		Projector (bool isPerspective = true);
 		virtual ~Projector ();
 
 		// The 0-index matrix maps x' = (1+x)/2 and y' = (1-y)/2.  The

@@ -99,12 +99,14 @@ Renderer::Renderer (RendererInput& input, int width, int height,
 	 mData->mMaxVShaderImages = 0;
 	 mData->mMaxPShaderImages = 0;
 	 mData->mMaxCombinedImages = 0;
+	 mData->mMaxRenderBufferSize = 0;
 	 glGetIntegerv(GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS,
 		 &mData->mMaxVShaderImages);
 	 glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS,
 		 &mData->mMaxPShaderImages);
 	 glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS,
 		 &mData->mMaxCombinedImages);
+	 glGetIntegerv(GL_MAX_RENDERBUFFER_SIZE, &mData->mMaxRenderBufferSize);
 
 	 // 设置缺省渲染状态和采样状态
 	 mData->mCurrentRS.Initialize(mDefaultAlphaProperty, mDefaultCullProperty,
@@ -293,9 +295,13 @@ void Renderer::Enable (const Renderable* renderable,
 	VertexShader* vshader = pass->GetVertexShader();
 	PixelShader* pshader = pass->GetPixelShader();
 
+	ShaderStruct struc;
+	struc.TheRenderable = (Renderable *)renderable;
+	struc.TheCamera = (Camera *)mCamera;
+
 	// 更新着色器常量
-	vparams->UpdateConstants(renderable, mCamera);
-	pparams->UpdateConstants(renderable, mCamera);
+	vparams->UpdateConstants(&struc);
+	pparams->UpdateConstants(&struc);
 
 	// 设置渲染状态
 	SetAlphaProperty(pass->GetAlphaProperty());

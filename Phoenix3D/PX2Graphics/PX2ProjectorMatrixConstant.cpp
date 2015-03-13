@@ -11,12 +11,11 @@ PX2_IMPLEMENT_FACTORY(ProjectorMatrixConstant);
 
 //----------------------------------------------------------------------------
 ProjectorMatrixConstant::ProjectorMatrixConstant (Projector* projector,
-												  bool biased, int bsMatrix)
+												  bool biased)
 												  :
 ShaderFloat(4),
 mProjector(projector),
-mBiased(biased),
-mBSMatrix(bsMatrix)
+mBiased(biased)
 {
 	mAllowUpdater = true;
 }
@@ -39,10 +38,18 @@ void ProjectorMatrixConstant::Update(const ShaderStruct *struc)
 	HMatrix PVWMatrix = PVMatrix*WMatrix;
 	if (mBiased)
 	{
-		PVWMatrix = Projector::BiasScaleMatrix[mBSMatrix]*PVWMatrix;
+		int baseMatIndex = (int)Camera::GetDefaultDepthType();
+		PVWMatrix = Projector::BiasScaleMatrix[baseMatIndex] * PVWMatrix;
 	}
 
+#ifdef PX2_USE_OPENGLES2
+	// you must trans on 0penGLES2
+	HMatrix matTrans = PVWMatrix.Transpose();
+	const float *source = (const float*)matTrans;
+#else
 	const float* source = (const float*)PVWMatrix;
+#endif
+
 	float* target = mData;
 	for (int i = 0; i < 16; ++i)
 	{
@@ -93,7 +100,6 @@ void ProjectorMatrixConstant::Load (InStream& source)
 
 	source.ReadPointer(mProjector);
 	source.ReadBool(mBiased);
-	source.Read(mBSMatrix);
 
 	PX2_END_DEBUG_STREAM_LOAD(ProjectorMatrixConstant, source);
 }
@@ -129,7 +135,6 @@ void ProjectorMatrixConstant::Save (OutStream& target) const
 
 	target.WritePointer(mProjector);
 	target.WriteBool(mBiased);
-	target.Write(mBSMatrix);
 
 	PX2_END_DEBUG_STREAM_SAVE(ProjectorMatrixConstant, target);
 }
@@ -138,9 +143,10 @@ int ProjectorMatrixConstant::GetStreamingSize (Stream &stream) const
 {
 	int size = ShaderFloat::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
 	size += PX2_POINTERSIZE(mProjector);
 	size += PX2_BOOLSIZE(mBiased);
-	size += sizeof(mBSMatrix);
+
 	return size;
 }
 //----------------------------------------------------------------------------

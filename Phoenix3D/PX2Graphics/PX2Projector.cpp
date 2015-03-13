@@ -24,11 +24,9 @@ const HMatrix Projector::BiasScaleMatrix[2] =
 };
 
 //----------------------------------------------------------------------------
-Projector::Projector (DepthType depthType, bool isPerspective)
-:
+Projector::Projector (bool isPerspective) :
 Camera(isPerspective)
 {
-	mDepthType = depthType;
 }
 //----------------------------------------------------------------------------
 Projector::~Projector ()
@@ -51,8 +49,6 @@ void Projector::Load (InStream& source)
 
 	Camera::Load(source);
 	PX2_VERSION_LOAD(source);
-
-	source.ReadEnum(mDepthType);
 
 	// 改变了mDepthType，需要重新计算相机投影矩阵。
 	OnFrustumChange();
@@ -82,8 +78,6 @@ void Projector::Save (OutStream& target) const
 	Camera::Save(target);
 	PX2_VERSION_SAVE(target);
 
-	target.WriteEnum(mDepthType);
-
 	PX2_END_DEBUG_STREAM_SAVE(Projector, target);
 }
 //----------------------------------------------------------------------------
@@ -91,7 +85,7 @@ int Projector::GetStreamingSize (Stream &stream) const
 {
 	int size = Camera::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
-	size += PX2_ENUMSIZE(mDepthType);
+
 	return size;
 }
 //----------------------------------------------------------------------------

@@ -158,7 +158,7 @@ void AmbientRegionActor::_UpdateDirLightCamera()
 			lightDir->UVector, lightDir->RVector);
 	}
 
-	projector->SetFrustum(0.1f, Mathf::FAbs(1000.0f),
+	projector->SetFrustum(0.1f, Mathf::FAbs(50.0f),
 		-mLightCameraExtent, mLightCameraExtent, -mLightCameraExtent,
 		mLightCameraExtent);
 }

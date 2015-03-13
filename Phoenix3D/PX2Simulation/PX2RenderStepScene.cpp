@@ -98,6 +98,19 @@ void RenderStepScene::Draw()
 	if (viewPort.IsEmpty()) viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
 	mRenderer->SetViewport(viewPort);
 
+	// shadow map depth
+	if (mEffect_RenderTarget_Shadow)
+	{
+		mRenderer->Enable(mEffect_RenderTarget_Shadow);
+		mRenderer->InitRenderStates();
+		mRenderer->ClearBuffers();
+
+		Projector *lightProjector = PX2_GR.GetLight_Dir_Projector();
+		mRenderer->SetCamera(lightProjector);
+		mRenderer->Draw(mEffect_Culler_Shadow.GetVisibleSet(), mEffect_Material_Shadow);
+		mRenderer->Disable(mEffect_RenderTarget_Shadow);
+	}
+
 	if (!mEffect_RenderTarget_Normal)
 	{
 		mRenderer->InitRenderStates();
@@ -112,18 +125,6 @@ void RenderStepScene::Draw()
 		mRenderer->ClearBuffers();
 		mRenderer->Draw(mCuller.GetVisibleSet());
 		mRenderer->Disable(mEffect_RenderTarget_Normal);
-	}
-
-	if (mEffect_RenderTarget_Shadow)
-	{
-		mRenderer->Enable(mEffect_RenderTarget_Shadow);
-		mRenderer->InitRenderStates();
-		mRenderer->ClearBuffers();
-
-		Projector *lightProjector = PX2_GR.GetLight_Dir_Projector();
-		mRenderer->SetCamera(lightProjector);
-		mRenderer->Draw(mEffect_Culler_Shadow.GetVisibleSet());
-		mRenderer->Disable(mEffect_RenderTarget_Shadow);
 	}
 
 	mRenderer->SetCamera(beforeCamer);
@@ -180,7 +181,8 @@ void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 	mIsUseShaderMap = useShaderMap;
 
 	Texture::Format tformat = Texture::TF_A8R8G8B8;
-	mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, 512, 512, false, true);
+	mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, 2048, 2048, false, true);
+	mEffect_Material_Shadow = new0 ShadowMap_Material();
 
 	mEffect_UIPicBox_Shadow = new0 UIPicBox("Data/engine/default.png");
 	mEffect_UIFrame->AttachChild(mEffect_UIPicBox_Shadow);

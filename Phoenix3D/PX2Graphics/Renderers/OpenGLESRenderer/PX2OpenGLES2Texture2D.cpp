@@ -119,6 +119,10 @@ mTexture(0)
 		{
 			onePixelBytes = 1;
 		}
+		else if (tdFormat == Texture::TF_D24S8)
+		{
+			onePixelBytes = 4;
+		}
 		else
 		{
 			assertion(false, "wrong format =%d", tdFormat);

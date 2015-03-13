@@ -120,9 +120,7 @@ void EngineLoop::WillEnterForeground(bool isFirstTime)
 	}
 	else
 	{
-#ifdef PX2_USE_OPENGLES2
 		Renderer::GetDefaultRenderer()->OnRestoreDevice();
-#endif
 
 		PX2_FM.SetNeedUpdate();
 	}
@@ -149,9 +147,7 @@ void EngineLoop::DidEnterBackground()
 	//PX2_SS.EnableMusic(false);
 	//PX2_SS.EnableSounds(false);
 
-//#ifdef PX2_USE_OPENGLES2
 	Renderer::GetDefaultRenderer()->OnLostDevice();
-//#endif
 
 	mIsInBackground = true;
 }

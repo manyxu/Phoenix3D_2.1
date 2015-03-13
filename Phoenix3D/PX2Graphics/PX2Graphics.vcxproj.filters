@@ -485,6 +485,9 @@
     <ClCompile Include="PX2LightConstant.cpp">
       <Filter>Materials\ShaderFloats\Light</Filter>
     </ClCompile>
+    <ClCompile Include="PX2ShadowMapMaterial.cpp">
+      <Filter>Materials\GlobalMaterials</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -981,6 +984,9 @@
     </ClInclude>
     <ClInclude Include="PX2LightConstant.hpp">
       <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ShadowMapMaterial.hpp">
+      <Filter>Materials\GlobalMaterials</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

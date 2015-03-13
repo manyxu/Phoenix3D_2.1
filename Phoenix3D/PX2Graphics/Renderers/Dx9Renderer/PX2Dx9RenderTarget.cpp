@@ -19,6 +19,7 @@ mSaveDepthStencilSurface(0)
 	PX2_UNUSED(hr);
 
 	mNumTargets = renderTarget->GetNumTargets();
+
 	assertion(mNumTargets >= 1,
 		"Number of render targets must be at least one.\n");
 
@@ -53,11 +54,10 @@ mSaveDepthStencilSurface(0)
 		PdrTexture2D* dxDepthStencilTexture;
 
 		depthStencilTexture = renderTarget->GetDepthStencilTexture();
-		dxDepthStencilTexture = new0 PdrTexture2D(renderer, false,
-			depthStencilTexture, false);
+		assertion(!renderer->InTexture2DMap(depthStencilTexture), "Texture should not yet exist.\n");
+		dxDepthStencilTexture = new0 PdrTexture2D(renderer, false, depthStencilTexture, false);
 		depthStencilTexture->PdrPointer = dxDepthStencilTexture;
-		renderer->InsertInTexture2DMap(depthStencilTexture,
-			dxDepthStencilTexture);
+		renderer->InsertInTexture2DMap(depthStencilTexture, dxDepthStencilTexture);
 		mDepthStencilTexture = dxDepthStencilTexture->mTexture;
 		mDepthStencilTexture->AddRef();
 

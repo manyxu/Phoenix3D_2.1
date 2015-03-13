@@ -25,11 +25,15 @@ namespace PX2
 		void ReadColor (int i, Renderer* renderer, Texture2D*& texture);
 
 	private:
-		// 支持多个render target
-		int mNumTargets;
-		unsigned int mWidth, mHeight;
+		int mNumTargets, mWidth, mHeight;
 		Texture::Format mFormat;
-		bool mHasDepthStencil;
+		bool mHasMipmaps, mHasDepthStencil;
+
+		GLuint* mColorTextures;
+		GLuint mDepthStencilTexture, mFrameBuffer;
+		GLenum* mDrawBuffers;
+		int mPrevViewport[4];
+		float mPrevDepthRange[2];
 	};
 
 }

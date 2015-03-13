@@ -20,8 +20,7 @@ namespace PX2
 		// Construction and destruction.  Set bsMatrix to 0 for the
 		// bias-scale matrix that maps y' = (1-y)/2.  Set bsMatrix to 1 for the
 		// bias-scale matrix that maps y' = (1-y)/2.
-		ProjectorMatrixConstant (Projector* projector, bool biased,
-			int bsMatrix);
+		ProjectorMatrixConstant (Projector* projector, bool biased);
 		virtual ~ProjectorMatrixConstant ();
 
 		Projector* GetProjector ();
@@ -33,7 +32,6 @@ namespace PX2
 
 		ProjectorPtr mProjector;
 		bool mBiased;
-		int mBSMatrix;
 	};
 
 	PX2_REGISTER_STREAM(ProjectorMatrixConstant);

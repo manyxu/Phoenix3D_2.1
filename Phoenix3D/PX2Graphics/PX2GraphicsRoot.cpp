@@ -51,17 +51,19 @@ bool GraphicsRoot::Initlize ()
 	InitTerm::ExecuteInitializers();
 
 	// Camera
+	Camera::DepthType dt = Camera::PM_DEPTH_ZERO_TO_ONE;
 #if defined (PX2_USE_DX9)
 	// DirectX使用深度在区间[0,1]内的矩阵。
-	Camera::SetDefaultDepthType(Camera::PM_DEPTH_ZERO_TO_ONE);
+	dt = Camera::PM_DEPTH_ZERO_TO_ONE;
 #endif
 
 #if defined(PX2_USE_OPENGL) || defined(PX2_USE_OPENGLES2)
 	// OpenGL使用深度在区间[-1,1]内的矩阵。
-	Camera::SetDefaultDepthType(Camera::PM_DEPTH_MINUS_ONE_TO_ONE);
+	dt = Camera::PM_DEPTH_MINUS_ONE_TO_ONE;
 #endif
+	Camera::SetDefaultDepthType(dt);
 
-	mLight_Dir_Projector = new0 Projector(Camera::GetDefaultDepthType(), false);
+	mLight_Dir_Projector = new0 Projector(false);
 
 	PX2_MATERIALMAN.Initlize();
 

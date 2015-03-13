@@ -108,6 +108,7 @@ namespace PX2
 		int mMaxVShaderImages;
 		int mMaxPShaderImages;
 		int mMaxCombinedImages;
+		int mMaxRenderBufferSize;
 	};
 
 }

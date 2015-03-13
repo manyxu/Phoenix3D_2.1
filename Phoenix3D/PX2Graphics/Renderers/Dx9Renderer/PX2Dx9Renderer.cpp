@@ -927,27 +927,7 @@ bool Renderer::PreDraw ()
 		// 了。^_^现在我们只是简单的将所有资源都释放，释放完之后重建。
 
 		// 先释放有D3DPOOL_DEFAULT资源。
-		std::set<const VertexFormat*> saveVertexFormats;
-		std::set<const VertexBuffer*> saveVertexBuffers;
-		std::set<const IndexBuffer*> saveIndexBuffers;
-		std::set<const Texture1D*> saveTexture1Ds;
-		std::set<const Texture2D*> saveTexture2Ds;
-		std::set<const Texture3D*> saveTexture3Ds;
-		std::set<const TextureCube*> saveTextureCubes;
-		std::set<const RenderTarget*> saveRenderTargets;
-		std::set<const VertexShader*> saveVertexShaders;
-		std::set<const PixelShader*> savePixelShaders;
-
-		DestroyResources(mVertexFormats, saveVertexFormats);
-		DestroyResources(mVertexBuffers, saveVertexBuffers);
-		DestroyResources(mIndexBuffers, saveIndexBuffers);
-		DestroyResources(mTexture1Ds, saveTexture1Ds);
-		DestroyResources(mTexture2Ds, saveTexture2Ds);
-		DestroyResources(mTexture3Ds, saveTexture3Ds);
-		DestroyResources(mTextureCubes, saveTextureCubes);
-		DestroyResources(mRenderTargets, saveRenderTargets);
-		DestroyResources(mVertexShaders, saveVertexShaders);
-		DestroyResources(mPixelShaders, savePixelShaders);
+		OnLostDevice();
 		mData->DestroyUniqueFont();
 
 		// 重新置回设备
@@ -964,16 +944,6 @@ bool Renderer::PreDraw ()
 
 		// 重新创建资源
 		mData->CreateUniqueFont();
-		RecreateResources(this, saveVertexFormats);
-		RecreateResources(this, saveVertexBuffers);
-		RecreateResources(this, saveIndexBuffers);
-		RecreateResources(this, saveTexture1Ds);
-		RecreateResources(this, saveTexture2Ds);
-		RecreateResources(this, saveTexture3Ds);
-		RecreateResources(this, saveTextureCubes);
-		RecreateResources(this, saveRenderTargets);
-		RecreateResources(this, saveVertexShaders);
-		RecreateResources(this, savePixelShaders);
 	}
 
 	// TODO.  Go-to-fullscreen needs to be supported here.

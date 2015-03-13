@@ -7,6 +7,7 @@
 #include "PX2UIPicBox.hpp"
 #include "PX2UIView.hpp"
 #include "PX2UIFrame.hpp"
+#include "PX2ShadowMapMaterial.hpp"
 
 namespace PX2
 {
@@ -46,6 +47,7 @@ namespace PX2
 
 		Culler mEffect_Culler_Shadow;
 		RenderTargetPtr mEffect_RenderTarget_Shadow;
+		ShadowMap_MaterialPtr mEffect_Material_Shadow;
 		UIPicBoxPtr mEffect_UIPicBox_Shadow;
 	};
 

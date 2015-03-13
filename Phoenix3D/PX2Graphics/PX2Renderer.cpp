@@ -882,11 +882,6 @@ void Renderer::Bind (const Texture2D* texture)
 		PdrTexture2D *pdrTexture = new0 PdrTexture2D(this, texture);
 		mTexture2Ds[texture] = pdrTexture;
 		((Texture2D*)texture)->PdrPointer = pdrTexture;
-
-		//if (texture->IsBindDoClearData())
-		//{
-		//	((Texture2D*)texture)->ClearData();
-		//}
 	}
 }
 //----------------------------------------------------------------------------

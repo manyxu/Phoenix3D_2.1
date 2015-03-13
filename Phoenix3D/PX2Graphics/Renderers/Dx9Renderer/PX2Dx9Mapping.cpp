@@ -79,7 +79,12 @@ D3DFORMAT gDX9TextureFormat[Texture::TF_QUANTITY] =
 	D3DFMT_DXT1,                // TF_DXT1
 	D3DFMT_DXT3,                // TF_DXT3
 	D3DFMT_DXT5,                // TF_DXT5
-	D3DFMT_D24S8                // TF_D24S8
+	D3DFMT_D24S8,               // TF_D24S8
+	D3DFMT_UNKNOWN,				// TF_RGB_PVRTC_4B
+	D3DFMT_UNKNOWN,				// TF_RGB_PVRTC_2B
+	D3DFMT_UNKNOWN,				// TF_RGBA_PVRTC_4B
+	D3DFMT_UNKNOWN,				// TF_RGBA_PVRTC_2B
+	D3DFMT_UNKNOWN				// TF_RGB_ETC1
 };
 
 DWORD gDX9MinFilter[Shader::SF_QUANTITY] =

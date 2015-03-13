@@ -146,6 +146,7 @@
     <ClCompile Include="PX2ShaderFloat.cpp" />
     <ClCompile Include="PX2ShaderParameters.cpp" />
     <ClCompile Include="PX2ShaderStruct.cpp" />
+    <ClCompile Include="PX2ShadowMapMaterial.cpp" />
     <ClCompile Include="PX2Shine.cpp" />
     <ClCompile Include="PX2ShineAmbientConstant.cpp" />
     <ClCompile Include="PX2ShineDiffuseConstant.cpp" />
@@ -314,6 +315,7 @@
     <ClInclude Include="PX2ShaderKeys.hpp" />
     <ClInclude Include="PX2ShaderParameters.hpp" />
     <ClInclude Include="PX2ShaderStruct.hpp" />
+    <ClInclude Include="PX2ShadowMapMaterial.hpp" />
     <ClInclude Include="PX2Shine.hpp" />
     <ClInclude Include="PX2ShineAmbientConstant.hpp" />
     <ClInclude Include="PX2ShineDiffuseConstant.hpp" />

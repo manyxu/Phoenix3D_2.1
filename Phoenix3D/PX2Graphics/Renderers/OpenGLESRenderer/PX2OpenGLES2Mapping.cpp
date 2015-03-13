@@ -14,7 +14,6 @@ namespace PX2
 #define GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG                  0x8C03
 #define GL_ETC1_RGB8_OES                                     0x8D64
 
-
 	GLenum gOGLAlphaSrcBlend[AlphaProperty::SBM_QUANTITY] =
 	{
 		GL_ZERO,                        // SBM_ZERO
@@ -179,6 +178,7 @@ namespace PX2
 		NOT_SUPPORT,						// TF_DXT1
 		NOT_SUPPORT,						// TF_DXT3
 		NOT_SUPPORT,						// TF_DXT5
+		NOT_SUPPORT,						// TF_D16
 		NOT_SUPPORT,						// TF_D24S8
 		GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG, // TF_RGB_PVRTC_4B
 		GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG, // TF_RGB_PVRTC_2B
@@ -226,6 +226,15 @@ namespace PX2
 		GL_TEXTURE_2D,      // ST_2D
 		NOT_SUPPORT,      // ST_3D
 		GL_TEXTURE_CUBE_MAP // ST_CUBE
+	};
+
+	GLuint gOGLTextureTargetBinding[Shader::ST_QUANTITY] =
+	{
+		0,                          // ST_NONE
+		0,							// ST_1D
+		GL_TEXTURE_BINDING_2D,      // ST_2D
+		0,							// ST_3D
+		GL_TEXTURE_BINDING_CUBE_MAP // ST_CUBE
 	};
 
 	GLuint gOGLTextureType[Texture::TF_QUANTITY] =
@@ -281,6 +290,22 @@ namespace PX2
 		GL_TRIANGLE_STRIP,  // PT_TRISTRIP
 		GL_TRIANGLE_FAN     // PT_TRIFAN
 	};
+
+	GLuint BindTexture(Shader::SamplerType target, GLuint texture)
+	{
+		GLint current = 0;
+		glGetIntegerv(gOGLTextureTargetBinding[target], &current);
+		glBindTexture(gOGLTextureTarget[target], texture);
+		return (GLuint)current;
+	}
+	//----------------------------------------------------------------------------
+	GLuint GetBoundTexture(Shader::SamplerType target)
+	{
+		GLint current = 0;
+		glGetIntegerv(gOGLTextureTargetBinding[target], &current);
+		return (GLuint)current;
+	}
+	//----------------------------------------------------------------------------
 }
 
 #endif

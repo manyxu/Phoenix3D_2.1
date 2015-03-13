@@ -150,8 +150,8 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,
 	}
 	else if (FString("ProjectPVBSMatrix_Dir") == name)
 	{
-		shaderFloat = new0 ProjectorMatrixConstant(PX2_GR.GetLight_Dir_Projector(),
-			true, 0);
+		shaderFloat = new0 ProjectorMatrixConstant(
+			PX2_GR.GetLight_Dir_Projector(), true);
 	}
 	else if (FString("ShineEmissive") == name)
 	{
