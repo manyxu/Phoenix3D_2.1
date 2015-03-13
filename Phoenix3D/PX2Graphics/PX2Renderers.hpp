@@ -20,19 +20,19 @@
 #include "PX2Dx9VertexShader.hpp"
 #endif
 
-#ifdef PX2_USE_OPENGLES2
-#include "PX2OpenGLES2IndexBuffer.hpp"
-#include "PX2OpenGLES2PixelShader.hpp"
-#include "PX2OpenGLES2RendererData.hpp"
-#include "PX2OpenGLES2Shader.hpp"
-#include "PX2OpenGLES2Texture1D.hpp"
-#include "PX2OpenGLES2Texture2D.hpp"
-#include "PX2OpenGLES2Texture3D.hpp"
-#include "PX2OpenGLES2TextureCube.hpp"
-#include "PX2OpenGLES2RenderTarget.hpp"
-#include "PX2OpenGLES2VertexBuffer.hpp"
-#include "PX2OpenGLES2VertexFormat.hpp"
-#include "PX2OpenGLES2VertexShader.hpp"
+#ifdef PX2_USE_OPENGLES
+#include "PX2OpenGLESIndexBuffer.hpp"
+#include "PX2OpenGLESPixelShader.hpp"
+#include "PX2OpenGLESRendererData.hpp"
+#include "PX2OpenGLESShader.hpp"
+#include "PX2OpenGLESTexture1D.hpp"
+#include "PX2OpenGLESTexture2D.hpp"
+#include "PX2OpenGLESTexture3D.hpp"
+#include "PX2OpenGLESTextureCube.hpp"
+#include "PX2OpenGLESRenderTarget.hpp"
+#include "PX2OpenGLESVertexBuffer.hpp"
+#include "PX2OpenGLESVertexFormat.hpp"
+#include "PX2OpenGLESVertexShader.hpp"
 #endif
 
 #endif

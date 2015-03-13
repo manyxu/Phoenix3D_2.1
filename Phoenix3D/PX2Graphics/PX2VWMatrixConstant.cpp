@@ -32,7 +32,7 @@ void VWMatrixConstant::Update(const ShaderStruct *struc)
 	const HMatrix& worldMatrix = renderable->WorldTransform.Matrix();
 	HMatrix viewWorldMatrix = viewMatrix*worldMatrix;
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	// you must trans on 0penGLES2
 	HMatrix matTrans = viewWorldMatrix.Transpose();
 	const float *source = (const float*)matTrans;

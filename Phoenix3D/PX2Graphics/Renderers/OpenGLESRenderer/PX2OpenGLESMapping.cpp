@@ -1,8 +1,8 @@
-// PX2OpenGLES2Mapping.cpp
+// PX2OpenGLESMapping.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
-#include "PX2OpenGLES2Mapping.hpp"
+#include "PX2OpenGLESMapping.hpp"
 
 namespace PX2
 {
@@ -178,7 +178,6 @@ namespace PX2
 		NOT_SUPPORT,						// TF_DXT1
 		NOT_SUPPORT,						// TF_DXT3
 		NOT_SUPPORT,						// TF_DXT5
-		NOT_SUPPORT,						// TF_D16
 		NOT_SUPPORT,						// TF_D24S8
 		GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG, // TF_RGB_PVRTC_4B
 		GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG, // TF_RGB_PVRTC_2B

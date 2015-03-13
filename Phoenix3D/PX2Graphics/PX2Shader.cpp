@@ -327,7 +327,7 @@ void Shader::SetBorderColor (int i, const Float4& borderColor)
 //----------------------------------------------------------------------------
 void Shader::SetBaseRegister (int profile, int i, int baseRegister)
 {
-#ifndef PX2_USE_OPENGLES2
+#ifndef PX2_USE_OPENGLES
     if (mProfileOwner) // opengles2 需要重置，去掉此判断
 #endif
     {

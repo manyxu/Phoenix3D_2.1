@@ -341,54 +341,6 @@
     <ClCompile Include="PX2RenderStep.cpp">
       <Filter>RenderStep</Filter>
     </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2IndexBuffer.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Mapping.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2MaterialPass.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2PixelShader.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Renderer.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererData.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RenderTarget.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Shader.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture1D.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture2D.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture3D.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2TextureCube.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexBuffer.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexFormat.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexShader.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererInput.cpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="PX2LightAmbientConstant.cpp">
       <Filter>Materials\ShaderFloats\Light</Filter>
     </ClCompile>
@@ -487,6 +439,54 @@
     </ClCompile>
     <ClCompile Include="PX2ShadowMapMaterial.cpp">
       <Filter>Materials\GlobalMaterials</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESIndexBuffer.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESMapping.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESMaterialPass.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESPixelShader.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESRenderer.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESRendererData.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESRendererInput.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESRenderTarget.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESShader.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESTexture1D.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESTexture2D.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESTexture3D.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESTextureCube.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESVertexBuffer.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESVertexFormat.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESVertexShader.cpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -841,54 +841,6 @@
     <ClInclude Include="PX2RenderStep.hpp">
       <Filter>RenderStep</Filter>
     </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2IndexBuffer.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Mapping.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2MaterialPass.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2PixelShader.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererData.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererPre.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RenderTarget.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Shader.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture1D.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture2D.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2Texture3D.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2TextureCube.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexBuffer.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexFormat.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2VertexShader.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderers\OpenGLES2Renderer\PX2OpenGLES2RendererInput.hpp">
-      <Filter>Renderers\OpenGLES2Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="PX2LightAmbientConstant.hpp">
       <Filter>Materials\ShaderFloats\Light</Filter>
     </ClInclude>
@@ -987,6 +939,54 @@
     </ClInclude>
     <ClInclude Include="PX2ShadowMapMaterial.hpp">
       <Filter>Materials\GlobalMaterials</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESIndexBuffer.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESMapping.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESMaterialPass.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESPixelShader.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESRendererData.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESRendererInput.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESRendererPre.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESRenderTarget.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESShader.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESTexture1D.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESTexture2D.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESTexture3D.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESTextureCube.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESVertexBuffer.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESVertexFormat.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESVertexShader.hpp">
+      <Filter>Renderers\OpenGLESRenderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1233,9 +1233,6 @@
     <Filter Include="RenderStep">
       <UniqueIdentifier>{92a283a1-cb5a-41c2-afc8-dea9c1abf442}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Renderers\OpenGLES2Renderer">
-      <UniqueIdentifier>{31fd354c-7eea-4884-af82-5e7e3cd652e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Materials">
       <UniqueIdentifier>{43e15e94-c428-498b-826c-e111a61ba082}</UniqueIdentifier>
     </Filter>
@@ -1280,6 +1277,9 @@
     </Filter>
     <Filter Include="Materials\ShaderFloats\Skin">
       <UniqueIdentifier>{302c2653-1ce2-4e7d-a5c3-0857a9b80252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderers\OpenGLESRenderer">
+      <UniqueIdentifier>{9120825f-5491-427c-a1aa-031fe7916f4f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

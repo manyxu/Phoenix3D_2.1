@@ -1,11 +1,11 @@
-// PX2OpenGLES2MaterialPass.cpp
+// PX2OpenGLESMaterialPass.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
-#include "PX2OpenGLES2MaterialPass.hpp"
+#include "PX2OpenGLESMaterialPass.hpp"
 #include "PX2Renderer.hpp"
-#include "PX2OpenGLES2VertexShader.hpp"
-#include "PX2OpenGLES2PixelShader.hpp"
+#include "PX2OpenGLESVertexShader.hpp"
+#include "PX2OpenGLESPixelShader.hpp"
 #include "PX2Log.hpp"
 using namespace PX2;
 

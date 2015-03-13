@@ -1,11 +1,11 @@
-// PX2OpenGLES2IndexBuffer.hpp
+// PX2OpenGLESIndexBuffer.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLES2INDEXBUFFER_HPP
 #define PX2OPENGLES2INDEXBUFFER_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
 #include "PX2IndexBuffer.hpp"
 
 namespace PX2

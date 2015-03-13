@@ -1,9 +1,9 @@
-// PX2OpenGLES2VertexBuffer.cpp
+// PX2OpenGLESVertexBuffer.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
-#include "PX2OpenGLES2VertexBuffer.hpp"
-#include "PX2OpenGLES2Mapping.hpp"
+#include "PX2OpenGLESVertexBuffer.hpp"
+#include "PX2OpenGLESMapping.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------

@@ -1,11 +1,11 @@
-// PX2OpenGLES2Texture1D.hpp
+// PX2OpenGLESTexture1D.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLES2TEXTURE1D_HPP
 #define PX2OPENGLES2TEXTURE1D_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
 #include "PX2Texture1D.hpp"
 
 namespace PX2

@@ -1,9 +1,9 @@
-// PX2OpenGLES2RendererData.cpp
+// PX2OpenGLESRendererData.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
-#include "PX2OpenGLES2RendererData.hpp"
-#include "PX2OpenGLES2Mapping.hpp"
+#include "PX2OpenGLESRendererData.hpp"
+#include "PX2OpenGLESMapping.hpp"
 using namespace PX2;
 
 RendererData::RenderState::RenderState ()

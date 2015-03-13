@@ -1,10 +1,10 @@
 // PX2Dx9RenderTarget.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
-#include "PX2OpenGLES2RenderTarget.hpp"
-#include "PX2OpenGLES2Mapping.hpp"
-#include "PX2OpenGLES2Texture2D.hpp"
+#include "PX2OpenGLESRenderTarget.hpp"
+#include "PX2OpenGLESMapping.hpp"
+#include "PX2OpenGLESTexture2D.hpp"
 #include "PX2Assert.hpp"
 #include "PX2Renderer.hpp"
 using namespace PX2;
@@ -13,6 +13,11 @@ using namespace PX2;
 PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 	const RenderTarget* renderTarget)
 {
+	PX2_UNUSED(renderer);
+	PX2_UNUSED(renderTarget);
+
+#ifdef PX2_USE_OPENGLES3
+
 	mNumTargets = renderTarget->GetNumTargets();
 	assertion(mNumTargets >= 1,
 		"Number of render targets must be at least one.\n");
@@ -95,29 +100,45 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 	}
 
 	glBindTexture(GL_TEXTURE_2D, previousBind);
+
+#endif
 }
 //----------------------------------------------------------------------------
 PdrRenderTarget::~PdrRenderTarget ()
 {
+#ifdef PX2_USE_OPENGLES3
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glDeleteFramebuffers(1, &mFrameBuffer);
 	delete1(mColorTextures);
 	delete1(mDrawBuffers);
+
+#endif
 }
 //----------------------------------------------------------------------------
 void PdrRenderTarget::Enable (Renderer* renderer)
 {
+	PX2_UNUSED(renderer);
+
+#ifdef PX2_USE_OPENGLES3
+
 	glBindFramebuffer(GL_FRAMEBUFFER, mFrameBuffer);
-	//glDrawBuffers(mNumTargets, mDrawBuffers);
+	glDrawBuffers(mNumTargets, mDrawBuffers);
 
 	glGetIntegerv(GL_VIEWPORT, mPrevViewport);
 	glGetFloatv(GL_DEPTH_RANGE, mPrevDepthRange);
 	glViewport(0, 0, mWidth, mHeight);
 	glDepthRangef(0.0, 1.0);
+
+#endif
 }
 //----------------------------------------------------------------------------
 void PdrRenderTarget::Disable (Renderer* renderer)
 {
+	PX2_UNUSED(renderer);
+
+#ifdef PX2_USE_OPENGLES3
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	if (mHasMipmaps)
@@ -134,11 +155,19 @@ void PdrRenderTarget::Disable (Renderer* renderer)
 	glViewport(mPrevViewport[0], mPrevViewport[1], mPrevViewport[2],
 		mPrevViewport[3]);
 	glDepthRangef(mPrevDepthRange[0], mPrevDepthRange[1]);
+
+#endif
 }
 //----------------------------------------------------------------------------
 void PdrRenderTarget::ReadColor (int i, Renderer* renderer,
 	Texture2D*& texture)
 {
+	PX2_UNUSED(i);
+	PX2_UNUSED(renderer);
+	PX2_UNUSED(texture);
+
+#ifdef PX2_USE_OPENGLES3
+
 	if (i < 0 || i >= mNumTargets)
 	{
 		assertion(false, "Invalid target index.\n");
@@ -162,7 +191,7 @@ void PdrRenderTarget::ReadColor (int i, Renderer* renderer,
 		texture = new0 Texture2D(mFormat, mWidth, mHeight, 1);
 	}
 
-	//glReadBuffer(GL_COLOR_ATTACHMENT0 + i);
+	glReadBuffer(GL_COLOR_ATTACHMENT0 + i);
 
 	glReadPixels(
 		0,
@@ -175,6 +204,9 @@ void PdrRenderTarget::ReadColor (int i, Renderer* renderer,
 		);
 
 	Disable(renderer);
+
+#endif
+
 }
 //----------------------------------------------------------------------------
 

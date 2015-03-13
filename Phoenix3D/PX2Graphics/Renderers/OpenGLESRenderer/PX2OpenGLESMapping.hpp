@@ -1,11 +1,11 @@
-// PX2OpenGLES2Mapping.hpp
+// PX2OpenGLESMapping.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLMAPPING_HPP
 #define PX2OPENGLMAPPING_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
 #include "PX2AlphaProperty.hpp"
 #include "PX2Buffer.hpp"
 #include "PX2CullProperty.hpp"

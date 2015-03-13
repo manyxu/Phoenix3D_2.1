@@ -57,7 +57,7 @@ bool GraphicsRoot::Initlize ()
 	dt = Camera::PM_DEPTH_ZERO_TO_ONE;
 #endif
 
-#if defined(PX2_USE_OPENGL) || defined(PX2_USE_OPENGLES2)
+#if defined(PX2_USE_OPENGL) || defined(PX2_USE_OPENGLES)
 	// OpenGL使用深度在区间[-1,1]内的矩阵。
 	dt = Camera::PM_DEPTH_MINUS_ONE_TO_ONE;
 #endif

@@ -42,7 +42,7 @@ void ProjectorMatrixConstant::Update(const ShaderStruct *struc)
 		PVWMatrix = Projector::BiasScaleMatrix[baseMatIndex] * PVWMatrix;
 	}
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	// you must trans on 0penGLES2
 	HMatrix matTrans = PVWMatrix.Transpose();
 	const float *source = (const float*)matTrans;

@@ -1,12 +1,12 @@
-// PX2OpenGLES2Shader.hpp
+// PX2OpenGLESShader.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLES2SHADER_HPP
 #define PX2OPENGLES2SHADER_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
-#include "PX2OpenGLES2RendererData.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
+#include "PX2OpenGLESRendererData.hpp"
 #include "PX2Shader.hpp"
 #include "PX2ShaderParameters.hpp"
 

@@ -1,9 +1,9 @@
-// PX2OpenGLES2Texture2D.cpp
+// PX2OpenGLESTexture2D.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
-#include "PX2OpenGLES2Texture2D.hpp"
-#include "PX2OpenGLES2Mapping.hpp"
+#include "PX2OpenGLESTexture2D.hpp"
+#include "PX2OpenGLESMapping.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
-// PX2OpenGLES2RendererPre.hpp
+// PX2OpenGLESRendererPre.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLES2RENDERERPRE_HPP
 #define PX2OPENGLES2RENDERERPRE_HPP
@@ -23,12 +23,6 @@
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
 
-#elif defined(__MARMALADE__)
-
-#include <GLES2/gl2.h>
-#include <EGL/egl.h>
-#include <s3e.h>
-
 #endif
 
 enum AttribLocationPos
@@ -43,7 +37,7 @@ enum AttribLocationPos
 	ALP_TEXCOORD4
 };
 
-#if defined(_DEBUG)
+#if defined(PX2_USE_GL_CHECK)
 
 #define PX2_GL_CHECK(x) \
 	x; \

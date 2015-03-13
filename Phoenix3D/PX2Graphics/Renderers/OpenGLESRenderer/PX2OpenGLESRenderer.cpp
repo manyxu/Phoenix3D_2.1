@@ -1,16 +1,16 @@
-// PX2OpenGLES2Renderer.cpp
+// PX2OpenGLESRenderer.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #include "PX2Renderer.hpp"
-#include "PX2OpenGLES2Mapping.hpp"
-#include "PX2OpenGLES2RendererData.hpp"
+#include "PX2OpenGLESMapping.hpp"
+#include "PX2OpenGLESRendererData.hpp"
 #include "PX2Polypoint.hpp"
 #include "PX2Polysegment.hpp"
 #include "PX2TriFan.hpp"
 #include "PX2TriStrip.hpp"
-#include "PX2OpenGLES2MaterialPass.hpp"
-#include "PX2OpenGLES2RendererInput.hpp"
+#include "PX2OpenGLESMaterialPass.hpp"
+#include "PX2OpenGLESRendererInput.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -161,7 +161,7 @@ Renderer *Renderer::CreateRenderer(void *ptData, int width, int height,
 
 #else
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifdef __ANDROID__
 	pdrRenderInput->mWindowHandle = 0;

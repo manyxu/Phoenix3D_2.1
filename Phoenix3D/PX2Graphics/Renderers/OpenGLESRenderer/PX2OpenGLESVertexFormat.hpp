@@ -1,11 +1,11 @@
-// PX2OpenGLES2VertexFormat.hpp
+// PX2OpenGLESVertexFormat.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLVERTEXFORMAT_HPP
 #define PX2OPENGLVERTEXFORMAT_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
 #include "PX2VertexFormat.hpp"
 
 namespace PX2

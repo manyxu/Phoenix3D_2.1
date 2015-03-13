@@ -1,11 +1,11 @@
-// PX2OpenGLES2MaterialPass.hpp
+// PX2OpenGLESMaterialPass.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLES2MATERIALPASS_HPP
 #define PX2OPENGLES2MATERIALPASS_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
 #include "PX2PixelShader.hpp"
 #include "PX2MaterialPass.hpp"
 

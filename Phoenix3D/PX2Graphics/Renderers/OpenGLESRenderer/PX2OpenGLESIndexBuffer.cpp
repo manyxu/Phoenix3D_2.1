@@ -1,9 +1,9 @@
-// PX2OpenGLES2IndexBuffer.cpp
+// PX2OpenGLESIndexBuffer.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
-#include "PX2OpenGLES2IndexBuffer.hpp"
-#include "PX2OpenGLES2Mapping.hpp"
+#include "PX2OpenGLESIndexBuffer.hpp"
+#include "PX2OpenGLESMapping.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------

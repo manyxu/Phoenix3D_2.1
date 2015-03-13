@@ -17,20 +17,20 @@
 #include "PX2Dx9VertexShader.hpp"
 #endif
 
-#ifdef PX2_USE_OPENGLES2
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2IndexBuffer.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2PixelShader.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2RendererData.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2Shader.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2Texture1D.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2Texture2D.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2Texture3D.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2TextureCube.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2RenderTarget.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2VertexBuffer.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2VertexFormat.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2VertexShader.hpp"
-#include "Renderers/OpenGLES2Renderer/PX2OpenGLES2MaterialPass.hpp"
+#ifdef PX2_USE_OPENGLES
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESIndexBuffer.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESPixelShader.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESRendererData.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESShader.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESTexture1D.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESTexture2D.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESTexture3D.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESTextureCube.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESRenderTarget.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESVertexBuffer.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESVertexFormat.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESVertexShader.hpp"
+#include "Renderers/OpenGLESRenderer/PX2OpenGLESMaterialPass.hpp"
 #endif
 
 using namespace PX2;
@@ -112,7 +112,7 @@ void Renderer::Terminate ()
 	DestroyAllTexture3Ds();
 	DestroyAllTextureCubes();
 	DestroyAllRenderTargets();
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	DestroyAllMaterialPasses();
 #endif
 	DestroyAllVertexShaders();
@@ -463,7 +463,7 @@ void Renderer::Unlock (const VertexBuffer* vbuffer)
 //----------------------------------------------------------------------------
 void Renderer::Update (const VertexBuffer* vbuffer)
 {
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	Lock(vbuffer, Buffer::BL_WRITE_ONLY); // lock is updated
 #else
 	int numBytes = vbuffer->GetNumBytes();
@@ -701,7 +701,7 @@ void Renderer::Unlock (const IndexBuffer* ibuffer)
 void Renderer::Update (const IndexBuffer* ibuffer)
 {
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	Lock(ibuffer, Buffer::BL_WRITE_ONLY); // lock is updated
 #else
 	int numBytes = ibuffer->GetNumBytes();
@@ -1092,7 +1092,7 @@ void Renderer::Update (const Texture2D* texture, int level)
 	//if (texture->IsDataNull())
 	//	return;
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	Lock(texture, level, Buffer::BL_WRITE_ONLY); // lock is updated
 #else
 	int numBytes = texture->GetNumLevelBytes(level);
@@ -1849,7 +1849,7 @@ void Renderer::OnLostDevice()
 	DestroyResources(this, mVertexShaders);
 	DestroyResources(this, mPixelShaders);
 	
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	DestroyResources(this, mMaterialPasses);
 #endif
 
@@ -1866,7 +1866,7 @@ void Renderer::OnLostDevice()
 
 	ClearSharePdrData();
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	mMaterialPasses.clear();
 #endif
 }
@@ -2196,7 +2196,7 @@ void Renderer::DestroyAllRenderTargets ()
 //----------------------------------------------------------------------------
 void Renderer::DestroyAllMaterialPasses ()
 {
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	MaterialPassMap::iterator iter = mMaterialPasses.begin();
 	MaterialPassMap::iterator end = mMaterialPasses.end();
 	for (/**/; iter != end; ++iter)

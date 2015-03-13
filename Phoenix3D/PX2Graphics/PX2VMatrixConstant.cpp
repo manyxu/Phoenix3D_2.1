@@ -29,7 +29,7 @@ void VMatrixConstant::Update(const ShaderStruct *struc)
 
 	const HMatrix& viewMatrix = camera->GetViewMatrix();
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 	// you must trans on 0penGLES2
 	HMatrix matTrans = viewMatrix.Transpose();
 	const float *source = (const float*)matTrans;

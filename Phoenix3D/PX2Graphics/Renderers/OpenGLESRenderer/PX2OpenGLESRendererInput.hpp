@@ -1,9 +1,9 @@
-// PX2OpenGLES2RendererInput.hpp
+// PX2OpenGLESRendererInput.hpp
 
 #ifndef PX2OPENGLES2RENDERERINPUT_HPP
 #define PX2OPENGLES2RENDERERINPUT_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
 #include "PX2RendererInput.hpp"
 
 namespace PX2

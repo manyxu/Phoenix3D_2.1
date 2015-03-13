@@ -1,11 +1,11 @@
-// PX2OpenGLES2VertexBuffer.hpp
+// PX2OpenGLESVertexBuffer.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLES2VERTEXBUFFER_HPP
 #define PX2OPENGLES2VERTEXBUFFER_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
 #include "PX2VertexBuffer.hpp"
 
 namespace PX2

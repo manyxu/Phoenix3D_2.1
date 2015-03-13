@@ -1,11 +1,11 @@
-// PX2OpenGLES2RenderTarget.hpp
+// PX2OpenGLESRenderTarget.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLES2RENDERTARGET_HPP
 #define PX2OPENGLES2RENDERTARGET_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
 #include "PX2RenderTarget.hpp"
 
 namespace PX2

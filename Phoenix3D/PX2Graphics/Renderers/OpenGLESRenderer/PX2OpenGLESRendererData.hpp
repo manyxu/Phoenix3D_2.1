@@ -1,12 +1,12 @@
-// PX2OpenGLES2RendererData.hpp
+// PX2OpenGLESRendererData.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLES2RENDERERDATA_HPP
 #define PX2OPENGLES2RENDERERDATA_HPP
 
 #include "PX2Float4.hpp"
-#include "PX2OpenGLES2RendererPre.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
 
 namespace PX2
 {

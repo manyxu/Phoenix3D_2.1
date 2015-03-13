@@ -1,9 +1,9 @@
-// PX2OpenGLES2Shader.cpp
+// PX2OpenGLESShader.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
-#include "PX2OpenGLES2Shader.hpp"
-#include "PX2OpenGLES2Mapping.hpp"
+#include "PX2OpenGLESShader.hpp"
+#include "PX2OpenGLESMapping.hpp"
 #include "PX2Renderer.hpp"
 using namespace PX2;
 

@@ -1,12 +1,12 @@
-// PX2OpenGLES2PixelShader.hpp
+// PX2OpenGLESPixelShader.hpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
 #ifndef PX2OPENGLES2PIXELSHADER_HPP
 #define PX2OPENGLES2PIXELSHADER_HPP
 
-#include "PX2OpenGLES2RendererPre.hpp"
-#include "PX2OpenGLES2Shader.hpp"
+#include "PX2OpenGLESRendererPre.hpp"
+#include "PX2OpenGLESShader.hpp"
 #include "PX2PixelShader.hpp"
 
 namespace PX2

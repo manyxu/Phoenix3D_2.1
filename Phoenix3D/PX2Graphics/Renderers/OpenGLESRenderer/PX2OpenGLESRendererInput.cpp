@@ -1,8 +1,8 @@
-// PX2OpenGLES2RendererInput.cpp
+// PX2OpenGLESRendererInput.cpp
 
-#ifdef PX2_USE_OPENGLES2
+#ifdef PX2_USE_OPENGLES
 
-#include "PX2OpenGLES2RendererInput.hpp"
+#include "PX2OpenGLESRendererInput.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
