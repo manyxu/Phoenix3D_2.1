@@ -248,7 +248,7 @@ bool Application::Initlize()
 	PX2_ENGINELOOP.SetPt_Size(boostSize);
 
 #if defined(_WIN32) || defined(WIN32)
-	static char sWindowClass[] = "Phoenix3D ApplicationBase";
+	static char sWindowClass[] = "Phoenix3DApplicationBase";
 	WNDCLASS wc;
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
 	wc.lpfnWndProc = MsWindowEventHandler;
