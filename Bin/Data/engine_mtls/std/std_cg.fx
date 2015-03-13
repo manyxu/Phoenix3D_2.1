@@ -24,10 +24,10 @@ void v_std
 	uniform float4 FogParam
 )
 {
-    // Transform the position from model space to clip space.
+    // Pos
     clipPosition = mul(PVWMatrix, float4(modelPosition,1.0f));
 
-    // Pass through the texture coordinate.
+    // Tex Coord
     vertexTCoord0 = modelTCoord0;
 	
 	// params
@@ -49,7 +49,6 @@ void v_std
 	// fog
 	float fogValueHeight = (-FogParam.x + worldPosition.z)/(FogParam.y - FogParam.x);
 	fogValueHeight = clamp(fogValueHeight, 0, 1.0);	
-	
 	float fogValueDist = (FogParam.w - dist)/(FogParam.w - FogParam.z);
 	fogValueDist = clamp(fogValueDist, 0, 1.0);
 	
@@ -96,13 +95,18 @@ void p_std
 	lastColor *= vertexColor;
 	
 	// shadow
-	float2 TexelSize = float2(512.0f, 512.0f);
 	float4 texCord = vertexTCoord2;
-	float depth = texCord.z;
-	float rvalue = tex2D(SampleShadowDepth, texCord.xy).r;
+
+	//float depth = texCord.z;
+	//float depthVal = tex2D(SampleShadowDepth, texCord.xy).r;
 	
-	if (depth > rvalue)
-		lastColor.r = 1.0f;
+	float depth = texCord.z/texCord.w;
+	float4 depthColor = tex2Dproj(SampleShadowDepth, texCord);
+	float depthVal = depthColor.x*255+depthColor.y;
+	
+	float lightAmout = 1.0f;
+	if (depth > depthVal) lightAmout = 0.0f;
+	lastColor.rgb *= lightAmout;
 	
 	// fog
 	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.y);

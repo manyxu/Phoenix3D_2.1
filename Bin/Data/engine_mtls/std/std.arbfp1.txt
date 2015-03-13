@@ -1,4 +1,5 @@
 !!ARBfp1.0
+OPTION ARB_fragment_program_shadow;
 # cgc version 3.1.0010, build date Feb  8 2012
 # command line args: -profile arbfp1
 # source file: std_cg.fx
@@ -19,22 +20,24 @@
 #var float4 FogColorDist :  : c[1] : 6 : 1
 #var sampler2D SampleBase :  : texunit 0 : -1 : 1
 #var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
-#const c[2] = 1
+#const c[2] = 1 255 0
 PARAM c[3] = { program.local[0..1],
-		{ 1 } };
+		{ 1, 255, 0 } };
 TEMP R0;
 TEMP R1;
-TEX R1.x, fragment.texcoord[2], texture[1], 2D;
+TXP R0.xy, fragment.texcoord[2], texture[1], SHADOW2D;
+MAD R0.y, R0.x, c[2], R0;
+RCP R0.x, fragment.texcoord[2].w;
+MAD R1.x, fragment.texcoord[2].z, R0, -R0.y;
 MOV R0.x, fragment.texcoord[0];
 ADD R0.y, -fragment.texcoord[0], c[2].x;
 TEX R0, R0, texture[0], 2D;
 MUL R0, R0, fragment.color.primary;
-ADD R1.x, fragment.texcoord[2].z, -R1;
-CMP R0.x, -R1, c[2], R0;
-ADD R0.xyz, R0, -c[0];
+CMP R1.x, -R1, c[2].z, c[2];
+MAD R0.xyz, R0, R1.x, -c[0];
 MAD R0.xyz, fragment.texcoord[1].y, R0, c[0];
 ADD R0.xyz, R0, -c[1];
 MAD result.color.xyz, fragment.texcoord[1].x, R0, c[1];
 MOV result.color.w, R0;
 END
-# 12 instructions, 2 R-regs
+# 14 instructions, 2 R-regs

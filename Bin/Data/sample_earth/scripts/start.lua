@@ -17,7 +17,7 @@ function Start()
 	sphereActor.LocalTransform:SetTranslateXZ(2.0, 1.0);
 	
 		local sphereActor = PX2_CREATER:CreateActor_Sphere(scene, APoint.ORIGIN)
-	sphereActor.LocalTransform:SetTranslateXZ(3.0, 1.0);
+	sphereActor.LocalTransform:SetTranslate(APoint(4.0, -2.0, 2.0));
 end
 
 Start()
