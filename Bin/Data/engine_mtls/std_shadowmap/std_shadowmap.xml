@@ -15,7 +15,7 @@
 				</c>
 				<p>
 					<var type="cg" file="std_shadowmap_cg.fx" entry="std_shadowmap"/>
-					<var type="gles2" file="std_gles2_vs.fx" entry="std_shadowmap"/>
+					<var type="gles2" file="std_shadowmap_gles2_ps.fx" entry="std_shadowmap"/>
 				</p>
 			</shader>
 			<shader type="ps" name="std_shadowmap" ni="1" no="1" nc="0" ns="1">
@@ -32,7 +32,7 @@
 				</s>
 				<p>
 					<var type="cg" file="std_shadowmap_cg.fx" entry="std_shadowmap"/>
-					<var type="gles2" file="std_gles2_ps.fx" entry="std_shadowmap"/>
+					<var type="gles2" file="std_shadowmap_gles2_ps.fx" entry="std_shadowmap"/>
 				</p>
 			</shader>
 			<renderproperty>

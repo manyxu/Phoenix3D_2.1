@@ -1,5 +1,3 @@
-
-
 attribute mediump vec3 modelPosition;
 attribute mediump vec3 modelNormal;
 attribute mediump vec2 modelTCoord0;
@@ -7,7 +5,6 @@ varying mediump vec4 vertexColor;
 varying mediump vec2 vertexTCoord0;
 varying mediump vec2 vertexTCoord1;
 varying mediump vec4 vertexTCoord2;
-
 uniform mat4 PVWMatrix;
 uniform mat4 WMatrix;
 uniform mat4 ProjectPVBSMatrix_Dir;
@@ -22,7 +19,7 @@ uniform vec4 LightDiffuse_Dir;
 uniform vec4 LightSpecular_Dir;
 uniform vec4 FogParam;
 
-void main()
+void main() 
 {
 	gl_Position = PVWMatrix * vec4(modelPosition, 1.0);
 	
@@ -50,5 +47,5 @@ void main()
 	vertexTCoord1.x = fogValueDist;
 	vertexTCoord1.y = fogValueHeight;
 	
-	vertexTCoord2 = ProjectPVBSMatrix_Dir * vec4(modelPosition, 1.0f);
+	vertexTCoord2 = ProjectPVBSMatrix_Dir * vec4(modelPosition, 1.0);
 }

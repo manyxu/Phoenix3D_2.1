@@ -17,7 +17,7 @@ void main()
 	
 	mediump float depth = texCord.z/texCord.w;
 	mediump vec4 depthColor = texture2DProj(SampleShadowDepth, texCord);
-	mediump float depthVal = depthColor.x*255+depthColor.y;
+	mediump float depthVal = depthColor.x*255.0 + depthColor.y;
 	
 	mediump float lightAmout = 1.0;
 	if (depth > depthVal) lightAmout = 0.0;
