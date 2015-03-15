@@ -673,28 +673,6 @@ void Shader::RegistProperties ()
 	AddProperty("NumOutPuts", Object::PT_INT, GetNumOutputs(), false);
 	AddProperty("NumConstants", Object::PT_INT, GetNumConstants(), false);
 	AddProperty("NumSamplers", Object::PT_INT, GetNumSamplers(), false);
-
-	std::vector<std::string> shadowKeys;
-	shadowKeys.push_back("SKT_NONE");
-	shadowKeys.push_back("SKT_EFFECT");
-	shadowKeys.push_back("SKT_UI");
-	shadowKeys.push_back("SKT_UIDARK");
-	shadowKeys.push_back("SKT_UIUV3");
-	shadowKeys.push_back("SKT_VERTEXCOLOR4");
-	shadowKeys.push_back("SKT_TEXTURE2D_ALPHATEST");
-	shadowKeys.push_back("SKT_TEXTURE2D");
-	shadowKeys.push_back("SKT_STD_ALPHATEST");
-	shadowKeys.push_back("SKT_STD");
-	shadowKeys.push_back("SKT_STDVC4");
-	shadowKeys.push_back("SKT_LIGHTTEX_ALPHATEST");
-	shadowKeys.push_back("SKT_LIGHTTEX");
-	shadowKeys.push_back("SKT_LIGHTTEX2_ALPHATEST");
-	shadowKeys.push_back("SKT_LIGHTTEX2");
-	shadowKeys.push_back("SKT_SKIN_ALPHATEST");
-	shadowKeys.push_back("SKT_SKIN");
-	shadowKeys.push_back("SKT_TERRAIN");
-	shadowKeys.push_back("SKT_SKY");
-	AddPropertyEnum("ShaderKey", GetShaderKey(), shadowKeys, false);
 }
 //----------------------------------------------------------------------------
 void Shader::OnPropertyChanged (const PropertyObject &obj)

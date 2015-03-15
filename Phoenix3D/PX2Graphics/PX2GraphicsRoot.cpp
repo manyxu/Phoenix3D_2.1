@@ -459,7 +459,7 @@ const std::string *GraphicsRoot::GetShaderStr(const char *filename)
 		PX2_GR.msBufferLoadFun(filename, bufferSize, buffer);
 		if (0 != bufferSize && buffer)
 		{
-			std::string str(buffer);
+			std::string str(buffer, bufferSize);
 			mShadersMap[filename] = str;
 			return &(mShadersMap[filename]);
 		}

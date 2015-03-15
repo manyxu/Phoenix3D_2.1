@@ -288,7 +288,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ws2_32.lib;libEGL.lib;libGLESv2.lib;fmod_vc.lib;PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsOGLESD.lib;PX2UnityD.lib;PX2NetD.lib;PX2UID.lib;PX2EffectD.lib;PX2SimulationD.lib;PX2AppFrameD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsOGLESD.lib;PX2UnityD.lib;PX2NetD.lib;PX2UID.lib;PX2EffectD.lib;PX2SimulationD.lib;PX2AppFrameD.lib;ws2_32.lib;libEGL.lib;libGLESv2.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\Debug;..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\ThirdPartiesLibs\OGLES;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Lib\x86;..\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
