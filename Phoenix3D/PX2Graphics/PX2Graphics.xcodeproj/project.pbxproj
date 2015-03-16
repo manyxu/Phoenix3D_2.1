@@ -586,9 +586,9 @@
 		73845A401A95EBE600876E88 /* PX2Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				73845D341A95F43F00876E88 /* Renderers */,
 				75C859FF1AB69BA30035A15B /* PX2LightConstant.cpp */,
 				75C85A001AB69BA30035A15B /* PX2LightConstant.hpp */,
-				73845D341A95F43F00876E88 /* Renderers */,
 				75C859E71AB699C40035A15B /* PX2FogColorHeightConstant.cpp */,
 				75C859E81AB699C40035A15B /* PX2FogColorHeightConstant.hpp */,
 				75C859E91AB699C40035A15B /* PX2ShaderStruct.cpp */,
@@ -1256,6 +1256,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"PX2_USE_OPENGLES=1",
+					"PX2_USE_OPENGLES3=1",
 					"$(inherited)",
 				);
 				OTHER_LDFLAGS = "-ObjC";

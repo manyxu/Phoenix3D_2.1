@@ -24,7 +24,7 @@ mIsUseShaderMap(false)
 	//mEffect_UIFrame->SetRelativeType_V(UIFrame::LT_HALF);
 
 	//SetUseBloom(false);
-	//SetUseShaderMap(true);
+	SetUseShaderMap(true);
 }
 //----------------------------------------------------------------------------
 RenderStepScene::~RenderStepScene()

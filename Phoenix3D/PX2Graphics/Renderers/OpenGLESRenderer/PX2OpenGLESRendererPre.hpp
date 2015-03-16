@@ -20,8 +20,17 @@
 
 #elif defined (__IOS__)
 
+#if defined (PX2_USE_OPENGLES3)
+
+#include <OpenGLES/ES3/gl.h>
+#include <OpenGLES/ES3/glext.h>
+
+#else
+
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
+
+#endif
 
 #endif
 
