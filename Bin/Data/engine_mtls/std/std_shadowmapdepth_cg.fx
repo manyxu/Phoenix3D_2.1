@@ -1,5 +1,5 @@
 
-void v_std_shadowmap
+void v_std_shadowmapdepth
 (
     in float3 modelPosition : POSITION,
     in float2 modelTCoord0 : TEXCOORD0,
@@ -21,7 +21,7 @@ sampler2D SampleBase = sampler_state
    WrapT     = Clamp;
 };
 
-void p_std_shadowmap
+void p_std_shadowmapdepth
 (
     in float2 vertexTCoord0 : TEXCOORD0,
     out float4 pixelColor : COLOR

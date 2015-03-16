@@ -30,7 +30,7 @@
 					<var index="1" name="UVParam" nr="1"/>
 				</c>
 				<s>
-					<var index="0" name="Sample0" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="0" name="SamplerBase" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
 				</s>
 				<p>
 					<var type="cg" file="ui_cg.fx"/>
