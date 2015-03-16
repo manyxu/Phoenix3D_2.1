@@ -20,7 +20,6 @@
 		73A6D7F71A96E721000BD98B /* PX2UIProgressBarCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7DC1A96E721000BD98B /* PX2UIProgressBarCtrl.cpp */; };
 		73A6D7F81A96E721000BD98B /* PX2UIScoreText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7DF1A96E721000BD98B /* PX2UIScoreText.cpp */; };
 		73A6D7F91A96E721000BD98B /* PX2UIScoreTextCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7E21A96E721000BD98B /* PX2UIScoreTextCtrl.cpp */; };
-		73A6D7FA1A96E721000BD98B /* PX2UISizeFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7E51A96E721000BD98B /* PX2UISizeFrame.cpp */; };
 		73A6D7FB1A96E721000BD98B /* PX2UIText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7E81A96E721000BD98B /* PX2UIText.cpp */; };
 		73A6D7FC1A96E721000BD98B /* PX2UIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7EB1A96E721000BD98B /* PX2UIView.cpp */; };
 /* End PBXBuildFile section */
@@ -78,9 +77,6 @@
 		73A6D7E21A96E721000BD98B /* PX2UIScoreTextCtrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIScoreTextCtrl.cpp; sourceTree = SOURCE_ROOT; };
 		73A6D7E31A96E721000BD98B /* PX2UIScoreTextCtrl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIScoreTextCtrl.hpp; sourceTree = SOURCE_ROOT; };
 		73A6D7E41A96E721000BD98B /* PX2UIScoreTextCtrl.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIScoreTextCtrl.inl; sourceTree = SOURCE_ROOT; };
-		73A6D7E51A96E721000BD98B /* PX2UISizeFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UISizeFrame.cpp; sourceTree = SOURCE_ROOT; };
-		73A6D7E61A96E721000BD98B /* PX2UISizeFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UISizeFrame.hpp; sourceTree = SOURCE_ROOT; };
-		73A6D7E71A96E721000BD98B /* PX2UISizeFrame.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UISizeFrame.inl; sourceTree = SOURCE_ROOT; };
 		73A6D7E81A96E721000BD98B /* PX2UIText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2UIText.cpp; sourceTree = SOURCE_ROOT; };
 		73A6D7E91A96E721000BD98B /* PX2UIText.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2UIText.hpp; sourceTree = SOURCE_ROOT; };
 		73A6D7EA1A96E721000BD98B /* PX2UIText.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2UIText.inl; sourceTree = SOURCE_ROOT; };
@@ -167,9 +163,6 @@
 				73A6D7E21A96E721000BD98B /* PX2UIScoreTextCtrl.cpp */,
 				73A6D7E31A96E721000BD98B /* PX2UIScoreTextCtrl.hpp */,
 				73A6D7E41A96E721000BD98B /* PX2UIScoreTextCtrl.inl */,
-				73A6D7E51A96E721000BD98B /* PX2UISizeFrame.cpp */,
-				73A6D7E61A96E721000BD98B /* PX2UISizeFrame.hpp */,
-				73A6D7E71A96E721000BD98B /* PX2UISizeFrame.inl */,
 				73A6D7E81A96E721000BD98B /* PX2UIText.cpp */,
 				73A6D7E91A96E721000BD98B /* PX2UIText.hpp */,
 				73A6D7EA1A96E721000BD98B /* PX2UIText.inl */,
@@ -243,7 +236,6 @@
 				73A6D7F51A96E721000BD98B /* PX2UIPicBox.cpp in Sources */,
 				73A6D7EF1A96E721000BD98B /* PX2UIButtonBase.cpp in Sources */,
 				73A6D7FC1A96E721000BD98B /* PX2UIView.cpp in Sources */,
-				73A6D7FA1A96E721000BD98B /* PX2UISizeFrame.cpp in Sources */,
 				73A6D7F01A96E721000BD98B /* PX2UICheckButton.cpp in Sources */,
 				73A6D7F81A96E721000BD98B /* PX2UIScoreText.cpp in Sources */,
 			);

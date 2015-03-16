@@ -20,9 +20,6 @@
          location = "group:PX2UI/PX2UI.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:PX2Terrains/PX2Terrains.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:PX2Net/PX2Net.xcodeproj">
       </FileRef>
       <FileRef

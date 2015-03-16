@@ -27,7 +27,6 @@
 		73A6DAAA1A96F478000BD98B /* libPX2Mathematics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA01A96F478000BD98B /* libPX2Mathematics.a */; };
 		73A6DAAB1A96F478000BD98B /* libPX2Net.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA11A96F478000BD98B /* libPX2Net.a */; };
 		73A6DAAC1A96F478000BD98B /* libPX2Simulation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA21A96F478000BD98B /* libPX2Simulation.a */; };
-		73A6DAAD1A96F478000BD98B /* libPX2Terrains.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA31A96F478000BD98B /* libPX2Terrains.a */; };
 		73A6DAAE1A96F478000BD98B /* libPX2UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA41A96F478000BD98B /* libPX2UI.a */; };
 		73A6DAAF1A96F478000BD98B /* libPX2Unity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DAA51A96F478000BD98B /* libPX2Unity.a */; };
 		73A6DAB21A97005D000BD98B /* AppPlayerApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6DAB01A97005D000BD98B /* AppPlayerApp.cpp */; };
@@ -82,7 +81,6 @@
 				73A6DAAA1A96F478000BD98B /* libPX2Mathematics.a in Frameworks */,
 				73A6DAAB1A96F478000BD98B /* libPX2Net.a in Frameworks */,
 				73A6DAAC1A96F478000BD98B /* libPX2Simulation.a in Frameworks */,
-				73A6DAAD1A96F478000BD98B /* libPX2Terrains.a in Frameworks */,
 				73A6DAAE1A96F478000BD98B /* libPX2UI.a in Frameworks */,
 				73A6DAAF1A96F478000BD98B /* libPX2Unity.a in Frameworks */,
 				7384563E1A95D85700876E88 /* OpenGLES.framework in Frameworks */,

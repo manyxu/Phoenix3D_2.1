@@ -50,6 +50,10 @@
 		73A6D9491A96EC68000BD98B /* PX2SkillStepLink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D91B1A96EC68000BD98B /* PX2SkillStepLink.cpp */; };
 		73A6D94A1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D91E1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp */; };
 		73A6D9F41A96EEAA000BD98B /* PX2ToLua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D9F21A96EEAA000BD98B /* PX2ToLua.cpp */; };
+		75C859FB1AB69B800035A15B /* PX2AmbientRegionActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75C859F01AB69B800035A15B /* PX2AmbientRegionActor.cpp */; };
+		75C859FC1AB69B800035A15B /* PX2LightActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75C859F31AB69B800035A15B /* PX2LightActor.cpp */; };
+		75C859FD1AB69B800035A15B /* PX2RenderStepScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75C859F61AB69B800035A15B /* PX2RenderStepScene.cpp */; };
+		75C859FE1AB69B800035A15B /* PX2TriggerActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75C859F81AB69B800035A15B /* PX2TriggerActor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -169,6 +173,17 @@
 		73A6D9201A96EC68000BD98B /* PX2SkillStepRangeTime.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkillStepRangeTime.inl; sourceTree = "<group>"; };
 		73A6D9F21A96EEAA000BD98B /* PX2ToLua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PX2ToLua.cpp; path = ../PX2ToLua/PX2ToLua.cpp; sourceTree = "<group>"; };
 		73A6D9F31A96EEAA000BD98B /* PX2ToLua.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PX2ToLua.hpp; path = ../PX2ToLua/PX2ToLua.hpp; sourceTree = "<group>"; };
+		75C859F01AB69B800035A15B /* PX2AmbientRegionActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2AmbientRegionActor.cpp; sourceTree = SOURCE_ROOT; };
+		75C859F11AB69B800035A15B /* PX2AmbientRegionActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2AmbientRegionActor.hpp; sourceTree = SOURCE_ROOT; };
+		75C859F21AB69B800035A15B /* PX2AmbientRegionActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2AmbientRegionActor.inl; sourceTree = SOURCE_ROOT; };
+		75C859F31AB69B800035A15B /* PX2LightActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LightActor.cpp; sourceTree = SOURCE_ROOT; };
+		75C859F41AB69B800035A15B /* PX2LightActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LightActor.hpp; sourceTree = SOURCE_ROOT; };
+		75C859F51AB69B800035A15B /* PX2LightActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2LightActor.inl; sourceTree = SOURCE_ROOT; };
+		75C859F61AB69B800035A15B /* PX2RenderStepScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2RenderStepScene.cpp; sourceTree = SOURCE_ROOT; };
+		75C859F71AB69B800035A15B /* PX2RenderStepScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2RenderStepScene.hpp; sourceTree = SOURCE_ROOT; };
+		75C859F81AB69B800035A15B /* PX2TriggerActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2TriggerActor.cpp; sourceTree = SOURCE_ROOT; };
+		75C859F91AB69B800035A15B /* PX2TriggerActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2TriggerActor.hpp; sourceTree = SOURCE_ROOT; };
+		75C859FA1AB69B800035A15B /* PX2TriggerActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2TriggerActor.inl; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +229,17 @@
 		73A6D8991A96EC02000BD98B /* PX2Simulation */ = {
 			isa = PBXGroup;
 			children = (
+				75C859F01AB69B800035A15B /* PX2AmbientRegionActor.cpp */,
+				75C859F11AB69B800035A15B /* PX2AmbientRegionActor.hpp */,
+				75C859F21AB69B800035A15B /* PX2AmbientRegionActor.inl */,
+				75C859F31AB69B800035A15B /* PX2LightActor.cpp */,
+				75C859F41AB69B800035A15B /* PX2LightActor.hpp */,
+				75C859F51AB69B800035A15B /* PX2LightActor.inl */,
+				75C859F61AB69B800035A15B /* PX2RenderStepScene.cpp */,
+				75C859F71AB69B800035A15B /* PX2RenderStepScene.hpp */,
+				75C859F81AB69B800035A15B /* PX2TriggerActor.cpp */,
+				75C859F91AB69B800035A15B /* PX2TriggerActor.hpp */,
+				75C859FA1AB69B800035A15B /* PX2TriggerActor.inl */,
 				7309DBB21AA0708E004D007A /* PX2SkillComponent.inl */,
 				73A6D8BD1A96EC68000BD98B /* PX2AccoutManager.cpp */,
 				73A6D8BE1A96EC68000BD98B /* PX2AccoutManager.hpp */,
@@ -394,6 +420,7 @@
 				73A6D9401A96EC68000BD98B /* PX2Skill_Affect.cpp in Sources */,
 				73A6D9461A96EC68000BD98B /* PX2SkillInstance.cpp in Sources */,
 				73A6D9471A96EC68000BD98B /* PX2SkillStep.cpp in Sources */,
+				75C859FB1AB69B800035A15B /* PX2AmbientRegionActor.cpp in Sources */,
 				73A6D9251A96EC68000BD98B /* PX2Animation.cpp in Sources */,
 				73A6D9431A96EC68000BD98B /* PX2SkillActor.cpp in Sources */,
 				73A6D92A1A96EC68000BD98B /* PX2Character_Anim.cpp in Sources */,
@@ -404,6 +431,7 @@
 				73A6D94A1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp in Sources */,
 				73A6D9241A96EC68000BD98B /* PX2ActorPicker.cpp in Sources */,
 				73A6D92E1A96EC68000BD98B /* PX2EffectActor.cpp in Sources */,
+				75C859FE1AB69B800035A15B /* PX2TriggerActor.cpp in Sources */,
 				73A6D9301A96EC68000BD98B /* PX2EngineLoop_Play.cpp in Sources */,
 				73A6D9481A96EC68000BD98B /* PX2SkillStepFarTrack.cpp in Sources */,
 				73A6D9211A96EC68000BD98B /* PX2AccoutManager.cpp in Sources */,
@@ -412,12 +440,14 @@
 				73A6D92F1A96EC68000BD98B /* PX2EngineLoop_InitTerm.cpp in Sources */,
 				73A6D92D1A96EC68000BD98B /* PX2Creater.cpp in Sources */,
 				73A6D9441A96EC68000BD98B /* PX2SkillActorLink.cpp in Sources */,
+				75C859FC1AB69B800035A15B /* PX2LightActor.cpp in Sources */,
 				73A6D9391A96EC68000BD98B /* PX2Selection.cpp in Sources */,
 				73A6D9341A96EC68000BD98B /* PX2PlatformSDKEventType.cpp in Sources */,
 				73A6D9271A96EC68000BD98B /* PX2AnimationObject.cpp in Sources */,
 				73A6D9311A96EC68000BD98B /* PX2EngineLoop_Tick.cpp in Sources */,
 				73A6D93F1A96EC68000BD98B /* PX2Skill_Activate.cpp in Sources */,
 				73A6D92B1A96EC68000BD98B /* PX2Character_HPAP.cpp in Sources */,
+				75C859FD1AB69B800035A15B /* PX2RenderStepScene.cpp in Sources */,
 				73A6D9371A96EC68000BD98B /* PX2Scene_Manager.cpp in Sources */,
 				73A6D9221A96EC68000BD98B /* PX2Actor_BitSet.cpp in Sources */,
 				73A6D9231A96EC68000BD98B /* PX2Actor.cpp in Sources */,
