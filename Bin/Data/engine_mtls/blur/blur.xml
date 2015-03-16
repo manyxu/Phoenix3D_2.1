@@ -26,8 +26,8 @@
 					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
 				</o>
 				<c>
-					<var index="0" name="ShineEmissive" nr="1"/>
-					<var index="1" name="UVParam" nr="1"/>
+					<var index="0" name="UVParam" nr="1"/>
+					<var index="1" name="ShineEmissive" nr="1"/>
 					<var index="2" name="UVOffsets" nr="16"/>
 				</c>
 				<s>
@@ -40,7 +40,7 @@
 			</shader>
 			<renderproperty>
 				<Alpha>
-					<p param="BlendEnabled" value="true"/>
+					<p param="BlendEnabled" value="false"/>
 					<p param="SrcBlend" value="SBM_SRC_ALPHA"/>
 					<p param="DstBlend" value="DBM_ONE_MINUS_SRC_ALPHA"/>
 					<p param="CompareEnabled" value="false"/>
@@ -49,11 +49,11 @@
 				</Alpha>
 				<Depth>
 					<p param="Enabled" value="true"/>
-					<p param="Writable" value="false"/>
+					<p param="Writable" value="true"/>
 					<p param="Compare" value="CM_LEQUAL"/>
 				</Depth>
 				<Cull>
-					<p param="Enabled" value="true"/>
+					<p param="Enabled" value="false"/>
 					<p param="CCWOrder" value="true"/>
 				</Cull>
 				<Wire>

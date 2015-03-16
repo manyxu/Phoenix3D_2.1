@@ -147,7 +147,7 @@ void UIPicBox::SetTexture(const std::string &filename)
 		mElementName = "";
 		mTexturePathname = filename;
 
-		GetMaterialInstance()->SetPixelTexture(0, "Sample0", texture);
+		GetMaterialInstance()->SetPixelTexture(0, "SamplerBase", texture);
 	}
 }
 //----------------------------------------------------------------------------
@@ -178,13 +178,13 @@ void UIPicBox::SetTexture(const std::string &texPackName,
 		mTexturePackName = texPackName;
 
 		mTexturePathname = texture->GetResourcePath();
-		GetMaterialInstance()->SetPixelTexture(0, "Sample0", texture);
+		GetMaterialInstance()->SetPixelTexture(0, "SamplerBase", texture);
 	}
 }
 //----------------------------------------------------------------------------
 void UIPicBox::SetTexture(Texture *tex)
 {
-	GetMaterialInstance()->SetPixelTexture(0, "Sample0", tex);
+	GetMaterialInstance()->SetPixelTexture(0, "SamplerBase", tex);
 }
 //----------------------------------------------------------------------------
 void UIPicBox::SetUVRepeat(const Float2 &uvRepeat)

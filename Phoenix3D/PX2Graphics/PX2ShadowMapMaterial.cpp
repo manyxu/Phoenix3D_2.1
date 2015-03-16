@@ -12,8 +12,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(GlobalMaterial, ShadowMap_Material);
 ShadowMap_Material::ShadowMap_Material()
 {
 	mInstance = new0 MaterialInstance(
-		"Data/engine_mtls/std_shadowmap/std_shadowmap.px2obj",
-		"default", false);
+		"Data/engine_mtls/std/std.px2obj", "std_shadowmapdepth", false);
 }
 //----------------------------------------------------------------------------
 ShadowMap_Material::~ShadowMap_Material()

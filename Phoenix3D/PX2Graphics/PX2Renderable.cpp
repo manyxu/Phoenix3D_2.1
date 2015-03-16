@@ -51,6 +51,7 @@ mFogIP_Distance(1.0f)
 
 	mDefaultShine = new0 Shine();
 	mDefaultShine->SetName("DefaultShine");
+	mDefaultShine->Emissive = Float4::BLACK;
 	mDefaultShine->Ambient = Float4::MakeColor(150, 150, 150, 255);
 	mDefaultShine->Diffuse = mDefaultShine->Ambient;
 	mDefaultShine->Specular = Float4::MakeColor(230, 230, 230, 51);
@@ -100,6 +101,7 @@ mFogIP_Distance(1.0f)
 
 	mDefaultShine = new0 Shine();
 	mDefaultShine->SetName("DefaultShine");
+	mDefaultShine->Emissive = Float4::BLACK;
 	mDefaultShine->Ambient = Float4::MakeColor(150, 150, 150, 255);
 	mDefaultShine->Diffuse = mDefaultShine->Ambient;
 	mDefaultShine->Specular = Float4::MakeColor(230, 230, 230, 51);

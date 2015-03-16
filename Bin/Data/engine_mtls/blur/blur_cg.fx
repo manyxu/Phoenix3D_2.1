@@ -35,6 +35,5 @@ void p_blur
         sampleColor = tex2D(SamplerBase, uvSample);
         lastColor += sampleColor * UVOffsets[i].z;
     }
-	 
 	pixelColor = lastColor*ShineEmissive;
 }

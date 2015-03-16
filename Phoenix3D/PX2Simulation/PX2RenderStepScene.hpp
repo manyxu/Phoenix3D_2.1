@@ -36,14 +36,30 @@ namespace PX2
 		bool IsUseShaderMap() const;
 
 	protected:
+		void _SetCameraF(Camera *camera, UIPicBox *uiPicBox);
+
 		bool mIsUseBloom;
 		bool mIsUseShaderMap;
+
+		CameraPtr mScreenCamera;
 
 		UIViewPtr mEffect_UIView;
 		UIFramePtr mEffect_UIFrame;
 
+		float mBloomPicSize;
+		float mBloomTexSize;
+		float mBloomBlurWeight;
+		float mBloomBlurValue;
+
 		RenderTargetPtr mEffect_RenderTarget_Normal;
 		UIPicBoxPtr mEffect_UIPicBox_Normal;
+
+		RenderTargetPtr mEffect_RenderTarget_BlurH;
+		UIPicBoxPtr mEffect_UIPicBox_BlurH;
+		RenderTargetPtr mEffect_RenderTarget_BlurV;
+		UIPicBoxPtr mEffect_UIPicBox_BlurV;
+		Float4 mEffect_Blur_UVOffsets_H[16];
+		Float4 mEffect_Blur_UVOffsets_V[16];
 
 		Culler mEffect_Culler_Shadow;
 		RenderTargetPtr mEffect_RenderTarget_Shadow;
