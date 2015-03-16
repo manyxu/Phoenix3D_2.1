@@ -1,5 +1,5 @@
 <material name="std_shadowmap">
-	<technique name="T0" tag="default">
+	<technique name="default">
 		<pass name="P0">
 			<shader type="vs" name="std_shadowmap" ni="2" no="2" nc="1" ns="0">
 				<i>
@@ -14,8 +14,8 @@
 					<var index="0" name="PVWMatrix" nr="4"/>
 				</c>
 				<p>
-					<var type="cg" file="std_shadowmap_cg.fx" entry="std_shadowmap"/>
-					<var type="gles2" file="std_shadowmap_gles2_ps.fx" entry="std_shadowmap"/>
+					<var type="cg" file="std_shadowmap_cg.fx"/>
+					<var type="gles2" file="std_shadowmap_gles2_ps.fx"/>
 				</p>
 			</shader>
 			<shader type="ps" name="std_shadowmap" ni="1" no="1" nc="0" ns="1">
@@ -31,8 +31,8 @@
 					<var index="0" name="SampleBase" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
 				</s>
 				<p>
-					<var type="cg" file="std_shadowmap_cg.fx" entry="std_shadowmap"/>
-					<var type="gles2" file="std_shadowmap_gles2_ps.fx" entry="std_shadowmap"/>
+					<var type="cg" file="std_shadowmap_cg.fx"/>
+					<var type="gles2" file="std_shadowmap_gles2_ps.fx"/>
 				</p>
 			</shader>
 			<renderproperty>

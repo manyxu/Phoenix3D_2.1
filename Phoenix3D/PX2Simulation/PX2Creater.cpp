@@ -115,7 +115,7 @@ Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 	mesh->SetName("NoName");
 
 	MaterialInstance *mi = new0 MaterialInstance(
-		"Data/engine_mtls/std/std.px2obj", "light", false);
+		"Data/engine_mtls/std/std.px2obj", "lightshadow", false);
 	mesh->SetMaterialInstance(mi);
 
 	mi->SetPixelTexture(0, "SampleBase", tex);
@@ -158,7 +158,7 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 		if (mesh)
 		{
 			MaterialInstance *mi = new0 MaterialInstance(
-				"Data/engine_mtls/std/std.px2obj", "light", false);
+				"Data/engine_mtls/std/std.px2obj", "lightshadow", false);
 			mesh->SetMaterialInstance(mi);
 
 			mi->SetPixelTexture(0, "SampleBase", tex);
@@ -197,7 +197,7 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 	mesh->SetName("NoName");
 
 	MaterialInstance *mi = new0 MaterialInstance(
-		"Data/engine_mtls/std/std.px2obj", "light", false);
+		"Data/engine_mtls/std/std.px2obj", "lightshadow", false);
 	mesh->SetMaterialInstance(mi);
 
 	mi->SetPixelTexture(0, "SampleBase", tex);

@@ -2,13 +2,13 @@
 OPTION ARB_fragment_program_shadow;
 # cgc version 3.1.0010, build date Feb  8 2012
 # command line args: -profile arbfp1
-# source file: std_cg.fx
+# source file: std_lightshadow_cg.fx
 #vendor NVIDIA Corporation
 #version 3.1.0.10
 #profile arbfp1
-#program p_std
-#semantic p_std.FogColorHeight
-#semantic p_std.FogColorDist
+#program p_std_lightshadow
+#semantic p_std_lightshadow.FogColorHeight
+#semantic p_std_lightshadow.FogColorDist
 #semantic SampleBase
 #semantic SampleShadowDepth
 #var float4 vertexColor : $vin.COLOR : COL0 : 0 : 1

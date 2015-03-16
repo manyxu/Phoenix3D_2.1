@@ -24,7 +24,7 @@ mIsUseShaderMap(false)
 	//mEffect_UIFrame->SetRelativeType_V(UIFrame::LT_HALF);
 
 	//SetUseBloom(false);
-	//SetUseShaderMap(true);
+	SetUseShaderMap(true);
 }
 //----------------------------------------------------------------------------
 RenderStepScene::~RenderStepScene()
@@ -181,10 +181,10 @@ void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 	mIsUseShaderMap = useShaderMap;
 
 	Texture::Format tformat = Texture::TF_A8R8G8B8;
-	mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, 512, 512, false, true);
+	mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, 2048, 2048, false, true);
 	mEffect_Material_Shadow = new0 ShadowMap_Material();
 
-	mEffect_UIPicBox_Shadow = new0 UIPicBox("Data/engine/default.png");
+	mEffect_UIPicBox_Shadow = new0 UIPicBox();
 	mEffect_UIFrame->AttachChild(mEffect_UIPicBox_Shadow);
 
 	mEffect_UIPicBox_Shadow->SetAnchorPoint(Float2::ZERO);

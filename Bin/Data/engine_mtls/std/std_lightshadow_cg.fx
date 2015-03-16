@@ -1,5 +1,4 @@
-
-void v_std
+void v_std_lightshadow
 (
     in float3 modelPosition : POSITION,
 	in float3 modelNormal : NORMAL,
@@ -75,7 +74,7 @@ sampler2D SampleShadowDepth = sampler_state
    WrapT     = Clamp;
 };
 
-void p_std
+void p_std_lightshadow
 (
 	in float4 vertexColor : COLOR,
     in float2 vertexTCoord0 : TEXCOORD0,

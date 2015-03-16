@@ -1,24 +1,24 @@
 !!ARBvp1.0
 # cgc version 3.1.0010, build date Feb  8 2012
 # command line args: -profile arbvp1
-# source file: std_cg.fx
+# source file: std_lightshadow_cg.fx
 #vendor NVIDIA Corporation
 #version 3.1.0.10
 #profile arbvp1
-#program v_std
-#semantic v_std.PVWMatrix
-#semantic v_std.WMatrix
-#semantic v_std.ProjectPVBSMatrix_Dir
-#semantic v_std.CameraWorldPosition
-#semantic v_std.LightWorldDVector_Dir
-#semantic v_std.ShineEmissive
-#semantic v_std.ShineAmbient
-#semantic v_std.ShineDiffuse
-#semantic v_std.ShineSpecular
-#semantic v_std.LightAmbient_Dir
-#semantic v_std.LightDiffuse_Dir
-#semantic v_std.LightSpecular_Dir
-#semantic v_std.FogParam
+#program v_std_lightshadow
+#semantic v_std_lightshadow.PVWMatrix
+#semantic v_std_lightshadow.WMatrix
+#semantic v_std_lightshadow.ProjectPVBSMatrix_Dir
+#semantic v_std_lightshadow.CameraWorldPosition
+#semantic v_std_lightshadow.LightWorldDVector_Dir
+#semantic v_std_lightshadow.ShineEmissive
+#semantic v_std_lightshadow.ShineAmbient
+#semantic v_std_lightshadow.ShineDiffuse
+#semantic v_std_lightshadow.ShineSpecular
+#semantic v_std_lightshadow.LightAmbient_Dir
+#semantic v_std_lightshadow.LightDiffuse_Dir
+#semantic v_std_lightshadow.LightSpecular_Dir
+#semantic v_std_lightshadow.FogParam
 #semantic SampleBase
 #semantic SampleShadowDepth
 #var float3 modelPosition : $vin.POSITION : POSITION : 0 : 1
