@@ -1,4 +1,3 @@
-
 varying mediump vec2 vertexTCoord0;
 uniform sampler2D SampleBase;
 void main()

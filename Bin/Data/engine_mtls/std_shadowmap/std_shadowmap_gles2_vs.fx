@@ -1,8 +1,6 @@
-
 attribute mediump vec3 modelPosition;
 attribute mediump vec2 modelTCoord0;
 varying mediump vec2 vertexTCoord0;
-
 uniform mat4 PVWMatrix;
 
 void main()
