@@ -1,5 +1,5 @@
 <material name="ui">
-	<technique name="T0" tag="default">
+	<technique name="default">
 		<pass name="P0">
 			<shader type="vs" name="ui" ni="2" no="2" nc="1" ns="0">
 				<i>
@@ -14,8 +14,8 @@
 					<var index="0" name="PVWMatrix" nr="4"/>
 				</c>
 				<p>
-					<var type="cg" file="ui_cg.fx" entry="ui"/>
-					<var type="gles2" file="ui_gles2_vs.fx" entry="ui"/>
+					<var type="cg" file="ui_cg.fx"/>
+					<var type="gles2" file="ui_gles2_vs.fx"/>
 				</p>
 			</shader>
 			<shader type="ps" name="ui" ni="1" no="1" nc="2" ns="1">
@@ -33,8 +33,8 @@
 					<var index="0" name="Sample0" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
 				</s>
 				<p>
-					<var type="cg" file="ui_cg.fx" entry="ui"/>
-					<var type="gles2" file="ui_gles2_ps.fx" entry="ui"/>
+					<var type="cg" file="ui_cg.fx"/>
+					<var type="gles2" file="ui_gles2_ps.fx"/>
 				</p>
 			</shader>
 			<renderproperty>

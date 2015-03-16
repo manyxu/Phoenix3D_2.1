@@ -46,7 +46,7 @@ MaterialTechnique* Material::GetTechnique(const std::string &techniqueName,
 {
 	for (int i = 0; i < (int)mTechniques.size(); i++)
 	{
-		if (techniqueName == mTechniques[i]->GetTag())
+		if (techniqueName == mTechniques[i]->GetName())
 		{
 			index = i;
 			return mTechniques[i];

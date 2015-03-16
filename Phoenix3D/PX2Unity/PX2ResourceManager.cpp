@@ -56,7 +56,7 @@ static void pngReadCallBack(png_structp png_ptr, png_bytep data, png_size_t leng
 	if((int)(isource->offset + length) <= isource->size)
 	{
 		memcpy(data, isource->data+isource->offset,length);
-		isource->offset += length;
+		isource->offset += (int)length;
 	}
 	else
 	{

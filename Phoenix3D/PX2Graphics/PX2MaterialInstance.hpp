@@ -20,7 +20,7 @@ namespace PX2
 	public:
 		MaterialInstance(const Material* material, int techniqueIndex);
 		MaterialInstance(const std::string &mtlFilename, 
-			const std::string &tagName, bool share);
+			const std::string &techName, bool share);
 		virtual ~MaterialInstance ();
 
 		// ≥…‘±∑√Œ 
@@ -62,7 +62,7 @@ namespace PX2
 
 	protected:
 		MaterialTechnique *_RefreshMaterial(const std::string &mtlFilename,
-			const std::string &intanceName, ShaderParametersPtr* &vp,
+			const std::string &intanceTechName, ShaderParametersPtr* &vp,
 			ShaderParametersPtr* &pp, bool shareMtl, MaterialPtr &outMtl, int &outTechIndex);
 		void _CreateConstants(ShaderParametersPtr &newParam, Shader *shader);
 		void _CopyParams(ShaderParameters *from, ShaderParameters *to);
@@ -73,7 +73,7 @@ namespace PX2
 		int mTechniqueIndex;
 
 		std::string mMaterialFilename;
-		std::string mInstanceTagName;
+		std::string mInstanceTechName;
 		
 		int mNumPasses;
 		ShaderParametersPtr* mVertexParameters;

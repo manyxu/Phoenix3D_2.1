@@ -1,0 +1,35 @@
+ps_3_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_3_0
+// source file: std_light_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_3_0
+//program p_std_light
+//semantic p_std_light.FogColorHeight
+//semantic p_std_light.FogColorDist
+//semantic SampleBase
+//semantic SampleShadowDepth
+//var float4 vertexColor : $vin.COLOR0 : ATTR0 : 0 : 1
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : ATTR1 : 1 : 1
+//var float2 vertexTCoord1 : $vin.TEXCOORD1 : ATTR2 : 2 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 3 : 1
+//var float4 FogColorHeight :  : c[0] : 4 : 1
+//var float4 FogColorDist :  : c[1] : 5 : 1
+//var sampler2D SampleBase :  : texunit 0 : -1 : 1
+//var sampler2D SampleShadowDepth :  :  : -1 : 0
+//const c[2] = 1
+dcl_2d s0
+def c2, 1.00000000, 0, 0, 0
+dcl_texcoord0 v1.xy
+dcl_color0 v0
+dcl_texcoord1 v2.xy
+mov r0.x, v1
+add r0.y, -v1, c2.x
+texld r0, r0, s0
+mul r0, r0, v0
+add r0.xyz, r0, -c0
+mad r0.xyz, v2.y, r0, c0
+add r0.xyz, r0, -c1
+mad oC0.xyz, v2.x, r0, c1
+mov oC0.w, r0
