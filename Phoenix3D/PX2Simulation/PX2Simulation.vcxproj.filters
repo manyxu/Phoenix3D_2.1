@@ -58,6 +58,24 @@
     <Filter Include="Actor\Ambient">
       <UniqueIdentifier>{168a1e2f-9fe3-4156-a50b-7964891965e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Actor\SkyActor">
+      <UniqueIdentifier>{1f18b09f-f4bc-44d7-a01c-3f4cde1b57ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Terrain">
+      <UniqueIdentifier>{47946027-c44c-41a4-a071-2be5241d2d0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Camera">
+      <UniqueIdentifier>{77d58dbc-afb6-495b-9f97-e3abaa09e072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Effect">
+      <UniqueIdentifier>{474d5f14-0cd2-45a7-8b30-2defb931204e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Light">
+      <UniqueIdentifier>{aa6d778f-7dc8-4c63-9479-1088bdefdefd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Actor\Trigger">
+      <UniqueIdentifier>{b79157c8-5612-40c1-8664-8979a7621871}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -101,9 +119,6 @@
     <ClInclude Include="PX2Creater.hpp">
       <Filter>Edit\Creater</Filter>
     </ClInclude>
-    <ClInclude Include="PX2CameraActor.hpp">
-      <Filter>Actor</Filter>
-    </ClInclude>
     <ClInclude Include="PX2ActorPicker.hpp">
       <Filter>Pick</Filter>
     </ClInclude>
@@ -127,9 +142,6 @@
     </ClInclude>
     <ClInclude Include="PX2AnimationObject.hpp">
       <Filter>Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2EffectActor.hpp">
-      <Filter>Actor</Filter>
     </ClInclude>
     <ClInclude Include="PX2CellSpaceT.hpp">
       <Filter>SpacePartition</Filter>
@@ -165,17 +177,32 @@
     <ClInclude Include="SkillCompl\PX2SkillStepRangeTime.hpp">
       <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="PX2LightActor.hpp">
-      <Filter>Actor</Filter>
-    </ClInclude>
     <ClInclude Include="PX2RenderStepScene.hpp">
       <Filter>EngineLoop</Filter>
     </ClInclude>
-    <ClInclude Include="PX2TriggerActor.hpp">
-      <Filter>Actor</Filter>
-    </ClInclude>
     <ClInclude Include="PX2AmbientRegionActor.hpp">
       <Filter>Actor\Ambient</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkyActor.hpp">
+      <Filter>Actor\SkyActor</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SkyMesh.hpp">
+      <Filter>Actor\SkyActor</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TerrainActor.hpp">
+      <Filter>Actor\Terrain</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2CameraActor.hpp">
+      <Filter>Actor\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2EffectActor.hpp">
+      <Filter>Actor\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightActor.hpp">
+      <Filter>Actor\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TriggerActor.hpp">
+      <Filter>Actor\Trigger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +254,6 @@
     <ClCompile Include="PX2EngineLoop_Play.cpp">
       <Filter>EngineLoop</Filter>
     </ClCompile>
-    <ClCompile Include="PX2CameraActor.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
     <ClCompile Include="PX2ActorPicker.cpp">
       <Filter>Pick</Filter>
     </ClCompile>
@@ -255,9 +279,6 @@
       <Filter>Animation</Filter>
     </ClCompile>
     <ClCompile Include="PX2Actor_BitSet.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2EffectActor.cpp">
       <Filter>Actor</Filter>
     </ClCompile>
     <ClCompile Include="PX2Scene_Manager.cpp">
@@ -305,17 +326,32 @@
     <ClCompile Include="SkillCompl\PX2SkillStepRangeTime.cpp">
       <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="PX2LightActor.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
     <ClCompile Include="PX2RenderStepScene.cpp">
       <Filter>EngineLoop</Filter>
     </ClCompile>
-    <ClCompile Include="PX2TriggerActor.cpp">
-      <Filter>Actor</Filter>
-    </ClCompile>
     <ClCompile Include="PX2AmbientRegionActor.cpp">
       <Filter>Actor\Ambient</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkyActor.cpp">
+      <Filter>Actor\SkyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SkyMesh.cpp">
+      <Filter>Actor\SkyActor</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TerrainActor.cpp">
+      <Filter>Actor\Terrain</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2CameraActor.cpp">
+      <Filter>Actor\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2EffectActor.cpp">
+      <Filter>Actor\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2LightActor.cpp">
+      <Filter>Actor\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TriggerActor.cpp">
+      <Filter>Actor\Trigger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -339,9 +375,6 @@
     </None>
     <None Include="PX2Scene.inl">
       <Filter>Scene</Filter>
-    </None>
-    <None Include="PX2CameraActor.inl">
-      <Filter>Actor</Filter>
     </None>
     <None Include="PX2Character.inl">
       <Filter>Character</Filter>
@@ -385,14 +418,26 @@
     <None Include="SkillCompl\PX2SkillComponent.inl">
       <Filter>Complements\SkillCompl</Filter>
     </None>
-    <None Include="PX2LightActor.inl">
-      <Filter>Actor</Filter>
-    </None>
-    <None Include="PX2TriggerActor.inl">
-      <Filter>Actor</Filter>
-    </None>
     <None Include="PX2AmbientRegionActor.inl">
       <Filter>Actor\Ambient</Filter>
+    </None>
+    <None Include="PX2SkyActor.inl">
+      <Filter>Actor\SkyActor</Filter>
+    </None>
+    <None Include="PX2TerrainActor.inl">
+      <Filter>Actor\Terrain</Filter>
+    </None>
+    <None Include="PX2CameraActor.inl">
+      <Filter>Actor\Camera</Filter>
+    </None>
+    <None Include="PX2LightActor.inl">
+      <Filter>Actor\Light</Filter>
+    </None>
+    <None Include="PX2TriggerActor.inl">
+      <Filter>Actor\Trigger</Filter>
+    </None>
+    <None Include="PX2SkyMesh.inl">
+      <Filter>Actor\SkyActor</Filter>
     </None>
   </ItemGroup>
 </Project>

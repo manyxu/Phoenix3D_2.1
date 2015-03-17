@@ -170,6 +170,12 @@
     <ClInclude Include="PX2DlgPlayConfig.hpp">
       <Filter>Dlgs</Filter>
     </ClInclude>
+    <ClInclude Include="PX2DlgTerainNew.hpp">
+      <Filter>Dlgs</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DlgTerainPageNew.hpp">
+      <Filter>Dlgs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2E_App.cpp">
@@ -284,6 +290,12 @@
       <Filter>TimeLine</Filter>
     </ClCompile>
     <ClCompile Include="PX2DlgPlayConfig.cpp">
+      <Filter>Dlgs</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DlgTerainNew.cpp">
+      <Filter>Dlgs</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DlgTerainPageNew.cpp">
       <Filter>Dlgs</Filter>
     </ClCompile>
   </ItemGroup>

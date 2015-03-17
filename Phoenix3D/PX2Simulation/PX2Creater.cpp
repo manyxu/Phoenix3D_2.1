@@ -91,6 +91,40 @@ TriggerActor *Creater::CreateActor_Trigger(Scene *scene, const APoint &pos)
 	return actor;
 }
 //----------------------------------------------------------------------------
+SkyActor *Creater::CreateActor_Sky(Scene *scene, const APoint &pos)
+{
+	SkyActor *actor = new0 SkyActor();
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
+TerrainActor *Creater::CreateActor_Terrain(Scene *scene, const APoint &pos,
+	const std::string &name, int terrainSize, int pageSize,
+	float gridSpacing)
+{
+	TerrainActor *actor = new0 TerrainActor();
+	actor->SetName(name);
+	actor->LocalTransform.SetTranslate(pos);
+
+	RawTerrain *rawTerrain = new0 RawTerrain();
+	rawTerrain->SetName("RawTerrain");
+	rawTerrain->SetSize(pageSize);
+	int quantity = terrainSize / (pageSize - 1);
+	rawTerrain->SetRowQuantity(quantity);
+	rawTerrain->SetColQuantity(quantity);
+	rawTerrain->SetSpacing(gridSpacing);
+	rawTerrain->AllocateRawTerrainPages();
+
+	actor->SetRawTerrain(rawTerrain);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
 Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 	bool isPosWorld, bool doAdd, bool usePickPos)
 {
@@ -208,6 +242,21 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 		AddObject(parent, mesh);
 
 	return mesh;
+}
+//----------------------------------------------------------------------------
+Movable *Creater::CreateTerrainPage(PX2::Terrain *terrain, int indexRow, 
+	int indexCol)
+{
+	RawTerrain *rawTerrain = DynamicCast<RawTerrain>(terrain);
+	if (rawTerrain)
+	{
+		RawTerrainPage *terrainPage = rawTerrain->CreatePage(indexRow, indexCol);
+		AddObject(rawTerrain, terrainPage);
+
+		return terrainPage;
+	}
+
+	return 0;
 }
 //----------------------------------------------------------------------------
 UIFrame *Creater::CreateUIFrame(Node *parent, const APoint &pos,

@@ -1,7 +1,6 @@
 // PX2Jungler.cpp
 
 #include "PX2Jungler.hpp"
-#include "PX2JunglerMaterial.hpp"
 using namespace PX2;
 
 int Jungler::msJunVertxNum[Jungler::JT_MAX_TYPE] = 
@@ -36,24 +35,6 @@ mJunglerType(type)
 
 	SetVertexBuffer(vBuffer);
 	SetIndexBuffer(iBuffer);
-
-	mShine = new0 Shine();
-	mShine->Ambient = Float4(0.6f, 0.6f, 0.6f, 1.0f);
-	mShine->Diffuse = Float4(0.6f, 0.6f, 0.6f, 1.0f);
-
-	JunglerMaterialPtr mtl = new0 JunglerMaterial();
-	mtl->GetCullProperty(0, 0)->Enabled = false;
-	mtl->GetAlphaProperty(0, 0)->CompareEnabled = true;
-	mtl->GetAlphaProperty(0, 0)->Compare = AlphaProperty::CM_GREATER;
-	mtl->GetAlphaProperty(0, 0)->Reference = 0.2f;
-
-	if (!tex->HasMipmaps())
-	{
-		tex->GenerateMipmaps();
-	}
-
-	mMtlInst = mtl->CreateInstance(tex, 0, mShine);
-	SetMaterialInstance(mMtlInst);
 }
 //----------------------------------------------------------------------------
 Jungler::~Jungler ()

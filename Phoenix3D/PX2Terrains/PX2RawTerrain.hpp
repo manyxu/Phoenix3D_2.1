@@ -5,7 +5,6 @@
 
 #include "PX2Terrain.hpp"
 #include "PX2RawTerrainPage.hpp"
-#include "PX2EditTerrainMaterial.hpp"
 
 namespace PX2
 {

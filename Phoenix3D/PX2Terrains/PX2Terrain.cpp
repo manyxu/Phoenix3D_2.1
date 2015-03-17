@@ -33,18 +33,16 @@ mSpacing(1.0f),
 mJunglerFrequency(1.0f),
 mJunglerStrength(1.0f)
 {
-	mShine = new0 Shine();
-	mShine->Emissive = Float4(0.0f, 0.0f, 0.0f, 0.0f);
-	mShine->Ambient = Float4(1.0f, 1.0f, 1.0f, 1.0f);
-	mShine->Diffuse = Float4(1.0f, 1.0f, 1.0f, 1.0f);
-	mShine->Specular = Float4(1.0f, 1.0f, 1.0f, 1.0f);
+	mTerrainShine = new0 Shine();
+	mTerrainShine->Emissive = Float4(0.0f, 0.0f, 0.0f, 0.0f);
+	mTerrainShine->Ambient = Float4(1.0f, 1.0f, 1.0f, 1.0f);
+	mTerrainShine->Diffuse = Float4(1.0f, 1.0f, 1.0f, 1.0f);
+	mTerrainShine->Specular = Float4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	mVFormatEdit = VertexFormat::Create(3,
 		VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
 		VertexFormat::AU_NORMAL, VertexFormat::AT_FLOAT3, 0,
 		VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0);
-		
-	mMtlEdit = new0 EditTerrainMaterial();
 }
 //----------------------------------------------------------------------------
 int Terrain::DetachChild (Movable* child)
@@ -315,11 +313,11 @@ void Terrain::RegistProperties ()
 	AddProperty("Size", Object::PT_INT, GetSize(), false);
 	AddProperty("Spacing", Object::PT_FLOAT, GetSpacing(), false);
 
-	Float3 emissive = Float3(mShine->Emissive[0], mShine->Emissive[1], mShine->Emissive[2]);
-	Float3 ambient = Float3(mShine->Ambient[0], mShine->Ambient[1], mShine->Ambient[2]);
-	Float3 diffuse = Float3(mShine->Diffuse[0], mShine->Diffuse[1], mShine->Diffuse[2]);
-	Float3 specular = Float3(mShine->Specular[0], mShine->Specular[1], mShine->Specular[2]);
-	float specularPow = mShine->Specular[3];
+	Float3 emissive = Float3(mTerrainShine->Emissive[0], mTerrainShine->Emissive[1], mTerrainShine->Emissive[2]);
+	Float3 ambient = Float3(mTerrainShine->Ambient[0], mTerrainShine->Ambient[1], mTerrainShine->Ambient[2]);
+	Float3 diffuse = Float3(mTerrainShine->Diffuse[0], mTerrainShine->Diffuse[1], mTerrainShine->Diffuse[2]);
+	Float3 specular = Float3(mTerrainShine->Specular[0], mTerrainShine->Specular[1], mTerrainShine->Specular[2]);
+	float specularPow = mTerrainShine->Specular[3];
 
 	AddProperty("S_Emissive", Object::PT_COLOR3FLOAT3, emissive);
 	AddProperty("S_Ambient", Object::PT_COLOR3FLOAT3, ambient);
@@ -335,28 +333,28 @@ void Terrain::OnPropertyChanged (const PropertyObject &obj)
 	if ("S_Emissive" == obj.Name)
 	{
 		Float3 val = PX2_ANY_AS(obj.Data, Float3);
-		mShine->Emissive =Float4(val[0], val[1], val[2], mShine->Emissive[3]);
+		mTerrainShine->Emissive =Float4(val[0], val[1], val[2], mTerrainShine->Emissive[3]);
 	}
 	else if ("S_Ambient" == obj.Name)
 	{
 		Float3 val = PX2_ANY_AS(obj.Data, Float3);
-		mShine->Ambient =Float4(val[0], val[1], val[2], mShine->Ambient[3]);
+		mTerrainShine->Ambient =Float4(val[0], val[1], val[2], mTerrainShine->Ambient[3]);
 	}
 	else if ("S_Diffuse" == obj.Name)
 	{
 		Float3 val = PX2_ANY_AS(obj.Data, Float3);
-		mShine->Diffuse =Float4(val[0], val[1], val[2], mShine->Diffuse[3]);
+		mTerrainShine->Diffuse =Float4(val[0], val[1], val[2], mTerrainShine->Diffuse[3]);
 	}
 	else if ("S_Specular" == obj.Name)
 	{
 		Float3 val = PX2_ANY_AS(obj.Data, Float3);
-		mShine->Specular =Float4(val[0], val[1], val[2], mShine->Specular[3]);
+		mTerrainShine->Specular =Float4(val[0], val[1], val[2], mTerrainShine->Specular[3]);
 	}
 	else if ("S_SpecularPow" == obj.Name)
 	{
 		float pow = PX2_ANY_AS(obj.Data, float);
-		mShine->Specular =Float4(mShine->Specular[0], mShine->Specular[1], 
-			mShine->Specular[2], pow);
+		mTerrainShine->Specular =Float4(mTerrainShine->Specular[0], mTerrainShine->Specular[1], 
+			mTerrainShine->Specular[2], pow);
 	}
 }
 //----------------------------------------------------------------------------
@@ -385,18 +383,17 @@ void Terrain::GetAllObjectsByName (const std::string& name,
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-Terrain::Terrain (LoadConstructor value)
-	:
+Terrain::Terrain (LoadConstructor value) :
 Node(value),
-	mPages(0),
-	mNumRows(0),
-	mNumCols(0),
-	mSize(0),
-	mMinElevation(0.0f),
-	mMaxElevation(0.0f),
-	mSpacing(0.0f),
-	mJunglerFrequency(1.0f),
-	mJunglerStrength(1.0f)
+mPages(0),
+mNumRows(0),
+mNumCols(0),
+mSize(0),
+mMinElevation(0.0f),
+mMaxElevation(0.0f),
+mSpacing(0.0f),
+mJunglerFrequency(1.0f),
+mJunglerStrength(1.0f)
 {
 }
 //----------------------------------------------------------------------------
@@ -424,8 +421,7 @@ void Terrain::Load (InStream& source)
 	}
 
 	source.ReadPointer(mVFormatEdit);
-	source.ReadPointer(mMtlEdit);
-	source.ReadPointer(mShine);
+	source.ReadPointer(mTerrainShine);
 	source.Read(mJunglerFrequency);
 	source.Read(mJunglerStrength);
 
@@ -445,8 +441,7 @@ void Terrain::Link (InStream& source)
 	}
 
 	source.ResolveLink(mVFormatEdit);
-	source.ResolveLink(mMtlEdit);
-	source.ResolveLink(mShine);
+	source.ResolveLink(mTerrainShine);
 }
 //----------------------------------------------------------------------------
 void Terrain::PostLink ()
@@ -467,8 +462,7 @@ bool Terrain::Register (OutStream& target) const
 		}
 
 		target.Register(mVFormatEdit);
-		target.Register(mMtlEdit);
-		target.Register(mShine);
+		target.Register(mTerrainShine);
 
 		return true;
 	}
@@ -498,8 +492,7 @@ void Terrain::Save (OutStream& target) const
 	}
 
 	target.WritePointer(mVFormatEdit);
-	target.WritePointer(mMtlEdit);
-	target.WritePointer(mShine);
+	target.WritePointer(mTerrainShine);
 	target.Write(mJunglerFrequency);
 	target.Write(mJunglerStrength);
 
@@ -510,6 +503,7 @@ int Terrain::GetStreamingSize (Stream &stream) const
 {
 	int size = Node::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
 	size += sizeof(mNumRows);
 	size += sizeof(mNumCols);
 	size += sizeof(mSize);
@@ -518,8 +512,7 @@ int Terrain::GetStreamingSize (Stream &stream) const
 	size += sizeof(mSpacing);
 	size += mNumRows*mNumCols*PX2_POINTERSIZE(mPages[0][0]);
 	size += PX2_POINTERSIZE(mVFormatEdit);
-	size += PX2_POINTERSIZE(mMtlEdit);
-	size += PX2_POINTERSIZE(mShine);
+	size += PX2_POINTERSIZE(mTerrainShine);
 	size += sizeof(mJunglerFrequency);
 	size += sizeof(mJunglerStrength);
 

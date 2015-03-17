@@ -38,9 +38,7 @@ namespace PX2
 
 		void UpdateHoles ();
 
-		EditTerrainMaterial *GetEidtMaterial ();
-		EditTerrainMaterial *GetSimpleMaterial ();
-		Shine *GetShine ();
+		Shine *GetTerrainShine ();
 
 		// 在radius，随机生成num个植被
 		void AddJunglers (Texture2D *tex, APoint center, float radius, int num, 
@@ -61,9 +59,8 @@ namespace PX2
 		TerrainPagePtr** mPages;
 
 		VertexFormatPtr mVFormatEdit;
-		EditTerrainMaterialPtr mMtlEdit;
 
-		ShinePtr mShine;
+		ShinePtr mTerrainShine;
 		float mJunglerFrequency;
 		float mJunglerStrength;
 	};

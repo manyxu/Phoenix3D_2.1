@@ -367,7 +367,7 @@ void UIText::ReCreate()
 	mFontTex = mFont->GetTexture();
 
 	MaterialInstance *mtlInst = GetMaterialInstance();
-	mtlInst->SetPixelTexture(0, "Sample0", mFontTex);
+	mtlInst->SetPixelTexture(0, "SamplerBase", mFontTex);
 
 	if (Renderer::IsOneBind(GetVertexBuffer()) || Renderer::IsOneBind(GetIndexBuffer()))
 	{

@@ -71,6 +71,9 @@ namespace PX2Editor
 
 		void OnSetEditMode(int type);
 
+		void OnCreateTerrain();
+		void OnCreateTerrainPange();
+
 		void InspChangeWindow(int windowType);
 		
 		void OnResRefresh();

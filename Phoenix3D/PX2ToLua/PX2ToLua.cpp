@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 03/12/15 19:14:05.
+** Generated automatically by tolua++-1.0.92 on 03/17/15 17:08:21.
 */
 
 #ifndef __cplusplus
@@ -288,39 +288,42 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Texture3D");
  tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"Selection");
+ tolua_usertype(tolua_S,"CameraActor");
+ tolua_usertype(tolua_S,"HMatrix");
  tolua_usertype(tolua_S,"ResourceManager");
  tolua_usertype(tolua_S,"PixelShader");
+ tolua_usertype(tolua_S,"UIButton");
  tolua_usertype(tolua_S,"Creater");
  tolua_usertype(tolua_S,"Logger");
- tolua_usertype(tolua_S,"CameraActor");
+ tolua_usertype(tolua_S,"UIEditBox");
  tolua_usertype(tolua_S,"Scene");
  tolua_usertype(tolua_S,"UIPicBox");
  tolua_usertype(tolua_S,"Controller");
- tolua_usertype(tolua_S,"HMatrix");
- tolua_usertype(tolua_S,"UIEditBox");
+ tolua_usertype(tolua_S,"RenderStep");
+ tolua_usertype(tolua_S,"Renderer");
  tolua_usertype(tolua_S,"HPoint");
- tolua_usertype(tolua_S,"UIButton");
+ tolua_usertype(tolua_S,"CameraShakeChannel");
  tolua_usertype(tolua_S,"Camera");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"TexPack");
  tolua_usertype(tolua_S,"Billboard");
  tolua_usertype(tolua_S,"PX2::AVector");
  tolua_usertype(tolua_S,"Vector2f");
- tolua_usertype(tolua_S,"RenderStep");
+ tolua_usertype(tolua_S,"PX2::Terrain");
  tolua_usertype(tolua_S,"EffectableController");
  tolua_usertype(tolua_S,"RibbonEmitter");
  tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"ParticleEmitter");
  tolua_usertype(tolua_S,"VisibleSet");
  tolua_usertype(tolua_S,"EffectModelNode");
- tolua_usertype(tolua_S,"CameraShakeChannel");
+ tolua_usertype(tolua_S,"SkyActor");
  tolua_usertype(tolua_S,"VertexShader");
  tolua_usertype(tolua_S,"CameraShake");
  tolua_usertype(tolua_S,"Character");
  tolua_usertype(tolua_S,"AlphaProperty");
  tolua_usertype(tolua_S,"VertexFormat");
  tolua_usertype(tolua_S,"BeamEmitter");
- tolua_usertype(tolua_S,"Renderer");
+ tolua_usertype(tolua_S,"TerrainActor");
  tolua_usertype(tolua_S,"APoint");
  tolua_usertype(tolua_S,"GlobalMaterial");
  tolua_usertype(tolua_S,"AVector");
@@ -25145,6 +25148,87 @@ static int tolua_PX2_Creater_CreateActor_Trigger00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: CreateActor_Sky of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateActor_Sky00
+static int tolua_PX2_Creater_CreateActor_Sky00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateActor_Sky'", NULL);
+#endif
+  {
+   SkyActor* tolua_ret = (SkyActor*)  self->CreateActor_Sky(scene,*pos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"SkyActor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateActor_Sky'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateActor_Terrain of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateActor_Terrain00
+static int tolua_PX2_Creater_CreateActor_Terrain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_iscppstring(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,6,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,7,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,8,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+  const std::string name = ((const std::string)  tolua_tocppstring(tolua_S,4,0));
+  int terrainSize = ((int)  tolua_tonumber(tolua_S,5,0));
+  int pageSize = ((int)  tolua_tonumber(tolua_S,6,0));
+  float gridSpacing = ((float)  tolua_tonumber(tolua_S,7,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateActor_Terrain'", NULL);
+#endif
+  {
+   TerrainActor* tolua_ret = (TerrainActor*)  self->CreateActor_Terrain(scene,*pos,name,terrainSize,pageSize,gridSpacing);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TerrainActor");
+   tolua_pushcppstring(tolua_S,(const char*)name);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateActor_Terrain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: CreateRectangle of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateRectangle00
 static int tolua_PX2_Creater_CreateRectangle00(lua_State* tolua_S)
@@ -25266,6 +25350,44 @@ static int tolua_PX2_Creater_CreateSphere00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'CreateSphere'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateTerrainPage of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateTerrainPage00
+static int tolua_PX2_Creater_CreateTerrainPage00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"PX2::Terrain",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,5,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  PX2::Terrain* terrain = ((PX2::Terrain*)  tolua_tousertype(tolua_S,2,0));
+  int indexRow = ((int)  tolua_tonumber(tolua_S,3,0));
+  int indexCol = ((int)  tolua_tonumber(tolua_S,4,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateTerrainPage'", NULL);
+#endif
+  {
+   Movable* tolua_ret = (Movable*)  self->CreateTerrainPage(terrain,indexRow,indexCol);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Movable");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateTerrainPage'.",&tolua_err);
  return 0;
 #endif
 }
@@ -29181,9 +29303,12 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateActor_Effect",tolua_PX2_Creater_CreateActor_Effect00);
    tolua_function(tolua_S,"CreateActor_Character",tolua_PX2_Creater_CreateActor_Character00);
    tolua_function(tolua_S,"CreateActor_Trigger",tolua_PX2_Creater_CreateActor_Trigger00);
+   tolua_function(tolua_S,"CreateActor_Sky",tolua_PX2_Creater_CreateActor_Sky00);
+   tolua_function(tolua_S,"CreateActor_Terrain",tolua_PX2_Creater_CreateActor_Terrain00);
    tolua_function(tolua_S,"CreateRectangle",tolua_PX2_Creater_CreateRectangle00);
    tolua_function(tolua_S,"CreateBox",tolua_PX2_Creater_CreateBox00);
    tolua_function(tolua_S,"CreateSphere",tolua_PX2_Creater_CreateSphere00);
+   tolua_function(tolua_S,"CreateTerrainPage",tolua_PX2_Creater_CreateTerrainPage00);
    tolua_function(tolua_S,"CreateUIFrame",tolua_PX2_Creater_CreateUIFrame00);
    tolua_function(tolua_S,"CreateUIPicBox",tolua_PX2_Creater_CreateUIPicBox00);
    tolua_function(tolua_S,"CreateUIPicBox",tolua_PX2_Creater_CreateUIPicBox01);

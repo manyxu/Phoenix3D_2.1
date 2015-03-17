@@ -17,6 +17,8 @@
 #include "PX2LightActor.hpp"
 #include "PX2TriggerActor.hpp"
 #include "PX2Character.hpp"
+#include "PX2SkyActor.hpp"
+#include "PX2SkyMesh.hpp"
 
 // Animation
 #include "PX2Animation.hpp"

@@ -24,7 +24,7 @@ mIsUseShaderMap(false)
 	mEffect_UIFrame = new0 UIFrame();
 	mEffect_UIView->SetNode(mEffect_UIFrame);
 
-	SetUseBloom(true);
+	//SetUseBloom(true);
 	//SetUseShaderMap(true);
 }
 //----------------------------------------------------------------------------

@@ -1,7 +1,6 @@
 // PX2TerrainPage.cpp
 
 #include "PX2TerrainPage.hpp"
-#include "PX2EditTerrainMaterial.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, TriMesh, TerrainPage);
@@ -396,6 +395,7 @@ int TerrainPage::GetStreamingSize (Stream &stream) const
 {
 	int size = TriMesh::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
 	size += sizeof(mSize);
 	size += mSize*mSize*sizeof(mHeights[0]);
 	size += sizeof(mOrigin);
@@ -403,11 +403,17 @@ int TerrainPage::GetStreamingSize (Stream &stream) const
 
 	int numHoles = (int)mHoleIndexs.size();
 	size += sizeof(numHoles);
-	size += sizeof(int)*numHoles;
+	if (numHoles > 0)
+	{
+		size += sizeof(int)*numHoles;
+	}
 
 	int numJuns = (int)mJunglers.size();
 	size += sizeof(numJuns);
-	size += numJuns * PX2_POINTERSIZE(mJunglers[0]);
+	if (numJuns > 0)
+	{
+		size += numJuns * PX2_POINTERSIZE(mJunglers[0]);
+	}
 
 	return size;
 }

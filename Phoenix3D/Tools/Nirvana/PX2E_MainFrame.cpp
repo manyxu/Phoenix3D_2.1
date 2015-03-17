@@ -16,6 +16,8 @@
 
 #include "PX2DlgCreateProject.hpp"
 #include "PX2DlgPlayConfig.hpp"
+#include "PX2DlgTerainNew.hpp"
+#include "PX2DlgTerainPageNew.hpp"
 
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
@@ -684,6 +686,45 @@ void E_MainFrame::OnSetting()
 void E_MainFrame::InspChangeWindow(int windowType)
 {
 	mInspView->ChangeShowWindow(windowType);
+}
+//----------------------------------------------------------------------------
+void  E_MainFrame::OnCreateTerrain()
+{
+	Scene *scene = PX2_PROJ.GetScene();
+	if (!scene) return;
+
+	DlgTerrainNew dlg(mRenderViewScene);
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		PX2_CREATER.CreateActor_Terrain(scene, APoint::ORIGIN,
+			dlg.mValue_TerrainName,
+			dlg.mValue_TerrainWidth,
+			dlg.mValue_PageWidth + 1, dlg.mValue_GridSpace);
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnCreateTerrainPange()
+{
+	Scene *scene = PX2_PROJ.GetScene();
+	if (!scene) return;
+
+	RawTerrain *rawTerrain = DynamicCast<RawTerrain>(PX2_SELECTION.GetFirstObject());
+	if (rawTerrain)
+	{
+		DlgTerrainPageNew dlg(mRenderViewScene);
+		if (dlg.ShowModal() == wxID_OK)
+		{
+			TerrainPage *page = rawTerrain->GetPage(dlg.mRowI, dlg.mColI);
+			if (page)
+			{
+				wxMessageBox(PX2_LM.GetValue("Tip13"), PX2_LM.GetValue("Tip0"), wxOK);
+			}
+			else
+			{
+				PX2_CREATER.CreateTerrainPage(rawTerrain, dlg.mRowI, dlg.mColI);
+			}
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::OnResRefresh()

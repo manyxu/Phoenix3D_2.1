@@ -11,11 +11,6 @@ inline Texture2D *Jungler::GetTexture ()
 	return mTexture;
 }
 //----------------------------------------------------------------------------
-inline Shine *Jungler::GetShine()
-{
-	return mShine;
-}
-//----------------------------------------------------------------------------
 inline int Jungler::GetNum ()
 {
 	return (int)mPoses.size();

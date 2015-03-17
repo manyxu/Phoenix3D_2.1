@@ -6,7 +6,6 @@
 #include "PX2TerrainsPre.hpp"
 #include "PX2TriMesh.hpp"
 #include "PX2Jungler.hpp"
-#include "PX2EditTerrainMaterial.hpp"
 
 namespace PX2
 {

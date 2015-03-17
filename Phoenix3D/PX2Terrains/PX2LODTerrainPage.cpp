@@ -119,14 +119,14 @@ void LODTerrainPage::InitializeDerivedData ()
 void LODTerrainPage::SetPixelTolerance (float tolerance)
 {
 	const Rectf &rect = GraphicsRoot::GetSingleton().GetViewRect();
-	const Camera *cam = GraphicsRoot::GetSingleton().GetCamera();
+	//const Camera *cam = GraphicsRoot::GetSingleton().GetCamera();
 
-	float rMax = cam->GetRMax();
-	float dMin = cam->GetDMin();
+	//float rMax = cam->GetRMax();
+	//float dMin = cam->GetDMin();
 
-	mPixelTolerance = tolerance;
-	mWorldTolerance = 2.0f*rMax*mPixelTolerance/(dMin*rect.Width());
-	mWorldTolerance *= mWorldTolerance;
+	//mPixelTolerance = tolerance;
+	//mWorldTolerance = 2.0f*rMax*mPixelTolerance/(dMin*rect.Width());
+	//mWorldTolerance *= mWorldTolerance;
 }
 //----------------------------------------------------------------------------
 bool LODTerrainPage::IntersectFrustum (const Camera *camera)
@@ -411,15 +411,15 @@ void LODTerrainPage::SimplifyVertices (const APoint& modelEye,
 void LODTerrainPage::Simplify (const APoint &modelEye, const AVector &modelDir,
 								bool closeAssumption)
 {
-	const Camera *camera = GraphicsRoot::GetSingleton().GetCamera();
+	//const Camera *camera = GraphicsRoot::GetSingleton().GetCamera();
 
-	if (mWorldTolerance == -1.0f)
-	{
-		SetPixelTolerance(mPixelTolerance);
-	}
+	//if (mWorldTolerance == -1.0f)
+	//{
+	//	SetPixelTolerance(mPixelTolerance);
+	//}
 
-	SimplifyBlocks(camera, modelEye, modelDir, closeAssumption);
-	SimplifyVertices(modelEye, modelDir, closeAssumption);
+	//SimplifyBlocks(camera, modelEye, modelDir, closeAssumption);
+	//SimplifyVertices(modelEye, modelDir, closeAssumption);
 
 	mNeedsTessellation = true;
 }

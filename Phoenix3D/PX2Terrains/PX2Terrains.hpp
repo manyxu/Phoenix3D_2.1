@@ -4,11 +4,7 @@
 #define PX2TERRAINS_HPP
 
 // jungler
-#include "PX2JunglerMaterial.hpp"
 #include "PX2Jungler.hpp"
-
-// material
-#include "PX2EditTerrainMaterial.hpp"
 
 // sky
 #include "PX2SkySphere.hpp"

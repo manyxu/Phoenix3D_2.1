@@ -6,6 +6,7 @@ using namespace PX2;
 PX2_IMPLEMENT_RTTI(PX2, Terrain, RawTerrain);
 PX2_IMPLEMENT_STREAM(RawTerrain);
 PX2_IMPLEMENT_FACTORY(RawTerrain);
+PX2_IMPLEMENT_DEFAULT_NAMES(Terrain, RawTerrain)
 
 //----------------------------------------------------------------------------
 RawTerrain::RawTerrain ()
@@ -141,8 +142,7 @@ RawTerrainPage *RawTerrain::CreatePage (int row, int col)
 
 	RawTerrainPage* page = 0;
 	page = new0 RawTerrainPage(mVFormatEdit, mSize, heights, origin, mSpacing);
-	page->SetShine(mShine);
-	page->CreateEditMtlInstPerVertex(mMtlEdit, mShine);
+	page->SetShine(mTerrainShine);
 
 	page->SetName("[" + StringHelp::IntToString(row) + "]" + "[" + StringHelp::IntToString(col) + "]");
 	mPages[row][col] = page;
@@ -168,31 +168,9 @@ void RawTerrain::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
-// 名称支持
-//----------------------------------------------------------------------------
-Object* RawTerrain::GetObjectByName (const std::string& name)
-{
-	Object* found = Terrain::GetObjectByName(name);
-	if (found)
-	{
-		return found;
-	}
-
-	return 0;
-}
-//----------------------------------------------------------------------------
-void RawTerrain::GetAllObjectsByName (const std::string& name,
-	std::vector<Object*>& objects)
-{
-	Terrain::GetAllObjectsByName(name, objects);
-}
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-RawTerrain::RawTerrain (LoadConstructor value)
-	:
+RawTerrain::RawTerrain (LoadConstructor value) :
 Terrain(value)
 {
 }
@@ -240,6 +218,7 @@ int RawTerrain::GetStreamingSize (Stream &stream) const
 {
 	int size = Terrain::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
 	return size;
 }
 //----------------------------------------------------------------------------

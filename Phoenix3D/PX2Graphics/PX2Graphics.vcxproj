@@ -101,7 +101,6 @@
     <ClCompile Include="PX2InterpCurveSpeedCtrl.cpp" />
     <ClCompile Include="PX2InterpCurveTranslateCtrl.cpp" />
     <ClCompile Include="PX2InterpCurveUniformScaleCtrl.cpp" />
-    <ClCompile Include="PX2JunglerMaterial.cpp" />
     <ClCompile Include="PX2KeyframeController.cpp" />
     <ClCompile Include="PX2Light.cpp" />
     <ClCompile Include="PX2LightAmbientConstant.cpp" />
@@ -268,7 +267,6 @@
     <ClInclude Include="PX2InterpCurveSpeedCtrl.hpp" />
     <ClInclude Include="PX2InterpCurveTranslateCtrl.hpp" />
     <ClInclude Include="PX2InterpCurveUniformScaleCtrl.hpp" />
-    <ClInclude Include="PX2JunglerMaterial.hpp" />
     <ClInclude Include="PX2KeyframeController.hpp" />
     <ClInclude Include="PX2Light.hpp" />
     <ClInclude Include="PX2LightAmbientConstant.hpp" />

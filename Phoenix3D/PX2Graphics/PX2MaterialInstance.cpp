@@ -340,7 +340,7 @@ void MaterialInstance::Update(double appTime, double elapsedTime)
 				}
 			}
 
-			for (int i = 0; i < mNumPasses; i++)
+			for (int i = 0; i < mNumPasses; i++) 
 			{
 				mVertexParameters[i] = 0;
 				mPixelParameters[i] = 0;

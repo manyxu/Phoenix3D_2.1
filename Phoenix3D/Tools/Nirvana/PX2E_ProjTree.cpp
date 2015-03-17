@@ -4,6 +4,8 @@
 #include "PX2E_NirMan.hpp"
 #include "PX2E_Define.hpp"
 #include "PX2EffectActor.hpp"
+#include "PX2SkyActor.hpp"
+#include "PX2TerrainActor.hpp"
 #include "PX2Character.hpp"
 #include "PX2TriggerActor.hpp"
 #include "PX2AmbientRegionActor.hpp"
@@ -338,6 +340,14 @@ void ProjTree::_AddObject(Object *obj)
 		else if (actor->IsDerived(AmbientRegionActor::TYPE))
 		{
 			mItemAmbientRegions->AddChild(obj, 0, mTreeLevel);
+		}
+		else if (actor->IsDerived(SkyActor::TYPE))
+		{
+			mItemSky->AddChild(obj, 0, mTreeLevel);
+		}
+		else if (actor->IsDerived(TerrainActor::TYPE))
+		{
+			mItemTerrain->AddChild(obj, 0, mTreeLevel);
 		}
 		else
 		{

@@ -1,14 +1,9 @@
 // PX2Terrain.inl
 
 //----------------------------------------------------------------------------
-inline EditTerrainMaterial *Terrain::GetEidtMaterial ()
+inline Shine *Terrain::GetTerrainShine()
 {
-	return mMtlEdit;
-}
-//----------------------------------------------------------------------------
-inline Shine *Terrain::GetShine ()
-{
-	return mShine;
+	return mTerrainShine;
 }
 //----------------------------------------------------------------------------
 inline int Terrain::GetRowQuantity () const

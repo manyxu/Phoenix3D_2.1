@@ -36,3 +36,23 @@ inline float AmbientRegionActor::GetIntensity() const
 	return mIntensity;
 }
 //----------------------------------------------------------------------------
+inline const Float3 &AmbientRegionActor::GetFogColorHeight() const
+{
+	return mFogColorHeight;
+}
+//----------------------------------------------------------------------------
+inline const Float2 &AmbientRegionActor::GetFogParamHeight() const
+{
+	return mFogParamHeight;
+}
+//----------------------------------------------------------------------------
+inline const Float3 &AmbientRegionActor::GetFogColorDistance() const
+{
+	return mFogColorDist;
+}
+//----------------------------------------------------------------------------
+inline const Float2 &AmbientRegionActor::GetFogParamDistance() const
+{
+	return mFogParamDist;
+}
+//----------------------------------------------------------------------------

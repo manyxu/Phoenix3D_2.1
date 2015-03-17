@@ -8,6 +8,7 @@
 #include "PX2LightNode.hpp"
 #include "PX2Camera.hpp"
 #include "PX2CameraNode.hpp"
+#include "PX2Float2.hpp"
 
 namespace PX2
 {
@@ -25,8 +26,6 @@ namespace PX2
 
 	protected:
 		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
-
-		bool mIsNeedUpdated;
 
 		// Default Dir Light
 	public:
@@ -53,11 +52,22 @@ namespace PX2
 		void SetIntensity(float intensity);
 		float GetIntensity() const;
 
+		void SetFogColorHeight(const Float3 &color);
+		const Float3 &GetFogColorHeight() const;
+		void SetFogParamHeight(const Float2 &param);
+		const Float2 &GetFogParamHeight() const;
+
+		void SetFogColorDistance(const Float3 &dist);
+		const Float3 &GetFogColorDistance() const;
+		void SetFogParamDistance(const Float2 &param);
+		const Float2 &GetFogParamDistance() const;
+
 	public_internal:
 		virtual void SetParent(Movable* parent);
 
 	protected:
 		void _UpdateDirLightCamera();
+		void _UpdateFog();
 
 		float mHorAngle;
 		float mVerAngle;
@@ -71,6 +81,11 @@ namespace PX2
 		APoint mLightCameraLookPosition;
 		float mLightCameraLookDistance;
 		float mLightCameraExtent;
+
+		Float3 mFogColorHeight;
+		Float2 mFogParamHeight;
+		Float3 mFogColorDist;
+		Float2 mFogParamDist;
 
 		// Bake
 	public:

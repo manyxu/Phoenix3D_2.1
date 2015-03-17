@@ -12,9 +12,6 @@
     <ClInclude Include="PX2Jungler.hpp">
       <Filter>Jungler</Filter>
     </ClInclude>
-    <ClInclude Include="PX2SkySphere.hpp">
-      <Filter>Sky</Filter>
-    </ClInclude>
     <ClInclude Include="PX2RawTerrainPage.hpp">
       <Filter>Terrains\Raw</Filter>
     </ClInclude>
@@ -33,12 +30,6 @@
     <ClInclude Include="PX2LODTerrainVertex.hpp">
       <Filter>Terrains\Lod</Filter>
     </ClInclude>
-    <ClInclude Include="PX2EditTerrainMaterial.hpp">
-      <Filter>Material</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2SkyMaterial.hpp">
-      <Filter>Sky</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Terrain.cpp">
@@ -49,9 +40,6 @@
     </ClCompile>
     <ClCompile Include="PX2Jungler.cpp">
       <Filter>Jungler</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2SkySphere.cpp">
-      <Filter>Sky</Filter>
     </ClCompile>
     <ClCompile Include="PX2RawTerrainPage.cpp">
       <Filter>Terrains\Raw</Filter>
@@ -71,25 +59,13 @@
     <ClCompile Include="PX2LODTerrainVertex.cpp">
       <Filter>Terrains\Lod</Filter>
     </ClCompile>
-    <ClCompile Include="PX2EditTerrainMaterial.cpp">
-      <Filter>Material</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2SkyMaterial.cpp">
-      <Filter>Sky</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Material">
-      <UniqueIdentifier>{93fc8d6d-b17e-4b86-839e-8d2c15e13f12}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Terrains">
       <UniqueIdentifier>{4c89290d-b862-4af3-831d-e292a8bb3c22}</UniqueIdentifier>
     </Filter>
     <Filter Include="Jungler">
       <UniqueIdentifier>{f0ae59b6-9992-42f9-ab59-2f8e961afc01}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sky">
-      <UniqueIdentifier>{2aa40720-ed18-4e01-b9ad-5791bfc147f1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Terrains\Raw">
       <UniqueIdentifier>{acc46647-7a33-4741-a43b-6c23ecac2324}</UniqueIdentifier>
@@ -107,9 +83,6 @@
     </None>
     <None Include="PX2Jungler.inl">
       <Filter>Jungler</Filter>
-    </None>
-    <None Include="PX2SkySphere.inl">
-      <Filter>Sky</Filter>
     </None>
     <None Include="PX2RawTerrainPage.inl">
       <Filter>Terrains\Raw</Filter>

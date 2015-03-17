@@ -266,9 +266,6 @@
     <ClCompile Include="PX2SkinMaterial.cpp">
       <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClCompile>
-    <ClCompile Include="PX2JunglerMaterial.cpp">
-      <Filter>Materials\LocalMaterials\NotUse</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Texture2DMaterial.cpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClCompile>
@@ -769,9 +766,6 @@
     <ClInclude Include="PX2SkinMaterial.hpp">
       <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClInclude>
-    <ClInclude Include="PX2JunglerMaterial.hpp">
-      <Filter>Materials\LocalMaterials\NotUse</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Texture2DMaterial.hpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClInclude>
@@ -1262,9 +1256,6 @@
     </Filter>
     <Filter Include="Materials\LocalMaterials\Lighting">
       <UniqueIdentifier>{8ba94c52-64a5-4fb2-aaf7-705539154363}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Materials\LocalMaterials\NotUse">
-      <UniqueIdentifier>{29e137d5-54e9-4e09-b062-efc02b7150d5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Materials\LocalMaterials\Simple">
       <UniqueIdentifier>{31f75ea6-d60d-499b-ad2d-6b4988badfb4}</UniqueIdentifier>

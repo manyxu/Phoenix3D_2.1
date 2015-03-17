@@ -4,7 +4,6 @@
 #include "PX2ResourceManager.hpp"
 #include "PX2StandardMesh.hpp"
 #include "PX2VertexBufferAccessor.hpp"
-#include "PX2EditTerrainMaterial.hpp"
 #include "PX2CameraModelPositionConstant.hpp"
 #include "PX2ShineEmissiveConstant.hpp"
 #include "PX2ShineAmbientConstant.hpp"
@@ -23,9 +22,8 @@ PX2_IMPLEMENT_FACTORY(RawTerrainPage);
 PX2_IMPLEMENT_DEFAULT_NAMES(TerrainPage, RawTerrainPage);
 
 //----------------------------------------------------------------------------
-RawTerrainPage::RawTerrainPage (VertexFormat* vformat, int size,
-	float* heights, const Float2& origin, float spacing)
-	:
+RawTerrainPage::RawTerrainPage(VertexFormat* vformat, int size,
+	float* heights, const Float2& origin, float spacing) :
 TerrainPage(size, heights, origin, spacing)
 {
 	float ext = mSpacing*mSizeM1;
@@ -47,15 +45,13 @@ TerrainPage(size, heights, origin, spacing)
 
 	UpdateModelSpace(Renderable::GU_NORMALS);
 
+	MaterialInstance *mi = new0 MaterialInstance("Data/engine_mtls/terrain/terrain.px2obj",
+		"terrain", false);
+	SetMaterialInstance(mi);
+
 	mUV01 = Float4(12.0f, 12.0f, 12.0f, 12.0f);
 	mUV23 = Float4(12.0f, 12.0f, 12.0f, 12.0f);
 	mUV4 = Float4(12.0f, 12.0f, 12.0f, 12.0f);
-
-	mUV01Float = new0 ShaderFloat(1);
-	mUV23Float = new0 ShaderFloat(1);
-	mUV4Float = new0 ShaderFloat(1);
-	mFogParam = new0 ShaderFloat(1);
-	mFogColor = new0 ShaderFloat(1);
 
 	SetUV0(Float2(mUV01[0], mUV01[1]));
 	SetUV1(Float2(mUV01[2], mUV01[3]));
@@ -69,7 +65,14 @@ TerrainPage(size, heights, origin, spacing)
 
 	mTextureAlpha = new0 Texture2D(Texture::TF_A8R8G8B8, texSize, texSize, 1);
 	mTextureAlpha->SetResourcePath(GraphicsRoot::sTerResPath);
-	mTextureDefaultFilename = "Data/engine/grass.png";
+	SetTextureAlpha(mTextureAlpha);
+
+	std::string texFileName = "Data/engine/terrain/grass.png";
+	SetTexture0(texFileName);
+	SetTexture1(texFileName);
+	SetTexture2(texFileName);
+	SetTexture3(texFileName);
+	SetTexture4(texFileName);
 }
 //----------------------------------------------------------------------------
 RawTerrainPage::~RawTerrainPage ()
@@ -160,7 +163,7 @@ void RawTerrainPage::SetTexture0 (Texture2D *texture)
 
 	if (!texture->HasMipmaps() && texture->CanGenMinmaps())
 		texture->GenerateMipmaps();
-	mMtlInst->SetPixelTexture(0, "Sampler0", texture);
+	mMaterialInstance->SetPixelTexture(0, "Sampler0", texture);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetTexture0 (const std::string &texture0Filename)
@@ -168,6 +171,8 @@ void RawTerrainPage::SetTexture0 (const std::string &texture0Filename)
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(texture0Filename));
 	if (tex)
 	{
+		mTexture0Filename = texture0Filename;
+
 		SetTexture0(tex);
 	}
 }
@@ -175,7 +180,7 @@ void RawTerrainPage::SetTexture0 (const std::string &texture0Filename)
 void RawTerrainPage::SetTextureAlpha (Texture2D *texture)
 {
 	mTextureAlpha = texture;
-	mMtlInst->SetPixelTexture(0, "SamplerAlpha", mTextureAlpha);
+	mMaterialInstance->SetPixelTexture(0, "SamplerAlpha", mTextureAlpha);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetTexture1 (Texture2D *texture)
@@ -184,7 +189,8 @@ void RawTerrainPage::SetTexture1 (Texture2D *texture)
 
 	if (!texture->HasMipmaps() && texture->CanGenMinmaps())
 		texture->GenerateMipmaps();
-	mMtlInst->SetPixelTexture(0, "Sampler1", texture);
+
+	mMaterialInstance->SetPixelTexture(0, "Sampler1", texture);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetTexture1 (const std::string &texture1Filename)
@@ -192,6 +198,8 @@ void RawTerrainPage::SetTexture1 (const std::string &texture1Filename)
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(texture1Filename));
 	if (tex)
 	{
+		mTexture1Filename = texture1Filename;
+
 		SetTexture1(tex);
 	}
 }
@@ -202,7 +210,8 @@ void RawTerrainPage::SetTexture2 (Texture2D *texture)
 
 	if (!texture->HasMipmaps() && texture->CanGenMinmaps())
 		texture->GenerateMipmaps();
-	mMtlInst->SetPixelTexture(0, "Sampler2", texture);
+
+	mMaterialInstance->SetPixelTexture(0, "Sampler2", texture);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetTexture2 (const std::string &texture2Filename)
@@ -210,6 +219,8 @@ void RawTerrainPage::SetTexture2 (const std::string &texture2Filename)
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(texture2Filename));
 	if (tex)
 	{
+		mTexture2Filename = texture2Filename;
+
 		SetTexture2(tex);
 	}
 }
@@ -220,7 +231,8 @@ void RawTerrainPage::SetTexture3 (Texture2D *texture)
 
 	if (!texture->HasMipmaps() && texture->CanGenMinmaps())
 		texture->GenerateMipmaps();
-	mMtlInst->SetPixelTexture(0, "Sampler3", texture);
+
+	mMaterialInstance->SetPixelTexture(0, "Sampler3", texture);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetTexture3 (const std::string &texture3Filename)
@@ -228,6 +240,8 @@ void RawTerrainPage::SetTexture3 (const std::string &texture3Filename)
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(texture3Filename));
 	if (tex)
 	{
+		mTexture3Filename = texture3Filename;
+
 		SetTexture3(tex);
 	}
 }
@@ -238,7 +252,8 @@ void RawTerrainPage::SetTexture4 (Texture2D *texture)
 
 	if (!texture->HasMipmaps() && texture->CanGenMinmaps())
 		texture->GenerateMipmaps();
-	mMtlInst->SetPixelTexture(0, "Sampler4", texture);
+
+	mMaterialInstance->SetPixelTexture(0, "Sampler4", texture);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetTexture4 (const std::string &texture4Filename)
@@ -246,13 +261,15 @@ void RawTerrainPage::SetTexture4 (const std::string &texture4Filename)
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(texture4Filename));
 	if (tex)
 	{
+		mTexture4Filename = texture4Filename;
+
 		SetTexture4(tex);
 	}
 }
 //----------------------------------------------------------------------------
 Texture2D *RawTerrainPage::GetTexture(int index)
 {
-	std::string texFilename = mTextureDefaultFilename;
+	std::string texFilename;
 
 	if (0 == index)
 		texFilename = mTexture0Filename;
@@ -265,8 +282,15 @@ Texture2D *RawTerrainPage::GetTexture(int index)
 	else if (4 == index)
 		texFilename = mTexture4Filename;
 
-	return DynamicCast<Texture2D>(
-		ResourceManager::GetSingleton().BlockLoad(texFilename));
+	if (!texFilename.empty())
+	{
+		return DynamicCast<Texture2D>(
+			ResourceManager::GetSingleton().BlockLoad(texFilename));
+	}
+	else
+	{
+		return 0;
+	}
 }
 //----------------------------------------------------------------------------
 Texture2D *RawTerrainPage::GetTexture0 ()
@@ -324,35 +348,40 @@ void RawTerrainPage::SetUV0 (Float2 uv)
 {
 	mUV01[0] = uv[0];
 	mUV01[1] = uv[1];
-	mUV01Float->SetRegister(0, (float*)&mUV01);
+	mMaterialInstance->GetPixelConstant(0, "UVScale01")->SetRegister(0,
+		(float*)&mUV01);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetUV1 (Float2 uv)
 {
 	mUV01[2] = uv[0];
 	mUV01[3] = uv[1];
-	mUV01Float->SetRegister(0, (float*)&mUV01);
+	mMaterialInstance->GetPixelConstant(0, "UVScale01")->SetRegister(0,
+		(float*)&mUV01);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetUV2 (Float2 uv)
 {
 	mUV23[0] = uv[0];
 	mUV23[1] = uv[1];
-	mUV23Float->SetRegister(0, (float*)&mUV23);
+	mMaterialInstance->GetPixelConstant(0, "UVScale23")->SetRegister(0, 
+		(float*)&mUV23);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetUV3 (Float2 uv)
 {
 	mUV23[2] = uv[0];
 	mUV23[3] = uv[1];
-	mUV23Float->SetRegister(0, (float*)&mUV23);
+	mMaterialInstance->GetPixelConstant(0, "UVScale23")->SetRegister(0, 
+		(float*)&mUV23);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::SetUV4 (Float2 uv)
 {
 	mUV4[0] = uv[0];
 	mUV4[1] = uv[1];
-	mUV4Float->SetRegister(0, (float*)&mUV4);
+	mMaterialInstance->GetPixelConstant(0, "UVScale4")->SetRegister(0,
+		(float*)&mUV4);
 }
 //----------------------------------------------------------------------------
 Float2 RawTerrainPage::GetUV (int index)
@@ -376,85 +405,6 @@ Float2 RawTerrainPage::GetUV (int index)
 	}
 
 	return Float2();
-}
-//----------------------------------------------------------------------------
-void RawTerrainPage::CreateEditMtlInstPerVertex (EditTerrainMaterial *material, 
-	Shine *shine)
-{
-	PX2::Light *light = 0;
-	for (int i=0; i<(int)mInfulencedLights.size(); i++)
-	{
-		Light *lit = mInfulencedLights[i];
-		if (lit->GetType() == Light::LT_DIRECTIONAL)
-		{
-			light = lit;
-			break;
-		}
-	}
-
-	if (light == 0)
-	{
-		light = new0 Light(Light::LT_DIRECTIONAL);
-		light->Ambient = Float4(1.0f, 0.8f, 0.8f, 1.0f);
-		light->Diffuse = Float4(1.0f, 0.8f, 0.6f, 1.0f);
-		light->Intensity = 1.0f;
-		light->SetDirection(AVector(-1.0f, -1.0f, -1.0f));
-	}
-
-	mMtlInst = new0 MaterialInstance(material, 0);
-	mMtlInst->SetName("MI");
-	mMtlInst->SetVertexConstant(0, "PVWMatrix", new0 PVWMatrixConstant());
-	mMtlInst->SetVertexConstant(0, "WMatrix", new0 WMatrixConstant());
-	mMtlInst->SetVertexConstant(0, "gShineEmissive", new0 ShineEmissiveConstant());
-	mMtlInst->SetVertexConstant(0, "gShineAmbient", new0 ShineAmbientConstant(shine));
-	mMtlInst->SetVertexConstant(0, "gShineDiffuse", new0 ShineDiffuseConstant(shine));
-	mMtlInst->SetVertexConstant(0, "gShineSpecular", new0 ShineSpecularConstant(shine));
-	mMtlInst->SetVertexConstant(0, "gLightAmbient", new0 LightAmbientConstant(light));
-	mMtlInst->SetVertexConstant(0, "gLightDiffuse", new0 LightDiffuseConstant(light));
-	mMtlInst->SetVertexConstant(0, "gLightSpecular", new0 LightSpecularConstant(light));
-	mMtlInst->SetVertexConstant(0, "FogParam", new0 FogParamConstant());
-	mMtlInst->SetVertexConstant(0, "CameraWorldPosition", new0 CameraWorldPositionConstant());
-	mMtlInst->SetVertexConstant(0, "LightWorldDirection", new0 LightWorldDVectorConstant(light));
-
-	mMtlInst->SetPixelConstant(0, "UVScale01", mUV01Float);
-	mMtlInst->SetPixelConstant(0, "UVScale23", mUV23Float);
-	mMtlInst->SetPixelConstant(0, "UVScale4", mUV4Float);
-	mMtlInst->SetPixelConstant(0, "FogColor", new0 FogColorConstant());
-
-	SetTexture0(mTextureDefaultFilename);
-	SetTextureAlpha(mTextureAlpha);
-	SetTexture1(mTextureDefaultFilename);
-	SetTexture2(mTextureDefaultFilename);
-	SetTexture3(mTextureDefaultFilename);
-	SetTexture4(mTextureDefaultFilename);
-
-	SetMaterialInstance(mMtlInst);
-}
-//----------------------------------------------------------------------------
-void RawTerrainPage::UpdateWorldData (double applicationTime)
-{
-	TriMesh::UpdateWorldData(applicationTime);
-
-	PX2::Light *light = 0;
-	for (int i=0; i<(int)mInfulencedLights.size(); i++)
-	{
-		Light *lit = mInfulencedLights[i];
-		if (lit->GetType() == Light::LT_DIRECTIONAL)
-		{
-			light = lit;
-			break;
-		}
-	}
-
-	if (light!=0 && light!=mDirLight)
-	{
-		mDirLight = light;
-
-		mMtlInst->SetVertexConstant(0, "gLightAmbient",	new0 LightAmbientConstant(mDirLight));
-		mMtlInst->SetVertexConstant(0, "gLightDiffuse",	new0 LightDiffuseConstant(mDirLight));
-		mMtlInst->SetVertexConstant(0, "gLightSpecular",	new0 LightSpecularConstant(mDirLight));
-		mMtlInst->SetVertexConstant(0, "LightWorldDirection", new0 LightWorldDVectorConstant(mDirLight));
-	}
 }
 //----------------------------------------------------------------------------
 
@@ -533,8 +483,7 @@ void RawTerrainPage::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-RawTerrainPage::RawTerrainPage (LoadConstructor value)
-	:
+RawTerrainPage::RawTerrainPage (LoadConstructor value) :
 TerrainPage(value)
 {
 }
@@ -546,13 +495,9 @@ void RawTerrainPage::Load (InStream& source)
 	TerrainPage::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	source.ReadPointer(mMtlInst);
-
-	source.ReadString(mTextureDefaultFilename);
-	source.ReadString(mTexture0Filename);
-
 	source.ReadPointer(mTextureAlpha);
 
+	source.ReadString(mTexture0Filename);
 	source.ReadString(mTexture1Filename);
 	source.ReadString(mTexture2Filename);
 	source.ReadString(mTexture3Filename);
@@ -561,9 +506,6 @@ void RawTerrainPage::Load (InStream& source)
 	source.ReadAggregate(mUV01);
 	source.ReadAggregate(mUV23);
 	source.ReadAggregate(mUV4);
-	source.ReadPointer(mUV01Float);
-	source.ReadPointer(mUV23Float);
-	source.ReadPointer(mUV4Float);
 
 	PX2_END_DEBUG_STREAM_LOAD(RawTerrainPage, source);
 }
@@ -572,11 +514,7 @@ void RawTerrainPage::Link (InStream& source)
 {
 	TerrainPage::Link(source);
 
-	source.ResolveLink(mMtlInst);
 	source.ResolveLink(mTextureAlpha);
-	source.ResolveLink(mUV01Float);
-	source.ResolveLink(mUV23Float);
-	source.ResolveLink(mUV4Float);
 }
 //----------------------------------------------------------------------------
 void RawTerrainPage::PostLink ()
@@ -596,26 +534,8 @@ bool RawTerrainPage::Register (OutStream& target) const
 {
 	if (TerrainPage::Register(target))
 	{
-		if (mMtlInst)
-			target.Register(mMtlInst);
-	
 		if (mTextureAlpha)
 			target.Register(mTextureAlpha);
-
-		if (mUV01Float)
-		{
-			target.Register(mUV01Float);
-		}
-
-		if (mUV23Float)
-		{
-			target.Register(mUV23Float);
-		}
-
-		if (mUV4Float)
-		{
-			target.Register(mUV4Float);
-		}
 
 		return true;
 	}
@@ -630,13 +550,9 @@ void RawTerrainPage::Save (OutStream& target) const
 	TerrainPage::Save(target);
 	PX2_VERSION_SAVE(target);
 
-	target.WritePointer(mMtlInst);
-
-	target.WriteString(mTextureDefaultFilename);
-	target.WriteString(mTexture0Filename);
-
 	target.WritePointer(mTextureAlpha);
 
+	target.WriteString(mTexture0Filename);
 	target.WriteString(mTexture1Filename);
 	target.WriteString(mTexture2Filename);
 	target.WriteString(mTexture3Filename);
@@ -645,9 +561,6 @@ void RawTerrainPage::Save (OutStream& target) const
 	target.WriteAggregate(mUV01);
 	target.WriteAggregate(mUV23);
 	target.WriteAggregate(mUV4);
-	target.WritePointer(mUV01Float);
-	target.WritePointer(mUV23Float);
-	target.WritePointer(mUV4Float);
 
 	PX2_END_DEBUG_STREAM_SAVE(RawTerrainPage, target);
 }
@@ -655,22 +568,19 @@ void RawTerrainPage::Save (OutStream& target) const
 int RawTerrainPage::GetStreamingSize (Stream &stream) const
 {
 	int size = TerrainPage::GetStreamingSize(stream);
-
 	size += PX2_VERSION_SIZE(mVersion);
-	size += PX2_POINTERSIZE(mMtlInst);
-	size += PX2_STRINGSIZE(mTextureDefaultFilename);
-	size += PX2_STRINGSIZE(mTexture0Filename);
+
 	size += PX2_POINTERSIZE(mTextureAlpha);
+
+	size += PX2_STRINGSIZE(mTexture0Filename);
 	size += PX2_STRINGSIZE(mTexture1Filename);
 	size += PX2_STRINGSIZE(mTexture2Filename);
 	size += PX2_STRINGSIZE(mTexture3Filename);
 	size += PX2_STRINGSIZE(mTexture4Filename);
+
 	size += sizeof(mUV01);
 	size += sizeof(mUV23);
 	size += sizeof(mUV4);
-	size += PX2_POINTERSIZE(mUV01Float);
-	size += PX2_POINTERSIZE(mUV23Float);
-	size += PX2_POINTERSIZE(mUV4Float);
 
 	return size;
 }

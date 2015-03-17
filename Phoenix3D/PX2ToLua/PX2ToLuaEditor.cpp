@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/12/15 10:56:49.
+** Generated automatically by tolua++-1.0.92 on 03/17/15 17:09:00.
 */
 
 #ifndef __cplusplus
@@ -641,6 +641,68 @@ static int tolua_PX2Editor_E_MainFrame_OnSetting00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'OnSetting'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: OnCreateTerrain of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnCreateTerrain00
+static int tolua_PX2Editor_E_MainFrame_OnCreateTerrain00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnCreateTerrain'", NULL);
+#endif
+  {
+   self->OnCreateTerrain();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'OnCreateTerrain'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: OnCreateTerrainPange of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnCreateTerrainPange00
+static int tolua_PX2Editor_E_MainFrame_OnCreateTerrainPange00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnCreateTerrainPange'", NULL);
+#endif
+  {
+   self->OnCreateTerrainPange();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'OnCreateTerrainPange'.",&tolua_err);
  return 0;
 #endif
 }
@@ -1404,6 +1466,58 @@ static int tolua_PX2Editor_E_MainFrame_OnSetting01(lua_State* tolua_S)
  return 0;
 tolua_lerror:
  return tolua_PX2Editor_E_MainFrame_OnSetting00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: OnCreateTerrain of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnCreateTerrain01
+static int tolua_PX2Editor_E_MainFrame_OnCreateTerrain01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnCreateTerrain'", NULL);
+#endif
+  {
+   self->OnCreateTerrain();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_OnCreateTerrain00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: OnCreateTerrainPange of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnCreateTerrainPange01
+static int tolua_PX2Editor_E_MainFrame_OnCreateTerrainPange01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnCreateTerrainPange'", NULL);
+#endif
+  {
+   self->OnCreateTerrainPange();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_OnCreateTerrainPange00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -3676,6 +3790,8 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OnPlayConfig",tolua_PX2Editor_E_MainFrame_OnPlayConfig00);
    tolua_function(tolua_S,"OnSetEditMode",tolua_PX2Editor_E_MainFrame_OnSetEditMode00);
    tolua_function(tolua_S,"OnSetting",tolua_PX2Editor_E_MainFrame_OnSetting00);
+   tolua_function(tolua_S,"OnCreateTerrain",tolua_PX2Editor_E_MainFrame_OnCreateTerrain00);
+   tolua_function(tolua_S,"OnCreateTerrainPange",tolua_PX2Editor_E_MainFrame_OnCreateTerrainPange00);
    tolua_function(tolua_S,"InspChangeWindow",tolua_PX2Editor_E_MainFrame_InspChangeWindow00);
    tolua_function(tolua_S,"OnResRefresh",tolua_PX2Editor_E_MainFrame_OnResRefresh00);
    tolua_function(tolua_S,"OnResClear",tolua_PX2Editor_E_MainFrame_OnResClear00);
@@ -3703,6 +3819,8 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OnPlayConfig",tolua_PX2Editor_E_MainFrame_OnPlayConfig01);
    tolua_function(tolua_S,"OnSetEditMode",tolua_PX2Editor_E_MainFrame_OnSetEditMode01);
    tolua_function(tolua_S,"OnSetting",tolua_PX2Editor_E_MainFrame_OnSetting01);
+   tolua_function(tolua_S,"OnCreateTerrain",tolua_PX2Editor_E_MainFrame_OnCreateTerrain01);
+   tolua_function(tolua_S,"OnCreateTerrainPange",tolua_PX2Editor_E_MainFrame_OnCreateTerrainPange01);
    tolua_function(tolua_S,"InspChangeWindow",tolua_PX2Editor_E_MainFrame_InspChangeWindow01);
    tolua_function(tolua_S,"OnResRefresh",tolua_PX2Editor_E_MainFrame_OnResRefresh01);
    tolua_function(tolua_S,"OnResClear",tolua_PX2Editor_E_MainFrame_OnResClear01);

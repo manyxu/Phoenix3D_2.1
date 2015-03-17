@@ -48,6 +48,9 @@
     <ClInclude Include="PX2SimulationDataDefine.hpp" />
     <ClInclude Include="PX2SimulationEventType.hpp" />
     <ClInclude Include="PX2SimulationPre.hpp" />
+    <ClInclude Include="PX2SkyActor.hpp" />
+    <ClInclude Include="PX2SkyMesh.hpp" />
+    <ClInclude Include="PX2TerrainActor.hpp" />
     <ClInclude Include="PX2TriggerActor.hpp" />
     <ClInclude Include="PX2User.hpp" />
     <ClInclude Include="PX2UserActor.hpp" />
@@ -93,6 +96,9 @@
     <ClCompile Include="PX2Selection.cpp" />
     <ClCompile Include="PX2ServerInfo.cpp" />
     <ClCompile Include="PX2SimulationEventType.cpp" />
+    <ClCompile Include="PX2SkyActor.cpp" />
+    <ClCompile Include="PX2SkyMesh.cpp" />
+    <ClCompile Include="PX2TerrainActor.cpp" />
     <ClCompile Include="PX2TriggerActor.cpp" />
     <ClCompile Include="PX2User.cpp" />
     <ClCompile Include="PX2UserActor.cpp" />
@@ -123,6 +129,9 @@
     <None Include="PX2Project.inl" />
     <None Include="PX2Scene.inl" />
     <None Include="PX2Selection.inl" />
+    <None Include="PX2SkyActor.inl" />
+    <None Include="PX2SkyMesh.inl" />
+    <None Include="PX2TerrainActor.inl" />
     <None Include="PX2TriggerActor.inl" />
     <None Include="PX2User.inl" />
     <None Include="PX2UserActor.inl" />

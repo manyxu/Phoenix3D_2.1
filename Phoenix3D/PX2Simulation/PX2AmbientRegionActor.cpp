@@ -18,14 +18,19 @@ mVerAngle(15.0f),
 mLightCameraExtent(10.0f),
 mSpecularPow(10.0f),
 mIntensity(1.0f),
-mLightCameraLookDistance(100.0f),
-mIsNeedUpdated(false)
+mLightCameraLookDistance(100.0f)
 {
 	SetName("AmbRegAtr");
 
 	mAmbientColor = Float3(0.4f, 0.4f, 0.4f);
 	mDiffuseColor = Float3(1.0f, 1.0f, 1.0f);
 	mSpecularColor = Float3(1.0f, 1.0f, 1.0f);
+
+	mFogColorHeight = Float3::WHITE;
+	mFogParamHeight = Float2(-10.0f, 0.0f);
+
+	mFogColorDist = Float3::WHITE;
+	mFogParamDist = Float2(0.0f, 120.0f);
 
 	CreateHelpNode()->Show(false);
 
@@ -41,10 +46,10 @@ void AmbientRegionActor::UpdateWorldData(double applicationTime,
 {
 	TriggerActor::UpdateWorldData(applicationTime, elapsedTime);
 
-	if (mIsNeedUpdated)
-	{
-		mIsNeedUpdated = false;
-	}
+	SetFogColorHeight(mFogColorHeight);
+	SetFogParamHeight(mFogParamHeight);
+	SetFogColorDistance(mFogColorDist);
+	SetFogParamDistance(mFogParamDist);
 }
 //----------------------------------------------------------------------------
 void AmbientRegionActor::SetLightCameraLookPostion(const APoint &pos)
@@ -122,6 +127,34 @@ void AmbientRegionActor::SetIntensity(float intensity)
 	_UpdateDirLightCamera();
 }
 //----------------------------------------------------------------------------
+void AmbientRegionActor::SetFogColorHeight(const Float3 &color)
+{
+	mFogColorHeight = color;
+
+	_UpdateFog();
+}
+//----------------------------------------------------------------------------
+void AmbientRegionActor::SetFogParamHeight(const Float2 &param)
+{
+	mFogParamHeight = param;
+
+	_UpdateFog();
+}
+//----------------------------------------------------------------------------
+void AmbientRegionActor::SetFogColorDistance(const Float3 &dist)
+{
+	mFogColorDist = dist;
+
+	_UpdateFog();
+}
+//----------------------------------------------------------------------------
+void AmbientRegionActor::SetFogParamDistance(const Float2 &param)
+{
+	mFogParamDist = param;
+
+	_UpdateFog();
+}
+//----------------------------------------------------------------------------
 void AmbientRegionActor::_UpdateDirLightCamera()
 {
 	AVector dir = AVector::AnglesToDirection(Mathf::DEG_TO_RAD*mHorAngle,
@@ -163,6 +196,19 @@ void AmbientRegionActor::_UpdateDirLightCamera()
 		mLightCameraExtent);
 }
 //----------------------------------------------------------------------------
+void AmbientRegionActor::_UpdateFog()
+{
+	PX2_GR.SetFogColorHeight(Float4(mFogColorHeight[0], mFogColorHeight[1],
+		mFogColorHeight[2], 1.0f));
+
+	PX2_GR.SetFogColorDist(Float4(mFogColorDist[0], mFogColorDist[1],
+		mFogColorDist[2], 1.0f));
+
+	Float4 fogParam = Float4(mFogParamHeight[0], mFogParamHeight[1],
+		mFogParamDist[0], mFogParamDist[1]);
+	PX2_GR.SetFogParam(fogParam);
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // Property
@@ -184,6 +230,11 @@ void AmbientRegionActor::RegistProperties()
 	AddProperty("SpecularColor", Object::PT_COLOR3FLOAT3, mSpecularColor);
 	AddProperty("SpecularPow", Object::PT_FLOAT, mSpecularPow);
 	AddProperty("Intensity", Object::PT_FLOAT, mIntensity);
+
+	AddProperty("FogColorHeight", PT_COLOR3FLOAT3, mFogColorHeight);
+	AddProperty("FogParamHeight", PT_FLOAT2, mFogParamHeight);
+	AddProperty("FogColorDistance", PT_COLOR3FLOAT3, mFogColorDist);
+	AddProperty("FogParamDistance", PT_FLOAT2, mFogParamDist);
 }
 //----------------------------------------------------------------------------
 void AmbientRegionActor::OnPropertyChanged(const PropertyObject &obj)
@@ -230,6 +281,22 @@ void AmbientRegionActor::OnPropertyChanged(const PropertyObject &obj)
 	{
 		SetIntensity(PX2_ANY_AS(obj.Data, float));
 	}
+	else if ("FogColorHeight" == obj.Name)
+	{
+		SetFogColorHeight(PX2_ANY_AS(obj.Data, Float3));
+	}
+	else if ("FogParamHeight" == obj.Name)
+	{
+		SetFogParamHeight(PX2_ANY_AS(obj.Data, Float2));
+	}
+	else if ("FogColorDistance" == obj.Name)
+	{
+		SetFogColorDistance(PX2_ANY_AS(obj.Data, Float3));
+	}
+	else if ("FogParamDistance" == obj.Name)
+	{
+		SetFogParamDistance(PX2_ANY_AS(obj.Data, Float2));
+	}
 }
 //----------------------------------------------------------------------------
 
@@ -258,8 +325,7 @@ void AmbientRegionActor::GetAllObjectsByName(const std::string& name,
 // 持久化支持
 //----------------------------------------------------------------------------
 AmbientRegionActor::AmbientRegionActor(LoadConstructor value) :
-TriggerActor(value),
-mIsNeedUpdated(true)
+TriggerActor(value)
 {
 }
 //----------------------------------------------------------------------------
@@ -282,6 +348,11 @@ void AmbientRegionActor::Load(InStream& source)
 	source.ReadAggregate(mLightCameraLookPosition);
 	source.Read(mLightCameraLookDistance);
 	source.Read(mLightCameraExtent);
+
+	source.ReadAggregate(mFogColorHeight);
+	source.ReadAggregate(mFogParamHeight);
+	source.ReadAggregate(mFogColorDist);
+	source.ReadAggregate(mFogParamDist);
 
 	PX2_END_DEBUG_STREAM_LOAD(AmbientRegionActor, source);
 }
@@ -335,6 +406,11 @@ void AmbientRegionActor::Save(OutStream& target) const
 	target.Write(mLightCameraLookDistance);
 	target.Write(mLightCameraExtent);
 
+	target.WriteAggregate(mFogColorHeight);
+	target.WriteAggregate(mFogParamHeight);
+	target.WriteAggregate(mFogColorDist);
+	target.WriteAggregate(mFogParamDist);
+
 	PX2_END_DEBUG_STREAM_SAVE(AmbientRegionActor, target);
 }
 //----------------------------------------------------------------------------
@@ -355,6 +431,11 @@ int AmbientRegionActor::GetStreamingSize(Stream &stream) const
 	size += sizeof(mLightCameraLookPosition);
 	size += sizeof(mLightCameraLookDistance);
 	size += sizeof(mLightCameraExtent);
+
+	size += sizeof(mFogColorHeight);
+	size += sizeof(mFogParamHeight);
+	size += sizeof(mFogColorDist);
+	size += sizeof(mFogParamDist);
 
 	return size;
 }

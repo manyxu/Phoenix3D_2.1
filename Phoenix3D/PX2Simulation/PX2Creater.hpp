@@ -23,6 +23,8 @@
 #include "PX2Character.hpp"
 #include "PX2EffectActor.hpp"
 #include "PX2TriggerActor.hpp"
+#include "PX2SkyActor.hpp"
+#include "PX2TerrainActor.hpp"
 using namespace PX2;
 
 namespace PX2
@@ -42,6 +44,9 @@ namespace PX2
 		Actor *CreateActor_Effect(Scene *scene, const APoint &pos);
 		Character *CreateActor_Character(Scene *scene, const APoint &pos);
 		TriggerActor *CreateActor_Trigger(Scene *scene, const APoint &pos);
+		SkyActor *CreateActor_Sky(Scene *scene, const APoint &pos);
+		TerrainActor *CreateActor_Terrain(Scene *scene, const APoint &pos,
+			const std::string &name, int terrainSize, int pageSize, float gridSpacing);
 
 		Movable *CreateRectangle(Node *parent, const APoint &pos, bool isPosWorld, 
 			bool doAdd=true, bool usePickPos=true);
@@ -49,6 +54,7 @@ namespace PX2
 			bool doAdd = true, bool usePickPos = true);
 		Movable *CreateSphere(Node *parent, const APoint &pos, bool isPosWorld,
 			bool doAdd = true, bool usePickPos = true);
+		Movable *CreateTerrainPage(PX2::Terrain *terrain, int indexRow, int indexCol);
 
 		UIFrame *CreateUIFrame(Node *parent, const APoint &pos, bool isPosWorld,
 			bool usePickPos);

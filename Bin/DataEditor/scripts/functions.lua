@@ -183,6 +183,18 @@ function e_SceneActor_CreateTrigger()
 	PX2_CREATER:CreateActor_Trigger(scene, pickPos)
 end
 
+function e_SceneActor_CreateTerrain()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	E_MainFrame:OnCreateTerrain()
+end
+
+function e_SceneActor_CreateSky()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Sky(scene, pickPos)
+end
+
 function e_SceneActor_CreateAmbientRegion()
 end
 

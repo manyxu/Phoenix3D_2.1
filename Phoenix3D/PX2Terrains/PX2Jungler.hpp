@@ -42,7 +42,6 @@ namespace PX2
 
 		MaterialInstance *GetMtlInst ();
 		Texture2D *GetTexture ();
-		Shine *GetShine();
 
 		void Add (std::vector<JObj> objs);
 		void Remove (std::vector<int> indexs);
@@ -62,7 +61,6 @@ namespace PX2
 		JunglerType mJunglerType;
 		int mMaxNum;
 		MaterialInstancePtr mMtlInst;
-		ShinePtr mShine;
 		Texture2DPtr mTexture;
 		std::vector<APoint> mPoses;
 		std::vector<AVector> mNormals;

@@ -26,6 +26,9 @@
 		void OnSetEditMode(int type);
 		void OnSetting();
 		
+		void OnCreateTerrain();
+		void OnCreateTerrainPange();
+		
 		void InspChangeWindow(int windowType);
 		
 		void OnResRefresh();

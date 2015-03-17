@@ -67,16 +67,9 @@ namespace PX2
 		Float2 GetUV3 ();
 		Float2 GetUV4 ();
 
-		void CreateEditMtlInstPerVertex (EditTerrainMaterial *material, Shine *shine);
-
 	protected:
-		virtual void UpdateWorldData (double applicationTime);
-
-		PX2::LightPtr mDirLight; // ≤ª”√±£¥Ê
-		MaterialInstancePtr mMtlInst;
-
 		Texture2DPtr mTextureAlpha;
-		std::string mTextureDefaultFilename;
+
 		std::string mTexture0Filename;
 		std::string mTexture1Filename;
 		std::string mTexture2Filename;
@@ -86,11 +79,6 @@ namespace PX2
 		Float4 mUV01;
 		Float4 mUV23;
 		Float4 mUV4;
-		ShaderFloatPtr mUV01Float;
-		ShaderFloatPtr mUV23Float;
-		ShaderFloatPtr mUV4Float;
-		ShaderFloatPtr mFogParam;
-		ShaderFloatPtr mFogColor;
 	};
 
 	PX2_REGISTER_STREAM(RawTerrainPage);
