@@ -11,6 +11,16 @@ inline AmbientRegionActor *Scene::GetDefaultAmbientRegionActor()
 	return mDefaultAmbientRegionActor;
 }
 //----------------------------------------------------------------------------
+inline TerrainActor *Scene::GetTerrainActor()
+{
+	return mTerrainActor;
+}
+//----------------------------------------------------------------------------
+inline SkyActor *Scene::GetSkyActor()
+{
+	return mSkyActor;
+}
+//----------------------------------------------------------------------------
 inline Scene::SceneManageType Scene::GetSceneManageType()
 {
 	return mSceneManageType;

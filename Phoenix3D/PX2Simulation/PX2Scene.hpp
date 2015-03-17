@@ -8,6 +8,8 @@
 #include "PX2RenderStep.hpp"
 #include "PX2CameraActor.hpp"
 #include "PX2AmbientRegionActor.hpp"
+#include "PX2TerrainActor.hpp"
+#include "PX2SkyActor.hpp"
 #include "PX2CellSpace.hpp"
 #include "PX2SimulationDataDefine.hpp"
 
@@ -28,6 +30,8 @@ namespace PX2
 		CameraActor *GetUseCameraActor();
 
 		AmbientRegionActor *GetDefaultAmbientRegionActor();
+		TerrainActor *GetTerrainActor();
+		SkyActor *GetSkyActor();
 
 		virtual int AttachChild(Movable* child);
 		virtual int DetachChild(Movable* child);
@@ -40,6 +44,8 @@ namespace PX2
 		std::map<int, ActorPtr> mActors;
 		CameraActorPtr mCameraActor;
 		AmbientRegionActorPtr mDefaultAmbientRegionActor;
+		TerrainActorPtr mTerrainActor;
+		SkyActorPtr mSkyActor;
 
 	public:
 		static int GetNextID();

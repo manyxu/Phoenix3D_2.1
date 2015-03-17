@@ -62,6 +62,12 @@ int Scene::AttachChild(Movable* child)
 		{
 			mActors[actor->GetID()] = actor;
 		}
+
+		TerrainActor *terrainActor = DynamicCast<TerrainActor>(child);
+		if (terrainActor) mTerrainActor = terrainActor;
+
+		SkyActor *skyActor = DynamicCast<SkyActor>(child);
+		if (skyActor) mSkyActor = skyActor;
 	}
 
 	return Node::AttachChild(child);
@@ -120,6 +126,8 @@ void Scene::Load(InStream& source)
 
 	source.ReadPointer(mCameraActor);
 	source.ReadPointer(mDefaultAmbientRegionActor);
+	source.ReadPointer(mTerrainActor);
+	source.ReadPointer(mSkyActor);
 
 	PX2_END_DEBUG_STREAM_LOAD(Scene, source);
 }
@@ -133,6 +141,12 @@ void Scene::Link(InStream& source)
 
 	if (mDefaultAmbientRegionActor)
 		source.ResolveLink(mDefaultAmbientRegionActor);
+
+	if (mTerrainActor)
+		source.ResolveLink(mTerrainActor);
+
+	if (mSkyActor)
+		source.ResolveLink(mSkyActor);
 }
 //----------------------------------------------------------------------------
 void Scene::PostLink()
@@ -149,6 +163,12 @@ bool Scene::Register(OutStream& target) const
 
 		if (mDefaultAmbientRegionActor) 
 			target.Register(mDefaultAmbientRegionActor);
+
+		if (mTerrainActor)
+			target.Register(mTerrainActor);
+
+		if (mSkyActor)
+			target.Register(mSkyActor);
 		
 		return true;
 	}
@@ -165,6 +185,8 @@ void Scene::Save(OutStream& target) const
 
 	target.WritePointer(mCameraActor);
 	target.WritePointer(mDefaultAmbientRegionActor);
+	target.WritePointer(mTerrainActor);
+	target.WritePointer(mSkyActor);
 
 	PX2_END_DEBUG_STREAM_SAVE(Scene, target);
 }
@@ -176,6 +198,8 @@ int Scene::GetStreamingSize(Stream &stream) const
 
 	size += PX2_POINTERSIZE(mCameraActor);
 	size += PX2_POINTERSIZE(mDefaultAmbientRegionActor);
+	size += PX2_POINTERSIZE(mTerrainActor);
+	size += PX2_POINTERSIZE(mSkyActor);
 
 	return size;
 }

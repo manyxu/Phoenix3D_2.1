@@ -520,6 +520,24 @@ void ProjTree::DoExecute(Event *event)
 			SetFocus();
 		}
 	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::SetEditType))
+	{
+		Edit::EditType et = PX2_EDIT.GetEditType();
+
+		if (Edit::ET_TERRAIN == et)
+		{
+			Scene *scene = PX2_PROJ.GetScene();
+			TerrainActor *terrainActor = scene->GetTerrainActor();
+			if (terrainActor)
+			{
+				ProjTreeItem *item = GetItem(terrainActor);
+				SelectItem(item);
+
+				PX2_SELECTION.Clear();
+				PX2_SELECTION.AddObject(terrainActor);
+			}
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void ProjTree::_RemoveObject(PX2::Object *obj)
