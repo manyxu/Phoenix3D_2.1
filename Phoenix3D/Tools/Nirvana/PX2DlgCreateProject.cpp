@@ -2,7 +2,7 @@
 
 #include "PX2DlgCreateProject.hpp"
 #include "PX2Assert.hpp"
-using namespace PX2;
+using namespace PX2Editor;
 
 BEGIN_EVENT_TABLE(DlgCreateProject, wxDialog)
 EVT_BUTTON(wxID_ANY, DlgCreateProject::OnButton)

@@ -5,7 +5,7 @@
 
 #include "PX2EditorPre.hpp"
 
-namespace PX2
+namespace PX2Editor
 {
 
 	class DlgCreateProject : public wxDialog

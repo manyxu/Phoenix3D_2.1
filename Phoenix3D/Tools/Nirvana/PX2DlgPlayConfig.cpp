@@ -5,7 +5,7 @@
 #include "PX2StringHelp.hpp"
 #include "PX2Assert.hpp"
 #include "PX2EngineLoop.hpp"
-using namespace PX2;
+using namespace PX2Editor;
 
 BEGIN_EVENT_TABLE(DlgPlayConfig, wxDialog)
 EVT_BUTTON(wxID_ANY, DlgPlayConfig::OnButton)

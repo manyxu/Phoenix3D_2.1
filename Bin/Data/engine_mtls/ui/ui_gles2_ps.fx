@@ -1,5 +1,5 @@
-uniform vec4 UVParam;
-uniform vec4 ShineEmissive;
+uniform mediump vec4 UVParam;
+uniform mediump vec4 ShineEmissive;
 varying mediump vec2 vertexTCoord0;
 uniform sampler2D SamplerBase;
 void main()
