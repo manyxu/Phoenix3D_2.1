@@ -75,6 +75,8 @@ int Scene::AttachChild(Movable* child)
 //----------------------------------------------------------------------------
 int Scene::DetachChild(Movable* child)
 {
+	if (mDefaultAmbientRegionActor == child) return -1;
+
 	Actor *actor = DynamicCast<Actor>(child);
 	if (actor)
 	{
@@ -87,6 +89,12 @@ int Scene::DetachChild(Movable* child)
 				mActors.erase(it);
 			}
 		}
+
+		if (mTerrainActor == child)
+			mTerrainActor = 0;
+
+		if (mSkyActor == child)
+			mSkyActor = 0;
 	}
 
 	return Node::DetachChild(child);

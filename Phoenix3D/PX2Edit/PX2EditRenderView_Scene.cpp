@@ -13,6 +13,7 @@
 #include "PX2ActorPicker.hpp"
 #include "PX2EventWorld.hpp"
 #include "PX2EditEventType.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -242,12 +243,22 @@ void EditRenderView_Scene::OnLeftDown(const APoint &pos)
 {
 	EditRenderView::OnLeftDown(pos);
 
-	if (mSceneNodeCtrl)
-		mSceneNodeCtrl->OnLeftDown(mRenderStepCtrl, pos);
+	Edit::EditType et = PX2_EDIT.GetEditType();
+	if (Edit::ET_SCENE == et)
+	{
+		if (mSceneNodeCtrl)
+			mSceneNodeCtrl->OnLeftDown(mRenderStepCtrl, pos);
 
-	SceneNodeCtrl::DragType dargType = mSceneNodeCtrl->GetDragType();
-	if (SceneNodeCtrl::DT_NONE == dargType)
-		_ClickSelect(pos);
+		SceneNodeCtrl::DragType dargType = mSceneNodeCtrl->GetDragType();
+		if (SceneNodeCtrl::DT_NONE == dargType)
+			_ClickSelect(pos);
+	}
+	else if (Edit::ET_TERRAIN == et)
+	{
+		PX2_EDIT.GetTerrainEdit()->GetBrush()->SelectPage();
+		PX2_EDIT.GetTerrainEdit()->Apply(true);
+		_UpdateBrushPos(pos);
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::OnLeftUp(const APoint &pos)
@@ -306,6 +317,13 @@ void EditRenderView_Scene::OnMotion(const APoint &pos)
 
 	if (delta == AVector::ZERO) return;
 
+	Edit::EditType et = PX2_EDIT.GetEditType();
+
+	if (et == Edit::ET_TERRAIN)
+	{
+		_UpdateBrushPos(pos);
+	}
+
 	if (mIsMiddleDown || mIsRightDown)
 	{
 		float speedVal = 3.0f;
@@ -338,6 +356,10 @@ void EditRenderView_Scene::OnMotion(const APoint &pos)
 		{
 			_PanCamera(delta.X()*mPixelToWorld.first, delta.Z()*mPixelToWorld.second);
 		}
+	}
+	else if (mIsLeftDown)
+	{
+		PX2_EDIT.GetTerrainEdit()->Apply(false);
 	}
 
 	if (mSceneNodeCtrl)
@@ -591,12 +613,51 @@ void EditRenderView_Scene::_CreateNodeCtrl()
 	mSceneCtrlNode->AttachChild(mBoundCtrl->GetCtrlsGroup());
 	mSceneCtrlNode->Update(GetTimeInSeconds(), true);
 
+	mSceneCtrlNode->AttachChild(PX2_EDIT.GetHelpNode());
+
 	mRenderStepCtrl1 = new0 RenderStep();
 	mRenderStepCtrl1->SetPriority(-5);
 	mRenderStepCtrl1->SetDoDepthClear(true);
 	mRenderStepCtrl1->SetName("SceneCtrlNodeRenderStep");
 	mRenderStepCtrl1->SetNode(mSceneCtrlNode);
 	PX2_GR.AddRenderStep(mRenderStepCtrl1->GetName().c_str(), mRenderStepCtrl1);
+}
+//----------------------------------------------------------------------------
+void EditRenderView_Scene::_UpdateBrushPos(const APoint &pos)
+{
+	Project *proj = Project::GetSingletonPtr();
+	if (!proj) return;
+
+	Scene *scene = proj->GetScene();
+	if (!scene) return;
+
+	TerrainActor *terrainActor = scene->GetTerrainActor();
+	if (!terrainActor) return;
+
+	RawTerrain *terrain = terrainActor->GetRawTerrain();
+
+	APoint origin;
+	AVector dir;
+	mRenderStep->GetPickRay(pos.X(), pos.Z(), origin, dir);
+
+	Movable *pickObject = terrain;
+
+#ifdef _DEBUG
+	pickObject = PX2_GR.GetXYPlane();
+#endif
+
+	if (pickObject)
+	{
+		PX2::Picker picker;
+		picker.Execute(pickObject, origin, dir, 0.0f, Mathf::MAX_REAL);
+		if ((int)picker.Records.size() > 0)
+		{
+			PX2::PickRecord pickRecord = picker.GetClosestToZero();
+			PX2::APoint dest = origin + dir*pickRecord.T;
+
+			PX2_EDIT.GetTerrainEdit()->GetBrush()->SetPos(dest);
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::DoExecute(Event *event)

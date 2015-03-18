@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PX2Brush.hpp" />
     <ClInclude Include="PX2Curve.hpp" />
     <ClInclude Include="PX2CurveCtrl.hpp" />
     <ClInclude Include="PX2CurveGroup.hpp" />
@@ -40,10 +41,14 @@
     <ClInclude Include="PX2GeoObjFactory.hpp" />
     <ClInclude Include="PX2SceneNodeCtrl.hpp" />
     <ClInclude Include="PX2SelectResData.hpp" />
+    <ClInclude Include="PX2TerrainBrush.hpp" />
+    <ClInclude Include="PX2TerrainEdit.hpp" />
+    <ClInclude Include="PX2TerrainProcess.hpp" />
     <ClInclude Include="PX2UICurveGroup.hpp" />
     <ClInclude Include="PX2UIObjectCtrl.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PX2Brush.cpp" />
     <ClCompile Include="PX2Curve.cpp" />
     <ClCompile Include="PX2CurveCtrl.cpp" />
     <ClCompile Include="PX2CurveGroup.cpp" />
@@ -62,6 +67,9 @@
     <ClCompile Include="PX2GeoObjFactory.cpp" />
     <ClCompile Include="PX2SceneNodeCtrl.cpp" />
     <ClCompile Include="PX2SelectResData.cpp" />
+    <ClCompile Include="PX2TerrainBrush.cpp" />
+    <ClCompile Include="PX2TerrainEdit.cpp" />
+    <ClCompile Include="PX2TerrainProcess.cpp" />
     <ClCompile Include="PX2UICurveGroup.cpp" />
     <ClCompile Include="PX2UIObjectCtrl.cpp" />
   </ItemGroup>

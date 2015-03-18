@@ -10,6 +10,7 @@
 #include "PX2EditParams.hpp"
 #include "PX2SelectResData.hpp"
 #include "PX2EditTimeLineEdit.hpp"
+#include "PX2TerrainEdit.hpp"
 
 namespace PX2
 {
@@ -26,6 +27,11 @@ namespace PX2
 		bool Initlize();
 		bool Ternamate();
 		void Reset();
+
+		Node *GetHelpNode() { return mHelpNode; }
+
+	protected:
+		PX2::NodePtr mHelpNode;
 
 	public:
 		enum EditType
@@ -153,6 +159,13 @@ namespace PX2
 
 	protected:
 		TimeLineEdit *mTimeLineEidt;
+
+		// Terrain
+	public:
+		TerrainEdit *GetTerrainEdit();
+
+	protected:
+		TerrainEdit *mTerrainEdit;
 	};
 
 #include "PX2Edit.inl"

@@ -569,9 +569,12 @@ bool Creater::RemoveObject(Object *obj, bool command)
 		Node *parent = DynamicCast<Node>(mov->GetParent());
 		if (parent)
 		{
-			parent->DetachChild(mov);
-
-			removed = true;
+			int ret = parent->DetachChild(mov);
+			
+			if (-1 != ret)
+			{
+				removed = true;
+			}
 		}
 	}
 	else if (ctrl)

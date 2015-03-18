@@ -1,6 +1,9 @@
 // PX2_MakingWindow.cpp
 
 #include "PX2_MakingWindow.hpp"
+#include "PX2TerrainActor.hpp"
+#include "PX2Edit.hpp"
+#include "PX2TerrainMakingPanel.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -36,13 +39,23 @@ void MakingWindow::OnSize(wxSizeEvent& e)
 //----------------------------------------------------------------------------
 void MakingWindow::SetObject(PX2::Object *obj)
 {
-	if (mObject == obj && obj)
-		return;
-
 	mObject = obj;
 
 	if (mObject)
 	{
+		TerrainActor *terActor = DynamicCast<TerrainActor>(mObject);
+		Terrain *terrain = DynamicCast<Terrain>(mObject);
+		TerrainPage *terrainPage = DynamicCast<TerrainPage>(mObject);
+		Edit::EditType editType = PX2_EDIT.GetEditType();
+
+		if (editType == Edit::ET_TERRAIN && (terActor || terrain || terrainPage))
+		{
+			ChangeToWindow("TerrainMaking");
+		}
+		else
+		{
+			ChangeToWindow("");
+		}
 	}
 	else
 	{
@@ -52,5 +65,33 @@ void MakingWindow::SetObject(PX2::Object *obj)
 //----------------------------------------------------------------------------
 void MakingWindow::ChangeToWindow(const std::string &str, int userData)
 {
+	PX2_UNUSED(userData);
+
+	if (mCurWindow)
+	{
+		delete mCurWindow;
+		mCurWindow = 0;
+	}
+
+	mCurWinStr = str;
+
+	if ("TerrainMaking" == str)
+	{
+		TerrainMakingPanel *terMakingPanel = new TerrainMakingPanel(this);
+		mCurWindow = terMakingPanel;
+		terMakingPanel->RefleshCtrls();
+	}
+
+	if (mCurWindow)
+	{
+		mCurWindowOriginSize = mCurWindow->GetSize();
+
+		wxSize clentSize = GetClientSize();
+		mCurWindow->SetSize(clentSize.GetWidth(), mCurWindowOriginSize.GetHeight());
+
+		SetVirtualSize(clentSize.GetWidth(), mCurWindowOriginSize.GetHeight());
+
+		Refresh();
+	}
 }
 //----------------------------------------------------------------------------

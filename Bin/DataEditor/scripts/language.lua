@@ -135,6 +135,7 @@ function AddLanguages()
 	PX2_LM:AddItem("Tip1", "父节点必须是Node！", "Parent must be a node!")
 	PX2_LM:AddItem("Tip3", "必须选择1个导出物件！", "You must select a object to export!")
 	PX2_LM:AddItem("Tip4", "工程已经存在！", "Project is already exist!")
+	PX2_LM:AddItem("Tip5", "地形角色已经存在！", "TerrainActor is already exist!")
 	
 	--编辑器
 	PX2_LM:AddItem("WelcomeToEditor", "欢迎使用Phoenix3D编辑器!", "Welcome to Phoenix3D editor!")

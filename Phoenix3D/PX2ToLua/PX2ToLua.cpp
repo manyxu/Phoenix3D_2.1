@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 03/17/15 17:08:21.
+** Generated automatically by tolua++-1.0.92 on 03/18/15 13:25:55.
 */
 
 #ifndef __cplusplus
@@ -287,9 +287,10 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"UIProgressBar");
  tolua_usertype(tolua_S,"Texture3D");
  tolua_usertype(tolua_S,"RenderTarget");
- tolua_usertype(tolua_S,"Selection");
  tolua_usertype(tolua_S,"CameraActor");
+ tolua_usertype(tolua_S,"Selection");
  tolua_usertype(tolua_S,"HMatrix");
+ tolua_usertype(tolua_S,"AmbientRegionActor");
  tolua_usertype(tolua_S,"ResourceManager");
  tolua_usertype(tolua_S,"PixelShader");
  tolua_usertype(tolua_S,"UIButton");
@@ -26394,15 +26395,111 @@ static int tolua_PX2_Scene_GetUseCameraActor00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: AttachChild of class  Scene */
-#ifndef TOLUA_DISABLE_tolua_PX2_Scene_AttachChild00
-static int tolua_PX2_Scene_AttachChild00(lua_State* tolua_S)
+/* method: GetDefaultAmbientRegionActor of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_PX2_Scene_GetDefaultAmbientRegionActor00
+static int tolua_PX2_Scene_GetDefaultAmbientRegionActor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Movable",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetDefaultAmbientRegionActor'", NULL);
+#endif
+  {
+   AmbientRegionActor* tolua_ret = (AmbientRegionActor*)  self->GetDefaultAmbientRegionActor();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"AmbientRegionActor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetDefaultAmbientRegionActor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetTerrainActor of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_PX2_Scene_GetTerrainActor00
+static int tolua_PX2_Scene_GetTerrainActor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetTerrainActor'", NULL);
+#endif
+  {
+   TerrainActor* tolua_ret = (TerrainActor*)  self->GetTerrainActor();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"TerrainActor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetTerrainActor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetSkyActor of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_PX2_Scene_GetSkyActor00
+static int tolua_PX2_Scene_GetSkyActor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetSkyActor'", NULL);
+#endif
+  {
+   SkyActor* tolua_ret = (SkyActor*)  self->GetSkyActor();
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"SkyActor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetSkyActor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetActorByID of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_PX2_Scene_GetActorByID00
+static int tolua_PX2_Scene_GetActorByID00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
      !tolua_isnoobj(tolua_S,3,&tolua_err)
  )
   goto tolua_lerror;
@@ -26410,19 +26507,19 @@ static int tolua_PX2_Scene_AttachChild00(lua_State* tolua_S)
 #endif
  {
   Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
-  Movable* child = ((Movable*)  tolua_tousertype(tolua_S,2,0));
+  int id = ((int)  tolua_tonumber(tolua_S,2,0));
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AttachChild'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetActorByID'", NULL);
 #endif
   {
-   int tolua_ret = (int)  self->AttachChild(child);
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+   Actor* tolua_ret = (Actor*)  self->GetActorByID(id);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Actor");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'AttachChild'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'GetActorByID'.",&tolua_err);
  return 0;
 #endif
 }
@@ -29344,7 +29441,10 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"delete",tolua_PX2_Scene_delete00);
    tolua_function(tolua_S,"SetUseCameraActor",tolua_PX2_Scene_SetUseCameraActor00);
    tolua_function(tolua_S,"GetUseCameraActor",tolua_PX2_Scene_GetUseCameraActor00);
-   tolua_function(tolua_S,"AttachChild",tolua_PX2_Scene_AttachChild00);
+   tolua_function(tolua_S,"GetDefaultAmbientRegionActor",tolua_PX2_Scene_GetDefaultAmbientRegionActor00);
+   tolua_function(tolua_S,"GetTerrainActor",tolua_PX2_Scene_GetTerrainActor00);
+   tolua_function(tolua_S,"GetSkyActor",tolua_PX2_Scene_GetSkyActor00);
+   tolua_function(tolua_S,"GetActorByID",tolua_PX2_Scene_GetActorByID00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Actor","Actor","Node",tolua_collect_Actor);

@@ -17,9 +17,10 @@ namespace PX2Editor
 
 		void OnSize(wxSizeEvent& e);
 
+		void SetObject(PX2::Object *object);
+
 	protected:
 		DECLARE_EVENT_TABLE()
-		void SetObject(PX2::Object *object);
 		void ChangeToWindow(const std::string &str, int userData = 0);
 
 		PX2::ObjectPtr mObject;

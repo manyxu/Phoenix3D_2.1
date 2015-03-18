@@ -191,8 +191,10 @@ end
 
 function e_SceneActor_CreateSky()
 	local scene = PX2_PROJ:GetScene()
-	local pickPos = PX2_EDIT:GetPickPos()
-	PX2_CREATER:CreateActor_Sky(scene, pickPos)
+	local skyActor = scene:GetSkyActor()
+	if nil==skyActor then
+		PX2_CREATER:CreateActor_Sky(scene, APoint.ORIGIN)
+	end
 end
 
 function e_SceneActor_CreateAmbientRegion()
@@ -396,6 +398,7 @@ function e_AddSceneActor_Effect()
 end
 
 function e_AddSceneActor_Sound()
+	
 end
 
 -- scene view

@@ -8,6 +8,7 @@
 #include "PX2RedoUndo.hpp"
 #include "PX2Project.hpp"
 #include "PX2ResourceManager.hpp"
+#include "PX2EngineLoop.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -24,11 +25,16 @@ IsCtrlDown(false),
 IsShiftDown(false)
 {
 	mTimeLineEidt = new0 TimeLineEdit();
+	mTerrainEdit = new0 TerrainEdit();
+
+	mHelpNode = new0 Node();
+	mHelpNode->AttachChild(mTerrainEdit->GetBrush()->GetRenderable());
 }
 //----------------------------------------------------------------------------
 Edit::~Edit()
 {
 	delete0(mTimeLineEidt);
+	delete0(mTerrainEdit);
 }
 //----------------------------------------------------------------------------
 bool Edit::Initlize()
@@ -81,7 +87,67 @@ void Edit::Reset()
 //----------------------------------------------------------------------------
 void Edit::SetEditType(EditType type)
 {
+	if (mEditType == type) return;
+
+	// disable old
+	if (ET_SCENE == mEditType) 
+	{
+	}
+	else if (ET_TERRAIN == mEditType)
+	{
+		mTerrainEdit->SetTerrain(0);
+		mTerrainEdit->GetBrush()->GetRenderable()->Show(false);
+	}
+	else if (ET_UI == mEditType)
+	{
+	}
+	else if (ET_SIMULATE == mEditType)
+	{
+		PX2_ENGINELOOP.Play(EngineLoop::PT_NONE);
+		GetEditMap()->LoadProject(GetEditMap()->GetProjectFilePath().c_str());
+	}
+	else if (ET_PLAY == mEditType)
+	{
+		PX2_ENGINELOOP.Play(EngineLoop::PT_NONE);
+		GetEditMap()->LoadProject(GetEditMap()->GetProjectFilePath().c_str());
+	}
+
 	mEditType = type;
+
+	Project *proj = Project::GetSingletonPtr();
+	Scene *scene = proj->GetScene();
+
+	// set new
+	if (ET_TERRAIN == type)
+	{
+		mTerrainEdit->GetBrush()->GetRenderable()->Show(true);
+		TerrainActor *terrainActor = scene->GetTerrainActor();
+		if (terrainActor) mTerrainEdit->SetTerrain(terrainActor->GetRawTerrain());
+	}
+	else if (ET_SIMULATE == type || ET_PLAY == type)
+	{
+		if (proj)
+		{
+			std::string path = proj->GetSceneFilename();
+
+			Scene *scene = proj->GetScene();
+			if (scene && !path.empty())
+			{
+				PX2_EDIT.GetEditMap()->SaveScene(path.c_str());
+			}
+		}
+
+		GetEditMap()->SaveProject();
+
+		if (ET_SIMULATE == type)
+		{
+			PX2_ENGINELOOP.Play(EngineLoop::PT_SIMULATE);
+		}
+		else if (ET_PLAY == type)
+		{
+			PX2_ENGINELOOP.Play(EngineLoop::PT_PLAY);
+		}
+	}
 
 	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SetEditType);
 	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);

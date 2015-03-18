@@ -74,6 +74,7 @@ namespace PX2
 
 	protected:
 		void _CreateNodeCtrl();
+		void _UpdateBrushPos(const APoint &pos);
 
 		SceneNodeCtrlPtr mSceneNodeCtrl;
 		BoundCtrlPtr mBoundCtrl;

@@ -693,13 +693,21 @@ void  E_MainFrame::OnCreateTerrain()
 	Scene *scene = PX2_PROJ.GetScene();
 	if (!scene) return;
 
-	DlgTerrainNew dlg(mRenderViewScene);
-	if (dlg.ShowModal() == wxID_OK)
+	TerrainActor *terrainActor = scene->GetTerrainActor();
+	if (terrainActor)
 	{
-		PX2_CREATER.CreateActor_Terrain(scene, APoint::ORIGIN,
-			dlg.mValue_TerrainName,
-			dlg.mValue_TerrainWidth,
-			dlg.mValue_PageWidth + 1, dlg.mValue_GridSpace);
+		NirMan::GetSingleton().MessageBox(PX2_LMVAL("Notice"), PX2_LMVAL("Tip5"));
+	}
+	else
+	{
+		DlgTerrainNew dlg(mRenderViewScene);
+		if (dlg.ShowModal() == wxID_OK)
+		{
+			PX2_CREATER.CreateActor_Terrain(scene, APoint::ORIGIN,
+				dlg.mValue_TerrainName,
+				dlg.mValue_TerrainWidth,
+				dlg.mValue_PageWidth + 1, dlg.mValue_GridSpace);
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -717,7 +725,6 @@ void E_MainFrame::OnCreateTerrainPange()
 			TerrainPage *page = rawTerrain->GetPage(dlg.mRowI, dlg.mColI);
 			if (page)
 			{
-				wxMessageBox(PX2_LM.GetValue("Tip13"), PX2_LM.GetValue("Tip0"), wxOK);
 			}
 			else
 			{

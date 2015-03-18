@@ -82,3 +82,8 @@ inline TimeLineEdit *Edit::GetTimeLineEdit()
 	return mTimeLineEidt;
 }
 //----------------------------------------------------------------------------
+inline TerrainEdit *Edit::GetTerrainEdit()
+{
+	return mTerrainEdit;
+}
+//----------------------------------------------------------------------------

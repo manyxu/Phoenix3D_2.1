@@ -8,6 +8,10 @@
 
 		void SetUseCameraActor(CameraActor *cameraActor);
 		CameraActor *GetUseCameraActor();
-
-		virtual int AttachChild(Movable* child);
+		
+		AmbientRegionActor *GetDefaultAmbientRegionActor();
+		TerrainActor *GetTerrainActor();
+		SkyActor *GetSkyActor();
+		
+		Actor *GetActorByID(int id);
 	};

@@ -41,7 +41,11 @@ void ObjectInspector::SetObject(PX2::Object *obj)
 
 	if (mObjectPropGrid)
 		mObjectPropGrid->SetObject(mObject);
+
+	if (mMakingWindow)
+		mMakingWindow->SetObject(mObject);
 }
+//-----------------------------------------------------------------------------
 void ObjectInspector::ChangeShowWindow(int windowType)
 {
 	if (1 == windowType)
@@ -62,20 +66,21 @@ void ObjectInspector::OnSize(wxSizeEvent& e)
 
 	wxSize size = e.GetSize();
 
-	if (mObjectPropGrid)
-		mObjectPropGrid->SetSize(size);
-
 	if (!mInitSized)
 	{
-		mObjectPropGrid->SetSize(size);
-
 		if (mObjectPropGrid)
 			mObjectPropGrid->SetObject(mObject);
 
 		if (mMakingWindow)
-			mMakingWindow->SetSize(size);
+			mMakingWindow->SetObject(mObject);
 
 		mInitSized = true;
 	}
+
+	if (mObjectPropGrid)
+		mObjectPropGrid->SetSize(size);
+
+	if (mMakingWindow)
+		mMakingWindow->SetSize(size);
 }
 //-----------------------------------------------------------------------------

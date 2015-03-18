@@ -346,6 +346,7 @@
     <ClInclude Include="PX2ObjectInspector.hpp" />
     <ClInclude Include="PX2ObjectPropertyGrid.hpp" />
     <ClInclude Include="PX2NirvanaEventType.hpp" />
+    <ClInclude Include="PX2TerrainMakingPanel.hpp" />
     <ClInclude Include="PX2wxAui.hpp" />
     <ClInclude Include="PX2wxDockArt.hpp" />
     <ClInclude Include="PX2E_NirMan.hpp" />
@@ -387,6 +388,7 @@
     <ClCompile Include="PX2ObjectInspector.cpp" />
     <ClCompile Include="PX2ObjectPropertyGrid.cpp" />
     <ClCompile Include="PX2NirvanaEventType.cpp" />
+    <ClCompile Include="PX2TerrainMakingPanel.cpp" />
     <ClCompile Include="PX2wxAui.cpp" />
     <ClCompile Include="PX2wxDockArt.cpp" />
     <ClCompile Include="PX2E_NirMan.cpp" />

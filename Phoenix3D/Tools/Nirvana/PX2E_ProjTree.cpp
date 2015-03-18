@@ -530,8 +530,8 @@ void ProjTree::DoExecute(Event *event)
 			TerrainActor *terrainActor = scene->GetTerrainActor();
 			if (terrainActor)
 			{
-				ProjTreeItem *item = GetItem(terrainActor);
-				SelectItem(item);
+				//ProjTreeItem *item = GetItem(terrainActor);
+				//SelectItem(item);
 
 				PX2_SELECTION.Clear();
 				PX2_SELECTION.AddObject(terrainActor);

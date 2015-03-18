@@ -62,6 +62,18 @@
     <ClInclude Include="PX2EditRenderView_Res.hpp">
       <Filter>Views\NotUse</Filter>
     </ClInclude>
+    <ClInclude Include="PX2Brush.hpp">
+      <Filter>TerrainEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TerrainBrush.hpp">
+      <Filter>TerrainEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TerrainEdit.hpp">
+      <Filter>TerrainEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2TerrainProcess.hpp">
+      <Filter>TerrainEdit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Edit.cpp" />
@@ -122,6 +134,18 @@
     <ClCompile Include="PX2EditRenderView_Res.cpp">
       <Filter>Views\NotUse</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Brush.cpp">
+      <Filter>TerrainEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TerrainBrush.cpp">
+      <Filter>TerrainEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TerrainEdit.cpp">
+      <Filter>TerrainEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2TerrainProcess.cpp">
+      <Filter>TerrainEdit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Event">
@@ -147,6 +171,9 @@
     </Filter>
     <Filter Include="Views\NotUse">
       <UniqueIdentifier>{4825cfd5-428d-4284-91d9-36c1526cf271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TerrainEdit">
+      <UniqueIdentifier>{5b420eed-cab1-4697-8625-ebb832170d9d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

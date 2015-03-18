@@ -101,10 +101,6 @@ void InspView::_ChangeToWindow(std::string str, int userData)
 		mCurWindow->SetObject(mObject);
 		mCurWindow->Show(true);
 	}
-	else if ("P" == str || "S" == str || "U" == str)
-	{
-		/**/
-	}
 }
 //----------------------------------------------------------------------------
 void InspView::ChangeShowWindow(int windowType)
