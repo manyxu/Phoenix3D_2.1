@@ -831,7 +831,7 @@
 									<object class="wxRadioBox" name="mTexLayerRadio">
 										<style>wxRA_SPECIFY_COLS</style>
 										<label>贴图层</label>
-										<selection>0</selection>
+										<selection>1</selection>
 										<content>
 											<item>Layer0</item>
 											<item>Layer1</item>

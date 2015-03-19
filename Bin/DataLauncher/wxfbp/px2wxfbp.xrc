@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxPanel" name="MyPanel3">
+		<style>wxNO_BORDER|wxTAB_TRAVERSAL</style>
+		<size>893,696</size>
+		<object class="wxBoxSizer">
+			<orient>wxHORIZONTAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+				<border>0</border>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<object class="wxBoxSizer">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<option>1</option>
+										<flag></flag>
+										<border>5</border>
+										<object class="wxPanel" name="m_panel17">
+											<style>wxTAB_TRAVERSAL</style>
+											<bg>#ffffff</bg>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+													<object class="wxStaticBitmap" name="mPicUser">
+														<bitmap>../heads/blackbrid.png</bitmap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+													<object class="wxButton" name="mTextUserNickName">
+														<style>wxNO_BORDER</style>
+														<size>100,20</size>
+														<bg>#ffffff</bg>
+														<fg>#3399ff</fg>
+														<font>
+															<size>12</size>
+															<style>normal</style>
+															<weight>bold</weight>
+															<underlined>0</underlined>
+														</font>
+														<label>realmany</label>
+														<default>0</default>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>1</option>
+								<flag>wxEXPAND</flag>
+								<border>5</border>
+								<object class="wxBoxSizer">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<option>0</option>
+										<flag>wxEXPAND</flag>
+										<border>5</border>
+										<object class="wxPanel" name="m_panel16">
+											<style>wxTAB_TRAVERSAL</style>
+											<size>-1,30</size>
+											<bg>#ffffff</bg>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="spacer">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<size>0,0</size>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticBitmap" name="mButMin">
+														<bitmap>../icons/min.png</bitmap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticBitmap" name="mButMax">
+														<bitmap>../icons/max.png</bitmap>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL</flag>
+													<border>5</border>
+													<object class="wxStaticBitmap" name="mButClose">
+														<bitmap>../icons/close.png</bitmap>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+									<object class="sizeritem">
+										<option>1</option>
+										<flag>wxEXPAND</flag>
+										<border>5</border>
+										<object class="wxPanel" name="mRightTop">
+											<style>wxTAB_TRAVERSAL</style>
+											<bg>#ffffff</bg>
+											<fg>#ffffff</fg>
+											<object class="wxBoxSizer">
+												<orient>wxHORIZONTAL</orient>
+												<object class="spacer">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<size>15,0</size>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+													<object class="wxStaticBitmap" name="mButGroups">
+														<bg>#ffffff</bg>
+														<fg>#ffffff</fg>
+														<bitmap>../icons/birds.png</bitmap>
+													</object>
+												</object>
+												<object class="spacer">
+													<option>0</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<size>10,0</size>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+													<border>5</border>
+													<object class="wxStaticBitmap" name="mButSetting">
+														<bg>#ffffff</bg>
+														<fg>#ffffff</fg>
+														<bitmap>../icons/settings.png</bitmap>
+													</object>
+												</object>
+												<object class="spacer">
+													<option>0</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<size>10,0</size>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxBoxSizer">
+							<minsize>-1,40</minsize>
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>1</option>
+								<flag>wxEXPAND</flag>
+								<border>5</border>
+								<object class="wxBoxSizer">
+									<orient>wxVERTICAL</orient>
+									<object class="sizeritem">
+										<option>1</option>
+										<flag>wxEXPAND</flag>
+										<border>5</border>
+										<object class="wxPanel" name="m_panel15">
+											<style>wxTAB_TRAVERSAL</style>
+											<bg>#404040</bg>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<object class="wxBoxSizer">
+														<orient>wxHORIZONTAL</orient>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxEXPAND|wxTOP|wxRIGHT|wxLEFT</flag>
+															<border>5</border>
+															<object class="wxButton" name="mButPhoenixFoundation">
+																<style>wxNO_BORDER</style>
+																<bg>#ed1c24</bg>
+																<fg>#ffffff</fg>
+																<font>
+																	<style>normal</style>
+																	<weight>bold</weight>
+																	<underlined>0</underlined>
+																</font>
+																<label>凤凰社</label>
+																<default>0</default>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxEXPAND|wxTOP|wxRIGHT|wxLEFT</flag>
+															<border>5</border>
+															<object class="wxButton" name="mButPhoenix3D">
+																<style>wxNO_BORDER</style>
+																<bg>#ff7f27</bg>
+																<fg>#ffffff</fg>
+																<font>
+																	<style>normal</style>
+																	<weight>normal</weight>
+																	<underlined>0</underlined>
+																</font>
+																<label>Phoenix3D</label>
+																<default>0</default>
+															</object>
+														</object>
+														<object class="sizeritem">
+															<option>0</option>
+															<flag>wxEXPAND|wxTOP|wxRIGHT|wxLEFT</flag>
+															<border>5</border>
+															<object class="wxButton" name="mButTSMM">
+																<style>wxNO_BORDER</style>
+																<bg>#18b14c</bg>
+																<fg>#ffffff</fg>
+																<label>唐僧妹妹</label>
+																<default>0</default>
+															</object>
+														</object>
+													</object>
+												</object>
+												<object class="sizeritem">
+													<option>0</option>
+													<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL</flag>
+													<border>5</border>
+													<object class="wxPanel" name="m_panel14">
+														<style>wxTAB_TRAVERSAL</style>
+														<size>-1,2</size>
+														<bg>#ed1c24</bg>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>1</option>
+								<flag>wxEXPAND</flag>
+								<border>5</border>
+								<object class="wxPanel" name="mPhoenix3DPanel">
+									<style>wxTAB_TRAVERSAL</style>
+									<object class="wxBoxSizer">
+										<orient>wxHORIZONTAL</orient>
+										<object class="sizeritem">
+											<option>0</option>
+											<flag>wxEXPAND</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<minsize>180,-1</minsize>
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL</flag>
+													<border>5</border>
+													<object class="wxPanel" name="mPhoenix3D_LeftPanel">
+														<style>wxTAB_TRAVERSAL</style>
+														<size>200,-1</size>
+														<bg>#404040</bg>
+														<object class="wxBoxSizer">
+															<orient>wxVERTICAL</orient>
+															<object class="spacer">
+																<option>0</option>
+																<flag>wxEXPAND</flag>
+																<border>5</border>
+																<size>0,50</size>
+															</object>
+															<object class="sizeritem">
+																<option>0</option>
+																<flag>wxEXPAND|wxALL</flag>
+																<border>5</border>
+																<object class="wxButton" name="mButPhoenix3D_Get">
+																	<style>wxNO_BORDER</style>
+																	<size>-1,50</size>
+																	<bg>#ff7f27</bg>
+																	<fg>#ffffff</fg>
+																	<font>
+																		<size>18</size>
+																		<style>normal</style>
+																		<weight>bold</weight>
+																		<underlined>0</underlined>
+																	</font>
+																	<label>安装引擎</label>
+																	<default>0</default>
+																</object>
+															</object>
+															<object class="spacer">
+																<option>0</option>
+																<flag>wxEXPAND</flag>
+																<border>5</border>
+																<size>0,50</size>
+															</object>
+															<object class="sizeritem">
+																<option>0</option>
+																<flag>wxEXPAND</flag>
+																<border>5</border>
+																<object class="wxButton" name="mButPhoenix3D_News">
+																	<style>wxNO_BORDER</style>
+																	<size>-1,50</size>
+																	<bg>#505050</bg>
+																	<fg>#ffffff</fg>
+																	<font>
+																		<size>18</size>
+																		<style>normal</style>
+																		<weight>bold</weight>
+																		<underlined>0</underlined>
+																	</font>
+																	<label>新闻</label>
+																	<default>0</default>
+																</object>
+															</object>
+															<object class="spacer">
+																<option>0</option>
+																<flag>wxEXPAND</flag>
+																<border>5</border>
+																<size>0,5</size>
+															</object>
+															<object class="sizeritem">
+																<option>0</option>
+																<flag>wxEXPAND</flag>
+																<border>5</border>
+																<object class="wxButton" name="mButPhoenix3D_Learn">
+																	<style>wxNO_BORDER</style>
+																	<size>-1,50</size>
+																	<bg>#505050</bg>
+																	<fg>#ffffff</fg>
+																	<font>
+																		<size>18</size>
+																		<style>normal</style>
+																		<weight>bold</weight>
+																		<underlined>0</underlined>
+																	</font>
+																	<label>学习</label>
+																	<default>0</default>
+																</object>
+															</object>
+															<object class="spacer">
+																<option>0</option>
+																<flag>wxEXPAND</flag>
+																<border>5</border>
+																<size>0,5</size>
+															</object>
+															<object class="sizeritem">
+																<option>0</option>
+																<flag>wxEXPAND</flag>
+																<border>5</border>
+																<object class="wxButton" name="mButPhoenix3D_Res">
+																	<style>wxNO_BORDER</style>
+																	<size>-1,50</size>
+																	<bg>#505050</bg>
+																	<fg>#ffffff</fg>
+																	<font>
+																		<size>18</size>
+																		<style>normal</style>
+																		<weight>bold</weight>
+																		<underlined>0</underlined>
+																	</font>
+																	<label>资源</label>
+																	<default>0</default>
+																</object>
+															</object>
+															<object class="spacer">
+																<option>1</option>
+																<flag>wxEXPAND</flag>
+																<border>5</border>
+																<size>0,0</size>
+															</object>
+															<object class="sizeritem">
+																<option>0</option>
+																<flag>wxALL|wxALIGN_CENTER_HORIZONTAL</flag>
+																<border>5</border>
+																<object class="wxPanel" name="m_panel30">
+																	<style>wxTAB_TRAVERSAL</style>
+																	<object class="wxBoxSizer">
+																		<orient>wxHORIZONTAL</orient>
+																		<object class="sizeritem">
+																			<option>0</option>
+																			<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+																			<border>5</border>
+																			<object class="wxBitmapButton" name="mButPhoenix3D_QQ">
+																				<style>wxNO_BORDER</style>
+																				<bg>#404040</bg>
+																				<bitmap>../icons/qq.png</bitmap>
+																				<default>0</default>
+																			</object>
+																		</object>
+																		<object class="sizeritem">
+																			<option>0</option>
+																			<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+																			<border>5</border>
+																			<object class="wxBitmapButton" name="mButPhoenix3D_WeChat">
+																				<style>wxBU_AUTODRAW|wxNO_BORDER</style>
+																				<bg>#404040</bg>
+																				<bitmap>../icons/wechat.png</bitmap>
+																				<default>0</default>
+																			</object>
+																		</object>
+																		<object class="sizeritem">
+																			<option>0</option>
+																			<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
+																			<border>5</border>
+																			<object class="wxBitmapButton" name="mButPhoenix3D_Form">
+																				<style>wxBU_AUTODRAW|wxNO_BORDER</style>
+																				<bg>#404040</bg>
+																				<bitmap>../icons/form.png</bitmap>
+																				<default>0</default>
+																			</object>
+																		</object>
+																	</object>
+																</object>
+															</object>
+															<object class="spacer">
+																<option>0</option>
+																<flag>wxEXPAND</flag>
+																<border>5</border>
+																<size>0,10</size>
+															</object>
+														</object>
+													</object>
+												</object>
+											</object>
+										</object>
+										<object class="sizeritem">
+											<option>1</option>
+											<flag>wxEXPAND|wxALIGN_CENTER_VERTICAL</flag>
+											<border>5</border>
+											<object class="wxBoxSizer">
+												<orient>wxVERTICAL</orient>
+												<object class="sizeritem">
+													<option>1</option>
+													<flag>wxEXPAND</flag>
+													<border>5</border>
+													<object class="wxPanel" name="mHtmlPanel">
+														<style>wxTAB_TRAVERSAL</style>
+														<fg>#ffffff</fg>
+														<font>
+															<style>normal</style>
+															<weight>normal</weight>
+															<underlined>0</underlined>
+														</font>
+													</object>
+												</object>
+											</object>
+										</object>
+									</object>
+								</object>
+							</object>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+</resource>
