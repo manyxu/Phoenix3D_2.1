@@ -6,11 +6,12 @@
 #include "PX2EditorPre.hpp"
 #include "PX2E_ResTreeItem.hpp"
 #include "PX2Singleton_NeedNew.hpp"
+#include "PX2EventHandler.hpp"
 
 namespace PX2Editor
 {
 
-	class ResTree : public wxTreeCtrl, public PX2::Singleton<ResTree>
+	class ResTree : public wxTreeCtrl, public PX2::EventHandler, public PX2::Singleton<ResTree>
 	{
 		DECLARE_DYNAMIC_CLASS(ResTree)
 
@@ -19,6 +20,7 @@ namespace PX2Editor
 		virtual ~ResTree();
 
 		ResTreeItem *GetItem(wxTreeItemId id);
+		ResTreeItem *GetItem(const std::string &resPath);
 
 		void UpdateOnPath(const std::string &pathName);
 
@@ -31,6 +33,8 @@ namespace PX2Editor
 
 		void ResRefresh();
 		void ResClear();
+
+		virtual void DoExecute(PX2::Event *event);
 
 	public_internal:
 		std::map<std::string, int> Icons;

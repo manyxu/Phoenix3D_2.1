@@ -101,6 +101,14 @@ void Transform::SetTranslateZ (float z)
 	UpdateHMatrix();
 }
 //----------------------------------------------------------------------------
+void Transform::SetTranslateXY(float x, float z)
+{
+	mTranslate.X() = x;
+	mTranslate.Y() = z;
+	mIsIdentity = false;
+	UpdateHMatrix();
+}
+//----------------------------------------------------------------------------
 void Transform::SetTranslateXZ(float x, float z)
 {
 	mTranslate.X() = x;

@@ -25,6 +25,8 @@ FogColorDistConstant::~FogColorDistConstant ()
 //----------------------------------------------------------------------------
 void FogColorDistConstant::Update(const ShaderStruct *struc)
 {
+	PX2_UNUSED(struc);
+
 	const float* source = (const float*)PX2_GR.GetFogColorDist();
 	float* target = mData;
 	for (int i = 0; i < 4; ++i)

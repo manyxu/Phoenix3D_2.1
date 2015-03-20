@@ -117,6 +117,10 @@ TerrainActor *Creater::CreateActor_Terrain(Scene *scene, const APoint &pos,
 	rawTerrain->SetColQuantity(quantity);
 	rawTerrain->SetSpacing(gridSpacing);
 	rawTerrain->AllocateRawTerrainPages();
+	
+	float terrainAllSize = terrainSize * gridSpacing;
+	rawTerrain->LocalTransform.SetTranslateXY(-terrainAllSize / 2.0f,
+		-terrainAllSize / 2.0f);
 
 	actor->SetRawTerrain(rawTerrain);
 

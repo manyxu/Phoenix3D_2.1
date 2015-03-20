@@ -299,6 +299,12 @@ void EditRenderView_Scene::OnRightDown(const APoint &pos)
 	EditRenderView::OnRightDown(pos);
 
 	_ClickSelectPos(pos);
+
+	Edit::EditType et = PX2_EDIT.GetEditType();
+	if (Edit::ET_TERRAIN == et)
+	{
+		PX2_EDIT.GetTerrainEdit()->GetBrush()->SelectPage();
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::OnRightUp(const APoint &pos)

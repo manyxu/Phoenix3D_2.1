@@ -10,6 +10,7 @@
 #include "PX2Selection.hpp"
 #include "PX2LanguageManager.hpp"
 #include "PX2ResourceManager.hpp"
+#include "PX2EditEventType.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -44,10 +45,13 @@ mIsUseOnlyDir(isUseOnlyDir)
 	Icons["lua"] = imageLua;
 
 	UpdateOnPath("Data/");
+
+	PX2_EW.ComeIn(this);
 }
 //----------------------------------------------------------------------------
 ResTree::ResTree()
 {
+	PX2_EW.GoOut(this);
 }
 //----------------------------------------------------------------------------
 ResTree::~ResTree()
@@ -191,6 +195,11 @@ ResTreeItem *ResTree::GetItem(wxTreeItemId id)
 	return mRootItem->GetChildItem(id);
 }
 //----------------------------------------------------------------------------
+ResTreeItem *ResTree::GetItem(const std::string &resPath)
+{
+	return mRootItem->GetChildItem(resPath);
+}
+//----------------------------------------------------------------------------
 ResTreeItem *ResTree::GetTreeRootItem()
 {
 	return mRootItem;
@@ -224,5 +233,46 @@ void ResTree::ResRefresh()
 void ResTree::ResClear()
 {
 	PX2_RM.Clear();
+}
+//----------------------------------------------------------------------------
+void ResTree::DoExecute(PX2::Event *event)
+{
+	PX2_UNUSED(event);
+
+	if (EditEventSpace::IsEqual(event, EditEventSpace::ToSelectRes))
+	{
+		Object *obj = event->GetData<Object*>();
+		if (obj)
+		{
+			const std::string &resPath = obj->GetResourcePath();
+			if (!resPath.empty())
+			{
+				ResTreeItem *item = GetItem(resPath);
+				if (item)
+				{
+					SelectItem(item->GetItemID());
+					SetFocus();
+				}
+			}
+		}
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::FindActorInResTree))
+	{
+		Object *obj = event->GetData<Object*>();
+		Actor *actor = DynamicCast<Actor>(obj);
+		if (actor)
+		{
+			const std::string &movFilename = actor->GetMovableFilename();
+			if (!movFilename.empty())
+			{
+				ResTreeItem *item = GetItem(movFilename);
+				if (item)
+				{
+					SelectItem(item->GetItemID());
+					SetFocus();
+				}
+			}
+		}
+	}
 }
 //----------------------------------------------------------------------------

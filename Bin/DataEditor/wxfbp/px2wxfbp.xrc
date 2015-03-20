@@ -833,7 +833,7 @@
 										<label>贴图层</label>
 										<selection>1</selection>
 										<content>
-											<item>Layer0</item>
+											<item>LayerBase</item>
 											<item>Layer1</item>
 											<item>Layer2</item>
 											<item>Layer3</item>

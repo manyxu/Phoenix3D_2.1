@@ -208,22 +208,27 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 
 	if (RVT_SCENEUI == mRenderViewType || RVT_RES == mRenderViewType)
 	{
-		if (!mIsRightDownOnMotion)
+		Edit::EditType editType = PX2_EDIT.GetEditType();
+
+		if (Edit::ET_SCENE == editType)
 		{
-			if (mEditMenu)
+			if (!mIsRightDownOnMotion)
 			{
-				delete mEditMenu;
-				mEditMenu = 0;
+				if (mEditMenu)
+				{
+					delete mEditMenu;
+					mEditMenu = 0;
+				}
+
+				mEditMenu = new wxMenu();
+				NirMan::GetSingleton().SetCurMenu(mEditMenu);
+
+				char szScript[256];
+				sprintf(szScript, "e_CreateEditMenu(%d)", (int)mRenderViewType);
+				PX2_SM.CallString(szScript);
+
+				if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
 			}
-
-			mEditMenu = new wxMenu();
-			NirMan::GetSingleton().SetCurMenu(mEditMenu);
-
-			char szScript[256];
-			sprintf(szScript, "e_CreateEditMenu(%d)", (int)mRenderViewType);
-			PX2_SM.CallString(szScript);
-
-			if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
 		}
 	}
 }

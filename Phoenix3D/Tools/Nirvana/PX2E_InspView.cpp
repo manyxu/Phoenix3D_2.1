@@ -6,6 +6,7 @@
 #include "PX2Selection.hpp"
 #include "PX2E_NirMan.hpp"
 #include "PX2ScriptManager.hpp"
+#include "PX2EditEventType.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 

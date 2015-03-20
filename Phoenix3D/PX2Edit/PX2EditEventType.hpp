@@ -46,7 +46,7 @@ namespace PX2
 
 	PX2_EVENT(SelectTerrainPage)
 
-	PX2_EVENT(ToSelectResTex2D)
+	PX2_EVENT(ToSelectRes)
 
 	PX2_DECLARE_EVENT_END(EditEventSpace)
 
