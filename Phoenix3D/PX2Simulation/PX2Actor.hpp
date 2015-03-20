@@ -14,6 +14,7 @@ namespace PX2
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
+		PX2_DECLARE_PROPERTY;
 		PX2_DECLARE_STREAM(Actor);
 
 	public:
@@ -54,7 +55,7 @@ namespace PX2
 		// Movable
 	public:
 		virtual void SetMovableFilename(const std::string &filename,
-			bool shareVI = false);
+			bool shareVI = true);
 		const std::string &GetMovableFilename() const;
 		bool IsShareVI() const;
 

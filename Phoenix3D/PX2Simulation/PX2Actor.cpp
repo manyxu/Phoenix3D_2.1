@@ -2,6 +2,7 @@
 
 #include "PX2Actor.hpp"
 #include "PX2ResourceManager.hpp"
+#include "PX2SimulationEventType.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Node, Actor);
@@ -197,11 +198,74 @@ void Actor::_CollectAnchor(Movable *mov)
 void Actor::SetRadius(float radius)
 {
 	mRadius = radius;
+
+	if (PX2_GR.IsInEditor())
+	{
+		Event *ent = SimuES_E::CreateEventX(SimuES_E::SetRadius);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
 }
 //----------------------------------------------------------------------------
 void Actor::SetHegiht(float height)
 {
 	mHeight = height;
+}
+//----------------------------------------------------------------------------
+void Actor::RegistProperties()
+{
+	Node::RegistProperties();
+
+	AddPropertyClass("Actor");
+
+	AddProperty("TypeID", PT_INT, GetTypeID());
+	AddProperty("Group", PT_INT, GetGroup());
+	AddProperty("MovableFilename", PT_STRINGBUTTON, GetMovableFilename());
+	AddProperty("IsPickable", PT_BOOL, IsPickable());
+
+	AddProperty("Face", PT_AVECTOR3, GetFace());
+	AVector dir;
+	AVector up;
+	AVector right;
+	AddProperty("Direction", PT_AVECTOR3, dir);
+	AddProperty("Up", PT_AVECTOR3, up);
+	AddProperty("right", PT_AVECTOR3, right);
+
+	AddProperty("Radius", PT_FLOAT, GetRadius());
+	AddProperty("Height", PT_FLOAT, GetHeight());
+}
+//----------------------------------------------------------------------------
+void Actor::OnPropertyChanged(const PropertyObject &obj)
+{
+	Node::OnPropertyChanged(obj);
+
+	if ("TypeID" == obj.Name)
+	{
+		SetTypeID(PX2_ANY_AS(obj.Data, int));
+	}
+	else if ("Group" == obj.Name)
+	{
+		SetGroup(PX2_ANY_AS(obj.Data, int));
+	}
+	else if ("MovableFilename" == obj.Name)
+	{
+		SetMovableFilename(PX2_ANY_AS(obj.Data, std::string), true);
+	}
+	else if ("IsPickable" == obj.Name)
+	{
+		SetPickable(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("Face" == obj.Name)
+	{
+		SetFace(PX2_ANY_AS(obj.Data, AVector));
+	}
+	else if ("Radius" == obj.Name)
+	{
+		SetRadius(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("Height" == obj.Name)
+	{
+		SetHegiht(PX2_ANY_AS(obj.Data, float));
+	}
 }
 //----------------------------------------------------------------------------
 
@@ -233,6 +297,9 @@ void Actor::Load(InStream& source)
 	source.ReadPointer(mHelpNode);
 
 	source.ReadBool(mIsPickable);
+
+	source.Read(mRadius);
+	source.Read(mHeight);
 
 	PX2_END_DEBUG_STREAM_LOAD(Actor, source);
 }
@@ -312,6 +379,9 @@ void Actor::Save(OutStream& target) const
 
 	target.WriteBool(mIsPickable);
 
+	target.Write(mRadius);
+	target.Write(mHeight);
+
 	PX2_END_DEBUG_STREAM_SAVE(Actor, target);
 }
 //----------------------------------------------------------------------------
@@ -330,6 +400,9 @@ int Actor::GetStreamingSize(Stream &stream) const
 	size += PX2_POINTERSIZE(mHelpNode);
 
 	size += PX2_BOOLSIZE(mIsPickable);
+
+	size += sizeof(mRadius);
+	size += sizeof(mHeight);
 
 	return size;
 }

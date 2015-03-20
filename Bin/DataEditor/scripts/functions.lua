@@ -171,6 +171,12 @@ function e_SceneActor_CreateCharacter()
 	PX2_CREATER:CreateActor_Character(scene, pickPos)
 end
 
+function e_SceneActor_CreateLight()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Light(scene, pickPos)
+end
+
 function e_SceneActor_CreateEffect()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()

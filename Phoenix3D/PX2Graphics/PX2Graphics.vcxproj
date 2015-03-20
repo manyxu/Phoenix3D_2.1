@@ -107,6 +107,7 @@
     <ClCompile Include="PX2LightAttenuationConstant.cpp" />
     <ClCompile Include="PX2LightConstant.cpp" />
     <ClCompile Include="PX2LightDiffuseConstant.cpp" />
+    <ClCompile Include="PX2LightGroupConstant.cpp" />
     <ClCompile Include="PX2LightModelDVectorConstant.cpp" />
     <ClCompile Include="PX2LightModelPositionConstant.cpp" />
     <ClCompile Include="PX2LightNode.cpp" />
@@ -273,6 +274,7 @@
     <ClInclude Include="PX2LightAttenuationConstant.hpp" />
     <ClInclude Include="PX2LightConstant.hpp" />
     <ClInclude Include="PX2LightDiffuseConstant.hpp" />
+    <ClInclude Include="PX2LightGroupConstant.hpp" />
     <ClInclude Include="PX2LightModelDVectorConstant.hpp" />
     <ClInclude Include="PX2LightModelPositionConstant.hpp" />
     <ClInclude Include="PX2LightNode.hpp" />

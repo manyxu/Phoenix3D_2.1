@@ -302,41 +302,26 @@ void E_MainFrame::OnShortcutKeyDown()
 		return;
 	}
 
-	if (wxGetKeyState(WXK_CONTROL))
-	{
-		if (wxGetKeyState(WXK_CONTROL_N))
-		{
-			OnNewProject();
-		}
-		else if (wxGetKeyState(WXK_CONTROL_O))
-		{
-			OnOpenProject();
-		}
-		else if (wxGetKeyState(WXK_CONTROL_S))
-		{
-			OnSaveProject();
-		}
-	}
-	if (wxGetKeyState(WXK_CONTROL_Q))
-	{
-		PX2_SM.CallString("e_OnSelect()");
-	}
-	else if (wxGetKeyState(WXK_CONTROL_W))
-	{
-		PX2_SM.CallString("e_OnTranslate()");
-	}
-	else if (wxGetKeyState(WXK_CONTROL_E))
-	{
-		PX2_SM.CallString("e_OnRotate()");
-	}
-	else if (wxGetKeyState(WXK_CONTROL_R))
-	{
-		PX2_SM.CallString("e_OnScale()");
-	}
-	else if (wxGetKeyState(WXK_DELETE))
-	{
-		PX2_SM.CallString("e_OnDelete()");
-	}
+	//if (wxGetKeyState(WXK_CONTROL_Q))
+	//{
+	//	PX2_SM.CallString("e_OnSelect()");
+	//}
+	//else if (wxGetKeyState(WXK_CONTROL_W))
+	//{
+	//	PX2_SM.CallString("e_OnTranslate()");
+	//}
+	//else if (wxGetKeyState(WXK_CONTROL_E))
+	//{
+	//	PX2_SM.CallString("e_OnRotate()");
+	//}
+	//else if (wxGetKeyState(WXK_CONTROL_R))
+	//{
+	//	PX2_SM.CallString("e_OnScale()");
+	//}
+	//else if (wxGetKeyState(WXK_DELETE))
+	//{
+	//	PX2_SM.CallString("e_OnDelete()");
+	//}
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::OnCommondItem(wxCommandEvent &e)

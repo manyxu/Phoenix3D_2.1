@@ -24,12 +24,32 @@ namespace PX2
 		Light *GetLight();
 		LightNode *GetLightNode();
 
+		enum LightType
+		{
+			LT_POINT,
+			LT_SPOT,
+			LT_MAX_TYPE
+		};
+		void SetLightType(LightType type);
+		LightType GetLightType() const;
+
+		virtual void SetColor(const Float3 &color);
+		virtual void SetRadius(float radius);
+
+		void SetBake_CalShadow(bool caseShadow);
+		bool IsBake_CalShadow() const;
+
 	public_internal:
 		virtual void SetParent(Movable* parent);
 
 	protected:
+		void UpdateWorldData(double applicationTime, double elapsedTime);
+
 		LightPtr mLight;
 		LightNodePtr mLightNode;
+
+		LightType mLightType;
+		bool mIsBakeCastShadow;
 	};
 
 	PX2_REGISTER_STREAM(LightActor);

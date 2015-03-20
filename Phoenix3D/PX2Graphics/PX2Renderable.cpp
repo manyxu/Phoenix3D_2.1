@@ -167,22 +167,19 @@ void Renderable::ClearLights ()
 	mInfulencedLights.clear();
 }
 //----------------------------------------------------------------------------
-int Renderable::GetNumLights ()
+int Renderable::GetNumLights() const
 {
 	return (int)mInfulencedLights.size();
 }
 //----------------------------------------------------------------------------
-Light *Renderable::GetLight (int i)
+Light *Renderable::GetLight(int i)
 {
-	assertion(0<=i && i<(int)mInfulencedLights.size(),
-		"i should be in right range.");
-
-	if (0<=i && i<(int)mInfulencedLights.size())
-	{
-		return mInfulencedLights[i];
-	}
-
-	return 0;
+	return mInfulencedLights[i];
+}
+//----------------------------------------------------------------------------
+const Light *Renderable::GetLight(int i) const
+{
+	return mInfulencedLights[i];
 }
 //----------------------------------------------------------------------------
 void Renderable::SetLightTexture (Texture2D *tex)

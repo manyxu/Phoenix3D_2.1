@@ -38,7 +38,9 @@ namespace PX2
 		// 灯光颜色
 		Float4 Ambient;   //< default: (0,0,0,1)
 		Float4 Diffuse;   //< default: (0,0,0,1)
-		Float4 Specular;  //< default: (0,0,0,1)
+		Float4 Specular;  //< default: (0,0,0,1)'
+
+		float Range;
 
 		// 衰减通常的调制模式为
 		// m = 1/(C + L*d + Q*d*d)

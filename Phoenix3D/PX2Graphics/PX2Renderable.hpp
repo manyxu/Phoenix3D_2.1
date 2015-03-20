@@ -134,8 +134,9 @@ namespace PX2
 		bool AddLight (Light *light);
 		bool RemoveLight (Light *light);		
 		void ClearLights ();
-		int GetNumLights ();
+		int GetNumLights () const;
 		Light *GetLight (int i);
+		const Light *GetLight(int i) const;
 
 		// Shine
 		void SetShine (Shine *shine);

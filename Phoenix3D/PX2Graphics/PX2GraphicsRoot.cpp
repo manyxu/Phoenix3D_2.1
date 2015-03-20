@@ -190,74 +190,19 @@ void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
 		for (int j=0; j<GraphicsRoot::GetSingleton().GetNumLights(); j++)
 		{
 			PX2::Light *light = GraphicsRoot::GetSingleton().GetLight(j);
-			PX2::APoint lightPos = light->Position;
+			const PX2::APoint &lightPos = light->Position;
+			Light::Type lightType = light->GetType();
+			float rangeSQuare = light->Range * light->Range;
 
-			if (light->GetType() == Light::LT_DIRECTIONAL ||
-				light->GetType() == Light::LT_AMBIENT)
-			{
-				renderable->AddLight(light);
-			}
-			else if (light->GetType() == Light::LT_POINT)
+			if (Light::LT_POINT == lightType)
 			{
 				Vector3f diff = renPos - lightPos;
-				float len = diff.Length();
-				if (len <= 8)
+				float squaredLength = diff.SquaredLength();
+				if (squaredLength <= rangeSQuare)
+				{
 					renderable->AddLight(light);
+				}
 			}
-		}
-	}
-
-	for (int i=0; i<vs.GetNumVisible(); i++)
-	{
-		PX2::Renderable *renderable = vs.GetVisible(i);
-
-		PX2::Light *lightDir = 0;
-		for (int j=0; j<renderable->GetNumLights(); j++)
-		{
-			PX2::Light *light = renderable->GetLight(j);
-			if (light->GetType() == Light::LT_DIRECTIONAL)
-			{
-				lightDir = light;
-				break;
-			}
-		}
-
-		PX2::MaterialInstance *inst = renderable->GetMaterialInstance();
-		if (!inst)
-			continue;
-
-		PX2::Material *mtl = inst->GetMaterial();
-
-		PX2::SkinMaterial *skinMtl = DynamicCast<SkinMaterial>(mtl);
-
-		LightModelDVectorConstant *modelDVectorConstant = 0;
-		LightWorldDVectorConstant *lightWorldDVectorConstant = 0;
-		LightAmbientConstant *ambConstant = 0;
-		LightDiffuseConstant *difConstant = 0;
-		LightSpecularConstant *specConstant = 0;
-
-		if (skinMtl)
-		{
-			lightWorldDVectorConstant = DynamicCast<LightWorldDVectorConstant>(inst->GetVertexConstant(0, "LightWorldDirection"));
-
-			if (lightWorldDVectorConstant)
-				lightWorldDVectorConstant->SetLight(lightDir);
-
-			ambConstant = DynamicCast<LightAmbientConstant>(inst->GetVertexConstant(0, "gLightAmbient"));
-			difConstant = DynamicCast<LightDiffuseConstant>(inst->GetVertexConstant(0, "gLightDiffuse"));
-			specConstant = DynamicCast<LightSpecularConstant>(inst->GetVertexConstant(0, "gLightSpecular"));
-
-			if (modelDVectorConstant)
-				modelDVectorConstant->SetLight(lightDir);
-
-			if (ambConstant)
-				ambConstant->SetLight(lightDir);
-
-			if (difConstant)
-				difConstant->SetLight(lightDir);
-
-			if (specConstant)
-				specConstant->SetLight(lightDir);
 		}
 	}
 }

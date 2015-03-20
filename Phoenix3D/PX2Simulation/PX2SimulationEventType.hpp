@@ -20,6 +20,7 @@ namespace PX2
 	PX2_EVENT(NoReDo)
 	PX2_EVENT(AddObject)
 	PX2_EVENT(RemoveObject)
+	PX2_EVENT(SetRadius)
 	PX2_DECLARE_EVENT_END(SimuES_E)
 
 	PX2_DECLARE_EVENT_BEGIN(SimuES)

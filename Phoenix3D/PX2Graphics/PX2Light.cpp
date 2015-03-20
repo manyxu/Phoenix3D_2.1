@@ -15,6 +15,7 @@ Light::Light (Type eType)
 Ambient(Float4(0.0f, 0.0f, 0.0f, 1.0f)),
 Diffuse(Float4(0.0f, 0.0f, 0.0f, 1.0f)),
 Specular(Float4(0.0f, 0.0f, 0.0f, 1.0f)),
+Range(1.0f),
 Constant(1.0f),
 Linear(0.0f),
 Quadratic(0.0f),
@@ -61,6 +62,7 @@ Object(value),
 Ambient(Float4(0.0f, 0.0f, 0.0f, 1.0f)),
 Diffuse(Float4(0.0f, 0.0f, 0.0f, 1.0f)),
 Specular(Float4(0.0f, 0.0f, 0.0f, 1.0f)),
+Range(1.0f),
 Constant(0.0f),
 Linear(0.0f),
 Quadratic(0.0f),
@@ -88,6 +90,7 @@ void Light::Load (InStream& source)
 	source.ReadAggregate(Ambient);
 	source.ReadAggregate(Diffuse);
 	source.ReadAggregate(Specular);
+	source.Read(Range);
 	source.Read(Constant);
 	source.Read(Linear);
 	source.Read(Quadratic);
@@ -130,6 +133,7 @@ void Light::Save (OutStream& target) const
 	target.WriteAggregate(Ambient);
 	target.WriteAggregate(Diffuse);
 	target.WriteAggregate(Specular);
+	target.Write(Range);
 	target.Write(Constant);
 	target.Write(Linear);
 	target.Write(Quadratic);
@@ -154,6 +158,7 @@ int Light::GetStreamingSize (Stream &stream) const
 	size += sizeof(Ambient);
 	size += sizeof(Diffuse);
 	size += sizeof(Specular);
+	size += sizeof(Range);
 	size += sizeof(Constant);
 	size += sizeof(Linear);
 	size += sizeof(Quadratic);

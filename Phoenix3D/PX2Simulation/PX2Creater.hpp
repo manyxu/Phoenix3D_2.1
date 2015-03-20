@@ -21,6 +21,7 @@
 #include "PX2RibbonEmitter.hpp"
 #include "PX2Soundable.hpp"
 #include "PX2Character.hpp"
+#include "PX2LightActor.hpp"
 #include "PX2EffectActor.hpp"
 #include "PX2TriggerActor.hpp"
 #include "PX2SkyActor.hpp"
@@ -47,6 +48,7 @@ namespace PX2
 		SkyActor *CreateActor_Sky(Scene *scene, const APoint &pos);
 		TerrainActor *CreateActor_Terrain(Scene *scene, const APoint &pos,
 			const std::string &name, int terrainSize, int pageSize, float gridSpacing);
+		LightActor *CreateActor_Light(Scene *scene, const APoint &pos);
 
 		Movable *CreateRectangle(Node *parent, const APoint &pos, bool isPosWorld, 
 			bool doAdd=true, bool usePickPos=true);

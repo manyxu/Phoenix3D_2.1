@@ -485,6 +485,9 @@
     <ClCompile Include="Renderers\OpenGLESRenderer\PX2OpenGLESVertexShader.cpp">
       <Filter>Renderers\OpenGLESRenderer</Filter>
     </ClCompile>
+    <ClCompile Include="PX2LightGroupConstant.cpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -981,6 +984,9 @@
     </ClInclude>
     <ClInclude Include="Renderers\OpenGLESRenderer\PX2OpenGLESVertexShader.hpp">
       <Filter>Renderers\OpenGLESRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2LightGroupConstant.hpp">
+      <Filter>Materials\ShaderFloats\Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

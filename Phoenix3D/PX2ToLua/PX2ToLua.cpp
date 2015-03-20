@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 03/18/15 13:25:55.
+** Generated automatically by tolua++-1.0.92 on 03/20/15 15:59:53.
 */
 
 #ifndef __cplusplus
@@ -286,21 +286,22 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Sizef");
  tolua_usertype(tolua_S,"UIProgressBar");
  tolua_usertype(tolua_S,"Texture3D");
- tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"CameraActor");
- tolua_usertype(tolua_S,"Selection");
+ tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"HMatrix");
+ tolua_usertype(tolua_S,"Selection");
  tolua_usertype(tolua_S,"AmbientRegionActor");
+ tolua_usertype(tolua_S,"RenderStep");
  tolua_usertype(tolua_S,"ResourceManager");
  tolua_usertype(tolua_S,"PixelShader");
- tolua_usertype(tolua_S,"UIButton");
+ tolua_usertype(tolua_S,"UIEditBox");
  tolua_usertype(tolua_S,"Creater");
  tolua_usertype(tolua_S,"Logger");
- tolua_usertype(tolua_S,"UIEditBox");
+ tolua_usertype(tolua_S,"UIButton");
  tolua_usertype(tolua_S,"Scene");
  tolua_usertype(tolua_S,"UIPicBox");
  tolua_usertype(tolua_S,"Controller");
- tolua_usertype(tolua_S,"RenderStep");
+ tolua_usertype(tolua_S,"LightActor");
  tolua_usertype(tolua_S,"Renderer");
  tolua_usertype(tolua_S,"HPoint");
  tolua_usertype(tolua_S,"CameraShakeChannel");
@@ -25230,6 +25231,42 @@ static int tolua_PX2_Creater_CreateActor_Terrain00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: CreateActor_Light of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateActor_Light00
+static int tolua_PX2_Creater_CreateActor_Light00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateActor_Light'", NULL);
+#endif
+  {
+   LightActor* tolua_ret = (LightActor*)  self->CreateActor_Light(scene,*pos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"LightActor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateActor_Light'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: CreateRectangle of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateRectangle00
 static int tolua_PX2_Creater_CreateRectangle00(lua_State* tolua_S)
@@ -29402,6 +29439,7 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateActor_Trigger",tolua_PX2_Creater_CreateActor_Trigger00);
    tolua_function(tolua_S,"CreateActor_Sky",tolua_PX2_Creater_CreateActor_Sky00);
    tolua_function(tolua_S,"CreateActor_Terrain",tolua_PX2_Creater_CreateActor_Terrain00);
+   tolua_function(tolua_S,"CreateActor_Light",tolua_PX2_Creater_CreateActor_Light00);
    tolua_function(tolua_S,"CreateRectangle",tolua_PX2_Creater_CreateRectangle00);
    tolua_function(tolua_S,"CreateBox",tolua_PX2_Creater_CreateBox00);
    tolua_function(tolua_S,"CreateSphere",tolua_PX2_Creater_CreateSphere00);

@@ -52,9 +52,13 @@ void LightNode::UpdateWorldData(double applicationTime, double elapsedTime)
 	if (mLight)
 	{
 		mLight->Position = WorldTransform.GetTranslate();
-		WorldTransform.GetRotate().GetColumn(0, mLight->DVector);
-		WorldTransform.GetRotate().GetColumn(1, mLight->UVector);
-		WorldTransform.GetRotate().GetColumn(2, mLight->RVector);
+
+		if (WorldTransform.IsRSMatrix())
+		{
+			WorldTransform.GetRotate().GetColumn(0, mLight->DVector);
+			WorldTransform.GetRotate().GetColumn(1, mLight->UVector);
+			WorldTransform.GetRotate().GetColumn(2, mLight->RVector);
+		}
 	}
 
 	if (mIsNeedUpdate)

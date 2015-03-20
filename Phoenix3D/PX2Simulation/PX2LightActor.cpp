@@ -4,11 +4,13 @@
 #include "PX2GraphicsRoot.hpp"
 #include "PX2StandardMesh.hpp"
 #include "PX2VertexColor4Material.hpp"
+#include "PX2SimulationEventType.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Actor, LightActor);
 PX2_IMPLEMENT_STREAM(LightActor);
 PX2_IMPLEMENT_FACTORY(LightActor);
+PX2_IMPLEMENT_DEFAULT_NAMES(Actor, LightActor);
 
 //----------------------------------------------------------------------------
 LightActor::LightActor()
@@ -19,20 +21,83 @@ LightActor::LightActor()
 	mLightNode = new0 LightNode(mLight);
 	SetMovable(mLightNode);
 
+	Node *helpNode = new0 Node();
+
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
-	StandardMesh stdMesh(vf);
-	stdMesh.SetVertexColor(Float4(1.0f, 1.0f, 0.0f, 1.0f));
-	TriMesh *mesh = stdMesh.Octahedron();
+
 	PX2::VertexColor4MaterialPtr mtl = new0 VertexColor4Material();
 	mtl->GetWireProperty(0, 0)->Enabled = true;
 	mtl->GetCullProperty(0, 0)->Enabled = false;
+	MaterialInstancePtr mtlInst = mtl->CreateInstance();
+
+	StandardMesh stdMesh(vf);
+	stdMesh.SetVertexColor(Float4(0.0f, 1.0f, 0.0f, 1.0f));
+
+	TriMesh *mesh = stdMesh.Octahedron();
 	mesh->LocalTransform.SetUniformScale(0.5f);
-	mesh->SetMaterialInstance(mtl->CreateInstance());
-	CreateHelpNode()->AttachChild(mesh);
+	mesh->SetMaterialInstance(mtlInst);
+	helpNode->AttachChild(mesh);
+
+	TriMesh *box = stdMesh.Box(0.005f, 0.005f, 5.0f);
+	box->LocalTransform.SetTranslate(APoint(0.0f, 0.0f, -5.5f));
+	box->SetMaterialInstance(mtlInst);
+	helpNode->AttachChild(box);
+
+	CreateHelpNode()->AttachChild(helpNode);
+
+	WorldBoundIsCurrent = true;
+	SetRadius(1.0f);
 }
 //----------------------------------------------------------------------------
 LightActor::~LightActor()
 {
+}
+//----------------------------------------------------------------------------
+void LightActor::SetLightType(LightType type)
+{
+	mLightType = type;
+
+	if (LT_POINT == type)
+	{
+		mLight->SetType(Light::LT_POINT);
+	}
+	else if (LT_SPOT == type)
+	{
+		mLight->SetType(Light::LT_SPOT);
+	}
+}
+//----------------------------------------------------------------------------
+void LightActor::SetColor(const Float3 &color)
+{
+	Actor::SetColor(color);
+
+	mLight->Diffuse = Float4(mColor[0], mColor[1], mColor[2], 1.0f);
+}
+//----------------------------------------------------------------------------
+void LightActor::SetRadius(float radius)
+{
+	mRadius = radius;
+
+	WorldBound.SetRadius(GetRadius());
+
+	if (PX2_GR.IsInEditor())
+	{
+		Event *ent = SimuES_E::CreateEventX(SimuES_E::SetRadius);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+}
+//----------------------------------------------------------------------------
+void LightActor::SetBake_CalShadow(bool caseShadow)
+{
+	mIsBakeCastShadow = caseShadow;
+}
+//----------------------------------------------------------------------------
+void LightActor::UpdateWorldData(double applicationTime, double elapsedTime)
+{
+	Actor::UpdateWorldData(applicationTime, elapsedTime);
+
+	WorldBound.SetCenter(WorldTransform.GetTranslate());
+	WorldBound.SetRadius(GetRadius());
 }
 //----------------------------------------------------------------------------
 void LightActor::SetParent(Movable* parent)
@@ -58,32 +123,26 @@ void LightActor::RegistProperties()
 	Actor::RegistProperties();
 
 	AddPropertyClass("LightActor");
+
+	std::vector<std::string> lightTypes;
+	lightTypes.push_back("LT_POINT");
+	lightTypes.push_back("LT_SPOT");
+	AddPropertyEnum("LightType", (int)mLightType, lightTypes);
+	AddProperty("IsBake_CastShadow", PT_BOOL, mIsBakeCastShadow);
 }
 //----------------------------------------------------------------------------
 void LightActor::OnPropertyChanged(const PropertyObject &obj)
 {
 	Actor::OnPropertyChanged(obj);
-}
-//----------------------------------------------------------------------------
 
-//----------------------------------------------------------------------------
-// Ãû³ÆÖ§³Ö
-//----------------------------------------------------------------------------
-Object* LightActor::GetObjectByName(const std::string& name)
-{
-	Object* found = Actor::GetObjectByName(name);
-	if (found)
+	if ("LightType" == obj.Name)
 	{
-		return found;
+		SetLightType((LightType)PX2_ANY_AS(obj.Data, int));
 	}
-
-	return 0;
-}
-//----------------------------------------------------------------------------
-void LightActor::GetAllObjectsByName(const std::string& name,
-	std::vector<Object*>& objects)
-{
-	Actor::GetAllObjectsByName(name, objects);
+	else if ("IsBake_CastShadow" == obj.Name)
+	{
+		SetBake_CalShadow(PX2_ANY_AS(obj.Data, bool));
+	}
 }
 //----------------------------------------------------------------------------
 
@@ -104,6 +163,9 @@ void LightActor::Load(InStream& source)
 
 	source.ReadPointer(mLight);
 	source.ReadPointer(mLightNode);
+
+	source.ReadEnum(mLightType);
+	source.ReadBool(mIsBakeCastShadow);
 
 	PX2_END_DEBUG_STREAM_LOAD(LightActor, source);
 }
@@ -143,6 +205,9 @@ void LightActor::Save(OutStream& target) const
 	target.WritePointer(mLight);
 	target.WritePointer(mLightNode);
 
+	target.WriteEnum(mLightType);
+	target.WriteBool(mIsBakeCastShadow);
+
 	PX2_END_DEBUG_STREAM_SAVE(LightActor, target);
 }
 //----------------------------------------------------------------------------
@@ -153,6 +218,9 @@ int LightActor::GetStreamingSize(Stream &stream) const
 
 	size += PX2_POINTERSIZE(mLight);
 	size += PX2_POINTERSIZE(mLightNode);
+
+	size += PX2_ENUMSIZE(mLightType);
+	size += PX2_BOOLSIZE(mIsBakeCastShadow);
 
 	return size;
 }

@@ -40,6 +40,7 @@ function e_CreateEditMenu(tag)
 			NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("Sphere"), "e_SceneActor_CreateSphere()")
 			
 			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Character"), "e_SceneActor_CreateCharacter()")
+			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Light"), "e_SceneActor_CreateLight()")
 			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Effect"), "e_SceneActor_CreateEffect()")
 			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Trigger"), "e_SceneActor_CreateTrigger()")
 			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Terrain"), "e_SceneActor_CreateTerrain()")

@@ -101,6 +101,16 @@ SkyActor *Creater::CreateActor_Sky(Scene *scene, const APoint &pos)
 	return actor;
 }
 //----------------------------------------------------------------------------
+LightActor *Creater::CreateActor_Light(Scene *scene, const APoint &pos)
+{
+	LightActor *actor = new0 LightActor();
+	actor->LocalTransform.SetTranslate(pos);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
 TerrainActor *Creater::CreateActor_Terrain(Scene *scene, const APoint &pos,
 	const std::string &name, int terrainSize, int pageSize,
 	float gridSpacing)
@@ -117,10 +127,6 @@ TerrainActor *Creater::CreateActor_Terrain(Scene *scene, const APoint &pos,
 	rawTerrain->SetColQuantity(quantity);
 	rawTerrain->SetSpacing(gridSpacing);
 	rawTerrain->AllocateRawTerrainPages();
-	
-	float terrainAllSize = terrainSize * gridSpacing;
-	rawTerrain->LocalTransform.SetTranslateXY(-terrainAllSize / 2.0f,
-		-terrainAllSize / 2.0f);
 
 	actor->SetRawTerrain(rawTerrain);
 
