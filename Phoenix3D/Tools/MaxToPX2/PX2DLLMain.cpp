@@ -79,9 +79,8 @@ BOOL WINAPI DllMain (HINSTANCE instance, ULONG dwReason, LPVOID)
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-__declspec(dllexport) const TCHAR* LibDescription ()
+__declspec(dllexport) const TCHAR *LibDescription()
 {
-	// 这个函数返回一个字符串描述这个DLL。用户如果没有这个DLL可以通过此获得。
 	return "Phoenix2 3DMax Plugin";
 }
 //----------------------------------------------------------------------------

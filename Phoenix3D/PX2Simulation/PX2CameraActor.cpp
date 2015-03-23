@@ -78,6 +78,29 @@ void CameraActor::LookAt(const Movable *mov)
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
+// Propertys
+//----------------------------------------------------------------------------
+void CameraActor::RegistProperties()
+{
+	Actor::RegistProperties();
+
+	AddPropertyClass("CameraActor");
+
+	AddProperty("FOV", PT_FLOAT, GetFOV());
+}
+//----------------------------------------------------------------------------
+void CameraActor::OnPropertyChanged(const PropertyObject &obj)
+{
+	Actor::OnPropertyChanged(obj);
+
+	if ("FOV" == obj.Name)
+	{
+		SetFOV(PX2_ANY_AS(obj.Data, float));
+	}
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
 CameraActor::CameraActor(LoadConstructor value)
