@@ -58,7 +58,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mProjView(0),
 	mIsCrossCursor(false)
 {
-	mPerspConfigName = "nirvana1.0.0.config";
+	mPerspConfigName = "nirvana1.0.1.config";
 
 	PX2_EW.ComeIn(this);
 }

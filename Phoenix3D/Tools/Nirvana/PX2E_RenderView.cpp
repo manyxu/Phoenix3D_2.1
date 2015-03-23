@@ -128,6 +128,8 @@ void RenderView::OnEnterWindow(wxMouseEvent& e)
 {
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->EnterView();
+
+	PX2_UNUSED(e);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnLeaveWindow(wxMouseEvent& e)

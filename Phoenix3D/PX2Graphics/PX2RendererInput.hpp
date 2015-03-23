@@ -3,6 +3,7 @@
 #ifndef PX2RENDERINPUT_HPP
 #define PX2RENDERINPUT_HPP
 
+#include "PX2SmartPointer.hpp"
 
 namespace PX2
 {
@@ -15,6 +16,8 @@ namespace PX2
 
 		virtual bool Ternamate();
 	};
+
+	typedef Pointer0<RendererInput> RendererInputPtr;
 
 }
 

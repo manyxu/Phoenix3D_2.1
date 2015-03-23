@@ -7,6 +7,7 @@
 
 #include "PX2Dx9RendererPre.hpp"
 #include "PX2RendererInput.hpp"
+#include "PX2SmartPointer.hpp"
 
 namespace PX2
 {

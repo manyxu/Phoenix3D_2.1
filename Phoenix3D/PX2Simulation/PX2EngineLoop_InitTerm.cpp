@@ -4,6 +4,7 @@
 #include "PX2Assert.hpp"
 #include "PX2LuaManager.hpp"
 #include "PX2ToLua.hpp"
+#include "PX2RendererInput.hpp"
 using namespace PX2;
 
 extern "C"
@@ -213,6 +214,7 @@ bool EngineLoop::Ternamate()
 		ScriptManager::Set(0);
 	}
 
+	bool isInEditor = mRoot->IsInEditor();
 	if (mRoot)
 	{
 		mRoot->Terminate();
@@ -263,7 +265,6 @@ bool EngineLoop::Ternamate()
 		Renderer::SetDefaultRenderer(0);
 	}
 
-#ifdef PX2_USE_DX9
 	if (mRendererInput)
 	{
 		mRendererInput->Ternamate();
@@ -271,7 +272,6 @@ bool EngineLoop::Ternamate()
 		delete0(mRendererInput);
 		mRendererInput = 0;
 	}
-#endif
 
 	Logger *logger = Logger::GetSingletonPtr();
 	if (logger)
@@ -283,7 +283,16 @@ bool EngineLoop::Ternamate()
 	FString::Ternimate();
 
 #ifdef PX2_USE_MEMORY
-	Memory::Terminate("PX2Application_MemoryReport.txt", false);
+
+	if (isInEditor)
+	{
+		Memory::Terminate("Editor_MemoryReport.txt", false);
+	}
+	else
+	{
+		Memory::Terminate("PX2Application_MemoryReport.txt", false);
+	}
+
 #endif
 
 	return true;

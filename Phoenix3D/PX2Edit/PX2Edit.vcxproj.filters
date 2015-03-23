@@ -62,9 +62,6 @@
     <ClInclude Include="PX2EditRenderView_Res.hpp">
       <Filter>Views\NotUse</Filter>
     </ClInclude>
-    <ClInclude Include="PX2Brush.hpp">
-      <Filter>TerrainEdit</Filter>
-    </ClInclude>
     <ClInclude Include="PX2TerrainBrush.hpp">
       <Filter>TerrainEdit</Filter>
     </ClInclude>
@@ -72,6 +69,9 @@
       <Filter>TerrainEdit</Filter>
     </ClInclude>
     <ClInclude Include="PX2TerrainProcess.hpp">
+      <Filter>TerrainEdit</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Brush.hpp">
       <Filter>TerrainEdit</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,9 +134,6 @@
     <ClCompile Include="PX2EditRenderView_Res.cpp">
       <Filter>Views\NotUse</Filter>
     </ClCompile>
-    <ClCompile Include="PX2Brush.cpp">
-      <Filter>TerrainEdit</Filter>
-    </ClCompile>
     <ClCompile Include="PX2TerrainBrush.cpp">
       <Filter>TerrainEdit</Filter>
     </ClCompile>
@@ -144,6 +141,9 @@
       <Filter>TerrainEdit</Filter>
     </ClCompile>
     <ClCompile Include="PX2TerrainProcess.cpp">
+      <Filter>TerrainEdit</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Brush.cpp">
       <Filter>TerrainEdit</Filter>
     </ClCompile>
   </ItemGroup>
