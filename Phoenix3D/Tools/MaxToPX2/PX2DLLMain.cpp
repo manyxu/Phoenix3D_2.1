@@ -79,7 +79,7 @@ BOOL WINAPI DllMain (HINSTANCE instance, ULONG dwReason, LPVOID)
 	return TRUE;
 }
 //----------------------------------------------------------------------------
-__declspec(dllexport) const TCHAR *LibDescription()
+__declspec(dllexport) TCHAR const *LibDescription()
 {
 	return "Phoenix2 3DMax Plugin";
 }
