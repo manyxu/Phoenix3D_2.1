@@ -253,6 +253,9 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       <Command>mkdir ..\PX2SDK\Include
 xcopy /DY *.hpp ..\PX2SDK\Include
 xcopy /DY *.inl ..\PX2SDK\Include
+xcopy /DY Renderers\*.hpp ..\PX2SDK\Include
+xcopy /DY Renderers\*.inl ..\PX2SDK\Include
+xcopy /DY Renderers\Dx9Renderer\*.hpp ..\PX2SDK\Include
 mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
 xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
     </PostBuildEvent>

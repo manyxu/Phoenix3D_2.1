@@ -273,7 +273,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>fmod64_vc.lib;d3d9.lib;d3dx9.lib;dxerr.lib;dinput8.lib;dxguid.lib;ws2_32.lib;PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsD.lib;PX2UnityD.lib;PX2NetD.lib;PX2UID.lib;PX2EffectD.lib;PX2TerrainsD.lib;PX2SimulationD.lib;PX2AppFrameD.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);C:\Users\void\Documents\GitHub\Phoenix3D\Phoenix3D\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Lib\x64;C:\Users\void\Documents\GitHub\Phoenix3D\Phoenix3D\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Lib\x64;..\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugOGLES|Win32'">

@@ -175,7 +175,7 @@ bool SceneBuilder::Traverse(INode *maxNode, PX2::Node *relatParent)
 	}
 
 	// Node
-	char *nodeName = maxNode->GetName();
+	const char *nodeName = maxNode->GetName();
 
 	if(stricmp(nodeName, "PHYSICSDATA") == 0)
 	{

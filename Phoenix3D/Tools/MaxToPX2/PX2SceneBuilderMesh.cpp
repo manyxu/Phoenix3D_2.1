@@ -69,7 +69,7 @@ PX2::Movable *SceneBuilder::BuildMesh(INode *maxNode,
 		strcmp(maxNode->GetName(), relatParentOrEqualNode->GetName().c_str()) == 0);
 
 	// maxName
-	char *maxName = maxNode->GetName();
+	const char *maxName = maxNode->GetName();
 
 	// 如果只需要一个Phoenix的Mesh表示Max的Mesh，直接将Phoenix的Mesh链接到
 	// Phoenix的场景图中；否则，创建一个"link"节点，将按照材质分割的子Mesh

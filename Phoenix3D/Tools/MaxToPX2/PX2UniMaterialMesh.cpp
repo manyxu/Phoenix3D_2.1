@@ -5,6 +5,7 @@
 */
 
 #include "PX2UniMaterialMesh.hpp"
+#include "PX2MaterialInstance.hpp"
 #include <algorithm>
 #include <vector>
 using namespace PX2;
@@ -467,9 +468,7 @@ TriMesh *UniMaterialMesh::ToTriMesh()
 	PX2::SkinMaterial *skinMtl = DynamicCast<SkinMaterial>(mtl);
 	if (skinMtl && !mExportSkin)
 	{
-		PX2::StdMaterial *stdMtl = new0 StdMaterial();
-		mi = stdMtl->CreateInstance(DynamicCast<Texture2D>(mMaterialInstance->GetPixelTexture(0, 0)),
-			mShine, 0);
+		mi = new0 MaterialInstance("Data/engine_mtls/std/std.xml", "std_light", false);
 	}
 	else
 	{

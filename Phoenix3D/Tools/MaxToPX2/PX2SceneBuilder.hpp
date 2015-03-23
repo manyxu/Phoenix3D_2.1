@@ -120,7 +120,7 @@ private:
 	static const TCHAR* msMapGeneric;
 
 	// Material 
-	bool IsValidName (char* str);
+	bool IsValidName (const char* str);
 	bool ConvertStringAttrib (IParamBlock2 *paramBlock, int index, 
 		std::string &name, std::string &str);
 	bool ConvertFloatAttrib (IParamBlock2* pkParamBlock, int index, 

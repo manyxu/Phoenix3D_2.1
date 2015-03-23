@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8FABAB34-A4F8-4C23-BBDD-084800F49548}</ProjectGuid>
+    <ProjectGuid>{25A7930D-F0AE-4C05-AB83-6B44F07D27A6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Max2012ToPX2_VC100</RootNamespace>
   </PropertyGroup>

@@ -244,11 +244,11 @@ void SceneBuilder::ConvertMaterial (Mtl &mtl, MtlTree &mtlTree)
 				}
 				else if (mSettings->IncludeVertexColors)
 				{
-					px2mlt = new0 PX2::StdVC4Material();
+					//px2mlt = new0 PX2::StdVC4Material();
 				}
 				else
 				{
-					px2mlt = new0 PX2::StdMaterial();
+					//px2mlt = new0 PX2::StdMaterial();
 
 				}
 
@@ -278,24 +278,24 @@ void SceneBuilder::ConvertMaterial (Mtl &mtl, MtlTree &mtlTree)
 				px2mlt->_CalShaderKey();
 
 				PX2::Texture2DMaterial *px2Tex2DMtl = PX2::DynamicCast<PX2::Texture2DMaterial>(px2mlt);
-				PX2::StdMaterial *px2StdMtl = PX2::DynamicCast<PX2::StdMaterial>(px2mlt);
-				PX2::StdVC4Material *px2StdVC4Mtl = PX2::DynamicCast<PX2::StdVC4Material>(px2mlt);
+				//PX2::StdMaterial *px2StdMtl = PX2::DynamicCast<PX2::StdMaterial>(px2mlt);
+				//PX2::StdVC4Material *px2StdVC4Mtl = PX2::DynamicCast<PX2::StdVC4Material>(px2mlt);
 
-				if (px2Tex2DMtl)
-				{
-					PX2::MaterialInstance *instance = px2Tex2DMtl->CreateInstance(tex2d_Diffuse);
-					mtlTree.SetMaterialInstance(instance);
-				}
-				else if (px2StdMtl)
-				{
-					PX2::MaterialInstance *instance = px2StdMtl->CreateInstance(tex2d_Diffuse, shine, 0);
-					mtlTree.SetMaterialInstance(instance);
-				}
-				else if (px2StdVC4Mtl)
-				{
-					PX2::MaterialInstance *instance = px2StdVC4Mtl->CreateInstance(0, tex2d_Diffuse, shine, 0);
-					mtlTree.SetMaterialInstance(instance);
-				}
+				//if (px2Tex2DMtl)
+				//{
+				//	PX2::MaterialInstance *instance = px2Tex2DMtl->CreateInstance(tex2d_Diffuse);
+				//	mtlTree.SetMaterialInstance(instance);
+				//}
+				//else if (px2StdMtl)
+				//{
+				//	PX2::MaterialInstance *instance = px2StdMtl->CreateInstance(tex2d_Diffuse, shine, 0);
+				//	mtlTree.SetMaterialInstance(instance);
+				//}
+				//else if (px2StdVC4Mtl)
+				//{
+				//	PX2::MaterialInstance *instance = px2StdVC4Mtl->CreateInstance(0, tex2d_Diffuse, shine, 0);
+				//	mtlTree.SetMaterialInstance(instance);
+				//}
 			}
 		}
 		else
@@ -541,7 +541,7 @@ void SceneBuilder::ConvertMaterial (Mtl &mtl, MtlTree &mtlTree)
 	}
 }
 //----------------------------------------------------------------------------
-bool SceneBuilder::IsValidName (char *str)
+bool SceneBuilder::IsValidName (const char *str)
 {
 	int length = (int)strlen(str);
 	if ( length == 0) 
@@ -609,7 +609,7 @@ bool SceneBuilder::ConvertStringAttrib (IParamBlock2 *paramBlock, int index,
 
 	if (retrieved)
 	{
-		char* valueName = paramDef.int_name;
+		const const char* valueName = paramDef.int_name;
 		if (!IsValidName(valueName))
 		{
 			valueName = paramBlock->GetLocalName((ParamID)index);
@@ -643,7 +643,7 @@ bool SceneBuilder::ConvertFloatAttrib (IParamBlock2* paramBlock, int index,
 		return false;
 	}
 
-	char *valueName = paramDef.int_name;
+	const char *valueName = paramDef.int_name;
 	if (!IsValidName(valueName))
 	{
 		valueName = paramBlock->GetLocalName((ParamID)index);
@@ -678,7 +678,7 @@ bool SceneBuilder::ConvertIntAttrib (IParamBlock2* paramBlock, int index,
 
 	if (retrieved)
 	{
-		char* valueName = paramDef.int_name;
+		const char* valueName = paramDef.int_name;
 		if (!IsValidName(valueName))
 		{
 			valueName = paramBlock->GetLocalName((ParamID)index);
@@ -729,7 +729,7 @@ bool SceneBuilder::ConvertColorAttrib(IParamBlock2 *paramBlock, int index,
 
 	if (retrievedColor)
 	{
-		char* valueName = colorParamDef.int_name;
+		const char* valueName = colorParamDef.int_name;
 		if (!IsValidName(valueName))
 		{
 			valueName = paramBlock->GetLocalName((ParamID)index);
@@ -744,7 +744,7 @@ bool SceneBuilder::ConvertColorAttrib(IParamBlock2 *paramBlock, int index,
 		//Control *alphaControl = 0;
 		if (retrievedAlpha)
 		{
-			TCHAR *valueAlphaName = alphaParamDef.int_name;
+			const char *valueAlphaName = alphaParamDef.int_name;
 			if (!IsValidName(valueAlphaName))
 				valueName = paramBlock->GetLocalName((ParamID)alphaIndex);
 			assertion(IsValidName(valueAlphaName), "valueName must be valuable.");
@@ -796,7 +796,7 @@ bool SceneBuilder::ConvertPoint3Attrib (IParamBlock2 *paramBlock, int index,
 
 	if (retrieved)
 	{
-		char *valueName = paramDef.int_name;
+		const char *valueName = paramDef.int_name;
 		if (!IsValidName(valueName))
 		{
 			valueName = paramBlock->GetLocalName((ParamID)index);
@@ -828,7 +828,7 @@ bool SceneBuilder::ConvertPoint4Attrib (IParamBlock2 *paramBlock, int index,
 
 	if (retrieved)
 	{
-		char *valueName = paramDef.int_name;
+		const char *valueName = paramDef.int_name;
 		if (!IsValidName(valueName))
 		{
 			valueName = paramBlock->GetLocalName((ParamID)index);
@@ -860,7 +860,7 @@ bool SceneBuilder::ConvertBoolAttrib (IParamBlock2 *paramBlock, int index,
 
 	if (retrieved)
 	{
-		char *valueName = paramDef.int_name;
+		const char *valueName = paramDef.int_name;
 		if (!IsValidName(valueName))
 		{
 			valueName = paramBlock->GetLocalName((ParamID)index);
@@ -902,7 +902,7 @@ bool SceneBuilder::ConvertFloatTabAttrib (IParamBlock2* paramBlock, int index,
 
 	if (retrieved && count > 0)
 	{
-		TCHAR* valueName = paramDef.int_name;
+		const char *valueName = paramDef.int_name;
 		if (!IsValidName(valueName))
 		{
 			valueName = paramBlock->GetLocalName((ParamID)index);
@@ -939,7 +939,7 @@ bool SceneBuilder::ConvertIntListBoxAttrib (IParamBlock2* paramBlock,
 
 	if (retrieved)
 	{
-		char* valueName = paramDef.int_name;
+		const char* valueName = paramDef.int_name;
 		if (!IsValidName(valueName))
 		{
 			valueName = paramBlock->GetLocalName((ParamID)index);
@@ -968,8 +968,6 @@ bool SceneBuilder::ConvertBitMapAttrib(IParamBlock2* paramBlock, int index,
 
 	PBBitmap *pb;
 	Interval validInterval;
-	char *valueName = 0;
-	PX2_UNUSED(valueName);
 	BOOL retrieved = false;	
 	retrieved = paramBlock->GetValue((ParamID)index, 0, pb, validInterval);
 
@@ -996,7 +994,7 @@ bool SceneBuilder::ConvertBitMapAttrib(IParamBlock2* paramBlock, int index,
 
 	if (retrieved)
 	{
-		valueName = paramDef.int_name;
+		const char *valueName = paramDef.int_name;
 		if (!IsValidName(valueName))
 			valueName = paramBlock->GetLocalName((ParamID)index);
 		assertion(IsValidName(valueName), "valueName must be valuable.");
@@ -1023,7 +1021,7 @@ bool SceneBuilder::ConvertFRGBAAttrib(IParamBlock2* paramBlock, int index,
 	retrieved =  paramBlock->GetValue((ParamID)index, 0 , vectorValue, validInterval);
 	if(retrieved)
 	{
-		TCHAR* valueName = paramDef.int_name;
+		const char *valueName = paramDef.int_name;
 		if (!IsValidName(valueName)) 
 			valueName = paramBlock->GetLocalName((ParamID)index );
 		assertion(IsValidName(valueName), "valueName must be valuable.");
