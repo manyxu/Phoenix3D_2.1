@@ -23,7 +23,7 @@ void EngineLoop::Tick()
 
 	if (mIsInBackground) return;
 
-	PX2_GR.ComputeVisibleSet();
+	PX2_GR.ComputeVisibleSetAndEnv();
 
 	Renderer *defaultRenderer = Renderer::GetDefaultRenderer();
 	if (defaultRenderer && defaultRenderer->PreDraw())

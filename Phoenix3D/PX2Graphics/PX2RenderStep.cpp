@@ -131,7 +131,7 @@ void RenderStep::SetNode(Node *node)
 	mNode = node;
 }
 //----------------------------------------------------------------------------
-void RenderStep::ComputeVisibleSet()
+void RenderStep::ComputeVisibleSetAndEnv()
 {
 	if (!IsEnable()) return;
 

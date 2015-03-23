@@ -142,7 +142,7 @@ void EditRenderView::Tick(double elapsedTime)
 
 		mRenderStep->Update(tiemInSeconds, elapsedTime);
 
-		mRenderStep->ComputeVisibleSet();
+		mRenderStep->ComputeVisibleSetAndEnv();
 
 		Renderer *renderer = mRenderStep->GetRenderer();
 		if (renderer && renderer->PreDraw())

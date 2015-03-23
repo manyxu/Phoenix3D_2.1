@@ -34,6 +34,7 @@ namespace PX2
 		LightType GetLightType() const;
 
 		virtual void SetColor(const Float3 &color);
+		virtual void SetBrightness(float brightness);
 		virtual void SetRadius(float radius);
 
 		void SetBake_CalShadow(bool caseShadow);

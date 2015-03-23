@@ -71,12 +71,22 @@ void LightActor::SetColor(const Float3 &color)
 {
 	Actor::SetColor(color);
 
-	mLight->Diffuse = Float4(mColor[0], mColor[1], mColor[2], 1.0f);
+	mLight->Diffuse = Float4(mColor[0] * mBrightness, mColor[1] * mBrightness,
+		mColor[2] * mBrightness, 1.0f);
+}
+//----------------------------------------------------------------------------
+void LightActor::SetBrightness(float brightness)
+{
+	Actor::SetBrightness(brightness);
+
+	mLight->Diffuse = Float4(mColor[0] * mBrightness, mColor[1] * mBrightness,
+		mColor[2] * mBrightness, 1.0f);
 }
 //----------------------------------------------------------------------------
 void LightActor::SetRadius(float radius)
 {
 	mRadius = radius;
+	mLight->Range = radius;
 
 	WorldBound.SetRadius(GetRadius());
 

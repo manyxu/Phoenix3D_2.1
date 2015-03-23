@@ -21,7 +21,7 @@ namespace PX2
 		virtual ~RenderStepScene();
 
 		virtual void Update(double appSeconds, double elapsedSeconds);
-		virtual void ComputeVisibleSet();
+		virtual void ComputeVisibleSetAndEnv();
 		virtual void Draw();
 
 	protected:

@@ -59,9 +59,6 @@ namespace PX2
 		int GetNumLights ();
 		Light *GetLight (int index);
 
-		// environment
-		void ComputeEnvironment (VisibleSet &vs);
-
 		const static std::string sEmptyResPath;
 		const static std::string sTerResPath;
 
@@ -101,8 +98,11 @@ namespace PX2
 		RenderStep *GetRenderStepUI();
 
 		void Update(double appSeconds, double elapsedSeconds);
-		void ComputeVisibleSet();
+		void ComputeVisibleSetAndEnv();
 		void Draw();
+
+	public_internal:
+		void ComputeEnvironment(VisibleSet &vs);
 
 	protected:
 		RenderStepPtr mRenderStepScene;

@@ -89,7 +89,7 @@ namespace PX2
 		void SetDoDepthClear(bool clear);
 		bool IsDoDepthClear();
 
-		virtual void ComputeVisibleSet();
+		virtual void ComputeVisibleSetAndEnv();
 		virtual void Draw();
 
 	public_internal:

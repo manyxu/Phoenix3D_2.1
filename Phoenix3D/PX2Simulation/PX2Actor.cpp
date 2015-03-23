@@ -12,6 +12,8 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Node, Actor);
 
 //----------------------------------------------------------------------------
 Actor::Actor() :
+mTypeID(0.0f),
+mGroup(0.0f),
 mIsShareVI(true),
 mIsPickable(true),
 mRadius(1.0f),
@@ -274,6 +276,8 @@ void Actor::OnPropertyChanged(const PropertyObject &obj)
 //----------------------------------------------------------------------------
 Actor::Actor(LoadConstructor value) :
 Node(value),
+mTypeID(0.0f),
+mGroup(0.0f),
 mIsPickable(true),
 mRadius(1.0f),
 mHeight(1.0f)

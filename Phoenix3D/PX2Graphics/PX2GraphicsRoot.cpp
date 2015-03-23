@@ -190,18 +190,14 @@ void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
 		for (int j=0; j<GraphicsRoot::GetSingleton().GetNumLights(); j++)
 		{
 			PX2::Light *light = GraphicsRoot::GetSingleton().GetLight(j);
-			const PX2::APoint &lightPos = light->Position;
-			Light::Type lightType = light->GetType();
-			float rangeSQuare = light->Range * light->Range;
+			Bound lightBound;
+			lightBound.SetCenter(light->Position);
+			lightBound.SetRadius(light->Range);
 
-			if (Light::LT_POINT == lightType)
+			if (Light::LT_POINT == light->GetType() &&
+				renderable->WorldBound.TestIntersection(lightBound))
 			{
-				Vector3f diff = renPos - lightPos;
-				float squaredLength = diff.SquaredLength();
-				if (squaredLength <= rangeSQuare)
-				{
-					renderable->AddLight(light);
-				}
+				renderable->AddLight(light);
 			}
 		}
 	}
@@ -298,11 +294,11 @@ void GraphicsRoot::Update(double appSeconds, double elapsedSeconds)
 	}
 }
 //----------------------------------------------------------------------------
-void GraphicsRoot::ComputeVisibleSet()
+void GraphicsRoot::ComputeVisibleSetAndEnv()
 {
 	for (int i = 0; i < (int)mRenderStepVec.size(); i++)
 	{
-		mRenderStepVec[i]->ComputeVisibleSet();
+		mRenderStepVec[i]->ComputeVisibleSetAndEnv();
 	}
 }
 //----------------------------------------------------------------------------

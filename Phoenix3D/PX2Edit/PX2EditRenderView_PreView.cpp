@@ -100,12 +100,12 @@ void EditRenderView_PreView::Tick(double elapsedTime)
 		if (PVT_TEXTURE == mPreViewType)
 		{
 			mRenderStep->Update(tiemInSeconds, elapsedTime);
-			mRenderStep->ComputeVisibleSet();
+			mRenderStep->ComputeVisibleSetAndEnv();
 		}
 		else if (PVT_MODEL == mPreViewType)
 		{
 			mRenderStepCtrl->Update(tiemInSeconds, elapsedTime);
-			mRenderStepCtrl->ComputeVisibleSet();
+			mRenderStepCtrl->ComputeVisibleSetAndEnv();
 		}
 
 		Renderer *renderer = mRenderStep->GetRenderer();

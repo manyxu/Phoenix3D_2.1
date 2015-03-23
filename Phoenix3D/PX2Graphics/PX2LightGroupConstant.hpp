@@ -23,9 +23,11 @@ namespace PX2
 		virtual void Update(const ShaderStruct *struc);
 
 	protected:
+		static const int NumMaxLights = 4;
+
 		int mNumLights;
-		Float4 mLightPosRange[3];
-		Float4 mLightColor[3];
+		Float4 mLightPosRange[NumMaxLights];
+		Float4 mLightColor[NumMaxLights];
 	};
 
 	PX2_REGISTER_STREAM(LightGroupConstant);

@@ -12,7 +12,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(ShaderFloat, LightGroupConstant);
 
 //----------------------------------------------------------------------------
 LightGroupConstant::LightGroupConstant() :
-ShaderFloat(6)
+ShaderFloat(NumMaxLights*2)
 {
 	EnableUpdater();
 }
@@ -24,11 +24,12 @@ LightGroupConstant::~LightGroupConstant()
 void LightGroupConstant::Update(const ShaderStruct *struc)
 {
 	const Renderable *renderable = struc->TheRenderable;
-	const Camera *camera = struc->TheCamera;
 
 	mNumLights = renderable->GetNumLights();
-	int numMaxLights = Math<int>::Min(mNumLights, 3);
-	for (int i = 0; i < numMaxLights; i++)
+	int useNumLights = Math<int>::Min(mNumLights, NumMaxLights);
+
+	int i = 0;
+	for (i = 0; i < useNumLights; i++)
 	{
 		const Light *light = renderable->GetLight(i);
 		const APoint &pos = light->Position;
@@ -37,10 +38,43 @@ void LightGroupConstant::Update(const ShaderStruct *struc)
 		mLightColor[i] = light->Diffuse;
 	}
 
-	for (int i = 0; i < 6; i++)
-	{
+	//for (; i < NumMaxLights; i++)
+	//{
+	//	mLightPosRange[i] = Float4::ZERO;
+	//	mLightColor[i] = Float4::ZERO;
+	//}
 
+	int j = 0;
+	for (; j < useNumLights; j++)
+	{
+		float* target = mData + 8 * j;
+
+		for (int k = 0; k < 4; k++)
+		{
+			*target++ = mLightPosRange[j][k];
+		}
+
+		for (int k = 0; k < 4; k++)
+		{
+			*target++ = mLightColor[j][k];
+		}
 	}
+
+	for (; j < NumMaxLights; j++)
+	{
+		float* target = mData + 8 * j;
+
+		for (int k = 0; k < 4; k++)
+		{
+			*target++ = 0.0f;
+		}
+
+		for (int k = 0; k < 4; k++)
+		{
+			*target++ = 0.0f;
+		}
+	}
+
 }
 //----------------------------------------------------------------------------
 

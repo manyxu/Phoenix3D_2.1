@@ -154,7 +154,8 @@ const std::string &ShaderParameters::GetTextureResPath(int handle) const
 	}
 
 	assertion(false, "Invalid texture handle.\n");
-	return 0;
+
+	return "";
 }
 //----------------------------------------------------------------------------
 const std::string &ShaderParameters::GetSampleName(int handle) const

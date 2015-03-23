@@ -16,6 +16,7 @@
 #include "PX2LightAmbientConstant.hpp"
 #include "PX2LightDiffuseConstant.hpp"
 #include "PX2LightSpecularConstant.hpp"
+#include "PX2LightGroupConstant.hpp"
 #include "PX2FogParamConstant.hpp"
 #include "PX2FogColorHeightConstant.hpp"
 #include "PX2FogColorDistConstant.hpp"
@@ -196,6 +197,10 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,
 	{
 		shaderFloat = new0 LightSpecularConstant(PX2_GR.GetLight_Dir());
 		((LightConstant*)shaderFloat)->SetDefaultDir(true);
+	}
+	else if (FString("LightGroup") == name)
+	{
+		shaderFloat = new0 LightGroupConstant();
 	}
 	else if (FString("FogParam") == name)
 	{

@@ -45,15 +45,25 @@ void RenderStepScene::Update(double appSeconds, double elapsedSeconds)
 	mRenderer->SetCamera(beforeCamer);
 
 	mEffect_UIView->Update(appSeconds, elapsedSeconds);
-	mEffect_UIView->ComputeVisibleSet();
+	mEffect_UIView->ComputeVisibleSetAndEnv();
 }
 //----------------------------------------------------------------------------
-void RenderStepScene::ComputeVisibleSet()
+void RenderStepScene::ComputeVisibleSetAndEnv()
 {
-	RenderStep::ComputeVisibleSet();
+	if (!IsEnable()) return;
 
 	Scene *scene = PX2_PROJ.GetScene();
 	if (!scene) return;
+
+	const Camera *cam = mCuller.GetCamera();
+	if (mNode && cam)
+	{
+		mCuller.ComputeVisibleSet(mNode);
+		mCuller.GetVisibleSet().Sort();
+	}
+	else mCuller.GetVisibleSet().Clear();
+
+	PX2_GR.ComputeEnvironment(mCuller.GetVisibleSet());
 
 	Projector *lightCamera = PX2_GR.GetLight_Dir_Projector();
 	mEffect_Culler_Shadow.SetCamera(lightCamera);
