@@ -17,6 +17,7 @@ vs_1_1
 //semantic v_terrain.LightAmbient_Dir
 //semantic v_terrain.LightDiffuse_Dir
 //semantic v_terrain.LightSpecular_Dir
+//semantic v_terrain.LightGroup
 //semantic v_terrain.FogParam
 //semantic SamplerAlpha
 //semantic Sampler0
@@ -42,70 +43,126 @@ vs_1_1
 //var float4 LightAmbient_Dir :  : c[14] : 15 : 1
 //var float4 LightDiffuse_Dir :  : c[15] : 16 : 1
 //var float4 LightSpecular_Dir :  : c[16] : 17 : 1
-//var float4 FogParam :  : c[17] : 18 : 1
+//var float4 LightGroup[0] :  : c[17] : 18 : 1
+//var float4 LightGroup[1] :  : c[18] : 18 : 1
+//var float4 LightGroup[2] :  : c[19] : 18 : 1
+//var float4 LightGroup[3] :  : c[20] : 18 : 1
+//var float4 LightGroup[4] :  : c[21] : 18 : 1
+//var float4 LightGroup[5] :  : c[22] : 18 : 1
+//var float4 LightGroup[6] :  : c[23] : 18 : 1
+//var float4 LightGroup[7] :  : c[24] : 18 : 1
+//var float4 FogParam :  : c[25] : 19 : 1
 //var sampler2D SamplerAlpha :  :  : -1 : 0
 //var sampler2D Sampler0 :  :  : -1 : 0
 //var sampler2D Sampler1 :  :  : -1 : 0
 //var sampler2D Sampler2 :  :  : -1 : 0
 //var sampler2D Sampler3 :  :  : -1 : 0
 //var sampler2D Sampler4 :  :  : -1 : 0
-//const c[18] = 1 0.5 0
-def c18, 1.00000000, 0.50000000, 0.00000000, 0
+//const c[26] = 1 0.5 0
+def c26, 1.00000000, 0.50000000, 0.00000000, 0
 dcl_position0 v0
 dcl_texcoord0 v2
 dcl_normal0 v1
-mov r0.w, c18.x
+mov r5.xyz, c12
+mov r0.w, c26.x
 mov r0.xyz, v0
 dp4 r2.w, r0, c6
+mov r2.z, r2.w
+dp4 r2.x, r0, c4
+dp4 r2.y, r0, c5
+add r1.xyz, -r2, c8
+dp3 r1.w, r1, r1
+rsq r3.w, r1.w
+mad r1.xyz, r1, r3.w, -c9
+mul r1.xyz, r1, c26.y
+dp3 r1.w, r1, r1
+rsq r4.x, r1.w
+mul r4.xyz, r4.x, r1
 dp3 r3.z, v1, c6
 dp3 r3.x, v1, c4
 dp3 r3.y, v1, c5
-mov r1.z, r2.w
-dp4 r1.x, r0, c4
-dp4 r1.y, r0, c5
-add r1.xyz, -r1, c8
-dp3 r1.w, r1, r1
-rsq r3.w, r1.w
-mad r1.xyz, r3.w, r1, -c9
-mul r1.xyz, r1, c18.y
-dp3 r1.w, r1, r1
-rsq r2.x, r1.w
 dp3 r1.w, r3, r3
-rsq r4.x, r1.w
-mul r2.xyz, r2.x, r1
-mul r3.xyz, r4.x, r3
-dp3 r2.x, r3, r2
+rsq r4.w, r1.w
+mul r3.xyz, r4.w, r3
+dp3 r4.x, r3, r4
 mov r1, c13
 mul r1, c16, r1
-mov r2.z, r1.w
+mov r4.z, r1.w
 dp3 r1.w, r3, -c9
-max r2.xy, r2.x, c18.z
-lit r2.z, r2.xyzz
-mov r3.xyz, c12
-add r2.x, c17.w, -c17.z
-max r1.w, r1, c18.z
-mul r3.xyz, c15, r3
-mul r4.xyz, r3, r1.w
-mov r3.xyz, c11
-mad r3.xyz, c14, r3, r4
-mad r1.xyz, r2.z, r1, r3
+max r4.xy, r4.x, c26.z
+max r1.w, r1, c26.z
+mul r5.xyz, c15, r5
+mul r6.xyz, r5, r1.w
+mov r5.xyz, c11
+mad r5.xyz, c14, r5, r6
+lit r4.z, r4.xyzz
+mad r1.xyz, r4.z, r1, r5
+add r4.xyz, -r2, c17
+dp3 r4.w, r4, r4
 mul r1.xyz, r1, c14.w
-add oD0.xyz, r1, c10
-add r1.x, c17.y, -c17
+add r5.xyz, r1, c10
+add r1.xyz, -r2, c19
+dp3 r1.w, r1, r1
+rsq r5.w, r1.w
+mul r1.xyz, r5.w, r1
+dp3 r1.x, r3, r1
+rcp r1.y, c19.w
+mul r1.z, r1.w, r1.y
+rsq r6.x, r4.w
+mul r4.xyz, r6.x, r4
+dp3 r4.x, r3, r4
+rcp r5.w, c17.w
+mul r4.y, r4.w, r5.w
+mad r4.w, -r4.y, r5, c26.x
+mad r1.w, -r1.z, r1.y, c26.x
+max r4.x, r4, c26.z
+max r4.w, r4, c26.z
+mul r4.xyz, r4.x, c18
+mad r4.xyz, r4, r4.w, r5
+max r1.x, r1, c26.z
+mul r5.xyz, r1.x, c20
+add r1.xyz, -r2, c23
+add r2.xyz, -r2, c21
+max r1.w, r1, c26.z
+mad r4.xyz, r5, r1.w, r4
+dp3 r4.w, r2, r2
+dp3 r1.w, r1, r1
+rsq r5.x, r1.w
+mul r1.xyz, r5.x, r1
+dp3 r5.x, r3, r1
+rsq r5.y, r4.w
+mul r1.xyz, r5.y, r2
+dp3 r1.x, r3, r1
+rcp r3.x, c23.w
+mul r1.w, r1, r3.x
+mad r1.w, -r1, r3.x, c26.x
+rcp r2.x, c21.w
+mul r1.y, r4.w, r2.x
+mad r2.x, -r1.y, r2, c26
+max r1.x, r1, c26.z
+add r3.z, c25.w, -c25
+rcp r3.y, r3.w
+mul r1.xyz, r1.x, c22
+max r2.x, r2, c26.z
+mad r2.xyz, r1, r2.x, r4
+max r1.x, r5, c26.z
+mul r1.xyz, r1.x, c24
+max r1.w, r1, c26.z
+mad oD0.xyz, r1, r1.w, r2
+add r1.x, c25.y, -c25
 rcp r1.y, r1.x
-rcp r1.w, r3.w
-add r1.x, r2.w, -c17
+add r1.x, r2.w, -c25
 mul r1.x, r1, r1.y
-min r1.x, r1, c18
-rcp r2.x, r2.x
-add r1.w, -r1, c17
-mul r1.w, r1, r2.x
-min r1.w, r1, c18.x
-max oT1.x, r1.w, c18.z
+min r1.x, r1, c26
+rcp r3.z, r3.z
+add r3.y, -r3, c25.w
+mul r3.y, r3, r3.z
+min r3.x, r3.y, c26
+max oT1.x, r3, c26.z
 dp4 oPos.w, r0, c3
 dp4 oPos.z, r0, c2
 dp4 oPos.y, r0, c1
 dp4 oPos.x, r0, c0
-max oT1.y, r1.x, c18.z
+max oT1.y, r1.x, c26.z
 mov oT0.xy, v2
 mov oD0.w, c12

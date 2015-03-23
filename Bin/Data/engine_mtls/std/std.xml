@@ -1,7 +1,7 @@
 <material name="std">
 	<technique name="std_light">
 		<pass name="P0">
-			<shader type="vs" name="std_light" ni="3" no="4" nc="12" ns="0">
+			<shader type="vs" name="std_light" ni="3" no="4" nc="13" ns="0">
 				<i>
 					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
 					<var index="1" name="modelNormal" vt="float3" vs="NORMAL"/>
@@ -25,7 +25,8 @@
 					<var index="8" name="LightAmbient_Dir" nr="1"/>
 					<var index="9" name="LightDiffuse_Dir" nr="1"/>
 					<var index="10" name="LightSpecular_Dir" nr="1"/>
-					<var index="11" name="FogParam" nr="1"/>
+					<var index="11" name="LightGroup" nr="8"/>
+					<var index="12" name="FogParam" nr="1"/>
 				</c>
 				<p>
 					<var type="cg" file="std_light_cg.fx"/>
@@ -79,7 +80,7 @@
 	</technique>
 	<technique name="std_lightshadow">
 		<pass name="p0">
-			<shader type="vs" name="std_lightshadow" ni="3" no="5" nc="13" ns="0">
+			<shader type="vs" name="std_lightshadow" ni="3" no="5" nc="14" ns="0">
 				<i>
 					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
 					<var index="1" name="modelNormal" vt="float3" vs="NORMAL"/>
@@ -105,7 +106,8 @@
 					<var index="9" name="LightAmbient_Dir" nr="1"/>
 					<var index="10" name="LightDiffuse_Dir" nr="1"/>
 					<var index="11" name="LightSpecular_Dir" nr="1"/>
-					<var index="12" name="FogParam" nr="1"/>
+					<var index="12" name="LightGroup" nr="8"/>
+					<var index="13" name="FogParam" nr="1"/>
 				</c>
 				<p>
 					<var type="cg" file="std_lightshadow_cg.fx"/>

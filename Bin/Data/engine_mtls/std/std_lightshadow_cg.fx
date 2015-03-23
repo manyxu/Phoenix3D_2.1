@@ -1,3 +1,11 @@
+float3 DoLight_Point_Diffuse(float3 lightWorldPos, float lightRange, float3 lightColor, float3 shineDiffuse,float3 vertexWorldPos, float3 vertexWorldNormal)
+{
+	float3 lightToVertex = lightWorldPos - vertexWorldPos;
+	float squareDist = dot(lightToVertex, lightToVertex);
+	lightToVertex = normalize(lightToVertex);
+	return lightColor * shineDiffuse * max(0, dot(vertexWorldNormal, lightToVertex)) * max( 0, (1.0 - squareDist / lightRange / lightRange) );
+}
+
 void v_std_lightshadow
 (
     in float3 modelPosition : POSITION,
@@ -20,6 +28,7 @@ void v_std_lightshadow
 	uniform float4 LightAmbient_Dir,
 	uniform float4 LightDiffuse_Dir,
 	uniform float4 LightSpecular_Dir,
+	uniform float4 LightGroup[8],
 	uniform float4 FogParam
 )
 {
@@ -44,6 +53,12 @@ void v_std_lightshadow
 		ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.rgb), 0) +
 							ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0), ShineSpecular.a*LightSpecular_Dir.a));		
 	vertexColor.a = ShineDiffuse.a;
+	
+	// point lights
+	vertexColor.rgb += DoLight_Point_Diffuse(LightGroup[0].xyz, LightGroup[0].w, LightGroup[1].rgb, ShineDiffuse.rgb, worldPosition.xyz, worldNormal.xyz);
+	vertexColor.rgb += DoLight_Point_Diffuse(LightGroup[2].xyz, LightGroup[2].w, LightGroup[3].rgb, ShineDiffuse.rgb, worldPosition.xyz, worldNormal.xyz);
+	vertexColor.rgb += DoLight_Point_Diffuse(LightGroup[4].xyz, LightGroup[4].w, LightGroup[5].rgb, ShineDiffuse.rgb, worldPosition.xyz, worldNormal.xyz);
+	vertexColor.rgb += DoLight_Point_Diffuse(LightGroup[6].xyz, LightGroup[6].w, LightGroup[7].rgb, ShineDiffuse.rgb, worldPosition.xyz, worldNormal.xyz);
 	
 	// fog
 	float fogValueHeight = (-FogParam.x + worldPosition.z)/(FogParam.y - FogParam.x);

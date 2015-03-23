@@ -18,6 +18,7 @@ vs_1_1
 //semantic v_std_lightshadow.LightAmbient_Dir
 //semantic v_std_lightshadow.LightDiffuse_Dir
 //semantic v_std_lightshadow.LightSpecular_Dir
+//semantic v_std_lightshadow.LightGroup
 //semantic v_std_lightshadow.FogParam
 //semantic SampleBase
 //semantic SampleShadowDepth
@@ -41,67 +42,131 @@ vs_1_1
 //var float4 LightAmbient_Dir :  : c[18] : 17 : 1
 //var float4 LightDiffuse_Dir :  : c[19] : 18 : 1
 //var float4 LightSpecular_Dir :  : c[20] : 19 : 1
-//var float4 FogParam :  : c[21] : 20 : 1
+//var float4 LightGroup[0] :  : c[21] : 20 : 1
+//var float4 LightGroup[1] :  : c[22] : 20 : 1
+//var float4 LightGroup[2] :  : c[23] : 20 : 1
+//var float4 LightGroup[3] :  : c[24] : 20 : 1
+//var float4 LightGroup[4] :  : c[25] : 20 : 1
+//var float4 LightGroup[5] :  : c[26] : 20 : 1
+//var float4 LightGroup[6] :  : c[27] : 20 : 1
+//var float4 LightGroup[7] :  : c[28] : 20 : 1
+//var float4 FogParam :  : c[29] : 21 : 1
 //var sampler2D SampleBase :  :  : -1 : 0
 //var sampler2D SampleShadowDepth :  :  : -1 : 0
-//const c[22] = 1 0.5 0
-def c22, 1.00000000, 0.50000000, 0.00000000, 0
+//const c[30] = 1 0.5 0
+def c30, 1.00000000, 0.50000000, 0.00000000, 0
 dcl_position0 v0
 dcl_texcoord0 v2
 dcl_normal0 v1
-mov r0.w, c22.x
+mov r5.xyz, c16
+mov r0.w, c30.x
 mov r0.xyz, v0
 dp4 r2.w, r0, c6
+mov r2.z, r2.w
+dp4 r2.x, r0, c4
+dp4 r2.y, r0, c5
+add r1.xyz, -r2, c12
+dp3 r1.w, r1, r1
+rsq r3.w, r1.w
+mad r1.xyz, r1, r3.w, -c13
+mul r1.xyz, r1, c30.y
+dp3 r1.w, r1, r1
+rsq r4.x, r1.w
+mul r4.xyz, r4.x, r1
 dp3 r3.z, v1, c6
 dp3 r3.x, v1, c4
 dp3 r3.y, v1, c5
-mov r1.z, r2.w
-dp4 r1.x, r0, c4
-dp4 r1.y, r0, c5
-add r1.xyz, -r1, c12
-dp3 r1.w, r1, r1
-rsq r3.w, r1.w
-mad r1.xyz, r3.w, r1, -c13
-mul r1.xyz, r1, c22.y
-dp3 r1.w, r1, r1
-rsq r2.x, r1.w
 dp3 r1.w, r3, r3
-rsq r4.x, r1.w
-mul r2.xyz, r2.x, r1
-mul r3.xyz, r4.x, r3
-dp3 r2.x, r3, r2
+rsq r4.w, r1.w
+mul r3.xyz, r4.w, r3
+dp3 r4.x, r3, r4
 mov r1, c17
 mul r1, c20, r1
-mov r2.z, r1.w
+mov r4.z, r1.w
 dp3 r1.w, r3, -c13
-max r2.xy, r2.x, c22.z
-lit r2.z, r2.xyzz
-mov r3.xyz, c16
-add r2.x, c21.w, -c21.z
-max r1.w, r1, c22.z
-mul r3.xyz, c19, r3
-mul r4.xyz, r3, r1.w
-mov r3.xyz, c15
-mad r3.xyz, c18, r3, r4
-mad r1.xyz, r2.z, r1, r3
+max r4.xy, r4.x, c30.z
+max r1.w, r1, c30.z
+mul r5.xyz, c19, r5
+mul r6.xyz, r5, r1.w
+mov r5.xyz, c15
+mad r5.xyz, c18, r5, r6
+lit r4.z, r4.xyzz
+mad r1.xyz, r4.z, r1, r5
+add r4.xyz, -r2, c21
+dp3 r4.w, r4, r4
+rsq r6.x, r4.w
+mul r4.xyz, r6.x, r4
 mul r1.xyz, r1, c18.w
-add oD0.xyz, r1, c14
-add r1.x, c21.y, -c21
+add r5.xyz, r1, c14
+add r1.xyz, -r2, c23
+dp3 r1.w, r1, r1
+rsq r5.w, r1.w
+mul r1.xyz, r5.w, r1
+dp3 r4.x, r3, r4
+rcp r6.x, c21.w
+max r5.w, r4.x, c30.z
+mul r4.w, r4, r6.x
+mov r4.xyz, c22
+mad r4.w, -r4, r6.x, c30.x
+mul r4.xyz, c16, r4
+dp3 r1.x, r3, r1
+max r4.w, r4, c30.z
+mul r4.xyz, r4, r5.w
+mad r4.xyz, r4, r4.w, r5
+rcp r5.x, c23.w
+max r4.w, r1.x, c30.z
+mul r1.w, r1, r5.x
+mad r1.w, -r1, r5.x, c30.x
+mov r1.xyz, c24
+mul r1.xyz, c16, r1
+mul r1.xyz, r1, r4.w
+max r1.w, r1, c30.z
+mad r4.xyz, r1, r1.w, r4
+add r1.xyz, -r2, c25
+dp3 r4.w, r1, r1
+rsq r5.y, r4.w
+mul r1.xyz, r5.y, r1
+add r2.xyz, -r2, c27
+dp3 r1.w, r2, r2
+rsq r5.x, r1.w
+rcp r5.y, c25.w
+mul r4.w, r4, r5.y
+mad r4.w, -r4, r5.y, c30.x
+dp3 r1.x, r3, r1
+mul r2.xyz, r5.x, r2
+dp3 r3.x, r3, r2
+max r5.x, r1, c30.z
+rcp r3.y, c27.w
+mov r1.xyz, c26
+mul r1.xyz, c16, r1
+mov r2.xyz, c28
+mul r1.w, r1, r3.y
+add r3.z, c29.w, -c29
+mad r1.w, -r1, r3.y, c30.x
+max r3.x, r3, c30.z
+mul r2.xyz, c16, r2
+mul r2.xyz, r2, r3.x
+rcp r3.x, r3.w
+mul r1.xyz, r1, r5.x
+max r4.w, r4, c30.z
+mad r1.xyz, r1, r4.w, r4
+max r1.w, r1, c30.z
+mad oD0.xyz, r2, r1.w, r1
+add r1.x, c29.y, -c29
 rcp r1.y, r1.x
-rcp r1.w, r3.w
-add r1.x, r2.w, -c21
+add r1.x, r2.w, -c29
 mul r1.x, r1, r1.y
-min r1.x, r1, c22
-rcp r2.x, r2.x
-add r1.w, -r1, c21
-mul r1.w, r1, r2.x
-min r1.w, r1, c22.x
-max oT1.x, r1.w, c22.z
+min r1.x, r1, c30
+rcp r3.z, r3.z
+add r3.x, -r3, c29.w
+mul r3.x, r3, r3.z
+min r3.x, r3, c30
+max oT1.x, r3, c30.z
 dp4 oPos.w, r0, c3
 dp4 oPos.z, r0, c2
 dp4 oPos.y, r0, c1
 dp4 oPos.x, r0, c0
-max oT1.y, r1.x, c22.z
+max oT1.y, r1.x, c30.z
 dp4 oT2.w, r0, c11
 dp4 oT2.z, r0, c10
 dp4 oT2.y, r0, c9
