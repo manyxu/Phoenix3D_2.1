@@ -121,6 +121,9 @@
     <Filter Include="Sound\FMod">
       <UniqueIdentifier>{437fce46-7ca9-4825-a222-446a8b2cdf5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Importer">
+      <UniqueIdentifier>{14cb6d03-7bc9-473c-8a08-16d4f2e580c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2ResourceManager.cpp">
@@ -795,6 +798,9 @@
     <ClCompile Include="SoundFMod\PX2FMODSoundSystem.cpp">
       <Filter>Sound\FMod</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Importer.cpp">
+      <Filter>Importer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Unity.hpp" />
@@ -1377,6 +1383,9 @@
     </ClInclude>
     <ClInclude Include="SoundFMod\PX2FMODSoundSystem.hpp">
       <Filter>Sound\FMod</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Importer.hpp">
+      <Filter>Importer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

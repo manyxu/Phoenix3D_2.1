@@ -146,6 +146,7 @@
     <ClCompile Include="ImageLibs\PNG\pngwutil.c" />
     <ClCompile Include="PX2AddDeleteManager.cpp" />
     <ClCompile Include="PX2FontManager.cpp" />
+    <ClCompile Include="PX2Importer.cpp" />
     <ClCompile Include="PX2InputEvent.cpp" />
     <ClCompile Include="PX2InputEventData.cpp" />
     <ClCompile Include="PX2InputEventListener.cpp" />
@@ -369,6 +370,7 @@
     <ClInclude Include="ImageLibs\PNG\pngpriv.h" />
     <ClInclude Include="ImageLibs\PNG\pngstruct.h" />
     <ClInclude Include="PX2AddDeleteManager.hpp" />
+    <ClInclude Include="PX2Importer.hpp" />
     <ClInclude Include="PX2InputEvent.hpp" />
     <ClInclude Include="PX2InputEventData.hpp" />
     <ClInclude Include="PX2InputEventListener.hpp" />
