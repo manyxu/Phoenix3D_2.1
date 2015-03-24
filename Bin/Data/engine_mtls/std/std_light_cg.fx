@@ -68,21 +68,8 @@ void v_std_light
 	vertexTCoord1.y = fogValueHeight;
 }
 
-sampler2D SampleBase = sampler_state
-{
-   MinFilter = Nearest;
-   MagFilter = Nearest;
-   WrapS     = Clamp;
-   WrapT     = Clamp;
-};
-
-sampler2D SampleShadowDepth = sampler_state
-{
-   MinFilter = Nearest;
-   MagFilter = Linear;
-   WrapS     = Clamp;
-   WrapT     = Clamp;
-};
+sampler2D SampleBase;
+sampler2D SampleShadowDepth;
 
 void p_std_light
 (
