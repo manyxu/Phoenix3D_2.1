@@ -29,7 +29,7 @@ void RawTerrain::SetColQuantity (int numCols)
 //----------------------------------------------------------------------------
 void RawTerrain::SetSize (int size)
 {
-	mSize = size;
+	mNumVertexPage = size;
 }
 //----------------------------------------------------------------------------
 void RawTerrain::SetSpacing (float spacing)
@@ -133,15 +133,15 @@ RawTerrainPage *RawTerrain::CreatePage (int row, int col)
 		mNumCols = newCol;
 	}
 
-	int numHeights = mSize*mSize;
+	int numHeights = mNumVertexPage*mNumVertexPage;
 	float *heights = new1<float>(numHeights);
 	memset(heights, 0, numHeights*sizeof(float));
 
-	float length = mSpacing*(float)(mSize - 1);
+	float length = mSpacing*(float)(mNumVertexPage - 1);
 	Float2 origin(col*length, row*length);
 
 	RawTerrainPage* page = 0;
-	page = new0 RawTerrainPage(mVFormatEdit, mSize, heights, origin, mSpacing);
+	page = new0 RawTerrainPage(mVFormatEdit, mNumVertexPage, heights, origin, mSpacing);
 	page->SetShine(mTerrainShine);
 
 	page->SetName("[" + StringHelp::IntToString(row) + "]" + "[" + StringHelp::IntToString(col) + "]");

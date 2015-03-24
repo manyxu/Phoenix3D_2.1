@@ -9,18 +9,17 @@ PX2_IMPLEMENT_FACTORY(TerrainPage);
 PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, TerrainPage);
 
 //----------------------------------------------------------------------------
-TerrainPage::TerrainPage (int size,	float* heights, const Float2& origin, 
-	float spacing)
-	:
-mSize(size),
-	mSizeM1(size - 1),
+TerrainPage::TerrainPage(int numVertexPage, float* heights, const Float2& origin,
+	float spacing) :
+	mNumVertexPage(numVertexPage),
+	mNumVertexPageM1(numVertexPage - 1),
 	mHeights(heights),
 	mOrigin(origin),
 	mSpacing(spacing)
 {
-	// size = 2^p + 1, p <= 7
-	assertion(size ==  3 || size ==  5 || size ==   9 || size == 17
-		|| size == 33 || size == 65 || size == 129, "Invalid page size\n");
+	// numVertexPage = 2^p + 1, p <= 7
+	assertion(numVertexPage ==  3 || numVertexPage ==  5 || numVertexPage ==   9 || numVertexPage == 17
+		|| numVertexPage == 33 || numVertexPage == 65 || numVertexPage == 129, "Invalid page numVertexPage\n");
 
 	mInvSpacing = 1.0f/mSpacing;
 
@@ -35,14 +34,14 @@ TerrainPage::~TerrainPage ()
 float TerrainPage::GetHeight (float x, float y) const
 {
 	float xGrid = (x - mOrigin[0])*mInvSpacing;
-	if (xGrid < 0.0f || xGrid >= (float)mSizeM1)
+	if (xGrid < 0.0f || xGrid >= (float)mNumVertexPageM1)
 	{
 		// 方位在地形页中
 		return 0.0f;
 	}
 
 	float yGrid = (y - mOrigin[1])*mInvSpacing;
-	if (yGrid < 0.0f || yGrid >= (float)mSizeM1)
+	if (yGrid < 0.0f || yGrid >= (float)mNumVertexPageM1)
 	{
 		// 方位不再地形页中
 		return 0.0f;
@@ -53,7 +52,7 @@ float TerrainPage::GetHeight (float x, float y) const
 	float fRow = Mathf::Floor(yGrid);
 	int iRow = (int)fRow;
 
-	int index = iCol + mSize*iRow;
+	int index = iCol + mNumVertexPage*iRow;
 	float dx = xGrid - fCol;
 	float dy = yGrid - fRow;
 	float h00, h10, h01, h11, height;
@@ -62,7 +61,7 @@ float TerrainPage::GetHeight (float x, float y) const
 	{
 		float diff = dx - dy;
 		h00 = mHeights[index];
-		h11 = mHeights[index + 1 + mSize];
+		h11 = mHeights[index + 1 + mNumVertexPage];
 		if (diff > 0.0f)
 		{
 			h10 = mHeights[index + 1];
@@ -70,7 +69,7 @@ float TerrainPage::GetHeight (float x, float y) const
 		}
 		else
 		{
-			h01 = mHeights[index + mSize];
+			h01 = mHeights[index + mNumVertexPage];
 			height = (1.0f + diff - dx)*h00 - diff*h01 + dx*h11;
 		}
 	}
@@ -78,7 +77,7 @@ float TerrainPage::GetHeight (float x, float y) const
 	{
 		float sum = dx + dy;
 		h10 = mHeights[index + 1];
-		h01 = mHeights[index + mSize];
+		h01 = mHeights[index + mNumVertexPage];
 		if (sum <= 1.0f)
 		{
 			h00 = mHeights[index];
@@ -86,7 +85,7 @@ float TerrainPage::GetHeight (float x, float y) const
 		}
 		else
 		{
-			h11 = mHeights[index + 1 + mSize];
+			h11 = mHeights[index + 1 + mNumVertexPage];
 			height = (sum - 1.0f)*h11 + (1.0f - dy)*h10 + (1.0f - dx)*h01;
 		}
 	}
@@ -267,7 +266,7 @@ void TerrainPage::RegistProperties ()
 	AddPropertyClass("TerrainPage");
 
 	AddProperty("Size", Object::PT_INT, GetSize(), false);
-	AddProperty("SizeM1", Object::PT_INT, mSizeM1, false);
+	AddProperty("SizeM1", Object::PT_INT, mNumVertexPageM1, false);
 	AddProperty("Spacing", Object::PT_FLOAT, mSpacing, false);
 	AddProperty("Origin", Object::PT_FLOAT2, mOrigin, false);
 	AddProperty("PageWidth", Object::PT_FLOAT, GetWidth(), false);
@@ -285,8 +284,8 @@ void TerrainPage::OnPropertyChanged (const PropertyObject &obj)
 TerrainPage::TerrainPage (LoadConstructor value)
 	:
 TriMesh(value),
-	mSize(0),
-	mSizeM1(0),
+	mNumVertexPage(0),
+	mNumVertexPageM1(0),
 	mHeights(0),
 	mOrigin(Float2(0.0f, 0.0f)),
 	mSpacing(0.0f),
@@ -301,8 +300,8 @@ void TerrainPage::Load (InStream& source)
 	TriMesh::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	source.Read(mSize);
-	int numVertices = mSize*mSize;
+	source.Read(mNumVertexPage);
+	int numVertices = mNumVertexPage*mNumVertexPage;
 	source.ReadVR(numVertices, mHeights);
 	source.ReadAggregate(mOrigin);
 	source.Read(mSpacing);
@@ -315,7 +314,7 @@ void TerrainPage::Load (InStream& source)
 		source.ReadVV(numHoles, &mHoleIndexs[0]);
 	}
 
-	mSizeM1 = mSize - 1;
+	mNumVertexPageM1 = mNumVertexPage - 1;
 	mInvSpacing = 1.0f/mSpacing;
 
 	int numJunglers = 0;
@@ -369,8 +368,8 @@ void TerrainPage::Save (OutStream& target) const
 	TriMesh::Save(target);
 	PX2_VERSION_SAVE(target);
 
-	target.Write(mSize);
-	int numVertices = mSize*mSize;
+	target.Write(mNumVertexPage);
+	int numVertices = mNumVertexPage*mNumVertexPage;
 	target.WriteN(numVertices, mHeights);
 	target.WriteAggregate(mOrigin);
 	target.Write(mSpacing);
@@ -396,8 +395,8 @@ int TerrainPage::GetStreamingSize (Stream &stream) const
 	int size = TriMesh::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
-	size += sizeof(mSize);
-	size += mSize*mSize*sizeof(mHeights[0]);
+	size += sizeof(mNumVertexPage);
+	size += mNumVertexPage*mNumVertexPage*sizeof(mHeights[0]);
 	size += sizeof(mOrigin);
 	size += sizeof(mSpacing);
 

@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2DLLMain.cpp
-*
-*/
+// PX2DLLMain.cpp
 
 #include "PX2MaxClassDesc.hpp"
 

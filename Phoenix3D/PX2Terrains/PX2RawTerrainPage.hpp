@@ -20,9 +20,8 @@ namespace PX2
 
 	public:
 		// size = 2^p + 1, p <= 7 (size = 3, 5, 9, 17, 33, 65, 129)
-		RawTerrainPage (VertexFormat* vformat, int size, float* heights,
+		RawTerrainPage (VertexFormat* vformat, int numVertexPage, float* heights,
 			const Float2& origin, float spacing);
-
 		virtual ~RawTerrainPage ();
 
 		/// 将顶点高度信息保存到高程数据mHeights中

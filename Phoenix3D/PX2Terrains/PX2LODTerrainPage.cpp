@@ -37,12 +37,12 @@ mItemsInQueue(0)
 	SetVertexFormat(vformat);
 
 	// 顶点
-	mTotalVQuantity = mSize*mSize; // 最多顶点数量
+	mTotalVQuantity = mNumVertexPage*mNumVertexPage; // 最多顶点数量
 	mVBuffer = new0 VertexBuffer(mTotalVQuantity, mVFormat->GetStride(),
 		Buffer::BU_DYNAMIC);
 
 	// 顶点索引
-	mTotalTQuantity = 2*(mSize-1)*(mSize-1);
+	mTotalTQuantity = 2*(mNumVertexPage-1)*(mNumVertexPage-1);
 	mTotalIQuantity = 3*mTotalTQuantity;
 	mIBuffer = new0 IndexBuffer(mTotalIQuantity, sizeof(int), Buffer::BU_DYNAMIC);
 
@@ -51,8 +51,8 @@ mItemsInQueue(0)
 	int numVertices = mVBuffer->GetNumElements();
 	for (int i = 0; i < numVertices; ++i)
 	{
-		int x = i % mSize;
-		int y = i / mSize;
+		int x = i % mNumVertexPage;
+		int y = i / mNumVertexPage;
 		mVBA.Position<Float3>(i) = Float3(GetX(x), GetY(y), GetHeight(i));
 		mVBA.Normal<Float3>(i) = Float3(0.0f, 0.0f, 1.0f);
 		mVBA.Color<Float3>(0, i) = Float3(0.0f, 0.0f, 0.0f);
@@ -77,8 +77,8 @@ LODTerrainPage::~LODTerrainPage ()
 void LODTerrainPage::InitializeDerivedData ()
 {
 	// do it again
-	mTotalVQuantity = mSize*mSize;
-	mTotalTQuantity = 2*(mSize-1)*(mSize-1);
+	mTotalVQuantity = mNumVertexPage*mNumVertexPage;
+	mTotalTQuantity = 2*(mNumVertexPage-1)*(mNumVertexPage-1);
 	mTotalIQuantity = 3*mTotalTQuantity;
 	mVBA.ApplyTo(mVFormat, mVBuffer);
 
@@ -89,11 +89,11 @@ void LODTerrainPage::InitializeDerivedData ()
 	memset(mVertexs, 0, mTotalVQuantity*sizeof(LODTerrainVertex));
 
 	// 分配block的quadtree
-	mBlockQuantity = mSize*(mSize-2)/3;
+	mBlockQuantity = mNumVertexPage*(mNumVertexPage-2)/3;
 	mBlocks = new1<LODTerrainBlock>(mBlockQuantity);
 
 	// 初始化quadtree
-	int stride = (mSize-1)/2;
+	int stride = (mNumVertexPage-1)/2;
 	mBlocks[0].Initialize(this, mBlocks, 0, 0, 0, stride, true);
 	mBlocks[0].UpdateBoundingBox(this, mBlocks, 0, stride);
 
@@ -426,15 +426,15 @@ void LODTerrainPage::Simplify (const APoint &modelEye, const AVector &modelDir,
 //----------------------------------------------------------------------------
 void LODTerrainPage::Render (LODTerrainBlock &block)
 {
-	int origin = block.GetX() + mSize*block.GetY();
+	int origin = block.GetX() + mNumVertexPage*block.GetY();
 	int stride = block.GetStride();
 	int twoStride = 2*stride;
-	int twoStrideTimesSize = twoStride*mSize;
+	int twoStrideTimesSize = twoStride*mNumVertexPage;
 	int index[5] =
 	{
 		origin,
 		origin + twoStride,
-		origin + stride*(mSize + 1),
+		origin + stride*(mNumVertexPage + 1),
 		origin + twoStrideTimesSize,
 		origin + twoStrideTimesSize + twoStride
 	};
@@ -496,8 +496,8 @@ void LODTerrainPage::RenderTriangle (int t, int l, int r)
 	//Float2 tCoord;
 	//if (mLookup[t] == -1)
 	//{
-	//	x = t % mSize;
-	//	y = t / mSize;
+	//	x = t % mNumVertexPage;
+	//	y = t / mNumVertexPage;
 
 	//	mVBA.Position<Float3>(vertexNumElements) =
 	//		Float3(GetX(x), GetY(y), GetHeight(t));
@@ -516,8 +516,8 @@ void LODTerrainPage::RenderTriangle (int t, int l, int r)
 
 	//if (mLookup[r] == -1)
 	//{
-	//	x = r % mSize;
-	//	y = r / mSize;
+	//	x = r % mNumVertexPage;
+	//	y = r / mNumVertexPage;
 
 	//	mVBA.Position<Float3>(vertexNumElements) =
 	//		Float3(GetX(x), GetY(y), GetHeight(r));
@@ -536,8 +536,8 @@ void LODTerrainPage::RenderTriangle (int t, int l, int r)
 
 	//if (mLookup[l] == -1)
 	//{
-	//	x = l % mSize;
-	//	y = l / mSize;
+	//	x = l % mNumVertexPage;
+	//	y = l / mNumVertexPage;
 
 	//	mVBA.Position<Float3>(vertexNumElements) =
 	//		Float3(GetX(x), GetY(y), GetHeight(l));
@@ -577,7 +577,7 @@ void LODTerrainPage::RenderTriangle (int t, int l, int r)
 void LODTerrainPage::RenderBlocks ()
 {
 	// 重置缓冲区
-	memset(mLookup,0xFF,mSize*mSize*sizeof(int));
+	memset(mLookup,0xFF,mNumVertexPage*mNumVertexPage*sizeof(int));
 	mIBuffer->SetNumElements(0);
 
 	unsigned short queue;
@@ -632,16 +632,16 @@ void LODTerrainPage::GetVisibleSet (Culler &culler, bool noCull)
 void LODTerrainPage::StitchNextCol (LODTerrainPage *nextCol)
 {
 	// 'this'地形页为(r,c)，'nextCol'地形页为(r,c+1)
-	assertion(nextCol->mSize == mSize, "size should be the same.");
+	assertion(nextCol->mNumVertexPage == mNumVertexPage, "size should be the same.");
 
-	int max = mSize - 2;
-	int xThis = mSize - 1;
+	int max = mNumVertexPage - 2;
+	int xThis = mNumVertexPage - 1;
 	int xNext = 0;
 
 	for (int y=1; y<=max; y++)
 	{
-		int indexThis = xThis + mSize*y;
-		int indexNext = xNext + mSize*y;
+		int indexThis = xThis + mNumVertexPage*y;
+		int indexNext = xNext + mNumVertexPage*y;
 		LODTerrainVertex *vThis = &mVertexs[indexThis];
 		LODTerrainVertex *vNext = &nextCol->mVertexs[indexNext];
 		vNext->SetDependent(0, vThis);
@@ -652,16 +652,16 @@ void LODTerrainPage::StitchNextCol (LODTerrainPage *nextCol)
 void LODTerrainPage::UnstitchNextCol (LODTerrainPage *nextCol)
 {
 	// 'this'地形页为(r,c)，'nextCol'地形页为(r,c+1)
-	assertion(nextCol->mSize == mSize, "size should be the same.");
+	assertion(nextCol->mNumVertexPage == mNumVertexPage, "size should be the same.");
 
-	int max = mSize - 2;
-	int xThis = mSize - 1;
+	int max = mNumVertexPage - 2;
+	int xThis = mNumVertexPage - 1;
 	int xNext = 0;
 
 	for (int y=1; y<=max; y++)
 	{
-		int indexThis = xThis + mSize*y;
-		int indexNext = xNext + mSize*y;
+		int indexThis = xThis + mNumVertexPage*y;
+		int indexNext = xNext + mNumVertexPage*y;
 		LODTerrainVertex *vThis = &mVertexs[indexThis];
 		LODTerrainVertex *vNext = &nextCol->mVertexs[indexNext];
 		vNext->SetDependent(0, 0);
@@ -672,16 +672,16 @@ void LODTerrainPage::UnstitchNextCol (LODTerrainPage *nextCol)
 void LODTerrainPage::StitchNextRow (LODTerrainPage *nextRow)
 {
 	// 'this'地形页为(r,c)，'nextRow'地形页为(r+1,c)
-	assertion(nextRow->mSize == mSize, "size should be the same.");
+	assertion(nextRow->mNumVertexPage == mNumVertexPage, "size should be the same.");
 
-	int max = mSize - 2;
-	int yThis = mSize - 1;
+	int max = mNumVertexPage - 2;
+	int yThis = mNumVertexPage - 1;
 	int yNext = 0;
 
 	for (int x=1; x<max; x++)
 	{
-		int indexThis = x + mSize*yThis;
-		int indexNext = x + mSize*yNext;
+		int indexThis = x + mNumVertexPage*yThis;
+		int indexNext = x + mNumVertexPage*yNext;
 		LODTerrainVertex *vThis = &mVertexs[indexThis];
 		LODTerrainVertex *vNext = &nextRow->mVertexs[indexNext];
 		vNext->SetDependent(1, vThis);
@@ -692,16 +692,16 @@ void LODTerrainPage::StitchNextRow (LODTerrainPage *nextRow)
 void LODTerrainPage::UnstitchNextRow (LODTerrainPage *nextRow)
 {
 	// 'this'地形页为(r,c)，'nextRow'地形页为(r+1,c)
-	assertion(nextRow->mSize == mSize, "size should be the same.");
+	assertion(nextRow->mNumVertexPage == mNumVertexPage, "size should be the same.");
 
-	int max = mSize - 2;
-	int yThis = mSize - 1;
+	int max = mNumVertexPage - 2;
+	int yThis = mNumVertexPage - 1;
 	int yNext = 0;
 
 	for (int x=1; x<max; x++)
 	{
-		int indexThis = x + mSize*yThis;
-		int indexNext = x + mSize*yNext;
+		int indexThis = x + mNumVertexPage*yThis;
+		int indexNext = x + mNumVertexPage*yNext;
 		LODTerrainVertex *vThis = &mVertexs[indexThis];
 		LODTerrainVertex *vNext = &nextRow->mVertexs[indexNext];
 		vNext->SetDependent(1, 0);

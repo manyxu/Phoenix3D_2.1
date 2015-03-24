@@ -48,7 +48,7 @@ void LODTerrainBlock::Initialize (LODTerrainPage *page,
 	SetEven(even);
 
 	LODTerrainVertex* vertex[9];
-	GetVertex9((unsigned short)page->mSize, page->mVertexs, vertex);
+	GetVertex9((unsigned short)page->mNumVertexPage, page->mVertexs, vertex);
 
 	// 设置顶点相关性
 	vertex[1]->SetDependent(0, vertex[4]);
@@ -119,15 +119,15 @@ void LODTerrainBlock::UpdateBoundingBox (LODTerrainPage *page,
 	point[8].X() = point[2].X();
 	point[8].Y() = point[6].Y();
 
-	int origin = (int)mX + page->mSize*(int)mY;
+	int origin = (int)mX + page->mNumVertexPage*(int)mY;
 	point[0].Z() = page->GetHeight(origin);
 	point[1].Z() = page->GetHeight(origin+stride);
 	point[2].Z() = page->GetHeight(origin+2*stride);
-	origin += page->mSize*stride;
+	origin += page->mNumVertexPage*stride;
 	point[3].Z() = page->GetHeight(origin);
 	point[4].Z() = page->GetHeight(origin+stride);
 	point[5].Z() = page->GetHeight(origin+2*stride);
-	origin += page->mSize*stride;
+	origin += page->mNumVertexPage*stride;
 	point[6].Z() = page->GetHeight(origin);
 	point[7].Z() = page->GetHeight(origin+stride);
 	point[8].Z() = page->GetHeight(origin+2*stride);
@@ -492,7 +492,7 @@ void LODTerrainBlock::SimplifyVertices (LODTerrainPage *page,
 										const AVector &modelDir,
 										float tolerance, bool closeAssumption)
 {
-	int size = page->mSize;
+	int size = page->mNumVertexPage;
 	int origin = (int)mX + size*(int)mY;
 	LODTerrainVertex* vertexOrigin = page->mVertexs + origin;
 	LODTerrainVertex* vertex;
@@ -751,7 +751,7 @@ void LODTerrainBlock::SimplifyVertices (LODTerrainPage *page,
 void LODTerrainBlock::Enable (LODTerrainPage* page)
 {
 	LODTerrainVertex *vertex[9];
-	GetVertex9((unsigned short)page->mSize, page->mVertexs, vertex);
+	GetVertex9((unsigned short)page->mNumVertexPage, page->mVertexs, vertex);
 	for (int i = 0; i < 9; i++)
 	{
 		if (!vertex[i]->IsEnabled())
@@ -764,7 +764,7 @@ void LODTerrainBlock::Enable (LODTerrainPage* page)
 void LODTerrainBlock::Disable (LODTerrainPage *page)
 {
 	LODTerrainVertex *vertex[9];
-	GetVertex9((unsigned short)page->mSize, page->mVertexs, vertex);
+	GetVertex9((unsigned short)page->mNumVertexPage, page->mVertexs, vertex);
 	for (int i = 0; i < 9; i++)
 	{
 		if (vertex[i]->IsEnabled())

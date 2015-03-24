@@ -21,12 +21,11 @@ Terrain::~Terrain ()
 	delete2(mPages);
 }
 //----------------------------------------------------------------------------
-Terrain::Terrain ()
-	:
+Terrain::Terrain () :
 mPages(0),
 mNumRows(0),
 mNumCols(0),
-mSize(0),
+mNumVertexPage(0),
 mMinElevation(0),
 mMaxElevation(0),
 mSpacing(1.0f),
@@ -74,7 +73,7 @@ TerrainPage *Terrain::GetPage (int row, int col)
 //----------------------------------------------------------------------------
 TerrainPage *Terrain::GetCurrentPage (float x, float y) const
 {
-	float invLength = 1.0f/(mSpacing*(float)(mSize - 1));
+	float invLength = 1.0f/(mSpacing*(float)(mNumVertexPage - 1));
 
 	int col = (int)Mathf::Floor(x*invLength);
 	col %= mNumCols;
@@ -310,7 +309,7 @@ void Terrain::RegistProperties ()
 
 	AddProperty("NumRow", Object::PT_INT, GetRowQuantity(), true);
 	AddProperty("NumCol", Object::PT_INT, GetColQuantity(), true);
-	AddProperty("Size", Object::PT_INT, GetSize(), false);
+	AddProperty("NumVertexPage", Object::PT_INT, GetNumVertexPage(), false);
 	AddProperty("Spacing", Object::PT_FLOAT, GetSpacing(), false);
 
 	Float3 emissive = Float3(mTerrainShine->Emissive[0], mTerrainShine->Emissive[1], mTerrainShine->Emissive[2]);
@@ -388,7 +387,7 @@ Node(value),
 mPages(0),
 mNumRows(0),
 mNumCols(0),
-mSize(0),
+mNumVertexPage(0),
 mMinElevation(0.0f),
 mMaxElevation(0.0f),
 mSpacing(0.0f),
@@ -406,7 +405,7 @@ void Terrain::Load (InStream& source)
 
 	source.Read(mNumRows);
 	source.Read(mNumCols);
-	source.Read(mSize);
+	source.Read(mNumVertexPage);
 	source.Read(mMinElevation);
 	source.Read(mMaxElevation);
 	source.Read(mSpacing);
@@ -478,7 +477,7 @@ void Terrain::Save (OutStream& target) const
 
 	target.Write(mNumRows);
 	target.Write(mNumCols);
-	target.Write(mSize);
+	target.Write(mNumVertexPage);
 	target.Write(mMinElevation);
 	target.Write(mMaxElevation);
 	target.Write(mSpacing);
@@ -506,7 +505,7 @@ int Terrain::GetStreamingSize (Stream &stream) const
 
 	size += sizeof(mNumRows);
 	size += sizeof(mNumCols);
-	size += sizeof(mSize);
+	size += sizeof(mNumVertexPage);
 	size += sizeof(mMinElevation);
 	size += sizeof(mMaxElevation);
 	size += sizeof(mSpacing);

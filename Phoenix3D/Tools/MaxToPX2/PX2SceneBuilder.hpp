@@ -1,15 +1,4 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2SceneBuilder.hpp
-*
-* 版本		:	1.0 (2011/05/22)
-*
-* 作者		：	more
-*
-*/
+// PX2SceneBuilder.hpp
 
 #ifndef PX2SCENEBUILDER_HPP
 #define PX2SCENEBUILDER_HPP
@@ -121,28 +110,6 @@ private:
 
 	// Material 
 	bool IsValidName (const char* str);
-	bool ConvertStringAttrib (IParamBlock2 *paramBlock, int index, 
-		std::string &name, std::string &str);
-	bool ConvertFloatAttrib (IParamBlock2* pkParamBlock, int index, 
-		std::string &name, float &value);
-	bool ConvertIntAttrib (IParamBlock2* pkParamBlock, int index, 
-		std::string &name, int &value);
-	bool ConvertColorAttrib (IParamBlock2 *paramBlock, int index,
-		std::string &name, PX2::Float4 &color, int &increment);
-	bool ConvertPoint3Attrib (IParamBlock2 *paramBlock, int index,
-		std::string &name, PX2::Float3 &value);
-	bool ConvertPoint4Attrib (IParamBlock2 *paramBlock, int index,
-		std::string &name, PX2::Float4 &value);
-	bool ConvertBoolAttrib (IParamBlock2 *paramBlock, int index,
-		std::string &name, bool &value);
-	bool ConvertFloatTabAttrib (IParamBlock2* paramBlock, int index, 
-		std::string &name, float *table);
-	bool ConvertIntListBoxAttrib (IParamBlock2* paramBlock, int index,
-		std::string &name, int &value);
-	bool ConvertBitMapAttrib (IParamBlock2 *paramBlock, int index, 
-		std::string &name, PX2::Texture2D *&tex2d);
-	bool ConvertFRGBAAttrib (IParamBlock2* paramBlock, int index,
-		std::string &name, PX2::Float4 &value);
 
 	// Light
 	void BuildAmbientLight ();

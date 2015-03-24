@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2MtlTree.cpp
-*
-*/
+// PX2MtlTree.cpp
 
 #include "PX2MtlTree.hpp"
 

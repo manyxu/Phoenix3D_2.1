@@ -19,7 +19,7 @@ namespace PX2
 
 	public:
 		// size = 2^p + 1, p <= 7 (size = 3, 5, 9, 17, 33, 65, 129)
-		TerrainPage (int size, float* heights, const Float2& origin,
+		TerrainPage(int numVertexPage, float* heights, const Float2& origin,
 			float spacing);
 		virtual ~TerrainPage ();
 
@@ -56,7 +56,7 @@ namespace PX2
 		bool IsHole (int index);
 
 		// 高程参数及数据
-		int mSize, mSizeM1;
+		int mNumVertexPage, mNumVertexPageM1;
 		float* mHeights;
 		Float2 mOrigin;
 		float mSpacing;

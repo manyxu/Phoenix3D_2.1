@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SceneBuilderSkinModifier.cpp
-*
-*/
+// PX2SceneBuilderSkinModifier.cpp
 
 #include "PX2SceneBuilder.hpp"
 using namespace PX2;

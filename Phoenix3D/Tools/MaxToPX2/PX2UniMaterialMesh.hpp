@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2UniMaterialMesh.hpp
-*
-*/
+// PX2UniMaterialMesh.hpp
 
 #ifndef PX2UNIMATERIALMESH_HPP
 #define PX2UNIMATERIALMESH_HPP

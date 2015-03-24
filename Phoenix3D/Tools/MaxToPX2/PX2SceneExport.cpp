@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2SceneExport.cpp
-*
-*/
+// PX2SceneExport.cpp
 
 #include "PX2SceneExport.hpp"
 #include "PX2SceneBuilder.hpp"

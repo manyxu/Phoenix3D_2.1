@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2ExportSettings.cpp
-*
-*/
+// PX2ExportSettings.cpp
 
 #include "PX2ExportSettings.hpp"
 

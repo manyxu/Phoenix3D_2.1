@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2UniMaterialMesh.cpp
-*
-*/
+// PX2UniMaterialMesh.cpp
 
 #include "PX2UniMaterialMesh.hpp"
 #include "PX2MaterialInstance.hpp"

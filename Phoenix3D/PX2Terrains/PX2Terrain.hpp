@@ -26,7 +26,7 @@ namespace PX2
 		// members
 		inline int GetRowQuantity () const;
 		inline int GetColQuantity () const;
-		inline int GetSize () const;
+		inline int GetNumVertexPage () const;
 		inline float GetSpacing () const;
 		float GetHeight (float x, float y) const;
 		AVector GetNormal (float x, float y) const;
@@ -54,7 +54,7 @@ namespace PX2
 		Terrain();
 
 		int mNumRows, mNumCols;
-		int mSize;
+		int mNumVertexPage;
 		float mMinElevation, mMaxElevation, mSpacing;
 		TerrainPagePtr** mPages;
 

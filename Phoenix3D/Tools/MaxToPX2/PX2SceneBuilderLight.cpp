@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SceneBuilderLight.cpp
-*
-*/
+// PX2SceneBuilderLight.cpp
 
 #include "PX2SceneBuilder.hpp"
 

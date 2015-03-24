@@ -29,7 +29,7 @@ void LODTerrain::CreateFromRawTerrain (RawTerrain *rawTer)
 {
 	mNumRows = rawTer->GetRowQuantity();
 	mNumCols = rawTer->GetColQuantity();
-	mSize = rawTer->GetSize();
+	mNumVertexPage = rawTer->GetNumVertexPage();
 	mSpacing = rawTer->GetSpacing();
 
 	mPages = new2<TerrainPagePtr>(mNumCols, mNumRows);
@@ -126,16 +126,16 @@ void LODTerrain::Simplify ()
 //----------------------------------------------------------------------------
 void LODTerrain::CreatePage (int row, int col, RawTerrainPage *rawPage)
 {
-	int numHeights = mSize*mSize;
+	int numHeights = mNumVertexPage*mNumVertexPage;
 	float *heights = new1<float>(numHeights);
 	const float *heightsOrgin = rawPage->GetHeights();
 	memcpy(heights, heightsOrgin, numHeights*sizeof(float));
 
-	float length = mSpacing*(float)(mSize - 1);
+	float length = mSpacing*(float)(mNumVertexPage - 1);
 	Float2 origin(col*length, row*length);
 
 	LODTerrainPage* lodPage = 0;
-	lodPage = new0 LODTerrainPage(mVFormatEdit, mSize, heights, origin, 
+	lodPage = new0 LODTerrainPage(mVFormatEdit, mNumVertexPage, heights, origin, 
 		mSpacing);
 	lodPage->SetMaterialInstance(rawPage->GetMaterialInstance());
 

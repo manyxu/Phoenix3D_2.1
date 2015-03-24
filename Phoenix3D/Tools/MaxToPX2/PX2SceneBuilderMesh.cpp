@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2SceneBuilderMesh.cpp
-*
-*/
+// PX2SceneBuilderMesh.cpp
 
 #include "PX2SceneBuilder.hpp"
 #include "PX2UniMaterialMesh.hpp"

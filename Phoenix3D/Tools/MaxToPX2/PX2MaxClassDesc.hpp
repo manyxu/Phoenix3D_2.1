@@ -1,18 +1,7 @@
-/*
-* Phoenix 3D 游戏引擎 Version 2.0
-*
-* Copyright (C) 2009-2011 http://www.Phoenix3d.org/
-*
-* 文件名称	：	PX2MaxClassDesc.hpp
-*
-* 版本		:	1.0 (2011/04/18)
-*
-* 作者		：	more
-*
-*/
+// PX2MaxClassDesc.hpp
 
-#ifndef PX2MAX8CLASSDESC_HPP
-#define PX2MAX8CLASSDESC_HPP
+#ifndef PX2MAXCLASSDESC_HPP
+#define PX2MAXCLASSDESC_HPP
 
 #include "PX2MaxToPX2PluginPre.hpp"
 

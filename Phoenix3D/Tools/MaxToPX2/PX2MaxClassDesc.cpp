@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2MaxClassDesc.cpp
-*
-*/
+// PX2MaxClassDesc.cpp
 
 #include "resource.h"
 #include "PX2MaxClassDesc.hpp"

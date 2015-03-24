@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2MaxToPX2PluginPre.hpp
-*
-*/
+// PX2MaxToPX2PluginPre.hpp
 
 #ifndef PX2MAXTOPX2PLUGINPRERE_HPP
 #define PX2MAXTOPX2PLUGINPRERE_HPP

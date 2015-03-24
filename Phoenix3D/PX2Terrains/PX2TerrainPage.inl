@@ -13,7 +13,7 @@ inline Jungler *TerrainPage::GetJungler (int i)
 //----------------------------------------------------------------------------
 inline int TerrainPage::GetSize () const
 {
-	return mSize;
+	return mNumVertexPage;
 }
 //----------------------------------------------------------------------------
 inline const float* TerrainPage::GetHeights () const
@@ -33,7 +33,7 @@ inline float TerrainPage::GetSpacing () const
 //----------------------------------------------------------------------------
 inline float TerrainPage::GetWidth () const
 {
-	return mSpacing * mSizeM1;
+	return mSpacing * mNumVertexPageM1;
 }
 //----------------------------------------------------------------------------
 inline float TerrainPage::GetX (int x) const

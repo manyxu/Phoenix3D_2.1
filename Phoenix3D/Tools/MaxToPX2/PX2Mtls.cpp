@@ -1,8 +1,4 @@
-/*
-*
-* ÎÄ¼şÃû³Æ	£º	PX2Mtls.cpp
-*
-*/
+// PX2Mtls.cpp
 
 #include "PX2Mtls.hpp"
 using namespace std;

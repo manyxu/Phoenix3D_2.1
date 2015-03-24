@@ -22,12 +22,12 @@ PX2_IMPLEMENT_FACTORY(RawTerrainPage);
 PX2_IMPLEMENT_DEFAULT_NAMES(TerrainPage, RawTerrainPage);
 
 //----------------------------------------------------------------------------
-RawTerrainPage::RawTerrainPage(VertexFormat* vformat, int size,
+RawTerrainPage::RawTerrainPage(VertexFormat* vformat, int numVertexPage,
 	float* heights, const Float2& origin, float spacing) :
-TerrainPage(size, heights, origin, spacing)
+	TerrainPage(numVertexPage, heights, origin, spacing)
 {
-	float ext = mSpacing*mSizeM1;
-	TriMesh* mesh = StandardMesh(vformat).Rectangle(mSize, mSize, ext, ext);
+	float ext = mSpacing*mNumVertexPageM1;
+	TriMesh* mesh = StandardMesh(vformat).Rectangle(mNumVertexPage, mNumVertexPage, ext, ext);
 	mVFormat = vformat;
 	mVBuffer = mesh->GetVertexBuffer();
 	mIBuffer = mesh->GetIndexBuffer();
@@ -37,8 +37,8 @@ TerrainPage(size, heights, origin, spacing)
 	int numVertices = mVBuffer->GetNumElements();
 	for (int i = 0; i < numVertices; ++i)
 	{
-		int x = i % mSize;
-		int y = i / mSize;
+		int x = i % mNumVertexPage;
+		int y = i / mNumVertexPage;
 		vba.Position<Float3>(i) = Float3(GetX(x), GetY(y), GetHeight(i));
 		vba.Normal<Float3>(i) = Float3(0.0f, 0.0f, 1.0f);
 	}
@@ -60,7 +60,7 @@ TerrainPage(size, heights, origin, spacing)
 	SetUV4(Float2(mUV4[0], mUV4[1]));
 
 	int texSize = 128;
-	if (size > 256)
+	if (numVertexPage > 256)
 		texSize = 256;
 
 	mTextureAlpha = new0 Texture2D(Texture::TF_A8R8G8B8, texSize, texSize, 1);
@@ -99,15 +99,15 @@ void RawTerrainPage::UpdateHoles ()
 	IndexBuffer *indexBuf = GetIndexBuffer();
 
 	unsigned short* indices = (unsigned short*)indexBuf->GetData();
-	for (int i1 = 0; i1 < mSize - 1; ++i1)
+	for (int i1 = 0; i1 < mNumVertexPage - 1; ++i1)
 	{
-		for (int i0 = 0; i0 < mSize - 1; ++i0)
+		for (int i0 = 0; i0 < mNumVertexPage - 1; ++i0)
 		{
-			int v0 = i0 + mSize * i1;
+			int v0 = i0 + mNumVertexPage * i1;
 
 			int v1 = v0 + 1;
-			int v2 = v1 + mSize;
-			int v3 = v0 + mSize;
+			int v2 = v1 + mNumVertexPage;
+			int v3 = v0 + mNumVertexPage;
 
 			if (IsHole(v0))
 			{

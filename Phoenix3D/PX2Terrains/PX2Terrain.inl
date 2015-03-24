@@ -16,9 +16,9 @@ inline int Terrain::GetColQuantity () const
 	return mNumCols;
 }
 //----------------------------------------------------------------------------
-inline int Terrain::GetSize () const
+inline int Terrain::GetNumVertexPage() const
 {
-	return mSize;
+	return mNumVertexPage;
 }
 //----------------------------------------------------------------------------
 inline float Terrain::GetSpacing () const
