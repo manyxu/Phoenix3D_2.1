@@ -121,6 +121,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("pv_Sound", "音效(Sound)")
 	PX2_LM:AddItem1("pv_Trigger", "触发(Trigger)")
 	PX2_LM:AddItem1("pv_AmbientRegion", "环境(Ambient)")
+	PX2_LM:AddItem1("pv_settings_show", "显示")
 	
 	-- ResView
 	PX2_LM:AddItem1("CopyResPath", "拷贝资源路径到剪贴簿")

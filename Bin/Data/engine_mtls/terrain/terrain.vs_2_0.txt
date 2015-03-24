@@ -76,7 +76,6 @@ mad r2.xyz, r2, r2.w, -c9
 mul r3.xyz, r2, c26.y
 dp3 r4.x, r3, r3
 rsq r4.x, r4.x
-rcp r2.w, r2.w
 mul r3.xyz, r4.x, r3
 dp3 r2.z, v1, c6
 dp3 r2.x, v1, c4
@@ -89,8 +88,8 @@ mov r3.w, c13
 mul r4.y, c16.w, r3.w
 max r4.x, r3, c26.z
 pow r3, r4.x, r4.y
-mov r3.w, r3.x
 dp3 r4.x, r2, -c9
+mov r3.w, r3.x
 mov r3.xyz, c12
 max r4.x, r4, c26.z
 mul r3.xyz, c15, r3
@@ -102,65 +101,74 @@ mul r3.xyz, c16, r3
 mad r3.xyz, r3, r3.w, r4
 add r4.xyz, -r1, c17
 dp3 r4.w, r4, r4
+rsq r6.x, r4.w
+mul r4.xyz, r6.x, r4
 mul r3.xyz, r3, c14.w
 add r5.xyz, r3, c10
 add r3.xyz, -r1, c19
 dp3 r3.w, r3, r3
 rsq r5.w, r3.w
 mul r3.xyz, r5.w, r3
-dp3 r3.x, r2, r3
-rcp r3.y, c19.w
-mul r3.z, r3.w, r3.y
-rsq r6.x, r4.w
-mul r4.xyz, r6.x, r4
 dp3 r4.x, r2, r4
-rcp r5.w, c17.w
-mul r4.y, r4.w, r5.w
-mad r4.w, -r4.y, r5, c26.x
-mad r3.w, -r3.z, r3.y, c26.x
-max r4.x, r4, c26.z
-max r4.w, r4, c26.z
-mul r4.xyz, r4.x, c18
-mad r4.xyz, r4, r4.w, r5
-max r3.x, r3, c26.z
-mul r5.xyz, r3.x, c20
-add r3.xyz, -r1, c23
-max r3.w, r3, c26.z
-mad r4.xyz, r5, r3.w, r4
-dp3 r3.w, r3, r3
-add r1.xyz, -r1, c21
-rsq r5.x, r3.w
-mul r3.xyz, r5.x, r3
+rcp r6.x, c17.w
+max r5.w, r4.x, c26.z
+mul r4.w, r4, r6.x
+mov r4.xyz, c18
+mad r4.w, -r4, r6.x, c26.x
+mul r4.xyz, c12, r4
 dp3 r3.x, r2, r3
-dp3 r4.w, r1, r1
-rsq r5.x, r4.w
+max r4.w, r4, c26.z
+mul r4.xyz, r4, r5.w
+mad r4.xyz, r4, r4.w, r5
+rcp r5.x, c19.w
+max r4.w, r3.x, c26.z
+mul r3.w, r3, r5.x
+mad r3.w, -r3, r5.x, c26.x
+mov r3.xyz, c20
+mul r3.xyz, c12, r3
+mul r3.xyz, r3, r4.w
+max r3.w, r3, c26.z
+mad r4.xyz, r3, r3.w, r4
+add r3.xyz, -r1, c21
+dp3 r4.w, r3, r3
+rsq r5.y, r4.w
+mul r3.xyz, r5.y, r3
+add r1.xyz, -r1, c23
+dp3 r3.w, r1, r1
+rsq r5.x, r3.w
+rcp r5.y, c21.w
+mul r4.w, r4, r5.y
+mad r4.w, -r4, r5.y, c26.x
+dp3 r3.x, r2, r3
 mul r1.xyz, r5.x, r1
-dp3 r1.x, r2, r1
-rcp r3.y, c21.w
-mul r1.y, r4.w, r3
-mad r2.x, -r1.y, r3.y, c26
-max r1.x, r1, c26.z
-add r3.z, c25.w, -c25
-mul r1.xyz, r1.x, c22
+dp3 r2.x, r2, r1
+max r5.x, r3, c26.z
+rcp r2.z, r2.w
+mov r3.xyz, c22
+mul r3.xyz, c12, r3
+mov r1.xyz, c24
+rcp r2.y, c23.w
 max r2.x, r2, c26.z
-mad r2.xyz, r1, r2.x, r4
-max r1.x, r3, c26.z
-rcp r3.x, c23.w
-mul r1.xyz, r1.x, c24
-mul r3.y, r3.w, r3.x
-add r2.w, -r2, c25
-rcp r3.z, r3.z
-mul r3.z, r2.w, r3
-mad r2.w, -r3.y, r3.x, c26.x
-min r3.x, r3.z, c26
-max r2.w, r2, c26.z
-mad oD0.xyz, r1, r2.w, r2
+mul r1.xyz, c12, r1
+mul r1.xyz, r1, r2.x
+mul r2.x, r3.w, r2.y
+mad r2.x, -r2, r2.y, c26
+add r3.w, c25, -c25.z
+mul r3.xyz, r3, r5.x
+max r4.w, r4, c26.z
+mad r3.xyz, r3, r4.w, r4
+max r2.x, r2, c26.z
+mad oD0.xyz, r1, r2.x, r3
 add r1.x, c25.y, -c25
 rcp r1.y, r1.x
 add r1.x, r1.w, -c25
 mul r1.x, r1, r1.y
 min r1.x, r1, c26
-max oT1.x, r3, c26.z
+rcp r2.w, r3.w
+add r2.z, -r2, c25.w
+mul r2.z, r2, r2.w
+min r2.y, r2.z, c26.x
+max oT1.x, r2.y, c26.z
 dp4 oPos.w, r0, c3
 dp4 oPos.z, r0, c2
 dp4 oPos.y, r0, c1

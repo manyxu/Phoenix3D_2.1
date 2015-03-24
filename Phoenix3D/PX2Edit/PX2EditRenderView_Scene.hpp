@@ -15,6 +15,8 @@ namespace PX2
 		EditRenderView_Scene();
 		virtual ~EditRenderView_Scene();
 
+		virtual void Tick(double elapsedTime);
+
 	protected:
 		void _CreateGridGeometry();
 
@@ -66,6 +68,7 @@ namespace PX2
 		virtual void OnMotion(const APoint &pos);
 
 	protected:
+		void _ProcessKeyMove(bool isPress, float cameraMoveSpeed, float elapsedTime, float &speed);
 		void _MoveCamera(float horz, float vert); //< 透视角度，沿着视线方向移动
 		void _PanCamera(const float &horz, const float &vert); //< 透视角度，上下左右移动，其他视角和MoveCamera一样
 		void _ZoomCamera(float zoom);
@@ -83,6 +86,13 @@ namespace PX2
 		// Event
 	public:
 		virtual void DoExecute(Event *event);
+
+		// Move
+	protected:
+		float mCurCameraMoveSpeed_W;
+		float mCurCameraMoveSpeed_S;
+		float mCurCameraMoveSpeed_A;
+		float mCurCameraMoveSpeed_D;
 	};
 
 	typedef Pointer0<EditRenderView_Scene> EditRenderView_ScenePtr;

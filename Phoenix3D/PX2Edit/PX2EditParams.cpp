@@ -63,6 +63,7 @@ PX2_IMPLEMENT_DEFAULT_STREAM(Object, EditParams);
 EditParams::EditParams()
 {
 	GridSize = 40.0f;
+	IsShowGrid = true;
 
 	mCurThemeStr = "Blue";
 	mCurTheme = 0;
@@ -208,6 +209,9 @@ void EditParams::RegistProperties()
 
 	AddPropertyClass("EditParams");
 
+	AddProperty("GridSize", PT_INT, GridSize, false);
+	AddProperty("IsShowGrid", PT_BOOL, IsShowGrid);
+
 	std::vector<std::string> themeTypes = mThemesVec;
 
 	if (!themeTypes.empty())
@@ -219,8 +223,13 @@ void EditParams::RegistProperties()
 void EditParams::OnPropertyChanged(const PropertyObject &obj)
 {
 	Object::OnPropertyChanged(obj);
+	
 	if ("ThemeType" == obj.Name)
 	{
+	}
+	else if ("IsShowGrid" == obj.Name)
+	{
+		IsShowGrid = PX2_ANY_AS(obj.Data, bool);
 	}
 }
 //-----------------------------------------------------------------------------

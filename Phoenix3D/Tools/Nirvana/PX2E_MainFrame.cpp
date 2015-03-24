@@ -267,6 +267,15 @@ void E_MainFrame::OnTimer(wxTimerEvent& e)
 		PX2_EDIT.IsCtrlDown = wxGetKeyState(WXK_CONTROL);
 		PX2_EDIT.IsShiftDown = wxGetKeyState(WXK_SHIFT);
 
+		PX2_EDIT.IsKeyDown_W = wxGetKeyState((wxKeyCode)87) || wxGetKeyState((wxKeyCode)119);
+		PX2_EDIT.IsKeyDown_S = wxGetKeyState((wxKeyCode)83) || wxGetKeyState((wxKeyCode)115);
+		PX2_EDIT.IsKeyDown_A = wxGetKeyState((wxKeyCode)65) || wxGetKeyState((wxKeyCode)97);
+		PX2_EDIT.IsKeyDown_D = wxGetKeyState((wxKeyCode)68) || wxGetKeyState((wxKeyCode)100);
+
+		PX2_EDIT.IsLeftMouseDown = wxGetMouseState().LeftIsDown();
+		PX2_EDIT.IsRightMouseDown = wxGetMouseState().RightIsDown();
+		PX2_EDIT.IsMidMouseDown = wxGetMouseState().MiddleIsDown();
+
 		PX2_ENGINELOOP.Tick();
 	}
 }

@@ -52,11 +52,11 @@
 				</c>
 				<s>
 					<var index="0" name="SamplerAlpha" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
-					<var index="1" name="Sampler0" st="sampler2D" sf="LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
-					<var index="2" name="Sampler1" st="sampler2D" sf="LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
-					<var index="3" name="Sampler2" st="sampler2D" sf="LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
-					<var index="4" name="Sampler3" st="sampler2D" sf="LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
-					<var index="5" name="Sampler4" st="sampler2D" sf="LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="1" name="Sampler0" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="2" name="Sampler1" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="3" name="Sampler2" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="4" name="Sampler3" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
+					<var index="5" name="Sampler4" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
 				</s>
 				<p>
 					<var type="cg" file="terrain_cg.fx"/>

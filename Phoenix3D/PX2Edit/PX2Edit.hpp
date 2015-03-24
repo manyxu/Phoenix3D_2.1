@@ -87,6 +87,23 @@ namespace PX2
 		bool IsAltDown;
 		bool IsCtrlDown;
 		bool IsShiftDown;
+		bool IsKeyDown_W;
+		bool IsKeyDown_S;
+		bool IsKeyDown_A;
+		bool IsKeyDown_D;
+		bool IsLeftMouseDown;
+		bool IsRightMouseDown;
+		bool IsMidMouseDown;
+
+	public:
+		void SetCameraMoveLevel(int level);
+		int GetCameraMoveLevel() const;
+		float GetCameraMoveSpeedBase() const;
+		float GetCameraMoveSpeed() const;
+
+	protected:
+		int mCameraMoveLevel;
+		float mCameraMoveSpeedBase;
 
 		// Pick
 	public:

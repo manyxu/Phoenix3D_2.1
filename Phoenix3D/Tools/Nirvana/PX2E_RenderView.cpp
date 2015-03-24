@@ -27,13 +27,13 @@ EVT_ENTER_WINDOW(RenderView::OnEnterWindow)
 EVT_LEAVE_WINDOW(RenderView::OnLeaveWindow)
 EVT_LEFT_DOWN(RenderView::OnLeftDown)
 EVT_LEFT_UP(RenderView::OnLeftUp)
-//EVT_LEFT_DCLICK(RenderView::OnLeftDClick)
 EVT_MIDDLE_DOWN(RenderView::OnMiddleDown)
 EVT_MIDDLE_UP(RenderView::OnMiddleUp)
 EVT_MOUSEWHEEL(RenderView::OnMouseWheel)
 EVT_RIGHT_DOWN(RenderView::OnRightDown)
 EVT_RIGHT_UP(RenderView::OnRightUp)
 EVT_MOTION(RenderView::OnMotion)
+EVT_KEY_DOWN(RenderView::OnKeyDown)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 RenderView::RenderView()
@@ -79,7 +79,7 @@ void RenderView::OnTimer(wxTimerEvent& event)
 		for (; it != mEditRenderViews.end(); it++)
 		{
 			EditRenderView *renderView = it->second;
-			if (renderView && renderView->IsRenderStepCreated())
+			if (renderView)
 			{
 				renderView->Tick(dIval);
 			}
@@ -246,6 +246,58 @@ void RenderView::OnMotion(wxMouseEvent& e)
 	if (mIsRightDown)
 	{
 		mIsRightDownOnMotion = true;
+	}
+}
+//----------------------------------------------------------------------------
+void RenderView::OnKeyDown(wxKeyEvent& e)
+{
+	int keyCode = e.GetKeyCode();
+
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener)
+	{
+		if (81 == keyCode || 113 == keyCode)
+		{
+			listener->KeyPressed(KC_Q);
+		}
+		else if (87 == keyCode || 119 == keyCode)
+		{
+			listener->KeyPressed(KC_W);
+		}
+		else if (101 == keyCode || 69 == keyCode)
+		{
+			listener->KeyPressed(KC_E);
+		}
+		else if (82 == keyCode || 114 == keyCode)
+		{
+			listener->KeyPressed(KC_R);
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void RenderView::OnKeyUp(wxKeyEvent& e)
+{
+	int keyCode = e.GetKeyCode();
+
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener)
+	{
+		if (81 == keyCode || 113 == keyCode)
+		{
+			listener->KeyReleased(KC_Q);
+		}
+		else if (87 == keyCode || 119 == keyCode)
+		{
+			listener->KeyReleased(KC_W);
+		}
+		else if (101 == keyCode || 69 == keyCode)
+		{
+			listener->KeyReleased(KC_E);
+		}
+		else if (82 == keyCode || 114 == keyCode)
+		{
+			listener->KeyReleased(KC_R);
+		}
 	}
 }
 //----------------------------------------------------------------------------

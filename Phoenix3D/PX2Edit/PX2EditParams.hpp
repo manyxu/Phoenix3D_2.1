@@ -65,6 +65,7 @@ namespace PX2
 		// params
 	public:
 		float GridSize;
+		bool IsShowGrid;
 
 		// Theme
 	public:

@@ -39,7 +39,7 @@ namespace PX2
 		MoveMode mMoveMode;
 
 		UIViewPtr mUIView;
-		int mLeftWidth;
+		float mLeftWidth;
 
 		UIFramePtr mFrame;
 		PX2::PolysegmentPtr mGridPoly;

@@ -30,7 +30,7 @@ mLightCameraLookDistance(100.0f)
 	mFogParamHeight = Float2(-10.0f, 0.0f);
 
 	mFogColorDist = Float3::WHITE;
-	mFogParamDist = Float2(0.0f, 120.0f);
+	mFogParamDist = Float2(80.0f, 120.0f);
 
 	CreateHelpNode()->Show(false);
 

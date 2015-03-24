@@ -22,7 +22,16 @@ mGeoObjFactory(0),
 mEditParams(0),
 IsAltDown(false),
 IsCtrlDown(false),
-IsShiftDown(false)
+IsShiftDown(false),
+IsKeyDown_W(false),
+IsKeyDown_S(false),
+IsKeyDown_A(false),
+IsKeyDown_D(false),
+IsLeftMouseDown(false),
+IsRightMouseDown(false),
+IsMidMouseDown(false),
+mCameraMoveLevel(1),
+mCameraMoveSpeedBase(20.0f)
 {
 	mTimeLineEidt = new0 TimeLineEdit();
 	mTerrainEdit = new0 TerrainEdit();

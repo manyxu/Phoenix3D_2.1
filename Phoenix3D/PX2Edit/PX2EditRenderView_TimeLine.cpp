@@ -116,9 +116,9 @@ void EditRenderView_TimeLine::Tick(double elapsedTime)
 
 			// draw left
 			mRenderer->SetClearColor(Float4::BLACK);
-			mRenderer->ClearBuffers(0, -1, mLeftWidth, mSize.Height + 1);
+			mRenderer->ClearBuffers(0, -1, (int)mLeftWidth, (int)mSize.Height + 1);
 			mRenderer->SetClearColor(Float4(0.6f, 0.6f, 0.6f, 1.0f));
-			mRenderer->ClearColorBuffer(0, 0, mLeftWidth - 1, mSize.Height + 1);
+			mRenderer->ClearColorBuffer(0, 0, (int)mLeftWidth - 1, (int)mSize.Height + 1);
 
 			renderer->PostDraw();
 			renderer->DisplayColorBuffer();
@@ -235,6 +235,8 @@ float _GetGridSpacing(int gridNum)
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 {
+	PX2_UNUSED(doScale);
+
 	int width = (int)mSize.Width;
 	int height = (int)mSize.Height;
 
@@ -306,7 +308,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		mRenderer->SetCamera(mRenderStep->GetCamera());
 		Vector2f scrv = mRenderer->PointWorldToViewPort(APoint(0.0f, 0.0f, zPosTemp));
 		FontStr fs;
-		fs.x = iTemp + mLeftWidth;
+		fs.x = iTemp + (int)mLeftWidth;
 		fs.y = height - (int)scrv.Y();
 		fs.str = StringHelp::FloatToString(zPosTemp);
 		mFontStrs.push_back(fs);
@@ -326,7 +328,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		Vector2f scrv = mRenderer->PointWorldToViewPort(APoint(0.0f, 0.0f,
 			zPosTemp));
 		FontStr fs;
-		fs.x = iTemp + mLeftWidth;
+		fs.x = iTemp + (int)mLeftWidth;
 		fs.y = height - (int)scrv.Y();
 		fs.str = StringHelp::FloatToString(zPosTemp);
 		mFontStrs.push_back(fs);
@@ -386,7 +388,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 
 	Vector2f scrv = mRenderer->PointWorldToViewPort(APoint::ORIGIN);
 	FontStr fs;
-	fs.x = iTemp + mLeftWidth;
+	fs.x = iTemp + (int)mLeftWidth;
 	fs.y = height - (int)scrv.Y();
 	fs.str = "0.0";
 	mFontStrs.push_back(fs);
@@ -441,6 +443,7 @@ void EditRenderView_TimeLine::OnMiddleUp(const APoint &pos)
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::OnMouseWheel(float delta)
 {
+	PX2_UNUSED(delta);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::OnRightDown(const APoint &pos)

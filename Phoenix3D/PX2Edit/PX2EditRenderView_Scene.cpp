@@ -14,13 +14,19 @@
 #include "PX2EventWorld.hpp"
 #include "PX2EditEventType.hpp"
 #include "PX2Edit.hpp"
+#include "PX2InputEvent.hpp"
+#include "PX2InputEventData.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView_Scene::EditRenderView_Scene() :
 EditRenderView(RVT_SCENEUI),
 mViewType(VT_PERSPECTIVE),
-mViewDetail(VD_TEXTURED)
+mViewDetail(VD_TEXTURED),
+mCurCameraMoveSpeed_W(0.0f),
+mCurCameraMoveSpeed_S(0.0f),
+mCurCameraMoveSpeed_A(0.0f),
+mCurCameraMoveSpeed_D(0.0f)
 {
 	_CreateGridGeometry();
 	_CreateNodeCtrl();
@@ -58,6 +64,87 @@ EditRenderView_Scene::~EditRenderView_Scene()
 	if (mBoundCtrl)
 	{
 		PX2_EW.GoOut(mBoundCtrl);
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_Scene::_ProcessKeyMove(bool isPress, float cameraMoveSpeed,
+	float elapsedTime, float &speed)
+{
+	float speedParam0 = (cameraMoveSpeed / 0.2f);
+	float speedParam1 = (cameraMoveSpeed / 0.1f);
+
+	if (isPress)
+	{
+		speed = cameraMoveSpeed;
+	}
+	else
+	{
+		float curSpeedTemp = speed;
+		curSpeedTemp -= (float)elapsedTime * (speedParam0 + speedParam1*(float)elapsedTime);
+		if (curSpeedTemp >= 0.0f)
+		{
+			speed = curSpeedTemp;
+		}
+		else
+		{
+			speed = 0.0f;
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_Scene::Tick(double elapsedTime)
+{
+	if (PX2_EDIT.IsLeftMouseDown || PX2_EDIT.IsRightMouseDown ||
+		PX2_EDIT.IsMidMouseDown || PX2_EDIT.IsShiftDown)
+	{
+		float cameraMoveSpeed = PX2_EDIT.GetCameraMoveSpeed();
+		
+		bool isDown_W = PX2_EDIT.IsKeyDown_W;
+		bool isDown_S = PX2_EDIT.IsKeyDown_S;
+		bool isDown_A = PX2_EDIT.IsKeyDown_A;
+		bool isDown_D = PX2_EDIT.IsKeyDown_D;
+
+		mCurCameraMoveSpeed_W = 0.0f;
+		mCurCameraMoveSpeed_S = 0.0f;
+		mCurCameraMoveSpeed_A = 0.0f;
+		mCurCameraMoveSpeed_D = 0.0f;
+
+		float speedParam0 = (cameraMoveSpeed / 0.2f);
+		float speedParam1 = (cameraMoveSpeed / 0.1f);
+
+		_ProcessKeyMove(isDown_W, cameraMoveSpeed, (float)elapsedTime, mCurCameraMoveSpeed_W);
+		_ProcessKeyMove(isDown_S, cameraMoveSpeed, (float)elapsedTime, mCurCameraMoveSpeed_S);
+		_ProcessKeyMove(isDown_A, cameraMoveSpeed, (float)elapsedTime, mCurCameraMoveSpeed_A);
+		_ProcessKeyMove(isDown_D, cameraMoveSpeed, (float)elapsedTime, mCurCameraMoveSpeed_D);
+
+		float moveValue_W = mCurCameraMoveSpeed_W * (float)elapsedTime;
+		float moveValue_S = mCurCameraMoveSpeed_S * (float)elapsedTime;
+		float moveValue_A = mCurCameraMoveSpeed_A * (float)elapsedTime;
+		float moveValue_D = mCurCameraMoveSpeed_D * (float)elapsedTime;
+
+		float moveValueV = moveValue_W - moveValue_S;
+		float moveValueH = moveValue_A - moveValue_D;
+
+		if (VT_PERSPECTIVE == mViewType)
+		{
+			if (PX2_EDIT.IsAltDown)
+			{
+				_MoveCamera(moveValueH, moveValueV);
+			}
+			else
+			{
+				_ZoomCamera(moveValueV);
+				_MoveCamera(moveValueH, 0.0f);
+			}
+		}
+		else if (VT_TOP == mViewType)
+		{
+			_MoveCamera(moveValueH, moveValueV);
+		}
+		else if (VT_FRONT == mViewType)
+		{
+			_MoveCamera(moveValueH, -moveValueV);
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -285,8 +372,7 @@ void EditRenderView_Scene::OnMouseWheel(float delta)
 {
 	EditRenderView::OnMouseWheel(delta);
 
-	float delta1 = delta * 0.03f;
-	if (PX2_EDIT.IsShiftDown) delta1 *= 2.0f;
+	float delta1 = delta * 0.003f * PX2_EDIT.GetCameraMoveSpeed();
 
 	_ZoomCamera(delta1);
 
@@ -333,7 +419,6 @@ void EditRenderView_Scene::OnMotion(const APoint &pos)
 	if (mIsMiddleDown || mIsRightDown)
 	{
 		float speedVal = 3.0f;
-		if (PX2_EDIT.IsShiftDown) speedVal *= 2.0f;
 
 		if (VT_PERSPECTIVE == mViewType)
 		{
@@ -352,6 +437,10 @@ void EditRenderView_Scene::OnMotion(const APoint &pos)
 				{
 					_PanCamera(-delta.X()*mPixelToWorld.first*speedVal, delta.Z()*mPixelToWorld.second*speedVal);
 				}
+			}
+			else if (PX2_EDIT.IsShiftDown)
+			{
+				_ZoomCamera(-delta.Z()*mPixelToWorld.second*PX2_EDIT.GetCameraMoveSpeed());
 			}
 			else
 			{
@@ -684,6 +773,34 @@ void EditRenderView_Scene::DoExecute(Event *event)
 
 		mSceneNodeCtrl->GetCtrlsGroup()->Show(editType == Edit::ET_SCENE);
 		mBoundCtrl->GetCtrlsGroup()->Show(editType == Edit::ET_SCENE);;
+	}
+	else if (InputEventSpace::IsEqual(event, InputEventSpace::KeyPressed))
+	{
+		if (!PX2_EDIT.IsLeftMouseDown && !PX2_EDIT.IsRightMouseDown &&
+			!PX2_EDIT.IsMidMouseDown)
+		{
+			InputEventData ieData = event->GetData<InputEventData>();
+
+			if (ieData.ViewID == mRenderViewID)
+			{
+				if (KC_Q == ieData.KCode)
+				{
+					PX2_EDIT.SetEditMode(Edit::EM_SELECT);
+				}
+				else if (KC_W == ieData.KCode)
+				{
+					PX2_EDIT.SetEditMode(Edit::EM_TRANSLATE);
+				}
+				else if (KC_E == ieData.KCode)
+				{
+					PX2_EDIT.SetEditMode(Edit::EM_ROLATE);
+				}
+				else if (KC_R == ieData.KCode)
+				{
+					PX2_EDIT.SetEditMode(Edit::EM_SCALE);
+				}
+			}
+		}
 	}
 }
 //----------------------------------------------------------------------------

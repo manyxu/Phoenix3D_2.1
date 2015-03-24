@@ -31,13 +31,33 @@ inline EditParams *Edit::GetEditParams()
 	return mEditParams;
 }
 //----------------------------------------------------------------------------
+inline void Edit::SetCameraMoveLevel(int level)
+{
+	mCameraMoveLevel = level;
+}
+//----------------------------------------------------------------------------
+inline int Edit::GetCameraMoveLevel() const
+{
+	return mCameraMoveLevel;
+}
+//----------------------------------------------------------------------------
+inline float Edit::GetCameraMoveSpeedBase() const
+{
+	return mCameraMoveSpeedBase;
+}
+//----------------------------------------------------------------------------
+inline float Edit::GetCameraMoveSpeed() const
+{
+	return mCameraMoveSpeedBase * mCameraMoveLevel;
+}
+//----------------------------------------------------------------------------
 inline const APoint &Edit::GetPickPos() const
 {
 	return mPickPos;
 }
 //----------------------------------------------------------------------------
-inline void Edit::SetSelectPath_ChildFilenames(const std::vector<std::string> &
-	filenames)
+inline void Edit::SetSelectPath_ChildFilenames(
+	const std::vector<std::string> &filenames)
 {
 	mSelectPath_ChildFilenames = filenames;
 }

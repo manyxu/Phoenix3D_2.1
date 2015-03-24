@@ -34,6 +34,8 @@ namespace PX2Editor
 		void OnRightDown(wxMouseEvent& e);
 		void OnRightUp(wxMouseEvent& e);
 		void OnMotion(wxMouseEvent& e);
+		void OnKeyDown(wxKeyEvent& e);
+		void OnKeyUp(wxKeyEvent& e);
 
 		void OnMenuItem(wxCommandEvent &e);
 
