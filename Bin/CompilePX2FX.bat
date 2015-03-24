@@ -1,2 +1,2 @@
-cd C:\Users\void\Documents\GitHub\Phoenix3D\Bin\Data\engine_mtls\terrain
-..\\..\\..\\FxCompiler64D.exe terrain.xml
+cd E:\GitHub\Phoenix3D\Bin\Data\engine_mtls\tex2d\
+..\\..\\..\\FxCompiler64D.exe tex2d.xml
