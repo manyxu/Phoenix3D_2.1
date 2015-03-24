@@ -49,7 +49,6 @@
 
 // LocalMaterials
 #include "PX2SkinMaterial.hpp"
-#include "PX2Texture2DMaterial.hpp"
 #include "PX2VertexColor4Material.hpp"
 
 // DynamicBuffer

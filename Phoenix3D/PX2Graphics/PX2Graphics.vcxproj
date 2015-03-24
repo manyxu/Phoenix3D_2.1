@@ -164,7 +164,6 @@
     <ClCompile Include="PX2Texture.cpp" />
     <ClCompile Include="PX2Texture1D.cpp" />
     <ClCompile Include="PX2Texture2D.cpp" />
-    <ClCompile Include="PX2Texture2DMaterial.cpp" />
     <ClCompile Include="PX2Texture3D.cpp" />
     <ClCompile Include="PX2TextureCube.cpp" />
     <ClCompile Include="PX2Transform.cpp" />
@@ -333,7 +332,6 @@
     <ClInclude Include="PX2Texture.hpp" />
     <ClInclude Include="PX2Texture1D.hpp" />
     <ClInclude Include="PX2Texture2D.hpp" />
-    <ClInclude Include="PX2Texture2DMaterial.hpp" />
     <ClInclude Include="PX2Texture3D.hpp" />
     <ClInclude Include="PX2TextureCube.hpp" />
     <ClInclude Include="PX2Transform.hpp" />

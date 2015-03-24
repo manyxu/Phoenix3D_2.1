@@ -266,9 +266,6 @@
     <ClCompile Include="PX2SkinMaterial.cpp">
       <Filter>Materials\LocalMaterials\Lighting</Filter>
     </ClCompile>
-    <ClCompile Include="PX2Texture2DMaterial.cpp">
-      <Filter>Materials\LocalMaterials\Simple</Filter>
-    </ClCompile>
     <ClCompile Include="PX2VertexColor4Material.cpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClCompile>
@@ -768,9 +765,6 @@
     </ClInclude>
     <ClInclude Include="PX2SkinMaterial.hpp">
       <Filter>Materials\LocalMaterials\Lighting</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2Texture2DMaterial.hpp">
-      <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClInclude>
     <ClInclude Include="PX2VertexColor4Material.hpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
