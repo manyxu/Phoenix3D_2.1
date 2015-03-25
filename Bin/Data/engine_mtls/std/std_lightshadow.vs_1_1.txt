@@ -172,4 +172,4 @@ dp4 oT2.z, r0, c10
 dp4 oT2.y, r0, c9
 dp4 oT2.x, r0, c8
 mov oT0.xy, v2
-mov oD0.w, c16
+mov oD0.w, c14

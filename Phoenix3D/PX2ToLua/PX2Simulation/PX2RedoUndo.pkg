@@ -1,0 +1,17 @@
+// PX2RedoUndo.pkg
+
+	class URDoManager : public Singleton<URDoManager>
+	{
+	public:
+		URDoManager();
+		~URDoManager();
+
+		void Clear();
+		bool IsHasUnDo() const;
+		bool IsHasReDo() const;
+
+		void PushUnDo(URDo *command);
+
+		void UnDo();
+		void ReDo();
+	};

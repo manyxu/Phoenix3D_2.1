@@ -560,7 +560,7 @@ bool Creater::RemoveObject(Object *obj, bool command)
 	//EffectModule *module = DynamicCast<EffectModule>(obj);
 	Animation *anim = DynamicCast<Animation>(obj);
 
-	EditCommandPtr theCommand = new0 ObjectAddDeleteURDo(false, obj);
+	URDoPtr theCommand = new0 ObjectAddDeleteURDo(false, obj);
 
 	bool removed = false;
 

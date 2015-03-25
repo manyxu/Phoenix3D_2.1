@@ -37,6 +37,8 @@ mTexturePathname(filename)
 	if (tex) SetSize((float)tex->GetWidth(), (float)tex->GetHeight());
 
 	SetUVRepeat(Float2::UNIT);
+
+	SetColor(Float3::WHITE);
 }
 //----------------------------------------------------------------------------
 UIPicBox::UIPicBox(const std::string &packName, const std::string &eleName,
@@ -59,6 +61,8 @@ mTexMode(TM_TEXPACK_ELE)
 	SetSize((float)mPackEle.W, (float)mPackEle.H);
 
 	SetUVRepeat(Float2::UNIT);
+
+	SetColor(Float3::WHITE);
 }
 //----------------------------------------------------------------------------
 UIPicBox::~UIPicBox()
@@ -116,19 +120,11 @@ void UIPicBox::MakeSizeWithTex()
 	}
 }
 //----------------------------------------------------------------------------
-void UIPicBox::SetColor(const Float3 &color)
-{
-	TriMesh::SetColor(color);
-
-	GetShine()->Emissive = Float4(color[0], color[1], color[2], GetAlpha());
-}
-//----------------------------------------------------------------------------
 void UIPicBox::SetAlpha(float alpha)
 {
-	TriMesh::SetAlpha(alpha);
+	Movable::SetAlpha(alpha);
 
-	const Float3 &color = GetColor();
-	GetShine()->Emissive = Float4(color[0], color[1], color[2], alpha);
+	mDefaultShine->Emissive[3] = alpha;
 }
 //----------------------------------------------------------------------------
 void UIPicBox::SetTexture(const std::string &filename)

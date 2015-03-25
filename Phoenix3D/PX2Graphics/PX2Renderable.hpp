@@ -236,7 +236,7 @@ public_internal:
 
 	protected:
 		void AdjustTransparent ();
-		void SetTransparent (bool transparent);
+		void _SetTransparent (bool transparent);
 
 public_internal:
 		bool IsTransparent () const;

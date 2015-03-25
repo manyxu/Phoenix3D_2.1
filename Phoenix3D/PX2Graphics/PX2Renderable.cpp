@@ -7,6 +7,7 @@
 #include "PX2VertexColor4Material.hpp"
 #include "PX2ShineDiffuseConstant.hpp"
 #include "PX2GraphicsRoot.hpp"
+#include "PX2MathHelp.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Movable, Renderable);
@@ -52,6 +53,7 @@ mFogIP_Distance(1.0f)
 	mDefaultShine->Ambient = Float4::MakeColor(150, 150, 150, 255);
 	mDefaultShine->Diffuse = mDefaultShine->Ambient;
 	mDefaultShine->Specular = Float4::MakeColor(230, 230, 230, 51);
+	mDefaultShine->ReCalTemp();
 
 	mBakeShine = new0 Shine ();
 	mBakeShine->SetName("BakeShine");
@@ -98,7 +100,7 @@ mFogIP_Distance(1.0f)
 
 	mDefaultShine = new0 Shine();
 	mDefaultShine->SetName("DefaultShine");
-	mDefaultShine->Emissive = Float4::BLACK;
+	mDefaultShine->Emissive = MathHelp::Float3ToFloat4(Float3::BLACK, 1.0f);
 	mDefaultShine->Ambient = Float4::MakeColor(150, 150, 150, 255);
 	mDefaultShine->Diffuse = mDefaultShine->Ambient;
 	mDefaultShine->Specular = Float4::MakeColor(230, 230, 230, 51);
@@ -192,7 +194,7 @@ void Renderable::SetAlpha (float alpha)
 {
 	Movable::SetAlpha(alpha);
 
-	mDefaultShine->Diffuse[3] = alpha;
+	mDefaultShine->Emissive[3] = alpha;
 }
 //----------------------------------------------------------------------------
 void Renderable::SetColor (const Float3 &color)
@@ -307,7 +309,7 @@ void Renderable::AdjustTransparent ()
 {
 	if (!mMaterialInstance)
 	{
-		SetTransparent(false);
+		_SetTransparent(false);
 		return;
 	}
 
@@ -319,18 +321,18 @@ void Renderable::AdjustTransparent ()
 		{
 			if (alphaProperty->BlendEnabled)
 			{
-				SetTransparent(true);
+				_SetTransparent(true);
 				return;
 			}
 			else
 			{
-				SetTransparent(false);
+				_SetTransparent(false);
 				return;
 			}
 		}
 	}
 
-	SetTransparent(false);
+	_SetTransparent(false);
 }
 //----------------------------------------------------------------------------
 bool Renderable::LessThan (const Renderable *renderable0,
@@ -383,6 +385,11 @@ void Renderable::RegistProperties ()
 	AddPropertyEnum("RenderLayer", (int)GetRenderLayer(), renderLayers);
 	AddProperty("SubLayer", PT_INT, GetSubLayer());
 
+	AddProperty("Shine_Emissive", PT_COLOR3FLOAT3, MathHelp::Float4ToFloat3(mDefaultShine->Emissive));
+	AddProperty("Shine_Ambient", PT_COLOR3FLOAT3, MathHelp::Float4ToFloat3(mDefaultShine->Ambient));
+	AddProperty("Shine_Diffuse", PT_COLOR3FLOAT3, MathHelp::Float4ToFloat3(mDefaultShine->Diffuse));
+	AddProperty("Shine_Specular", PT_COLOR3FLOAT3, MathHelp::Float4ToFloat3(mDefaultShine->Specular));
+
 	AddProperty("Material", PT_STRINGBUTTON, mMaterialInstance->GetMaterialFilename());
 	AddProperty("TechniqueName", PT_STRING, mMaterialInstance->GetTechniqueName());
 	AddProperty("TechniqueIndex", PT_INT, mMaterialInstance->GetTechniqueIndex());
@@ -427,6 +434,22 @@ void Renderable::OnPropertyChanged (const PropertyObject &obj)
 	else if ("SubLayer" == obj.Name)
 	{
 		SetRenderLayer(mLayer, PX2_ANY_AS(obj.Data, int));
+	}
+	else if ("Shine_Emissive" == obj.Name)
+	{
+		mDefaultShine->Emissive = MathHelp::Float3ToFloat4(PX2_ANY_AS(obj.Data, Float3), GetAlpha());
+	}
+	else if ("Shine_Ambient" == obj.Name)
+	{
+		mDefaultShine->Ambient = MathHelp::Float3ToFloat4(PX2_ANY_AS(obj.Data, Float3), 1.0f);
+	}
+	else if ("Shine_Diffuse" == obj.Name)
+	{
+		mDefaultShine->Diffuse = MathHelp::Float3ToFloat4(PX2_ANY_AS(obj.Data, Float3), 1.0f);
+	}
+	else if ("Shine_Specular" == obj.Name)
+	{
+		mDefaultShine->Specular = MathHelp::Float3ToFloat4(PX2_ANY_AS(obj.Data, Float3), 1.0f);
 	}
 	else if ("IsBakeObject" == obj.Name)
 	{

@@ -82,11 +82,6 @@ void SceneNodeCtrl::OnLeftDown(RenderStep *renderStep, const PX2::APoint &pos)
 	if (Edit::ET_SCENE != editType) return;
 
 	DragType dt = GetDragType(renderStep, pos);
-	if (dt != DT_NONE)
-	{
-		int a = 0;
-	}
-
 	SetDragType(dt);
 }
 //----------------------------------------------------------------------------
@@ -519,16 +514,16 @@ void SceneNodeCtrl::DoExecute(PX2::Event *event)
 	{
 		UpdateCtrl();
 	}
+	else if (SimuES_E::IsEqual(event, SimuES_E::UnDo) ||
+		SimuES_E::IsEqual(event, SimuES_E::ReDo))
+	{
+		UpdateCtrlTrans();
+		UpdateCtrl();
+	}
 	else if (EditEventSpace::IsEqual(event,
 		EditEventSpace::ObjectTransformChanged))
 	{
 		UpdateCtrlTrans();
-	}
-	else if (EditEventSpace::IsEqual(event, SimuES_E::UnDo) ||
-		EditEventSpace::IsEqual(event, SimuES_E::ReDo))
-	{
-		UpdateCtrlTrans();
-		UpdateCtrl();
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::SetEditMode))
 	{

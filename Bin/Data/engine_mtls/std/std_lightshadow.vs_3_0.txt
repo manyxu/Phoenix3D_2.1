@@ -175,4 +175,4 @@ dp4 o4.z, r0, c10
 dp4 o4.y, r0, c9
 dp4 o4.x, r0, c8
 mov o2.xy, v2
-mov o1.w, c16
+mov o1.w, c14

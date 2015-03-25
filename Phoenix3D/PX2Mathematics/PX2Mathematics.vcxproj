@@ -43,6 +43,7 @@
     <ClCompile Include="PX2IntrBox3Frustum3.cpp" />
     <ClCompile Include="PX2IntrLine3Triangle3.cpp" />
     <ClCompile Include="PX2Math.cpp" />
+    <ClCompile Include="PX2MathHelp.cpp" />
     <ClCompile Include="PX2Matrix2.cpp" />
     <ClCompile Include="PX2Matrix3.cpp" />
     <ClCompile Include="PX2Matrix4.cpp" />
@@ -91,6 +92,7 @@
     <ClInclude Include="PX2Math.hpp" />
     <ClInclude Include="PX2Mathematics.hpp" />
     <ClInclude Include="PX2MathematicsPre.hpp" />
+    <ClInclude Include="PX2MathHelp.hpp" />
     <ClInclude Include="PX2Matrix2.hpp" />
     <ClInclude Include="PX2Matrix3.hpp" />
     <ClInclude Include="PX2Matrix4.hpp" />

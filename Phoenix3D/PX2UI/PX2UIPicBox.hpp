@@ -66,9 +66,7 @@ namespace PX2
 		void SetTexCornerHeight(float height);
 		float GetTexCornerHeight() const;
 
-		// alpha color
 		virtual void SetAlpha(float alpha); //< 0-1
-		virtual void SetColor(const Float3 &color);
 
 		enum TexMode
 		{

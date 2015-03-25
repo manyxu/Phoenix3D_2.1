@@ -43,6 +43,14 @@ end
 function e_OnExit()
 end
 
+function e_OnUnDo()
+	PX2_URM:UnDo()
+end
+
+function e_OnReDo()
+	PX2_URM:ReDo()
+end
+
 function e_OnSetting()
 	E_MainFrame:OnSetting()
 end

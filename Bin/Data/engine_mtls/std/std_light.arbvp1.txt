@@ -165,6 +165,6 @@ DP4 result.position.y, R0, c[2];
 DP4 result.position.x, R0, c[1];
 MAX result.texcoord[1].y, R1.x, c[0].z;
 MOV result.texcoord[0].xy, vertex.texcoord[0];
-MOV result.color.w, c[13];
+MOV result.color.w, c[11];
 END
 # 108 instructions, 7 R-regs

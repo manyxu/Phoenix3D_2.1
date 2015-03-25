@@ -18,6 +18,7 @@
 #include "PX2Vector2.hpp"
 #include "PX2Vector3.hpp"
 #include "PX2Vector4.hpp"
+#include "PX2MathHelp.hpp"
 
 // Base
 #include "PX2Float1.hpp"

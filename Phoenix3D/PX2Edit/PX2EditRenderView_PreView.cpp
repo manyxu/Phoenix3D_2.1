@@ -32,12 +32,12 @@ mPreViewType(PVT_NONE)
 
 	mModelRootNode = new0 Node();
 
-	mModelNode = new0 Node();
-	mModelRootNode->AttachChild(mModelNode);
-
 	mModelCamera = new0 Camera();
 	mModelCameraNode = new0 CameraNode(mModelCamera);
-	mModelNode->AttachChild(mModelCameraNode);
+	mModelRootNode->AttachChild(mModelCameraNode);
+
+	mModelNode = new0 Node();
+	mModelRootNode->AttachChild(mModelNode);
 }
 //----------------------------------------------------------------------------
 EditRenderView_PreView::~EditRenderView_PreView()
@@ -298,12 +298,13 @@ void EditRenderView_PreView::SetObject(PX2::Object *obj)
 		mModel = mov;
 		mModelNode->AttachChild(mModel);
 		mModel->ResetPlay();
+		mModelNode->Update(GetTimeInSeconds(), 0.0f, false);
 
 		const APoint &boundCenter = mModel->WorldBound.GetCenter();
 		float boundRadius = mModel->WorldBound.GetRadius();
 
-		APoint pos = boundCenter + AVector(-boundRadius*2.0f, -boundRadius*2.0f, boundRadius*2.0f);
-		AVector dir = boundCenter - pos;
+		APoint camPos = boundCenter + AVector(-boundRadius*2.0f, -boundRadius*2.0f, boundRadius);
+		AVector dir = boundCenter - camPos;
 
 		if (boundRadius > 0.0f)
 		{
@@ -313,11 +314,12 @@ void EditRenderView_PreView::SetObject(PX2::Object *obj)
 			right.Normalize();
 			up = right.Cross(dir);
 			up.Normalize();
-
 			AVector::Orthonormalize(dir, up, right);
 
-			mModelCameraNode->LocalTransform.SetTranslate(APoint(0.0f, -10.0f, 0.0f));
-			mModelCamera->SetAxes(AVector::UNIT_Y, AVector::UNIT_Z, AVector::UNIT_X);
+			mModelCameraNode->LocalTransform.SetRotate(HMatrix(right, dir, up, AVector::ZERO, true));
+			mModelCameraNode->LocalTransform.SetTranslate(camPos);
+			//mModelCamera->SetPosition(camPos);
+			//mModelCamera->SetAxes(dir, up, right);
 		}
 	}
 	else

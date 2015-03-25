@@ -146,7 +146,7 @@ inline unsigned int Renderable::GetRenderUsage ()
 	return mRenderUsageBits;
 }
 //----------------------------------------------------------------------------
-inline void Renderable::SetTransparent (bool transparent)
+inline void Renderable::_SetTransparent (bool transparent)
 {
 	mSortIndex = (mSortIndex&0xffff0000)|(transparent?1:0);
 }

@@ -50,7 +50,7 @@ void v_std_light
 	vertexColor.rgb = ShineEmissive.rgb + LightAmbient_Dir.a * (ShineAmbient.rgb * LightAmbient_Dir.rgb +
 		ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.rgb), 0) +
 							ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0), ShineSpecular.a*LightSpecular_Dir.a));		
-	vertexColor.a = ShineDiffuse.a;
+	vertexColor.a = ShineEmissive.a;
 	
 	// point lights
 	vertexColor.rgb += DoLight_Point_Diffuse(LightGroup[0].xyz, LightGroup[0].w, LightGroup[1].xyz, ShineDiffuse.rgb, worldPosition.xyz, worldNormal.xyz);
@@ -86,17 +86,10 @@ void p_std_light
 	texCoord.xy += UVOffset.xy;
 	float4 lastColor = tex2D(SampleBase, texCoord);
 	
-	if (lastColor.a < 0.25)
-	{
-		discard;
-	}
-	else
-	{
-		lastColor *= vertexColor;
+	lastColor *= vertexColor;
 	
-		lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.y);
-		lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.x);
+	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.y);
+	lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.x);
 	
-		pixelColor = lastColor;
-	}
+	pixelColor = lastColor;
 }

@@ -33,6 +33,8 @@ mIsIngoreParent_Scale(false),
 IsSkinCtrlSetWroldTrans(false),
 mIsSaveWriteIngore(false)
 {
+	SetColor(Float3::ZERO);
+	SetAlpha(1.0f);
 }
 //----------------------------------------------------------------------------
 Movable::~Movable ()

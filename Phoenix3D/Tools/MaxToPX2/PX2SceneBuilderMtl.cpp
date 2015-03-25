@@ -77,9 +77,10 @@ void SceneBuilder::ConvertMaterial (Mtl &mtl, MtlTree &mtlTree)
 	PX2::Shine *shine = new0 PX2::Shine;
 	Color color = mtl.GetAmbient();
 	float alpha = 1.0f - mtl.GetXParency();
+	shine->Emissive = PX2::Float4(0.0f, 0.0f, 0.0f, alpha);
 	shine->Ambient = PX2::Float4(color.r, color.g, color.b, 1.0f);
 	color = mtl.GetDiffuse();
-	shine->Diffuse = PX2::Float4(color.r, color.g, color.b, alpha);
+	shine->Diffuse = PX2::Float4(color.r, color.g, color.b, 1.0f);
 	color = mtl.GetSpecular();
 	float shininess = mtl.GetShininess()*2.0f;
 	shine->Specular = PX2::Float4(color.r, color.g, color.b, shininess);

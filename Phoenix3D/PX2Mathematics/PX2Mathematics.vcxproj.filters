@@ -97,6 +97,9 @@
     <ClCompile Include="PX2Math.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="PX2MathHelp.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Mathematics.hpp" />
@@ -252,6 +255,9 @@
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="PX2Size.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MathHelp.hpp">
       <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>

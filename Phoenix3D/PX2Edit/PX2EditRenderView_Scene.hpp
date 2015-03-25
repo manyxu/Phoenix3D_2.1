@@ -5,6 +5,7 @@
 
 #include "PX2EditPre.hpp"
 #include "PX2EditRenderView.hpp"
+#include "PX2RedoUndo.hpp"
 
 namespace PX2
 {
@@ -82,6 +83,9 @@ namespace PX2
 		SceneNodeCtrlPtr mSceneNodeCtrl;
 		BoundCtrlPtr mBoundCtrl;
 		PX2::NodePtr mSceneCtrlNode;
+
+		bool mIsSelectMovableTransChanged;
+		URDoPtr mURDoCommand;
 
 		// Event
 	public:

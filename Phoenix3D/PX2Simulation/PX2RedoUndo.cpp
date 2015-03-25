@@ -28,7 +28,7 @@ void URDo::OnReDo()
 //----------------------------------------------------------------------------
 // ActorTransCommand
 //----------------------------------------------------------------------------
-ActorMovTransURDo::ActorMovTransURDo()
+MovableTransURDo::MovableTransURDo()
 {
 	int num = PX2_SELECTION.GetNumObjects();
 
@@ -57,11 +57,11 @@ ActorMovTransURDo::ActorMovTransURDo()
 	}
 }
 //----------------------------------------------------------------------------
-ActorMovTransURDo::~ActorMovTransURDo()
+MovableTransURDo::~MovableTransURDo()
 {
 }
 //----------------------------------------------------------------------------
-void ActorMovTransURDo::OnUnDo()
+void MovableTransURDo::OnUnDo()
 {
 	for (int i = 0; i < (int)mObjects.size(); i++)
 	{
@@ -75,11 +75,13 @@ void ActorMovTransURDo::OnUnDo()
 			mov->LocalTransform.SetTranslate(mPositions[i]);
 			mov->LocalTransform.SetRotate(mRotationMats[i]);
 			mov->LocalTransform.SetScale(mScales[i]);
+
+			mov->Update(GetTimeInSeconds(), 0.0f, false);
 		}
 	}
 }
 //----------------------------------------------------------------------------
-void ActorMovTransURDo::OnReDo()
+void MovableTransURDo::OnReDo()
 {
 	for (int i = 0; i < (int)mObjects.size(); i++)
 	{
@@ -89,6 +91,8 @@ void ActorMovTransURDo::OnReDo()
 			mov->LocalTransform.SetTranslate(mPositionsReDo[i]);
 			mov->LocalTransform.SetRotate(mRotationMatsReDo[i]);
 			mov->LocalTransform.SetScale(mScalesReDo[i]);
+
+			mov->Update(GetTimeInSeconds(), 0.0f, false);
 		}
 	}
 }
@@ -201,7 +205,7 @@ void URDoManager::UnDo()
 {
 	if ((int)mUnDoCommands.size() > 0)
 	{
-		EditCommandPtr command = mUnDoCommands.back();
+		URDoPtr command = mUnDoCommands.back();
 		if (command)
 			command->OnUnDo();
 
@@ -223,7 +227,7 @@ void URDoManager::ReDo()
 {
 	if ((int)mReDoCommands.size() > 0)
 	{
-		EditCommandPtr command = mReDoCommands.back();
+		URDoPtr command = mReDoCommands.back();
 		if (command)
 			command->OnReDo();
 

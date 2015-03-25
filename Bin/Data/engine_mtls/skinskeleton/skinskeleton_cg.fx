@@ -58,7 +58,7 @@ void v_skinskeleton
 	vertexColor.rgb = ShineEmissive.rgb + LightAmbient_Dir.a * (ShineAmbient.rgb * LightAmbient_Dir.rgb +
 		ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.rgb), 0) +
 							ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0), ShineSpecular.a*LightSpecular_Dir.a));		
-	vertexColor.a = ShineDiffuse.a;
+	vertexColor.a = ShineEmissive.a;
 	
 	// fog
 	float fogValueHeight = (-FogParam.x + worldPosition.z)/(FogParam.y - FogParam.x);

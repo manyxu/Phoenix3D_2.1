@@ -23,13 +23,13 @@ namespace PX2
 		virtual void OnReDo();
 	};
 
-	typedef PX2::Pointer0<URDo> EditCommandPtr;
+	typedef PX2::Pointer0<URDo> URDoPtr;
 
-	class ActorMovTransURDo : public URDo
+	class MovableTransURDo : public URDo
 	{
 	public:
-		ActorMovTransURDo();
-		virtual ~ActorMovTransURDo();
+		MovableTransURDo();
+		virtual ~MovableTransURDo();
 
 		virtual void OnUnDo();
 		virtual void OnReDo();
@@ -83,8 +83,8 @@ namespace PX2
 		void ReDo();
 
 	protected:
-		std::deque<EditCommandPtr> mUnDoCommands;
-		std::deque<EditCommandPtr> mReDoCommands;
+		std::deque<URDoPtr> mUnDoCommands;
+		std::deque<URDoPtr> mReDoCommands;
 	};
 
 #define PX2_URDOMAN URDoManager::GetSingleton()

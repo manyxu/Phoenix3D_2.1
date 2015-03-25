@@ -23,6 +23,7 @@ EditRenderView_Scene::EditRenderView_Scene() :
 EditRenderView(RVT_SCENEUI),
 mViewType(VT_PERSPECTIVE),
 mViewDetail(VD_TEXTURED),
+mIsSelectMovableTransChanged(false),
 mCurCameraMoveSpeed_W(0.0f),
 mCurCameraMoveSpeed_S(0.0f),
 mCurCameraMoveSpeed_A(0.0f),
@@ -330,6 +331,11 @@ void EditRenderView_Scene::OnLeftDown(const APoint &pos)
 {
 	EditRenderView::OnLeftDown(pos);
 
+	mIsSelectMovableTransChanged = false;
+	mURDoCommand = 0;
+
+	_ClickSelectPos(pos);
+
 	Edit::EditType et = PX2_EDIT.GetEditType();
 	if (Edit::ET_SCENE == et)
 	{
@@ -339,6 +345,8 @@ void EditRenderView_Scene::OnLeftDown(const APoint &pos)
 		SceneNodeCtrl::DragType dargType = mSceneNodeCtrl->GetDragType();
 		if (SceneNodeCtrl::DT_NONE == dargType)
 			_ClickSelect(pos);
+
+		mURDoCommand = new0 MovableTransURDo();
 	}
 	else if (Edit::ET_TERRAIN == et)
 	{
@@ -354,6 +362,14 @@ void EditRenderView_Scene::OnLeftUp(const APoint &pos)
 
 	if (mSceneNodeCtrl)
 		mSceneNodeCtrl->OnLeftUp(mRenderStepCtrl, pos);
+
+	Edit::EditMode em = PX2_EDIT.GetEditMode();
+	if ((Edit::EM_TRANSLATE == em || Edit::EM_ROLATE == em 
+		|| Edit::EM_SCALE == em) && mIsSelectMovableTransChanged)
+	{
+		PX2_URDOMAN.PushUnDo(mURDoCommand);
+		mIsSelectMovableTransChanged = false;
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::OnMiddleDown(const APoint &pos)
@@ -457,8 +473,17 @@ void EditRenderView_Scene::OnMotion(const APoint &pos)
 		PX2_EDIT.GetTerrainEdit()->Apply(false);
 	}
 
-	if (mSceneNodeCtrl)
-		mSceneNodeCtrl->OnMotion(mIsLeftDown, mRenderStepCtrl, curPos, lastPos);
+	Edit::EditMode em = PX2_EDIT.GetEditMode();
+	if ((Edit::EM_TRANSLATE == em || Edit::EM_ROLATE == em || Edit::EM_SCALE == em))
+	{
+		if (mSceneNodeCtrl)
+			mSceneNodeCtrl->OnMotion(mIsLeftDown, mRenderStepCtrl, curPos, lastPos);
+
+		if (mIsLeftDown)
+		{
+			mIsSelectMovableTransChanged = true;
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::_MoveCamera(float horz, float vert)

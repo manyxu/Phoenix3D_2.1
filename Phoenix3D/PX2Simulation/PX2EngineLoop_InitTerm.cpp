@@ -94,6 +94,7 @@ bool EngineLoop::Initlize()
 	mScriptMan->SetUserTypePointer("PX2_SM", "ScriptManager", ScriptManager::GetSingletonPtr());
 	mScriptMan->SetUserTypePointer("PX2_SELECTION", "Selection", Selection::GetSingletonPtr());
 	mScriptMan->SetUserTypePointer("PX2_CREATER", "Creater", Creater::GetSingletonPtr());
+	mScriptMan->SetUserTypePointer("PX2_URM", "URDoManager", URDoManager::GetSingletonPtr());
 
 	LoadBoost("Data/boost.xml");
 

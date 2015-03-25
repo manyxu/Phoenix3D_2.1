@@ -290,4 +290,4 @@ dp4 oPos.x, r1, c0
 max oT1.y, r0.x, c122.z
 max oT1.x, r0.y, c122.z
 mov oT0.xy, v2
-mov oD0.w, c116
+mov oD0.w, c114
