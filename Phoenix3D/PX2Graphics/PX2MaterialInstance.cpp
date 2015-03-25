@@ -61,6 +61,11 @@ MaterialInstance::MaterialInstance(const std::string &mtlFilename,
 	mNumPasses = tech->GetNumPasses();
 }
 //----------------------------------------------------------------------------
+void MaterialInstance::_SetMaterialFilename(const std::string &filename)
+{
+	mMaterialFilename = filename;
+}
+//----------------------------------------------------------------------------
 MaterialTechnique *MaterialInstance::_RefreshMaterial(
 	const std::string &mtlFilename,
 	const std::string &intanceTechName, ShaderParametersPtr* &vp,

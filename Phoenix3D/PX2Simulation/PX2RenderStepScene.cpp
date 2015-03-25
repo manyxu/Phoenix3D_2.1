@@ -25,7 +25,7 @@ mIsUseShaderMap(false)
 	mEffect_UIView->SetNode(mEffect_UIFrame);
 
 	//SetUseBloom(true);
-	SetUseShaderMap(true);
+	SetUseShaderMap(false);
 }
 //----------------------------------------------------------------------------
 RenderStepScene::~RenderStepScene()

@@ -20,6 +20,7 @@
 #include "PX2FogParamConstant.hpp"
 #include "PX2FogColorHeightConstant.hpp"
 #include "PX2FogColorDistConstant.hpp"
+#include "PX2SkinMatrixConstant.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -213,6 +214,10 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name,
 	else if (FString("FogColorHeight") == name)
 	{
 		shaderFloat = new0 FogColorHeightConstant();
+	}
+	else if (FString("BoneTM") == name)
+	{
+		shaderFloat = new0 SkinMatrixConstant();
 	}
 	else
 	{

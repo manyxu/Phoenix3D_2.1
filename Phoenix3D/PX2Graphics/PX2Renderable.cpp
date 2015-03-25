@@ -4,7 +4,6 @@
 #include "PX2Culler.hpp"
 #include "PX2VertexBufferAccessor.hpp"
 #include "PX2ShaderParameters.hpp"
-#include "PX2SkinMaterial.hpp"
 #include "PX2VertexColor4Material.hpp"
 #include "PX2ShineDiffuseConstant.hpp"
 #include "PX2GraphicsRoot.hpp"
@@ -383,6 +382,10 @@ void Renderable::RegistProperties ()
 	renderLayers.push_back("RL_UI_RANGE_ELEMENT");
 	AddPropertyEnum("RenderLayer", (int)GetRenderLayer(), renderLayers);
 	AddProperty("SubLayer", PT_INT, GetSubLayer());
+
+	AddProperty("Material", PT_STRINGBUTTON, mMaterialInstance->GetMaterialFilename());
+	AddProperty("TechniqueName", PT_STRING, mMaterialInstance->GetTechniqueName());
+	AddProperty("TechniqueIndex", PT_INT, mMaterialInstance->GetTechniqueIndex());
 
 	AddProperty("SortIndex", PT_INT, GetSortIndex(), false);
 	AddProperty("NumLights", PT_INT, GetNumLights(), false);

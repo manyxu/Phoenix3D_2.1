@@ -7,14 +7,13 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-//#include "afxres.h"
-#include "winres.h"
+#include "afxres.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Chinese (Simplified, PRC) resources
+// 中文(简体，中国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
@@ -105,20 +104,21 @@ BEGIN
     CONTROL         "自定义1",IDC_SPINNER_ENDFRAME,"SpinnerControl",WS_TABSTOP,209,105,12,11
     GROUPBOX        "",IDC_STATIC,6,0,109,108
     GROUPBOX        "",IDC_STATIC,124,0,110,35
-    GROUPBOX        "",IDC_STATIC,124,35,109,92
+    GROUPBOX        "",IDC_STATIC,124,35,109,95
     LTEXT           "Version:1.00",IDC_STATIC,7,179,42,8
     EDITTEXT        IDC_EDIT_SRCROOTDIR,48,133,159,14,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_BUTTON_SRC,212,133,18,14
-    LTEXT           "SrcRootDir",IDC_STATIC,8,136,36,8
+    LTEXT           "BinArtDir",IDC_STATIC,8,136,28,8
     EDITTEXT        IDC_EDIT_DSTROOTDIR,47,152,160,14,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_BUTTON_DST,212,152,18,14
-    LTEXT           "DstRootDir",IDC_STATIC,7,155,36,8
+    LTEXT           "BinDir",IDC_STATIC,8,155,20,8
     CONTROL         "Trangent&Binormal",IDC_CHECK_TANGENTBINORMAL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,29,57,71,10
-    CONTROL         "UseSingleTex",IDC_CHECK_USESINGLETEX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,114,60,10
-    GROUPBOX        "",IDC_STATIC,6,107,109,20
+    GROUPBOX        "",IDC_STATIC,6,107,109,23
+    COMBOBOX        IDC_COMMBO_MTLTYPE,45,114,65,39,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Material",IDC_STATIC,15,116,26,8
 END
 
-#endif    // Chinese (Simplified, PRC) resources
+#endif    // 中文(简体，中国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

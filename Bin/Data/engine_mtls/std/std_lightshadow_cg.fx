@@ -73,21 +73,8 @@ void v_std_lightshadow
     vertexTCoord2 = mul(ProjectPVBSMatrix_Dir, float4(modelPosition, 1.0f));
 }
 
-sampler2D SampleBase = sampler_state
-{
-   MinFilter = Nearest;
-   MagFilter = Nearest;
-   WrapS     = Clamp;
-   WrapT     = Clamp;
-};
-
-sampler2D SampleShadowDepth = sampler_state
-{
-   MinFilter = Nearest;
-   MagFilter = Linear;
-   WrapS     = Clamp;
-   WrapT     = Clamp;
-};
+sampler2D SampleBase;
+sampler2D SampleShadowDepth;
 
 void p_std_lightshadow
 (
@@ -96,6 +83,7 @@ void p_std_lightshadow
 	in float2 vertexTCoord1 : TEXCOORD1,
 	in float4 vertexTCoord2 : TEXCOORD2,
     out float4 pixelColor : COLOR,
+	uniform float4 UVOffset,
 	uniform float4 FogColorHeight,
 	uniform float4 FogColorDist
 )
@@ -103,6 +91,7 @@ void p_std_lightshadow
     // base
     float2 texCoord = vertexTCoord0;
     texCoord.y = 1.0 - vertexTCoord0.y;
+	texCoord.xy += UVOffset.xy;
 	float4 lastColor = tex2D(SampleBase, texCoord);
 	
 	// light

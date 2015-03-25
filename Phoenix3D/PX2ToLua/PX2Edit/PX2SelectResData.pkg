@@ -1,0 +1,20 @@
+// PX2SelectResData.pkg
+
+	class SelectResData
+	{
+	public:
+		enum SelectResType
+		{
+			RT_NORMAL,
+			RT_TEXPACKELEMENT,
+			RT_MAX_TYPE
+		};
+		SelectResData(SelectResType type = RT_NORMAL);
+		~SelectResData();
+
+		SelectResType GetSelectResType() const;
+
+		std::string ResPathname;
+		PX2::ObjectPtr TheObject;
+		std::string EleName; // 如果是RT_TEXPACKELE,这个成员有效
+	};

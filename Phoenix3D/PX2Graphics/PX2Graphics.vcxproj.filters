@@ -263,9 +263,6 @@
     <ClCompile Include="PX2Controlledable.cpp">
       <Filter>Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="PX2SkinMaterial.cpp">
-      <Filter>Materials\LocalMaterials\Lighting</Filter>
-    </ClCompile>
     <ClCompile Include="PX2VertexColor4Material.cpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClCompile>
@@ -763,9 +760,6 @@
     <ClInclude Include="PX2Controlledable.hpp">
       <Filter>Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="PX2SkinMaterial.hpp">
-      <Filter>Materials\LocalMaterials\Lighting</Filter>
-    </ClInclude>
     <ClInclude Include="PX2VertexColor4Material.hpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClInclude>
@@ -1253,9 +1247,6 @@
     </Filter>
     <Filter Include="Materials\LocalMaterials">
       <UniqueIdentifier>{aa853b43-9a9e-4739-813e-e6273f3b4c66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Materials\LocalMaterials\Lighting">
-      <UniqueIdentifier>{8ba94c52-64a5-4fb2-aaf7-705539154363}</UniqueIdentifier>
     </Filter>
     <Filter Include="Materials\LocalMaterials\Simple">
       <UniqueIdentifier>{31f75ea6-d60d-499b-ad2d-6b4988badfb4}</UniqueIdentifier>

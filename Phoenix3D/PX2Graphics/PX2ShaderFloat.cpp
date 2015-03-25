@@ -34,6 +34,7 @@ void ShaderFloat::SetNumRegisters (int numRegisters)
 	assertion(numRegisters > 0, "Number of registers must be positive\n");
 	mNumElements = 4*numRegisters;
 	mData = new1<float>(mNumElements);
+	for (int i = 0; i < mNumElements; i++) {mData[i] = 0.0f;}
 }
 //----------------------------------------------------------------------------
 void ShaderFloat::SetRegister (int i, const float* data)

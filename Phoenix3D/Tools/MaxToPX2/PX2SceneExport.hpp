@@ -45,7 +45,7 @@ public:
 	void OnOK (HWND wnd);
 
 private:
-	enum { TDSCENE_VERSION = 101 };
+	enum { MAXTOPX2_VERSION = 101 };
 
 	// ≈‰÷√Œƒº˛
 	void ReadConfiguration ();

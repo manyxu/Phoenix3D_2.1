@@ -12,7 +12,6 @@
 #include "PX2LightAttenuationConstant.hpp"
 #include "PX2LightModelDVectorConstant.hpp"
 #include "PX2LightWorldDVectorConstant.hpp"
-#include "PX2SkinMaterial.hpp"
 #include "PX2MaterialManager.hpp"
 #include "PX2TriMesh.hpp"
 #include "PX2VertexFormat.hpp"
@@ -72,12 +71,14 @@ bool GraphicsRoot::Initlize ()
 	StandardMesh stdMesh(vf);
 
 	mTriMeshXY = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
+	mTriMeshXY->WorldBoundIsCurrent = true;
 	mTriMeshXY->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
 	mTriMeshXY->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
 	mTriMeshXY->GetMaterialInstance()->GetMaterial()->GetWireProperty(0, 0)->Enabled = true;
 	mTriMeshXY->Update(GetTimeInSeconds(), false);
 
 	mTriMeshXZ = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
+	mTriMeshXZ->WorldBoundIsCurrent = true;
 	mTriMeshXZ->LocalTransform.SetRotate(Matrix3f().MakeEulerXYZ(Mathf::HALF_PI,
 		0.0f, 0.0f));
 	mTriMeshXZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
@@ -85,6 +86,7 @@ bool GraphicsRoot::Initlize ()
 	mTriMeshXZ->Update(GetTimeInSeconds(), false);
 
 	mTriMeshYZ = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
+	mTriMeshYZ->WorldBoundIsCurrent = true;
 	mTriMeshYZ->LocalTransform.SetRotate(Matrix3f().MakeEulerXYZ(0.0f,
 		Mathf::HALF_PI, 0.0f));
 	mTriMeshYZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);

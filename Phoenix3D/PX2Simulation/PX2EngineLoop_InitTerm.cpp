@@ -191,11 +191,6 @@ bool EngineLoop::Ternamate()
 
 	Project::Destory();
 
-	if (mResMan)
-	{
-		mResMan->Clear();
-	}
-
 	if (mScriptMan)
 	{
 		delete0(mScriptMan);
@@ -230,6 +225,7 @@ bool EngineLoop::Ternamate()
 
 	if (mResMan)
 	{
+		mResMan->Clear();
 		delete0(mResMan);
 		ResourceManager::Set(0);
 	}

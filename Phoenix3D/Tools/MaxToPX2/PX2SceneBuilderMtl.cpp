@@ -4,6 +4,9 @@
 #include "PX2ExportSettings.hpp"
 #include "PX2AlphaProperty.hpp"
 #include "PX2Shader.hpp"
+#include "PX2MaterialManager.hpp"
+#include "PX2MaterialInstance.hpp"
+#include "PX2StringHelp.hpp"
 
 #define PX2_DEFAULT_TEXTURE "Data/engine/default.png"
 
@@ -172,135 +175,71 @@ void SceneBuilder::ConvertMaterial (Mtl &mtl, MtlTree &mtlTree)
 		}
 		opacity = stdMat2->GetOpacity(mTimeStart);
 
-		PX2::Texture2D *tex2d_Diffuse = PX2::DynamicCast<PX2::Texture2D>(PX2::ResourceManager
-			::GetSingleton().BlockLoad(strBitMapName));
+		PX2::Texture2D *tex2d_Diffuse = PX2::DynamicCast<PX2::Texture2D>(PX2::ResourceManager::GetSingleton().BlockLoad(strBitMapName));
 		resourcePath_Diffuse = PX2::StringHelp::StandardisePath(resourcePath_Diffuse);
 		resourcePath_Diffuse = resourcePath_Diffuse.substr(0, resourcePath_Diffuse.length()-1);
 		tex2d_Diffuse->SetResourcePath(resourcePath_Diffuse);
 
 		if (tex2d_Diffuse)
 		{
-			if (mSettings->IncludeSkins)
+			PX2::MaterialInstancePtr px2MtlInst;
+			PX2::MaterialPtr px2mlt;
+
+			const std::string &mtlStr = mSettings->GetMtlTypeStr();
+
+			std::string mtlFileName;
+			std::string allMtlFileName;
+			std::string dstRootDirStr = std::string(mSettings->DstRootDir);
+			dstRootDirStr = PX2::StringHelp::StandardisePath(dstRootDirStr);
+
+			if ("std" == mtlStr)
 			{
-				PX2::MaterialPtr px2mlt;
+				mtlFileName = "Data/engine_mtls/std/std.px2obj";
+				allMtlFileName = dstRootDirStr + mtlFileName;
 
-				if (mSettings->IsUseSingleTex)
-				{
-					px2mlt = new0 PX2::Texture2DMaterial();
-				}
-				else
-				{
-					px2mlt = new0 PX2::SkinMaterial();
-
-				}
-
-				px2mlt->GetPixelShader(0, 0)->SetFilter(0, PX2::Shader::SF_LINEAR_LINEAR);
-				px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 0, uvCoord0);
-				px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 1, uvCoord1);
-
-				if (doubleSide)
-				{
-					px2mlt->GetCullProperty(0, 0)->Enabled = false;
-				}
-
-				px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = false;
-				px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = false;
-
-				if (opacity < 1.0f)
-				{
-					px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = true;
-				}
-				else if (isEnableOP)
-				{
-					px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = true;
-					px2mlt->GetAlphaProperty(0, 0)->Compare = PX2::AlphaProperty::CM_GREATER;
-					px2mlt->GetAlphaProperty(0, 0)->Reference = 0.25f;
-				}
-
-				px2mlt->_CalShaderKey();
-
-				PX2::Texture2DMaterial *px2Tex2DMtl = PX2::DynamicCast<PX2::Texture2DMaterial>(px2mlt);
-				PX2::SkinMaterial *skinMtl = PX2::DynamicCast<PX2::SkinMaterial>(px2mlt);
-
-				if (px2Tex2DMtl)
-				{
-					PX2::MaterialInstance *instance = px2Tex2DMtl->CreateInstance(tex2d_Diffuse);
-					mtlTree.SetMaterialInstance(instance);
-				}
-				else
-				{
-					PX2::MaterialInstance *instance = skinMtl->CreateInstance(0, tex2d_Diffuse, shine);
-					mtlTree.SetMaterialInstance(instance);
-				}
+				px2MtlInst = new0 PX2::MaterialInstance(allMtlFileName, "std_light", false);
 			}
-			else
+			else if ("skinskeleton" == mtlStr)
 			{
-				PX2::MaterialPtr px2mlt;
+				mtlFileName = "Data/engine_mtls/skinskeleton/skinskeleton.px2obj";
+				allMtlFileName = dstRootDirStr + mtlFileName;
 
-				if (mSettings->IsUseSingleTex)
-				{
-					px2mlt = new0 PX2::Texture2DMaterial();
-				}
-				else if (mSettings->IncludeVertexColors)
-				{
-					//px2mlt = new0 PX2::StdVC4Material();
-				}
-				else
-				{
-					//px2mlt = new0 PX2::StdMaterial();
-
-				}
-
-				px2mlt->GetPixelShader(0, 0)->SetFilter(0, PX2::Shader::SF_LINEAR_LINEAR);
-				px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 0, uvCoord0);
-				px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 1, uvCoord1);
-
-				if (doubleSide)
-				{
-					px2mlt->GetCullProperty(0, 0)->Enabled = false;
-				}
-
-				px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = false;
-				px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = false;
-
-				if (opacity < 1.0f)
-				{
-					px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = true;
-				}
-				else if (isEnableOP)
-				{
-					px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = true;
-					px2mlt->GetAlphaProperty(0, 0)->Compare = PX2::AlphaProperty::CM_GREATER;
-					px2mlt->GetAlphaProperty(0, 0)->Reference = 0.25f;
-				}
-
-				px2mlt->_CalShaderKey();
-
-				PX2::Texture2DMaterial *px2Tex2DMtl = PX2::DynamicCast<PX2::Texture2DMaterial>(px2mlt);
-				//PX2::StdMaterial *px2StdMtl = PX2::DynamicCast<PX2::StdMaterial>(px2mlt);
-				//PX2::StdVC4Material *px2StdVC4Mtl = PX2::DynamicCast<PX2::StdVC4Material>(px2mlt);
-
-				//if (px2Tex2DMtl)
-				//{
-				//	PX2::MaterialInstance *instance = px2Tex2DMtl->CreateInstance(tex2d_Diffuse);
-				//	mtlTree.SetMaterialInstance(instance);
-				//}
-				//else if (px2StdMtl)
-				//{
-				//	PX2::MaterialInstance *instance = px2StdMtl->CreateInstance(tex2d_Diffuse, shine, 0);
-				//	mtlTree.SetMaterialInstance(instance);
-				//}
-				//else if (px2StdVC4Mtl)
-				//{
-				//	PX2::MaterialInstance *instance = px2StdVC4Mtl->CreateInstance(0, tex2d_Diffuse, shine, 0);
-				//	mtlTree.SetMaterialInstance(instance);
-				//}
+				px2MtlInst = new0 PX2::MaterialInstance(allMtlFileName, "skinskeleton", false);
 			}
+			else if ("tex2d" == mtlStr)
+			{
+				mtlFileName = "Data/engine_mtls/tex2d/tex2d.px2obj";
+				allMtlFileName = dstRootDirStr + mtlFileName;
+
+				px2MtlInst = new0 PX2::MaterialInstance(allMtlFileName, "tex2d", false);
+			}
+			px2MtlInst->_SetMaterialFilename(mtlFileName);
+			px2MtlInst->SetPixelTexture(0, "SampleBase", tex2d_Diffuse);
+
+			px2mlt = px2MtlInst->GetMaterial();
+
+			px2mlt->GetPixelShader(0, 0)->SetFilter(0, PX2::Shader::SF_LINEAR_LINEAR);
+			px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 0, uvCoord0);
+			px2mlt->GetPixelShader(0, 0)->SetCoordinate(0, 1, uvCoord1);
+
+			px2mlt->GetCullProperty(0, 0)->Enabled = doubleSide;
+
+			px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = false;
+			px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = false;
+
+			px2mlt->GetAlphaProperty(0, 0)->BlendEnabled = (opacity < 1.0f);
+
+			px2mlt->GetAlphaProperty(0, 0)->CompareEnabled = isEnableOP;
+			px2mlt->GetAlphaProperty(0, 0)->Compare = PX2::AlphaProperty::CM_GREATER;
+			px2mlt->GetAlphaProperty(0, 0)->Reference = 0.25f;
+	
+			mtlTree.SetMaterialInstance(px2MtlInst);
 		}
 		else
 		{
 			PX2::VertexColor4Material *vcMtl = new0 PX2::VertexColor4Material();
 			PX2::MaterialInstance *instance = vcMtl->CreateInstance();
+			instance->SetName("MI_VertexColor4");
 			mtlTree.SetMaterialInstance(instance);
 		}
 	}

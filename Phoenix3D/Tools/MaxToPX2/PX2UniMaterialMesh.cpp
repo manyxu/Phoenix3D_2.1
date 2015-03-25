@@ -459,17 +459,7 @@ TriMesh *UniMaterialMesh::ToTriMesh()
 	}
 
 	MaterialInstance *mi = 0;
-
-	PX2::Material *mtl = mMaterialInstance->GetMaterial();
-	PX2::SkinMaterial *skinMtl = DynamicCast<SkinMaterial>(mtl);
-	if (skinMtl && !mExportSkin)
-	{
-		mi = new0 MaterialInstance("Data/engine_mtls/std/std.xml", "std_light", false);
-	}
-	else
-	{
-		mi = mMaterialInstance;
-	}
+	mi = mMaterialInstance;
 
 	triMesh->SetMaterialInstance(mi);
 	triMesh->SetShine(mShine);

@@ -20,7 +20,6 @@ vs_3_0
 //semantic v_std_light.LightGroup
 //semantic v_std_light.FogParam
 //semantic SampleBase
-//semantic SampleShadowDepth
 //var float3 modelPosition : $vin.POSITION0 : ATTR0 : 0 : 1
 //var float3 modelNormal : $vin.NORMAL0 : ATTR1 : 1 : 1
 //var float2 modelTCoord0 : $vin.TEXCOORD0 : ATTR2 : 2 : 1
@@ -49,7 +48,6 @@ vs_3_0
 //var float4 LightGroup[7] :  : c[24] : 18 : 1
 //var float4 FogParam :  : c[25] : 19 : 1
 //var sampler2D SampleBase :  :  : -1 : 0
-//var sampler2D SampleShadowDepth :  :  : -1 : 0
 //const c[26] = 1 0.5 0
 dcl_position o0
 dcl_texcoord0 o2

@@ -33,7 +33,7 @@
 					<var type="gles2" file="std_light_gles2_vs.fx"/>
 				</p>
 			</shader>
-			<shader type="ps" name="std_light" ni="3" no="1" nc="2" ns="1">
+			<shader type="ps" name="std_light" ni="3" no="1" nc="3" ns="1">
 				<i>
 					<var index="0" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="1" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
@@ -43,8 +43,9 @@
 					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
 				</o>
 				<c>
-					<var index="0" name="FogColorHeight" nr="1"/>
-					<var index="1" name="FogColorDist" nr="1"/>
+					<var index="0" name="UVOffset" nr="1"/>
+					<var index="1" name="FogColorHeight" nr="1"/>
+					<var index="2" name="FogColorDist" nr="1"/>
 				</c>
 				<s>
 					<var index="0" name="SampleBase" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
@@ -114,7 +115,7 @@
 					<var type="gles2" file="std_lightshadow_gles2_vs.fx"/>
 				</p>
 			</shader>
-			<shader type="ps" name="std_lightshadow" ni="4" no="1" nc="2" ns="2">
+			<shader type="ps" name="std_lightshadow" ni="4" no="1" nc="3" ns="2">
 				<i>
 					<var index="0" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="1" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
@@ -125,8 +126,9 @@
 					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
 				</o>
 				<c>
-					<var index="0" name="FogColorHeight" nr="1"/>
-					<var index="1" name="FogColorDist" nr="1"/>
+					<var index="0" name="UVOffset" nr="1"/>
+					<var index="1" name="FogColorHeight" nr="1"/>
+					<var index="2" name="FogColorDist" nr="1"/>
 				</c>
 				<s>
 					<var index="0" name="SampleBase" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
@@ -180,7 +182,7 @@
 					<var type="gles2" file="std_shadowmapdepth_gles2_vs.fx"/>
 				</p>
 			</shader>
-			<shader type="ps" name="std_shadowmapdepth" ni="1" no="1" nc="0" ns="1">
+			<shader type="ps" name="std_shadowmapdepth" ni="1" no="1" nc="3" ns="1">
 				<i>
 					<var index="0" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
 				</i>
@@ -188,6 +190,9 @@
 					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
 				</o>
 				<c>
+					<var index="0" name="UVOffset" nr="1"/>
+					<var index="1" name="FogColorHeight" nr="1"/>
+					<var index="2" name="FogColorDist" nr="1"/>
 				</c>
 				<s>
 					<var index="0" name="SampleBase" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>

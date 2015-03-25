@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by MaxToPX2.rc
+// Microsoft Visual C++ 生成的包含文件。
+// 供 MaxToPX2.rc 使用
 //
 #define IDD_MAXTOPX2_DIALOG             1000
 #define IDC_CHECK_OBJECTS               1001
@@ -29,6 +29,8 @@
 #define IDC_EDIT_DSTROOTDIR             1025
 #define IDC_BUTTON_DST                  1026
 #define IDC_SLIDER1                     1027
+#define IDC_COMBO1                      1028
+#define IDC_COMMBO_MTLTYPE              1028
 
 // Next default values for new objects
 // 
@@ -36,7 +38,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        103
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1028
+#define _APS_NEXT_CONTROL_VALUE         1029
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

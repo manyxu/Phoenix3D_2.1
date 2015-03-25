@@ -309,16 +309,29 @@ bool FileIO::Load (const std::string& filename, bool binaryFile,
 	}
 
 	bufferSize = (int)((int64_t)statistics.st_size);
-	buffer = new1<char>(bufferSize);
-	int numRead = (int)fread(buffer, sizeof(char), bufferSize, inFile);
-	if (fclose(inFile) != 0 || numRead != bufferSize)
+	if (bufferSize > 0)
 	{
-		assertion(false, "Failed to read or close file %s\n",
-			filename.c_str());
-		delete1(buffer);
-		buffer = 0;
-		bufferSize = 0;
-		return false;
+		buffer = new1<char>(bufferSize);
+		int numRead = (int)fread(buffer, sizeof(char), bufferSize, inFile);
+		if (fclose(inFile) != 0 || numRead != bufferSize)
+		{
+			assertion(false, "Failed to read or close file %s\n",
+				filename.c_str());
+			delete1(buffer);
+			buffer = 0;
+			bufferSize = 0;
+			return false;
+		}
+	}
+	else
+	{
+		if (fclose(inFile) != 0)
+		{
+			assertion(false, "Failed to read or close file %s\n",
+				filename.c_str());
+			buffer = 0;
+			bufferSize = 0;
+		}
 	}
 
 	return true;

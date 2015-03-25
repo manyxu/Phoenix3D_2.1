@@ -6,6 +6,7 @@ ps_2_0
 //version 3.1.0.10
 //profile ps_2_0
 //program p_std_lightshadow
+//semantic p_std_lightshadow.UVOffset
 //semantic p_std_lightshadow.FogColorHeight
 //semantic p_std_lightshadow.FogColorDist
 //semantic SampleBase
@@ -15,30 +16,32 @@ ps_2_0
 //var float2 vertexTCoord1 : $vin.TEXCOORD1 : TEX1 : 2 : 1
 //var float4 vertexTCoord2 : $vin.TEXCOORD2 : TEX2 : 3 : 1
 //var float4 pixelColor : $vout.COLOR : COL : 4 : 1
-//var float4 FogColorHeight :  : c[0] : 5 : 1
-//var float4 FogColorDist :  : c[1] : 6 : 1
+//var float4 UVOffset :  : c[0] : 5 : 1
+//var float4 FogColorHeight :  : c[1] : 6 : 1
+//var float4 FogColorDist :  : c[2] : 7 : 1
 //var sampler2D SampleBase :  : texunit 0 : -1 : 1
 //var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
-//const c[2] = 1 0 255
+//const c[3] = 1 0 255
 dcl_2d s0
 dcl_2d s1
-def c2, 1.00000000, 0.00000000, 255.00000000, 0
+def c3, 1.00000000, 0.00000000, 255.00000000, 0
 dcl t0.xy
 dcl v0
 dcl t2
 dcl t1.xy
+mov r0.x, t0
+add r0.y, -t0, c3.x
+add r1.xy, r0, c0
 texldp r0, t2, s1
-add r1.y, -t0, c2.x
-mov r1.x, t0
 texld r2, r1, s0
-mad r1.x, r0, c2.z, r0.y
+mad r1.x, r0, c3.z, r0.y
 rcp r0.x, t2.w
 mad r0.x, t2.z, r0, -r1
 mul r1, r2, v0
-cmp r0.x, -r0, c2, c2.y
-mad r0.xyz, r1, r0.x, -c0
-mad r0.xyz, t1.y, r0, c0
-add r0.xyz, r0, -c1
+cmp r0.x, -r0, c3, c3.y
+mad r0.xyz, r1, r0.x, -c1
+mad r0.xyz, t1.y, r0, c1
+add r0.xyz, r0, -c2
 mov r0.w, r1
-mad r0.xyz, t1.x, r0, c1
+mad r0.xyz, t1.x, r0, c2
 mov oC0, r0

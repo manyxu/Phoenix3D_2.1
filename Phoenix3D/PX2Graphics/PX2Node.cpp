@@ -582,7 +582,7 @@ bool Node::Register (OutStream& target) const
         const int numChildren = (int)mChild.size();
         for (int i = 0; i < numChildren; ++i)
         {
-            if (mChild[i])
+			if (mChild[i] && !mChild[i]->IsSaveWriteIngore())
             {
                 target.Register(mChild[i]);
             }

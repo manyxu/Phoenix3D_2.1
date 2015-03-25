@@ -81,6 +81,9 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 		ClearChildren();
 	}
 
+	bool addCtrl = false;
+	bool addNode = false;
+
 	if (PTL_GENERAL == mTreeLevel)
 	{
 	}
@@ -88,14 +91,42 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 	{
 		if (!scene && !proj && node)
 		{
-			int numChildren = node->GetNumChildren();
-			for (int i = 0; i < numChildren; i++)
+			addNode = true;
+		}
+	}
+	else if (PTL_CONTROLS == mTreeLevel)
+	{
+		if (!scene && !proj && mov)
+		{
+			addCtrl = true;
+		}
+
+		if (!scene && !proj && node)
+		{
+			addNode = true;
+		}
+	}
+
+	if (addCtrl)
+	{
+		int numCtrls = mov->GetNumControllers();
+		for (int i = 0; i < numCtrls; i++)
+		{
+			Controller *ctrl = mov->GetController(i);
+
+			AddChild(ctrl, mIconID, mTreeLevel);
+		}
+	}
+
+	if (addNode)
+	{
+		int numChildren = node->GetNumChildren();
+		for (int i = 0; i < numChildren; i++)
+		{
+			Movable *child = node->GetChild(i);
+			if (child)
 			{
-				Movable *child = node->GetChild(i);
-				if (child)
-				{
-					AddChild(child, mIconID, mTreeLevel);
-				}
+				AddChild(child, mIconID, mTreeLevel);
 			}
 		}
 	}

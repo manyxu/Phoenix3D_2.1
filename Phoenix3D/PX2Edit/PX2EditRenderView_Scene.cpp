@@ -308,7 +308,7 @@ void EditRenderView_Scene::_ClickSelectPos(const APoint &scrPos)
 	else
 	{
 		PX2::TriMesh *xyPlane = PX2_GR.GetXYPlane();
-		xyPlane->LocalTransform.SetTranslateZ(0.0f);
+		xyPlane->WorldTransform.SetTranslate(APoint::ORIGIN);
 
 		Picker picker;
 		picker.Execute(xyPlane, origin, direction, 0.0f, Mathf::MAX_REAL);
@@ -739,6 +739,7 @@ void EditRenderView_Scene::_UpdateBrushPos(const APoint &pos)
 
 #ifdef _DEBUG
 	pickObject = PX2_GR.GetXYPlane();
+	pickObject->WorldTransform.SetTranslate(APoint::ORIGIN);
 #endif
 
 	if (pickObject)

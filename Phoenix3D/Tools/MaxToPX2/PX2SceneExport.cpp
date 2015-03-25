@@ -3,6 +3,7 @@
 #include "PX2SceneExport.hpp"
 #include "PX2SceneBuilder.hpp"
 #include "PX2MaxClassDesc.hpp"
+#include "PX2StringHelp.hpp"
 #include <Shlobj.h>
 #include "resource.h"
 
@@ -42,14 +43,14 @@ const TCHAR* PX2SceneExport::ShortDesc ()
 const TCHAR* PX2SceneExport::AuthorName ()
 {           
 	// 导出插件作者姓名
-	return _T("XD");
+	return _T("realmany");
 }
 //----------------------------------------------------------------------------
 const TCHAR* PX2SceneExport::CopyrightMessage () 
 {   
 	// 版权信息
 	return
-		_T("Phoenix, Inc. Copyright (c) 2009-2012. All Rights Reserved.");
+		_T("Phoenix3D, Inc. Copyright (c) 2009-2012. All Rights Reserved.");
 }
 //----------------------------------------------------------------------------
 const TCHAR* PX2SceneExport::OtherMessage1 () 
@@ -67,7 +68,7 @@ const TCHAR* PX2SceneExport::OtherMessage2 ()
 unsigned int PX2SceneExport::Version ()
 {               
 	// 返回导出插件版本号。
-	return TDSCENE_VERSION;
+	return MAXTOPX2_VERSION;
 }
 //----------------------------------------------------------------------------
 void PX2SceneExport::ShowAbout (HWND)
@@ -148,8 +149,16 @@ int PX2SceneExport::DoExport (const TCHAR *filename, ExpInterface *ept,
 
 	max->ProgressStart(_T("正在导出:"), TRUE, ProgressBarCallback, NULL);
 
+	std::string allFileName = filename;
+	std::string outPath;
+	std::string outBaseName;
+	std::string outExtention;
+	PX2::StringHelp::SplitFullFilename(allFileName, outPath, outBaseName, outExtention);
+	outExtention = PX2::ToLower<std::string>(outExtention);
+	std::string lastFilename = outPath + outBaseName + "." + outExtention;
+
 	// 将Max场景转换到Phoenix2场景
-	SceneBuilder(filename, exportSelected, &mEffectiveSettings, ept,
+	SceneBuilder(lastFilename.c_str(), exportSelected, &mEffectiveSettings, ept,
 		max, exportNode);
 
 	max->ProgressEnd();
@@ -180,7 +189,7 @@ void PX2SceneExport::ReadConfiguration ()
 		return;
 	}
 
-	if (version != TDSCENE_VERSION)
+	if (version != MAXTOPX2_VERSION)
 	{
 		fclose(configFile);
 		return;
@@ -210,7 +219,7 @@ void PX2SceneExport::WriteConfiguration ()
 	}
 
 	// 写入版本号
-	int version = TDSCENE_VERSION;
+	int version = MAXTOPX2_VERSION;
 	if (fwrite(&version, sizeof(version), 1, configFile) != 1)
 	{
 		assertion(false, "Can't write configFile.");
@@ -366,12 +375,17 @@ BOOL PX2SceneExport::OnInitDialog (HWND hWnd)
 		mSettings.IncludeTargentBiNormal);
 	CheckDlgButton(hWnd,IDC_CHECK_TEXTURECOORDS,mSettings.IncludeTexCoords);
 
-	CheckDlgButton(hWnd, IDC_CHECK_USESINGLETEX, mSettings.IsUseSingleTex);
-
 	SendMessage(GetDlgItem(hWnd,IDC_COMMBO_NUMTCS),CB_ADDSTRING,0,(LPARAM)"1");
 	SendMessage(GetDlgItem(hWnd,IDC_COMMBO_NUMTCS),CB_ADDSTRING,0,(LPARAM)"2");
 	SendMessage(GetDlgItem(hWnd,IDC_COMMBO_NUMTCS), CB_SETCURSEL, 
 		mSettings.NumTexCoords-1,0);
+
+	for (int i = 0; i < (int)mSettings.MtlTypes.size(); i++)
+	{
+		std::string text = mSettings.MtlTypes[i];
+		SendMessage(GetDlgItem(hWnd, IDC_COMMBO_MTLTYPE), CB_ADDSTRING, 0, (LPARAM)text.c_str());
+	}
+	SendMessage(GetDlgItem(hWnd, IDC_COMMBO_MTLTYPE), CB_SETCURSEL, mSettings.MtlType, 0);
 
 	CheckDlgButton(hWnd,IDC_CHECK_MODIFIERS,mSettings.IncludeModifiers);
 	CheckDlgButton(hWnd,IDC_CHECK_SKINS,mSettings.IncludeSkins);
@@ -550,9 +564,10 @@ void PX2SceneExport::OnOK (HWND hWnd)
 	mSettings.IncludeTexCoords =
 		IsDlgButtonChecked(hWnd, IDC_CHECK_TEXTURECOORDS) == 1;
 	mSettings.NumTexCoords = 
-		1+(int)SendMessage(GetDlgItem(hWnd, IDC_COMMBO_NUMTCS), CB_GETCURSEL, 0, 0);
-	mSettings.IsUseSingleTex =
-		IsDlgButtonChecked(hWnd, IDC_CHECK_USESINGLETEX) == 1;
+		1 + (int)SendMessage(GetDlgItem(hWnd, IDC_COMMBO_NUMTCS), CB_GETCURSEL, 0, 0);
+
+	mSettings.MtlType = 
+		(int)SendMessage(GetDlgItem(hWnd, IDC_COMMBO_MTLTYPE), CB_GETCURSEL, 0, 0);
 
 	mSettings.IncludeModifiers =
 		IsDlgButtonChecked(hWnd, IDC_CHECK_MODIFIERS) == 1;

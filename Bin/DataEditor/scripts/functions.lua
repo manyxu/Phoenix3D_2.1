@@ -378,10 +378,10 @@ end
 -- add
 function e_AddSceneActor_Actor()
 	local scene = PX2_PROJ:GetScene()
-	local resPath = PX2_EDIT:GetSelectedResource().ResPathname;
-	if "" ~= resPath then
+	local resPathname = PX2_EDIT:GetSelectedResource().ResPathname;
+	if "" ~= resPathname then
 		local pickPos = PX2_EDIT:GetPickPos()
-		PX2_CREATER:AddActor(scene, resPath, pickPos)
+		PX2_CREATER:AddActor(scene, resPathname, pickPos)
 	end
 end
 

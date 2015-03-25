@@ -3,6 +3,8 @@
 #include "PX2ExportSettings.hpp"
 
 //----------------------------------------------------------------------------
+std::vector<std::string> ExportSettings::MtlTypes;
+//----------------------------------------------------------------------------
 ExportSettings::ExportSettings ()
 {
 	// object …Ë÷√
@@ -17,7 +19,11 @@ ExportSettings::ExportSettings ()
 	IncludeTexCoords = true;
 	NumTexCoords = 1;
 
-	IsUseSingleTex = false;
+	MtlTypes.clear();
+	MtlTypes.push_back("std");
+	MtlTypes.push_back("skinskeleton");
+	MtlTypes.push_back("tex2d");
+	MtlType = 0;
 
 	// modifier …Ë÷√    
 	IncludeModifiers = true;
@@ -33,5 +39,10 @@ ExportSettings::ExportSettings ()
 
 	memset(SrcRootDir, 0, 256);
 	memset(DstRootDir, 0, 256);
+}
+//----------------------------------------------------------------------------
+const std::string &ExportSettings::GetMtlTypeStr() const
+{
+	return MtlTypes[MtlType];
 }
 //----------------------------------------------------------------------------

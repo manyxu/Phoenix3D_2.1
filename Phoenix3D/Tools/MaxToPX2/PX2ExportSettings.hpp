@@ -22,7 +22,9 @@ public:
 	bool IncludeTexCoords;
 	int NumTexCoords;
 
-	bool IsUseSingleTex;
+	static std::vector<std::string> MtlTypes;
+	int MtlType;
+	const std::string &GetMtlTypeStr() const;
 
 	// modifier …Ë÷√
 	bool IncludeModifiers;

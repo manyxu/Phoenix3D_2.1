@@ -20,7 +20,6 @@
 #semantic v_std_light.LightGroup
 #semantic v_std_light.FogParam
 #semantic SampleBase
-#semantic SampleShadowDepth
 #var float3 modelPosition : $vin.POSITION : POSITION : 0 : 1
 #var float3 modelNormal : $vin.NORMAL : NORMAL : 1 : 1
 #var float2 modelTCoord0 : $vin.TEXCOORD0 : TEXCOORD0 : 2 : 1
@@ -49,7 +48,6 @@
 #var float4 LightGroup[7] :  : c[25] : 18 : 1
 #var float4 FogParam :  : c[26] : 19 : 1
 #var sampler2D SampleBase :  :  : -1 : 0
-#var sampler2D SampleShadowDepth :  :  : -1 : 0
 #const c[0] = 0.5 1 0
 PARAM c[27] = { { 0.5, 1, 0 },
 		program.local[1..26] };

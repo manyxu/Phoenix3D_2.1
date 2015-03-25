@@ -69,7 +69,6 @@ void v_std_light
 }
 
 sampler2D SampleBase;
-sampler2D SampleShadowDepth;
 
 void p_std_light
 (
@@ -77,21 +76,27 @@ void p_std_light
     in float2 vertexTCoord0 : TEXCOORD0,
 	in float2 vertexTCoord1 : TEXCOORD1,
     out float4 pixelColor : COLOR,
+	uniform float4 UVOffset,
 	uniform float4 FogColorHeight,
 	uniform float4 FogColorDist
 )
 {
-    // base
     float2 texCoord = vertexTCoord0;
     texCoord.y = 1.0 - vertexTCoord0.y;
+	texCoord.xy += UVOffset.xy;
 	float4 lastColor = tex2D(SampleBase, texCoord);
 	
-	// light
-	lastColor *= vertexColor;
+	if (lastColor.a < 0.25)
+	{
+		discard;
+	}
+	else
+	{
+		lastColor *= vertexColor;
 	
-	// fog
-	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.y);
-	lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.x);
-		
-	pixelColor = lastColor;
+		lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.y);
+		lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.x);
+	
+		pixelColor = lastColor;
+	}
 }

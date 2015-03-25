@@ -1,27 +1,3 @@
-// The application can changes these parameters at run time.
-
-float4x4 PVWMatrix;
-float4 BoneTM[114];
-float4 CameraWorldPosition;
-float4 LightWorldDirection_Dir;
-float4 ShineEmissive;
-float4 ShineAmbient;
-float4 ShineDiffuse;
-float4 ShineSpecular;
-float4 LightAmbient_Dir;
-float4 LightDiffuse_Dir;
-float4 LightSpecular_Dir;
-float4 FogParam;
-
-void SkinPosition (float3 inPos, float m_wt, int m_indx, float3 skinned_position)
-{
-	float4 tmp; 
-	tmp.x = dot(inPos, BoneTM[m_indx]);
-	tmp.y = dot(inPos, BoneTM[m_indx + 1]);
-	tmp.z = dot(inPos, BoneTM[m_indx + 2]);
-	skinned_position += m_wt * tmp;
-}
-
 void v_skinskeleton
 (
     in float3 modelPosition : POSITION,
@@ -32,9 +8,22 @@ void v_skinskeleton
     out float4 clipPosition : POSITION,
 	out float4 vertexColor : COLOR,
     out float2 vertexTCoord0 : TEXCOORD0,
-	out float2 vertexTCoord1 : TEXCOORD1
+	out float2 vertexTCoord1 : TEXCOORD1,
+	uniform float4x4 PVWMatrix,
+	uniform float4 BoneTM[108],
+	uniform float4 CameraWorldPosition,
+	uniform float4 LightWorldDVector_Dir,
+	uniform float4 ShineEmissive,
+	uniform float4 ShineAmbient,
+	uniform float4 ShineDiffuse,
+	uniform float4 ShineSpecular,
+	uniform float4 LightAmbient_Dir,
+	uniform float4 LightDiffuse_Dir,
+	uniform float4 LightSpecular_Dir,
+	uniform float4 FogParam
 )
 {
+	// Pos Normal
 	int i0 = modelTCoord1[0]*3;
 	int i1 = modelTCoord1[1]*3;
 	int i2 = modelTCoord1[2]*3;
@@ -42,43 +31,42 @@ void v_skinskeleton
 	float4 weight = modelTCoord2;
 	
 	float4 inputPos = float4(modelPosition, 1.0f);
-	float3 pos = float3(0, 0, 0);	
-	pos += float3(dot(inputPos, BoneTM[i0]), dot(inputPos, BoneTM[i0 + 1]), dot(inputPos, BoneTM[i0 + 2])) * weight[0];
-	pos += float3(dot(inputPos, BoneTM[i1]), dot(inputPos, BoneTM[i1 + 1]), dot(inputPos, BoneTM[i1 + 2])) * weight[1];
-	pos += float3(dot(inputPos, BoneTM[i2]), dot(inputPos, BoneTM[i2 + 1]), dot(inputPos, BoneTM[i2 + 2])) * weight[2];	
-	pos += float3(dot(inputPos, BoneTM[i3]), dot(inputPos, BoneTM[i3 + 1]), dot(inputPos, BoneTM[i3 + 2])) * weight[3];
-	float3 normal = float3(0, 0, 0);
-	normal += float3(dot(modelNormal, BoneTM[i0]), dot(modelNormal, BoneTM[i0 + 1]), dot(modelNormal, BoneTM[i0 + 2])) * weight[0];
-	normal += float3(dot(modelNormal, BoneTM[i1]), dot(modelNormal, BoneTM[i1 + 1]), dot(modelNormal, BoneTM[i1 + 2])) * weight[1];
-	normal += float3(dot(modelNormal, BoneTM[i2]), dot(modelNormal, BoneTM[i2 + 1]), dot(modelNormal, BoneTM[i2 + 2])) * weight[2];	
-	normal += float3(dot(modelNormal, BoneTM[i3]), dot(modelNormal, BoneTM[i3 + 1]), dot(modelNormal, BoneTM[i3 + 2])) * weight[3];
-	normal = normalize(normal);
+	float3 worldPosition = float3(0, 0, 0);	
+	worldPosition += float3(dot(inputPos, BoneTM[i0]), dot(inputPos, BoneTM[i0 + 1]), dot(inputPos, BoneTM[i0 + 2])) * weight[0];
+	worldPosition += float3(dot(inputPos, BoneTM[i1]), dot(inputPos, BoneTM[i1 + 1]), dot(inputPos, BoneTM[i1 + 2])) * weight[1];
+	worldPosition += float3(dot(inputPos, BoneTM[i2]), dot(inputPos, BoneTM[i2 + 1]), dot(inputPos, BoneTM[i2 + 2])) * weight[2];	
+	worldPosition += float3(dot(inputPos, BoneTM[i3]), dot(inputPos, BoneTM[i3 + 1]), dot(inputPos, BoneTM[i3 + 2])) * weight[3];
+	float3 worldNormal = float3(0, 0, 0);
+	worldNormal += float3(dot(modelNormal, BoneTM[i0].xyz), dot(modelNormal, BoneTM[i0 + 1].xyz), dot(modelNormal, BoneTM[i0 + 2].xyz)) * weight[0];
+	worldNormal += float3(dot(modelNormal, BoneTM[i1].xyz), dot(modelNormal, BoneTM[i1 + 1].xyz), dot(modelNormal, BoneTM[i1 + 2].xyz)) * weight[1];
+	worldNormal += float3(dot(modelNormal, BoneTM[i2].xyz), dot(modelNormal, BoneTM[i2 + 1].xyz), dot(modelNormal, BoneTM[i2 + 2].xyz)) * weight[2];	
+	worldNormal += float3(dot(modelNormal, BoneTM[i3].xyz), dot(modelNormal, BoneTM[i3 + 1].xyz), dot(modelNormal, BoneTM[i3 + 2].xyz)) * weight[3];
+	worldNormal = normalize(worldNormal);
 	
-	clipPosition = mul(PVWMatrix, float4(pos, 1.0f));
+	clipPosition = mul(PVWMatrix, float4(worldPosition, 1.0f));
 	
-	float3 viewVector = normalize(CameraWorldPosition.rgb - pos);
+	// Tex Coord
+	vertexTCoord0 = modelTCoord0;
+	
+	float3 viewVector = normalize(CameraWorldPosition.rgb - worldPosition);
+	float dist = distance(CameraWorldPosition.rgb, worldPosition);
 	
 	// light
-	float3 halfVector = normalize((viewVector - LightWorldDirection_Dir.rgb)/2.0);
-	float dotH = dot(normal, halfVector);
+	float3 halfVector = normalize((viewVector - LightWorldDVector_Dir.rgb)/2.0);
+	float dotH = dot(worldNormal, halfVector);
 	
-	vertexColor.rgb = ShineEmissive.rgb + ShineAmbient.rgb * LightAmbient_Dir.rgb +
-		ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(normal, -LightWorldDirection_Dir.rgb), 0) +
-							ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0), ShineSpecular.a*LightSpecular_Dir.a);		
+	vertexColor.rgb = ShineEmissive.rgb + LightAmbient_Dir.a * (ShineAmbient.rgb * LightAmbient_Dir.rgb +
+		ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.rgb), 0) +
+							ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0), ShineSpecular.a*LightSpecular_Dir.a));		
 	vertexColor.a = ShineDiffuse.a;
-
-    vertexTCoord0 = modelTCoord0;
-	
-	float dist = distance(CameraWorldPosition.rgb, pos);
 	
 	// fog
-	float fogValue = (FogParam.y - dist)/(FogParam.y - FogParam.x);
-	fogValue = clamp(fogValue, 0, 1.0);
-	
-	float fogValueHeight = (-FogParam.z + pos.z)/(FogParam.w - FogParam.z);
+	float fogValueHeight = (-FogParam.x + worldPosition.z)/(FogParam.y - FogParam.x);
 	fogValueHeight = clamp(fogValueHeight, 0, 1.0);	
+	float fogValueDist = (FogParam.w - dist)/(FogParam.w - FogParam.z);
+	fogValueDist = clamp(fogValueDist, 0, 1.0);
 	
-	vertexTCoord1.x = fogValue;
+	vertexTCoord1.x = fogValueDist;
 	vertexTCoord1.y = fogValueHeight;
 }
 
@@ -90,16 +78,27 @@ void p_skinskeleton
     in float2 vertexTCoord0 : TEXCOORD0,
 	in float2 vertexTCoord1 : TEXCOORD1,
     out float4 pixelColor : COLOR,
-	uniform float4 FogColor
+	uniform float4 UVOffset,
+	uniform float4 FogColorHeight,
+	uniform float4 FogColorDist
 )
 {
-    // Sample the texture image.
     float2 texCoord = vertexTCoord0;
     texCoord.y = 1.0 - vertexTCoord0.y;
+	texCoord.xy += UVOffset.xy;
     float4 lastColor = tex2D(SampleBase, texCoord);
-	lastColor *= vertexColor;
+	
+	//if (lastColor.a < 0.25)
+	{
+	//	discard;
+	}
+	//else
+	{
+		lastColor *= vertexColor;
 		
-	lastColor.rgb = lerp(FogColor.rgb, lastColor.rgb, vertexTCoord1.x);
-	lastColor.rgb = lerp(FogColor.rgb, lastColor.rgb, vertexTCoord1.y);	
-	pixelColor = lastColor;
+		lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.y);
+		lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.x);
+		
+		pixelColor = lastColor;
+	}
 }

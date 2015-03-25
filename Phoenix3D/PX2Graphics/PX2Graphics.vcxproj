@@ -154,7 +154,6 @@
     <ClCompile Include="PX2ShineSpecularConstant.cpp" />
     <ClCompile Include="PX2SkinController.cpp" />
     <ClCompile Include="PX2SkinMatrixConstant.cpp" />
-    <ClCompile Include="PX2SkinMaterial.cpp" />
     <ClCompile Include="PX2SpecializedIO.cpp" />
     <ClCompile Include="PX2StandardMesh.cpp" />
     <ClCompile Include="PX2StencilProperty.cpp" />
@@ -322,7 +321,6 @@
     <ClInclude Include="PX2ShineSpecularConstant.hpp" />
     <ClInclude Include="PX2SkinController.hpp" />
     <ClInclude Include="PX2SkinMatrixConstant.hpp" />
-    <ClInclude Include="PX2SkinMaterial.hpp" />
     <ClInclude Include="PX2SpecializedIO.hpp" />
     <ClInclude Include="PX2StandardMesh.hpp" />
     <ClInclude Include="PX2StencilProperty.hpp" />

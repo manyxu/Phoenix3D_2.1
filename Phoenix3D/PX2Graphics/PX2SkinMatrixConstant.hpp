@@ -18,7 +18,7 @@ namespace PX2
 		PX2_DECLARE_STREAM(SkinMatrixConstant);
 
 	public:
-		SkinMatrixConstant (int numMatrix=37);
+		SkinMatrixConstant (int numMatrix=36);
 		virtual ~SkinMatrixConstant ();
 
 		virtual void Update(const ShaderStruct *struc);

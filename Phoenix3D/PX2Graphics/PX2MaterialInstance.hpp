@@ -23,6 +23,9 @@ namespace PX2
 			const std::string &techName, bool share);
 		virtual ~MaterialInstance ();
 
+		const std::string &GetMaterialFilename() const;
+		const std::string &GetTechniqueName() const;
+
 		// 成员访问
 		/*
 		* 这些主要被Renderer渲染几何图形时调用。
@@ -59,6 +62,9 @@ namespace PX2
 		Texture* GetPixelTexture (int pass, int handle) const;
 
 		virtual void Update(double appTime, double elapsedTime);
+
+	public_internal:
+		void _SetMaterialFilename(const std::string &filename);
 
 	protected:
 		MaterialTechnique *_RefreshMaterial(const std::string &mtlFilename,
