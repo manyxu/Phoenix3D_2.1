@@ -6,19 +6,22 @@
 #include "PX2Project.hpp"
 #include "PX2Edit.hpp"
 #include "PX2E_Define.hpp"
+#include "PX2EffectableController.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
 //-----------------------------------------------------------------------------
 ProjTreeItem::ProjTreeItem(ProjTree *tree, ProjTreeItem *parent,
 	ItemType type, int iconID, PX2::Object *obj,
-	ProjTreeLevel showLevel, const std::string &name,
-	bool doInsert, wxTreeItemId insertUpID) :
+	ProjTreeLevel showLevel, bool isShowHelpNode,
+	const std::string &name, bool doInsert, wxTreeItemId insertUpID):
 	mProjTree(tree),
 	mParentItem(parent),
 	mItemType(type),
 	mIconID(iconID),
-	mObject(obj)
+	mObject(obj),
+	mTreeLevel(showLevel),
+	mIsShowHelpNode(isShowHelpNode)
 {
 	assertion(0 != parent, "parent must not be 0.\n");
 
@@ -34,7 +37,7 @@ ProjTreeItem::ProjTreeItem(ProjTree *tree, ProjTreeItem *parent,
 	else
 		mItemID = mProjTree->InsertItem(parent->GetItemID(), insertUpID, useName, mIconID);
 
-	SetTreeLevel(showLevel);
+	SetTreeLevel(showLevel, isShowHelpNode);
 }
 //-----------------------------------------------------------------------------
 ProjTreeItem::ProjTreeItem(ProjTree *tree, wxTreeItemId id,
@@ -54,9 +57,10 @@ ProjTreeItem::~ProjTreeItem()
 	mProjTree->Delete(mItemID);
 }
 //-----------------------------------------------------------------------------
-void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
+void ProjTreeItem::SetTreeLevel(ProjTreeLevel level, bool isShowHelpNode)
 {
 	mTreeLevel = level;
+	mIsShowHelpNode = isShowHelpNode;
 
 	Project *proj = DynamicCast<Project>(mObject);
 	Scene *scene = DynamicCast<Scene>(mObject);
@@ -66,13 +70,15 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 	Actor *actor = DynamicCast<Actor>(mObject);
 	Movable *mov = DynamicCast<Movable>(mObject);
 	Node *node = DynamicCast<Node>(mObject);
+	Renderable *renderable = DynamicCast<Renderable>(mObject);
+	EffectableController *effectableCtrl = DynamicCast<EffectableController>(mObject);
 
 	if (!mObject)
 	{ // IT_CATALOG
 		for (int i = 0; i < (int)mChildItems.size(); i++)
 		{
 			ProjTreeItem *item = mChildItems[i];
-			if (item) item->SetTreeLevel(level);
+			if (item) item->SetTreeLevel(level, isShowHelpNode);
 		}
 		return;
 	}
@@ -82,7 +88,9 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 	}
 
 	bool addCtrl = false;
+	bool addModule = false;
 	bool addNode = false;
+	bool addMaterial = false;
 
 	if (PTL_GENERAL == mTreeLevel)
 	{
@@ -105,6 +113,45 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 		{
 			addNode = true;
 		}
+
+		if (effectableCtrl)
+		{
+			addModule = true;
+		}
+	}
+	else if (PTL_MATERIALS == mTreeLevel)
+	{
+		if (!scene && !proj && mov)
+		{
+			addCtrl = true;
+		}
+
+		if (!scene && !proj && node)
+		{
+			addNode = true;
+		}
+
+		if (renderable)
+		{
+			addMaterial = true;
+		}
+	}
+	else if (PTL_DETAIL == mTreeLevel)
+	{
+		if (!scene && !proj && mov)
+		{
+			addCtrl = true;
+		}
+
+		if (!scene && !proj && node)
+		{
+			addNode = true;
+		}
+
+		if (renderable)
+		{
+			addMaterial = true;
+		}
 	}
 
 	if (addCtrl)
@@ -114,7 +161,17 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 		{
 			Controller *ctrl = mov->GetController(i);
 
-			AddChild(ctrl, mIconID, mTreeLevel);
+			AddChild(ctrl, mIconID, mTreeLevel, mIsShowHelpNode);
+		}
+	}
+
+	if (addModule)
+	{
+		int numModules = effectableCtrl->GetNumModules();
+		for (int i = 0; i < numModules; i++)
+		{
+			EffectModule *module = effectableCtrl->GetModule(i);
+			AddChild(module, mIconID, mTreeLevel, mIsShowHelpNode);
 		}
 	}
 
@@ -126,7 +183,14 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level)
 			Movable *child = node->GetChild(i);
 			if (child)
 			{
-				AddChild(child, mIconID, mTreeLevel);
+				bool ingore = false;
+				if (!isShowHelpNode && ("HelpNode" == child->GetName()))
+					ingore = true;
+
+				if (!ingore)
+				{
+					AddChild(child, mIconID, mTreeLevel, mIsShowHelpNode);
+				}
 			}
 		}
 	}
@@ -142,20 +206,20 @@ void ProjTreeItem::SetName(const std::string &name)
 }
 //-----------------------------------------------------------------------------
 ProjTreeItem *ProjTreeItem::AddChild(PX2::Object *obj, int iconID, 
-	ProjTreeLevel showLevel)
+	ProjTreeLevel showLevel, bool isShowHelpNode)
 {
 	ProjTreeItem *item = new ProjTreeItem(mProjTree, this, IT_OBJECT, iconID,
-		obj, showLevel);
+		obj, showLevel, isShowHelpNode);
 	mChildItems.push_back(item);
 
 	return item;
 }
 //-----------------------------------------------------------------------------
 ProjTreeItem *ProjTreeItem::InsertChild(wxTreeItemId upID, PX2::Object *obj,
-	int iconID, ProjTreeLevel showLevel)
+	int iconID, ProjTreeLevel showLevel, bool isShowHelpNode)
 {
 	ProjTreeItem *item = new ProjTreeItem(mProjTree, this, IT_OBJECT, iconID,
-		obj, showLevel, "", true, upID);
+		obj, showLevel, isShowHelpNode, "", true, upID);
 	mChildItems.push_back(item);
 
 	return item;

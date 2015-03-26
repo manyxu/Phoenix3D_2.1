@@ -99,10 +99,13 @@ namespace PX2
 			bool isPosWorld, bool usePickPos);
 
 	public:
+		Controlledable *ConvertToControlledable(Object *obj);
+		Movable *ConvertToMovable(Object *obj);
 		Node *ConvertToNode(Object *obj);
 		Actor *ConvertToActor(Object *obj);
 		UIPicBox *ConvertToUIPicBox(Object *obj);
 		UIFrame *ConvertToUIFrame(Object *obj);
+		EffectableController *ConvertToEffectableController(Object *obj);
 	};
 
 #define PX2_CREATER Creater::GetSingleton()

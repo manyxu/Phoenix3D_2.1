@@ -615,6 +615,52 @@ void E_MainFrame::OnSetEditMode(int mode)
 	PX2_EDIT.SetEditMode((Edit::EditMode)mode);
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnShowWindow(const std::string &tag)
+{
+	wxAuiPaneInfo *info = 0;
+
+	if ("Project" == tag)
+	{
+		info = &(mAuiManager->GetPane(mBookMap[mProjView]));
+	}
+	else if ("Stage" == tag)
+	{
+		//info = &(mAuiManager->GetPane(mProjView));
+	}
+	else if ("TimeLine" == tag)
+	{
+		info = &(mAuiManager->GetPane(mBookMap[mTimeLineRenderView_Cot]));
+	}
+	else if ("ResView" == tag)
+	{
+		info = &(mAuiManager->GetPane(mBookMap[mResView]));
+	}
+	else if ("InspView" == tag)
+	{
+		//info = &(mAuiManager->GetPane(mBookMap[mInspView]));
+	}
+	else if ("ConsoleView" == tag)
+	{
+		//info = &(mAuiManager->GetPane(mBookMap[mLogView]));
+	}
+	else if ("PreView" == tag)
+	{
+		info = &(mAuiManager->GetPane(mBookMap[mPreViewRenderView_Cot]));
+	}
+
+	if (info && info->IsValid())
+	{
+		info->Show(!info->IsShown());
+		mAuiManager->Update();
+
+		if (info->IsShown())
+		{
+			if (info->window)
+				info->window->SetFocus();
+		}
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::OnEditorSimulate()
 {
 	bool isCanDoEdit = PX2_EDIT.CanDoEdit();
@@ -927,11 +973,12 @@ void E_MainFrame::_CreateInspView(bool isTopStyle)
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreatePreView(bool isTopStyle)
 {
-	RenderView_Cot *viewCont_PreView = new RenderView_Cot(RVT_PREVIEW, this);
-	mPreView = viewCont_PreView->GetRenderView();
+	mPreViewRenderView_Cot = new RenderView_Cot(RVT_PREVIEW, this);
+
+	mPreView = mPreViewRenderView_Cot->GetRenderView();
 	mPreView->_NewEditRenderView("PreView");
 
-	_CreateView(viewCont_PreView, "PreView", PX2_LM.GetValue("PreView"),
+	_CreateView(mPreViewRenderView_Cot, "PreView", PX2_LM.GetValue("PreView"),
 		wxAuiPaneInfo().DefaultPane().Right(), isTopStyle);
 }
 //----------------------------------------------------------------------------
@@ -945,11 +992,11 @@ void E_MainFrame::_CreateResView(bool isTopStyle)
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateTimeLine(bool isTopStyle)
 {
-	RenderView_Cot *viewCont_TimeLine = new RenderView_Cot(RVT_TIMELINE, this);
-	mTimeLineView = viewCont_TimeLine->GetRenderView();
+	mTimeLineRenderView_Cot = new RenderView_Cot(RVT_TIMELINE, this);
+	mTimeLineView = mTimeLineRenderView_Cot->GetRenderView();
 	mTimeLineView->_NewEditRenderView("TimeLine");
 
-	_CreateView(viewCont_TimeLine, "TimeLine", PX2_LM.GetValue("TimeLine"),
+	_CreateView(mTimeLineRenderView_Cot, "TimeLine", PX2_LM.GetValue("TimeLine"),
 		wxAuiPaneInfo().DefaultPane().Bottom(), isTopStyle);
 }
 //----------------------------------------------------------------------------
@@ -1014,6 +1061,8 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 		mWindowObjs[obj.Name] = winObj;
 
 		obj.TheWindow->SetName(obj.Name);
+
+		mBookMap[obj.TheWindow] = noteBook;
 	}
 
 	noteBook->UpdateTabsHeight();

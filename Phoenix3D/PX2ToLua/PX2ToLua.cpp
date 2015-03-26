@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 03/25/15 17:58:08.
+** Generated automatically by tolua++-1.0.92 on 03/26/15 19:46:48.
 */
 
 #ifndef __cplusplus
@@ -116,9 +116,9 @@ static int tolua_collect_TriggerActor (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Effectable (lua_State* tolua_S)
+static int tolua_collect_EffectableController (lua_State* tolua_S)
 {
- Effectable* self = (Effectable*) tolua_tousertype(tolua_S,1,0);
+ EffectableController* self = (EffectableController*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -165,6 +165,13 @@ static int tolua_collect_Actor (lua_State* tolua_S)
 	return 0;
 }
 
+static int tolua_collect_int64_t (lua_State* tolua_S)
+{
+ int64_t* self = (int64_t*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_CameraActor (lua_State* tolua_S)
 {
  CameraActor* self = (CameraActor*) tolua_tousertype(tolua_S,1,0);
@@ -172,9 +179,9 @@ static int tolua_collect_CameraActor (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_int64_t (lua_State* tolua_S)
+static int tolua_collect_Effectable (lua_State* tolua_S)
 {
- int64_t* self = (int64_t*) tolua_tousertype(tolua_S,1,0);
+ Effectable* self = (Effectable*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -289,38 +296,40 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"DepthProperty");
  tolua_usertype(tolua_S,"UIText");
  tolua_usertype(tolua_S,"Renderable");
- tolua_usertype(tolua_S,"Texture::Format");
  tolua_usertype(tolua_S,"URDo");
+ tolua_usertype(tolua_S,"Singleton<URDoManager>");
+ tolua_usertype(tolua_S,"Texture::Format");
+ tolua_usertype(tolua_S,"URDoManager");
  tolua_usertype(tolua_S,"Sizef");
  tolua_usertype(tolua_S,"UIProgressBar");
- tolua_usertype(tolua_S,"Singleton<URDoManager>");
- tolua_usertype(tolua_S,"Texture3D");
- tolua_usertype(tolua_S,"URDoManager");
  tolua_usertype(tolua_S,"CameraActor");
- tolua_usertype(tolua_S,"RenderTarget");
+ tolua_usertype(tolua_S,"Texture3D");
  tolua_usertype(tolua_S,"HMatrix");
- tolua_usertype(tolua_S,"Selection");
  tolua_usertype(tolua_S,"AmbientRegionActor");
- tolua_usertype(tolua_S,"RenderStep");
+ tolua_usertype(tolua_S,"RenderTarget");
+ tolua_usertype(tolua_S,"EffectObject");
+ tolua_usertype(tolua_S,"Selection");
+ tolua_usertype(tolua_S,"UIEditBox");
+ tolua_usertype(tolua_S,"UIButton");
  tolua_usertype(tolua_S,"ResourceManager");
  tolua_usertype(tolua_S,"PixelShader");
- tolua_usertype(tolua_S,"UIEditBox");
+ tolua_usertype(tolua_S,"EffectModule");
  tolua_usertype(tolua_S,"Creater");
  tolua_usertype(tolua_S,"Logger");
- tolua_usertype(tolua_S,"UIButton");
+ tolua_usertype(tolua_S,"LightActor");
  tolua_usertype(tolua_S,"Scene");
  tolua_usertype(tolua_S,"UIPicBox");
  tolua_usertype(tolua_S,"Controller");
- tolua_usertype(tolua_S,"LightActor");
- tolua_usertype(tolua_S,"Renderer");
- tolua_usertype(tolua_S,"HPoint");
+ tolua_usertype(tolua_S,"APoint");
  tolua_usertype(tolua_S,"CameraShakeChannel");
+ tolua_usertype(tolua_S,"HPoint");
+ tolua_usertype(tolua_S,"Billboard");
  tolua_usertype(tolua_S,"Camera");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"TexPack");
- tolua_usertype(tolua_S,"Billboard");
  tolua_usertype(tolua_S,"PX2::AVector");
  tolua_usertype(tolua_S,"Vector2f");
+ tolua_usertype(tolua_S,"RenderStep");
  tolua_usertype(tolua_S,"PX2::Terrain");
  tolua_usertype(tolua_S,"EffectableController");
  tolua_usertype(tolua_S,"RibbonEmitter");
@@ -336,11 +345,11 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"VertexFormat");
  tolua_usertype(tolua_S,"BeamEmitter");
  tolua_usertype(tolua_S,"TerrainActor");
- tolua_usertype(tolua_S,"APoint");
- tolua_usertype(tolua_S,"GlobalMaterial");
  tolua_usertype(tolua_S,"AVector");
- tolua_usertype(tolua_S,"std::vector<Object*>");
+ tolua_usertype(tolua_S,"GlobalMaterial");
  tolua_usertype(tolua_S,"Triangles");
+ tolua_usertype(tolua_S,"std::vector<Object*>");
+ tolua_usertype(tolua_S,"Renderer");
  tolua_usertype(tolua_S,"MaterialInstance");
  tolua_usertype(tolua_S,"WireProperty");
  tolua_usertype(tolua_S,"std::bitset<PX2_ACTOR_BS_SIZE>");
@@ -23878,6 +23887,497 @@ static int tolua_set_Soundable_msModuleNames_EO(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: new of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_new00
+static int tolua_PX2_EffectableController_new00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   EffectableController* tolua_ret = (EffectableController*)  Mtolua_new((EffectableController)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"EffectableController");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: new_local of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_new00_local
+static int tolua_PX2_EffectableController_new00_local(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertable(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  {
+   EffectableController* tolua_ret = (EffectableController*)  Mtolua_new((EffectableController)());
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"EffectableController");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: delete of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_delete00
+static int tolua_PX2_EffectableController_delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EffectableController* self = (EffectableController*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
+#endif
+  Mtolua_delete(self);
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: Reset of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_Reset00
+static int tolua_PX2_EffectableController_Reset00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EffectableController* self = (EffectableController*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Reset'", NULL);
+#endif
+  {
+   self->Reset();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'Reset'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddModule of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_AddModule00
+static int tolua_PX2_EffectableController_AddModule00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"EffectModule",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EffectableController* self = (EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  EffectModule* module = ((EffectModule*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddModule'", NULL);
+#endif
+  {
+   self->AddModule(module);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddModule'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: RemoveModule of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_RemoveModule00
+static int tolua_PX2_EffectableController_RemoveModule00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"EffectModule",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EffectableController* self = (EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  EffectModule* module = ((EffectModule*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'RemoveModule'", NULL);
+#endif
+  {
+   self->RemoveModule(module);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'RemoveModule'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetModule of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_GetModule00
+static int tolua_PX2_EffectableController_GetModule00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EffectableController* self = (EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  int i = ((int)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetModule'", NULL);
+#endif
+  {
+   EffectModule* tolua_ret = (EffectModule*)  self->GetModule(i);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"EffectModule");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetModule'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetModuleByRttiName of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_GetModuleByRttiName00
+static int tolua_PX2_EffectableController_GetModuleByRttiName00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const EffectableController",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const EffectableController* self = (const EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  const std::string moduleRttiName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetModuleByRttiName'", NULL);
+#endif
+  {
+   EffectModule* tolua_ret = (EffectModule*)  self->GetModuleByRttiName(moduleRttiName);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"EffectModule");
+   tolua_pushcppstring(tolua_S,(const char*)moduleRttiName);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetModuleByRttiName'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetModuleByTypeName of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_GetModuleByTypeName00
+static int tolua_PX2_EffectableController_GetModuleByTypeName00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const EffectableController",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const EffectableController* self = (const EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  const std::string typeName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetModuleByTypeName'", NULL);
+#endif
+  {
+   EffectModule* tolua_ret = (EffectModule*)  self->GetModuleByTypeName(typeName);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"EffectModule");
+   tolua_pushcppstring(tolua_S,(const char*)typeName);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetModuleByTypeName'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetNumModules of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_GetNumModules00
+static int tolua_PX2_EffectableController_GetNumModules00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EffectableController* self = (EffectableController*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetNumModules'", NULL);
+#endif
+  {
+   int tolua_ret = (int)  self->GetNumModules();
+   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetNumModules'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: IsHasModule of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_IsHasModule00
+static int tolua_PX2_EffectableController_IsHasModule00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const EffectableController",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const EffectableController* self = (const EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  const std::string moduleRttiName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsHasModule'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->IsHasModule(moduleRttiName);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+   tolua_pushcppstring(tolua_S,(const char*)moduleRttiName);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IsHasModule'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: IsHasModuleByTypeName of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_IsHasModuleByTypeName00
+static int tolua_PX2_EffectableController_IsHasModuleByTypeName00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const EffectableController",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const EffectableController* self = (const EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  const std::string typeName = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsHasModuleByTypeName'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->IsHasModuleByTypeName(typeName);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+   tolua_pushcppstring(tolua_S,(const char*)typeName);
+  }
+ }
+ return 2;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IsHasModuleByTypeName'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: ModulesUpdateEffectable of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_ModulesUpdateEffectable00
+static int tolua_PX2_EffectableController_ModulesUpdateEffectable00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EffectableController* self = (EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  float ctrlTime = ((float)  tolua_tonumber(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ModulesUpdateEffectable'", NULL);
+#endif
+  {
+   self->ModulesUpdateEffectable(ctrlTime);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ModulesUpdateEffectable'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: ModulesUpdateEffectObject of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_ModulesUpdateEffectObject00
+static int tolua_PX2_EffectableController_ModulesUpdateEffectObject00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"EffectObject",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EffectableController* self = (EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  EffectObject* obj = ((EffectObject*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ModulesUpdateEffectObject'", NULL);
+#endif
+  {
+   self->ModulesUpdateEffectObject(obj);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ModulesUpdateEffectObject'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: Update of class  EffectableController */
+#ifndef TOLUA_DISABLE_tolua_PX2_EffectableController_Update00
+static int tolua_PX2_EffectableController_Update00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"EffectableController",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  EffectableController* self = (EffectableController*)  tolua_tousertype(tolua_S,1,0);
+  double applicationTime = ((double)  tolua_tonumber(tolua_S,2,0));
+  double elapsedTime = ((double)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'Update'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->Update(applicationTime,elapsedTime);
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'Update'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: Save of class  Project */
 #ifndef TOLUA_DISABLE_tolua_PX2_Project_Save00
 static int tolua_PX2_Project_Save00(lua_State* tolua_S)
@@ -26155,6 +26655,74 @@ static int tolua_PX2_Creater_RemoveObject00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: ConvertToControlledable of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_ConvertToControlledable00
+static int tolua_PX2_Creater_ConvertToControlledable00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ConvertToControlledable'", NULL);
+#endif
+  {
+   Controlledable* tolua_ret = (Controlledable*)  self->ConvertToControlledable(obj);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Controlledable");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ConvertToControlledable'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: ConvertToMovable of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_ConvertToMovable00
+static int tolua_PX2_Creater_ConvertToMovable00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ConvertToMovable'", NULL);
+#endif
+  {
+   Movable* tolua_ret = (Movable*)  self->ConvertToMovable(obj);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Movable");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ConvertToMovable'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: ConvertToNode of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_ConvertToNode00
 static int tolua_PX2_Creater_ConvertToNode00(lua_State* tolua_S)
@@ -26286,6 +26854,40 @@ static int tolua_PX2_Creater_ConvertToUIFrame00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'ConvertToUIFrame'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: ConvertToEffectableController of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_ConvertToEffectableController00
+static int tolua_PX2_Creater_ConvertToEffectableController00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ConvertToEffectableController'", NULL);
+#endif
+  {
+   EffectableController* tolua_ret = (EffectableController*)  self->ConvertToEffectableController(obj);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"EffectableController");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ConvertToEffectableController'.",&tolua_err);
  return 0;
 #endif
 }
@@ -29671,6 +30273,29 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"msModuleNames_EA",tolua_get_Soundable_msModuleNames_EA,tolua_set_Soundable_msModuleNames_EA);
    tolua_variable(tolua_S,"msModuleNames_EO",tolua_get_Soundable_msModuleNames_EO,tolua_set_Soundable_msModuleNames_EO);
   tolua_endmodule(tolua_S);
+  #ifdef __cplusplus
+  tolua_cclass(tolua_S,"EffectableController","EffectableController","Controller",tolua_collect_EffectableController);
+  #else
+  tolua_cclass(tolua_S,"EffectableController","EffectableController","Controller",NULL);
+  #endif
+  tolua_beginmodule(tolua_S,"EffectableController");
+   tolua_function(tolua_S,"new",tolua_PX2_EffectableController_new00);
+   tolua_function(tolua_S,"new_local",tolua_PX2_EffectableController_new00_local);
+   tolua_function(tolua_S,".call",tolua_PX2_EffectableController_new00_local);
+   tolua_function(tolua_S,"delete",tolua_PX2_EffectableController_delete00);
+   tolua_function(tolua_S,"Reset",tolua_PX2_EffectableController_Reset00);
+   tolua_function(tolua_S,"AddModule",tolua_PX2_EffectableController_AddModule00);
+   tolua_function(tolua_S,"RemoveModule",tolua_PX2_EffectableController_RemoveModule00);
+   tolua_function(tolua_S,"GetModule",tolua_PX2_EffectableController_GetModule00);
+   tolua_function(tolua_S,"GetModuleByRttiName",tolua_PX2_EffectableController_GetModuleByRttiName00);
+   tolua_function(tolua_S,"GetModuleByTypeName",tolua_PX2_EffectableController_GetModuleByTypeName00);
+   tolua_function(tolua_S,"GetNumModules",tolua_PX2_EffectableController_GetNumModules00);
+   tolua_function(tolua_S,"IsHasModule",tolua_PX2_EffectableController_IsHasModule00);
+   tolua_function(tolua_S,"IsHasModuleByTypeName",tolua_PX2_EffectableController_IsHasModuleByTypeName00);
+   tolua_function(tolua_S,"ModulesUpdateEffectable",tolua_PX2_EffectableController_ModulesUpdateEffectable00);
+   tolua_function(tolua_S,"ModulesUpdateEffectObject",tolua_PX2_EffectableController_ModulesUpdateEffectObject00);
+   tolua_function(tolua_S,"Update",tolua_PX2_EffectableController_Update00);
+  tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Project","Project","",NULL);
   tolua_beginmodule(tolua_S,"Project");
    tolua_function(tolua_S,"Save",tolua_PX2_Project_Save00);
@@ -29748,10 +30373,13 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"AddEffectActor",tolua_PX2_Creater_AddEffectActor00);
    tolua_function(tolua_S,"AddObject",tolua_PX2_Creater_AddObject00);
    tolua_function(tolua_S,"RemoveObject",tolua_PX2_Creater_RemoveObject00);
+   tolua_function(tolua_S,"ConvertToControlledable",tolua_PX2_Creater_ConvertToControlledable00);
+   tolua_function(tolua_S,"ConvertToMovable",tolua_PX2_Creater_ConvertToMovable00);
    tolua_function(tolua_S,"ConvertToNode",tolua_PX2_Creater_ConvertToNode00);
    tolua_function(tolua_S,"ConvertToActor",tolua_PX2_Creater_ConvertToActor00);
    tolua_function(tolua_S,"ConvertToUIPicBox",tolua_PX2_Creater_ConvertToUIPicBox00);
    tolua_function(tolua_S,"ConvertToUIFrame",tolua_PX2_Creater_ConvertToUIFrame00);
+   tolua_function(tolua_S,"ConvertToEffectableController",tolua_PX2_Creater_ConvertToEffectableController00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Scene","Scene","Node",tolua_collect_Scene);

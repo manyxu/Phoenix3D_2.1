@@ -7,6 +7,7 @@
 #include "PX2EventHandler.hpp"
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2EditParams.hpp"
+#include "PX2EffectableController.hpp"
 
 namespace PX2Editor
 {
@@ -20,6 +21,7 @@ namespace PX2Editor
 	class TopView;
 	class LogicView;
 	class LogView;
+	class RenderView_Cot;
 	class PX2wxAuiNotebook;
 	class PX2wxAuiToolBar;
 
@@ -60,6 +62,8 @@ namespace PX2Editor
 
 		void OnImport();
 		void OnExport();
+
+		void OnShowWindow(const std::string &tag);
 
 		void OnEditorSimulate();
 		void OnEditorPlay();
@@ -162,11 +166,18 @@ namespace PX2Editor
 		ProjView *mProjView;
 		ResView *mResView;
 		InspView *mInspView;
+
+		RenderView_Cot *mPreViewRenderView_Cot;
 		RenderView *mPreView;
+
+		RenderView_Cot *mTimeLineRenderView_Cot;
 		RenderView *mTimeLineView;
+		
 		LogView *mLogView;
 
 		PX2wxAuiNotebook *mNoteBookCenter;
+
+		std::map<wxWindow*, wxAuiNotebook*> mBookMap;
 
 		bool mIsCrossCursor;
 	};

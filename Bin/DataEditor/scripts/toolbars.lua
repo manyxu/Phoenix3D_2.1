@@ -46,6 +46,8 @@ function e_CreateTooBarProject()
 	NirMan:AddTool("DataEditor/icons/projview/ctrl.png", "e_ProjectView_Detail_Controls()")
 	NirMan:AddTool("DataEditor/icons/projview/mtl.png", "e_ProjectView_Detail_Materials()")
 	NirMan:AddTool("DataEditor/icons/projview/detail.png", "e_ProjectView_Detail_Details()")
+	NirMan:AddToolSeparater()
+	NirMan:AddTool("DataEditor/icons/projview/detail.png", "e_ProjectView_ShowHelpNode()")
 end
 
 -- res view toolbar

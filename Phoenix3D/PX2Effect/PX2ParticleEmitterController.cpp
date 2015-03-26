@@ -101,7 +101,7 @@ void ParticleEmitterController::SetMaxNumParticles (int num)
 	emitter->SetIndexBuffer(newIBuffer);
 	newIBuffer->SetNumElements(0);
 
-	ResetPlay();
+	if (IsPlaying()) ResetPlay();
 }
 //----------------------------------------------------------------------------
 bool ParticleEmitterController::Update(double applicationTime,

@@ -178,6 +178,8 @@ void Controlledable::RegistProperties ()
 
 	AddPropertyClass("Controlledable");
 
+	AddProperty("IsPlaying", PT_BOOL, IsPlaying(), false);
+
 	AddProperty("IsSelfCtrled", PT_BOOL, mIsSelfCtrled);
 	AddProperty("IsAutoPlay", PT_BOOL, mIsAutoPlay);
 }

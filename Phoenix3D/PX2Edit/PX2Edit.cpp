@@ -96,6 +96,9 @@ void Edit::Reset()
 //----------------------------------------------------------------------------
 void Edit::SetEditType(EditType type)
 {
+	Project *proj = Project::GetSingletonPtr();
+	if (!proj) return;
+
 	if (mEditType == type) return;
 
 	// disable old
@@ -123,7 +126,6 @@ void Edit::SetEditType(EditType type)
 
 	mEditType = type;
 
-	Project *proj = Project::GetSingletonPtr();
 	Scene *scene = proj->GetScene();
 
 	// set new

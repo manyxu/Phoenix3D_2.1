@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/25/15 17:58:09.
+** Generated automatically by tolua++-1.0.92 on 03/26/15 19:46:45.
 */
 
 #ifndef __cplusplus
@@ -44,6 +44,7 @@ static int tolua_collect_Edit (lua_State* tolua_S)
 /* function to register type */
 static void tolua_reg_types (lua_State* tolua_S)
 {
+ tolua_usertype(tolua_S,"EffectableController");
  tolua_usertype(tolua_S,"PX2::ObjectPtr");
  tolua_usertype(tolua_S,"E_MainFrame");
  tolua_usertype(tolua_S,"wxFrame");
@@ -430,6 +431,40 @@ static int tolua_PX2Editor_E_MainFrame_OnExport00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'OnExport'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: OnShowWindow of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnShowWindow00
+static int tolua_PX2Editor_E_MainFrame_OnShowWindow00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+  const std::string tag = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnShowWindow'", NULL);
+#endif
+  {
+   self->OnShowWindow(tag);
+   tolua_pushcppstring(tolua_S,(const char*)tag);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'OnShowWindow'.",&tolua_err);
  return 0;
 #endif
 }
@@ -1293,6 +1328,35 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: OnShowWindow of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnShowWindow01
+static int tolua_PX2Editor_E_MainFrame_OnShowWindow01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+  const std::string tag = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnShowWindow'", NULL);
+#endif
+  {
+   self->OnShowWindow(tag);
+   tolua_pushcppstring(tolua_S,(const char*)tag);
+  }
+ }
+ return 1;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_OnShowWindow00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: OnEditorSimulate of class  E_MainFrame */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnEditorSimulate01
 static int tolua_PX2Editor_E_MainFrame_OnEditorSimulate01(lua_State* tolua_S)
@@ -1929,6 +1993,75 @@ static int tolua_PX2Editor_NirMan_AddSeparater00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: RefreshEffectableControllerModules of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_RefreshEffectableControllerModules00
+static int tolua_PX2Editor_NirMan_RefreshEffectableControllerModules00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"wxMenu",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,3,"EffectableController",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+  wxMenu* menu = ((wxMenu*)  tolua_tousertype(tolua_S,2,0));
+  EffectableController* eftCtrl = ((EffectableController*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'RefreshEffectableControllerModules'", NULL);
+#endif
+  {
+   self->RefreshEffectableControllerModules(menu,eftCtrl);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'RefreshEffectableControllerModules'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateEffectableControllerModule of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_CreateEffectableControllerModule00
+static int tolua_PX2Editor_NirMan_CreateEffectableControllerModule00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+  const std::string typeStr = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateEffectableControllerModule'", NULL);
+#endif
+  {
+   self->CreateEffectableControllerModule(typeStr);
+   tolua_pushcppstring(tolua_S,(const char*)typeStr);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateEffectableControllerModule'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: SetCurToolBar of class  NirMan */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_SetCurToolBar00
 static int tolua_PX2Editor_NirMan_SetCurToolBar00(lua_State* tolua_S)
@@ -2090,6 +2223,37 @@ static int tolua_PX2Editor_NirMan_SetProjTreeLevel00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'SetProjTreeLevel'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TaggleProjectShowHelpNode of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_TaggleProjectShowHelpNode00
+static int tolua_PX2Editor_NirMan_TaggleProjectShowHelpNode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TaggleProjectShowHelpNode'", NULL);
+#endif
+  {
+   self->TaggleProjectShowHelpNode();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'TaggleProjectShowHelpNode'.",&tolua_err);
  return 0;
 #endif
 }
@@ -4003,6 +4167,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OnCloseScene",tolua_PX2Editor_E_MainFrame_OnCloseScene00);
    tolua_function(tolua_S,"OnImport",tolua_PX2Editor_E_MainFrame_OnImport00);
    tolua_function(tolua_S,"OnExport",tolua_PX2Editor_E_MainFrame_OnExport00);
+   tolua_function(tolua_S,"OnShowWindow",tolua_PX2Editor_E_MainFrame_OnShowWindow00);
    tolua_function(tolua_S,"OnEditorSimulate",tolua_PX2Editor_E_MainFrame_OnEditorSimulate00);
    tolua_function(tolua_S,"OnEditorPlay",tolua_PX2Editor_E_MainFrame_OnEditorPlay00);
    tolua_function(tolua_S,"OnEditorStop",tolua_PX2Editor_E_MainFrame_OnEditorStop00);
@@ -4032,6 +4197,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OnCloseScene",tolua_PX2Editor_E_MainFrame_OnCloseScene01);
    tolua_function(tolua_S,"OnImport",tolua_PX2Editor_E_MainFrame_OnImport01);
    tolua_function(tolua_S,"OnExport",tolua_PX2Editor_E_MainFrame_OnExport01);
+   tolua_function(tolua_S,"OnShowWindow",tolua_PX2Editor_E_MainFrame_OnShowWindow01);
    tolua_function(tolua_S,"OnEditorSimulate",tolua_PX2Editor_E_MainFrame_OnEditorSimulate01);
    tolua_function(tolua_S,"OnEditorPlay",tolua_PX2Editor_E_MainFrame_OnEditorPlay01);
    tolua_function(tolua_S,"OnEditorStop",tolua_PX2Editor_E_MainFrame_OnEditorStop01);
@@ -4057,11 +4223,14 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"AddSubMenu",tolua_PX2Editor_NirMan_AddSubMenu00);
    tolua_function(tolua_S,"AddMenuItem",tolua_PX2Editor_NirMan_AddMenuItem00);
    tolua_function(tolua_S,"AddSeparater",tolua_PX2Editor_NirMan_AddSeparater00);
+   tolua_function(tolua_S,"RefreshEffectableControllerModules",tolua_PX2Editor_NirMan_RefreshEffectableControllerModules00);
+   tolua_function(tolua_S,"CreateEffectableControllerModule",tolua_PX2Editor_NirMan_CreateEffectableControllerModule00);
    tolua_function(tolua_S,"SetCurToolBar",tolua_PX2Editor_NirMan_SetCurToolBar00);
    tolua_function(tolua_S,"GetCurToolBar",tolua_PX2Editor_NirMan_GetCurToolBar00);
    tolua_function(tolua_S,"AddTool",tolua_PX2Editor_NirMan_AddTool00);
    tolua_function(tolua_S,"AddToolSeparater",tolua_PX2Editor_NirMan_AddToolSeparater00);
    tolua_function(tolua_S,"SetProjTreeLevel",tolua_PX2Editor_NirMan_SetProjTreeLevel00);
+   tolua_function(tolua_S,"TaggleProjectShowHelpNode",tolua_PX2Editor_NirMan_TaggleProjectShowHelpNode00);
    tolua_function(tolua_S,"MessageBox",tolua_PX2Editor_NirMan_MessageBox00);
    tolua_variable(tolua_S,"__Singleton_NirMan___",tolua_get_NirMan___Singleton_NirMan___,NULL);
   tolua_endmodule(tolua_S);

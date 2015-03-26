@@ -54,6 +54,8 @@ function AddLanguages()
 	-- 编辑菜单
 	PX2_LM:AddItem1("Create", "创建")
 	PX2_LM:AddItem1("Add", "添加")
+	PX2_LM:AddItem1("AddEffectModule", "添加特效模块")
+	
 	PX2_LM:AddItem1("SceneActor", "场景角色")
 	PX2_LM:AddItem1("UI", "界面")
 	
@@ -95,6 +97,7 @@ function AddLanguages()
 	
 	-- 视图
 	PX2_LM:AddItem1("Project", "工程")
+	PX2_LM:AddItem1("Stage", "舞台")
 	PX2_LM:AddItem1("Scene", "场景")
 	PX2_LM:AddItem1("TimeLine", "时间线")
 	PX2_LM:AddItem1("Stage", "舞台")

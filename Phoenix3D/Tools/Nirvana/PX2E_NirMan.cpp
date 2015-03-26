@@ -5,6 +5,8 @@
 #include "PX2Edit.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2NirvanaEventType.hpp"
+#include "PX2Selection.hpp"
+#include "PX2Creater.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -60,6 +62,40 @@ void NirMan::AddSeparater(wxMenu *menu)
 	menu->AppendSeparator();
 }
 //----------------------------------------------------------------------------
+void NirMan::RefreshEffectableControllerModules(wxMenu *menu,
+	EffectableController *eftCtrl)
+{
+	Effectable *ea = DynamicCast<Effectable>(eftCtrl->GetControlledable());
+
+	const std::vector<std::string> &namesEA = ea->GetAllModuleNames_EA();
+	const std::vector<std::string> &namesEO = ea->GetAllModuleNames_EO();
+
+	for (int i = 0; i < (int)namesEA.size(); i++)
+	{
+		std::string createStr = "e_CreateEffectableControllerModule('" + namesEA[i] + "')";
+		AddMenuItem(menu, namesEA[i], createStr);
+	}
+
+	menu->AppendSeparator();
+
+	for (int i = 0; i < (int)namesEO.size(); i++)
+	{
+		std::string createStr = "e_CreateEffectableControllerModule('" + namesEO[i] + "')";
+		AddMenuItem(menu, namesEO[i], createStr);
+	}
+}
+//----------------------------------------------------------------------------
+void NirMan::CreateEffectableControllerModule(const std::string &typeStr)
+{
+	EffectableController *eftCtrl = DynamicCast<EffectableController>(
+		PX2_SELECTION.GetFirstObject());
+	if (eftCtrl && !eftCtrl->IsHasModuleByTypeName(typeStr))
+	{
+		EffectModule *module = EffectModule::CreateModule(typeStr);
+		PX2_CREATER.AddObject(eftCtrl, module); 
+	}
+}
+//----------------------------------------------------------------------------
 void NirMan::SetCurToolBar(PX2wxAuiToolBar *toolBar)
 {
 	mCurToolBar = toolBar;
@@ -86,8 +122,16 @@ void NirMan::AddToolSeparater()
 //----------------------------------------------------------------------------
 void NirMan::SetProjTreeLevel(int level)
 {
-	Event *ent = NirvanaEventSpace::CreateEventX(NirvanaEventSpace::SetProjTreeLevel);
+	Event *ent = NirvanaEventSpace::CreateEventX(
+		NirvanaEventSpace::SetProjTreeLevel);
 	ent->SetData<int>(level);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void NirMan::TaggleProjectShowHelpNode()
+{
+	Event *ent = NirvanaEventSpace::CreateEventX(
+		NirvanaEventSpace::TaggleProjTreeShowHelpNode);
 	PX2_EW.BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------

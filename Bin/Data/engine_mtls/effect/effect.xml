@@ -31,7 +31,7 @@
 				<c>
 				</c>
 				<s>
-					<var index="0" name="Sample0" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="0" name="SampleBase" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
 				</s>
 				<p>
 					<var type="cg" file="effect_cg.fx"/>

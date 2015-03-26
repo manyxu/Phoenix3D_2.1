@@ -290,7 +290,7 @@ bool Effectable::SetTex (const std::string &filename)
 	{
 		mTexFilename = filename;
 
-		mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
+		mMaterialInstance->SetPixelTexture(0, "SampleBase", tex);
 		return true;
 	}
 	else
@@ -320,7 +320,7 @@ bool Effectable::SetTexPack_Ele (const std::string &packFileName,
 
 	if (tex)
 	{
-		mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
+		mMaterialInstance->SetPixelTexture(0, "SampleBase", tex);
 		
 		return true;
 	}
@@ -344,7 +344,7 @@ bool Effectable::SetTexAnim (const std::string &filename)
 		mTexFilename = filename;
 
 		if (mMaterialInstance)
-			mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
+			mMaterialInstance->SetPixelTexture(0, "SampleBase", tex);
 		
 		return true;
 	}
@@ -412,7 +412,7 @@ bool Effectable::SetTexPackAnim (const std::string &texPackFilename)
 	if (tex)
 	{
 		if (mMaterialInstance)
-			mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
+			mMaterialInstance->SetPixelTexture(0, "SampleBase", tex);
 		
 		return true;
 	}
@@ -448,7 +448,7 @@ bool Effectable::AddTexPackAnim_Frame (const std::string &texPackFilename,
 	if (tex)
 	{
 		if (mMaterialInstance)
-			mMaterialInstance->SetPixelTexture(0, "Sample0", tex);
+			mMaterialInstance->SetPixelTexture(0, "SampleBase", tex);
 		
 		return true;
 	}

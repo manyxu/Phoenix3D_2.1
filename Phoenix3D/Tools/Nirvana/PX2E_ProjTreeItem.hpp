@@ -24,11 +24,12 @@ namespace PX2Editor
 
 		ProjTreeItem(ProjTree *tree, ProjTreeItem *parent, 
 			ItemType type, int iconID, PX2::Object *obj,
-			ProjTreeLevel showLevel, const std::string &name = "", 
-			bool doInsert = false, wxTreeItemId insertUpID=wxTreeItemId());
+			ProjTreeLevel showLevel, bool isShowHelpNode, 
+			const std::string &name = "", bool doInsert = false, 
+			wxTreeItemId insertUpID=wxTreeItemId());
 		virtual ~ProjTreeItem();
 
-		void SetTreeLevel(ProjTreeLevel level);
+		void SetTreeLevel(ProjTreeLevel level, bool isShowHelpNode);
 		ProjTreeLevel GetTreeLevel() const { return mTreeLevel; }
 
 		void SetName(const std::string &name);
@@ -41,8 +42,9 @@ namespace PX2Editor
 		wxTreeItemId GetItemID() const { return mItemID; }
 		ProjTreeItem *GetParent() const { return mParentItem; }
 
-		ProjTreeItem *AddChild(PX2::Object *obj, int iconID, ProjTreeLevel showLevel);
-		ProjTreeItem *InsertChild(wxTreeItemId upID, PX2::Object *obj, int iconID, ProjTreeLevel showLevel);
+		ProjTreeItem *AddChild(PX2::Object *obj, int iconID, ProjTreeLevel showLevel, bool isShowHelpNode);
+		ProjTreeItem *InsertChild(wxTreeItemId upID, PX2::Object *obj, int iconID, ProjTreeLevel showLevel,
+			bool isShowHelpNode);
 		void RemoveChild(PX2::Object *obj);
 		void ClearChildren();
 
@@ -66,6 +68,7 @@ namespace PX2Editor
 		wxTreeItemId mItemID;
 
 		ProjTreeLevel mTreeLevel;
+		bool mIsShowHelpNode;
 	};
 
 }

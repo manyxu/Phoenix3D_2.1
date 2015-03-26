@@ -121,6 +121,10 @@ function e_AnimReset()
 	PX2_EDIT:AnimReset()
 end
 
+function e_ShowWindow( windowStr )
+	E_MainFrame:OnShowWindow(windowStr)
+end
+
 function e_OnEditorSimulate()
 	E_MainFrame:OnEditorSimulate()
 end
@@ -383,6 +387,10 @@ function e_CreateUIProgressBar(usePickPos)
 	end
 end
 
+function e_CreateEffectableControllerModule(typeStr)
+	NirMan:CreateEffectableControllerModule(typeStr)
+end
+
 -- add
 function e_AddSceneActor_Actor()
 	local scene = PX2_PROJ:GetScene()
@@ -443,6 +451,10 @@ end
 
 function e_ProjectView_Detail_Details()
 	NirMan:SetProjTreeLevel(4)
+end
+
+function e_ProjectView_ShowHelpNode()
+	NirMan:TaggleProjectShowHelpNode()
 end
 
 -- res view

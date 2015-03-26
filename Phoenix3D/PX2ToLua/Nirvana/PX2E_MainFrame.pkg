@@ -17,6 +17,8 @@
 		void OnImport();
 		void OnExport();
 		
+		void OnShowWindow(const std::string &tag);
+		
 		void OnEditorSimulate();
 		void OnEditorPlay();
 		void OnEditorStop();

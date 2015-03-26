@@ -21,6 +21,9 @@ namespace PX2Editor
 		ProjTree(wxWindow *parent);
 		virtual ~ProjTree();
 
+		void ShowHelpNode(bool showHelpNode);
+		bool IsShowHelpNode() const;
+
 		void SetTreeLevel(ProjTreeLevel level);
 		ProjTreeLevel GetTreeLevel() const;
 		void SetSelectItemLevel(ProjTreeLevel level);
@@ -58,6 +61,7 @@ namespace PX2Editor
 		void _AddObject(PX2::Object *obj);
 		void _RemoveObject(PX2::Object *obj);
 
+		bool mIsShowHelpNode;
 		ProjTreeLevel mTreeLevel;
 
 		wxImageList *mImageList;

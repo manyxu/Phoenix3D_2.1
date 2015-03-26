@@ -11,6 +11,8 @@
 #include "PX2Project.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2GraphicsRoot.hpp"
+#include "PX2EffectableController.hpp"
+#include "PX2EffectModule.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -384,8 +386,9 @@ ParticleEmitter *Creater::CreateParticleEmitter(Node *parent,
 
 	AddObject(parent, mov);
 
-	return mov;
+	mov->ResetPlay();
 
+	return mov;
 }
 //----------------------------------------------------------------------------
 Billboard *Creater::CreateBillboard(Node *parent,
@@ -397,6 +400,8 @@ Billboard *Creater::CreateBillboard(Node *parent,
 	mov->LocalTransform.SetTranslate(localPos);
 
 	AddObject(parent, mov);
+
+	mov->ResetPlay();
 
 	return mov;
 }
@@ -411,6 +416,8 @@ BeamEmitter *Creater::CreateBeamEmitter(Node *parent,
 
 	AddObject(parent, mov);
 
+	mov->ResetPlay();
+
 	return mov;
 }
 //----------------------------------------------------------------------------
@@ -423,6 +430,8 @@ RibbonEmitter *Creater::CreateRibbonEmitter(Node *parent,
 	mov->LocalTransform.SetTranslate(localPos);
 
 	AddObject(parent, mov);
+
+	mov->ResetPlay();
 
 	return mov;
 }
@@ -514,9 +523,11 @@ void Creater::AddObject(Object *parent, Object *obj, bool command)
 {
 	Movable *mov = DynamicCast<Movable>(obj);
 	Controller *ctrl = DynamicCast<Controller>(obj);
+	EffectModule *eftModule = DynamicCast<EffectModule>(obj);
 
 	Node *nodePar = DynamicCast<Node>(parent);
 	Controlledable *ctrlablePar = DynamicCast<Controlledable>(parent);
+	EffectableController *effectableCtrl = DynamicCast<EffectableController>(parent);
 
 	bool added = false;
 
@@ -535,6 +546,12 @@ void Creater::AddObject(Object *parent, Object *obj, bool command)
 	else if (ctrlablePar && ctrl)
 	{
 		ctrlablePar->AttachController(ctrl);
+
+		added = true;
+	}
+	else if (effectableCtrl && eftModule)
+	{
+		effectableCtrl->AddModule(eftModule);
 
 		added = true;
 	}
@@ -557,7 +574,7 @@ bool Creater::RemoveObject(Object *obj, bool command)
 {
 	Movable *mov = DynamicCast<Movable>(obj);
 	Controller *ctrl = DynamicCast<Controller>(obj);
-	//EffectModule *module = DynamicCast<EffectModule>(obj);
+	EffectModule *module = DynamicCast<EffectModule>(obj);
 	Animation *anim = DynamicCast<Animation>(obj);
 
 	URDoPtr theCommand = new0 ObjectAddDeleteURDo(false, obj);
@@ -594,13 +611,13 @@ bool Creater::RemoveObject(Object *obj, bool command)
 
 		removed = true;
 	}
-	//else if (module)
-	//{
-	//	EffectableController *effCtrl = module->GetEffectableController();
-	//	effCtrl->RemoveModule(module);
+	else if (module)
+	{
+		EffectableController *effCtrl = module->GetEffectableController();
+		effCtrl->RemoveModule(module);
 
-	//	removed = true;
-	//}
+		removed = true;
+	}
 
 	if (removed)
 	{
@@ -616,6 +633,16 @@ bool Creater::RemoveObject(Object *obj, bool command)
 	}
 
 	return true;
+}
+//----------------------------------------------------------------------------
+Controlledable *Creater::ConvertToControlledable(Object *obj)
+{
+	return DynamicCast<Controlledable>(obj);
+}
+//----------------------------------------------------------------------------
+Movable *Creater::ConvertToMovable(Object *obj)
+{
+	return DynamicCast<Movable>(obj);
 }
 //----------------------------------------------------------------------------
 Node *Creater::ConvertToNode(Object *obj)
@@ -636,5 +663,10 @@ UIPicBox *Creater::ConvertToUIPicBox(Object *obj)
 UIFrame *Creater::ConvertToUIFrame(Object *obj)
 {
 	return DynamicCast<UIFrame>(obj);
+}
+//----------------------------------------------------------------------------
+EffectableController *Creater::ConvertToEffectableController(Object *obj)
+{
+	return DynamicCast<EffectableController>(obj);
 }
 //----------------------------------------------------------------------------

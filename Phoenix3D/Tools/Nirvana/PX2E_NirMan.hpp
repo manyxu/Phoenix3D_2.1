@@ -6,6 +6,8 @@
 #include "PX2EditorPre.hpp"
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2wxAui.hpp"
+#include "PX2EffectableController.hpp"
+#include "PX2Effectable.hpp"
 using namespace PX2Editor;
 
 namespace PX2
@@ -32,6 +34,10 @@ namespace PX2
 			const std::string &script);
 		void AddSeparater(wxMenu *menu);
 
+		void RefreshEffectableControllerModules(wxMenu *menu,
+			EffectableController *eftCtrl);
+		void CreateEffectableControllerModule(const std::string &typeStr);
+
 	protected:
 		wxMenu *mCurMenu;
 
@@ -49,6 +55,7 @@ namespace PX2
 		// ProjTreeLevel
 	public:
 		void SetProjTreeLevel(int level);
+		void TaggleProjectShowHelpNode();
 
 		// messagebox
 	public:

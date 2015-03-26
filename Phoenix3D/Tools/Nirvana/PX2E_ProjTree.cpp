@@ -40,6 +40,7 @@ ProjTree::ProjTree()
 ProjTree::ProjTree(wxWindow *parent) :
 wxTreeCtrl(parent, sID_PROJVIEW, wxDefaultPosition, wxDefaultSize,
 wxTR_DEFAULT_STYLE | wxTR_FULL_ROW_HIGHLIGHT | wxTR_NO_LINES | wxNO_BORDER),
+mIsShowHelpNode(false),
 mTreeLevel(PTL_GENERAL),
 mImageList(0),
 mItemProj(0),
@@ -101,26 +102,36 @@ ProjTree::~ProjTree()
 	}
 }
 //-----------------------------------------------------------------------------
+void ProjTree::ShowHelpNode(bool showHelpNode)
+{
+	mIsShowHelpNode = showHelpNode;
+}
+//-----------------------------------------------------------------------------
+bool ProjTree::IsShowHelpNode() const
+{
+	return mIsShowHelpNode;
+}
+//-----------------------------------------------------------------------------
 void ProjTree::SetTreeLevel(ProjTreeLevel level)
 {
 	if (!mItemProj) return;
 
-	mItemProj->SetTreeLevel(level);	
+	mItemProj->SetTreeLevel(level, mIsShowHelpNode);	
 	
-	mItemScene->SetTreeLevel(level);
+	mItemScene->SetTreeLevel(level, mIsShowHelpNode);
 
 	for (int i = 0; i < (int)mCalItems.size(); i++)
 	{ 
-		mCalItems[i]->SetTreeLevel(level);
+		mCalItems[i]->SetTreeLevel(level, mIsShowHelpNode);
 	}
 
 	if (PTL_GENERAL == level)
 	{
-		mItemUI->SetTreeLevel(PTL_CHILDREN);
+		mItemUI->SetTreeLevel(PTL_CHILDREN, mIsShowHelpNode);
 	}
 	else
 	{
-		mItemUI->SetTreeLevel(level);
+		mItemUI->SetTreeLevel(level, mIsShowHelpNode);
 	}
 
 	mTreeLevel = level;
@@ -137,7 +148,7 @@ void ProjTree::SetSelectItemLevel(ProjTreeLevel level)
 	ProjTreeItem *item = GetItem(selectID);
 	if (item)
 	{
-		item->SetTreeLevel(level);
+		item->SetTreeLevel(level, mIsShowHelpNode);
 		SelectItem(item->GetItemID());
 	}
 
@@ -165,17 +176,17 @@ void ProjTree::_RefreshProject()
 
 	// scene
 	mItemScene = new ProjTreeItem(this, mItemProj,
-		ProjTreeItem::IT_CATALOG, Icons["scene"], 0, mTreeLevel, PX2_LM.GetValue("pv_Scene"));
+		ProjTreeItem::IT_CATALOG, Icons["scene"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Scene"));
 	mItemProj->mChildItems.push_back(mItemScene);
 
 	// ui
 	mItemUI = new ProjTreeItem(this, mItemProj,
-		ProjTreeItem::IT_CATALOG, Icons["ui"], 0, mTreeLevel, PX2_LM.GetValue("pv_UI"));
+		ProjTreeItem::IT_CATALOG, Icons["ui"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_UI"));
 	mItemProj->mChildItems.push_back(mItemUI);
 
 	// logic
 	mItemLogic = new ProjTreeItem(this, mItemProj,
-		ProjTreeItem::IT_CATALOG, Icons["logic"], 0, mTreeLevel, PX2_LM.GetValue("pv_Logic"));
+		ProjTreeItem::IT_CATALOG, Icons["logic"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Logic"));
 	mItemProj->mChildItems.push_back(mItemLogic);
 
 	Expand(mItemProj->GetItemID());
@@ -201,31 +212,31 @@ void ProjTree::_ClearProject()
 //----------------------------------------------------------------------------
 void ProjTree::_RefreshScene()
 {
-	mItemCameras = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["camera"], 0, mTreeLevel, PX2_LM.GetValue("pv_Camera") );
+	mItemCameras = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["camera"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Camera") );
 	mItemScene->mChildItems.push_back(mItemCameras);
 
-	mItemSky = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Sky"));
+	mItemSky = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Sky"));
 	mItemScene->mChildItems.push_back(mItemSky);
 
-	mItemTerrain = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Terrain"));
+	mItemTerrain = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Terrain"));
 	mItemScene->mChildItems.push_back(mItemTerrain);
 
-	mItemCharacters = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Character"));
+	mItemCharacters = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Character"));
 	mItemScene->mChildItems.push_back(mItemCharacters);
 
-	mItemObjects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, PX2_LM.GetValue("pv_Object"));
+	mItemObjects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["object"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Object"));
 	mItemScene->mChildItems.push_back(mItemObjects);
 
-	mItemEffects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, PX2_LM.GetValue("pv_Effect"));
+	mItemEffects = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Effect"));
 	mItemScene->mChildItems.push_back(mItemEffects);
 
-	mItemSounds = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, PX2_LM.GetValue("pv_Sound"));
+	mItemSounds = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["effect"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Sound"));
 	mItemScene->mChildItems.push_back(mItemSounds);
 
-	mItemTriggers = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["trigger"], 0, mTreeLevel, PX2_LM.GetValue("pv_Trigger"));
+	mItemTriggers = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["trigger"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_Trigger"));
 	mItemScene->mChildItems.push_back(mItemTriggers);
 
-	mItemAmbientRegions = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["ambientregion"], 0, mTreeLevel, PX2_LM.GetValue("pv_AmbientRegion"));
+	mItemAmbientRegions = new ProjTreeItem(this, mItemScene, ProjTreeItem::IT_CATALOG, Icons["ambientregion"], 0, mTreeLevel, mIsShowHelpNode, PX2_LM.GetValue("pv_AmbientRegion"));
 	mItemScene->mChildItems.push_back(mItemAmbientRegions);
 
 	mCalItems.clear();
@@ -287,7 +298,7 @@ void ProjTree::_RefreshUI()
 		treeLevel = PTL_CHILDREN;
 
 	if (mItemUI)
-		mItemUI->AddChild(uiFrame, 0, treeLevel);
+		mItemUI->AddChild(uiFrame, 0, treeLevel, mIsShowHelpNode);
 
 	Expand(mItemUI->GetItemID());
 }
@@ -317,41 +328,42 @@ void ProjTree::_AddObject(Object *obj)
 {
 	Actor *actor = DynamicCast<Actor>(obj);
 	Movable *move = DynamicCast<Movable>(obj);
+	EffectModule *eftModule = DynamicCast<EffectModule>(obj);
 
 	if (actor)
 	{
 		if (actor->IsDerived(CameraActor::TYPE))
 		{
-			mItemCameras->AddChild(obj, 0, mTreeLevel);
+			mItemCameras->AddChild(obj, 0, mTreeLevel, mIsShowHelpNode);
 		}
 		else if (actor->IsDerived(Character::TYPE))
 		{
-			mItemCharacters->AddChild(obj, 0, mTreeLevel);
+			mItemCharacters->AddChild(obj, 0, mTreeLevel, mIsShowHelpNode);
 		}
 		else if (actor->IsDerived(EffectActor::TYPE))
 		{
-			mItemEffects->AddChild(obj, 0, mTreeLevel);
+			mItemEffects->AddChild(obj, 0, mTreeLevel, mIsShowHelpNode);
 		}
 		else if (actor->IsDerived(TriggerActor::TYPE) &&
 			!actor->IsDerived(AmbientRegionActor::TYPE))
 		{
-			mItemTriggers->AddChild(obj, 0, mTreeLevel);
+			mItemTriggers->AddChild(obj, 0, mTreeLevel, mIsShowHelpNode);
 		}
 		else if (actor->IsDerived(AmbientRegionActor::TYPE))
 		{
-			mItemAmbientRegions->AddChild(obj, 0, mTreeLevel);
+			mItemAmbientRegions->AddChild(obj, 0, mTreeLevel, mIsShowHelpNode);
 		}
 		else if (actor->IsDerived(SkyActor::TYPE))
 		{
-			mItemSky->AddChild(obj, 0, mTreeLevel);
+			mItemSky->AddChild(obj, 0, mTreeLevel, mIsShowHelpNode);
 		}
 		else if (actor->IsDerived(TerrainActor::TYPE))
 		{
-			mItemTerrain->AddChild(obj, 0, mTreeLevel);
+			mItemTerrain->AddChild(obj, 0, mTreeLevel, mIsShowHelpNode);
 		}
 		else
 		{
-			mItemObjects->AddChild(obj, 0, mTreeLevel);
+			mItemObjects->AddChild(obj, 0, mTreeLevel, mIsShowHelpNode);
 		}
 	}
 	else if (move)
@@ -370,7 +382,18 @@ void ProjTree::_AddObject(Object *obj)
 					treeLevel = PTL_CHILDREN;
 			}
 
-			item->AddChild(move, 0, treeLevel);
+			item->AddChild(move, 0, treeLevel, mIsShowHelpNode);
+			Expand(item->GetItemID());
+		}
+	}
+	else if (eftModule)
+	{
+		EffectableController *eftableCtrl = DynamicCast<EffectableController>(
+			eftModule->GetEffectableController());
+		ProjTreeItem *item = GetItem(eftableCtrl);
+		if (eftableCtrl && item)
+		{
+			item->AddChild(eftModule, 0, mTreeLevel, mIsShowHelpNode);
 			Expand(item->GetItemID());
 		}
 	}
@@ -504,6 +527,11 @@ void ProjTree::DoExecute(Event *event)
 		int level = event->GetData<int>();
 		SetTreeLevel((ProjTreeLevel)level);
 	}
+	else if (NirvanaEventSpace::IsEqual(event, NirvanaEventSpace::TaggleProjTreeShowHelpNode))
+	{
+		ShowHelpNode(!IsShowHelpNode());
+		SetTreeLevel(GetTreeLevel());
+	}
 	else if (NirvanaEventSpace::IsEqual(event, NirvanaEventSpace::ObjectNameChanged))
 	{
 		Object *obj = event->GetData<Object*>();
@@ -530,9 +558,6 @@ void ProjTree::DoExecute(Event *event)
 			TerrainActor *terrainActor = scene->GetTerrainActor();
 			if (terrainActor)
 			{
-				//ProjTreeItem *item = GetItem(terrainActor);
-				//SelectItem(item);
-
 				PX2_SELECTION.Clear();
 				PX2_SELECTION.AddObject(terrainActor);
 			}

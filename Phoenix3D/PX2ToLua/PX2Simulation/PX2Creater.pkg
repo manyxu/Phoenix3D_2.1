@@ -61,8 +61,12 @@
 			bool command = true);
 		bool RemoveObject(Object *obj, bool command = true);
 		
+	public:
+		Controlledable *ConvertToControlledable(Object *obj);
+		Movable *ConvertToMovable(Object *obj);
 		Node *ConvertToNode(Object *obj);
 		Actor *ConvertToActor(Object *obj);
 		UIPicBox *ConvertToUIPicBox(Object *obj);
 		UIFrame *ConvertToUIFrame(Object *obj);
+		EffectableController *ConvertToEffectableController(Object *obj);
 	};
