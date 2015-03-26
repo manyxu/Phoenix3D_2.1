@@ -2000,55 +2000,18 @@ void Renderer::Draw (const Renderable* renderable,
 {
 	mCurRenderable = renderable;
 
-	//if (!renderable)
-	//{
-	//	assertion(false, "The renderable must exist.\n");
-	//	return;
-	//}
-
-	//if (!instance)
-	//{
-	//	assertion(false, "The renderable must have an material instance.\n");
-	//	return;
-	//}
-
 	SetColorMask(renderable->AllowGreen, renderable->AllowBlue,
 		renderable->AllowGreen, renderable->AllowAlpha);
 
 	const VertexFormat* vformat = renderable->GetVertexFormat();
 	const VertexBuffer* vbuffer = renderable->GetVertexBuffer();
 	const IndexBuffer* ibuffer = renderable->GetIndexBuffer();
-	//const DBObject_V *shareVB = renderable->GetShareDBObject_V();
-	//const DBObject_I *shareIB = renderable->GetShareDBObject_I();
-	//bool useShareBuffers = renderable->IsUseShareBuffers();
 
-	// OpenGL渲染器需要vertex buffer在顶点格式之前先设置。Directx9没有这
-	// 样的需要。
-	//if (!useShareBuffers)
-	//{
-		Enable(vbuffer);
-	//}
-	//else
-	//{
-	//	Enable(shareVB->Buf);
-	//}
+	Enable(vbuffer);
 	
 	Enable(vformat);
-	
-	//if (!useShareBuffers)
-	//{
-		if (ibuffer)
-		{
-			Enable(ibuffer);
-		}
-	//}
-	//else
-	//{
-	//	if (shareIB)
-	//	{
-	//		Enable(shareIB->Buf);
-	//	}
-	//}
+
+	if (ibuffer) Enable(ibuffer);
 
 	const int numPasses = instance->GetNumPasses();
 	for (int i = 0; i < numPasses; ++i)
@@ -2072,32 +2035,6 @@ void Renderer::Draw (const Renderable* renderable,
 //		SetWireProperty(mDefaultWireProperty);
 //#endif
 	}
-
-	//if (!useShareBuffers)
-	//{
-	//	if (ibuffer)
-	//	{
-	//	//	Disable(ibuffer);
-	//	}
-	//}
-	//else
-	//{
-	//	if (shareIB)
-	//	{
-	//	//	Disable(shareIB->Buf);
-	//	}
-	//}
-
-	////Disable(vformat);
-
-	//if (!useShareBuffers)
-	//{
-	////	Disable(vbuffer);
-	//}
-	//else
-	//{
-	////	Disable(shareVB->Buf);
-	//}
 }
 //----------------------------------------------------------------------------
 Mutex &Renderer::GetMutex ()

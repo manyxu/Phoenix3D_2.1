@@ -7,6 +7,7 @@
 #include "PX2Material.hpp"
 #include "PX2ShaderFloat.hpp"
 #include "PX2FString.hpp"
+#include "PX2EnvirParam.hpp"
 
 namespace PX2
 {
@@ -22,7 +23,8 @@ namespace PX2
 
 		Material *GetMaterial(const FString &filename, bool share);
 		void AddMaterial(const FString &filename, Material *mtl);
-		ShaderFloat *CreateShaderFloat(const FString &name, int numRegister);
+		ShaderFloat *CreateShaderFloat(EnvirParam *env, const FString &name, 
+			int numRegister);
 		int QueryShaderKey();
 
 	protected:

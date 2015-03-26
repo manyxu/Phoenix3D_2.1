@@ -177,9 +177,6 @@
     <ClInclude Include="SkillCompl\PX2SkillStepRangeTime.hpp">
       <Filter>Complements\SkillCompl</Filter>
     </ClInclude>
-    <ClInclude Include="PX2RenderStepScene.hpp">
-      <Filter>EngineLoop</Filter>
-    </ClInclude>
     <ClInclude Include="PX2AmbientRegionActor.hpp">
       <Filter>Actor\Ambient</Filter>
     </ClInclude>
@@ -203,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="PX2TriggerActor.hpp">
       <Filter>Actor\Trigger</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2RenderStepScene.hpp">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -326,9 +326,6 @@
     <ClCompile Include="SkillCompl\PX2SkillStepRangeTime.cpp">
       <Filter>Complements\SkillCompl</Filter>
     </ClCompile>
-    <ClCompile Include="PX2RenderStepScene.cpp">
-      <Filter>EngineLoop</Filter>
-    </ClCompile>
     <ClCompile Include="PX2AmbientRegionActor.cpp">
       <Filter>Actor\Ambient</Filter>
     </ClCompile>
@@ -352,6 +349,9 @@
     </ClCompile>
     <ClCompile Include="PX2TriggerActor.cpp">
       <Filter>Actor\Trigger</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2RenderStepScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

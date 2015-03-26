@@ -23,6 +23,8 @@ Scene::Scene()
 {
 	SetName("Scene");
 
+	mEnvirParam = new0 EnvirParam();
+
 	CameraActor *camActor = new0 CameraActor();
 	AttachChild(camActor);
 	camActor->LocalTransform.SetTranslate(APoint(0.0f, -5.0f, 1.0f));
@@ -132,6 +134,8 @@ void Scene::Load(InStream& source)
 	Node::Load(source);
 	PX2_VERSION_LOAD(source);
 
+	source.ReadPointer(mEnvirParam);
+
 	source.ReadPointer(mCameraActor);
 	source.ReadPointer(mDefaultAmbientRegionActor);
 	source.ReadPointer(mTerrainActor);
@@ -143,6 +147,9 @@ void Scene::Load(InStream& source)
 void Scene::Link(InStream& source)
 {
 	Node::Link(source);
+
+	if (mEnvirParam)
+		source.ResolveLink(mEnvirParam);
 
 	if (mCameraActor)
 		source.ResolveLink(mCameraActor);
@@ -166,6 +173,9 @@ bool Scene::Register(OutStream& target) const
 {
 	if (Node::Register(target))
 	{
+		if (mEnvirParam)
+			target.Register(mEnvirParam);
+
 		if (mCameraActor) 
 			target.Register(mCameraActor);
 
@@ -191,6 +201,7 @@ void Scene::Save(OutStream& target) const
 	Node::Save(target);
 	PX2_VERSION_SAVE(target);
 
+	target.WritePointer(mEnvirParam);
 	target.WritePointer(mCameraActor);
 	target.WritePointer(mDefaultAmbientRegionActor);
 	target.WritePointer(mTerrainActor);
@@ -204,6 +215,7 @@ int Scene::GetStreamingSize(Stream &stream) const
 	int size = Node::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
+	size += PX2_POINTERSIZE(mEnvirParam);
 	size += PX2_POINTERSIZE(mCameraActor);
 	size += PX2_POINTERSIZE(mDefaultAmbientRegionActor);
 	size += PX2_POINTERSIZE(mTerrainActor);

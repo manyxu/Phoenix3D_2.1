@@ -272,15 +272,15 @@ mad r0.xyz, r0, r1.w, r2
 mov r1.w, c122.x
 mul r0.xyz, r0, c118.w
 add oD0.xyz, r0, c114
-add r0.x, c121.y, -c121
-rcp r0.y, r0.x
-add r0.x, r1.z, -c121
+rcp r0.x, r0.w
+add r0.y, c121.w, -c121.z
+add r0.z, c121.y, -c121.x
+rcp r0.y, r0.y
+add r0.x, -r0, c121.w
 mul r0.x, r0, r0.y
-add r0.z, c121.w, -c121
-rcp r0.y, r0.w
 min r0.x, r0, c122
 rcp r0.z, r0.z
-add r0.y, -r0, c121.w
+add r0.y, r1.z, -c121.x
 mul r0.y, r0, r0.z
 min r0.y, r0, c122.x
 dp4 oPos.w, r1, c3

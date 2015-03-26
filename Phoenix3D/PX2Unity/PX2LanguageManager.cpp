@@ -2,14 +2,14 @@
 
 #include "PX2LanguageManager.hpp"
 #include "PX2ResourceManager.hpp"
-#include "PX2CSVParser1.hpp"
+#include "PX2CSVParser.hpp"
 #include "PX2Log.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 bool LanguageManager::Load (const char *filename)
 {
-	CSVParser1 csv;
+	CSVParser csv;
 	
 	if (csv.Load(filename))
 	{
@@ -40,7 +40,7 @@ bool LanguageManager::Load (const char *filename)
 //----------------------------------------------------------------------------
 bool LanguageManager::Add (const char *filename)
 {
-	CSVParser1 csv;
+	CSVParser csv;
 
 	if (csv.Load(filename))
 	{

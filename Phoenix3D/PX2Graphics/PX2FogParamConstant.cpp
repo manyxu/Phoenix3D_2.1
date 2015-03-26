@@ -3,6 +3,7 @@
 #include "PX2FogParamConstant.hpp"
 #include "PX2Camera.hpp"
 #include "PX2Renderable.hpp"
+#include "PX2EnvirParam.hpp"
 #include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
@@ -27,7 +28,8 @@ void FogParamConstant::Update(const ShaderStruct *struc)
 {
 	const Renderable *renderable = struc->TheRenderable;
 
-	Float4 fogParam = renderable->UpdateFogParam();
+	Float4 fogParam = renderable->UpdateFogParam(
+		struc->TheEnvirParam->GetFogParam());
 	const float* source = (const float*)fogParam;
 	float* target = mData;
 	for (int i = 0; i < 4; ++i)

@@ -5,6 +5,7 @@
 #include "PX2StandardMesh.hpp"
 #include "PX2VertexColor4Material.hpp"
 #include "PX2SimulationEventType.hpp"
+#include "PX2Scene.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Actor, LightActor);
@@ -112,16 +113,26 @@ void LightActor::UpdateWorldData(double applicationTime, double elapsedTime)
 //----------------------------------------------------------------------------
 void LightActor::SetParent(Movable* parent)
 {
-	if (parent)
+	Actor::SetParent(parent);
+
+	Scene *scene = DynamicCast<Scene>(parent->GetTopestParent());
+	if (scene)
 	{
-		if (mLight) GraphicsRoot::GetSingleton().AddLight(mLight);
+		EnvirParam *envirParam = scene->GetEnvirParam();
+
+		if (parent)
+		{
+			envirParam->AddLight(mLight);
+		}
+		else
+		{
+			envirParam->RemoveLight(mLight);
+		}
 	}
 	else
 	{
-		if (mLight) GraphicsRoot::GetSingleton().RemoveLight(mLight);
+		assertion(false, "There must be a scene.");
 	}
-
-	Actor::SetParent(parent);
 }
 //----------------------------------------------------------------------------
 

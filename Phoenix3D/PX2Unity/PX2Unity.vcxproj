@@ -145,6 +145,7 @@
     <ClCompile Include="ImageLibs\PNG\pngwtran.c" />
     <ClCompile Include="ImageLibs\PNG\pngwutil.c" />
     <ClCompile Include="PX2AddDeleteManager.cpp" />
+    <ClCompile Include="PX2CSVParser.cpp" />
     <ClCompile Include="PX2FontManager.cpp" />
     <ClCompile Include="PX2Importer.cpp" />
     <ClCompile Include="PX2InputEvent.cpp" />
@@ -205,7 +206,6 @@
     <ClCompile Include="PX2CharCodingGBK.cpp" />
     <ClCompile Include="PX2CharCodingUTF8.cpp" />
     <ClCompile Include="PX2Crypt.cpp" />
-    <ClCompile Include="PX2CSVParser1.cpp" />
     <ClCompile Include="PX2CURLDownload.cpp" />
     <ClCompile Include="PX2Font.cpp" />
     <ClCompile Include="PX2FontBitmapImpl.cpp" />
@@ -370,6 +370,7 @@
     <ClInclude Include="ImageLibs\PNG\pngpriv.h" />
     <ClInclude Include="ImageLibs\PNG\pngstruct.h" />
     <ClInclude Include="PX2AddDeleteManager.hpp" />
+    <ClInclude Include="PX2CSVParser.hpp" />
     <ClInclude Include="PX2Importer.hpp" />
     <ClInclude Include="PX2InputEvent.hpp" />
     <ClInclude Include="PX2InputEventData.hpp" />
@@ -405,7 +406,6 @@
     <ClInclude Include="PX2CharCodingGBK.hpp" />
     <ClInclude Include="PX2CharCodingUTF8.hpp" />
     <ClInclude Include="PX2Crypt.hpp" />
-    <ClInclude Include="PX2CSVParser1.hpp" />
     <ClInclude Include="PX2CURLDownload.hpp" />
     <ClInclude Include="PX2Font.hpp" />
     <ClInclude Include="PX2FontBitmapImpl.hpp" />
@@ -445,7 +445,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Lua\Makefile" />
-    <None Include="PX2CSVParser1.inl" />
+    <None Include="PX2CSVParser.inl" />
     <None Include="PX2CURLDownload.inl" />
     <None Include="PX2Font.inl" />
     <None Include="PX2FontCommonImpl.inl" />

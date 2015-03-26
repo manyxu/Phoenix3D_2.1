@@ -84,6 +84,8 @@ namespace PX2
 		void SetParentTransformIngore (bool trans, bool rotate, bool scale);
 		void GetParentTransformIngore (bool &trans, bool &rotate, bool &scale);
 
+		Movable *GetTopestParent();
+
 		// Pick
 	public:
 		virtual void OnPicked (int pickInfo); // called during Picker::Execute

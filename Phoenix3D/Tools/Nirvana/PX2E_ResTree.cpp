@@ -258,7 +258,7 @@ void ResTree::DoExecute(PX2::Event *event)
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::FindActorInResTree))
 	{
-		Object *obj = event->GetData<Object*>();
+		Object *obj = PX2_SELECTION.GetFirstObject();
 		Actor *actor = DynamicCast<Actor>(obj);
 		if (actor)
 		{

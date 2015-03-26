@@ -9,6 +9,7 @@
 #include "PX2Light.hpp"
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2Rect.hpp"
+#include "PX2EnvirParam.hpp"
 #include "PX2VertexFormat.hpp"
 #include "PX2RenderStep.hpp"
 #include "PX2FString.hpp"
@@ -46,19 +47,6 @@ namespace PX2
 		void SetProjectSize(const Sizef &size);
 		const Sizef &GetProjectSize() const;
 
-		// DirLight
-		Light *GetLight_Dir();
-		Projector *GetLight_Dir_Projector();
-		void SetLight_Dir_DepthTexture(Texture *tex);
-		Texture *GetLight_Dir_DepthTexture();
-
-		// PointLight
-		void AddLight (Light *light);
-		void RemoveLight (Light *light);
-		void ClearAllLights ();
-		int GetNumLights ();
-		Light *GetLight (int index);
-
 		const static std::string sEmptyResPath;
 		const static std::string sTerResPath;
 
@@ -67,25 +55,23 @@ namespace PX2
 		Rectf mViewRect;
 		Sizef mScreenSize;
 		Sizef mProjectSize;
-		PX2::CameraPtr mCamera;
-		std::vector<LightPtr> mAllLights; // 保存放在场景中的所有灯光
-		LightPtr mLight_Dir;
-		ProjectorPtr mLight_Dir_Projector;
-		TexturePtr mLight_Dir_DepthTexture;
 
-		// Fog
+		// Environment
 	public:
-		void SetFogParam(const Float4 &param);
-		const Float4 &GetFogParam() const;
-		void SetFogColorHeight(const Float4 &fogColor);
-		const Float4 &GetFogColorHeight() const;
-		void SetFogColorDist(const Float4 &fogColor);
-		const Float4 &GetFogColorDist() const;
+		// 环境参数是用来保存当前要渲染的3D物件，所收到的光照，雾的信息。
+		// 每一个Scene中都会与一个环境参数，在加载Scene的时候设置该Scene的环境
+		// 参数到当前。
+		// 有一种情况你需要同时渲染两个场景，比如在编辑器中，的主场景和，
+		// PreView场景，你想需要他们有不同环境感觉，需要在加载和渲染该物体的之
+		// 前设置一下当前环境参数。在渲染完成之后，再置回原来的参数。（因为
+		// ShaderConstant也和具体灯光相关，所以，加载是是需要设置当前环境参数的
+		// ，这样才能创建与环境参数相对应的ShaderConstant）默认情况下我们设置环
+		// 境参数为空。
+		void SetCurEnvirParam(EnvirParam *param);
+		EnvirParam *GetCurEnvirParam();
 
 	protected:
-		Float4 mFogParam;
-		Float4 mFogColorDist;
-		Float4 mFogColorHeight;
+		EnvirParamPtr mCurEnvirParam;
 
 		// RenderStep;
 	public:
@@ -100,9 +86,6 @@ namespace PX2
 		void Update(double appSeconds, double elapsedSeconds);
 		void ComputeVisibleSetAndEnv();
 		void Draw();
-
-	public_internal:
-		void ComputeEnvironment(VisibleSet &vs);
 
 	protected:
 		RenderStepPtr mRenderStepScene;

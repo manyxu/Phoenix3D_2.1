@@ -48,9 +48,9 @@ void RenderStep::Enable(bool enable)
 	mIsEnable = enable;
 }
 //----------------------------------------------------------------------------
-void RenderStep::SetSize(const Sizef &rect)
+void RenderStep::SetSize(const Sizef &size)
 {
-	mSize = rect;
+	mSize = size;
 
 	OnSizeChange();
 }
@@ -76,6 +76,11 @@ void RenderStep::OnSizeChange()
 void RenderStep::SetViewPort(const Rectf &viewPort)
 {
 	mViewPort = viewPort;
+}
+//----------------------------------------------------------------------------
+void RenderStep::SetRenderer(Renderer *renderer)
+{
+	mRenderer = renderer;
 }
 //----------------------------------------------------------------------------
 void RenderStep::SetCamera(Camera *camera)

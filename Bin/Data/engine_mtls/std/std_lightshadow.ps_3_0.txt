@@ -40,7 +40,7 @@ texld r0, r0, s0
 mul r0, r0, v0
 cmp r1.x, -r1, c3, c3.y
 mad r0.xyz, r0, r1.x, -c1
-mad r0.xyz, v2.y, r0, c1
+mad r0.xyz, v2.x, r0, c1
 add r0.xyz, r0, -c2
-mad oC0.xyz, v2.x, r0, c2
+mad oC0.xyz, v2.y, r0, c2
 mov oC0.w, r0

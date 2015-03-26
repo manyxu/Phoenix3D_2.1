@@ -19,29 +19,46 @@ mIsUseShaderMap(false)
 	mEffect_UIView = new0 UIView(-1);
 	mEffect_UIView->SetDoDepthClear(true);
 	mEffect_UIView->SetName("Effect_UI");
-	mEffect_UIView->SetRenderer(Renderer::GetDefaultRenderer());
 
 	mEffect_UIFrame = new0 UIFrame();
 	mEffect_UIView->SetNode(mEffect_UIFrame);
 
 	//SetUseBloom(true);
-	SetUseShaderMap(false);
+	//SetUseShaderMap(false);
 }
 //----------------------------------------------------------------------------
 RenderStepScene::~RenderStepScene()
 {
 }
 //----------------------------------------------------------------------------
+void RenderStepScene::SetRenderer(Renderer *renderer)
+{
+	RenderStep::SetRenderer(renderer);
+
+	mEffect_UIView->SetRenderer(renderer);
+}
+//----------------------------------------------------------------------------
 void RenderStepScene::Update(double appSeconds, double elapsedSeconds)
 {
 	if (!mIsUpdated) mIsUpdated = true;
+	if (!mNode) return;
 
+	EnvirParamPtr beformParam = PX2_GR.GetCurEnvirParam();
 	CameraPtr beforeCamer = mRenderer->GetCamera();
+
+	Scene *scene = (Scene*)((Node*)mNode);
+	EnvirParam *sceneEnvirParam = scene->GetEnvirParam();
+	PX2_GR.SetCurEnvirParam(sceneEnvirParam);
 	mRenderer->SetCamera(mCamera);
+
+	if (mEffect_RenderTarget_Shadow)
+		sceneEnvirParam->SetLight_Dir_DepthTexture(
+		mEffect_RenderTarget_Shadow->GetDepthStencilTexture());
 
 	PX2_UNUSED(elapsedSeconds);
 	if (mNode) mNode->Update(appSeconds, elapsedSeconds, false);
 
+	PX2_GR.SetCurEnvirParam(beformParam);
 	mRenderer->SetCamera(beforeCamer);
 
 	mEffect_UIView->Update(appSeconds, elapsedSeconds);
@@ -52,8 +69,9 @@ void RenderStepScene::ComputeVisibleSetAndEnv()
 {
 	if (!IsEnable()) return;
 
-	Scene *scene = PX2_PROJ.GetScene();
-	if (!scene) return;
+	if (!mNode) return;
+
+	Scene *scene = (Scene*)((Node*)mNode);
 
 	const Camera *cam = mCuller.GetCamera();
 	if (mNode && cam)
@@ -63,10 +81,11 @@ void RenderStepScene::ComputeVisibleSetAndEnv()
 	}
 	else mCuller.GetVisibleSet().Clear();
 
-	PX2_GR.ComputeEnvironment(mCuller.GetVisibleSet());
-
-	Projector *lightCamera = PX2_GR.GetLight_Dir_Projector();
-	mEffect_Culler_Shadow.SetCamera(lightCamera);
+	EnvirParam *envirParam = scene->GetEnvirParam();
+	envirParam->ComputeEnvironment(mCuller.GetVisibleSet());
+	
+	Projector *lightProjector = envirParam->GetLight_Dir_Projector();
+	mEffect_Culler_Shadow.SetCamera(lightProjector);
 	mEffect_Culler_Shadow.ComputeVisibleSet(mNode);
 	mEffect_Culler_Shadow.GetVisibleSet().Sort();
 }
@@ -74,13 +93,15 @@ void RenderStepScene::ComputeVisibleSetAndEnv()
 void RenderStepScene::Draw()
 {
 	if (!IsEnable()) return;
-
 	if (!mRenderer) return;
+	if (!mNode) return;
 
-	Scene *scene = PX2_PROJ.GetScene();
-	if (!scene) return;
-
+	EnvirParamPtr beformParam = PX2_GR.GetCurEnvirParam();
 	CameraPtr beforeCamer = mRenderer->GetCamera();
+
+	Scene *scene = (Scene*)((Node*)mNode);
+	EnvirParam *sceneEnvirParam = scene->GetEnvirParam();
+	PX2_GR.SetCurEnvirParam(sceneEnvirParam);
 
 	Rectf viewPort = mViewPort;
 	if (viewPort.IsEmpty()) viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
@@ -152,6 +173,7 @@ void RenderStepScene::Draw()
 	}
 
 	mRenderer->SetCamera(beforeCamer);
+	PX2_GR.SetCurEnvirParam(beformParam);
 
 	mEffect_UIView->SetViewPort(viewPort);
 	mEffect_UIView->Draw();
@@ -291,7 +313,6 @@ void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 	mEffect_UIPicBox_Shadow->SetAnchorPoint(Float2::ZERO);
 	mEffect_UIPicBox_Shadow->SetSize(Sizef(256.0f, 256.0f));
 	mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
-	PX2_GR.SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetDepthStencilTexture());
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::_SetCameraF(Camera *camera, UIPicBox *uiPicBox)

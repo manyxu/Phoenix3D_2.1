@@ -66,8 +66,8 @@ void v_std_lightshadow
 	float fogValueDist = (FogParam.w - dist)/(FogParam.w - FogParam.z);
 	fogValueDist = clamp(fogValueDist, 0, 1.0);
 	
-	vertexTCoord1.x = fogValueDist;
-	vertexTCoord1.y = fogValueHeight;
+	vertexTCoord1.x = fogValueHeight;
+	vertexTCoord1.y = fogValueDist;
 	
 	// shadow
     vertexTCoord2 = mul(ProjectPVBSMatrix_Dir, float4(modelPosition, 1.0f));
@@ -112,8 +112,8 @@ void p_std_lightshadow
 	lastColor.rgb *= lightAmout;
 	
 	// fog
-	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.y);
-	lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.x);
+	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.x);
+	lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.y);
 		
 	pixelColor = lastColor;
 }

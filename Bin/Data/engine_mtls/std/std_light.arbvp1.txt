@@ -158,12 +158,12 @@ RCP R1.y, R1.x;
 ADD R1.x, R1.w, -c[26];
 MUL R1.x, R1, R1.y;
 MIN R1.x, R1, c[0].y;
-MAX result.texcoord[1].x, R3, c[0].z;
+MAX result.texcoord[1].y, R3.x, c[0].z;
 DP4 result.position.w, R0, c[4];
 DP4 result.position.z, R0, c[3];
 DP4 result.position.y, R0, c[2];
 DP4 result.position.x, R0, c[1];
-MAX result.texcoord[1].y, R1.x, c[0].z;
+MAX result.texcoord[1].x, R1, c[0].z;
 MOV result.texcoord[0].xy, vertex.texcoord[0];
 MOV result.color.w, c[11];
 END

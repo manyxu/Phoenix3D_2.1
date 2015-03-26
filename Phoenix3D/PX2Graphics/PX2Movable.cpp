@@ -114,6 +114,21 @@ void Movable::GetParentTransformIngore (bool &trans, bool &rotate, bool &scale)
 	scale = mIsIngoreParent_Scale;
 }
 //----------------------------------------------------------------------------
+Movable *Movable::GetTopestParent()
+{
+	Movable *topestParentTemp = mParent;
+	Movable *topestParent = mParent;
+
+	while (topestParentTemp)
+	{
+		topestParent = topestParentTemp;
+
+		topestParentTemp = topestParentTemp->GetParent();
+	}
+
+	return topestParent;
+}
+//----------------------------------------------------------------------------
 void Movable::OnPicked (int pickInfo)
 {
 	PX2_UNUSED(pickInfo);

@@ -11,6 +11,8 @@
 #include "PX2UIPicBox.hpp"
 #include "PX2UIText.hpp"
 #include "PX2UIView.hpp"
+#include "PX2RenderStepScene.hpp"
+#include "PX2Scene.hpp"
 
 namespace PX2
 {
@@ -43,11 +45,13 @@ namespace PX2
 		UIPicBoxPtr mUIPicBox;
 		UITextPtr mUIText;
 
-		CameraPtr mModelCamera;
-		CameraNodePtr mModelCameraNode;
-		NodePtr mModelRootNode;
-		NodePtr mModelNode;
-		MovablePtr mModel;
+		RenderStepScenePtr mRenderStepScene;
+		ScenePtr mModelScene;
+		CameraActorPtr mModelCameraActor;
+		InterpCurveRotateControllerPtr mModelCameraRolateCtrl;
+
+		ActorPtr mModeActor;
+		MovablePtr mModelMovable;
 
 		PreViewType mPreViewType;
 

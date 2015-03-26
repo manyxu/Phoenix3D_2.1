@@ -156,11 +156,11 @@ rcp r3.z, r3.z
 add r3.x, -r3, c25.w
 mul r3.x, r3, r3.z
 min r3.x, r3, c26
-max oT1.x, r3, c26.z
+max oT1.y, r3.x, c26.z
 dp4 oPos.w, r0, c3
 dp4 oPos.z, r0, c2
 dp4 oPos.y, r0, c1
 dp4 oPos.x, r0, c0
-max oT1.y, r1.x, c26.z
+max oT1.x, r1, c26.z
 mov oT0.xy, v2
 mov oD0.w, c10

@@ -10,7 +10,8 @@
 namespace PX2
 {
 
-	
+	typedef void(*TravelExecuteFun) (Movable *mov, Any *data);
+
 	/// 场景节点类
 	/**
 	* 该类实现“父亲-孩子”机制，用来组织场景的构建。从该类可以派生不同的类如：
@@ -36,61 +37,13 @@ namespace PX2
 		int GetNumChildren () const;
 		int GetNumValidChildren () const;
 
-		/// 添加孩子节点
-		/** 
-		* 如果操作成功，返回孩子在孩子列表中的索引号。
-		* 在有些引擎的场景图系统系统中，一个节点可以有多个父亲，这样的场景图是
-		* 一个有向无环图（DGA）。在这样情况下，父亲孩子的关系不是树的关系。因此
-		* ，你要为节点找个新“父亲”时，你要先解除与旧的“父子关系”，你必须先
-		* DetachChild掉节点，然后另外一个“父亲”AttachChild此节点。
-		*	当你在DetachChild的时候，当心孩子节点的“自析构self-destruct”。如果
-		* 你不想这样的情况发生的话，把这个孩子挂到一个smart指针上。
-		*	举例：
-		*	Node* pkNode0 = PX2_NEW Node;
-		*	Movable* pkChild0 = <...>;
-		*	pkNode0->AttachChild(pkChild0);  // child at index 0
-		*	Node* pkNode1 = <...>;
-		*
-		*	// 这里会出现一个assert，因为pkChild0已经有一个父亲节点pkNode0。
-		*	pkNode1->AttachChild(pkChild0);
-		*	
-		*	// 为了防止“自析构self-destruct”，你必须把孩子挂到一个smart指针上。
-		*	MovablePtr spkSaveChild = pkNode0->GetChild(0);
-		*	pkNode0->DetachChild(spkSaveChild);
-		*	pkNode1->AttachChild(spkSaveChild);
-		*/
 		virtual int AttachChild (Movable* child);
-
 		void InsertChild (Movable *before, Movable *child);
-
-		/// 从父亲节点中去除child
-		/**
-		* 如果'child'非空，返回child在孩子数组中的索引。否则返回-1。
-		*/
 		virtual int DetachChild (Movable* child);
-
 		virtual bool DetachChildByName (const std::string &name);
-
-		/// 从父亲节点中去除索引为i的child
-		/**
-		* 如果0 <= i < GetNumChildren()返回在i处孩子的指针，否则返回null。
-		*/
 		virtual MovablePtr DetachChildAt (int i);
-
 		virtual void DetachAllChildren ();
-
-		/// 设置索引为i处的孩子节点
-		/**
-		* 如果0 <= i < GetNumChildren()，返回之前在i处的孩子节点指针。如果i超出
-		* 范围， 将孩子添加到孩子列表末尾，并返回null。
-		*/
 		virtual MovablePtr SetChild (int i, Movable* child);
-
-		/// 获得索引为i处的孩子节点
-		/**
-		* 如果0 <= i < GetNumChildren()，返回在i处孩子的指针。如果超出范围，返
-		* 回null。
-		*/
 		virtual MovablePtr GetChild (int i);
 		virtual MovablePtr GetChildByName (const std::string &name);
 
@@ -109,6 +62,8 @@ namespace PX2
 
 		void SetAnchorID (int anchorID);
 		int GetAnchorID () const;
+
+		static void TravelExecute(Movable *mov, TravelExecuteFun fun, Any *data=0);
 
 	protected:
 		// 几何图形更新

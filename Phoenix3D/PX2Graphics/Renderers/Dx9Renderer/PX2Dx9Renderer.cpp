@@ -21,6 +21,8 @@
 #include "PX2Polysegment.hpp"
 #include "PX2TriFan.hpp"
 #include "PX2TriStrip.hpp"
+#include "PX2GraphicsRoot.hpp"
+
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -1281,6 +1283,8 @@ void Renderer::Enable (const Renderable* renderable,
 	ShaderStruct struc;
 	struc.TheRenderable = (Renderable*)renderable;
 	struc.TheCamera = (Camera*)mCamera;
+	struc.TheEnvirParam = PX2_GR.GetCurEnvirParam();
+
 	vparams->UpdateConstants(&struc);
 	pparams->UpdateConstants(&struc);
 

@@ -1,21 +1,21 @@
-// PX2CSVParser1.cpp
+// PX2CSVParser.cpp
 
-#include "PX2CSVParser1.hpp"
+#include "PX2CSVParser.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2Assert.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-CSVParser1::TableItem::TableItem(const char* szItemString)
+CSVParser::TableItem::TableItem(const char* szItemString)
 {
 	mItemString = szItemString;
 }
 //----------------------------------------------------------------------------	
-CSVParser1::TableLine::TableLine() 
+CSVParser::TableLine::TableLine() 
 {
 }
 //----------------------------------------------------------------------------
-CSVParser1::CSVParser1()
+CSVParser::CSVParser()
 {
 	mSeparator = ',';
 	mContent = 0;
@@ -24,12 +24,12 @@ CSVParser1::CSVParser1()
 	mInvalidLine.SetLine(this, -1);
 }
 //----------------------------------------------------------------------------
-CSVParser1::~CSVParser1()
+CSVParser::~CSVParser()
 {
 	Clear();
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::Load(const std::string &filename)
+bool CSVParser::Load(const std::string &filename)
 {
 	int bufSize = 0;
 	char *buffer = 0;
@@ -64,7 +64,7 @@ bool CSVParser1::Load(const std::string &filename)
 	return true;
 }
 //----------------------------------------------------------------------------
-void CSVParser1::Clear()
+void CSVParser::Clear()
 {
 	mTitleLine = 0;
 	mTitleCol = 0;
@@ -81,7 +81,7 @@ void CSVParser1::Clear()
 	}
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::ParseTextTable()
+bool CSVParser::ParseTextTable()
 {
 	assertion(0!=mContent, "mContent must not be 0.\n");
 
@@ -199,7 +199,7 @@ bool CSVParser1::ParseTextTable()
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::FindPosByString(const char* str, int& line, int& col)
+bool CSVParser::FindPosByString(const char* str, int& line, int& col)
 {
 	char* p = 0;
 	for (int i=0; i<mNumLines; i++)
@@ -221,7 +221,7 @@ bool CSVParser1::FindPosByString(const char* str, int& line, int& col)
 	return false;
 }
 //----------------------------------------------------------------------------
-int CSVParser1::FindLineByString(const char* str)
+int CSVParser::FindLineByString(const char* str)
 {
 	int line, col;
 	if (FindPosByString(str, line, col))
@@ -231,7 +231,7 @@ int CSVParser1::FindLineByString(const char* str)
 	return -1;
 }
 //----------------------------------------------------------------------------
-int CSVParser1::FindColByString(const char* str)
+int CSVParser::FindColByString(const char* str)
 {
 	int line, col;
 	if (FindPosByString(str, line, col))
@@ -241,7 +241,7 @@ int CSVParser1::FindColByString(const char* str)
 	return -1;
 }
 //----------------------------------------------------------------------------
-const CSVParser1::TableLine& CSVParser1::operator[](const char* szIdx) const
+const CSVParser::TableLine& CSVParser::operator[](const char* szIdx) const
 {
 	for (int i=0; i<mNumLines; i++)
 	{
@@ -253,7 +253,7 @@ const CSVParser1::TableLine& CSVParser1::operator[](const char* szIdx) const
 	return mInvalidLine;
 }
 //----------------------------------------------------------------------------
-const char* CSVParser1::GetString(int line, const char* szColIdx) const
+const char* CSVParser::GetString(int line, const char* szColIdx) const
 {
 	char* pStr = 0;
 	static char szNull[] = "";
@@ -279,83 +279,83 @@ const char* CSVParser1::GetString(int line, const char* szColIdx) const
 	return szNull;
 }
 //----------------------------------------------------------------------------
-const char* CSVParser1::GetString(const char* szLineIdx, const char* szColIdx)
+const char* CSVParser::GetString(const char* szLineIdx, const char* szColIdx)
 	const
 {
 	return (*this)[szLineIdx][szColIdx];
 }
 //----------------------------------------------------------------------------
-const char* CSVParser1::GetString (int line, int col) const
+const char* CSVParser::GetString (int line, int col) const
 {
 	if (line<0 || line>=mNumLines || col<0 || col>=mNumCols) return 0;
 	if (mItems[line*mNumCols+col]==0) return "";
 	return (const char*)mItems[line*mNumCols+col];
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::Char (size_t line, size_t col, char &val) const
+bool CSVParser::Char (size_t line, size_t col, char &val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = (char)atoi(mItems[line*mNumCols+col]);
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::Byte (size_t line, size_t col, unsigned char &val) const
+bool CSVParser::Byte (size_t line, size_t col, unsigned char &val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = (unsigned char)atoi(mItems[line*mNumCols+col]);
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::Short(size_t line, size_t col, short &val) const
+bool CSVParser::Short(size_t line, size_t col, short &val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = (short)atoi(mItems[line*mNumCols+col]);
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::Word (size_t line, size_t col, unsigned short&val) const
+bool CSVParser::Word (size_t line, size_t col, unsigned short&val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = (unsigned short)atoi(mItems[line*mNumCols+col]);
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::Int  (size_t line, size_t col, int &val) const
+bool CSVParser::Int  (size_t line, size_t col, int &val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = (int)atoi(mItems[line*mNumCols+col]);
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::UInt (size_t line, size_t col, unsigned int &val) const
+bool CSVParser::UInt (size_t line, size_t col, unsigned int &val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = (unsigned int)atoi(mItems[line*mNumCols+col]);
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::Long (size_t line, size_t col, long &val) const
+bool CSVParser::Long (size_t line, size_t col, long &val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = (long)atol(mItems[line*mNumCols+col]);
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::DWord(size_t line, size_t col, unsigned long &val) const
+bool CSVParser::DWord(size_t line, size_t col, unsigned long &val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = (unsigned long)atol(mItems[line*mNumCols+col]);
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::Float (size_t line, size_t col, float &val) const
+bool CSVParser::Float (size_t line, size_t col, float &val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = (float)atof(mItems[line*mNumCols+col]);
 	return true;
 }
 //----------------------------------------------------------------------------
-bool CSVParser1::Double(size_t line, size_t col, double &val) const
+bool CSVParser::Double(size_t line, size_t col, double &val) const
 {
 	if (mItems[line*mNumCols+col]==0) return false;
 	val = atof(mItems[line*mNumCols+col]);

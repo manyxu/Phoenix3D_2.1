@@ -456,6 +456,25 @@ void Node::GetVisibleSet (Culler& culler, bool noCull)
     }
 }
 //----------------------------------------------------------------------------
+void Node::TravelExecute(Movable *mov, TravelExecuteFun fun, Any *data)
+{
+	(*fun)(mov, data);
+
+	Node *node = DynamicCast<Node>(mov);
+	if (node)
+	{
+		for (int i = 0; i < node->GetNumChildren(); i++)
+		{
+			Movable *child = node->GetChild(i);
+
+			if (child)
+			{
+				TravelExecute(child, fun, data);
+			}
+		}
+	}
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // Name support.

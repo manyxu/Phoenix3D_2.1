@@ -30,14 +30,20 @@ mPreViewType(PVT_NONE)
 	mUIText->SetAligns(TEXTALIGN_RIGHT | TEXTALIGN_TOP);
 	mUIText->SetColor(Float3::WHITE);
 
-	mModelRootNode = new0 Node();
+	mModelScene = new0 Scene();
+	mModelCameraActor = mModelScene->GetUseCameraActor();
 
-	mModelCamera = new0 Camera();
-	mModelCameraNode = new0 CameraNode(mModelCamera);
-	mModelRootNode->AttachChild(mModelCameraNode);
+	float maxTime = 3.0f;
+	mModelCameraRolateCtrl = new0 InterpCurveRotateController();
+	mModelCameraRolateCtrl->mValues.Reset();
+	mModelCameraRolateCtrl->mValues.AddPoint(0.0f, Float3(0.0f, 0.0f, 0.0f));
+	mModelCameraRolateCtrl->mValues.AddPoint(maxTime, Float3(0.0f, 0.0f, Mathf::TWO_PI));
+	mModelCameraRolateCtrl->MaxTime = maxTime;
+	mModelCameraRolateCtrl->Repeat = Controller::RT_WRAP;
+	mModelCameraActor->AttachController(mModelCameraRolateCtrl);
 
-	mModelNode = new0 Node();
-	mModelRootNode->AttachChild(mModelNode);
+	mModeActor = new0 Actor();
+	mModelScene->AttachChild(mModeActor);
 }
 //----------------------------------------------------------------------------
 EditRenderView_PreView::~EditRenderView_PreView()
@@ -59,6 +65,12 @@ EditRenderView_PreView::~EditRenderView_PreView()
 		PX2_GR.RemoveRenderSteps(mRenderStepCtrl1);
 		mRenderStepCtrl1 = 0;
 	}
+
+	if (mRenderStepScene)
+	{
+		PX2_GR.RemoveRenderSteps(mRenderStepScene);
+		mRenderStepScene = 0;
+	}
 }
 //----------------------------------------------------------------------------
 bool EditRenderView_PreView::InitlizeRendererStep(const std::string &name)
@@ -77,12 +89,11 @@ bool EditRenderView_PreView::InitlizeRendererStep(const std::string &name)
 	mRenderStep->SetSize(mSize);
 	mRenderStep->SetNode(mPicFrame);
 
-	mModelCamera->SetFrustum(35.0f, (float)mSize.Width / (float)mSize.Height, 1.0f, 1000.0f);
-	mRenderStepCtrl = new0 RenderStep();
-	mRenderStepCtrl->SetSize(mSize);
-	mRenderStepCtrl->SetRenderer(mRenderer);
-	mRenderStepCtrl->SetNode(mModelRootNode);
-	mRenderStepCtrl->SetCamera(mModelCamera);
+	mRenderStepScene = new0 RenderStepScene();
+	mRenderStepScene->SetRenderer(mRenderer);
+	mRenderStepScene->SetNode(mModelScene);
+	mRenderStepScene->SetCamera(mModelCameraActor->GetCamera());
+	mRenderStepScene->SetSize(mSize);
 
 	mIsRenderCreated = true;
 
@@ -97,30 +108,50 @@ void EditRenderView_PreView::Tick(double elapsedTime)
 	{
 		double tiemInSeconds = GetTimeInSeconds();
 
-		if (PVT_TEXTURE == mPreViewType)
+		if (PVT_NONE == mPreViewType)
+		{
+			Renderer *renderer = mRenderStep->GetRenderer();
+			if (renderer && renderer->PreDraw())
+			{
+				renderer->ClearBuffers();
+
+				renderer->PostDraw();
+				renderer->DisplayColorBuffer();
+			}
+		}
+		else if (PVT_TEXTURE == mPreViewType)
 		{
 			mRenderStep->Update(tiemInSeconds, elapsedTime);
 			mRenderStep->ComputeVisibleSetAndEnv();
+
+			Renderer *renderer = mRenderStep->GetRenderer();
+			if (renderer && renderer->PreDraw())
+			{
+				renderer->InitRenderStates();
+				renderer->ClearBuffers();
+
+				mRenderStep->Draw();
+
+				renderer->PostDraw();
+				renderer->DisplayColorBuffer();
+			}
 		}
 		else if (PVT_MODEL == mPreViewType)
 		{
-			mRenderStepCtrl->Update(tiemInSeconds, elapsedTime);
-			mRenderStepCtrl->ComputeVisibleSetAndEnv();
-		}
+			mRenderStepScene->Update(tiemInSeconds, elapsedTime);
+			mRenderStepScene->ComputeVisibleSetAndEnv();
 
-		Renderer *renderer = mRenderStep->GetRenderer();
-		if (renderer && renderer->PreDraw())
-		{
-			renderer->InitRenderStates();
-			renderer->ClearBuffers();
+			Renderer *renderer = mRenderStepScene->GetRenderer();
+			if (renderer && renderer->PreDraw())
+			{
+				renderer->InitRenderStates();
+				renderer->ClearBuffers();
 
-			if (PVT_TEXTURE == mPreViewType)
-				mRenderStep->Draw();
-			else if (PVT_MODEL == mPreViewType)
-				mRenderStepCtrl->Draw();
+				mRenderStepScene->Draw();
 
-			renderer->PostDraw();
-			renderer->DisplayColorBuffer();
+				renderer->PostDraw();
+				renderer->DisplayColorBuffer();
+			}
 		}
 	}
 }
@@ -183,11 +214,14 @@ void EditRenderView_PreView::OnSize(const Sizef& size)
 
 	_ReSizeTexture();
 
-	mModelCamera->SetFrustum(35.0f, (float)mSize.Width / (float)mSize.Height, 1.0f, 1000.0f);
-
 	if (mRenderStep)
 	{
 		mRenderStep->GetRenderer()->ResizeWindow((int)size.Width, (int)size.Height);
+	}
+
+	if (mRenderStepScene)
+	{
+		mRenderStepScene->SetSize(size);
 	}
 }
 //----------------------------------------------------------------------------
@@ -247,6 +281,18 @@ void EditRenderView_PreView::DoExecute(Event *event)
 	}
 }
 //----------------------------------------------------------------------------
+void _ModePreViewTravelExecuteFun(Movable *mov, Any *data)
+{
+	PX2_UNUSED(data);
+
+	Renderable *renderable = DynamicCast<Renderable>(mov);
+	if (renderable)
+	{
+		renderable->SetFogInfulenceParam_Height(0.001f);
+		renderable->SetFogInfulenceParam_Distance(0.001f);
+	}
+}
+//----------------------------------------------------------------------------
 void EditRenderView_PreView::SetObject(PX2::Object *obj)
 {
 	Texture2D *d2Tex = DynamicCast<Texture2D>(obj);
@@ -294,16 +340,21 @@ void EditRenderView_PreView::SetObject(PX2::Object *obj)
 
 		mUIText->SetText("");
 
-		mModelNode->DetachAllChildren();
-		mModel = mov;
-		mModelNode->AttachChild(mModel);
-		mModel->ResetPlay();
-		mModelNode->Update(GetTimeInSeconds(), 0.0f, false);
+		EnvirParamPtr beforeParam = PX2_GR.GetCurEnvirParam();
+		PX2_GR.SetCurEnvirParam(mModelScene->GetEnvirParam());
 
-		const APoint &boundCenter = mModel->WorldBound.GetCenter();
-		float boundRadius = mModel->WorldBound.GetRadius();
+		mModeActor->DetachAllChildren();
+		mModelMovable = (Movable*)(mov->Copy(""));
+		Node::TravelExecute(mModelMovable, _ModePreViewTravelExecuteFun);
+		mModeActor->AttachChild(mModelMovable);
+		mModelMovable->ResetPlay();
+		mModeActor->Update(GetTimeInSeconds(), 0.0f, false);
+		mModelCameraActor->ResetPlay();
 
-		APoint camPos = boundCenter + AVector(-boundRadius*2.0f, -boundRadius*2.0f, boundRadius);
+		const APoint &boundCenter = mModelMovable->WorldBound.GetCenter();
+		float boundRadius = mModelMovable->WorldBound.GetRadius();
+
+		APoint camPos = boundCenter + AVector(-boundRadius*2.5f, -boundRadius*2.5f, boundRadius*1.5f);
 		AVector dir = boundCenter - camPos;
 
 		if (boundRadius > 0.0f)
@@ -316,11 +367,11 @@ void EditRenderView_PreView::SetObject(PX2::Object *obj)
 			up.Normalize();
 			AVector::Orthonormalize(dir, up, right);
 
-			mModelCameraNode->LocalTransform.SetRotate(HMatrix(right, dir, up, AVector::ZERO, true));
-			mModelCameraNode->LocalTransform.SetTranslate(camPos);
-			//mModelCamera->SetPosition(camPos);
-			//mModelCamera->SetAxes(dir, up, right);
+			mModelCameraActor->GetCameraNode()->LocalTransform.SetRotate(HMatrix(right, dir, up, AVector::ZERO, true));
+			mModelCameraActor->GetCameraNode()->LocalTransform.SetTranslate(camPos);
 		}
+
+		PX2_GR.SetCurEnvirParam(beforeParam);
 	}
 	else
 	{

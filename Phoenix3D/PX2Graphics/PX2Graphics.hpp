@@ -74,6 +74,7 @@
 #include "PX2Camera.hpp"
 #include "PX2CameraNode.hpp"
 #include "PX2Culler.hpp"
+#include "PX2EnvirParam.hpp"
 #include "PX2Light.hpp"
 #include "PX2LightNode.hpp"
 #include "PX2Movable.hpp"

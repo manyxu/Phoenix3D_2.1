@@ -225,18 +225,19 @@ void Renderable::SetFogInfulenceParam_Distance (float param)
 	mFogIP_Distance = param;
 }
 //----------------------------------------------------------------------------
-Float4 Renderable::UpdateFogParam () const
+Float4 Renderable::UpdateFogParam(const Float4 &envFogParam) const
 {
 	Float4 lastFogParam;
-	const Float4 &fogParam = PX2_GR.GetFogParam();
 
-	lastFogParam = fogParam;
+	lastFogParam = envFogParam;
 
-	lastFogParam[0] = fogParam[0];
-	lastFogParam[1] = fogParam[0] + (fogParam[1] - fogParam[0]) * 1.0f/mFogIP_Distance;
+	lastFogParam[0] = envFogParam[1] - (envFogParam[1] - envFogParam[0]) * 1.0f
+		/ mFogIP_Height;
+	lastFogParam[1] = envFogParam[1];
 
-	lastFogParam[2] = fogParam[3] - (fogParam[3] - fogParam[2]) * 1.0f/mFogIP_Height;
-	lastFogParam[3] = fogParam[3];
+	lastFogParam[2] = envFogParam[2];
+	lastFogParam[3] = envFogParam[2] + (envFogParam[3] - envFogParam[2]) * 1.0f
+		/ mFogIP_Distance;
 
 	return lastFogParam;
 }

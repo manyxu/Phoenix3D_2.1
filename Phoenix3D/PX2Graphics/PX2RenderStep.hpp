@@ -39,7 +39,7 @@ namespace PX2
 
 		// Size
 	public:
-		void SetSize(const Sizef &rect);
+		void SetSize(const Sizef &size);
 		const Sizef &GetSize() const;
 
 		void SetSizeChangeReAdjustCamera(bool doReAdjust);
@@ -60,10 +60,10 @@ namespace PX2
 
 		// Renderer Camera Culler
 	public:
-		void SetRenderer(Renderer *renderer);
+		virtual void SetRenderer(Renderer *renderer);
 		Renderer *GetRenderer();
 
-		void SetCamera(Camera *camera);
+		virtual void SetCamera(Camera *camera);
 		Camera *GetCamera();
 
 		bool GetPickRay(float x, float y, APoint& origin, AVector& direction);

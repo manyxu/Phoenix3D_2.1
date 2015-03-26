@@ -80,6 +80,7 @@
     <ClCompile Include="PX2DlodNode.cpp" />
     <ClCompile Include="PX2DynamicBufferManager.cpp" />
     <ClCompile Include="PX2DynamicBufferObject.cpp" />
+    <ClCompile Include="PX2EnvirParam.cpp" />
     <ClCompile Include="PX2Float2Array.cpp" />
     <ClCompile Include="PX2FloatArray.cpp" />
     <ClCompile Include="PX2FogColorHeightConstant.cpp" />
@@ -241,6 +242,7 @@
     <ClInclude Include="PX2CurveSegment.hpp" />
     <ClInclude Include="PX2DynamicBufferManager.hpp" />
     <ClInclude Include="PX2DynamicBufferObject.hpp" />
+    <ClInclude Include="PX2EnvirParam.hpp" />
     <ClInclude Include="PX2FogColorHeightConstant.hpp" />
     <ClInclude Include="PX2FogColorDistConstant.hpp" />
     <ClInclude Include="PX2FogParamConstant.hpp" />
@@ -398,6 +400,7 @@
     <None Include="PX2Controller.inl" />
     <None Include="PX2Culler.inl" />
     <None Include="PX2DlodNode.inl" />
+    <None Include="PX2EnvirParam.inl" />
     <None Include="PX2Float2Array.inl" />
     <None Include="PX2FloatArray.inl" />
     <None Include="PX2GraphicsRoot.inl" />

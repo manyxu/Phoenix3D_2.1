@@ -1,6 +1,11 @@
 // PX2Scene.inl
 
 //----------------------------------------------------------------------------
+inline EnvirParam *Scene::GetEnvirParam()
+{
+	return mEnvirParam;
+}
+//----------------------------------------------------------------------------
 inline CameraActor *Scene::GetUseCameraActor()
 {
 	return mCameraActor;

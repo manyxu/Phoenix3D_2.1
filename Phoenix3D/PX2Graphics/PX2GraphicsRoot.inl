@@ -41,54 +41,14 @@ inline const Sizef &GraphicsRoot::GetProjectSize() const
 	return mProjectSize;
 }
 //----------------------------------------------------------------------------
-inline Light *GraphicsRoot::GetLight_Dir()
+inline void GraphicsRoot::SetCurEnvirParam(EnvirParam *param)
 {
-	return mLight_Dir;
+	mCurEnvirParam = param;
 }
 //----------------------------------------------------------------------------
-inline Projector *GraphicsRoot::GetLight_Dir_Projector()
+inline EnvirParam *GraphicsRoot::GetCurEnvirParam()
 {
-	return mLight_Dir_Projector;
-}
-//----------------------------------------------------------------------------
-inline void GraphicsRoot::SetLight_Dir_DepthTexture(Texture *tex)
-{
-	mLight_Dir_DepthTexture = tex;
-}
-//----------------------------------------------------------------------------
-inline Texture *GraphicsRoot::GetLight_Dir_DepthTexture()
-{
-	return mLight_Dir_DepthTexture;
-}
-//----------------------------------------------------------------------------
-inline void GraphicsRoot::SetFogParam (const Float4 &param)
-{
-	mFogParam = param;
-}
-//----------------------------------------------------------------------------
-inline const Float4 &GraphicsRoot::GetFogParam () const
-{
-	return mFogParam;
-}
-//----------------------------------------------------------------------------
-inline void GraphicsRoot::SetFogColorHeight (const Float4 &fogColor)
-{
-	mFogColorHeight = fogColor;
-}
-//----------------------------------------------------------------------------
-inline const Float4 &GraphicsRoot::GetFogColorHeight () const
-{
-	return mFogColorHeight;
-}
-//----------------------------------------------------------------------------
-inline void GraphicsRoot::SetFogColorDist (const Float4 &fogColor)
-{
-	mFogColorDist = fogColor;
-}
-//----------------------------------------------------------------------------
-inline const Float4 &GraphicsRoot::GetFogColorDist () const
-{
-	return mFogColorDist;
+	return mCurEnvirParam;
 }
 //----------------------------------------------------------------------------
 inline RenderStep *GraphicsRoot::GetRenderStepScene()

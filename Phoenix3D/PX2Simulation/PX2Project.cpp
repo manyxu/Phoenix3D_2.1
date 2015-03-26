@@ -10,6 +10,7 @@
 #include "PX2UIView.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2EngineLoop.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Node, Project);
@@ -257,25 +258,25 @@ void Project::SetScene(Scene *scene)
 	{
 		mScene->GoOutEventWorld();
 		mScene = 0;
+		mSceneRenderStep->SetCamera(0);
+		PX2_GR.SetCurEnvirParam(0);
 	}
 
 	mScene = scene;
-	
-	if (mScene)
-	{
-		mScene->ComeInEventWorld();
-	}
 
 	mSceneRenderStep->SetNode(mScene);
 
 	if (mScene)
 	{
+		mScene->ComeInEventWorld();
+
+		PX2_GR.SetCurEnvirParam(mScene->GetEnvirParam());
+
 		CameraActor *camActor = mScene->GetUseCameraActor();
 
 		if (camActor)
 		{
 			Camera *camera = camActor->GetCamera();
-
 			Renderer::GetDefaultRenderer()->SetCamera(camera);
 			mSceneRenderStep->SetCamera(camera);
 		}

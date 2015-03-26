@@ -163,12 +163,12 @@ rcp r2.w, r3.w
 add r2.z, -r2, c29.w
 mul r2.z, r2, r2.w
 min r2.y, r2.z, c30.x
-max oT1.x, r2.y, c30.z
+max oT1.y, r2, c30.z
 dp4 oPos.w, r0, c3
 dp4 oPos.z, r0, c2
 dp4 oPos.y, r0, c1
 dp4 oPos.x, r0, c0
-max oT1.y, r1.x, c30.z
+max oT1.x, r1, c30.z
 dp4 oT2.w, r0, c11
 dp4 oT2.z, r0, c10
 dp4 oT2.y, r0, c9

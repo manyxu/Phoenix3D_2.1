@@ -11,6 +11,7 @@
 #include "PX2TriStrip.hpp"
 #include "PX2OpenGLESMaterialPass.hpp"
 #include "PX2OpenGLESRendererInput.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -299,6 +300,7 @@ void Renderer::Enable (const Renderable* renderable,
 	ShaderStruct struc;
 	struc.TheRenderable = (Renderable *)renderable;
 	struc.TheCamera = (Camera *)mCamera;
+	struc.TheEnvirParam = PX2_GR.GetCurEnvirParam();
 
 	// 更新着色器常量
 	vparams->UpdateConstants(&struc);

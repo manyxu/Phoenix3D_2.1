@@ -101,6 +101,8 @@ MaterialTechnique *MaterialInstance::_RefreshMaterial(
 void MaterialInstance::_CreateConstants(ShaderParametersPtr &newParam,
 	Shader *shader)
 {
+	EnvirParam *envParam = PX2_GR.GetCurEnvirParam();
+
 	if (0 == newParam)
 		newParam = new0 ShaderParameters(shader);
 
@@ -111,7 +113,8 @@ void MaterialInstance::_CreateConstants(ShaderParametersPtr &newParam,
 
 		if (!newParam->GetConstant(constantName))
 		{
-			ShaderFloat *shaderFloat = PX2_MATERIALMAN.CreateShaderFloat(
+			ShaderFloat *shaderFloat =
+				PX2_MATERIALMAN.CreateShaderFloat(envParam,
 				constantName.c_str(), numRegister);
 			if (shaderFloat)
 			{
@@ -125,7 +128,8 @@ void MaterialInstance::_CreateConstants(ShaderParametersPtr &newParam,
 		const std::string &sampleName = shader->GetSamplerName(i);
 		if ("SampleShadowDepth" == sampleName)
 		{
-			newParam->SetTexture("SampleShadowDepth", PX2_GR.GetLight_Dir_DepthTexture());
+			newParam->SetTexture("SampleShadowDepth", 
+				envParam->GetLight_Dir_DepthTexture());
 		}
 	}
 }

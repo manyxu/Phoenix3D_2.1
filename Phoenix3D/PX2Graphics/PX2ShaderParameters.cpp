@@ -148,14 +148,7 @@ Texture* ShaderParameters::GetTexture (int handle) const
 //----------------------------------------------------------------------------
 const std::string &ShaderParameters::GetTextureResPath(int handle) const
 {
-	if (0 <= handle && handle < mNumTextures)
-	{
-		return mTextureResPath[handle];
-	}
-
-	assertion(false, "Invalid texture handle.\n");
-
-	return "";
+	return mTextureResPath[handle];
 }
 //----------------------------------------------------------------------------
 const std::string &ShaderParameters::GetSampleName(int handle) const

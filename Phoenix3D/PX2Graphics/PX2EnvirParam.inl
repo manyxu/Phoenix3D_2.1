@@ -1,53 +1,53 @@
-// PX2UIView.inl
+// PX2EnvirParam.inl
 
 //----------------------------------------------------------------------------
-inline bool RenderStep::IsEnable() const
+inline Light *EnvirParam::GetLight_Dir()
 {
-	return mIsEnable;
+	return mLight_Dir;
 }
 //----------------------------------------------------------------------------
-inline const Sizef &RenderStep::GetSize() const
+inline Projector *EnvirParam::GetLight_Dir_Projector()
 {
-	return mSize;
+	return mLight_Dir_Projector;
 }
 //----------------------------------------------------------------------------
-inline const Rectf &RenderStep::GetViewPort() const
+inline void EnvirParam::SetLight_Dir_DepthTexture(Texture *tex)
 {
-	return mViewPort;
+	mLight_Dir_DepthTexture = tex;
 }
 //----------------------------------------------------------------------------
-inline Renderer *RenderStep::GetRenderer()
+inline Texture *EnvirParam::GetLight_Dir_DepthTexture()
 {
-	return mRenderer;
+	return mLight_Dir_DepthTexture;
 }
 //----------------------------------------------------------------------------
-inline Camera *RenderStep::GetCamera()
+inline void EnvirParam::SetFogParam(const Float4 &param)
 {
-	return mCamera;
+	mFogParam = param;
 }
 //----------------------------------------------------------------------------
-inline Node *RenderStep::GetNode()
+inline const Float4 &EnvirParam::GetFogParam() const
 {
-	return mNode;
+	return mFogParam;
 }
 //----------------------------------------------------------------------------
-inline void RenderStep::SetPriority(int priority)
+inline void EnvirParam::SetFogColorHeight(const Float4 &fogColor)
 {
-	mPriority = priority;
+	mFogColorHeight = fogColor;
 }
 //----------------------------------------------------------------------------
-inline int RenderStep::GetPriority() const
+inline const Float4 &EnvirParam::GetFogColorHeight() const
 {
-	return mPriority;
+	return mFogColorHeight;
 }
 //----------------------------------------------------------------------------
-inline void RenderStep::SetDoDepthClear(bool clear)
+inline void EnvirParam::SetFogColorDist(const Float4 &fogColor)
 {
-	mIsDoClearDepth = clear;
+	mFogColorDist = fogColor;
 }
 //----------------------------------------------------------------------------
-inline bool RenderStep::IsDoDepthClear()
+inline const Float4 &EnvirParam::GetFogColorDist() const
 {
-	return mIsDoClearDepth;
+	return mFogColorDist;
 }
 //----------------------------------------------------------------------------

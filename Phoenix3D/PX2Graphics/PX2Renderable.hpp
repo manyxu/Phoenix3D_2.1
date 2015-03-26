@@ -240,7 +240,7 @@ public_internal:
 
 public_internal:
 		bool IsTransparent () const;
-		Float4 UpdateFogParam () const;
+		Float4 UpdateFogParam (const Float4 &envFogParam) const;
 
 	protected:
 		// 几何图形更新

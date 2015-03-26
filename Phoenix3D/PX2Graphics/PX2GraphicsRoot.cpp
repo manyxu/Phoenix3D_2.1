@@ -25,9 +25,6 @@ const std::string GraphicsRoot::sTerResPath = "TerResPath";
 GraphicsRoot::GraphicsRoot ()
 {
 	mIsInEditor = false;
-	mFogParam = Float4(-10.0f, 0.0f, 0.0f, 120.0f);
-	mFogColorHeight = Float4::RED;
-	mFogColorDist = Float4::BLUE;
 
 	MaterialManager *mi = new0 MaterialManager();
 	PX2_UNUSED(mi);
@@ -62,8 +59,6 @@ bool GraphicsRoot::Initlize ()
 #endif
 	Camera::SetDefaultDepthType(dt);
 
-	mLight_Dir_Projector = new0 Projector(false);
-
 	PX2_MATERIALMAN.Initlize();
 
 	// create help meshs
@@ -73,16 +68,19 @@ bool GraphicsRoot::Initlize ()
 	mTriMeshXY = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
 	mTriMeshXY->WorldBoundIsCurrent = true;
 	mTriMeshXY->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
-	mTriMeshXY->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
-	mTriMeshXY->GetMaterialInstance()->GetMaterial()->GetWireProperty(0, 0)->Enabled = true;
+	mTriMeshXY->SetMaterialInstance(VertexColor4Material
+		::CreateUniqueInstance());
+	mTriMeshXY->GetMaterialInstance()->GetMaterial()->GetWireProperty(0, 0)
+		->Enabled = true;
 	mTriMeshXY->Update(GetTimeInSeconds(), false);
 
 	mTriMeshXZ = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
 	mTriMeshXZ->WorldBoundIsCurrent = true;
-	mTriMeshXZ->LocalTransform.SetRotate(Matrix3f().MakeEulerXYZ(Mathf::HALF_PI,
-		0.0f, 0.0f));
+	mTriMeshXZ->LocalTransform.SetRotate(Matrix3f().MakeEulerXYZ(
+		Mathf::HALF_PI, 0.0f, 0.0f));
 	mTriMeshXZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
-	mTriMeshXZ->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
+	mTriMeshXZ->SetMaterialInstance(VertexColor4Material
+		::CreateUniqueInstance());
 	mTriMeshXZ->Update(GetTimeInSeconds(), false);
 
 	mTriMeshYZ = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
@@ -90,20 +88,17 @@ bool GraphicsRoot::Initlize ()
 	mTriMeshYZ->LocalTransform.SetRotate(Matrix3f().MakeEulerXYZ(0.0f,
 		Mathf::HALF_PI, 0.0f));
 	mTriMeshYZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
-	mTriMeshYZ->SetMaterialInstance(VertexColor4Material::CreateUniqueInstance());
+	mTriMeshYZ->SetMaterialInstance(VertexColor4Material
+		::CreateUniqueInstance());
 	mTriMeshYZ->Update(GetTimeInSeconds(), false);
-
-	mLight_Dir = new0 Light(Light::LT_DIRECTIONAL);
-	mLight_Dir->Ambient = Float4(0.5f, 0.5f, 0.5f, 1.0f);
-	mLight_Dir->Diffuse = Float4(0.5f, 0.5f, 0.5f, 1.0f);
-	mLight_Dir->Specular = Float4(0.5f, 0.5f, 0.5f, 1.0f);
-	mLight_Dir->SetDirection(AVector::UNIT_X);
 
 	return true;
 }
 //-----------------------------------------------------------------------------
 bool GraphicsRoot::Terminate ()
 {
+	mCurEnvirParam = 0;
+
 	mTriMeshXY = 0;
 	mTriMeshXZ = 0;
 	mTriMeshYZ = 0;
@@ -113,9 +108,6 @@ bool GraphicsRoot::Terminate ()
 	mRenderStepMap.clear();
 	mRenderStepVec.clear();
 
-	mCamera = 0;
-	mAllLights.clear();
-	mLight_Dir = 0;
 	mCreatedVFs.clear();
 
 	Environment::RemoveAllDirectories();
@@ -123,86 +115,6 @@ bool GraphicsRoot::Terminate ()
 	InitTerm::ExecuteTerminators();
 
 	return true;
-}
-//----------------------------------------------------------------------------
-void GraphicsRoot::AddLight (Light *light)
-{
-	if (!light) return;
-
-	bool bIn = false;
-	for (int i=0; i<(int)mAllLights.size(); i++)
-	{
-		if (light == mAllLights[i])
-			bIn = true;
-	}
-
-	if (!bIn)
-	{
-		if (Light::LT_DIRECTIONAL == light->GetType())
-		{
-			mLight_Dir = light;
-		}
-
-		mAllLights.push_back(light);
-	}
-}
-//----------------------------------------------------------------------------
-void GraphicsRoot::RemoveLight (Light *light)
-{
-	std::vector<Pointer0<Light> >::iterator it = mAllLights.begin();
-	for (; it!=mAllLights.end(); it++)
-	{
-		if (*it == light)
-		{
-			mAllLights.erase(it);
-			return;
-		}
-	}
-}
-//----------------------------------------------------------------------------
-void GraphicsRoot::ClearAllLights ()
-{
-	mAllLights.clear();
-}
-//----------------------------------------------------------------------------
-int GraphicsRoot::GetNumLights ()
-{
-	return (int)mAllLights.size();
-}
-//----------------------------------------------------------------------------
-Light *GraphicsRoot::GetLight (int index)
-{
-	int numLights = (int)mAllLights.size();
-	if (index>=0 && index<numLights)
-	{
-		return mAllLights[index];
-	}
-
-	return 0;
-}
-//----------------------------------------------------------------------------
-void GraphicsRoot::ComputeEnvironment (VisibleSet &vs)
-{
-	for (int i=0; i<vs.GetNumVisible(); i++)
-	{
-		PX2::Renderable *renderable = vs.GetVisible(i);
-		PX2::APoint renPos = renderable->WorldTransform.GetTranslate();
-		renderable->ClearLights();
-
-		for (int j=0; j<GraphicsRoot::GetSingleton().GetNumLights(); j++)
-		{
-			PX2::Light *light = GraphicsRoot::GetSingleton().GetLight(j);
-			Bound lightBound;
-			lightBound.SetCenter(light->Position);
-			lightBound.SetRadius(light->Range);
-
-			if (Light::LT_POINT == light->GetType() &&
-				renderable->WorldBound.TestIntersection(lightBound))
-			{
-				renderable->AddLight(light);
-			}
-		}
-	}
 }
 //----------------------------------------------------------------------------
 bool GraphicsRoot::AddRenderStep(const char *name, RenderStep *step)

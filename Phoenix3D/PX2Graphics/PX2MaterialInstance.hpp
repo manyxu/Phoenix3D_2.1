@@ -69,7 +69,8 @@ namespace PX2
 	protected:
 		MaterialTechnique *_RefreshMaterial(const std::string &mtlFilename,
 			const std::string &intanceTechName, ShaderParametersPtr* &vp,
-			ShaderParametersPtr* &pp, bool shareMtl, MaterialPtr &outMtl, int &outTechIndex);
+			ShaderParametersPtr* &pp, bool shareMtl, MaterialPtr &outMtl,
+			int &outTechIndex);
 		void _CreateConstants(ShaderParametersPtr &newParam, Shader *shader);
 		void _CopyParams(ShaderParameters *from, ShaderParameters *to);
 

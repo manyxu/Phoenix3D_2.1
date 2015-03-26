@@ -28,9 +28,9 @@ ADD R0.xy, R0, c[0];
 TEX R0, R0, texture[0], 2D;
 MUL R0, R0, fragment.color.primary;
 ADD R0.xyz, R0, -c[1];
-MAD R0.xyz, fragment.texcoord[1].y, R0, c[1];
+MAD R0.xyz, fragment.texcoord[1].x, R0, c[1];
 ADD R0.xyz, R0, -c[2];
-MAD result.color.xyz, fragment.texcoord[1].x, R0, c[2];
+MAD result.color.xyz, fragment.texcoord[1].y, R0, c[2];
 MOV result.color.w, R0;
 END
 # 10 instructions, 1 R-regs

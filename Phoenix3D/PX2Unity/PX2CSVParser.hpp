@@ -1,14 +1,14 @@
-// PX2CSVParser1.hpp
+// PX2CSVParser.hpp
 
-#ifndef PX2CSVPARSER1_HPP
-#define PX2CSVPARSER1_HPP
+#ifndef PX2CSVPARSER_HPP
+#define PX2CSVPARSER_HPP
 
 #include "PX2UnityPre.hpp"
 
 namespace PX2
 {
 
-	class CSVParser1
+	class CSVParser
 	{
 	public:
 		class TableItem
@@ -43,22 +43,22 @@ namespace PX2
 		class TableLine
 		{
 		public:			
-			friend class CSVParser1;
+			friend class CSVParser;
 			
 			const TableItem operator[] (int index) const;
 			const TableItem operator[] (const char* szIdx) const;
 
 		protected:
 			TableLine ();
-			void SetLine (CSVParser1* pTable, int iLineIdx);
+			void SetLine (CSVParser* pTable, int iLineIdx);
 
 		private:
-			CSVParser1 *mTable;
+			CSVParser *mTable;
 			int mLineIdx;
 		};
 
-		CSVParser1();
-		virtual ~CSVParser1();
+		CSVParser();
+		virtual ~CSVParser();
 
 		// 从文件中加载（使用PX2_RM获得buffer后加载）
 		bool Load (const std::string &filename); 
@@ -115,7 +115,7 @@ namespace PX2
 		int mTitleCol;
 	};
 
-#include "PX2CSVParser1.inl"
+#include "PX2CSVParser.inl"
 
 }
 

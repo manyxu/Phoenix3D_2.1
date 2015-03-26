@@ -8,6 +8,7 @@ namespace PX2
 
 	class Camera;
 	class Renderable;
+	class EnvirParam;
 
 	class ShaderStruct
 	{
@@ -17,6 +18,7 @@ namespace PX2
 
 		Renderable *TheRenderable;
 		Camera *TheCamera;
+		EnvirParam *TheEnvirParam;
 	};
 
 }

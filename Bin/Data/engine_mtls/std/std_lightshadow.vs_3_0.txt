@@ -161,7 +161,7 @@ add r1.y, c29.w, -c29.z
 rcp r1.x, r2.w
 rcp r1.y, r1.y
 add r1.x, -r1, c29.w
-mul_sat o3.x, r1, r1.y
+mul_sat o3.y, r1.x, r1
 add r1.x, c29.y, -c29
 rcp r1.y, r1.x
 add r1.x, r1.w, -c29
@@ -169,7 +169,7 @@ dp4 o0.w, r0, c3
 dp4 o0.z, r0, c2
 dp4 o0.y, r0, c1
 dp4 o0.x, r0, c0
-mul_sat o3.y, r1.x, r1
+mul_sat o3.x, r1, r1.y
 dp4 o4.w, r0, c11
 dp4 o4.z, r0, c10
 dp4 o4.y, r0, c9

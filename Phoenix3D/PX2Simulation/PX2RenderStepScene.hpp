@@ -20,6 +20,8 @@ namespace PX2
 		RenderStepScene();
 		virtual ~RenderStepScene();
 
+		virtual void SetRenderer(Renderer *renderer);
+
 		virtual void Update(double appSeconds, double elapsedSeconds);
 		virtual void ComputeVisibleSetAndEnv();
 		virtual void Draw();

@@ -26,6 +26,8 @@ namespace PX2
 		Scene();
 		virtual ~Scene();
 
+		EnvirParam *GetEnvirParam();
+
 		void SetUseCameraActor(CameraActor *cameraActor);
 		CameraActor *GetUseCameraActor();
 
@@ -40,6 +42,8 @@ namespace PX2
 
 	protected:
 		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
+
+		EnvirParamPtr mEnvirParam;
 
 		std::map<int, ActorPtr> mActors;
 		CameraActorPtr mCameraActor;

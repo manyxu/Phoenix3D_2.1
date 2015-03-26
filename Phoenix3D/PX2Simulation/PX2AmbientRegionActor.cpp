@@ -13,8 +13,8 @@ PX2_IMPLEMENT_FACTORY(AmbientRegionActor);
 
 //----------------------------------------------------------------------------
 AmbientRegionActor::AmbientRegionActor() :
-mHorAngle(30.0f),
-mVerAngle(15.0f),
+mHorAngle(45.0f),
+mVerAngle(45.0f),
 mLightCameraExtent(10.0f),
 mSpecularPow(10.0f),
 mIntensity(1.0f),
@@ -33,8 +33,6 @@ mLightCameraLookDistance(100.0f)
 	mFogParamDist = Float2(80.0f, 120.0f);
 
 	CreateHelpNode()->Show(false);
-
-	_UpdateDirLightCamera();
 }
 //----------------------------------------------------------------------------
 AmbientRegionActor::~AmbientRegionActor()
@@ -76,6 +74,8 @@ void AmbientRegionActor::SetLightCameraExtent(float extent)
 void AmbientRegionActor::SetParent(Movable* parent)
 {
 	TriggerActor::SetParent(parent);
+
+	_UpdateDirLightCamera();
 }
 //----------------------------------------------------------------------------
 void AmbientRegionActor::SetHorAngle(float angle)
@@ -161,52 +161,68 @@ void AmbientRegionActor::_UpdateDirLightCamera()
 		Mathf::DEG_TO_RAD*mVerAngle);
 	dir.Normalize();
 
-	Light *lightDir = PX2_GR.GetLight_Dir();
-	Projector *projector = PX2_GR.GetLight_Dir_Projector();
-
-	lightDir->Ambient = Float4(mAmbientColor[0], mAmbientColor[1],
-		mAmbientColor[2], mIntensity);
-	lightDir->Intensity = mIntensity;
-	lightDir->Diffuse = Float4(mDiffuseColor[0], mDiffuseColor[1],
-		mDiffuseColor[2], 1.0f);
-	lightDir->Specular = Float4(mSpecularColor[0], mSpecularColor[1],
-		mSpecularColor[2], mSpecularPow);
-
-	float upDot = dir.Dot(-AVector::UNIT_Z);
-	if (upDot >= 0.99f)
+	Scene *scene = DynamicCast<Scene>(GetTopestParent());
+	if (scene)
 	{
+		EnvirParam *envirParam = scene->GetEnvirParam();
+
+		Light *lightDir = envirParam->GetLight_Dir();
+		Projector *projector = envirParam->GetLight_Dir_Projector();
+
+		lightDir->Ambient = Float4(mAmbientColor[0], mAmbientColor[1],
+			mAmbientColor[2], mIntensity);
+		lightDir->Intensity = mIntensity;
+		lightDir->Diffuse = Float4(mDiffuseColor[0], mDiffuseColor[1],
+			mDiffuseColor[2], 1.0f);
+		lightDir->Specular = Float4(mSpecularColor[0], mSpecularColor[1],
+			mSpecularColor[2], mSpecularPow);
+
+		float upDot = dir.Dot(-AVector::UNIT_Z);
+		if (upDot >= 0.99f)
+		{
+		}
+		else
+		{
+			AVector upTemp = AVector::UNIT_Z;
+			AVector right = dir.UnitCross(upTemp);
+			AVector up = right.UnitCross(dir);
+
+			lightDir->DVector = dir;
+			lightDir->UVector = up;
+			lightDir->RVector = right;
+
+			APoint camPos = mLightCameraLookPosition - dir*mLightCameraLookDistance;
+			projector->SetFrame(camPos, lightDir->DVector,
+				lightDir->UVector, lightDir->RVector);
+		}
+
+		projector->SetFrustum(0.1f, Mathf::FAbs(500.0f),
+			-mLightCameraExtent, mLightCameraExtent, -mLightCameraExtent,
+			mLightCameraExtent);
 	}
-	else
-	{
-		AVector upTemp = AVector::UNIT_Z;
-		AVector right = dir.UnitCross(upTemp);
-		AVector up = right.UnitCross(dir);
-
-		lightDir->DVector = dir;
-		lightDir->UVector = up;
-		lightDir->RVector = right;
-
-		APoint camPos = mLightCameraLookPosition - dir*mLightCameraLookDistance;
-		projector->SetFrame(camPos, lightDir->DVector,
-			lightDir->UVector, lightDir->RVector);
-	}
-
-	projector->SetFrustum(0.1f, Mathf::FAbs(500.0f),
-		-mLightCameraExtent, mLightCameraExtent, -mLightCameraExtent,
-		mLightCameraExtent);
 }
 //----------------------------------------------------------------------------
 void AmbientRegionActor::_UpdateFog()
 {
-	PX2_GR.SetFogColorHeight(Float4(mFogColorHeight[0], mFogColorHeight[1],
-		mFogColorHeight[2], 1.0f));
+	Scene *scene = DynamicCast<Scene>(GetTopestParent());
+	if (scene)
+	{
+		EnvirParam *envirParam = scene->GetEnvirParam();
 
-	PX2_GR.SetFogColorDist(Float4(mFogColorDist[0], mFogColorDist[1],
-		mFogColorDist[2], 1.0f));
+		envirParam->SetFogColorHeight(Float4(mFogColorHeight[0], mFogColorHeight[1],
+			mFogColorHeight[2], 1.0f));
 
-	Float4 fogParam = Float4(mFogParamHeight[0], mFogParamHeight[1],
-		mFogParamDist[0], mFogParamDist[1]);
-	PX2_GR.SetFogParam(fogParam);
+		envirParam->SetFogColorDist(Float4(mFogColorDist[0], mFogColorDist[1],
+			mFogColorDist[2], 1.0f));
+
+		Float4 fogParam = Float4(mFogParamHeight[0], mFogParamHeight[1],
+			mFogParamDist[0], mFogParamDist[1]);
+		envirParam->SetFogParam(fogParam);
+	}
+	else
+	{
+		assertion(false, "there must be a scene.");
+	}
 }
 //----------------------------------------------------------------------------
 

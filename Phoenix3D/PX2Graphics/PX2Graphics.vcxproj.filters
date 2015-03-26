@@ -482,6 +482,9 @@
     <ClCompile Include="PX2LightGroupConstant.cpp">
       <Filter>Materials\ShaderFloats\Light</Filter>
     </ClCompile>
+    <ClCompile Include="PX2EnvirParam.cpp">
+      <Filter>SceneGraph</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -976,6 +979,9 @@
     <ClInclude Include="PX2LightGroupConstant.hpp">
       <Filter>Materials\ShaderFloats\Light</Filter>
     </ClInclude>
+    <ClInclude Include="PX2EnvirParam.hpp">
+      <Filter>SceneGraph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Bound.inl">
@@ -1167,6 +1173,9 @@
     </None>
     <None Include="PX2ShaderFloat.inl">
       <Filter>Materials</Filter>
+    </None>
+    <None Include="PX2EnvirParam.inl">
+      <Filter>SceneGraph</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

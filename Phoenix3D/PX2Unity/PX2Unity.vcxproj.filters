@@ -360,9 +360,6 @@
     <ClCompile Include="Lua\llex.c">
       <Filter>Scripts\Lua</Filter>
     </ClCompile>
-    <ClCompile Include="PX2CSVParser1.cpp">
-      <Filter>CSV</Filter>
-    </ClCompile>
     <ClCompile Include="PX2IMEDispatcher.cpp">
       <Filter>IMEInput</Filter>
     </ClCompile>
@@ -801,6 +798,9 @@
     <ClCompile Include="PX2Importer.cpp">
       <Filter>Importer</Filter>
     </ClCompile>
+    <ClCompile Include="PX2CSVParser.cpp">
+      <Filter>CSV</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Unity.hpp" />
@@ -951,9 +951,6 @@
     </ClInclude>
     <ClInclude Include="Lua\llex.h">
       <Filter>Scripts\Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2CSVParser1.hpp">
-      <Filter>CSV</Filter>
     </ClInclude>
     <ClInclude Include="PX2IMEDispatcher.hpp">
       <Filter>IMEInput</Filter>
@@ -1387,6 +1384,9 @@
     <ClInclude Include="PX2Importer.hpp">
       <Filter>Importer</Filter>
     </ClInclude>
+    <ClInclude Include="PX2CSVParser.hpp">
+      <Filter>CSV</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2ResourceManager.inl">
@@ -1400,9 +1400,6 @@
     </None>
     <None Include="Lua\Makefile">
       <Filter>Scripts\Lua</Filter>
-    </None>
-    <None Include="PX2CSVParser1.inl">
-      <Filter>CSV</Filter>
     </None>
     <None Include="PX2CURLDownload.inl">
       <Filter>CURLDownload</Filter>
@@ -1424,6 +1421,9 @@
     </None>
     <None Include="PX2SoundSystem.inl">
       <Filter>Sound</Filter>
+    </None>
+    <None Include="PX2CSVParser.inl">
+      <Filter>CSV</Filter>
     </None>
   </ItemGroup>
 </Project>

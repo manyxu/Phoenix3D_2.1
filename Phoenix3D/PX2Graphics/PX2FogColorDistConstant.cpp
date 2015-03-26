@@ -3,6 +3,7 @@
 #include "PX2FogColorDistConstant.hpp"
 #include "PX2Camera.hpp"
 #include "PX2Renderable.hpp"
+#include "PX2EnvirParam.hpp"
 #include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
@@ -27,7 +28,8 @@ void FogColorDistConstant::Update(const ShaderStruct *struc)
 {
 	PX2_UNUSED(struc);
 
-	const float* source = (const float*)PX2_GR.GetFogColorDist();
+	const float* source = (const float*)struc->TheEnvirParam
+		->GetFogColorDist();
 	float* target = mData;
 	for (int i = 0; i < 4; ++i)
 	{

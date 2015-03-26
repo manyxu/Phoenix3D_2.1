@@ -3,6 +3,7 @@
 #include "PX2LightConstant.hpp"
 #include "PX2Camera.hpp"
 #include "PX2Renderable.hpp"
+#include "PX2EnvirParam.hpp"
 #include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
@@ -17,6 +18,13 @@ mLight(light),
 mIsDefualtDir(false)
 {
 	EnableUpdater();
+
+	const float* source = (const float*)mLight->Diffuse;
+	float* target = mData;
+	for (int i = 0; i < 4; ++i)
+	{
+		*target++ = *source++;
+	}
 }
 //----------------------------------------------------------------------------
 LightConstant::~LightConstant()
@@ -38,9 +46,9 @@ Light* LightConstant::GetLight()
 	return mLight;
 }
 //----------------------------------------------------------------------------
-void LightConstant::Update(const ShaderStruct *)
+void LightConstant::Update(const ShaderStruct *struc)
 {
-	if (mIsDefualtDir) SetLight(PX2_GR.GetLight_Dir());
+	if (mIsDefualtDir) SetLight(struc->TheEnvirParam->GetLight_Dir());
 }
 //----------------------------------------------------------------------------
 
