@@ -131,6 +131,39 @@ bool RenderStep::GetPickRay(float x, float y, APoint& origin, AVector& direction
 	return true;
 }
 //----------------------------------------------------------------------------
+Vector2f RenderStep::PointWorldToViewPort(const APoint &point,
+	bool *isInBack)
+{
+	Rectf viewPort = mViewPort;
+	if (viewPort.IsEmpty())
+		viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
+
+	HMatrix matProjView = mCamera->GetProjectionMatrix() * mCamera->GetViewMatrix();
+	HPoint hPoint(point.X(), point.Y(), point.Z(), point.W());
+	HPoint tempPoint = matProjView * hPoint;
+
+	if (isInBack)
+	{
+		if (tempPoint.Z() <= 0)
+			*isInBack = true;
+		else
+			*isInBack = false;
+	}
+
+	float wInv = 1.0f / tempPoint.W();
+
+	//投影坐标范围为[-1,1]要变成[0,1]
+	Vector2f screenPoint;
+	screenPoint.X() = (1.0f + tempPoint.X()*wInv) / 2.0f;
+	screenPoint.Y() = (1.0f + tempPoint.Y()*wInv) / 2.0f;
+
+	//投影坐标范围为[0,1]要变成视口内坐标
+	screenPoint.X() = viewPort.Left + screenPoint.X()*viewPort.Width();
+	screenPoint.Y() = viewPort.Bottom + screenPoint.Y()*viewPort.Height();
+
+	return screenPoint;
+}
+//----------------------------------------------------------------------------
 void RenderStep::SetNode(Node *node)
 {
 	mNode = node;

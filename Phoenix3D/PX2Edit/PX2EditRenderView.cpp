@@ -294,6 +294,16 @@ void EditRenderView::DoExecute(Event *event)
 				OnMiddleUp(data.MTPos);
 		}
 	}
+	else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseDoublePressed))
+	{
+		InputEventData data = event->GetData<InputEventData>();
+
+		if (data.ViewID == mRenderViewID)
+		{
+			if (MBID_LEFT == data.MButtonID)
+				OnLeftDClick(data.MTPos);
+		}
+	}
 	else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseMoved))
 	{
 		InputEventData data = event->GetData<InputEventData>();

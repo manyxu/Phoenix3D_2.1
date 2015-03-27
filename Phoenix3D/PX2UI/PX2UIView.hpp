@@ -62,6 +62,9 @@ namespace PX2
 
 		// Pick
 	public:
+		void SetPickAcceptRect(const Rectf &rect);
+		const Rectf &GetPickAcceptRect() const;
+
 		void SetNotPickedCallback(NotPickedCallback callback);
 
 		std::vector<RenderablePtr> &GetPickedRenderables();
@@ -72,6 +75,8 @@ namespace PX2
 	protected:
 		void _DoPick(float x, float z, int pickInfo,
 			std::vector<RenderablePtr> &vec);
+
+		Rectf mPickAcceptRect;
 
 		float mMoveAdjugeParam;
 		float mMoveAdjugeParamSquare;

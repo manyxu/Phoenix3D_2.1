@@ -11,6 +11,8 @@
 namespace PX2
 {
 
+	class UIView;
+
 	class UIFrame : public Node
 	{
 		PX2_DECLARE_RTTI;
@@ -97,6 +99,13 @@ namespace PX2
 	protected:
 		UICallback mUICallback;
 		std::string mUIScriptHandler;
+
+	public_internal:
+		void SetUIView(UIView *uiView);
+		UIView *GetUIView();
+
+	protected:
+		UIView *mUIView;
 
 		// InputTrans
 	public:

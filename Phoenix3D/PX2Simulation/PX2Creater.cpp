@@ -670,3 +670,8 @@ EffectableController *Creater::ConvertToEffectableController(Object *obj)
 	return DynamicCast<EffectableController>(obj);
 }
 //----------------------------------------------------------------------------
+EffectModule *Creater::ConvertToEffectModule(Object *obj)
+{
+	return DynamicCast<EffectModule>(obj);
+}
+//----------------------------------------------------------------------------

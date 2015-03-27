@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/26/15 19:46:45.
+** Generated automatically by tolua++-1.0.92 on 03/27/15 18:04:01.
 */
 
 #ifndef __cplusplus
@@ -908,6 +908,161 @@ static int tolua_PX2Editor_E_MainFrame_OnResCopyResPath00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: TimeLine_UIGroup_Delete of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_Delete00
+static int tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_Delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_UIGroup_Delete'", NULL);
+#endif
+  {
+   self->TimeLine_UIGroup_Delete();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'TimeLine_UIGroup_Delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TimeLine_UIGroup_DeleteAll of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_DeleteAll00
+static int tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_DeleteAll00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_UIGroup_DeleteAll'", NULL);
+#endif
+  {
+   self->TimeLine_UIGroup_DeleteAll();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'TimeLine_UIGroup_DeleteAll'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TimeLine_SelectCtrl_InValue of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_InValue00
+static int tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_InValue00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_SelectCtrl_InValue'", NULL);
+#endif
+  {
+   self->TimeLine_SelectCtrl_InValue();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'TimeLine_SelectCtrl_InValue'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TimeLine_SelectCtrl_OutValue of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_OutValue00
+static int tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_OutValue00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_SelectCtrl_OutValue'", NULL);
+#endif
+  {
+   self->TimeLine_SelectCtrl_OutValue();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'TimeLine_SelectCtrl_OutValue'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TimeLine_SelectCtrl_Delete of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_Delete00
+static int tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_Delete00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_SelectCtrl_Delete'", NULL);
+#endif
+  {
+   self->TimeLine_SelectCtrl_Delete();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'TimeLine_SelectCtrl_Delete'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: AddMainMenuItem of class  E_MainFrame */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_AddMainMenuItem00
 static int tolua_PX2Editor_E_MainFrame_AddMainMenuItem00(lua_State* tolua_S)
@@ -1722,6 +1877,136 @@ static int tolua_PX2Editor_E_MainFrame_OnResCopyResPath01(lua_State* tolua_S)
  return 0;
 tolua_lerror:
  return tolua_PX2Editor_E_MainFrame_OnResCopyResPath00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TimeLine_UIGroup_Delete of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_Delete01
+static int tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_Delete01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_UIGroup_Delete'", NULL);
+#endif
+  {
+   self->TimeLine_UIGroup_Delete();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_Delete00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TimeLine_UIGroup_DeleteAll of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_DeleteAll01
+static int tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_DeleteAll01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_UIGroup_DeleteAll'", NULL);
+#endif
+  {
+   self->TimeLine_UIGroup_DeleteAll();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_DeleteAll00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TimeLine_SelectCtrl_InValue of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_InValue01
+static int tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_InValue01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_SelectCtrl_InValue'", NULL);
+#endif
+  {
+   self->TimeLine_SelectCtrl_InValue();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_InValue00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TimeLine_SelectCtrl_OutValue of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_OutValue01
+static int tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_OutValue01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_SelectCtrl_OutValue'", NULL);
+#endif
+  {
+   self->TimeLine_SelectCtrl_OutValue();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_OutValue00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: TimeLine_SelectCtrl_Delete of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_Delete01
+static int tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_Delete01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TimeLine_SelectCtrl_Delete'", NULL);
+#endif
+  {
+   self->TimeLine_SelectCtrl_Delete();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_Delete00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -3475,6 +3760,37 @@ static int tolua_PX2Editor_Edit_AnimPlayStop00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: MakeSelectTimeLineEdit of class  Edit */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_Edit_MakeSelectTimeLineEdit00
+static int tolua_PX2Editor_Edit_MakeSelectTimeLineEdit00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Edit",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Edit* self = (Edit*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'MakeSelectTimeLineEdit'", NULL);
+#endif
+  {
+   self->MakeSelectTimeLineEdit();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'MakeSelectTimeLineEdit'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: new of class  EditMap */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_EditMap_new00
 static int tolua_PX2Editor_EditMap_new00(lua_State* tolua_S)
@@ -4182,6 +4498,11 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OnResClear",tolua_PX2Editor_E_MainFrame_OnResClear00);
    tolua_function(tolua_S,"OnResOpen",tolua_PX2Editor_E_MainFrame_OnResOpen00);
    tolua_function(tolua_S,"OnResCopyResPath",tolua_PX2Editor_E_MainFrame_OnResCopyResPath00);
+   tolua_function(tolua_S,"TimeLine_UIGroup_Delete",tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_Delete00);
+   tolua_function(tolua_S,"TimeLine_UIGroup_DeleteAll",tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_DeleteAll00);
+   tolua_function(tolua_S,"TimeLine_SelectCtrl_InValue",tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_InValue00);
+   tolua_function(tolua_S,"TimeLine_SelectCtrl_OutValue",tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_OutValue00);
+   tolua_function(tolua_S,"TimeLine_SelectCtrl_Delete",tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_Delete00);
    tolua_function(tolua_S,"AddMainMenuItem",tolua_PX2Editor_E_MainFrame_AddMainMenuItem00);
    tolua_function(tolua_S,"AddMenuItem",tolua_PX2Editor_E_MainFrame_AddMenuItem00);
    tolua_function(tolua_S,"AddSeparater",tolua_PX2Editor_E_MainFrame_AddSeparater00);
@@ -4212,6 +4533,11 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OnResClear",tolua_PX2Editor_E_MainFrame_OnResClear01);
    tolua_function(tolua_S,"OnResOpen",tolua_PX2Editor_E_MainFrame_OnResOpen01);
    tolua_function(tolua_S,"OnResCopyResPath",tolua_PX2Editor_E_MainFrame_OnResCopyResPath01);
+   tolua_function(tolua_S,"TimeLine_UIGroup_Delete",tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_Delete01);
+   tolua_function(tolua_S,"TimeLine_UIGroup_DeleteAll",tolua_PX2Editor_E_MainFrame_TimeLine_UIGroup_DeleteAll01);
+   tolua_function(tolua_S,"TimeLine_SelectCtrl_InValue",tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_InValue01);
+   tolua_function(tolua_S,"TimeLine_SelectCtrl_OutValue",tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_OutValue01);
+   tolua_function(tolua_S,"TimeLine_SelectCtrl_Delete",tolua_PX2Editor_E_MainFrame_TimeLine_SelectCtrl_Delete01);
    tolua_function(tolua_S,"AddMainMenuItem",tolua_PX2Editor_E_MainFrame_AddMainMenuItem01);
    tolua_function(tolua_S,"AddMenuItem",tolua_PX2Editor_E_MainFrame_AddMenuItem01);
    tolua_function(tolua_S,"AddSeparater",tolua_PX2Editor_E_MainFrame_AddSeparater01);
@@ -4288,6 +4614,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"AnimReset",tolua_PX2Editor_Edit_AnimReset00);
    tolua_function(tolua_S,"IsAnimPlaying",tolua_PX2Editor_Edit_IsAnimPlaying00);
    tolua_function(tolua_S,"AnimPlayStop",tolua_PX2Editor_Edit_AnimPlayStop00);
+   tolua_function(tolua_S,"MakeSelectTimeLineEdit",tolua_PX2Editor_Edit_MakeSelectTimeLineEdit00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"EditMap","EditMap","",tolua_collect_EditMap);

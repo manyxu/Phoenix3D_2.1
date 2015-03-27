@@ -18,6 +18,7 @@
 #include "PX2DlgPlayConfig.hpp"
 #include "PX2DlgTerainNew.hpp"
 #include "PX2DlgTerainPageNew.hpp"
+#include "PX2DlgSetCurveVal.hpp"
 
 #include "PX2EngineLoop.hpp"
 #include "PX2Edit.hpp"
@@ -819,6 +820,77 @@ void E_MainFrame::OnResCopyResPath()
 		wxTextDataObject *data = new wxTextDataObject(resData.EleName);
 		wxTheClipboard->SetData(data);
 		wxTheClipboard->Close();
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::TimeLine_UIGroup_Delete()
+{
+	UICurveGroup *group = PX2_EDIT.GetTimeLineEdit()->GetSelectedUICurveGroup();
+
+	if (group)
+	{
+		PX2_EDIT.GetTimeLineEdit()->ClearGroup(group);
+		PX2_EDIT.GetTimeLineEdit()->SetSelectedUICurveGroup(0);
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::TimeLine_UIGroup_DeleteAll()
+{
+	PX2_EDIT.GetTimeLineEdit()->ClearAllGroups();
+	PX2_EDIT.GetTimeLineEdit()->SetSelectedUICurveGroup(0);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::TimeLine_SelectCtrl_InValue()
+{
+	CurveCtrl *ctrl = PX2_EDIT.GetTimeLineEdit()->GetSelectedCurveCtrl();
+	if (!ctrl) return;
+
+	DlgSetCurveVal dlg(mTimeLineView);
+	dlg.SetVal(ctrl->GetInVal());
+	dlg.SetTitle(PX2_LM.GetValue("SetInValue"));
+	dlg.SetLabel(PX2_LM.GetValue("NewInValue"));
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		float val = dlg.GetVal();
+		ctrl->SetInVal(val);
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::TimeLine_SelectCtrl_OutValue()
+{
+	CurveCtrl *ctrl = PX2_EDIT.GetTimeLineEdit()->GetSelectedCurveCtrl();
+	if (!ctrl) return;
+
+	DlgSetCurveVal dlg(mTimeLineView);
+	dlg.SetVal(ctrl->GetOutVal().Z());
+	dlg.SetTitle(PX2_LM.GetValue("SetOutValue"));
+	dlg.SetLabel(PX2_LM.GetValue("NewOutValue"));
+	if (dlg.ShowModal() == wxID_OK)
+	{
+		float val = dlg.GetVal();
+
+		APoint outVal = ctrl->GetOutVal();
+		outVal.Z() = val;
+		ctrl->SetOutVal(outVal);
+	}
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::TimeLine_SelectCtrl_Delete()
+{
+	CurveCtrl *ctrl = PX2_EDIT.GetTimeLineEdit()->GetSelectedCurveCtrl();
+	if (!ctrl) return;
+
+	CurveGroup *group = PX2_EDIT.GetTimeLineEdit()->GetCurveGroup(
+		ctrl->GetCurve());
+
+	int numPoints = group->GetNumPoints();
+	if (numPoints <= 1)
+	{
+		NirMan::GetSingleton().MessageBox(PX2_LM.GetValue("Notice"), PX2_LM.GetValue("Tip6"));
+	}
+	else
+	{
+		group->DeletePoint(ctrl->GetIndex());
 	}
 }
 //----------------------------------------------------------------------------

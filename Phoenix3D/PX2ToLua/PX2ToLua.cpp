@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 03/26/15 19:46:48.
+** Generated automatically by tolua++-1.0.92 on 03/27/15 18:04:00.
 */
 
 #ifndef __cplusplus
@@ -26893,6 +26893,40 @@ static int tolua_PX2_Creater_ConvertToEffectableController00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: ConvertToEffectModule of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_ConvertToEffectModule00
+static int tolua_PX2_Creater_ConvertToEffectModule00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ConvertToEffectModule'", NULL);
+#endif
+  {
+   EffectModule* tolua_ret = (EffectModule*)  self->ConvertToEffectModule(obj);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"EffectModule");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ConvertToEffectModule'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: new of class  Scene */
 #ifndef TOLUA_DISABLE_tolua_PX2_Scene_new00
 static int tolua_PX2_Scene_new00(lua_State* tolua_S)
@@ -30380,6 +30414,7 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"ConvertToUIPicBox",tolua_PX2_Creater_ConvertToUIPicBox00);
    tolua_function(tolua_S,"ConvertToUIFrame",tolua_PX2_Creater_ConvertToUIFrame00);
    tolua_function(tolua_S,"ConvertToEffectableController",tolua_PX2_Creater_ConvertToEffectableController00);
+   tolua_function(tolua_S,"ConvertToEffectModule",tolua_PX2_Creater_ConvertToEffectModule00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Scene","Scene","Node",tolua_collect_Scene);

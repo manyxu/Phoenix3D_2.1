@@ -12,6 +12,8 @@
 namespace PX2
 {
 
+	class EffectModule;
+
 	class EditRenderView_TimeLine : public EditRenderView
 	{
 	public:
@@ -26,9 +28,12 @@ namespace PX2
 		void FitViewVertically();
 		void FitViewToAll();
 		void FitViewToSelected();
+		void ZoomCamera(float xDetal, float zDetal);
+		void ZoomCameraTo(float xMax, float zMax);
 
 	protected:
 		void _RefreshGrid(bool doScale);
+		void _TrySelectCurveCtrlPoint(const APoint &pos);
 
 		enum MoveMode
 		{
@@ -38,12 +43,9 @@ namespace PX2
 		};
 		MoveMode mMoveMode;
 
-		UIViewPtr mUIView;
+		UIViewPtr mUIViewUIGroup;
+		UIViewPtr mUIViewGrid;
 		float mLeftWidth;
-
-		UIFramePtr mFrame;
-		PX2::PolysegmentPtr mGridPoly;
-		PX2::NodePtr mGridNode;
 
 		float mPixelOverCamIn;
 		float mPixelOverCamOut;
@@ -70,6 +72,7 @@ namespace PX2
 		virtual void OnSize(const Sizef& size);
 		virtual void OnLeftDown(const APoint &pos);
 		virtual void OnLeftUp(const APoint &pos);
+		virtual void OnLeftDClick(const APoint &pos);
 		virtual void OnMiddleDown(const APoint &pos);
 		virtual void OnMiddleUp(const APoint &pos);
 		virtual void OnMouseWheel(float delta);
@@ -80,6 +83,10 @@ namespace PX2
 		// Event
 	public:
 		virtual void DoExecute(Event *event);
+
+	protected:
+		void RemoveCurveGroup(EffectModule *module);
+		void RemoveCurveGroup(Movable *mov);
 	};
 
 	typedef Pointer0<EditRenderView_TimeLine> EditRenderView_TimeLinePtr;

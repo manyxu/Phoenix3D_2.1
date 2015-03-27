@@ -97,10 +97,18 @@ void UIButton::OnPressed()
 		CallString(mUIScriptHandler.c_str(), "i", (int)UICT_PRESSED);
 	}
 
-	//if (ART_NORMAL == mAfterReleasedType)
-	//{
-	//	PX2_UIM.GetDefaultView()->mPressedButs.push_back(this);
-	//}
+	if (ART_NORMAL == mAfterReleasedType)
+	{
+		UIFrame *uiFrame = DynamicCast<UIFrame>(GetTopestParent());
+		if (uiFrame)
+		{
+			UIView *uiView = uiFrame->GetUIView();
+			if (uiView)
+			{
+				uiView->mPressedButs.push_back(this);
+			}
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void UIButton::OnReleased()
@@ -132,22 +140,26 @@ void UIButton::OnReleased()
 		CallString(mUIScriptHandler.c_str(), "i", (int)UICT_RELEASED);
 	}
 
-	//if (1 == PX2_UIM.GetUIViews().size())
-	//{
-	//	std::list<UIButton *>::iterator it =
-	//		PX2_UIM.GetDefaultView()->mPressedButs.begin();
-	//	for (; it != PX2_UIM.GetDefaultView()->mPressedButs.end();)
-	//	{
-	//		if ((*it) == this)
-	//		{
-	//			it = PX2_UIM.GetDefaultView()->mPressedButs.erase(it);
-	//		}
-	//		else
-	//		{
-	//			it++;
-	//		}
-	//	}
-	//}
+	UIFrame *uiFrame = DynamicCast<UIFrame>(GetTopestParent());
+	if (uiFrame)
+	{
+		UIView *uiView = uiFrame->GetUIView();
+		if (uiView)
+		{
+			std::list<UIButtonPtr>::iterator it = uiView->mPressedButs.begin();
+			for (; it != uiView->mPressedButs.end();)
+			{
+				if ((*it) == this)
+				{
+					it = uiView->mPressedButs.erase(it);
+				}
+				else
+				{
+					it++;
+				}
+			}
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void UIButton::OnReleasedNotValied()

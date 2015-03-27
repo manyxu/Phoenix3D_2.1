@@ -26,6 +26,16 @@ inline bool UIView::IsCameraAutoAdjust() const
 	return mIsCameraAutoAdjust;
 }
 //----------------------------------------------------------------------------
+inline void UIView::SetPickAcceptRect(const Rectf &rect)
+{
+	mPickAcceptRect = rect;
+}
+//----------------------------------------------------------------------------
+inline const Rectf &UIView::GetPickAcceptRect() const
+{
+	return mPickAcceptRect;
+}
+//----------------------------------------------------------------------------
 inline std::vector<RenderablePtr> &UIView::GetPickedRenderables()
 {
 	return mPickedRenderables;

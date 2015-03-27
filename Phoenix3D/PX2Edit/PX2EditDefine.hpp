@@ -25,6 +25,8 @@ namespace PX2
 		RVT_MAX_TYPE
 	};
 
+	static const float TimeLineLeftWidth = 120.0f;
+
 }
 
 #endif

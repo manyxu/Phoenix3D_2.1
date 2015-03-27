@@ -85,6 +85,12 @@ namespace PX2Editor
 		void OnResOpen();
 		void OnResCopyResPath();
 
+		void TimeLine_UIGroup_Delete();
+		void TimeLine_UIGroup_DeleteAll();
+		void TimeLine_SelectCtrl_InValue();
+		void TimeLine_SelectCtrl_OutValue();
+		void TimeLine_SelectCtrl_Delete();
+
 	public:
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,

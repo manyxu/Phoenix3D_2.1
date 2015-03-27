@@ -16,7 +16,8 @@ mPosRelativeType_H(PT_NONE),
 mRelativeVal_H(0.0f),
 mPosRelativeType_V(PT_NONE),
 mRelativeVal_V(0.0f),
-mIsRelativeChanged(true)
+mIsRelativeChanged(true),
+mUIView(0)
 {
 	SetName("UIFrame");
 }
@@ -271,7 +272,8 @@ mPosRelativeType_H(PT_NONE),
 mRelativeVal_H(0.0f),
 mPosRelativeType_V(PT_NONE),
 mRelativeVal_V(0.0f),
-mIsRelativeChanged(true)
+mIsRelativeChanged(true),
+mUIView(0)
 {
 }
 //----------------------------------------------------------------------------

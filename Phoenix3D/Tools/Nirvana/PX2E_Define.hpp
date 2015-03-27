@@ -7,7 +7,7 @@
 #include "PX2APoint.hpp"
 #include "PX2Float3.hpp"
 
-inline PX2::APoint wxPointToAPoint(wxPoint &point, wxSize &size)
+inline PX2::APoint wxPointToAPointLeftAxis(wxPoint &point, wxSize &size)
 {
 	return PX2::APoint((float)point.x, 0.0f, (float)(size.GetHeight() - point.y));
 }

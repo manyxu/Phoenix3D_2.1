@@ -61,6 +61,16 @@ inline const std::string &UIFrame::GetScriptHandler() const
 	return mUIScriptHandler;
 }
 //----------------------------------------------------------------------------
+inline void UIFrame::SetUIView(UIView *uiView)
+{
+	mUIView = uiView;
+}
+//----------------------------------------------------------------------------
+inline UIView *UIFrame::GetUIView()
+{
+	return mUIView;
+}
+//----------------------------------------------------------------------------
 inline InputPushTransformController *UIFrame::GetIPTCtrl()
 {
 	return mIPTCtrl;

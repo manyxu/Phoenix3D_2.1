@@ -32,6 +32,7 @@ namespace PX2
 
 		virtual void MouseMoved(const APoint &pos);
 		virtual void MousePressed(MouseButtonID id, const APoint &pos);
+		virtual void MouseDoublePressed(MouseButtonID id, const APoint &pos);
 		virtual void MouseReleased(MouseButtonID id, const APoint &pos);
 		virtual void MouseWheeled(float val);
 

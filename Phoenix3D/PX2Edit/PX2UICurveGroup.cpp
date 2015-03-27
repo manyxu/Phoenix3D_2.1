@@ -4,6 +4,7 @@
 #include "PX2Edit.hpp"
 #include "PX2UIView.hpp"
 #include "PX2GraphicsRoot.hpp"
+#include "PX2Selection.hpp"
 using namespace PX2;
 using namespace PX2;
 
@@ -26,7 +27,7 @@ mCurveGroup(group)
 	mIsShowBox5 = true;
 	mIsShowBox = true;
 
-	Sizef sizeBackground(126.0f, 36.0f);
+	Sizef sizeBackground(TimeLineLeftWidth, 36.0f);
 	mSize = sizeBackground;
 	mBackground = new0 UIPicBox();
 	mBackground->SetAnchorPoint(0.0f, 0.0f);
@@ -52,7 +53,7 @@ mCurveGroup(group)
 	if (CurveGroup::CGT_FLOAT != cgType)
 	{
 		mBox1 = new0 UIPicBox();
-		mBox1->SetTexture("DataEditor/images/smallpic.png");
+		mBox1->SetTexture("DataEditor/images/timeline/smallpic.png");
 		mBox1->SetColor(Float3::GREEN);
 		mBox1->SetSize(sizeBox);
 		mBox1->LocalTransform.SetTranslate(APoint(boxXStart+boxSpace, 0.0f, boxZPos));
@@ -62,7 +63,7 @@ mCurveGroup(group)
 	if (CurveGroup::CGT_FLOAT!=cgType && CurveGroup::CGT_FLOATRANGE!=cgType)
 	{
 		mBox2 = new0 UIPicBox();
-		mBox2->SetTexture("DataEditor/images/smallpic.png");
+		mBox2->SetTexture("DataEditor/images/timeline/smallpic.png");
 		mBox2->SetColor(Float3::BLUE);
 		mBox2->SetSize(sizeBox);
 		mBox2->LocalTransform.SetTranslate(APoint(boxXStart+boxSpace*2.0f, 0.0f, boxZPos));
@@ -72,7 +73,7 @@ mCurveGroup(group)
 	if (CurveGroup::CGT_FLOAT3RANGE == cgType)
 	{
 		mBox3 = new0 UIPicBox();
-		mBox3->SetTexture("DataEditor/images/smallpic.png");
+		mBox3->SetTexture("DataEditor/images/timeline/smallpic.png");
 		mBox3->SetColor(Float3::RED/2.0f);
 		mBox3->SetSize(sizeBox);
 		mBox3->LocalTransform.SetTranslate(APoint(boxXStart+boxSpace*3.0f, 0.0f, boxZPos));
@@ -82,7 +83,7 @@ mCurveGroup(group)
 	if (CurveGroup::CGT_FLOAT3RANGE == cgType)
 	{
 		mBox4 = new0 UIPicBox();
-		mBox4->SetTexture("DataEditor/images/smallpic.png");
+		mBox4->SetTexture("DataEditor/images/timeline/smallpic.png");
 		mBox4->SetColor(Float3::GREEN/2.0f);
 		mBox4->SetSize(sizeBox);
 		mBox4->LocalTransform.SetTranslate(APoint(boxXStart+boxSpace*4.0f, 0.0f, boxZPos));
@@ -92,7 +93,7 @@ mCurveGroup(group)
 	if (CurveGroup::CGT_FLOAT3RANGE == cgType)
 	{
 		mBox5 = new0 UIPicBox();
-		mBox5->SetTexture("DataEditor/images/smallpic.png");
+		mBox5->SetTexture("DataEditor/images/timeline/smallpic.png");
 		mBox5->SetColor(Float3::BLUE/2.0f);
 		mBox5->SetSize(sizeBox);
 		mBox5->LocalTransform.SetTranslate(APoint(boxXStart+boxSpace*5.0f, 0.0f, boxZPos));
@@ -100,7 +101,7 @@ mCurveGroup(group)
 	}
 
 	mBox = new0 UIPicBox();
-	mBox->SetTexture("DataEditor/images/smallpic.png");
+	mBox->SetTexture("DataEditor/images/timeline/smallpic.png");
 	mBox->SetColor(Float3::YELLOW);
 	mBox->SetSize(sizeBox);
 	mBox->LocalTransform.SetTranslate(APoint(
@@ -108,7 +109,8 @@ mCurveGroup(group)
 	AttachChild(mBox);
 
 	mText = new0 UIText();
-	mText->SetFont("DataEditor/fonts/arial.ttf", 14, 14);
+	mText->SetDoPick(false);
+	mText->SetFont("DataEditor/fonts/arial.ttf", 12, 12);
 	mText->LocalTransform.SetTranslate(APoint(boxXStart, 0.0f, boxZPos+boxWidth+4.0f));
 	AttachChild(mText);
 	if (mCurveGroup)  SetText(mCurveGroup->GetName());
@@ -273,25 +275,35 @@ void UICurveGroup::OnNotPicked (int info)
 {
 	PX2_UNUSED(info);
 
-	UICurveGroup *group = PX2_EDIT.GetTimeLineEdit()->GetSelectedUICurveGroup();
-
-	if (this == group)
+	if (1 == info)
 	{
-		PX2_EDIT.GetTimeLineEdit()->SetSelectedUICurveGroup(0);
+		UICurveGroup *group = PX2_EDIT.GetTimeLineEdit()->GetSelectedUICurveGroup();
+		if (this == group)
+		{
+			PX2_EDIT.GetTimeLineEdit()->SetSelectedUICurveGroup(0);
+		}
 	}
 }
 //----------------------------------------------------------------------------
 void UICurveGroup::OnChildUIAfterPicked(int info, Movable *child)
 {
-	PX2_UNUSED(info);
-
-	if (mBackground == child)
+	if (1 == info)
 	{
-		UIView *view = DynamicCast<UIView>(PX2_GR.GetRenderStep("TimeLineRenderStep"));
-		int pickedSize = (int)view->GetPickedRenderables().size();
-		if (1 == pickedSize)
+		if (mBackground == child)
 		{
-			PX2_EDIT.GetTimeLineEdit()->SetSelectedUICurveGroup(this);
+			UIFrame *uiFrame = DynamicCast<UIFrame>(GetTopestParent());
+			if (uiFrame)
+			{
+				UIView *uiView = uiFrame->GetUIView();
+				if (uiView)
+				{
+					int pickedSize = (int)uiView->GetPickedRenderables().size();
+					if (1 == pickedSize)
+					{
+						PX2_EDIT.GetTimeLineEdit()->SetSelectedUICurveGroup(this);
+					}
+				}
+			}
 		}
 	}
 }

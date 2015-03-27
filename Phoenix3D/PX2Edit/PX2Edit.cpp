@@ -397,6 +397,22 @@ void Edit::AnimPlayStop()
 		AnimPlay();
 }
 //----------------------------------------------------------------------------
+void Edit::MakeSelectTimeLineEdit()
+{
+	PX2::Object *obj = PX2_SELECTION.GetFirstObject();
+
+	EffectModule *eftModule = DynamicCast<EffectModule>(obj);
+	InterpCurveController *interpCurve = DynamicCast<InterpCurveController>(obj);
+
+	if (eftModule || interpCurve)
+	{
+		if (!mTimeLineEidt->HasCurveGroup(obj))
+		{
+			mTimeLineEidt->CreateAddCurveGroup(obj);
+		}
+	}
+}
+//----------------------------------------------------------------------------
 void Edit::OnFindSelectInProjTree()
 {
 	Object *obj = PX2_SELECTION.GetFirstObject();

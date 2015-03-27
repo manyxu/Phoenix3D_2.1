@@ -420,7 +420,10 @@ function e_AddSceneActor_Effect()
 end
 
 function e_AddSceneActor_Sound()
-	
+end
+
+function e_OnMakeTimeLine()
+	PX2_EDIT:MakeSelectTimeLineEdit()
 end
 
 -- scene view
@@ -473,4 +476,25 @@ end
 --Insp view
 function e_InspView_ChangeWindow(windowType)
 	E_MainFrame:InspChangeWindow(windowType)
+end
+
+-- timeline
+function e_DeleteCurveGroup()
+	E_MainFrame:TimeLine_UIGroup_Delete()
+end
+
+function e_DeleteAllCurveGroup()
+	E_MainFrame:TimeLine_UIGroup_DeleteAll()
+end
+
+function e_SetInValue()
+	E_MainFrame:TimeLine_SelectCtrl_InValue()
+end
+
+function e_SetOutValue()
+	E_MainFrame:TimeLine_SelectCtrl_OutValue()
+end
+
+function e_DeleteCurveKeyPoint()
+	E_MainFrame:TimeLine_SelectCtrl_Delete()
 end

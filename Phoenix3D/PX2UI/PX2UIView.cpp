@@ -56,6 +56,9 @@ void UIView::Update(double appSeconds, double elapsedSeconds)
 void UIView::SetNode(Node *node)
 {
 	mNode = node;
+
+	UIFrame *uiFrame = DynamicCast<UIFrame>(node);
+	if (uiFrame) uiFrame->SetUIView(this);
 }
 //----------------------------------------------------------------------------
 void UIView::SetSuperTopMoveable(Movable *movable)
@@ -122,79 +125,84 @@ void UIView::DoExecute(Event *event)
 
 	RenderStep::DoExecute(event);
 
-	if (InputEventSpace::IsEqual(event, InputEventSpace::MouseMoved) ||
-		InputEventSpace::IsEqual(event, InputEventSpace::TouchMoved))
+	if (InputEventSpace::IsIn(event))
 	{
-		InputEventData data = event->GetData<InputEventData>();
-		if (mViewID != data.ViewID) return;
-
-		if (mIsPressedVailed)
+		if (InputEventSpace::IsEqual(event, InputEventSpace::MouseMoved) ||
+			InputEventSpace::IsEqual(event, InputEventSpace::TouchMoved))
 		{
-			const APoint &pos = data.MTPos;
+			InputEventData data = event->GetData<InputEventData>();
+			if (mViewID != data.ViewID) return;
 
-			AVector delta = pos - mPressedPos;
-			if (delta.SquaredLength() >= mMoveAdjugeParamSquare)
-				mIsPressedVailed = false;
-		}
-	}
-	else if (InputEventSpace::IsEqual(event, InputEventSpace::MousePressed))
-	{
-		InputEventData data = event->GetData<InputEventData>();
-		if (mViewID != data.ViewID) return;
-
-		mIsPressed = true;
-		mIsPressedVailed = true;
-
-		_DoPick(data.MTPos.X(), data.MTPos.Z(), 1, mPickedRenderables);
-
-		mPressedPos = data.MTPos;
-	}
-	else if (InputEventSpace::IsEqual(event, InputEventSpace::TouchPressed))
-	{
-		InputEventData data = event->GetData<InputEventData>();
-		if (mViewID != data.ViewID) return;
-
-		mIsPressed = true;
-
-		_DoPick(data.MTPos.X(), data.MTPos.Z(), 1, mPickedRenderables);
-
-		mPressedPos = data.MTPos;
-	}
-	else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseReleased))
-	{
-		mIsPressed = false;
-
-		InputEventData data = event->GetData<InputEventData>();
-		if (mViewID != data.ViewID) return;
-
-		if (!mIsPressedVailed)
-		{
-			std::list<UIButtonPtr >::iterator it = mPressedButs.begin();
-			for (; it != mPressedButs.end(); it++)
+			if (mIsPressedVailed)
 			{
-				(*it)->OnReleasedNotValied();
+				const APoint &pos = data.MTPos;
+
+				AVector delta = pos - mPressedPos;
+				if (delta.SquaredLength() >= mMoveAdjugeParamSquare)
+					mIsPressedVailed = false;
 			}
-			mPressedButs.clear();
-
-			return;
 		}
-
-		_DoPick(data.MTPos.X(), data.MTPos.Z(), 2, mPickedRenderables);
-
-		std::list<UIButtonPtr >::iterator it = mPressedButs.begin();
-		for (; it != mPressedButs.end(); it++)
+		else if (InputEventSpace::IsEqual(event, InputEventSpace::MousePressed) ||
+			InputEventSpace::IsEqual(event, InputEventSpace::TouchPressed))
 		{
-			(*it)->OnReleasedNotValied();
+			InputEventData data = event->GetData<InputEventData>();
+			if (mViewID != data.ViewID) return;
+
+			mIsPressed = true;
+			mIsPressedVailed = true;
+			
+			bool doPick = true;
+			if (!mPickAcceptRect.IsEmpty() &&
+				!mPickAcceptRect.IsInsize(Float2(data.MTPos.X(), data.MTPos.Z())))
+			{
+				doPick = false;
+			}
+
+			if (doPick)
+			{
+				_DoPick(data.MTPos.X(), data.MTPos.Z(), 1, mPickedRenderables);
+				mPressedPos = data.MTPos;
+			}
 		}
-		mPressedButs.clear();
-	}
-	else if (InputEventSpace::IsEqual(event, InputEventSpace::TouchReleased))
-	{
-		InputEventData data = event->GetData<InputEventData>();
-		if (mViewID != data.ViewID) return;
+		else if (InputEventSpace::IsEqual(event, InputEventSpace::MouseReleased) ||
+			InputEventSpace::IsEqual(event, InputEventSpace::TouchReleased))
+		{
+			mIsPressed = false;
 
-		if (!mIsPressedVailed) return;
+			InputEventData data = event->GetData<InputEventData>();
+			if (mViewID != data.ViewID) return;
 
+			if (!mIsPressedVailed)
+			{
+				std::list<UIButtonPtr >::iterator it = mPressedButs.begin();
+				for (; it != mPressedButs.end(); it++)
+				{
+					(*it)->OnReleasedNotValied();
+				}
+				mPressedButs.clear();
+			}
+			else
+			{
+				bool doPick = true;
+				if (!mPickAcceptRect.IsEmpty() &&
+					!mPickAcceptRect.IsInsize(Float2(data.MTPos.X(), data.MTPos.Z())))
+				{
+					doPick = false;
+				}
+
+				if (doPick)
+				{
+					_DoPick(data.MTPos.X(), data.MTPos.Z(), 2, mPickedRenderables);
+
+					std::list<UIButtonPtr >::iterator it = mPressedButs.begin();
+					for (; it != mPressedButs.end(); it++)
+					{
+						(*it)->OnReleasedNotValied();
+					}
+					mPressedButs.clear();
+				}
+			}
+		}
 	}
 }
 //----------------------------------------------------------------------------

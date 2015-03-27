@@ -86,4 +86,8 @@
 		
 		bool IsAnimPlaying();
 		void AnimPlayStop();
+		
+		// TimeLine
+	public:
+		void MakeSelectTimeLineEdit();
 	};

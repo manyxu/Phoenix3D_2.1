@@ -322,6 +322,7 @@
     <ClInclude Include="PropGrid\wxPropertyExtend.hpp" />
     <ClInclude Include="PX2DlgCreateProject.hpp" />
     <ClInclude Include="PX2DlgPlayConfig.hpp" />
+    <ClInclude Include="PX2DlgSetCurveVal.hpp" />
     <ClInclude Include="PX2DlgTerainNew.hpp" />
     <ClInclude Include="PX2DlgTerainPageNew.hpp" />
     <ClInclude Include="PX2E_App.hpp" />
@@ -366,6 +367,7 @@
     <ClCompile Include="PropGrid\wxPropertyExtend.cpp" />
     <ClCompile Include="PX2DlgCreateProject.cpp" />
     <ClCompile Include="PX2DlgPlayConfig.cpp" />
+    <ClCompile Include="PX2DlgSetCurveVal.cpp" />
     <ClCompile Include="PX2DlgTerainNew.cpp" />
     <ClCompile Include="PX2DlgTerainPageNew.cpp" />
     <ClCompile Include="PX2E_App.cpp" />

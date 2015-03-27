@@ -9,15 +9,20 @@
 #include "PX2EditEventType.hpp"
 #include "PX2InputManager.hpp"
 #include "PX2Float2.hpp"
+#include "PX2EditDefine.hpp"
+#include "PX2SimulationEventType.hpp"
+#include "PX2EffectActor.hpp"
+#include "PX2Effectable.hpp"
+#include "PX2EffectableController.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 EditRenderView_TimeLine::EditRenderView_TimeLine() :
 EditRenderView(RVT_TIMELINE),
 mMoveMode(MM_PAN),
-mLeftWidth(100.0f),
-mPixelOverCamIn(0.0f),
-mPixelOverCamOut(0.0f),
+mLeftWidth(TimeLineLeftWidth+2.0f),
+mPixelOverCamIn(1.0f),
+mPixelOverCamOut(1.0f),
 mUPerGrid(0.0f),
 mVPerGrid(0.0f),
 mXStart(0.0f),
@@ -25,20 +30,7 @@ mXEnd(0.0f),
 mZStart(0.0f),
 mZEnd(0.0f)
 {
-	// mRenderViewID is 3
 	PX2_INPUTMAN.CreateAddListener(RVT_TIMELINE);
-
-	mFrame = new0 UIFrame();
-
-	mGridNode = new0 Node();
-	mFrame->AttachChild(mGridNode);
-
-	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
-	VertexBuffer *vBuffer = new0 VertexBuffer(4096, vf->GetStride(), Buffer::BU_DYNAMIC);
-	mGridPoly = new0 Polysegment(vf, vBuffer, false);
-	VertexColor4Material *mtl = new0 VertexColor4Material();
-	mGridPoly->SetMaterialInstance(mtl->CreateInstance());
-	mGridNode->AttachChild(mGridPoly);
 }
 //----------------------------------------------------------------------------
 EditRenderView_TimeLine::~EditRenderView_TimeLine()
@@ -70,16 +62,24 @@ bool EditRenderView_TimeLine::InitlizeRendererStep(const std::string &name)
 
 	mSize = mPt_Size;
 
-	mUIView = new0 UIView(mRenderViewID);
-	mRenderStep = mUIView;
-	mRenderStep->SetName(name);
+	mUIViewGrid = new0 UIView(mRenderViewID);
+	mUIViewGrid->SetName(name);
+	mUIViewGrid->SetSize(mSize);
+	mUIViewGrid->SetCameraAutoAdjust(false);
+	PX2_EDIT.GetTimeLineEdit()->SetTimeLineRenderStep_Grid(mUIViewGrid);
+	mRenderStep = mUIViewGrid;
 
-	mRenderer->SetCamera(mUIView->GetCamera());
+	float rWidth = 2.0f*mSize.Width;
+	float scaleX = rWidth / 22.5f;
+	float scaleZ = scaleX * (mPixelOverCamIn / mPixelOverCamOut);
+	PX2_EDIT.GetTimeLineEdit()->SetCtrlsScale(Float2(scaleX, scaleZ));
+
+	mUIViewUIGroup = new UIView(mRenderViewID);
+	mUIViewUIGroup->SetPickAcceptRect(Rectf(0.0f, 0.0f, mLeftWidth, mSize.Height));
+	PX2_EDIT.GetTimeLineEdit()->SetTimeLineRenderStep_UIGroup(mUIViewUIGroup);
+	mRenderStepCtrl = mUIViewUIGroup;
+
 	SetRenderer(mRenderer);
-
-	mRenderStep->SetSize(mSize);
-
-	mRenderStep->SetNode(mFrame);
 
 	mIsRenderCreated = true;
 
@@ -90,39 +90,39 @@ void EditRenderView_TimeLine::Tick(double elapsedTime)
 {
 	if (!IsEnable()) return;
 
-	if (mRenderStep && mIsRenderCreated)
+	double tiemInSeconds = GetTimeInSeconds();
+
+	mRenderStep->Update(tiemInSeconds, elapsedTime);
+	mRenderStep->ComputeVisibleSetAndEnv();
+
+	mRenderStepCtrl->Update(tiemInSeconds, elapsedTime);
+	mRenderStepCtrl->ComputeVisibleSetAndEnv();
+
+	if (mRenderer && mRenderer->PreDraw())
 	{
-		double tiemInSeconds = GetTimeInSeconds();
+		mRenderer->InitRenderStates();
 
-		mRenderStep->Update(tiemInSeconds, elapsedTime);
+		mRenderer->SetClearColor(Float4::MakeColor(80, 80, 80, 255));
+		mRenderer->ClearBuffers();
 
-		mRenderStep->ComputeVisibleSetAndEnv();
+		mRenderStep->Draw();
 
-		Renderer *renderer = mRenderStep->GetRenderer();
-		if (renderer && renderer->PreDraw())
+		for (int i = 0; i < (int)mFontStrs.size(); i++)
 		{
-			renderer->InitRenderStates();
-
-			mRenderer->SetClearColor(Float4::MakeColor(64, 64, 64, 255));
-			renderer->ClearBuffers();
-
-			mRenderStep->Draw();
-
-			for (int i = 0; i < (int)mFontStrs.size(); i++)
-			{
-				mRenderer->Draw(mFontStrs[i].x, mFontStrs[i].y, Float4::WHITE,
-					mFontStrs[i].str);
-			}
-
-			// draw left
-			mRenderer->SetClearColor(Float4::BLACK);
-			mRenderer->ClearBuffers(0, -1, (int)mLeftWidth, (int)mSize.Height + 1);
-			mRenderer->SetClearColor(Float4(0.6f, 0.6f, 0.6f, 1.0f));
-			mRenderer->ClearColorBuffer(0, 0, (int)mLeftWidth - 1, (int)mSize.Height + 1);
-
-			renderer->PostDraw();
-			renderer->DisplayColorBuffer();
+			mRenderer->Draw(mFontStrs[i].x, mFontStrs[i].y, Float4::WHITE,
+				mFontStrs[i].str);
 		}
+
+		// draw left
+		mRenderer->SetClearColor(Float4::BLACK);
+		mRenderer->ClearBuffers(0, -1, (int)mLeftWidth, (int)mSize.Height + 1);
+		mRenderer->SetClearColor(Float4(0.6f, 0.6f, 0.6f, 1.0f));
+		mRenderer->ClearColorBuffer(0, 0, (int)mLeftWidth - 1, (int)mSize.Height + 1);
+
+		mRenderStepCtrl->Draw();
+
+		mRenderer->PostDraw();
+		mRenderer->DisplayColorBuffer();
 	}
 }
 //----------------------------------------------------------------------------
@@ -166,7 +166,8 @@ void EditRenderView_TimeLine::FitViewHorizontally()
 	else
 		pos.X() = inMin + inLength / 2.0f - inLength*leftOverWidth;
 
-	mUIView->GetCameraNode()->LocalTransform.SetTranslate(pos);
+	mUIViewGrid->GetCameraNode()->LocalTransform.SetTranslate(pos);
+	mUIViewGrid->GetCameraNode()->Update(GetTimeInSeconds(), 0.0f);
 
 	_RefreshGrid(true);
 }
@@ -206,7 +207,8 @@ void EditRenderView_TimeLine::FitViewVertically()
 	else
 		pos.Z() = outMin + outLength / 2.0f;
 
-	mUIView->GetCameraNode()->LocalTransform.SetTranslate(pos);
+	mUIViewGrid->GetCameraNode()->LocalTransform.SetTranslate(pos);
+	mUIViewGrid->GetCameraNode()->Update(GetTimeInSeconds(), 0.0f);
 
 	_RefreshGrid(true);
 }
@@ -219,6 +221,77 @@ void EditRenderView_TimeLine::FitViewToAll()
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::FitViewToSelected()
 {
+}
+//----------------------------------------------------------------------------
+void EditRenderView_TimeLine::ZoomCamera(float xDetal, float zDetal)
+{
+	Camera *camera = mUIViewGrid->GetCamera();
+
+	float dMin = 0.0f;
+	float dMax = 0.0f;
+	float uMin = 0.0f;
+	float uMax = 0.0f;
+	float rMin = 0.0f;
+	float rMax = 0.0f;
+	camera->GetFrustum(dMin, dMax, uMin, uMax, rMin, rMax);
+	float uMaxTemp = uMax;
+	float rMaxTemp = rMax;
+
+	if (xDetal > 0.0f)
+	{
+		rMaxTemp *= xDetal;
+	}
+	else
+	{
+		rMaxTemp /= -xDetal;
+	}
+
+	if (zDetal > 0.0f)
+	{
+		uMaxTemp *= zDetal;
+	}
+	else
+	{
+		uMaxTemp /= -zDetal;
+	}
+
+	if (uMaxTemp > 0.0f)
+	{
+		uMax = uMaxTemp;
+	}
+	if (rMaxTemp > 0.0f)
+	{
+		rMax = rMaxTemp;
+	}
+
+	uMin = -uMax;
+	rMin = -rMax;
+	camera->SetFrustum(dMin, dMax, uMin, uMax, rMin, rMax);
+
+	_RefreshGrid(true);
+}
+//----------------------------------------------------------------------------
+void EditRenderView_TimeLine::ZoomCameraTo(float xMax, float zMax)
+{
+	if (xMax <= 0.0f || zMax <= 0.0f) return;
+
+	Camera *camera = mUIViewGrid->GetCamera();
+
+	float dMin = 0.0f;
+	float dMax = 0.0f;
+	float uMin = 0.0f;
+	float uMax = 0.0f;
+	float rMin = 0.0f;
+	float rMax = 0.0f;
+	camera->GetFrustum(dMin, dMax, uMin, uMax, rMin, rMax);
+
+	rMax = xMax;
+	rMin = -rMax;
+	uMax = zMax;
+	uMin = -uMax;
+	camera->SetFrustum(dMin, dMax, uMin, uMax, rMin, rMax);
+
+	_RefreshGrid(true);
 }
 //----------------------------------------------------------------------------
 float _GetGridSpacing(int gridNum)
@@ -235,6 +308,8 @@ float _GetGridSpacing(int gridNum)
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 {
+	Polysegment *gird = PX2_EDIT.GetTimeLineEdit()->GetGridPoly();
+
 	PX2_UNUSED(doScale);
 
 	int width = (int)mSize.Width;
@@ -242,7 +317,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 
 	if (width <= 0 && height <= 0) return;
 
-	Camera *camera = mRenderStep->GetCamera();
+	Camera *camera = mUIViewGrid->GetCamera();
 	APoint pos = camera->GetPosition();
 	float dMin = 0.0f;
 	float dMax = 0.0f;
@@ -294,7 +369,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 	int iTemp = 4;
 	int zTemp = 4;
 
-	VertexBufferAccessor vba(mGridPoly);
+	VertexBufferAccessor vba(gird);
 	float zPosTemp = 0.0f;
 	while (zPosTemp < mZEnd)
 	{
@@ -305,8 +380,8 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		vba.Position<Float3>(2 * segNum + 1) = Float3(mXEnd, 1.0f, zPosTemp);
 		vba.Color<Float3>(0, 2 * segNum + 1) = gray;
 
-		mRenderer->SetCamera(mRenderStep->GetCamera());
-		Vector2f scrv = mRenderer->PointWorldToViewPort(APoint(0.0f, 0.0f, zPosTemp));
+		mRenderer->SetCamera(mUIViewGrid->GetCamera());
+		Vector2f scrv = mUIViewGrid->PointWorldToViewPort(APoint(0.0f, 0.0f, zPosTemp));
 		FontStr fs;
 		fs.x = iTemp + (int)mLeftWidth;
 		fs.y = height - (int)scrv.Y();
@@ -325,7 +400,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		vba.Position<Float3>(2 * segNum + 1) = Float3(mXEnd, 1.0f, zPosTemp);
 		vba.Color<Float3>(0, 2 * segNum + 1) = gray;
 
-		Vector2f scrv = mRenderer->PointWorldToViewPort(APoint(0.0f, 0.0f,
+		Vector2f scrv = mUIViewGrid->PointWorldToViewPort(APoint(0.0f, 0.0f,
 			zPosTemp));
 		FontStr fs;
 		fs.x = iTemp + (int)mLeftWidth;
@@ -345,7 +420,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		vba.Position<Float3>(2 * segNum + 1) = Float3(xPosTemp, 1.0f, mZEnd);
 		vba.Color<Float3>(0, 2 * segNum + 1) = gray;
 
-		Vector2f scrv = mRenderer->PointWorldToViewPort(APoint(xPosTemp, 0.0f, 0.0f));
+		Vector2f scrv = mUIViewGrid->PointWorldToViewPort(APoint(xPosTemp, 0.0f, 0.0f));
 		FontStr fs;
 		fs.x = (int)scrv.X() + iTemp;
 		fs.y = height - zTemp;
@@ -364,7 +439,7 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		vba.Position<Float3>(2 * segNum + 1) = Float3(xPosTemp, 1.0f, mZEnd);
 		vba.Color<Float3>(0, 2 * segNum + 1) = gray;
 
-		Vector2f scrv = mRenderer->PointWorldToViewPort(APoint(xPosTemp, 0.0f,
+		Vector2f scrv = mUIViewGrid->PointWorldToViewPort(APoint(xPosTemp, 0.0f,
 			0.0f));
 		FontStr fs;
 		fs.x = (int)scrv.X() + iTemp;
@@ -375,18 +450,21 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 		segNum++;
 	}
 
+	Float3 zeroLineColorRed = Float3::MakeColor(150, 28, 36);
+	Float3 zeroLineColorBlue = Float3::MakeColor(63, 72, 175);
+
 	vba.Position<Float3>(2 * segNum) = Float3(mXStart, 1.0f, 0.0f);
-	vba.Color<Float3>(0, 2 * segNum) = Float3::WHITE;
+	vba.Color<Float3>(0, 2 * segNum) = zeroLineColorRed;
 	vba.Position<Float3>(2 * segNum + 1) = Float3(mXEnd, 1.0f, 0.0f);
-	vba.Color<Float3>(0, 2 * segNum + 1) = Float3::WHITE;
+	vba.Color<Float3>(0, 2 * segNum + 1) = zeroLineColorRed;
 	segNum++;
 	vba.Position<Float3>(2 * segNum) = Float3(0.0f, 1.0f, mZStart);
-	vba.Color<Float3>(0, 2 * segNum) = Float3::WHITE;
+	vba.Color<Float3>(0, 2 * segNum) = zeroLineColorBlue;
 	vba.Position<Float3>(2 * segNum + 1) = Float3(0.0f, 1.0f, mZEnd);
-	vba.Color<Float3>(0, 2 * segNum + 1) = Float3::WHITE;
+	vba.Color<Float3>(0, 2 * segNum + 1) = zeroLineColorBlue;
 	segNum++;
 
-	Vector2f scrv = mRenderer->PointWorldToViewPort(APoint::ORIGIN);
+	Vector2f scrv = mUIViewGrid->PointWorldToViewPort(APoint::ORIGIN);
 	FontStr fs;
 	fs.x = iTemp + (int)mLeftWidth;
 	fs.y = height - (int)scrv.Y();
@@ -399,36 +477,111 @@ void EditRenderView_TimeLine::_RefreshGrid(bool doScale)
 	fs1.str = "0.0";
 	mFontStrs.push_back(fs1);
 
-	mGridPoly->SetNumSegments(segNum);
+	gird->SetNumSegments(segNum);
 
-	mGridPoly->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
+	gird->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
 
-	if (mRenderer) mRenderer->Update(mGridPoly->GetVertexBuffer());
+	if (mRenderer) mRenderer->Update(gird->GetVertexBuffer());
+
+	if (doScale)
+	{
+		float rWidth = 2.0f * rMax;
+		float scaleX = rWidth / 22.5f;
+
+		float uHeight = 2.0f * uMax;
+		float scaleZ = uHeight / (((float)mSize.Height / (float)mSize.Width)*22.5f);
+		PX2_EDIT.GetTimeLineEdit()->SetCtrlsScale(Float2(scaleX, scaleZ));
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_TimeLine::_TrySelectCurveCtrlPoint(const APoint &pos)
+{
+	APoint origin;
+	AVector direction;
+	mRenderStep->GetPickRay(pos.X(), pos.Z(), origin, direction);
+
+	Node *gridNode = PX2_EDIT.GetTimeLineEdit()->GetCurveEditNode_Grid();
+
+	Picker picker;
+	picker.Execute(gridNode, origin, direction, 0.0f, Mathf::MAX_REAL);
+
+	if ((int)(picker.Records.size()) > 0)
+	{
+		Movable *mov = picker.GetClosestNonnegative().Intersected;
+
+		CurveCtrl *ctrl = PX2_EDIT.GetTimeLineEdit()->TrySelectCurve(mov);
+
+		if (ctrl)
+		{
+			//UnToggleAllInterps();
+			//EnableInterps(true);
+			//ToggleInterp(ctrl->GetInterpCurveMode());
+
+			PX2_EDIT.GetTimeLineEdit()->SetSelectedCurveCtrl(ctrl);
+		}
+		else
+		{
+			PX2_EDIT.GetTimeLineEdit()->SetSelectedCurveCtrl(0);
+		}
+	}
+	else
+	{
+		PX2_EDIT.GetTimeLineEdit()->SetSelectedCurveCtrl(0);
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::OnSize(const Sizef& size)
 {
 	mSize = size;
 
+	if (mRenderer) mRenderer->ResizeWindow((int)size.Width, (int)size.Height);
+
 	EditRenderView::OnSize(size);
 
-	if (mRenderStep)
-	{
-		mRenderStep->GetRenderer()->ResizeWindow((int)size.Width,
-			(int)size.Height);
-	}
-
 	FitViewToAll();
+
+	if (mUIViewUIGroup)
+		mUIViewUIGroup->SetPickAcceptRect(Rectf(0.0f, 0.0f, mLeftWidth, mSize.Height));
 }
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::OnLeftDown(const APoint &pos)
 {
 	EditRenderView::OnLeftDown(pos);
+
+	_TrySelectCurveCtrlPoint(pos);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::OnLeftUp(const APoint &pos)
 {
 	EditRenderView::OnLeftUp(pos);
+}
+//----------------------------------------------------------------------------
+void EditRenderView_TimeLine::OnLeftDClick(const APoint &pos)
+{
+	EditRenderView::OnLeftDClick(pos);
+
+	Rectf rect(0, 0, mLeftWidth, mSize.Height);
+	bool leftContain = rect.IsInsize(Float2(pos.X(), pos.Z()));
+	bool isCtrlDown = PX2_EDIT.IsCtrlDown;
+
+	if (!leftContain && isCtrlDown)
+	{
+		UICurveGroup *uiCurveGroup = PX2_EDIT.GetTimeLineEdit()->GetSelectedUICurveGroup();
+		if (!uiCurveGroup) return;
+
+		Camera *camera = PX2_EDIT.GetTimeLineEdit()->GetTimeLineRenderStep_Grid()->GetCamera();
+
+		APoint camPos = camera->GetPosition();
+		Vector2f camScreenPos = mUIViewGrid->PointWorldToViewPort(camPos);
+		float xDissCam = pos.X() - camScreenPos.X();
+		float zDissCam = pos.Z() - camScreenPos.Y();
+		float xDissCamReal = xDissCam / mPixelOverCamIn;
+		float zDissCamReal = zDissCam / mPixelOverCamOut;
+		APoint pointPos = camPos + AVector(xDissCamReal, 0.0f, zDissCamReal);
+
+		CurveGroup *curveGroup = uiCurveGroup->GetCurveGroup();
+		curveGroup->AddPoint(pointPos);
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::OnMiddleDown(const APoint &pos)
@@ -443,7 +596,8 @@ void EditRenderView_TimeLine::OnMiddleUp(const APoint &pos)
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::OnMouseWheel(float delta)
 {
-	PX2_UNUSED(delta);
+	float val = 1.2f * Mathf::Sign(delta);
+	ZoomCamera(val, val);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::OnRightDown(const APoint &pos)
@@ -466,6 +620,74 @@ void EditRenderView_TimeLine::OnMotion(const APoint &pos)
 	Rectf rect(0, 0, mLeftWidth, mSize.Height);
 	bool leftContain = rect.IsInsize(Float2(pos.X(), pos.Z()));
 
+	bool isCtrlDown = PX2_EDIT.IsCtrlDown;
+	CurveCtrl *selectedCtrl = PX2_EDIT.GetTimeLineEdit()->GetSelectedCurveCtrl();
+
+	if (isCtrlDown && !leftContain && selectedCtrl && mIsLeftDown)
+	{
+		Camera *camera = mRenderStep->GetCamera();
+
+		const APoint &outVal = selectedCtrl->GetOutVal();
+		Vector2f posInViewPort = mUIViewGrid->PointWorldToViewPort(outVal);
+
+		float xDiss = pos.X() - posInViewPort.X();
+		float zDiss = pos.Z() - posInViewPort.Y();
+		float xDissReal = xDiss / mPixelOverCamIn;
+		float zDissReal = zDiss / mPixelOverCamOut;
+
+		AVector arrive = AVector(-xDissReal, 0.0f, -zDissReal);
+		arrive.Normalize();
+		AVector leave = AVector(xDissReal, 0.0f, zDissReal);
+		leave.Normalize();
+
+		if (CurveCtrl::SM_ARRIVE == selectedCtrl->GetSelectMode())
+		{
+			if (xDiss < 0.0f)
+			{
+				selectedCtrl->SetArriveTangent(arrive);
+
+				InterpCurveMode mode = selectedCtrl->GetInterpCurveMode();
+				if (ICM_CURVE_AUTO == mode || ICM_CURVE_AUTOCLAMPED == mode)
+				{
+					selectedCtrl->SetInterpCurveMode(ICM_CURVE_USER);
+					//UnToggleAllInterps();
+					//ToggleInterp(ICM_CURVE_USER);
+				}
+			}
+		}
+		else if (CurveCtrl::SM_LEAVE == selectedCtrl->GetSelectMode())
+		{
+			if (xDiss > 0.0f)
+			{
+				selectedCtrl->SetLeaveTangent(leave);
+
+				InterpCurveMode mode = selectedCtrl->GetInterpCurveMode();
+				if (ICM_CURVE_AUTO == mode || ICM_CURVE_AUTOCLAMPED == mode)
+				{
+					selectedCtrl->SetInterpCurveMode(ICM_CURVE_USER);
+					//UnToggleAllInterps();
+					//ToggleInterp(ICM_CURVE_USER);
+				}
+			}
+		}
+		else if (CurveCtrl::SM_CENTER == selectedCtrl->GetSelectMode())
+		{
+			APoint camPos = camera->GetPosition();
+			Vector2f camScreenPos = mUIViewGrid->PointWorldToViewPort(camPos);
+			float xDissCam = pos.X() - camScreenPos.X();
+			float zDissCam = pos.Z() - camScreenPos.Y();
+			float xDissCamReal = xDissCam / mPixelOverCamIn;
+			float zDissCamReal = zDissCam / mPixelOverCamOut;
+			APoint pointPos = camPos + AVector(xDissCamReal, 0.0f, zDissCamReal);
+			pointPos.Y() = 0.0f;
+
+			selectedCtrl->SetInVal(pointPos.X()); // ctrl may changed
+
+			selectedCtrl = PX2_EDIT.GetTimeLineEdit()->GetSelectedCurveCtrl(); // ctrl may changed, can it again
+			if (selectedCtrl) selectedCtrl->SetOutVal(pointPos);
+		}
+	}
+
 	bool doMovCal = false;
 
 	if (mIsMiddleDown && !leftContain)
@@ -478,9 +700,11 @@ void EditRenderView_TimeLine::OnMotion(const APoint &pos)
 	{
 		if (MM_PAN == mMoveMode)
 		{
-			APoint pos = mUIView->GetCameraNode()->LocalTransform.GetTranslate();
+			APoint pos = mUIViewGrid->GetCameraNode()->LocalTransform.GetTranslate();
 			pos += AVector(movedX, 0.0f, movedZ);
-			mUIView->GetCameraNode()->LocalTransform.SetTranslate(pos);
+			mUIViewGrid->GetCameraNode()->LocalTransform.SetTranslate(pos);
+			mUIViewGrid->GetCameraNode()->Update(GetTimeInSeconds(), 0.0f);
+
 			_RefreshGrid(false);
 		}
 		else if (MM_ZOOM == mMoveMode)
@@ -494,5 +718,60 @@ void EditRenderView_TimeLine::OnMotion(const APoint &pos)
 void EditRenderView_TimeLine::DoExecute(Event *event)
 {
 	EditRenderView::DoExecute(event);
+
+	/*	if (EditEventSpace::IsEqual(event, EditEventSpace::CurveChangedByGrid))
+		{
+		Object *obj = event->GetData<Object*>();
+		EditSystem::GetSingleton().GetCurveEdit()->UpdateCurve(obj);
+
+		CurveCtrl *ctrl = EditSystem::GetSingleton().GetCurveEdit()->GetSelectedCurveCtrl();
+		if (ctrl)
+		{
+		ToggleInterp(ctrl->GetInterpCurveMode());
+		}
+		}
+		else*/ 
+	if (SimuES_E::IsEqual(event, SimuES_E::RemoveObject))
+	{
+		Object *obj = event->GetData<Object*>();
+		EffectModule *module = DynamicCast<EffectModule>(obj);
+		Movable *movable = DynamicCast<Movable>(obj);
+
+		if (module)
+		{
+			RemoveCurveGroup(module);
+		}
+		else if (movable)
+		{
+			RemoveCurveGroup(movable);
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_TimeLine::RemoveCurveGroup(PX2::EffectModule *module)
+{
+	if (!module) return;
+
+	PX2_EDIT.GetTimeLineEdit()->RemoveGroup(module);
+}
+//----------------------------------------------------------------------------
+void _TimeLineTravelExecuteFun(Movable *mov, Any *data)
+{
+	PX2_UNUSED(data);
+
+	Effectable *eftAble = DynamicCast<Effectable>(mov);
+	if (eftAble)
+	{
+		for (int i = 0; i < eftAble->GetEffectableController()->GetNumModules(); i++)
+		{
+			EffectModule *module = eftAble->GetEffectableController()->GetModule(i);
+			PX2_EDIT.GetTimeLineEdit()->RemoveGroup(module);
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void EditRenderView_TimeLine::RemoveCurveGroup(Movable *mov)
+{
+	Node::TravelExecute(mov, _TimeLineTravelExecuteFun);
 }
 //----------------------------------------------------------------------------

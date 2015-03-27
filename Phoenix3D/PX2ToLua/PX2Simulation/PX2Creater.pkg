@@ -69,4 +69,5 @@
 		UIPicBox *ConvertToUIPicBox(Object *obj);
 		UIFrame *ConvertToUIFrame(Object *obj);
 		EffectableController *ConvertToEffectableController(Object *obj);
+		EffectModule *ConvertToEffectModule(Object *obj);
 	};

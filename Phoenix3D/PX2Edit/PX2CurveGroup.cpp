@@ -204,6 +204,11 @@ int CurveGroup::SetInVal (int index, float val)
 	return newIndex;
 }
 //----------------------------------------------------------------------------
+int CurveGroup::GetNumPoints()
+{
+	return mCurve0->GetNumPoints();
+}
+//----------------------------------------------------------------------------
 void CurveGroup::UpdateCurve ()
 {
 	if (mCurve0)

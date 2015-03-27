@@ -9,6 +9,7 @@
 #include "PX2Rect.hpp"
 #include "PX2Culler.hpp"
 #include "PX2Node.hpp"
+#include "PX2Vector2.hpp"
 #include "PX2RenderTarget.hpp"
 
 namespace PX2
@@ -67,6 +68,7 @@ namespace PX2
 		Camera *GetCamera();
 
 		bool GetPickRay(float x, float y, APoint& origin, AVector& direction);
+		Vector2f PointWorldToViewPort(const APoint &worldPos, bool *isInBack=0);
 
 	protected:
 		Renderer *mRenderer;

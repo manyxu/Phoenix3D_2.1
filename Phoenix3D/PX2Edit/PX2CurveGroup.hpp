@@ -37,6 +37,7 @@ namespace PX2
 		void AddPoint (const PX2::APoint &pos);
 		void DeletePoint (int index);
 		int SetInVal (int index, float val);
+		int GetNumPoints();
 
 		void UpdateCurve ();
 		void UpdateCtrls ();

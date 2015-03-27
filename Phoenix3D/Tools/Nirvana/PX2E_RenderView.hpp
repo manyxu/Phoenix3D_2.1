@@ -28,6 +28,7 @@ namespace PX2Editor
 		void OnLeaveWindow(wxMouseEvent& e);
 		void OnLeftDown(wxMouseEvent& e);
 		void OnLeftUp(wxMouseEvent& e);
+		void OnLeftDoubleClick(wxMouseEvent& e);
 		void OnMiddleDown(wxMouseEvent& e);
 		void OnMiddleUp(wxMouseEvent& e);
 		void OnMouseWheel(wxMouseEvent& e);

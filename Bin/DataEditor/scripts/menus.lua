@@ -7,6 +7,7 @@ function e_CreateEditMenu(tag)
 	local selMovable = PX2_CREATER:ConvertToMovable(selObj)
 	local selNode = PX2_CREATER:ConvertToNode(selObj)
 	local selEftCtrl = PX2_CREATER:ConvertToEffectableController(selObj)
+	local selEftModule = PX2_CREATER:ConvertToEffectModule(selObj)
 
 	local editMenu = NirMan:GetCurMenu()
 	
@@ -93,6 +94,11 @@ function e_CreateEditMenu(tag)
 			NirMan:AddMenuItem(addSceneMenu, PX2_LM:GetValue("Effect"), "e_AddSceneActor_Effect()")
 		end
 		
+		if nil~=selEftModule then
+			NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("MakeTimeLine"), "e_OnMakeTimeLine()")
+			isAddedSomthing = true
+		end
+		
 		if nil~=selObj then
 			if isAddedSomthing then
 				NirMan:AddSeparater(editMenu)
@@ -138,4 +144,18 @@ function e_CreateResMenu()
 	local editMenu = NirMan:GetCurMenu()
 	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Open"), "e_ResView_Open()")
 	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("CopyResPath"), "e_ResView_CopyResPath()")
+end
+
+function e_CreateTimeLineMenu_Left()
+	local editMenu = NirMan:GetCurMenu()
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Delete"), "e_DeleteCurveGroup()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("DeleteAll"), "e_DeleteAllCurveGroup()")
+end
+
+function e_CreateTimeLineMenu_Right()
+	local editMenu = NirMan:GetCurMenu()
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("SetInValue"), "e_SetInValue()")
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("SetOutValue"), "e_SetOutValue()")
+	NirMan:AddSeparater(editMenu)
+	NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Delete"), "e_DeleteCurveKeyPoint()")
 end

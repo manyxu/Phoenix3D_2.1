@@ -174,6 +174,8 @@ namespace PX2
 	public:
 		TimeLineEdit *GetTimeLineEdit();
 
+		void MakeSelectTimeLineEdit();
+
 	protected:
 		TimeLineEdit *mTimeLineEidt;
 

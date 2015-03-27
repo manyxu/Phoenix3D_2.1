@@ -18,6 +18,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("Copy", "复制")
 	PX2_LM:AddItem1("Paste", "粘贴")
 	PX2_LM:AddItem1("Delete", "删除")
+	PX2_LM:AddItem1("DeleteAll", "删除所有")
 	PX2_LM:AddItem1("ImportSelectedRes", "导入选择资源")
 	PX2_LM:AddItem1("Import", "导入")
 	PX2_LM:AddItem1("Export", "导出")
@@ -55,6 +56,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("Create", "创建")
 	PX2_LM:AddItem1("Add", "添加")
 	PX2_LM:AddItem1("AddEffectModule", "添加特效模块")
+	PX2_LM:AddItem1("MakeTimeLine", "时间线编辑")
 	
 	PX2_LM:AddItem1("SceneActor", "场景角色")
 	PX2_LM:AddItem1("UI", "界面")
@@ -66,6 +68,11 @@ function AddLanguages()
 	
 	PX2_LM:AddItem1("FindInSceneTree", "在工程树中查找")
 	PX2_LM:AddItem1("FindInResTree", "在资源树中查找")
+	
+	PX2_LM:AddItem1("SetInValue", "设置InValue")
+	PX2_LM:AddItem1("NewInValue", "新InValue")
+	PX2_LM:AddItem1("SetOutValue", "设置OutValue")
+	PX2_LM:AddItem1("NewOutValue", "新OutValue")
 	
 	PX2_LM:AddItem1("Node", "节点")
 	PX2_LM:AddItem1("Geometry", "几何体")
@@ -127,7 +134,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("pv_settings_show", "显示")
 	
 	-- ResView
-	PX2_LM:AddItem1("CopyResPath", "拷贝资源路径到剪贴簿")
+	PX2_LM:AddItem1("CopyResPath", "拷贝路径到剪贴簿")
 	
 	-- 一般
 	PX2_LM:AddItem1("Name", "名称")
@@ -141,6 +148,7 @@ function AddLanguages()
 	PX2_LM:AddItem("Tip3", "必须选择1个导出物件！", "You must select a object to export!")
 	PX2_LM:AddItem("Tip4", "工程已经存在！", "Project is already exist!")
 	PX2_LM:AddItem("Tip5", "地形角色已经存在！", "TerrainActor is already exist!")
+	PX2_LM:AddItem("Tip6", "必须存在一个控制点.", "There must be one ctrl point.")
 	
 	--编辑器
 	PX2_LM:AddItem("WelcomeToEditor", "欢迎使用Phoenix3D编辑器!", "Welcome to Phoenix3D editor!")

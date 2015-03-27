@@ -19,6 +19,28 @@ namespace PX2
 		TimeLineEdit();
 		~TimeLineEdit();
 
+	public:
+		void SetTimeLineRenderStep_UIGroup(RenderStep *renderStep);
+		RenderStep *GetTimeLineRenderStep_UIGroup() const;
+
+		void SetTimeLineRenderStep_Grid(RenderStep *renderStep);
+		RenderStep *GetTimeLineRenderStep_Grid() const;
+
+		Node *GetCurveEditNode_Grid() { return mCurveEditNode_Grid; }
+		PX2::Polysegment *GetGridPoly() { return mGridPoly; }
+
+	protected:
+		RenderStepPtr mTimeLineRenderStep_UIGroup;
+		UIFramePtr mCurveEditNode_UIGroup;
+
+		RenderStepPtr mTimeLineRenderStep_Grid;
+		NodePtr mCurveEditNode_GridRoot;
+		NodePtr mCurveEditNode_Grid;
+
+		PX2::NodePtr mGridNode;
+		PX2::PolysegmentPtr mGridPoly;
+
+	public:
 		void SetCtrlsScale(const Float2 &scale);
 		const Float2 &GetCtrlsScale() const;
 
@@ -33,11 +55,12 @@ namespace PX2
 		void ReCreateAddCurveGroup(PX2::Object *obj);
 		bool HasCurveGroup(PX2::Object *obj);
 		void RemoveGroup(PX2::Object *obj);
-		void ClearGroup(PX2::UICurveGroup *uiGroup);
-		void ClearAllGroups();
 		CurveGroup *GetCurveGroup(PX2::Object *obj);
 		CurveGroup *GetCurveGroup(Curve *curve);
 		void UpdateCurve(PX2::Object *obj, bool addRemovePoint = false);
+
+		void ClearGroup(PX2::UICurveGroup *uiGroup);
+		void ClearAllGroups();
 
 		bool HasCurve(Curve *curve);
 		void AddCurve(Curve *curve);
@@ -66,7 +89,6 @@ namespace PX2
 		void _CreateAddCurveGroup(PX2::Controller *ctrl);
 		void _AddGroup(CurveGroup *group);
 		int _GetNumGroups() const;
-		void _RemoveGroup(CurveGroup *group);
 
 		PX2::UICurveGroup *_GetUICurveGroupFormUIView(PX2::Node *frame, CurveGroup *group);
 
@@ -81,8 +103,6 @@ namespace PX2
 
 		PX2::UICurveGroupPtr mSelectedCruveGroup;
 		CurveCtrlPtr mSelectedCurveCtrl;
-
-		PX2::NodePtr mCurveEditScene;
 	};
 
 }

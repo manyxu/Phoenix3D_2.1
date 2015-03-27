@@ -305,6 +305,8 @@ bool CurveCtrlFloat::SetInVal (float inVal)
 	int oldIndex = mIndex;
 
 	CurveGroup *group = PX2_EDIT.GetTimeLineEdit()->GetCurveGroup(mCurve);
+	if (!group) return false;
+
 	int newIndex = group->SetInVal(mIndex, inVal);
 
 	if (newIndex != oldIndex)

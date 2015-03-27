@@ -19,6 +19,7 @@ namespace PX2
 	PX2_EVENT(KeyPressed)
 	PX2_EVENT(KeyReleased)
 	PX2_EVENT(MousePressed)
+	PX2_EVENT(MouseDoublePressed)
 	PX2_EVENT(MouseReleased)
 	PX2_EVENT(MouseWheeled)
 	PX2_EVENT(MouseMoved)

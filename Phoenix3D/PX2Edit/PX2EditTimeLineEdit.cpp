@@ -15,15 +15,64 @@ TimeLineEdit::TimeLineEdit() :
 mNumSamples(512),
 mMaxRange(99999.0f)
 {
+	mVFormat = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
+
+	mCurveEditNode_UIGroup = new0 UIFrame();
+
+	mCurveEditNode_GridRoot = new0 Node();
+
+	mCurveEditNode_Grid = new0 Node();
+	mCurveEditNode_GridRoot->AttachChild(mCurveEditNode_Grid);
+
+	mGridNode = new0 Node();
+	mCurveEditNode_GridRoot->AttachChild(mGridNode);
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
+	VertexBuffer *vBuffer = new0 VertexBuffer(4096, vf->GetStride(), Buffer::BU_DYNAMIC);
+	mGridPoly = new0 Polysegment(vf, vBuffer, false);
+	mGridNode->AttachChild(mGridPoly);
+	VertexColor4Material *mtl = new0 VertexColor4Material();
+	mGridPoly->SetMaterialInstance(mtl->CreateInstance());
 }
 //----------------------------------------------------------------------------
 TimeLineEdit::~TimeLineEdit()
 {
 }
 //----------------------------------------------------------------------------
+void TimeLineEdit::SetTimeLineRenderStep_UIGroup(RenderStep *renderStep)
+{
+	mTimeLineRenderStep_UIGroup = renderStep;
+
+	mTimeLineRenderStep_UIGroup->SetNode(mCurveEditNode_UIGroup);
+}
+//----------------------------------------------------------------------------
+RenderStep *TimeLineEdit::GetTimeLineRenderStep_UIGroup() const
+{
+	return mTimeLineRenderStep_UIGroup;
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::SetTimeLineRenderStep_Grid(RenderStep *renderStep)
+{
+	mTimeLineRenderStep_Grid = renderStep;
+
+	mTimeLineRenderStep_Grid->SetNode(mCurveEditNode_GridRoot);
+}
+//----------------------------------------------------------------------------
+RenderStep *TimeLineEdit::GetTimeLineRenderStep_Grid() const
+{
+	return mTimeLineRenderStep_Grid;
+}
+//----------------------------------------------------------------------------
 void TimeLineEdit::SetCtrlsScale(const Float2 &scale)
 {
 	mCtrlsScale = scale;
+
+	for (int i = 0; i < (int)mCurves.size(); i++)
+	{
+		if (mCurves[i])
+		{
+			mCurves[i]->SetCtrlsScale(scale[0], scale[1]);
+		}
+	}
 }
 //----------------------------------------------------------------------------
 const Float2 &TimeLineEdit::GetCtrlsScale() const
@@ -35,14 +84,14 @@ void TimeLineEdit::GetInRange(float &inMin, float &inMax)
 {
 	int numVisCurves = 0;
 
-	//for (int i = 0; i < (int)mCurves.size(); i++)
-	//{
-	//	if (mCurves[i] && mCurves[i]->IsVisible())
-	//	{
-	//		numVisCurves++;
-	//		mCurves[i]->GetInRange(inMin, inMax);
-	//	}
-	//}
+	for (int i = 0; i < (int)mCurves.size(); i++)
+	{
+		if (mCurves[i] && mCurves[i]->IsVisible())
+		{
+			numVisCurves++;
+			mCurves[i]->GetInRange(inMin, inMax);
+		}
+	}
 
 	if (0 == numVisCurves)
 	{
@@ -55,14 +104,14 @@ void TimeLineEdit::GetOutRange(float &outMin, float &outMax)
 {
 	int numVisCurves = 0;
 
-	//for (int i = 0; i < (int)mCurves.size(); i++)
-	//{
-	//	if (mCurves[i] && mCurves[i]->IsVisible())
-	//	{
-	//		numVisCurves++;
-	//		mCurves[i]->GetOutRange(outMin, outMax);
-	//	}
-	//}
+	for (int i = 0; i < (int)mCurves.size(); i++)
+	{
+		if (mCurves[i] && mCurves[i]->IsVisible())
+		{
+			numVisCurves++;
+			mCurves[i]->GetOutRange(outMin, outMax);
+		}
+	}
 
 	if (0 == numVisCurves)
 	{
@@ -113,8 +162,6 @@ void TimeLineEdit::RemoveGroup(PX2::Object *obj)
 {
 	SetSelectedCurveCtrl(0);
 
-	RenderStep *rs = PX2_GR.GetRenderStep("TimeLineRenderStep");
-
 	std::vector<CurveGroupPtr>::iterator it = mCurveGroups.begin();
 	for (; it != mCurveGroups.end(); it++)
 	{
@@ -129,14 +176,10 @@ void TimeLineEdit::RemoveGroup(PX2::Object *obj)
 			RemoveCurve(group->mCurve4);
 			RemoveCurve(group->mCurve5);
 
-			if (rs)
+			UICurveGroup *uiGroup = _GetUICurveGroupFormUIView(mCurveEditNode_UIGroup, group);
+			if (uiGroup)
 			{
-				Node *node = rs->GetNode();
-				UICurveGroup *uiGroup = _GetUICurveGroupFormUIView(node, group);
-				if (uiGroup)
-				{
-					node->DetachChild(uiGroup);
-				}
+				mCurveEditNode_UIGroup->DetachChild(uiGroup);
 			}
 
 			*it = 0;
@@ -150,38 +193,27 @@ void TimeLineEdit::RemoveGroup(PX2::Object *obj)
 	{
 		CurveGroup *group = mCurveGroups[i];
 
-		if (rs)
+		UICurveGroup *uiGroup = _GetUICurveGroupFormUIView(mCurveEditNode_UIGroup, group);
+		if (uiGroup)
 		{
-			Node *node = rs->GetNode();
-			UICurveGroup *uiGroup = _GetUICurveGroupFormUIView(node, group);
-			if (uiGroup)
-			{
-				float uiHeight = uiGroup->GetSize().Height;
-				float posZ = i*uiHeight;
-				uiGroup->LocalTransform.SetTranslate(APoint(0.0f, 0.0f, posZ));
-			}
+			float uiHeight = uiGroup->GetSize().Height;
+			float posZ = i*uiHeight;
+			uiGroup->LocalTransform.SetTranslate(APoint(0.0f, 0.0f, posZ));
 		}
 	}
 }
 //----------------------------------------------------------------------------
 void TimeLineEdit::ClearGroup(UICurveGroup *uiGroup)
 {
-	RenderStep *rs = PX2_GR.GetRenderStep("TimeLineRenderStep");
-	if (!rs) return;
-
-	Node *node = rs->GetNode();
-	if (!node) return;
-
 	SetSelectedCurveCtrl(0);
 
-	CurveGroup *curveGroup = uiGroup->GetCurveGroup();
-	node->DetachChild(uiGroup);
-
-	_RemoveGroup(curveGroup);
+	RemoveGroup(uiGroup->GetCurveGroup()->mObject);
 }
 //----------------------------------------------------------------------------
 void TimeLineEdit::ClearAllGroups()
 {
+	SetSelectedCurveCtrl(0);
+
 	for (int i = 0; i < (int)mCurveGroups.size(); i++)
 	{
 		CurveGroup *group = mCurveGroups[i];
@@ -193,20 +225,9 @@ void TimeLineEdit::ClearAllGroups()
 		RemoveCurve(group->mCurve4);
 		RemoveCurve(group->mCurve5);
 	}
+
 	mCurveGroups.clear();
-
-	SetSelectedCurveCtrl(0);
-
-	RenderStep *rs = PX2_GR.GetRenderStep("TimeLineRenderStep");
-	if (!rs) return;
-
-	Node *node = rs->GetNode();
-	if (!node) return;
-
-	for (int i = 0; i < node->GetNumChildren(); i++)
-	{
-		node->DetachChildAt(i);
-	}
+	mCurveEditNode_UIGroup->DetachAllChildren();
 }
 //----------------------------------------------------------------------------
 CurveGroup *TimeLineEdit::GetCurveGroup(Curve *curve)
@@ -346,7 +367,7 @@ void TimeLineEdit::AddCurve(Curve *curve)
 	{
 		mCurves.push_back(curve);
 
-		mCurveEditScene->AttachChild(curve->GetNode());
+		mCurveEditNode_Grid->AttachChild(curve->GetNode());
 	}
 }
 //----------------------------------------------------------------------------
@@ -359,7 +380,7 @@ void TimeLineEdit::RemoveCurve(Curve *curve)
 	{
 		if (curve == *it)
 		{
-			mCurveEditScene->DetachChild(curve->GetNode());
+			mCurveEditNode_Grid->DetachChild(curve->GetNode());
 
 			mCurves.erase(it);
 			return;
@@ -529,16 +550,13 @@ void TimeLineEdit::_CreateAddCurveGroup(PX2::EffectModule *module)
 		return;
 
 	UICurveGroupPtr uiGroup = new0 UICurveGroup(group);
-	RenderStep *rs = PX2_GR.GetRenderStep("TimeLineRenderStep");
-	if (rs)
-	{
-		rs->GetNode()->AttachChild(uiGroup);
 
-		float uiHeight = uiGroup->GetSize().Height;
-		int numGroups = _GetNumGroups();
-		float posZ = (numGroups - 1)*uiHeight;
-		uiGroup->LocalTransform.SetTranslate(APoint(0.0f, 0.0f, posZ));
-	}
+	mCurveEditNode_UIGroup->AttachChild(uiGroup);
+
+	float uiHeight = uiGroup->GetSize().Height;
+	int numGroups = _GetNumGroups();
+	float posZ = (numGroups - 1)*uiHeight;
+	uiGroup->LocalTransform.SetTranslate(APoint(0.0f, 0.0f, posZ));
 }
 //----------------------------------------------------------------------------
 void TimeLineEdit::_CreateAddCurveGroup(PX2::Controller *ctrl)
@@ -582,16 +600,13 @@ void TimeLineEdit::_CreateAddCurveGroup(PX2::Controller *ctrl)
 		return;
 
 	UICurveGroupPtr uiGroup = new0 UICurveGroup(group);
-	RenderStep *rs = PX2_GR.GetRenderStep("TimeLineRenderStep");
-	if (rs)
-	{
-		rs->GetNode()->AttachChild(uiGroup);
 
-		float uiHeight = uiGroup->GetSize().Height;
-		int numGroups = _GetNumGroups();
-		float posZ = (numGroups - 1)*uiHeight;
-		uiGroup->LocalTransform.SetTranslate(APoint(0.0f, 0.0f, posZ));
-	}
+	mCurveEditNode_UIGroup->AttachChild(uiGroup);
+
+	float uiHeight = uiGroup->GetSize().Height;
+	int numGroups = _GetNumGroups();
+	float posZ = (numGroups - 1)*uiHeight;
+	uiGroup->LocalTransform.SetTranslate(APoint(0.0f, 0.0f, posZ));
 }
 //----------------------------------------------------------------------------
 void TimeLineEdit::_AddGroup(CurveGroup *group)
@@ -605,19 +620,6 @@ void TimeLineEdit::_AddGroup(CurveGroup *group)
 int TimeLineEdit::_GetNumGroups() const
 {
 	return (int)mCurveGroups.size();
-}
-//----------------------------------------------------------------------------
-void TimeLineEdit::_RemoveGroup(CurveGroup *group)
-{
-	std::vector<CurveGroupPtr>::iterator it = mCurveGroups.begin();
-	for (; it != mCurveGroups.end(); it++)
-	{
-		if (group == *it)
-		{
-			mCurveGroups.erase(it);
-			return;
-		}
-	}
 }
 //----------------------------------------------------------------------------
 PX2::UICurveGroup *TimeLineEdit::_GetUICurveGroupFormUIView(PX2::Node *frame, 

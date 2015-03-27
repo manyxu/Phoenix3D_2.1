@@ -27,6 +27,7 @@ EVT_ENTER_WINDOW(RenderView::OnEnterWindow)
 EVT_LEAVE_WINDOW(RenderView::OnLeaveWindow)
 EVT_LEFT_DOWN(RenderView::OnLeftDown)
 EVT_LEFT_UP(RenderView::OnLeftUp)
+EVT_LEFT_DCLICK(RenderView::OnLeftDoubleClick)
 EVT_MIDDLE_DOWN(RenderView::OnMiddleDown)
 EVT_MIDDLE_UP(RenderView::OnMiddleUp)
 EVT_MOUSEWHEEL(RenderView::OnMouseWheel)
@@ -134,6 +135,8 @@ void RenderView::OnEnterWindow(wxMouseEvent& e)
 //----------------------------------------------------------------------------
 void RenderView::OnLeaveWindow(wxMouseEvent& e)
 {
+	PX2_UNUSED(e);
+
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->LevelView();
 }
@@ -143,7 +146,7 @@ void RenderView::OnLeftDown(wxMouseEvent& e)
 	SetFocus();
 
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = wxPointToAPoint(mousePos, mSize);
+	APoint pos = wxPointToAPointLeftAxis(mousePos, mSize);
 
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->MousePressed(MBID_LEFT, pos);
@@ -152,10 +155,21 @@ void RenderView::OnLeftDown(wxMouseEvent& e)
 void RenderView::OnLeftUp(wxMouseEvent& e)
 {
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = wxPointToAPoint(mousePos, mSize);
+	APoint pos = wxPointToAPointLeftAxis(mousePos, mSize);
 
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->MouseReleased(MBID_LEFT, pos);
+}
+//----------------------------------------------------------------------------
+void RenderView::OnLeftDoubleClick(wxMouseEvent& e)
+{
+	SetFocus();
+
+	wxPoint mousePos = e.GetPosition();
+	APoint pos = wxPointToAPointLeftAxis(mousePos, mSize);
+
+	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
+	if (listener) listener->MouseDoublePressed(MBID_LEFT, pos);
 }
 //----------------------------------------------------------------------------
 void RenderView::OnMiddleDown(wxMouseEvent& e)
@@ -163,7 +177,7 @@ void RenderView::OnMiddleDown(wxMouseEvent& e)
 	SetFocus();
 
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = wxPointToAPoint(mousePos, mSize);
+	APoint pos = wxPointToAPointLeftAxis(mousePos, mSize);
 
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->MousePressed(MBID_MIDDLE, pos);
@@ -172,7 +186,7 @@ void RenderView::OnMiddleDown(wxMouseEvent& e)
 void RenderView::OnMiddleUp(wxMouseEvent& e)
 {
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = wxPointToAPoint(mousePos, mSize);
+	APoint pos = wxPointToAPointLeftAxis(mousePos, mSize);
 
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->MouseReleased(MBID_MIDDLE, pos);
@@ -194,7 +208,7 @@ void RenderView::OnRightDown(wxMouseEvent& e)
 	SetFocus();
 
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = wxPointToAPoint(mousePos, mSize);
+	APoint pos = wxPointToAPointLeftAxis(mousePos, mSize);
 
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->MousePressed(MBID_RIGHT, pos);
@@ -203,7 +217,7 @@ void RenderView::OnRightDown(wxMouseEvent& e)
 void RenderView::OnRightUp(wxMouseEvent& e)
 {
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = wxPointToAPoint(mousePos, mSize);
+	APoint pos = wxPointToAPointLeftAxis(mousePos, mSize);
 
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->MouseReleased(MBID_RIGHT, pos);
@@ -233,12 +247,51 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 			}
 		}
 	}
+	else if (RVT_TIMELINE == mRenderViewType)
+	{
+		if (!mIsRightDownOnMotion)
+		{
+			if (mEditMenu)
+			{
+				delete mEditMenu;
+				mEditMenu = 0;
+			}
+
+			mEditMenu = new wxMenu();
+			NirMan::GetSingleton().SetCurMenu(mEditMenu);
+
+			char szScript[256];
+
+			if (pos.X() < TimeLineLeftWidth)
+			{
+				Node *curveGourps = PX2_EDIT.GetTimeLineEdit()->GetTimeLineRenderStep_UIGroup()->GetNode();
+				if (curveGourps->GetNumChildren() > 0)
+				{
+					sprintf(szScript, "e_CreateTimeLineMenu_Left()");					
+
+					PX2_SM.CallString(szScript);
+					if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
+				}
+			}
+			else
+			{
+				CurveCtrl *curveCtrl = PX2_EDIT.GetTimeLineEdit()->GetSelectedCurveCtrl();
+				if (curveCtrl)
+				{
+					sprintf(szScript, "e_CreateTimeLineMenu_Right()");
+
+					PX2_SM.CallString(szScript);
+					if (mEditMenu) PopupMenu(mEditMenu, mousePos.x, mousePos.y);
+				}
+			}
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void RenderView::OnMotion(wxMouseEvent& e)
 {
 	wxPoint mousePos = e.GetPosition();
-	APoint pos = wxPointToAPoint(mousePos, mSize);
+	APoint pos = wxPointToAPointLeftAxis(mousePos, mSize);
 
 	InputEventListener *listener = PX2_INPUTMAN.GetInputListener(mRenderViewType);
 	if (listener) listener->MouseMoved(pos);

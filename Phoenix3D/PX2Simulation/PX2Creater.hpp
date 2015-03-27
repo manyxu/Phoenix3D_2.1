@@ -106,6 +106,7 @@ namespace PX2
 		UIPicBox *ConvertToUIPicBox(Object *obj);
 		UIFrame *ConvertToUIFrame(Object *obj);
 		EffectableController *ConvertToEffectableController(Object *obj);
+		EffectModule *ConvertToEffectModule(Object *obj);
 	};
 
 #define PX2_CREATER Creater::GetSingleton()
