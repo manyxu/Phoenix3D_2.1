@@ -108,6 +108,18 @@ namespace PX2
 	protected:
 		Rectf mViewRect;
 
+		// render setting
+	public:
+		void SetScene_UseBloom(bool bloom);
+		bool IsScene_UseBloom() const;
+
+		void SetScene_UseShadowMap(bool isUseShadowMap);
+		bool IsScene_UseShadowMap() const;
+
+	protected:
+		bool mIsScene_UseBloom;
+		bool mIsScene_UseShadowMap;
+
 		// edit setting
 	public:
 		void SetEdit_UICameraPercent(float percent);

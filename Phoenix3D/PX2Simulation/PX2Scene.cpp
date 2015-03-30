@@ -120,6 +120,30 @@ void Scene::UpdateWorldData(double applicationTime, double elapsedTime)
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
+// Property
+//----------------------------------------------------------------------------
+void Scene::RegistProperties()
+{
+	Node::RegistProperties();
+
+	AddPropertyClass("Scene");
+
+	AddProperty("NumActors", PT_INT, (int)mActors.size(), false);
+	AddProperty("Size", PT_SIZE, mSize);
+}
+//----------------------------------------------------------------------------
+void Scene::OnPropertyChanged(const PropertyObject &obj)
+{
+	Node::OnPropertyChanged(obj);
+
+	if ("Size" == obj.Name)
+	{
+		SetSize(PX2_ANY_AS(obj.Data, Sizef));
+	}
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
 Scene::Scene(LoadConstructor value) :

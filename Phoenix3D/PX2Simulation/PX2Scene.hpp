@@ -20,6 +20,7 @@ namespace PX2
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
+		PX2_DECLARE_PROPERTY;
 		PX2_DECLARE_STREAM(Scene);
 
 	public:

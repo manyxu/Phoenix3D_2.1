@@ -18,7 +18,9 @@ PX2_IMPLEMENT_RTTI(PX2, Node, Project);
 //----------------------------------------------------------------------------
 Project::Project() :
 mEdit_UICameraPercent(1.0f),
-mScreenOrientation(SO_LANDSCAPE)
+mScreenOrientation(SO_LANDSCAPE),
+mIsScene_UseBloom(false),
+mIsScene_UseShadowMap(false)
 {
 	if (ScriptManager::GetSingletonPtr())
 		PX2_SM.SetUserTypePointer("PX2_PROJ", "Project", this);
@@ -141,6 +143,11 @@ bool Project::SaveConfig(const std::string &filename)
 	XMLNode sceneNode = projNode.NewChild("scene");
 	sceneNode.SetAttributeString("filename", mSceneFilename.c_str());
 
+	// render setting
+	XMLNode renderNode = projNode.NewChild("render_setting");
+	renderNode.SetAttributeBool("scene_isusebloom", mIsScene_UseBloom);
+	renderNode.SetAttributeBool("scene_isuseshadowmap", mIsScene_UseShadowMap);
+
 	// language
 	XMLNode languageNode = projNode.NewChild("language");
 
@@ -220,6 +227,13 @@ bool Project::Load(const std::string &filename)
 				SetSceneFilename(sceneFilename);
 			}
 
+			XMLNode renderNode = rootNode.GetChild("render_setting");
+			if (!renderNode.IsNull())
+			{
+				mIsScene_UseBloom = renderNode.AttributeToBool("scene_isusebloom");
+				mIsScene_UseShadowMap = renderNode.AttributeToBool("scene_isuseshadowmap");
+			}
+
 			// language
 			XMLNode languageNode = rootNode.GetChild("language");
 
@@ -242,6 +256,12 @@ bool Project::Load(const std::string &filename)
 
 			// ui
 			mUIFilename = outPath + outBaseName + "_ui.px2obj";
+
+			if (mSceneRenderStep)
+			{
+				mSceneRenderStep->SetUseBloom(mIsScene_UseBloom);
+				mSceneRenderStep->SetUseShaderMap(mIsScene_UseShadowMap);
+			}
 		}
 	}
 	else
@@ -410,6 +430,9 @@ void Project::RegistProperties()
 	AddProperty("ProjBackgroundColor", PT_COLOR3FLOAT3, colorProj);
 
 	AddProperty("ViewRect", PT_RECT, mViewRect, false);
+
+	AddProperty("IsScene_UseBloom", PT_BOOL, mIsScene_UseBloom, true);
+	AddProperty("IsScene_UseShadowMap", PT_BOOL, mIsScene_UseShadowMap, true);
 }
 //----------------------------------------------------------------------------
 void Project::OnPropertyChanged(const PropertyObject &obj)
@@ -435,6 +458,14 @@ void Project::OnPropertyChanged(const PropertyObject &obj)
 		Float3 progBackColor = PX2_ANY_AS(obj.Data, Float3);
 		mProjBackgroundColor = Float4(progBackColor[0], progBackColor[1],
 			progBackColor[2], 1.0f);
+	}
+	else if ("IsScene_UseBloom" == obj.Name)
+	{
+		SetScene_UseBloom(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsScene_UseShadowMap" == obj.Name)
+	{
+		SetScene_UseShadowMap(PX2_ANY_AS(obj.Data, bool));
 	}
 }
 //----------------------------------------------------------------------------

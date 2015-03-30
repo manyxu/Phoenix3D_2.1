@@ -1,6 +1,7 @@
 <project>
 	<general name="game_x" screenorientation="portrait" width="640" height="1136" backcolor="127,127,127,255" projcolor="255,255,255,255"/>
 	<scene filename="Data/game_x/scenes/scene.px2obj"/>
+	<render_setting scene_isusebloom="false" scene_isuseshadowmap="false"/>
 	<language/>
 	<publish/>
 	<edit_setting uicamerapercent="1.000000"/>

@@ -56,6 +56,26 @@ inline const Rectf &Project::GetViewRect() const
 	return mViewRect;
 }
 //----------------------------------------------------------------------------
+inline void Project::SetScene_UseBloom(bool bloom)
+{
+	mIsScene_UseBloom = bloom;
+}
+//----------------------------------------------------------------------------
+inline bool Project::IsScene_UseBloom() const
+{
+	return mIsScene_UseBloom;
+}
+//----------------------------------------------------------------------------
+inline void Project::SetScene_UseShadowMap(bool isUseShadowMap)
+{
+	mIsScene_UseBloom = isUseShadowMap;
+}
+//----------------------------------------------------------------------------
+inline bool Project::IsScene_UseShadowMap() const
+{
+	return mIsScene_UseBloom;
+}
+//----------------------------------------------------------------------------
 inline void Project::SetEdit_UICameraPercent(float percent)
 {
 	mEdit_UICameraPercent = percent;
