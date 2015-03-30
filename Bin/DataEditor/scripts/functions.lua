@@ -41,6 +41,7 @@ function e_OnCloseScene()
 end
 
 function e_OnExit()
+	E_MainFrame:OnExit()
 end
 
 function e_OnUnDo()
@@ -497,4 +498,52 @@ end
 
 function e_DeleteCurveKeyPoint()
 	E_MainFrame:TimeLine_SelectCtrl_Delete()
+end
+
+function e_TimeLine_FitHor()
+	PX2_EDIT:GetTimeLineEdit():Fit_Hor()
+end
+
+function e_TimeLine_FitVer()
+	PX2_EDIT:GetTimeLineEdit():Fit_Ver()
+end
+
+function e_TimeLine_FitAll()
+	PX2_EDIT:GetTimeLineEdit():Fit_All()
+end
+
+function e_TimeLine_FitSelected()
+	PX2_EDIT:GetTimeLineEdit():Fit_Selected()
+end
+
+function e_TimeLine_Pan()
+	PX2_EDIT:GetTimeLineEdit():Pan()
+end
+
+function e_TimeLine_Zoom()
+	PX2_EDIT:GetTimeLineEdit():Zoom()
+end
+
+function e_TimeLine_Auto()
+	PX2_EDIT:GetTimeLineEdit():Auto()
+end
+
+function e_TimeLine_Clamped()
+	PX2_EDIT:GetTimeLineEdit():Clamp()
+end
+
+function e_TimeLine_User()
+	PX2_EDIT:GetTimeLineEdit():User()
+end
+
+function e_TimeLine_Break()
+	PX2_EDIT:GetTimeLineEdit():Break()
+end
+
+function e_TimeLine_Linear()
+	PX2_EDIT:GetTimeLineEdit():Linear()
+end
+
+function e_TimeLine_Constant()
+	PX2_EDIT:GetTimeLineEdit():Constant()
 end

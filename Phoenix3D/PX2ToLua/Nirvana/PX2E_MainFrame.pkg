@@ -14,6 +14,8 @@
 		void OnSaveSceneAs();
 		void OnCloseScene();
 		
+		void OnExit();
+		
 		void OnImport();
 		void OnExport();
 		
@@ -45,6 +47,17 @@
 		void TimeLine_SelectCtrl_Delete();
 		
 		wxMenu *AddMainMenuItem(const std::string &title);
-		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title, const std::string &script);
+		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,
+			const std::string &script, const std::string &tag="");
 		void AddSeparater(wxMenu *menu);
+		void EnableMenusTag(const std::string &tag, bool enable);
+								
+		wxAuiManager *GetAuiMananger();
+
+		// 0 noraml, 1 check, 2 radio
+		void AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon, const std::string &script, 
+			const std::string &helpStr="", int type=0);
+		void AddToolChoose(PX2wxAuiToolBar *toolBar, const std::string &choose0, const std::string &choose1 = "",
+			const std::string &choose2 = "", const std::string &choose3 = "", const std::string &choose4 = "");
+		void AddToolSeparater(PX2wxAuiToolBar *toolBar);
 	};

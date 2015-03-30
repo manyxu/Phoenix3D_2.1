@@ -12,6 +12,12 @@ function AddLanguages()
 	PX2_LM:AddItem1("Close", "关闭")
 	PX2_LM:AddItem1("Exit", "退出")
 	--
+	PX2_LM:AddItem1("SceneEdit", "场景编辑")
+	PX2_LM:AddItem1("TerrainEdit", "地形编辑")
+	PX2_LM:AddItem1("UIEdit", "UI编辑")
+	PX2_LM:AddItem1("Simulate", "仿真")
+	PX2_LM:AddItem1("Play", "运行")
+	--
 	PX2_LM:AddItem1("Edit", "编辑")
 	PX2_LM:AddItem1("OnDo", "撤销")
 	PX2_LM:AddItem1("ReDo", "重复")
@@ -26,6 +32,8 @@ function AddLanguages()
 	PX2_LM:AddItem1("Translate", "位移")
 	PX2_LM:AddItem1("Rotate", "旋转")
 	PX2_LM:AddItem1("Scale", "缩放")
+	PX2_LM:AddItem1("Local", "本地")
+	PX2_LM:AddItem1("World", "世界")
 	PX2_LM:AddItem1("PlayAndStop", "播放/停止")
 	PX2_LM:AddItem1("ResetPlay", "重置播放")	
 	--
@@ -149,6 +157,7 @@ function AddLanguages()
 	PX2_LM:AddItem("Tip4", "工程已经存在！", "Project is already exist!")
 	PX2_LM:AddItem("Tip5", "地形角色已经存在！", "TerrainActor is already exist!")
 	PX2_LM:AddItem("Tip6", "必须存在一个控制点.", "There must be one ctrl point.")
+	PX2_LM:AddItem("Tip7", "确定退出？", "Do you want to exit?")
 	
 	--编辑器
 	PX2_LM:AddItem("WelcomeToEditor", "欢迎使用Phoenix3D编辑器!", "Welcome to Phoenix3D editor!")
@@ -162,6 +171,20 @@ function AddLanguages()
 	-- 编辑器TabBar
 	PX2_LM:AddItem1("PinPage", "弹出页")
 	PX2_LM:AddItem1("PinPages", "弹出页组")
+	
+	-- TimeLine
+	PX2_LM:AddItem1("FitHor", "符合水平")
+	PX2_LM:AddItem1("FitVer", "符合竖直")
+	PX2_LM:AddItem1("FitAll", "符合所有")
+	PX2_LM:AddItem1("FitSelected", "符合选择")
+	PX2_LM:AddItem1("Pan", "平移")
+	PX2_LM:AddItem1("Zoom", "缩放")
+	PX2_LM:AddItem1("Curve_Auto", "自动")
+	PX2_LM:AddItem1("Curve_Clamped", "夹取")
+	PX2_LM:AddItem1("Curve_User", "用户")
+	PX2_LM:AddItem1("Curve_Break", "断开")
+	PX2_LM:AddItem1("Curve_Linear", "线性")
+	PX2_LM:AddItem1("Curve_Constant", "常量")
 end
 
 AddLanguages()

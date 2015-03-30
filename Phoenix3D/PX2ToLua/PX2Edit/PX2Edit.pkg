@@ -89,5 +89,6 @@
 		
 		// TimeLine
 	public:
+		TimeLineEdit *GetTimeLineEdit();
 		void MakeSelectTimeLineEdit();
 	};

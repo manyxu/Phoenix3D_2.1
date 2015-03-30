@@ -23,7 +23,7 @@ namespace PX2
 
 	public:
 		RenderStep();
-		~RenderStep();
+		virtual ~RenderStep();
 
 	public:
 		virtual void Update(double appSeconds, double elapsedSeconds);

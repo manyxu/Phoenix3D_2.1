@@ -19,7 +19,12 @@
 		void SetCurToolBar(PX2wxAuiToolBar *toolBar);
 		PX2wxAuiToolBar *GetCurToolBar();
 
-		void AddTool(const std::string &icon, std::string &script);
+		void AddTool(const std::string &icon, std::string &script, const std::string &helpStr="", int type=0);
+		void AddToolChoose(const std::string &choose0, 
+			const std::string &choose1 = "",
+			const std::string &choose2 = "",
+			const std::string &choose3 = "", 
+			const std::string &choose4 = "");
 		void AddToolSeparater();
 		
 	public:
@@ -27,5 +32,5 @@
 		void TaggleProjectShowHelpNode();
 		
 	public:
-		void MessageBox(const std::string &caption, const std::string &content);
+		int MessageBox(const std::string &caption, const std::string &content, int type=0);
 	};

@@ -124,6 +124,17 @@ bool E_MainFrame::Initlize()
 
 	mAuiManager->Update();
 
+	EnableMenusTag("edit", false);
+
+	EnableMenusTag("saveproject", false);
+	EnableMenusTag("closeproject", false);
+
+	EnableMenusTag("newscene", false);
+	EnableMenusTag("openscene", false);
+	EnableMenusTag("savescene", false);
+	EnableMenusTag("saveasscene", false);
+	EnableMenusTag("closescene", false);
+
 	mIsInitlized = true;
 
 	return true;
@@ -131,14 +142,68 @@ bool E_MainFrame::Initlize()
 //----------------------------------------------------------------------------
 void E_MainFrame::DoExecute(Event *event)
 {
-	if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene))
+	if (EditEventSpace::IsEqual(event, EditEventSpace::NewProject))
 	{
+		EnableMenusTag("edit", true);
+
+		EnableMenusTag("saveproject", true);
+		EnableMenusTag("closeproject", true);
+
+		EnableMenusTag("newscene", true);
+		EnableMenusTag("openscene", true);
+		EnableMenusTag("savescene", false);
+		EnableMenusTag("saveasscene", false);
+		EnableMenusTag("closescene", false);
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedProject))
+	{
+		EnableMenusTag("edit", true);
+
+		EnableMenusTag("saveproject", true);
+		EnableMenusTag("closeproject", true);
+
+		EnableMenusTag("newscene", true);
+		EnableMenusTag("openscene", true);
+		EnableMenusTag("savescene", false);
+		EnableMenusTag("saveasscene", false);
+		EnableMenusTag("closescene", false);
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseProject))
+	{
+		EnableMenusTag("edit", false);
+
+		EnableMenusTag("saveproject", false);
+		EnableMenusTag("closeproject", true);
+
+		EnableMenusTag("newscene", false);
+		EnableMenusTag("openscene", false);
+		EnableMenusTag("savescene", false);
+		EnableMenusTag("saveasscene", false);
+		EnableMenusTag("closescene", false);
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::NewScene))
+	{
+		EnableMenusTag("newscene", true);
+		EnableMenusTag("openscene", true);
+		EnableMenusTag("savescene", true);
+		EnableMenusTag("saveasscene", true);
+		EnableMenusTag("closescene", true);
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::LoadedScene))
 	{
+		EnableMenusTag("newscene", true);
+		EnableMenusTag("openscene", true);
+		EnableMenusTag("savescene", true);
+		EnableMenusTag("saveasscene", true);
+		EnableMenusTag("closescene", true);
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::CloseScene))
 	{
+		EnableMenusTag("newscene", true);
+		EnableMenusTag("openscene", true);
+		EnableMenusTag("savescene", false);
+		EnableMenusTag("saveasscene", false);
+		EnableMenusTag("closescene", false);
 	}
 	else if (NirvanaEventSpace::IsEqual(event, NirvanaEventSpace::PinPage))
 	{
@@ -562,6 +627,15 @@ void E_MainFrame::OnCloseScene()
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnExit()
+{
+	if (wxYES == NirMan::GetSingleton().MessageBox(PX2_LM.GetValue("Notice"),
+		PX2_LM.GetValue("Tip7"), 1))
+	{
+		Close(true);
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::OnImport()
 {
 	int numObjs = PX2_SELECTION.GetNumObjects();
@@ -912,7 +986,7 @@ wxMenu *E_MainFrame::AddMainMenuItem(const std::string &title)
 }
 //----------------------------------------------------------------------------
 wxMenuItem *E_MainFrame::AddMenuItem(wxMenu *menu, const std::string &title,
-	const std::string &script)
+	const std::string &script, const std::string &tag)
 {
 	int id = PX2_EDIT_GETID;
 	wxMenuItem *item = new wxMenuItem(menu, id, title);
@@ -922,6 +996,11 @@ wxMenuItem *E_MainFrame::AddMenuItem(wxMenu *menu, const std::string &title,
 		wxCommandEventHandler(E_MainFrame::OnCommondItem));
 
 	mIDScripts[id] = script;
+
+	if (!tag.empty())
+	{
+		mTagMenuItems[tag].push_back(item);
+	}
 
 	return item;
 }
@@ -934,15 +1013,57 @@ void E_MainFrame::AddSeparater(wxMenu *menu)
 	menu->Append(item);
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::EnableMenusTag(const std::string &tag, bool enable)
+{
+	std::map<std::string, std::vector<wxMenuItem*> >::iterator it =
+		mTagMenuItems.find(tag);
+
+	if (it != mTagMenuItems.end())
+	{
+		for (int i = 0; i < it->second.size(); i++)
+		{
+			wxMenuItem *menuItem = it->second[i];
+			menuItem->Enable(enable);
+		}
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon,
-	std::string &script)
+	const std::string &script, const std::string &helpStr, int type)
 {
 	int id = PX2_EDIT_GETID;
-	toolBar->AddTool(id, "", wxBitmap(icon, wxBITMAP_TYPE_PNG));
+
+	wxItemKind itemKind = wxITEM_NORMAL;
+	if (0 == type) itemKind = wxITEM_NORMAL;
+	else if (1 == type) itemKind = wxITEM_CHECK;
+	else if (2 == type) itemKind = wxITEM_RADIO;
+
+	toolBar->AddTool(id, "", wxBitmap(icon, wxBITMAP_TYPE_PNG), helpStr, 
+		itemKind);
+
 	Connect(id, wxEVT_COMMAND_TOOL_CLICKED,
 		wxCommandEventHandler(E_MainFrame::OnCommondItem));
 
 	mIDScripts[id] = script;
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::AddToolChoose(PX2wxAuiToolBar *toolBar,
+	const std::string &choose0,
+	const std::string &choose1,
+	const std::string &choose2,
+	const std::string &choose3,
+	const std::string &choose4)
+{
+	int id = PX2_EDIT_GETID;
+
+	wxChoice* choice = new wxChoice(toolBar, id);
+	if (!choose0.empty()) choice->AppendString(choose0);
+	if (!choose1.empty()) choice->AppendString(choose1);
+	if (!choose2.empty()) choice->AppendString(choose2);
+	if (!choose3.empty()) choice->AppendString(choose3);
+	if (!choose4.empty()) choice->AppendString(choose4);
+	toolBar->AddControl(choice);
+	choice->Select(0);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::AddToolSeparater(PX2wxAuiToolBar *toolBar)

@@ -14,6 +14,7 @@
 #include "PX2EffectActor.hpp"
 #include "PX2Effectable.hpp"
 #include "PX2EffectableController.hpp"
+#include "PX2EditEventType.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -221,6 +222,60 @@ void EditRenderView_TimeLine::FitViewToAll()
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::FitViewToSelected()
 {
+	CurveCtrl *ctrl = PX2_EDIT.GetTimeLineEdit()->GetSelectedCurveCtrl();
+	Camera *camera = mUIViewGrid->GetCamera();
+	CameraNode *cameraNode = mUIViewGrid->GetCameraNode();
+
+	if (!ctrl) return;
+
+	float inMin = Mathf::MAX_REAL;
+	float inMax = -Mathf::MAX_REAL;
+	PX2_EDIT.GetTimeLineEdit()->GetInRange(inMin, inMax);
+
+	float outMin = Mathf::MAX_REAL;
+	float outMax = -Mathf::MAX_REAL;
+	PX2_EDIT.GetTimeLineEdit()->GetOutRange(outMin, outMax);
+
+	float inLength = inMax - inMin;
+	float outLength = outMax - outMin;
+
+	if (inLength == 0.0f)
+	{
+		inLength = 10.0f;
+	}
+	if (outLength == 0.0f)
+	{
+		outLength = 10.0f;
+	}
+
+	float rightWidth = (float)mSize.Width - mLeftWidth;
+	float leftOverWidth = (float)mLeftWidth / (float)mSize.Width;
+	float allOverRight = (float)mSize.Width / rightWidth;
+	inLength *= allOverRight;
+
+	PX2_UNUSED(leftOverWidth);
+
+	float dMin = 0.0f;
+	float dMax = 0.0f;
+	float uMin = 0.0f;
+	float uMax = 0.0f;
+	float rMin = 0.0f;
+	float rMax = 0.0f;
+	camera->GetFrustum(dMin, dMax, uMin, uMax, rMin, rMax);
+	rMax = inLength / 2.0f * 1.5f;
+	rMin = -rMax;
+	uMax = outLength / 2.0f * 1.5f;
+	uMin = -uMax;
+	camera->SetFrustum(dMin, dMax, uMin, uMax, rMin, rMax);
+
+	APoint camPos = camera->GetPosition();
+	APoint ctrPos = ctrl->GetOutVal();
+	camPos.X() = ctrPos.X();
+	camPos.Z() = ctrPos.Z();
+	mUIViewGrid->GetCameraNode()->LocalTransform.SetTranslate(camPos);
+	mUIViewGrid->GetCameraNode()->Update(GetTimeInSeconds(), 0.0f);
+
+	_RefreshGrid(true);
 }
 //----------------------------------------------------------------------------
 void EditRenderView_TimeLine::ZoomCamera(float xDetal, float zDetal)
@@ -744,6 +799,36 @@ void EditRenderView_TimeLine::DoExecute(Event *event)
 		else if (movable)
 		{
 			RemoveCurveGroup(movable);
+		}
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::TimeLine_FitHor))
+	{
+		FitViewHorizontally();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::TimeLine_FitVer))
+	{
+		FitViewVertically();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::TimeLine_Fit_Selected))
+	{
+		FitViewToSelected();
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::TimeLine_Pan))
+	{
+		mMoveMode = MM_PAN;
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::TimeLine_Zoom))
+	{
+		mMoveMode = MM_ZOOM;
+	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::TimeLine_CurveMode))
+	{
+		InterpCurveMode icmMode = (InterpCurveMode)event->GetData<int>();
+
+		CurveCtrl *ctrl = PX2_EDIT.GetTimeLineEdit()->GetSelectedCurveCtrl();
+		if (ctrl)
+		{
+			ctrl->SetInterpCurveMode(icmMode);
 		}
 	}
 }

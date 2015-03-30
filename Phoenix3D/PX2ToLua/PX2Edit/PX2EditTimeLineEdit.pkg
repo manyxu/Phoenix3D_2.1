@@ -1,24 +1,7 @@
-// PX2EditTimeLineEdit.hpp
-
-#ifndef PX2EDITCURVEEDIT_HPP
-#define PX2EDITCURVEEDIT_HPP
-
-#include "PX2EditPre.hpp"
-#include "PX2Float2.hpp"
-#include "PX2Polysegment.hpp"
-#include "PX2Curve.hpp"
-#include "PX2CurveGroup.hpp"
-#include "PX2UICurveGroup.hpp"
-
-namespace PX2
-{
+// PX2Edits.hpp
 
 	class TimeLineEdit
 	{
-	public:
-		TimeLineEdit();
-		~TimeLineEdit();
-
 	public:
 		void SetTimeLineRenderStep_UIGroup(RenderStep *renderStep);
 		RenderStep *GetTimeLineRenderStep_UIGroup() const;
@@ -29,26 +12,12 @@ namespace PX2
 		Node *GetCurveEditNode_Grid() { return mCurveEditNode_Grid; }
 		PX2::Polysegment *GetGridPoly() { return mGridPoly; }
 
-	protected:
-		RenderStepPtr mTimeLineRenderStep_UIGroup;
-		UIFramePtr mCurveEditNode_UIGroup;
-
-		RenderStepPtr mTimeLineRenderStep_Grid;
-		NodePtr mCurveEditNode_GridRoot;
-		NodePtr mCurveEditNode_Grid;
-
-		PX2::NodePtr mGridNode;
-		PX2::PolysegmentPtr mGridPoly;
-
 	public:
 		void SetCtrlsScale(const Float2 &scale);
 		const Float2 &GetCtrlsScale() const;
 
 		void GetInRange(float &inMin, float &inMax);
 		void GetOutRange(float &outMin, float &outMax);
-
-	protected:
-		Float2 mCtrlsScale;
 
 	public:
 		void CreateAddCurveGroup(PX2::Object *obj);
@@ -77,33 +46,7 @@ namespace PX2
 
 		void SetSelectedUICurveGroup(PX2::UICurveGroup *group);
 		PX2::UICurveGroup *GetSelectedUICurveGroup() { return mSelectedCruveGroup; }
-
-	public_internal:
-		PX2::Polysegment *CreatePoly(PX2::InterpCurveFloat *curve, PX2::Float3 color);
-		void UpdatePoly(PX2::InterpCurveFloat *curve, PX2::Polysegment *p, PX2::Float3 color);
-		PX2::Polysegment *CreatePoly(PX2::InterpCurveFloat3 *curve, int axis, PX2::Float3 color);
-		void UpdatePoly(PX2::InterpCurveFloat3 *curve, PX2::Polysegment *p, int axis, PX2::Float3 color);
-
-	protected:
-		void _CreateAddCurveGroup(PX2::EffectModule *module);
-		void _CreateAddCurveGroup(PX2::Controller *ctrl);
-		void _AddGroup(CurveGroup *group);
-		int _GetNumGroups() const;
-
-		PX2::UICurveGroup *_GetUICurveGroupFormUIView(PX2::Node *frame, CurveGroup *group);
-
-		int mNumSamples;
-		float mMaxRange;
-		PX2::VertexFormatPtr mVFormat;
-
-		std::vector<CurveGroupPtr> mCurveGroups;
-		std::vector<CurvePtr> mCurves;
-
-		CurvePtr mActiveCurve;
-
-		PX2::UICurveGroupPtr mSelectedCruveGroup;
-		CurveCtrlPtr mSelectedCurveCtrl;
-
+		
 	public:
 		void Fit_Hor();
 		void Fit_Ver();
@@ -118,7 +61,3 @@ namespace PX2
 		void Linear();
 		void Constant();
 	};
-
-}
-
-#endif

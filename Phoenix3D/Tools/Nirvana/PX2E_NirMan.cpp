@@ -106,11 +106,23 @@ PX2wxAuiToolBar *NirMan::GetCurToolBar()
 	return mCurToolBar;
 }
 //----------------------------------------------------------------------------
-void NirMan::AddTool(const std::string &icon, std::string &script)
+void NirMan::AddTool(const std::string &icon, std::string &script, 
+	const std::string &helpStr, int type)
 {
 	if (!mCurToolBar) return;
 
-	E_MainFrame::GetSingletonPtr()->AddTool(mCurToolBar, icon, script);
+	E_MainFrame::GetSingletonPtr()->AddTool(mCurToolBar, icon, script, 
+		helpStr, type);
+}
+//----------------------------------------------------------------------------
+void NirMan::AddToolChoose(const std::string &choose0,
+	const std::string &choose1,
+	const std::string &choose2,
+	const std::string &choose3,
+	const std::string &choose4)
+{
+	E_MainFrame::GetSingletonPtr()->AddToolChoose(mCurToolBar, choose0,
+		choose1, choose2, choose3, choose4);
 }
 //----------------------------------------------------------------------------
 void NirMan::AddToolSeparater()
@@ -135,8 +147,15 @@ void NirMan::TaggleProjectShowHelpNode()
 	PX2_EW.BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------
-void NirMan::MessageBox(const std::string &caption, const std::string &content)
+int NirMan::MessageBox(const std::string &caption, const std::string &content,
+	int type)
 {
-	wxMessageBox(content, caption, wxOK);
+	int theWxType = wxOK;
+	if (0 == type)
+		theWxType = wxOK;
+	else if (1 == type)
+		theWxType = wxYES_NO;
+
+	return wxMessageBox(content, caption, theWxType);
 }
 //----------------------------------------------------------------------------

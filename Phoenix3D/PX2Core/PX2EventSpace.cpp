@@ -45,8 +45,8 @@ Event* EventSpace::CreateEventX (Event::EventType eventType)
 {
 	Event* event = 0;
 	event = EventFactory::GetInstance().CreateEventX();
-	if (event)
-		event->SetEventType(mSpace.UnCover(eventType));
+	if (event) event->SetEventType(mSpace.UnCover(eventType));
+
 	return event;
 }
 //----------------------------------------------------------------------------

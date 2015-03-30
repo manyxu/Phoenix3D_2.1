@@ -8,6 +8,7 @@
 #include "PX2EffectModel.hpp"
 #include "PX2InterpCurveController.hpp"
 #include "PX2UIView.hpp"
+#include "PX2EditEventType.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -813,5 +814,89 @@ void TimeLineEdit::UpdatePoly(PX2::InterpCurveFloat3 *curve, PX2::Polysegment *p
 	p->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
 
 	Renderer::UpdateAll(vBuffer);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Fit_Hor()
+{
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_FitHor);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Fit_Ver()
+{
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_FitVer);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Fit_All()
+{
+	Fit_Hor();
+	Fit_Ver();
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Fit_Selected()
+{
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_Fit_Selected);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Pan()
+{
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_Pan);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Zoom()
+{
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_Zoom);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Auto()
+{
+	int mode = ICM_CURVE_AUTO;
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_CurveMode);
+	ent->SetData<int>(mode);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Clamp()
+{
+	int mode = ICM_CURVE_AUTOCLAMPED;
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_CurveMode);
+	ent->SetData<int>(mode);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::User()
+{
+	int mode = ICM_CURVE_USER;
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_CurveMode);
+	ent->SetData<int>(mode);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Break()
+{
+	int mode = ICM_CURVE_BREAK;
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_CurveMode);
+	ent->SetData<int>(mode);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Linear()
+{
+	int mode = ICM_LINEAR;
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_CurveMode);
+	ent->SetData<int>(mode);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void TimeLineEdit::Constant()
+{
+	int mode = ICM_CONSTANT;
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::TimeLine_CurveMode);
+	ent->SetData<int>(mode);
+	PX2_EW.BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------

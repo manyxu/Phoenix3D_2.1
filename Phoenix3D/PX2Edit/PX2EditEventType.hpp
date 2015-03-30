@@ -48,6 +48,13 @@ namespace PX2
 
 	PX2_EVENT(ToSelectRes)
 
+	PX2_EVENT(TimeLine_FitHor)
+	PX2_EVENT(TimeLine_FitVer)
+	PX2_EVENT(TimeLine_Fit_Selected)
+	PX2_EVENT(TimeLine_Pan)
+	PX2_EVENT(TimeLine_Zoom)
+	PX2_EVENT(TimeLine_CurveMode)
+
 	PX2_DECLARE_EVENT_END(EditEventSpace)
 
 }

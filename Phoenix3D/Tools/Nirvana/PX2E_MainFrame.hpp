@@ -60,6 +60,8 @@ namespace PX2Editor
 		void OnSaveSceneAs();
 		void OnCloseScene();
 
+		void OnExit();
+
 		void OnImport();
 		void OnExport();
 
@@ -94,11 +96,17 @@ namespace PX2Editor
 	public:
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,
-			const std::string &script);
+			const std::string &script, const std::string &tag="");
 		void AddSeparater(wxMenu *menu);
+		void EnableMenusTag(const std::string &tag, bool enable);
+
 		wxAuiManager *GetAuiMananger();
 
-		void AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon, std::string &script);
+		// 0 noraml, 1 check, 2 radio
+		void AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon, const std::string &script, 
+			const std::string &helpStr="", int type=0);
+		void AddToolChoose(PX2wxAuiToolBar *toolBar, const std::string &choose0, const std::string &choose1 = "",
+			const std::string &choose2 = "", const std::string &choose3 = "", const std::string &choose4 = "");
 		void AddToolSeparater(PX2wxAuiToolBar *toolBar);
 
 	protected:
@@ -157,7 +165,9 @@ namespace PX2Editor
 		std::map<std::string, WindowObj> mWindowObjs;
 
 		wxTimer mTimer;
+		
 		std::map<int, std::string> mIDScripts;
+		std::map<std::string, std::vector<wxMenuItem*> > mTagMenuItems;
 
 		PX2wxAuiToolBar *mToolBarCaption;
 		PX2wxAuiToolBar *mToolBarMenu;

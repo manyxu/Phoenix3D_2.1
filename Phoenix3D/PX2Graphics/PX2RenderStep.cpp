@@ -22,6 +22,10 @@ mIsDoClearDepth(false)
 //----------------------------------------------------------------------------
 RenderStep::~RenderStep()
 {
+	if (mRenderer && mRenderer->GetCamera() == mCamera)
+	{
+		mRenderer->SetCamera(0);
+	}
 }
 //----------------------------------------------------------------------------
 void RenderStep::Update(double appSeconds, double elapsedSeconds)
