@@ -280,11 +280,13 @@ bool Project::Load(const std::string &filename)
 			if (mSceneRenderStep)
 			{
 				mSceneRenderStep->SetUseBloom(mIsScene_UseBloom);
-				mSceneRenderStep->SetUseShaderMap(mIsScene_UseShadowMap);
+				mSceneRenderStep->SetScene_BloomRenderTargetSize(mScene_BloomRenderTargetSize);
 				mSceneRenderStep->SetScene_BloomBrightWeight(mScene_BloomBrightWeight);
-				mSceneRenderStep->SetBloomRenderTargetSize(mScene_BloomRenderTargetSize);
 				mSceneRenderStep->SetScene_BloomBlurDeviation(mScene_BloomBlurDeviation);
 				mSceneRenderStep->SetScene_BloomBlurWeight(mScene_BloomBlurWeight);
+				mSceneRenderStep->SetScene_BloomWeight(mScene_BloomWeight);
+
+				mSceneRenderStep->SetUseShaderMap(mIsScene_UseShadowMap);
 			}
 		}
 	}
@@ -462,7 +464,7 @@ void Project::SetScene_BloomRenderTargetSize(const Float2 &size)
 
 	if (mSceneRenderStep)
 	{
-		mSceneRenderStep->SetBloomRenderTargetSize(size);
+		mSceneRenderStep->SetScene_BloomRenderTargetSize(size);
 	}
 }
 //----------------------------------------------------------------------------
@@ -536,6 +538,7 @@ void Project::RegistProperties()
 
 	AddProperty("IsScene_UseBloom", PT_BOOL, mIsScene_UseBloom);
 	AddProperty("Scene_BloomRenderTargetSize", PT_FLOAT2, mScene_BloomRenderTargetSize);
+	AddProperty("Scene_BloomBrightWeight", PT_FLOAT, mScene_BloomBrightWeight);
 	AddProperty("Scene_BloomBlurDeviation", PT_FLOAT, mScene_BloomBlurDeviation);
 	AddProperty("Scene_BloomBlurWeight", PT_FLOAT, mScene_BloomBlurWeight);
 	AddProperty("Scene_BloomWeight", PT_FLOAT, mScene_BloomWeight);
@@ -574,6 +577,10 @@ void Project::OnPropertyChanged(const PropertyObject &obj)
 	else if ("Scene_BloomRenderTargetSize" == obj.Name)
 	{
 		SetScene_BloomRenderTargetSize(PX2_ANY_AS(obj.Data, Float2));
+	}
+	else if ("Scene_BloomBrightWeight" == obj.Name)
+	{
+		SetScene_BloomBrightWeight(PX2_ANY_AS(obj.Data, float));
 	}
 	else if ("Scene_BloomBlurDeviation" == obj.Name)
 	{

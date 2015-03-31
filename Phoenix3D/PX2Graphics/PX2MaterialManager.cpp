@@ -47,12 +47,15 @@ bool MaterialManager::Terminate()
 	return true;
 }
 //----------------------------------------------------------------------------
-Material *MaterialManager::GetMaterial(const FString &filename, bool share)
+Material *MaterialManager::GetMaterial(const FString &filename, 
+	const FString &techName, bool share)
 {
+	std::string allName = std::string(filename) + std::string(techName);
+
 	if (share)
 	{
 		Material *mtl = 0;
-		std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(filename);
+		std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(allName.c_str());
 		if (it != mMaterialMap.end())
 		{
 			mtl = it->second.TheMaterial;
@@ -62,8 +65,8 @@ Material *MaterialManager::GetMaterial(const FString &filename, bool share)
 			int shaderKey = QueryShaderKey();
 
 			mtl = DynamicCast<Material>(GraphicsRoot::msUserLoadFun(filename));
-			mMaterialMap[filename].TheMaterial = mtl;
-			mMaterialMap[filename].ShaderKey = shaderKey;
+			mMaterialMap[allName.c_str()].TheMaterial = mtl;
+			mMaterialMap[allName.c_str()].ShaderKey = shaderKey;
 
 			_SetMaterialShaderKey(mtl, shaderKey);
 		}
@@ -80,7 +83,7 @@ Material *MaterialManager::GetMaterial(const FString &filename, bool share)
 			mtl = DynamicCast<Material>(mtlObj->Copy(""));
 			if (mtl)
 			{
-				std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(filename);
+				std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(allName.c_str());
 				if (it != mMaterialMap.end())
 				{
 					_SetMaterialShaderKey(mtl, it->second.ShaderKey);

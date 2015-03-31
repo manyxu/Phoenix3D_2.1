@@ -73,7 +73,8 @@ MaterialTechnique *MaterialInstance::_RefreshMaterial(
 	int &outTechIndex)
 {
 	// we reload the mtl
-	outMtl = PX2_MATERIALMAN.GetMaterial(mtlFilename.c_str(), shareMtl);
+	outMtl = PX2_MATERIALMAN.GetMaterial(mtlFilename.c_str(), 
+		intanceTechName.c_str(), shareMtl);
 	assertion(outMtl != 0, "Material must be specified.\n");
 
 	MaterialTechnique* technique = outMtl->GetTechnique(intanceTechName,

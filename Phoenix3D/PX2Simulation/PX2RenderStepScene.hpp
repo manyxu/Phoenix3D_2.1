@@ -35,7 +35,7 @@ namespace PX2
 		void SetUseBloom(bool useBloom);
 		bool IsUseBloom() const;
 
-		void SetBloomRenderTargetSize(const Float2 &size);
+		void SetScene_BloomRenderTargetSize(const Float2 &size);
 		const Float2 &GetBloomRenderTargetSize() const;
 
 		void SetScene_BloomBrightWeight(float weight);
@@ -78,11 +78,11 @@ namespace PX2
 		float mBloomPicSize;
 
 		RenderTargetPtr mEffect_RenderTarget_Normal;
-		UIPicBoxPtr mEffect_UIPicBox_Normal;
+		UIPicBoxPtr mEffect_UIPicBoxShow_Normal;
 
 		RenderTargetPtr mEffect_RenderTarget_BloomBright;
 		UIPicBoxPtr mEffect_UIPicBox_BloomBright;
-		ShaderFloatPtr mBloom_BloomBrightParam;
+		ShaderFloatPtr mBloom_BrightParam;
 
 		RenderTargetPtr mEffect_RenderTarget_BlurH;
 		UIPicBoxPtr mEffect_UIPicBox_BlurH;
@@ -92,6 +92,7 @@ namespace PX2
 		Float4 mEffect_Blur_UVOffsets_V[16];
 
 		UIPicBoxPtr mBloom_UIPicBox_Final;
+		MaterialInstancePtr mBoom_MtlInstance;
 		ShaderFloatPtr mBloom_BloomParam;
 
 		Culler mEffect_Culler_Shadow;

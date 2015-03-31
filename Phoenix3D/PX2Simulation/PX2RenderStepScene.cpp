@@ -154,16 +154,15 @@ void RenderStepScene::Draw()
 			mRenderer->Draw(mCuller.GetVisibleSet());
 			mRenderer->Disable(mEffect_RenderTarget_Normal);
 
-			mEffect_UIPicBox_Normal->SetTexture(mEffect_RenderTarget_Normal->GetColorTexture(0));
+			mEffect_UIPicBoxShow_Normal->SetTexture(mEffect_RenderTarget_Normal->GetColorTexture(0));
 		}
 
-		if (mEffect_UIPicBox_BloomBright)
+		if (mEffect_RenderTarget_BloomBright)
 		{
 			mEffect_UIPicBox_BloomBright->SetTexture(mEffect_RenderTarget_Normal->GetColorTexture(0));
 
 			mRenderer->Enable(mEffect_RenderTarget_BloomBright);
 			mRenderer->InitRenderStates();
-			mRenderer->SetClearColor(Float4::BLACK);
 			mRenderer->ClearBuffers();
 			_SetCameraF(mScreenCamera, mEffect_UIPicBox_BloomBright);
 			mRenderer->SetCamera(mScreenCamera);
@@ -172,7 +171,7 @@ void RenderStepScene::Draw()
 		}
 
 		// hor blur
-		if (mEffect_UIPicBox_BlurH)
+		if (mEffect_RenderTarget_BlurH)
 		{
 			mEffect_UIPicBox_BlurH->SetTexture(mEffect_RenderTarget_BloomBright->GetColorTexture(0));
 
@@ -187,7 +186,7 @@ void RenderStepScene::Draw()
 		}
 
 		// ver blur
-		if (mEffect_UIPicBox_BlurV)
+		if (mEffect_RenderTarget_BlurV)
 		{
 			mEffect_UIPicBox_BlurV->SetTexture(mEffect_RenderTarget_BlurH->GetColorTexture(0));
 
@@ -204,10 +203,8 @@ void RenderStepScene::Draw()
 		// bloom final
 		if (mBloom_UIPicBox_Final)
 		{
-			MaterialInstance *mi = mBloom_UIPicBox_Final->GetMaterialInstance();
-			mi->SetPixelTexture(0, "SamplerBase", mEffect_RenderTarget_Normal->GetColorTexture(0));
-			mi->SetPixelTexture(0, "SamplerBloom", mEffect_RenderTarget_BlurV->GetColorTexture(0));
-			mBloom_BloomParam->SetRegister(0, mBloomParam);
+			mBoom_MtlInstance->SetPixelTexture(0, "SamplerBase", mEffect_RenderTarget_Normal->GetColorTexture(0));
+			mBoom_MtlInstance->SetPixelTexture(0, "SamplerBloom", mEffect_RenderTarget_BlurV->GetColorTexture(0));
 		}
 	}
 
@@ -289,7 +286,7 @@ bool RenderStepScene::IsUseBloom() const
 	return mIsUseBloom;
 }
 //----------------------------------------------------------------------------
-void RenderStepScene::SetBloomRenderTargetSize(const Float2 &size)
+void RenderStepScene::SetScene_BloomRenderTargetSize(const Float2 &size)
 {
 	mBloomRenderTargetSize = size;
 
@@ -351,18 +348,19 @@ float RenderStepScene::GetScene_BloomWeight() const
 //----------------------------------------------------------------------------
 void RenderStepScene::_UpdateBloomChanged()
 {
-	mEffect_UIFrame->DetachChild(mEffect_UIPicBox_Normal);
+	mEffect_UIFrame->DetachChild(mEffect_UIPicBoxShow_Normal);
 	mEffect_UIFrame->DetachChild(mEffect_UIPicBox_BloomBright);
 	mEffect_UIFrame->DetachChild(mEffect_UIPicBox_BlurH);
 	mEffect_UIFrame->DetachChild(mEffect_UIPicBox_BlurV);
 	mEffect_UIFrame->DetachChild(mBloom_UIPicBox_Final);
 
 	mEffect_RenderTarget_Normal = 0;
-	mEffect_UIPicBox_Normal = 0;
+	mEffect_UIPicBoxShow_Normal = 0;
 
 	mEffect_RenderTarget_BloomBright = 0;
 	mEffect_UIPicBox_BloomBright = 0;
-	mBloom_BloomBrightParam = 0;
+	mBoom_MtlInstance = 0;
+	mBloom_BrightParam = 0;
 
 	mEffect_RenderTarget_BlurH = 0;
 	mEffect_UIPicBox_BlurH = 0;
@@ -382,13 +380,13 @@ void RenderStepScene::_UpdateBloomChanged()
 
 		mEffect_RenderTarget_Normal = new0 RenderTarget(1, tformat,
 			(int)mBloomRenderTargetSize[0], (int)mBloomRenderTargetSize[1], false, false);
-		mEffect_UIPicBox_Normal = new0 UIPicBox();
-		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_Normal);
-		mEffect_UIPicBox_Normal->SetAnchorPoint(Float2::ZERO);
-		mEffect_UIPicBox_Normal->SetSize(size);
-		mEffect_UIPicBox_Normal->Update(0.0f);
-		mEffect_UIPicBox_Normal->GetMaterialInstance()->GetMaterial()->GetAlphaProperty(0, 0)->BlendEnabled = false;
-		mAlignPicBoxes.push_back(mEffect_UIPicBox_Normal);
+		mEffect_UIPicBoxShow_Normal = new0 UIPicBox();
+		mEffect_UIFrame->AttachChild(mEffect_UIPicBoxShow_Normal);
+		mEffect_UIPicBoxShow_Normal->SetAnchorPoint(Float2::ZERO);
+		mEffect_UIPicBoxShow_Normal->SetSize(size);
+		mEffect_UIPicBoxShow_Normal->Update(0.0f);
+		mEffect_UIPicBoxShow_Normal->GetMaterialInstance()->GetMaterial()->GetAlphaProperty(0, 0)->BlendEnabled = false;
+		mAlignPicBoxes.push_back(mEffect_UIPicBoxShow_Normal);
 
 		MaterialInstancePtr blurMtlInstanceBloomBright = new0 MaterialInstance("Data/engine_mtls/bloom/bloom.px2obj", "bloom_bright", false);
 		mEffect_RenderTarget_BloomBright = new0 RenderTarget(1, tformat,
@@ -399,7 +397,7 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BloomBright->SetSize(size);
 		mEffect_UIPicBox_BloomBright->Update(0.0f);
 		mEffect_UIPicBox_BloomBright->SetMaterialInstance(blurMtlInstanceBloomBright);
-		mBloom_BloomBrightParam = blurMtlInstanceBloomBright->GetPixelConstant(0, "BrightParam");
+		mBloom_BrightParam = blurMtlInstanceBloomBright->GetPixelConstant(0, "BrightParam");
 		mAlignPicBoxes.push_back(mEffect_UIPicBox_BloomBright);
 
 		MaterialInstancePtr blurMtlInstanceH = new0 MaterialInstance("Data/engine_mtls/blur/blur.px2obj", "blur", false);
@@ -438,15 +436,16 @@ void RenderStepScene::_UpdateBloomChanged()
 		ShaderFloat *shaderFloatUVOffsets_V = mEffect_UIPicBox_BlurV->GetMaterialInstance()->GetPixelConstant(0, "UVOffsets");
 		shaderFloatUVOffsets_V->SetRegisters((const float*)mEffect_Blur_UVOffsets_V);
 
-		MaterialInstancePtr bloomMtlInstance = new0 MaterialInstance("Data/engine_mtls/bloom/bloom.px2obj", "bloom", false);
+		mBoom_MtlInstance = new0 MaterialInstance("Data/engine_mtls/bloom/bloom.px2obj", "bloom", false);
 		mBloom_UIPicBox_Final = new0 UIPicBox();
 		mBloom_UIPicBox_Final->SetSize(size);
 		mEffect_UIFrame->AttachChild(mBloom_UIPicBox_Final);
 		mBloom_UIPicBox_Final->SetAnchorPoint(Float2::ZERO);
-		mBloom_UIPicBox_Final->SetMaterialInstance(bloomMtlInstance);
-		mBloom_BloomParam = bloomMtlInstance->GetPixelConstant(0, "BloomParam");
+		mBloom_UIPicBox_Final->SetMaterialInstance(mBoom_MtlInstance);
+		mBloom_BloomParam = mBoom_MtlInstance->GetPixelConstant(0, "BloomParam");
 		mAlignPicBoxes.push_back(mBloom_UIPicBox_Final);
 
+		_UpdateBloomParams();
 		_UpdateALightPicBoxTrans();
 	}
 
@@ -455,9 +454,9 @@ void RenderStepScene::_UpdateBloomChanged()
 //----------------------------------------------------------------------------
 void RenderStepScene::_UpdateBloomParams()
 {
-	if (mBloom_BloomBrightParam)
+	if (mBloom_BrightParam)
 	{
-		mBloom_BloomBrightParam->SetRegister(0, mBloomBrightParam);
+		mBloom_BrightParam->SetRegister(0, mBloomBrightParam);
 	}
 
 	_SetSampleOffsetWeight(mBloomRenderTargetSize, mEffect_Blur_UVOffsets_H,
@@ -486,7 +485,8 @@ void RenderStepScene::_UpdateBloomParams()
 //----------------------------------------------------------------------------
 void RenderStepScene::_UpdateALightPicBoxTrans()
 {
-	for (int i = 0; i < (int)mAlignPicBoxes.size(); i++)
+	int alignPicBoxSize = (int)mAlignPicBoxes.size();
+	for (int i = 0; i < alignPicBoxSize; i++)
 	{
 		int x = (i + 2) % 2;
 		int z = i / 2;
