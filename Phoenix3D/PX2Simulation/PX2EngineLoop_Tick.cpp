@@ -28,14 +28,25 @@ void EngineLoop::Tick()
 	Renderer *defaultRenderer = Renderer::GetDefaultRenderer();
 	if (defaultRenderer && defaultRenderer->PreDraw())
 	{
+		// clear screen
 		defaultRenderer->SetViewport(Rectf(0.0f, 0.0f, mScreenSize.Width, mScreenSize.Height));
         if (proj) defaultRenderer->SetClearColor(proj->GetBackgroundColor());
 		defaultRenderer->ClearBuffers();
 
+		if (mIsDoAdjustScreenViewRect)
+			defaultRenderer->SetViewport(mAdjustViewPort);
+
 		if (proj)
 		{
-			defaultRenderer->SetViewport(mAdjustViewPort);
-			defaultRenderer->SetClearColor(proj->GetProjBackgroundColor());
+			Scene *scene = proj->GetScene();
+			if (scene)
+			{
+				defaultRenderer->SetClearColor(MathHelp::Float3ToFloat4(scene->GetColor(), 1.0f));
+			}
+			else
+			{
+				defaultRenderer->SetClearColor(proj->GetProjBackgroundColor());
+			}
 			defaultRenderer->ClearBuffers();
 		}
 

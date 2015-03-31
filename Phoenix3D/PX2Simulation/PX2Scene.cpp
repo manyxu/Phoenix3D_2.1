@@ -39,6 +39,21 @@ Scene::~Scene()
 {
 }
 //----------------------------------------------------------------------------
+void Scene::SetAlpha(float alpha)
+{
+	Movable::SetAlpha(alpha);
+}
+//----------------------------------------------------------------------------
+void Scene::SetColor(const Float3 &color)
+{
+	Movable::SetColor(color);
+}
+//----------------------------------------------------------------------------
+void Scene::SetBrightness(float brightness)
+{
+	Movable::SetBrightness(brightness);
+}
+//----------------------------------------------------------------------------
 void Scene::SetUseCameraActor(CameraActor *cameraActor)
 {
 	mCameraActor = cameraActor;

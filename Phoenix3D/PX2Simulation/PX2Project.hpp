@@ -17,7 +17,7 @@
 namespace PX2
 {
 
-	class Project : public Node, public Singleton<Project>
+	class Project : public Object, public Singleton<Project>
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_PROPERTY;
@@ -113,11 +113,32 @@ namespace PX2
 		void SetScene_UseBloom(bool isUseBloom);
 		bool IsScene_UseBloom() const;
 
+		void SetScene_BloomRenderTargetSize(const Float2 &size);
+		const Float2 &GetScene_BloomRenderTargetSize() const;
+
+		void SetScene_BloomBrightWeight(float weight);
+		float GetScene_BloomBrightWeight() const;
+
+		void SetScene_BloomBlurDeviation(float deviation);
+		float GetScene_BloomBlurDeviation() const;
+
+		void SetScene_BloomBlurWeight(float weight);
+		float GetScene_BloomBlurWeight() const;
+
+		void SetScene_BloomWeight(float weight);
+		float GetScene_BloomWeight() const;
+
 		void SetScene_UseShadowMap(bool isUseShadowMap);
 		bool IsScene_UseShadowMap() const;
 
 	protected:
 		bool mIsScene_UseBloom;
+		Float2 mScene_BloomRenderTargetSize;
+		float mScene_BloomBrightWeight;
+		float mScene_BloomBlurDeviation;
+		float mScene_BloomBlurWeight;
+		float mScene_BloomWeight;
+
 		bool mIsScene_UseShadowMap;
 
 		// edit setting

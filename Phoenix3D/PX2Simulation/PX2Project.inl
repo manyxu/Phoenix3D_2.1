@@ -61,6 +61,26 @@ inline bool Project::IsScene_UseBloom() const
 	return mIsScene_UseBloom;
 }
 //----------------------------------------------------------------------------
+inline const Float2 &Project::GetScene_BloomRenderTargetSize() const
+{
+	return mScene_BloomRenderTargetSize;
+}
+//----------------------------------------------------------------------------
+inline float Project::GetScene_BloomBlurDeviation() const
+{
+	return mScene_BloomBlurDeviation;
+}
+//----------------------------------------------------------------------------
+inline float Project::GetScene_BloomBlurWeight() const
+{
+	return mScene_BloomBlurWeight;
+}
+//----------------------------------------------------------------------------
+inline float Project::GetScene_BloomWeight() const
+{
+	return mScene_BloomWeight;
+}
+//----------------------------------------------------------------------------
 inline bool Project::IsScene_UseShadowMap() const
 {
 	return mIsScene_UseBloom;

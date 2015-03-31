@@ -27,6 +27,10 @@ namespace PX2
 		Scene();
 		virtual ~Scene();
 
+		virtual void SetAlpha(float alpha);
+		virtual void SetColor(const Float3 &color);
+		virtual void SetBrightness(float brightness);
+
 		EnvirParam *GetEnvirParam();
 
 		void SetUseCameraActor(CameraActor *cameraActor);

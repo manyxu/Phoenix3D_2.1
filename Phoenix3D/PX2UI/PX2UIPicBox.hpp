@@ -80,6 +80,7 @@ namespace PX2
 		void SetTexture(const std::string &filename);
 		void SetTexture(const std::string &texPackName, const std::string &eleName);
 		void SetTexture(Texture *tex);
+		Texture *GetTexture();
 		const std::string &GetTextureFilename() const;
 		const std::string &GetTexturePackName() const;
 		const std::string &GetElementName() const;

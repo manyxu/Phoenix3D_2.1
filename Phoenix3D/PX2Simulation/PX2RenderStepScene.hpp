@@ -31,16 +31,43 @@ namespace PX2
 
 		// Effects
 	public:
+		// bloom
 		void SetUseBloom(bool useBloom);
 		bool IsUseBloom() const;
 
+		void SetBloomRenderTargetSize(const Float2 &size);
+		const Float2 &GetBloomRenderTargetSize() const;
+
+		void SetScene_BloomBrightWeight(float weight);
+		float GetScene_BloomBrightWeight() const;
+
+		void SetScene_BloomBlurDeviation(float deviation);
+		float GetScene_BloomBlurDeviation() const;
+
+		void SetScene_BloomBlurWeight(float weight);
+		float GetScene_BloomBlurWeight() const;
+
+		void SetScene_BloomWeight(float weight);
+		float GetScene_BloomWeight() const;
+
+		// shader map
 		void SetUseShaderMap(bool useShaderMap);
 		bool IsUseShaderMap() const;
 
 	protected:
 		void _SetCameraF(Camera *camera, UIPicBox *uiPicBox);
+		void _UpdateBloomChanged();
+		void _UpdateBloomParams();
+		void _UpdateALightPicBoxTrans();
 
 		bool mIsUseBloom;
+		Float2 mBloomRenderTargetSize;
+		Float4 mBloomBrightParam;
+		float mBloomBlurDeviation;
+		float mBloomBlurWeight;
+		Float4 mBloomParam;
+		bool mIsBloomChanged;
+
 		bool mIsUseShaderMap;
 
 		CameraPtr mScreenCamera;
@@ -49,12 +76,13 @@ namespace PX2
 		UIFramePtr mEffect_UIFrame;
 
 		float mBloomPicSize;
-		float mBloomTexSize;
-		float mBloomBlurWeight;
-		float mBloomBlurValue;
 
 		RenderTargetPtr mEffect_RenderTarget_Normal;
 		UIPicBoxPtr mEffect_UIPicBox_Normal;
+
+		RenderTargetPtr mEffect_RenderTarget_BloomBright;
+		UIPicBoxPtr mEffect_UIPicBox_BloomBright;
+		ShaderFloatPtr mBloom_BloomBrightParam;
 
 		RenderTargetPtr mEffect_RenderTarget_BlurH;
 		UIPicBoxPtr mEffect_UIPicBox_BlurH;
@@ -63,10 +91,15 @@ namespace PX2
 		Float4 mEffect_Blur_UVOffsets_H[16];
 		Float4 mEffect_Blur_UVOffsets_V[16];
 
+		UIPicBoxPtr mBloom_UIPicBox_Final;
+		ShaderFloatPtr mBloom_BloomParam;
+
 		Culler mEffect_Culler_Shadow;
 		RenderTargetPtr mEffect_RenderTarget_Shadow;
 		ShadowMap_MaterialPtr mEffect_Material_Shadow;
 		UIPicBoxPtr mEffect_UIPicBox_Shadow;
+
+		std::vector<UIPicBox *> mAlignPicBoxes;
 	};
 
 	typedef Pointer0<RenderStepScene> RenderStepScenePtr;

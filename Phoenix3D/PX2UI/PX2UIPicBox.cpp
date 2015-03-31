@@ -183,6 +183,11 @@ void UIPicBox::SetTexture(Texture *tex)
 	GetMaterialInstance()->SetPixelTexture(0, "SamplerBase", tex);
 }
 //----------------------------------------------------------------------------
+Texture *UIPicBox::GetTexture()
+{
+	return GetMaterialInstance()->GetPixelTexture(0, "SamplerBase");
+}
+//----------------------------------------------------------------------------
 void UIPicBox::SetUVRepeat(const Float2 &uvRepeat)
 {
 	ShaderFloat *constant = GetMaterialInstance()->GetPixelConstant(0, "UVParam");

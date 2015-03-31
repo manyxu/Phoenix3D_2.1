@@ -73,21 +73,28 @@ Material *MaterialManager::GetMaterial(const FString &filename, bool share)
 	else
 	{
 		Material *mtl = 0;
-		mtl = DynamicCast<Material>(GraphicsRoot::msUserLoadFun(filename));
+		Object *mtlObj = GraphicsRoot::msUserLoadFun(filename);
 
-		std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(filename);
-		if (it != mMaterialMap.end())
+		if (mtlObj)
 		{
-			_SetMaterialShaderKey(mtl, it->second.ShaderKey);
-		}
-		else
-		{
-			int shaderKey = QueryShaderKey();
+			mtl = DynamicCast<Material>(mtlObj->Copy(""));
+			if (mtl)
+			{
+				std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(filename);
+				if (it != mMaterialMap.end())
+				{
+					_SetMaterialShaderKey(mtl, it->second.ShaderKey);
+				}
+				else
+				{
+					int shaderKey = QueryShaderKey();
 
-			mMaterialMap[filename].TheMaterial = mtl;
-			mMaterialMap[filename].ShaderKey = shaderKey;
+					mMaterialMap[filename].TheMaterial = mtl;
+					mMaterialMap[filename].ShaderKey = shaderKey;
 
-			_SetMaterialShaderKey(mtl, shaderKey);
+					_SetMaterialShaderKey(mtl, shaderKey);
+				}
+			}
 		}
 
 		return mtl;

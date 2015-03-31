@@ -13,7 +13,7 @@
 #include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, Node, Project);
+PX2_IMPLEMENT_RTTI(PX2, Object, Project);
 
 //----------------------------------------------------------------------------
 Project::Project() :
@@ -46,6 +46,12 @@ mIsScene_UseShadowMap(false)
 	mUIFrame = new0 UIFrame();
 	mUIFrame->SetName("RootFrame");
 	SetUIFrame(mUIFrame);
+
+	mScene_BloomRenderTargetSize = Float2(512.0f, 512.0f);
+	mScene_BloomBrightWeight = 0.3f;
+	mScene_BloomBlurDeviation = 1.0f;
+	mScene_BloomBlurWeight = 1.0f;
+	mScene_BloomWeight = 1.0f;
 }
 //----------------------------------------------------------------------------
 Project::~Project ()
@@ -146,6 +152,13 @@ bool Project::SaveConfig(const std::string &filename)
 	// render setting
 	XMLNode renderNode = projNode.NewChild("render_setting");
 	renderNode.SetAttributeBool("scene_isusebloom", mIsScene_UseBloom);
+	renderNode.SetAttributeFloat("scene_bloomrendertarget_width", mScene_BloomRenderTargetSize[0]);
+	renderNode.SetAttributeFloat("scene_bloomrendertarget_height", mScene_BloomRenderTargetSize[1]);
+	renderNode.SetAttributeFloat("scene_bloombrightweight", mScene_BloomBrightWeight);
+	renderNode.SetAttributeFloat("scene_bloomblurdeviation", mScene_BloomBlurDeviation);
+	renderNode.SetAttributeFloat("scene_bloomblurweight", mScene_BloomBlurWeight);
+	renderNode.SetAttributeFloat("scene_bloomweight", mScene_BloomWeight);
+
 	renderNode.SetAttributeBool("scene_isuseshadowmap", mIsScene_UseShadowMap);
 
 	// language
@@ -231,6 +244,13 @@ bool Project::Load(const std::string &filename)
 			if (!renderNode.IsNull())
 			{
 				mIsScene_UseBloom = renderNode.AttributeToBool("scene_isusebloom");
+				mScene_BloomRenderTargetSize[0] = renderNode.AttributeToFloat("scene_bloomrendertarget_width");
+				mScene_BloomRenderTargetSize[1] = renderNode.AttributeToFloat("scene_bloomrendertarget_height");
+				mScene_BloomBrightWeight = renderNode.AttributeToFloat("scene_bloombrightweight");
+				mScene_BloomBlurDeviation = renderNode.AttributeToFloat("scene_bloomblurdeviation");
+				mScene_BloomBlurWeight = renderNode.AttributeToFloat("scene_bloomblurweight");
+				mScene_BloomWeight = renderNode.AttributeToFloat("scene_bloomweight");
+
 				mIsScene_UseShadowMap = renderNode.AttributeToBool("scene_isuseshadowmap");
 			}
 
@@ -261,6 +281,10 @@ bool Project::Load(const std::string &filename)
 			{
 				mSceneRenderStep->SetUseBloom(mIsScene_UseBloom);
 				mSceneRenderStep->SetUseShaderMap(mIsScene_UseShadowMap);
+				mSceneRenderStep->SetScene_BloomBrightWeight(mScene_BloomBrightWeight);
+				mSceneRenderStep->SetBloomRenderTargetSize(mScene_BloomRenderTargetSize);
+				mSceneRenderStep->SetScene_BloomBlurDeviation(mScene_BloomBlurDeviation);
+				mSceneRenderStep->SetScene_BloomBlurWeight(mScene_BloomBlurWeight);
 			}
 		}
 	}
@@ -417,6 +441,61 @@ void Project::SetScene_UseBloom(bool isUseBloom)
 	}
 }
 //----------------------------------------------------------------------------
+void Project::SetScene_BloomBrightWeight(float weight)
+{
+	mScene_BloomBrightWeight = weight;
+
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetScene_BloomBrightWeight(mScene_BloomBrightWeight);
+	}
+}
+//----------------------------------------------------------------------------
+float Project::GetScene_BloomBrightWeight() const
+{
+	return mScene_BloomBrightWeight;
+}
+//----------------------------------------------------------------------------
+void Project::SetScene_BloomRenderTargetSize(const Float2 &size)
+{
+	mScene_BloomRenderTargetSize = size;
+
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetBloomRenderTargetSize(size);
+	}
+}
+//----------------------------------------------------------------------------
+void Project::SetScene_BloomBlurDeviation(float deviation)
+{
+	mScene_BloomBlurDeviation = deviation;
+
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetScene_BloomBlurDeviation(deviation);
+	}
+}
+//----------------------------------------------------------------------------
+void Project::SetScene_BloomBlurWeight(float weight)
+{
+	mScene_BloomBlurWeight = weight;
+
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetScene_BloomBlurWeight(weight);
+	}
+}
+//----------------------------------------------------------------------------
+void Project::SetScene_BloomWeight(float weight)
+{
+	mScene_BloomWeight = weight;
+
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetScene_BloomWeight(weight);
+	}
+}
+//----------------------------------------------------------------------------
 void Project::SetScene_UseShadowMap(bool isUseShadowMap)
 {
 	mIsScene_UseShadowMap = isUseShadowMap;
@@ -433,7 +512,7 @@ void Project::SetScene_UseShadowMap(bool isUseShadowMap)
 //----------------------------------------------------------------------------
 void Project::RegistProperties()
 {
-	Node::RegistProperties();
+	Object::RegistProperties();
 
 	AddPropertyClass("Project");
 
@@ -455,13 +534,18 @@ void Project::RegistProperties()
 
 	AddProperty("ViewRect", PT_RECT, mViewRect, false);
 
-	AddProperty("IsScene_UseBloom", PT_BOOL, mIsScene_UseBloom, true);
-	AddProperty("IsScene_UseShadowMap", PT_BOOL, mIsScene_UseShadowMap, true);
+	AddProperty("IsScene_UseBloom", PT_BOOL, mIsScene_UseBloom);
+	AddProperty("Scene_BloomRenderTargetSize", PT_FLOAT2, mScene_BloomRenderTargetSize);
+	AddProperty("Scene_BloomBlurDeviation", PT_FLOAT, mScene_BloomBlurDeviation);
+	AddProperty("Scene_BloomBlurWeight", PT_FLOAT, mScene_BloomBlurWeight);
+	AddProperty("Scene_BloomWeight", PT_FLOAT, mScene_BloomWeight);
+
+	AddProperty("IsScene_UseShadowMap", PT_BOOL, mIsScene_UseShadowMap);
 }
 //----------------------------------------------------------------------------
 void Project::OnPropertyChanged(const PropertyObject &obj)
 {
-	Node::OnPropertyChanged(obj);
+	Object::OnPropertyChanged(obj);
 
 	if ("ScreenOrientation" == obj.Name)
 	{
@@ -486,6 +570,22 @@ void Project::OnPropertyChanged(const PropertyObject &obj)
 	else if ("IsScene_UseBloom" == obj.Name)
 	{
 		SetScene_UseBloom(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("Scene_BloomRenderTargetSize" == obj.Name)
+	{
+		SetScene_BloomRenderTargetSize(PX2_ANY_AS(obj.Data, Float2));
+	}
+	else if ("Scene_BloomBlurDeviation" == obj.Name)
+	{
+		SetScene_BloomBlurDeviation(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("Scene_BloomBlurWeight" == obj.Name)
+	{
+		SetScene_BloomBlurWeight(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("Scene_BloomWeight" == obj.Name)
+	{
+		SetScene_BloomWeight(PX2_ANY_AS(obj.Data, float));
 	}
 	else if ("IsScene_UseShadowMap" == obj.Name)
 	{
