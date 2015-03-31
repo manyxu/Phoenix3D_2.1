@@ -504,7 +504,7 @@ void Project::SetScene_UseShadowMap(bool isUseShadowMap)
 
 	if (mSceneRenderStep)
 	{
-		mSceneRenderStep->SetUseShaderMap(isUseShadowMap);
+		//mSceneRenderStep->SetUseShaderMap(isUseShadowMap);
 	}
 }
 //----------------------------------------------------------------------------
