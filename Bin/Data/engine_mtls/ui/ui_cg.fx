@@ -1,4 +1,4 @@
-// UI.fx
+// ui.fx
 
 float4x4 PVWMatrix;
 float4 ShineEmissive;

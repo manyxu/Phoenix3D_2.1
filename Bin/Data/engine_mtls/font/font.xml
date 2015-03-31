@@ -4,12 +4,12 @@
 			<shader type="vs" name="font" ni="3" no="3" nc="1" ns="0">
 				<i>
 					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
-					<var index="1" name="modelColor0" vt="float4" vs="COLOR"/>
+					<var index="1" name="modelColor0" vt="float4" vs="COLOR0"/>
 					<var index="2" name="modelTCoord0" vt="float2" vs="TEXCOORD0"/>
 				</i>
 				<o>
 					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
-					<var index="1" name="vertexColor0" vt="float4" vs="COLOR"/>
+					<var index="1" name="vertexColor0" vt="float4" vs="COLOR0"/>
 					<var index="2" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
 				</o>
 				<c>
@@ -20,12 +20,13 @@
 					<var type="gles2" file="font_gles2_vs.fx"/>
 				</p>
 			</shader>
-			<shader type="ps" name="font" ni="1" no="1" nc="2" ns="1">
+			<shader type="ps" name="font" ni="2" no="1" nc="2" ns="1">
 				<i>
-					<var index="0" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
+					<var index="0" name="vertexColor0" vt="float4" vs="COLOR0"/>
+					<var index="1" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
 				</i>
 				<o>
-					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
+					<var index="0" name="pixelColor" vt="float4" vs="COLOR0"/>
 				</o>
 				<c>
 					<var index="0" name="ShineEmissive" nr="1"/>

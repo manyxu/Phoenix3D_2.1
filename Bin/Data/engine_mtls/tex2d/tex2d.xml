@@ -20,10 +20,10 @@
 			</shader>
 			<shader type="ps" name="tex2d" ni="1" no="1" nc="0" ns="1">
 				<i>
-					<var index="0" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
+					<var index="0" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
 				</i>
 				<o>
-					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
+					<var index="0" name="pixelColor" vt="float4" vs="COLOR0"/>
 				</o>
 				<c>
 				</c>

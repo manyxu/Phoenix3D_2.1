@@ -37,11 +37,11 @@
 			<shader type="ps" name="terrain" ni="3" no="1" nc="5" ns="6">
 				<i>
 					<var index="0" name="vertexColor" vt="float2" vs="COLOR0"/>
-					<var index="1" name="vertexTCoord0" vt="float2" vs="VS_TEXCOORD0"/>
-					<var index="2" name="vertexTCoord1" vt="float2" vs="VS_TEXCOORD1"/>
+					<var index="1" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="2" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
 				</i>
 				<o>
-					<var index="0" name="pixelColor" vt="float4" vs="VS_COLOR0"/>
+					<var index="0" name="pixelColor" vt="float4" vs="COLOR0"/>
 				</o>
 				<c>
 					<var index="0" name="UVScale01" nr="1"/>
