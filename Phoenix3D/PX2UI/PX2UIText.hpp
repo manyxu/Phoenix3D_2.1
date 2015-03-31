@@ -52,8 +52,17 @@ namespace PX2
 		void SetDrawStyle(int style);
 		int GetDrawStyle() const;
 
+		void SetFontColor(const Float3 &color);
+		Float3 GetFontColor() const;
+		void SetFontAlpha(float alpha);
+		float GetFontAlpha() const;
+
 		void SetBorderShadowColor(const Float3 &color);
-		const Float3 &GetBorderShadowColor() const;
+		Float3 GetBorderShadowColor() const;
+
+		void SetBorderShadowAlpha(float alpha);
+		float GetBorderShadowAlpha() const;
+
 		void SetShadowBorderSize(float size);
 		float GetShadowBorderSize() const;
 
@@ -116,7 +125,8 @@ namespace PX2
 		int mTextAligns;
 		int mFontStyle;
 		int mDrawStyle;
-		Float3 mBorderShadowColor;
+		Float4 mFontColor;
+		Float4 mBorderShadowColor;
 		float mShadowBorderSize;
 		std::string mFontFilename;
 		int mFontWidth;

@@ -59,12 +59,6 @@ int Scene::AttachChild(Movable* child)
 	Actor *actor = DynamicCast<Actor>(child);
 	if (actor)
 	{
-		int id = actor->GetID();
-		if (0 != id)
-		{
-			mActors[actor->GetID()] = actor;
-		}
-
 		TerrainActor *terrainActor = DynamicCast<TerrainActor>(child);
 		if (terrainActor) mTerrainActor = terrainActor;
 
@@ -82,16 +76,6 @@ int Scene::DetachChild(Movable* child)
 	Actor *actor = DynamicCast<Actor>(child);
 	if (actor)
 	{
-		int id = child->GetID();
-		if (0 != id)
-		{
-			std::map<int, ActorPtr>::iterator it = mActors.find(id);
-			if (it != mActors.end())
-			{
-				mActors.erase(it);
-			}
-		}
-
 		if (mTerrainActor == child)
 			mTerrainActor = 0;
 
@@ -111,6 +95,38 @@ Actor *Scene::GetActorByID(int id)
 	}
 
 	return 0;
+}
+//----------------------------------------------------------------------------
+void Scene::OnChildAdded(Movable *child)
+{
+	Actor *actor = DynamicCast<Actor>(child);
+	
+	if (actor)
+	{
+		int id = actor->GetID();
+		if (0 != id)
+		{
+			mActors[actor->GetID()] = actor;
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void Scene::OnChildRemoved(Movable *child)
+{
+	Actor *actor = DynamicCast<Actor>(child);
+
+	if (actor)
+	{
+		int id = actor->GetID();
+		if (0 != id)
+		{
+			std::map<int, ActorPtr>::iterator it = mActors.find(id);
+			if (it != mActors.end())
+			{
+				mActors.erase(it);
+			}
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void Scene::UpdateWorldData(double applicationTime, double elapsedTime)

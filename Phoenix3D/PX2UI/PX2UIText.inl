@@ -46,9 +46,24 @@ inline int UIText::GetAligns() const
 	return mTextAligns;
 }
 //----------------------------------------------------------------------------
-inline const Float3 &UIText::GetBorderShadowColor() const
+inline Float3 UIText::GetFontColor() const
 {
-	return mBorderShadowColor;
+	return MathHelp::Float4ToFloat3(mFontColor);
+}
+//----------------------------------------------------------------------------
+inline float UIText::GetFontAlpha() const
+{
+	return mFontColor[3];
+}
+//----------------------------------------------------------------------------
+inline Float3 UIText::GetBorderShadowColor() const
+{
+	return MathHelp::Float4ToFloat3(mBorderShadowColor);
+}
+//----------------------------------------------------------------------------
+inline float UIText::GetBorderShadowAlpha() const
+{
+	return mBorderShadowColor[3];
 }
 //----------------------------------------------------------------------------
 inline float UIText::GetShadowBorderSize() const

@@ -110,7 +110,7 @@ namespace PX2
 
 		// render setting
 	public:
-		void SetScene_UseBloom(bool bloom);
+		void SetScene_UseBloom(bool isUseBloom);
 		bool IsScene_UseBloom() const;
 
 		void SetScene_UseShadowMap(bool isUseShadowMap);

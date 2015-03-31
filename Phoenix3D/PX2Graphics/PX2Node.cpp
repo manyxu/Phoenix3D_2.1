@@ -112,6 +112,8 @@ int Node::AttachChild (Movable* child)
         if (*iter == 0)
         {
             *iter = child;
+			OnChildAdded(child);
+
             return i;
         }
     }
@@ -119,6 +121,8 @@ int Node::AttachChild (Movable* child)
 	// 所有空位都用完了，将孩子插入队列末尾
     const int numChildren = (int)mChild.size();
     mChild.push_back(child);
+	OnChildAdded(child);
+
     return numChildren;
 }
 //----------------------------------------------------------------------------
@@ -149,9 +153,15 @@ void Node::InsertChild (Movable *before, Movable *child)
 		{
 			std::vector<MovablePtr>::iterator itP1 = iter+1;
 			if (itP1 != end)
+			{
 				mChild.insert(itP1, child);
+				OnChildAdded(child);
+			}
 			else
+			{
 				mChild.push_back(child);
+				OnChildAdded(child);
+			}
 			
 			return;
 		}
@@ -169,6 +179,7 @@ int Node::DetachChild (Movable* child)
             if (*iter == child)
             {
                 (*iter)->SetParent(0);
+				OnChildRemoved(*iter);
                 *iter = 0;
 
 				mIsNeedCalUpdateChild = true;
@@ -189,6 +200,7 @@ bool Node::DetachChildByName (const std::string &name)
 		if (child != 0 && child->GetName() == name)
 		{
 			child->SetParent(0);
+			OnChildRemoved(child);
 			mChild[i] = 0;
 
 			mIsNeedCalUpdateChild = true;
@@ -209,6 +221,7 @@ MovablePtr Node::DetachChildAt (int i)
         if (child)
         {
             child->SetParent(0);
+			OnChildRemoved(child);
             mChild[i] = 0;
 
 			mIsNeedCalUpdateChild = true;
@@ -227,6 +240,7 @@ void Node::DetachAllChildren ()
 		 if (child)
 		 {
 			 child->SetParent(0);
+			 OnChildRemoved(child);
 			 mChild[i] = 0;
 		 }
 	}
@@ -264,12 +278,14 @@ MovablePtr Node::SetChild (int i, Movable* child)
         if (previousChild)
         {
             previousChild->SetParent(0);
+			OnChildRemoved(previousChild);
         }
 
 		// 插入新的孩子到空位
         if (child)
         {
             child->SetParent(this);
+			OnChildAdded(child);
         }
 
         mChild[i] = child;
@@ -280,6 +296,7 @@ MovablePtr Node::SetChild (int i, Movable* child)
     if (child)
     {
         child->SetParent(this);
+		OnChildAdded(child);
     }
     mChild.push_back(child);
 
@@ -293,6 +310,16 @@ MovablePtr Node::GetChild (int i)
         return mChild[i];
     }
     return 0;
+}
+//----------------------------------------------------------------------------
+void Node::OnChildAdded(Movable *child)
+{
+	PX2_UNUSED(child);
+}
+//----------------------------------------------------------------------------
+void Node::OnChildRemoved(Movable *child)
+{
+	PX2_UNUSED(child);
 }
 //----------------------------------------------------------------------------
 MovablePtr Node::GetChildByName (const std::string &name)
@@ -537,12 +564,11 @@ void Node::OnPropertyChanged (const PropertyObject &obj)
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-Node::Node (LoadConstructor value)
-    :
-    Movable(value),
-	mIsDoPickPriority(false),
-	mIsNeedCalUpdateChild(true),
-	mAnchorID(0)
+Node::Node(LoadConstructor value) :
+Movable(value),
+mIsDoPickPriority(false),
+mIsNeedCalUpdateChild(true),
+mAnchorID(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -590,6 +616,7 @@ void Node::PostLink ()
 		if (mChild[i])
 		{
 			mChild[i]->SetParent(this);
+			OnChildAdded(mChild[i]);
 		}
 	}
 }

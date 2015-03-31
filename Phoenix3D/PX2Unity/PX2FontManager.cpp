@@ -121,7 +121,7 @@ Font *FontManager::CreateBitmapFont (int fontWidth, int fontHeight,
 //----------------------------------------------------------------------------
 void FontManager::RenderText (TriMesh *mesh, Font *font, const char *text,
 	unsigned int style, float x, float y,  const Float2 &space, const Float4 &color, 
-	const Float3 &borderShadowColor, float shadowBorderSize, float scale, 
+	const Float4 &borderShadowColor, float shadowBorderSize, float scale,
 	bool doTransfer, float depth)
 {
 	if (!font)
@@ -136,7 +136,7 @@ void FontManager::RenderText (TriMesh *mesh, Font *font, const char *text,
 //----------------------------------------------------------------------------
 void FontManager::RenderText (TriMesh *mesh, Font *font, const char *text, 
 	unsigned int style,	unsigned int align, Rectf &rect, const Float2 &space, 
-	const Float4 &color, const Float3 &borderShadowColor, 
+	const Float4 &color, const Float4 &borderShadowColor,
 	float shadowBorderSize, float scale, bool doTransfer)
 {
 	if (!font)
@@ -195,7 +195,7 @@ void FontManager::RenderText (TriMesh *mesh, Font *font, const char *text,
 //----------------------------------------------------------------------------
 void FontManager::RenderText (TriMesh *mesh, Font *font, const char *text, 
 	unsigned int style, Rectf &rect,  const Float2 &space, float offsetX, float offsetY, bool autoWrap,
-	const Float4 &color, const Float3 &borderShadowColor, 
+	const Float4 &color, const Float4 &borderShadowColor, 
 	float shadowBorderSize,  float scale, bool doTransfer)
 {
 	if (!font)

@@ -723,7 +723,7 @@ SceneNodeCtrl::DragType SceneNodeCtrl::GetDragType(RenderStep *renderStep,
 {
 	APoint origin;
 	AVector direction;
-	renderStep->GetPickRay((int)point.X(), (int)point.Z(), origin, direction);
+	renderStep->GetPickRay(point.X(), point.Z(), origin, direction);
 
 	PX2::Picker picker;
 

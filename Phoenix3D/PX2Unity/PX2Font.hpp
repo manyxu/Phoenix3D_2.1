@@ -71,8 +71,8 @@ namespace PX2
 
 		/// ÏÔÊ¾×Ö·û´®
 		virtual void TextOutM (TriMesh *mesh, const std::string &text, float xPos, float yPos,
-			const Float2 &space,
-			const Float4 &color, const Float3 &shadowBorderColor3, float shadowBorderSize,
+			const Float2 &space, const Float4 &color, const Float4 &shadowBorderColor4, 
+			float shadowBorderSize,
 			unsigned int drawStyle=FES_NORMAL, bool doTransfer=false,
 			float scale = 1.0f, float depth=0.0f);
 
@@ -83,7 +83,7 @@ namespace PX2
 		virtual void TextOutRect (TriMesh *mesh, const std::string &text, Rectf &rect, 
 			const Float2 &space,
 			float offsetX, float offsetY, bool autoWrap, const Float4 &color,
-			const Float3 &shadowBorderColor3, float shadowBorderSize, 
+			const Float4 &shadowBorderColor4, float shadowBorderSize, 
 			int drawStyle=FES_NORMAL, bool doTransfer=false,  float scale=1.0f);
 
 		Texture2D *GetTexture ();

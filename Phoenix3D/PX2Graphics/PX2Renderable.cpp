@@ -194,25 +194,34 @@ void Renderable::SetAlpha (float alpha)
 {
 	Movable::SetAlpha(alpha);
 
-	mDefaultShine->Emissive[3] = alpha;
+	if (mDefaultShine)
+	{
+		mDefaultShine->Emissive[3] = alpha;
+	}
 }
 //----------------------------------------------------------------------------
 void Renderable::SetColor (const Float3 &color)
 {
 	Movable::SetColor(color);
 
-	mDefaultShine->Emissive[0] = mColor[0] * mBrightness;
-	mDefaultShine->Emissive[1] = mColor[1] * mBrightness;
-	mDefaultShine->Emissive[2] = mColor[2] * mBrightness;
+	if (mDefaultShine)
+	{
+		mDefaultShine->Emissive[0] = mColor[0] * mBrightness;
+		mDefaultShine->Emissive[1] = mColor[1] * mBrightness;
+		mDefaultShine->Emissive[2] = mColor[2] * mBrightness;
+	}
 }
 //----------------------------------------------------------------------------
 void Renderable::SetBrightness (float brightness)
 {
 	Movable::SetBrightness(brightness);
 
-	mDefaultShine->Emissive[0] = mColor[0] * mBrightness;
-	mDefaultShine->Emissive[1] = mColor[1] * mBrightness;
-	mDefaultShine->Emissive[2] = mColor[2] * mBrightness;
+	if (mDefaultShine)
+	{
+		mDefaultShine->Emissive[0] = mColor[0] * mBrightness;
+		mDefaultShine->Emissive[1] = mColor[1] * mBrightness;
+		mDefaultShine->Emissive[2] = mColor[2] * mBrightness;
+	}
 }
 //----------------------------------------------------------------------------
 void Renderable::SetFogInfulenceParam_Height (float param)

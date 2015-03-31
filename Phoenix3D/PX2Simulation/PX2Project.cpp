@@ -407,6 +407,30 @@ void Project::SetViewRect(const Rectf &viewRect)
 	}
 }
 //----------------------------------------------------------------------------
+void Project::SetScene_UseBloom(bool isUseBloom)
+{
+	mIsScene_UseBloom = isUseBloom;
+
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetUseBloom(isUseBloom);
+	}
+}
+//----------------------------------------------------------------------------
+void Project::SetScene_UseShadowMap(bool isUseShadowMap)
+{
+	mIsScene_UseShadowMap = isUseShadowMap;
+
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetUseShaderMap(isUseShadowMap);
+	}
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// Property
+//----------------------------------------------------------------------------
 void Project::RegistProperties()
 {
 	Node::RegistProperties();

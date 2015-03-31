@@ -17,10 +17,10 @@ UIText::UIText()
 :
 mFontType(FT_FREETYPE)
 {
-	SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PT1));
+	SetVertexFormat(PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PCT1));
 
-	MaterialInstance *mi = new0 MaterialInstance("Data/engine_mtls/ui/ui.px2obj",
-		"default", false);
+	MaterialInstance *mi = new0 MaterialInstance("Data/engine_mtls/font/font.px2obj",
+		"font", false);
 	SetMaterialInstance(mi);
 	ShaderFloat *shaderFloat = mi->GetPixelConstant(0, "UVParam");
 	(*shaderFloat)[0] = 1.0f;
@@ -41,7 +41,7 @@ void UIText::_Init()
 	mRectUseage = RU_NONE;
 	mFontStyle = FES_NORMAL;
 	mDrawStyle = FD_NORMAL;
-	mBorderShadowColor = Float3::BLACK;
+	mBorderShadowColor = Float4(0.0f, 0.0f, 0.0f, 1.0f);
 	mShadowBorderSize = 1.0f;
 	mOffset = Float2::ZERO;
 	mSpace = Float2::ZERO;
@@ -55,7 +55,16 @@ void UIText::_Init()
 	mFontHeight = 24;
 
 	mText = "DefaultText";
-	SetColor(Float3::BLACK);
+
+	SetColor(Float3::WHITE);
+	SetAlpha(1.0f);
+
+	SetFontColor(Float3::BLACK);
+	SetFontAlpha(1.0f);
+	SetBorderShadowColor(Float3::BLACK);
+	SetBorderShadowAlpha(1.0f);
+
+	SetName("UIText");
 
 	mIsNeedReCreateFont = true;
 	mIsNeedReCreate = true;
@@ -161,10 +170,14 @@ int UIText::GetVAlign() const
 //----------------------------------------------------------------------------
 void UIText::SetBorderShadowColor(const Float3 &color)
 {
-	if (mBorderShadowColor == color)
-		return;
+	mBorderShadowColor = MathHelp::Float3ToFloat4(color, mBorderShadowColor[3]);
 
-	mBorderShadowColor = color;
+	mIsNeedReCreate = true;
+}
+//----------------------------------------------------------------------------
+void UIText::SetBorderShadowAlpha(float alpha)
+{
+	mBorderShadowColor[3] = alpha;
 
 	mIsNeedReCreate = true;
 }
@@ -255,8 +268,6 @@ void UIText::SetColor(const Float3 &color)
 		return;
 
 	TriMesh::SetColor(color);
-
-	GetShine()->Emissive = Float4(color[0], color[1], color[2], GetAlpha());
 }
 //----------------------------------------------------------------------------
 void UIText::SetAlpha(float alpha)
@@ -265,9 +276,20 @@ void UIText::SetAlpha(float alpha)
 		return;
 
 	TriMesh::SetAlpha(alpha);
+}
+//----------------------------------------------------------------------------
+void UIText::SetFontColor(const Float3 &color)
+{
+	mFontColor = MathHelp::Float3ToFloat4(color, mAlpha);
 
-	const Float3 &color = GetColor();
-	GetShine()->Emissive = Float4(color[0], color[1], color[2], alpha);
+	mIsNeedReCreate = true;
+}
+//----------------------------------------------------------------------------
+void UIText::SetFontAlpha(float alpha)
+{
+	mFontColor[3] = alpha;
+
+	mIsNeedReCreate = true;
 }
 //----------------------------------------------------------------------------
 void UIText::SetFontWidthHeight(int width, int height)
@@ -343,15 +365,15 @@ void UIText::ReCreate()
 	if (RU_NONE == mRectUseage)
 	{
 		PX2_FM.RenderText(this, mFont,
-			mText.c_str(), mDrawStyle, mOffset[0], mOffset[1], mSpace, Float4(mColor[0],
-			mColor[1], mColor[2], mAlpha), mBorderShadowColor, mShadowBorderSize,
+			mText.c_str(), mDrawStyle, mOffset[0], mOffset[1], mSpace, 
+			mFontColor, mBorderShadowColor, mShadowBorderSize,
 			mFontScale, mIsDoCharTranslate, 0.0f);
 	}
 	else if (RU_CLIP == mRectUseage)
 	{
 		PX2_FM.RenderText(this, mFont, mText.c_str(),
 			mDrawStyle, mRect, mSpace, mOffset[0], mOffset[1],
-			mIsAutoWarp, Float4(mColor[0], mColor[1], mColor[2], mAlpha),
+			mIsAutoWarp, mFontColor,
 			mBorderShadowColor, mShadowBorderSize, mFontScale,
 			mIsDoCharTranslate);
 	}
@@ -359,7 +381,7 @@ void UIText::ReCreate()
 	{
 		PX2_FM.RenderText(this, mFont, mText.c_str(),
 			mDrawStyle, mTextAligns, mRect, mSpace,
-			Float4(mColor[0], mColor[1], mColor[2], mAlpha),
+			mFontColor,
 			mBorderShadowColor, mShadowBorderSize, mFontScale,
 			mIsDoCharTranslate);
 	}
@@ -413,7 +435,10 @@ void UIText::RegistProperties()
 	drawStyles.push_back("FD_SHADOW");
 	drawStyles.push_back("FD_BORDER");
 	AddPropertyEnum("DrawStyle", GetDrawStyle(), drawStyles);
+	AddProperty("FontColor", PT_COLOR3FLOAT3, GetFontColor());
+	AddProperty("FontAlpha", PT_FLOAT, GetFontAlpha());
 	AddProperty("BorderShadowColor", PT_COLOR3FLOAT3, GetBorderShadowColor());
+	AddProperty("BorderShadowAlpha", PT_FLOAT, GetBorderShadowAlpha());
 	AddProperty("BorderShadowSize", PT_FLOAT, GetShadowBorderSize());
 
 	std::vector<std::string> rectUseages;
@@ -545,9 +570,21 @@ void UIText::OnPropertyChanged(const PropertyObject &obj)
 	{
 		SetDrawStyle(PX2_ANY_AS(obj.Data, int));
 	}
+	else if ("FontColor" == obj.Name)
+	{
+		SetFontColor(PX2_ANY_AS(obj.Data, Float3));
+	}
+	else if ("FontAlpha" == obj.Name)
+	{
+		SetFontAlpha(PX2_ANY_AS(obj.Data, float));
+	}
 	else if ("BorderShadowColor" == obj.Name)
 	{
 		SetBorderShadowColor(PX2_ANY_AS(obj.Data, Float3));
+	}
+	else if ("BorderShadowAlpha" == obj.Name)
+	{
+		SetBorderShadowAlpha(PX2_ANY_AS(obj.Data, float));
 	}
 	else if ("BorderShadowSize" == obj.Name)
 	{
@@ -640,13 +677,9 @@ void UIText::Load(InStream& source)
 	source.Read(mFontStyle);
 	source.Read(mDrawStyle);
 
+	source.ReadAggregate(mFontColor);
 	source.ReadAggregate(mBorderShadowColor);
 	source.Read(mShadowBorderSize);
-
-	Float3 color;
-	float alpha;
-	source.ReadAggregate(color);
-	source.Read(alpha);
 
 	source.ReadString(mFontFilename);
 	source.Read(mFontWidth);
@@ -657,8 +690,6 @@ void UIText::Load(InStream& source)
 	source.ReadBool(mIsAutoWarp);
 	source.ReadBool(mIsDoCharTranslate);
 	source.Read(mFontScale);
-
-	source.ReadPointer(mFontTex);
 
 	source.ReadEnum(mFontType);
 
@@ -700,6 +731,7 @@ void UIText::Save(OutStream& target) const
 	target.Write(mTextAligns);
 	target.Write(mFontStyle);
 	target.Write(mDrawStyle);
+	target.WriteAggregate(mFontColor);
 	target.WriteAggregate(mBorderShadowColor);
 	target.Write(mShadowBorderSize);
 	target.WriteString(mFontFilename);
@@ -719,7 +751,6 @@ void UIText::Save(OutStream& target) const
 int UIText::GetStreamingSize(Stream &stream) const
 {
 	int size = TriMesh::GetStreamingSize(stream);
-
 	size += PX2_VERSION_SIZE(mVersion);
 
 	size += PX2_STRINGSIZE(mText);
@@ -730,6 +761,8 @@ int UIText::GetStreamingSize(Stream &stream) const
 
 	size += sizeof(mFontStyle);
 	size += sizeof(mDrawStyle);
+
+	size += sizeof(mFontColor);
 
 	size += sizeof(mBorderShadowColor);
 	size += sizeof(mShadowBorderSize);

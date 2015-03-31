@@ -66,6 +66,9 @@ namespace PX2
 		static void TravelExecute(Movable *mov, TravelExecuteFun fun, Any *data=0);
 
 	protected:
+		virtual void OnChildAdded(Movable *child);
+		virtual void OnChildRemoved(Movable *child);
+
 		// 几何图形更新
 		virtual void UpdateWorldData (double applicationTime, double elapsedTime);
 		virtual void UpdateWorldBound ();

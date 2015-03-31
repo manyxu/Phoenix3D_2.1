@@ -42,6 +42,8 @@ namespace PX2
 		Actor *GetActorByID(int id);
 
 	protected:
+		virtual void OnChildAdded(Movable *child);
+		virtual void OnChildRemoved(Movable *child);
 		virtual void UpdateWorldData(double applicationTime, double elapsedTime);
 
 		EnvirParamPtr mEnvirParam;

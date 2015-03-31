@@ -279,9 +279,9 @@ inline void SetupCharPoly (FontDrawRect *poly, float x, float y, float w,
 }
 //----------------------------------------------------------------------------
 void Font::TextOutM (TriMesh *mesh, const std::string &text, float xPos, float yPos,
-	const Float2 &space,
-	const Float4 &color,  const Float3 &shadowBorderColor3,  float shadowBorderSize,
-	unsigned int drawStyle,	bool doTransfer, float scale, float depth)
+	const Float2 &space, const Float4 &color, const Float4 &shadowBorderColor4,
+	float shadowBorderSize, unsigned int drawStyle,	bool doTransfer, 
+	float scale, float depth)
 {
 	SetHorInterval(space[0]);
 	SetLineInterval(space[1]);
@@ -303,8 +303,6 @@ void Font::TextOutM (TriMesh *mesh, const std::string &text, float xPos, float y
 	float curX = xPos;
 	float curY = yPos;
 	Float4 curColor = color;
-	Float4 shadowColor = Float4(shadowBorderColor3[0], shadowBorderColor3[1], 
-		shadowBorderColor3[2], color[3]);
 	int showCharNum = 0;
 	bool blink = false;
 	int blinkModel = BLINKMODEL_SMOOTH;
@@ -348,49 +346,47 @@ void Font::TextOutM (TriMesh *mesh, const std::string &text, float xPos, float y
 
 				if (mTexture == tex)
 				{
-					shadowColor[3] = curColor[3];
-
 					if (drawStyle == FD_SHADOW)
 					{
 						SetupCharPoly(&mDrawRects[0]+mShowNum,
 							curX+shadowBorderSize, curY-shadowBorderSize, charWidth, charHeight,
-							rectUV, shadowColor);
+							rectUV, shadowBorderColor4);
 						mShowNum++;
 					}
 					else if (drawStyle == FD_BORDER)
 					{
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
 							curX-shadowBorderSize, curY, charWidth, charHeight, 
-							rectUV, shadowColor);
+							rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
 							curX+shadowBorderSize, curY, charWidth, charHeight, 
-							rectUV, shadowColor);
+							rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
 							curX, curY-shadowBorderSize, charWidth, charHeight, 
-							rectUV, shadowColor);
+							rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
 							curX, curY+shadowBorderSize, charWidth, charHeight,
-							rectUV, shadowColor);
+							rectUV, shadowBorderColor4);
 						mShowNum++;
 
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
 							curX-shadowBorderSize, curY-shadowBorderSize, charWidth, charHeight, 
-							rectUV, shadowColor);
+							rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
 							curX-shadowBorderSize, curY+shadowBorderSize, charWidth, charHeight, 
-							rectUV, shadowColor);
+							rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
 							curX+shadowBorderSize, curY-shadowBorderSize, charWidth, charHeight, 
-							rectUV, shadowColor);
+							rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
 							curX+shadowBorderSize, curY+shadowBorderSize, charWidth, charHeight,
-							rectUV, shadowColor);
+							rectUV, shadowBorderColor4);
 						mShowNum++;
 					}
 
@@ -500,7 +496,7 @@ void Font::TextOutM (TriMesh *mesh, const std::string &text, float xPos, float y
 void Font::TextOutRect(TriMesh *mesh, const std::string &text, Rectf &rect, 
 	const Float2 &space,
 	float offsetX, float offsetY, bool autoWrap, const Float4 &color,
-	const Float3 &shadowBorderColor3, float shadowBorderSize, 
+	const Float4 &shadowBorderColor4, float shadowBorderSize, 
 	int drawStyle, bool doTransfer,  float scale)
 {
 	SetHorInterval(space[0]);
@@ -526,8 +522,6 @@ void Font::TextOutRect(TriMesh *mesh, const std::string &text, Rectf &rect,
 	float curY = rec.Top - mCharHeight*scale; // 第一行不需要加上mLineInterval
 
 	Float4 curColor = color;
-	Float4 shadowColor = Float4(shadowBorderColor3[0], shadowBorderColor3[1], 
-		shadowBorderColor3[2], color[3]);
 
 	int showCharNum = 0;
 	bool blink = false;
@@ -659,40 +653,38 @@ void Font::TextOutRect(TriMesh *mesh, const std::string &text, Rectf &rect,
 					rectUV.Top -= vOffset2 * vHeight;
 					rectUV.Bottom += vOffset1 * vHeight;
 
-					shadowColor[3] = curColor[3];
-
 					if (drawStyle == FD_SHADOW)
 					{
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
-							xx1+shadowBorderSize, yy1-shadowBorderSize, xx2-xx1, yy2-yy1, rectUV, shadowColor);
+							xx1 + shadowBorderSize, yy1 - shadowBorderSize, xx2 - xx1, yy2 - yy1, rectUV, shadowBorderColor4);
 						mShowNum++;
 					}
 					if (drawStyle == FD_BORDER)
 					{
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
-							xx1-shadowBorderSize, yy1, xx2-xx1, yy2-yy1, rectUV, shadowColor);
+							xx1 - shadowBorderSize, yy1, xx2 - xx1, yy2 - yy1, rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
-							xx1+shadowBorderSize, yy1, xx2-xx1, yy2-yy1, rectUV, shadowColor);
+							xx1 + shadowBorderSize, yy1, xx2 - xx1, yy2 - yy1, rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
-							xx1, yy1-shadowBorderSize, xx2-xx1, yy2-yy1, rectUV, shadowColor);
+							xx1, yy1 - shadowBorderSize, xx2 - xx1, yy2 - yy1, rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
-							xx1, yy1+shadowBorderSize, xx2-xx1, yy2-yy1, rectUV, shadowColor);
+							xx1, yy1 + shadowBorderSize, xx2 - xx1, yy2 - yy1, rectUV, shadowBorderColor4);
 						mShowNum++;
 
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
-							xx1-shadowBorderSize, yy1-shadowBorderSize, xx2-xx1, yy2-yy1, rectUV, shadowColor);
+							xx1 - shadowBorderSize, yy1 - shadowBorderSize, xx2 - xx1, yy2 - yy1, rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
-							xx1-shadowBorderSize, yy1+shadowBorderSize, xx2-xx1, yy2-yy1, rectUV, shadowColor);
+							xx1 - shadowBorderSize, yy1 + shadowBorderSize, xx2 - xx1, yy2 - yy1, rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
-							xx1+shadowBorderSize, yy1-shadowBorderSize, xx2-xx1, yy2-yy1, rectUV, shadowColor);
+							xx1 + shadowBorderSize, yy1 - shadowBorderSize, xx2 - xx1, yy2 - yy1, rectUV, shadowBorderColor4);
 						mShowNum++;
 						SetupCharPoly(&mDrawRects[0]+mShowNum, 
-							xx1+shadowBorderSize, yy1+shadowBorderSize, xx2-xx1, yy2-yy1, rectUV, shadowColor);
+							xx1 + shadowBorderSize, yy1 + shadowBorderSize, xx2 - xx1, yy2 - yy1, rectUV, shadowBorderColor4);
 						mShowNum++;
 					}
 					SetupCharPoly(&mDrawRects[0]+mShowNum, 
@@ -861,15 +853,19 @@ void Font::RenderText (TriMesh *mesh, float depth)
 		FontDrawRect &rect = mDrawRects[i];
 
 		vba.Position<Float3>(4*i)	= Float3(rect.Rect.Left, depth, rect.Rect.Bottom);
+		vba.Color<Float4>(0, 4 * i) = rect.Color;
 		vba.TCoord<Float2>(0, 4*i)	= Float2(rect.RectUV.Left, rect.RectUV.Bottom);
 
 		vba.Position<Float3>(4*i+1) = Float3(rect.Rect.Right, depth, rect.Rect.Bottom);
+		vba.Color<Float4>(0, 4 * i + 1) = rect.Color;
 		vba.TCoord<Float2>(0, 4*i+1)= Float2(rect.RectUV.Right, rect.RectUV.Bottom);
 
 		vba.Position<Float3>(4*i+2) = Float3(rect.Rect.Right, depth, rect.Rect.Top);
+		vba.Color<Float4>(0, 4 * i + 2) = rect.Color;
 		vba.TCoord<Float2>(0, 4*i+2)= Float2(rect.RectUV.Right, rect.RectUV.Top);
 
 		vba.Position<Float3>(4*i+3) = Float3(rect.Rect.Left, depth, rect.Rect.Top);
+		vba.Color<Float4>(0, 4 * i + 3) = rect.Color;
 		vba.TCoord<Float2>(0, 4*i+3)= Float2(rect.RectUV.Left, rect.RectUV.Top);
 	}
 	vBuffer->SetNumElements(4*mShowNum);
