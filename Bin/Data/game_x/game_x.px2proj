@@ -1,9 +1,9 @@
 <project>
-	<general name="game_x" screenorientation="portrait" width="640" height="1136" backcolor="127,127,127,255" projcolor="255,255,255,255"/>
-	<scene filename=""/>
-	<render_setting scene_isusebloom="false" scene_isuseshadowmap="false"/>
+	<general name="game_x" screenorientation="portrait" width="640" height="1136" backcolor="128,128,128,255" projcolor="255,255,255,255"/>
+	<scene filename="Data/game_x/scenes/scene.px2obj"/>
+	<render_setting scene_isusebloom="true" scene_bloomrendertarget_width="512.000000" scene_bloomrendertarget_height="512.000000" scene_bloomblurdeviation="3.000000" scene_bloomblurweight="1.000000" scene_bloomweight="0.500000" scene_isuseshadowmap="false"/>
 	<language/>
 	<publish/>
-	<edit_setting uicamerapercent="1.180000"/>
+	<edit_setting uicamerapercent="1.000000"/>
 </project>
 

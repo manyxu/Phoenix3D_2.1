@@ -1,6 +1,6 @@
 <boost name="boost">
 	<config>
-		<var width="1024" height="768"/>
+		<var width="640" height="960"/>
 	</config>
 	<play>
 		<var projectname="game_x" playlogicmode="logic"/>

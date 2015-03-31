@@ -3,7 +3,6 @@
 float4x4 PVWMatrix;
 float4 ShineEmissive;
 float4 UVParam;
-sampler2D SamplerBase;
 
 void v_ui
 (
@@ -16,6 +15,8 @@ void v_ui
     clipPosition = mul(PVWMatrix, float4(modelPosition,1.0f));
     vertexTCoord0 = modelTCoord0;
 }
+
+sampler2D SamplerBase;
 
 void p_ui
 (
