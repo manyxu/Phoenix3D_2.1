@@ -1,0 +1,31 @@
+!!ARBfp1.0
+# cgc version 3.1.0010, build date Feb  8 2012
+# command line args: -profile arbfp1
+# source file: font_cg.fx
+#vendor NVIDIA Corporation
+#version 3.1.0.10
+#profile arbfp1
+#program p_font
+#semantic PVWMatrix
+#semantic ShineEmissive
+#semantic UVParam
+#semantic SamplerBase
+#var float4 vertexColor0 : $vin.COLOR : COL0 : 0 : 1
+#var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 1 : 1
+#var float4 pixelColor : $vout.COLOR : COL : 2 : 1
+#var float4x4 PVWMatrix :  : , 4 : -1 : 0
+#var float4 ShineEmissive :  : c[0] : -1 : 1
+#var float4 UVParam :  : c[1] : -1 : 1
+#var sampler2D SamplerBase :  : texunit 0 : -1 : 1
+#const c[2] = 1
+PARAM c[3] = { program.local[0..1],
+		{ 1 } };
+TEMP R0;
+ADD R0.y, -fragment.texcoord[0], c[2].x;
+MOV R0.x, fragment.texcoord[0];
+MUL R0.xy, R0, c[1];
+TEX R0, R0, texture[0], 2D;
+MUL R0, R0, fragment.color.primary;
+MUL result.color, R0, c[0];
+END
+# 6 instructions, 1 R-regs

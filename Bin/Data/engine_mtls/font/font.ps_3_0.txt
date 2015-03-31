@@ -1,0 +1,30 @@
+ps_3_0
+// cgc version 3.1.0010, build date Feb  8 2012
+// command line args: -profile ps_3_0
+// source file: font_cg.fx
+//vendor NVIDIA Corporation
+//version 3.1.0.10
+//profile ps_3_0
+//program p_font
+//semantic PVWMatrix
+//semantic ShineEmissive
+//semantic UVParam
+//semantic SamplerBase
+//var float4 vertexColor0 : $vin.COLOR0 : ATTR0 : 0 : 1
+//var float2 vertexTCoord0 : $vin.TEXCOORD0 : ATTR1 : 1 : 1
+//var float4 pixelColor : $vout.COLOR : COL : 2 : 1
+//var float4x4 PVWMatrix :  : , 4 : -1 : 0
+//var float4 ShineEmissive :  : c[0] : -1 : 1
+//var float4 UVParam :  : c[1] : -1 : 1
+//var sampler2D SamplerBase :  : texunit 0 : -1 : 1
+//const c[2] = 1
+dcl_2d s0
+def c2, 1.00000000, 0, 0, 0
+dcl_texcoord0 v1.xy
+dcl_color0 v0
+add r0.y, -v1, c2.x
+mov r0.x, v1
+mul r0.xy, r0, c1
+texld r0, r0, s0
+mul r0, r0, v0
+mul oC0, r0, c0
