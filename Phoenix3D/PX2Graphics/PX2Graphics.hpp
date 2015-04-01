@@ -7,6 +7,7 @@
 #include "PX2Controlledable.hpp"
 #include "PX2Controller.hpp"
 #include "PX2InterpCurveAlphaCtrl.hpp"
+#include "PX2InterpCurveColorCtrl.hpp"
 #include "PX2InterpCurveFloatController.hpp"
 #include "PX2InterpCurveShakeCtrl.hpp"
 #include "PX2InterpCurveUniformScaleCtrl.hpp"

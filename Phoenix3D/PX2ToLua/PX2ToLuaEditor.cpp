@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 03/30/15 14:54:48.
+** Generated automatically by tolua++-1.0.92 on 04/01/15 18:17:43.
 */
 
 #ifndef __cplusplus
@@ -1621,6 +1621,39 @@ static int tolua_PX2Editor_E_MainFrame_AddToolSeparater00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: AddToolStretch of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_AddToolStretch00
+static int tolua_PX2Editor_E_MainFrame_AddToolStretch00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"PX2wxAuiToolBar",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+  PX2wxAuiToolBar* toolBar = ((PX2wxAuiToolBar*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddToolStretch'", NULL);
+#endif
+  {
+   self->AddToolStretch(toolBar);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddToolStretch'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: OnNewProject of class  E_MainFrame */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnNewProject01
 static int tolua_PX2Editor_E_MainFrame_OnNewProject01(lua_State* tolua_S)
@@ -2961,6 +2994,34 @@ tolua_lerror:
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: AddToolStretch of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_AddToolStretch01
+static int tolua_PX2Editor_E_MainFrame_AddToolStretch01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"PX2wxAuiToolBar",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+  PX2wxAuiToolBar* toolBar = ((PX2wxAuiToolBar*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddToolStretch'", NULL);
+#endif
+  {
+   self->AddToolStretch(toolBar);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_AddToolStretch00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: SetCurMenu of class  NirMan */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_SetCurMenu00
 static int tolua_PX2Editor_NirMan_SetCurMenu00(lua_State* tolua_S)
@@ -3550,6 +3611,37 @@ static int tolua_PX2Editor_NirMan_AddToolSeparater00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'AddToolSeparater'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: AddToolStretch of class  NirMan */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_NirMan_AddToolStretch00
+static int tolua_PX2Editor_NirMan_AddToolStretch00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"NirMan",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  NirMan* self = (NirMan*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddToolStretch'", NULL);
+#endif
+  {
+   self->AddToolStretch();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'AddToolStretch'.",&tolua_err);
  return 0;
 #endif
 }
@@ -7023,6 +7115,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"AddToolChoose",tolua_PX2Editor_E_MainFrame_AddToolChoose03);
    tolua_function(tolua_S,"AddToolChoose",tolua_PX2Editor_E_MainFrame_AddToolChoose04);
    tolua_function(tolua_S,"AddToolSeparater",tolua_PX2Editor_E_MainFrame_AddToolSeparater00);
+   tolua_function(tolua_S,"AddToolStretch",tolua_PX2Editor_E_MainFrame_AddToolStretch00);
    tolua_function(tolua_S,"OnNewProject",tolua_PX2Editor_E_MainFrame_OnNewProject01);
    tolua_function(tolua_S,"OnOpenProject",tolua_PX2Editor_E_MainFrame_OnOpenProject01);
    tolua_function(tolua_S,"OnSaveProject",tolua_PX2Editor_E_MainFrame_OnSaveProject01);
@@ -7070,6 +7163,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"AddToolChoose",tolua_PX2Editor_E_MainFrame_AddToolChoose08);
    tolua_function(tolua_S,"AddToolChoose",tolua_PX2Editor_E_MainFrame_AddToolChoose09);
    tolua_function(tolua_S,"AddToolSeparater",tolua_PX2Editor_E_MainFrame_AddToolSeparater01);
+   tolua_function(tolua_S,"AddToolStretch",tolua_PX2Editor_E_MainFrame_AddToolStretch01);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"NirMan","NirMan","wxEvtHandler",NULL);
   tolua_beginmodule(tolua_S,"NirMan");
@@ -7090,6 +7184,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"AddToolChoose",tolua_PX2Editor_NirMan_AddToolChoose03);
    tolua_function(tolua_S,"AddToolChoose",tolua_PX2Editor_NirMan_AddToolChoose04);
    tolua_function(tolua_S,"AddToolSeparater",tolua_PX2Editor_NirMan_AddToolSeparater00);
+   tolua_function(tolua_S,"AddToolStretch",tolua_PX2Editor_NirMan_AddToolStretch00);
    tolua_function(tolua_S,"SetProjTreeLevel",tolua_PX2Editor_NirMan_SetProjTreeLevel00);
    tolua_function(tolua_S,"TaggleProjectShowHelpNode",tolua_PX2Editor_NirMan_TaggleProjectShowHelpNode00);
    tolua_function(tolua_S,"MessageBox",tolua_PX2Editor_NirMan_MessageBox00);

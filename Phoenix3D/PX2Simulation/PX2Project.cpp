@@ -284,6 +284,7 @@ bool Project::Load(const std::string &filename)
 			if (mSceneRenderStep)
 			{
 				mSceneRenderStep->SetUseBloom(mIsScene_UseBloom);
+				mSceneRenderStep->SetScene_BloomRenderTargetSizeSameWithScreen(mIsScene_BloomRenderTargetSizeSameWithScreen);
 				mSceneRenderStep->SetScene_BloomRenderTargetSize(mScene_BloomRenderTargetSize);
 				mSceneRenderStep->SetScene_BloomBrightWeight(mScene_BloomBrightWeight);
 				mSceneRenderStep->SetScene_BloomBlurDeviation(mScene_BloomBlurDeviation);

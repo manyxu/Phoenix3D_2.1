@@ -112,7 +112,7 @@ namespace PX2
 
 		std::vector<UIPicBox *> mAlignPicBoxes;
 
-		// sub
+		// ±à¼­Æ÷ÖÐÊ¹ÓÃ
 	public_internal:
 		void SetHelpGridRenderStep(RenderStep *renderStep);
 		RenderStep *GetHelpGridRenderStep();

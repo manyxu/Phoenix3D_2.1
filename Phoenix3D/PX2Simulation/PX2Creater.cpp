@@ -449,6 +449,69 @@ Soundable *Creater::CreateSoundable(Node *parent, const APoint &pos,
 	return mov;
 }
 //----------------------------------------------------------------------------
+InterpCurveAlphaController *Creater::CreateICC_Alpha(Movable *mov)
+{
+	InterpCurveAlphaController *ctrl = new0 InterpCurveAlphaController();
+
+	AddObject(mov, ctrl);
+
+	return ctrl;
+}
+//----------------------------------------------------------------------------
+InterpCurveColorController *Creater::CreateICC_Color(Movable *mov)
+{
+	InterpCurveColorController *ctrl = new0 InterpCurveColorController();
+
+	AddObject(mov, ctrl);
+
+	return ctrl;
+}
+//----------------------------------------------------------------------------
+InterpCurveUniformScaleController *Creater::CreateICC_UniformScale(Movable *mov)
+{
+	InterpCurveUniformScaleController *ctrl = new0 InterpCurveUniformScaleController();
+
+	AddObject(mov, ctrl);
+
+	return ctrl;
+}
+//----------------------------------------------------------------------------
+InterpCurveScaleController *Creater::CreateICC_Scale(Movable *mov)
+{
+	InterpCurveScaleController *ctrl = new0 InterpCurveScaleController();
+
+	AddObject(mov, ctrl);
+
+	return ctrl;
+}
+//----------------------------------------------------------------------------
+InterpCurveRotateController *Creater::CreateICC_Rotate(Movable *mov)
+{
+	InterpCurveRotateController *ctrl = new0 InterpCurveRotateController();
+
+	AddObject(mov, ctrl);
+
+	return ctrl;
+}
+//----------------------------------------------------------------------------
+InterpCurveTranslateController *Creater::CreateICC_Translate(Movable *mov)
+{
+	InterpCurveTranslateController *ctrl = new0 InterpCurveTranslateController();
+
+	AddObject(mov, ctrl);
+
+	return ctrl;
+}
+//----------------------------------------------------------------------------
+Node *Creater::CreateNode(Node *parent)
+{
+	Node *node = new0 Node();
+
+	AddObject(parent, node);
+
+	return node;
+}
+//----------------------------------------------------------------------------
 Actor *Creater::AddActor(Scene *scene, const std::string &resPath,
 	const APoint &pos)
 {
@@ -663,6 +726,11 @@ UIPicBox *Creater::ConvertToUIPicBox(Object *obj)
 UIFrame *Creater::ConvertToUIFrame(Object *obj)
 {
 	return DynamicCast<UIFrame>(obj);
+}
+//----------------------------------------------------------------------------
+InterpCurveController *Creater::ConvertToInterpCurveController(Object *obj)
+{
+	return DynamicCast<InterpCurveController>(obj);
 }
 //----------------------------------------------------------------------------
 EffectableController *Creater::ConvertToEffectableController(Object *obj)

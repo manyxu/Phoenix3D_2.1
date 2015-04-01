@@ -33,6 +33,8 @@ Scene::Scene()
 	mDefaultAmbientRegionActor = new0 AmbientRegionActor();
 	mDefaultAmbientRegionActor->SetName("DefaultAmbientRegion");
 	AttachChild(mDefaultAmbientRegionActor);
+
+	SetColor(Float3::WHITE);
 }
 //----------------------------------------------------------------------------
 Scene::~Scene()

@@ -31,6 +31,11 @@ inline Camera *RenderStep::GetCamera()
 	return mCamera;
 }
 //----------------------------------------------------------------------------
+inline Culler &RenderStep::GetCuller()
+{
+	return mCuller;
+}
+//----------------------------------------------------------------------------
 inline Node *RenderStep::GetNode()
 {
 	return mNode;

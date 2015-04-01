@@ -148,6 +148,7 @@ void RenderStepScene::Draw()
 		if (mHelpGridRenderStep)
 			mHelpGridRenderStep->Draw();
 
+		mRenderer->SetViewport(viewPort);
 		mRenderer->InitRenderStates();
 		mRenderer->SetCamera(mCamera);
 		mRenderer->Draw(mCuller.GetVisibleSet());
@@ -163,10 +164,13 @@ void RenderStepScene::Draw()
 			mRenderer->SetClearColor(MathHelp::Float3ToFloat4(scene->GetColor(), 1.0f));
 			mRenderer->ClearBuffers();
 
-			if (mHelpGridRenderStep)
-				mHelpGridRenderStep->Draw();
-
 			mRenderer->SetCamera(mCamera);
+
+			if (mHelpGridRenderStep)
+			{
+				mRenderer->Draw(mHelpGridRenderStep->GetCuller().GetVisibleSet());
+			}
+
 			mRenderer->Draw(mCuller.GetVisibleSet());
 			mRenderer->Disable(mEffect_RenderTarget_Normal);
 
@@ -425,14 +429,14 @@ void RenderStepScene::_UpdateBloomChanged()
 
 	if (mIsUseBloom)
 	{
-		Sizef rtSize(mBloomRenderTargetSize[0], mBloomRenderTargetSize[1]);
+		Float2 rtSize = mBloomRenderTargetSize;
 		if (mIsBloomRenderTargetSizeSameWithScreen)
-			rtSize = mScreenSize;
+			rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
 
 		Sizef size(mBloomPicSize, mBloomPicSize);
 		Texture::Format tformat = Texture::TF_A8R8G8B8;
 		mEffect_RenderTarget_Normal = new0 RenderTarget(1, tformat,
-			(int)rtSize.Width, (int)rtSize.Height, false, false);
+			(int)rtSize[0], (int)rtSize[1], false, false);
 		mEffect_UIPicBoxShow_Normal = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBoxShow_Normal);
 		mEffect_UIPicBoxShow_Normal->SetAnchorPoint(Float2::ZERO);
@@ -443,7 +447,7 @@ void RenderStepScene::_UpdateBloomChanged()
 
 		MaterialInstancePtr blurMtlInstanceBloomBright = new0 MaterialInstance("Data/engine_mtls/bloom/bloom.px2obj", "bloom_bright", false);
 		mEffect_RenderTarget_BloomBright = new0 RenderTarget(1, tformat,
-			(int)rtSize.Width, (int)rtSize.Height, false, false);
+			(int)rtSize[0], (int)rtSize[1], false, false);
 		mEffect_UIPicBox_BloomBright = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BloomBright);
 		mEffect_UIPicBox_BloomBright->SetAnchorPoint(Float2::ZERO);
@@ -455,7 +459,7 @@ void RenderStepScene::_UpdateBloomChanged()
 
 		MaterialInstancePtr blurMtlInstanceH = new0 MaterialInstance("Data/engine_mtls/blur/blur.px2obj", "blur", false);
 		mEffect_RenderTarget_BlurH = new0 RenderTarget(1, tformat,
-			(int)rtSize.Width, (int)rtSize.Height, false, false);
+			(int)rtSize[0], (int)rtSize[1], false, false);
 		mEffect_UIPicBox_BlurH = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BlurH);
 		mEffect_UIPicBox_BlurH->SetMaterialInstance(blurMtlInstanceH);
@@ -467,13 +471,13 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BlurH->SetTexture("Data/engine/default.png");
 		mAlignPicBoxes.push_back(mEffect_UIPicBox_BlurH);
 
-		_SetSampleOffsetWeight(mBloomRenderTargetSize, mEffect_Blur_UVOffsets_H, mBloomBlurDeviation, mBloomBlurWeight, true);
+		_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_H, mBloomBlurDeviation, mBloomBlurWeight, true);
 		ShaderFloat *shaderFloatUVOffsets_H = mEffect_UIPicBox_BlurH->GetMaterialInstance()->GetPixelConstant(0, "UVOffsets");
 		shaderFloatUVOffsets_H->SetRegisters((const float*)mEffect_Blur_UVOffsets_H);
 
 		MaterialInstancePtr blurMtlInstanceV = new0 MaterialInstance("Data/engine_mtls/blur/blur.px2obj", "blur", false);
 		mEffect_RenderTarget_BlurV = new0 RenderTarget(1, tformat,
-			(int)rtSize.Width, (int)rtSize.Height, false, false);
+			(int)rtSize[0], (int)rtSize[1], false, false);
 		mEffect_UIPicBox_BlurV = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BlurV);
 		mEffect_UIPicBox_BlurV->SetMaterialInstance(blurMtlInstanceV);
@@ -485,7 +489,7 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BlurV->SetTexture("Data/engine/default.png");
 		mAlignPicBoxes.push_back(mEffect_UIPicBox_BlurV);
 
-		_SetSampleOffsetWeight(mBloomRenderTargetSize, mEffect_Blur_UVOffsets_V, mBloomBlurDeviation, mBloomBlurWeight, false);
+		_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_V, mBloomBlurDeviation, mBloomBlurWeight, false);
 		ShaderFloat *shaderFloatUVOffsets_V = mEffect_UIPicBox_BlurV->GetMaterialInstance()->GetPixelConstant(0, "UVOffsets");
 		shaderFloatUVOffsets_V->SetRegisters((const float*)mEffect_Blur_UVOffsets_V);
 
@@ -512,10 +516,14 @@ void RenderStepScene::_UpdateBloomParams()
 		mBloom_BrightParam->SetRegister(0, mBloomBrightParam);
 	}
 
-	_SetSampleOffsetWeight(mBloomRenderTargetSize, mEffect_Blur_UVOffsets_H,
+	Float2 rtSize = mBloomRenderTargetSize;
+	if (mIsBloomRenderTargetSizeSameWithScreen)
+		rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
+
+	_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_H,
 		mBloomBlurDeviation, mBloomBlurWeight, true);
 
-	_SetSampleOffsetWeight(mBloomRenderTargetSize, mEffect_Blur_UVOffsets_V,
+	_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_V,
 		mBloomBlurDeviation, mBloomBlurWeight, false);
 
 	if (mEffect_UIPicBox_BlurH)

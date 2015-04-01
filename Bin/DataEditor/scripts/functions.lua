@@ -311,6 +311,10 @@ function e_CreateSoundable(usePickPos)
 	end
 end
 
+function e_CreateNode()
+
+end
+
 function e_CreateUIPixBox(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)
@@ -390,6 +394,67 @@ end
 
 function e_CreateEffectableControllerModule(typeStr)
 	NirMan:CreateEffectableControllerModule(typeStr)
+end
+
+-- controls
+function e_CreateColorController()
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local mov = PX2_CREATER:ConvertToMovable(selectObj)
+	if nil~=mov then
+		PX2_CREATER:CreateICC_Color(mov)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip8"))
+	end
+end
+
+function e_CreateAlphaController()
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local mov = PX2_CREATER:ConvertToMovable(selectObj)
+	if nil~=mov then
+		PX2_CREATER:CreateICC_Alpha(mov)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip8"))
+	end
+end
+
+function e_CreateUniformScaleController()
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local mov = PX2_CREATER:ConvertToMovable(selectObj)
+	if nil~=mov then
+		PX2_CREATER:CreateICC_UniformScale(mov)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip8"))
+	end
+end
+
+function e_CreateScaleController()
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local mov = PX2_CREATER:ConvertToMovable(selectObj)
+	if nil~=mov then
+		PX2_CREATER:CreateICC_Scale(mov)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip8"))
+	end
+end
+
+function e_CreateRotateController()
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local mov = PX2_CREATER:ConvertToMovable(selectObj)
+	if nil~=mov then
+		PX2_CREATER:CreateICC_Rotate(mov)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip8"))
+	end
+end
+
+function e_CreateTranslateController()
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local mov = PX2_CREATER:ConvertToMovable(selectObj)
+	if nil~=mov then
+		PX2_CREATER:CreateICC_Translate(mov)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip8"))
+	end
 end
 
 -- add

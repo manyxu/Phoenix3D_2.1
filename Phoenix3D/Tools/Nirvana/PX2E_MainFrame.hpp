@@ -108,6 +108,7 @@ namespace PX2Editor
 		void AddToolChoose(PX2wxAuiToolBar *toolBar, const std::string &choose0, const std::string &choose1 = "",
 			const std::string &choose2 = "", const std::string &choose3 = "", const std::string &choose4 = "");
 		void AddToolSeparater(PX2wxAuiToolBar *toolBar);
+		void AddToolStretch(PX2wxAuiToolBar *toolBar);
 
 	protected:
 		DECLARE_EVENT_TABLE()

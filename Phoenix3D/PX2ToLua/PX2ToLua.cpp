@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 03/30/15 14:54:46.
+** Generated automatically by tolua++-1.0.92 on 04/01/15 18:17:41.
 */
 
 #ifndef __cplusplus
@@ -264,6 +264,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"ShaderParameters");
  tolua_usertype(tolua_S,"OffsetProperty");
  tolua_usertype(tolua_S,"TexPackElement");
+ tolua_usertype(tolua_S,"InterpCurveColorController");
  tolua_usertype(tolua_S,"Controlledable");
  tolua_usertype(tolua_S,"Stream");
  tolua_usertype(tolua_S,"ResHandle");
@@ -291,23 +292,29 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"EffectActor");
  tolua_usertype(tolua_S,"SwitchNode");
  tolua_usertype(tolua_S,"Actor");
+ tolua_usertype(tolua_S,"URDo");
+ tolua_usertype(tolua_S,"Singleton<URDoManager>");
+ tolua_usertype(tolua_S,"URDoManager");
  tolua_usertype(tolua_S,"VertexBuffer");
  tolua_usertype(tolua_S,"Event");
  tolua_usertype(tolua_S,"DepthProperty");
+ tolua_usertype(tolua_S,"CameraActor");
  tolua_usertype(tolua_S,"UIText");
  tolua_usertype(tolua_S,"Renderable");
- tolua_usertype(tolua_S,"URDo");
- tolua_usertype(tolua_S,"Singleton<URDoManager>");
- tolua_usertype(tolua_S,"Texture::Format");
- tolua_usertype(tolua_S,"URDoManager");
- tolua_usertype(tolua_S,"Sizef");
- tolua_usertype(tolua_S,"UIProgressBar");
- tolua_usertype(tolua_S,"CameraActor");
- tolua_usertype(tolua_S,"Texture3D");
  tolua_usertype(tolua_S,"HMatrix");
  tolua_usertype(tolua_S,"AmbientRegionActor");
- tolua_usertype(tolua_S,"RenderTarget");
  tolua_usertype(tolua_S,"EffectObject");
+ tolua_usertype(tolua_S,"Texture1D");
+ tolua_usertype(tolua_S,"Texture::Format");
+ tolua_usertype(tolua_S,"Billboard");
+ tolua_usertype(tolua_S,"Sizef");
+ tolua_usertype(tolua_S,"UIProgressBar");
+ tolua_usertype(tolua_S,"InterpCurveRotateController");
+ tolua_usertype(tolua_S,"Texture3D");
+ tolua_usertype(tolua_S,"InterpCurveScaleController");
+ tolua_usertype(tolua_S,"InterpCurveUniformScaleController");
+ tolua_usertype(tolua_S,"RenderTarget");
+ tolua_usertype(tolua_S,"InterpCurveAlphaController");
  tolua_usertype(tolua_S,"Selection");
  tolua_usertype(tolua_S,"UIEditBox");
  tolua_usertype(tolua_S,"UIButton");
@@ -323,7 +330,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"APoint");
  tolua_usertype(tolua_S,"CameraShakeChannel");
  tolua_usertype(tolua_S,"HPoint");
- tolua_usertype(tolua_S,"Billboard");
+ tolua_usertype(tolua_S,"InterpCurveTranslateController");
  tolua_usertype(tolua_S,"Camera");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"TexPack");
@@ -359,7 +366,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Light");
  tolua_usertype(tolua_S,"CullProperty");
  tolua_usertype(tolua_S,"Movable");
- tolua_usertype(tolua_S,"Texture1D");
+ tolua_usertype(tolua_S,"InterpCurveController");
  tolua_usertype(tolua_S,"Bound");
  tolua_usertype(tolua_S,"ObjectEventHandler");
  tolua_usertype(tolua_S,"Buffer::Locking");
@@ -26465,6 +26472,244 @@ static int tolua_PX2_Creater_CreateSoundable00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: CreateICC_Alpha of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateICC_Alpha00
+static int tolua_PX2_Creater_CreateICC_Alpha00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Movable",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Movable* mov = ((Movable*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateICC_Alpha'", NULL);
+#endif
+  {
+   InterpCurveAlphaController* tolua_ret = (InterpCurveAlphaController*)  self->CreateICC_Alpha(mov);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"InterpCurveAlphaController");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateICC_Alpha'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateICC_Color of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateICC_Color00
+static int tolua_PX2_Creater_CreateICC_Color00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Movable",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Movable* mov = ((Movable*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateICC_Color'", NULL);
+#endif
+  {
+   InterpCurveColorController* tolua_ret = (InterpCurveColorController*)  self->CreateICC_Color(mov);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"InterpCurveColorController");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateICC_Color'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateICC_UniformScale of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateICC_UniformScale00
+static int tolua_PX2_Creater_CreateICC_UniformScale00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Movable",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Movable* mov = ((Movable*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateICC_UniformScale'", NULL);
+#endif
+  {
+   InterpCurveUniformScaleController* tolua_ret = (InterpCurveUniformScaleController*)  self->CreateICC_UniformScale(mov);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"InterpCurveUniformScaleController");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateICC_UniformScale'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateICC_Scale of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateICC_Scale00
+static int tolua_PX2_Creater_CreateICC_Scale00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Movable",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Movable* mov = ((Movable*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateICC_Scale'", NULL);
+#endif
+  {
+   InterpCurveScaleController* tolua_ret = (InterpCurveScaleController*)  self->CreateICC_Scale(mov);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"InterpCurveScaleController");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateICC_Scale'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateICC_Rotate of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateICC_Rotate00
+static int tolua_PX2_Creater_CreateICC_Rotate00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Movable",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Movable* mov = ((Movable*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateICC_Rotate'", NULL);
+#endif
+  {
+   InterpCurveRotateController* tolua_ret = (InterpCurveRotateController*)  self->CreateICC_Rotate(mov);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"InterpCurveRotateController");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateICC_Rotate'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateICC_Translate of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateICC_Translate00
+static int tolua_PX2_Creater_CreateICC_Translate00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Movable",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Movable* mov = ((Movable*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateICC_Translate'", NULL);
+#endif
+  {
+   InterpCurveTranslateController* tolua_ret = (InterpCurveTranslateController*)  self->CreateICC_Translate(mov);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"InterpCurveTranslateController");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateICC_Translate'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: CreateNode of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateNode00
+static int tolua_PX2_Creater_CreateNode00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Node",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Node* parent = ((Node*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateNode'", NULL);
+#endif
+  {
+   Node* tolua_ret = (Node*)  self->CreateNode(parent);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Node");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateNode'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: AddActor of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_AddActor00
 static int tolua_PX2_Creater_AddActor00(lua_State* tolua_S)
@@ -26854,6 +27099,40 @@ static int tolua_PX2_Creater_ConvertToUIFrame00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'ConvertToUIFrame'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: ConvertToInterpCurveController of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_ConvertToInterpCurveController00
+static int tolua_PX2_Creater_ConvertToInterpCurveController00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Object",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Object* obj = ((Object*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'ConvertToInterpCurveController'", NULL);
+#endif
+  {
+   InterpCurveController* tolua_ret = (InterpCurveController*)  self->ConvertToInterpCurveController(obj);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"InterpCurveController");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'ConvertToInterpCurveController'.",&tolua_err);
  return 0;
 #endif
 }
@@ -30402,6 +30681,13 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateBeamEmitter",tolua_PX2_Creater_CreateBeamEmitter00);
    tolua_function(tolua_S,"CreateRibbonEmitter",tolua_PX2_Creater_CreateRibbonEmitter00);
    tolua_function(tolua_S,"CreateSoundable",tolua_PX2_Creater_CreateSoundable00);
+   tolua_function(tolua_S,"CreateICC_Alpha",tolua_PX2_Creater_CreateICC_Alpha00);
+   tolua_function(tolua_S,"CreateICC_Color",tolua_PX2_Creater_CreateICC_Color00);
+   tolua_function(tolua_S,"CreateICC_UniformScale",tolua_PX2_Creater_CreateICC_UniformScale00);
+   tolua_function(tolua_S,"CreateICC_Scale",tolua_PX2_Creater_CreateICC_Scale00);
+   tolua_function(tolua_S,"CreateICC_Rotate",tolua_PX2_Creater_CreateICC_Rotate00);
+   tolua_function(tolua_S,"CreateICC_Translate",tolua_PX2_Creater_CreateICC_Translate00);
+   tolua_function(tolua_S,"CreateNode",tolua_PX2_Creater_CreateNode00);
    tolua_function(tolua_S,"AddActor",tolua_PX2_Creater_AddActor00);
    tolua_function(tolua_S,"AddCharacter",tolua_PX2_Creater_AddCharacter00);
    tolua_function(tolua_S,"AddEffectActor",tolua_PX2_Creater_AddEffectActor00);
@@ -30413,6 +30699,7 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"ConvertToActor",tolua_PX2_Creater_ConvertToActor00);
    tolua_function(tolua_S,"ConvertToUIPicBox",tolua_PX2_Creater_ConvertToUIPicBox00);
    tolua_function(tolua_S,"ConvertToUIFrame",tolua_PX2_Creater_ConvertToUIFrame00);
+   tolua_function(tolua_S,"ConvertToInterpCurveController",tolua_PX2_Creater_ConvertToInterpCurveController00);
    tolua_function(tolua_S,"ConvertToEffectableController",tolua_PX2_Creater_ConvertToEffectableController00);
    tolua_function(tolua_S,"ConvertToEffectModule",tolua_PX2_Creater_ConvertToEffectModule00);
   tolua_endmodule(tolua_S);

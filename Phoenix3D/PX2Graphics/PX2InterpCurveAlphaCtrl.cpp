@@ -10,8 +10,7 @@ PX2_IMPLEMENT_FACTORY(InterpCurveAlphaController);
 PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveFloatController, InterpCurveAlphaController);
 
 //----------------------------------------------------------------------------
-InterpCurveAlphaController::InterpCurveAlphaController ()
-	:
+InterpCurveAlphaController::InterpCurveAlphaController () :
 InterpCurveFloatController(1.0f)
 {
 	SetRelatively(false);

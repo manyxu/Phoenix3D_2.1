@@ -86,6 +86,15 @@ namespace PX2
 		Soundable *CreateSoundable(Node *parent, const APoint &pos, bool isPosWorld,
 			bool usePickPos);
 
+		InterpCurveAlphaController *CreateICC_Alpha(Movable *mov);
+		InterpCurveColorController *CreateICC_Color(Movable *mov);
+		InterpCurveUniformScaleController *CreateICC_UniformScale(Movable *mov);
+		InterpCurveScaleController *CreateICC_Scale(Movable *mov);
+		InterpCurveRotateController *CreateICC_Rotate(Movable *mov);
+		InterpCurveTranslateController *CreateICC_Translate(Movable *mov);
+
+		Node *CreateNode(Node *parent);
+
 		Actor *AddActor(Scene *scene, const std::string &resPath, const APoint &pos);
 		Character *AddCharacter(Scene *scene, const std::string &resPath, const APoint &pos);
 		EffectActor *AddEffectActor(Scene *scene, const std::string &resPath, const APoint &pos);
@@ -105,6 +114,7 @@ namespace PX2
 		Actor *ConvertToActor(Object *obj);
 		UIPicBox *ConvertToUIPicBox(Object *obj);
 		UIFrame *ConvertToUIFrame(Object *obj);
+		InterpCurveController *ConvertToInterpCurveController(Object *obj);
 		EffectableController *ConvertToEffectableController(Object *obj);
 		EffectModule *ConvertToEffectModule(Object *obj);
 	};

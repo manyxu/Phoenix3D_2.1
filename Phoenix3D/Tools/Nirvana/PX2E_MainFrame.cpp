@@ -1071,6 +1071,11 @@ void E_MainFrame::AddToolSeparater(PX2wxAuiToolBar *toolBar)
 	toolBar->AddSeparator();
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::AddToolStretch(PX2wxAuiToolBar *toolBar)
+{
+	toolBar->AddStretchSpacer();
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateMainToolBar()
 {
 	mToolBarMain = new PX2wxAuiToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,

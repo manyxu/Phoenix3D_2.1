@@ -93,6 +93,7 @@
     <ClCompile Include="PX2ImageProcessing2.cpp" />
     <ClCompile Include="PX2IndexBuffer.cpp" />
     <ClCompile Include="PX2InterpCurveAlphaCtrl.cpp" />
+    <ClCompile Include="PX2InterpCurveColorCtrl.cpp" />
     <ClCompile Include="PX2InterpCurveController.cpp" />
     <ClCompile Include="PX2InterpCurveFloat3Controller.cpp" />
     <ClCompile Include="PX2InterpCurveFloatController.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="PX2FogColorDistConstant.hpp" />
     <ClInclude Include="PX2FogParamConstant.hpp" />
     <ClInclude Include="PX2InterpCurveAlphaCtrl.hpp" />
+    <ClInclude Include="PX2InterpCurveColorCtrl.hpp" />
     <ClInclude Include="PX2InterpCurveController.hpp" />
     <ClInclude Include="PX2InterpCurveFloat3Controller.hpp" />
     <ClInclude Include="PX2InterpCurveFloatController.hpp" />

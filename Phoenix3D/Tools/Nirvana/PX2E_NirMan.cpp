@@ -132,6 +132,13 @@ void NirMan::AddToolSeparater()
 	E_MainFrame::GetSingletonPtr()->AddToolSeparater(mCurToolBar);
 }
 //----------------------------------------------------------------------------
+void NirMan::AddToolStretch()
+{
+	if (!mCurToolBar) return;
+
+	E_MainFrame::GetSingletonPtr()->AddToolStretch(mCurToolBar);
+}
+//----------------------------------------------------------------------------
 void NirMan::SetProjTreeLevel(int level)
 {
 	Event *ent = NirvanaEventSpace::CreateEventX(

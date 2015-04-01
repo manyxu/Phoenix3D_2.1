@@ -76,6 +76,8 @@ namespace PX2
 		virtual void SetCamera(Camera *camera);
 		Camera *GetCamera();
 
+		Culler &GetCuller();
+
 		bool GetPickRay(float x, float y, APoint& origin, AVector& direction);
 		Vector2f PointWorldToViewPort(const APoint &worldPos, bool *isInBack=0);
 

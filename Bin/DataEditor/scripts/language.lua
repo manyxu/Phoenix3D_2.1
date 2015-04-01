@@ -109,6 +109,13 @@ function AddLanguages()
 	PX2_LM:AddItem1("UICheckButton", "选择框")
 	PX2_LM:AddItem1("UIEditBox", "编辑框")
 	PX2_LM:AddItem1("UIProgressBar", "进度条")
+	PX2_LM:AddItem1("Control", "控制器")
+	PX2_LM:AddItem1("AlphaController", "透明控制器")
+	PX2_LM:AddItem1("ColorController", "颜色控制器")
+	PX2_LM:AddItem1("UniformScaleController", "统一缩放控制器")
+	PX2_LM:AddItem1("ScaleController", "缩放控制器")
+	PX2_LM:AddItem1("RotateController", "旋转控制器")
+	PX2_LM:AddItem1("TranslateController", "位移控制器")
 	
 	-- 视图
 	PX2_LM:AddItem1("Project", "工程")
@@ -141,6 +148,17 @@ function AddLanguages()
 	PX2_LM:AddItem1("pv_AmbientRegion", "环境(Ambient)")
 	PX2_LM:AddItem1("pv_settings_show", "显示")
 	
+	PX2_LM:AddItem1("ShowGeneral", "一般")
+	PX2_LM:AddItem1("ShowChildren", "子节点")
+	PX2_LM:AddItem1("ShowControl", "控制器")
+	PX2_LM:AddItem1("ShowMaterial", "材质")
+	PX2_LM:AddItem1("ShowDetail", "细节")
+	
+	PX2_LM:AddItem1("ShowHelpNode", "显示帮助节点")
+	
+	PX2_LM:AddItem1("ExpandSelect", "展开选择")
+	PX2_LM:AddItem1("CollapseSelect", "合并选择")
+	
 	-- ResView
 	PX2_LM:AddItem1("CopyResPath", "拷贝路径到剪贴簿")
 	
@@ -152,12 +170,13 @@ function AddLanguages()
 	-- Notice
 	PX2_LM:AddItem1("Notice", "注意")
 	PX2_LM:AddItem("Tip0", "必须选择父节点！", "You must select a parent node to add!")
-	PX2_LM:AddItem("Tip1", "父节点必须是Node！", "Parent must be a node!")
+	PX2_LM:AddItem("Tip1", "父节点必须是Node！", "Parent must be a Node!")
 	PX2_LM:AddItem("Tip3", "必须选择1个导出物件！", "You must select a object to export!")
 	PX2_LM:AddItem("Tip4", "工程已经存在！", "Project is already exist!")
 	PX2_LM:AddItem("Tip5", "地形角色已经存在！", "TerrainActor is already exist!")
 	PX2_LM:AddItem("Tip6", "必须存在一个控制点.", "There must be one ctrl point.")
 	PX2_LM:AddItem("Tip7", "确定退出？", "Do you want to exit?")
+	PX2_LM:AddItem("Tip8", "必须选择一个Movable!", "Must select a Movable to add!")
 	
 	--编辑器
 	PX2_LM:AddItem("WelcomeToEditor", "欢迎使用Phoenix3D编辑器!", "Welcome to Phoenix3D editor!")

@@ -43,13 +43,16 @@ end
 
 -- project view toolbar
 function e_CreateTooBarProject()
-	NirMan:AddTool("DataEditor/icons/projview/general.png", "e_ProjectView_Detail_General()")
-	NirMan:AddTool("DataEditor/icons/projview/children.png", "e_ProjectView_Detail_Children()")
-	NirMan:AddTool("DataEditor/icons/projview/ctrl.png", "e_ProjectView_Detail_Controls()")
-	NirMan:AddTool("DataEditor/icons/projview/mtl.png", "e_ProjectView_Detail_Materials()")
-	NirMan:AddTool("DataEditor/icons/projview/detail.png", "e_ProjectView_Detail_Details()")
+	NirMan:AddTool("DataEditor/icons/projview/general.png", "e_ProjectView_Detail_General()", PX2_LM:GetValue("ShowGeneral"), 2)
+	NirMan:AddTool("DataEditor/icons/projview/children.png", "e_ProjectView_Detail_Children()", PX2_LM:GetValue("ShowChildren"), 2)
+	NirMan:AddTool("DataEditor/icons/projview/ctrl.png", "e_ProjectView_Detail_Controls()", PX2_LM:GetValue("ShowControl"), 2)
+	NirMan:AddTool("DataEditor/icons/projview/mtl.png", "e_ProjectView_Detail_Materials()", PX2_LM:GetValue("ShowMaterial"), 2)
+	NirMan:AddTool("DataEditor/icons/projview/detail.png", "e_ProjectView_Detail_Details()", PX2_LM:GetValue("ShowDetail"), 2)
 	NirMan:AddToolSeparater()
-	NirMan:AddTool("DataEditor/icons/projview/detail.png", "e_ProjectView_ShowHelpNode()")
+	NirMan:AddTool("DataEditor/icons/projview/detail.png", "e_ProjectView_ShowHelpNode()", PX2_LM:GetValue("ShowHelpNode"), 1)
+	NirMan:AddToolStretch()
+	NirMan:AddTool("DataEditor/icons/projview/detail.png", "e_ProjectView_ExpandSelect()", PX2_LM:GetValue("ExpandSelect"), 0)
+	NirMan:AddTool("DataEditor/icons/projview/detail.png", "e_ProjectView_CollapseSelect()", PX2_LM:GetValue("CollapseSelect"), 0)
 end
 
 -- res view toolbar

@@ -51,6 +51,9 @@ mCollisionSpeedPercent(1.0f)
 	AttachController(mEffectableCtrl);
 
 	pCtrl->SetMaxNumParticles(100);
+
+	SetTex("Data/engine/effect/star.dds");
+	SetEmitColor(Float3::RED);
 }
 //----------------------------------------------------------------------------
 ParticleEmitter::~ParticleEmitter ()

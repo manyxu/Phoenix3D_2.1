@@ -26,6 +26,7 @@
 			const std::string &choose3 = "", 
 			const std::string &choose4 = "");
 		void AddToolSeparater();
+		void AddToolStretch();
 		
 	public:
 		void SetProjTreeLevel(int level);

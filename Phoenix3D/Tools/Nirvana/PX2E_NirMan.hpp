@@ -53,6 +53,7 @@ namespace PX2
 			const std::string &choose3 = "", 
 			const std::string &choose4 = "");
 		void AddToolSeparater();
+		void AddToolStretch();
 
 	protected:
 		PX2wxAuiToolBar *mCurToolBar;
