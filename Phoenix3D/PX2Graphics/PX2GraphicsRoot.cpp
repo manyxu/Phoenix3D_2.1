@@ -117,6 +117,18 @@ bool GraphicsRoot::Terminate ()
 	return true;
 }
 //----------------------------------------------------------------------------
+void GraphicsRoot::SetScreenSize(const Sizef &size)
+{
+	mScreenSize = size;
+
+	std::map<FString, RenderStepPtr>::iterator it = mRenderStepMap.begin();
+	for (; it != mRenderStepMap.end(); it++)
+	{
+		RenderStep *renderStep = it->second;
+		renderStep->SetScreenSize(size);
+	}
+}
+//----------------------------------------------------------------------------
 bool GraphicsRoot::AddRenderStep(const char *name, RenderStep *step)
 {
 	if (IsHasRenderStep(name))

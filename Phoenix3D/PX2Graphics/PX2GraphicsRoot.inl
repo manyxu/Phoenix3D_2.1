@@ -21,11 +21,6 @@ inline const Rectf &GraphicsRoot::GetViewRect () const
 	return mViewRect;
 }
 //----------------------------------------------------------------------------
-inline void GraphicsRoot::SetScreenSize (const Sizef &size)
-{
-	mScreenSize = size;
-}
-//----------------------------------------------------------------------------
 inline const Sizef &GraphicsRoot::GetScreenSize () const
 {
 	return mScreenSize;

@@ -56,16 +56,6 @@ void RenderStep::SetSize(const Sizef &size)
 {
 	mSize = size;
 
-	OnSizeChange();
-}
-//----------------------------------------------------------------------------
-void RenderStep::SetSizeChangeReAdjustCamera(bool doReAdjust)
-{
-	mIsSizeChangeReAdjustCamera = doReAdjust;
-}
-//----------------------------------------------------------------------------
-void RenderStep::OnSizeChange()
-{
 	if (mIsSizeChangeReAdjustCamera && mCamera && mCamera->IsPerspective())
 	{
 		float fov = 0.0f;
@@ -75,6 +65,21 @@ void RenderStep::OnSizeChange()
 		mCamera->GetFrustum(fov, asp, dMin, dMax);
 		mCamera->SetFrustum(fov, mSize.Width / mSize.Height, dMin, dMax);
 	}
+}
+//----------------------------------------------------------------------------
+void RenderStep::SetSizeChangeReAdjustCamera(bool doReAdjust)
+{
+	mIsSizeChangeReAdjustCamera = doReAdjust;
+}
+//----------------------------------------------------------------------------
+void RenderStep::SetScreenSize(const Sizef &size)
+{
+	mScreenSize = size;
+
+	if (mScreenSize.Width <= 0.0f)
+		mScreenSize.Width = 1.0f;
+	if (mScreenSize.Height <= 0.0f)
+		mScreenSize.Height = 1.0f;
 }
 //----------------------------------------------------------------------------
 void RenderStep::SetViewPort(const Rectf &viewPort)

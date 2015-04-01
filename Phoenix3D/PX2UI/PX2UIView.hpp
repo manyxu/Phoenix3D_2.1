@@ -53,9 +53,9 @@ namespace PX2
 		void SetCameraFrustumSize(const Sizef &size);
 		const Sizef &GetCameraFrustumSize() const;
 
-	protected:
-		virtual void OnSizeChange();
+		virtual void SetSize(const Sizef &size);
 
+	protected:
 		bool mIsCameraAutoAdjust;
 		CameraNodePtr mCameraNode;
 		Sizef mCameraFrustumSize;

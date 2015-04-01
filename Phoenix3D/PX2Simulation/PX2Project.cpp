@@ -47,6 +47,8 @@ mIsScene_UseShadowMap(false)
 	mUIFrame->SetName("RootFrame");
 	SetUIFrame(mUIFrame);
 
+	mIsScene_ShowBloomEveryPass = false;
+	mIsScene_BloomRenderTargetSizeSameWithScreen = true;
 	mScene_BloomRenderTargetSize = Float2(512.0f, 512.0f);
 	mScene_BloomBrightWeight = 0.3f;
 	mScene_BloomBlurDeviation = 1.0f;
@@ -152,6 +154,7 @@ bool Project::SaveConfig(const std::string &filename)
 	// render setting
 	XMLNode renderNode = projNode.NewChild("render_setting");
 	renderNode.SetAttributeBool("scene_isusebloom", mIsScene_UseBloom);
+	renderNode.SetAttributeBool("scene_bloomrendertarget_sizesamewithscreen", mIsScene_BloomRenderTargetSizeSameWithScreen);
 	renderNode.SetAttributeFloat("scene_bloomrendertarget_width", mScene_BloomRenderTargetSize[0]);
 	renderNode.SetAttributeFloat("scene_bloomrendertarget_height", mScene_BloomRenderTargetSize[1]);
 	renderNode.SetAttributeFloat("scene_bloombrightweight", mScene_BloomBrightWeight);
@@ -244,6 +247,7 @@ bool Project::Load(const std::string &filename)
 			if (!renderNode.IsNull())
 			{
 				mIsScene_UseBloom = renderNode.AttributeToBool("scene_isusebloom");
+				mIsScene_BloomRenderTargetSizeSameWithScreen = renderNode.AttributeToBool("scene_bloomrendertarget_sizesamewithscreen");
 				mScene_BloomRenderTargetSize[0] = renderNode.AttributeToFloat("scene_bloomrendertarget_width");
 				mScene_BloomRenderTargetSize[1] = renderNode.AttributeToFloat("scene_bloomrendertarget_height");
 				mScene_BloomBrightWeight = renderNode.AttributeToFloat("scene_bloombrightweight");
@@ -453,6 +457,38 @@ void Project::SetScene_BloomBrightWeight(float weight)
 	}
 }
 //----------------------------------------------------------------------------
+void Project::SetScene_ShowBloomEveryPass(bool isShowBloomEveryPass)
+{
+	mIsScene_ShowBloomEveryPass = isShowBloomEveryPass;
+
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetScene_ShowBloomEveryPass(isShowBloomEveryPass);
+	}
+}
+//----------------------------------------------------------------------------
+bool Project::IsScene_ShowBloomEveryPass() const
+{
+	return mIsScene_ShowBloomEveryPass;
+}
+//----------------------------------------------------------------------------
+void Project::SetScene_BloomRenderTargetSizeSameWithScreen(
+	bool sizeSameWithScreen)
+{
+	mIsScene_BloomRenderTargetSizeSameWithScreen = sizeSameWithScreen;
+
+	if (mSceneRenderStep)
+	{
+		mSceneRenderStep->SetScene_BloomRenderTargetSizeSameWithScreen(
+			sizeSameWithScreen);
+	}
+}
+//----------------------------------------------------------------------------
+bool Project::IsScene_BloomRenderTargetSizeSameWithScreen() const
+{
+	return mIsScene_BloomRenderTargetSizeSameWithScreen;
+}
+//----------------------------------------------------------------------------
 float Project::GetScene_BloomBrightWeight() const
 {
 	return mScene_BloomBrightWeight;
@@ -537,6 +573,8 @@ void Project::RegistProperties()
 	AddProperty("ViewRect", PT_RECT, mViewRect, false);
 
 	AddProperty("IsScene_UseBloom", PT_BOOL, mIsScene_UseBloom);
+	AddProperty("IsScene_ShowBloomEveryPass", PT_BOOL, mIsScene_ShowBloomEveryPass);
+	AddProperty("IsScene_BloomRenderTargetSizeSameWithScreen", PT_BOOL, mIsScene_BloomRenderTargetSizeSameWithScreen);
 	AddProperty("Scene_BloomRenderTargetSize", PT_FLOAT2, mScene_BloomRenderTargetSize);
 	AddProperty("Scene_BloomBrightWeight", PT_FLOAT, mScene_BloomBrightWeight);
 	AddProperty("Scene_BloomBlurDeviation", PT_FLOAT, mScene_BloomBlurDeviation);
@@ -573,6 +611,14 @@ void Project::OnPropertyChanged(const PropertyObject &obj)
 	else if ("IsScene_UseBloom" == obj.Name)
 	{
 		SetScene_UseBloom(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsScene_ShowBloomEveryPass" == obj.Name)
+	{
+		SetScene_ShowBloomEveryPass(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsScene_BloomRenderTargetSizeSameWithScreen" == obj.Name)
+	{
+		SetScene_BloomRenderTargetSizeSameWithScreen(PX2_ANY_AS(obj.Data, bool));
 	}
 	else if ("Scene_BloomRenderTargetSize" == obj.Name)
 	{

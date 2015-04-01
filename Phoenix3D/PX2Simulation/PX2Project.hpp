@@ -113,6 +113,11 @@ namespace PX2
 		void SetScene_UseBloom(bool isUseBloom);
 		bool IsScene_UseBloom() const;
 
+		void SetScene_ShowBloomEveryPass(bool isShowBloomEveryPass);
+		bool IsScene_ShowBloomEveryPass() const;
+
+		void SetScene_BloomRenderTargetSizeSameWithScreen(bool sizeSameWithScreen);
+		bool IsScene_BloomRenderTargetSizeSameWithScreen() const;
 		void SetScene_BloomRenderTargetSize(const Float2 &size);
 		const Float2 &GetScene_BloomRenderTargetSize() const;
 
@@ -133,6 +138,8 @@ namespace PX2
 
 	protected:
 		bool mIsScene_UseBloom;
+		bool mIsScene_ShowBloomEveryPass;
+		bool mIsScene_BloomRenderTargetSizeSameWithScreen;
 		Float2 mScene_BloomRenderTargetSize;
 		float mScene_BloomBrightWeight;
 		float mScene_BloomBlurDeviation;

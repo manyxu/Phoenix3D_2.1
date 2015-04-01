@@ -45,11 +45,11 @@ EditRenderView_Scene::~EditRenderView_Scene()
 	//	mRenderStep = 0;
 	//}
 
-	if (mRenderStepCtrl)
-	{
-		PX2_GR.RemoveRenderSteps(mRenderStepCtrl);
-		mRenderStepCtrl = 0;
-	}
+	//if (mRenderStepCtrl)
+	//{
+	//	PX2_GR.RemoveRenderSteps(mRenderStepCtrl);
+	//	mRenderStepCtrl = 0;
+	//}
 
 	if (mRenderStepCtrl1)
 	{
@@ -194,7 +194,18 @@ void EditRenderView_Scene::_CreateGridGeometry()
 	mRenderStepCtrl->SetPriority(30);
 	mRenderStepCtrl->SetName("SceneGridRenderStep");
 	mRenderStepCtrl->SetNode(mGridNode);
-	PX2_GR.AddRenderStep(mRenderStepCtrl->GetName().c_str(), mRenderStepCtrl);
+	//PX2_GR.AddRenderStep(mRenderStepCtrl->GetName().c_str(), mRenderStepCtrl);
+}
+//----------------------------------------------------------------------------
+void EditRenderView_Scene::SetRenderStep(RenderStep *rs)
+{
+	EditRenderView::SetRenderStep(rs);
+
+	RenderStepScene *renderStepScene = DynamicCast<RenderStepScene>(rs);
+	if (renderStepScene)
+	{
+		renderStepScene->SetHelpGridRenderStep(mRenderStepCtrl);
+	}
 }
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::_ClickSelect(const APoint &scrPos)

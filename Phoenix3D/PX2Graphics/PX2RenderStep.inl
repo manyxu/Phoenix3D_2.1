@@ -11,6 +11,11 @@ inline const Sizef &RenderStep::GetSize() const
 	return mSize;
 }
 //----------------------------------------------------------------------------
+inline const Sizef &RenderStep::GetScreenSize() const
+{
+	return mScreenSize;
+}
+//----------------------------------------------------------------------------
 inline const Rectf &RenderStep::GetViewPort() const
 {
 	return mViewPort;

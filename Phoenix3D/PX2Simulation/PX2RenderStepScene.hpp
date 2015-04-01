@@ -26,8 +26,11 @@ namespace PX2
 		virtual void ComputeVisibleSetAndEnv();
 		virtual void Draw();
 
-	protected:
-		virtual void OnSizeChange();
+	public:
+		virtual void SetSize(const Sizef &size);
+
+	public:
+		virtual void SetScreenSize(const Sizef &size);
 
 		// Effects
 	public:
@@ -35,6 +38,11 @@ namespace PX2
 		void SetUseBloom(bool useBloom);
 		bool IsUseBloom() const;
 
+		void SetScene_ShowBloomEveryPass(bool isShowBloomEveryPass);
+		bool IsScene_ShowBloomEveryPass() const;
+
+		void SetScene_BloomRenderTargetSizeSameWithScreen(bool sizeSameWithScreen);
+		bool IsScene_BloomRenderTargetSizeSameWithScreen() const;
 		void SetScene_BloomRenderTargetSize(const Float2 &size);
 		const Float2 &GetBloomRenderTargetSize() const;
 
@@ -58,9 +66,11 @@ namespace PX2
 		void _SetCameraF(Camera *camera, UIPicBox *uiPicBox);
 		void _UpdateBloomChanged();
 		void _UpdateBloomParams();
-		void _UpdateALightPicBoxTrans();
+		void _UpdateALightPicBoxTranslateSize();
 
+		bool mIsShowBloomEveryPass;
 		bool mIsUseBloom;
+		bool mIsBloomRenderTargetSizeSameWithScreen;
 		Float2 mBloomRenderTargetSize;
 		Float4 mBloomBrightParam;
 		float mBloomBlurDeviation;
@@ -101,6 +111,14 @@ namespace PX2
 		UIPicBoxPtr mEffect_UIPicBox_Shadow;
 
 		std::vector<UIPicBox *> mAlignPicBoxes;
+
+		// sub
+	public_internal:
+		void SetHelpGridRenderStep(RenderStep *renderStep);
+		RenderStep *GetHelpGridRenderStep();
+
+	protected:
+		RenderStepPtr mHelpGridRenderStep;
 	};
 
 	typedef Pointer0<RenderStepScene> RenderStepScenePtr;

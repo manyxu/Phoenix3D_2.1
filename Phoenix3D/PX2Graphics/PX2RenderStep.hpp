@@ -39,17 +39,26 @@ namespace PX2
 		bool mIsEnable;
 
 		// Size
+		// 在编辑器中需要随着窗口，动态调整相机等，所以Size会频繁改变
+		// 在AppPlayer中，加载工程时候，设置一次和工程大小一致，不会频繁改变
 	public:
-		void SetSize(const Sizef &size);
+		virtual void SetSize(const Sizef &size);
 		const Sizef &GetSize() const;
 
 		void SetSizeChangeReAdjustCamera(bool doReAdjust);
 
 	protected:
-		virtual void OnSizeChange();
-
 		Sizef mSize;
 		bool mIsSizeChangeReAdjustCamera;
+
+		// ScreenSize
+		// 当屏幕改变，rendertarget可能需要重建，所以设计此接口，进行处理
+	public:
+		virtual void SetScreenSize(const Sizef &size);
+		const Sizef &GetScreenSize() const;
+
+	protected:
+		Sizef mScreenSize;
 
 		// ViewPort
 	public:

@@ -36,7 +36,7 @@ mIsPressedVailed(true) // 当按在按钮上滑动一段距离，点击设置为无效
 
 	mMoveAdjugeParamSquare = mMoveAdjugeParam * mMoveAdjugeParam;
 
-	OnSizeChange();
+	SetSize(mSize);
 }
 //----------------------------------------------------------------------------
 UIView::~UIView()
@@ -104,8 +104,10 @@ void UIView::SetCameraFrustumSize(const Sizef &size)
 		-helfHeight, helfHeight, -helfWidth, helfWidth);
 }
 //----------------------------------------------------------------------------
-void UIView::OnSizeChange()
+void UIView::SetSize(const Sizef &size)
 {
+	mSize = size;
+
 	if (mIsCameraAutoAdjust)
 	{
 		mCameraFrustumSize = mSize;

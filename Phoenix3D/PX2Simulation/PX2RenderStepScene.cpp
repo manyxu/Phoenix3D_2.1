@@ -10,9 +10,11 @@ PX2_IMPLEMENT_RTTI(PX2, RenderStep, RenderStepScene);
 
 //----------------------------------------------------------------------------
 RenderStepScene::RenderStepScene() :
+mIsShowBloomEveryPass(false),
 mIsUseBloom(false),
-mIsUseShaderMap(false),
-mIsBloomChanged(true)
+mIsBloomRenderTargetSizeSameWithScreen(true),
+mIsBloomChanged(true),
+mIsUseShaderMap(false)
 {
 	mScreenCamera = new0 Camera(false);
 	mScreenCamera->SetAxes(AVector::UNIT_Y, AVector::UNIT_Z, AVector::UNIT_X);
@@ -24,6 +26,7 @@ mIsBloomChanged(true)
 	mEffect_UIFrame = new0 UIFrame();
 	mEffect_UIView->SetNode(mEffect_UIFrame);
 
+	mBloomPicSize = 256.0f;
 	mBloomRenderTargetSize = Float2(512.0f, 512.0f);
 	mBloomBrightParam = Float4(0.3f, 1.0f, 1.0f, 1.0f);
 	mBloomBlurDeviation = 1.0f;
@@ -72,6 +75,9 @@ void RenderStepScene::Update(double appSeconds, double elapsedSeconds)
 
 	mEffect_UIView->Update(appSeconds, elapsedSeconds);
 	mEffect_UIView->ComputeVisibleSetAndEnv();
+
+	if (mHelpGridRenderStep)
+		mHelpGridRenderStep->Update(appSeconds, elapsedSeconds);
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::ComputeVisibleSetAndEnv()
@@ -97,6 +103,9 @@ void RenderStepScene::ComputeVisibleSetAndEnv()
 	mEffect_Culler_Shadow.SetCamera(lightProjector);
 	mEffect_Culler_Shadow.ComputeVisibleSet(mNode);
 	mEffect_Culler_Shadow.GetVisibleSet().Sort();
+
+	if (mHelpGridRenderStep)
+		mHelpGridRenderStep->ComputeVisibleSetAndEnv();
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::Draw()
@@ -134,8 +143,11 @@ void RenderStepScene::Draw()
 	}
 
 	// normal
-	//if (!mIsUseBloom)
+	if (!mIsUseBloom)
 	{
+		if (mHelpGridRenderStep)
+			mHelpGridRenderStep->Draw();
+
 		mRenderer->InitRenderStates();
 		mRenderer->SetCamera(mCamera);
 		mRenderer->Draw(mCuller.GetVisibleSet());
@@ -150,6 +162,10 @@ void RenderStepScene::Draw()
 			mRenderer->InitRenderStates();
 			mRenderer->SetClearColor(MathHelp::Float3ToFloat4(scene->GetColor(), 1.0f));
 			mRenderer->ClearBuffers();
+
+			if (mHelpGridRenderStep)
+				mHelpGridRenderStep->Draw();
+
 			mRenderer->SetCamera(mCamera);
 			mRenderer->Draw(mCuller.GetVisibleSet());
 			mRenderer->Disable(mEffect_RenderTarget_Normal);
@@ -210,21 +226,32 @@ void RenderStepScene::Draw()
 
 	mRenderer->SetCamera(beforeCamer);
 	PX2_GR.SetCurEnvirParam(beformParam);
-
+	
 	mEffect_UIView->SetViewPort(viewPort);
 	mEffect_UIView->Draw();
 }
 //----------------------------------------------------------------------------
-void RenderStepScene::OnSizeChange()
+void RenderStepScene::SetSize(const Sizef &size)
 {
-	RenderStep::OnSizeChange();
+	RenderStep::SetSize(size);
+
+	if (mIsBloomRenderTargetSizeSameWithScreen)
+		mIsBloomChanged = true;
 
 	if (mEffect_UIView)
 	{
 		mEffect_UIView->SetSize(mSize);
 	}
 
-	_UpdateALightPicBoxTrans();
+	_UpdateALightPicBoxTranslateSize();
+}
+//----------------------------------------------------------------------------
+void RenderStepScene::SetScreenSize(const Sizef &size)
+{
+	RenderStep::SetScreenSize(size);
+
+	if (mIsBloomRenderTargetSizeSameWithScreen)
+		mIsBloomChanged = true;
 }
 //----------------------------------------------------------------------------
 float gaussianDistribution(float x, float y, float rho)
@@ -284,6 +311,31 @@ void RenderStepScene::SetUseBloom(bool useBloom)
 bool RenderStepScene::IsUseBloom() const
 {
 	return mIsUseBloom;
+}
+//----------------------------------------------------------------------------
+void RenderStepScene::SetScene_ShowBloomEveryPass(bool isShowBloomEveryPass)
+{
+	mIsShowBloomEveryPass = isShowBloomEveryPass;
+
+	mIsBloomChanged = true;
+}
+//----------------------------------------------------------------------------
+bool RenderStepScene::IsScene_ShowBloomEveryPass() const
+{
+	return mIsShowBloomEveryPass;
+}
+//----------------------------------------------------------------------------
+void RenderStepScene::SetScene_BloomRenderTargetSizeSameWithScreen(
+	bool sizeSameWithScreen)
+{
+	mIsBloomRenderTargetSizeSameWithScreen = sizeSameWithScreen;
+
+	mIsBloomChanged = true;
+}
+//----------------------------------------------------------------------------
+bool RenderStepScene::IsScene_BloomRenderTargetSizeSameWithScreen() const
+{
+	return mIsBloomRenderTargetSizeSameWithScreen;
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::SetScene_BloomRenderTargetSize(const Float2 &size)
@@ -373,13 +425,14 @@ void RenderStepScene::_UpdateBloomChanged()
 
 	if (mIsUseBloom)
 	{
-		mBloomPicSize = 256.0f;
+		Sizef rtSize(mBloomRenderTargetSize[0], mBloomRenderTargetSize[1]);
+		if (mIsBloomRenderTargetSizeSameWithScreen)
+			rtSize = mScreenSize;
 
-		Texture::Format tformat = Texture::TF_A8R8G8B8;
 		Sizef size(mBloomPicSize, mBloomPicSize);
-
+		Texture::Format tformat = Texture::TF_A8R8G8B8;
 		mEffect_RenderTarget_Normal = new0 RenderTarget(1, tformat,
-			(int)mBloomRenderTargetSize[0], (int)mBloomRenderTargetSize[1], false, false);
+			(int)rtSize.Width, (int)rtSize.Height, false, false);
 		mEffect_UIPicBoxShow_Normal = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBoxShow_Normal);
 		mEffect_UIPicBoxShow_Normal->SetAnchorPoint(Float2::ZERO);
@@ -390,7 +443,7 @@ void RenderStepScene::_UpdateBloomChanged()
 
 		MaterialInstancePtr blurMtlInstanceBloomBright = new0 MaterialInstance("Data/engine_mtls/bloom/bloom.px2obj", "bloom_bright", false);
 		mEffect_RenderTarget_BloomBright = new0 RenderTarget(1, tformat,
-			(int)mBloomRenderTargetSize[0], (int)mBloomRenderTargetSize[1], false, false);
+			(int)rtSize.Width, (int)rtSize.Height, false, false);
 		mEffect_UIPicBox_BloomBright = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BloomBright);
 		mEffect_UIPicBox_BloomBright->SetAnchorPoint(Float2::ZERO);
@@ -402,7 +455,7 @@ void RenderStepScene::_UpdateBloomChanged()
 
 		MaterialInstancePtr blurMtlInstanceH = new0 MaterialInstance("Data/engine_mtls/blur/blur.px2obj", "blur", false);
 		mEffect_RenderTarget_BlurH = new0 RenderTarget(1, tformat,
-			(int)mBloomRenderTargetSize[0], (int)mBloomRenderTargetSize[1], false, false);
+			(int)rtSize.Width, (int)rtSize.Height, false, false);
 		mEffect_UIPicBox_BlurH = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BlurH);
 		mEffect_UIPicBox_BlurH->SetMaterialInstance(blurMtlInstanceH);
@@ -420,7 +473,7 @@ void RenderStepScene::_UpdateBloomChanged()
 
 		MaterialInstancePtr blurMtlInstanceV = new0 MaterialInstance("Data/engine_mtls/blur/blur.px2obj", "blur", false);
 		mEffect_RenderTarget_BlurV = new0 RenderTarget(1, tformat,
-			(int)mBloomRenderTargetSize[0], (int)mBloomRenderTargetSize[1], false, false);
+			(int)rtSize.Width, (int)rtSize.Height, false, false);
 		mEffect_UIPicBox_BlurV = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BlurV);
 		mEffect_UIPicBox_BlurV->SetMaterialInstance(blurMtlInstanceV);
@@ -446,7 +499,7 @@ void RenderStepScene::_UpdateBloomChanged()
 		mAlignPicBoxes.push_back(mBloom_UIPicBox_Final);
 
 		_UpdateBloomParams();
-		_UpdateALightPicBoxTrans();
+		_UpdateALightPicBoxTranslateSize();
 	}
 
 	mIsBloomChanged = false;
@@ -483,17 +536,47 @@ void RenderStepScene::_UpdateBloomParams()
 	}
 }
 //----------------------------------------------------------------------------
-void RenderStepScene::_UpdateALightPicBoxTrans()
+void RenderStepScene::_UpdateALightPicBoxTranslateSize()
 {
-	int alignPicBoxSize = (int)mAlignPicBoxes.size();
-	for (int i = 0; i < alignPicBoxSize; i++)
+	if (mIsShowBloomEveryPass)
 	{
-		int x = (i + 2) % 2;
-		int z = i / 2;
+		int alignPicBoxSize = (int)mAlignPicBoxes.size();
+		for (int i = 0; i < alignPicBoxSize; i++)
+		{
+			int x = (i + 2) % 2;
+			int z = i / 2;
 
-		float xPos = x * mBloomPicSize;
-		float zPos = mSize.Height - (z+1) * mBloomPicSize;
-		mAlignPicBoxes[i]->LocalTransform.SetTranslateXZ(xPos, zPos);
+			float xPos = x * mBloomPicSize;
+			float zPos = mSize.Height - (z + 1) * mBloomPicSize;
+			mAlignPicBoxes[i]->LocalTransform.SetTranslateXZ(xPos, zPos);
+
+			mAlignPicBoxes[i]->Show(true);
+		}
+	}
+	else
+	{
+		Project *proj = Project::GetSingletonPtr();
+
+		// 只让最后一个可见
+		int alignPicBoxSize = (int)mAlignPicBoxes.size();
+		int lastIndex = alignPicBoxSize - 1;
+		for (int i = 0; i < alignPicBoxSize; i++)
+		{
+			if (i != lastIndex)
+			{
+				mAlignPicBoxes[i]->Show(false);
+			}
+			else
+			{
+				mAlignPicBoxes[i]->Show(true);
+				mAlignPicBoxes[i]->LocalTransform.SetTranslate(APoint::ORIGIN);
+
+				if (proj)
+				{
+					mAlignPicBoxes[i]->SetSize(mSize);
+				}
+			}
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -544,5 +627,15 @@ void RenderStepScene::_SetCameraF(Camera *camera, UIPicBox *uiPicBox)
 	
 	camera->SetPosition(cameraPos);
 	camera->SetFrustum(0.1f, 1000.0f, uMin, uMax, rMin, rMax);
+}
+//----------------------------------------------------------------------------
+void RenderStepScene::SetHelpGridRenderStep(RenderStep *renderStep)
+{
+	mHelpGridRenderStep = renderStep;
+}
+//----------------------------------------------------------------------------
+RenderStep *RenderStepScene::GetHelpGridRenderStep()
+{
+	return mHelpGridRenderStep;
 }
 //----------------------------------------------------------------------------
