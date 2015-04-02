@@ -295,44 +295,42 @@ void ObjectPropertyGrid::OnPropertyGridChange(wxPropertyGridEvent &event)
 				EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 			}
 
-			//EffectModule *em = DynamicCast<EffectModule>(obj);
-			//if (em)
-			//{
-			//	if (propLabel == "IsRange")
-			//	{
-			//		EditSystem::GetSingleton().GetCurveEdit()->SetSelectedCurveCtrl(0);
-			//		EditSystem::GetSingleton().GetCurveEdit()->SetSelectedUICurveGroup(0);
-			//		EditSystem::GetSingleton().GetCurveEdit()->ReCreateAddCurveGroup(em);
+			EffectModule *em = DynamicCast<EffectModule>(obj);
+			if (em)
+			{
+				if (propLabel == "IsRange")
+				{
+					PX2_EDIT.GetTimeLineEdit()->SetSelectedCurveCtrl(0);
+					PX2_EDIT.GetTimeLineEdit()->SetSelectedUICurveGroup(0);
+					PX2_EDIT.GetTimeLineEdit()->ReCreateAddCurveGroup(em);
 
-			//		OnSetObject(obj);
-			//	}
-			//	else
-			//	{
-			//		size_t begin = propLabel.find_first_of("[");
-			//		size_t end = propLabel.find_first_of("]");
-			//		if (begin != std::string::npos && end != std::string::npos)
-			//		{
-			//			Event *ent = EditorEventSpace::CreateEventX(
-			//				EditorEventSpace::CurveChangedByGrid);
-			//			ent->SetData<Object*>(obj);
-			//			EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
-			//		}
-			//	}
-			//}
+					OnSetObject(obj);
+				}
+				else
+				{
+					size_t begin = propLabel.find_first_of("[");
+					size_t end = propLabel.find_first_of("]");
+					if (begin != std::string::npos && end != std::string::npos)
+					{
+						Event *ent = EditEventSpace::CreateEventX(EditEventSpace::CurveChangedByPropertyGrid);
+						ent->SetData<Object*>(obj);
+						EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
+					}
+				}
+			}
 
-			//InterpCurveController *iCtrl = DynamicCast<InterpCurveController>(obj);
-			//if (iCtrl)
-			//{
-			//	size_t begin = propLabel.find_first_of("[");
-			//	size_t end = propLabel.find_first_of("]");
-			//	if (begin != std::string::npos && end != std::string::npos)
-			//	{
-			//		Event *ent = EditorEventSpace::CreateEventX(
-			//			EditorEventSpace::CurveChangedByGrid);
-			//		ent->SetData<Object*>(obj);
-			//		EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
-			//	}
-			//}
+			InterpCurveController *iCtrl = DynamicCast<InterpCurveController>(obj);
+			if (iCtrl)
+			{
+				size_t begin = propLabel.find_first_of("[");
+				size_t end = propLabel.find_first_of("]");
+				if (begin != std::string::npos && end != std::string::npos)
+				{
+					Event *ent = EditEventSpace::CreateEventX(EditEventSpace::CurveChangedByPropertyGrid);
+					ent->SetData<Object*>(obj);
+					EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
+				}
+			}
 		}
 	}
 }

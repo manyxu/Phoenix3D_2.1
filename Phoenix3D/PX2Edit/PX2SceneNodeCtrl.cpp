@@ -376,7 +376,8 @@ void SceneNodeCtrl::OnMotion(bool leftDown, RenderStep *renderStep,
 	}
 	else if (CT_SCALE == mCtrlType)
 	{
-		PX2_SELECTION.AddScale(transVec);
+		if (DT_XYZ == mDragType)
+			PX2_SELECTION.AddScale(transVec);
 	}
 
 	Object *obj = PX2_SELECTION.GetFirstObject();

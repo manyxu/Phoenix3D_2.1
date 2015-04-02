@@ -72,6 +72,9 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level, bool isShowHelpNode)
 	Node *node = DynamicCast<Node>(mObject);
 	Renderable *renderable = DynamicCast<Renderable>(mObject);
 	EffectableController *effectableCtrl = DynamicCast<EffectableController>(mObject);
+	Material *mtl = DynamicCast<Material>(mObject);
+	MaterialTechnique *mtlTechnique = DynamicCast<MaterialTechnique>(mObject);
+	MaterialPass *mtlPass = DynamicCast<MaterialPass>(mObject);
 
 	if (!mObject)
 	{ // IT_CATALOG
@@ -163,6 +166,43 @@ void ProjTreeItem::SetTreeLevel(ProjTreeLevel level, bool isShowHelpNode)
 
 			AddChild(ctrl, mIconID, mTreeLevel, mIsShowHelpNode);
 		}
+	}
+
+	if (addMaterial)
+	{
+		MaterialInstance *mtlInst = renderable->GetMaterialInstance();
+		Material *mtl = mtlInst->GetMaterial();
+		AddChild(mtl, mIconID, mTreeLevel, mIsShowHelpNode);
+	}
+	if (mtl)
+	{
+		int numTechniques = mtl->GetNumTechniques();
+		for (int i = 0; i < numTechniques; i++)
+		{
+			MaterialTechnique *mtlTechnique = mtl->GetTechnique(i);
+			AddChild(mtlTechnique, mIconID, mTreeLevel, isShowHelpNode);
+		}
+	}
+	if (mtlTechnique)
+	{
+		int numPasses = mtlTechnique->GetNumPasses();
+		for (int i = 0; i < numPasses; i++)
+		{
+			MaterialPass *mtlPass = mtlTechnique->GetPass(i);
+			AddChild(mtlPass, mIconID, mTreeLevel, isShowHelpNode);
+		}
+	}
+	if (mtlPass)
+	{
+		AddChild(mtlPass->GetVertexShader(), mIconID, mTreeLevel, isShowHelpNode);
+		AddChild(mtlPass->GetPixelShader(), mIconID, mTreeLevel, isShowHelpNode);
+
+		AddChild(mtlPass->GetAlphaProperty(), mIconID, mTreeLevel, isShowHelpNode);
+		AddChild(mtlPass->GetCullProperty(), mIconID, mTreeLevel, isShowHelpNode);
+		AddChild(mtlPass->GetDepthProperty(), mIconID, mTreeLevel, isShowHelpNode);
+		AddChild(mtlPass->GetOffsetProperty(), mIconID, mTreeLevel, isShowHelpNode);
+		AddChild(mtlPass->GetStencilProperty(), mIconID, mTreeLevel, isShowHelpNode);
+		AddChild(mtlPass->GetWireProperty(), mIconID, mTreeLevel, isShowHelpNode);
 	}
 
 	if (addModule)

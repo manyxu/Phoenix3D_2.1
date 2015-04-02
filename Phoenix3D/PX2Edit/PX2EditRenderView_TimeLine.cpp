@@ -774,19 +774,12 @@ void EditRenderView_TimeLine::DoExecute(Event *event)
 {
 	EditRenderView::DoExecute(event);
 
-	/*	if (EditEventSpace::IsEqual(event, EditEventSpace::CurveChangedByGrid))
-		{
+	if (EditEventSpace::IsEqual(event, EditEventSpace::CurveChangedByPropertyGrid))
+	{
 		Object *obj = event->GetData<Object*>();
-		EditSystem::GetSingleton().GetCurveEdit()->UpdateCurve(obj);
-
-		CurveCtrl *ctrl = EditSystem::GetSingleton().GetCurveEdit()->GetSelectedCurveCtrl();
-		if (ctrl)
-		{
-		ToggleInterp(ctrl->GetInterpCurveMode());
-		}
-		}
-		else*/ 
-	if (SimuES_E::IsEqual(event, SimuES_E::RemoveObject))
+		PX2_EDIT.GetTimeLineEdit()->UpdateCurve(obj);
+	}
+	else if (SimuES_E::IsEqual(event, SimuES_E::RemoveObject))
 	{
 		Object *obj = event->GetData<Object*>();
 		EffectModule *module = DynamicCast<EffectModule>(obj);
@@ -803,7 +796,7 @@ void EditRenderView_TimeLine::DoExecute(Event *event)
 		}
 		else if (icCtrl)
 		{
-
+			RemoveCurveGroup(icCtrl);
 		}
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::TimeLine_FitHor))

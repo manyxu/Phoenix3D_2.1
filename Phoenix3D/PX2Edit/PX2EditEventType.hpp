@@ -55,6 +55,7 @@ namespace PX2
 	PX2_EVENT(TimeLine_Pan)
 	PX2_EVENT(TimeLine_Zoom)
 	PX2_EVENT(TimeLine_CurveMode)
+	PX2_EVENT(CurveChangedByPropertyGrid)
 
 	PX2_DECLARE_EVENT_END(EditEventSpace)
 

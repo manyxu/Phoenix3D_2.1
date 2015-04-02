@@ -111,6 +111,7 @@ namespace PX2
 		void Fit_Selected();
 		void Pan();
 		void Zoom();
+
 		void Auto();
 		void Clamp();
 		void User();
