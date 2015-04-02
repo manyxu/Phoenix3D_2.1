@@ -10,10 +10,11 @@ PX2_IMPLEMENT_FACTORY(InterpCurveUniformScaleController);
 PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveFloatController, InterpCurveUniformScaleController);
 
 //----------------------------------------------------------------------------
-InterpCurveUniformScaleController::InterpCurveUniformScaleController ()
-	:
+InterpCurveUniformScaleController::InterpCurveUniformScaleController () :
 InterpCurveFloatController(1.0f)
 {
+	SetName("ICCtrl_UniformScale");
+
 	SetPriority(13);
 }
 //----------------------------------------------------------------------------

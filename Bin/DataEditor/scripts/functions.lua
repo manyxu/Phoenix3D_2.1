@@ -63,6 +63,16 @@ end
 function e_OnExport()
 end
 
+function e_SelectEditAxisMode(selectAxisMode)
+	if 0==selectAxisMode then
+		PX2_EDIT:SetEditAxisMode(Edit.EAM_WORLD)
+	elseif 1==selectAxisMode then
+		PX2_EDIT:SetEditAxisMode(Edit.EAM_LOCAL)
+	elseif 2==selectAxisMode then
+		PX2_EDIT:SetEditAxisMode(Edit.EAM_PARENT)
+	end
+end
+
 function e_OnSelect()
 	E_MainFrame:OnSetEditMode(Edit.EM_SELECT)
 end
@@ -226,7 +236,6 @@ function e_CreateRectangle(usePickPos)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateRectangle(node, pickPos, true, true, isWorld)
-		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
@@ -238,7 +247,6 @@ function e_CreateBox(usePickPos)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateBox(node, pickPos, true, true, usePickPos)
-		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
@@ -250,7 +258,6 @@ function e_CreateSphere(usePickPos)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
 		local mov = PX2_CREATER:CreateSphere(node, pickPos, true, true, usePickPos)
-		mov.LocalTransform:SetUniformScale(100.0)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
@@ -312,7 +319,13 @@ function e_CreateSoundable(usePickPos)
 end
 
 function e_CreateNode()
-
+	local selectObj = PX2_SELECTION:GetFirstObject()
+	local node = PX2_CREATER:ConvertToNode(selectObj)
+	if nil~=node then
+		local mov = PX2_CREATER:CreateNode(node)
+	else
+		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
+	end
 end
 
 function e_CreateUIPixBox(usePickPos)
@@ -502,28 +515,20 @@ function e_FindInResTree()
 end
 
 -- project view
-function e_ProjectView_Detail_General()
-	NirMan:SetProjTreeLevel(0)
-end
-
-function e_ProjectView_Detail_Children()
-	NirMan:SetProjTreeLevel(1)
-end
-
-function e_ProjectView_Detail_Controls()
-	NirMan:SetProjTreeLevel(2)
-end
-
-function e_ProjectView_Detail_Materials()
-	NirMan:SetProjTreeLevel(3)
-end
-
-function e_ProjectView_Detail_Details()
-	NirMan:SetProjTreeLevel(4)
-end
-
 function e_ProjectView_ShowHelpNode()
 	NirMan:TaggleProjectShowHelpNode()
+end
+
+function e_ProjectView_ShowLevel (level)
+	E_MainFrame:OnProjectTreeShowLevel(level)
+end
+
+function e_ProjectView_ExpandSelect()
+	E_MainFrame:OnProjectExpandSelect()
+end
+
+function e_ProjectView_CollapseSelect()
+	E_MainFrame:OnProjectCollapseSelect()
 end
 
 -- res view

@@ -10,11 +10,10 @@ PX2_IMPLEMENT_FACTORY(InterpCurveFloatController);
 PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveController, InterpCurveFloatController);
 
 //----------------------------------------------------------------------------
-InterpCurveFloatController::InterpCurveFloatController (float initValue)
-	:
+InterpCurveFloatController::InterpCurveFloatController (float initValue) :
 mInitValue(initValue),
-	mCurValueRaw(0.0f),
-	mCurValueRelatived(0.0f)
+mCurValueRaw(0.0f),
+mCurValueRelatived(0.0f)
 {
 	mValues.AddPoint(0.0f, mInitValue, 0.0f, 0.0f, ICM_LINEAR);
 }

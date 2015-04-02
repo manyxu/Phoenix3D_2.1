@@ -43,6 +43,11 @@ SceneNodeCtrl::SceneNodeCtrl()
 	mLookType = LT_PERSPECTIVE;
 	mCtrlType = CT_SELECT;
 	mDragType = DT_NONE;
+
+	mAxisMode = AM_WORLD;
+	mDirX = AVector::UNIT_X;
+	mDirY = AVector::UNIT_Y;
+	mDirZ = AVector::UNIT_Z;
 }
 //----------------------------------------------------------------------------
 SceneNodeCtrl::~SceneNodeCtrl()
@@ -55,6 +60,7 @@ void SceneNodeCtrl::SetAxisMode(SceneNodeCtrl::AxisMode mode)
 	mAxisMode = mode;
 
 	UpdateCtrl();
+	UpdateCtrlTrans();
 }
 //----------------------------------------------------------------------------
 void SceneNodeCtrl::SetLookType(SceneNodeCtrl::LookType type)
@@ -265,8 +271,7 @@ void SceneNodeCtrl::OnMotion(bool leftDown, RenderStep *renderStep,
 
 	APoint rayOrigin_Before;
 	AVector rayDir_Before;
-	renderStep->GetPickRay(posBefore.X(), posBefore.Z(),
-		rayOrigin_Before, rayDir_Before);
+	renderStep->GetPickRay(posBefore.X(), posBefore.Z(), rayOrigin_Before, rayDir_Before);
 
 	// pick
 	Picker pickerNow;
@@ -290,67 +295,74 @@ void SceneNodeCtrl::OnMotion(bool leftDown, RenderStep *renderStep,
 	AVector transVec;
 	AVector rolateVec;
 
+	AVector dirX = mDirX;
+	AVector dirY = mDirY;
+	AVector dirZ = mDirZ;
+
 	if (DT_X == mDragType)
 	{
-		transValue = transMoved.Dot(AVector::UNIT_X);
-		transVec = AVector::UNIT_X * transValue;
+		transValue = transMoved.Dot(dirX);
+		transVec = dirX * transValue;
 
-		rolateVec.X() = transMoved.Length() *(1.0f - Mathf::FAbs(transDir.Dot(AVector::UNIT_X)));
+		rolateVec.X() = transMoved.Length() *(1.0f - Mathf::FAbs(transDir.Dot(dirX)));
 
-		AVector vec = transDir.Cross(AVector::UNIT_X);
+		AVector vec = transDir.Cross(dirX);
 		rolateVec.X() *= Mathf::Sign(vec.Z());
 	}
 	else if (DT_Y == mDragType)
 	{
-		transValue = transMoved.Dot(AVector::UNIT_Y);
-		transVec = AVector::UNIT_Y * transValue;
+		transValue = transMoved.Dot(dirY);
+		transVec = dirY * transValue;
 
-		rolateVec.Y() = transMoved.Length() *(1.0f - Mathf::FAbs(transDir.Dot(AVector::UNIT_Y)));
+		rolateVec.Y() = transMoved.Length() *(1.0f - Mathf::FAbs(transDir.Dot(dirY)));
 
-		AVector vec = transDir.Cross(AVector::UNIT_Y);
+		AVector vec = transDir.Cross(dirY);
 		rolateVec.Y() *= Mathf::Sign(vec.Z());
 	}
 	else if (DT_Z == mDragType)
 	{
-		transValue = transMoved.Dot(AVector::UNIT_Z);
-		transVec = AVector::UNIT_Z * transValue;
+		transValue = transMoved.Dot(dirZ);
+		transVec = dirZ * transValue;
 
-		rolateVec.Z() = transMoved.Length() *(1.0f - Mathf::FAbs(transDir.Dot(AVector::UNIT_Z)));
+		rolateVec.Z() = transMoved.Length() *(1.0f - Mathf::FAbs(transDir.Dot(dirZ)));
 
 		rolateVec.Z() *= Mathf::Sign(posNow.X() - posBefore.X());
 	}
 	else if (DT_XY == mDragType)
 	{
-		transValue = transMoved.Dot(AVector::UNIT_X);
-		transValue1 = transMoved.Dot(AVector::UNIT_Y);
-		transVec = AVector::UNIT_X * transValue
-			+ AVector::UNIT_Y * transValue1;
+		transValue = transMoved.Dot(dirX);
+		transValue1 = transMoved.Dot(dirY);
+		transVec = dirX * transValue + dirY * transValue1;
 	}
 	else if (DT_YZ == mDragType)
 	{
-		transValue = transMoved.Dot(AVector::UNIT_Y);
-		transValue1 = transMoved.Dot(AVector::UNIT_Z);
-		transVec = AVector::UNIT_Y * transValue
-			+ AVector::UNIT_Z * transValue1;
+		transValue = transMoved.Dot(dirY);
+		transValue1 = transMoved.Dot(dirZ);
+		transVec = dirY * transValue + dirZ * transValue1;
 	}
 	else if (DT_XZ == mDragType)
 	{
-		transValue = transMoved.Dot(AVector::UNIT_X);
-		transValue1 = transMoved.Dot(AVector::UNIT_Z);
-		transVec = AVector::UNIT_X * transValue
-			+ AVector::UNIT_Z * transValue1;
+		transValue = transMoved.Dot(dirX);
+		transValue1 = transMoved.Dot(dirZ);
+		transVec = dirX * transValue + dirZ * transValue1;
 	}
 	else if (DT_XYZ == mDragType)
 	{
-		float transValue0 = Mathf::FAbs(transMoved.Dot(AVector::UNIT_X));
-		float transValue1 = Mathf::FAbs(transMoved.Dot(AVector::UNIT_Y));
-		float transValue2 = Mathf::FAbs(transMoved.Dot(AVector::UNIT_Z));
+		float transValue0 = Mathf::FAbs(transMoved.Dot(dirX));
+		float transValue1 = Mathf::FAbs(transMoved.Dot(dirY));
+		float transValue2 = Mathf::FAbs(transMoved.Dot(dirZ));
 
 		float trans = (transValue0 + transValue1 + transValue2) / 3.0f;
 		trans *= Mathf::Sign(transMoved.Y());
 
 		transVec = AVector(trans, trans, trans);
 	}
+
+	if (CT_SCALE == mCtrlType)
+		transVec *= 0.5f;
+
+	HMatrix parentMat = mParentRotateMat.Inverse();
+	transVec = parentMat * transVec;
 
 	if (CT_TRANSLATE == mCtrlType)
 	{
@@ -364,7 +376,7 @@ void SceneNodeCtrl::OnMotion(bool leftDown, RenderStep *renderStep,
 	}
 	else if (CT_SCALE == mCtrlType)
 	{
-		PX2_SELECTION.AddScale(transVec*0.5f);
+		PX2_SELECTION.AddScale(transVec);
 	}
 
 	Object *obj = PX2_SELECTION.GetFirstObject();
@@ -525,6 +537,23 @@ void SceneNodeCtrl::DoExecute(PX2::Event *event)
 	{
 		UpdateCtrlTrans();
 	}
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::SetEditAxisMode))
+	{
+		Edit::EditAxisMode mode = PX2_EDIT.GetEdtiAxisMode();
+
+		if (Edit::EAM_WORLD == mode)
+		{
+			SetAxisMode(AM_WORLD);
+		}
+		else if (Edit::EAM_LOCAL == mode)
+		{
+			SetAxisMode(AM_LOCAL);
+		}
+		else if (Edit::EAM_PARENT == mode)
+		{
+			SetAxisMode(AM_PARENT);
+		}
+	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::SetEditMode))
 	{
 		Edit::EditMode mode = PX2_EDIT.GetEditMode();
@@ -569,7 +598,7 @@ void SceneNodeCtrl::UpdateCtrl()
 	}
 
 	if (isObjectsHasActorOrMov)
-	{
+	{	
 		if (mCtrlType == CT_SELECT)
 		{
 			mCtrlsGroup->SetActiveChild(6);
@@ -691,28 +720,86 @@ void SceneNodeCtrl::UpdateCtrlTrans()
 		}
 	}
 
-	if (isObjectsHasActorOrMov)
+	mParentRotateMat.MakeIdentity();
+
+	if (!isObjectsHasActorOrMov)
 	{
-		APoint pos;
-
-		for (int i = 0; i < numObjects; i++)
-		{
-			Object *obj = PX2_SELECTION.GetObjectAt(i);
-			Movable *mov = DynamicCast<Movable>(obj);
-			
-			if (mov)
-			{
-				pos += mov->WorldTransform.GetTranslate();
-			}
-		}
-
-		pos /= (float)numObjects;
-
-		mCtrlsGroup->WorldTransform.SetTranslate(pos);
+		mCtrlsGroup->SetActiveChild(6);
 	}
 	else
 	{
-		mCtrlsGroup->SetActiveChild(6);
+		if (1 == numObjects)
+		{
+			Movable *mov = DynamicCast<Movable>(PX2_SELECTION.GetFirstObject());
+			if (mov)
+			{
+				if (AM_WORLD == mAxisMode)
+				{
+					mCtrlsGroup->WorldTransform.SetRotate(0.0f, 0.0f, 0.0f);
+					mDirX = AVector::UNIT_X;
+					mDirY = AVector::UNIT_Y;
+					mDirZ = AVector::UNIT_Z;
+
+					mCtrlsGroup->WorldTransform.SetTranslate(mov->WorldTransform.GetTranslate());
+				}
+				else if (AM_LOCAL == mAxisMode)
+				{
+					mCtrlsGroup->WorldTransform.SetRotate(mov->WorldTransform.GetRotate());
+					mov->WorldTransform.GetRotate().GetColumn(0, mDirX);
+					mov->WorldTransform.GetRotate().GetColumn(1, mDirY);
+					mov->WorldTransform.GetRotate().GetColumn(2, mDirZ);
+
+					mCtrlsGroup->WorldTransform.SetTranslate(mov->WorldTransform.GetTranslate());
+				}
+				else if (AM_PARENT == mAxisMode)
+				{
+					Node *parent = DynamicCast<Node>(mov->GetParent());
+					if (parent)
+					{
+						mCtrlsGroup->WorldTransform.SetRotate(parent->WorldTransform.GetRotate());
+						parent->WorldTransform.GetRotate().GetColumn(0, mDirX);
+						parent->WorldTransform.GetRotate().GetColumn(1, mDirY);
+						parent->WorldTransform.GetRotate().GetColumn(2, mDirZ);
+
+						mCtrlsGroup->WorldTransform.SetTranslate(mov->WorldTransform.GetTranslate());
+					}
+				}
+
+				Movable *movParent = mov->GetParent();
+				if (movParent)
+				{
+					mParentRotateMat = movParent->WorldTransform.GetRotate();
+				}
+			}
+			else
+			{
+				mCtrlsGroup->SetActiveChild(6);
+			}
+		}
+		else
+		{
+			APoint pos;
+
+			for (int i = 0; i < numObjects; i++)
+			{
+				Object *obj = PX2_SELECTION.GetObjectAt(i);
+				Movable *mov = DynamicCast<Movable>(obj);
+
+				if (mov)
+				{
+					pos += mov->WorldTransform.GetTranslate();
+				}
+			}
+
+			pos /= (float)numObjects;
+
+			mCtrlsGroup->WorldTransform.SetRotate(0.0f, 0.0f, 0.0f);
+			mDirX = AVector::UNIT_X;
+			mDirY = AVector::UNIT_Y;
+			mDirZ = AVector::UNIT_Z;
+
+			mCtrlsGroup->WorldTransform.SetTranslate(pos);
+		}
 	}
 
 	mCtrlsGroup->Update(GetTimeInSeconds(), false);

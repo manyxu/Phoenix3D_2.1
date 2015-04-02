@@ -412,6 +412,24 @@ void E_MainFrame::OnCommondItem(wxCommandEvent &e)
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnChooseItem(wxCommandEvent &e)
+{
+	int id = e.GetId();
+
+	std::map<int, std::string>::iterator it = mIDScripts.find(id);
+
+	if (it != mIDScripts.end())
+	{
+		std::string callStr = it->second;
+
+		int selection = e.GetSelection();
+
+		callStr = callStr + "(" + StringHelp::IntToString(selection) + ")";
+
+		PX2_SM.CallString(callStr);
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::OnMenuToolItem(wxMouseEvent &e)
 {
 	int id = e.GetId();
@@ -968,6 +986,21 @@ void E_MainFrame::TimeLine_SelectCtrl_Delete()
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnProjectTreeShowLevel(int level)
+{
+	mProjView->GetProjTree()->SetSelectItemLevel((ProjTreeLevel)level);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnProjectExpandSelect()
+{
+	mProjView->GetProjTree()->ExpandSelect();
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::OnProjectCollapseSelect()
+{
+	mProjView->GetProjTree()->CollapseSelect();
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::_CreateMenu()
 {
 	mMainMenuBar = new wxMenuBar();
@@ -1047,7 +1080,8 @@ void E_MainFrame::AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon,
 	mIDScripts[id] = script;
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::AddToolChoose(PX2wxAuiToolBar *toolBar,
+void E_MainFrame::AddToolChoose(PX2wxAuiToolBar *toolBar, 
+	const std::string &script,
 	const std::string &choose0,
 	const std::string &choose1,
 	const std::string &choose2,
@@ -1064,6 +1098,11 @@ void E_MainFrame::AddToolChoose(PX2wxAuiToolBar *toolBar,
 	if (!choose4.empty()) choice->AppendString(choose4);
 	toolBar->AddControl(choice);
 	choice->Select(0);
+
+	Connect(id, wxEVT_COMMAND_CHOICE_SELECTED,
+		wxCommandEventHandler(E_MainFrame::OnChooseItem));
+
+	mIDScripts[id] = script;
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::AddToolSeparater(PX2wxAuiToolBar *toolBar)

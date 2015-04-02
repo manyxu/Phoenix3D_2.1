@@ -46,6 +46,10 @@
 		void TimeLine_SelectCtrl_OutValue();
 		void TimeLine_SelectCtrl_Delete();
 		
+		void OnProjectTreeShowLevel(int level);
+		void OnProjectExpandSelect();
+		void OnProjectCollapseSelect();
+		
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,
 			const std::string &script, const std::string &tag="");
@@ -57,8 +61,10 @@
 		// 0 noraml, 1 check, 2 radio
 		void AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon, const std::string &script, 
 			const std::string &helpStr="", int type=0);
-		void AddToolChoose(PX2wxAuiToolBar *toolBar, const std::string &choose0, const std::string &choose1 = "",
-			const std::string &choose2 = "", const std::string &choose3 = "", const std::string &choose4 = "");
+		void AddToolChoose(PX2wxAuiToolBar *toolBar, const std::string &script, 
+			const std::string &choose0, const std::string &choose1 = "",
+			const std::string &choose2 = "", const std::string &choose3 = "", 
+			const std::string &choose4 = "");
 		void AddToolSeparater(PX2wxAuiToolBar *toolBar);
 		void AddToolStretch(PX2wxAuiToolBar *toolBar);
 	};

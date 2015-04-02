@@ -151,8 +151,6 @@ void ProjTree::SetSelectItemLevel(ProjTreeLevel level)
 		item->SetTreeLevel(level, mIsShowHelpNode);
 		SelectItem(item->GetItemID());
 	}
-
-	Expand(item->GetItemID());
 }
 //-----------------------------------------------------------------------------
 ProjTreeItem *ProjTree::GetItem(wxTreeItemId id)
@@ -414,17 +412,6 @@ void ProjTree::OnRightUp(wxMouseEvent& e)
 		mEditMenu = 0;
 	}
 
-	Object *obj = PX2_SELECTION.GetFirstObject();
-	if (!obj) return;
-
-	if (!obj)
-	{
-		wxMessageBox(PX2_LM.GetValue("Tip0"), PX2_LM.GetValue("Notice"), wxOK);
-		NirMan::GetSingleton().MessageBox(PX2_LM.GetValue("Tip0"), 
-			PX2_LM.GetValue("Notice"));
-		return;
-	}
-
 	mEditMenu = new wxMenu();
 	NirMan::GetSingleton().SetCurMenu(mEditMenu);
 
@@ -478,6 +465,26 @@ void ProjTree::OnSelChanging(wxTreeEvent& event)
 void ProjTree::OnSelDelete(wxTreeEvent& event)
 {
 	PX2_UNUSED(event);
+}
+//----------------------------------------------------------------------------
+void ProjTree::ExpandSelect()
+{
+	wxTreeItemId selectID = GetSelection();
+	ProjTreeItem *item = GetItem(selectID);
+	if (item)
+	{
+		ExpandAllChildren(selectID);
+	}
+}
+//----------------------------------------------------------------------------
+void ProjTree::CollapseSelect()
+{
+	wxTreeItemId selectID = GetSelection();
+	ProjTreeItem *item = GetItem(selectID);
+	if (item)
+	{
+		Collapse(selectID);
+	}
 }
 //----------------------------------------------------------------------------
 void ProjTree::DoExecute(Event *event)

@@ -10,8 +10,7 @@ PX2_IMPLEMENT_FACTORY(TransformController);
 PX2_IMPLEMENT_DEFAULT_NAMES(Controller, TransformController);
 
 //----------------------------------------------------------------------------
-TransformController::TransformController (const Transform& trans)
-:
+TransformController::TransformController (const Transform& trans) :
 mTransform(trans),
 mIsWorld(false)
 {

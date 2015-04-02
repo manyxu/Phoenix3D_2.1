@@ -95,8 +95,9 @@ void EditRenderView_Scene::_ProcessKeyMove(bool isPress, float cameraMoveSpeed,
 //----------------------------------------------------------------------------
 void EditRenderView_Scene::Tick(double elapsedTime)
 {
-	if (PX2_EDIT.IsLeftMouseDown || PX2_EDIT.IsRightMouseDown ||
-		PX2_EDIT.IsMidMouseDown || PX2_EDIT.IsShiftDown)
+	if ((PX2_EDIT.IsLeftMouseDown || PX2_EDIT.IsRightMouseDown ||
+		PX2_EDIT.IsMidMouseDown || PX2_EDIT.IsShiftDown) &&
+		!PX2_EDIT.IsCtrlDown)
 	{
 		float cameraMoveSpeed = PX2_EDIT.GetCameraMoveSpeed();
 		
@@ -694,7 +695,7 @@ void EditRenderView_Scene::_RoundCamera(float horz, float vert)
 		Movable *mov = DynamicCast<Movable>(obj);
 		if (mov)
 		{
-			pos = mov->LocalTransform.GetTranslate();
+			pos = mov->WorldTransform.GetTranslate();
 			hasTarget = true;
 		}
 

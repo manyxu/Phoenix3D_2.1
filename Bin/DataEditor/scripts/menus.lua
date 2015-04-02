@@ -77,24 +77,35 @@ function e_CreateEditMenu(tag)
 			end
 			
 		elseif RVT_SCENEUI==tag then
-			if nil~=selNode then			
-				createMenu = NirMan:AddSubMenu(editMenu, (PX2_LM:GetValue("Create")))
-				isAddedSomthing = true
-				isCreateMenuAddSomthing = true
 			
-				local createSceneMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("SceneActor")))
+			createMenu = NirMan:AddSubMenu(editMenu, (PX2_LM:GetValue("Create")))
+			isAddedSomthing = true
+			isCreateMenuAddSomthing = true
+			
+			local createSceneMenu = nil
+			if nil==selNode then
+				createSceneMenu = createMenu
+			else
+				createSceneMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("SceneActor")))
+			end
 				
-				local createSceneGeometryMenu = NirMan:AddSubMenu(createSceneMenu, (PX2_LM:GetValue("Geometry")))
-				NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("RectPiece"), "e_SceneActor_CreateRectangle()")
-				NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("Box"), "e_SceneActor_CreateBox()")
-				NirMan:AddMenuItem(createSceneGeometryMenu, PX2_LM:GetValue("Sphere"), "e_SceneActor_CreateSphere()")
+			local createSceneGeometryActorMenu = NirMan:AddSubMenu(createSceneMenu, (PX2_LM:GetValue("Geometry")))
+			NirMan:AddMenuItem(createSceneGeometryActorMenu, PX2_LM:GetValue("RectPiece"), "e_SceneActor_CreateRectangle()")
+			NirMan:AddMenuItem(createSceneGeometryActorMenu, PX2_LM:GetValue("Box"), "e_SceneActor_CreateBox()")
+			NirMan:AddMenuItem(createSceneGeometryActorMenu, PX2_LM:GetValue("Sphere"), "e_SceneActor_CreateSphere()")
 				
-				NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Character"), "e_SceneActor_CreateCharacter()")
-				NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Light"), "e_SceneActor_CreateLight()")
-				NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Effect"), "e_SceneActor_CreateEffect()")
-				NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Trigger"), "e_SceneActor_CreateTrigger()")
-				NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Terrain"), "e_SceneActor_CreateTerrain()")
-				NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Sky"), "e_SceneActor_CreateSky()")
+			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Character"), "e_SceneActor_CreateCharacter()")
+			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Light"), "e_SceneActor_CreateLight()")
+			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Effect"), "e_SceneActor_CreateEffect()")
+			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Trigger"), "e_SceneActor_CreateTrigger()")
+			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Terrain"), "e_SceneActor_CreateTerrain()")
+			NirMan:AddMenuItem(createSceneMenu, PX2_LM:GetValue("Sky"), "e_SceneActor_CreateSky()")
+			
+			if nil~=selNode then
+				local createGeometryMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("Geometry")))
+				NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("RectPiece"), "e_CreateRectangle(false)")
+				NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("Box"), "e_CreateBox(false)")
+				NirMan:AddMenuItem(createGeometryMenu, PX2_LM:GetValue("Sphere"), "e_CreateSphere(false)")
 			
 				local createUIMenu = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("UI")))
 				NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIPicBox"), "e_CreateUIPixBox(true)")
@@ -105,18 +116,18 @@ function e_CreateEditMenu(tag)
 				NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UICheckButton"), "e_CreateUICheckButton(true)")
 				NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIEditBox"), "e_CreateUIEditBox(true)")
 				NirMan:AddMenuItem(createUIMenu, PX2_LM:GetValue("UIProgressBar"), "e_CreateUIProgressBar(true)")
-				
+					
 				local createEffect = NirMan:AddSubMenu(createMenu, (PX2_LM:GetValue("Effect")))
 				NirMan:AddMenuItem(createEffect, PX2_LM:GetValue("Particles"), "e_CreateParticles(false)")
 				NirMan:AddMenuItem(createEffect, PX2_LM:GetValue("Billboard"), "e_CreateBillboard(false)")
 				NirMan:AddMenuItem(createEffect, PX2_LM:GetValue("Beam"), "e_CreateBeam(false)")
 				NirMan:AddMenuItem(createEffect, PX2_LM:GetValue("Robbion"), "e_CreateRobbion(false)")
 				NirMan:AddMenuItem(createEffect, PX2_LM:GetValue("Soundable"), "e_CreateSoundable(false)")
-				
+					
 				NirMan:AddSeparater(createMenu)
 				NirMan:AddMenuItem(createMenu, PX2_LM:GetValue("Node"), "e_CreateNode()")
 			end
-			
+				
 			if nil ~= selMovable then
 				
 				if nil==createMenu then
@@ -184,6 +195,16 @@ function e_CreateEditMenu(tag)
 			NirMan:AddMenuItem(editMenu, PX2_LM:GetValue("Export"), "e_OnExport()")
 		end
 		isAddedSomthing = true
+		
+		if PVT_PROJECT==tag then
+			NirMan:AddSeparater(editMenu)
+			local showLevelMenu = NirMan:AddSubMenu(editMenu, (PX2_LM:GetValue("ShowLevel")))
+			NirMan:AddMenuItem(showLevelMenu, PX2_LM:GetValue("ShowGeneral"), "e_ProjectView_ShowLevel(0)")
+			NirMan:AddMenuItem(showLevelMenu, PX2_LM:GetValue("ShowChildren"), "e_ProjectView_ShowLevel(1)")
+			NirMan:AddMenuItem(showLevelMenu, PX2_LM:GetValue("ShowControl"), "e_ProjectView_ShowLevel(2)")
+			NirMan:AddMenuItem(showLevelMenu, PX2_LM:GetValue("ShowMaterial"), "e_ProjectView_ShowLevel(3)")
+			NirMan:AddMenuItem(showLevelMenu, PX2_LM:GetValue("ShowDetail"), "e_ProjectView_ShowLevel(4)")
+		end
 		
 		if nil~=selObj then
 			NirMan:AddSeparater(editMenu)

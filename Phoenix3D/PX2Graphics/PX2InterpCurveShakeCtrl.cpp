@@ -10,10 +10,11 @@ PX2_IMPLEMENT_FACTORY(InterpCurveShakeController);
 PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveFloatController, InterpCurveShakeController);
 
 //----------------------------------------------------------------------------
-InterpCurveShakeController::InterpCurveShakeController ()
-	:
+InterpCurveShakeController::InterpCurveShakeController () :
 mShakeRangeType(SRT_XYZ)
 {
+	SetName("ICCtrl_Shake");
+
 	SetAttachUpdateInit(true);
 	SetDetachResetInit(true);
 }

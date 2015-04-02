@@ -47,6 +47,16 @@ namespace PX2
 		EditType GetEditType() const;
 		bool CanDoEdit() const;
 
+		enum EditAxisMode
+		{
+			EAM_WORLD,
+			EAM_LOCAL,
+			EAM_PARENT,
+			EMA_MAX_MODE
+		};
+		void SetEditAxisMode(EditAxisMode mode);
+		EditAxisMode GetEdtiAxisMode() const;
+
 		enum EditMode
 		{
 			EM_NONE,
@@ -63,6 +73,7 @@ namespace PX2
 
 	protected:
 		EditType mEditType;
+		EditAxisMode mEditAxisMode;
 		EditMode mEditMode;
 		EditMap *mEditMap;
 

@@ -10,10 +10,11 @@ PX2_IMPLEMENT_FACTORY(InterpCurveScaleController);
 PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveFloat3Controller, InterpCurveScaleController);
 
 //----------------------------------------------------------------------------
-InterpCurveScaleController::InterpCurveScaleController ()
-	:
+InterpCurveScaleController::InterpCurveScaleController () :
 InterpCurveFloat3Controller(Float3::UNIT)
 {
+	SetName("ICCtrl_Scale");
+
 	SetPriority(13);
 }
 //----------------------------------------------------------------------------

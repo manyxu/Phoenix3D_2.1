@@ -791,6 +791,7 @@ void EditRenderView_TimeLine::DoExecute(Event *event)
 		Object *obj = event->GetData<Object*>();
 		EffectModule *module = DynamicCast<EffectModule>(obj);
 		Movable *movable = DynamicCast<Movable>(obj);
+		InterpCurveController *icCtrl = DynamicCast<InterpCurveController>(obj);
 
 		if (module)
 		{
@@ -799,6 +800,10 @@ void EditRenderView_TimeLine::DoExecute(Event *event)
 		else if (movable)
 		{
 			RemoveCurveGroup(movable);
+		}
+		else if (icCtrl)
+		{
+
 		}
 	}
 	else if (EditEventSpace::IsEqual(event, EditEventSpace::TimeLine_FitHor))
@@ -840,6 +845,13 @@ void EditRenderView_TimeLine::RemoveCurveGroup(PX2::EffectModule *module)
 	PX2_EDIT.GetTimeLineEdit()->RemoveGroup(module);
 }
 //----------------------------------------------------------------------------
+void EditRenderView_TimeLine::RemoveCurveGroup(InterpCurveController *ctrl)
+{
+	if (!ctrl) return;
+
+	PX2_EDIT.GetTimeLineEdit()->RemoveGroup(ctrl);
+}
+//----------------------------------------------------------------------------
 void _TimeLineTravelExecuteFun(Movable *mov, Any *data)
 {
 	PX2_UNUSED(data);
@@ -851,6 +863,16 @@ void _TimeLineTravelExecuteFun(Movable *mov, Any *data)
 		{
 			EffectModule *module = eftAble->GetEffectableController()->GetModule(i);
 			PX2_EDIT.GetTimeLineEdit()->RemoveGroup(module);
+		}
+	}
+
+	for (int i = 0; i < mov->GetNumControllers(); i++)
+	{
+		InterpCurveController *icCtrl = DynamicCast<InterpCurveController>(
+			mov->GetController(i));
+		if (icCtrl)
+		{
+			PX2_EDIT.GetTimeLineEdit()->RemoveGroup(icCtrl);
 		}
 	}
 }

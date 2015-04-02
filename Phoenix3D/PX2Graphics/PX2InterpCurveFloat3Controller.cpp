@@ -10,8 +10,7 @@ PX2_IMPLEMENT_FACTORY(InterpCurveFloat3Controller);
 PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveController, InterpCurveFloat3Controller);
 
 //----------------------------------------------------------------------------
-InterpCurveFloat3Controller::InterpCurveFloat3Controller (Float3 initValue)
-	:
+InterpCurveFloat3Controller::InterpCurveFloat3Controller (Float3 initValue) :
 mInitValue(initValue)
 {
 	mCurValueRaw = Float3::ZERO;

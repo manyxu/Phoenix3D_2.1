@@ -11,6 +11,11 @@ inline Edit::EditType Edit::GetEditType() const
 	return mEditType;
 }
 //----------------------------------------------------------------------------
+inline Edit::EditAxisMode Edit::GetEdtiAxisMode() const
+{
+	return mEditAxisMode;
+}
+//----------------------------------------------------------------------------
 inline Edit::EditMode Edit::GetEditMode() const
 {
 	return mEditMode;

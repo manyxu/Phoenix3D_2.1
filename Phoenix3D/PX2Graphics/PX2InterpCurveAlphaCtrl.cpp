@@ -13,6 +13,8 @@ PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveFloatController, InterpCurveAlphaControll
 InterpCurveAlphaController::InterpCurveAlphaController () :
 InterpCurveFloatController(1.0f)
 {
+	SetName("ICCtrl_Alpha");
+
 	SetRelatively(false);
 }
 //----------------------------------------------------------------------------

@@ -19,7 +19,17 @@
 			ET_MAXTYPE
 		};
 		void SetEditType(EditType type);
-		EditType GetEditType() const;
+		EditType GetEditType() const;		
+		
+		enum EditAxisMode
+		{
+			EAM_WORLD,
+			EAM_LOCAL,
+			EAM_PARENT,
+			EMA_MAX_MODE
+		};
+		void SetEditAxisMode(EditAxisMode mode);
+		EditAxisMode GetEdtiAxisMode() const;
 
 		enum EditMode
 		{

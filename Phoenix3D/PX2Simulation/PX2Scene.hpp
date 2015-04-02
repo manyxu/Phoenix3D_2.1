@@ -45,6 +45,9 @@ namespace PX2
 
 		Actor *GetActorByID(int id);
 
+		void SetShowHelpNode(bool showHelpNode);
+		bool IsShowHelpNode() const;
+
 	protected:
 		virtual void OnChildAdded(Movable *child);
 		virtual void OnChildRemoved(Movable *child);
@@ -57,6 +60,7 @@ namespace PX2
 		AmbientRegionActorPtr mDefaultAmbientRegionActor;
 		TerrainActorPtr mTerrainActor;
 		SkyActorPtr mSkyActor;
+		bool mIsShowHelpNode;
 
 	public:
 		static int GetNextID();

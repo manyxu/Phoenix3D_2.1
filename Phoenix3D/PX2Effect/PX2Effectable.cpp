@@ -105,8 +105,6 @@ void Effectable::SetLocal (bool l)
 	{
 		mMaterialInstance->SetVertexConstant(0, "PVWMatrix", new0 PVMatrixConstant());
 	}
-
-	Reset();
 }
 //----------------------------------------------------------------------------
 void Effectable::SetFaceType (FaceType type)

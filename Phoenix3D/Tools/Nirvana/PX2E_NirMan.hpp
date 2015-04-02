@@ -47,7 +47,8 @@ namespace PX2
 		PX2wxAuiToolBar *GetCurToolBar();
 
 		void AddTool(const std::string &icon, std::string &script, const std::string &helpStr="", int type=0);
-		void AddToolChoose(const std::string &choose0, 
+		void AddToolChoose(const std::string &script, 
+			const std::string &choose0,
 			const std::string &choose1 = "",
 			const std::string &choose2 = "",
 			const std::string &choose3 = "", 

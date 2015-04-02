@@ -16,6 +16,7 @@ int Edit::msEditorID = 6001;
 //----------------------------------------------------------------------------
 Edit::Edit() :
 mEditType(ET_SCENE),
+mEditAxisMode(EAM_WORLD),
 mEditMode(EM_NONE),
 mEditMap(0),
 mGeoObjFactory(0),
@@ -161,6 +162,14 @@ void Edit::SetEditType(EditType type)
 	}
 
 	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SetEditType);
+	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void Edit::SetEditAxisMode(EditAxisMode mode)
+{
+	mEditAxisMode = mode;
+
+	Event *ent = EditEventSpace::CreateEventX(EditEventSpace::SetEditAxisMode);
 	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------

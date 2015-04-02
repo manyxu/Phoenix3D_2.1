@@ -6,7 +6,7 @@
 #include "PX2Actor.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, Node, Scene);
+PX2_IMPLEMENT_RTTI_V(PX2, Node, Scene, 1);
 PX2_IMPLEMENT_STREAM(Scene);
 PX2_IMPLEMENT_FACTORY(Scene);
 PX2_IMPLEMENT_DEFAULT_NAMES(Node, Scene);
@@ -35,6 +35,8 @@ Scene::Scene()
 	AttachChild(mDefaultAmbientRegionActor);
 
 	SetColor(Float3::WHITE);
+
+	mIsShowHelpNode = true;
 }
 //----------------------------------------------------------------------------
 Scene::~Scene()
@@ -146,6 +148,25 @@ void Scene::OnChildRemoved(Movable *child)
 	}
 }
 //----------------------------------------------------------------------------
+void _SceneTravelExecuteFun (Movable *mov, Any *data)
+{
+	Actor *actor = DynamicCast<Actor>(mov);
+
+	if (actor)
+	{
+		bool show = PX2_ANY_AS(*data , bool);
+		actor->GetNodeHelp()->Show(show);
+	}
+}
+//----------------------------------------------------------------------------
+void Scene::SetShowHelpNode(bool showHelpNode)
+{
+	mIsShowHelpNode = showHelpNode;
+
+	Any data = showHelpNode;
+	Node::TravelExecute(this, _SceneTravelExecuteFun, &data);
+}
+//----------------------------------------------------------------------------
 void Scene::UpdateWorldData(double applicationTime, double elapsedTime)
 {
 	Node::UpdateWorldData(applicationTime, elapsedTime);
@@ -163,6 +184,7 @@ void Scene::RegistProperties()
 
 	AddProperty("NumActors", PT_INT, (int)mActors.size(), false);
 	AddProperty("Size", PT_SIZE, mSize);
+	AddProperty("IsShowHelpNode", PT_BOOL, IsShowHelpNode());
 }
 //----------------------------------------------------------------------------
 void Scene::OnPropertyChanged(const PropertyObject &obj)
@@ -173,6 +195,10 @@ void Scene::OnPropertyChanged(const PropertyObject &obj)
 	{
 		SetSize(PX2_ANY_AS(obj.Data, Sizef));
 	}
+	else if ("IsShowHelpNode" == obj.Name)
+	{
+		SetShowHelpNode(PX2_ANY_AS(obj.Data, bool));
+	}
 }
 //----------------------------------------------------------------------------
 
@@ -180,7 +206,8 @@ void Scene::OnPropertyChanged(const PropertyObject &obj)
 // 持久化支持
 //----------------------------------------------------------------------------
 Scene::Scene(LoadConstructor value) :
-Node(value)
+Node(value),
+mIsShowHelpNode(true)
 {
 }
 //----------------------------------------------------------------------------
@@ -197,6 +224,12 @@ void Scene::Load(InStream& source)
 	source.ReadPointer(mDefaultAmbientRegionActor);
 	source.ReadPointer(mTerrainActor);
 	source.ReadPointer(mSkyActor);
+
+	int readedVersion = GetReadedVersion();
+	if (1 <= readedVersion)
+	{
+		source.ReadBool(mIsShowHelpNode);
+	}
 
 	PX2_END_DEBUG_STREAM_LOAD(Scene, source);
 }
@@ -264,6 +297,8 @@ void Scene::Save(OutStream& target) const
 	target.WritePointer(mTerrainActor);
 	target.WritePointer(mSkyActor);
 
+	target.WriteBool(mIsShowHelpNode);
+
 	PX2_END_DEBUG_STREAM_SAVE(Scene, target);
 }
 //----------------------------------------------------------------------------
@@ -277,6 +312,19 @@ int Scene::GetStreamingSize(Stream &stream) const
 	size += PX2_POINTERSIZE(mDefaultAmbientRegionActor);
 	size += PX2_POINTERSIZE(mTerrainActor);
 	size += PX2_POINTERSIZE(mSkyActor);
+
+	if (stream.IsIn())
+	{
+		int readedVersion = GetReadedVersion();
+		if (1 <= readedVersion)
+		{
+			size += PX2_BOOLSIZE(mIsShowHelpNode);
+		}
+	}
+	else
+	{
+		size += PX2_BOOLSIZE(mIsShowHelpNode);
+	}
 
 	return size;
 }

@@ -26,6 +26,11 @@ inline SkyActor *Scene::GetSkyActor()
 	return mSkyActor;
 }
 //----------------------------------------------------------------------------
+inline bool Scene::IsShowHelpNode() const
+{
+	return mIsShowHelpNode;
+}
+//----------------------------------------------------------------------------
 inline Scene::SceneManageType Scene::GetSceneManageType()
 {
 	return mSceneManageType;

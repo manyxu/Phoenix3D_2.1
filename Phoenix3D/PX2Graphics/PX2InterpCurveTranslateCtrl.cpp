@@ -10,10 +10,11 @@ PX2_IMPLEMENT_FACTORY(InterpCurveTranslateController);
 PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveFloat3Controller, InterpCurveTranslateController);
 
 //----------------------------------------------------------------------------
-InterpCurveTranslateController::InterpCurveTranslateController ()
-	:
+InterpCurveTranslateController::InterpCurveTranslateController () :
 InterpCurveFloat3Controller(Float3::ZERO)
 {
+	SetName("ICCtrl_Translate");
+
 	SetPriority(11);
 }
 //----------------------------------------------------------------------------

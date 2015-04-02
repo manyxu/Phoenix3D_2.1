@@ -8,8 +8,7 @@ PX2_IMPLEMENT_STREAM(Node);
 PX2_IMPLEMENT_FACTORY(Node);
 
 //----------------------------------------------------------------------------
-Node::Node ()
-	:
+Node::Node () :
 mIsDoPickPriority(false),
 mIsNeedCalUpdateChild(true),
 mAnchorID(0)

@@ -116,7 +116,9 @@ void Selection::Translate(PX2::AVector vec)
 		if (mov)
 		{
 			APoint transBefore = mov->LocalTransform.GetTranslate();
-			mov->LocalTransform.SetTranslate(transBefore + vec);
+			APoint toPos = transBefore + vec;
+			mov->LocalTransform.SetTranslate(toPos);
+
 			mov->Update(GetTimeInSeconds(), false);
 		}
 	}

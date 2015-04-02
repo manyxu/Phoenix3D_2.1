@@ -13,6 +13,9 @@ PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveFloat3Controller, InterpCurveColorControl
 InterpCurveColorController::InterpCurveColorController() :
 InterpCurveFloat3Controller(Float3::ZERO)
 {
+	SetName("ICCtrl_Color");
+
+	SetRelatively(false);
 }
 //----------------------------------------------------------------------------
 InterpCurveColorController::~InterpCurveColorController()

@@ -40,6 +40,7 @@ namespace PX2Editor
 
 		void OnTimer(wxTimerEvent& e);
 		void OnCommondItem(wxCommandEvent &e);
+		void OnChooseItem(wxCommandEvent &e);
 		void OnMenuToolItem(wxMouseEvent &e);
 		void OnMenuClose(wxMenuEvent &e);
 		void OnAllowNotebookDnD(wxAuiNotebookEvent& evt);
@@ -93,6 +94,10 @@ namespace PX2Editor
 		void TimeLine_SelectCtrl_OutValue();
 		void TimeLine_SelectCtrl_Delete();
 
+		void OnProjectTreeShowLevel(int level);
+		void OnProjectExpandSelect();
+		void OnProjectCollapseSelect();
+
 	public:
 		wxMenu *AddMainMenuItem(const std::string &title);
 		wxMenuItem *AddMenuItem(wxMenu *menu, const std::string &title,
@@ -105,8 +110,10 @@ namespace PX2Editor
 		// 0 noraml, 1 check, 2 radio
 		void AddTool(PX2wxAuiToolBar *toolBar, const std::string &icon, const std::string &script, 
 			const std::string &helpStr="", int type=0);
-		void AddToolChoose(PX2wxAuiToolBar *toolBar, const std::string &choose0, const std::string &choose1 = "",
-			const std::string &choose2 = "", const std::string &choose3 = "", const std::string &choose4 = "");
+		void AddToolChoose(PX2wxAuiToolBar *toolBar, const std::string &script, 
+			const std::string &choose0, const std::string &choose1 = "",
+			const std::string &choose2 = "", const std::string &choose3 = "", 
+			const std::string &choose4 = "");
 		void AddToolSeparater(PX2wxAuiToolBar *toolBar);
 		void AddToolStretch(PX2wxAuiToolBar *toolBar);
 

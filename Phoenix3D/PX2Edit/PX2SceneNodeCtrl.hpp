@@ -96,6 +96,11 @@ namespace PX2
 			const PX2::APoint &point);
 
 		AxisMode mAxisMode;
+		AVector mDirX;
+		AVector mDirY;
+		AVector mDirZ;
+		HMatrix mParentRotateMat;
+
 		LookType mLookType;
 		CtrlType mCtrlType;
 		PX2::NodePtr mCtrl_P_Translate;

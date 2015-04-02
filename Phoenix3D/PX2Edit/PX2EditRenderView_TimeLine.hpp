@@ -86,6 +86,7 @@ namespace PX2
 
 	protected:
 		void RemoveCurveGroup(EffectModule *module);
+		void RemoveCurveGroup(InterpCurveController *ctrl);
 		void RemoveCurveGroup(Movable *mov);
 	};
 

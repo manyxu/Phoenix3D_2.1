@@ -115,13 +115,14 @@ void NirMan::AddTool(const std::string &icon, std::string &script,
 		helpStr, type);
 }
 //----------------------------------------------------------------------------
-void NirMan::AddToolChoose(const std::string &choose0,
+void NirMan::AddToolChoose(const std::string &script, 
+	const std::string &choose0,
 	const std::string &choose1,
 	const std::string &choose2,
 	const std::string &choose3,
 	const std::string &choose4)
 {
-	E_MainFrame::GetSingletonPtr()->AddToolChoose(mCurToolBar, choose0,
+	E_MainFrame::GetSingletonPtr()->AddToolChoose(mCurToolBar, script, choose0,
 		choose1, choose2, choose3, choose4);
 }
 //----------------------------------------------------------------------------

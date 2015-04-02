@@ -10,12 +10,13 @@ PX2_IMPLEMENT_FACTORY(InterpCurveSpeedController);
 PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveFloat3Controller, InterpCurveSpeedController);
 
 //----------------------------------------------------------------------------
-InterpCurveSpeedController::InterpCurveSpeedController ()
-	:
+InterpCurveSpeedController::InterpCurveSpeedController () :
 InterpCurveFloat3Controller(Float3::ZERO),
 mMaxLength(-1.0f),
 mAllLength(0.0f)
 {
+	SetName("ICCtrl_Speed");
+
 	SetRelatively(false);
 }
 //----------------------------------------------------------------------------

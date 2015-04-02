@@ -40,6 +40,9 @@ namespace PX2Editor
 		void OnSelChanging(wxTreeEvent& event);
 		void OnSelDelete(wxTreeEvent& event);
 
+		void ExpandSelect();
+		void CollapseSelect();
+
 	public_internal:
 		std::map<std::string, int> Icons;
 
