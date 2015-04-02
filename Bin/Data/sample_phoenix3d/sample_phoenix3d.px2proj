@@ -4,6 +4,6 @@
 	<render_setting scene_isusebloom="false" scene_bloomrendertarget_sizesamewithscreen="true" scene_bloomrendertarget_width="512.000000" scene_bloomrendertarget_height="512.000000" scene_bloombrightweight="0.800000" scene_bloomblurdeviation="1.000000" scene_bloomblurweight="1.000000" scene_bloomweight="0.800000" scene_isuseshadowmap="false"/>
 	<language/>
 	<publish/>
-	<edit_setting uicamerapercent="1.859999"/>
+	<edit_setting uicamerapercent="2.079999"/>
 </project>
 
