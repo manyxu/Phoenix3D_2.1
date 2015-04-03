@@ -28,6 +28,8 @@ GraphicsRoot::GraphicsRoot ()
 
 	MaterialManager *mi = new0 MaterialManager();
 	PX2_UNUSED(mi);
+
+	mCurEnvirParam = new0 EnvirParam();
 }
 //----------------------------------------------------------------------------
 GraphicsRoot::~GraphicsRoot ()

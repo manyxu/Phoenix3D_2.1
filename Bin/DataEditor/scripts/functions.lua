@@ -188,6 +188,12 @@ function e_SceneActor_CreateSphere()
 	PX2_CREATER:CreateActor_Sphere(scene, pickPos)
 end
 
+function e_SceneActor_CreateActor()
+	local scene = PX2_PROJ:GetScene()
+	local pickPos = PX2_EDIT:GetPickPos()
+	PX2_CREATER:CreateActor_Actor(scene, pickPos)
+end
+
 function e_SceneActor_CreateCharacter()
 	local scene = PX2_PROJ:GetScene()
 	local pickPos = PX2_EDIT:GetPickPos()

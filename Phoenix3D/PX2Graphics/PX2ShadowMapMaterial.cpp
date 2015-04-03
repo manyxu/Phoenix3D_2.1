@@ -33,6 +33,7 @@ void ShadowMap_Material::Draw(Renderer* renderer, const VisibleSet& visibleSet)
 		renderer->Draw(renderable);
 
 		renderable->SetMaterialInstance(save);
+		save->Update(0.0f, 0.0f);
 	}
 }
 //----------------------------------------------------------------------------

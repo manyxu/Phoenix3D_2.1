@@ -86,10 +86,17 @@ void p_std_light
 	texCoord.xy += UVOffset.xy;
 	float4 lastColor = tex2D(SampleBase, texCoord);
 	
-	lastColor *= vertexColor;
+	if (lastColor.a < 0.25)
+	{
+		discard;
+	}
+	else
+	{
+		lastColor *= vertexColor;
 	
-	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.x);
-	lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.y);
+		lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.x);
+		lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.y);
 	
-	pixelColor = lastColor;
+		pixelColor = lastColor;
+	}
 }

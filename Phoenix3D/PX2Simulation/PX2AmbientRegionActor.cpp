@@ -32,7 +32,7 @@ mLightCameraLookDistance(100.0f)
 	mFogColorDist = Float3::WHITE;
 	mFogParamDist = Float2(80.0f, 120.0f);
 
-	CreateHelpNode()->Show(false);
+	CreateGetHelpNode()->Show(false);
 }
 //----------------------------------------------------------------------------
 AmbientRegionActor::~AmbientRegionActor()
@@ -196,9 +196,16 @@ void AmbientRegionActor::_UpdateDirLightCamera()
 				lightDir->UVector, lightDir->RVector);
 		}
 
-		projector->SetFrustum(0.1f, Mathf::FAbs(500.0f),
-			-mLightCameraExtent, mLightCameraExtent, -mLightCameraExtent,
-			mLightCameraExtent);
+		if (!projector->IsPerspective())
+		{
+			projector->SetFrustum(0.1f, Mathf::FAbs(500.0f),
+				-mLightCameraExtent, mLightCameraExtent, -mLightCameraExtent,
+				mLightCameraExtent);
+		}
+		else
+		{
+			projector->SetFrustum(35.0f, 960.0f / 640.0f, 1.0f, 1000.0f);
+		}
 	}
 }
 //----------------------------------------------------------------------------

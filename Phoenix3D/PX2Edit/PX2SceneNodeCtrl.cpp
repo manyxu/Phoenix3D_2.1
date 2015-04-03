@@ -958,7 +958,7 @@ void BoundCtrl::DoExecute(PX2::Event *event)
 	{
 		UpdateCtrl();
 	}
-	else if (SimuES_E::IsEqual(event, SimuES_E::SetRadius))
+	else if (SimuES_E::IsEqual(event, SimuES_E::BoundChanged))
 	{
 		UpdateCtrl();
 	}

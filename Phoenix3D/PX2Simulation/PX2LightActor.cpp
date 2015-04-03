@@ -32,7 +32,7 @@ LightActor::LightActor()
 	MaterialInstancePtr mtlInst = mtl->CreateInstance();
 
 	StandardMesh stdMesh(vf);
-	stdMesh.SetVertexColor(Float4(0.0f, 1.0f, 0.0f, 1.0f));
+	stdMesh.SetVertexColor(Float4(1.0f, 1.0f, 0.0f, 1.0f));
 
 	TriMesh *mesh = stdMesh.Octahedron();
 	mesh->LocalTransform.SetUniformScale(0.5f);
@@ -44,7 +44,8 @@ LightActor::LightActor()
 	box->SetMaterialInstance(mtlInst);
 	helpNode->AttachChild(box);
 
-	CreateHelpNode()->AttachChild(helpNode);
+	CreateGetHelpNode()->AttachChild(helpNode);
+	CreateGetHelpNode()->SetParentTransformIngore(false, false, true);
 
 	WorldBoundIsCurrent = true;
 	SetRadius(1.0f);
@@ -93,7 +94,7 @@ void LightActor::SetRadius(float radius)
 
 	if (PX2_GR.IsInEditor())
 	{
-		Event *ent = SimuES_E::CreateEventX(SimuES_E::SetRadius);
+		Event *ent = SimuES_E::CreateEventX(SimuES_E::BoundChanged);
 		PX2_EW.BroadcastingLocalEvent(ent);
 	}
 }
@@ -113,26 +114,27 @@ void LightActor::UpdateWorldData(double applicationTime, double elapsedTime)
 //----------------------------------------------------------------------------
 void LightActor::SetParent(Movable* parent)
 {
-	Actor::SetParent(parent);
-
-	Scene *scene = DynamicCast<Scene>(parent->GetTopestParent());
-	if (scene)
+	if (parent)
 	{
+		Scene *scene = DynamicCast<Scene>(parent);
+		if (!scene)scene = DynamicCast<Scene>(parent->GetTopestParent());
 		EnvirParam *envirParam = scene->GetEnvirParam();
 
-		if (parent)
-		{
-			envirParam->AddLight(mLight);
-		}
-		else
-		{
-			envirParam->RemoveLight(mLight);
-		}
+		envirParam->AddLight(mLight);
 	}
 	else
 	{
-		assertion(false, "There must be a scene.");
+		if (mParent)
+		{
+			Scene *scene = DynamicCast<Scene>(mParent);
+			if (!scene)scene = DynamicCast<Scene>(mParent->GetTopestParent());
+			EnvirParam *envirParam = scene->GetEnvirParam();
+
+			envirParam->RemoveLight(mLight);
+		}
 	}
+
+	Actor::SetParent(parent);
 }
 //----------------------------------------------------------------------------
 

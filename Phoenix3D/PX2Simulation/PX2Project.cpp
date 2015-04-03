@@ -290,8 +290,7 @@ bool Project::Load(const std::string &filename)
 				mSceneRenderStep->SetScene_BloomBlurDeviation(mScene_BloomBlurDeviation);
 				mSceneRenderStep->SetScene_BloomBlurWeight(mScene_BloomBlurWeight);
 				mSceneRenderStep->SetScene_BloomWeight(mScene_BloomWeight);
-
-				mSceneRenderStep->SetUseShaderMap(mIsScene_UseShadowMap);
+				mSceneRenderStep->SetUseShaderMap(true);
 			}
 		}
 	}
@@ -541,7 +540,7 @@ void Project::SetScene_UseShadowMap(bool isUseShadowMap)
 
 	if (mSceneRenderStep)
 	{
-		//mSceneRenderStep->SetUseShaderMap(isUseShadowMap);
+		mSceneRenderStep->SetUseShaderMap(isUseShadowMap);
 	}
 }
 //----------------------------------------------------------------------------

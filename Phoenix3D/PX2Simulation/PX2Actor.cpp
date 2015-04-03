@@ -73,7 +73,7 @@ void Actor::SetMovableFilename(const std::string &filename, bool shareVI)
 	}
 }
 //----------------------------------------------------------------------------
-Node *Actor::CreateHelpNode()
+Node *Actor::CreateGetHelpNode()
 {
 	if (!mHelpNode)
 	{

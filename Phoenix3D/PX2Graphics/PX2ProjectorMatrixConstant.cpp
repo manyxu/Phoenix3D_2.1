@@ -3,6 +3,7 @@
 #include "PX2ProjectorMatrixConstant.hpp"
 #include "PX2Camera.hpp"
 #include "PX2Renderable.hpp"
+#include "PX2GraphicsRoot.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, ShaderFloat, ProjectorMatrixConstant);
@@ -31,6 +32,9 @@ Projector* ProjectorMatrixConstant::GetProjector ()
 //----------------------------------------------------------------------------
 void ProjectorMatrixConstant::Update(const ShaderStruct *struc)
 {
+	mProjector = PX2_GR.GetCurEnvirParam()->GetLight_Dir_Projector();
+	if (!mProjector) return;
+
 	const Renderable *renderable = struc->TheRenderable;
 
 	const HMatrix& PVMatrix = mProjector->GetProjectionViewMatrix();

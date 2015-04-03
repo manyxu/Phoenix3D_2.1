@@ -73,7 +73,7 @@ int ShaderParameters::SetTexture (const std::string& name, Texture* texture)
 		}
 	}
 
-	assertion(false, "Cannot find texture:%s\n", name.c_str());
+	//assertion(false, "Cannot find texture:%s\n", name.c_str());
 	return -1;
 }
 //----------------------------------------------------------------------------

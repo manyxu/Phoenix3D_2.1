@@ -63,10 +63,6 @@ void RenderStepScene::Update(double appSeconds, double elapsedSeconds)
 	PX2_GR.SetCurEnvirParam(sceneEnvirParam);
 	mRenderer->SetCamera(mCamera);
 
-	if (mEffect_RenderTarget_Shadow)
-		sceneEnvirParam->SetLight_Dir_DepthTexture(
-		mEffect_RenderTarget_Shadow->GetDepthStencilTexture());
-
 	PX2_UNUSED(elapsedSeconds);
 	if (mNode) mNode->Update(appSeconds, elapsedSeconds, false);
 
@@ -121,30 +117,33 @@ void RenderStepScene::Draw()
 	EnvirParam *sceneEnvirParam = scene->GetEnvirParam();
 	PX2_GR.SetCurEnvirParam(sceneEnvirParam);
 
+	// shadow map depth
+	if (mEffect_RenderTarget_Shadow)
+	{
+		mRenderer->Enable(mEffect_RenderTarget_Shadow);
+
+		sceneEnvirParam->SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetDepthStencilTexture());
+		mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
+
+		mRenderer->InitRenderStates();
+		mRenderer->SetClearColor(Float4(0.0f, 0.0f, 0.0f, 0.0f));
+		mRenderer->ClearBuffers();
+
+		Projector *lightProjector = scene->GetEnvirParam()->GetLight_Dir_Projector();
+		mRenderer->SetCamera(lightProjector);
+		mRenderer->Draw(mEffect_Culler_Shadow.GetVisibleSet(), mEffect_Material_Shadow);
+		mRenderer->Disable(mEffect_RenderTarget_Shadow);
+	}
+
 	Rectf viewPort = mViewPort;
 	if (viewPort.IsEmpty()) viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
 	mRenderer->SetViewport(viewPort);
 
-	// shadow map depth
-
-	if (mIsUseShaderMap)
-	{
-		if (mEffect_RenderTarget_Shadow)
-		{
-			mRenderer->Enable(mEffect_RenderTarget_Shadow);
-			mRenderer->InitRenderStates();
-			mRenderer->ClearBuffers();
-
-			Projector *lightProjector = scene->GetEnvirParam()->GetLight_Dir_Projector();
-			mRenderer->SetCamera(lightProjector);
-			mRenderer->Draw(mEffect_Culler_Shadow.GetVisibleSet(), mEffect_Material_Shadow);
-			mRenderer->Disable(mEffect_RenderTarget_Shadow);
-		}
-	}
-
 	// normal
 	if (!mIsUseBloom)
 	{
+		mRenderer->SetCamera(mCamera);
+
 		if (mHelpGridRenderStep)
 			mHelpGridRenderStep->Draw();
 
@@ -600,7 +599,7 @@ void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 
 	if (mIsUseShaderMap)
 	{
-		Texture::Format tformat = Texture::TF_A8R8G8B8;
+		Texture::Format tformat = Texture::TF_A32B32G32R32F;
 		mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, 1024, 1024, false, true);
 		mEffect_Material_Shadow = new0 ShadowMap_Material();
 
@@ -609,7 +608,6 @@ void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 
 		mEffect_UIPicBox_Shadow->SetAnchorPoint(Float2::ZERO);
 		mEffect_UIPicBox_Shadow->SetSize(Sizef(256.0f, 256.0f));
-		mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
 	}
 }
 //----------------------------------------------------------------------------

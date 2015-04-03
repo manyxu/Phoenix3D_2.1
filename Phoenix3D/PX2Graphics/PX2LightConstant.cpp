@@ -19,6 +19,8 @@ mIsDefualtDir(false)
 {
 	EnableUpdater();
 
+	if (!mLight) return;
+
 	const float* source = (const float*)mLight->Diffuse;
 	float* target = mData;
 	for (int i = 0; i < 4; ++i)

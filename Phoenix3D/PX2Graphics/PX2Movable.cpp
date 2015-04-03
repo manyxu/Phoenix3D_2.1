@@ -4,7 +4,7 @@
 #include "PX2Culler.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Controlledable, Movable, 3);
+PX2_IMPLEMENT_RTTI_V(PX2, Controlledable, Movable, 4);
 PX2_IMPLEMENT_STREAM(Movable);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(Movable);
 
@@ -471,6 +471,13 @@ void Movable::Load (InStream& source)
 		source.Read(mBrightness);
 	}
 
+	if (4 <= readedVersion)
+	{
+		source.ReadBool(mIsIngoreParent_Translate);
+		source.ReadBool(mIsIngoreParent_Rotate);
+		source.ReadBool(mIsIngoreParent_Scale);
+	}
+
     PX2_END_DEBUG_STREAM_LOAD(Movable, source);
 }
 //----------------------------------------------------------------------------
@@ -516,6 +523,10 @@ void Movable::Save (OutStream& target) const
 	target.WriteBool(mIsBrightnessSelfCtrled);
 	target.Write(mBrightness);
 
+	target.WriteBool(mIsIngoreParent_Translate);
+	target.WriteBool(mIsIngoreParent_Rotate);
+	target.WriteBool(mIsIngoreParent_Scale);
+
 	// mParent不被保存，它会在Node::Link中调用Node::SetChild被设置。
 
     PX2_END_DEBUG_STREAM_SAVE(Movable, target);
@@ -551,6 +562,12 @@ int Movable::GetStreamingSize (Stream &stream) const
 			size += PX2_BOOLSIZE(mIsBrightnessSelfCtrled);
 			size += sizeof(mBrightness);
 		}
+		if (4 <= readedVersion)
+		{
+			size += PX2_BOOLSIZE(mIsIngoreParent_Translate);
+			size += PX2_BOOLSIZE(mIsIngoreParent_Rotate);
+			size += PX2_BOOLSIZE(mIsIngoreParent_Scale);
+		}
 	}
 	else
 	{
@@ -560,6 +577,10 @@ int Movable::GetStreamingSize (Stream &stream) const
 
 		size += PX2_BOOLSIZE(mIsBrightnessSelfCtrled);
 		size += sizeof(mBrightness);
+
+		size += PX2_BOOLSIZE(mIsIngoreParent_Translate);
+		size += PX2_BOOLSIZE(mIsIngoreParent_Rotate);
+		size += PX2_BOOLSIZE(mIsIngoreParent_Scale);
 	}
 
     // mParent不被持久化

@@ -104,16 +104,19 @@ Material *MaterialManager::GetMaterial(const FString &filename,
 	}
 }
 //----------------------------------------------------------------------------
-void MaterialManager::AddMaterial(const FString &filename, Material *mtl)
+void MaterialManager::AddMaterial(const FString &filename, 
+	const FString &techName, Material *mtl)
 {
+	std::string allName = std::string(filename) + std::string(techName);
+
 	int shaderKey = 99999;
-	std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(filename);
+	std::map<FString, _MtlObject>::iterator it = mMaterialMap.find(allName.c_str());
 	if (it == mMaterialMap.end())
 	{
 		shaderKey = QueryShaderKey();
 
-		mMaterialMap[filename].TheMaterial = mtl;
-		mMaterialMap[filename].ShaderKey = shaderKey;
+		mMaterialMap[allName.c_str()].TheMaterial = mtl;
+		mMaterialMap[allName.c_str()].ShaderKey = shaderKey;
 	}
 	else
 	{
@@ -147,8 +150,7 @@ void MaterialManager::_SetMaterialShaderKey(Material *mtl, int shaderKey)
 	}
 }
 //----------------------------------------------------------------------------
-ShaderFloat *MaterialManager::CreateShaderFloat(EnvirParam *env, 
-	const FString &name, int numRegister)
+ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name, int numRegister)
 {
 	ShaderFloat *shaderFloat = 0;
 
@@ -162,8 +164,7 @@ ShaderFloat *MaterialManager::CreateShaderFloat(EnvirParam *env,
 	}
 	else if (FString("ProjectPVBSMatrix_Dir") == name)
 	{
-		shaderFloat = new0 ProjectorMatrixConstant(
-			env->GetLight_Dir_Projector(), true);
+		shaderFloat = new0 ProjectorMatrixConstant(0, true);
 	}
 	else if (FString("ShineEmissive") == name)
 	{
@@ -191,22 +192,22 @@ ShaderFloat *MaterialManager::CreateShaderFloat(EnvirParam *env,
 	}
 	else if (FString("LightWorldDVector_Dir") == name)
 	{
-		shaderFloat = new0 LightWorldDVectorConstant(env->GetLight_Dir());
+		shaderFloat = new0 LightWorldDVectorConstant(0);
 		((LightConstant*)shaderFloat)->SetDefaultDir(true);
 	}
 	else if (FString("LightAmbient_Dir") == name)
 	{
-		shaderFloat = new0 LightAmbientConstant(env->GetLight_Dir());
+		shaderFloat = new0 LightAmbientConstant(0);
 		((LightConstant*)shaderFloat)->SetDefaultDir(true);
 	}
 	else if (FString("LightDiffuse_Dir") == name)
 	{
-		shaderFloat = new0 LightDiffuseConstant(env->GetLight_Dir());
+		shaderFloat = new0 LightDiffuseConstant(0);
 		((LightConstant*)shaderFloat)->SetDefaultDir(true);
 	}
 	else if (FString("LightSpecular_Dir") == name)
 	{
-		shaderFloat = new0 LightSpecularConstant(env->GetLight_Dir());
+		shaderFloat = new0 LightSpecularConstant(0);
 		((LightConstant*)shaderFloat)->SetDefaultDir(true);
 	}
 	else if (FString("LightGroup") == name)

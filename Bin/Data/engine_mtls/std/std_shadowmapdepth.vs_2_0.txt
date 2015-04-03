@@ -12,7 +12,8 @@ vs_2_0
 //var float2 modelTCoord0 : $vin.TEXCOORD0 : ATTR1 : 1 : 1
 //var float4 clipPosition : $vout.POSITION : HPOS : 2 : 1
 //var float2 vertexTCoord0 : $vout.TEXCOORD0 : TEX0 : 3 : 1
-//var float4x4 PVWMatrix :  : c[0], 4 : 4 : 1
+//var float2 vertexTCoord1 : $vout.TEXCOORD1 : TEX1 : 4 : 1
+//var float4x4 PVWMatrix :  : c[0], 4 : 5 : 1
 //var sampler2D SampleBase :  :  : -1 : 0
 //const c[4] = 1
 def c4, 1.00000000, 0, 0, 0
@@ -20,8 +21,10 @@ dcl_position0 v0
 dcl_texcoord0 v1
 mov r0.w, c4.x
 mov r0.xyz, v0
+dp4 r1.x, r0, c2
 dp4 oPos.w, r0, c3
-dp4 oPos.z, r0, c2
+mov oPos.z, r1.x
 dp4 oPos.y, r0, c1
 dp4 oPos.x, r0, c0
+mov oT1.x, r1
 mov oT0.xy, v1

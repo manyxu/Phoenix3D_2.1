@@ -7,6 +7,7 @@
 #include "PX2StandardMesh.hpp"
 #include "PX2VertexColor4Material.hpp"
 #include "PX2GraphicsRoot.hpp"
+#include "PX2SimulationEventType.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Actor, Character);
@@ -20,7 +21,9 @@ mDefaultAnimID(0),
 mBaseHPCurLevel(0.0f),
 mIsDieDoDelete(true),
 mBaseAPCurLevel(0.0f),
-mIsDead(false)
+mIsDead(false),
+mIsMovableAutoWorldBound(true),
+mMovableAutoWorldBoundRadius(2.0f)
 {
 	SetName("Chara");
 
@@ -28,7 +31,6 @@ mIsDead(false)
 	PX2_INIT_PM_F(AP);
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
-
 	StandardMesh stdMesh(vf);
 	stdMesh.SetVertexColor(Float4(1.0f, 0.0f, 0.0f, 1.0f));
 	TriMesh *mesh = stdMesh.Box(0.5f, 0.5f, 0.5f);
@@ -37,7 +39,9 @@ mIsDead(false)
 	mtl->GetCullProperty(0, 0)->Enabled = false;
 	mesh->LocalTransform.SetUniformScale(0.5f);
 	mesh->SetMaterialInstance(mtl->CreateInstance());
-	CreateHelpNode()->AttachChild(mesh);
+	CreateGetHelpNode()->DetachAllChildren();
+	CreateGetHelpNode()->AttachChild(mesh);
+	CreateGetHelpNode()->SetParentTransformIngore(false, false, true);
 }
 //----------------------------------------------------------------------------
 Character::~Character()
@@ -48,22 +52,21 @@ void Character::UpdateWorldData(double applicationTime, double elapsedTime)
 {
 	Actor::UpdateWorldData(applicationTime, elapsedTime);
 
-	// auto worldbound
+	_AnimationBlend();
+
 	if (mMovable)
 	{
-		if (mIsAutoWorldBound)
+		if (mIsMovableAutoWorldBound)
 		{
 			mMovable->WorldBoundIsCurrent = true;
-			mMovable->WorldBound.SetCenter(LocalTransform.GetTranslate());
-			mMovable->WorldBound.SetRadius(mAutoWorldBoundRadius);
+			mMovable->WorldBound.SetCenter(WorldTransform.GetTranslate());
+			mMovable->WorldBound.SetRadius(mMovableAutoWorldBoundRadius);
 		}
 		else
 		{
 			mMovable->WorldBoundIsCurrent = false;
 		}
 	}
-
-	_AnimationBlend();
 }
 //----------------------------------------------------------------------------
 void Character::_AnimationBlend()
@@ -154,6 +157,8 @@ void Character::SetMovableFilename(const std::string &filename, bool shareVI)
 	// 为动作树每个Node加一个BlendTransformController
 	if (mModelAnimMovable)
 		_CalAnimNode(mModelAnimMovable);
+
+	SetMovableAutoWorldBoundRadius(mMovableAutoWorldBoundRadius);
 }
 //----------------------------------------------------------------------------
 void Character::_CalSkins()
@@ -260,12 +265,81 @@ void Character::_CalAnimNode(Movable *mov)
 	}
 }
 //----------------------------------------------------------------------------
+void Character::SetMovableAutoWorldBoundRadius(float radius)
+{
+	mMovableAutoWorldBoundRadius = radius;
+
+	if (mMovable)
+	{
+		if (mIsMovableAutoWorldBound)
+		{
+			mMovable->WorldBoundIsCurrent = true;
+			mMovable->WorldBound.SetCenter(WorldTransform.GetTranslate());
+			mMovable->WorldBound.SetRadius(mMovableAutoWorldBoundRadius);
+		}
+		else
+		{
+			mMovable->WorldBoundIsCurrent = false;
+		}
+
+		UpdateWorldBound();
+	}
+
+	if (PX2_GR.IsInEditor())
+	{
+		Event *ent = SimuES_E::CreateEventX(SimuES_E::BoundChanged);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+}
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+// Property
+//----------------------------------------------------------------------------
+void Character::RegistProperties()
+{
+	Actor::RegistProperties();
+
+	AddPropertyClass("Character");
+
+	AddProperty("IsMovableAutoWorldBound", PT_BOOL, mIsMovableAutoWorldBound);
+	AddProperty("MovableAutoWorldBoundRadius", PT_FLOAT, 
+		mMovableAutoWorldBoundRadius);
+	AddProperty("NumAnimations", PT_INT, (int)mAnimsMap.size(), false);
+	AddProperty("DefaultAnimID", PT_INT, mDefaultAnimID);
+}
+//----------------------------------------------------------------------------
+void Character::OnPropertyChanged(const PropertyObject &obj)
+{
+	Actor::OnPropertyChanged(obj);
+
+	if ("IsMovableAutoWorldBound" == obj.Name)
+	{
+		SetMovableUseAutoWorldBound(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("MovableAutoWorldBoundRadius" == obj.Name)
+	{
+		SetMovableAutoWorldBoundRadius(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("DefaultAnimID" == obj.Name)
+	{
+		SetDefaultAnimID(PX2_ANY_AS(obj.Data, int));
+	}
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
 Character::Character(LoadConstructor value) :
-Actor(value)
+Actor(value),
+mDefaultAnimID(0),
+mBaseHPCurLevel(0.0f),
+mIsDieDoDelete(true),
+mBaseAPCurLevel(0.0f),
+mIsDead(false),
+mIsMovableAutoWorldBound(true),
+mMovableAutoWorldBoundRadius(2.0f)
 {
 }
 //----------------------------------------------------------------------------

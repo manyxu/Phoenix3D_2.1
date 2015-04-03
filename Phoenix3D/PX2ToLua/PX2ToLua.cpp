@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 04/02/15 16:09:33.
+** Generated automatically by tolua++-1.0.92 on 04/03/15 10:28:06.
 */
 
 #ifndef __cplusplus
@@ -25595,6 +25595,42 @@ static int tolua_PX2_Creater_CreateActor_Effect00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: CreateActor_Actor of class  Creater */
+#ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateActor_Actor00
+static int tolua_PX2_Creater_CreateActor_Actor00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Creater",0,&tolua_err) ||
+     !tolua_isusertype(tolua_S,2,"Scene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,3,&tolua_err) || !tolua_isusertype(tolua_S,3,"const APoint",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Creater* self = (Creater*)  tolua_tousertype(tolua_S,1,0);
+  Scene* scene = ((Scene*)  tolua_tousertype(tolua_S,2,0));
+  const APoint* pos = ((const APoint*)  tolua_tousertype(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateActor_Actor'", NULL);
+#endif
+  {
+   Actor* tolua_ret = (Actor*)  self->CreateActor_Actor(scene,*pos);
+    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Actor");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'CreateActor_Actor'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: CreateActor_Character of class  Creater */
 #ifndef TOLUA_DISABLE_tolua_PX2_Creater_CreateActor_Character00
 static int tolua_PX2_Creater_CreateActor_Character00(lua_State* tolua_S)
@@ -27961,9 +27997,9 @@ static int tolua_PX2_Actor_GetMovable00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: CreateHelpNode of class  Actor */
-#ifndef TOLUA_DISABLE_tolua_PX2_Actor_CreateHelpNode00
-static int tolua_PX2_Actor_CreateHelpNode00(lua_State* tolua_S)
+/* method: CreateGetHelpNode of class  Actor */
+#ifndef TOLUA_DISABLE_tolua_PX2_Actor_CreateGetHelpNode00
+static int tolua_PX2_Actor_CreateGetHelpNode00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -27977,17 +28013,17 @@ static int tolua_PX2_Actor_CreateHelpNode00(lua_State* tolua_S)
  {
   Actor* self = (Actor*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateHelpNode'", NULL);
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'CreateGetHelpNode'", NULL);
 #endif
   {
-   Node* tolua_ret = (Node*)  self->CreateHelpNode();
+   Node* tolua_ret = (Node*)  self->CreateGetHelpNode();
     tolua_pushusertype(tolua_S,(void*)tolua_ret,"Node");
   }
  }
  return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'CreateHelpNode'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'CreateGetHelpNode'.",&tolua_err);
  return 0;
 #endif
 }
@@ -30659,6 +30695,7 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"CreateActor_Box",tolua_PX2_Creater_CreateActor_Box00);
    tolua_function(tolua_S,"CreateActor_Sphere",tolua_PX2_Creater_CreateActor_Sphere00);
    tolua_function(tolua_S,"CreateActor_Effect",tolua_PX2_Creater_CreateActor_Effect00);
+   tolua_function(tolua_S,"CreateActor_Actor",tolua_PX2_Creater_CreateActor_Actor00);
    tolua_function(tolua_S,"CreateActor_Character",tolua_PX2_Creater_CreateActor_Character00);
    tolua_function(tolua_S,"CreateActor_Trigger",tolua_PX2_Creater_CreateActor_Trigger00);
    tolua_function(tolua_S,"CreateActor_Sky",tolua_PX2_Creater_CreateActor_Sky00);
@@ -30749,7 +30786,7 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"IsShareVI",tolua_PX2_Actor_IsShareVI00);
    tolua_function(tolua_S,"SetMovable",tolua_PX2_Actor_SetMovable00);
    tolua_function(tolua_S,"GetMovable",tolua_PX2_Actor_GetMovable00);
-   tolua_function(tolua_S,"CreateHelpNode",tolua_PX2_Actor_CreateHelpNode00);
+   tolua_function(tolua_S,"CreateGetHelpNode",tolua_PX2_Actor_CreateGetHelpNode00);
    tolua_function(tolua_S,"GetNodeHelp",tolua_PX2_Actor_GetNodeHelp00);
    tolua_function(tolua_S,"SetPickable",tolua_PX2_Actor_SetPickable00);
    tolua_function(tolua_S,"IsPickable",tolua_PX2_Actor_IsPickable00);

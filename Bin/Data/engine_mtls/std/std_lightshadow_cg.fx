@@ -94,26 +94,30 @@ void p_std_lightshadow
 	texCoord.xy += UVOffset.xy;
 	float4 lastColor = tex2D(SampleBase, texCoord);
 	
-	// light
-	lastColor *= vertexColor;
-	
-	// shadow
-	float4 texCord = vertexTCoord2;
-
-	//float depth = texCord.z;
-	//float depthVal = tex2D(SampleShadowDepth, texCord.xy).r;
-	
-	float depth = texCord.z/texCord.w;
-	float4 depthColor = tex2Dproj(SampleShadowDepth, texCord);
-	float depthVal = depthColor.x*255+depthColor.y;
-	
-	float lightAmout = 1.0f;
-	if (depth > depthVal) lightAmout = 0.0f;
-	lastColor.rgb *= lightAmout;
-	
-	// fog
-	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.x);
-	lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.y);
+	if (lastColor.a < 0.25)
+	{
+		discard;
+	}
+	else
+	{
+		// light
+		lastColor *= vertexColor;
 		
-	pixelColor = lastColor;
+		// shadow
+		float4 texCord = vertexTCoord2;
+		
+		float depth = texCord.z/texCord.w;
+		float4 depthColor = tex2Dproj(SampleShadowDepth, texCord);
+		float depthVal = depthColor.x*255.0 + depthColor.y;
+		
+		float lightAmout = 1.0f;
+		if (depth > depthVal) lightAmout = 0.2f;
+		lastColor.rgb *= lightAmout;
+		
+		// fog
+		lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.x);
+		lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.y);
+			
+		pixelColor = lastColor;
+	}
 }

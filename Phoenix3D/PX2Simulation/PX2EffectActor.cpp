@@ -18,16 +18,17 @@ EffectActor::EffectActor()
 	SetName("EftAtr");
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
-
 	StandardMesh stdMesh(vf);
-	stdMesh.SetVertexColor(Float4(1.0f, 1.0f, 0.0f, 1.0f));
-	TriMesh *mesh = stdMesh.Octahedron();
+	stdMesh.SetVertexColor(Float4(0.0f, 1.0f, 0.0f, 1.0f));
+	TriMesh *mesh = stdMesh.Box(0.5f, 0.5f, 0.5f);
 	PX2::VertexColor4MaterialPtr mtl = new0 VertexColor4Material();
 	mtl->GetWireProperty(0, 0)->Enabled = true;
 	mtl->GetCullProperty(0, 0)->Enabled = false;
 	mesh->LocalTransform.SetUniformScale(0.5f);
 	mesh->SetMaterialInstance(mtl->CreateInstance());
-	CreateHelpNode()->AttachChild(mesh);
+	CreateGetHelpNode()->DetachAllChildren();
+	CreateGetHelpNode()->AttachChild(mesh);
+	CreateGetHelpNode()->SetParentTransformIngore(false, false, true);
 }
 //----------------------------------------------------------------------------
 EffectActor::~EffectActor()

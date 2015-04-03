@@ -73,6 +73,29 @@ Actor *Creater::CreateActor_Effect(Scene *scene, const APoint &pos)
 	return actor;
 }
 //----------------------------------------------------------------------------
+Actor *Creater::CreateActor_Actor(Scene *scene, const APoint &pos)
+{
+	ActorPtr actor = new0 Actor();
+	actor->LocalTransform.SetTranslate(pos);
+
+	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
+	StandardMesh stdMesh(vf);
+	stdMesh.SetVertexColor(Float4::WHITE);
+	TriMesh *mesh = stdMesh.Box(0.5f, 0.5f, 0.5f);
+	PX2::VertexColor4MaterialPtr mtl = new0 VertexColor4Material();
+	mtl->GetWireProperty(0, 0)->Enabled = true;
+	mtl->GetCullProperty(0, 0)->Enabled = false;
+	mesh->LocalTransform.SetUniformScale(0.5f);
+	mesh->SetMaterialInstance(mtl->CreateInstance());
+	actor->CreateGetHelpNode()->DetachAllChildren();
+	actor->CreateGetHelpNode()->AttachChild(mesh);
+	actor->CreateGetHelpNode()->SetParentTransformIngore(false, false, true);
+
+	AddObject(scene, actor);
+
+	return actor;
+}
+//----------------------------------------------------------------------------
 Character *Creater::CreateActor_Character(Scene *scene, const APoint &pos)
 {
 	CharacterPtr chara = new0 Character();
@@ -161,7 +184,7 @@ Movable *Creater::CreateRectangle(Node *parent, const APoint &pos,
 	mesh->SetName("NoName");
 
 	MaterialInstance *mi = new0 MaterialInstance(
-		"Data/engine_mtls/std/std.px2obj", "std_light", false);
+		"Data/engine_mtls/std/std.px2obj", "std_lightshadow", false);
 	mesh->SetMaterialInstance(mi);
 
 	mi->SetPixelTexture(0, "SampleBase", tex);
@@ -188,7 +211,7 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 		localPos = APoint::ORIGIN;
 
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
-		"Data/engine/default.png"));
+		"Data/engine/phoenix.png"));
 	if (!tex) return 0;
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PNT1);
@@ -204,7 +227,7 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 		if (mesh)
 		{
 			MaterialInstance *mi = new0 MaterialInstance(
-				"Data/engine_mtls/std/std.px2obj", "std_light", false);
+				"Data/engine_mtls/std/std.px2obj", "std_lightshadow", false);
 			mesh->SetMaterialInstance(mi);
 
 			mi->SetPixelTexture(0, "SampleBase", tex);
@@ -243,7 +266,7 @@ Movable *Creater::CreateSphere(Node *parent, const APoint &pos,
 	mesh->SetName("NoName");
 
 	MaterialInstance *mi = new0 MaterialInstance(
-		"Data/engine_mtls/std/std.px2obj", "std_light", false);
+		"Data/engine_mtls/std/std.px2obj", "std_lightshadow", false);
 	mesh->SetMaterialInstance(mi);
 
 	mi->SetPixelTexture(0, "SampleBase", tex);

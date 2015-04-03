@@ -10,6 +10,7 @@
 		Actor *CreateActor_Box(Scene *scene, const APoint &pos);
 		Actor *CreateActor_Sphere(Scene *scene, const APoint &pos);
 		Actor *CreateActor_Effect(Scene *scene, const APoint &pos);
+		Actor *CreateActor_Actor(Scene *scene, const APoint &pos);
 		Character *CreateActor_Character(Scene *scene, const APoint &pos);
 		TriggerActor *CreateActor_Trigger(Scene *scene, const APoint &pos);
 		SkyActor *CreateActor_Sky(Scene *scene, const APoint &pos);

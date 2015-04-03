@@ -63,10 +63,7 @@ namespace PX2
 		// 参数到当前。
 		// 有一种情况你需要同时渲染两个场景，比如在编辑器中，的主场景和，
 		// PreView场景，你想需要他们有不同环境感觉，需要在加载和渲染该物体的之
-		// 前设置一下当前环境参数。在渲染完成之后，再置回原来的参数。（因为
-		// ShaderConstant也和具体灯光相关，所以，加载是是需要设置当前环境参数的
-		// ，这样才能创建与环境参数相对应的ShaderConstant）默认情况下我们设置环
-		// 境参数为空。
+		// 前设置一下当前环境参数。在渲染完成之后，再置回原来的参数。
 		void SetCurEnvirParam(EnvirParam *param);
 		EnvirParam *GetCurEnvirParam();
 

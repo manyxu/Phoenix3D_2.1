@@ -62,7 +62,7 @@ namespace PX2
 		virtual void SetMovable (Movable *mov);
 		Movable *GetMovable ();
 
-		Node *CreateHelpNode ();
+		Node *CreateGetHelpNode ();
 		Node *GetNodeHelp();
 
 		void SetPickable(bool isPickable);

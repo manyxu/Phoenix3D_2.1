@@ -17,6 +17,7 @@ namespace PX2
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
+		PX2_DECLARE_PROPERTY;
 		PX2_DECLARE_STREAM(Character);
 
 	public:
@@ -32,14 +33,14 @@ namespace PX2
 		virtual void SetMovableFilename(const std::string &filename,
 			bool shareVI = false);
 
-		void SetUseAutoWorldBound(bool isUseAutoWorldBound);
-		bool IsUseAutoWorldBound() const;
-		void SetAutoWorldBoundRadius(float radius);
-		float GetAutoWorldBoundRadius() const;
+		void SetMovableUseAutoWorldBound(bool isUseAutoWorldBound);
+		bool IsMovableUseAutoWorldBound() const;
+		void SetMovableAutoWorldBoundRadius(float radius);
+		float GetMovableAutoWorldBoundRadius() const;
 
 	private:
-		bool mIsAutoWorldBound;
-		float mAutoWorldBoundRadius;
+		bool mIsMovableAutoWorldBound;
+		float mMovableAutoWorldBoundRadius;
 
 	protected:
 		void _CalSkins();

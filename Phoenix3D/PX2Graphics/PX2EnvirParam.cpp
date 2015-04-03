@@ -15,7 +15,7 @@ EnvirParam::EnvirParam()
 	mFogColorHeight = Float4::RED;
 	mFogColorDist = Float4::BLUE;
 
-	mLight_Dir_Projector = new0 Projector(false);
+	mLight_Dir_Projector = new0 Projector(true);
 
 	mLight_Dir = new0 Light(Light::LT_DIRECTIONAL);
 	mLight_Dir->Ambient = Float4(0.5f, 0.5f, 0.5f, 1.0f);

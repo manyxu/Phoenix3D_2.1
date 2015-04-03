@@ -31,7 +31,7 @@ void TriggerActor::SetAreaType(AreaType type)
 {
 	mAreaType = type;
 
-	CreateHelpNode()->DetachChild(mAreaMovable);
+	CreateGetHelpNode()->DetachChild(mAreaMovable);
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
 	if (AT_SPHERE == mAreaType)
@@ -59,7 +59,7 @@ void TriggerActor::SetAreaType(AreaType type)
 		mAreaMovable = mesh;
 	}
 
-	CreateHelpNode()->AttachChild(mAreaMovable);
+	CreateGetHelpNode()->AttachChild(mAreaMovable);
 }
 //----------------------------------------------------------------------------
 bool TriggerActor::IsPointIn(const PX2::APoint &point) const

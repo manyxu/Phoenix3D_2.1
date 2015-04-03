@@ -21,26 +21,33 @@ ps_3_0
 //var float4 FogColorDist :  : c[2] : 7 : 1
 //var sampler2D SampleBase :  : texunit 0 : -1 : 1
 //var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
-//const c[3] = 1 0 255
+//var <none>4 $kill_0000 : $vout.$kill : $kill : -1 : 0
+//const c[3] = 1 0.25 255 0.2
 dcl_2d s0
 dcl_2d s1
-def c3, 1.00000000, 0.00000000, 255.00000000, 0
+def c3, 1.00000000, 0.25000000, 255.00000000, 0.20000000
 dcl_texcoord0 v1.xy
 dcl_color0 v0
 dcl_texcoord2 v3
 dcl_texcoord1 v2.xy
-texldp r1.xy, v3, s1
-mad r0.w, r1.x, c3.z, r1.y
-rcp r0.z, v3.w
-mad r1.x, v3.z, r0.z, -r0.w
 mov r0.x, v1
 add r0.y, -v1, c3.x
 add r0.xy, r0, c0
 texld r0, r0, s0
-mul r0, r0, v0
-cmp r1.x, -r1, c3, c3.y
-mad r0.xyz, r0, r1.x, -c1
+mov r1, r0
+if_lt r0.w, c3.y
+mov_pp r0, -c3.x
+texkill r0.xyzw
+else
+texldp r0.xy, v3, s1
+mad r0.y, r0.x, c3.z, r0
+mul r1, r1, v0
+rcp r0.x, v3.w
+mad r0.x, v3.z, r0, -r0.y
+cmp r0.x, -r0, c3, c3.w
+mad r0.xyz, r1, r0.x, -c1
 mad r0.xyz, v2.x, r0, c1
 add r0.xyz, r0, -c2
 mad oC0.xyz, v2.y, r0, c2
-mov oC0.w, r0
+mov oC0.w, r1
+endif

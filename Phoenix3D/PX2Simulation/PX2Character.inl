@@ -1,24 +1,19 @@
 // PX2Character.inl
 
 //----------------------------------------------------------------------------
-inline void Character::SetUseAutoWorldBound(bool isUseAutoWorldBound)
+inline void Character::SetMovableUseAutoWorldBound(bool isUseAutoWorldBound)
 {
-	mIsAutoWorldBound = isUseAutoWorldBound;
+	mIsMovableAutoWorldBound = isUseAutoWorldBound;
 }
 //----------------------------------------------------------------------------
-inline bool Character::IsUseAutoWorldBound() const
+inline bool Character::IsMovableUseAutoWorldBound() const
 {
-	return mIsAutoWorldBound;
+	return mIsMovableAutoWorldBound;
 }
 //----------------------------------------------------------------------------
-inline void Character::SetAutoWorldBoundRadius(float radius)
+inline float Character::GetMovableAutoWorldBoundRadius() const
 {
-	mAutoWorldBoundRadius = radius;
-}
-//----------------------------------------------------------------------------
-inline float Character::GetAutoWorldBoundRadius() const
-{
-	return mAutoWorldBoundRadius;
+	return mMovableAutoWorldBoundRadius;
 }
 //----------------------------------------------------------------------------
 inline std::map<int, AnimationPtr> &Character::GetAnimsMap()
