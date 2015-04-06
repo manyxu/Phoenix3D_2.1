@@ -67,6 +67,7 @@ namespace PX2
 		void _UpdateBloomChanged();
 		void _UpdateBloomParams();
 		void _UpdateALightPicBoxTranslateSize();
+		void _UpdateShadowChanged();
 
 		bool mIsShowBloomEveryPass;
 		bool mIsUseBloom;
@@ -79,6 +80,7 @@ namespace PX2
 		bool mIsBloomChanged;
 
 		bool mIsUseShaderMap;
+		bool mIsShaderMapChanged;
 
 		CameraPtr mScreenCamera;
 

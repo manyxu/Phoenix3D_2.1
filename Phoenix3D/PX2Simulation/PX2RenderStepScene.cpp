@@ -14,7 +14,8 @@ mIsShowBloomEveryPass(false),
 mIsUseBloom(false),
 mIsBloomRenderTargetSizeSameWithScreen(true),
 mIsBloomChanged(true),
-mIsUseShaderMap(false)
+mIsUseShaderMap(false),
+mIsShaderMapChanged(true)
 {
 	mScreenCamera = new0 Camera(false);
 	mScreenCamera->SetAxes(AVector::UNIT_Y, AVector::UNIT_Z, AVector::UNIT_X);
@@ -53,6 +54,11 @@ void RenderStepScene::Update(double appSeconds, double elapsedSeconds)
 	if (mIsBloomChanged)
 	{
 		_UpdateBloomChanged();
+	}
+
+	if (mIsShaderMapChanged)
+	{
+		_UpdateShadowChanged();
 	}
 
 	EnvirParamPtr beformParam = PX2_GR.GetCurEnvirParam();
@@ -589,13 +595,17 @@ void RenderStepScene::_UpdateALightPicBoxTranslateSize()
 //----------------------------------------------------------------------------
 void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 {
-	mEffect_UIFrame->DetachChild(mEffect_UIPicBox_Shadow);
+	mIsUseShaderMap = useShaderMap;
 
+	mIsShaderMapChanged = true;
+}
+//----------------------------------------------------------------------------
+void RenderStepScene::_UpdateShadowChanged()
+{
 	mEffect_RenderTarget_Shadow = 0;
 	mEffect_Material_Shadow = 0;
+	mEffect_UIFrame->DetachChild(mEffect_UIPicBox_Shadow);
 	mEffect_UIPicBox_Shadow = 0;
-
-	mIsUseShaderMap = useShaderMap;
 
 	if (mIsUseShaderMap)
 	{
@@ -605,9 +615,9 @@ void RenderStepScene::SetUseShaderMap(bool useShaderMap)
 
 		mEffect_UIPicBox_Shadow = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_Shadow);
-
 		mEffect_UIPicBox_Shadow->SetAnchorPoint(Float2::ZERO);
 		mEffect_UIPicBox_Shadow->SetSize(Sizef(256.0f, 256.0f));
+		mAlignPicBoxes.push_back(mEffect_UIPicBox_Shadow);
 	}
 }
 //----------------------------------------------------------------------------

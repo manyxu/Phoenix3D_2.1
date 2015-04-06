@@ -211,7 +211,7 @@ Movable *Creater::CreateBox(Node *parent, const APoint &pos, bool isPosWorld,
 		localPos = APoint::ORIGIN;
 
 	Texture2D *tex = DynamicCast<Texture2D>(PX2_RM.BlockLoad(
-		"Data/engine/phoenix.png"));
+		"Data/engine/default.png"));
 	if (!tex) return 0;
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PNT1);
