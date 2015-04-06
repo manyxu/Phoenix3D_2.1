@@ -38,8 +38,8 @@ namespace PX2
 		void SetUseBloom(bool useBloom);
 		bool IsUseBloom() const;
 
-		void SetScene_ShowBloomEveryPass(bool isShowBloomEveryPass);
-		bool IsScene_ShowBloomEveryPass() const;
+		void SetScene_ShowShadowBloomEveryPass(bool isShowBloomEveryPass);
+		bool IsScene_ShowShadowBloomEveryPass() const;
 
 		void SetScene_BloomRenderTargetSizeSameWithScreen(bool sizeSameWithScreen);
 		bool IsScene_BloomRenderTargetSizeSameWithScreen() const;
@@ -59,17 +59,23 @@ namespace PX2
 		float GetScene_BloomWeight() const;
 
 		// shader map
-		void SetUseShaderMap(bool useShaderMap);
-		bool IsUseShaderMap() const;
+		void SetUseShadowMap(bool useShaderMap);
+		bool IsUseShadowMap() const;
+
+		void SetShadowRenderTargetSizeSameWithScreen(bool sameWithScreen);
+		bool IsShadowRenderTargetSizeSameWithScreen() const;
+		void SetShadowRenderTargetSize(const Float2 &size);
+		const Float2 &GetShadowRenderTargetSize() const;
 
 	protected:
 		void _SetCameraF(Camera *camera, UIPicBox *uiPicBox);
 		void _UpdateBloomChanged();
 		void _UpdateBloomParams();
-		void _UpdateALightPicBoxTranslateSize();
 		void _UpdateShadowChanged();
+		void _UpdateALightPicBoxTranslateSize();
 
-		bool mIsShowBloomEveryPass;
+		bool mIsShowShadowBloomEveryPass;
+
 		bool mIsUseBloom;
 		bool mIsBloomRenderTargetSizeSameWithScreen;
 		Float2 mBloomRenderTargetSize;
@@ -79,15 +85,17 @@ namespace PX2
 		Float4 mBloomParam;
 		bool mIsBloomChanged;
 
-		bool mIsUseShaderMap;
-		bool mIsShaderMapChanged;
+		bool mIsUseShadowMap;
+		bool mIsShadowMapChanged;
+		bool mIsScene_ShadowRenderTargetSizeSameWithScreen;
+		Float2 mScene_ShadowRenderTargetSize;
 
 		CameraPtr mScreenCamera;
 
 		UIViewPtr mEffect_UIView;
 		UIFramePtr mEffect_UIFrame;
 
-		float mBloomPicSize;
+		float mBloomShadowPicSize;
 
 		RenderTargetPtr mEffect_RenderTarget_Normal;
 		UIPicBoxPtr mEffect_UIPicBoxShow_Normal;

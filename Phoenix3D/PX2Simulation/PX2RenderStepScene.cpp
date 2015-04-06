@@ -10,12 +10,12 @@ PX2_IMPLEMENT_RTTI(PX2, RenderStep, RenderStepScene);
 
 //----------------------------------------------------------------------------
 RenderStepScene::RenderStepScene() :
-mIsShowBloomEveryPass(false),
+mIsShowShadowBloomEveryPass(false),
 mIsUseBloom(false),
 mIsBloomRenderTargetSizeSameWithScreen(true),
 mIsBloomChanged(true),
-mIsUseShaderMap(false),
-mIsShaderMapChanged(true)
+mIsUseShadowMap(false),
+mIsShadowMapChanged(true)
 {
 	mScreenCamera = new0 Camera(false);
 	mScreenCamera->SetAxes(AVector::UNIT_Y, AVector::UNIT_Z, AVector::UNIT_X);
@@ -27,7 +27,7 @@ mIsShaderMapChanged(true)
 	mEffect_UIFrame = new0 UIFrame();
 	mEffect_UIView->SetNode(mEffect_UIFrame);
 
-	mBloomPicSize = 256.0f;
+	mBloomShadowPicSize = 256.0f;
 	mBloomRenderTargetSize = Float2(512.0f, 512.0f);
 	mBloomBrightParam = Float4(0.3f, 1.0f, 1.0f, 1.0f);
 	mBloomBlurDeviation = 1.0f;
@@ -51,14 +51,29 @@ void RenderStepScene::Update(double appSeconds, double elapsedSeconds)
 	if (!mIsUpdated) mIsUpdated = true;
 	if (!mNode) return;
 
+	bool changed = mIsBloomChanged || mIsShadowMapChanged;
 	if (mIsBloomChanged)
 	{
 		_UpdateBloomChanged();
 	}
 
-	if (mIsShaderMapChanged)
+	if (mIsShadowMapChanged)
 	{
 		_UpdateShadowChanged();
+	}
+
+	if (changed)
+	{
+		mAlignPicBoxes.clear();
+
+		if (mEffect_UIPicBoxShow_Normal) mAlignPicBoxes.push_back(mEffect_UIPicBoxShow_Normal);
+		if (mEffect_UIPicBox_BloomBright) mAlignPicBoxes.push_back(mEffect_UIPicBox_BloomBright);
+		if (mEffect_UIPicBox_BlurH) mAlignPicBoxes.push_back(mEffect_UIPicBox_BlurH);
+		if (mEffect_UIPicBox_BlurV) mAlignPicBoxes.push_back(mEffect_UIPicBox_BlurV);
+		if (mBloom_UIPicBox_Final) mAlignPicBoxes.push_back(mBloom_UIPicBox_Final);
+		if (mEffect_UIPicBox_Shadow) mAlignPicBoxes.push_back(mEffect_UIPicBox_Shadow);
+
+		_UpdateALightPicBoxTranslateSize();
 	}
 
 	EnvirParamPtr beformParam = PX2_GR.GetCurEnvirParam();
@@ -322,16 +337,16 @@ bool RenderStepScene::IsUseBloom() const
 	return mIsUseBloom;
 }
 //----------------------------------------------------------------------------
-void RenderStepScene::SetScene_ShowBloomEveryPass(bool isShowBloomEveryPass)
+void RenderStepScene::SetScene_ShowShadowBloomEveryPass(bool isShowBloomEveryPass)
 {
-	mIsShowBloomEveryPass = isShowBloomEveryPass;
+	mIsShowShadowBloomEveryPass = isShowBloomEveryPass;
 
 	mIsBloomChanged = true;
 }
 //----------------------------------------------------------------------------
-bool RenderStepScene::IsScene_ShowBloomEveryPass() const
+bool RenderStepScene::IsScene_ShowShadowBloomEveryPass() const
 {
-	return mIsShowBloomEveryPass;
+	return mIsShowShadowBloomEveryPass;
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::SetScene_BloomRenderTargetSizeSameWithScreen(
@@ -430,15 +445,13 @@ void RenderStepScene::_UpdateBloomChanged()
 	mBloom_UIPicBox_Final = 0;
 	mBloom_BloomParam = 0;
 
-	mAlignPicBoxes.clear();
-
 	if (mIsUseBloom)
 	{
 		Float2 rtSize = mBloomRenderTargetSize;
 		if (mIsBloomRenderTargetSizeSameWithScreen)
 			rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
 
-		Sizef size(mBloomPicSize, mBloomPicSize);
+		Sizef size(mBloomShadowPicSize, mBloomShadowPicSize);
 		Texture::Format tformat = Texture::TF_A8R8G8B8;
 		mEffect_RenderTarget_Normal = new0 RenderTarget(1, tformat,
 			(int)rtSize[0], (int)rtSize[1], false, false);
@@ -448,7 +461,6 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBoxShow_Normal->SetSize(size);
 		mEffect_UIPicBoxShow_Normal->Update(0.0f);
 		mEffect_UIPicBoxShow_Normal->GetMaterialInstance()->GetMaterial()->GetAlphaProperty(0, 0)->BlendEnabled = false;
-		mAlignPicBoxes.push_back(mEffect_UIPicBoxShow_Normal);
 
 		MaterialInstancePtr blurMtlInstanceBloomBright = new0 MaterialInstance("Data/engine_mtls/bloom/bloom.px2obj", "bloom_bright", false);
 		mEffect_RenderTarget_BloomBright = new0 RenderTarget(1, tformat,
@@ -460,7 +472,6 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BloomBright->Update(0.0f);
 		mEffect_UIPicBox_BloomBright->SetMaterialInstance(blurMtlInstanceBloomBright);
 		mBloom_BrightParam = blurMtlInstanceBloomBright->GetPixelConstant(0, "BrightParam");
-		mAlignPicBoxes.push_back(mEffect_UIPicBox_BloomBright);
 
 		MaterialInstancePtr blurMtlInstanceH = new0 MaterialInstance("Data/engine_mtls/blur/blur.px2obj", "blur", false);
 		mEffect_RenderTarget_BlurH = new0 RenderTarget(1, tformat,
@@ -474,7 +485,6 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BlurH->SetColor(Float3::WHITE);
 		mEffect_UIPicBox_BlurH->SetAlpha(1.0f);
 		mEffect_UIPicBox_BlurH->SetTexture("Data/engine/default.png");
-		mAlignPicBoxes.push_back(mEffect_UIPicBox_BlurH);
 
 		_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_H, mBloomBlurDeviation, mBloomBlurWeight, true);
 		ShaderFloat *shaderFloatUVOffsets_H = mEffect_UIPicBox_BlurH->GetMaterialInstance()->GetPixelConstant(0, "UVOffsets");
@@ -492,7 +502,6 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BlurV->SetColor(Float3::WHITE);
 		mEffect_UIPicBox_BlurV->SetAlpha(1.0f);
 		mEffect_UIPicBox_BlurV->SetTexture("Data/engine/default.png");
-		mAlignPicBoxes.push_back(mEffect_UIPicBox_BlurV);
 
 		_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_V, mBloomBlurDeviation, mBloomBlurWeight, false);
 		ShaderFloat *shaderFloatUVOffsets_V = mEffect_UIPicBox_BlurV->GetMaterialInstance()->GetPixelConstant(0, "UVOffsets");
@@ -505,10 +514,8 @@ void RenderStepScene::_UpdateBloomChanged()
 		mBloom_UIPicBox_Final->SetAnchorPoint(Float2::ZERO);
 		mBloom_UIPicBox_Final->SetMaterialInstance(mBoom_MtlInstance);
 		mBloom_BloomParam = mBoom_MtlInstance->GetPixelConstant(0, "BloomParam");
-		mAlignPicBoxes.push_back(mBloom_UIPicBox_Final);
 
 		_UpdateBloomParams();
-		_UpdateALightPicBoxTranslateSize();
 	}
 
 	mIsBloomChanged = false;
@@ -551,7 +558,7 @@ void RenderStepScene::_UpdateBloomParams()
 //----------------------------------------------------------------------------
 void RenderStepScene::_UpdateALightPicBoxTranslateSize()
 {
-	if (mIsShowBloomEveryPass)
+	if (mIsShowShadowBloomEveryPass)
 	{
 		int alignPicBoxSize = (int)mAlignPicBoxes.size();
 		for (int i = 0; i < alignPicBoxSize; i++)
@@ -559,8 +566,8 @@ void RenderStepScene::_UpdateALightPicBoxTranslateSize()
 			int x = (i + 2) % 2;
 			int z = i / 2;
 
-			float xPos = x * mBloomPicSize;
-			float zPos = mSize.Height - (z + 1) * mBloomPicSize;
+			float xPos = x * mBloomShadowPicSize;
+			float zPos = mSize.Height - (z + 1) * mBloomShadowPicSize;
 			mAlignPicBoxes[i]->LocalTransform.SetTranslateXZ(xPos, zPos);
 
 			mAlignPicBoxes[i]->Show(true);
@@ -572,32 +579,54 @@ void RenderStepScene::_UpdateALightPicBoxTranslateSize()
 
 		// 只让最后一个可见
 		int alignPicBoxSize = (int)mAlignPicBoxes.size();
-		int lastIndex = alignPicBoxSize - 1;
 		for (int i = 0; i < alignPicBoxSize; i++)
 		{
-			if (i != lastIndex)
-			{
-				mAlignPicBoxes[i]->Show(false);
-			}
-			else
-			{
-				mAlignPicBoxes[i]->Show(true);
-				mAlignPicBoxes[i]->LocalTransform.SetTranslate(APoint::ORIGIN);
+			mAlignPicBoxes[i]->Show(false);
+		}
 
-				if (proj)
-				{
-					mAlignPicBoxes[i]->SetSize(mSize);
-				}
-			}
+		if (mIsUseBloom && mBloom_UIPicBox_Final)
+		{
+			mBloom_UIPicBox_Final->Show(true);
+			mBloom_UIPicBox_Final->SetSize(mSize);
 		}
 	}
 }
 //----------------------------------------------------------------------------
-void RenderStepScene::SetUseShaderMap(bool useShaderMap)
+void RenderStepScene::SetUseShadowMap(bool useShaderMap)
 {
-	mIsUseShaderMap = useShaderMap;
+	mIsUseShadowMap = useShaderMap;
 
-	mIsShaderMapChanged = true;
+	mIsShadowMapChanged = true;
+}
+//----------------------------------------------------------------------------
+bool RenderStepScene::IsUseShadowMap() const
+{
+	return mIsShadowMapChanged;
+}
+//----------------------------------------------------------------------------
+void RenderStepScene::SetShadowRenderTargetSizeSameWithScreen(
+	bool sameWithScreen)
+{
+	mIsScene_ShadowRenderTargetSizeSameWithScreen = sameWithScreen;
+
+	mIsShadowMapChanged = true;
+}
+//----------------------------------------------------------------------------
+bool RenderStepScene::IsShadowRenderTargetSizeSameWithScreen() const
+{
+	return mIsScene_ShadowRenderTargetSizeSameWithScreen;
+}
+//----------------------------------------------------------------------------
+void RenderStepScene::SetShadowRenderTargetSize(const Float2 &size)
+{
+	mScene_ShadowRenderTargetSize = size;
+
+	mIsShadowMapChanged = true;
+}
+//----------------------------------------------------------------------------
+const Float2 &RenderStepScene::GetShadowRenderTargetSize() const
+{
+	return mScene_ShadowRenderTargetSize;
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::_UpdateShadowChanged()
@@ -607,18 +636,25 @@ void RenderStepScene::_UpdateShadowChanged()
 	mEffect_UIFrame->DetachChild(mEffect_UIPicBox_Shadow);
 	mEffect_UIPicBox_Shadow = 0;
 
-	if (mIsUseShaderMap)
+	if (mIsUseShadowMap)
 	{
+		Float2 rtSize = mScene_ShadowRenderTargetSize;
+		if (mIsScene_ShadowRenderTargetSizeSameWithScreen)
+			rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
+
 		Texture::Format tformat = Texture::TF_A32B32G32R32F;
-		mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, 1024, 1024, false, true);
+		mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, (int)rtSize[0], 
+			(int)rtSize[1], false, true);
 		mEffect_Material_Shadow = new0 ShadowMap_Material();
 
 		mEffect_UIPicBox_Shadow = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_Shadow);
 		mEffect_UIPicBox_Shadow->SetAnchorPoint(Float2::ZERO);
-		mEffect_UIPicBox_Shadow->SetSize(Sizef(256.0f, 256.0f));
-		mAlignPicBoxes.push_back(mEffect_UIPicBox_Shadow);
+		mEffect_UIPicBox_Shadow->SetSize(Sizef(mBloomShadowPicSize, 
+			mBloomShadowPicSize));
 	}
+
+	mIsShadowMapChanged = false;
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::_SetCameraF(Camera *camera, UIPicBox *uiPicBox)

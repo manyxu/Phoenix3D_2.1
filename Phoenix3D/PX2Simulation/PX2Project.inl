@@ -86,6 +86,16 @@ inline bool Project::IsScene_UseShadowMap() const
 	return mIsScene_UseBloom;
 }
 //----------------------------------------------------------------------------
+inline bool Project::IsScene_ShadowRenderTargetSizeSameWithScreen() const
+{
+	return mIsScene_ShadowRenderTargetSizeSameWithScreen;
+}
+//----------------------------------------------------------------------------
+inline const Float2 &Project::GetScene_ShadowRenderTargetSize() const
+{
+	return mScene_ShadowRenderTargetSize;
+}
+//----------------------------------------------------------------------------
 inline void Project::SetEdit_UICameraPercent(float percent)
 {
 	mEdit_UICameraPercent = percent;

@@ -110,11 +110,11 @@ namespace PX2
 
 		// render setting
 	public:
+		void SetScene_ShowShadowBloomEveryPass(bool isShowShadowBloomEveryPass);
+		bool IsScene_ShowShadowBloomEveryPass() const;
+
 		void SetScene_UseBloom(bool isUseBloom);
 		bool IsScene_UseBloom() const;
-
-		void SetScene_ShowBloomEveryPass(bool isShowBloomEveryPass);
-		bool IsScene_ShowBloomEveryPass() const;
 
 		void SetScene_BloomRenderTargetSizeSameWithScreen(bool sizeSameWithScreen);
 		bool IsScene_BloomRenderTargetSizeSameWithScreen() const;
@@ -136,9 +136,15 @@ namespace PX2
 		void SetScene_UseShadowMap(bool isUseShadowMap);
 		bool IsScene_UseShadowMap() const;
 
+		void SetScene_ShadowRenderTargetSizeSameWithScreen(bool sameWithScreen);
+		bool IsScene_ShadowRenderTargetSizeSameWithScreen() const;
+		void SetScene_ShadowRenderTargetSize(const Float2 &size);
+		const Float2 &GetScene_ShadowRenderTargetSize() const;
+
 	protected:
+		bool mIsScene_ShowShadowBloomEveryPass;
+
 		bool mIsScene_UseBloom;
-		bool mIsScene_ShowBloomEveryPass;
 		bool mIsScene_BloomRenderTargetSizeSameWithScreen;
 		Float2 mScene_BloomRenderTargetSize;
 		float mScene_BloomBrightWeight;
@@ -147,6 +153,8 @@ namespace PX2
 		float mScene_BloomWeight;
 
 		bool mIsScene_UseShadowMap;
+		bool mIsScene_ShadowRenderTargetSizeSameWithScreen;
+		Float2 mScene_ShadowRenderTargetSize;
 
 		// edit setting
 	public:
