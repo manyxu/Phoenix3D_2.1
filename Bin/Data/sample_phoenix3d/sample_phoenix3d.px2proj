@@ -1,6 +1,6 @@
 <project>
 	<general name="sample_phoenix3d" screenorientation="portrait" width="640" height="1136" backcolor="16,16,16,255" projcolor="144,144,144,255"/>
-	<scene filename="Data/sample_phoenix3d/scenes/scene.px2obj"/>
+	<scene filename="Data/sample_phoenix3d/scenes/scene2.px2obj"/>
 	<render_setting scene_isusebloom="false" scene_bloomrendertarget_sizesamewithscreen="true" scene_bloomrendertarget_width="512.000000" scene_bloomrendertarget_height="512.000000" scene_bloombrightweight="1.000000" scene_bloomblurdeviation="4.000000" scene_bloomblurweight="1.200000" scene_bloomweight="1.100000" scene_isuseshadowmap="true" scene_shadowrendertargetsizesamewithscreen="false" scene_shadowrendertargetsize_width="2048.000000" scene_shadowrendertargetsize_height="2048.000000"/>
 	<language/>
 	<publish/>

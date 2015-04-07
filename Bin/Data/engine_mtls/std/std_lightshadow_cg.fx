@@ -80,9 +80,9 @@ float GetDepth(float4 texCord, int i, int j)
 {
 	float4 newUV = texCord + float4(texCord.w*i*0.001f, texCord.w*j*0.001f, 0.0f, 0.0f);
 	float4 depthColor = tex2Dproj(SampleShadowDepth, newUV);
-	//float4 depthColor = tex2D(SampleShadowDepth, texCord.xy/texCord.w);
+	//float4 depthColor = tex2D(SampleShadowDepth, float2(texCord.x/texCord.w, texCord.y/texCord.w));
 				
-	return depthColor.x*255.0 + depthColor.y;
+	return depthColor.x;
 }
 
 void p_std_lightshadow

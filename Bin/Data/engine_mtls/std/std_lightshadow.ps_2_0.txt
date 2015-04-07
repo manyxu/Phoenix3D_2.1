@@ -21,24 +21,23 @@ ps_2_0
 //var float4 FogColorDist :  : c[2] : 7 : 1
 //var sampler2D SampleBase :  : texunit 0 : -1 : 1
 //var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
-//const c[3] = 1 255 0.40000001
+//const c[3] = 1 0.40000001
 dcl_2d s0
 dcl_2d s1
-def c3, 1.00000000, 255.00000000, 0.40000001, 0
+def c3, 1.00000000, 0.40000001, 0, 0
 dcl t0.xy
 dcl v0
 dcl t2
 dcl t1.xy
+texldp r2, t2, s1
 mov r0.x, t0
 add r0.y, -t0, c3.x
-add r1.xy, r0, c0
-texldp r0, t2, s1
-texld r2, r1, s0
-mad r1.x, r0, c3.y, r0.y
+add r0.xy, r0, c0
+texld r1, r0, s0
 rcp r0.x, t2.w
-mad r0.x, t2.z, r0, -r1
-mul r1, r2, v0
-cmp r0.x, -r0, c3, c3.z
+mad r0.x, t2.z, r0, -r2
+mul r1, r1, v0
+cmp r0.x, -r0, c3, c3.y
 mad r0.xyz, r1, r0.x, -c1
 mad r0.xyz, t1.x, r0, c1
 add r0.xyz, r0, -c2

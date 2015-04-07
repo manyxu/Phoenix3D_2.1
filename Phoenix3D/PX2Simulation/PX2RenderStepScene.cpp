@@ -153,7 +153,12 @@ void RenderStepScene::Draw()
 		Projector *lightProjector = scene->GetEnvirParam()->GetLight_Dir_Projector();
 		mRenderer->SetCamera(lightProjector);
 		mRenderer->Draw(mEffect_Culler_Shadow.GetVisibleSet(), mEffect_Material_Shadow);
+
 		mRenderer->Disable(mEffect_RenderTarget_Shadow);
+	}
+	else
+	{
+
 	}
 
 	Rectf viewPort = mViewPort;
@@ -631,6 +636,15 @@ const Float2 &RenderStepScene::GetShadowRenderTargetSize() const
 //----------------------------------------------------------------------------
 void RenderStepScene::_UpdateShadowChanged()
 {
+	if (mEffect_RenderTarget_Shadow && mRenderer)
+	{
+		mRenderer->Disable(mEffect_RenderTarget_Shadow);
+	}
+
+	Scene *scene = (Scene*)((Node*)mNode);
+	EnvirParam *sceneEnvirParam = scene->GetEnvirParam();
+	sceneEnvirParam->SetLight_Dir_DepthTexture(0);
+
 	mEffect_RenderTarget_Shadow = 0;
 	mEffect_Material_Shadow = 0;
 	mEffect_UIFrame->DetachChild(mEffect_UIPicBox_Shadow);
@@ -642,7 +656,7 @@ void RenderStepScene::_UpdateShadowChanged()
 		if (mIsScene_ShadowRenderTargetSizeSameWithScreen)
 			rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
 
-		Texture::Format tformat = Texture::TF_A8R8G8B8;
+		Texture::Format tformat = Texture::TF_A32B32G32R32F;
 		mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, (int)rtSize[0], 
 			(int)rtSize[1], false, true);
 		mEffect_Material_Shadow = new0 ShadowMap_Material();
