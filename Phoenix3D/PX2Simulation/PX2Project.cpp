@@ -301,6 +301,8 @@ bool Project::Load(const std::string &filename)
 				mSceneRenderStep->SetScene_BloomBlurWeight(mScene_BloomBlurWeight);
 				mSceneRenderStep->SetScene_BloomWeight(mScene_BloomWeight);
 				mSceneRenderStep->SetUseShadowMap(mIsScene_UseShadowMap);
+				mSceneRenderStep->SetShadowRenderTargetSizeSameWithScreen(mIsScene_ShadowRenderTargetSizeSameWithScreen);
+				mSceneRenderStep->SetShadowRenderTargetSize(mScene_ShadowRenderTargetSize);
 			}
 		}
 	}

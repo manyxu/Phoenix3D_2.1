@@ -76,6 +76,15 @@ void v_std_lightshadow
 sampler2D SampleBase;
 sampler2D SampleShadowDepth;
 
+float GetDepth(float4 texCord, int i, int j)
+{
+	float4 newUV = texCord + float4(texCord.w*i*0.001f, texCord.w*j*0.001f, 0.0f, 0.0f);
+	float4 depthColor = tex2Dproj(SampleShadowDepth, newUV);
+	//float4 depthColor = tex2D(SampleShadowDepth, texCord.xy/texCord.w);
+				
+	return depthColor.x*255.0 + depthColor.y;
+}
+
 void p_std_lightshadow
 (
 	in float4 vertexColor : COLOR,
@@ -94,30 +103,36 @@ void p_std_lightshadow
 	texCoord.xy += UVOffset.xy;
 	float4 lastColor = tex2D(SampleBase, texCoord);
 	
-	if (lastColor.a < 0.25)
-	{
-		discard;
-	}
-	else
-	{
-		// light
-		lastColor *= vertexColor;
+	// light
+	lastColor *= vertexColor;
 		
-		// shadow
-		float4 texCord = vertexTCoord2;
+	// shadow
+	float4 texCord = vertexTCoord2;
 		
-		float depth = texCord.z/texCord.w;
-		float4 depthColor = tex2Dproj(SampleShadowDepth, texCord);
-		float depthVal = depthColor.x*255.0 + depthColor.y;
+	// depth
+	float depth = texCord.z/texCord.w;
 		
-		float lightAmout = 1.0f;
-		if (depth > depthVal) lightAmout = 0.2f;
-		lastColor.rgb *= lightAmout;
+	// shadow map depth
+	float shadowDepth = GetDepth(texCord, 0, 0);
+	//shadowDepth += GetDepth(texCord, -1, -1);
+	//shadowDepth += GetDepth(texCord, -1, 0);
+	//shadowDepth += GetDepth(texCord, -1, 1);
+	//shadowDepth += GetDepth(texCord, 0, -1);
+	//shadowDepth += GetDepth(texCord, 0, 1);
+	//shadowDepth += GetDepth(texCord, 1, -1);
+	//shadowDepth += GetDepth(texCord, 1, 0);
+	//shadowDepth += GetDepth(texCord, 1, 1);
+	//shadowDepth *= 0.1111f;
 		
-		// fog
-		lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.x);
-		lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.y);
+	float lightAmout = 1.0f;
+	if (depth > shadowDepth) 
+		lightAmout = 0.4f;
+		
+	lastColor.rgb *= lightAmout;
+		
+	// fog
+	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.x);
+	lastColor.rgb = lerp(FogColorDist.rgb, lastColor.rgb, vertexTCoord1.y);
 			
-		pixelColor = lastColor;
-	}
+	pixelColor = lastColor;
 }

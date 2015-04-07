@@ -642,7 +642,7 @@ void RenderStepScene::_UpdateShadowChanged()
 		if (mIsScene_ShadowRenderTargetSizeSameWithScreen)
 			rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
 
-		Texture::Format tformat = Texture::TF_A32B32G32R32F;
+		Texture::Format tformat = Texture::TF_A8R8G8B8;
 		mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, (int)rtSize[0], 
 			(int)rtSize[1], false, true);
 		mEffect_Material_Shadow = new0 ShadowMap_Material();

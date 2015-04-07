@@ -88,11 +88,11 @@ void p_skinskeleton
 	texCoord.xy += UVOffset.xy;
     float4 lastColor = tex2D(SampleBase, texCoord);
 	
-	//if (lastColor.a < 0.25)
+	if (lastColor.a < 0.25)
 	{
-	//	discard;
+		discard;
 	}
-	//else
+	else
 	{
 		lastColor *= vertexColor;
 		

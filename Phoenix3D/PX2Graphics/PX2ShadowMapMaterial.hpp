@@ -21,7 +21,9 @@ namespace PX2
 		virtual void Draw(Renderer* renderer, const VisibleSet& visibleSet);
 
 	private:
-		MaterialInstancePtr mInstance;
+		OffsetPropertyPtr mOverRideOffsetProperty;
+		MaterialInstancePtr mInstanceStd;
+		MaterialInstancePtr mInstanceStdSkinSkeleton;
 	};
 
 	PX2_REGISTER_STREAM(ShadowMap_Material);
