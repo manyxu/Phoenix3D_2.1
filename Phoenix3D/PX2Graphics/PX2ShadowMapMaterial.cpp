@@ -32,7 +32,7 @@ ShadowMap_Material::~ShadowMap_Material()
 void ShadowMap_Material::Draw(Renderer* renderer, const VisibleSet& visibleSet)
 {
 	renderer->SetOverrideOffsetProperty(mOverRideOffsetProperty);
-	//renderer->SetColorMask(false, false, false, false);
+	renderer->SetColorMask(false, false, false, false);
 
 	const int numVisible = visibleSet.GetNumVisible();
 	for (int j = 0; j < numVisible; ++j)
@@ -65,7 +65,7 @@ void ShadowMap_Material::Draw(Renderer* renderer, const VisibleSet& visibleSet)
 	}
 
 	renderer->SetOverrideStencilProperty(0);
-	//renderer->SetColorMask(true, true, true, true);
+	renderer->SetColorMask(true, true, true, true);
 }
 //----------------------------------------------------------------------------
 

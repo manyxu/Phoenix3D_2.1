@@ -21,23 +21,68 @@ ps_3_0
 //var float4 FogColorDist :  : c[2] : 7 : 1
 //var sampler2D SampleBase :  : texunit 0 : -1 : 1
 //var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
-//const c[3] = 1 0.40000001
+//const c[3] = 1 0.001 0 0.1111
+//const c[4] = 1 0.40000001
 dcl_2d s0
 dcl_2d s1
-def c3, 1.00000000, 0.40000001, 0, 0
+def c3, 1.00000000, 0.00100000, 0.00000000, 0.11110000
+def c4, 1.00000000, 0.40000001, 0, 0
 dcl_texcoord0 v1.xy
 dcl_color0 v0
 dcl_texcoord2 v3
 dcl_texcoord1 v2.xy
-rcp r0.z, v3.w
+mul r2.xy, -v3.w, c3.y
+mov r2.zw, c3.z
+add r1, v3, r2
+texldp r3.x, r1, s1
 texldp r1.x, v3, s1
-mad r1.x, v3.z, r0.z, -r1
+mov r0.yzw, c3.z
+mov r0.x, r2
+add r0, v3, r0
+texldp r0.x, r0, s1
+add r0.y, r1.x, r3.x
+add r2.z, r0.y, r0.x
+mov r0.x, r2
+mov r0.zw, c3.z
+mov r0.y, -r2
+add r0, v3, r0
+texldp r0.x, r0, s1
+add r0.x, r2.z, r0
+mov r1.xzw, c3.z
+mov r1.y, r2
+add r1, v3, r1
+texldp r1.x, r1, s1
+add r2.z, r0.x, r1.x
+mov r0.xzw, c3.z
+mov r0.y, -r2
+add r0, v3, r0
+texldp r0.x, r0, s1
+add r0.x, r2.z, r0
+mov r1.x, -r2
+mov r1.zw, c3.z
+mov r1.y, r2
+add r1, v3, r1
+texldp r1.x, r1, s1
+add r2.z, r0.x, r1.x
+mov r0.yzw, c3.z
+mov r0.x, -r2
+add r0, v3, r0
+texldp r0.x, r0, s1
+rcp r0.z, v3.w
+mov r1.zw, c3.z
+mov r1.xy, -r2
+add r1, v3, r1
+texldp r1.x, r1, s1
+add r0.x, r2.z, r0
+add r0.x, r0, r1
+mul r0.w, r0.x, c3
+mad r1.x, v3.z, r0.z, -r0.w
 mov r0.x, v1
 add r0.y, -v1, c3.x
 add r0.xy, r0, c0
 texld r0, r0, s0
 mul r0, r0, v0
-cmp r1.x, -r1, c3, c3.y
+cmp r1.x, -r1, c4, c4.y
 mad r0.xyz, r0, r1.x, -c1
 mad r0.xyz, v2.x, r0, c1
 add r0.xyz, r0, -c2

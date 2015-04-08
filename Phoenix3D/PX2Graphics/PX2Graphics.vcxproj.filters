@@ -488,6 +488,9 @@
     <ClCompile Include="PX2InterpCurveColorCtrl.cpp">
       <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
     </ClCompile>
+    <ClCompile Include="PX2GraphicsEventType.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Graphics.hpp" />
@@ -988,6 +991,9 @@
     <ClInclude Include="PX2InterpCurveColorCtrl.hpp">
       <Filter>Controllers\InterpCurveCtrls\Float3</Filter>
     </ClInclude>
+    <ClInclude Include="PX2GraphicsEventType.hpp">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Bound.inl">
@@ -1277,6 +1283,9 @@
     </Filter>
     <Filter Include="Renderers\OpenGLESRenderer">
       <UniqueIdentifier>{9120825f-5491-427c-a1aa-031fe7916f4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{9f1510a1-1700-42d8-88c2-f1aae9d64662}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

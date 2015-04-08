@@ -11,11 +11,6 @@ inline Projector *EnvirParam::GetLight_Dir_Projector()
 	return mLight_Dir_Projector;
 }
 //----------------------------------------------------------------------------
-inline void EnvirParam::SetLight_Dir_DepthTexture(Texture *tex)
-{
-	mLight_Dir_DepthTexture = tex;
-}
-//----------------------------------------------------------------------------
 inline Texture *EnvirParam::GetLight_Dir_DepthTexture()
 {
 	return mLight_Dir_DepthTexture;

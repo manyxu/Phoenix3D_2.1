@@ -18,9 +18,7 @@ PX2_IMPLEMENT_RTTI(PX2, Object, Project);
 //----------------------------------------------------------------------------
 Project::Project() :
 mEdit_UICameraPercent(1.0f),
-mScreenOrientation(SO_LANDSCAPE),
-mIsScene_UseBloom(false),
-mIsScene_UseShadowMap(false)
+mScreenOrientation(SO_LANDSCAPE)
 {
 	if (ScriptManager::GetSingletonPtr())
 		PX2_SM.SetUserTypePointer("PX2_PROJ", "Project", this);
@@ -48,16 +46,6 @@ mIsScene_UseShadowMap(false)
 	SetUIFrame(mUIFrame);
 
 	mIsScene_ShowShadowBloomEveryPass = false;
-
-	mIsScene_BloomRenderTargetSizeSameWithScreen = true;
-	mScene_BloomRenderTargetSize = Float2(512.0f, 512.0f);
-	mScene_BloomBrightWeight = 0.3f;
-	mScene_BloomBlurDeviation = 1.0f;
-	mScene_BloomBlurWeight = 1.0f;
-	mScene_BloomWeight = 1.0f;
-
-	mIsScene_ShadowRenderTargetSizeSameWithScreen = false;
-	mScene_ShadowRenderTargetSize = Float2(512.0f, 512.0f);
 }
 //----------------------------------------------------------------------------
 Project::~Project ()
@@ -157,19 +145,6 @@ bool Project::SaveConfig(const std::string &filename)
 
 	// render setting
 	XMLNode renderNode = projNode.NewChild("render_setting");
-	renderNode.SetAttributeBool("scene_isusebloom", mIsScene_UseBloom);
-	renderNode.SetAttributeBool("scene_bloomrendertarget_sizesamewithscreen", mIsScene_BloomRenderTargetSizeSameWithScreen);
-	renderNode.SetAttributeFloat("scene_bloomrendertarget_width", mScene_BloomRenderTargetSize[0]);
-	renderNode.SetAttributeFloat("scene_bloomrendertarget_height", mScene_BloomRenderTargetSize[1]);
-	renderNode.SetAttributeFloat("scene_bloombrightweight", mScene_BloomBrightWeight);
-	renderNode.SetAttributeFloat("scene_bloomblurdeviation", mScene_BloomBlurDeviation);
-	renderNode.SetAttributeFloat("scene_bloomblurweight", mScene_BloomBlurWeight);
-	renderNode.SetAttributeFloat("scene_bloomweight", mScene_BloomWeight);
-
-	renderNode.SetAttributeBool("scene_isuseshadowmap", mIsScene_UseShadowMap);
-	renderNode.SetAttributeBool("scene_shadowrendertargetsizesamewithscreen", mIsScene_ShadowRenderTargetSizeSameWithScreen);
-	renderNode.SetAttributeFloat("scene_shadowrendertargetsize_width", mScene_ShadowRenderTargetSize[0]);
-	renderNode.SetAttributeFloat("scene_shadowrendertargetsize_height", mScene_ShadowRenderTargetSize[1]);
 
 	// language
 	XMLNode languageNode = projNode.NewChild("language");
@@ -253,19 +228,6 @@ bool Project::Load(const std::string &filename)
 			XMLNode renderNode = rootNode.GetChild("render_setting");
 			if (!renderNode.IsNull())
 			{
-				mIsScene_UseBloom = renderNode.AttributeToBool("scene_isusebloom");
-				mIsScene_BloomRenderTargetSizeSameWithScreen = renderNode.AttributeToBool("scene_bloomrendertarget_sizesamewithscreen");
-				mScene_BloomRenderTargetSize[0] = renderNode.AttributeToFloat("scene_bloomrendertarget_width");
-				mScene_BloomRenderTargetSize[1] = renderNode.AttributeToFloat("scene_bloomrendertarget_height");
-				mScene_BloomBrightWeight = renderNode.AttributeToFloat("scene_bloombrightweight");
-				mScene_BloomBlurDeviation = renderNode.AttributeToFloat("scene_bloomblurdeviation");
-				mScene_BloomBlurWeight = renderNode.AttributeToFloat("scene_bloomblurweight");
-				mScene_BloomWeight = renderNode.AttributeToFloat("scene_bloomweight");
-
-				mIsScene_UseShadowMap = renderNode.AttributeToBool("scene_isuseshadowmap");
-				mIsScene_ShadowRenderTargetSizeSameWithScreen = renderNode.AttributeToBool("scene_shadowrendertargetsizesamewithscreen");
-				mScene_ShadowRenderTargetSize[0] = renderNode.AttributeToFloat("scene_shadowrendertargetsize_width");
-				mScene_ShadowRenderTargetSize[1] = renderNode.AttributeToFloat("scene_shadowrendertargetsize_height");
 			}
 
 			// language
@@ -293,16 +255,6 @@ bool Project::Load(const std::string &filename)
 
 			if (mSceneRenderStep)
 			{
-				mSceneRenderStep->SetUseBloom(mIsScene_UseBloom);
-				mSceneRenderStep->SetScene_BloomRenderTargetSizeSameWithScreen(mIsScene_BloomRenderTargetSizeSameWithScreen);
-				mSceneRenderStep->SetScene_BloomRenderTargetSize(mScene_BloomRenderTargetSize);
-				mSceneRenderStep->SetScene_BloomBrightWeight(mScene_BloomBrightWeight);
-				mSceneRenderStep->SetScene_BloomBlurDeviation(mScene_BloomBlurDeviation);
-				mSceneRenderStep->SetScene_BloomBlurWeight(mScene_BloomBlurWeight);
-				mSceneRenderStep->SetScene_BloomWeight(mScene_BloomWeight);
-				mSceneRenderStep->SetUseShadowMap(mIsScene_UseShadowMap);
-				mSceneRenderStep->SetShadowRenderTargetSizeSameWithScreen(mIsScene_ShadowRenderTargetSizeSameWithScreen);
-				mSceneRenderStep->SetShadowRenderTargetSize(mScene_ShadowRenderTargetSize);
 			}
 		}
 	}
@@ -449,26 +401,6 @@ void Project::SetViewRect(const Rectf &viewRect)
 	}
 }
 //----------------------------------------------------------------------------
-void Project::SetScene_UseBloom(bool isUseBloom)
-{
-	mIsScene_UseBloom = isUseBloom;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetUseBloom(isUseBloom);
-	}
-}
-//----------------------------------------------------------------------------
-void Project::SetScene_BloomBrightWeight(float weight)
-{
-	mScene_BloomBrightWeight = weight;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetScene_BloomBrightWeight(mScene_BloomBrightWeight);
-	}
-}
-//----------------------------------------------------------------------------
 void Project::SetScene_ShowShadowBloomEveryPass(
 	bool isShowShadowBloomEveryPass)
 {
@@ -478,103 +410,6 @@ void Project::SetScene_ShowShadowBloomEveryPass(
 	{
 		mSceneRenderStep->SetScene_ShowShadowBloomEveryPass(
 			isShowShadowBloomEveryPass);
-	}
-}
-//----------------------------------------------------------------------------
-bool Project::IsScene_ShowShadowBloomEveryPass() const
-{
-	return mIsScene_ShowShadowBloomEveryPass;
-}
-//----------------------------------------------------------------------------
-void Project::SetScene_BloomRenderTargetSizeSameWithScreen(
-	bool sizeSameWithScreen)
-{
-	mIsScene_BloomRenderTargetSizeSameWithScreen = sizeSameWithScreen;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetScene_BloomRenderTargetSizeSameWithScreen(
-			sizeSameWithScreen);
-	}
-}
-//----------------------------------------------------------------------------
-bool Project::IsScene_BloomRenderTargetSizeSameWithScreen() const
-{
-	return mIsScene_BloomRenderTargetSizeSameWithScreen;
-}
-//----------------------------------------------------------------------------
-float Project::GetScene_BloomBrightWeight() const
-{
-	return mScene_BloomBrightWeight;
-}
-//----------------------------------------------------------------------------
-void Project::SetScene_BloomRenderTargetSize(const Float2 &size)
-{
-	mScene_BloomRenderTargetSize = size;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetScene_BloomRenderTargetSize(size);
-	}
-}
-//----------------------------------------------------------------------------
-void Project::SetScene_BloomBlurDeviation(float deviation)
-{
-	mScene_BloomBlurDeviation = deviation;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetScene_BloomBlurDeviation(deviation);
-	}
-}
-//----------------------------------------------------------------------------
-void Project::SetScene_BloomBlurWeight(float weight)
-{
-	mScene_BloomBlurWeight = weight;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetScene_BloomBlurWeight(weight);
-	}
-}
-//----------------------------------------------------------------------------
-void Project::SetScene_BloomWeight(float weight)
-{
-	mScene_BloomWeight = weight;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetScene_BloomWeight(weight);
-	}
-}
-//----------------------------------------------------------------------------
-void Project::SetScene_UseShadowMap(bool isUseShadowMap)
-{
-	mIsScene_UseShadowMap = isUseShadowMap;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetUseShadowMap(isUseShadowMap);
-	}
-}
-//----------------------------------------------------------------------------
-void Project::SetScene_ShadowRenderTargetSizeSameWithScreen(bool sameWithScreen)
-{
-	mIsScene_ShadowRenderTargetSizeSameWithScreen = sameWithScreen;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetShadowRenderTargetSizeSameWithScreen(sameWithScreen);
-	}
-}
-//----------------------------------------------------------------------------
-void Project::SetScene_ShadowRenderTargetSize(const Float2 &size)
-{
-	mScene_ShadowRenderTargetSize = size;
-
-	if (mSceneRenderStep)
-	{
-		mSceneRenderStep->SetShadowRenderTargetSize(size);
 	}
 }
 //----------------------------------------------------------------------------
@@ -608,24 +443,6 @@ void Project::RegistProperties()
 
 	AddProperty("IsScene_ShowShadowBloomEveryPass", PT_BOOL,
 		mIsScene_ShowShadowBloomEveryPass);
-
-	AddProperty("IsScene_UseBloom", PT_BOOL, mIsScene_UseBloom);
-	AddProperty("IsScene_BloomRenderTargetSizeSameWithScreen", PT_BOOL,
-		mIsScene_BloomRenderTargetSizeSameWithScreen);
-	AddProperty("Scene_BloomRenderTargetSize", PT_FLOAT2, 
-		mScene_BloomRenderTargetSize);
-	AddProperty("Scene_BloomBrightWeight", PT_FLOAT, 
-		mScene_BloomBrightWeight);
-	AddProperty("Scene_BloomBlurDeviation", PT_FLOAT,
-		mScene_BloomBlurDeviation);
-	AddProperty("Scene_BloomBlurWeight", PT_FLOAT, mScene_BloomBlurWeight);
-	AddProperty("Scene_BloomWeight", PT_FLOAT, mScene_BloomWeight);
-
-	AddProperty("IsScene_UseShadowMap", PT_BOOL, mIsScene_UseShadowMap);
-	AddProperty("IsScene_ShadowRenderTargetSizeSameWithScreen", PT_BOOL, 
-		mIsScene_ShadowRenderTargetSizeSameWithScreen);
-	AddProperty("Scene_ShadowRenderTargetSize", PT_FLOAT2,
-		mScene_ShadowRenderTargetSize);
 }
 //----------------------------------------------------------------------------
 void Project::OnPropertyChanged(const PropertyObject &obj)
@@ -652,49 +469,9 @@ void Project::OnPropertyChanged(const PropertyObject &obj)
 		mProjBackgroundColor = Float4(progBackColor[0], progBackColor[1],
 			progBackColor[2], 1.0f);
 	}
-	else if ("IsScene_UseBloom" == obj.Name)
-	{
-		SetScene_UseBloom(PX2_ANY_AS(obj.Data, bool));
-	}
 	else if ("IsScene_ShowShadowBloomEveryPass" == obj.Name)
 	{
 		SetScene_ShowShadowBloomEveryPass(PX2_ANY_AS(obj.Data, bool));
-	}
-	else if ("IsScene_BloomRenderTargetSizeSameWithScreen" == obj.Name)
-	{
-		SetScene_BloomRenderTargetSizeSameWithScreen(PX2_ANY_AS(obj.Data, bool));
-	}
-	else if ("Scene_BloomRenderTargetSize" == obj.Name)
-	{
-		SetScene_BloomRenderTargetSize(PX2_ANY_AS(obj.Data, Float2));
-	}
-	else if ("Scene_BloomBrightWeight" == obj.Name)
-	{
-		SetScene_BloomBrightWeight(PX2_ANY_AS(obj.Data, float));
-	}
-	else if ("Scene_BloomBlurDeviation" == obj.Name)
-	{
-		SetScene_BloomBlurDeviation(PX2_ANY_AS(obj.Data, float));
-	}
-	else if ("Scene_BloomBlurWeight" == obj.Name)
-	{
-		SetScene_BloomBlurWeight(PX2_ANY_AS(obj.Data, float));
-	}
-	else if ("Scene_BloomWeight" == obj.Name)
-	{
-		SetScene_BloomWeight(PX2_ANY_AS(obj.Data, float));
-	}
-	else if ("IsScene_UseShadowMap" == obj.Name)
-	{
-		SetScene_UseShadowMap(PX2_ANY_AS(obj.Data, bool));
-	}
-	else if ("IsScene_ShadowRenderTargetSizeSameWithScreen" == obj.Name)
-	{
-		SetScene_ShadowRenderTargetSizeSameWithScreen(PX2_ANY_AS(obj.Data, bool));
-	}
-	else if ("Scene_ShadowRenderTargetSize" == obj.Name)
-	{
-		SetScene_ShadowRenderTargetSize(PX2_ANY_AS(obj.Data, Float2));
 	}
 }
 //----------------------------------------------------------------------------

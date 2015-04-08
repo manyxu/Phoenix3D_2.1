@@ -140,11 +140,15 @@ void PdrRenderTarget::Disable (Renderer* renderer)
 	HRESULT hr;
 	PX2_UNUSED(hr);
 
-	hr = device->SetRenderTarget(0, mSaveColorSurface);
-	assertion(hr == D3D_OK, "Failed to set old rt 0 color surface: %s\n",
-		DXGetErrorString(hr));
+	if (mSaveColorSurface)
+	{
+		hr = device->SetRenderTarget(0, mSaveColorSurface);
+		assertion(hr == D3D_OK, "Failed to set old rt 0 color surface: %s\n",
+			DXGetErrorString(hr));
 
-	mSaveColorSurface->Release();
+		mSaveColorSurface->Release();
+		mSaveColorSurface = 0;
+	}
 
 	for (int i = 1; i < mNumTargets; ++i)
 	{
@@ -156,12 +160,16 @@ void PdrRenderTarget::Disable (Renderer* renderer)
 
 	if (mHasDepthStencil)
 	{
-		hr = device->SetDepthStencilSurface(mSaveDepthStencilSurface);
-		assertion(hr == D3D_OK,
-			"Failed to set old rt 0 depthstencil surface: %s\n",
-			DXGetErrorString(hr));
+		if (mSaveDepthStencilSurface)
+		{
+			hr = device->SetDepthStencilSurface(mSaveDepthStencilSurface);
+			assertion(hr == D3D_OK,
+				"Failed to set old rt 0 depthstencil surface: %s\n",
+				DXGetErrorString(hr));
 
-		mSaveDepthStencilSurface->Release();
+			mSaveDepthStencilSurface->Release();
+			mSaveDepthStencilSurface = 0;
+		}
 	}
 }
 //----------------------------------------------------------------------------

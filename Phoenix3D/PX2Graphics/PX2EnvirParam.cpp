@@ -2,6 +2,7 @@
 
 #include "PX2EnvirParam.hpp"
 #include "PX2Renderable.hpp"
+#include "PX2GraphicsEventType.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Object, EnvirParam);
@@ -110,6 +111,11 @@ void EnvirParam::ComputeEnvironment(VisibleSet &vs)
 			}
 		}
 	}
+}
+//----------------------------------------------------------------------------
+void EnvirParam::SetLight_Dir_DepthTexture(Texture *tex)
+{
+	mLight_Dir_DepthTexture = tex;
 }
 //----------------------------------------------------------------------------
 

@@ -113,48 +113,8 @@ namespace PX2
 		void SetScene_ShowShadowBloomEveryPass(bool isShowShadowBloomEveryPass);
 		bool IsScene_ShowShadowBloomEveryPass() const;
 
-		void SetScene_UseBloom(bool isUseBloom);
-		bool IsScene_UseBloom() const;
-
-		void SetScene_BloomRenderTargetSizeSameWithScreen(bool sizeSameWithScreen);
-		bool IsScene_BloomRenderTargetSizeSameWithScreen() const;
-		void SetScene_BloomRenderTargetSize(const Float2 &size);
-		const Float2 &GetScene_BloomRenderTargetSize() const;
-
-		void SetScene_BloomBrightWeight(float weight);
-		float GetScene_BloomBrightWeight() const;
-
-		void SetScene_BloomBlurDeviation(float deviation);
-		float GetScene_BloomBlurDeviation() const;
-
-		void SetScene_BloomBlurWeight(float weight);
-		float GetScene_BloomBlurWeight() const;
-
-		void SetScene_BloomWeight(float weight);
-		float GetScene_BloomWeight() const;
-
-		void SetScene_UseShadowMap(bool isUseShadowMap);
-		bool IsScene_UseShadowMap() const;
-
-		void SetScene_ShadowRenderTargetSizeSameWithScreen(bool sameWithScreen);
-		bool IsScene_ShadowRenderTargetSizeSameWithScreen() const;
-		void SetScene_ShadowRenderTargetSize(const Float2 &size);
-		const Float2 &GetScene_ShadowRenderTargetSize() const;
-
 	protected:
 		bool mIsScene_ShowShadowBloomEveryPass;
-
-		bool mIsScene_UseBloom;
-		bool mIsScene_BloomRenderTargetSizeSameWithScreen;
-		Float2 mScene_BloomRenderTargetSize;
-		float mScene_BloomBrightWeight;
-		float mScene_BloomBlurDeviation;
-		float mScene_BloomBlurWeight;
-		float mScene_BloomWeight;
-
-		bool mIsScene_UseShadowMap;
-		bool mIsScene_ShadowRenderTargetSizeSameWithScreen;
-		Float2 mScene_ShadowRenderTargetSize;
 
 		// edit setting
 	public:

@@ -32,6 +32,13 @@ namespace PX2
 	public:
 		virtual void SetScreenSize(const Sizef &size);
 
+	public:
+		virtual void SetNode(Node *node);
+
+		// Event
+	public:
+		virtual void DoExecute(Event *event);
+
 		// Effects
 	public:
 		// bloom
@@ -40,32 +47,6 @@ namespace PX2
 
 		void SetScene_ShowShadowBloomEveryPass(bool isShowBloomEveryPass);
 		bool IsScene_ShowShadowBloomEveryPass() const;
-
-		void SetScene_BloomRenderTargetSizeSameWithScreen(bool sizeSameWithScreen);
-		bool IsScene_BloomRenderTargetSizeSameWithScreen() const;
-		void SetScene_BloomRenderTargetSize(const Float2 &size);
-		const Float2 &GetBloomRenderTargetSize() const;
-
-		void SetScene_BloomBrightWeight(float weight);
-		float GetScene_BloomBrightWeight() const;
-
-		void SetScene_BloomBlurDeviation(float deviation);
-		float GetScene_BloomBlurDeviation() const;
-
-		void SetScene_BloomBlurWeight(float weight);
-		float GetScene_BloomBlurWeight() const;
-
-		void SetScene_BloomWeight(float weight);
-		float GetScene_BloomWeight() const;
-
-		// shader map
-		void SetUseShadowMap(bool useShaderMap);
-		bool IsUseShadowMap() const;
-
-		void SetShadowRenderTargetSizeSameWithScreen(bool sameWithScreen);
-		bool IsShadowRenderTargetSizeSameWithScreen() const;
-		void SetShadowRenderTargetSize(const Float2 &size);
-		const Float2 &GetShadowRenderTargetSize() const;
 
 	protected:
 		void _SetCameraF(Camera *camera, UIPicBox *uiPicBox);
@@ -76,19 +57,8 @@ namespace PX2
 
 		bool mIsShowShadowBloomEveryPass;
 
-		bool mIsUseBloom;
-		bool mIsBloomRenderTargetSizeSameWithScreen;
-		Float2 mBloomRenderTargetSize;
-		Float4 mBloomBrightParam;
-		float mBloomBlurDeviation;
-		float mBloomBlurWeight;
-		Float4 mBloomParam;
 		bool mIsBloomChanged;
-
-		bool mIsUseShadowMap;
 		bool mIsShadowMapChanged;
-		bool mIsScene_ShadowRenderTargetSizeSameWithScreen;
-		Float2 mScene_ShadowRenderTargetSize;
 
 		CameraPtr mScreenCamera;
 

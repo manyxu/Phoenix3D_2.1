@@ -114,15 +114,15 @@ void p_std_lightshadow
 		
 	// shadow map depth
 	float shadowDepth = GetDepth(texCord, 0, 0);
-	//shadowDepth += GetDepth(texCord, -1, -1);
-	//shadowDepth += GetDepth(texCord, -1, 0);
-	//shadowDepth += GetDepth(texCord, -1, 1);
-	//shadowDepth += GetDepth(texCord, 0, -1);
-	//shadowDepth += GetDepth(texCord, 0, 1);
-	//shadowDepth += GetDepth(texCord, 1, -1);
-	//shadowDepth += GetDepth(texCord, 1, 0);
-	//shadowDepth += GetDepth(texCord, 1, 1);
-	//shadowDepth *= 0.1111f;
+	shadowDepth += GetDepth(texCord, -1, -1);
+	shadowDepth += GetDepth(texCord, -1, 0);
+	shadowDepth += GetDepth(texCord, -1, 1);
+	shadowDepth += GetDepth(texCord, 0, -1);
+	shadowDepth += GetDepth(texCord, 0, 1);
+	shadowDepth += GetDepth(texCord, 1, -1);
+	shadowDepth += GetDepth(texCord, 1, 0);
+	shadowDepth += GetDepth(texCord, 1, 1);
+	shadowDepth *= 0.1111f;
 		
 	float lightAmout = 1.0f;
 	if (depth > shadowDepth) 

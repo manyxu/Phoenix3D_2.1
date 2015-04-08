@@ -87,6 +87,7 @@
     <ClCompile Include="PX2FogColorDistConstant.cpp" />
     <ClCompile Include="PX2FogParamConstant.cpp" />
     <ClCompile Include="PX2GlobalMaterial.cpp" />
+    <ClCompile Include="PX2GraphicsEventType.cpp" />
     <ClCompile Include="PX2GraphicsRoot.cpp" />
     <ClCompile Include="PX2HalfFloat.cpp" />
     <ClCompile Include="PX2ImageProcessing.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="PX2FogColorHeightConstant.hpp" />
     <ClInclude Include="PX2FogColorDistConstant.hpp" />
     <ClInclude Include="PX2FogParamConstant.hpp" />
+    <ClInclude Include="PX2GraphicsEventType.hpp" />
     <ClInclude Include="PX2InterpCurveAlphaCtrl.hpp" />
     <ClInclude Include="PX2InterpCurveColorCtrl.hpp" />
     <ClInclude Include="PX2InterpCurveController.hpp" />

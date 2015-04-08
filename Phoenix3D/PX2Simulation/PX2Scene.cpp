@@ -4,9 +4,10 @@
 #include "PX2Project.hpp"
 #include "PX2Creater.hpp"
 #include "PX2Actor.hpp"
+#include "PX2SimulationEventType.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Node, Scene, 1);
+PX2_IMPLEMENT_RTTI_V(PX2, Node, Scene, 2);
 PX2_IMPLEMENT_STREAM(Scene);
 PX2_IMPLEMENT_FACTORY(Scene);
 PX2_IMPLEMENT_DEFAULT_NAMES(Node, Scene);
@@ -19,7 +20,20 @@ int Scene::GetNextID()
 	return msNextID++;
 }
 //----------------------------------------------------------------------------
-Scene::Scene()
+Scene::Scene() :
+mIsShowHelpNode(true),
+mIsScene_UseBloom(false),
+mIsScene_BloomRenderTargetSizeSameWithScreen(false),
+mScene_BloomRenderTargetSize(Float2(512.0f, 512.0f)),
+mScene_BloomBrightWeight(0.3f),
+mScene_BloomBlurDeviation(1.0f),
+mScene_BloomBlurWeight(1.0f),
+mScene_BloomWeight(1.0f),
+mBloomBrightParam(Float4::ZERO),
+mBloomParam(Float4::UNIT),
+mIsScene_UseShadowMap(false),
+mIsScene_ShadowRenderTargetSizeSameWithScreen(false),
+mScene_ShadowRenderTargetSize(Float2(512.0f, 512.0f))
 {
 	SetName("Scene");
 
@@ -172,6 +186,145 @@ void Scene::UpdateWorldData(double applicationTime, double elapsedTime)
 	Node::UpdateWorldData(applicationTime, elapsedTime);
 }
 //----------------------------------------------------------------------------
+void Scene::SetScene_UseBloom(bool isUseBloom)
+{
+	mIsScene_UseBloom = isUseBloom;
+
+	Event *ent = SimuES::CreateEventX(SimuES::Scene_BloomChanged);
+	PX2_EW.BroadcastingLocalEvent(ent);
+}
+//----------------------------------------------------------------------------
+void Scene::SetScene_BloomBrightWeight(float weight)
+{
+	mScene_BloomBrightWeight = weight;
+	mBloomBrightParam[0] = weight;
+
+	if (mIsScene_UseBloom)
+	{
+		Event *ent = SimuES::CreateEventX(SimuES::Scene_BloomChanged);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+}
+//----------------------------------------------------------------------------
+void Scene::SetScene_BloomRenderTargetSizeSameWithScreen(
+	bool sizeSameWithScreen)
+{
+	mIsScene_BloomRenderTargetSizeSameWithScreen = sizeSameWithScreen;
+
+	if (mIsScene_UseBloom)
+	{
+		Event *ent = SimuES::CreateEventX(SimuES::Scene_BloomChanged);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+}
+//----------------------------------------------------------------------------
+bool Scene::IsScene_BloomRenderTargetSizeSameWithScreen() const
+{
+	return mIsScene_BloomRenderTargetSizeSameWithScreen;
+}
+//----------------------------------------------------------------------------
+float Scene::GetScene_BloomBrightWeight() const
+{
+	return mScene_BloomBrightWeight;
+}
+//----------------------------------------------------------------------------
+void Scene::SetScene_BloomRenderTargetSize(const Float2 &size)
+{
+	mScene_BloomRenderTargetSize = size;
+
+	if (mIsScene_UseBloom)
+	{
+		Event *ent = SimuES::CreateEventX(SimuES::Scene_BloomChanged);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+}
+//----------------------------------------------------------------------------
+void Scene::SetScene_BloomBlurDeviation(float deviation)
+{
+	mScene_BloomBlurDeviation = deviation;
+
+	if (mIsScene_UseBloom)
+	{
+		Event *ent = SimuES::CreateEventX(SimuES::Scene_BloomChanged);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+}
+//----------------------------------------------------------------------------
+void Scene::SetScene_BloomBlurWeight(float weight)
+{
+	mScene_BloomBlurWeight = weight;
+
+	if (mIsScene_UseBloom)
+	{
+		Event *ent = SimuES::CreateEventX(SimuES::Scene_BloomChanged);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+}
+//----------------------------------------------------------------------------
+void Scene::SetScene_BloomWeight(float weight)
+{
+	mScene_BloomWeight = weight;
+	mBloomParam[0] = weight;
+
+	if (mIsScene_UseBloom)
+	{
+		Event *ent = SimuES::CreateEventX(SimuES::Scene_BloomChanged);
+		PX2_EW.BroadcastingLocalEvent(ent);
+	}
+}
+//----------------------------------------------------------------------------
+void _SceneTravelExecuteFun_ShadowMap(Movable *mov, Any *data)
+{
+	Actor *actor = DynamicCast<Actor>(mov);
+
+	if (actor)
+	{
+		bool useShadowMap = PX2_ANY_AS(*data, bool);
+		actor->ToggleUseShadowMap(useShadowMap);
+	}
+}
+//----------------------------------------------------------------------------
+void Scene::SetScene_UseShadowMap(bool isUseShadowMap)
+{
+	mIsScene_UseShadowMap = isUseShadowMap;
+
+	Event *ent = SimuES::CreateEventX(SimuES::Scene_ShadowMapChange);
+	PX2_EW.BroadcastingLocalEvent(ent);
+
+	Any data = mIsScene_UseShadowMap;
+	Node::TravelExecute(this, _SceneTravelExecuteFun_ShadowMap, &data);
+}
+//----------------------------------------------------------------------------
+void Scene::SetScene_ShadowRenderTargetSizeSameWithScreen(bool sameWithScreen)
+{
+	mIsScene_ShadowRenderTargetSizeSameWithScreen = sameWithScreen;
+
+	if (mIsScene_UseShadowMap)
+	{
+		Event *ent = SimuES::CreateEventX(SimuES::Scene_ShadowMapChange);
+		PX2_EW.BroadcastingLocalEvent(ent);
+
+		// 重新刷新深度图
+		Any data = mIsScene_UseShadowMap;
+		Node::TravelExecute(this, _SceneTravelExecuteFun_ShadowMap, &data);
+	}
+}
+//----------------------------------------------------------------------------
+void Scene::SetScene_ShadowRenderTargetSize(const Float2 &size)
+{
+	mScene_ShadowRenderTargetSize = size;
+
+	if (mIsScene_UseShadowMap)
+	{
+		Event *ent = SimuES::CreateEventX(SimuES::Scene_ShadowMapChange);
+		PX2_EW.BroadcastingLocalEvent(ent);
+
+		// 重新刷新深度图
+		Any data = mIsScene_UseShadowMap;
+		Node::TravelExecute(this, _SceneTravelExecuteFun_ShadowMap, &data);
+	}
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // Property
@@ -185,6 +338,24 @@ void Scene::RegistProperties()
 	AddProperty("NumActors", PT_INT, (int)mActors.size(), false);
 	AddProperty("Size", PT_SIZE, mSize);
 	AddProperty("IsShowHelpNode", PT_BOOL, IsShowHelpNode());
+
+	AddProperty("IsScene_UseBloom", PT_BOOL, mIsScene_UseBloom);
+	AddProperty("IsScene_BloomRenderTargetSizeSameWithScreen", PT_BOOL,
+		mIsScene_BloomRenderTargetSizeSameWithScreen);
+	AddProperty("Scene_BloomRenderTargetSize", PT_FLOAT2,
+		mScene_BloomRenderTargetSize);
+	AddProperty("Scene_BloomBrightWeight", PT_FLOAT,
+		mScene_BloomBrightWeight);
+	AddProperty("Scene_BloomBlurDeviation", PT_FLOAT,
+		mScene_BloomBlurDeviation);
+	AddProperty("Scene_BloomBlurWeight", PT_FLOAT, mScene_BloomBlurWeight);
+	AddProperty("Scene_BloomWeight", PT_FLOAT, mScene_BloomWeight);
+
+	AddProperty("IsScene_UseShadowMap", PT_BOOL, mIsScene_UseShadowMap);
+	AddProperty("IsScene_ShadowRenderTargetSizeSameWithScreen", PT_BOOL,
+		mIsScene_ShadowRenderTargetSizeSameWithScreen);
+	AddProperty("Scene_ShadowRenderTargetSize", PT_FLOAT2,
+		mScene_ShadowRenderTargetSize);
 }
 //----------------------------------------------------------------------------
 void Scene::OnPropertyChanged(const PropertyObject &obj)
@@ -199,6 +370,49 @@ void Scene::OnPropertyChanged(const PropertyObject &obj)
 	{
 		SetShowHelpNode(PX2_ANY_AS(obj.Data, bool));
 	}
+
+	else if ("IsScene_UseBloom" == obj.Name)
+	{
+		SetScene_UseBloom(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsScene_BloomRenderTargetSizeSameWithScreen" == obj.Name)
+	{
+		SetScene_BloomRenderTargetSizeSameWithScreen(PX2_ANY_AS(obj.Data,
+			bool));
+	}
+	else if ("Scene_BloomRenderTargetSize" == obj.Name)
+	{
+		SetScene_BloomRenderTargetSize(PX2_ANY_AS(obj.Data, Float2));
+	}
+	else if ("Scene_BloomBrightWeight" == obj.Name)
+	{
+		SetScene_BloomBrightWeight(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("Scene_BloomBlurDeviation" == obj.Name)
+	{
+		SetScene_BloomBlurDeviation(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("Scene_BloomBlurWeight" == obj.Name)
+	{
+		SetScene_BloomBlurWeight(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("Scene_BloomWeight" == obj.Name)
+	{
+		SetScene_BloomWeight(PX2_ANY_AS(obj.Data, float));
+	}
+
+	else if ("IsScene_UseShadowMap" == obj.Name)
+	{
+		SetScene_UseShadowMap(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsScene_ShadowRenderTargetSizeSameWithScreen" == obj.Name)
+	{
+		SetScene_ShadowRenderTargetSizeSameWithScreen(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("Scene_ShadowRenderTargetSize" == obj.Name)
+	{
+		SetScene_ShadowRenderTargetSize(PX2_ANY_AS(obj.Data, Float2));
+	}
 }
 //----------------------------------------------------------------------------
 
@@ -207,8 +421,20 @@ void Scene::OnPropertyChanged(const PropertyObject &obj)
 //----------------------------------------------------------------------------
 Scene::Scene(LoadConstructor value) :
 Node(value),
-mIsShowHelpNode(true)
+mIsShowHelpNode(true),
+mIsScene_UseBloom(false),
+mIsScene_BloomRenderTargetSizeSameWithScreen(false),
+mScene_BloomRenderTargetSize(Float2(512.0f, 512.0f)),
+mScene_BloomBrightWeight(0.3f),
+mScene_BloomBlurDeviation(1.0f),
+mScene_BloomBlurWeight(1.0f),
+mScene_BloomWeight(1.0f),
+mBloomParam(Float4::UNIT),
+mIsScene_UseShadowMap(false),
+mIsScene_ShadowRenderTargetSizeSameWithScreen(false),
+mScene_ShadowRenderTargetSize(Float2(512.0f, 512.0f))
 {
+	mScene_ShadowRenderTargetSize = Float2(512.0f, 512.0f);
 }
 //----------------------------------------------------------------------------
 void Scene::Load(InStream& source)
@@ -229,6 +455,21 @@ void Scene::Load(InStream& source)
 	if (1 <= readedVersion)
 	{
 		source.ReadBool(mIsShowHelpNode);
+	}
+	if (2 <= readedVersion)
+	{
+		source.ReadBool(mIsScene_UseBloom);
+		source.ReadBool(mIsScene_BloomRenderTargetSizeSameWithScreen);
+		source.ReadAggregate(mScene_BloomRenderTargetSize);
+		source.Read(mScene_BloomBrightWeight);
+
+		source.Read(mScene_BloomBlurDeviation);
+		source.Read(mScene_BloomBlurWeight);
+		source.Read(mScene_BloomWeight);
+
+		source.ReadBool(mIsScene_UseShadowMap);
+		source.ReadBool(mIsScene_ShadowRenderTargetSizeSameWithScreen);
+		source.ReadAggregate(mScene_ShadowRenderTargetSize);
 	}
 
 	PX2_END_DEBUG_STREAM_LOAD(Scene, source);
@@ -252,6 +493,9 @@ void Scene::Link(InStream& source)
 
 	if (mSkyActor)
 		source.ResolveLink(mSkyActor);
+
+	mBloomBrightParam[0] = mScene_BloomBrightWeight;
+	mBloomParam[0] = mScene_BloomWeight;
 }
 //----------------------------------------------------------------------------
 void Scene::PostLink()
@@ -299,6 +543,19 @@ void Scene::Save(OutStream& target) const
 
 	target.WriteBool(mIsShowHelpNode);
 
+	target.WriteBool(mIsScene_UseBloom);
+	target.WriteBool(mIsScene_BloomRenderTargetSizeSameWithScreen);
+	target.WriteAggregate(mScene_BloomRenderTargetSize);
+	target.Write(mScene_BloomBrightWeight);
+
+	target.Write(mScene_BloomBlurDeviation);
+	target.Write(mScene_BloomBlurWeight);
+	target.Write(mScene_BloomWeight);
+
+	target.WriteBool(mIsScene_UseShadowMap);
+	target.WriteBool(mIsScene_ShadowRenderTargetSizeSameWithScreen);
+	target.WriteAggregate(mScene_ShadowRenderTargetSize);
+
 	PX2_END_DEBUG_STREAM_SAVE(Scene, target);
 }
 //----------------------------------------------------------------------------
@@ -320,10 +577,38 @@ int Scene::GetStreamingSize(Stream &stream) const
 		{
 			size += PX2_BOOLSIZE(mIsShowHelpNode);
 		}
+		if (2 <= readedVersion)
+		{
+			size += PX2_BOOLSIZE(mIsScene_UseBloom);
+			size += PX2_BOOLSIZE(mIsScene_BloomRenderTargetSizeSameWithScreen);
+			size += sizeof(mScene_BloomRenderTargetSize);
+			size += sizeof(mScene_BloomBrightWeight);
+
+			size += sizeof(mScene_BloomBlurDeviation);
+			size += sizeof(mScene_BloomBlurWeight);
+			size += sizeof(mScene_BloomWeight);
+
+			size += PX2_BOOLSIZE(mIsScene_UseShadowMap);
+			size += PX2_BOOLSIZE(mIsScene_ShadowRenderTargetSizeSameWithScreen);
+			size += sizeof(mScene_ShadowRenderTargetSize);
+		}
 	}
 	else
 	{
 		size += PX2_BOOLSIZE(mIsShowHelpNode);
+
+		size += PX2_BOOLSIZE(mIsScene_UseBloom);
+		size += PX2_BOOLSIZE(mIsScene_BloomRenderTargetSizeSameWithScreen);
+		size += sizeof(mScene_BloomRenderTargetSize);
+		size += sizeof(mScene_BloomBrightWeight);
+
+		size += sizeof(mScene_BloomBlurDeviation);
+		size += sizeof(mScene_BloomBlurWeight);
+		size += sizeof(mScene_BloomWeight);
+
+		size += PX2_BOOLSIZE(mIsScene_UseShadowMap);
+		size += PX2_BOOLSIZE(mIsScene_ShadowRenderTargetSizeSameWithScreen);
+		size += sizeof(mScene_ShadowRenderTargetSize);
 	}
 
 	return size;

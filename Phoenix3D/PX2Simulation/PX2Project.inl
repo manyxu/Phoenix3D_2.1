@@ -56,46 +56,6 @@ inline const Rectf &Project::GetViewRect() const
 	return mViewRect;
 }
 //----------------------------------------------------------------------------
-inline bool Project::IsScene_UseBloom() const
-{
-	return mIsScene_UseBloom;
-}
-//----------------------------------------------------------------------------
-inline const Float2 &Project::GetScene_BloomRenderTargetSize() const
-{
-	return mScene_BloomRenderTargetSize;
-}
-//----------------------------------------------------------------------------
-inline float Project::GetScene_BloomBlurDeviation() const
-{
-	return mScene_BloomBlurDeviation;
-}
-//----------------------------------------------------------------------------
-inline float Project::GetScene_BloomBlurWeight() const
-{
-	return mScene_BloomBlurWeight;
-}
-//----------------------------------------------------------------------------
-inline float Project::GetScene_BloomWeight() const
-{
-	return mScene_BloomWeight;
-}
-//----------------------------------------------------------------------------
-inline bool Project::IsScene_UseShadowMap() const
-{
-	return mIsScene_UseBloom;
-}
-//----------------------------------------------------------------------------
-inline bool Project::IsScene_ShadowRenderTargetSizeSameWithScreen() const
-{
-	return mIsScene_ShadowRenderTargetSizeSameWithScreen;
-}
-//----------------------------------------------------------------------------
-inline const Float2 &Project::GetScene_ShadowRenderTargetSize() const
-{
-	return mScene_ShadowRenderTargetSize;
-}
-//----------------------------------------------------------------------------
 inline void Project::SetEdit_UICameraPercent(float percent)
 {
 	mEdit_UICameraPercent = percent;
@@ -104,5 +64,10 @@ inline void Project::SetEdit_UICameraPercent(float percent)
 inline float Project::GetEdit_UICameraPercent() const
 {
 	return mEdit_UICameraPercent;
+}
+//----------------------------------------------------------------------------
+inline bool Project::IsScene_ShowShadowBloomEveryPass() const
+{
+	return mIsScene_ShowShadowBloomEveryPass;
 }
 //----------------------------------------------------------------------------

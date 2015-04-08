@@ -76,6 +76,8 @@ namespace PX2
 		const AVector &GetHeading() const;
 
 	protected:
+		virtual void SetParent(Movable* parent);
+
 		bool mIsShareVI;
 		std::string mMovableFilename;
 		MovablePtr mMovable;
@@ -97,6 +99,10 @@ namespace PX2
 		void _CollectAnchor(Movable *mov);
 
 		std::map<int, Node*> mAnchorMap;
+
+		// Render Settings
+	public:
+		void ToggleUseShadowMap(bool use);
 
 		// Params
 	public:

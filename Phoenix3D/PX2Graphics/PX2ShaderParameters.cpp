@@ -101,7 +101,6 @@ ShaderFloat* ShaderParameters::GetConstant (const std::string& name) const
 		}
 	}
 
-	assertion(false, "Cannot find constant.\n");
 	return 0;
 }
 //----------------------------------------------------------------------------

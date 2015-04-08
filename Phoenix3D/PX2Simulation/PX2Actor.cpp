@@ -3,6 +3,7 @@
 #include "PX2Actor.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2SimulationEventType.hpp"
+#include "PX2Scene.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Node, Actor);
@@ -142,6 +143,17 @@ void Actor::SetHeading(const AVector &heading)
 	mHeading = heading;
 }
 //----------------------------------------------------------------------------
+void Actor::SetParent(Movable* parent)
+{
+	Node::SetParent(parent);
+
+	Scene *scene = DynamicCast<Scene>(parent);
+	if (scene)
+	{
+		ToggleUseShadowMap(scene->IsScene_UseShadowMap());
+	}
+}
+//----------------------------------------------------------------------------
 void Actor::CollectAnchors()
 {
 	mAnchorMap.clear();
@@ -195,6 +207,37 @@ void Actor::_CollectAnchor(Movable *mov)
 			}
 		}
 	}
+}
+//----------------------------------------------------------------------------
+void _ActorTravelExecuteFun_ShadowMap(Movable *mov, Any *data)
+{
+	Renderable *renderable = DynamicCast<Renderable>(mov);
+
+	if (renderable)
+	{
+		bool useShadowMap = PX2_ANY_AS(*data, bool);
+		MaterialInstance *mtlInst = renderable->GetMaterialInstance();
+		Material *mtl = mtlInst->GetMaterial();
+		const std::string &mtlName = mtl->GetName();
+		
+		if ("std" == mtlName)
+		{
+			std::string techName = "std_light";
+
+			if (!useShadowMap)
+				techName = "std_light";
+			else
+				techName = "std_lightshadow";
+
+			mtlInst->SetUseMaterialTechnique(techName);
+		}
+	}
+}
+//----------------------------------------------------------------------------
+void Actor::ToggleUseShadowMap(bool use)
+{
+	Any data = use;
+	Node::TravelExecute(this, _ActorTravelExecuteFun_ShadowMap, &data);
 }
 //----------------------------------------------------------------------------
 void Actor::SetRadius(float radius)

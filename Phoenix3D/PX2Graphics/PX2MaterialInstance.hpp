@@ -23,6 +23,9 @@ namespace PX2
 			const std::string &techName, bool share);
 		virtual ~MaterialInstance ();
 
+		void SetUseMaterial(const std::string &mtlName, const std::string &techName);
+		void SetUseMaterialTechnique(const std::string &techName);
+
 		const std::string &GetMaterialFilename() const;
 		const std::string &GetTechniqueName() const;
 
@@ -48,6 +51,7 @@ namespace PX2
 			Texture* texture);
 		int SetPixelTexture (int pass, const std::string& name,
 			Texture* texture);
+		bool IsHasPixelSample(int pass, const std::string& name);
 
 		// 获得着色器常量和纹理
 		ShaderFloat* GetVertexConstant (int pass, const std::string& name) const;
@@ -63,6 +67,9 @@ namespace PX2
 
 		virtual void Update(double appTime, double elapsedTime);
 
+	public:
+		virtual void DoExecute(Event *event);
+
 	public_internal:
 		void _SetMaterialFilename(const std::string &filename);
 
@@ -73,6 +80,7 @@ namespace PX2
 			int &outTechIndex);
 		void _CreateConstants(ShaderParametersPtr &newParam, Shader *shader);
 		void _CopyParams(ShaderParameters *from, ShaderParameters *to);
+		void _SetDepthTexture();
 
 		bool mIsShareMtl;
 
@@ -86,7 +94,7 @@ namespace PX2
 		ShaderParametersPtr* mVertexParameters;
 		ShaderParametersPtr* mPixelParameters;
 
-		bool mIsNeedUpdated;
+		bool mIsNeedUpdate;
 	};
 
 	PX2_REGISTER_STREAM(MaterialInstance);

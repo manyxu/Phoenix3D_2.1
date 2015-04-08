@@ -4,6 +4,7 @@
 #include "PX2StringHelp.hpp"
 #include "PX2GraphicsRoot.hpp"
 #include "PX2MaterialManager.hpp"
+#include "PX2GraphicsEventType.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Object, MaterialInstance);
@@ -20,7 +21,7 @@ mTechniqueIndex(techniqueIndex),
 mNumPasses(0),
 mVertexParameters(0),
 mPixelParameters(0),
-mIsNeedUpdated(false)
+mIsNeedUpdate(false)
 {
 	assertion(material != 0, "Material must be specified.\n");
 	assertion(
@@ -53,12 +54,26 @@ MaterialInstance::MaterialInstance(const std::string &mtlFilename,
 	mNumPasses(0),
 	mVertexParameters(0),
 	mPixelParameters(0),
-	mIsNeedUpdated(false)
+	mIsNeedUpdate(false)
 {
 	MaterialTechnique *tech = _RefreshMaterial(mMaterialFilename, mInstanceTechName,
 		mVertexParameters, mPixelParameters, mIsShareMtl, mMaterial, mTechniqueIndex);
 
 	mNumPasses = tech->GetNumPasses();
+}
+//----------------------------------------------------------------------------
+void MaterialInstance::SetUseMaterial(const std::string &mtlName,
+	const std::string &techName)
+{
+	mMaterialFilename = mtlName;
+	mInstanceTechName = techName;
+
+	mIsNeedUpdate = true;
+}
+//----------------------------------------------------------------------------
+void MaterialInstance::SetUseMaterialTechnique(const std::string &techName)
+{
+	SetUseMaterial(mMaterialFilename, techName);
 }
 //----------------------------------------------------------------------------
 void MaterialInstance::_SetMaterialFilename(const std::string &filename)
@@ -210,6 +225,23 @@ int MaterialInstance::SetPixelTexture (int pass, const std::string& name,
 	return -1;
 }
 //----------------------------------------------------------------------------
+bool MaterialInstance::IsHasPixelSample(int pass, const std::string& name)
+{
+	int numTextures = mMaterial->GetPixelShader(mTechniqueIndex, pass)
+		->GetNumSamplers();
+	for (int i = 0; i < numTextures; i++)
+	{
+		const std::string &sampleName = mMaterial->GetPixelShader(
+			mTechniqueIndex, pass)->GetSamplerName(i);
+		if (name == sampleName)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
 ShaderFloat* MaterialInstance::GetVertexConstant (int pass,
 													  const std::string& name) const
 {
@@ -309,7 +341,7 @@ void MaterialInstance::Update(double appTime, double elapsedTime)
 	PX2_UNUSED(appTime);
 	PX2_UNUSED(elapsedTime);
 
-	if (mIsNeedUpdated)
+	if (mIsNeedUpdate)
 	{
 		if (!mMaterialFilename.empty() && !mInstanceTechName.empty())
 		{
@@ -335,6 +367,8 @@ void MaterialInstance::Update(double appTime, double elapsedTime)
 					newMaterial->GetPass(newTechIndex, i)->SetOffsetProperty(mMaterial->GetOffsetProperty(mTechniqueIndex, i));
 					newMaterial->GetPass(newTechIndex, i)->SetStencilProperty(mMaterial->GetStencilProperty(mTechniqueIndex, i));
 					newMaterial->GetPass(newTechIndex, i)->SetWireProperty(mMaterial->GetWireProperty(mTechniqueIndex, i));
+
+
 				}
 			}
 
@@ -353,13 +387,27 @@ void MaterialInstance::Update(double appTime, double elapsedTime)
 			mPixelParameters = newPixelParameters;
 		}
 
-		mIsNeedUpdated = false;
+		mIsNeedUpdate = false;
 	}
 
+	_SetDepthTexture();
+}
+//----------------------------------------------------------------------------
+void MaterialInstance::DoExecute(Event *event)
+{
+	PX2_UNUSED(event);
+}
+//----------------------------------------------------------------------------
+void MaterialInstance::_SetDepthTexture()
+{
 	EnvirParam *envParam = PX2_GR.GetCurEnvirParam();
 	for (int i = 0; i < GetNumPasses(); i++)
 	{
-		SetPixelTexture(0, "SampleShadowDepth", envParam->GetLight_Dir_DepthTexture());
+		if (IsHasPixelSample(i, "SampleShadowDepth"))
+		{
+			SetPixelTexture(i, "SampleShadowDepth",
+				envParam->GetLight_Dir_DepthTexture());
+		}
 	}
 }
 //----------------------------------------------------------------------------
@@ -376,17 +424,20 @@ void MaterialInstance::_CopyParams(ShaderParameters *from,
 
 			ShaderFloat *toFloat = to->GetConstant(fromConstName);
 
-			int fromNumRegisters = fromFloat->GetNumRegisters();
-			if (fromNumRegisters == toFloat->GetNumRegisters())
+			if (toFloat)
 			{
-				for (int r = 0; r < fromNumRegisters; r++)
+				int fromNumRegisters = fromFloat->GetNumRegisters();
+				if (fromNumRegisters == toFloat->GetNumRegisters())
 				{
-					toFloat->SetRegister(r, fromFloat->GetRegister(r));
+					for (int r = 0; r < fromNumRegisters; r++)
+					{
+						toFloat->SetRegister(r, fromFloat->GetRegister(r));
+					}
 				}
-			}
-			else
-			{
-				assertion(false, "numRegist doest not be the same.\n");
+				else
+				{
+					assertion(false, "numRegist doest not be the same.\n");
+				}
 			}
 		}
 	}
@@ -467,7 +518,7 @@ mTechniqueIndex(0),
 mNumPasses(0),
 mVertexParameters(0),
 mPixelParameters(0),
-mIsNeedUpdated(true)
+mIsNeedUpdate(true)
 {
 }
 //----------------------------------------------------------------------------
