@@ -121,6 +121,11 @@ namespace PX2
 		void SetShadowRenderTargetSize(const Float2 &size);
 		const Float2 &GetShadowRenderTargetSize() const;
 
+		void SetShadowOffsetProperty_Scale(float scale);
+		float GetShadowOffsetProperty_Scale() const;
+		void SetShadowOffsetProperty_Bias(float bias);
+		float GetShadowOffsetProperty_Bias() const;
+
 	protected:
 		bool mIsUseBloom;
 		bool mIsBloomRenderTargetSizeSameWithScreen;

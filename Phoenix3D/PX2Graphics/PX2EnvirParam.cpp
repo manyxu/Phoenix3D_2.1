@@ -5,7 +5,7 @@
 #include "PX2GraphicsEventType.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, Object, EnvirParam);
+PX2_IMPLEMENT_RTTI_V(PX2, Object, EnvirParam, 1);
 PX2_IMPLEMENT_STREAM(EnvirParam);
 PX2_IMPLEMENT_FACTORY(EnvirParam);
 
@@ -25,6 +25,9 @@ EnvirParam::EnvirParam()
 	AVector lightVec(-1.0f, -1.0f, -1.0f);
 	lightVec.Normalize();
 	mLight_Dir->SetDirection(lightVec);
+
+	mShadowOffsetProperty_Bias = 0.0f;
+	mShadowOffsetProperty_Scale = 0.0f;
 }
 //----------------------------------------------------------------------------
 EnvirParam::~EnvirParam()
@@ -123,7 +126,9 @@ void EnvirParam::SetLight_Dir_DepthTexture(Texture *tex)
 // 持久化支持
 //----------------------------------------------------------------------------
 EnvirParam::EnvirParam(LoadConstructor value) :
-Object(value)
+Object(value),
+mShadowOffsetProperty_Bias(0.0f),
+mShadowOffsetProperty_Scale(0.0f)
 {
 }
 //----------------------------------------------------------------------------
@@ -140,6 +145,13 @@ void EnvirParam::Load(InStream& source)
 	source.ReadAggregate(mFogParam);
 	source.ReadAggregate(mFogColorDist);
 	source.ReadAggregate(mFogColorHeight);
+
+	int readedVersion = GetReadedVersion();
+	if (1 <= readedVersion)
+	{
+		source.Read(mShadowOffsetProperty_Bias);
+		source.Read(mShadowOffsetProperty_Scale);
+	}
 
 	PX2_END_DEBUG_STREAM_LOAD(EnvirParam, source);
 }
@@ -190,6 +202,9 @@ void EnvirParam::Save(OutStream& target) const
 	target.WriteAggregate(mFogColorDist);
 	target.WriteAggregate(mFogColorHeight);
 
+	target.Write(mShadowOffsetProperty_Bias);
+	target.Write(mShadowOffsetProperty_Scale);
+
 	PX2_END_DEBUG_STREAM_SAVE(EnvirParam, target);
 }
 //----------------------------------------------------------------------------
@@ -204,6 +219,21 @@ int EnvirParam::GetStreamingSize(Stream &stream) const
 	size += sizeof(mFogParam);
 	size += sizeof(mFogColorDist);
 	size += sizeof(mFogColorHeight);
+
+	if (stream.IsIn())
+	{
+		int readedVersion = GetReadedVersion();
+		if (1 <= readedVersion)
+		{
+			size += sizeof(mShadowOffsetProperty_Bias);
+			size += sizeof(mShadowOffsetProperty_Scale);
+		}
+	}
+	else
+	{
+		size += sizeof(mShadowOffsetProperty_Bias);
+		size += sizeof(mShadowOffsetProperty_Scale);
+	}
 
 	return size;
 }

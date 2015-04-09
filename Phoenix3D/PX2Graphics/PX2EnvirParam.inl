@@ -16,6 +16,26 @@ inline Texture *EnvirParam::GetLight_Dir_DepthTexture()
 	return mLight_Dir_DepthTexture;
 }
 //----------------------------------------------------------------------------
+inline void EnvirParam::SetShadowMap_OffsetPropertyScale(float scale)
+{
+	mShadowOffsetProperty_Scale = scale;
+}
+//----------------------------------------------------------------------------
+inline float EnvirParam::GetShadowMap_OffsetPropertyScale() const
+{
+	return mShadowOffsetProperty_Scale;
+}
+//----------------------------------------------------------------------------
+inline void EnvirParam::SetShadowMap_OffsetPropertyBias(float bias)
+{
+	mShadowOffsetProperty_Bias = bias;
+}
+//----------------------------------------------------------------------------
+inline float EnvirParam::GetShadowMap_OffsetPropertyBias() const
+{
+	return mShadowOffsetProperty_Bias;
+}
+//----------------------------------------------------------------------------
 inline void EnvirParam::SetFogParam(const Float4 &param)
 {
 	mFogParam = param;

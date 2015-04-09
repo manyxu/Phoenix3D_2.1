@@ -27,6 +27,10 @@ namespace PX2
 		Projector *GetLight_Dir_Projector();
 		void SetLight_Dir_DepthTexture(Texture *tex);
 		Texture *GetLight_Dir_DepthTexture();
+		void SetShadowMap_OffsetPropertyScale(float scale);
+		float GetShadowMap_OffsetPropertyScale() const;
+		void SetShadowMap_OffsetPropertyBias(float bias);
+		float GetShadowMap_OffsetPropertyBias() const;
 
 		// PointLight
 		void AddLight(Light *light);
@@ -41,6 +45,9 @@ namespace PX2
 		LightPtr mLight_Dir;
 		ProjectorPtr mLight_Dir_Projector;
 		TexturePtr mLight_Dir_DepthTexture;
+
+		float mShadowOffsetProperty_Scale;
+		float mShadowOffsetProperty_Bias;
 
 		// Fog
 	public:

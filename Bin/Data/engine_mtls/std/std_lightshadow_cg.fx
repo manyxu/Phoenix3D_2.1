@@ -79,8 +79,8 @@ sampler2D SampleShadowDepth;
 float GetDepth(float4 texCord, int i, int j)
 {
 	float4 newUV = texCord + float4(texCord.w*i*0.001f, texCord.w*j*0.001f, 0.0f, 0.0f);
-	float4 depthColor = tex2Dproj(SampleShadowDepth, newUV);
-	//float4 depthColor = tex2D(SampleShadowDepth, float2(texCord.x/texCord.w, texCord.y/texCord.w));
+	//float4 depthColor = tex2Dproj(SampleShadowDepth, newUV);
+	float4 depthColor = tex2D(SampleShadowDepth, float2(texCord.x/texCord.w, texCord.y/texCord.w));
 				
 	return depthColor.x;
 }
@@ -114,15 +114,15 @@ void p_std_lightshadow
 		
 	// shadow map depth
 	float shadowDepth = GetDepth(texCord, 0, 0);
-	shadowDepth += GetDepth(texCord, -1, -1);
-	shadowDepth += GetDepth(texCord, -1, 0);
-	shadowDepth += GetDepth(texCord, -1, 1);
-	shadowDepth += GetDepth(texCord, 0, -1);
-	shadowDepth += GetDepth(texCord, 0, 1);
-	shadowDepth += GetDepth(texCord, 1, -1);
-	shadowDepth += GetDepth(texCord, 1, 0);
-	shadowDepth += GetDepth(texCord, 1, 1);
-	shadowDepth *= 0.1111f;
+	//shadowDepth += GetDepth(texCord, -1, -1);
+	//shadowDepth += GetDepth(texCord, -1, 0);
+	//shadowDepth += GetDepth(texCord, -1, 1);
+	//shadowDepth += GetDepth(texCord, 0, -1);
+	//shadowDepth += GetDepth(texCord, 0, 1);
+	//shadowDepth += GetDepth(texCord, 1, -1);
+	//shadowDepth += GetDepth(texCord, 1, 0);
+	//shadowDepth += GetDepth(texCord, 1, 1);
+	//shadowDepth *= 0.1111f;
 		
 	float lightAmout = 1.0f;
 	if (depth > shadowDepth) 

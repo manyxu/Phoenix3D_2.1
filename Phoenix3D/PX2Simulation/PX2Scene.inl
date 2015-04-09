@@ -91,3 +91,13 @@ inline const Float2 &Scene::GetShadowRenderTargetSize() const
 	return mShadowRenderTargetSize;
 }
 //----------------------------------------------------------------------------
+inline float Scene::GetShadowOffsetProperty_Scale() const
+{
+	return mEnvirParam->GetShadowMap_OffsetPropertyScale();
+}
+//----------------------------------------------------------------------------
+inline float Scene::GetShadowOffsetProperty_Bias() const
+{
+	return mEnvirParam->GetShadowMap_OffsetPropertyBias();
+}
+//----------------------------------------------------------------------------

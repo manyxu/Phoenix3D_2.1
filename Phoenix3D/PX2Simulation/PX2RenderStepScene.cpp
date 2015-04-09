@@ -136,9 +136,6 @@ void RenderStepScene::Draw()
 	{
 		mRenderer->Enable(mEffect_RenderTarget_Shadow);
 
-		sceneEnvirParam->SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetDepthStencilTexture());
-		mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
-
 		mRenderer->InitRenderStates();
 		mRenderer->SetClearColor(Float4(0.0f, 0.0f, 0.0f, 0.0f));
 		mRenderer->ClearBuffers();
@@ -148,6 +145,11 @@ void RenderStepScene::Draw()
 		mRenderer->Draw(mEffect_Culler_Shadow.GetVisibleSet(), mEffect_Material_Shadow);
 
 		mRenderer->Disable(mEffect_RenderTarget_Shadow);
+
+		sceneEnvirParam->SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
+		mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
+
+		mRenderer->ClearBuffers();
 	}
 
 	Rectf viewPort = mViewPort;
@@ -346,6 +348,8 @@ void _SetSampleOffsetWeight(const Float2 &surfsize, Float4 *offsets, float fDevi
 void RenderStepScene::SetShowShadowBloomEveryPass(bool isShowBloomEveryPass)
 {
 	mIsShowShadowBloomEveryPass = isShowBloomEveryPass;
+
+	_UpdateALightPicBoxTranslateSize();
 }
 //----------------------------------------------------------------------------
 bool RenderStepScene::IsShowShadowBloomEveryPass() const
@@ -553,7 +557,7 @@ void RenderStepScene::_UpdateShadowChanged()
 
 		Texture::Format tformat = Texture::TF_A32B32G32R32F;
 		mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, (int)rtSize[0], 
-			(int)rtSize[1], false, true);
+			(int)rtSize[1], false, false);
 		mEffect_Material_Shadow = new0 ShadowMap_Material();
 
 		mEffect_UIPicBox_Shadow = new0 UIPicBox();

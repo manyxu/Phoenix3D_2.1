@@ -22,12 +22,14 @@ TEMP R0;
 TEMP R1;
 MOV R0.w, c[0].x;
 MOV R0.xyz, vertex.position;
-DP4 R1.x, R0, c[3];
-DP4 result.position.w, R0, c[4];
-MOV result.position.z, R1.x;
+DP4 R1.x, R0, c[4];
+DP4 R1.y, R0, c[3];
+RCP R1.z, R1.x;
+MUL result.texcoord[1].x, R1.y, R1.z;
+MOV result.position.w, R1.x;
+MOV result.position.z, R1.y;
 DP4 result.position.y, R0, c[2];
 DP4 result.position.x, R0, c[1];
-MOV result.texcoord[1].x, R1;
 MOV result.texcoord[0].xy, vertex.texcoord[0];
 END
-# 9 instructions, 2 R-regs
+# 11 instructions, 2 R-regs

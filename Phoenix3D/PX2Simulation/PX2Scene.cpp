@@ -325,6 +325,18 @@ void Scene::SetShadowRenderTargetSize(const Float2 &size)
 	}
 }
 //----------------------------------------------------------------------------
+void Scene::SetShadowOffsetProperty_Scale(float scale)
+{
+	if (mEnvirParam)
+		mEnvirParam->SetShadowMap_OffsetPropertyScale(scale);
+}
+//----------------------------------------------------------------------------
+void Scene::SetShadowOffsetProperty_Bias(float bias)
+{
+	if (mEnvirParam)
+		mEnvirParam->SetShadowMap_OffsetPropertyBias(bias);
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // Property
@@ -356,6 +368,9 @@ void Scene::RegistProperties()
 		mIsShadowRenderTargetSizeSameWithScreen);
 	AddProperty("ShadowRenderTargetSize", PT_FLOAT2,
 		mShadowRenderTargetSize);
+
+	AddProperty("ShadowOffsetProperty_Scale", PT_FLOAT, GetShadowOffsetProperty_Scale());
+	AddProperty("GetShadowOffsetProperty_Bias", PT_FLOAT, GetShadowOffsetProperty_Bias());
 }
 //----------------------------------------------------------------------------
 void Scene::OnPropertyChanged(const PropertyObject &obj)
@@ -412,6 +427,14 @@ void Scene::OnPropertyChanged(const PropertyObject &obj)
 	else if ("ShadowRenderTargetSize" == obj.Name)
 	{
 		SetShadowRenderTargetSize(PX2_ANY_AS(obj.Data, Float2));
+	}
+	else if ("ShadowOffsetProperty_Scale" == obj.Name)
+	{
+		SetShadowOffsetProperty_Scale(PX2_ANY_AS(obj.Data, float));
+	}
+	else if ("ShadowOffsetProperty_Bias" == obj.Name)
+	{
+		SetShadowOffsetProperty_Bias(PX2_ANY_AS(obj.Data, float));
 	}
 }
 //----------------------------------------------------------------------------
