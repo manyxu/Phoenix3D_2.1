@@ -181,18 +181,16 @@ ADD R2.y, -R2.x, -R2.x;
 MAD R2.y, R2, R2.z, R2.x;
 DP4 R2.x, R1, c[A0.x + 5];
 ARL A0.x, R2.y;
+MOV R0.w, c[0].z;
 DP4 R2.y, R1, c[A0.x + 6];
 DP4 R2.z, R1, c[A0.x + 7];
-MOV R0.w, c[0].z;
 MAD R0.xyz, R2, vertex.texcoord[2].w, R0;
-DP4 R1.x, R0, c[4];
-DP4 R1.y, R0, c[3];
-RCP R1.z, R1.x;
-MUL result.texcoord[1].x, R1.y, R1.z;
-MOV result.position.w, R1.x;
-MOV result.position.z, R1.y;
+DP4 R1.x, R0, c[3];
+DP4 result.position.w, R0, c[4];
+MOV result.position.z, R1.x;
 DP4 result.position.y, R0, c[2];
 DP4 result.position.x, R0, c[1];
+MOV result.texcoord[1].x, R1;
 MOV result.texcoord[0].xy, vertex.texcoord[0];
 END
-# 60 instructions, 3 R-regs
+# 58 instructions, 3 R-regs

@@ -18,7 +18,7 @@ mVerAngle(45.0f),
 mLightCameraExtent(10.0f),
 mSpecularPow(10.0f),
 mIntensity(1.0f),
-mLightCameraLookDistance(100.0f)
+mLightCameraLookDistance(50.0f)
 {
 	SetName("AmbRegAtr");
 
@@ -204,7 +204,7 @@ void AmbientRegionActor::_UpdateDirLightCamera()
 		}
 		else
 		{
-			projector->SetFrustum(35.0f, 960.0f / 640.0f, 1.0f, 1000.0f);
+			projector->SetFrustum(mLightCameraExtent, 1.0f, 1.0f, 500.0f);
 		}
 	}
 }

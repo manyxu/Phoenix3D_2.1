@@ -31,7 +31,6 @@ mValidateCameraFrame(true)
 //----------------------------------------------------------------------------
 Camera::~Camera ()
 {
-
 }
 //----------------------------------------------------------------------------
 void Camera::SetFrame (const APoint& position, const AVector& dVector,

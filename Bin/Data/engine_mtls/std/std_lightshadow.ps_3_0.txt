@@ -29,10 +29,8 @@ dcl_texcoord0 v1.xy
 dcl_color0 v0
 dcl_texcoord2 v3
 dcl_texcoord1 v2.xy
-rcp r0.z, v3.w
-mul r0.xy, v3, r0.z
-texld r1.x, r0, s1
-mad r1.x, v3.z, r0.z, -r1
+texldp r1.x, v3, s1
+add r1.x, v3.z, -r1
 mov r0.x, v1
 add r0.y, -v1, c3.x
 add r0.xy, r0, c0

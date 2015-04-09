@@ -11,7 +11,7 @@ void v_std_shadowmapdepth
 {
     clipPosition = mul(PVWMatrix, float4(modelPosition,1.0f));
     vertexTCoord0 = modelTCoord0;
-	vertexTCoord1.r = clipPosition.z/clipPosition.w;
+	vertexTCoord1.r = clipPosition.z;
 }
 
 sampler2D SampleBase;

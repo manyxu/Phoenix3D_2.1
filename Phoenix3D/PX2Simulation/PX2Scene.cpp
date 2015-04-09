@@ -364,6 +364,9 @@ void Scene::RegistProperties()
 	AddProperty("BloomWeight", PT_FLOAT, mBloomWeight);
 
 	AddProperty("IsUseShadowMap", PT_BOOL, mIsUseShadowMap);
+	AddProperty("IsShadowMapProjectorPerspective", PT_BOOL, 
+		mEnvirParam->GetLight_Dir_Projector()->IsPerspective());
+
 	AddProperty("IsShadowRenderTargetSizeSameWithScreen", PT_BOOL,
 		mIsShadowRenderTargetSizeSameWithScreen);
 	AddProperty("ShadowRenderTargetSize", PT_FLOAT2,
@@ -415,10 +418,13 @@ void Scene::OnPropertyChanged(const PropertyObject &obj)
 	{
 		SetBloomWeight(PX2_ANY_AS(obj.Data, float));
 	}
-
 	else if ("IsUseShadowMap" == obj.Name)
 	{
 		SetUseShadowMap(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsShadowMapProjectorPerspective" == obj.Name)
+	{
+		mEnvirParam->GetLight_Dir_Projector()->SetPerspective(PX2_ANY_AS(obj.Data, bool));
 	}
 	else if ("IsShadowRenderTargetSizeSameWithScreen" == obj.Name)
 	{

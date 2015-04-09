@@ -128,9 +128,11 @@ void LightActor::SetParent(Movable* parent)
 		{
 			Scene *scene = DynamicCast<Scene>(mParent);
 			if (!scene)scene = DynamicCast<Scene>(mParent->GetTopestParent());
-			EnvirParam *envirParam = scene->GetEnvirParam();
-
-			envirParam->RemoveLight(mLight);
+			if (scene)
+			{
+				EnvirParam *envirParam = scene->GetEnvirParam();
+				envirParam->RemoveLight(mLight);
+			}
 		}
 	}
 

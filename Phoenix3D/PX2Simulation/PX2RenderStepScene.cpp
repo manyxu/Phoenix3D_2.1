@@ -137,7 +137,7 @@ void RenderStepScene::Draw()
 		mRenderer->Enable(mEffect_RenderTarget_Shadow);
 
 		mRenderer->InitRenderStates();
-		mRenderer->SetClearColor(Float4(0.0f, 0.0f, 0.0f, 0.0f));
+		mRenderer->SetClearColor(Float4::WHITE);
 		mRenderer->ClearBuffers();
 
 		Projector *lightProjector = scene->GetEnvirParam()->GetLight_Dir_Projector();
@@ -149,6 +149,7 @@ void RenderStepScene::Draw()
 		sceneEnvirParam->SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
 		mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
 
+		mRenderer->SetClearColor(MathHelp::Float3ToFloat4(scene->GetColor(), 1.0f));
 		mRenderer->ClearBuffers();
 	}
 
