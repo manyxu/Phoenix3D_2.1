@@ -93,8 +93,7 @@ int Property::msStringButtonEditorNum = 0;
 //-----------------------------------------------------------------------------
 Property::Property (PropertyPage *parent, const std::string &name, 
 	const std::string &tag,	PropertyType type, void *data, bool enable, 
-	const std::vector<std::string> *enums)
-:
+	const std::vector<std::string> *enums) :
 mParent(parent),
 mTag(tag),
 mName(name),

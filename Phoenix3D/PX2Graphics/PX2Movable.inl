@@ -106,3 +106,13 @@ inline bool Movable::IsSaveWriteIngore() const
 	return mIsSaveWriteIngore;
 }
 //----------------------------------------------------------------------------
+inline bool Movable::IsCastShadow() const
+{
+	return mIsCastShadow;
+}
+//----------------------------------------------------------------------------
+inline bool Movable::IsReceiveShadow() const
+{
+	return mIsReceiveShadow;
+}
+//----------------------------------------------------------------------------

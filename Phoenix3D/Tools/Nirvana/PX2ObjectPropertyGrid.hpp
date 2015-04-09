@@ -23,6 +23,8 @@ namespace PX2Editor
 
 		virtual void OnPropertyGridChange(wxPropertyGridEvent &event);
 		virtual void OnPropertyGridChanging(wxPropertyGridEvent &event);
+		virtual void OnPropertyGridCollapsed(wxPropertyGridEvent &event);
+		virtual void OnPropertyGridExpanded(wxPropertyGridEvent &event);
 
 		void OnSize(wxSizeEvent &e);
 
@@ -32,6 +34,9 @@ namespace PX2Editor
 		DECLARE_EVENT_TABLE()
 
 		PX2::ObjectPtr mObject;
+
+		std::map<std::string, wxPGProperty *> mClassProperies;
+		std::vector<std::string> mCollpasedClassNames;
 	};
 
 }

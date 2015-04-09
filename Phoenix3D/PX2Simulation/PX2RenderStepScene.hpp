@@ -45,8 +45,8 @@ namespace PX2
 		void SetUseBloom(bool useBloom);
 		bool IsUseBloom() const;
 
-		void SetScene_ShowShadowBloomEveryPass(bool isShowBloomEveryPass);
-		bool IsScene_ShowShadowBloomEveryPass() const;
+		void SetShowShadowBloomEveryPass(bool isShowBloomEveryPass);
+		bool IsShowShadowBloomEveryPass() const;
 
 	protected:
 		void _SetCameraF(Camera *camera, UIPicBox *uiPicBox);

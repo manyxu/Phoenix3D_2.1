@@ -87,19 +87,6 @@ namespace PX2
 		void SetUseBoundPick (bool isUseBoundPick);
 		bool IsUseBoundPick () const;
 
-		// 渲染作用
-		enum RenderUsage
-		{
-			RU_UI,
-			RU_GENERAL,
-			RU_REFLECT,
-			RU_SHADOWMAP,
-			RU_QUANTITY
-		};
-		void AddRenderUsage (RenderUsage usage);
-		void RemoveRenderUsage (RenderUsage usage);
-		unsigned int GetRenderUsage ();
-
 		/// 渲染层级
 		enum RenderLayer
 		{
@@ -175,6 +162,8 @@ namespace PX2
 		virtual void SetAlpha (float alpha);
 		virtual void SetColor (const Float3 &color);
 		virtual void SetBrightness (float brightness);
+		virtual void SetCastShadow(bool castShadow);
+		virtual void SetReceiveShadow(bool reciveShadow);
 
 		void SetFogInfulenceParam_Height (float param);
 		float GetFogInfulenceParam_Height () const;
@@ -253,7 +242,6 @@ public_internal:
 
 	protected:
 		// 渲染作用
-		unsigned int mRenderUsageBits;
 		unsigned int mSortIndex; // (layer<<24)|(sublayer<<16)|current
 
 		// 几何图形数据

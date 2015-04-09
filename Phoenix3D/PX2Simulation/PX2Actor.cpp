@@ -81,6 +81,8 @@ Node *Actor::CreateGetHelpNode()
 		mHelpNode = new0 Node();
 		AttachChild(mHelpNode);
 		mHelpNode->SetName("HelpNode");
+		mHelpNode->SetCastShadow(false);
+		mHelpNode->SetReceiveShadow(false);
 	}
 
 	return mHelpNode;
@@ -143,6 +145,26 @@ void Actor::SetHeading(const AVector &heading)
 	mHeading = heading;
 }
 //----------------------------------------------------------------------------
+void Actor::SetCastShadow(bool castShadow)
+{
+	Node::SetCastShadow(castShadow);
+
+	if (mHelpNode)
+	{
+		mHelpNode->SetCastShadow(false);
+	}
+}
+//----------------------------------------------------------------------------
+void Actor::SetReceiveShadow(bool receiveShadow)
+{
+	Node::SetReceiveShadow(receiveShadow);
+
+	if (mHelpNode)
+	{
+		mHelpNode->SetReceiveShadow(false);
+	}
+}
+//----------------------------------------------------------------------------
 void Actor::SetParent(Movable* parent)
 {
 	Node::SetParent(parent);
@@ -150,7 +172,7 @@ void Actor::SetParent(Movable* parent)
 	Scene *scene = DynamicCast<Scene>(parent);
 	if (scene)
 	{
-		ToggleUseShadowMap(scene->IsScene_UseShadowMap());
+		SetReceiveShadow(scene->IsUseShadowMap());
 	}
 }
 //----------------------------------------------------------------------------
@@ -207,37 +229,6 @@ void Actor::_CollectAnchor(Movable *mov)
 			}
 		}
 	}
-}
-//----------------------------------------------------------------------------
-void _ActorTravelExecuteFun_ShadowMap(Movable *mov, Any *data)
-{
-	Renderable *renderable = DynamicCast<Renderable>(mov);
-
-	if (renderable)
-	{
-		bool useShadowMap = PX2_ANY_AS(*data, bool);
-		MaterialInstance *mtlInst = renderable->GetMaterialInstance();
-		Material *mtl = mtlInst->GetMaterial();
-		const std::string &mtlName = mtl->GetName();
-		
-		if ("std" == mtlName)
-		{
-			std::string techName = "std_light";
-
-			if (!useShadowMap)
-				techName = "std_light";
-			else
-				techName = "std_lightshadow";
-
-			mtlInst->SetUseMaterialTechnique(techName);
-		}
-	}
-}
-//----------------------------------------------------------------------------
-void Actor::ToggleUseShadowMap(bool use)
-{
-	Any data = use;
-	Node::TravelExecute(this, _ActorTravelExecuteFun_ShadowMap, &data);
 }
 //----------------------------------------------------------------------------
 void Actor::SetRadius(float radius)

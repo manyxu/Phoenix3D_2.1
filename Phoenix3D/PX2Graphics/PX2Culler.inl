@@ -1,6 +1,16 @@
 // PX2Culler.inl
 
 //----------------------------------------------------------------------------
+inline void Culler::SetFlag_CastShadow(int cast)
+{
+	mFlag_CastShadow = cast;
+}
+//----------------------------------------------------------------------------
+inline int Culler::GetFlag_CastShadow() const
+{
+	return mFlag_CastShadow;
+}
+//----------------------------------------------------------------------------
 inline void Culler::SetCamera (const Camera* camera)
 {
 	mCamera = camera;

@@ -388,6 +388,28 @@ void Node::SetBrightness (float brightness)
 	}
 }
 //----------------------------------------------------------------------------
+void Node::SetCastShadow(bool castShadow)
+{
+	Movable::SetCastShadow(castShadow);
+
+	for (int i = 0; i < GetNumChildren(); i++)
+	{
+		if (mChild[i])
+			mChild[i]->SetCastShadow(castShadow);
+	}
+}
+//----------------------------------------------------------------------------
+void Node::SetReceiveShadow(bool reciveShadow)
+{
+	Movable::SetReceiveShadow(reciveShadow);
+
+	for (int i = 0; i < GetNumChildren(); i++)
+	{
+		if (mChild[i])
+			mChild[i]->SetReceiveShadow(reciveShadow);
+	}
+}
+//----------------------------------------------------------------------------
 void Node::OnNotPicked (int pickInfo)
 {
 	for (int i=0; i<(int)mChild.size(); i++)

@@ -45,7 +45,7 @@ mScreenOrientation(SO_LANDSCAPE)
 	mUIFrame->SetName("RootFrame");
 	SetUIFrame(mUIFrame);
 
-	mIsScene_ShowShadowBloomEveryPass = false;
+	mIsShowShadowBloomEveryPass = false;
 }
 //----------------------------------------------------------------------------
 Project::~Project ()
@@ -401,14 +401,14 @@ void Project::SetViewRect(const Rectf &viewRect)
 	}
 }
 //----------------------------------------------------------------------------
-void Project::SetScene_ShowShadowBloomEveryPass(
+void Project::SetShowShadowBloomEveryPass(
 	bool isShowShadowBloomEveryPass)
 {
-	mIsScene_ShowShadowBloomEveryPass = isShowShadowBloomEveryPass;
+	mIsShowShadowBloomEveryPass = isShowShadowBloomEveryPass;
 
 	if (mSceneRenderStep)
 	{
-		mSceneRenderStep->SetScene_ShowShadowBloomEveryPass(
+		mSceneRenderStep->SetShowShadowBloomEveryPass(
 			isShowShadowBloomEveryPass);
 	}
 }
@@ -441,8 +441,8 @@ void Project::RegistProperties()
 
 	AddProperty("ViewRect", PT_RECT, mViewRect, false);
 
-	AddProperty("IsScene_ShowShadowBloomEveryPass", PT_BOOL,
-		mIsScene_ShowShadowBloomEveryPass);
+	AddProperty("IsShowShadowBloomEveryPass", PT_BOOL,
+		mIsShowShadowBloomEveryPass);
 }
 //----------------------------------------------------------------------------
 void Project::OnPropertyChanged(const PropertyObject &obj)
@@ -469,9 +469,9 @@ void Project::OnPropertyChanged(const PropertyObject &obj)
 		mProjBackgroundColor = Float4(progBackColor[0], progBackColor[1],
 			progBackColor[2], 1.0f);
 	}
-	else if ("IsScene_ShowShadowBloomEveryPass" == obj.Name)
+	else if ("IsShowShadowBloomEveryPass" == obj.Name)
 	{
-		SetScene_ShowShadowBloomEveryPass(PX2_ANY_AS(obj.Data, bool));
+		SetShowShadowBloomEveryPass(PX2_ANY_AS(obj.Data, bool));
 	}
 }
 //----------------------------------------------------------------------------

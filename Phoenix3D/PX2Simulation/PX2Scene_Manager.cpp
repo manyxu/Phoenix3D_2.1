@@ -1,4 +1,4 @@
-// PX2Scene_Manager.cpp
+// PX2Manager.cpp
 
 #include "PX2Scene.hpp"
 using namespace PX2;

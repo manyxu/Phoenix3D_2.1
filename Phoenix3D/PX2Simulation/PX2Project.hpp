@@ -110,11 +110,11 @@ namespace PX2
 
 		// render setting
 	public:
-		void SetScene_ShowShadowBloomEveryPass(bool isShowShadowBloomEveryPass);
-		bool IsScene_ShowShadowBloomEveryPass() const;
+		void SetShowShadowBloomEveryPass(bool isShowShadowBloomEveryPass);
+		bool IsShowShadowBloomEveryPass() const;
 
 	protected:
-		bool mIsScene_ShowShadowBloomEveryPass;
+		bool mIsShowShadowBloomEveryPass;
 
 		// edit setting
 	public:

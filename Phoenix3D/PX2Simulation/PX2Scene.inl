@@ -41,29 +41,29 @@ inline const Sizef &Scene::GetSize() const
 	return mSize;
 }
 //----------------------------------------------------------------------------
-inline bool Scene::IsScene_UseBloom() const
+inline bool Scene::IsUseBloom() const
 {
-	return mIsScene_UseBloom;
+	return mIsUseBloom;
 }
 //----------------------------------------------------------------------------
-inline const Float2 &Scene::GetScene_BloomRenderTargetSize() const
+inline const Float2 &Scene::GetBloomRenderTargetSize() const
 {
-	return mScene_BloomRenderTargetSize;
+	return mBloomRenderTargetSize;
 }
 //----------------------------------------------------------------------------
-inline float Scene::GetScene_BloomBlurDeviation() const
+inline float Scene::GetBloomBlurDeviation() const
 {
-	return mScene_BloomBlurDeviation;
+	return mBloomBlurDeviation;
 }
 //----------------------------------------------------------------------------
-inline float Scene::GetScene_BloomBlurWeight() const
+inline float Scene::GetBloomBlurWeight() const
 {
-	return mScene_BloomBlurWeight;
+	return mBloomBlurWeight;
 }
 //----------------------------------------------------------------------------
-inline float Scene::GetScene_BloomWeight() const
+inline float Scene::GetBloomWeight() const
 {
-	return mScene_BloomWeight;
+	return mBloomWeight;
 }
 //----------------------------------------------------------------------------
 inline const Float4 &Scene::GetBloomBrightParam() const
@@ -76,18 +76,18 @@ inline const Float4 &Scene::GetBloomParam() const
 	return mBloomParam;
 }
 //----------------------------------------------------------------------------
-inline bool Scene::IsScene_UseShadowMap() const
+inline bool Scene::IsUseShadowMap() const
 {
-	return mIsScene_UseShadowMap;
+	return mIsUseShadowMap;
 }
 //----------------------------------------------------------------------------
-inline bool Scene::IsScene_ShadowRenderTargetSizeSameWithScreen() const
+inline bool Scene::IsShadowRenderTargetSizeSameWithScreen() const
 {
-	return mIsScene_ShadowRenderTargetSizeSameWithScreen;
+	return mIsShadowRenderTargetSizeSameWithScreen;
 }
 //----------------------------------------------------------------------------
-inline const Float2 &Scene::GetScene_ShadowRenderTargetSize() const
+inline const Float2 &Scene::GetShadowRenderTargetSize() const
 {
-	return mScene_ShadowRenderTargetSize;
+	return mShadowRenderTargetSize;
 }
 //----------------------------------------------------------------------------

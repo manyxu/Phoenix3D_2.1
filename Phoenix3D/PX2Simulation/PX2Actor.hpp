@@ -88,6 +88,11 @@ namespace PX2
 
 		AVector mHeading;
 
+		// rending
+	public:
+		virtual void SetCastShadow(bool castShadow);
+		virtual void SetReceiveShadow(bool receiveShadow);
+
 		// Anchor
 	public:
 		void CollectAnchors();
@@ -99,10 +104,6 @@ namespace PX2
 		void _CollectAnchor(Movable *mov);
 
 		std::map<int, Node*> mAnchorMap;
-
-		// Render Settings
-	public:
-		void ToggleUseShadowMap(bool use);
 
 		// Params
 	public:

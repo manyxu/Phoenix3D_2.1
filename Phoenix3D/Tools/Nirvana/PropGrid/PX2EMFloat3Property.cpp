@@ -15,8 +15,7 @@ EMFloat3Property::EMFloat3Property (PropertyPage *parent,
 	const std::string &name, const std::string &tag,
 	bool isColor,
 	InterpCurvePointFloat3 *point,
-	bool isForInit)
-	:
+	bool isForInit) :
 Property(parent, name, tag, Property::PT_EMFLOAT3, 0),
 	mPropertyInVal(0),
 	mPropertyOutVal(0),

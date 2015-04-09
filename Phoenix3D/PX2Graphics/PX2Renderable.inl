@@ -131,21 +131,6 @@ inline bool Renderable::IsUseBoundPick () const
 	return mIsUseBoundPick;
 }
 //----------------------------------------------------------------------------
-inline void Renderable::AddRenderUsage (RenderUsage usage)
-{
-	mRenderUsageBits |= 1<<usage;
-}
-//----------------------------------------------------------------------------
-inline void Renderable::RemoveRenderUsage (RenderUsage usage)
-{
-	mRenderUsageBits &= ~(1<<usage);
-}
-//----------------------------------------------------------------------------
-inline unsigned int Renderable::GetRenderUsage ()
-{
-	return mRenderUsageBits;
-}
-//----------------------------------------------------------------------------
 inline void Renderable::_SetTransparent (bool transparent)
 {
 	mSortIndex = (mSortIndex&0xffff0000)|(transparent?1:0);
@@ -244,11 +229,6 @@ inline const std::string &Renderable::GetLightTexture () const
 inline const std::string &Renderable::GetNormalTexture () const
 {
 	return mNormalTexPath;
-}
-//----------------------------------------------------------------------------
-inline bool Renderable::IsUseLightTexture () const
-{
-	return mIsUseLightTexture;
 }
 //----------------------------------------------------------------------------
 inline float Renderable::GetFogInfulenceParam_Height () const

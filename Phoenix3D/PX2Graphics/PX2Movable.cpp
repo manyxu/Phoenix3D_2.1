@@ -4,7 +4,7 @@
 #include "PX2Culler.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Controlledable, Movable, 4);
+PX2_IMPLEMENT_RTTI_V(PX2, Controlledable, Movable, 5);
 PX2_IMPLEMENT_STREAM(Movable);
 PX2_IMPLEMENT_ABSTRACT_FACTORY(Movable);
 
@@ -31,7 +31,9 @@ mIsIngoreParent_Translate(false),
 mIsIngoreParent_Rotate(false),
 mIsIngoreParent_Scale(false),
 IsSkinCtrlSetWroldTrans(false),
-mIsSaveWriteIngore(false)
+mIsSaveWriteIngore(false),
+mIsCastShadow(true),
+mIsReceiveShadow(true)
 {
 	SetColor(Float3::ZERO);
 	SetAlpha(1.0f);
@@ -275,6 +277,16 @@ void Movable::SetBrightness (float brightness)
 	mBrightness = brightness;
 }
 //----------------------------------------------------------------------------
+void Movable::SetCastShadow(bool castShadow)
+{
+	mIsCastShadow = castShadow;
+}
+//----------------------------------------------------------------------------
+void Movable::SetReceiveShadow(bool reciveShadow)
+{
+	mIsReceiveShadow = reciveShadow;
+}
+//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 名称
@@ -334,6 +346,9 @@ void Movable::RegistProperties ()
 	AddProperty("IsColorSelfCtrled", Object::PT_BOOL, Any(IsColorSelfCtrled()));
 	AddProperty("Brightness", Object::PT_FLOAT, GetBrightness());
 	AddProperty("IsBrightnessSelfCtrled", Object::PT_BOOL, IsBrightnessSelfCtrled());
+
+	AddProperty("IsCastShadow", Object::PT_BOOL, IsCastShadow());
+	AddProperty("IsReceiveShadow", Object::PT_BOOL, IsReceiveShadow());
 
 	AddProperty("UpdateTime", Object::PT_FLOAT, GetUpdateTime());
 }
@@ -398,9 +413,13 @@ void Movable::OnPropertyChanged (const PropertyObject &obj)
 	{
 		SetBrightnessSelfCtrled(PX2_ANY_AS(obj.Data, bool));
 	}
-	else if ("UpdateTime" == obj.Name)
+	else if ("IsCastShadow" == obj.Name)
 	{
-		SetUpdateTime(PX2_ANY_AS(obj.Data, float));
+		SetCastShadow(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsReceiveShadow" == obj.Name)
+	{
+		SetReceiveShadow(PX2_ANY_AS(obj.Data, bool));
 	}
 }
 //----------------------------------------------------------------------------
@@ -431,7 +450,9 @@ mIsIngoreParent_Translate(false),
 mIsIngoreParent_Rotate(false),
 mIsIngoreParent_Scale(false),
 IsSkinCtrlSetWroldTrans(false),
-mIsSaveWriteIngore(false)
+mIsSaveWriteIngore(false),
+mIsCastShadow(true),
+mIsReceiveShadow(true)
 {
 }
 //----------------------------------------------------------------------------
@@ -476,6 +497,12 @@ void Movable::Load (InStream& source)
 		source.ReadBool(mIsIngoreParent_Translate);
 		source.ReadBool(mIsIngoreParent_Rotate);
 		source.ReadBool(mIsIngoreParent_Scale);
+	}
+
+	if (5 <= readedVersion)
+	{
+		source.ReadBool(mIsCastShadow);
+		source.ReadBool(mIsReceiveShadow);
 	}
 
     PX2_END_DEBUG_STREAM_LOAD(Movable, source);
@@ -527,6 +554,9 @@ void Movable::Save (OutStream& target) const
 	target.WriteBool(mIsIngoreParent_Rotate);
 	target.WriteBool(mIsIngoreParent_Scale);
 
+	target.WriteBool(mIsCastShadow);
+	target.WriteBool(mIsReceiveShadow);
+
 	// mParent不被保存，它会在Node::Link中调用Node::SetChild被设置。
 
     PX2_END_DEBUG_STREAM_SAVE(Movable, target);
@@ -568,6 +598,11 @@ int Movable::GetStreamingSize (Stream &stream) const
 			size += PX2_BOOLSIZE(mIsIngoreParent_Rotate);
 			size += PX2_BOOLSIZE(mIsIngoreParent_Scale);
 		}
+		if (5 <= readedVersion)
+		{
+			size += PX2_BOOLSIZE(mIsCastShadow);
+			size += PX2_BOOLSIZE(mIsReceiveShadow);
+		}
 	}
 	else
 	{
@@ -581,6 +616,9 @@ int Movable::GetStreamingSize (Stream &stream) const
 		size += PX2_BOOLSIZE(mIsIngoreParent_Translate);
 		size += PX2_BOOLSIZE(mIsIngoreParent_Rotate);
 		size += PX2_BOOLSIZE(mIsIngoreParent_Scale);
+
+		size += PX2_BOOLSIZE(mIsCastShadow);
+		size += PX2_BOOLSIZE(mIsReceiveShadow);
 	}
 
     // mParent不被持久化

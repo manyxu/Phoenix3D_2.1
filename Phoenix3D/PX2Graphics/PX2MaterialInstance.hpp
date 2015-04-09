@@ -67,9 +67,6 @@ namespace PX2
 
 		virtual void Update(double appTime, double elapsedTime);
 
-	public:
-		virtual void DoExecute(Event *event);
-
 	public_internal:
 		void _SetMaterialFilename(const std::string &filename);
 

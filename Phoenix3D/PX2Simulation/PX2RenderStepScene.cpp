@@ -110,6 +110,7 @@ void RenderStepScene::ComputeVisibleSetAndEnv()
 	
 	Projector *lightProjector = envirParam->GetLight_Dir_Projector();
 	mEffect_Culler_Shadow.SetCamera(lightProjector);
+	mEffect_Culler_Shadow.SetFlag_CastShadow(1);
 	mEffect_Culler_Shadow.ComputeVisibleSet(mNode);
 	mEffect_Culler_Shadow.GetVisibleSet().Sort();
 
@@ -154,7 +155,7 @@ void RenderStepScene::Draw()
 	mRenderer->SetViewport(viewPort);
 
 	// normal
-	if (!scene->IsScene_UseBloom())
+	if (!scene->IsUseBloom())
 	{
 		mRenderer->SetCamera(mCamera);
 
@@ -168,7 +169,7 @@ void RenderStepScene::Draw()
 	}
 
 	// bloom
-	if (scene->IsScene_UseBloom())
+	if (scene->IsUseBloom())
 	{
 		if (mEffect_RenderTarget_Normal)
 		{
@@ -253,7 +254,7 @@ void RenderStepScene::SetSize(const Sizef &size)
 	RenderStep::SetSize(size);
 
 	Scene *scene = DynamicCast<Scene>(mNode);
-	if (scene && scene->IsScene_BloomRenderTargetSizeSameWithScreen())
+	if (scene && scene->IsBloomRenderTargetSizeSameWithScreen())
 		mIsBloomChanged = true;
 
 	if (mEffect_UIView)
@@ -269,7 +270,7 @@ void RenderStepScene::SetScreenSize(const Sizef &size)
 	RenderStep::SetScreenSize(size);
 
 	Scene *scene = DynamicCast<Scene>(mNode);
-	if (scene && scene->IsScene_BloomRenderTargetSizeSameWithScreen())
+	if (scene && scene->IsBloomRenderTargetSizeSameWithScreen())
 		mIsBloomChanged = true;
 }
 //----------------------------------------------------------------------------
@@ -342,12 +343,12 @@ void _SetSampleOffsetWeight(const Float2 &surfsize, Float4 *offsets, float fDevi
 	}
 }
 //----------------------------------------------------------------------------
-void RenderStepScene::SetScene_ShowShadowBloomEveryPass(bool isShowBloomEveryPass)
+void RenderStepScene::SetShowShadowBloomEveryPass(bool isShowBloomEveryPass)
 {
 	mIsShowShadowBloomEveryPass = isShowBloomEveryPass;
 }
 //----------------------------------------------------------------------------
-bool RenderStepScene::IsScene_ShowShadowBloomEveryPass() const
+bool RenderStepScene::IsShowShadowBloomEveryPass() const
 {
 	return mIsShowShadowBloomEveryPass;
 }
@@ -377,10 +378,10 @@ void RenderStepScene::_UpdateBloomChanged()
 
 	Scene *scene = DynamicCast<Scene>(mNode);
 
-	if (scene && scene->IsScene_UseBloom())
+	if (scene && scene->IsUseBloom())
 	{
-		Float2 rtSize = scene->GetScene_BloomRenderTargetSize();
-		if (scene->IsScene_BloomRenderTargetSizeSameWithScreen())
+		Float2 rtSize = scene->GetBloomRenderTargetSize();
+		if (scene->IsBloomRenderTargetSizeSameWithScreen())
 			rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
 
 		Sizef size(mBloomShadowPicSize, mBloomShadowPicSize);
@@ -418,7 +419,7 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BlurH->SetAlpha(1.0f);
 		mEffect_UIPicBox_BlurH->SetTexture("Data/engine/default.png");
 
-		_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_H, scene->GetScene_BloomBlurDeviation(), scene->GetScene_BloomBlurWeight(), true);
+		_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_H, scene->GetBloomBlurDeviation(), scene->GetBloomBlurWeight(), true);
 		ShaderFloat *shaderFloatUVOffsets_H = mEffect_UIPicBox_BlurH->GetMaterialInstance()->GetPixelConstant(0, "UVOffsets");
 		shaderFloatUVOffsets_H->SetRegisters((const float*)mEffect_Blur_UVOffsets_H);
 
@@ -435,7 +436,7 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BlurV->SetAlpha(1.0f);
 		mEffect_UIPicBox_BlurV->SetTexture("Data/engine/default.png");
 
-		_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_V, scene->GetScene_BloomBlurDeviation(), scene->GetScene_BloomBlurWeight(), false);
+		_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_V, scene->GetBloomBlurDeviation(), scene->GetBloomBlurWeight(), false);
 		ShaderFloat *shaderFloatUVOffsets_V = mEffect_UIPicBox_BlurV->GetMaterialInstance()->GetPixelConstant(0, "UVOffsets");
 		shaderFloatUVOffsets_V->SetRegisters((const float*)mEffect_Blur_UVOffsets_V);
 
@@ -463,17 +464,17 @@ void RenderStepScene::_UpdateBloomParams()
 		mBloom_BrightParam->SetRegister(0, scene->GetBloomBrightParam());
 	}
 
-	Float2 rtSize = scene->GetScene_BloomRenderTargetSize();
-	if (scene->IsScene_BloomRenderTargetSizeSameWithScreen())
+	Float2 rtSize = scene->GetBloomRenderTargetSize();
+	if (scene->IsBloomRenderTargetSizeSameWithScreen())
 		rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
 
 	_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_H,
-		scene->GetScene_BloomBlurDeviation(), 
-		scene->GetScene_BloomBlurWeight(), true);
+		scene->GetBloomBlurDeviation(), 
+		scene->GetBloomBlurWeight(), true);
 
 	_SetSampleOffsetWeight(rtSize, mEffect_Blur_UVOffsets_V,
-		scene->GetScene_BloomBlurDeviation(), 
-		scene->GetScene_BloomBlurWeight(), false);
+		scene->GetBloomBlurDeviation(), 
+		scene->GetBloomBlurWeight(), false);
 
 	if (mEffect_UIPicBox_BlurH)
 	{
@@ -542,12 +543,12 @@ void RenderStepScene::_UpdateShadowChanged()
 	mEffect_UIFrame->DetachChild(mEffect_UIPicBox_Shadow);
 	mEffect_UIPicBox_Shadow = 0;
 
-	if (scene && scene->IsScene_UseShadowMap())
+	if (scene && scene->IsUseShadowMap())
 	{
 		PX2_GR.SetCurEnvirParam(sceneEnvirParam);
 
-		Float2 rtSize = scene->GetScene_ShadowRenderTargetSize();
-		if (scene->IsScene_ShadowRenderTargetSizeSameWithScreen())
+		Float2 rtSize = scene->GetShadowRenderTargetSize();
+		if (scene->IsShadowRenderTargetSizeSameWithScreen())
 			rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
 
 		Texture::Format tformat = Texture::TF_A32B32G32R32F;

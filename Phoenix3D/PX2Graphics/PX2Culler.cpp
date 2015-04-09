@@ -6,10 +6,10 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-Culler::Culler (const Camera* camera)
-:
+Culler::Culler (const Camera* camera) :
 mCamera(camera),
-mPlaneQuantity(6)
+mPlaneQuantity(6),
+mFlag_CastShadow(0)
 {
 }
 //----------------------------------------------------------------------------

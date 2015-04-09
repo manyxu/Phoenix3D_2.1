@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 04/03/15 10:28:06.
+** Generated automatically by tolua++-1.0.92 on 04/09/15 10:31:29.
 */
 
 #ifndef __cplusplus
@@ -5952,104 +5952,6 @@ static int tolua_PX2_Renderable_GetModelBound01(lua_State* tolua_S)
  return 1;
 tolua_lerror:
  return tolua_PX2_Renderable_GetModelBound00(tolua_S);
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: AddRenderUsage of class  Renderable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Renderable_AddRenderUsage00
-static int tolua_PX2_Renderable_AddRenderUsage00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Renderable",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Renderable* self = (Renderable*)  tolua_tousertype(tolua_S,1,0);
-  Renderable::RenderUsage usage = ((Renderable::RenderUsage) (int)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AddRenderUsage'", NULL);
-#endif
-  {
-   self->AddRenderUsage(usage);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'AddRenderUsage'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: RemoveRenderUsage of class  Renderable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Renderable_RemoveRenderUsage00
-static int tolua_PX2_Renderable_RemoveRenderUsage00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Renderable",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Renderable* self = (Renderable*)  tolua_tousertype(tolua_S,1,0);
-  Renderable::RenderUsage usage = ((Renderable::RenderUsage) (int)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'RemoveRenderUsage'", NULL);
-#endif
-  {
-   self->RemoveRenderUsage(usage);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'RemoveRenderUsage'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: GetRenderUsage of class  Renderable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Renderable_GetRenderUsage00
-static int tolua_PX2_Renderable_GetRenderUsage00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Renderable",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Renderable* self = (Renderable*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetRenderUsage'", NULL);
-#endif
-  {
-   unsigned int tolua_ret = (unsigned int)  self->GetRenderUsage();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'GetRenderUsage'.",&tolua_err);
- return 0;
-#endif
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -29835,14 +29737,6 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetIndexBuffer",tolua_PX2_Renderable_GetIndexBuffer01);
    tolua_function(tolua_S,"GetModelBound",tolua_PX2_Renderable_GetModelBound00);
    tolua_function(tolua_S,"GetModelBound",tolua_PX2_Renderable_GetModelBound01);
-   tolua_constant(tolua_S,"RU_UI",Renderable::RU_UI);
-   tolua_constant(tolua_S,"RU_GENERAL",Renderable::RU_GENERAL);
-   tolua_constant(tolua_S,"RU_REFLECT",Renderable::RU_REFLECT);
-   tolua_constant(tolua_S,"RU_SHADOWMAP",Renderable::RU_SHADOWMAP);
-   tolua_constant(tolua_S,"RU_QUANTITY",Renderable::RU_QUANTITY);
-   tolua_function(tolua_S,"AddRenderUsage",tolua_PX2_Renderable_AddRenderUsage00);
-   tolua_function(tolua_S,"RemoveRenderUsage",tolua_PX2_Renderable_RemoveRenderUsage00);
-   tolua_function(tolua_S,"GetRenderUsage",tolua_PX2_Renderable_GetRenderUsage00);
    tolua_constant(tolua_S,"RL_BACKGROUND",Renderable::RL_BACKGROUND);
    tolua_constant(tolua_S,"RL_SKY",Renderable::RL_SKY);
    tolua_constant(tolua_S,"RL_TERRAIN",Renderable::RL_TERRAIN);

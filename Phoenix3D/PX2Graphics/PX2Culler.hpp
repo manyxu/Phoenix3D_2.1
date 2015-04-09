@@ -22,6 +22,10 @@ namespace PX2
 		Culler (const Camera* camera = 0);
 		virtual ~Culler ();
 
+		// 0 ingore, 1 do, 2 not do
+		void SetFlag_CastShadow(int cast);
+		int GetFlag_CastShadow() const;
+
 		// 相机和截头体设置
 		inline void SetCamera (const Camera* camera);
 		inline const Camera* GetCamera () const;
@@ -58,6 +62,8 @@ namespace PX2
 	protected:
 		// 裁剪器需要的相机
 		const Camera* mCamera;
+
+		int mFlag_CastShadow;
 
 		/** 
 		* 输入像机的截头体的拷贝，这样容许各式系统在裁剪的时候改变截头体（举例]

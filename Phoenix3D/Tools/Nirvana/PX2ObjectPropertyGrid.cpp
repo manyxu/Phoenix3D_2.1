@@ -20,6 +20,8 @@ BEGIN_EVENT_TABLE(ObjectPropertyGrid, wxWindow)
 EVT_SIZE(ObjectPropertyGrid::OnSize)
 EVT_MOVE(ObjectPropertyGrid::OnMove)
 EVT_PG_CHANGED(wxID_ANY, ObjectPropertyGrid::OnPropertyGridChange)
+EVT_PG_ITEM_COLLAPSED(wxID_ANY, ObjectPropertyGrid::OnPropertyGridCollapsed)
+EVT_PG_ITEM_EXPANDED(wxID_ANY, ObjectPropertyGrid::OnPropertyGridExpanded)
 END_EVENT_TABLE()
 //-----------------------------------------------------------------------------
 ObjectPropertyGrid::ObjectPropertyGrid()
@@ -114,6 +116,7 @@ void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
 	wxColour lastTextColor = textColors[0];
 	wxColour lastBackColor = backColors[0];
 
+	mClassProperies.clear();
 	for (int i = 0; i < (int)props.size(); i++)
 	{
 		const Object::PropertyObject &propObj = props[i];
@@ -246,10 +249,23 @@ void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
 		if (Object::PT_CLASS == propObj.Type)
 		{
 			numClasses++;
+			mClassProperies[propObj.Name] = prop->mProperty;
 		}
 	}
 
 	mPropGridManager->ShowHeader(true);
+
+	for (int i = 0; i < (int)mCollpasedClassNames.size(); i++)
+	{
+		const std::string &collpasedPropertyName = mCollpasedClassNames[i];
+
+		std::map<std::string, wxPGProperty *>::iterator itProp = mClassProperies.find(collpasedPropertyName);
+		if (itProp != mClassProperies.end())
+		{
+			if (itProp->second)
+				mPropGridManager->Collapse(itProp->second);
+		}
+	}
 }
 //-----------------------------------------------------------------------------
 PX2::Object *ObjectPropertyGrid::GetObject()
@@ -276,15 +292,15 @@ void ObjectPropertyGrid::OnPropertyGridChange(wxPropertyGridEvent &event)
 
 		if (propObj.Tag == propName)
 		{
-			//// tex pack
-			//const SelectResData &data = EditSystem::GetSingleton().GetSelectedResource();
-			//SelectResData::SelectResType selectResType = data.GetSelectResType();
-			//if (SelectResData::RT_TEXPACKELEMENT == selectResType)
-			//{
-			//	propObj.Data1 = data.ResPathname;
-			//}
+			// tex pack
+			const SelectResData &data = PX2_EDIT.GetSelectedResource();
+			SelectResData::SelectResType selectResType = data.GetSelectResType();
+			if (SelectResData::RT_TEXPACKELEMENT == selectResType)
+			{
+				propObj.Data1 = data.ResPathname;
+			}
 
-			//// do change
+			// do change
 			obj->OnPropertyChanged(propObj);
 
 			// appended events
@@ -338,6 +354,42 @@ void ObjectPropertyGrid::OnPropertyGridChange(wxPropertyGridEvent &event)
 void ObjectPropertyGrid::OnPropertyGridChanging(wxPropertyGridEvent &event)
 {
 	PropertyGrid::OnPropertyGridChange(event);
+}
+//-----------------------------------------------------------------------------
+void ObjectPropertyGrid::OnPropertyGridCollapsed(wxPropertyGridEvent &event)
+{
+	wxPGProperty* property = event.GetProperty();
+	if (property)
+	{
+		std::string propName = property->GetLabel();
+
+		std::vector<std::string>::iterator it =
+			std::find(mCollpasedClassNames.begin(), 
+			mCollpasedClassNames.end(), propName);
+
+		if (it == mCollpasedClassNames.end())
+		{
+			mCollpasedClassNames.push_back(propName);
+		}
+	}
+}
+//-----------------------------------------------------------------------------
+void ObjectPropertyGrid::OnPropertyGridExpanded(wxPropertyGridEvent &event)
+{
+	wxPGProperty* property = event.GetProperty();
+	if (property)
+	{
+		std::string propName = property->GetLabel();
+
+		std::vector<std::string>::iterator it =
+			std::find(mCollpasedClassNames.begin(),
+			mCollpasedClassNames.end(), propName);
+
+		if (it != mCollpasedClassNames.end())
+		{
+			mCollpasedClassNames.erase(it);
+		}
+	}
 }
 //-----------------------------------------------------------------------------
 void ObjectPropertyGrid::OnSize(wxSizeEvent &e)

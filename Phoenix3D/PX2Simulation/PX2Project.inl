@@ -66,8 +66,8 @@ inline float Project::GetEdit_UICameraPercent() const
 	return mEdit_UICameraPercent;
 }
 //----------------------------------------------------------------------------
-inline bool Project::IsScene_ShowShadowBloomEveryPass() const
+inline bool Project::IsShowShadowBloomEveryPass() const
 {
-	return mIsScene_ShowShadowBloomEveryPass;
+	return mIsShowShadowBloomEveryPass;
 }
 //----------------------------------------------------------------------------

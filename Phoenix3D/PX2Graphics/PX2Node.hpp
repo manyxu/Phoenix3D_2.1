@@ -52,6 +52,8 @@ namespace PX2
 		virtual void SetAlpha (float alpha);
 		virtual void SetColor (const Float3 &color);
 		virtual void SetBrightness (float brightness);
+		virtual void SetCastShadow(bool castShadow);
+		virtual void SetReceiveShadow(bool reciveShadow);
 		
 		void SetDoPickPriority (bool doPickPriority); // 一般用来为Node设置
 		bool IsDoPickPriority () const;

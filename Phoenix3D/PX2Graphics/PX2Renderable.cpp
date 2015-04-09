@@ -16,7 +16,6 @@ PX2_IMPLEMENT_ABSTRACT_FACTORY(Renderable);
 
 //----------------------------------------------------------------------------
 Renderable::Renderable (PrimitiveType type) :
-mRenderUsageBits(0),
 mEyeDistance(0.0f),
 mType(type),
 mVFormat(0),
@@ -66,7 +65,6 @@ mFogIP_Distance(1.0f)
 //----------------------------------------------------------------------------
 Renderable::Renderable (PrimitiveType type, VertexFormat* vformat,
 				VertexBuffer* vbuffer, IndexBuffer* ibuffer) :
-mRenderUsageBits(0),
 mEyeDistance(0.0f),
 mType(type),
 mVFormat(vformat),
@@ -224,6 +222,31 @@ void Renderable::SetBrightness (float brightness)
 	}
 }
 //----------------------------------------------------------------------------
+void Renderable::SetCastShadow(bool castShadow)
+{
+	Movable::SetCastShadow(castShadow);
+}
+//----------------------------------------------------------------------------
+void Renderable::SetReceiveShadow(bool reciveShadow)
+{
+	Movable::SetReceiveShadow(reciveShadow);
+
+	Material *mtl = mMaterialInstance->GetMaterial();
+	const std::string &mtlName = mtl->GetName();
+
+	if ("std" == mtlName)
+	{
+		std::string techName = "std_light";
+
+		if (!reciveShadow)
+			techName = "std_light";
+		else
+			techName = "std_lightshadow";
+
+		mMaterialInstance->SetUseMaterialTechnique(techName);
+	}
+}
+//----------------------------------------------------------------------------
 void Renderable::SetFogInfulenceParam_Height (float param)
 {
 	mFogIP_Height = param;
@@ -301,10 +324,22 @@ void Renderable::UpdateModelBound ()
 //----------------------------------------------------------------------------
 void Renderable::GetVisibleSet (Culler& culler, bool)
 {
+	int flag_CastShadow = culler.GetFlag_CastShadow();
+	if (0 == flag_CastShadow)
+	{
+	}
+	else if (1 == flag_CastShadow)
+	{
+		if (!IsCastShadow()) return;
+	}
+	else if (2 == flag_CastShadow)
+	{
+		if (IsCastShadow()) return;
+	}
+
 	AdjustTransparent();
 
 	const Camera *camera = culler.GetCamera();
-
 	assertion(camera!=0, "camera must not be 0.");
 
 	AVector cameraDir = camera->GetDVector();
@@ -520,7 +555,6 @@ void Renderable::GetAllObjectsByName (const std::string& name,
 //----------------------------------------------------------------------------
 Renderable::Renderable (LoadConstructor value) :
 Movable(value),
-mRenderUsageBits(0),
 mEyeDistance(0.0f),
 mType(PT_NONE),
 mVFormat(0),

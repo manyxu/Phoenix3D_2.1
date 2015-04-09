@@ -393,11 +393,6 @@ void MaterialInstance::Update(double appTime, double elapsedTime)
 	_SetDepthTexture();
 }
 //----------------------------------------------------------------------------
-void MaterialInstance::DoExecute(Event *event)
-{
-	PX2_UNUSED(event);
-}
-//----------------------------------------------------------------------------
 void MaterialInstance::_SetDepthTexture()
 {
 	EnvirParam *envParam = PX2_GR.GetCurEnvirParam();

@@ -34,19 +34,6 @@
 		const Bound& GetModelBound () const;
 		Bound& GetModelBound ();
 
-		enum RenderUsage
-		{
-			RU_UI,
-			RU_GENERAL,
-			RU_REFLECT,
-			RU_SHADOWMAP,
-			RU_QUANTITY
-		};
-
-		void AddRenderUsage (RenderUsage usage);
-		void RemoveRenderUsage (RenderUsage usage);
-		unsigned int GetRenderUsage ();
-
 		enum RenderLayer
 		{
 			RL_BACKGROUND = 0,

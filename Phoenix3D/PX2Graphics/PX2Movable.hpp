@@ -117,6 +117,11 @@ namespace PX2
 		virtual void SetBrightness (float brightness);
 		float GetBrightness () const;
 
+		virtual void SetCastShadow(bool castShadow);
+		bool IsCastShadow() const;
+		virtual void SetReceiveShadow(bool reciveShadow);
+		bool IsReceiveShadow() const;
+
 		// Update
 	public:
 		void SetUpdateTime (float time);
@@ -167,6 +172,9 @@ public_internal:
 		bool mIsNotPickedParentChildrenNotPicked;
 
 		bool mIsSaveWriteIngore;
+		
+		bool mIsCastShadow;
+		bool mIsReceiveShadow;
 	};
 
 	PX2_REGISTER_STREAM(Movable);
