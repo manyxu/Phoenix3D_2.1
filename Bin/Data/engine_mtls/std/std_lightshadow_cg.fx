@@ -82,7 +82,7 @@ float GetDepth(float4 texCord, int i, int j)
 	//float4 depthColor = tex2Dproj(SampleShadowDepth, newUV);
 	float4 depthColor = tex2D(SampleShadowDepth, float2(newUV.x/texCord.w, newUV.y/texCord.w));
 				
-	return depthColor.x;
+	return depthColor.r;
 }
 
 void p_std_lightshadow
@@ -110,7 +110,7 @@ void p_std_lightshadow
 	float4 texCord = vertexTCoord2;
 		
 	// depth
-	float depth = texCord.z;
+	float depth = texCord.z/texCord.w;
 		
 	// shadow map depth
 	float shadowDepth = GetDepth(texCord, 0, 0);

@@ -8,7 +8,7 @@ void v_terrain_shadowmapdepth
 {
     // Pos
     clipPosition = mul(PVWMatrix, float4(modelPosition,1.0f));
-	vertexTCoord0.r = clipPosition.z;
+	vertexTCoord0.r = clipPosition.z/clipPosition.w;
 }
 
 void p_terrain_shadowmapdepth

@@ -373,7 +373,7 @@ void Scene::RegistProperties()
 		mShadowRenderTargetSize);
 
 	AddProperty("ShadowOffsetProperty_Scale", PT_FLOAT, GetShadowOffsetProperty_Scale());
-	AddProperty("GetShadowOffsetProperty_Bias", PT_FLOAT, GetShadowOffsetProperty_Bias());
+	AddProperty("ShadowOffsetProperty_Bias", PT_FLOAT, GetShadowOffsetProperty_Bias());
 }
 //----------------------------------------------------------------------------
 void Scene::OnPropertyChanged(const PropertyObject &obj)

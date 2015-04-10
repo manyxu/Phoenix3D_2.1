@@ -126,7 +126,7 @@ void p_terrain_lightshadow
 	float4 texCord = vertexTCoord2;
 	
 	// depth
-	float depth = texCord.z;
+	float depth = texCord.z/texCord.w;
 	
 	float shadowDepth = GetDepth(texCord, 0, 0);
 	

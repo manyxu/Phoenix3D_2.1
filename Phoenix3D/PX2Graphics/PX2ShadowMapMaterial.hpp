@@ -22,6 +22,7 @@ namespace PX2
 
 	private:
 		OffsetPropertyPtr mOverRideOffsetProperty;
+		CullPropertyPtr mOverRideCullProperty;
 		MaterialInstancePtr mInstanceStd;
 		MaterialInstancePtr mInstanceSkinSkeleton;
 		MaterialInstancePtr mInstanceTerrain;

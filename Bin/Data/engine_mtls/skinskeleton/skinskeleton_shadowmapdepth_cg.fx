@@ -29,7 +29,7 @@ void v_skinskeleton_shadowmapdepth
 	clipPosition = mul(PVWMatrix, float4(worldPosition, 1.0f));
 	
 	vertexTCoord0 = modelTCoord0;
-	vertexTCoord1.r = clipPosition.z;
+	vertexTCoord1.r = clipPosition.z/clipPosition.w;
 }
 
 sampler2D SampleBase;

@@ -30,13 +30,13 @@ dcl v0
 dcl t2
 dcl t1.xy
 rcp r0.x, t2.w
-mul r0.xy, t2, r0.x
+mul r2.xy, t2, r0.x
 mov r1.x, t0
 add r1.y, -t0, c3.x
 add r1.xy, r1, c0
-texld r0, r0, s1
+texld r2, r2, s1
 texld r1, r1, s0
-add r0.x, t2.z, -r0
+mad r0.x, t2.z, r0, -r2
 mul r1, r1, v0
 cmp r0.x, -r0, c3, c3.y
 mad r0.xyz, r1, r0.x, -c1

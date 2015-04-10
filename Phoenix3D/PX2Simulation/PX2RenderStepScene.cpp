@@ -137,7 +137,7 @@ void RenderStepScene::Draw()
 		mRenderer->Enable(mEffect_RenderTarget_Shadow);
 
 		mRenderer->InitRenderStates();
-		mRenderer->SetClearColor(Float4::WHITE);
+		mRenderer->SetClearColor(Float4(1.0f, 1.0f, 1.0f, 1.0f));
 		mRenderer->ClearBuffers();
 
 		Projector *lightProjector = scene->GetEnvirParam()->GetLight_Dir_Projector();
