@@ -1,6 +1,6 @@
 <project>
 	<general name="sample_phoenix3d" screenorientation="portrait" width="640" height="1136" backcolor="160,160,160,255" projcolor="144,144,144,255"/>
-	<scene filename="Data/sample_phoenix3d/scenes/scene2.px2obj"/>
+	<scene filename="Data/sample_phoenix3d/scenes/scene3.px2obj"/>
 	<render_setting/>
 	<language/>
 	<publish/>

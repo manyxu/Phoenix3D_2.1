@@ -48,22 +48,24 @@ dcl t0.xy
 dcl v0
 dcl t2
 dcl t1.xy
-texldp r6, t2, s6
-texld r5, t0, s0
-add r2.y, -t0, c5.x
-mov r2.x, t0
-mul r4.xy, r2, c2
+rcp r2.x, t2.w
+mul r2.xy, t2, r2.x
+add r4.y, -t0, c5.x
+mov r4.x, t0
+mul r5.xy, r4, c1
 mov r0.y, c0.w
 mov r0.x, c0.z
-mul r1.xy, r2, r0
+mul r1.xy, r4, r0
 mov r0.y, c1.w
 mov r0.x, c1.z
-mul r3.xy, r2, r0
-mul r0.xy, r2, c0
-mul r2.xy, r2, c1
+mul r3.xy, r4, r0
+mul r0.xy, r4, c0
+mul r4.xy, r4, c2
+texld r6, r2, s6
+texld r2, r5, s3
 texld r4, r4, s5
 texld r3, r3, s4
-texld r2, r2, s3
+texld r5, t0, s0
 texld r0, r0, s1
 texld r1, r1, s2
 add r1, r1, -r0
