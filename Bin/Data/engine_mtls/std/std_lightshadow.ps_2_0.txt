@@ -29,10 +29,12 @@ dcl t0.xy
 dcl v0
 dcl t2
 dcl t1.xy
-mov r0.x, t0
-add r0.y, -t0, c3.x
-add r1.xy, r0, c0
-texldp r0, t2, s1
+rcp r0.x, t2.w
+mul r0.xy, t2, r0.x
+mov r1.x, t0
+add r1.y, -t0, c3.x
+add r1.xy, r1, c0
+texld r0, r0, s1
 texld r1, r1, s0
 add r0.x, t2.z, -r0
 mul r1, r1, v0

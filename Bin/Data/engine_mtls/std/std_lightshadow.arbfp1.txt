@@ -1,5 +1,4 @@
 !!ARBfp1.0
-OPTION ARB_fragment_program_shadow;
 # cgc version 3.1.0010, build date Feb  8 2012
 # command line args: -profile arbfp1
 # source file: std_lightshadow_cg.fx
@@ -27,7 +26,9 @@ PARAM c[4] = { program.local[0..2],
 		{ 1, 0.40000001 } };
 TEMP R0;
 TEMP R1;
-TXP R0.x, fragment.texcoord[2], texture[1], SHADOW2D;
+RCP R0.x, fragment.texcoord[2].w;
+MUL R0.xy, fragment.texcoord[2], R0.x;
+TEX R0.x, R0, texture[1], 2D;
 ADD R1.x, fragment.texcoord[2].z, -R0;
 MOV R0.z, fragment.texcoord[0].x;
 ADD R0.w, -fragment.texcoord[0].y, c[3].x;
@@ -41,4 +42,4 @@ ADD R0.xyz, R0, -c[2];
 MAD result.color.xyz, fragment.texcoord[1].y, R0, c[2];
 MOV result.color.w, R0;
 END
-# 13 instructions, 2 R-regs
+# 15 instructions, 2 R-regs

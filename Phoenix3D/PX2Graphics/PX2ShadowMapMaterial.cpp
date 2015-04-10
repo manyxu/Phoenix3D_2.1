@@ -15,9 +15,13 @@ ShadowMap_Material::ShadowMap_Material()
 	mInstanceStd = new0 MaterialInstance(
 		"Data/engine_mtls/std/std.px2obj", "std_shadowmapdepth", false);
 
-	mInstanceStdSkinSkeleton = new0 MaterialInstance(
+	mInstanceSkinSkeleton = new0 MaterialInstance(
 		"Data/engine_mtls/skinskeleton/skinskeleton.px2obj",
 		"skinskeleton_shadowmapdepth", false);
+
+	mInstanceTerrain = new MaterialInstance(
+		"Data/engine_mtls/terrain/terrain.px2obj",
+		"terrain_shadowmapdepth", false);
 
 	mOverRideOffsetProperty = new0 OffsetProperty();
 	mOverRideOffsetProperty->FillEnabled = true;
@@ -40,7 +44,6 @@ void ShadowMap_Material::Draw(Renderer* renderer,
 		curEnvirParam->GetShadowMap_OffsetPropertyScale();
 
 	renderer->SetOverrideOffsetProperty(mOverRideOffsetProperty);
-	//renderer->SetColorMask(false, false, false, false);
 
 	const int numVisible = visibleSet.GetNumVisible();
 	for (int j = 0; j < numVisible; ++j)
@@ -62,9 +65,17 @@ void ShadowMap_Material::Draw(Renderer* renderer,
 		}
 		else if ("skinskeleton" == mtlName)
 		{
-			mInstanceStdSkinSkeleton->SetPixelTexture(0, "SampleBase", save->GetPixelTexture(0, "SampleBase"));
+			mInstanceSkinSkeleton->SetPixelTexture(0, "SampleBase", save->GetPixelTexture(0, "SampleBase"));
 
-			renderable->SetMaterialInstance(mInstanceStdSkinSkeleton);
+			renderable->SetMaterialInstance(mInstanceSkinSkeleton);
+			renderer->Draw(renderable);
+
+			renderable->SetMaterialInstance(save);
+			save->Update(0.0f, 0.0f);
+		}
+		else if ("terrain" == mtlName)
+		{
+			renderable->SetMaterialInstance(mInstanceTerrain);
 			renderer->Draw(renderable);
 
 			renderable->SetMaterialInstance(save);
@@ -73,7 +84,6 @@ void ShadowMap_Material::Draw(Renderer* renderer,
 	}
 
 	renderer->SetOverrideStencilProperty(0);
-	//renderer->SetColorMask(true, true, true, true);
 }
 //----------------------------------------------------------------------------
 

@@ -9,7 +9,7 @@
 				</i>
 				<o>
 					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
-					<var index="1" name="vertexColor" vt="float3" vs="COLOR0"/>
+					<var index="1" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="2" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
 					<var index="3" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
 				</o>
@@ -36,7 +36,7 @@
 			</shader>
 			<shader type="ps" name="terrain" ni="3" no="1" nc="5" ns="6">
 				<i>
-					<var index="0" name="vertexColor" vt="float2" vs="COLOR0"/>
+					<var index="0" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="1" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
 					<var index="2" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
 				</i>
@@ -97,10 +97,10 @@
 				</i>
 				<o>
 					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>
-					<var index="1" name="vertexColor" vt="float3" vs="COLOR0"/>
+					<var index="1" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="2" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
 					<var index="3" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
-					<var index="4" name="vertexTCoord2" vt="float4" vs="TEXCOORD1"/>
+					<var index="4" name="vertexTCoord2" vt="float4" vs="TEXCOORD2"/>
 				</o>
 				<c>
 					<var index="0" name="PVWMatrix" nr="4"/>
@@ -126,7 +126,7 @@
 			</shader>
 			<shader type="ps" name="terrain_lightshadow" ni="4" no="1" nc="5" ns="7">
 				<i>
-					<var index="0" name="vertexColor" vt="float2" vs="COLOR0"/>
+					<var index="0" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="1" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
 					<var index="2" name="vertexTCoord1" vt="float2" vs="TEXCOORD1"/>
 					<var index="3" name="vertexTCoord2" vt="float4" vs="TEXCOORD2"/>

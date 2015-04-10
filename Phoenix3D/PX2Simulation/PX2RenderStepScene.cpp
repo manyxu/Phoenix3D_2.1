@@ -148,11 +148,8 @@ void RenderStepScene::Draw()
 
 		sceneEnvirParam->SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
 		mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
-
-		mRenderer->SetClearColor(MathHelp::Float3ToFloat4(scene->GetColor(), 1.0f));
-		mRenderer->ClearBuffers();
 	}
-
+	
 	Rectf viewPort = mViewPort;
 	if (viewPort.IsEmpty()) viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
 	mRenderer->SetViewport(viewPort);
@@ -161,6 +158,10 @@ void RenderStepScene::Draw()
 	if (!scene->IsUseBloom())
 	{
 		mRenderer->SetCamera(mCamera);
+
+		mRenderer->SetClearColor(MathHelp::Float3ToFloat4(scene->GetColor(), 0.0f));
+		mRenderer->SetClearDepth(1.0f);
+		mRenderer->ClearBuffers();
 
 		if (mHelpGridRenderStep)
 			mHelpGridRenderStep->Draw();

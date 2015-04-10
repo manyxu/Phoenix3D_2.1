@@ -64,15 +64,13 @@ mad r0, r1.y, r2, r0
 mul r3.xy, r3.zwzw, c1.zwzw
 texld r2, r3, s4
 add r2, r2, -r0
-mad r2, r1.z, r2, r0
-rcp r0.z, v3.w
-mul r1.xy, v3, r0.z
-mul r0.xy, r3.zwzw, c2
-texld r0, r0, s5
-texld r1.x, r1, s6
-add r0, r0, -r2
+mad r0, r1.z, r2, r0
+mul r1.xy, r3.zwzw, c2
+texld r2, r1, s5
+texldp r1.x, v3, s6
+add r2, r2, -r0
 add r1.x, v3.z, -r1
-mad r0, r1.w, r0, r2
+mad r0, r1.w, r2, r0
 mul r0, r0, v0
 cmp r1.x, -r1, c5, c5.y
 mad r0.xyz, r0, r1.x, -c3

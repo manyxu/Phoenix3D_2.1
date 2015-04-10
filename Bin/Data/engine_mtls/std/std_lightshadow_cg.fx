@@ -79,8 +79,8 @@ sampler2D SampleShadowDepth;
 float GetDepth(float4 texCord, int i, int j)
 {
 	float4 newUV = texCord + float4(texCord.w*i*0.001f, texCord.w*j*0.001f, 0.0f, 0.0f);
-	float4 depthColor = tex2Dproj(SampleShadowDepth, newUV);
-	//float4 depthColor = tex2D(SampleShadowDepth, float2(newUV.x/texCord.w, newUV.y/texCord.w));
+	//float4 depthColor = tex2Dproj(SampleShadowDepth, newUV);
+	float4 depthColor = tex2D(SampleShadowDepth, float2(newUV.x/texCord.w, newUV.y/texCord.w));
 				
 	return depthColor.x;
 }

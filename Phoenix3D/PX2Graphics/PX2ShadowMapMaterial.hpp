@@ -23,7 +23,8 @@ namespace PX2
 	private:
 		OffsetPropertyPtr mOverRideOffsetProperty;
 		MaterialInstancePtr mInstanceStd;
-		MaterialInstancePtr mInstanceStdSkinSkeleton;
+		MaterialInstancePtr mInstanceSkinSkeleton;
+		MaterialInstancePtr mInstanceTerrain;
 	};
 
 	PX2_REGISTER_STREAM(ShadowMap_Material);

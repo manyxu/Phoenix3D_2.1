@@ -239,6 +239,19 @@ void Movable::PropagateBoundToRoot ()
 //----------------------------------------------------------------------------
 void Movable::OnGetVisibleSet (Culler& culler, bool noCull)
 {
+	int flag_CastShadow = culler.GetFlag_CastShadow();
+	if (0 == flag_CastShadow)
+	{
+	}
+	else if (1 == flag_CastShadow)
+	{
+		if (!IsCastShadow()) return;
+	}
+	else if (2 == flag_CastShadow)
+	{
+		if (IsCastShadow()) return;
+	}
+
     if (Culling == CULL_ALWAYS)
     {
         return;

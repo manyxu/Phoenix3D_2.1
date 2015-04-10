@@ -245,6 +245,17 @@ void Renderable::SetReceiveShadow(bool reciveShadow)
 
 		mMaterialInstance->SetUseMaterialTechnique(techName);
 	}
+	if ("terrain" == mtlName)
+	{
+		std::string techName = "terrain";
+
+		if (!reciveShadow)
+			techName = "terrain";
+		else
+			techName = "terrain_lightshadow";
+
+		mMaterialInstance->SetUseMaterialTechnique(techName);
+	}
 }
 //----------------------------------------------------------------------------
 void Renderable::SetFogInfulenceParam_Height (float param)
