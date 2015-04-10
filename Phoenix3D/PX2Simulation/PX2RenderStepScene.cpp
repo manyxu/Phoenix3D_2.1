@@ -261,6 +261,9 @@ void RenderStepScene::SetSize(const Sizef &size)
 	if (scene && scene->IsBloomRenderTargetSizeSameWithScreen())
 		mIsBloomChanged = true;
 
+	if (scene && scene->IsShadowRenderTargetSizeSameWithScreen())
+		mIsShadowMapChanged = true;
+
 	if (mEffect_UIView)
 	{
 		mEffect_UIView->SetSize(mSize);
@@ -276,6 +279,9 @@ void RenderStepScene::SetScreenSize(const Sizef &size)
 	Scene *scene = DynamicCast<Scene>(mNode);
 	if (scene && scene->IsBloomRenderTargetSizeSameWithScreen())
 		mIsBloomChanged = true;
+
+	if (scene && scene->IsShadowRenderTargetSizeSameWithScreen())
+		mIsShadowMapChanged = true;
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::SetNode(Node *node)
@@ -535,9 +541,6 @@ void RenderStepScene::_UpdateALightPicBoxTranslateSize()
 //----------------------------------------------------------------------------
 void RenderStepScene::_UpdateShadowChanged()
 {
-	if (mEffect_RenderTarget_Shadow && mRenderer)
-		mRenderer->Disable(mEffect_RenderTarget_Shadow);
-
 	Scene *scene = (Scene*)((Node*)mNode);
 	if (!scene) return;
 
