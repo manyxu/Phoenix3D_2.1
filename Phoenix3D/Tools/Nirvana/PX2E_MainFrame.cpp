@@ -1053,7 +1053,7 @@ void E_MainFrame::EnableMenusTag(const std::string &tag, bool enable)
 
 	if (it != mTagMenuItems.end())
 	{
-		for (int i = 0; i < it->second.size(); i++)
+		for (int i = 0; i < (int)it->second.size(); i++)
 		{
 			wxMenuItem *menuItem = it->second[i];
 			menuItem->Enable(enable);
