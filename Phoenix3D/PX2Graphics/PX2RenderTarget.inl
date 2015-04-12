@@ -8,17 +8,17 @@ inline int RenderTarget::GetNumTargets () const
 //----------------------------------------------------------------------------
 inline Texture::Format RenderTarget::GetFormat () const
 {
-	return mColorTextures[0]->GetFormat();
+	return mFormat;
 }
 //----------------------------------------------------------------------------
 inline int RenderTarget::GetWidth () const
 {
-	return mColorTextures[0]->GetWidth();
+	return mWidth;
 }
 //----------------------------------------------------------------------------
 inline int RenderTarget::GetHeight () const
 {
-	return mColorTextures[0]->GetHeight();
+	return mHeight;
 }
 //----------------------------------------------------------------------------
 inline Texture2D* RenderTarget::GetColorTexture (int i) const

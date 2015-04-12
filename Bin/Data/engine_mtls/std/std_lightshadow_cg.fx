@@ -1,4 +1,4 @@
-float3 DoLight_Point_Diffuse(float3 lightWorldPos, float lightRange, float3 lightColor, float3 shineDiffuse,float3 vertexWorldPos, float3 vertexWorldNormal)
+float3 DoLight_Point_Diffuse(float3 lightWorldPos, float lightRange, float3 lightColor, float3 shineDiffuse, float3 vertexWorldPos, float3 vertexWorldNormal)
 {
 	float3 lightToVertex = lightWorldPos - vertexWorldPos;
 	float squareDist = dot(lightToVertex, lightToVertex);

@@ -40,6 +40,9 @@ namespace PX2
 
 	protected:
 		int mNumTargets;
+		Texture::Format mFormat;
+		int mWidth;
+		int mHeight;
 		Texture2DPtr* mColorTextures;
 		Texture2DPtr mDepthStencilTexture;
 		bool mHasMipmaps;

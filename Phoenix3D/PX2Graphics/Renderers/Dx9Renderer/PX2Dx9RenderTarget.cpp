@@ -13,39 +13,39 @@ using namespace PX2;
 PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 								  const RenderTarget* renderTarget) :
 mSaveColorSurface(0),
-mSaveDepthStencilSurface(0)
+mSaveDepthStencilSurface(0),
+mColorTextures(0)
 {
 	HRESULT hr;
 	PX2_UNUSED(hr);
 
 	mNumTargets = renderTarget->GetNumTargets();
-
-	assertion(mNumTargets >= 1,
-		"Number of render targets must be at least one.\n");
-
 	mWidth = renderTarget->GetWidth();
 	mHeight = renderTarget->GetHeight();
 	mFormat = renderTarget->GetFormat();
 	mHasDepthStencil = renderTarget->HasDepthStencil();
 
-	mColorTextures = new1<IDirect3DTexture9*>(mNumTargets);
-	mColorSurfaces = new1<IDirect3DSurface9*>(mNumTargets);
-	for (int i = 0; i < mNumTargets; ++i)
+	if (mNumTargets > 0)
 	{
-		Texture2D* colorTexture = renderTarget->GetColorTexture(i);
-		assertion(!renderer->InTexture2DMap(colorTexture),
-			"Texture should not yet exist.\n");
+		mColorTextures = new1<IDirect3DTexture9*>(mNumTargets);
+		mColorSurfaces = new1<IDirect3DSurface9*>(mNumTargets);
+		for (int i = 0; i < mNumTargets; ++i)
+		{
+			Texture2D* colorTexture = renderTarget->GetColorTexture(i);
+			assertion(!renderer->InTexture2DMap(colorTexture),
+				"Texture should not yet exist.\n");
 
-		PdrTexture2D* dxColorTexture = new0 PdrTexture2D(renderer, true,
-			colorTexture, renderTarget->HasMipmaps());
-		colorTexture->PdrPointer = dxColorTexture;
-		renderer->InsertInTexture2DMap(colorTexture, dxColorTexture);
-		mColorTextures[i] = dxColorTexture->mTexture;
-		mColorTextures[i]->AddRef();
+			PdrTexture2D* dxColorTexture = new0 PdrTexture2D(renderer, true,
+				colorTexture, renderTarget->HasMipmaps());
+			colorTexture->PdrPointer = dxColorTexture;
+			renderer->InsertInTexture2DMap(colorTexture, dxColorTexture);
+			mColorTextures[i] = dxColorTexture->mTexture;
+			mColorTextures[i]->AddRef();
 
-		hr = mColorTextures[i]->GetSurfaceLevel(0, &mColorSurfaces[i]);
-		assertion(hr == D3D_OK, "Failed to get rt %d color surface: %s\n",
-			i, DXGetErrorString(hr));
+			hr = mColorTextures[i]->GetSurfaceLevel(0, &mColorSurfaces[i]);
+			assertion(hr == D3D_OK, "Failed to get rt %d color surface: %s\n",
+				i, DXGetErrorString(hr));
+		}
 	}
 
 	if (mHasDepthStencil)
@@ -82,8 +82,11 @@ PdrRenderTarget::~PdrRenderTarget ()
 		mColorTextures[i]->Release();
 	}
 
-	delete1(mColorTextures);
-	delete1(mColorSurfaces);
+	if (mColorTextures)
+	{
+		delete1(mColorTextures);
+		delete1(mColorSurfaces);
+	}
 
 	if (mHasDepthStencil)
 	{
@@ -105,19 +108,22 @@ void PdrRenderTarget::Enable (Renderer* renderer)
 	HRESULT hr;
 	PX2_UNUSED(hr);
 
-	hr = device->GetRenderTarget(0, &mSaveColorSurface);
-	assertion(hr == D3D_OK, "Failed to get old rt 0 color surface: %s\n",
-		DXGetErrorString(hr));
-
-	hr = device->SetRenderTarget(0, mColorSurfaces[0]);
-	assertion(hr == D3D_OK, "Failed to set new rt 0 color surface: %s\n",
-		DXGetErrorString(hr));
-
-	for (int i = 1; i < mNumTargets; ++i)
+	if (mNumTargets > 0)
 	{
-		hr = device->SetRenderTarget((DWORD)i, mColorSurfaces[i]);
-		assertion(hr == D3D_OK, "Failed to set new rt %d color surface: %s\n",
-			i, DXGetErrorString(hr));
+		hr = device->GetRenderTarget(0, &mSaveColorSurface);
+		assertion(hr == D3D_OK, "Failed to get old rt 0 color surface: %s\n",
+			DXGetErrorString(hr));
+
+		hr = device->SetRenderTarget(0, mColorSurfaces[0]);
+		assertion(hr == D3D_OK, "Failed to set new rt 0 color surface: %s\n",
+			DXGetErrorString(hr));
+
+		for (int i = 1; i < mNumTargets; ++i)
+		{
+			hr = device->SetRenderTarget((DWORD)i, mColorSurfaces[i]);
+			assertion(hr == D3D_OK, "Failed to set new rt %d color surface: %s\n",
+				i, DXGetErrorString(hr));
+		}
 	}
 
 	if (mHasDepthStencil)
@@ -140,22 +146,25 @@ void PdrRenderTarget::Disable (Renderer* renderer)
 	HRESULT hr;
 	PX2_UNUSED(hr);
 
-	if (mSaveColorSurface)
+	if (mNumTargets > 0)
 	{
-		hr = device->SetRenderTarget(0, mSaveColorSurface);
-		assertion(hr == D3D_OK, "Failed to set old rt 0 color surface: %s\n",
-			DXGetErrorString(hr));
+		if (mSaveColorSurface)
+		{
+			hr = device->SetRenderTarget(0, mSaveColorSurface);
+			assertion(hr == D3D_OK, "Failed to set old rt 0 color surface: %s\n",
+				DXGetErrorString(hr));
 
-		mSaveColorSurface->Release();
-		mSaveColorSurface = 0;
-	}
+			mSaveColorSurface->Release();
+			mSaveColorSurface = 0;
+		}
 
-	for (int i = 1; i < mNumTargets; ++i)
-	{
-		hr = device->SetRenderTarget((DWORD)i, 0);
-		assertion(hr == D3D_OK,
-			"Failed to set old rt %d color surface: %s\n", i,
-			DXGetErrorString(hr));
+		for (int i = 1; i < mNumTargets; ++i)
+		{
+			hr = device->SetRenderTarget((DWORD)i, 0);
+			assertion(hr == D3D_OK,
+				"Failed to set old rt %d color surface: %s\n", i,
+				DXGetErrorString(hr));
+		}
 	}
 
 	if (mHasDepthStencil)

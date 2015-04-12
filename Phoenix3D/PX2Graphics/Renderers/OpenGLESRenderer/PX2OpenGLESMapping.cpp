@@ -207,10 +207,10 @@ namespace PX2
 		NOT_SUPPORT,                        // TF_R32F
 		NOT_SUPPORT,                        // TF_G32R32F
 		GL_RGBA,                            // TF_A32B32G32R32F
-		NOT_SUPPORT,   // TF_DXT1
-		NOT_SUPPORT,   // TF_DXT3
-		NOT_SUPPORT,   // TF_DXT5
-		NOT_SUPPORT,                // TF_D24S8
+		NOT_SUPPORT,						// TF_DXT1
+		NOT_SUPPORT,						// TF_DXT3
+		NOT_SUPPORT,						// TF_DXT5
+		NOT_SUPPORT,						// TF_D24S8
 		GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG, // TF_RGB_PVRTC_4B
 		GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG, // TF_RGB_PVRTC_2B
 		GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG, // TF_RGBA_PVRTC_4B
@@ -251,21 +251,21 @@ namespace PX2
 		GL_UNSIGNED_SHORT,              // TF_L16
 		GL_UNSIGNED_SHORT,              // TF_G16R16
 		GL_UNSIGNED_SHORT,              // TF_A16B16G16R16
-		NOT_SUPPORT,              // TF_R16F
-		NOT_SUPPORT,              // TF_G16R16F
-		NOT_SUPPORT,              // TF_A16B16G16R16F
+		NOT_SUPPORT,					// TF_R16F
+		NOT_SUPPORT,					// TF_G16R16F
+		NOT_SUPPORT,					// TF_A16B16G16R16F
 		GL_FLOAT,                       // TF_R32F
 		GL_FLOAT,                       // TF_G32R32F
 		GL_FLOAT,                       // TF_A32B32G32R32F
 		GL_NONE,                        // TF_DXT1 (not needed)
 		GL_NONE,                        // TF_DXT3 (not needed)
 		GL_NONE,                        // TF_DXT5 (not needed)
-		NOT_SUPPORT,        // TF_D24S8
-		GL_NONE, // TF_RGB_PVRTC_4B
-		GL_NONE, // TF_RGB_PVRTC_2B
-		GL_NONE, // TF_RGBA_PVRTC_4B
-		GL_NONE,  // TF_RGBA_PVRTC_2B
-		GL_NONE   // TF_RGB_ETC1
+		NOT_SUPPORT,					// TF_D24S8
+		GL_NONE,						// TF_RGB_PVRTC_4B
+		GL_NONE,						// TF_RGB_PVRTC_2B
+		GL_NONE,						// TF_RGBA_PVRTC_4B
+		GL_NONE,						// TF_RGBA_PVRTC_2B
+		GL_NONE							// TF_RGB_ETC1
 	};
 
 	GLint gOGLWrapMode[Shader::SC_QUANTITY] =

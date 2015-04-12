@@ -13,17 +13,22 @@ RenderTarget::RenderTarget (int numTargets, Texture::Format tformat,
 							int width, int height, bool hasMipmaps, bool hasDepthStencil)
 							:
 mNumTargets(numTargets),
+mFormat(tformat),
+mWidth(width),
+mHeight(height),
 mHasMipmaps(hasMipmaps),
+mColorTextures(0),
 PdrPointer(0)
 {
-	assertion(mNumTargets > 0, "Number of targets must be at least one.\n");
-
-	mColorTextures = new1<Texture2DPtr>(mNumTargets);
-	int i;
-	for (i = 0; i < mNumTargets; ++i)
+	if (mNumTargets > 0)
 	{
-		mColorTextures[i] = new0 Texture2D(tformat, width, height,
-			(hasMipmaps ? 0 : 1), Buffer::BU_RENDERTARGET);
+		mColorTextures = new1<Texture2DPtr>(mNumTargets);
+		int i;
+		for (i = 0; i < mNumTargets; ++i)
+		{
+			mColorTextures[i] = new0 Texture2D(tformat, width, height,
+				(hasMipmaps ? 0 : 1), Buffer::BU_RENDERTARGET);
+		}
 	}
 
 	if (hasDepthStencil)
@@ -37,7 +42,10 @@ RenderTarget::~RenderTarget ()
 {
 	Renderer::UnbindAll(this);
 
-	delete1(mColorTextures);
+	if (mColorTextures)
+	{
+		delete1(mColorTextures);
+	}
 }
 //----------------------------------------------------------------------------
 

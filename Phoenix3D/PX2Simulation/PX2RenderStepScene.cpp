@@ -25,7 +25,7 @@ mIsShadowMapChanged(true)
 	mEffect_UIFrame = new0 UIFrame();
 	mEffect_UIView->SetNode(mEffect_UIFrame);
 
-	mBloomShadowPicSize = 256.0f;
+	mBloomShadowPicSize = 128.0f;
 }
 //----------------------------------------------------------------------------
 RenderStepScene::~RenderStepScene()
@@ -180,6 +180,7 @@ void RenderStepScene::Draw()
 			mRenderer->Enable(mEffect_RenderTarget_Normal);
 			mRenderer->InitRenderStates();
 			mRenderer->SetClearColor(MathHelp::Float3ToFloat4(scene->GetColor(), 1.0f));
+			mRenderer->SetClearDepth(1.0f);
 			mRenderer->ClearBuffers();
 
 			mRenderer->SetCamera(mCamera);
@@ -248,7 +249,7 @@ void RenderStepScene::Draw()
 
 	mRenderer->SetCamera(beforeCamer);
 	PX2_GR.SetCurEnvirParam(beformParam);
-	
+
 	mEffect_UIView->SetViewPort(viewPort);
 	mEffect_UIView->Draw();
 }
@@ -560,7 +561,7 @@ void RenderStepScene::_UpdateShadowChanged()
 		if (scene->IsShadowRenderTargetSizeSameWithScreen())
 			rtSize = Float2(mScreenSize.Width, mScreenSize.Height);
 
-		Texture::Format tformat = Texture::TF_A32B32G32R32F;
+		Texture::Format tformat = Texture::TF_A8R8G8B8;
 		mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, (int)rtSize[0], 
 			(int)rtSize[1], false, false);
 		mEffect_Material_Shadow = new0 ShadowMap_Material();
