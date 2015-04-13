@@ -102,31 +102,7 @@ mTexture(0)
 	}
 	else
 	{
-		int onePixelBytes = 4;
-		if (tdFormat == Texture::TF_A8R8G8B8)
-		{
-			onePixelBytes = 4;
-		}
-		else if (tdFormat == Texture::TF_R8G8B8)
-		{
-			onePixelBytes = 3;
-		}
-		else if (tdFormat==Texture::TF_A1R5G5B5 || tdFormat==Texture::TF_A4R4G4B4 || tdFormat==Texture::TF_R5G6B5)
-		{
-			onePixelBytes = 2;
-		}
-		else if (tdFormat == Texture::TF_A8)
-		{
-			onePixelBytes = 1;
-		}
-		else if (tdFormat == Texture::TF_D24S8)
-		{
-			onePixelBytes = 4;
-		}
-		else
-		{
-			assertion(false, "wrong format =%d", tdFormat);
-		}
+		int onePixelBytes = Texture::msPixelSize[tdFormat];
 
 		char *src1 = newSrc;
 		int levelByte = 0;
@@ -273,15 +249,8 @@ void* PdrTexture2D::Lock (int level, Buffer::Locking mode)
 	}
 	else
 	{
-		int onePixelBytes = 4;
-		if (tdFormat == Texture::TF_A8R8G8B8)
-		{
-			onePixelBytes = 4;
-		}
-		else if (tdFormat == Texture::TF_R8G8B8)
-		{
-			onePixelBytes = 3;
-		}
+		int onePixelBytes = Texture::msPixelSize[tdFormat];
+
 		char *src1 = newSrc;
 		int levelByte = 0;
 

@@ -30,6 +30,8 @@ namespace PX2
 		bool mHasMipmaps, mHasDepthStencil;
 
 		GLuint* mColorTextures;
+		GLuint mDepthRenderBuffer;
+
 		GLuint mDepthStencilTexture, mFrameBuffer;
 		GLenum* mDrawBuffers;
 		int mPrevViewport[4];

@@ -59,6 +59,7 @@ namespace PX2
 			TF_DXT5,
 
 			// Depth-stencil format.
+			TF_D16,
 			TF_D24S8,
 
 			//ios compressed formats
@@ -135,6 +136,11 @@ namespace PX2
 	public:
 		void *PdrPointer;
 
+	public_internal:
+		static int msNumDimensions[TT_QUANTITY];
+		static int msPixelSize[TF_QUANTITY];
+		static bool msMipmapable[TF_QUANTITY];
+
 	protected:
 		// 传给构造函数的数据
 		Format mFormat;
@@ -156,10 +162,6 @@ namespace PX2
 		char* mData;
 		bool mIsBindDoClearData;
 
-		static int msNumDimensions[TT_QUANTITY];
-		static int msPixelSize[TF_QUANTITY];
-		static bool msMipmapable[TF_QUANTITY];
-
 		// mipmap生成支持
 		/*
 		* 每一种格式都先被转换为每个像素32bit，mipmap生成后，将像素转换到原始像
@@ -171,17 +173,6 @@ namespace PX2
 
 		typedef void (*ConvertTo)(int, const Float4*, char*);
 		static ConvertTo msConvertTo[TF_QUANTITY];
-
-		// Begin 纹理加载/保存
-	public:
-		// 从*.px2tf文件加载/保存数据。纹理可以是1D，2D，3D后者cube。调用者可以
-		// 根据返回的Texture的参数确定类型。
-		static Texture* LoadPXtf (const std::string& name,
-			int mode = FileIO::FM_DEFAULT_READ);
-
-		void SavePXtf (const std::string& name,
-			int mode = FileIO::FM_DEFAULT_WRITE);
-		// End 纹理加载/保存
 	};
 
 	PX2_REGISTER_STREAM(Texture);

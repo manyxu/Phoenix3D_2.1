@@ -1,10 +1,20 @@
+varying mediump vec2 vertexTCoord0;
 uniform vec4 UVParam;
 uniform vec4 ShineEmissive;
-varying mediump vec2 vertexTCoord0;
-uniform sampler2D gDiffuseSampler;
+uniform vec4 UVOffsets[16];
+uniform sampler2D SamplerBase;
 void main()
 {
-	mediump vec2 texCord = vec2(vertexTCoord0.x, 1.0-vertexTCoord0.y)*UVParam.xy;
-	mediump vec4 color = texture2D(gDiffuseSampler, texCord);
-	gl_FragColor = color*ShineEmissive;
+	mediump vec2 uv = vec2(vertexTCoord0.x, 1.0-vertexTCoord0.y)*UVParam.xy;
+	
+	mediump vec2 uvSample = vec2(0.0, 0.0);
+	mediump vec4 sampleColor = vec4(0.0, 0.0, 0.0, 0.0);
+	mediump vec4 lastColor = vec4(0.0, 0.0, 0.0, 0.0);
+	for (int i = 0; i < 15; i++)
+    {
+        uvSample = uv + UVOffsets[i].xy;
+        sampleColor = texture2D(SamplerBase, uvSample);
+        lastColor += sampleColor * UVOffsets[i].z;
+    }
+	gl_FragColor = lastColor*ShineEmissive;
 }

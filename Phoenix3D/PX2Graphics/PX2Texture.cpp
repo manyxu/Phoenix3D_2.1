@@ -46,6 +46,7 @@ int Texture::msPixelSize[TF_QUANTITY] =
 	0,   // TF_DXT1 (special handling)
 	0,   // TF_DXT3 (special handling)
 	0,   // TF_DXT5 (special handling)
+	2,	 // TF_D16,
 	4    // TF_D24S8
 };
 
@@ -73,6 +74,7 @@ bool Texture::msMipmapable[TF_QUANTITY] =
 	true,   // TF_DXT1 (special handling)
 	true,   // TF_DXT3 (special handling)
 	true,   // TF_DXT5 (special handling)
+	false,	// TF_D16
 	false   // TF_D24S8
 };
 
@@ -100,6 +102,7 @@ Texture::ConvertFrom Texture::msConvertFrom[TF_QUANTITY] =
 	0,                                    // TF_DXT1
 	0,                                    // TF_DXT3
 	0,                                    // TF_DXT5
+	0,									  // TF_D16
 	0                                     // TF_D24S8
 };
 
@@ -127,6 +130,7 @@ Texture::ConvertTo Texture::msConvertTo[TF_QUANTITY] =
 	0,                                    // TF_DXT1
 	0,                                    // TF_DXT3
 	0,                                    // TF_DXT5
+	0,									  // TF_D16
 	0                                     // TF_D24S8
 };
 
@@ -180,219 +184,11 @@ void Texture::ClearData ()
 }
 //----------------------------------------------------------------------------
 
-//----------------------------------------------------------------------------
-// raw data加载/保存
-//----------------------------------------------------------------------------
-Texture* Texture::LoadPXtf (const std::string& name, int mode)
-{
-	FileIO inFile(name, mode);
-	if (!inFile)
-	{
-		assertion(false, "Failed to load file %s\n", name.c_str());
-		return 0;
-	}
-
-	// 读取纹理信息头
-	int format, type, usage, numLevels, numDimensions, numTotalBytes;
-	int dimension[3][MM_MAX_MIPMAP_LEVELS];
-	int numLevelBytes[MM_MAX_MIPMAP_LEVELS];
-	int levelOffsets[MM_MAX_MIPMAP_LEVELS];
-	int userField[MAX_USER_FIELDS];
-	inFile.Read(sizeof(int), &format);
-	inFile.Read(sizeof(int), &type);
-	inFile.Read(sizeof(int), &usage);
-	inFile.Read(sizeof(int), &numLevels);
-	inFile.Read(sizeof(int), &numDimensions);
-	inFile.Read(sizeof(int), MM_MAX_MIPMAP_LEVELS, dimension[0]);
-	inFile.Read(sizeof(int), MM_MAX_MIPMAP_LEVELS, dimension[1]);
-	inFile.Read(sizeof(int), MM_MAX_MIPMAP_LEVELS, dimension[2]);
-	inFile.Read(sizeof(int), MM_MAX_MIPMAP_LEVELS, numLevelBytes);
-	inFile.Read(sizeof(int), &numTotalBytes);
-	inFile.Read(sizeof(int), MM_MAX_MIPMAP_LEVELS, levelOffsets);
-	inFile.Read(sizeof(int), MAX_USER_FIELDS, userField);
-
-	Texture* texture = 0;
-
-	switch ((Type)type)
-	{
-	case TT_1D:
-		{
-			texture = new0 Texture1D((Format)format, dimension[0][0], numLevels,
-				(Buffer::Usage)usage);
-			break;
-		}
-	case TT_2D:
-		{
-			texture = new0 Texture2D((Format)format, dimension[0][0],
-				dimension[1][0], numLevels, (Buffer::Usage)usage);
-			break;
-		}
-	case TT_3D:
-		{
-			texture = new0 Texture3D((Format)format, dimension[0][0],
-				dimension[1][0], dimension[2][0], numLevels,
-				(Buffer::Usage)usage);
-
-			break;
-		}
-	case TT_CUBE:
-		{
-			texture = new0 TextureCube((Format)format, dimension[0][0],
-				numLevels, (Buffer::Usage)usage);
-			break;
-		}
-	default:
-		assertion(false, "Unknown texture type\n");
-		break;
-	}
-
-	// 大字节序也许需要交换红和蓝通道。
-	switch (texture->mFormat)
-	{
-		// Small-bit color formats.
-	case TF_R5G6B5:
-	case TF_A1R5G5B5:
-	case TF_A4R4G4B4:
-		inFile.Read(2, numTotalBytes/2, texture->mData);
-		break;
-
-		// 8-bit integer formats.
-	case TF_A8:
-	case TF_L8:
-	case TF_A8L8:
-	case TF_R8G8B8:
-	case TF_A8R8G8B8:
-	case TF_A8B8G8R8:
-		inFile.Read(1, numTotalBytes, texture->mData);
-		break;
-
-		// 16-bit formats.
-	case TF_L16:
-	case TF_G16R16:
-	case TF_A16B16G16R16:
-	case TF_R16F:
-	case TF_G16R16F:
-	case TF_A16B16G16R16F:
-		inFile.Read(2, numTotalBytes/2, texture->mData);
-		break;
-
-		// 32-bit formats.
-	case TF_R32F:
-	case TF_G32R32F:
-	case TF_A32B32G32R32F:
-	case TF_D24S8:
-		inFile.Read(4, numTotalBytes/4, texture->mData);
-		break;
-
-		// DXT 压缩格式
-	case TF_DXT1:
-	case TF_DXT3:
-	case TF_DXT5:
-		inFile.Read(1, numTotalBytes, texture->mData);
-		break;
-
-	default:
-		assertion(false, "Unknown texture type\n");
-		break;
-	}
-
-	for (int i = 0; i < MAX_USER_FIELDS; ++i)
-	{
-		texture->mUserField[i] = userField[i];
-	}
-
-	inFile.Close();
-
-	return texture;
-}
-//----------------------------------------------------------------------------
-void Texture::SavePXtf (const std::string& name, int mode)
-{
-	FileIO outFile(name, mode);
-	if (!outFile)
-	{
-		assertion(false, "Failed to save file %s\n", name.c_str());
-		return;
-	}
-
-	int format = (int)mFormat;
-	outFile.Write(sizeof(int), &format);
-
-	int type = (int)mType;
-	outFile.Write(sizeof(int), &type);
-
-	int usage = (int)mUsage;
-	outFile.Write(sizeof(int), &usage);
-
-	outFile.Write(sizeof(int), &mNumLevels);
-	outFile.Write(sizeof(int), &mNumDimensions);
-	outFile.Write(sizeof(int), MM_MAX_MIPMAP_LEVELS, mDimension[0]);
-	outFile.Write(sizeof(int), MM_MAX_MIPMAP_LEVELS, mDimension[1]);
-	outFile.Write(sizeof(int), MM_MAX_MIPMAP_LEVELS, mDimension[2]);
-	outFile.Write(sizeof(int), MM_MAX_MIPMAP_LEVELS, mNumLevelBytes);
-	outFile.Write(sizeof(int), &mNumTotalBytes);
-	outFile.Write(sizeof(int), MM_MAX_MIPMAP_LEVELS, mLevelOffsets);
-	outFile.Write(sizeof(int), MAX_USER_FIELDS, mUserField);
-
-	// 大字节序也许需要交换红和蓝通道。
-	switch (mFormat)
-	{
-		// Small-bit color formats.
-	case TF_R5G6B5:
-	case TF_A1R5G5B5:
-	case TF_A4R4G4B4:
-		outFile.Write(2, mNumTotalBytes/2, mData);
-		break;
-
-		// 8-bit integer formats.
-	case TF_A8:
-	case TF_L8:
-	case TF_A8L8:
-	case TF_R8G8B8:
-	case TF_A8R8G8B8:
-	case TF_A8B8G8R8:
-		outFile.Write(1, mNumTotalBytes, mData);
-		break;
-
-		// 16-bit formats.
-	case TF_L16:
-	case TF_G16R16:
-	case TF_A16B16G16R16:
-	case TF_R16F:
-	case TF_G16R16F:
-	case TF_A16B16G16R16F:
-		outFile.Write(2, mNumTotalBytes/2, mData);
-		break;
-
-		// 32-bit formats.
-	case TF_R32F:
-	case TF_G32R32F:
-	case TF_A32B32G32R32F:
-	case TF_D24S8:
-		outFile.Write(4, mNumTotalBytes/4, mData);
-		break;
-
-		// DXT compressed formats.  TODO: How to handle?
-	case TF_DXT1:
-	case TF_DXT3:
-	case TF_DXT5:
-		outFile.Write(1, mNumTotalBytes, mData);
-		break;
-
-	default:
-		assertion(false, "Unknown texture type\n");
-		break;
-	}
-
-	outFile.Close();
-}
-//----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-Texture::Texture (LoadConstructor value)
-:
+Texture::Texture (LoadConstructor value) :
 Object(value),
 mFormat(TF_NONE),
 mType(TT_QUANTITY),

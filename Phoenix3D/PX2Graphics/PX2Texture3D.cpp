@@ -256,17 +256,3 @@ void Texture3D::GenerateNextMipmap (int width, int height, int thickness,
     msConvertTo[mFormat](numTexelsNext, rgba, texelsNext);
 }
 //----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-// Support for load of raw data.
-//----------------------------------------------------------------------------
-Texture3D* Texture3D::LoadPXtf (const std::string& name, int mode)
-{
-    Texture* texture = Texture::LoadPXtf(name, mode);
-    if (texture->IsExactly(Texture3D::TYPE))
-    {
-        return (Texture3D*)texture;
-    }
-    return 0;
-}
-//----------------------------------------------------------------------------

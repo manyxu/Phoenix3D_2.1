@@ -9,7 +9,7 @@ uniform mat4 PVWMatrix;
 uniform mat4 WMatrix;
 uniform mat4 ProjectPVBSMatrix_Dir;
 uniform vec4 CameraWorldPosition;
-uniform vec4 LightWorldDirection_Dir;
+uniform vec4 LightWorldDVector_Dir;
 uniform vec4 ShineEmissive;
 uniform vec4 ShineAmbient;
 uniform vec4 ShineDiffuse;
@@ -20,12 +20,12 @@ uniform vec4 LightSpecular_Dir;
 uniform vec4 LightGroup[8];
 uniform vec4 FogParam;
 
-vec3 DoLight_Point_Diffuse(vec3 lightWorldPos, float lightRange, vec3 lightColor, vec3 shineDiffuse, vec3 vertexWorldPos, vec3 vertexWorldNormal)
+vec3 DoLight_Point_Diffuse(vec3 lightWorldPos, float lightRange, vec3 lightColor, vec3 shineDiff, vec3 vertexWorldPos, vec3 vertexWorldNormal)
 {
 	vec3 lightToVertex = lightWorldPos - vertexWorldPos;
 	float squareDist = dot(lightToVertex, lightToVertex);
 	lightToVertex = normalize(lightToVertex);
-	return lightColor * shineDiffuse * max(0, dot(vertexWorldNormal, lightToVertex)) * max( 0, (1.0 - squareDist / lightRange / lightRange) );
+	return lightColor * shineDiff * max(0, dot(vertexWorldNormal, lightToVertex)) * max( 0, (1.0 - squareDist / lightRange / lightRange) );
 }
 
 void main() 
@@ -42,10 +42,10 @@ void main()
 	vec3 viewVector = normalize(CameraWorldPosition.xyz - worldPosition);
 	float dist = sqrt((CameraWorldPosition.x - worldPosition.x)*(CameraWorldPosition.x - worldPosition.x) + (CameraWorldPosition.y - worldPosition.y)*(CameraWorldPosition.y - worldPosition.y) + (CameraWorldPosition.z - worldPosition.z)*(CameraWorldPosition.z - worldPosition.z));
 	
-	vec3 halfVector = normalize((viewVector - LightWorldDirection_Dir.xyz)/2.0);
+	vec3 halfVector = normalize((viewVector - LightWorldDVector_Dir.xyz)/2.0);
 	float dotH = dot(worldNormal, halfVector);
 	
-	vertexColor.rgb = ShineEmissive.rgb + ShineAmbient.rgb * LightAmbient_Dir.rgb + ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDirection_Dir.xyz), 0.0) + ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0.0), ShineSpecular.a*LightSpecular_Dir.a);
+	vertexColor.rgb = ShineEmissive.rgb + LightAmbient_Dir.a *(ShineAmbient.rgb * LightAmbient_Dir.rgb + ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.xyz), 0.0) + ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0.0), ShineSpecular.a*LightSpecular_Dir.a));
 	vertexColor.a = ShineEmissive.a;
 	
 	vertexColor.rgb += DoLight_Point_Diffuse(LightGroup[0].xyz, LightGroup[0].w, LightGroup[1].rgb, ShineDiffuse.rgb, worldPosition.xyz, worldNormal.xyz);

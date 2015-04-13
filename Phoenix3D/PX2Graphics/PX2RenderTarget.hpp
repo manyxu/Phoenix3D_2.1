@@ -35,6 +35,7 @@ namespace PX2
 		inline Texture2D* GetDepthStencilTexture () const;
 		inline bool HasMipmaps () const;
 		inline bool HasDepthStencil () const;
+		inline bool IsOnlyDepth16NoStencil() const;
 
 		void *PdrPointer;
 
@@ -43,6 +44,7 @@ namespace PX2
 		Texture::Format mFormat;
 		int mWidth;
 		int mHeight;
+		bool mHasDepthStencil;
 		Texture2DPtr* mColorTextures;
 		Texture2DPtr mDepthStencilTexture;
 		bool mHasMipmaps;

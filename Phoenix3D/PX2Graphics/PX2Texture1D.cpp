@@ -179,17 +179,3 @@ void Texture1D::GenerateNextMipmap (int length, const char* texels,
 	msConvertTo[mFormat](lengthNext, rgba, texelsNext);
 }
 //----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-// raw data¼ÓÔØ
-//----------------------------------------------------------------------------
-Texture1D* Texture1D::LoadPXtf (const std::string& name, int mode)
-{
-	Texture* texture = Texture::LoadPXtf(name, mode);
-	if (texture->IsExactly(Texture1D::TYPE))
-	{
-		return (Texture1D*)texture;
-	}
-	return 0;
-}
-//----------------------------------------------------------------------------

@@ -40,12 +40,6 @@ namespace PX2
 		void GenerateNextMipmap (int width, int height, int thickness,
 			const char* texels, int widthNext, int heightNext, int thicknessNext,
 			char* texelsNext, Float4* rgba);
-
-		// Begin Texture3Dº”‘ÿ
-	public:
-		static Texture3D* LoadPXtf (const std::string& name,
-			int mode = FileIO::FM_DEFAULT_READ);
-		// End Texture3Dº”‘ÿ
 	};
 
 	PX2_REGISTER_STREAM(Texture3D);

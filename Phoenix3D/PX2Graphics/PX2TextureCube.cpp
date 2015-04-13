@@ -274,17 +274,3 @@ void TextureCube::GenerateNextMipmap (int dimension, const char* texels,
     msConvertTo[mFormat](numTexelsNext, rgba, texelsNext);
 }
 //----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-// Êý¾Ý¶ÁÈ¡
-//----------------------------------------------------------------------------
-TextureCube* TextureCube::LoadPXtf (const std::string& name, int mode)
-{
-    Texture* texture = Texture::LoadPXtf(name, mode);
-    if (texture->IsExactly(TextureCube::TYPE))
-    {
-        return (TextureCube*)texture;
-    }
-    return 0;
-}
-//----------------------------------------------------------------------------

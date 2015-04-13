@@ -169,7 +169,7 @@ namespace PX2
 		NOT_SUPPORT,						// TF_L16
 		NOT_SUPPORT,                        // TF_G16R16
 		NOT_SUPPORT,                        // TF_A16B16G16R16
-		NOT_SUPPORT,                        // TF_R16F
+		NOT_SUPPORT,						// TF_R16F
 		NOT_SUPPORT,                        // TF_G16R16F
 		NOT_SUPPORT,						// TF_A16B16G16R16F
 		NOT_SUPPORT,                        // TF_R32F
@@ -178,6 +178,7 @@ namespace PX2
 		NOT_SUPPORT,						// TF_DXT1
 		NOT_SUPPORT,						// TF_DXT3
 		NOT_SUPPORT,						// TF_DXT5
+		GL_DEPTH_COMPONENT,					// TF_D16
 		NOT_SUPPORT,						// TF_D24S8
 		GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG, // TF_RGB_PVRTC_4B
 		GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG, // TF_RGB_PVRTC_2B
@@ -210,6 +211,7 @@ namespace PX2
 		NOT_SUPPORT,						// TF_DXT1
 		NOT_SUPPORT,						// TF_DXT3
 		NOT_SUPPORT,						// TF_DXT5
+		GL_DEPTH_COMPONENT,					// TF_D16
 		NOT_SUPPORT,						// TF_D24S8
 		GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG, // TF_RGB_PVRTC_4B
 		GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG, // TF_RGB_PVRTC_2B
@@ -239,9 +241,9 @@ namespace PX2
 	GLuint gOGLTextureType[Texture::TF_QUANTITY] =
 	{
 		0,                              // TF_NONE
-		GL_UNSIGNED_SHORT_5_6_5,    // TF_R5G6B5
-		GL_UNSIGNED_SHORT_5_5_5_1,  // TF_A1R5G5B5
-		GL_UNSIGNED_SHORT_4_4_4_4,  // TF_A4R4G4B4
+		GL_UNSIGNED_SHORT_5_6_5,		// TF_R5G6B5
+		GL_UNSIGNED_SHORT_5_5_5_1,		// TF_A1R5G5B5
+		GL_UNSIGNED_SHORT_4_4_4_4,		// TF_A4R4G4B4
 		GL_UNSIGNED_BYTE,               // TF_A8
 		GL_UNSIGNED_BYTE,               // TF_L8
 		GL_UNSIGNED_BYTE,               // TF_A8L8
@@ -260,6 +262,7 @@ namespace PX2
 		GL_NONE,                        // TF_DXT1 (not needed)
 		GL_NONE,                        // TF_DXT3 (not needed)
 		GL_NONE,                        // TF_DXT5 (not needed)
+		GL_UNSIGNED_SHORT,				// TF_D16
 		NOT_SUPPORT,					// TF_D24S8
 		GL_NONE,						// TF_RGB_PVRTC_4B
 		GL_NONE,						// TF_RGB_PVRTC_2B

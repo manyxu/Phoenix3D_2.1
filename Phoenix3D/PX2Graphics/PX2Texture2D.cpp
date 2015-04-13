@@ -133,7 +133,17 @@ char* Texture2D::GetData (int level) const
 //----------------------------------------------------------------------------
 void Texture2D::ComputeNumLevelBytes ()
 {
-	if (mFormat == TF_R32F
+	if (mFormat == TF_R16F
+		|| mFormat == TF_G16R16F
+		|| mFormat == TF_A16B16G16R16F)
+	{
+		if (mNumLevels > 1)
+		{
+			assertion(false, "No mipmaps for 32-bit float textures\n");
+			mNumLevels = 1;
+		}
+	}
+	else if (mFormat == TF_R32F
 		||  mFormat == TF_G32R32F
 		||  mFormat == TF_A32B32G32R32F)
 	{
@@ -341,19 +351,5 @@ void Texture2D::GenerateNextMipmap (int width, int height, const char* texels,
 	// 将32-bit格式转换到原始格式
 	int numTexelsNext = widthNext*heightNext;
 	msConvertTo[mFormat](numTexelsNext, rgba, texelsNext);
-}
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-// raw data加载
-//----------------------------------------------------------------------------
-Texture2D* Texture2D::LoadPXtf (const std::string& name, int mode)
-{
-	Texture* texture = Texture::LoadPXtf(name, mode);
-	if (texture->IsExactly(Texture2D::TYPE))
-	{
-		return (Texture2D*)texture;
-	}
-	return 0;
 }
 //----------------------------------------------------------------------------

@@ -11,8 +11,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Object, Camera);
 Camera::DepthType Camera::msDefaultDepthType = Camera::PM_DEPTH_ZERO_TO_ONE;
 
 //----------------------------------------------------------------------------
-Camera::Camera (bool isPerspective)
-:
+Camera::Camera (bool isPerspective) :
 mIsPerspective(isPerspective),
 mDepthType(msDefaultDepthType)
 #ifdef PX2_VALIDATE_CAMERA_FRAME_ONCE

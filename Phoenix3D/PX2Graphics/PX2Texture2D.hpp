@@ -42,12 +42,6 @@ namespace PX2
 		void ComputeNumLevelBytes ();
 		void GenerateNextMipmap (int width, int height, const char* texels,
 			int widthNext, int heightNext, char* texelsNext, Float4* rgba);
-
-		// Begin Texture2Dº”‘ÿ
-	public:
-		static Texture2D* LoadPXtf (const std::string& name,
-			int mode = FileIO::FM_DEFAULT_READ);
-		// End Texture2Dº”‘ÿ
 	};
 
 	PX2_REGISTER_STREAM(Texture2D);

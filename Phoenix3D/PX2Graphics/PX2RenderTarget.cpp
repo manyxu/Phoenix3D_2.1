@@ -10,13 +10,14 @@ PX2_IMPLEMENT_FACTORY(RenderTarget);
 
 //----------------------------------------------------------------------------
 RenderTarget::RenderTarget (int numTargets, Texture::Format tformat,
-							int width, int height, bool hasMipmaps, bool hasDepthStencil)
-							:
+							int width, int height, bool hasMipmaps,
+							bool hasDepthStencil) :
 mNumTargets(numTargets),
 mFormat(tformat),
 mWidth(width),
 mHeight(height),
 mHasMipmaps(hasMipmaps),
+mHasDepthStencil(hasDepthStencil),
 mColorTextures(0),
 PdrPointer(0)
 {
@@ -33,7 +34,8 @@ PdrPointer(0)
 
 	if (hasDepthStencil)
 	{
-		mDepthStencilTexture = new0 Texture2D(Texture::TF_D24S8,
+		Texture::Format format = Texture::TF_D24S8;
+		mDepthStencilTexture = new0 Texture2D(format,
 			width, height, 1, Buffer::BU_DEPTHSTENCIL);
 	}
 }
@@ -102,7 +104,13 @@ void RenderTarget::Load (InStream& source)
 	Object::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	source.ReadPointerRR(mNumTargets, mColorTextures);
+	source.Read(mNumTargets);
+	source.Read(mWidth);
+	source.Read(mHeight);
+	source.Read(mHasMipmaps);
+	source.ReadBool(mHasDepthStencil);
+
+	source.ReadPointerVR(mNumTargets, mColorTextures);
 	source.ReadPointer(mDepthStencilTexture);
 	source.ReadBool(mHasMipmaps);
 
@@ -117,6 +125,7 @@ void RenderTarget::Link (InStream& source)
 	{
 		source.ResolveLink(mColorTextures[i]);
 	}
+
 	source.ResolveLink(mDepthStencilTexture);
 }
 //----------------------------------------------------------------------------
@@ -133,9 +142,12 @@ bool RenderTarget::Register (OutStream& target) const
 		{
 			target.Register(mColorTextures[i]);
 		}
+
 		target.Register(mDepthStencilTexture);
+		
 		return true;
 	}
+
 	return false;
 }
 //----------------------------------------------------------------------------
@@ -146,7 +158,13 @@ void RenderTarget::Save (OutStream& target) const
 	Object::Save(target);
 	PX2_VERSION_SAVE(target);
 
-	target.WritePointerW(mNumTargets, mColorTextures);
+	target.Write(mNumTargets);
+	target.Write(mWidth);
+	target.Write(mHeight);
+	target.Write(mHasMipmaps);
+	target.WriteBool(mHasDepthStencil);
+
+	target.WritePointerN(mNumTargets, mColorTextures);
 	target.WritePointer(mDepthStencilTexture);
 	target.WriteBool(mHasMipmaps);
 
@@ -157,9 +175,17 @@ int RenderTarget::GetStreamingSize (Stream &stream) const
 {
 	int size = Object::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
+
+	size += sizeof(mNumTargets);
+	size += sizeof(mWidth);
+	size += sizeof(mHeight);
+	size += sizeof(mHasMipmaps);
+	size += PX2_BOOLSIZE(mHasDepthStencil);
+
 	size += mNumTargets*PX2_POINTERSIZE(mColorTextures[0]);
 	size += PX2_POINTERSIZE(mDepthStencilTexture);
 	size += PX2_BOOLSIZE(mHasMipmaps);
+
 	return size;
 }
 //----------------------------------------------------------------------------

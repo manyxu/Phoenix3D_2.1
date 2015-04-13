@@ -32,6 +32,7 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 	mPrevDepthRange[1] = 0.0;
 
 	mColorTextures = 0;
+	mDepthRenderBuffer = 0;
 	mDrawBuffers = 0;
 
 	// Create a framebuffer object.
@@ -51,6 +52,7 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 				"Texture should not yet exist.\n");
 
 			PdrTexture2D* ogColorTexture = new0 PdrTexture2D(renderer, colorTexture);
+			colorTexture->PdrPointer = ogColorTexture;
 			renderer->InsertInTexture2DMap(colorTexture, ogColorTexture);
 			mColorTextures[i] = ogColorTexture->GetTexture();
 			mDrawBuffers[i] = GL_COLOR_ATTACHMENT0 + i;
@@ -73,89 +75,85 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 			glFramebufferTexture2D(GL_FRAMEBUFFER, mDrawBuffers[i],
 				GL_TEXTURE_2D, mColorTextures[i], 0);
 		}
+
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthStencilTexture);
 	}
 
 	Texture2D* depthStencilTexture = renderTarget->GetDepthStencilTexture();
-	if (depthStencilTexture)
+	if (!depthStencilTexture)
+	{
+		glGenRenderbuffers(1, &mDepthRenderBuffer);
+
+		glBindRenderbuffer(GL_RENDERBUFFER, mDepthRenderBuffer);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, mWidth, mHeight);
+
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthRenderBuffer);
+	}
+	else if (depthStencilTexture)
 	{
 		assertion(!renderer->InTexture2DMap(depthStencilTexture),
 			"Texture should not yet exist.\n");
 
 		PdrTexture2D* ogDepthStencilTexture = new0 PdrTexture2D(renderer,
 			depthStencilTexture);
-		renderer->InsertInTexture2DMap(depthStencilTexture,
-			ogDepthStencilTexture);
+		depthStencilTexture->PdrPointer = ogDepthStencilTexture;
+		renderer->InsertInTexture2DMap(depthStencilTexture, ogDepthStencilTexture);
 		mDepthStencilTexture = ogDepthStencilTexture->GetTexture();
 
-		// Bind the depthstencil texture.
 		glBindTexture(GL_TEXTURE_2D, mDepthStencilTexture);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-		// Attach the depth to the framebuffer.
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
 			GL_TEXTURE_2D, mDepthStencilTexture, 0);
 
-		// Attach the stencil to the framebuffer.
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, 
-			GL_TEXTURE_2D, mDepthStencilTexture, 0);
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT,
+				GL_TEXTURE_2D, mDepthStencilTexture, 0);
 	}
+
+	GLuint status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	PX2_UNUSED(status);
 
 	glBindTexture(GL_TEXTURE_2D, previousBind);
 }
 //----------------------------------------------------------------------------
 PdrRenderTarget::~PdrRenderTarget ()
 {
-#if defined PX2_USE_OPENGLES3
-
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glDeleteFramebuffers(1, &mFrameBuffer);
+
+	if (0 != mDepthRenderBuffer)
+	{
+		glDeleteRenderbuffers(1, &mDepthRenderBuffer);
+	}
 
 	if (mColorTextures)
 		delete1(mColorTextures);
 
 	if (mDrawBuffers)
 		delete1(mDrawBuffers);
-
-#endif
 }
 //----------------------------------------------------------------------------
 void PdrRenderTarget::Enable (Renderer* renderer)
 {
 	PX2_UNUSED(renderer);
 
-#ifdef PX2_USE_OPENGLES
-
-	GLuint status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-	if (status == GL_FRAMEBUFFER_COMPLETE)
-	{
-
-	}
-
-#elif defined PX2_USE_OPENGLES3
-
 	glBindFramebuffer(GL_FRAMEBUFFER, mFrameBuffer);
 
+#ifdef PX2_USE_OPENGLES3
 	if (mNumTargets > 0)
 		glDrawBuffers(mNumTargets, mDrawBuffers);
+#endif
 
 	glGetIntegerv(GL_VIEWPORT, mPrevViewport);
 	glGetFloatv(GL_DEPTH_RANGE, mPrevDepthRange);
 	glViewport(0, 0, mWidth, mHeight);
 	glDepthRangef(0.0, 1.0);
-
-#endif
 }
 //----------------------------------------------------------------------------
 void PdrRenderTarget::Disable (Renderer* renderer)
 {
 	PX2_UNUSED(renderer);
-
-#ifdef PX2_USE_OPENGLES
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-#elif defined PX2_USE_OPENGLES3
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -177,8 +175,6 @@ void PdrRenderTarget::Disable (Renderer* renderer)
 	glViewport(mPrevViewport[0], mPrevViewport[1], mPrevViewport[2],
 		mPrevViewport[3]);
 	glDepthRangef(mPrevDepthRange[0], mPrevDepthRange[1]);
-
-#endif
 }
 //----------------------------------------------------------------------------
 void PdrRenderTarget::ReadColor (int i, Renderer* renderer,

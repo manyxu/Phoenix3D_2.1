@@ -11,7 +11,7 @@ PX2_IMPLEMENT_RTTI(PX2, RenderStep, RenderStepScene);
 
 //----------------------------------------------------------------------------
 RenderStepScene::RenderStepScene() :
-mIsShowShadowBloomEveryPass(false),
+mIsShowShadowBloomEveryPass(true),
 mIsBloomChanged(true),
 mIsShadowMapChanged(true)
 {
@@ -25,7 +25,7 @@ mIsShadowMapChanged(true)
 	mEffect_UIFrame = new0 UIFrame();
 	mEffect_UIView->SetNode(mEffect_UIFrame);
 
-	mBloomShadowPicSize = 128.0f;
+	mBloomShadowPicSize = 256.0f;
 }
 //----------------------------------------------------------------------------
 RenderStepScene::~RenderStepScene()
@@ -135,7 +135,9 @@ void RenderStepScene::Draw()
 	if (mEffect_RenderTarget_Shadow)
 	{
 		mRenderer->Enable(mEffect_RenderTarget_Shadow);
-
+		mRenderer->SetViewport(Rectf(0.0f, 0.0f, 
+			(float)mEffect_RenderTarget_Shadow->GetWidth(), 
+			(float)mEffect_RenderTarget_Shadow->GetHeight()));
 		mRenderer->InitRenderStates();
 		mRenderer->SetClearColor(Float4(1.0f, 1.0f, 1.0f, 1.0f));
 		mRenderer->ClearBuffers();
@@ -149,10 +151,9 @@ void RenderStepScene::Draw()
 		sceneEnvirParam->SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
 		mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
 	}
-	
-	Rectf viewPort = mViewPort;
-	if (viewPort.IsEmpty()) viewPort = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
-	mRenderer->SetViewport(viewPort);
+
+	Rectf viewPortSimu = mViewPort;
+	if (viewPortSimu.IsEmpty()) viewPortSimu = Rectf(0.0f, 0.0f, mSize.Width, mSize.Height);
 
 	// normal
 	if (!scene->IsUseBloom())
@@ -166,7 +167,7 @@ void RenderStepScene::Draw()
 		if (mHelpGridRenderStep)
 			mHelpGridRenderStep->Draw();
 
-		mRenderer->SetViewport(viewPort);
+		mRenderer->SetViewport(viewPortSimu);
 		mRenderer->InitRenderStates();
 		mRenderer->SetCamera(mCamera);
 		mRenderer->Draw(mCuller.GetVisibleSet());
@@ -178,6 +179,10 @@ void RenderStepScene::Draw()
 		if (mEffect_RenderTarget_Normal)
 		{
 			mRenderer->Enable(mEffect_RenderTarget_Normal);
+			mRenderer->SetViewport(Rectf(0.0f, 0.0f,
+				(float)mEffect_RenderTarget_Normal->GetWidth(),
+				(float)mEffect_RenderTarget_Normal->GetHeight()));
+
 			mRenderer->InitRenderStates();
 			mRenderer->SetClearColor(MathHelp::Float3ToFloat4(scene->GetColor(), 1.0f));
 			mRenderer->SetClearDepth(1.0f);
@@ -201,6 +206,10 @@ void RenderStepScene::Draw()
 			mEffect_UIPicBox_BloomBright->SetTexture(mEffect_RenderTarget_Normal->GetColorTexture(0));
 
 			mRenderer->Enable(mEffect_RenderTarget_BloomBright);
+			mRenderer->SetViewport(Rectf(0.0f, 0.0f,
+				(float)mEffect_RenderTarget_Normal->GetWidth(),
+				(float)mEffect_RenderTarget_Normal->GetHeight()));
+
 			mRenderer->InitRenderStates();
 			mRenderer->ClearBuffers();
 			_SetCameraF(mScreenCamera, mEffect_UIPicBox_BloomBright);
@@ -215,6 +224,10 @@ void RenderStepScene::Draw()
 			mEffect_UIPicBox_BlurH->SetTexture(mEffect_RenderTarget_BloomBright->GetColorTexture(0));
 
 			mRenderer->Enable(mEffect_RenderTarget_BlurH);
+			mRenderer->SetViewport(Rectf(0.0f, 0.0f,
+				(float)mEffect_RenderTarget_Normal->GetWidth(),
+				(float)mEffect_RenderTarget_Normal->GetHeight()));
+
 			mRenderer->InitRenderStates();
 			mRenderer->SetClearColor(Float4::BLACK);
 			mRenderer->ClearBuffers();
@@ -230,6 +243,10 @@ void RenderStepScene::Draw()
 			mEffect_UIPicBox_BlurV->SetTexture(mEffect_RenderTarget_BlurH->GetColorTexture(0));
 
 			mRenderer->Enable(mEffect_RenderTarget_BlurV);
+			mRenderer->SetViewport(Rectf(0.0f, 0.0f,
+				(float)mEffect_RenderTarget_Normal->GetWidth(),
+				(float)mEffect_RenderTarget_Normal->GetHeight()));
+
 			mRenderer->InitRenderStates();
 			mRenderer->SetClearColor(Float4::BLACK);
 			mRenderer->ClearBuffers();
@@ -250,7 +267,7 @@ void RenderStepScene::Draw()
 	mRenderer->SetCamera(beforeCamer);
 	PX2_GR.SetCurEnvirParam(beformParam);
 
-	mEffect_UIView->SetViewPort(viewPort);
+	mEffect_UIView->SetViewPort(viewPortSimu);
 	mEffect_UIView->Draw();
 }
 //----------------------------------------------------------------------------
