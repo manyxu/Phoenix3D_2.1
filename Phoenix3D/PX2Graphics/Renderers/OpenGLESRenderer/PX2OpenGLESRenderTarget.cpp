@@ -72,12 +72,12 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 			}
 
-			// Attach the texture to the framebuffer.
-			glFramebufferTexture2D(GL_FRAMEBUFFER, mDrawBuffers[i],
-				GL_TEXTURE_2D, mColorTextures[i], 0);
-		}
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthStencilTexture);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, mDrawBuffers[i], GL_TEXTURE_2D,
+				mColorTextures[i], 0);
+		}
 	}
 
 	// opengles 必须绑定一个depth
@@ -89,9 +89,11 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 		glBindRenderbuffer(GL_RENDERBUFFER, mDepthRenderBuffer);
 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, mWidth, mHeight);
 
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthRenderBuffer);
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
+			GL_RENDERBUFFER, mDepthRenderBuffer);
 	}
-	else if (depthStencilTexture)
+	
+	if (depthStencilTexture)
 	{
 		assertion(!renderer->InTexture2DMap(depthStencilTexture),
 			"Texture should not yet exist.\n");
@@ -105,6 +107,8 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 		glBindTexture(GL_TEXTURE_2D, mDepthStencilTexture);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); 
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
 			GL_TEXTURE_2D, mDepthStencilTexture, 0);
@@ -150,7 +154,7 @@ void PdrRenderTarget::Enable (Renderer* renderer)
 	glGetIntegerv(GL_VIEWPORT, mPrevViewport);
 	glGetFloatv(GL_DEPTH_RANGE, mPrevDepthRange);
 	glViewport(0, 0, mWidth, mHeight);
-	glDepthRangef(0.0, 1.0);
+	glDepthRangef(0.0, 1.0f);
 }
 //----------------------------------------------------------------------------
 void PdrRenderTarget::Disable (Renderer* renderer)
@@ -159,20 +163,20 @@ void PdrRenderTarget::Disable (Renderer* renderer)
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	if (mNumTargets > 0)
-	{
-		if (mHasMipmaps)
-		{
-			GLuint previousBind = GetBoundTexture(Shader::ST_2D);
-			for (int i = 0; i < mNumTargets; ++i)
-			{
-				glBindTexture(GL_TEXTURE_2D, mColorTextures[i]);
-				glGenerateMipmap(GL_TEXTURE_2D);
-			}
-			glBindTexture(GL_TEXTURE_2D, previousBind);
-		}
+	//if (mNumTargets > 0)
+	//{
+	//	if (mHasMipmaps)
+	//	{
+	//		GLuint previousBind = GetBoundTexture(Shader::ST_2D);
+	//		for (int i = 0; i < mNumTargets; ++i)
+	//		{
+	//			glBindTexture(GL_TEXTURE_2D, mColorTextures[i]);
+	//			glGenerateMipmap(GL_TEXTURE_2D);
+	//		}
+	//		glBindTexture(GL_TEXTURE_2D, previousBind);
+	//	}
 
-	}
+	//}
 
 	glViewport(mPrevViewport[0], mPrevViewport[1], mPrevViewport[2],
 		mPrevViewport[3]);

@@ -5,6 +5,7 @@ void main()
 {
 	mediump vec2 texCoord = vec2(vertexTCoord0.x, 1.0-vertexTCoord0.y);
 	mediump vec4 texColor = texture2D(SampleBase, texCoord);
+	
 	if (texColor.a < 0.25)
 	{
 		discard;

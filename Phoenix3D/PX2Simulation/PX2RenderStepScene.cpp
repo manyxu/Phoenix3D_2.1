@@ -11,7 +11,7 @@ PX2_IMPLEMENT_RTTI(PX2, RenderStep, RenderStepScene);
 
 //----------------------------------------------------------------------------
 RenderStepScene::RenderStepScene() :
-mIsShowShadowBloomEveryPass(false),
+mIsShowShadowBloomEveryPass(true),
 mIsBloomChanged(true),
 mIsShadowMapChanged(true)
 {
@@ -140,6 +140,7 @@ void RenderStepScene::Draw()
 			(float)mEffect_RenderTarget_Shadow->GetHeight()));
 		mRenderer->InitRenderStates();
 		mRenderer->SetClearColor(Float4(1.0f, 1.0f, 1.0f, 1.0f));
+		mRenderer->SetClearDepth(1.0f);
 		mRenderer->ClearColorBuffer();
 		mRenderer->ClearDepthBuffer();
 

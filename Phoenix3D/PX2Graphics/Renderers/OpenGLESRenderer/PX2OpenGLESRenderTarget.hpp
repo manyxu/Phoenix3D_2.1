@@ -33,6 +33,7 @@ namespace PX2
 		GLuint mDepthRenderBuffer;
 
 		GLuint mDepthStencilTexture, mFrameBuffer;
+
 		GLenum* mDrawBuffers;
 		int mPrevViewport[4];
 		float mPrevDepthRange[2];
