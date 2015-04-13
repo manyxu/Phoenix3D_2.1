@@ -3,7 +3,6 @@
 #ifndef PX2GRAPHICSEVENTTYPE_HPP
 #define PX2GRAPHICSEVENTTYPE_HPP
 
-#include "PX2SimulationPre.hpp"
 #include "PX2EventSystem.hpp"
 
 namespace PX2
