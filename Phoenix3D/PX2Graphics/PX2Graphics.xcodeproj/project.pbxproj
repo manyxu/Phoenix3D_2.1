@@ -1264,7 +1264,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"PX2_USE_OPENGLES=1",
-					"PX2_USE_OPENGLES3=1",
 					"$(inherited)",
 				);
 				OTHER_LDFLAGS = "-ObjC";
