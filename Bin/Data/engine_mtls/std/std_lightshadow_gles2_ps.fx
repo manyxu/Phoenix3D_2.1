@@ -8,10 +8,10 @@ uniform mediump vec4 FogColorDist;
 uniform sampler2D SampleBase;
 uniform sampler2D SampleShadowDepth;
 
-float GetDepth(vec4 texCord, int i, int j)
+mediump float GetDepth(mediump vec4 texCord, mediump float i, mediump float j)
 {
-	vec4 newUV = texCord + vec4(texCord.w*i*0.001f, texCord.w*j*0.001, 0.0, 0.0);
-	vec4 depthColor = texture2DProj(SampleShadowDepth, newUV);
+	mediump vec4 newUV = texCord + mediump vec4(texCord.w*i*0.001, texCord.w*j*0.001, 0.0, 0.0);
+	mediump vec4 depthColor = texture2DProj(SampleShadowDepth, newUV);
 				
 	return depthColor.r;
 }
@@ -26,7 +26,7 @@ void main()
 	
 	mediump vec4 texCord = vertexTCoord2;
 	
-	mediump float shadowDepth = GetDepth(texCord, 0, 0);
+	mediump float shadowDepth = GetDepth(texCord, 0.0, 0.0);
 		
 	lastColor.rgb *= shadowDepth;
 	

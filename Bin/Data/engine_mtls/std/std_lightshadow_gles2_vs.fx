@@ -25,7 +25,7 @@ vec3 DoLight_Point_Diffuse(vec3 lightWorldPos, float lightRange, vec3 lightColor
 	vec3 lightToVertex = lightWorldPos - vertexWorldPos;
 	float squareDist = dot(lightToVertex, lightToVertex);
 	lightToVertex = normalize(lightToVertex);
-	return lightColor * shineDiff * max(0, dot(vertexWorldNormal, lightToVertex)) * max( 0, (1.0 - squareDist / lightRange / lightRange) );
+	return lightColor * shineDiff * max(0.0, dot(vertexWorldNormal, lightToVertex)) * max( 0.0, (1.0 - squareDist / lightRange / lightRange) );
 }
 
 void main() 

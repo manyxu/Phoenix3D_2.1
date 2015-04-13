@@ -3,7 +3,7 @@ float3 DoLight_Point_Diffuse(float3 lightWorldPos, float lightRange, float3 ligh
 	float3 lightToVertex = lightWorldPos - vertexWorldPos;
 	float squareDist = dot(lightToVertex, lightToVertex);
 	lightToVertex = normalize(lightToVertex);
-	return lightColor * shineDiffuse * max(0, dot(vertexWorldNormal, lightToVertex)) * max( 0, (1.0 - squareDist / lightRange / lightRange) );
+	return lightColor * shineDiffuse * max(0.0, dot(vertexWorldNormal, lightToVertex)) * max( 0.0, (1.0 - squareDist / lightRange / lightRange) );
 }
 
 void v_std_lightshadow
@@ -50,8 +50,8 @@ void v_std_lightshadow
 	float dotH = dot(worldNormal, halfVector);
 	
 	vertexColor.rgb = ShineEmissive.rgb + LightAmbient_Dir.a * (ShineAmbient.rgb * LightAmbient_Dir.rgb +
-		ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.rgb), 0) +
-							ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0), ShineSpecular.a*LightSpecular_Dir.a));		
+		ShineDiffuse.rgb * LightDiffuse_Dir.rgb * max(dot(worldNormal, -LightWorldDVector_Dir.rgb), 0.0) +
+							ShineSpecular.rgb * LightSpecular_Dir.rgb * pow(max(dotH, 0.0), ShineSpecular.a*LightSpecular_Dir.a));
 	vertexColor.a = ShineEmissive.a;
 	
 	// point lights
