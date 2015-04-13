@@ -48,7 +48,7 @@
     strRet.append("/");
     appplay::NativeCall::SetWriteablePath(strRet);
 
-    appplay::NativeCall::Initlize(960, 640);
+    appplay::NativeCall::Initlize(640, 1136);
 }
 
 - (void)dealloc

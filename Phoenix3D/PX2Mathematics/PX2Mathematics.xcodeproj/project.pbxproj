@@ -40,6 +40,7 @@
 		73845B291A95ECDD00876E88 /* PX2Vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845B031A95ECDD00876E88 /* PX2Vector2.cpp */; };
 		73845B2A1A95ECDD00876E88 /* PX2Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845B061A95ECDD00876E88 /* PX2Vector3.cpp */; };
 		73845B2B1A95ECDD00876E88 /* PX2Vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845B091A95ECDD00876E88 /* PX2Vector4.cpp */; };
+		739B29AD1ADBF54D00D67429 /* PX2MathHelp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739B29AB1ADBF54D00D67429 /* PX2MathHelp.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -177,6 +178,8 @@
 		73845B091A95ECDD00876E88 /* PX2Vector4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Vector4.cpp; sourceTree = SOURCE_ROOT; };
 		73845B0A1A95ECDD00876E88 /* PX2Vector4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Vector4.hpp; sourceTree = SOURCE_ROOT; };
 		73845B0B1A95ECDD00876E88 /* PX2Vector4.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Vector4.inl; sourceTree = SOURCE_ROOT; };
+		739B29AB1ADBF54D00D67429 /* PX2MathHelp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2MathHelp.cpp; sourceTree = SOURCE_ROOT; };
+		739B29AC1ADBF54D00D67429 /* PX2MathHelp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2MathHelp.hpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +224,8 @@
 		73845A721A95EC4F00876E88 /* PX2Mathematics */ = {
 			isa = PBXGroup;
 			children = (
+				739B29AB1ADBF54D00D67429 /* PX2MathHelp.cpp */,
+				739B29AC1ADBF54D00D67429 /* PX2MathHelp.hpp */,
 				73845A961A95ECDC00876E88 /* PX2APoint.cpp */,
 				73845A971A95ECDC00876E88 /* PX2APoint.hpp */,
 				73845A981A95ECDC00876E88 /* PX2APoint.inl */,
@@ -396,6 +401,7 @@
 			files = (
 				73845B2B1A95ECDD00876E88 /* PX2Vector4.cpp in Sources */,
 				73845B1B1A95ECDD00876E88 /* PX2HPlane.cpp in Sources */,
+				739B29AD1ADBF54D00D67429 /* PX2MathHelp.cpp in Sources */,
 				73845B171A95ECDD00876E88 /* PX2Float2.cpp in Sources */,
 				73845B131A95ECDD00876E88 /* PX2Curve3.cpp in Sources */,
 				73845B111A95ECDD00876E88 /* PX2BSplineVolume.cpp in Sources */,

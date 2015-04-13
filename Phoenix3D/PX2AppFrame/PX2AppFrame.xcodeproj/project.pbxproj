@@ -225,6 +225,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Terrain ../PX2UI ../PX2Simulation ../PX2Effect ../PX2Terrains ../PX2Unity ../PX2Graphics ../PX2Mathematics ../PX2Core";
 			};
 			name = Debug;
 		};
@@ -237,6 +238,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Terrain ../PX2UI ../PX2Simulation ../PX2Effect ../PX2Terrains ../PX2Unity ../PX2Graphics ../PX2Mathematics ../PX2Core";
 			};
 			name = Release;
 		};

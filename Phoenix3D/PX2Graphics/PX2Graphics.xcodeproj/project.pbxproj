@@ -57,7 +57,6 @@
 		73845CAC1A95F3FE00876E88 /* PX2InterpCurveSpeedCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845BA71A95F3FD00876E88 /* PX2InterpCurveSpeedCtrl.cpp */; };
 		73845CAD1A95F3FE00876E88 /* PX2InterpCurveTranslateCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845BAA1A95F3FD00876E88 /* PX2InterpCurveTranslateCtrl.cpp */; };
 		73845CAE1A95F3FE00876E88 /* PX2InterpCurveUniformScaleCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845BAC1A95F3FD00876E88 /* PX2InterpCurveUniformScaleCtrl.cpp */; };
-		73845CAF1A95F3FE00876E88 /* PX2JunglerMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845BAE1A95F3FD00876E88 /* PX2JunglerMaterial.cpp */; };
 		73845CB01A95F3FE00876E88 /* PX2KeyframeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845BB01A95F3FD00876E88 /* PX2KeyframeController.cpp */; };
 		73845CB11A95F3FE00876E88 /* PX2Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845BB31A95F3FD00876E88 /* PX2Light.cpp */; };
 		73845CB21A95F3FE00876E88 /* PX2LightAmbientConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845BB61A95F3FD00876E88 /* PX2LightAmbientConstant.cpp */; };
@@ -106,7 +105,6 @@
 		73845CDF1A95F3FE00876E88 /* PX2ShineEmissiveConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C241A95F3FE00876E88 /* PX2ShineEmissiveConstant.cpp */; };
 		73845CE01A95F3FE00876E88 /* PX2ShineSpecularConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C261A95F3FE00876E88 /* PX2ShineSpecularConstant.cpp */; };
 		73845CE11A95F3FE00876E88 /* PX2SkinController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C281A95F3FE00876E88 /* PX2SkinController.cpp */; };
-		73845CE21A95F3FE00876E88 /* PX2SkinMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C2B1A95F3FE00876E88 /* PX2SkinMaterial.cpp */; };
 		73845CE31A95F3FE00876E88 /* PX2SkinMatrixConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C2D1A95F3FE00876E88 /* PX2SkinMatrixConstant.cpp */; };
 		73845CE41A95F3FE00876E88 /* PX2SpecializedIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C2F1A95F3FE00876E88 /* PX2SpecializedIO.cpp */; };
 		73845CE51A95F3FE00876E88 /* PX2StandardMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C311A95F3FE00876E88 /* PX2StandardMesh.cpp */; };
@@ -117,7 +115,6 @@
 		73845CEC1A95F3FE00876E88 /* PX2Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C421A95F3FE00876E88 /* PX2Texture.cpp */; };
 		73845CED1A95F3FE00876E88 /* PX2Texture1D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C451A95F3FE00876E88 /* PX2Texture1D.cpp */; };
 		73845CEE1A95F3FE00876E88 /* PX2Texture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C481A95F3FE00876E88 /* PX2Texture2D.cpp */; };
-		73845CEF1A95F3FE00876E88 /* PX2Texture2DMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C4B1A95F3FE00876E88 /* PX2Texture2DMaterial.cpp */; };
 		73845CF01A95F3FE00876E88 /* PX2Texture3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C4D1A95F3FE00876E88 /* PX2Texture3D.cpp */; };
 		73845CF11A95F3FE00876E88 /* PX2TextureCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C501A95F3FE00876E88 /* PX2TextureCube.cpp */; };
 		73845CF21A95F3FE00876E88 /* PX2Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C531A95F3FE00876E88 /* PX2Transform.cpp */; };
@@ -137,6 +134,10 @@
 		73845D001A95F3FE00876E88 /* PX2VWMatrixConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C771A95F3FE00876E88 /* PX2VWMatrixConstant.cpp */; };
 		73845D011A95F3FE00876E88 /* PX2WireProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C791A95F3FE00876E88 /* PX2WireProperty.cpp */; };
 		73845D021A95F3FE00876E88 /* PX2WMatrixConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73845C7B1A95F3FE00876E88 /* PX2WMatrixConstant.cpp */; };
+		739B29A71ADBF52600D67429 /* PX2EnvirParam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739B299E1ADBF52500D67429 /* PX2EnvirParam.cpp */; };
+		739B29A81ADBF52600D67429 /* PX2GraphicsEventType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739B29A11ADBF52500D67429 /* PX2GraphicsEventType.cpp */; };
+		739B29A91ADBF52600D67429 /* PX2InterpCurveColorCtrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739B29A31ADBF52500D67429 /* PX2InterpCurveColorCtrl.cpp */; };
+		739B29AA1ADBF52600D67429 /* PX2LightGroupConstant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739B29A51ADBF52600D67429 /* PX2LightGroupConstant.cpp */; };
 		75C859D71AB699A10035A15B /* PX2OpenGLESIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75C859B71AB699A10035A15B /* PX2OpenGLESIndexBuffer.cpp */; };
 		75C859D81AB699A10035A15B /* PX2OpenGLESMapping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75C859B91AB699A10035A15B /* PX2OpenGLESMapping.cpp */; };
 		75C859D91AB699A10035A15B /* PX2OpenGLESMaterialPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75C859BB1AB699A10035A15B /* PX2OpenGLESMaterialPass.cpp */; };
@@ -303,8 +304,6 @@
 		73845BAB1A95F3FD00876E88 /* PX2InterpCurveTranslateCtrl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2InterpCurveTranslateCtrl.hpp; sourceTree = SOURCE_ROOT; };
 		73845BAC1A95F3FD00876E88 /* PX2InterpCurveUniformScaleCtrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2InterpCurveUniformScaleCtrl.cpp; sourceTree = SOURCE_ROOT; };
 		73845BAD1A95F3FD00876E88 /* PX2InterpCurveUniformScaleCtrl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2InterpCurveUniformScaleCtrl.hpp; sourceTree = SOURCE_ROOT; };
-		73845BAE1A95F3FD00876E88 /* PX2JunglerMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2JunglerMaterial.cpp; sourceTree = SOURCE_ROOT; };
-		73845BAF1A95F3FD00876E88 /* PX2JunglerMaterial.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2JunglerMaterial.hpp; sourceTree = SOURCE_ROOT; };
 		73845BB01A95F3FD00876E88 /* PX2KeyframeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2KeyframeController.cpp; sourceTree = SOURCE_ROOT; };
 		73845BB11A95F3FD00876E88 /* PX2KeyframeController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2KeyframeController.hpp; sourceTree = SOURCE_ROOT; };
 		73845BB21A95F3FD00876E88 /* PX2KeyframeController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2KeyframeController.inl; sourceTree = SOURCE_ROOT; };
@@ -424,8 +423,6 @@
 		73845C281A95F3FE00876E88 /* PX2SkinController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkinController.cpp; sourceTree = SOURCE_ROOT; };
 		73845C291A95F3FE00876E88 /* PX2SkinController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkinController.hpp; sourceTree = SOURCE_ROOT; };
 		73845C2A1A95F3FE00876E88 /* PX2SkinController.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkinController.inl; sourceTree = SOURCE_ROOT; };
-		73845C2B1A95F3FE00876E88 /* PX2SkinMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkinMaterial.cpp; sourceTree = SOURCE_ROOT; };
-		73845C2C1A95F3FE00876E88 /* PX2SkinMaterial.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkinMaterial.hpp; sourceTree = SOURCE_ROOT; };
 		73845C2D1A95F3FE00876E88 /* PX2SkinMatrixConstant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkinMatrixConstant.cpp; sourceTree = SOURCE_ROOT; };
 		73845C2E1A95F3FE00876E88 /* PX2SkinMatrixConstant.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkinMatrixConstant.hpp; sourceTree = SOURCE_ROOT; };
 		73845C2F1A95F3FE00876E88 /* PX2SpecializedIO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SpecializedIO.cpp; sourceTree = SOURCE_ROOT; };
@@ -452,8 +449,6 @@
 		73845C481A95F3FE00876E88 /* PX2Texture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Texture2D.cpp; sourceTree = SOURCE_ROOT; };
 		73845C491A95F3FE00876E88 /* PX2Texture2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Texture2D.hpp; sourceTree = SOURCE_ROOT; };
 		73845C4A1A95F3FE00876E88 /* PX2Texture2D.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Texture2D.inl; sourceTree = SOURCE_ROOT; };
-		73845C4B1A95F3FE00876E88 /* PX2Texture2DMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Texture2DMaterial.cpp; sourceTree = SOURCE_ROOT; };
-		73845C4C1A95F3FE00876E88 /* PX2Texture2DMaterial.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Texture2DMaterial.hpp; sourceTree = SOURCE_ROOT; };
 		73845C4D1A95F3FE00876E88 /* PX2Texture3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Texture3D.cpp; sourceTree = SOURCE_ROOT; };
 		73845C4E1A95F3FE00876E88 /* PX2Texture3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Texture3D.hpp; sourceTree = SOURCE_ROOT; };
 		73845C4F1A95F3FE00876E88 /* PX2Texture3D.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Texture3D.inl; sourceTree = SOURCE_ROOT; };
@@ -502,6 +497,15 @@
 		73845C7A1A95F3FE00876E88 /* PX2WireProperty.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2WireProperty.hpp; sourceTree = SOURCE_ROOT; };
 		73845C7B1A95F3FE00876E88 /* PX2WMatrixConstant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2WMatrixConstant.cpp; sourceTree = SOURCE_ROOT; };
 		73845C7C1A95F3FE00876E88 /* PX2WMatrixConstant.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2WMatrixConstant.hpp; sourceTree = SOURCE_ROOT; };
+		739B299E1ADBF52500D67429 /* PX2EnvirParam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EnvirParam.cpp; sourceTree = SOURCE_ROOT; };
+		739B299F1ADBF52500D67429 /* PX2EnvirParam.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EnvirParam.hpp; sourceTree = SOURCE_ROOT; };
+		739B29A01ADBF52500D67429 /* PX2EnvirParam.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2EnvirParam.inl; sourceTree = SOURCE_ROOT; };
+		739B29A11ADBF52500D67429 /* PX2GraphicsEventType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2GraphicsEventType.cpp; sourceTree = SOURCE_ROOT; };
+		739B29A21ADBF52500D67429 /* PX2GraphicsEventType.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2GraphicsEventType.hpp; sourceTree = SOURCE_ROOT; };
+		739B29A31ADBF52500D67429 /* PX2InterpCurveColorCtrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2InterpCurveColorCtrl.cpp; sourceTree = SOURCE_ROOT; };
+		739B29A41ADBF52600D67429 /* PX2InterpCurveColorCtrl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2InterpCurveColorCtrl.hpp; sourceTree = SOURCE_ROOT; };
+		739B29A51ADBF52600D67429 /* PX2LightGroupConstant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2LightGroupConstant.cpp; sourceTree = SOURCE_ROOT; };
+		739B29A61ADBF52600D67429 /* PX2LightGroupConstant.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2LightGroupConstant.hpp; sourceTree = SOURCE_ROOT; };
 		75C859B71AB699A10035A15B /* PX2OpenGLESIndexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PX2OpenGLESIndexBuffer.cpp; path = Renderers/OpenGLESRenderer/PX2OpenGLESIndexBuffer.cpp; sourceTree = SOURCE_ROOT; };
 		75C859B81AB699A10035A15B /* PX2OpenGLESIndexBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PX2OpenGLESIndexBuffer.hpp; path = Renderers/OpenGLESRenderer/PX2OpenGLESIndexBuffer.hpp; sourceTree = SOURCE_ROOT; };
 		75C859B91AB699A10035A15B /* PX2OpenGLESMapping.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PX2OpenGLESMapping.cpp; path = Renderers/OpenGLESRenderer/PX2OpenGLESMapping.cpp; sourceTree = SOURCE_ROOT; };
@@ -586,6 +590,15 @@
 		73845A401A95EBE600876E88 /* PX2Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				739B299E1ADBF52500D67429 /* PX2EnvirParam.cpp */,
+				739B299F1ADBF52500D67429 /* PX2EnvirParam.hpp */,
+				739B29A01ADBF52500D67429 /* PX2EnvirParam.inl */,
+				739B29A11ADBF52500D67429 /* PX2GraphicsEventType.cpp */,
+				739B29A21ADBF52500D67429 /* PX2GraphicsEventType.hpp */,
+				739B29A31ADBF52500D67429 /* PX2InterpCurveColorCtrl.cpp */,
+				739B29A41ADBF52600D67429 /* PX2InterpCurveColorCtrl.hpp */,
+				739B29A51ADBF52600D67429 /* PX2LightGroupConstant.cpp */,
+				739B29A61ADBF52600D67429 /* PX2LightGroupConstant.hpp */,
 				73845D341A95F43F00876E88 /* Renderers */,
 				75C859FF1AB69BA30035A15B /* PX2LightConstant.cpp */,
 				75C85A001AB69BA30035A15B /* PX2LightConstant.hpp */,
@@ -722,8 +735,6 @@
 				73845BAB1A95F3FD00876E88 /* PX2InterpCurveTranslateCtrl.hpp */,
 				73845BAC1A95F3FD00876E88 /* PX2InterpCurveUniformScaleCtrl.cpp */,
 				73845BAD1A95F3FD00876E88 /* PX2InterpCurveUniformScaleCtrl.hpp */,
-				73845BAE1A95F3FD00876E88 /* PX2JunglerMaterial.cpp */,
-				73845BAF1A95F3FD00876E88 /* PX2JunglerMaterial.hpp */,
 				73845BB01A95F3FD00876E88 /* PX2KeyframeController.cpp */,
 				73845BB11A95F3FD00876E88 /* PX2KeyframeController.hpp */,
 				73845BB21A95F3FD00876E88 /* PX2KeyframeController.inl */,
@@ -843,8 +854,6 @@
 				73845C281A95F3FE00876E88 /* PX2SkinController.cpp */,
 				73845C291A95F3FE00876E88 /* PX2SkinController.hpp */,
 				73845C2A1A95F3FE00876E88 /* PX2SkinController.inl */,
-				73845C2B1A95F3FE00876E88 /* PX2SkinMaterial.cpp */,
-				73845C2C1A95F3FE00876E88 /* PX2SkinMaterial.hpp */,
 				73845C2D1A95F3FE00876E88 /* PX2SkinMatrixConstant.cpp */,
 				73845C2E1A95F3FE00876E88 /* PX2SkinMatrixConstant.hpp */,
 				73845C2F1A95F3FE00876E88 /* PX2SpecializedIO.cpp */,
@@ -871,8 +880,6 @@
 				73845C481A95F3FE00876E88 /* PX2Texture2D.cpp */,
 				73845C491A95F3FE00876E88 /* PX2Texture2D.hpp */,
 				73845C4A1A95F3FE00876E88 /* PX2Texture2D.inl */,
-				73845C4B1A95F3FE00876E88 /* PX2Texture2DMaterial.cpp */,
-				73845C4C1A95F3FE00876E88 /* PX2Texture2DMaterial.hpp */,
 				73845C4D1A95F3FE00876E88 /* PX2Texture3D.cpp */,
 				73845C4E1A95F3FE00876E88 /* PX2Texture3D.hpp */,
 				73845C4F1A95F3FE00876E88 /* PX2Texture3D.inl */,
@@ -1031,7 +1038,6 @@
 				73845C7F1A95F3FE00876E88 /* PX2BlendTransformController.cpp in Sources */,
 				73845C861A95F3FE00876E88 /* PX2CameraNode.cpp in Sources */,
 				73845CED1A95F3FE00876E88 /* PX2Texture1D.cpp in Sources */,
-				73845CE21A95F3FE00876E88 /* PX2SkinMaterial.cpp in Sources */,
 				73845CB31A95F3FE00876E88 /* PX2LightAttenuationConstant.cpp in Sources */,
 				73845CDF1A95F3FE00876E88 /* PX2ShineEmissiveConstant.cpp in Sources */,
 				73845C961A95F3FE00876E88 /* PX2DepthProperty.cpp in Sources */,
@@ -1051,6 +1057,7 @@
 				73845CF01A95F3FE00876E88 /* PX2Texture3D.cpp in Sources */,
 				75C859D71AB699A10035A15B /* PX2OpenGLESIndexBuffer.cpp in Sources */,
 				73845CB21A95F3FE00876E88 /* PX2LightAmbientConstant.cpp in Sources */,
+				739B29A91ADBF52600D67429 /* PX2InterpCurveColorCtrl.cpp in Sources */,
 				73845CB71A95F3FE00876E88 /* PX2LightNode.cpp in Sources */,
 				73845CB61A95F3FE00876E88 /* PX2LightModelPositionConstant.cpp in Sources */,
 				73845CCD1A95F3FE00876E88 /* PX2Projector.cpp in Sources */,
@@ -1058,7 +1065,6 @@
 				73845CF51A95F3FE00876E88 /* PX2TriFan.cpp in Sources */,
 				73845CC51A95F3FE00876E88 /* PX2Node.cpp in Sources */,
 				75C859E01AB699A10035A15B /* PX2OpenGLESTexture1D.cpp in Sources */,
-				73845CEF1A95F3FE00876E88 /* PX2Texture2DMaterial.cpp in Sources */,
 				73845CF71A95F3FE00876E88 /* PX2TriStrip.cpp in Sources */,
 				75C859EE1AB699C40035A15B /* PX2ShaderStruct.cpp in Sources */,
 				73845CA61A95F3FE00876E88 /* PX2InterpCurveController.cpp in Sources */,
@@ -1066,10 +1072,10 @@
 				73845CCE1A95F3FE00876E88 /* PX2ProjectorMatrixConstant.cpp in Sources */,
 				73845CA81A95F3FE00876E88 /* PX2InterpCurveFloatController.cpp in Sources */,
 				73845C921A95F3FE00876E88 /* PX2Culler.cpp in Sources */,
+				739B29A81ADBF52600D67429 /* PX2GraphicsEventType.cpp in Sources */,
 				75C859E61AB699A10035A15B /* PX2OpenGLESVertexShader.cpp in Sources */,
 				73845C7E1A95F3FE00876E88 /* PX2BillboardNode.cpp in Sources */,
 				73845CD31A95F3FE00876E88 /* PX2Renderable.cpp in Sources */,
-				73845CAF1A95F3FE00876E88 /* PX2JunglerMaterial.cpp in Sources */,
 				73845CA51A95F3FE00876E88 /* PX2InterpCurveAlphaCtrl.cpp in Sources */,
 				75C859DC1AB699A10035A15B /* PX2OpenGLESRendererData.cpp in Sources */,
 				73845CF81A95F3FE00876E88 /* PX2UserConstant.cpp in Sources */,
@@ -1116,6 +1122,7 @@
 				73845CA91A95F3FE00876E88 /* PX2InterpCurveRotateCtrl.cpp in Sources */,
 				73845CC31A95F3FE00876E88 /* PX2Movable.cpp in Sources */,
 				73845C8B1A95F3FE00876E88 /* PX2CollapseRecordArray.cpp in Sources */,
+				739B29A71ADBF52600D67429 /* PX2EnvirParam.cpp in Sources */,
 				73845CBD1A95F3FE00876E88 /* PX2LightWorldPositionConstant.cpp in Sources */,
 				73845CB51A95F3FE00876E88 /* PX2LightModelDVectorConstant.cpp in Sources */,
 				73845CF11A95F3FE00876E88 /* PX2TextureCube.cpp in Sources */,
@@ -1133,6 +1140,7 @@
 				73845CD61A95F3FE00876E88 /* PX2RenderStep.cpp in Sources */,
 				73845C971A95F3FE00876E88 /* PX2DlodNode.cpp in Sources */,
 				73845CE31A95F3FE00876E88 /* PX2SkinMatrixConstant.cpp in Sources */,
+				739B29AA1ADBF52600D67429 /* PX2LightGroupConstant.cpp in Sources */,
 				73845CDB1A95F3FE00876E88 /* PX2ShaderParameters.cpp in Sources */,
 				73845CAC1A95F3FE00876E88 /* PX2InterpCurveSpeedCtrl.cpp in Sources */,
 				73845CEA1A95F3FE00876E88 /* PX2TargetTransformController.cpp in Sources */,

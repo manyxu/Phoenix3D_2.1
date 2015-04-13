@@ -20,6 +20,7 @@
 		738456501A95D85700876E88 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7384564E1A95D85700876E88 /* Main_iPad.storyboard */; };
 		738456571A95D85700876E88 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 738456561A95D85700876E88 /* ViewController.mm */; };
 		738456591A95D85700876E88 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 738456581A95D85700876E88 /* Images.xcassets */; };
+		739B298A1ADBEE3D00D67429 /* libPX2Terrains.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 739B29891ADBEE3D00D67429 /* libPX2Terrains.a */; };
 		73A6DAA61A96F478000BD98B /* libPX2AppFrame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DA9C1A96F478000BD98B /* libPX2AppFrame.a */; };
 		73A6DAA71A96F478000BD98B /* libPX2Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DA9D1A96F478000BD98B /* libPX2Core.a */; };
 		73A6DAA81A96F478000BD98B /* libPX2Effect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6DA9E1A96F478000BD98B /* libPX2Effect.a */; };
@@ -53,6 +54,7 @@
 		738456561A95D85700876E88 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		738456581A95D85700876E88 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7384565F1A95D85700876E88 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		739B29891ADBEE3D00D67429 /* libPX2Terrains.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Terrains.a; path = "../../PX2Terrains/build/Debug-iphoneos/libPX2Terrains.a"; sourceTree = "<group>"; };
 		73A6DA9C1A96F478000BD98B /* libPX2AppFrame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2AppFrame.a; path = "../../../PX2AppFrame/build/Debug-iphoneos/libPX2AppFrame.a"; sourceTree = "<group>"; };
 		73A6DA9D1A96F478000BD98B /* libPX2Core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Core.a; path = "../../../PX2Core/build/Debug-iphoneos/libPX2Core.a"; sourceTree = "<group>"; };
 		73A6DA9E1A96F478000BD98B /* libPX2Effect.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPX2Effect.a; path = "../../../PX2Effect/build/Debug-iphoneos/libPX2Effect.a"; sourceTree = "<group>"; };
@@ -74,15 +76,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73A6DAA61A96F478000BD98B /* libPX2AppFrame.a in Frameworks */,
 				73A6DAA71A96F478000BD98B /* libPX2Core.a in Frameworks */,
-				73A6DAA81A96F478000BD98B /* libPX2Effect.a in Frameworks */,
 				73A6DAA91A96F478000BD98B /* libPX2Graphics.a in Frameworks */,
 				73A6DAAA1A96F478000BD98B /* libPX2Mathematics.a in Frameworks */,
-				73A6DAAB1A96F478000BD98B /* libPX2Net.a in Frameworks */,
-				73A6DAAC1A96F478000BD98B /* libPX2Simulation.a in Frameworks */,
-				73A6DAAE1A96F478000BD98B /* libPX2UI.a in Frameworks */,
 				73A6DAAF1A96F478000BD98B /* libPX2Unity.a in Frameworks */,
+				73A6DAAB1A96F478000BD98B /* libPX2Net.a in Frameworks */,
+				739B298A1ADBEE3D00D67429 /* libPX2Terrains.a in Frameworks */,
+				73A6DAA81A96F478000BD98B /* libPX2Effect.a in Frameworks */,
+				73A6DAAE1A96F478000BD98B /* libPX2UI.a in Frameworks */,
+				73A6DAAC1A96F478000BD98B /* libPX2Simulation.a in Frameworks */,
+				73A6DAA61A96F478000BD98B /* libPX2AppFrame.a in Frameworks */,
 				7384563E1A95D85700876E88 /* OpenGLES.framework in Frameworks */,
 				738456381A95D85700876E88 /* CoreGraphics.framework in Frameworks */,
 				7384563A1A95D85700876E88 /* UIKit.framework in Frameworks */,
@@ -124,6 +127,7 @@
 		738456341A95D85700876E88 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				739B29891ADBEE3D00D67429 /* libPX2Terrains.a */,
 				73A6DA9C1A96F478000BD98B /* libPX2AppFrame.a */,
 				73A6DA9D1A96F478000BD98B /* libPX2Core.a */,
 				73A6DA9E1A96F478000BD98B /* libPX2Effect.a */,
@@ -381,8 +385,15 @@
 					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Terrains/build/Debug-iphoneos",
 					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2UI/build/Debug-iphoneos",
 					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Unity/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/Phoenix3D/PX2Terrains/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2UI/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2Unity/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2Mathematics/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2AppFrame/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2Effect/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "../../PX2AppFrame ../../PX2Simulation ../../PX2UI ../../PX2Terrains ../../PX2Effect ../../PX2Unity ../../PX2Graphics ../../PX2Mathematics ../../PX2Core ../";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -407,8 +418,15 @@
 					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Terrains/build/Debug-iphoneos",
 					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2UI/build/Debug-iphoneos",
 					"/Users/xuduo/Documents/Phoenix3D/Phoenix3D/PX2Unity/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/Phoenix3D/PX2Terrains/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2UI/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2Unity/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2Mathematics/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2AppFrame/build/Debug-iphoneos",
+					"/Users/xuduo/Documents/Phoenix3d/PX2Effect/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "../../PX2AppFrame ../../PX2Simulation ../../PX2UI ../../PX2Terrains ../../PX2Effect ../../PX2Unity ../../PX2Graphics ../../PX2Mathematics ../../PX2Core ../";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

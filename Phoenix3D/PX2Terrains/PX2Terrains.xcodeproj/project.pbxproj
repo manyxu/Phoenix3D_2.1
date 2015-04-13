@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		73A6D7051A96E1FC000BD98B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6D7041A96E1FC000BD98B /* Foundation.framework */; };
-		73A6D7511A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D72D1A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp */; };
 		73A6D7521A96E2C3000BD98B /* PX2Jungler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D72F1A96E2C3000BD98B /* PX2Jungler.cpp */; };
 		73A6D7531A96E2C3000BD98B /* PX2LODTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7321A96E2C3000BD98B /* PX2LODTerrain.cpp */; };
 		73A6D7541A96E2C3000BD98B /* PX2LODTerrainBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7351A96E2C3000BD98B /* PX2LODTerrainBlock.cpp */; };
@@ -16,8 +15,6 @@
 		73A6D7561A96E2C3000BD98B /* PX2LODTerrainVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D73B1A96E2C3000BD98B /* PX2LODTerrainVertex.cpp */; };
 		73A6D7571A96E2C3000BD98B /* PX2RawTerrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D73E1A96E2C3000BD98B /* PX2RawTerrain.cpp */; };
 		73A6D7581A96E2C3000BD98B /* PX2RawTerrainPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7401A96E2C3000BD98B /* PX2RawTerrainPage.cpp */; };
-		73A6D7591A96E2C3000BD98B /* PX2SkyMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7431A96E2C3000BD98B /* PX2SkyMaterial.cpp */; };
-		73A6D75A1A96E2C3000BD98B /* PX2SkySphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7451A96E2C3000BD98B /* PX2SkySphere.cpp */; };
 		73A6D75B1A96E2C3000BD98B /* PX2Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D7481A96E2C3000BD98B /* PX2Terrain.cpp */; };
 		73A6D75C1A96E2C3000BD98B /* PX2TerrainPage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D74B1A96E2C3000BD98B /* PX2TerrainPage.cpp */; };
 /* End PBXBuildFile section */
@@ -39,8 +36,6 @@
 		73A6D7041A96E1FC000BD98B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		73A6D7121A96E1FC000BD98B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		73A6D7151A96E1FC000BD98B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		73A6D72D1A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2EditTerrainMaterial.cpp; sourceTree = SOURCE_ROOT; };
-		73A6D72E1A96E2C3000BD98B /* PX2EditTerrainMaterial.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2EditTerrainMaterial.hpp; sourceTree = SOURCE_ROOT; };
 		73A6D72F1A96E2C3000BD98B /* PX2Jungler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Jungler.cpp; sourceTree = SOURCE_ROOT; };
 		73A6D7301A96E2C3000BD98B /* PX2Jungler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Jungler.hpp; sourceTree = SOURCE_ROOT; };
 		73A6D7311A96E2C3000BD98B /* PX2Jungler.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Jungler.inl; sourceTree = SOURCE_ROOT; };
@@ -61,11 +56,6 @@
 		73A6D7401A96E2C3000BD98B /* PX2RawTerrainPage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2RawTerrainPage.cpp; sourceTree = SOURCE_ROOT; };
 		73A6D7411A96E2C3000BD98B /* PX2RawTerrainPage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2RawTerrainPage.hpp; sourceTree = SOURCE_ROOT; };
 		73A6D7421A96E2C3000BD98B /* PX2RawTerrainPage.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2RawTerrainPage.inl; sourceTree = SOURCE_ROOT; };
-		73A6D7431A96E2C3000BD98B /* PX2SkyMaterial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkyMaterial.cpp; sourceTree = SOURCE_ROOT; };
-		73A6D7441A96E2C3000BD98B /* PX2SkyMaterial.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkyMaterial.hpp; sourceTree = SOURCE_ROOT; };
-		73A6D7451A96E2C3000BD98B /* PX2SkySphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkySphere.cpp; sourceTree = SOURCE_ROOT; };
-		73A6D7461A96E2C3000BD98B /* PX2SkySphere.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkySphere.hpp; sourceTree = SOURCE_ROOT; };
-		73A6D7471A96E2C3000BD98B /* PX2SkySphere.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkySphere.inl; sourceTree = SOURCE_ROOT; };
 		73A6D7481A96E2C3000BD98B /* PX2Terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2Terrain.cpp; sourceTree = SOURCE_ROOT; };
 		73A6D7491A96E2C3000BD98B /* PX2Terrain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2Terrain.hpp; sourceTree = SOURCE_ROOT; };
 		73A6D74A1A96E2C3000BD98B /* PX2Terrain.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2Terrain.inl; sourceTree = SOURCE_ROOT; };
@@ -118,8 +108,6 @@
 		73A6D7061A96E1FC000BD98B /* PX2Terrains */ = {
 			isa = PBXGroup;
 			children = (
-				73A6D72D1A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp */,
-				73A6D72E1A96E2C3000BD98B /* PX2EditTerrainMaterial.hpp */,
 				73A6D72F1A96E2C3000BD98B /* PX2Jungler.cpp */,
 				73A6D7301A96E2C3000BD98B /* PX2Jungler.hpp */,
 				73A6D7311A96E2C3000BD98B /* PX2Jungler.inl */,
@@ -140,11 +128,6 @@
 				73A6D7401A96E2C3000BD98B /* PX2RawTerrainPage.cpp */,
 				73A6D7411A96E2C3000BD98B /* PX2RawTerrainPage.hpp */,
 				73A6D7421A96E2C3000BD98B /* PX2RawTerrainPage.inl */,
-				73A6D7431A96E2C3000BD98B /* PX2SkyMaterial.cpp */,
-				73A6D7441A96E2C3000BD98B /* PX2SkyMaterial.hpp */,
-				73A6D7451A96E2C3000BD98B /* PX2SkySphere.cpp */,
-				73A6D7461A96E2C3000BD98B /* PX2SkySphere.hpp */,
-				73A6D7471A96E2C3000BD98B /* PX2SkySphere.inl */,
 				73A6D7481A96E2C3000BD98B /* PX2Terrain.cpp */,
 				73A6D7491A96E2C3000BD98B /* PX2Terrain.hpp */,
 				73A6D74A1A96E2C3000BD98B /* PX2Terrain.inl */,
@@ -209,14 +192,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				73A6D7531A96E2C3000BD98B /* PX2LODTerrain.cpp in Sources */,
-				73A6D75A1A96E2C3000BD98B /* PX2SkySphere.cpp in Sources */,
 				73A6D7581A96E2C3000BD98B /* PX2RawTerrainPage.cpp in Sources */,
 				73A6D7541A96E2C3000BD98B /* PX2LODTerrainBlock.cpp in Sources */,
 				73A6D7571A96E2C3000BD98B /* PX2RawTerrain.cpp in Sources */,
 				73A6D75B1A96E2C3000BD98B /* PX2Terrain.cpp in Sources */,
-				73A6D7591A96E2C3000BD98B /* PX2SkyMaterial.cpp in Sources */,
 				73A6D7551A96E2C3000BD98B /* PX2LODTerrainPage.cpp in Sources */,
-				73A6D7511A96E2C3000BD98B /* PX2EditTerrainMaterial.cpp in Sources */,
 				73A6D7561A96E2C3000BD98B /* PX2LODTerrainVertex.cpp in Sources */,
 				73A6D7521A96E2C3000BD98B /* PX2Jungler.cpp in Sources */,
 				73A6D75C1A96E2C3000BD98B /* PX2TerrainPage.cpp in Sources */,

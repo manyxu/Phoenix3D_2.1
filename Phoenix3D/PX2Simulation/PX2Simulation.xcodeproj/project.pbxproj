@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		739B29941ADBF27800D67429 /* PX2SkyActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739B298B1ADBF27800D67429 /* PX2SkyActor.cpp */; };
+		739B29951ADBF27800D67429 /* PX2SkyMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739B298E1ADBF27800D67429 /* PX2SkyMesh.cpp */; };
+		739B29961ADBF27800D67429 /* PX2TerrainActor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 739B29911ADBF27800D67429 /* PX2TerrainActor.cpp */; };
 		73A6D8981A96EC02000BD98B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A6D8971A96EC02000BD98B /* Foundation.framework */; };
 		73A6D9211A96EC68000BD98B /* PX2AccoutManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8BD1A96EC68000BD98B /* PX2AccoutManager.cpp */; };
 		73A6D9221A96EC68000BD98B /* PX2Actor_BitSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73A6D8BF1A96EC68000BD98B /* PX2Actor_BitSet.cpp */; };
@@ -70,6 +73,15 @@
 
 /* Begin PBXFileReference section */
 		7309DBB21AA0708E004D007A /* PX2SkillComponent.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = PX2SkillComponent.inl; path = SkillCompl/PX2SkillComponent.inl; sourceTree = SOURCE_ROOT; };
+		739B298B1ADBF27800D67429 /* PX2SkyActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkyActor.cpp; sourceTree = SOURCE_ROOT; };
+		739B298C1ADBF27800D67429 /* PX2SkyActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkyActor.hpp; sourceTree = SOURCE_ROOT; };
+		739B298D1ADBF27800D67429 /* PX2SkyActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkyActor.inl; sourceTree = SOURCE_ROOT; };
+		739B298E1ADBF27800D67429 /* PX2SkyMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2SkyMesh.cpp; sourceTree = SOURCE_ROOT; };
+		739B298F1ADBF27800D67429 /* PX2SkyMesh.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2SkyMesh.hpp; sourceTree = SOURCE_ROOT; };
+		739B29901ADBF27800D67429 /* PX2SkyMesh.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2SkyMesh.inl; sourceTree = SOURCE_ROOT; };
+		739B29911ADBF27800D67429 /* PX2TerrainActor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PX2TerrainActor.cpp; sourceTree = SOURCE_ROOT; };
+		739B29921ADBF27800D67429 /* PX2TerrainActor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PX2TerrainActor.hpp; sourceTree = SOURCE_ROOT; };
+		739B29931ADBF27800D67429 /* PX2TerrainActor.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PX2TerrainActor.inl; sourceTree = SOURCE_ROOT; };
 		73A6D8941A96EC02000BD98B /* libPX2Simulation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPX2Simulation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		73A6D8971A96EC02000BD98B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		73A6D8A51A96EC02000BD98B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -229,6 +241,15 @@
 		73A6D8991A96EC02000BD98B /* PX2Simulation */ = {
 			isa = PBXGroup;
 			children = (
+				739B298B1ADBF27800D67429 /* PX2SkyActor.cpp */,
+				739B298C1ADBF27800D67429 /* PX2SkyActor.hpp */,
+				739B298D1ADBF27800D67429 /* PX2SkyActor.inl */,
+				739B298E1ADBF27800D67429 /* PX2SkyMesh.cpp */,
+				739B298F1ADBF27800D67429 /* PX2SkyMesh.hpp */,
+				739B29901ADBF27800D67429 /* PX2SkyMesh.inl */,
+				739B29911ADBF27800D67429 /* PX2TerrainActor.cpp */,
+				739B29921ADBF27800D67429 /* PX2TerrainActor.hpp */,
+				739B29931ADBF27800D67429 /* PX2TerrainActor.inl */,
 				75C859F01AB69B800035A15B /* PX2AmbientRegionActor.cpp */,
 				75C859F11AB69B800035A15B /* PX2AmbientRegionActor.hpp */,
 				75C859F21AB69B800035A15B /* PX2AmbientRegionActor.inl */,
@@ -414,6 +435,7 @@
 				73A6D9331A96EC68000BD98B /* PX2PlatformSDK.cpp in Sources */,
 				73A6D9F41A96EEAA000BD98B /* PX2ToLua.cpp in Sources */,
 				73A6D93E1A96EC68000BD98B /* PX2Skill.cpp in Sources */,
+				739B29941ADBF27800D67429 /* PX2SkyActor.cpp in Sources */,
 				73A6D9451A96EC68000BD98B /* PX2SkillComponent.cpp in Sources */,
 				73A6D9321A96EC68000BD98B /* PX2EngineLoop.cpp in Sources */,
 				73A6D92C1A96EC68000BD98B /* PX2Character.cpp in Sources */,
@@ -427,6 +449,7 @@
 				73A6D9351A96EC68000BD98B /* PX2Project.cpp in Sources */,
 				73A6D9261A96EC68000BD98B /* PX2Animation3DSkeleton.cpp in Sources */,
 				73A6D93B1A96EC68000BD98B /* PX2SimulationEventType.cpp in Sources */,
+				739B29961ADBF27800D67429 /* PX2TerrainActor.cpp in Sources */,
 				73A6D93C1A96EC68000BD98B /* PX2User.cpp in Sources */,
 				73A6D94A1A96EC68000BD98B /* PX2SkillStepRangeTime.cpp in Sources */,
 				73A6D9241A96EC68000BD98B /* PX2ActorPicker.cpp in Sources */,
@@ -438,6 +461,7 @@
 				73A6D9291A96EC68000BD98B /* PX2CellSpace.cpp in Sources */,
 				73A6D9381A96EC68000BD98B /* PX2Scene.cpp in Sources */,
 				73A6D92F1A96EC68000BD98B /* PX2EngineLoop_InitTerm.cpp in Sources */,
+				739B29951ADBF27800D67429 /* PX2SkyMesh.cpp in Sources */,
 				73A6D92D1A96EC68000BD98B /* PX2Creater.cpp in Sources */,
 				73A6D9441A96EC68000BD98B /* PX2SkillActorLink.cpp in Sources */,
 				75C859FC1AB69B800035A15B /* PX2LightActor.cpp in Sources */,
@@ -541,6 +565,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Core ../PX2Mathematics ../PX2Graphics ../PX2Unity ../PX2Effect ../PX2Net ../PX2UI ../PX2Terrains ../PX2Unity/Lua ../PX2Unity/ToLua ../PX2ToLua ./ ./SkillCompl";
 			};
 			name = Debug;
 		};
@@ -553,6 +578,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "../PX2Core ../PX2Mathematics ../PX2Graphics ../PX2Unity ../PX2Effect ../PX2Net ../PX2UI ../PX2Terrains ../PX2Unity/Lua ../PX2Unity/ToLua ../PX2ToLua ./ ./SkillCompl";
 			};
 			name = Release;
 		};

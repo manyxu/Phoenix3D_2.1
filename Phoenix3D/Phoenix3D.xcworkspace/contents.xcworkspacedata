@@ -8,6 +8,9 @@
       location = "container:"
       name = "Libs">
       <FileRef
+         location = "group:PX2Terrains/PX2Terrains.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:PX2AppFrame/PX2AppFrame.xcodeproj">
       </FileRef>
       <FileRef
