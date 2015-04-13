@@ -140,7 +140,8 @@ void RenderStepScene::Draw()
 			(float)mEffect_RenderTarget_Shadow->GetHeight()));
 		mRenderer->InitRenderStates();
 		mRenderer->SetClearColor(Float4(1.0f, 1.0f, 1.0f, 1.0f));
-		mRenderer->ClearBuffers();
+		mRenderer->ClearColorBuffer();
+		mRenderer->ClearDepthBuffer();
 
 		Projector *lightProjector = scene->GetEnvirParam()->GetLight_Dir_Projector();
 		mRenderer->SetCamera(lightProjector);
@@ -148,8 +149,8 @@ void RenderStepScene::Draw()
 
 		mRenderer->Disable(mEffect_RenderTarget_Shadow);
 
-		sceneEnvirParam->SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
-		mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetColorTexture(0));
+		sceneEnvirParam->SetLight_Dir_DepthTexture(mEffect_RenderTarget_Shadow->GetDepthStencilTexture());
+		mEffect_UIPicBox_Shadow->SetTexture(mEffect_RenderTarget_Shadow->GetDepthStencilTexture());
 	}
 
 	Rectf viewPortSimu = mViewPort;
@@ -162,7 +163,8 @@ void RenderStepScene::Draw()
 
 		mRenderer->SetClearColor(MathHelp::Float3ToFloat4(scene->GetColor(), 0.0f));
 		mRenderer->SetClearDepth(1.0f);
-		mRenderer->ClearBuffers();
+		mRenderer->ClearColorBuffer();
+		mRenderer->ClearDepthBuffer();
 
 		if (mHelpGridRenderStep)
 			mHelpGridRenderStep->Draw();
@@ -211,7 +213,8 @@ void RenderStepScene::Draw()
 				(float)mEffect_RenderTarget_Normal->GetHeight()));
 
 			mRenderer->InitRenderStates();
-			mRenderer->ClearBuffers();
+			mRenderer->ClearColorBuffer();
+			mRenderer->ClearDepthBuffer();
 			_SetCameraF(mScreenCamera, mEffect_UIPicBox_BloomBright);
 			mRenderer->SetCamera(mScreenCamera);
 			mRenderer->Draw(mEffect_UIPicBox_BloomBright);
@@ -230,7 +233,8 @@ void RenderStepScene::Draw()
 
 			mRenderer->InitRenderStates();
 			mRenderer->SetClearColor(Float4::BLACK);
-			mRenderer->ClearBuffers();
+			mRenderer->ClearColorBuffer();
+			mRenderer->ClearDepthBuffer();
 			_SetCameraF(mScreenCamera, mEffect_UIPicBox_BlurH);
 			mRenderer->SetCamera(mScreenCamera);
 			mRenderer->Draw(mEffect_UIPicBox_BlurH);
@@ -249,7 +253,8 @@ void RenderStepScene::Draw()
 
 			mRenderer->InitRenderStates();
 			mRenderer->SetClearColor(Float4::BLACK);
-			mRenderer->ClearBuffers();
+			mRenderer->ClearColorBuffer();
+			mRenderer->ClearDepthBuffer();
 			_SetCameraF(mScreenCamera, mEffect_UIPicBox_BlurV);
 			mRenderer->SetCamera(mScreenCamera);
 			mRenderer->Draw(mEffect_UIPicBox_BlurV);
@@ -407,7 +412,7 @@ void RenderStepScene::_UpdateBloomChanged()
 	mBloom_BloomParam = 0;
 
 	Scene *scene = DynamicCast<Scene>(mNode);
-	const std::string &renderTag = Renderer::GetRenderTag();
+	std::string renderTag = Renderer::GetRenderTag();
 
 	if (scene && scene->IsUseBloom())
 	{
@@ -568,6 +573,8 @@ void RenderStepScene::_UpdateShadowChanged()
 	Scene *scene = (Scene*)((Node*)mNode);
 	if (!scene) return;
 
+	std::string renderTag = Renderer::GetRenderTag();
+
 	EnvirParam *sceneEnvirParam = scene->GetEnvirParam();
 	sceneEnvirParam->SetLight_Dir_DepthTexture(0);
 
@@ -586,11 +593,12 @@ void RenderStepScene::_UpdateShadowChanged()
 
 		Texture::Format tformat = Texture::TF_A8R8G8B8;
 		mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, (int)rtSize[0], 
-			(int)rtSize[1], false, false);
+			(int)rtSize[1], false, true);
 		mEffect_Material_Shadow = new0 ShadowMap_Material();
 
 		mEffect_UIPicBox_Shadow = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_Shadow);
+		if ("OGLES" == renderTag) mEffect_UIPicBox_Shadow->SetPicBoxType(UIPicBox::PBT_NORAML_UVREVERSE);
 		mEffect_UIPicBox_Shadow->SetAnchorPoint(Float2::ZERO);
 		mEffect_UIPicBox_Shadow->SetSize(Sizef(mBloomShadowPicSize, 
 			mBloomShadowPicSize));

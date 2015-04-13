@@ -34,7 +34,7 @@ PdrPointer(0)
 
 	if (hasDepthStencil)
 	{
-		Texture::Format format = Texture::TF_D24S8;
+		Texture::Format format = Texture::TF_D16;
 		mDepthStencilTexture = new0 Texture2D(format,
 			width, height, 1, Buffer::BU_DEPTHSTENCIL);
 	}

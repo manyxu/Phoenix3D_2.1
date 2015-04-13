@@ -28,6 +28,10 @@ namespace PX2
 		void Unlock (int level);
 
 	private:
+		friend class PdrRenderTarget;
+		PdrTexture2D(Renderer* renderer, bool isColortexture,
+			const Texture2D* texture, bool autoGenMipMap);
+
 		const Texture2D *mTex;
 		GLuint mTexture, mInternalFormat, mFormat, mType;
 		GLint mNumLevels;

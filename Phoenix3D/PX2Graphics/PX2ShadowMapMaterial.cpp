@@ -27,10 +27,6 @@ ShadowMap_Material::ShadowMap_Material()
 	mOverRideOffsetProperty->FillEnabled = true;
 	mOverRideOffsetProperty->Scale = 4.0f;
 	mOverRideOffsetProperty->Bias = 100.0f;
-
-	mOverRideCullProperty = new0 CullProperty();
-	mOverRideCullProperty->Enabled = true;
-	mOverRideCullProperty->CCWOrder = false;
 }
 //----------------------------------------------------------------------------
 ShadowMap_Material::~ShadowMap_Material()
@@ -46,8 +42,6 @@ void ShadowMap_Material::Draw(Renderer* renderer,
 	mOverRideOffsetProperty->Scale = curEnvirParam->GetShadowMap_OffsetPropertyScale();
 	mOverRideOffsetProperty->Bias = curEnvirParam->GetShadowMap_OffsetPropertyBias();
 	renderer->SetOverrideOffsetProperty(mOverRideOffsetProperty);
-
-	renderer->SetOverrideCullProperty(mOverRideCullProperty);
 
 	const int numVisible = visibleSet.GetNumVisible();
 	for (int j = 0; j < numVisible; ++j)
@@ -88,8 +82,6 @@ void ShadowMap_Material::Draw(Renderer* renderer,
 	}
 
 	renderer->SetOverrideOffsetProperty(0);
-
-	renderer->SetOverrideCullProperty(0);
 }
 //----------------------------------------------------------------------------
 

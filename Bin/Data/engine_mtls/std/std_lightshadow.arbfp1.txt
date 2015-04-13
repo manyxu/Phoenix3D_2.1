@@ -1,4 +1,5 @@
 !!ARBfp1.0
+OPTION ARB_fragment_program_shadow;
 # cgc version 3.1.0010, build date Feb  8 2012
 # command line args: -profile arbfp1
 # source file: std_lightshadow_cg.fx
@@ -21,25 +22,68 @@
 #var float4 FogColorDist :  : c[2] : 7 : 1
 #var sampler2D SampleBase :  : texunit 0 : -1 : 1
 #var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
-#const c[3] = 1 0.40000001
+#const c[3] = 0.001 0 1 0.1111
 PARAM c[4] = { program.local[0..2],
-		{ 1, 0.40000001 } };
+		{ 0.001, 0, 1, 0.1111 } };
 TEMP R0;
 TEMP R1;
-RCP R0.y, fragment.texcoord[2].w;
-MUL R0.zw, fragment.texcoord[2].xyxy, R0.y;
-TEX R0.x, R0.zwzw, texture[1], 2D;
-MAD R1.x, fragment.texcoord[2].z, R0.y, -R0;
-MOV R0.z, fragment.texcoord[0].x;
-ADD R0.w, -fragment.texcoord[0].y, c[3].x;
-ADD R0.zw, R0, c[0].xyxy;
-TEX R0, R0.zwzw, texture[0], 2D;
-MUL R0, R0, fragment.color.primary;
-CMP R1.x, -R1, c[3].y, c[3];
-MAD R0.xyz, R0, R1.x, -c[1];
+TEMP R2;
+TEMP R3;
+MUL R0.zw, -fragment.texcoord[2].w, c[3].x;
+MOV R1.x, R0.z;
+MOV R1.y, -R0.w;
+MOV R1.zw, c[3].y;
+ADD R1, fragment.texcoord[2], R1;
+TXP R0.x, R1, texture[1], SHADOW2D;
+MOV R1.x, R0.z;
+MOV R1.yzw, c[3].y;
+ADD R1, fragment.texcoord[2], R1;
+TXP R1.x, R1, texture[1], SHADOW2D;
+MOV R1.y, R0.w;
+MOV R2.xy, R0.z;
+MOV R2.zw, c[3].y;
+ADD R2, fragment.texcoord[2], R2;
+TXP R3.x, R2, texture[1], SHADOW2D;
+TXP R2.x, fragment.texcoord[2], texture[1], SHADOW2D;
+ADD R0.y, R2.x, R3.x;
+ADD R0.y, R0, R1.x;
+MOV R1.xzw, c[3].y;
+ADD R2, fragment.texcoord[2], R1;
+ADD R0.y, R0, R0.x;
+TXP R0.x, R2, texture[1], SHADOW2D;
+ADD R0.x, R0.y, R0;
+MOV R1.y, -R0.w;
+MOV R1.xzw, c[3].y;
+ADD R1, fragment.texcoord[2], R1;
+TXP R1.x, R1, texture[1], SHADOW2D;
+ADD R0.y, R0.x, R1.x;
+MOV R1.x, -R0.z;
+MOV R1.y, R0.w;
+MOV R1.zw, c[3].y;
+ADD R2, fragment.texcoord[2], R1;
+TXP R0.x, R2, texture[1], SHADOW2D;
+ADD R0.x, R0.y, R0;
+MOV R1.x, -R0.z;
+MOV R1.yzw, c[3].y;
+ADD R1, fragment.texcoord[2], R1;
+TXP R1.x, R1, texture[1], SHADOW2D;
+ADD R2.x, R0, R1;
+MOV R0.x, fragment.texcoord[0];
+ADD R0.y, -fragment.texcoord[0], c[3].z;
+ADD R1.xy, R0, c[0];
+TEX R1, R1, texture[0], 2D;
+MUL R1, R1, fragment.color.primary;
+MOV R3.zw, c[3].y;
+MOV R3.xy, -R0.z;
+ADD R0, fragment.texcoord[2], R3;
+TXP R0.x, R0, texture[1], SHADOW2D;
+ADD R0.x, R2, R0;
+MUL R0.xyz, R0.x, R1;
+MUL R0.xyz, R0, c[3].w;
+ADD R0.xyz, R0, -c[1];
 MAD R0.xyz, fragment.texcoord[1].x, R0, c[1];
 ADD R0.xyz, R0, -c[2];
 MAD result.color.xyz, fragment.texcoord[1].y, R0, c[2];
-MOV result.color.w, R0;
+MOV result.color.w, R1;
 END
-# 15 instructions, 2 R-regs
+# 56 instructions, 4 R-regs

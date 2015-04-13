@@ -51,7 +51,8 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 			assertion(!renderer->InTexture2DMap(colorTexture),
 				"Texture should not yet exist.\n");
 
-			PdrTexture2D* ogColorTexture = new0 PdrTexture2D(renderer, colorTexture);
+			PdrTexture2D* ogColorTexture = new0 PdrTexture2D(renderer, true,
+				colorTexture, renderTarget->HasMipmaps());
 			colorTexture->PdrPointer = ogColorTexture;
 			renderer->InsertInTexture2DMap(colorTexture, ogColorTexture);
 			mColorTextures[i] = ogColorTexture->GetTexture();
@@ -95,8 +96,8 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 		assertion(!renderer->InTexture2DMap(depthStencilTexture),
 			"Texture should not yet exist.\n");
 
-		PdrTexture2D* ogDepthStencilTexture = new0 PdrTexture2D(renderer,
-			depthStencilTexture);
+		PdrTexture2D* ogDepthStencilTexture = new0 PdrTexture2D(renderer, false,
+			depthStencilTexture, false);
 		depthStencilTexture->PdrPointer = ogDepthStencilTexture;
 		renderer->InsertInTexture2DMap(depthStencilTexture, ogDepthStencilTexture);
 		mDepthStencilTexture = ogDepthStencilTexture->GetTexture();
@@ -108,8 +109,8 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
 			GL_TEXTURE_2D, mDepthStencilTexture, 0);
 
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT,
-				GL_TEXTURE_2D, mDepthStencilTexture, 0);
+		//glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT,
+		//		GL_TEXTURE_2D, mDepthStencilTexture, 0);
 	}
 
 	GLuint status = glCheckFramebufferStatus(GL_FRAMEBUFFER);

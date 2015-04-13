@@ -7,8 +7,7 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-PdrTexture2D::PdrTexture2D (Renderer*, const Texture2D* texture)
-	:
+PdrTexture2D::PdrTexture2D (Renderer*, const Texture2D* texture) :
 mTex(texture),
 mTexture(0)
 {
@@ -125,6 +124,38 @@ mTexture(0)
 		{
 			delete1(newSrc);
 		}
+	}
+
+	PX2_GL_CHECK(glBindTexture(GL_TEXTURE_2D, 0));
+}
+//----------------------------------------------------------------------------
+PdrTexture2D::PdrTexture2D(Renderer* renderer, bool isColortexture,
+	const Texture2D* texture, bool autoGenMipMap) :
+mTex(texture),
+mTexture(0)
+{
+	Texture::Format tdFormat = texture->GetFormat();
+	mInternalFormat = gOGLTextureInternalFormat[tdFormat];
+	mFormat = gOGLTextureFormat[tdFormat];
+	mType = gOGLTextureType[tdFormat];
+	mNumLevels = texture->GetNumLevels();
+
+	if (isColortexture)
+	{
+		PX2_GL_CHECK(glGenTextures(1, &mTexture));
+		PX2_GL_CHECK(glBindTexture(GL_TEXTURE_2D, mTexture));
+
+		PX2_GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, mInternalFormat,
+			mTex->GetWidth(), mTex->GetHeight(), 0, mFormat, mType, NULL));
+	}
+	else
+	{
+		PX2_GL_CHECK(glGenTextures(1, &mTexture));
+		PX2_GL_CHECK(glBindTexture(GL_TEXTURE_2D, mTexture));
+
+		PX2_GL_CHECK(glTexImage2D(GL_TEXTURE_2D, 0, mInternalFormat,
+			mTex->GetWidth(), mTex->GetHeight(), 0, mFormat,
+			mType, NULL));
 	}
 
 	PX2_GL_CHECK(glBindTexture(GL_TEXTURE_2D, 0));

@@ -198,13 +198,13 @@ void AmbientRegionActor::_UpdateDirLightCamera()
 
 		if (!projector->IsPerspective())
 		{
-			projector->SetFrustum(0.1f, Mathf::FAbs(500.0f),
+			projector->SetFrustum(0.1f, 100.0f,
 				-mLightCameraExtent, mLightCameraExtent, -mLightCameraExtent,
 				mLightCameraExtent);
 		}
 		else
 		{
-			projector->SetFrustum(mLightCameraExtent, 1.0f, 1.0f, 500.0f);
+			projector->SetFrustum(mLightCameraExtent, 1.0f, 1.0f, 100.0f);
 		}
 	}
 }
