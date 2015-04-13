@@ -239,10 +239,22 @@ void UIPicBox::SetTexCornerHeight(float height)
 void UIPicBox::UpdateBuffers(float elapsedTime)
 {
 	std::vector<Float2> uvs;
-	uvs.push_back(Float2(0.0f, 0.0f));
-	uvs.push_back(Float2(1.0f, 0.0f));
-	uvs.push_back(Float2(0.0f, 1.0f));
-	uvs.push_back(Float2(1.0f, 1.0f));
+
+	if (PBT_NORMAL == mPicBoxType ||
+		PBT_NINE == mPicBoxType)
+	{
+		uvs.push_back(Float2(0.0f, 0.0f));
+		uvs.push_back(Float2(1.0f, 0.0f));
+		uvs.push_back(Float2(0.0f, 1.0f));
+		uvs.push_back(Float2(1.0f, 1.0f));
+	}
+	else if (PBT_NORAML_UVREVERSE == mPicBoxType)
+	{
+		uvs.push_back(Float2(0.0f, 1.0f));
+		uvs.push_back(Float2(1.0f, 1.0f));
+		uvs.push_back(Float2(0.0f, 0.0f));
+		uvs.push_back(Float2(1.0f, 0.0f));
+	}
 
 	if (TM_TEX == mTexMode)
 	{
@@ -273,6 +285,13 @@ void UIPicBox::UpdateBuffers(float elapsedTime)
 					uvs[2] = Float2(u1, v1);
 					uvs[3] = Float2(u1, v0);
 				}
+			}
+			else if (PBT_NORAML_UVREVERSE == mPicBoxType)
+			{
+				uvs[0] = Float2(u0, v0);
+				uvs[1] = Float2(u1, v0);
+				uvs[2] = Float2(u0, v1);
+				uvs[3] = Float2(u1, v1);
 			}
 			else
 			{
@@ -319,7 +338,8 @@ void UIPicBox::UpdateVertexBuffer(float elapsedTime,
 	float anchorWidth = mAnchorPoint[0] * mSize.Width;
 	float anchorHeight = mAnchorPoint[1] * mSize.Height;
 
-	if (PBT_NORMAL == mPicBoxType)
+	if (PBT_NORMAL == mPicBoxType ||
+		PBT_NORAML_UVREVERSE == mPicBoxType)
 	{
 		VertexBufferAccessor vba(GetVertexFormat(), GetVertexBuffer());
 
@@ -467,7 +487,8 @@ void UIPicBox::UpdateVertexBuffer(float elapsedTime,
 void UIPicBox::UpdateIndexBuffer()
 {
 	unsigned short *indices = (unsigned short*)GetIndexBuffer()->GetData();
-	if (PBT_NORMAL == mPicBoxType)
+	if (PBT_NORMAL == mPicBoxType ||
+		PBT_NORAML_UVREVERSE == mPicBoxType)
 	{
 		unsigned short v0 = 0;
 		unsigned short v1 = 1;
@@ -532,7 +553,8 @@ void UIPicBox::ReCreateVBuffer()
 	int numVertex = 4;
 	int numIndex = 6;
 
-	if (PBT_NORMAL == mPicBoxType)
+	if (PBT_NORMAL == mPicBoxType ||
+		PBT_NORAML_UVREVERSE == mPicBoxType)
 	{
 		numVertex = 4;
 		numIndex = 6;
@@ -584,6 +606,7 @@ void UIPicBox::RegistProperties()
 	std::vector<std::string> picBoxTypes;
 	picBoxTypes.push_back("PBT_NORMAL");
 	picBoxTypes.push_back("PBT_NINE");
+	picBoxTypes.push_back("PBT_NORAML_UVREVERSE");
 	AddPropertyEnum("PicBoxType", (int)GetPicBoxType(), picBoxTypes);
 
 	AddProperty("AnchorPoint", PT_FLOAT2, GetAnchorPoint());

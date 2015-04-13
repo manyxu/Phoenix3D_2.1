@@ -183,7 +183,7 @@ Renderer *Renderer::CreateRenderer(void *ptData, int width, int height,
 //----------------------------------------------------------------------------
 std::string Renderer::GetRenderTag()
 {
-	return "OGLES2";
+	return "OGLES";
 }
 //----------------------------------------------------------------------------
 void Renderer::InitRenderStates ()

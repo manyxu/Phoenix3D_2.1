@@ -11,7 +11,7 @@ PX2_IMPLEMENT_RTTI(PX2, RenderStep, RenderStepScene);
 
 //----------------------------------------------------------------------------
 RenderStepScene::RenderStepScene() :
-mIsShowShadowBloomEveryPass(true),
+mIsShowShadowBloomEveryPass(false),
 mIsBloomChanged(true),
 mIsShadowMapChanged(true)
 {
@@ -407,6 +407,7 @@ void RenderStepScene::_UpdateBloomChanged()
 	mBloom_BloomParam = 0;
 
 	Scene *scene = DynamicCast<Scene>(mNode);
+	const std::string &renderTag = Renderer::GetRenderTag();
 
 	if (scene && scene->IsUseBloom())
 	{
@@ -420,6 +421,7 @@ void RenderStepScene::_UpdateBloomChanged()
 			(int)rtSize[0], (int)rtSize[1], false, false);
 		mEffect_UIPicBoxShow_Normal = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBoxShow_Normal);
+		if ("OGLES" == renderTag) mEffect_UIPicBoxShow_Normal->SetPicBoxType(UIPicBox::PBT_NORAML_UVREVERSE);
 		mEffect_UIPicBoxShow_Normal->SetAnchorPoint(Float2::ZERO);
 		mEffect_UIPicBoxShow_Normal->SetSize(size);
 		mEffect_UIPicBoxShow_Normal->Update(0.0f);
@@ -430,6 +432,7 @@ void RenderStepScene::_UpdateBloomChanged()
 			(int)rtSize[0], (int)rtSize[1], false, false);
 		mEffect_UIPicBox_BloomBright = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BloomBright);
+		if ("OGLES" == renderTag) mEffect_UIPicBox_BloomBright->SetPicBoxType(UIPicBox::PBT_NORAML_UVREVERSE);
 		mEffect_UIPicBox_BloomBright->SetAnchorPoint(Float2::ZERO);
 		mEffect_UIPicBox_BloomBright->SetSize(size);
 		mEffect_UIPicBox_BloomBright->Update(0.0f);
@@ -442,6 +445,7 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BlurH = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BlurH);
 		mEffect_UIPicBox_BlurH->SetMaterialInstance(blurMtlInstanceH);
+		if ("OGLES" == renderTag) mEffect_UIPicBox_BlurH->SetPicBoxType(UIPicBox::PBT_NORAML_UVREVERSE);
 		mEffect_UIPicBox_BlurH->SetAnchorPoint(Float2::ZERO);
 		mEffect_UIPicBox_BlurH->SetSize(size);
 		mEffect_UIPicBox_BlurH->SetUVRepeat(Float2::UNIT);
@@ -459,6 +463,7 @@ void RenderStepScene::_UpdateBloomChanged()
 		mEffect_UIPicBox_BlurV = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BlurV);
 		mEffect_UIPicBox_BlurV->SetMaterialInstance(blurMtlInstanceV);
+		if ("OGLES" == renderTag) mEffect_UIPicBox_BlurV->SetPicBoxType(UIPicBox::PBT_NORAML_UVREVERSE);
 		mEffect_UIPicBox_BlurV->SetAnchorPoint(Float2::ZERO);
 		mEffect_UIPicBox_BlurV->SetSize(size);
 		mEffect_UIPicBox_BlurV->SetUVRepeat(Float2::UNIT);
@@ -474,6 +479,7 @@ void RenderStepScene::_UpdateBloomChanged()
 		mBloom_UIPicBox_Final = new0 UIPicBox();
 		mBloom_UIPicBox_Final->SetSize(size);
 		mEffect_UIFrame->AttachChild(mBloom_UIPicBox_Final);
+		if ("OGLES" == renderTag) mBloom_UIPicBox_Final->SetPicBoxType(UIPicBox::PBT_NORAML_UVREVERSE);
 		mBloom_UIPicBox_Final->SetAnchorPoint(Float2::ZERO);
 		mBloom_UIPicBox_Final->SetMaterialInstance(mBoom_MtlInstance);
 		mBloom_BloomParam = mBoom_MtlInstance->GetPixelConstant(0, "BloomParam");

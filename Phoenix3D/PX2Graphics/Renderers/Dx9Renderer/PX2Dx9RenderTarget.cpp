@@ -50,8 +50,8 @@ mColorTextures(0)
 
 	if (mHasDepthStencil)
 	{
-		Texture2D* depthStencilTexture;
-		PdrTexture2D* dxDepthStencilTexture;
+		Texture2D* depthStencilTexture = 0;
+		PdrTexture2D* dxDepthStencilTexture = 0;
 
 		depthStencilTexture = renderTarget->GetDepthStencilTexture();
 		assertion(!renderer->InTexture2DMap(depthStencilTexture), "Texture should not yet exist.\n");

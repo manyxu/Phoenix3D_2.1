@@ -79,6 +79,7 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, mDepthStencilTexture);
 	}
 
+	// opengles 必须绑定一个depth
 	Texture2D* depthStencilTexture = renderTarget->GetDepthStencilTexture();
 	if (!depthStencilTexture)
 	{

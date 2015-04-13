@@ -35,6 +35,7 @@ namespace PX2
 		{
 			PBT_NORMAL,
 			PBT_NINE,
+			PBT_NORAML_UVREVERSE,
 			PBT_MAX_TYPE
 		};
 		void SetPicBoxType(PicBoxType type);
