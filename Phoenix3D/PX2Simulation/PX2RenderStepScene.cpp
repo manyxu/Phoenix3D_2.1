@@ -11,7 +11,7 @@ PX2_IMPLEMENT_RTTI(PX2, RenderStep, RenderStepScene);
 
 //----------------------------------------------------------------------------
 RenderStepScene::RenderStepScene() :
-mIsShowShadowBloomEveryPass(false),
+mIsShowShadowBloomEveryPass(true),
 mIsBloomChanged(true),
 mIsShadowMapChanged(true)
 {

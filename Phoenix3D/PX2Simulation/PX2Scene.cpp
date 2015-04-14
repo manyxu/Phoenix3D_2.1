@@ -500,6 +500,9 @@ void Scene::Load(InStream& source)
 		source.ReadBool(mIsShadowRenderTargetSizeSameWithScreen);
 		source.ReadAggregate(mShadowRenderTargetSize);
 	}
+    
+    mIsUseBloom = true;
+    mIsUseShadowMap = true;
 
 	PX2_END_DEBUG_STREAM_LOAD(Scene, source);
 }

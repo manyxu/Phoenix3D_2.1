@@ -34,6 +34,12 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 	mColorTextures = 0;
 	mDepthRenderBuffer = 0;
 	mDrawBuffers = 0;
+    
+    mBeforeFrameBinding = 0;
+    mBeforeRenderBufferBinding = 0;
+    
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &mBeforeFrameBinding);
+    glGetIntegerv(GL_RENDERBUFFER_BINDING, &mBeforeRenderBufferBinding);
 
 	// Create a framebuffer object.
 	glGenFramebuffers(1, &mFrameBuffer);
@@ -120,6 +126,8 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 	GLuint status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	PX2_UNUSED(status);
 
+    glBindFramebuffer(GL_FRAMEBUFFER, mBeforeFrameBinding);
+    glBindRenderbuffer(GL_RENDERBUFFER, mBeforeRenderBufferBinding);
 	glBindTexture(GL_TEXTURE_2D, previousBind);
 }
 //----------------------------------------------------------------------------
@@ -143,6 +151,9 @@ PdrRenderTarget::~PdrRenderTarget ()
 void PdrRenderTarget::Enable (Renderer* renderer)
 {
 	PX2_UNUSED(renderer);
+    
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &mBeforeFrameBinding);
+    glGetIntegerv(GL_RENDERBUFFER_BINDING, &mBeforeRenderBufferBinding);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, mFrameBuffer);
 
@@ -160,23 +171,24 @@ void PdrRenderTarget::Enable (Renderer* renderer)
 void PdrRenderTarget::Disable (Renderer* renderer)
 {
 	PX2_UNUSED(renderer);
+    
+    glBindFramebuffer(GL_FRAMEBUFFER, mBeforeFrameBinding);
+    glBindRenderbuffer(GL_RENDERBUFFER, mBeforeRenderBufferBinding);
 
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	if (mNumTargets > 0)
+	{
+		if (mHasMipmaps)
+		{
+			GLuint previousBind = GetBoundTexture(Shader::ST_2D);
+			for (int i = 0; i < mNumTargets; ++i)
+			{
+				glBindTexture(GL_TEXTURE_2D, mColorTextures[i]);
+				glGenerateMipmap(GL_TEXTURE_2D);
+			}
+			glBindTexture(GL_TEXTURE_2D, previousBind);
+		}
 
-	//if (mNumTargets > 0)
-	//{
-	//	if (mHasMipmaps)
-	//	{
-	//		GLuint previousBind = GetBoundTexture(Shader::ST_2D);
-	//		for (int i = 0; i < mNumTargets; ++i)
-	//		{
-	//			glBindTexture(GL_TEXTURE_2D, mColorTextures[i]);
-	//			glGenerateMipmap(GL_TEXTURE_2D);
-	//		}
-	//		glBindTexture(GL_TEXTURE_2D, previousBind);
-	//	}
-
-	//}
+	}
 
 	glViewport(mPrevViewport[0], mPrevViewport[1], mPrevViewport[2],
 		mPrevViewport[3]);

@@ -25,6 +25,9 @@ namespace PX2
 		void ReadColor (int i, Renderer* renderer, Texture2D*& texture);
 
 	private:
+        GLint mBeforeFrameBinding;
+        GLint mBeforeRenderBufferBinding;
+        
 		int mNumTargets, mWidth, mHeight;
 		Texture::Format mFormat;
 		bool mHasMipmaps, mHasDepthStencil;
