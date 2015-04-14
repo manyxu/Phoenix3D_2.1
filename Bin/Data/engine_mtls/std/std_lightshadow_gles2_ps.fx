@@ -10,7 +10,7 @@ uniform sampler2D SampleShadowDepth;
 
 mediump float GetDepth(mediump vec4 texCord, mediump float i, mediump float j)
 {
-	mediump vec4 newUV = texCord + mediump vec4(texCord.w*i*0.001, texCord.w*j*0.001, 0.0, 0.0);
+	mediump vec4 newUV = texCord + vec4(texCord.w*i*0.001, texCord.w*j*0.001, 0.0, 0.0);
 	mediump vec4 depthColor = texture2DProj(SampleShadowDepth, newUV);
 				
 	return depthColor.r;
