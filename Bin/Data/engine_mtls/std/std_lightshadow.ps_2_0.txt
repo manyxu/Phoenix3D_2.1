@@ -14,26 +14,30 @@ ps_2_0
 //var float4 vertexColor : $vin.COLOR : COL0 : 0 : 1
 //var float2 vertexTCoord0 : $vin.TEXCOORD0 : TEX0 : 1 : 1
 //var float2 vertexTCoord1 : $vin.TEXCOORD1 : TEX1 : 2 : 1
-//var float4 vertexTCoord2 : $vin.TEXCOORD2 :  : 3 : 0
+//var float4 vertexTCoord2 : $vin.TEXCOORD2 : TEX2 : 3 : 1
 //var float4 pixelColor : $vout.COLOR : COL : 4 : 1
 //var float4 UVOffset :  : c[0] : 5 : 1
 //var float4 FogColorHeight :  : c[1] : 6 : 1
 //var float4 FogColorDist :  : c[2] : 7 : 1
 //var sampler2D SampleBase :  : texunit 0 : -1 : 1
-//var sampler2D SampleShadowDepth :  :  : -1 : 0
+//var sampler2D SampleShadowDepth :  : texunit 1 : -1 : 1
 //const c[3] = 1
 dcl_2d s0
+dcl_2d s1
 def c3, 1.00000000, 0, 0, 0
 dcl t0.xy
 dcl v0
+dcl t2
 dcl t1.xy
 mov r0.x, t0
 add r0.y, -t0, c3.x
 add r0.xy, r0, c0
-texld r0, r0, s0
-mul r0, r0, v0
-add r0.xyz, r0, -c1
+texld r1, r0, s0
+texldp r0, t2, s1
+mul r1, r1, v0
+mad r0.xyz, r1, r0.x, -c1
 mad r0.xyz, t1.x, r0, c1
 add r0.xyz, r0, -c2
+mov r0.w, r1
 mad r0.xyz, t1.y, r0, c2
 mov oC0, r0
