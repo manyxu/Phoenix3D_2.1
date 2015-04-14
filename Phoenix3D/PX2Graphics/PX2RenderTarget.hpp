@@ -22,7 +22,7 @@ namespace PX2
 		* 支持的render target依赖于硬件。numTargets至少为1。
 		*/
 		RenderTarget (int numTargets, Texture::Format tformat, int width,
-			int height, bool hasMipmaps, bool hasDepthStencil);
+			int height, bool hasMipmaps, bool hasDepthStencil, bool isOnlyDepthNoStencil);
 
 		virtual ~RenderTarget ();
 
@@ -45,6 +45,7 @@ namespace PX2
 		int mWidth;
 		int mHeight;
 		bool mHasDepthStencil;
+		bool mIsOnlyDepth16NoStencil;
 		Texture2DPtr* mColorTextures;
 		Texture2DPtr mDepthStencilTexture;
 		bool mHasMipmaps;

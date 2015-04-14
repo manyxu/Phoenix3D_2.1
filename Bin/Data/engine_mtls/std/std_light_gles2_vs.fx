@@ -56,6 +56,6 @@ void main()
 	float fogValueDist = (FogParam.w - dist)/(FogParam.w - FogParam.z);
 	fogValueDist = clamp(fogValueDist, 0.0, 1.0);
 	
-	vertexTCoord1.x = fogValueDist;
-	vertexTCoord1.y = fogValueHeight;
+	vertexTCoord1.x = fogValueHeight;
+	vertexTCoord1.y = fogValueDist;
 }

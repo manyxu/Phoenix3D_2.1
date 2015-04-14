@@ -38,6 +38,11 @@ inline bool RenderTarget::HasMipmaps () const
 //----------------------------------------------------------------------------
 inline bool RenderTarget::HasDepthStencil () const
 {
-	return mDepthStencilTexture != 0;
+	return mHasDepthStencil;
+}
+//----------------------------------------------------------------------------
+inline bool RenderTarget::IsOnlyDepth16NoStencil() const
+{
+	return mIsOnlyDepth16NoStencil;
 }
 //----------------------------------------------------------------------------

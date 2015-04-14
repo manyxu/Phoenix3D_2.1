@@ -6,8 +6,8 @@
 					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
 					<var index="1" name="modelNormal" vt="float3" vs="NORMAL"/>
 					<var index="2" name="modelTCoord0" vt="float2" vs="TEXCOORD0"/>
-					<var index="3" name="modelTCoord1" vt="float2" vs="TEXCOORD1"/>
-					<var index="4" name="modelTCoord2" vt="float2" vs="TEXCOORD2"/>
+					<var index="3" name="modelTCoord1" vt="float4" vs="TEXCOORD1"/>
+					<var index="4" name="modelTCoord2" vt="float4" vs="TEXCOORD2"/>
 				</i>
 				<o>
 					<var index="0" name="clipPosition" vt="float4" vs="POSITION"/>

@@ -63,13 +63,13 @@ void ShadowMap_Material::Draw(Renderer* renderer,
 		}
 		else if ("skinskeleton" == mtlName)
 		{
-			mInstanceSkinSkeleton->SetPixelTexture(0, "SampleBase", save->GetPixelTexture(0, "SampleBase"));
+			//mInstanceSkinSkeleton->SetPixelTexture(0, "SampleBase", save->GetPixelTexture(0, "SampleBase"));
 
-			renderable->SetMaterialInstance(mInstanceSkinSkeleton);
+			//renderable->SetMaterialInstance(mInstanceSkinSkeleton);
 			renderer->Draw(renderable);
 
-			renderable->SetMaterialInstance(save);
-			save->Update(0.0f, 0.0f);
+			//renderable->SetMaterialInstance(save);
+			//save->Update(0.0f, 0.0f);
 		}
 		else if ("terrain" == mtlName)
 		{

@@ -11,7 +11,7 @@ PX2_IMPLEMENT_RTTI(PX2, RenderStep, RenderStepScene);
 
 //----------------------------------------------------------------------------
 RenderStepScene::RenderStepScene() :
-mIsShowShadowBloomEveryPass(true),
+mIsShowShadowBloomEveryPass(false),
 mIsBloomChanged(true),
 mIsShadowMapChanged(true)
 {
@@ -424,7 +424,7 @@ void RenderStepScene::_UpdateBloomChanged()
 		Sizef size(mBloomShadowPicSize, mBloomShadowPicSize);
 		Texture::Format tformat = Texture::TF_A8R8G8B8;
 		mEffect_RenderTarget_Normal = new0 RenderTarget(1, tformat,
-			(int)rtSize[0], (int)rtSize[1], false, false);
+			(int)rtSize[0], (int)rtSize[1], false, false, false);
 		mEffect_UIPicBoxShow_Normal = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBoxShow_Normal);
 		if ("OGLES" == renderTag) mEffect_UIPicBoxShow_Normal->SetPicBoxType(UIPicBox::PBT_NORAML_UVREVERSE);
@@ -435,7 +435,7 @@ void RenderStepScene::_UpdateBloomChanged()
 
 		MaterialInstancePtr blurMtlInstanceBloomBright = new0 MaterialInstance("Data/engine_mtls/bloom/bloom.px2obj", "bloom_bright", false);
 		mEffect_RenderTarget_BloomBright = new0 RenderTarget(1, tformat,
-			(int)rtSize[0], (int)rtSize[1], false, false);
+			(int)rtSize[0], (int)rtSize[1], false, false, false);
 		mEffect_UIPicBox_BloomBright = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BloomBright);
 		if ("OGLES" == renderTag) mEffect_UIPicBox_BloomBright->SetPicBoxType(UIPicBox::PBT_NORAML_UVREVERSE);
@@ -447,7 +447,7 @@ void RenderStepScene::_UpdateBloomChanged()
 
 		MaterialInstancePtr blurMtlInstanceH = new0 MaterialInstance("Data/engine_mtls/blur/blur.px2obj", "blur", false);
 		mEffect_RenderTarget_BlurH = new0 RenderTarget(1, tformat,
-			(int)rtSize[0], (int)rtSize[1], false, false);
+			(int)rtSize[0], (int)rtSize[1], false, false, false);
 		mEffect_UIPicBox_BlurH = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BlurH);
 		mEffect_UIPicBox_BlurH->SetMaterialInstance(blurMtlInstanceH);
@@ -465,7 +465,7 @@ void RenderStepScene::_UpdateBloomChanged()
 
 		MaterialInstancePtr blurMtlInstanceV = new0 MaterialInstance("Data/engine_mtls/blur/blur.px2obj", "blur", false);
 		mEffect_RenderTarget_BlurV = new0 RenderTarget(1, tformat,
-			(int)rtSize[0], (int)rtSize[1], false, false);
+			(int)rtSize[0], (int)rtSize[1], false, false, false);
 		mEffect_UIPicBox_BlurV = new0 UIPicBox();
 		mEffect_UIFrame->AttachChild(mEffect_UIPicBox_BlurV);
 		mEffect_UIPicBox_BlurV->SetMaterialInstance(blurMtlInstanceV);
@@ -594,7 +594,7 @@ void RenderStepScene::_UpdateShadowChanged()
 
 		Texture::Format tformat = Texture::TF_A8R8G8B8;
 		mEffect_RenderTarget_Shadow = new0 RenderTarget(1, tformat, (int)rtSize[0], 
-			(int)rtSize[1], false, true);
+			(int)rtSize[1], false, true, true);
 		mEffect_Material_Shadow = new0 ShadowMap_Material();
 
 		mEffect_UIPicBox_Shadow = new0 UIPicBox();
@@ -603,6 +603,7 @@ void RenderStepScene::_UpdateShadowChanged()
 		mEffect_UIPicBox_Shadow->SetAnchorPoint(Float2::ZERO);
 		mEffect_UIPicBox_Shadow->SetSize(Sizef(mBloomShadowPicSize, 
 			mBloomShadowPicSize));
+		mEffect_UIPicBox_Shadow->GetMaterialInstance()->GetMaterial()->GetAlphaProperty(0, 0)->BlendEnabled = false;
 	}
 
 	mIsShadowMapChanged = false;

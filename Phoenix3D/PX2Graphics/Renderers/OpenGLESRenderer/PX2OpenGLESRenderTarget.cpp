@@ -5,6 +5,7 @@
 #include "PX2OpenGLESRenderTarget.hpp"
 #include "PX2OpenGLESMapping.hpp"
 #include "PX2OpenGLESTexture2D.hpp"
+#include "PX2OpenGLESRendererData.hpp"
 #include "PX2Assert.hpp"
 #include "PX2Renderer.hpp"
 using namespace PX2;
@@ -101,6 +102,11 @@ PdrRenderTarget::PdrRenderTarget (Renderer* renderer,
 	
 	if (depthStencilTexture)
 	{
+		if (!IsGLExtensionSupported("GL_OES_depth_texture"))
+		{
+			assertion(false, "");
+		}
+
 		assertion(!renderer->InTexture2DMap(depthStencilTexture),
 			"Texture should not yet exist.\n");
 

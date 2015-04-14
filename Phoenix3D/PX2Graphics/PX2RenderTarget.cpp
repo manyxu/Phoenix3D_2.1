@@ -11,13 +11,15 @@ PX2_IMPLEMENT_FACTORY(RenderTarget);
 //----------------------------------------------------------------------------
 RenderTarget::RenderTarget (int numTargets, Texture::Format tformat,
 							int width, int height, bool hasMipmaps,
-							bool hasDepthStencil) :
+							bool hasDepthStencil,
+							bool isOnlyDepthNoStencil) :
 mNumTargets(numTargets),
 mFormat(tformat),
 mWidth(width),
 mHeight(height),
 mHasMipmaps(hasMipmaps),
 mHasDepthStencil(hasDepthStencil),
+mIsOnlyDepth16NoStencil(isOnlyDepthNoStencil),
 mColorTextures(0),
 PdrPointer(0)
 {
@@ -34,7 +36,10 @@ PdrPointer(0)
 
 	if (hasDepthStencil)
 	{
-		Texture::Format format = Texture::TF_D16;
+		Texture::Format format = Texture::TF_D24S8;
+		if (isOnlyDepthNoStencil)
+			format = Texture::TF_D16;
+
 		mDepthStencilTexture = new0 Texture2D(format,
 			width, height, 1, Buffer::BU_DEPTHSTENCIL);
 	}
@@ -109,6 +114,7 @@ void RenderTarget::Load (InStream& source)
 	source.Read(mHeight);
 	source.Read(mHasMipmaps);
 	source.ReadBool(mHasDepthStencil);
+	source.ReadBool(mIsOnlyDepth16NoStencil);
 
 	source.ReadPointerVR(mNumTargets, mColorTextures);
 	source.ReadPointer(mDepthStencilTexture);
@@ -163,6 +169,7 @@ void RenderTarget::Save (OutStream& target) const
 	target.Write(mHeight);
 	target.Write(mHasMipmaps);
 	target.WriteBool(mHasDepthStencil);
+	target.WriteBool(mIsOnlyDepth16NoStencil);
 
 	target.WritePointerN(mNumTargets, mColorTextures);
 	target.WritePointer(mDepthStencilTexture);
@@ -181,6 +188,7 @@ int RenderTarget::GetStreamingSize (Stream &stream) const
 	size += sizeof(mHeight);
 	size += sizeof(mHasMipmaps);
 	size += PX2_BOOLSIZE(mHasDepthStencil);
+	size += PX2_BOOLSIZE(mIsOnlyDepth16NoStencil);
 
 	size += mNumTargets*PX2_POINTERSIZE(mColorTextures[0]);
 	size += PX2_POINTERSIZE(mDepthStencilTexture);

@@ -87,7 +87,7 @@ mNumTargets(numTargets)
 	for (int i = 0; i < mNumTargets; ++i)
 	{
 		mTargets[i] = new0 RenderTarget(1, Texture::TF_A32B32G32R32F,
-			mNumCols, mNumRows, false, false);
+			mNumCols, mNumRows, false, false, false);
 	}
 }
 //----------------------------------------------------------------------------
