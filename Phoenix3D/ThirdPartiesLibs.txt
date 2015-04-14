@@ -1,1 +1,1 @@
-下载http://pan.baidu.com/s/1eQpg6Jo，解压到本目录
+从百度网盘http://pan.baidu.com/s/1dDyCPbF，下载ThirdPartiesLibs.zip，解压到本目录
