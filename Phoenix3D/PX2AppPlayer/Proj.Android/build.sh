@@ -3,7 +3,7 @@
 # set params
 NDK_ROOT_LOCAL=/cygdrive/d/adt-bundle-windows/ndk
 ENGINE_ROOT_LOCAL=/cygdrive/e/GitHub/Phoenix3D/Phoenix3D
-APPPLAY_MYAPP_BIN_ROOT_LOCAL=/cygdrive/e/GitHub/Bin
+APPPLAY_MYAPP_BIN_ROOT_LOCAL=/cygdrive/e/GitHub/Phoenix3D/Bin
 APPPLAY_MYAPP_DATAFROM=Data
 
 if [ $NDK_ROOT"xyz" != "xyz" ]; then
