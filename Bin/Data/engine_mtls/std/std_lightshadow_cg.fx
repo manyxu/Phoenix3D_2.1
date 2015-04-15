@@ -102,9 +102,6 @@ void p_std_lightshadow
     texCoord.y = 1.0 - vertexTCoord0.y;
 	texCoord.xy += UVOffset.xy;
 	float4 lastColor = tex2D(SampleBase, texCoord);
-	
-	// light
-	lastColor *= vertexColor;
 		
 	// shadow
 	float4 texCord = vertexTCoord2;
@@ -122,6 +119,9 @@ void p_std_lightshadow
 	//shadowDepth *= 0.1111f;		
 	
 	lastColor.rgb *= shadowDepth;
+	
+	// light
+	lastColor *= vertexColor;
 		
 	// fog
 	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.x);

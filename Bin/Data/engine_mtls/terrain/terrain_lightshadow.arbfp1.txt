@@ -64,12 +64,14 @@ MUL R0.xy, R3, c[2];
 TEX R2, R0, texture[5], 2D;
 ADD R2, R2, -R1;
 MAD R1, R0.w, R2, R1;
-MUL R1, R1, fragment.color.primary;
 TXP R0.x, fragment.texcoord[2], texture[6], SHADOW2D;
-MAD R0.xyz, R1, R0.x, -c[3];
+MOV R0.w, R1;
+MUL R0.xyz, R1, R0.x;
+MUL R0, R0, fragment.color.primary;
+ADD R0.xyz, R0, -c[3];
 MAD R0.xyz, fragment.texcoord[1].y, R0, c[3];
 ADD R0.xyz, R0, -c[4];
 MAD result.color.xyz, fragment.texcoord[1].x, R0, c[4];
-MOV result.color.w, R1;
+MOV result.color.w, R0;
 END
-# 28 instructions, 4 R-regs
+# 30 instructions, 4 R-regs

@@ -45,8 +45,8 @@ dcl_2d s5
 dcl_2d s6
 def c5, 1.00000000, 0, 0, 0
 dcl t0.xy
-dcl v0
 dcl t2
+dcl v0
 dcl t1.xy
 texldp r6, t2, s6
 texld r5, t0, s0
@@ -74,8 +74,9 @@ add r1, r3, -r0
 mad r0, r5.z, r1, r0
 add r1, r4, -r0
 mad r0, r5.w, r1, r0
+mul r0.xyz, r0, r6.x
 mul r0, r0, v0
-mad r0.xyz, r0, r6.x, -c3
+add r0.xyz, r0, -c3
 mad r0.xyz, t1.y, r0, c3
 add r0.xyz, r0, -c4
 mad r0.xyz, t1.x, r0, c4

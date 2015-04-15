@@ -119,7 +119,6 @@ void p_terrain_lightshadow
     lastColor = lerp(lastColor ,color2, colorAlpha.g);
     lastColor = lerp(lastColor ,color3, colorAlpha.b);
     lastColor = lerp(lastColor ,color4, colorAlpha.a);
-	lastColor *= vertexColor;
 	
 	// shadow
 	float4 texCord = vertexTCoord2;
@@ -139,6 +138,9 @@ void p_terrain_lightshadow
 	//shadowDepth *= 0.1111f;
 	
 	lastColor.rgb *= shadowDepth;
+	
+	// light
+	lastColor *= vertexColor;
 	
 	// fog
 	lastColor.rgb = lerp(FogColorHeight.rgb, lastColor.rgb, vertexTCoord1.y);

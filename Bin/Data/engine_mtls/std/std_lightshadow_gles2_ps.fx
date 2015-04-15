@@ -22,14 +22,14 @@ void main()
 	texCoord.xy += UVOffset.xy;
 	mediump vec4 lastColor = texture2D(SampleBase, texCoord);
 	
-	lastColor *= vertexColor;
-	
 	highp vec4 texCord = vertexTCoord2;
 	highp float depth = (texCord.z/texCord.w)*0.5 + 0.5;
 	
 	highp float shadowDepth = GetDepth(texCord, 0.0, 0.0);
 	if (depth > shadowDepth)
 		lastColor.rgb *= 0.0;
+		
+	lastColor *= vertexColor;
 	
 	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColorHeight.rgb * (1.0 - vertexTCoord1.x);
 	lastColor.rgb = lastColor.rgb * vertexTCoord1.y + FogColorDist.rgb * (1.0 - vertexTCoord1.y);

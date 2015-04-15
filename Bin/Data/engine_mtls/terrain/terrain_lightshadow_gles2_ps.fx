@@ -45,14 +45,14 @@ void main()
     lastColor = LerpColor(lastColor ,color3, colorAlpha.b);
     lastColor = LerpColor(lastColor ,color4, colorAlpha.a);
 	
-	lastColor *= vertexColor;
-	
 	highp vec4 texCord = vertexTCoord2;
 	highp float depth = (texCord.z/texCord.w)*0.5 + 0.5;
 	
 	highp float shadowDepth = GetDepth(texCord, 0.0, 0.0);
 	if (depth > shadowDepth)
 		lastColor.rgb *= 0.1;
+		
+	lastColor *= vertexColor;
 	
 	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColorHeight.rgb * (1.0 - vertexTCoord1.x);
 	lastColor.rgb = lastColor.rgb * vertexTCoord1.y + FogColorDist.rgb * (1.0 - vertexTCoord1.y);
