@@ -7,7 +7,7 @@ vs_2_0
 //profile vs_2_0
 //program v_sky_sunmoon
 //semantic v_sky_sunmoon.PVWMatrix
-//semantic v_sky_sunmoon.VMatrix
+//semantic v_sky_sunmoon.WMatrix
 //semantic v_sky_sunmoon.CameraWorldPosition
 //semantic SamplerDay
 //semantic SamplerSunset
@@ -16,7 +16,7 @@ vs_2_0
 //var float4 clipPosition : $vout.POSITION : HPOS : 1 : 1
 //var float3 vertexTCoord0 : $vout.TEXCOORD0 : TEX0 : 2 : 1
 //var float4x4 PVWMatrix :  : c[0], 4 : 3 : 1
-//var float4x4 VMatrix :  : c[4], 4 : 4 : 1
+//var float4x4 WMatrix :  : c[4], 4 : 4 : 1
 //var float4 CameraWorldPosition :  : c[8] : 5 : 1
 //var sampler2D SamplerDay :  :  : -1 : 0
 //var sampler2D SamplerSunset :  :  : -1 : 0

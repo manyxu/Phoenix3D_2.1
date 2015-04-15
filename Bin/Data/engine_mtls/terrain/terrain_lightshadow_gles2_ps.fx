@@ -15,9 +15,9 @@ uniform sampler2D Sampler3;
 uniform sampler2D Sampler4;
 uniform sampler2D SampleShadowDepth;
 
-mediump vec4 Lerp(mediump vec4 color0, mediump vec4 color1, mediump float alpha)
+mediump vec4 LerpColor(mediump vec4 color0, mediump vec4 color1, mediump float alpha)
 {
-	return color0 * alpha + color1 * (1.0 - alpha);
+	return color0 * (1.0-alpha) + color1 * alpha;
 }
 
 highp float GetDepth(mediump vec4 texCord, mediump float i, mediump float j)
@@ -40,10 +40,10 @@ void main()
     mediump vec4 color3 = texture2D(Sampler3, texCoord*UVScale23.zw);
     mediump vec4 color4 = texture2D(Sampler4, texCoord*UVScale4.xy);
 	
-	mediump vec4 lastColor = Lerp(color0 ,color1, colorAlpha.r);
-    lastColor = Lerp(lastColor ,color2, colorAlpha.g);
-    lastColor = Lerp(lastColor ,color3, colorAlpha.b);
-    lastColor = Lerp(lastColor ,color4, colorAlpha.a);
+	mediump vec4 lastColor = LerpColor(color0 ,color1, colorAlpha.r);
+    lastColor = LerpColor(lastColor ,color2, colorAlpha.g);
+    lastColor = LerpColor(lastColor ,color3, colorAlpha.b);
+    lastColor = LerpColor(lastColor ,color4, colorAlpha.a);
 	
 	lastColor *= vertexColor;
 	

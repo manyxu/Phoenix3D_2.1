@@ -7,12 +7,12 @@ void v_sky_sunmoon
 	out float4 clipPosition : POSITION,
 	out float3 vertexTCoord0 : TEXCOORD0,
 	uniform float4x4 PVWMatrix,
-	uniform float4x4 VMatrix,
+	uniform float4x4 WMatrix,
 	uniform float4 CameraWorldPosition
 )
 {	
 	clipPosition = mul(PVWMatrix, float4(modelPosition, 1.0f));
-	float4 worldPosition = mul(VMatrix, float4(modelPosition, 1.0f));
+	float4 worldPosition = mul(WMatrix, float4(modelPosition, 1.0f));
 	vertexTCoord0 = worldPosition.xyz - CameraWorldPosition.xyz;
 }
 

@@ -15,8 +15,8 @@ PX2_IMPLEMENT_DEFAULT_NAMES(TriMesh, SkyMesh);
 SkyMesh::SkyMesh()
 {
 	mRadius = 500.0f;
-	mSkyParam = Float4(50.0f, 2.0f, 0.0f, 0.0f);
-	mSunMoonParam = Float4(512.0f, 0.2f, 400.0f, 0.2f);
+	mSkyParam = Float4(0.5f, 1.0f, 0.0f, 0.0f);
+	mSunMoonParam = Float4(1024.0f, 0.2f, 512.0f, 0.2f);
 	mSunMoonColourIn = Float4::WHITE;
 	mSunMoonColourOut = Float4::WHITE;
 
@@ -55,7 +55,7 @@ void SkyMesh::SetDayTexture(const std::string &filename)
 	{
 		if (!tex->HasMipmaps())
 		{
-			tex->GenerateMipmaps();
+		//	tex->GenerateMipmaps();
 		}
 
 		mDayTexFilename = filename;
@@ -70,7 +70,7 @@ void SkyMesh::SetSunsetTexture(const std::string &filename)
 	{
 		if (!tex->HasMipmaps())
 		{
-			tex->GenerateMipmaps();
+		//	tex->GenerateMipmaps();
 		}
 
 		mSunsetTexFilename = filename;
@@ -85,7 +85,7 @@ void SkyMesh::SetNightTexture(const std::string &filename)
 	{
 		if (!tex->HasMipmaps())
 		{
-			tex->GenerateMipmaps();
+		//	tex->GenerateMipmaps();
 		}
 
 		mNightTexFilename = filename;

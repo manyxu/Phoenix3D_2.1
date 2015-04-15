@@ -21,7 +21,7 @@
 			</shader>
 			<shader type="ps" name="sky_sunmoon" ni="1" no="1" nc="6" ns="3">
 				<i>
-					<var index="0" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
+					<var index="0" name="vertexTCoord0" vt="float3" vs="TEXCOORD0"/>
 				</i>
 				<o>
 					<var index="0" name="pixelColor" vt="float4" vs="COLOR0"/>

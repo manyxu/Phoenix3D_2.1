@@ -29,7 +29,7 @@ void main()
 	
 	highp float shadowDepth = GetDepth(texCord, 0.0, 0.0);
 	if (depth > shadowDepth)
-		lastColor.rgb *= 0.1;
+		lastColor.rgb *= 0.0;
 	
 	lastColor.rgb = lastColor.rgb * vertexTCoord1.x + FogColorHeight.rgb * (1.0 - vertexTCoord1.x);
 	lastColor.rgb = lastColor.rgb * vertexTCoord1.y + FogColorDist.rgb * (1.0 - vertexTCoord1.y);

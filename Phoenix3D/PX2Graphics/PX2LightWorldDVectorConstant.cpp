@@ -25,7 +25,8 @@ void LightWorldDVectorConstant::Update(const ShaderStruct *struc)
 {
 	LightConstant::Update(struc);
 
-	const AVector& worldDVector = mLight->DVector;
+	AVector worldDVector = mLight->DVector;
+	worldDVector.Normalize();
 
 	const float* source = (const float*)worldDVector;
 	float* target = mData;

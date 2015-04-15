@@ -4,6 +4,7 @@
 #include "PX2GraphicsRoot.hpp"
 #include "PX2PVMatrixConstant.hpp"
 #include "PX2PVWMatrixConstant.hpp"
+#include "PX2VMatrixConstant.hpp"
 #include "PX2WMatrixConstant.hpp"
 #include "PX2ProjectorMatrixConstant.hpp"
 #include "PX2ShineEmissiveConstant.hpp"
@@ -12,6 +13,7 @@
 #include "PX2ShineSpecularConstant.hpp"
 #include "PX2CameraWorldPositionConstant.hpp"
 #include "PX2CameraModelPositionConstant.hpp"
+#include "PX2CameraWorldDVectorConstant.hpp"
 #include "PX2LightWorldDVectorConstant.hpp"
 #include "PX2LightAmbientConstant.hpp"
 #include "PX2LightDiffuseConstant.hpp"
@@ -162,6 +164,10 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name, int numRegi
 	{
 		shaderFloat = new0 WMatrixConstant();
 	}
+	else if (FString("VMatrix") == name)
+	{
+		shaderFloat = new0 VMatrixConstant();
+	}
 	else if (FString("ProjectPVBSMatrix_Dir") == name)
 	{
 		shaderFloat = new0 ProjectorMatrixConstant(0, true);
@@ -189,6 +195,10 @@ ShaderFloat *MaterialManager::CreateShaderFloat(const FString &name, int numRegi
 	else if (FString("CameraModelPosition") == name)
 	{
 		shaderFloat = new0 CameraModelPositionConstant();
+	}
+	else if (FString("CameraWorldDVector") == name)
+	{
+		shaderFloat = new0 CameraWorldDVectorConstant();
 	}
 	else if (FString("LightWorldDVector_Dir") == name)
 	{
