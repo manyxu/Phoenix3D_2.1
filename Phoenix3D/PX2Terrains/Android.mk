@@ -4,19 +4,8 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := PX2Terrains
 
-LOCAL_SRC_FILES := \
-PX2Jungler.cpp \
-PX2EditTerrainMaterial.cpp \
-PX2SkyMaterial.cpp \
-PX2SkySphere.cpp \
-PX2LODTerrain.cpp \
-PX2LODTerrainBlock.cpp \
-PX2LODTerrainPage.cpp \
-PX2LODTerrainVertex.cpp \
-PX2RawTerrain.cpp \
-PX2RawTerrainPage.cpp \
-PX2Terrain.cpp \
-PX2TerrainPage.cpp
+FILE_LIST := $(wildcard $(LOCAL_PATH)/*cpp)
+LOCAL_SRC_FILES := $(FILE_LIST:$(LOCAL_PATH)/%=%)
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
 

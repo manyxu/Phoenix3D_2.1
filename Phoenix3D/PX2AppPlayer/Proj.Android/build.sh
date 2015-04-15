@@ -1,9 +1,9 @@
 # build.sh
 
 # set params
-NDK_ROOT_LOCAL=/cygdrive/d/androidndkr8e
-ENGINE_ROOT_LOCAL=/cygdrive/d/PX3D/Phoenix3D
-APPPLAY_MYAPP_BIN_ROOT_LOCAL=/cygdrive/d/PX3D/Bin
+NDK_ROOT_LOCAL=/cygdrive/d/adt-bundle-windows/ndk
+ENGINE_ROOT_LOCAL=/cygdrive/e/GitHub/Phoenix3D/Phoenix3D
+APPPLAY_MYAPP_BIN_ROOT_LOCAL=/cygdrive/e/GitHub/Bin
 APPPLAY_MYAPP_DATAFROM=Data
 
 if [ $NDK_ROOT"xyz" != "xyz" ]; then
@@ -30,10 +30,8 @@ fi
 mkdir $APPPLAY_MYAPP_ANDROID_ROOT/assets
 mkdir $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data
 mkdir $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/engine
-mkdir $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/mtls
-mkdir $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/projects
-mkdir $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/scenes
-mkdir $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/scripts
+mkdir $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/engine_mtls
+mkdir $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/sample_phoenix3d
 
 # copy resources
 
@@ -53,47 +51,25 @@ cp $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/engine
 fi
 done
 
-# mtls
-for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/mtls/*
+# engine_mtls
+for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/engine_mtls/*
 do
 if [ -d $file ]; then
-cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/mtls
+cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/engine_mtls
 fi
 if [ -f $file ]; then
-cp $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/mtls
+cp $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/engine_mtls
 fi
 done
 
 # projects
-for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/projects/*
+for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/sample_phoenix3d/*
 do
 if [ -d $file ]; then
-cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/projects
+cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/sample_phoenix3d
 fi
 if [ -f $file ]; then
-cp $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/projects
-fi
-done
-
-# scenes
-for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/scenes/*
-do
-if [ -d $file ]; then
-cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/scenes
-fi
-if [ -f $file ]; then
-cp $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/scenes
-fi
-done
-
-# scripts
-for file in $APPPLAY_MYAPP_BIN_ROOT_LOCAL/$APPPLAY_MYAPP_DATAFROM/scripts/*
-do
-if [ -d $file ]; then
-cp -rf $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/scripts
-fi
-if [ -f $file ]; then
-cp $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/scripts
+cp $file $APPPLAY_MYAPP_ANDROID_ROOT/assets/Data/sample_phoenix3d
 fi
 done
 
@@ -109,11 +85,11 @@ export NDK_MODULE_PATH=$ENGINE_ROOT_LOCAL\
 :$ENGINE_ROOT_LOCAL/PX2Unity/\
 :$ENGINE_ROOT_LOCAL/PX2Net/\
 :$ENGINE_ROOT_LOCAL/PX2Effect/\
+:$ENGINE_ROOT_LOCAL/PX2Terrains/\
 :$ENGINE_ROOT_LOCAL/PX2UI/\
 :$ENGINE_ROOT_LOCAL/PX2Simulation/\
 :$ENGINE_ROOT_LOCAL/PX2AppFrame/\
 :$ENGINE_ROOT_LOCAL/PX2AppPlayer/\
-:$ENGINE_ROOT_LOCAL/Samples/GameX/\
 :$APPPLAY_MYAPP_ANDROID_ROOT
 
 $NDK_ROOT_LOCAL/ndk-build -C $APPPLAY_MYAPP_ANDROID_ROOT

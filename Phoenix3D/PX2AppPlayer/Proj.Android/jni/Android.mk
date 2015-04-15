@@ -13,11 +13,11 @@ LOCAL_WHOLE_STATIC_LIBRARIES += PX2Graphics
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2Unity
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2Net
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2Effect
+LOCAL_WHOLE_STATIC_LIBRARIES += PX2Terrains
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2UI
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2Simulation
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2AppFrame
 LOCAL_WHOLE_STATIC_LIBRARIES += PX2AppPlayer
-LOCAL_WHOLE_STATIC_LIBRARIES += GameX
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/.. \
 $(PX2_ROOT)/ThirdPartiesLibs/OGLES/ \
@@ -32,8 +32,8 @@ $(call import-module, PX2Graphics)
 $(call import-module, PX2Unity)
 $(call import-module, PX2Net)
 $(call import-module, PX2Effect)
+$(call import-module, PX2Terrains)
 $(call import-module, PX2UI)
 $(call import-module, PX2Simulation)
 $(call import-module, PX2AppFrame)
 $(call import-module, PX2AppPlayer)
-$(call import-module, Samples/GameX)
