@@ -1,24 +1,24 @@
 vs_3_0
 // cgc version 3.1.0010, build date Feb  8 2012
 // command line args: -profile vs_3_0
-// source file: terrain_cg.fx
+// source file: terrain_light_cg.fx
 //vendor NVIDIA Corporation
 //version 3.1.0.10
 //profile vs_3_0
-//program v_terrain
-//semantic v_terrain.PVWMatrix
-//semantic v_terrain.WMatrix
-//semantic v_terrain.CameraWorldPosition
-//semantic v_terrain.LightWorldDVector_Dir
-//semantic v_terrain.ShineEmissive
-//semantic v_terrain.ShineAmbient
-//semantic v_terrain.ShineDiffuse
-//semantic v_terrain.ShineSpecular
-//semantic v_terrain.LightAmbient_Dir
-//semantic v_terrain.LightDiffuse_Dir
-//semantic v_terrain.LightSpecular_Dir
-//semantic v_terrain.LightGroup
-//semantic v_terrain.FogParam
+//program v_terrain_light
+//semantic v_terrain_light.PVWMatrix
+//semantic v_terrain_light.WMatrix
+//semantic v_terrain_light.CameraWorldPosition
+//semantic v_terrain_light.LightWorldDVector_Dir
+//semantic v_terrain_light.ShineEmissive
+//semantic v_terrain_light.ShineAmbient
+//semantic v_terrain_light.ShineDiffuse
+//semantic v_terrain_light.ShineSpecular
+//semantic v_terrain_light.LightAmbient_Dir
+//semantic v_terrain_light.LightDiffuse_Dir
+//semantic v_terrain_light.LightSpecular_Dir
+//semantic v_terrain_light.LightGroup
+//semantic v_terrain_light.FogParam
 //semantic SamplerAlpha
 //semantic Sampler0
 //semantic Sampler1

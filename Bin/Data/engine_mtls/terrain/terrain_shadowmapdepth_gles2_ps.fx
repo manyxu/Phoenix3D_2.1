@@ -1,6 +1,5 @@
 varying mediump vec2 vertexTCoord0;
 void main()
 {
-	gl_FragColor.rgb = vertexTCoord0.r;
-	gl_FragColor.a = 1.0;
+	gl_FragColor = vec4(vertexTCoord0.r, vertexTCoord0.r,vertexTCoord0.r, 1.0);
 }

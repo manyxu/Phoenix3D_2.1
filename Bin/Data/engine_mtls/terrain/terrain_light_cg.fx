@@ -7,7 +7,7 @@ float3 DoLight_Point_Diffuse(float3 lightWorldPos, float lightRange, float3 ligh
 	return lightColor * shineDiffuse * max(0, dot(vertexWorldNormal, lightToVertex)) * max( 0, (1.0 - squareDist / lightRange / lightRange) );
 }
 
-void v_terrain
+void v_terrain_light
 (
     in float3 modelPosition : POSITION,
     in float3 modelNormal : NORMAL,
@@ -75,7 +75,7 @@ sampler2D Sampler1;
 sampler2D Sampler2;
 sampler2D Sampler3;
 sampler2D Sampler4;
-void p_terrain
+void p_terrain_light
 (
     in float4 vertexColor : COLOR,
     in float2 vertexTCoord0 : TEXCOORD0,

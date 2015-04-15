@@ -46,7 +46,7 @@ RawTerrainPage::RawTerrainPage(VertexFormat* vformat, int numVertexPage,
 	UpdateModelSpace(Renderable::GU_NORMALS);
 
 	MaterialInstance *mi = new0 MaterialInstance("Data/engine_mtls/terrain/terrain.px2obj",
-		"terrain", false);
+		"terrain_light", false);
 	SetMaterialInstance(mi);
 
 	mUV01 = Float4(12.0f, 12.0f, 12.0f, 12.0f);

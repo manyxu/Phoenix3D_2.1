@@ -106,7 +106,7 @@ void PdrShader::SetSamplerState (Renderer* renderer, const Shader* shader,
 
 		if (glFilter != current.mMagFilter)
 		{
-			glTexParameteri(target, GL_TEXTURE_MAG_FILTER, glFilter);
+			glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			current.mMagFilter = glFilter;
 		}
 	}

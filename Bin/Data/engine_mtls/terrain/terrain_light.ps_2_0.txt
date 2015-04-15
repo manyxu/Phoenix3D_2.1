@@ -1,16 +1,16 @@
 ps_2_0
 // cgc version 3.1.0010, build date Feb  8 2012
 // command line args: -profile ps_2_0
-// source file: terrain_cg.fx
+// source file: terrain_light_cg.fx
 //vendor NVIDIA Corporation
 //version 3.1.0.10
 //profile ps_2_0
-//program p_terrain
-//semantic p_terrain.UVScale01
-//semantic p_terrain.UVScale23
-//semantic p_terrain.UVScale4
-//semantic p_terrain.FogColorHeight
-//semantic p_terrain.FogColorDist
+//program p_terrain_light
+//semantic p_terrain_light.UVScale01
+//semantic p_terrain_light.UVScale23
+//semantic p_terrain_light.UVScale4
+//semantic p_terrain_light.FogColorHeight
+//semantic p_terrain_light.FogColorDist
 //semantic SamplerAlpha
 //semantic Sampler0
 //semantic Sampler1

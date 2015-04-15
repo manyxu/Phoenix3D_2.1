@@ -18,8 +18,10 @@ TerrainPage::TerrainPage(int numVertexPage, float* heights, const Float2& origin
 	mSpacing(spacing)
 {
 	// numVertexPage = 2^p + 1, p <= 7
-	assertion(numVertexPage ==  3 || numVertexPage ==  5 || numVertexPage ==   9 || numVertexPage == 17
-		|| numVertexPage == 33 || numVertexPage == 65 || numVertexPage == 129, "Invalid page numVertexPage\n");
+	assertion(numVertexPage ==  3 || numVertexPage ==  5 
+		|| numVertexPage == 9 || numVertexPage == 17
+		|| numVertexPage == 33 || numVertexPage == 65 
+		|| numVertexPage == 129, "Invalid page numVertexPage\n");
 
 	mInvSpacing = 1.0f/mSpacing;
 

@@ -1,7 +1,7 @@
 <material name="terrain">
-	<technique name="terrain">
+	<technique name="terrain_light">
 		<pass name="P0">
-			<shader type="vs" name="terrain" ni="3" no="4" nc="13" ns="0">
+			<shader type="vs" name="terrain_light" ni="3" no="4" nc="13" ns="0">
 				<i>
 					<var index="0" name="modelPosition" vt="float3" vs="POSITION"/>
 					<var index="1" name="modelNormal" vt="float3" vs="NORMAL"/>
@@ -30,11 +30,11 @@
 					
 				</c>
 				<p>
-					<var type="cg" file="terrain_cg.fx"/>
-					<var type="gles2" file="terrain_gles2_vs.fx"/>
+					<var type="cg" file="terrain_light_cg.fx"/>
+					<var type="gles2" file="terrain_light_gles2_vs.fx"/>
 				</p>
 			</shader>
-			<shader type="ps" name="terrain" ni="3" no="1" nc="5" ns="6">
+			<shader type="ps" name="terrain_light" ni="3" no="1" nc="5" ns="6">
 				<i>
 					<var index="0" name="vertexColor" vt="float4" vs="COLOR0"/>
 					<var index="1" name="vertexTCoord0" vt="float2" vs="TEXCOORD0"/>
@@ -59,8 +59,8 @@
 					<var index="5" name="Sampler4" st="sampler2D" sf="LINEAR_LINEAR" sc_0="REPEAT" sc_1="REPEAT"/>
 				</s>
 				<p>
-					<var type="cg" file="terrain_cg.fx"/>
-					<var type="gles2" file="terrain_gles2_ps.fx"/>
+					<var type="cg" file="terrain_light_cg.fx"/>
+					<var type="gles2" file="terrain_light_gles2_ps.fx"/>
 				</p>
 			</shader>
 			<renderproperty>
@@ -152,7 +152,7 @@
 				</s>
 				<p>
 					<var type="cg" file="terrain_lightshadow_cg.fx"/>
-					<var type="gles2" file="terrain__lightshadow_gles2_ps.fx"/>
+					<var type="gles2" file="terrain_lightshadow_gles2_ps.fx"/>
 				</p>
 			</shader>
 			<renderproperty>
@@ -210,7 +210,7 @@
 				</s>
 				<p>
 					<var type="cg" file="terrain_shadowmapdepth_cg.fx"/>
-					<var type="gles2" file="terrain__shadowmapdepth_gles2_ps.fx"/>
+					<var type="gles2" file="terrain_shadowmapdepth_gles2_ps.fx"/>
 				</p>
 			</shader>
 			<renderproperty>

@@ -247,10 +247,10 @@ void Renderable::SetReceiveShadow(bool reciveShadow)
 	}
 	if ("terrain" == mtlName)
 	{
-		std::string techName = "terrain";
+		std::string techName = "terrain_light";
 
 		if (!reciveShadow)
-			techName = "terrain";
+			techName = "terrain_light";
 		else
 			techName = "terrain_lightshadow";
 
