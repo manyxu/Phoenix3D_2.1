@@ -35,9 +35,9 @@
 					<var index="5" name="SunMoonColourOut" nr="1"/>
 				</c>
 				<s>
-					<var index="0" name="SamplerDay" st="sampler2D" sf="LINEAR_LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
-					<var index="1" name="SamplerSunset" st="sampler2D" sf="LINEAR_LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
-					<var index="2" name="SamplerNight" st="sampler2D" sf="LINEAR_LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="0" name="SamplerDay" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="1" name="SamplerSunset" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="2" name="SamplerNight" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
 				</s>
 				<p>
 					<var type="cg" file="sky_sunmoon_cg.fx"/>
@@ -101,9 +101,9 @@
 					<var index="2" name="SkyParam" nr="1"/>
 				</c>
 				<s>
-					<var index="0" name="SamplerDay" st="sampler2D" sf="LINEAR_LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
-					<var index="1" name="SamplerSunset" st="sampler2D" sf="LINEAR_LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
-					<var index="2" name="SamplerNight" st="sampler2D" sf="LINEAR_LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="0" name="SamplerDay" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="1" name="SamplerSunset" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
+					<var index="2" name="SamplerNight" st="sampler2D" sf="LINEAR" sc_0="CLAMP" sc_1="CLAMP"/>
 				</s>
 				<p>
 					<var type="cg" file="sky_cg.fx"/>
