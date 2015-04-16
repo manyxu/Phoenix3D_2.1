@@ -120,7 +120,7 @@ Renderer::Renderer (RendererInput& input, int width, int height,
 //----------------------------------------------------------------------------
 Renderer::~Renderer ()
 {
-#if defined(_WIN32) || defined(WIN32) || defined(__MARMALADE__)
+#if defined(_WIN32) || defined(WIN32)
 	PX2_EGL_CHECK(eglSwapBuffers(mData->mDisplay, mData->mSurface));
 #endif
 
@@ -792,7 +792,7 @@ void Renderer::ClearBuffers (int x, int y, int w, int h)
 //----------------------------------------------------------------------------
 void Renderer::DisplayColorBuffer ()
 {
-#if defined(_WIN32) || defined(WIN32) || defined(__MARMALADE__)
+#if defined(_WIN32) || defined(WIN32)
 	 PX2_EGL_CHECK(eglSwapBuffers(mData->mDisplay, mData->mSurface));
 #endif
 }

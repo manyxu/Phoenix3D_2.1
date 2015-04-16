@@ -150,16 +150,12 @@ mResourceUpdateCallback(0)
 	{
 		mWriteablePath = "";
 	}
-#elif defined __MARMALADE__
-	mWriteablePath = "ram://";
 #endif
 
 #if defined WIN32
 	mDataUpdatePath = "DataUpdateWIN/";
 #elif defined __ANDROID__
 	mDataUpdatePath = "DataUpdateAndroid/";
-#elif defined __MARMALADE__
-	mDataUpdatePath = "DataUpdateIOS/";
 #endif
 }
 //----------------------------------------------------------------------------
@@ -308,11 +304,7 @@ bool ResourceManager::CreateFloder (const std::string &parentPath,
 			CreateDirectoryA(dirPath.c_str(), 0);
 		}
 #else
-#ifdef __MARMALADE__
-		if("ram:"!=dirPath && "ram:/"!=dirPath)
-#else
 		if ("/data"!=dirPath && "/data/data"!=dirPath)
-#endif
 		{
 			DIR *pDir = 0;
 			//打开该路径
@@ -1617,10 +1609,6 @@ bool ResourceManager::Download (const std::string &fullPath,
 //----------------------------------------------------------------------------
 void ResourceManager::DoResourceUpdateStuffs (const std::string &wwwAddr)
 {
-#ifdef __MARMALADE__
-	return;
-#endif
-
 	std::string writeablePath = PX2_RM.GetWriteablePath();
 
 	ResourceVersion localVersion;
@@ -2434,9 +2422,6 @@ Texture2D *ResourceManager::LoadTextureFromDDS (const std::string &filename)
 bool ResourceManager::GetFileDataFromZip (const std::string &packageName,
 	const std::string &filename, int &bufferSize, char* &buffer)
 {
-#ifdef __MARMALADE__
-	return false;
-#else
 	if (packageName.empty() || filename.empty())
 		return 0;
 
@@ -2495,7 +2480,6 @@ bool ResourceManager::GetFileDataFromZip (const std::string &packageName,
 	unzClose(ufile);
 
 	return true;
-#endif
 }
 //----------------------------------------------------------------------------
 void ResourceManager::ShareCopyProcess (Node *node, Node *nodeFrom,

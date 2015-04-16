@@ -56,7 +56,7 @@
 #define ADDRESS_FAMILY USHORT
 #endif
 
-#elif defined(__LINUX__) || defined(__APPLE__) || defined(__ANDROID__) || defined(__MARMALADE__)
+#elif defined(__LINUX__) || defined(__APPLE__) || defined(__ANDROID__)
 
 #define PX2_INVALID_SOCKET  -1
 #define px2_socket_t        int

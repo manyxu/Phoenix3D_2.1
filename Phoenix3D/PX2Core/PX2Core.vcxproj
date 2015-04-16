@@ -62,7 +62,6 @@
     <ClInclude Include="PX2LogConsoleHandler.hpp" />
     <ClInclude Include="PX2LogFileHandler.hpp" />
     <ClInclude Include="PX2LogOutputWindowHandler.hpp" />
-    <ClInclude Include="PX2DesignUntity.hpp" />
     <ClInclude Include="PX2Memory.hpp" />
     <ClInclude Include="PX2MinHeap.hpp" />
     <ClInclude Include="PX2MsgQueue.hpp" />

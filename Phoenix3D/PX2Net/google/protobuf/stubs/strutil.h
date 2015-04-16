@@ -42,14 +42,6 @@ namespace protobuf {
 
 #ifdef _MSC_VER
 
-#ifdef __MARMALADE__
-extern "C"
-{
-int64_t _strtoi64(const char *nptr, char **endptr, int base);
-uint64_t _strtoui64(const char *nptr, char **endptr, int base);
-}
-#endif
-
 #define strtoll  _strtoi64
 #define strtoull _strtoui64
 #elif defined(__DECCXX) && defined(__osf__)

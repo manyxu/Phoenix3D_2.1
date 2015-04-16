@@ -36,7 +36,7 @@ mTexture(0)
 
 	char* newSrc = 0;
 
-#if defined(__ANDROID__) || defined(__MARMALADE__)
+#if defined(__ANDROID__)
 	int numElement = 0;
 	int srcBase = 0;
 	newSrc = srcData;

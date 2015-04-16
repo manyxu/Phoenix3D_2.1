@@ -90,7 +90,7 @@ namespace PX2
 			GLint mWrap[2];
 		};
         
-#if defined(_WIN32) || defined(WIN32) || defined(__ANDROID__) || defined(__MARMALADE__)
+#if defined(_WIN32) || defined(WIN32) || defined(__ANDROID__)
 
 		// 平台相关的数据
 		EGLNativeWindowType  mWindowHandle;

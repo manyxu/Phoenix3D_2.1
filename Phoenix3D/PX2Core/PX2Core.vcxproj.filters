@@ -207,9 +207,6 @@
     <ClInclude Include="PX2Visitor.hpp">
       <Filter>Design</Filter>
     </ClInclude>
-    <ClInclude Include="PX2DesignUntity.hpp">
-      <Filter>Design</Filter>
-    </ClInclude>
     <ClInclude Include="PX2Function.hpp">
       <Filter>ObjectSystem</Filter>
     </ClInclude>
