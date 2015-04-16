@@ -36,11 +36,11 @@ mTexture(0)
 
 	char* newSrc = 0;
 
-#if defined(__ANDROID__)
-	int numElement = 0;
-	int srcBase = 0;
-	newSrc = srcData;
-#else
+//#if defined(__ANDROID__)
+//	int numElement = 0;
+//	int srcBase = 0;
+//	newSrc = srcData;
+//#else
 	int numElement = 0;
 	int srcBase = 0;
 	if (tdFormat == Texture::TF_A8R8G8B8)
@@ -62,7 +62,7 @@ mTexture(0)
 		newSrc = new1<char>(numBytes);
 		for (int i = 0; i < numElement; i++)
 		{
-			newSrc[srcBase + 0] = srcData[srcBase    ]; // B
+			newSrc[srcBase + 0] = srcData[srcBase + 0]; // B
 			newSrc[srcBase + 1] = srcData[srcBase + 1]; // G
 			newSrc[srcBase + 2] = srcData[srcBase + 2]; // R
 			srcBase += 3;
@@ -83,7 +83,7 @@ mTexture(0)
 	{
 		newSrc = srcData;
 	}
-#endif
+//#endif
 
 	// 创建和绑定
 	PX2_GL_CHECK(glGenTextures(1, &mTexture));
