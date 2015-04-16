@@ -55,7 +55,7 @@ void SkyMesh::SetDayTexture(const std::string &filename)
 	{
 		if (!tex->HasMipmaps())
 		{
-		//	tex->GenerateMipmaps();
+			tex->GenerateMipmaps();
 		}
 
 		mDayTexFilename = filename;
@@ -70,7 +70,7 @@ void SkyMesh::SetSunsetTexture(const std::string &filename)
 	{
 		if (!tex->HasMipmaps())
 		{
-		//	tex->GenerateMipmaps();
+			tex->GenerateMipmaps();
 		}
 
 		mSunsetTexFilename = filename;
@@ -85,7 +85,7 @@ void SkyMesh::SetNightTexture(const std::string &filename)
 	{
 		if (!tex->HasMipmaps())
 		{
-		//	tex->GenerateMipmaps();
+			tex->GenerateMipmaps();
 		}
 
 		mNightTexFilename = filename;
