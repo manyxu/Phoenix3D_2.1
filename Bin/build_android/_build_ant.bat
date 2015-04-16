@@ -1,7 +1,7 @@
-set PX2_ROOT=D:\PX3D\Phoenix3D
+set PX2_ROOT=E:\GitHub\Phoenix3D\Phoenix3D
 set PX2_APPPLAYER=%PX2_ROOT%\PX2AppPlayer
 set PX2_APPPLAYER_ANDROID=%PX2_APPPLAYER%\Proj.Android
 
-D:
+E:
 cd %PX2_APPPLAYER_ANDROID%
 ant release

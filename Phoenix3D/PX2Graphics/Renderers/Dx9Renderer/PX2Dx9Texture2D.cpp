@@ -44,9 +44,9 @@ PdrTexture2D::PdrTexture2D (Renderer* renderer, const Texture2D* texture)
 		assertion(newSrc!=0, "new failed.");	
 		for (int i = 0; i < numElement; i++)
 		{
-			newSrc[newSrcBase    ] = srcData[SrcBase    ];  // B
+			newSrc[newSrcBase    ] = srcData[SrcBase + 2];  // B
 			newSrc[newSrcBase + 1] = srcData[SrcBase + 1];	// G
-			newSrc[newSrcBase + 2] = srcData[SrcBase + 2];	// R
+			newSrc[newSrcBase + 2] = srcData[SrcBase + 0];	// R
 			newSrc[newSrcBase + 3] = (unsigned char)charMax;// A
 
 			newSrcBase += 4;

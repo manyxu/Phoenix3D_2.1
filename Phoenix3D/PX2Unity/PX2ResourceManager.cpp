@@ -1948,9 +1948,9 @@ Texture2D *ResourceManager::_initWithPngData(const char *pData, int nDatalen)
 			{
 				for(unsigned int j = 0; j < rowbytes;)
 				{
-					*tmp++ = row_pointers[i][j + 2];
-					*tmp++ = row_pointers[i][j + 1];
 					*tmp++ = row_pointers[i][j];
+					*tmp++ = row_pointers[i][j + 1];
+					*tmp++ = row_pointers[i][j + 2];
 					j = j + 3;
 				}
 			}

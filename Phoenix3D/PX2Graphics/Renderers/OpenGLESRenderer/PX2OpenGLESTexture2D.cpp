@@ -62,9 +62,9 @@ mTexture(0)
 		newSrc = new1<char>(numBytes);
 		for (int i = 0; i < numElement; i++)
 		{
-			newSrc[srcBase + 2] = srcData[srcBase    ]; // B
+			newSrc[srcBase + 0] = srcData[srcBase    ]; // B
 			newSrc[srcBase + 1] = srcData[srcBase + 1]; // G
-			newSrc[srcBase + 0] = srcData[srcBase + 2]; // R
+			newSrc[srcBase + 2] = srcData[srcBase + 2]; // R
 			srcBase += 3;
 		}
 	}
