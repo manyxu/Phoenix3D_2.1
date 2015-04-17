@@ -38,7 +38,7 @@ namespace PX2
 
 	public:
 		virtual void DoExecute(Event *event);
-		virtual void Visit(Object *obj, const int info);
+		virtual void Visit(Object *obj, int info);
 
 		// Start
 	public:

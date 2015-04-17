@@ -144,7 +144,7 @@ void X_UIMan::Update(float appSeconds, float elapsedSeconds)
 	Update_StateForGamePad(appSeconds, elapsedSeconds);
 }
 //----------------------------------------------------------------------------
-void X_UIMan::Visit(Object *obj, const int info)
+void X_UIMan::Visit(Object *obj, int info)
 {
 	Visit_SelectActorFrame(obj, info);
 	Visit_LoadMapFrame(obj, info);
