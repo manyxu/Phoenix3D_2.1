@@ -558,7 +558,7 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;FT2_BUILD_LIBRARY;PX2_USE_FMOD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;.\DevIL;.\DevIL\PNG;.\ZLib;.\ZLib\minzip;.\RapidXML;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\CURL;.\CURL\config\win32;.\SoundFMod;..\ThirdPartiesLibs\pthread\include;..\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\ZLib;.\ZLib\minzip;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\CURL;.\CURL\config\win32;.\SoundFMod;..\ThirdPartiesLibs\pthread\include;..\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -605,8 +605,8 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;IL_STATIC_LIB;FT2_BUILD_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;.\DevIL;.\DevIL\PNG;.\ZLib;.\ZLib\minzip;.\CURL\config\win32;.\CURL;.\RapidXML;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\PX2ToLua;..\ThirdPartiesLibs\pthread\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;IL_STATIC_LIB;FT2_BUILD_LIBRARY;PX2_USE_FMOD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;.\ZLib;.\ZLib\minzip;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\CURL;.\CURL\config\win32;.\SoundFMod;..\ThirdPartiesLibs\pthread\include;..\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
