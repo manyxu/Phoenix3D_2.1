@@ -1,6 +1,6 @@
 Phoenix3D
 =======
-欢迎来到Phoenix3D源代码
+欢迎来到Phoenix3D源代码！
 
 Phoenix3D是一款古典的，优雅的，跨平台的开源3D引擎。
 
@@ -19,5 +19,7 @@ Phoenix3D是一款古典的，优雅的，跨平台的开源3D引擎。
 代码形成一个商业版本，闭源版本，必须也是以GPL协议进行开源发布。凤凰社拥有引擎的著作权。
 
 GitHub：https://github.com/PhenixFoundation/Phoenix3D
+
 QQ交流群：336273110
+
 微信公众帐号：Phoenix3d
