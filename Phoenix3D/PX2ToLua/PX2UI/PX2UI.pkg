@@ -1,1 +1,7 @@
 // PX2UI.pkg
+
+$pfile "PX2UI/PX2UIFrame.pkg"
+$pfile "PX2UI/PX2UIPicBox.pkg"
+$pfile "PX2UI/PX2UIButtonBase.pkg"
+$pfile "PX2UI/PX2UIButton.pkg"
+$pfile "PX2UI/PX2UICallback.pkg"

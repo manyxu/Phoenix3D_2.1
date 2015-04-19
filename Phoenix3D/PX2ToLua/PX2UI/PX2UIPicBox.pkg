@@ -1,0 +1,70 @@
+// PX2UIPicBox.pkg
+
+	class UIPicBox : public TriMesh
+	{
+	public:
+		UIPicBox(const std::string &filename = "Data/engine/default.png",
+			int isDynamicBuffer=0);
+		UIPicBox(const std::string &packName, const std::string &eleName,
+			int isDynamicBuffer=0);
+		virtual ~UIPicBox();
+
+		enum PicBoxType
+		{
+			PBT_NORMAL,
+			PBT_NINE,
+			PBT_NORAML_UVREVERSE,
+			PBT_MAX_TYPE
+		};
+		void SetPicBoxType(PicBoxType type);
+		PicBoxType GetPicBoxType();
+
+		// anchor
+		void SetAnchorPoint(float anchX, float anchZ);
+		void SetAnchorPoint(Float2 anchor);
+		const Float2 &GetAnchorPoint() const;
+		Float2 &GetAnchorPoint();
+
+		// size
+		void SetSize(float width, float height);
+		void SetSize(const Sizef &size);
+		const Sizef &GetSize() const;
+		void SetWidth(float width);
+		float GetWidth() const;
+		void SetHeight(float height);
+		float GetHeight() const;
+		void MakeSizeWithTex();
+
+		// cornorsize
+		void SetTexCornerSize(float width, float height);
+		void SetTexCornerSize(const Sizef &size);
+		const Sizef &GetTexCornerSize() const;
+		Sizef &GetTexCornerSize();
+		void SetTexCornerWidth(float width);
+		float GetTexCornerWidth() const;
+		void SetTexCornerHeight(float height);
+		float GetTexCornerHeight() const;
+
+		virtual void SetAlpha(float alpha); //< 0-1
+
+		enum TexMode
+		{
+			TM_TEX,
+			TM_TEXPACK_ELE,
+			TM_MAX_MODE
+		};
+		TexMode GetTexMode() const;
+
+		// base texture
+		void SetTexture(const std::string &filename);
+		void SetTexture(const std::string &texPackName, const std::string &eleName);
+		void SetTexture(Texture *tex);
+		Texture *GetTexture();
+		const std::string &GetTextureFilename() const;
+		const std::string &GetTexturePackName() const;
+		const std::string &GetElementName() const;
+
+		void SetUVRepeat(const Float2 &uvRepeat);
+
+		virtual void OnForceBind();
+	};

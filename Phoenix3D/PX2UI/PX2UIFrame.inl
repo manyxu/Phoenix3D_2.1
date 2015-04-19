@@ -21,6 +21,16 @@ inline const Sizef &UIFrame::GetBorderSize() const
 	return mBorderSize;
 }
 //----------------------------------------------------------------------------
+inline float UIFrame::GetBorderWidth() const
+{
+	return mBorderSize.Width;
+}
+//----------------------------------------------------------------------------
+inline float UIFrame::GetBorderHeight() const
+{
+	return mBorderSize.Height;
+}
+//----------------------------------------------------------------------------
 inline UIFrame::RelativeType UIFrame::GetRelativeType_H() const
 {
 	return mPosRelativeType_H;
