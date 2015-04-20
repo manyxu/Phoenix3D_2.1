@@ -87,7 +87,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)\Bin\</OutDir>
+    <OutDir>..\..\..\Bin</OutDir>
     <IntDir>_Output\$(PlatformToolset)\$(Platform)\Dx9$(Configuration)\</IntDir>
     <TargetName>FxCompiler</TargetName>
   </PropertyGroup>
