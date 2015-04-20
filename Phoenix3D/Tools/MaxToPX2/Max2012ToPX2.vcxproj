@@ -89,7 +89,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>D:\Autodesk\3ds Max 2012\plugins\</OutDir>
+    <OutDir>..\..\..\Bin\Plugins</OutDir>
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>Max2012ToPX264</TargetName>
     <TargetExt>.dle</TargetExt>
