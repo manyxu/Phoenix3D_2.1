@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="PX2ServerLoop.hpp" />
+    <ClInclude Include="PX2ServerUserManager.hpp">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerUser.hpp">
+      <Filter>User</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerPre.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2ServerLoop.cpp" />
+    <ClCompile Include="PX2ServerLoop_InitTerm.cpp" />
+    <ClCompile Include="PX2ServerUserManager.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerUser.cpp">
+      <Filter>User</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="User">
+      <UniqueIdentifier>{11ca3688-5685-4271-8f86-3ea01400725d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2ServerUser.inl">
+      <Filter>User</Filter>
+    </None>
+  </ItemGroup>
+</Project>

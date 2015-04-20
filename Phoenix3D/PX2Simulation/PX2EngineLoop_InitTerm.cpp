@@ -5,6 +5,7 @@
 #include "PX2LuaManager.hpp"
 #include "PX2ToLua.hpp"
 #include "PX2RendererInput.hpp"
+#include "PX2LocalDateTime.hpp"
 using namespace PX2;
 
 extern "C"
@@ -35,7 +36,7 @@ bool EngineLoop::Initlize()
 	logger->AddOutputWindowHandler(LT_INFO | LT_ERROR | LT_USER);
 	logger->StartLogger();
 
-	DateTime time;
+	LocalDateTime time;
 	int year1 = time.Year();
 	int month1 = time.Month();
 	int week1 = time.Week();
