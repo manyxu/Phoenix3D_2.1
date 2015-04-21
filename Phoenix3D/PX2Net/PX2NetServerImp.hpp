@@ -38,6 +38,7 @@ namespace PX2
 
 		virtual void DisconnectClient(unsigned int clientID) = 0;
 		virtual void DisconnectAll() = 0;
+		virtual bool PostWrite(unsigned int clientid, char *psrc, int srclen) = 0;
 
 		int GetNumUsedContext();
 		int GetClientMapSize();

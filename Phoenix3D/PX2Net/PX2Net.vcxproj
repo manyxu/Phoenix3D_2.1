@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="google\protobuf\arena.h" />
+    <ClInclude Include="google\protobuf\arenastring.h" />
     <ClInclude Include="google\protobuf\compiler\code_generator.h" />
     <ClInclude Include="google\protobuf\compiler\command_line_interface.h" />
     <ClInclude Include="google\protobuf\compiler\importer.h" />
@@ -33,16 +35,19 @@
     <ClInclude Include="google\protobuf\descriptor_database.h" />
     <ClInclude Include="google\protobuf\dynamic_message.h" />
     <ClInclude Include="google\protobuf\extension_set.h" />
+    <ClInclude Include="google\protobuf\generated_message_reflection.h" />
     <ClInclude Include="google\protobuf\generated_message_util.h" />
     <ClInclude Include="google\protobuf\io\coded_stream.h" />
     <ClInclude Include="google\protobuf\io\coded_stream_inl.h" />
     <ClInclude Include="google\protobuf\io\gzip_stream.h" />
     <ClInclude Include="google\protobuf\io\package_info.h" />
     <ClInclude Include="google\protobuf\io\printer.h" />
+    <ClInclude Include="google\protobuf\io\strtod.h" />
     <ClInclude Include="google\protobuf\io\tokenizer.h" />
     <ClInclude Include="google\protobuf\io\zero_copy_stream.h" />
     <ClInclude Include="google\protobuf\io\zero_copy_stream_impl.h" />
     <ClInclude Include="google\protobuf\io\zero_copy_stream_impl_lite.h" />
+    <ClInclude Include="google\protobuf\map_field.h" />
     <ClInclude Include="google\protobuf\message.h" />
     <ClInclude Include="google\protobuf\message_lite.h" />
     <ClInclude Include="google\protobuf\package_info.h" />
@@ -98,6 +103,8 @@
     <ClInclude Include="PX2ServerSocket.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="google\protobuf\arena.cc" />
+    <ClCompile Include="google\protobuf\arenastring.cc" />
     <ClCompile Include="google\protobuf\compiler\code_generator.cc" />
     <ClCompile Include="google\protobuf\compiler\command_line_interface.cc" />
     <ClCompile Include="google\protobuf\compiler\importer.cc" />
@@ -111,16 +118,19 @@
     <ClCompile Include="google\protobuf\descriptor_database.cc" />
     <ClCompile Include="google\protobuf\dynamic_message.cc" />
     <ClCompile Include="google\protobuf\extension_set.cc" />
+    <ClCompile Include="google\protobuf\extension_set.cpp" />
     <ClCompile Include="google\protobuf\extension_set_heavy.cc" />
     <ClCompile Include="google\protobuf\generated_message_reflection.cc" />
     <ClCompile Include="google\protobuf\generated_message_util.cc" />
     <ClCompile Include="google\protobuf\io\coded_stream.cc" />
     <ClCompile Include="google\protobuf\io\gzip_stream.cc" />
     <ClCompile Include="google\protobuf\io\printer.cc" />
+    <ClCompile Include="google\protobuf\io\strtod.cc" />
     <ClCompile Include="google\protobuf\io\tokenizer.cc" />
     <ClCompile Include="google\protobuf\io\zero_copy_stream.cc" />
     <ClCompile Include="google\protobuf\io\zero_copy_stream_impl.cc" />
     <ClCompile Include="google\protobuf\io\zero_copy_stream_impl_lite.cc" />
+    <ClCompile Include="google\protobuf\map_field.cc" />
     <ClCompile Include="google\protobuf\message.cc" />
     <ClCompile Include="google\protobuf\message_lite.cc" />
     <ClCompile Include="google\protobuf\reflection_ops.cc" />

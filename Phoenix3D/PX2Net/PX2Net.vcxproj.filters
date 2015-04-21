@@ -285,6 +285,21 @@
     <ClInclude Include="PX2ServerSocketImpl.hpp">
       <Filter>BaseCore\Sockets</Filter>
     </ClInclude>
+    <ClInclude Include="google\protobuf\arena.h">
+      <Filter>Proto\Google\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="google\protobuf\arenastring.h">
+      <Filter>Proto\Google\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="google\protobuf\io\strtod.h">
+      <Filter>Proto\Google\protobuf\io</Filter>
+    </ClInclude>
+    <ClInclude Include="google\protobuf\generated_message_reflection.h">
+      <Filter>Proto\Google\protobuf</Filter>
+    </ClInclude>
+    <ClInclude Include="google\protobuf\map_field.h">
+      <Filter>Proto\Google\protobuf</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2NetEventBuffer.cpp">
@@ -481,6 +496,21 @@
     </ClCompile>
     <ClCompile Include="PX2ServerSocketImpl.cpp">
       <Filter>BaseCore\Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="google\protobuf\extension_set.cpp">
+      <Filter>Proto\Google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="google\protobuf\arena.cc">
+      <Filter>Proto\Google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="google\protobuf\arenastring.cc">
+      <Filter>Proto\Google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="google\protobuf\io\strtod.cc">
+      <Filter>Proto\Google\protobuf\io</Filter>
+    </ClCompile>
+    <ClCompile Include="google\protobuf\map_field.cc">
+      <Filter>Proto\Google\protobuf</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

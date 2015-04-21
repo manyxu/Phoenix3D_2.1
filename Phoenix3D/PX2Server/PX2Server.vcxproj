@@ -11,14 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PX2ServerDBManager.hpp" />
     <ClInclude Include="PX2ServerLoop.hpp" />
     <ClInclude Include="PX2ServerPre.hpp" />
     <ClInclude Include="PX2ServerUser.hpp" />
     <ClInclude Include="PX2ServerUserManager.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PX2ServerDBManager.cpp" />
     <ClCompile Include="PX2ServerLoop.cpp" />
-    <ClCompile Include="PX2ServerLoop_InitTerm.cpp" />
     <ClCompile Include="PX2ServerUser.cpp" />
     <ClCompile Include="PX2ServerUserManager.cpp" />
   </ItemGroup>

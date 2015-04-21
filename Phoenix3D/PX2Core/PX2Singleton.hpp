@@ -1,7 +1,7 @@
-// PX2Singleton1.hpp
+// PX2Singleton.hpp
 
-#ifndef PX2SINGETON1_HPP
-#define PX2SINGETON1_HPP
+#ifndef PX2SINGETON_HPP
+#define PX2SINGETON_HPP
 
 #include "PX2CorePre.hpp"
 

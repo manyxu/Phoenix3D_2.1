@@ -23,6 +23,7 @@ namespace PX2
 
 	class Server
 	{
+	public:
 		typedef int (Server::*MsgHandleFunc)(unsigned int clientid,
 			const void *pbuffer, int buflen);
 

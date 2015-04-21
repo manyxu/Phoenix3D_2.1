@@ -3,10 +3,22 @@
 #ifndef PX2SERVERLOOPSIMU_HPP
 #define PX2SERVERLOOPSIMU_HPP
 
-namespace PX2
+#include "PX2ServerLoop.hpp"
+
+namespace PX2Server
 {
 
+	class ServerLoopSimu : public ServerLoop
+	{
+	public:
+		ServerLoopSimu();
+		virtual ~ServerLoopSimu();
 
+		virtual bool Initlize();
+		virtual bool Ternamate();
+
+		virtual void Run();
+	};
 
 }
 

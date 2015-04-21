@@ -27,6 +27,7 @@ namespace PX2
 
 		virtual void DisconnectClient(unsigned int clientID);
 		virtual void DisconnectAll();
+		virtual bool PostWrite(unsigned int clientid, char *psrc, int srclen);
 
 		int GetNumUsedOLBuffer();
 
@@ -42,8 +43,13 @@ namespace PX2
 
 		bool _AddClientSocket(px2_socket_t s);
 		void _CloseClientSocket(ClientContext *pcontext);
+		ClientContext *_GetClientContext(unsigned int clientid);
+
+		void _EnterPendingIO(ClientContext *pcontext);
+		void _LeavePendingIO(ClientContext *pcontext);
 
 		bool _PostRead(ClientContext *pcontext, OverlapBuffer *pbuf);
+		bool _PostWrite(ClientContext *pcontext, char *psrc, int srclen);
 		bool _OnRead(ClientContext *pcontext, OverlapBuffer *pbuf, unsigned int nbytes);
 		bool _OnWrite(ClientContext *pcontext, OverlapBuffer *pbuf, unsigned int nbytes);
 

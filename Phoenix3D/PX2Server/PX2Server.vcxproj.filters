@@ -9,20 +9,28 @@
       <Filter>User</Filter>
     </ClInclude>
     <ClInclude Include="PX2ServerPre.hpp" />
+    <ClInclude Include="PX2ServerDBManager.hpp">
+      <Filter>DataBase</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2ServerLoop.cpp" />
-    <ClCompile Include="PX2ServerLoop_InitTerm.cpp" />
     <ClCompile Include="PX2ServerUserManager.cpp">
       <Filter>User</Filter>
     </ClCompile>
     <ClCompile Include="PX2ServerUser.cpp">
       <Filter>User</Filter>
     </ClCompile>
+    <ClCompile Include="PX2ServerDBManager.cpp">
+      <Filter>DataBase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="User">
       <UniqueIdentifier>{11ca3688-5685-4271-8f86-3ea01400725d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataBase">
+      <UniqueIdentifier>{3d93aed5-e978-4e84-9392-63b9b3c4dc3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

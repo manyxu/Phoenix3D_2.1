@@ -118,6 +118,14 @@ void ServerIocp::DisconnectAll()
 	}
 }
 //----------------------------------------------------------------------------
+bool ServerIocp::PostWrite(unsigned int clientid, char *psrc, int srclen)
+{
+	ScopedCS cs(&mContextMapMutex);
+
+	ClientContext *pcontext = _GetClientContext(clientid);
+	return _PostWrite(pcontext, psrc, srclen);
+}
+//----------------------------------------------------------------------------
 bool ServerIocp::_SetupIOWorkers()
 {
 	if (mNumMaxWorkers < 0)
@@ -401,6 +409,22 @@ void ServerIocp::_CloseClientSocket(ClientContext *pcontext)
 		_MyCloseSocket(tmp_s);
 }
 //----------------------------------------------------------------------------
+ClientContext *ServerIocp::_GetClientContext(unsigned int clientid)
+{
+	ScopedCS cs(&mContextLock);
+
+	std::map<unsigned int, ClientContext *>::iterator iter = 
+		mClientMap.find(clientid);
+	if (iter == mClientMap.end())
+	{
+		return 0;
+	}
+	else
+	{
+		return iter->second;
+	}
+}
+//----------------------------------------------------------------------------
 const char *WindowsWSAErrorCode2Text(unsigned int dw)
 {
 	const char *error = "";
@@ -472,6 +496,33 @@ const char *WindowsWSAErrorCode2Text(unsigned int dw)
 	return error;
 }
 //----------------------------------------------------------------------------
+void ServerIocp::_EnterPendingIO(ClientContext *pcontext)
+{
+	ScopedCS cs(&mContextLock);
+
+	pcontext->mNumPendingIO++;
+}
+//----------------------------------------------------------------------------
+void ServerIocp::_LeavePendingIO(ClientContext *pcontext)
+{
+	bool needfree = false;
+	{
+		ScopedCS cs(&mContextLock);
+
+		pcontext->mNumPendingIO--;
+
+		if (pcontext->mNumPendingIO == 0 && pcontext->mSocket == INVALID_SOCKET) 
+			needfree = true;
+	}
+
+	if (needfree)
+	{
+		mBufferEventQue->PostDisconnectEvent(pcontext->mClientID);
+
+		_FreeContext(pcontext);
+	}
+}
+//----------------------------------------------------------------------------
 bool ServerIocp::_PostRead(ClientContext *pcontext, OverlapBuffer *pbuf)
 {
 	if (0 == pbuf)
@@ -508,6 +559,55 @@ bool ServerIocp::_PostRead(ClientContext *pcontext, OverlapBuffer *pbuf)
 
 		return false;
 	}
+
+	return true;
+}
+//----------------------------------------------------------------------------
+bool ServerIocp::_PostWrite(ClientContext *pcontext, char *psrc, int srclen)
+{
+	if (pcontext == NULL || pcontext->mSocket == PX2_INVALID_SOCKET)
+	{
+		return false;
+	}
+
+	int cursor = 0;
+	while (cursor < srclen)
+	{
+		OverlapBuffer *pbuf = mOLBufMgr.AllocBuffer(IOCP_WRITE);
+		if (pbuf == 0)
+		{
+			PX2_LOG_ERROR("AllocBuffer error");
+			return false;
+		}
+
+		cursor += pbuf->PushData(psrc + cursor, srclen - cursor);
+		pbuf->PrepareSend();
+
+		DWORD sendbytes = 0;
+		DWORD flags = MSG_PARTIAL;
+		memset(&pbuf->mSysData, 0, sizeof(OVERLAPPED));
+
+		_EnterPendingIO(pcontext);
+
+		int ret = WSASend(pcontext->mSocket, &pbuf->mWSABuf, 1, &sendbytes, flags, &pbuf->mSysData, NULL);
+		if (ret == 0)
+		{
+		}
+		else
+		{
+			assert(ret == SOCKET_ERROR);
+			if (WSAGetLastError() != WSA_IO_PENDING)
+			{
+				PX2_LOG_ERROR("WSASend error");
+				_LeavePendingIO(pcontext);
+				mOLBufMgr.FreeBuffer(pbuf);
+				
+				return false;
+			}
+		}
+	}
+
+	assert(cursor == srclen);
 
 	return true;
 }

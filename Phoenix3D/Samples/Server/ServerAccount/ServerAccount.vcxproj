@@ -10,18 +10,10 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PX2ServerLoopSimu.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="PX2ServerLoopSimu.hpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{131A729A-FCBF-460A-BFD0-C835ACAC458E}</ProjectGuid>
+    <ProjectGuid>{86BA2225-3A14-4338-ABA6-FCBFF1E12D67}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>SimulationServer</RootNamespace>
-    <ProjectName>ServerSimulation</ProjectName>
+    <RootNamespace>ServerAccount</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -51,7 +43,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\..\..\Bin\</OutDir>
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>ServerSimulation</TargetName>
+    <TargetName>ServerAccount</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -63,18 +55,14 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\PX2SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\PX2SDK\Include;..\..\..\PX2Net;..\Proto;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2NetD.lib;PX2ServerD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2NetD.lib;PX2ServerD.lib;winmm.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -93,6 +81,21 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Proto\account.pb.cc" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PX2ServerAccount.cpp" />
+    <ClCompile Include="PX2ServerAuth.cpp" />
+    <ClCompile Include="PX2ServerDBConnect.cpp" />
+    <ClCompile Include="PX2ServerLoopAccount.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Proto\account.pb.h" />
+    <ClInclude Include="PX2ServerAccount.hpp" />
+    <ClInclude Include="PX2ServerAuth.hpp" />
+    <ClInclude Include="PX2ServerDBConnect.hpp" />
+    <ClInclude Include="PX2ServerLoopAccount.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,7 +1,7 @@
 // PX2Singleton.hpp
 
-#ifndef PX2SINGLETON_HPP
-#define PX2SINGLETON_HPP
+#ifndef PX2SINGLETON_NEEDNEW_HPP
+#define PX2SINGLETON_NEEDNEW_HPP
 
 #include "PX2Assert.hpp"
 #include "PX2Noncopyable.hpp"

@@ -1,15 +1,15 @@
-// PX2Main.cpp
+// Main.cpp
 
 #include "PX2Net.hpp"
 #include "PX2Core.hpp"
 #include "PX2Mathematics.hpp"
-#include "PX2ServerLoopSimu.hpp"
+#include "PX2ServerLoopAccount.hpp"
 using namespace PX2;
 using namespace PX2Server;
 
 int main()
 {
-	ServerLoopSimu serverLoop;
+	ServerLoopAccount serverLoop;
 
 	serverLoop.Initlize();
 

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PX2ServerLoopAccount.cpp" />
+    <ClCompile Include="PX2ServerAuth.cpp">
+      <Filter>Auth</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerDBConnect.cpp">
+      <Filter>DBConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Proto\account.pb.cc">
+      <Filter>Proto</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerAccount.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2ServerLoopAccount.hpp" />
+    <ClInclude Include="PX2ServerAuth.hpp">
+      <Filter>Auth</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerDBConnect.hpp">
+      <Filter>DBConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Proto\account.pb.h">
+      <Filter>Proto</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerAccount.hpp">
+      <Filter>Server</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Auth">
+      <UniqueIdentifier>{8cc5d856-a2be-40cd-8c11-df4edba7d579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBConnect">
+      <UniqueIdentifier>{6ac5f537-3748-4092-9c77-ac5fa43a4848}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Proto">
+      <UniqueIdentifier>{bac027a6-2652-4f00-b754-6c9193df6cee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server">
+      <UniqueIdentifier>{29da7627-e44e-4757-993b-c46a2e80af58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
