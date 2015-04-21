@@ -1,0 +1,185 @@
+syntax = "proto2";
+
+package account_proto;//账号处理中心的协议
+
+enum MsgType
+{
+	CS_RESERVED = 0;
+	CA_REG_ACCOUNT = 1;		//客户端去accenter注册自有帐号
+	CA_NEW_ACCOUNT = 2;     //让accenter生成一个自有账号
+	CA_SERVER_LIST = 3;		//得到服务器列表
+	CA_AUTH_ACCOUNT = 4;	//客户端去accenter验证自有账号
+	GA_AUTH_ACCOUNT = 5;	//游戏服务器在客户端登录时去accenter验证
+	GA_VERIFY_BUY = 9;		//验证app store的购买,  包括苹果商店， 91平台
+	GA_REPORT_STATUS = 10;  //上报服务器数据：在线人数，是否忙碌
+	GA_BUY_NOTIFY = 11;     //从91平台得到购买通知后， accountserver发送此协议给gameserver
+}
+
+enum CAResult
+{
+	RE_OK = 0;
+	RE_REG_ACCOUNT_EXIST = 1; 	//账号已经存在， 不能创建
+	RE_AUTH_NOACCOUNT = 2; 		//账号不存在， 验证不通过
+	RE_AUTH_WRONG_PWD = 3; 		//密码错误
+	RE_AUTH_LOCKED = 4; 		//账号锁定
+	RE_ACCOUNT_ILLEGAL = 5; 	//账号不合法
+	RE_DATA_WRONG = 99; 		//数据错误
+	RE_CONN_OUTSERVER = 100; 	//连接外部账号平台服务器错误
+}
+
+//账号平台
+enum AccountPlatform
+{
+	ACCOUNT_DEFALUT = 0;   		//自有缺省方式
+	ACCOUNT_360 = 1;       		//360账号
+	ACCOUNT_91 = 2;        		//91账号
+}
+
+//支付平台
+enum PayPlatform
+{
+	PAY_DEFAULT = 0;    		//自有缺省方式
+	PAY_IOS_STORE = 1;  		//ios store的购买方式
+	PAY_GOOGLE_STORE = 2; 		//google store的购买方式
+	PAY_91 = 3;    				//91付费方式
+}
+
+//服务器组的类型
+enum ServerGroupType
+{
+	SVGROUP_DEFAULT = 0;  		//缺省的服务器组
+	SVGROUP_HONGKONG = 1; 		//香港
+}
+
+message CSReservedMsg
+{
+	required int32 reserved = 1;
+}
+
+//注册账号：客户端-〉账号服务器
+message CARegAccountC
+{
+	required string name = 1;
+	required string passwd_md5 = 2;
+	optional string mail = 3;  		//邮箱
+	optional string mobile = 4; 	//手机
+}
+
+//注册账号：账号服务器-〉客户端
+message CARegAccountS
+{
+	required int32 result = 1; 		//0:注册成功， 1：有重复名字， 2：名字不合法
+	optional uint32 uin = 2;
+}
+
+message CANewAccountC
+{
+	required string device_id = 1; 	//设备ID, 唯一的标识这个设备
+}
+
+message CANewAccountS
+{
+	required int32 result = 1; 		//0: 生成新账号， 1: 返回之前此设备创建的账号，  2：失败
+	optional uint32 uin = 2; 		//后面使用_uin的用户名登录
+	optional string passwd_md5 = 3;
+}
+
+message CAServerListC
+{
+	required int32 version = 1; 	//服务器列表的版本号
+	required int32 svgroup = 2;
+}
+
+message CAServerDesc
+{
+	required int32 id = 1; 			//game server id
+	required int32 status = 2; 		//game server status, 0:维护， 1：流畅， 2：繁忙， 3：爆满， 如果第4位设置为推荐
+	optional string name = 3; 		//当客户端版本已经是最新， 下面数据不返回
+	optional string addr = 4;
+	optional int32 port = 5;
+}
+
+message CAServerListS
+{
+	required int32 version = 1; 	//返回最新的服务器列表版本号
+	repeated CAServerDesc desc_array = 2;
+}
+
+message CAAuthAccountC
+{
+	required AccountPlatform platform = 1; 	//AccountPlatform, 平台ID: 自己安卓， 自己苹果， 360，91
+	optional string name = 2;  				//可以通过name或者uin来验证账号
+	optional uint32 uin = 3;       			//用户的uin
+	optional string passwd_md5 = 4; 		//密码的md5
+	optional uint32 cpid = 5;   			//cp厂商的ID
+	optional uint32 appid = 6;  			//app的ID
+	optional string sid = 7;    			//session ID
+}
+
+message CAAuthAccountS
+{
+	required int32 result = 1; 				//0: 验证成功,  1:失败
+	optional string sid = 2; 				//session id
+	optional uint32 uin = 3;
+}
+
+//游戏服务器验证账号：游戏服务器-〉账号服务器
+message GAAuthAccountC
+{
+	required uint32 uin = 1;
+	required string sid = 2;
+	required uint32 clientid = 3;
+}
+
+//游戏服务器验证账号：账号服务器-〉游戏服务器
+message GAAuthAccountS
+{
+	required int32 result = 1;
+	required uint32 clientid = 3;
+	required uint32 uin = 4;
+	optional string info = 2;
+}
+
+message GAVerifyBuyC
+{
+	required int32 platform = 1; 			//付费平台
+	required uint32 uin = 2;  				//玩家uin
+	required string itemid = 3; 			//商品id
+	required string receipt = 4;   			//app store返回的receipt，  91等商店生成的订单序列号（32位guid)
+	required int32 price = 5;      			//实际需要付的价格， 分为单位
+}
+
+message GAVerifyBuyS
+{
+	required int32 result = 1; 				//0: 确认成功， 1: 确认失败
+	required uint32 uin = 2;
+	required string itemid = 3;
+	required string receipt = 4;
+}
+
+//由accountserver发给gameserver
+message GABuyNotifyC
+{
+	required PayPlatform platform = 1; 		//付费平台
+	required uint32 uin = 2;
+	required string itemid = 3;
+	required string receipt = 4;
+	required int32 count = 5;  				//购买数量
+	required int32 money = 6;  				//money=数量*单价， 是否和gameserver对得上
+}
+
+//gameserver返回的
+message GABuyNotifyS
+{
+	required int32 result = 1; 				//0处理成功，  1：uin不存在,  2: itemid不存在,  3: 价格对不上
+	required string receipt = 2;
+}
+
+message GAReportStatusC
+{
+	required int32 nconn = 1; 				//连接数
+	required int32 nlogin = 2; 				//登陆数
+	required uint32 servertime = 3; 		//服务器时间
+	required int32 memory = 4; 				//占用内存：kb
+	required int32 cpu = 5; 				//cpu: %
+}

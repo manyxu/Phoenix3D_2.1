@@ -1,6 +1,6 @@
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
-// http://code.google.com/p/protobuf/
+// https://developers.google.com/protocol-buffers/
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -139,6 +139,19 @@ void Printer::Print(const char* text,
   vars[variable1] = value1;
   vars[variable2] = value2;
   vars[variable3] = value3;
+  Print(vars, text);
+}
+
+void Printer::Print(const char* text,
+                    const char* variable1, const string& value1,
+                    const char* variable2, const string& value2,
+                    const char* variable3, const string& value3,
+                    const char* variable4, const string& value4) {
+  map<string, string> vars;
+  vars[variable1] = value1;
+  vars[variable2] = value2;
+  vars[variable3] = value3;
+  vars[variable4] = value4;
   Print(vars, text);
 }
 

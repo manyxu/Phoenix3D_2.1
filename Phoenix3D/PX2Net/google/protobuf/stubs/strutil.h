@@ -1,6 +1,6 @@
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
-// http://code.google.com/p/protobuf/
+// https://developers.google.com/protocol-buffers/
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -41,7 +41,6 @@ namespace google {
 namespace protobuf {
 
 #ifdef _MSC_VER
-
 #define strtoll  _strtoi64
 #define strtoull _strtoui64
 #elif defined(__DECCXX) && defined(__osf__)
@@ -58,6 +57,8 @@ namespace protobuf {
 //    strings, so locale should not be taken into account.
 // ascii_isdigit()
 //    Like above, but only accepts digits.
+// ascii_isspace()
+//    Check if the character is a space character.
 // ----------------------------------------------------------------------
 
 inline bool ascii_isalnum(char c) {
@@ -68,6 +69,10 @@ inline bool ascii_isalnum(char c) {
 
 inline bool ascii_isdigit(char c) {
   return ('0' <= c && c <= '9');
+}
+
+inline bool ascii_isspace(char c) {
+  return c == ' ';
 }
 
 // ----------------------------------------------------------------------
@@ -120,13 +125,19 @@ inline string StripSuffixString(const string& str, const string& suffix) {
 //    in 'remove') with the character 'replacewith'.
 //    Good for keeping html characters or protocol characters (\t) out
 //    of places where they might cause a problem.
+// StripWhitespace
+//    Removes whitespaces from both ends of the given string.
 // ----------------------------------------------------------------------
 LIBPROTOBUF_EXPORT void StripString(string* s, const char* remove,
                                     char replacewith);
 
+LIBPROTOBUF_EXPORT void StripWhitespace(string* s);
+
+
 // ----------------------------------------------------------------------
 // LowerString()
 // UpperString()
+// ToUpper()
 //    Convert the characters in "s" to lowercase or uppercase.  ASCII-only:
 //    these functions intentionally ignore locale because they are applied to
 //    identifiers used in the Protocol Buffer language, not to natural-language
@@ -147,6 +158,12 @@ inline void UpperString(string * s) {
     // toupper() changes based on locale.  We don't want this!
     if ('a' <= *i && *i <= 'z') *i += 'A' - 'a';
   }
+}
+
+inline string ToUpper(const string& s) {
+  string out = s;
+  UpperString(&out);
+  return out;
 }
 
 // ----------------------------------------------------------------------
@@ -180,6 +197,21 @@ LIBPROTOBUF_EXPORT void SplitStringUsing(const string& full, const char* delim,
 LIBPROTOBUF_EXPORT void SplitStringAllowEmpty(const string& full,
                                               const char* delim,
                                               vector<string>* result);
+
+// ----------------------------------------------------------------------
+// Split()
+//    Split a string using a character delimiter.
+// ----------------------------------------------------------------------
+inline vector<string> Split(
+    const string& full, const char* delim, bool skip_empty = true) {
+  vector<string> result;
+  if (skip_empty) {
+    SplitStringUsing(full, delim, &result);
+  } else {
+    SplitStringAllowEmpty(full, delim, &result);
+  }
+  return result;
+}
 
 // ----------------------------------------------------------------------
 // JoinStrings()
@@ -328,6 +360,15 @@ inline uint64 strtou64(const char *nptr, char **endptr, int base) {
 }
 
 // ----------------------------------------------------------------------
+// safe_strto32()
+// ----------------------------------------------------------------------
+LIBPROTOBUF_EXPORT bool safe_int(string text, int32* value_p);
+
+inline bool safe_strto32(string text, int32* value) {
+  return safe_int(text, value);
+}
+
+// ----------------------------------------------------------------------
 // FastIntToBuffer()
 // FastHexToBuffer()
 // FastHex64ToBuffer()
@@ -454,13 +495,209 @@ LIBPROTOBUF_EXPORT char* FloatToBuffer(float i, char* buffer);
 static const int kDoubleToBufferSize = 32;
 static const int kFloatToBufferSize = 24;
 
+namespace strings {
+
+struct Hex {
+  uint64 value;
+  enum PadSpec {
+    NONE = 1,
+    ZERO_PAD_2,
+    ZERO_PAD_3,
+    ZERO_PAD_4,
+    ZERO_PAD_5,
+    ZERO_PAD_6,
+    ZERO_PAD_7,
+    ZERO_PAD_8,
+    ZERO_PAD_9,
+    ZERO_PAD_10,
+    ZERO_PAD_11,
+    ZERO_PAD_12,
+    ZERO_PAD_13,
+    ZERO_PAD_14,
+    ZERO_PAD_15,
+    ZERO_PAD_16,
+  } spec;
+  template <class Int>
+  explicit Hex(Int v, PadSpec s = NONE)
+      : spec(s) {
+    // Prevent sign-extension by casting integers to
+    // their unsigned counterparts.
+#ifdef LANG_CXX11
+    static_assert(
+        sizeof(v) == 1 || sizeof(v) == 2 || sizeof(v) == 4 || sizeof(v) == 8,
+        "Unknown integer type");
+#endif
+    value = sizeof(v) == 1 ? static_cast<uint8>(v)
+          : sizeof(v) == 2 ? static_cast<uint16>(v)
+          : sizeof(v) == 4 ? static_cast<uint32>(v)
+          : static_cast<uint64>(v);
+  }
+};
+
+struct AlphaNum {
+  const char *piece_data_;  // move these to string_ref eventually
+  size_t piece_size_;       // move these to string_ref eventually
+
+  char digits[kFastToBufferSize];
+
+  // No bool ctor -- bools convert to an integral type.
+  // A bool ctor would also convert incoming pointers (bletch).
+
+  AlphaNum(int32 i32)
+      : piece_data_(digits),
+        piece_size_(FastInt32ToBufferLeft(i32, digits) - &digits[0]) {}
+  AlphaNum(uint32 u32)
+      : piece_data_(digits),
+        piece_size_(FastUInt32ToBufferLeft(u32, digits) - &digits[0]) {}
+  AlphaNum(int64 i64)
+      : piece_data_(digits),
+        piece_size_(FastInt64ToBufferLeft(i64, digits) - &digits[0]) {}
+  AlphaNum(uint64 u64)
+      : piece_data_(digits),
+        piece_size_(FastUInt64ToBufferLeft(u64, digits) - &digits[0]) {}
+
+  AlphaNum(float f)
+    : piece_data_(digits), piece_size_(strlen(FloatToBuffer(f, digits))) {}
+  AlphaNum(double f)
+    : piece_data_(digits), piece_size_(strlen(DoubleToBuffer(f, digits))) {}
+
+  AlphaNum(Hex hex);
+
+  AlphaNum(const char* c_str)
+      : piece_data_(c_str), piece_size_(strlen(c_str)) {}
+  // TODO: Add a string_ref constructor, eventually
+  // AlphaNum(const StringPiece &pc) : piece(pc) {}
+
+  AlphaNum(const string& str)
+      : piece_data_(str.data()), piece_size_(str.size()) {}
+
+  size_t size() const { return piece_size_; }
+  const char *data() const { return piece_data_; }
+
+ private:
+  // Use ":" not ':'
+  AlphaNum(char c);  // NOLINT(runtime/explicit)
+
+  // Disallow copy and assign.
+  AlphaNum(const AlphaNum&);
+  void operator=(const AlphaNum&);
+};
+
+}  // namespace strings
+
+using strings::AlphaNum;
+
 // ----------------------------------------------------------------------
-// NoLocaleStrtod()
-//   Exactly like strtod(), except it always behaves as if in the "C"
-//   locale (i.e. decimal points must be '.'s).
+// StrCat()
+//    This merges the given strings or numbers, with no delimiter.  This
+//    is designed to be the fastest possible way to construct a string out
+//    of a mix of raw C strings, strings, bool values,
+//    and numeric values.
+//
+//    Don't use this for user-visible strings.  The localization process
+//    works poorly on strings built up out of fragments.
+//
+//    For clarity and performance, don't use StrCat when appending to a
+//    string.  In particular, avoid using any of these (anti-)patterns:
+//      str.append(StrCat(...)
+//      str += StrCat(...)
+//      str = StrCat(str, ...)
+//    where the last is the worse, with the potential to change a loop
+//    from a linear time operation with O(1) dynamic allocations into a
+//    quadratic time operation with O(n) dynamic allocations.  StrAppend
+//    is a better choice than any of the above, subject to the restriction
+//    of StrAppend(&str, a, b, c, ...) that none of the a, b, c, ... may
+//    be a reference into str.
 // ----------------------------------------------------------------------
 
-LIBPROTOBUF_EXPORT double NoLocaleStrtod(const char* text, char** endptr);
+string StrCat(const AlphaNum &a, const AlphaNum &b);
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c);
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d);
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e);
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e, const AlphaNum &f);
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e, const AlphaNum &f,
+              const AlphaNum &g);
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e, const AlphaNum &f,
+              const AlphaNum &g, const AlphaNum &h);
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e, const AlphaNum &f,
+              const AlphaNum &g, const AlphaNum &h, const AlphaNum &i);
+
+inline string StrCat(const AlphaNum& a) { return string(a.data(), a.size()); }
+
+// ----------------------------------------------------------------------
+// StrAppend()
+//    Same as above, but adds the output to the given string.
+//    WARNING: For speed, StrAppend does not try to check each of its input
+//    arguments to be sure that they are not a subset of the string being
+//    appended to.  That is, while this will work:
+//
+//    string s = "foo";
+//    s += s;
+//
+//    This will not (necessarily) work:
+//
+//    string s = "foo";
+//    StrAppend(&s, s);
+//
+//    Note: while StrCat supports appending up to 9 arguments, StrAppend
+//    is currently limited to 4.  That's rarely an issue except when
+//    automatically transforming StrCat to StrAppend, and can easily be
+//    worked around as consecutive calls to StrAppend are quite efficient.
+// ----------------------------------------------------------------------
+
+void StrAppend(string* dest, const AlphaNum& a);
+void StrAppend(string* dest, const AlphaNum& a, const AlphaNum& b);
+void StrAppend(string* dest, const AlphaNum& a, const AlphaNum& b,
+               const AlphaNum& c);
+void StrAppend(string* dest, const AlphaNum& a, const AlphaNum& b,
+               const AlphaNum& c, const AlphaNum& d);
+
+// ----------------------------------------------------------------------
+// Join()
+//    These methods concatenate a range of components into a C++ string, using
+//    the C-string "delim" as a separator between components.
+// ----------------------------------------------------------------------
+template <typename Iterator>
+void Join(Iterator start, Iterator end,
+          const char* delim, string* result) {
+  for (Iterator it = start; it != end; ++it) {
+    if (it != start) {
+      result->append(delim);
+    }
+    StrAppend(result, *it);
+  }
+}
+
+template <typename Range>
+string Join(const Range& components,
+            const char* delim) {
+  string result;
+  Join(components.begin(), components.end(), delim, &result);
+  return result;
+}
+
+// ----------------------------------------------------------------------
+// ToHex()
+//    Return a lower-case hex string representation of the given integer.
+// ----------------------------------------------------------------------
+LIBPROTOBUF_EXPORT string ToHex(uint64 num);
+
+// ----------------------------------------------------------------------
+// GlobalReplaceSubstring()
+//    Replaces all instances of a substring in a string.  Does nothing
+//    if 'substring' is empty.  Returns the number of replacements.
+//
+//    NOTE: The string pieces must not overlap s.
+// ----------------------------------------------------------------------
+LIBPROTOBUF_EXPORT int GlobalReplaceSubstring(const string& substring,
+                                              const string& replacement,
+                                              string* s);
 
 }  // namespace protobuf
 }  // namespace google

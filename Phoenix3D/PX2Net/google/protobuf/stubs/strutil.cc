@@ -1,6 +1,6 @@
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
-// http://code.google.com/p/protobuf/
+// https://developers.google.com/protocol-buffers/
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -91,6 +91,34 @@ void StripString(string* s, const char* remove, char replacewith) {
        str != NULL;
        str = strpbrk(str + 1, remove)) {
     (*s)[str - str_start] = replacewith;
+  }
+}
+
+void StripWhitespace(string* str) {
+  int str_length = str->length();
+
+  // Strip off leading whitespace.
+  int first = 0;
+  while (first < str_length && ascii_isspace(str->at(first))) {
+    ++first;
+  }
+  // If entire string is white space.
+  if (first == str_length) {
+    str->clear();
+    return;
+  }
+  if (first > 0) {
+    str->erase(0, first);
+    str_length -= first;
+  }
+
+  // Strip off trailing whitespace.
+  int last = str_length - 1;
+  while (last >= 0 && ascii_isspace(str->at(last))) {
+    --last;
+  }
+  if (last != (str_length - 1) && last >= 0) {
+    str->erase(last + 1, string::npos);
   }
 }
 
@@ -594,6 +622,120 @@ uint32 strtou32_adaptor(const char *nptr, char **endptr, int base) {
   if (errno == 0)
     errno = saved_errno;
   return static_cast<uint32>(result);
+}
+
+inline bool safe_parse_sign(string* text  /*inout*/,
+                            bool* negative_ptr  /*output*/) {
+  const char* start = text->data();
+  const char* end = start + text->size();
+
+  // Consume whitespace.
+  while (start < end && (start[0] == ' ')) {
+    ++start;
+  }
+  while (start < end && (end[-1] == ' ')) {
+    --end;
+  }
+  if (start >= end) {
+    return false;
+  }
+
+  // Consume sign.
+  *negative_ptr = (start[0] == '-');
+  if (*negative_ptr || start[0] == '+') {
+    ++start;
+    if (start >= end) {
+      return false;
+    }
+  }
+  *text = text->substr(start - text->data(), end - start);
+  return true;
+}
+
+inline bool safe_parse_positive_int(
+    string text, int32* value_p) {
+  int base = 10;
+  int32 value = 0;
+  const int32 vmax = std::numeric_limits<int32>::max();
+  assert(vmax > 0);
+  assert(vmax >= base);
+  const int32 vmax_over_base = vmax / base;
+  const char* start = text.data();
+  const char* end = start + text.size();
+  // loop over digits
+  for (; start < end; ++start) {
+    unsigned char c = static_cast<unsigned char>(start[0]);
+    int digit = c - '0';
+    if (digit >= base || digit < 0) {
+      *value_p = value;
+      return false;
+    }
+    if (value > vmax_over_base) {
+      *value_p = vmax;
+      return false;
+    }
+    value *= base;
+    if (value > vmax - digit) {
+      *value_p = vmax;
+      return false;
+    }
+    value += digit;
+  }
+  *value_p = value;
+  return true;
+}
+
+inline bool safe_parse_negative_int(
+    string text, int32* value_p) {
+  int base = 10;
+  int32 value = 0;
+  const int32 vmin = std::numeric_limits<int32>::min();
+  assert(vmin < 0);
+  assert(vmin <= 0 - base);
+  int32 vmin_over_base = vmin / base;
+  // 2003 c++ standard [expr.mul]
+  // "... the sign of the remainder is implementation-defined."
+  // Although (vmin/base)*base + vmin%base is always vmin.
+  // 2011 c++ standard tightens the spec but we cannot rely on it.
+  if (vmin % base > 0) {
+    vmin_over_base += 1;
+  }
+  const char* start = text.data();
+  const char* end = start + text.size();
+  // loop over digits
+  for (; start < end; ++start) {
+    unsigned char c = static_cast<unsigned char>(start[0]);
+    int digit = c - '0';
+    if (digit >= base || digit < 0) {
+      *value_p = value;
+      return false;
+    }
+    if (value < vmin_over_base) {
+      *value_p = vmin;
+      return false;
+    }
+    value *= base;
+    if (value < vmin + digit) {
+      *value_p = vmin;
+      return false;
+    }
+    value -= digit;
+  }
+  *value_p = value;
+  return true;
+}
+
+bool safe_int(string text, int32* value_p) {
+  *value_p = 0;
+  bool negative;
+  if (!safe_parse_sign(&text, &negative)) {
+    return false;
+  }
+  if (!negative) {
+    return safe_parse_positive_int(text, value_p);
+  } else {
+    return safe_parse_negative_int(text, value_p);
+  }
 }
 
 // ----------------------------------------------------------------------
@@ -1143,68 +1285,255 @@ char* FloatToBuffer(float value, char* buffer) {
   return buffer;
 }
 
+string ToHex(uint64 num) {
+  if (num == 0) {
+    return string("0");
+  }
+
+  // Compute hex bytes in reverse order, writing to the back of the
+  // buffer.
+  char buf[16];  // No more than 16 hex digits needed.
+  char* bufptr = buf + 16;
+  static const char kHexChars[] = "0123456789abcdef";
+  while (num != 0) {
+    *--bufptr = kHexChars[num & 0xf];
+    num >>= 4;
+  }
+
+  return string(bufptr, buf + 16 - bufptr);
+}
+
+namespace strings {
+
+AlphaNum::AlphaNum(strings::Hex hex) {
+  char *const end = &digits[kFastToBufferSize];
+  char *writer = end;
+  uint64 value = hex.value;
+  uint64 width = hex.spec;
+  // We accomplish minimum width by OR'ing in 0x10000 to the user's value,
+  // where 0x10000 is the smallest hex number that is as wide as the user
+  // asked for.
+  uint64 mask = ((static_cast<uint64>(1) << (width - 1) * 4)) | value;
+  static const char hexdigits[] = "0123456789abcdef";
+  do {
+    *--writer = hexdigits[value & 0xF];
+    value >>= 4;
+    mask >>= 4;
+  } while (mask != 0);
+  piece_data_ = writer;
+  piece_size_ = end - writer;
+}
+
+}  // namespace strings
+
 // ----------------------------------------------------------------------
-// NoLocaleStrtod()
-//   This code will make you cry.
+// StrCat()
+//    This merges the given strings or integers, with no delimiter.  This
+//    is designed to be the fastest possible way to construct a string out
+//    of a mix of raw C strings, C++ strings, and integer values.
 // ----------------------------------------------------------------------
 
-// Returns a string identical to *input except that the character pointed to
-// by radix_pos (which should be '.') is replaced with the locale-specific
-// radix character.
-string LocalizeRadix(const char* input, const char* radix_pos) {
-  // Determine the locale-specific radix character by calling sprintf() to
-  // print the number 1.5, then stripping off the digits.  As far as I can
-  // tell, this is the only portable, thread-safe way to get the C library
-  // to divuldge the locale's radix character.  No, localeconv() is NOT
-  // thread-safe.
-  char temp[16];
-  int size = sprintf(temp, "%.1f", 1.5);
-  GOOGLE_CHECK_EQ(temp[0], '1');
-  GOOGLE_CHECK_EQ(temp[size-1], '5');
-  GOOGLE_CHECK_LE(size, 6);
+// Append is merely a version of memcpy that returns the address of the byte
+// after the area just overwritten.  It comes in multiple flavors to minimize
+// call overhead.
+static char *Append1(char *out, const AlphaNum &x) {
+  memcpy(out, x.data(), x.size());
+  return out + x.size();
+}
 
-  // Now replace the '.' in the input with it.
+static char *Append2(char *out, const AlphaNum &x1, const AlphaNum &x2) {
+  memcpy(out, x1.data(), x1.size());
+  out += x1.size();
+
+  memcpy(out, x2.data(), x2.size());
+  return out + x2.size();
+}
+
+static char *Append4(char *out,
+                     const AlphaNum &x1, const AlphaNum &x2,
+                     const AlphaNum &x3, const AlphaNum &x4) {
+  memcpy(out, x1.data(), x1.size());
+  out += x1.size();
+
+  memcpy(out, x2.data(), x2.size());
+  out += x2.size();
+
+  memcpy(out, x3.data(), x3.size());
+  out += x3.size();
+
+  memcpy(out, x4.data(), x4.size());
+  return out + x4.size();
+}
+
+string StrCat(const AlphaNum &a, const AlphaNum &b) {
   string result;
-  result.reserve(strlen(input) + size - 3);
-  result.append(input, radix_pos);
-  result.append(temp + 1, size - 2);
-  result.append(radix_pos + 1);
+  result.resize(a.size() + b.size());
+  char *const begin = &*result.begin();
+  char *out = Append2(begin, a, b);
+  GOOGLE_DCHECK_EQ(out, begin + result.size());
   return result;
 }
 
-double NoLocaleStrtod(const char* text, char** original_endptr) {
-  // We cannot simply set the locale to "C" temporarily with setlocale()
-  // as this is not thread-safe.  Instead, we try to parse in the current
-  // locale first.  If parsing stops at a '.' character, then this is a
-  // pretty good hint that we're actually in some other locale in which
-  // '.' is not the radix character.
-
-  char* temp_endptr;
-  double result = strtod(text, &temp_endptr);
-  if (original_endptr != NULL) *original_endptr = temp_endptr;
-  if (*temp_endptr != '.') return result;
-
-  // Parsing halted on a '.'.  Perhaps we're in a different locale?  Let's
-  // try to replace the '.' with a locale-specific radix character and
-  // try again.
-  string localized = LocalizeRadix(text, temp_endptr);
-  const char* localized_cstr = localized.c_str();
-  char* localized_endptr;
-  result = strtod(localized_cstr, &localized_endptr);
-  if ((localized_endptr - localized_cstr) >
-      (temp_endptr - text)) {
-    // This attempt got further, so replacing the decimal must have helped.
-    // Update original_endptr to point at the right location.
-    if (original_endptr != NULL) {
-      // size_diff is non-zero if the localized radix has multiple bytes.
-      int size_diff = localized.size() - strlen(text);
-      // const_cast is necessary to match the strtod() interface.
-      *original_endptr = const_cast<char*>(
-        text + (localized_endptr - localized_cstr - size_diff));
-    }
-  }
-
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c) {
+  string result;
+  result.resize(a.size() + b.size() + c.size());
+  char *const begin = &*result.begin();
+  char *out = Append2(begin, a, b);
+  out = Append1(out, c);
+  GOOGLE_DCHECK_EQ(out, begin + result.size());
   return result;
+}
+
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d) {
+  string result;
+  result.resize(a.size() + b.size() + c.size() + d.size());
+  char *const begin = &*result.begin();
+  char *out = Append4(begin, a, b, c, d);
+  GOOGLE_DCHECK_EQ(out, begin + result.size());
+  return result;
+}
+
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e) {
+  string result;
+  result.resize(a.size() + b.size() + c.size() + d.size() + e.size());
+  char *const begin = &*result.begin();
+  char *out = Append4(begin, a, b, c, d);
+  out = Append1(out, e);
+  GOOGLE_DCHECK_EQ(out, begin + result.size());
+  return result;
+}
+
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e, const AlphaNum &f) {
+  string result;
+  result.resize(a.size() + b.size() + c.size() + d.size() + e.size() +
+                f.size());
+  char *const begin = &*result.begin();
+  char *out = Append4(begin, a, b, c, d);
+  out = Append2(out, e, f);
+  GOOGLE_DCHECK_EQ(out, begin + result.size());
+  return result;
+}
+
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e, const AlphaNum &f,
+              const AlphaNum &g) {
+  string result;
+  result.resize(a.size() + b.size() + c.size() + d.size() + e.size() +
+                f.size() + g.size());
+  char *const begin = &*result.begin();
+  char *out = Append4(begin, a, b, c, d);
+  out = Append2(out, e, f);
+  out = Append1(out, g);
+  GOOGLE_DCHECK_EQ(out, begin + result.size());
+  return result;
+}
+
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e, const AlphaNum &f,
+              const AlphaNum &g, const AlphaNum &h) {
+  string result;
+  result.resize(a.size() + b.size() + c.size() + d.size() + e.size() +
+                f.size() + g.size() + h.size());
+  char *const begin = &*result.begin();
+  char *out = Append4(begin, a, b, c, d);
+  out = Append4(out, e, f, g, h);
+  GOOGLE_DCHECK_EQ(out, begin + result.size());
+  return result;
+}
+
+string StrCat(const AlphaNum &a, const AlphaNum &b, const AlphaNum &c,
+              const AlphaNum &d, const AlphaNum &e, const AlphaNum &f,
+              const AlphaNum &g, const AlphaNum &h, const AlphaNum &i) {
+  string result;
+  result.resize(a.size() + b.size() + c.size() + d.size() + e.size() +
+                f.size() + g.size() + h.size() + i.size());
+  char *const begin = &*result.begin();
+  char *out = Append4(begin, a, b, c, d);
+  out = Append4(out, e, f, g, h);
+  out = Append1(out, i);
+  GOOGLE_DCHECK_EQ(out, begin + result.size());
+  return result;
+}
+
+// It's possible to call StrAppend with a char * pointer that is partway into
+// the string we're appending to.  However the results of this are random.
+// Therefore, check for this in debug mode.  Use unsigned math so we only have
+// to do one comparison.
+#define GOOGLE_DCHECK_NO_OVERLAP(dest, src) \
+    GOOGLE_DCHECK_GT(uintptr_t((src).data() - (dest).data()), \
+                     uintptr_t((dest).size()))
+
+void StrAppend(string *result, const AlphaNum &a) {
+  GOOGLE_DCHECK_NO_OVERLAP(*result, a);
+  result->append(a.data(), a.size());
+}
+
+void StrAppend(string *result, const AlphaNum &a, const AlphaNum &b) {
+  GOOGLE_DCHECK_NO_OVERLAP(*result, a);
+  GOOGLE_DCHECK_NO_OVERLAP(*result, b);
+  string::size_type old_size = result->size();
+  result->resize(old_size + a.size() + b.size());
+  char *const begin = &*result->begin();
+  char *out = Append2(begin + old_size, a, b);
+  GOOGLE_DCHECK_EQ(out, begin + result->size());
+}
+
+void StrAppend(string *result,
+               const AlphaNum &a, const AlphaNum &b, const AlphaNum &c) {
+  GOOGLE_DCHECK_NO_OVERLAP(*result, a);
+  GOOGLE_DCHECK_NO_OVERLAP(*result, b);
+  GOOGLE_DCHECK_NO_OVERLAP(*result, c);
+  string::size_type old_size = result->size();
+  result->resize(old_size + a.size() + b.size() + c.size());
+  char *const begin = &*result->begin();
+  char *out = Append2(begin + old_size, a, b);
+  out = Append1(out, c);
+  GOOGLE_DCHECK_EQ(out, begin + result->size());
+}
+
+void StrAppend(string *result,
+               const AlphaNum &a, const AlphaNum &b,
+               const AlphaNum &c, const AlphaNum &d) {
+  GOOGLE_DCHECK_NO_OVERLAP(*result, a);
+  GOOGLE_DCHECK_NO_OVERLAP(*result, b);
+  GOOGLE_DCHECK_NO_OVERLAP(*result, c);
+  GOOGLE_DCHECK_NO_OVERLAP(*result, d);
+  string::size_type old_size = result->size();
+  result->resize(old_size + a.size() + b.size() + c.size() + d.size());
+  char *const begin = &*result->begin();
+  char *out = Append4(begin + old_size, a, b, c, d);
+  GOOGLE_DCHECK_EQ(out, begin + result->size());
+}
+
+int GlobalReplaceSubstring(const string& substring,
+                           const string& replacement,
+                           string* s) {
+  GOOGLE_CHECK(s != NULL);
+  if (s->empty() || substring.empty())
+    return 0;
+  string tmp;
+  int num_replacements = 0;
+  int pos = 0;
+  for (int match_pos = s->find(substring.data(), pos, substring.length());
+       match_pos != string::npos;
+       pos = match_pos + substring.length(),
+           match_pos = s->find(substring.data(), pos, substring.length())) {
+    ++num_replacements;
+    // Append the original content before the match.
+    tmp.append(*s, pos, match_pos - pos);
+    // Append the replacement for the match.
+    tmp.append(replacement.begin(), replacement.end());
+  }
+  // Append the content after the last match. If no replacements were made, the
+  // original string is left untouched.
+  if (num_replacements > 0) {
+    tmp.append(*s, pos, s->length() - pos);
+    s->swap(tmp);
+  }
+  return num_replacements;
 }
 
 }  // namespace protobuf

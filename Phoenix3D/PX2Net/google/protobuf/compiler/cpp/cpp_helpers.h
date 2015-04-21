@@ -1,6 +1,6 @@
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
-// http://code.google.com/p/protobuf/
+// https://developers.google.com/protocol-buffers/
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are
@@ -74,6 +74,9 @@ string SuperClassName(const Descriptor* descriptor);
 // anyway, so normally this just returns field->name().
 string FieldName(const FieldDescriptor* field);
 
+// Get the sanitized name that should be used for the given enum in C++ code.
+string EnumValueName(const EnumValueDescriptor* enum_value);
+
 // Get the unqualified name that should be used for a field's field
 // number constant.
 string FieldConstantName(const FieldDescriptor *field);
@@ -103,6 +106,12 @@ const char* PrimitiveTypeName(FieldDescriptor::CppType type);
 // methods of WireFormat.  For example, TYPE_INT32 becomes "Int32".
 const char* DeclaredTypeMethodName(FieldDescriptor::Type type);
 
+// Return the code that evaluates to the number when compiled.
+string Int32ToString(int number);
+
+// Return the code that evaluates to the number when compiled.
+string Int64ToString(int64 number);
+
 // Get code that evaluates to the field's default value.
 string DefaultValue(const FieldDescriptor* field);
 
@@ -115,17 +124,37 @@ string GlobalAddDescriptorsName(const string& filename);
 // Return the name of the AssignDescriptors() function for a given file.
 string GlobalAssignDescriptorsName(const string& filename);
 
+// Return the qualified C++ name for a file level symbol.
+string QualifiedFileLevelSymbol(const string& package, const string& name);
+
 // Return the name of the ShutdownFile() function for a given file.
 string GlobalShutdownFileName(const string& filename);
 
 // Escape C++ trigraphs by escaping question marks to \?
 string EscapeTrigraphs(const string& to_escape);
 
-// Do message classes in this file keep track of unknown fields?
-inline bool HasUnknownFields(const FileDescriptor* file) {
+// Escaped function name to eliminate naming conflict.
+string SafeFunctionName(const Descriptor* descriptor,
+                        const FieldDescriptor* field,
+                        const string& prefix);
+
+// Returns true if unknown fields are preseved after parsing.
+inline bool PreserveUnknownFields(const Descriptor* message) {
+  return message->file()->syntax() != FileDescriptor::SYNTAX_PROTO3;
+}
+
+// If PreserveUnknownFields() is true, determines whether unknown
+// fields will be stored in an UnknownFieldSet or a string.
+// If PreserveUnknownFields() is false, this method will not be
+// used.
+inline bool UseUnknownFieldSet(const FileDescriptor* file) {
   return file->options().optimize_for() != FileOptions::LITE_RUNTIME;
 }
 
+
+// Does the file have any map fields, necessitating the file to include
+// map_field_inl.h and map.h.
+bool HasMapFields(const FileDescriptor* file);
 
 // Does this file have any enum type definitions?
 bool HasEnumDefinitions(const FileDescriptor* file);
@@ -177,6 +206,41 @@ void PrintHandlingOptionalStaticInitializers(
     io::Printer* printer, const char* with_static_init,
     const char* without_static_init);
 
+
+inline bool IsMapEntryMessage(const Descriptor* descriptor) {
+  return descriptor->options().map_entry();
+}
+
+// Returns true if the field's CPPTYPE is string or message.
+bool IsStringOrMessage(const FieldDescriptor* field);
+
+// For a string field, returns the effective ctype.  If the actual ctype is
+// not supported, returns the default of STRING.
+FieldOptions::CType EffectiveStringCType(const FieldDescriptor* field);
+
+string UnderscoresToCamelCase(const string& input, bool cap_next_letter);
+
+inline bool HasFieldPresence(const FileDescriptor* file) {
+  return file->syntax() != FileDescriptor::SYNTAX_PROTO3;
+}
+
+// Returns true if 'enum' semantics are such that unknown values are preserved
+// in the enum field itself, rather than going to the UnknownFieldSet.
+inline bool HasPreservingUnknownEnumSemantics(const FileDescriptor* file) {
+  return file->syntax() == FileDescriptor::SYNTAX_PROTO3;
+}
+
+inline bool SupportsArenas(const FileDescriptor* file) {
+  return file->options().cc_enable_arenas();
+}
+
+inline bool SupportsArenas(const Descriptor* desc) {
+  return SupportsArenas(desc->file());
+}
+
+inline bool SupportsArenas(const FieldDescriptor* field) {
+  return SupportsArenas(field->file());
+}
 
 }  // namespace cpp
 }  // namespace compiler
