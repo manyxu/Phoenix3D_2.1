@@ -3,7 +3,6 @@
 #include "PX2ServerLoopSimu.hpp"
 #include "PX2ServerUserManager.hpp"
 using namespace PX2Server;
-using namespace PX2;
 
 //----------------------------------------------------------------------------
 ServerLoopSimu::ServerLoopSimu()

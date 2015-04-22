@@ -5,6 +5,7 @@
 #include "PX2System.hpp"
 #include "PX2Log.hpp"
 #include "PX2DBObject.hpp"
+#include "PX2ServerInfoManager.hpp"
 using namespace PX2Server;
 using namespace PX2;
 
@@ -21,6 +22,8 @@ ServerLoopDB::~ServerLoopDB()
 bool ServerLoopDB::Initlize()
 {
 	ServerLoop::Initlize();
+
+	PX2_SVRINFOMAN.()
 
 	int numCpus = System::GetNumCPUs();
 	PX2_LOG_INFO("Num CPU = %d", numCpus);

@@ -14,7 +14,7 @@ ServerInfoManager::~ServerInfoManager()
 {
 }
 //----------------------------------------------------------------------------
-bool ServerInfoManager::LoadServerList(const std::string &filename)
+bool ServerInfoManager::LoadServerInfo(const std::string &filename)
 {
 	char *buffer = 0;
 	int bufferSize = 0;
@@ -35,6 +35,7 @@ bool ServerInfoManager::LoadServerList(const std::string &filename)
 				info->Name = child.AttributeToString("name");
 				info->Addr = child.AttributeToString("addr");
 				info->WWWAddr = child.AttributeToString("wwwaddr");
+				info->NumMaxConnect = child.AttributeToInt("nummaxconnect");
 
 				mServerInfos.push_back(info);
 

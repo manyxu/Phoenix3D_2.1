@@ -14,7 +14,8 @@ namespace PX2
 		PX2_SINGLETION(ServerInfoManager);
 
 	public:
-		bool LoadServerList(const std::string &filename);
+		bool LoadServerInfo(const std::string &filename);
+
 		const ServerInfo *GetServerInfoByType(const std::string &type) const;
 		const ServerInfo *GetServerInfoByName(const std::string &name) const;
 

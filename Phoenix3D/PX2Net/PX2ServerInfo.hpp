@@ -20,6 +20,7 @@ namespace PX2
 		std::string Name;
 		std::string Addr;
 		std::string WWWAddr;
+		int NumMaxConnect; // for server
 	};
 
 	typedef Pointer0<ServerInfo> ServerInfoPtr;
