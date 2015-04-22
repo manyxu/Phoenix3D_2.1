@@ -58,6 +58,9 @@
     <Filter Include="HighLevel\Server">
       <UniqueIdentifier>{db289bd6-abbf-44b8-8781-25f691697108}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Info">
+      <UniqueIdentifier>{8a7e6f8d-ec13-47ff-8ba5-538e199a029e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2NetPre.hpp" />
@@ -300,6 +303,12 @@
     <ClInclude Include="google\protobuf\map_field.h">
       <Filter>Proto\Google\protobuf</Filter>
     </ClInclude>
+    <ClInclude Include="PX2ServerInfo.hpp">
+      <Filter>Info</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerInfoManager.hpp">
+      <Filter>Info</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2NetEventBuffer.cpp">
@@ -511,6 +520,12 @@
     </ClCompile>
     <ClCompile Include="google\protobuf\map_field.cc">
       <Filter>Proto\Google\protobuf</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerInfo.cpp">
+      <Filter>Info</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerInfoManager.cpp">
+      <Filter>Info</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

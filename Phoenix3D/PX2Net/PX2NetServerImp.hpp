@@ -36,6 +36,8 @@ namespace PX2
 		virtual bool Start() = 0;
 		virtual void Shutdown() = 0;
 
+		const std::vector<int> &GetThreadIDs() const;
+
 		virtual void DisconnectClient(unsigned int clientID) = 0;
 		virtual void DisconnectAll() = 0;
 		virtual bool PostWrite(unsigned int clientid, char *psrc, int srclen) = 0;
@@ -57,6 +59,8 @@ namespace PX2
 		int mNumMaxWorkers;
 		volatile long mNumListenThread;
 		volatile long mNumIOWorkerThread;
+
+		std::vector<int> mThreadIDs;
 
 		StreamSocket mListenSocket;
 

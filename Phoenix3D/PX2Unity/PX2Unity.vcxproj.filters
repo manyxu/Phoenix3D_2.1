@@ -124,9 +124,6 @@
     <Filter Include="Importer">
       <UniqueIdentifier>{14cb6d03-7bc9-473c-8a08-16d4f2e580c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DataBase">
-      <UniqueIdentifier>{09b663a7-d3a7-4085-ad99-739b86a14bf5}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2ResourceManager.cpp">

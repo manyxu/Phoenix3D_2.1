@@ -1,36 +1,31 @@
-// PX2ServerLoopSimu.cpp
+// PX2ServerDB.cpp
 
-#include "PX2ServerLoopSimu.hpp"
-#include "PX2ServerUserManager.hpp"
+#include "PX2ServerDB.hpp"
 using namespace PX2Server;
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-ServerLoopSimu::ServerLoopSimu()
+ServerDB::ServerDB(Server::ServerType serverType, int port,
+	int numMaxConnects, int numMaxMsgHandlers) :
+	Server(serverType, port, numMaxConnects, numMaxMsgHandlers)
 {
 }
 //----------------------------------------------------------------------------
-ServerLoopSimu::~ServerLoopSimu()
+ServerDB::~ServerDB()
 {
 }
 //----------------------------------------------------------------------------
-bool ServerLoopSimu::Initlize()
+int ServerDB::OnConnect(unsigned int clientid)
 {
-	ServerLoop::Initlize();
+	PX2_UNUSED(clientid);
 
-	UserManager userMan(5000);
-
-	return true;
+	return 0;
 }
 //----------------------------------------------------------------------------
-bool ServerLoopSimu::Ternamate()
+int ServerDB::OnDisconnect(unsigned int clientid)
 {
-	ServerLoop::Ternamate();
+	PX2_UNUSED(clientid);
 
-	return true;
-}
-//----------------------------------------------------------------------------
-void ServerLoopSimu::Run()
-{
+	return 0;
 }
 //----------------------------------------------------------------------------

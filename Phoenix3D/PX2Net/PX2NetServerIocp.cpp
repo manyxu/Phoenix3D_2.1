@@ -140,8 +140,13 @@ bool ServerIocp::_SetupIOWorkers()
 		DWORD threadid;
 		HANDLE h = CreateThread(NULL, 0, _IOWorkerThreadProc, this, 0,
 			&threadid);
-		if (h == NULL) return false;
+		if (h == NULL)
+		{
+			return false;
+		}
 
+		mThreadIDs.push_back(threadid);
+		
 		CloseHandle(h);
 	}
 

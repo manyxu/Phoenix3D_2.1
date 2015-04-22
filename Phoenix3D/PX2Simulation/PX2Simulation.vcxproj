@@ -43,7 +43,6 @@
     <ClInclude Include="PX2RenderStepScene.hpp" />
     <ClInclude Include="PX2Scene.hpp" />
     <ClInclude Include="PX2Selection.hpp" />
-    <ClInclude Include="PX2ServerInfo.hpp" />
     <ClInclude Include="PX2Simulation.hpp" />
     <ClInclude Include="PX2SimulationDataDefine.hpp" />
     <ClInclude Include="PX2SimulationEventType.hpp" />
@@ -94,7 +93,6 @@
     <ClCompile Include="PX2Scene.cpp" />
     <ClCompile Include="PX2Scene_Manager.cpp" />
     <ClCompile Include="PX2Selection.cpp" />
-    <ClCompile Include="PX2ServerInfo.cpp" />
     <ClCompile Include="PX2SimulationEventType.cpp" />
     <ClCompile Include="PX2SkyActor.cpp" />
     <ClCompile Include="PX2SkyMesh.cpp" />

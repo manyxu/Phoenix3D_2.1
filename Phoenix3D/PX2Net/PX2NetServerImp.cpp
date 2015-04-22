@@ -39,6 +39,11 @@ ServerImp::~ServerImp()
 {
 }
 //-----------------------------------------------------------------------------
+const std::vector<int> &ServerImp::GetThreadIDs() const
+{
+	return mThreadIDs;
+}
+//-----------------------------------------------------------------------------
 int ServerImp::GetNumUsedContext()
 {
 	ScopedCS cs(&mContextMapMutex);

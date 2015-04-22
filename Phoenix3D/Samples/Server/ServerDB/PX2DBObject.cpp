@@ -249,7 +249,7 @@ DBPool::DBPool()
 {
 	if (mysql_library_init(0, 0, 0) == 0)
 	{
-		PX2_LOG_ERROR(" mysql_library_init success");
+		PX2_LOG_INFO(" mysql_library_init success");
 	}
 	else
 	{
@@ -264,7 +264,7 @@ DBPool::~DBPool()
 	std::map<int, DBObject*>::iterator iter = mPool.begin();
 	for (; iter != mPool.end(); ++iter)
 	{
-		delete iter->second;
+		delete0(iter->second);
 	}
 
 	mPool.clear();

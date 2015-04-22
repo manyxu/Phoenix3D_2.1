@@ -46,6 +46,11 @@ Server::~Server()
 {
 }
 //-----------------------------------------------------------------------------
+const std::vector<int> &Server::GetThreadIDs() const
+{
+	return mServerImp->GetThreadIDs();
+}
+//-----------------------------------------------------------------------------
 void Server::LogStatus()
 {
 	int events_alloc[20];

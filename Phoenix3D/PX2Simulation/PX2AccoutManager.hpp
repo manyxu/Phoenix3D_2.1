@@ -19,10 +19,6 @@ namespace PX2
 
 		void Update(float appTime, float elapsedTime);
 
-		bool LoadServerList(const std::string &filename);
-		const ServerInfo *GetServerInfoByType(const std::string &type) const;
-		const ServerInfo *GetServerInfoByName(const std::string &name) const;
-
 		// users
 		void AddUser(User *user);
 		void DeleteUser(User *user);
@@ -31,7 +27,6 @@ namespace PX2
 		void DeleteAllUsers();
 
 	protected:
-		std::vector<ServerInfoPtr> mServerInfos;
 		std::vector<UserPtr> mUsers;
 	};
 

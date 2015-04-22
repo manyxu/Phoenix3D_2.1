@@ -18,6 +18,7 @@ namespace PX2
 		int Status;
 		std::string Type;
 		std::string Name;
+		std::string Addr;
 		std::string WWWAddr;
 	};
 

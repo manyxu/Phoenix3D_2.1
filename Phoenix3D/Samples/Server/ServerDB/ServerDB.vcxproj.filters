@@ -4,16 +4,27 @@
     <Filter Include="DBMySQL">
       <UniqueIdentifier>{5f6c64c4-37ef-4f45-b9c7-bbcaee567575}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Server">
+      <UniqueIdentifier>{1725aa72-ac56-45f4-b230-afd57f11fe9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PX2DBObject.cpp">
       <Filter>DBMySQL</Filter>
     </ClCompile>
+    <ClCompile Include="PX2ServerLoopDB.cpp" />
+    <ClCompile Include="PX2ServerDB.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2DBObject.hpp">
       <Filter>DBMySQL</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2ServerLoopDB.hpp" />
+    <ClInclude Include="PX2ServerDB.hpp">
+      <Filter>Server</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

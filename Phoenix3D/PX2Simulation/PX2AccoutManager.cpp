@@ -25,63 +25,6 @@ void AccoutManager::Update(float appTime, float elapsedTime)
 	}
 }
 //----------------------------------------------------------------------------
-bool AccoutManager::LoadServerList(const std::string &filename)
-{
-	char *buffer = 0;
-	int bufferSize = 0;
-
-	if (PX2_RM.LoadBuffer(filename, bufferSize, buffer))
-	{
-		XMLData data;
-		if (data.LoadBuffer(buffer, bufferSize))
-		{
-			XMLNode rootNode = data.GetRootNode();
-			XMLNode child = rootNode.IterateChild();
-
-			while (!child.IsNull())
-			{
-				ServerInfo *info = new0 ServerInfo();
-
-				info->Type = child.GetName();
-				info->Name = child.AttributeToString("name");
-				info->WWWAddr = child.AttributeToString("wwwaddr");
-
-				mServerInfos.push_back(info);
-
-				child = rootNode.IterateChild(child);
-			}
-		}
-
-		return true;
-	}
-
-	return false;
-}
-//----------------------------------------------------------------------------
-const ServerInfo *AccoutManager::GetServerInfoByType(const std::string &type)
-const
-{
-	for (int i = 0; i < (int)mServerInfos.size(); i++)
-	{
-		if (type == mServerInfos[i]->Type)
-			return mServerInfos[i];
-	}
-
-	return 0;
-}
-//----------------------------------------------------------------------------
-const ServerInfo *AccoutManager::GetServerInfoByName(const std::string &name)
-const
-{
-	for (int i = 0; i < (int)mServerInfos.size(); i++)
-	{
-		if (name == mServerInfos[i]->Name)
-			return mServerInfos[i];
-	}
-
-	return 0;
-}
-//----------------------------------------------------------------------------
 void AccoutManager::AddUser(User *user)
 {
 	mUsers.push_back(user);

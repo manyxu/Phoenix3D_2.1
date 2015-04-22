@@ -93,6 +93,8 @@
     <ClInclude Include="PX2NetServer.hpp" />
     <ClInclude Include="PX2NetServerImp.hpp" />
     <ClInclude Include="PX2NetServerIocp.hpp" />
+    <ClInclude Include="PX2ServerInfo.hpp" />
+    <ClInclude Include="PX2ServerInfoManager.hpp" />
     <ClInclude Include="PX2ServerSocketImpl.hpp" />
     <ClInclude Include="PX2Socket.hpp" />
     <ClInclude Include="PX2SocketAddress.hpp" />
@@ -165,6 +167,8 @@
     <ClCompile Include="PX2NetServer.cpp" />
     <ClCompile Include="PX2NetServerImp.cpp" />
     <ClCompile Include="PX2NetServerIocp.cpp" />
+    <ClCompile Include="PX2ServerInfo.cpp" />
+    <ClCompile Include="PX2ServerInfoManager.cpp" />
     <ClCompile Include="PX2ServerSocket.cpp" />
     <ClCompile Include="PX2ServerSocketImpl.cpp" />
     <ClCompile Include="PX2Socket.cpp" />

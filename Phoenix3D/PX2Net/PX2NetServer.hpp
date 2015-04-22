@@ -45,6 +45,8 @@ namespace PX2
 		void Shutdown();
 		void Run();
 
+		const std::vector<int> &GetThreadIDs() const;
+
 		void LogStatus();
 
 		int GetNumConnects();
