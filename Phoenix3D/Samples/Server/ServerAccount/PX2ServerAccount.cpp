@@ -92,7 +92,7 @@ int ServerAccount::HandleDBEvent(BufferEvent *pevent)
 template<class T>
 int ServerAccount::SendMsgToDB(int msgid, T &msg)
 {
-	BufferEvent *pevent = MsgToBufferEvent(msgid, msg, GetDBQueryEventQue());
+	BufferEvent *pevent = MsgToBufferEvent(GetDBQueryEventQue(), msgid, msg);
 	if (0 == pevent) return -1;
 
 	PostDBQueryEvent(pevent);

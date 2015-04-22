@@ -22,11 +22,12 @@ namespace PX2
 	class Semaphore
 	{
 	public:
-		Semaphore (int n);
-		Semaphore (int n, int max);
+		Semaphore(int initNum);
+		Semaphore(int initNum, int max);
 		~Semaphore ();
 
 		void Set();
+		void Set(int num);
 		void Wait();
 		bool Wait(long milliseconds);
 
@@ -41,8 +42,7 @@ namespace PX2
 #if defined(_WIN32) || defined(WIN32)
 		void *mHandle;
 #elif defined(__LINUX__) || defined(__APPLE__) || defined(__ANDROID__)
-		pthread_mutex_t mMutex;
-		pthread_cond_t  mCond;
+		sem_t mSem;
 #endif
 	};
 

@@ -116,7 +116,7 @@ mResourceUpdateCallback(0)
 	GraphicsRoot::SetUserLoadFun(ResManUserObjectLoadFun);
 	GraphicsRoot::SetBufferLoadFun(ResManUserBufferLoadFun);
 
-	CreateCondition(mLoadingDequeCondition);
+	mLoadingDequeSemaphore = new0 Semaphore(0, 99999);
 	mLoadingThread = new0 Thread("ResLoadThread");
 	mLoadingThread->Start(*this);
 
@@ -161,7 +161,7 @@ mResourceUpdateCallback(0)
 //----------------------------------------------------------------------------
 ResourceManager::~ResourceManager ()
 {
-	PostCondition(mLoadingDequeCondition);
+	mLoadingDequeSemaphore->Set();
 
 	if (mLoadingThread)
 	{
@@ -171,7 +171,7 @@ ResourceManager::~ResourceManager ()
 		mLoadingThread = 0;
 	}
 
-	CloseCondition(mLoadingDequeCondition);
+	delete0(mLoadingDequeSemaphore);
 
 	if (mTexPacksMutex)
 	{
@@ -785,7 +785,7 @@ ResHandle ResourceManager::BackgroundLoad (
 			rec.State = LS_LOADQUE;
 			mLoadingDeque.push_front(&rec);
 
-			PostCondition(mLoadingDequeCondition);
+			mLoadingDequeSemaphore->Set();
 		}
 	}
 
@@ -806,7 +806,7 @@ ResHandle ResourceManager::BackgroundDoFun (const std::string &funName,
 			rec.State = LS_LOADQUE;
 			mLoadingDeque.push_front(&rec);
 
-			PostCondition(mLoadingDequeCondition);
+			mLoadingDequeSemaphore->Set();
 		}
 	}
 
@@ -930,7 +930,7 @@ unsigned int ResourceManager::RunLoadingThread ()
 
 	while (!mQuitLoading)
 	{
-		WaitCondition(mLoadingDequeCondition);
+		mLoadingDequeSemaphore->Wait();
 
 		if (mQuitLoading)
 			break;

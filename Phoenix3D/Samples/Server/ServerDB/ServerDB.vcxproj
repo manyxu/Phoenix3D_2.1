@@ -18,49 +18,33 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="PX2ServerDBManager.hpp" />
-    <ClInclude Include="PX2ServerLoop.hpp" />
-    <ClInclude Include="PX2ServerPre.hpp" />
-    <ClInclude Include="PX2ServerUser.hpp" />
-    <ClInclude Include="PX2ServerUserManager.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="PX2ServerDBManager.cpp" />
-    <ClCompile Include="PX2ServerLoop.cpp" />
-    <ClCompile Include="PX2ServerUser.cpp" />
-    <ClCompile Include="PX2ServerUserManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="PX2ServerUser.inl" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6D34BBC8-83C7-413B-B6E9-3251CCE778CE}</ProjectGuid>
+    <ProjectGuid>{D5EEBFF2-07C1-433E-99B0-9FCA1A386232}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>PX2Server</RootNamespace>
+    <RootNamespace>ServerDB</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -83,60 +67,54 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\..\Bin\</OutDir>
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>PX2ServerD</TargetName>
+    <TargetName>ServerDBD</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>_OutPut\$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>PX2ServerD</TargetName>
+    <TargetName>ServerDB64D</TargetName>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\..\Bin\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;..\PX2SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\PX2SDK\Include;..\..\..\PX2Net;..\Proto;..\..\..\ThirdPartiesLibs\MySQL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2NetD.lib;PX2ServerD.lib;winmm.lib;ws2_32.lib;mysqld.lib;libmysql.lib;regex.lib;mysys.lib;strings.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\..\..\ThirdPartiesLibs\MySQL\lib;..\..\..\ThirdPartiesLibs\MySQL\lib\opt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <PostBuildEvent>
-      <Command>mkdir ..\PX2SDK\Include
-xcopy /DY *.hpp ..\PX2SDK\Include
-xcopy /DY *.inl ..\PX2SDK\Include
-xcopy /DY SkillCompl\*.hpp ..\PX2SDK\Include
-xcopy /DY SkillCompl\*.inl ..\PX2SDK\Include
-mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
-xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;..\PX2SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\PX2SDK\Include;..\..\..\PX2Net;..\Proto;..\..\..\ThirdPartiesLibs\MySQL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2NetD.lib;PX2ServerD.lib;winmm.lib;ws2_32.lib;mysqld.lib;libmysql.lib;regex.lib;mysys.lib;strings.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\..\..\ThirdPartiesLibs\MySQL\lib;..\..\..\ThirdPartiesLibs\MySQL\lib\opt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
-    <PostBuildEvent>
-      <Command>mkdir ..\PX2SDK\Include
-xcopy /DY *.hpp ..\PX2SDK\Include
-xcopy /DY *.inl ..\PX2SDK\Include
-xcopy /DY SkillCompl\*.hpp ..\PX2SDK\Include
-xcopy /DY SkillCompl\*.inl ..\PX2SDK\Include
-mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
-xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -146,10 +124,10 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -163,15 +141,22 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PX2DBObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PX2DBObject.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

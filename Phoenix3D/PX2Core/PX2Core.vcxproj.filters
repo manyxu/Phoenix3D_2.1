@@ -75,9 +75,6 @@
       <Filter>Thread</Filter>
     </ClInclude>
     <ClInclude Include="PX2CorePre.hpp" />
-    <ClInclude Include="PX2ConditionType.hpp">
-      <Filter>Thread</Filter>
-    </ClInclude>
     <ClInclude Include="PX2LogOutputWindowHandler.hpp">
       <Filter>Log</Filter>
     </ClInclude>
@@ -122,9 +119,6 @@
     </ClInclude>
     <ClInclude Include="PX2Exception.hpp">
       <Filter>Exception</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2Condition1.hpp">
-      <Filter>Thread</Filter>
     </ClInclude>
     <ClInclude Include="PX2ScopedCSUN.hpp">
       <Filter>Thread</Filter>
@@ -367,9 +361,6 @@
     </ClCompile>
     <ClCompile Include="PX2Exception.cpp">
       <Filter>Exception</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2Condition1.cpp">
-      <Filter>Thread</Filter>
     </ClCompile>
     <ClCompile Include="PX2ScopedCSUN.cpp">
       <Filter>Thread</Filter>

@@ -12,6 +12,7 @@
 #include "PX2FString.hpp"
 #include "PX2CURLDownload.hpp"
 #include "PX2XMLData.hpp"
+#include "PX2Semaphore.hpp"
 
 namespace PX2
 {
@@ -233,7 +234,7 @@ public_internal:
 		Thread *mLoadingThread;
 		std::deque<LoadRecord *> mLoadingDeque;
 		bool mQuitLoading;
-		ConditionType mLoadingDequeCondition;
+		Semaphore *mLoadingDequeSemaphore;
 
 		bool mIsUseGarbageCollect;
 		float mGarbageCollectTime;

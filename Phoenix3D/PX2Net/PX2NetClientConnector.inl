@@ -20,7 +20,7 @@ inline void ClientConnector::SetConnectState(int state)
 template<class T>
 int ClientConnector::SendMsgToServer(int msgid, const T &msg)
 {
-	BufferEvent *pevent = MsgToBufferEvent(msgid, msg, mSendQue);
+	BufferEvent *pevent = MsgToBufferEvent(mSendQue, msgid, msg);
 	if (pevent == 0) return -1;
 	mSendQue->PostBufferEvent(pevent);
 
@@ -30,6 +30,6 @@ int ClientConnector::SendMsgToServer(int msgid, const T &msg)
 template<class T>
 BufferEvent *ClientConnector::CreateSendEvent(int msgid, const T &msg)
 {
-	return MsgToBufferEvent(msgid, msg, mSendQue);
+	return MsgToBufferEvent(mSendQue, msgid, msg);
 }
 //----------------------------------------------------------------------------

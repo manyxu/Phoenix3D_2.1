@@ -23,8 +23,6 @@
     <ClInclude Include="PX2Ascii.hpp" />
     <ClInclude Include="PX2Assert.hpp" />
     <ClInclude Include="PX2BufferIO.hpp" />
-    <ClInclude Include="PX2Condition1.hpp" />
-    <ClInclude Include="PX2ConditionType.hpp" />
     <ClInclude Include="PX2Core.hpp" />
     <ClInclude Include="PX2CorePre.hpp" />
     <ClInclude Include="PX2DateTime.hpp" />
@@ -117,7 +115,6 @@
     <ClCompile Include="PX2Ascii.cpp" />
     <ClCompile Include="PX2Assert.cpp" />
     <ClCompile Include="PX2BufferIO.cpp" />
-    <ClCompile Include="PX2Condition1.cpp" />
     <ClCompile Include="PX2DateTime.cpp" />
     <ClCompile Include="PX2Endian.cpp" />
     <ClCompile Include="PX2Environment.cpp" />

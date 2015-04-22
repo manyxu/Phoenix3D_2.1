@@ -95,8 +95,6 @@
 #include "PX2Stream.hpp"
 
 // Thread
-#include "PX2Condition1.hpp"
-#include "PX2ConditionType.hpp"
 #include "PX2Eventt.hpp"
 #include "PX2Mutex.hpp"
 #include "PX2MutexType.hpp"

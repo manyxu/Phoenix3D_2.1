@@ -7,24 +7,23 @@ using namespace PX2;
 #if defined(_WIN32) || defined(WIN32)
 #include <windows.h>
 //----------------------------------------------------------------------------
-Semaphore::Semaphore (int n)
-	:
-mInitNum(n),
-mMax(n)
+Semaphore::Semaphore(int initNum):
+mInitNum(initNum),
+mMax(initNum)
 {
-	assertion(n>0, "n>0.\n");
+	assertion(initNum>0, "n>0.\n");
 
 	mHandle = CreateSemaphoreW(NULL, mInitNum, mMax, NULL);
 	assertion(0!=mHandle, "mHandle should create failed.\n");
 }
 //----------------------------------------------------------------------------
-Semaphore::Semaphore (int n, int max)
-	:
-mInitNum(n),
+Semaphore::Semaphore(int initNum, int max) :
+mInitNum(initNum),
 mMax(max),
 mHandle(0)
 {
-	assertion(n>=0 && max>0 && n<=max, "n>0 && max>0 && n<=max.\n");
+	assertion(initNum >= 0 && max>0 && initNum <= max,
+		"initNum>0 && max>0 && initNum<=max.\n");
 
 	mHandle = CreateSemaphoreW(NULL, mInitNum, mMax, NULL);
 	assertion(0!=mHandle, "mHandle should create failed.\n");
@@ -38,6 +37,14 @@ Semaphore::~Semaphore ()
 void Semaphore::Set()
 {
 	if (!ReleaseSemaphore(mHandle, 1, NULL))
+	{
+		assertion(false, "wait for semaphore failed");
+	}
+}
+//----------------------------------------------------------------------------
+void Semaphore::Set(int num)
+{
+	if (!ReleaseSemaphore(mHandle, num, NULL))
 	{
 		assertion(false, "wait for semaphore failed");
 	}
@@ -82,68 +89,41 @@ bool Semaphore::Wait(long milliseconds)
 #include <unistd.h>
 #include <errno.h>
 
-Semaphore::Semaphore (int n)
-	:
-mInitNum(n),
-mMax(n)
+Semaphore::Semaphore (int initNum) :
+mInitNum(initNum),
+mMax(initNum)
 {
-
+	sem_init(&mSem, 0, initNum);
 }
 //----------------------------------------------------------------------------
-Semaphore::Semaphore (int n, int max)
-	:
-mInitNum(n),
+Semaphore::Semaphore (int initNum, int max):
+mInitNum(initNum),
 mMax(max)
 {
-	assertion(n >= 0 && max > 0 && n <= max, "n >= 0 && max > 0 && n <= max");
+	assertion(initNum >= 0 && max > 0 && initNum <= max,
+		"initNum >= 0 && max > 0 && initNum <= max");
 
-	if (pthread_mutex_init(&mMutex, NULL))
-		assertion(false, "cannot create semaphore (mutex)");
-	if (pthread_cond_init(&mCond, NULL))
-		assertion(false, "cannot create semaphore (condition)");
+	sem_init(&mSem, 0, initNum);
 }
 //----------------------------------------------------------------------------
 Semaphore::~Semaphore ()
 {
-	pthread_cond_destroy(&mCond);
-	pthread_mutex_destroy(&mMutex);
+	sem_destroy(&mSem);
 }
 //----------------------------------------------------------------------------
 void Semaphore::Set()
 {
-	if (pthread_mutex_lock(&mMutex))	
-		assertion(false, "cannot signal semaphore (lock)");
-	if (mInitNum < mMax)
-	{
-		++mInitNum;
-	}
-	else
-	{
-		pthread_mutex_unlock(&mMutex);
-		assertion(false, "cannot signal semaphore: count would exceed maximum");
-	}	
-	if (pthread_cond_signal(&mCond))
-	{
-		pthread_mutex_unlock(&mMutex);
-		assertion(false, "cannot signal semaphore");
-	}
-	pthread_mutex_unlock(&mMutex);
+	sem_post(&mSem);
+}
+//----------------------------------------------------------------------------
+void Semaphore::Set(int num)
+{
+	sem_post(&mSem, num);
 }
 //----------------------------------------------------------------------------
 void Semaphore::Wait()
 {
-	if (pthread_mutex_lock(&mMutex))
-		assertion(false, "wait for semaphore failed (lock)"); 
-	while (mInitNum < 1) 
-	{
-		if (pthread_cond_wait(&mCond, &mMutex))
-		{
-			pthread_mutex_unlock(&mMutex);
-			assertion(false, "wait for semaphore failed");
-		}
-	}
-	--mInitNum;
-	pthread_mutex_unlock(&mMutex);
+	sem_wait(&mSem);
 }
 //----------------------------------------------------------------------------
 bool Semaphore::Wait(long milliseconds)
@@ -177,21 +157,7 @@ bool Semaphore::Wait(long milliseconds)
 	}
 #endif
 
-	if (pthread_mutex_lock(&mMutex) != 0)
-		assertion(false, "wait for semaphore failed (lock)"); 
-	while (mInitNum < 1) 
-	{
-		if ((rc = pthread_cond_timedwait(&mCond, &mMutex, &abstime)))
-		{
-			if (rc == ETIMEDOUT)
-				break;
-			pthread_mutex_unlock(&mMutex);
-			assertion(false, "cannot wait for semaphore");
-		}
-	}
-	if (rc == 0) --mInitNum;
-	pthread_mutex_unlock(&mMutex);
-	return rc == 0;
+	sem_timedwait(&mSem, &abstime);
 }
 #endif
 //----------------------------------------------------------------------------

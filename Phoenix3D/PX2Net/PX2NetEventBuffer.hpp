@@ -119,7 +119,7 @@ namespace PX2
 	}
 
 	template<class T>
-	BufferEvent *MsgToBufferEvent (int msgid, T &msg, BufferEventQueue *peventque)
+	BufferEvent *MsgToBufferEvent(BufferEventQueue *peventque, int msgid, T &msg)
 	{
 		int nbytes = msg.ByteSize();
 

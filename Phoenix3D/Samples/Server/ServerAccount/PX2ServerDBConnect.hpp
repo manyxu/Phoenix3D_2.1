@@ -13,7 +13,6 @@ namespace PX2
 
 extern bool StartDBConnections(int num_conn);
 extern void StopDBConnections();
-extern PX2::BufferEvent *AllocDBQueryEvent(int nbytes);
 extern void PostDBQueryEvent(PX2::BufferEvent *pevent);
 extern PX2::BufferEvent *PopDBResultEvent();
 extern void FreeDBResultEvent(PX2::BufferEvent *pevent);
