@@ -46,13 +46,13 @@ namespace PX2
 		void FreeBufferEvent(BufferEvent *pevent);
 
 		int GetBufferSize(){ return mBufferSize; }
-		int GetNumEventMalloc(){ return m_NumEventMalloc; }
+		int GetNumEventMalloc(){ return mNumEventMalloc; }
 
 	private:
 		int mBufferSize;
-		int m_NumEventMalloc;
-		int m_MaxEventMalloc;
-		std::vector<BufferEvent *>m_Pool;
+		int mNumEventMalloc;
+		int mMaxEventMalloc;
+		std::vector<BufferEvent *>mPool;
 	};
 
 
@@ -73,7 +73,7 @@ namespace PX2
 		bool PostConnectEvent(unsigned int clientid);
 		bool PostDisconnectEvent(unsigned int clientid);
 
-		int GetNumAllocEvent(){ return m_nAllocEvent; }
+		int GetNumAllocEvent(){ return mnAllocEvent; }
 		int GetNumEventInPool(int *num_per_pool);
 		int GetEventQueLen();
 
@@ -82,9 +82,9 @@ namespace PX2
 		int mMinBufSizeIndex;
 		int mMaxBufSizeIndex;
 
-		int m_CurUsedMemory;
-		int m_MemoryLimit;
-		int m_nAllocEvent;
+		int mCurUsedMemory;
+		int mMemoryLimit;
+		int mnAllocEvent;
 
 		std::deque<BufferEvent *>mEventQue;
 

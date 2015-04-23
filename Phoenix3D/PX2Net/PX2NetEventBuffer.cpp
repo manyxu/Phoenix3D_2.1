@@ -35,50 +35,49 @@ char *BufferEvent::PrepareDataSpace(int datalen)
 	return pret;
 }
 //----------------------------------------------------------------------------
-BufferEventPool::BufferEventPool(int bufsize, int num_reserve, int max_event) 
-	: 
+BufferEventPool::BufferEventPool(int bufsize, int num_reserve, int max_event): 
 mBufferSize(bufsize),
-m_NumEventMalloc(0), 
-m_MaxEventMalloc(max_event)
+mNumEventMalloc(0), 
+mMaxEventMalloc(max_event)
 {
 	for(int i=0; i<num_reserve; i++)
 	{
 		BufferEvent *pevent =
 			(BufferEvent *)malloc(mBufferSize+BufferEvent::HEAD_SIZE);
 		pevent->Init(mBufferSize);
-		m_Pool.push_back(pevent);
+		mPool.push_back(pevent);
 
-		m_NumEventMalloc++;
+		mNumEventMalloc++;
 	}
 }
 //----------------------------------------------------------------------------
 BufferEventPool::~BufferEventPool()
 {
-	for(size_t i=0; i<m_Pool.size(); i++)
+	for(size_t i=0; i<mPool.size(); i++)
 	{
-		free(m_Pool[i]);
+		free(mPool[i]);
 	}
 }
 //----------------------------------------------------------------------------
 BufferEvent *BufferEventPool::AllocBufferEvent()
 {
-	if(m_Pool.empty())
+	if(mPool.empty())
 	{
-		if(m_NumEventMalloc >= m_MaxEventMalloc) return 0;
+		if(mNumEventMalloc >= mMaxEventMalloc) return 0;
 
 		int buflen = mBufferSize+BufferEvent::HEAD_SIZE;
 		BufferEvent *pevent = (BufferEvent *)malloc(buflen);
 		if(pevent == 0) return 0;
 
 		pevent->Init(mBufferSize);
-		m_NumEventMalloc++;
+		mNumEventMalloc++;
 		return pevent;
 	}
 	else
 	{
-		BufferEvent *pevent = m_Pool.back();
+		BufferEvent *pevent = mPool.back();
 		pevent->Reset();
-		m_Pool.pop_back();
+		mPool.pop_back();
 		return pevent;
 	}
 }
@@ -91,7 +90,7 @@ void BufferEventPool::FreeBufferEvent(BufferEvent *pevent)
 			pevent->mBufferSize, mBufferSize);
 		return;
 	}
-	m_Pool.push_back(pevent);
+	mPool.push_back(pevent);
 }
 //----------------------------------------------------------------------------
 inline bool IsPowerOfTwo( int n )
@@ -127,7 +126,7 @@ inline int NextIntLog2( unsigned x )
 //----------------------------------------------------------------------------
 BufferEventQueue::BufferEventQueue(int minbufsize, int maxbufsize, 
 	int *max_events) : 
-m_nAllocEvent(0)
+mnAllocEvent(0)
 {
 	if(!IsPowerOfTwo(minbufsize) || !IsPowerOfTwo(maxbufsize))
 	{
@@ -173,7 +172,7 @@ BufferEvent *BufferEventQueue::AllocBufferEvent(int nbytes)
 	BufferEvent *pevent = mPools[index-mMinBufSizeIndex]->AllocBufferEvent();
 	if (pevent != 0)
 	{
-		m_nAllocEvent++;
+		mnAllocEvent++;
 	}
 	else
 	{
@@ -202,7 +201,7 @@ void BufferEventQueue::FreeBufferEvent(BufferEvent *pevent)
 		return;
 	}
 
-	m_nAllocEvent--;
+	mnAllocEvent--;
 	mPools[index-mMinBufSizeIndex]->FreeBufferEvent(pevent);
 }
 //----------------------------------------------------------------------------
