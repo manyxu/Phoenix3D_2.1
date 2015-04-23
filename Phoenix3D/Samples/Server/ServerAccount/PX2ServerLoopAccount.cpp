@@ -9,7 +9,6 @@
 #include "PX2StringHelp.hpp"
 #include "PX2FString.hpp"
 #include "PX2ServerAuth.hpp"
-#include "PX2ServerDBConnect.hpp"
 #include "PX2SRV_ServerAccount.hpp"
 #include "PX2NetInitTerm.hpp"
 #include "PX2ServerInfoManager.hpp"
@@ -42,7 +41,7 @@ bool ServerLoopAccount::Initlize()
 	mAuthManager = new0 AuthManager(10000);
 
 	mDBConnect = new0 DBConnect();
-	if (mDBConnect->ConnectB(serverInfoDB->IP, serverInfoDB->Port) < 0)
+	if (mDBConnect->ConnectB(serverInfoDB->IP, (int16_t)serverInfoDB->Port) < 0)
 	{
 		PX2_LOG_ERROR("failed to connect to db server.");
 
@@ -64,11 +63,13 @@ bool ServerLoopAccount::Ternamate()
 {
 	PX2_SVRINFOMAN.Clear();
 
+	mDBConnect->Disconnect();
+
 	System::SleepSeconds(0.1f);
 
+	delete0(mDBConnect);
 	delete0(mAuthManager);
 	delete0(mServerAccount);
-	StopDBConnections();
 
 	ServerLoop::Ternamate();
 
@@ -80,7 +81,8 @@ void ServerLoopAccount::Run()
 	while (!mIsShutdownServer)
 	{
 		mServerAccount->HandleClientEvents();
-		mServerAccount->HandleDBEvents();
+
+		mDBConnect->Update(0.0f);
 
 		mAuthManager->Update();
 

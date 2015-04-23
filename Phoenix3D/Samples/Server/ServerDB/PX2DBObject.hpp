@@ -60,8 +60,8 @@ namespace PX2Server
 		DBPool();
 		~DBPool();
 
-		DBObject* GetDB(const std::string &mysql_ip, const std::string &mysql_user, 
-			const std::string &mysql_passwd, const std::string& mysql_db, int mysql_port);
+		DBObject *GetDB();
+		DBObject *GetDBRandom();
 
 		bool ConnectAllDB(const std::vector<int> &threadIDs, const std::string& mysql_ip,
 			const std::string& mysql_user, const std::string& mysql_passwd,
@@ -71,7 +71,15 @@ namespace PX2Server
 
 	private:
 		PX2::Mutex mMutex;
+
+		std::vector<int> mThreads;
 		std::map<int, DBObject*> mPool;
+
+		std::string mMySQL_IP;
+		std::string mMySQL_User;
+		std::string mMySQL_Password;
+		std::string mMySQL_DB;
+		int mMySQL_Port;
 	};
 
 

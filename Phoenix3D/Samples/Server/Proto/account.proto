@@ -4,7 +4,7 @@ package account_proto;//账号处理中心的协议
 
 enum MsgType
 {
-	CS_RESERVED = 0;
+	AP_RESERVED = 0;
 	CA_REG_ACCOUNT = 1;		//客户端去accenter注册自有帐号
 	CA_NEW_ACCOUNT = 2;     //让accenter生成一个自有账号
 	CA_SERVER_LIST = 3;		//得到服务器列表

@@ -18,6 +18,14 @@ namespace PX2Server
 	protected:
 		virtual int OnConnect(unsigned int clientid);
 		virtual int OnDisconnect(unsigned int clientid);
+		int OnRegAccount(unsigned int clientid, const void *pbuffer, int buflen);
+		int OnAuthAccount(unsigned int clientid, const void *pbuffer, int buflen);
+
+	protected:
+		bool OnCreateAccout(const std::string &useName, const std::string &password_md5);
+
+	protected:
+		char mSQLBuf[8192];
 	};
 
 }

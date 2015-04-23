@@ -7,6 +7,9 @@
     <Filter Include="Server">
       <UniqueIdentifier>{1725aa72-ac56-45f4-b230-afd57f11fe9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Proto">
+      <UniqueIdentifier>{637c1879-0367-483b-aed3-8d24e74cbe55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -17,6 +20,9 @@
     <ClCompile Include="PX2ServerDB.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="..\Proto\db.pb.cc">
+      <Filter>Proto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2DBObject.hpp">
@@ -25,6 +31,9 @@
     <ClInclude Include="PX2ServerLoopDB.hpp" />
     <ClInclude Include="PX2ServerDB.hpp">
       <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Proto\db.pb.h">
+      <Filter>Proto</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

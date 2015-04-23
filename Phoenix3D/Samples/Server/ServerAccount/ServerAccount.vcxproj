@@ -152,18 +152,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Proto\account.pb.cc" />
+    <ClCompile Include="..\Proto\db.pb.cc" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PX2SRV_ServerAccount.cpp" />
     <ClCompile Include="PX2ServerAuth.cpp" />
-    <ClCompile Include="PX2ServerDBConnect.cpp" />
     <ClCompile Include="PX2ServerLoopAccount.cpp" />
     <ClCompile Include="PX2SVR_DBConnect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Proto\account.pb.h" />
+    <ClInclude Include="..\Proto\db.pb.h" />
     <ClInclude Include="PX2SRV_ServerAccount.hpp" />
     <ClInclude Include="PX2ServerAuth.hpp" />
-    <ClInclude Include="PX2ServerDBConnect.hpp" />
     <ClInclude Include="PX2ServerLoopAccount.hpp" />
     <ClInclude Include="PX2SVR_DBConnect.hpp" />
   </ItemGroup>

@@ -41,8 +41,8 @@ INSERT INTO `account_tb` VALUES ('10003', 'c', 'ac59075b964b0715', '1387824095',
 -- ----------------------------
 -- Table structure for `serverlist`
 -- ----------------------------
-DROP TABLE IF EXISTS `serverlist`;
-CREATE TABLE `serverlist` (
+DROP TABLE IF EXISTS `serverlist_tb`;
+CREATE TABLE `serverlist_tb` (
   `id` int(11) NOT NULL,
   `name` varchar(64) DEFAULT NULL,
   `addr` varchar(16) DEFAULT NULL,
@@ -56,6 +56,22 @@ CREATE TABLE `serverlist` (
 -- ----------------------------
 -- Records of serverlist
 -- ----------------------------
-INSERT INTO `serverlist` VALUES ('1', '本地调试服', '127.0.0.1', '7889', '1', '100', '1');
-INSERT INTO `serverlist` VALUES ('2', '测试服', '115.28.35.69', '7889', '0', '100', '1');
-INSERT INTO `serverlist` VALUES ('3', '程序服', '115.28.35.69', '7890', '2', '100', '1');
+INSERT INTO `serverlist_tb` VALUES ('1', '本地调试服', '127.0.0.1', '7889', '1', '100', '1');
+INSERT INTO `serverlist_tb` VALUES ('2', '测试服', '115.28.35.69', '7889', '0', '100', '1');
+INSERT INTO `serverlist_tb` VALUES ('3', '程序服', '115.28.35.69', '7890', '2', '100', '1');
+
+-- ----------------------------
+-- Procedure structure for `sp_Create_Account_001`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_Create_Account_001`;
+DELIMITER ;;
+CREATE DEFINER=`phoenix3d`@`localhost` PROCEDURE `sp_Create_Account_001`(IN `uin` int(11),IN `name` varchar(32),IN `passwd` varchar(16))
+BEGIN
+	#Routine body goes here...
+	insert into account_tb ( uin, name, passwd )  VALUES (uin, name, passwd, '1387822159', '1387822163', '', '127.0.0.1:18149', '127.0.0.1:18149');
+	#select @@IDENTITY;
+	select last_insert_id();
+END
+;;
+DELIMITER ;
+

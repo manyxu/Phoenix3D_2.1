@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+package db_proto;//账号处理中心的协议
+
+enum MsgType
+{
+	DP_RESERVED = 0;
+	AD_REG_ACCOUNT = 1;
+	AD_AUTH_ACCOUNT = 2;
+}
+
+//向数据库注册账号
+message ADRegAccountC
+{
+	required string username = 1;
+	required string password_md5 = 2;
+	required int32 clientid = 3;
+}
+
+//向数据库验证账号
+message ADAuthAccountC
+{
+	required string username = 1;
+	required string passworld_md5 = 2;
+	required int32 clientid = 3;
+	required int32 sessionid = 4;
+}

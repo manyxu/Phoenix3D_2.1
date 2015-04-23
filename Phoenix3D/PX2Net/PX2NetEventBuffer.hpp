@@ -91,8 +91,8 @@ namespace PX2
 		Mutex mQueMutex;
 	};
 
-#define MSGID_BYTES 1   //msgid用多少个字节表示
-#define MSGLEN_BYTES 2  //msg的长度用多少字节表示
+	const int MSGID_BYTES = 1;			//msgid用多少个字节表示
+	const int MSGLEN_BYTES = 2;			//msg的长度用多少字节表示
 
 	inline int ReadMessageID (const void *pbuffer)
 	{

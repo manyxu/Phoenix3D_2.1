@@ -3,9 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PX2ServerLoopAccount.cpp" />
-    <ClCompile Include="PX2ServerDBConnect.cpp">
-      <Filter>DBConnect</Filter>
-    </ClCompile>
     <ClCompile Include="..\Proto\account.pb.cc">
       <Filter>Proto</Filter>
     </ClCompile>
@@ -18,14 +15,14 @@
     <ClCompile Include="PX2SRV_ServerAccount.cpp">
       <Filter>Server</Filter>
     </ClCompile>
+    <ClCompile Include="..\Proto\db.pb.cc">
+      <Filter>Proto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2ServerLoopAccount.hpp" />
     <ClInclude Include="PX2ServerAuth.hpp">
       <Filter>Auth</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2ServerDBConnect.hpp">
-      <Filter>DBConnect</Filter>
     </ClInclude>
     <ClInclude Include="..\Proto\account.pb.h">
       <Filter>Proto</Filter>
@@ -35,6 +32,9 @@
     </ClInclude>
     <ClInclude Include="PX2SRV_ServerAccount.hpp">
       <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Proto\db.pb.h">
+      <Filter>Proto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

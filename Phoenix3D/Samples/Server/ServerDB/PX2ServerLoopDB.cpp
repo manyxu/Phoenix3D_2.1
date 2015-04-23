@@ -6,6 +6,7 @@
 #include "PX2Log.hpp"
 #include "PX2DBObject.hpp"
 #include "PX2ServerInfoManager.hpp"
+#include "db.pb.h"
 using namespace PX2Server;
 using namespace PX2;
 
@@ -30,7 +31,8 @@ bool ServerLoopDB::Initlize()
 	int numCpus = System::GetNumCPUs();
 	PX2_LOG_INFO("Num CPU = %d", numCpus);
 
-	mServerDB = new0 ServerDB(Server::ST_IOCP, serverInfo->Port, serverInfo->NumMaxConnect, 10);
+	mServerDB = new0 ServerDB(Server::ST_IOCP, serverInfo->Port, 
+		serverInfo->NumMaxConnect, db_proto::MsgType_ARRAYSIZE);
 	if (!mServerDB->Start())
 	{
 		return false;

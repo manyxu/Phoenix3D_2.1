@@ -15,9 +15,6 @@ namespace PX2Server
 			int numMaxConnects, int numMaxMsgHandlers);
 		virtual ~ServerAccount();
 
-		void HandleDBEvents();
-		int HandleDBEvent(PX2::BufferEvent *pevent);
-
 		template<class T>
 		int SendMsgToDB(int msgid, T &msg);
 

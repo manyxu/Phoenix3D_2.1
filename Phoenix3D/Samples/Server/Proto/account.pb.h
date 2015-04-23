@@ -56,7 +56,7 @@ class GABuyNotifyS;
 class GAReportStatusC;
 
 enum MsgType {
-  CS_RESERVED = 0,
+  AP_RESERVED = 0,
   CA_REG_ACCOUNT = 1,
   CA_NEW_ACCOUNT = 2,
   CA_SERVER_LIST = 3,
@@ -67,7 +67,7 @@ enum MsgType {
   GA_BUY_NOTIFY = 11
 };
 bool MsgType_IsValid(int value);
-const MsgType MsgType_MIN = CS_RESERVED;
+const MsgType MsgType_MIN = AP_RESERVED;
 const MsgType MsgType_MAX = GA_BUY_NOTIFY;
 const int MsgType_ARRAYSIZE = MsgType_MAX + 1;
 

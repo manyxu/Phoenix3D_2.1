@@ -5,6 +5,7 @@
 #include "PX2System.hpp"
 #include "PX2Memory.hpp"
 #include "PX2Log.hpp"
+#include "PX2Math.hpp"
 using namespace PX2Server;
 using namespace PX2;
 
@@ -255,6 +256,8 @@ DBPool::DBPool()
 	{
 		PX2_LOG_ERROR(" mysql_library_init failed");
 	}
+
+	mMySQL_Port = 0;
 }
 //----------------------------------------------------------------------------
 DBPool::~DBPool()
@@ -270,9 +273,7 @@ DBPool::~DBPool()
 	mPool.clear();
 }
 //----------------------------------------------------------------------------
-DBObject* DBPool::GetDB(const std::string &mysql_ip, 
-	const std::string &mysql_user, const std::string &mysql_passwd, 
-	const std::string& mysql_db, int mysql_port)
+DBObject* DBPool::GetDB()
 {
 	int curThreadID = System::GetCurrentThreadID();
 
@@ -282,7 +283,7 @@ DBObject* DBPool::GetDB(const std::string &mysql_ip,
 	if (iter == mPool.end())
 	{
 		DBObject* obj = new0 DBObject();
-		if (!obj->Connect(mysql_ip, mysql_user, mysql_passwd, mysql_db, mysql_port))
+		if (!obj->Connect(mMySQL_IP, mMySQL_User, mMySQL_Password, mMySQL_DB, mMySQL_Port))
 		{
 			delete0(obj);
 			return 0;
@@ -298,7 +299,52 @@ DBObject* DBPool::GetDB(const std::string &mysql_ip,
 	if (0 == iter->second)
 	{
 		DBObject* obj = new0 DBObject();
-		if (!obj->Connect(mysql_ip, mysql_user, mysql_passwd, mysql_db, mysql_port))
+		if (!obj->Connect(mMySQL_IP, mMySQL_User, mMySQL_Password, mMySQL_DB, mMySQL_Port))
+		{
+			delete0(obj);
+			return 0;
+		}
+
+		PX2_LOG_INFO("connect database success in thread id(%d)", curThreadID);
+
+		mPool[curThreadID] = obj;
+
+		return obj;
+	}
+
+	return iter->second;
+}
+//----------------------------------------------------------------------------
+DBObject *DBPool::GetDBRandom()
+{
+	int numThreads = (int)mThreads.size();
+	int randomIndex = Math<int>::IntRandom(0, numThreads);
+
+	int curThreadID = mThreads[randomIndex];
+
+	ScopedCS cs(&mMutex);
+
+	std::map<int, DBObject*>::iterator iter = mPool.find(curThreadID);
+	if (iter == mPool.end())
+	{
+		DBObject* obj = new0 DBObject();
+		if (!obj->Connect(mMySQL_IP, mMySQL_User, mMySQL_Password, mMySQL_DB, mMySQL_Port))
+		{
+			delete0(obj);
+			return 0;
+		}
+
+		PX2_LOG_INFO("connect database success in thread id(%d)", curThreadID);
+
+		mPool[curThreadID] = obj;
+
+		return obj;
+	}
+
+	if (0 == iter->second)
+	{
+		DBObject* obj = new0 DBObject();
+		if (!obj->Connect(mMySQL_IP, mMySQL_User, mMySQL_Password, mMySQL_DB, mMySQL_Port))
 		{
 			delete0(obj);
 			return 0;
@@ -319,6 +365,14 @@ bool DBPool::ConnectAllDB(const std::vector<int> &threadIDs,
 	const std::string& mysql_passwd, const std::string& mysql_db, 
 	int mysql_port)
 {
+	mThreads = threadIDs;
+
+	mMySQL_IP = mysql_ip;
+	mMySQL_User = mysql_user;
+	mMySQL_Password = mysql_passwd;
+	mMySQL_DB = mysql_db;
+	mMySQL_Port = mysql_port;
+
 	ScopedCS cs(&mMutex);
 
 	for (size_t i = 0; i < threadIDs.size(); ++i)
