@@ -66,7 +66,7 @@ void InputThreadProc(void* data)
 	{
 		if (!sIsHasInput)
 		{
-			std::cout << "请输入协议测试指令：\n";
+			std::cout << "Please input your test commond :\n";
 			char buffer[256];
 			std::cin.getline(buffer, 256);
 			std::string cmdbuf(buffer);
@@ -120,7 +120,8 @@ int main()
 		if (sIsHasInput)
 		{
 			std::string cmd;
-			if (sCmdParams.size() > 0) cmd = sCmdParams[0];
+			if (sCmdParams.size() > 0) 
+				cmd = sCmdParams[0];
 
 			if (cmd == std::string("quit"))
 			{
@@ -139,7 +140,7 @@ int main()
 				}
 				else
 				{
-					printf("参数不对：reg name passwd\n");
+					printf("ParamWrong：reg name passwd\n");
 				}
 			}
 			else if (cmd == std::string("newuser"))
@@ -152,7 +153,7 @@ int main()
 				}
 				else
 				{
-					printf("参数不对： newuser device_id\n");
+					printf("ParamWrong： newuser device_id\n");
 				}
 			}
 			else if (cmd == std::string("svlist"))
@@ -166,7 +167,7 @@ int main()
 				}
 				else
 				{
-					printf("参数不对：svlist local_ver platform\n");
+					printf("ParamWrong：svlist local_ver platform\n");
 				}
 			}
 			else if (cmd == std::string("auth"))
@@ -181,7 +182,7 @@ int main()
 				}
 				else
 				{
-					printf("参数不对：auth name passwd platform\n");
+					printf("ParamWrong：auth name passwd platform\n");
 				}
 			}
 			else if (cmd == std::string("auth91"))

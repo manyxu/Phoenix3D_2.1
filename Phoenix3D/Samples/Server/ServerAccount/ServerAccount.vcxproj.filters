@@ -9,14 +9,14 @@
     <ClCompile Include="..\Proto\account.pb.cc">
       <Filter>Proto</Filter>
     </ClCompile>
-    <ClCompile Include="PX2ServerAccount.cpp">
-      <Filter>Server</Filter>
-    </ClCompile>
     <ClCompile Include="PX2ServerAuth.cpp">
       <Filter>Auth</Filter>
     </ClCompile>
     <ClCompile Include="PX2SVR_DBConnect.cpp">
       <Filter>DBConnect</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SRV_ServerAccount.cpp">
+      <Filter>Server</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -30,11 +30,11 @@
     <ClInclude Include="..\Proto\account.pb.h">
       <Filter>Proto</Filter>
     </ClInclude>
-    <ClInclude Include="PX2ServerAccount.hpp">
-      <Filter>Server</Filter>
-    </ClInclude>
     <ClInclude Include="PX2SVR_DBConnect.hpp">
       <Filter>DBConnect</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SRV_ServerAccount.hpp">
+      <Filter>Server</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

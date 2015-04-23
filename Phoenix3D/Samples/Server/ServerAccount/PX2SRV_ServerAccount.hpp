@@ -1,7 +1,7 @@
 // PX2ServerAccount.hpp
 
-#ifndef PX2SERVERACCOUNT_HPP
-#define PX2SERVERACCOUNT_HPP
+#ifndef PX2SRV_SERVERACCOUNT_HPP
+#define PX2SRV_SERVERACCOUNT_HPP
 
 #include "PX2NetServer.hpp"
 

@@ -7,11 +7,11 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 void BufferEvent::PushData(const char *pdata, int datalen)
 {
-	if(mDataLength+datalen > m_BufferSize)
+	if(mDataLength+datalen > mBufferSize)
 	{
 		PX2_LOG_ERROR(
-		"PushData get wrong params, datalen=%d, mDataLength=%d, m_BufferSize=%d",
-			datalen, mDataLength, m_BufferSize);
+		"PushData get wrong params, datalen=%d, mDataLength=%d, mBufferSize=%d",
+			datalen, mDataLength, mBufferSize);
 		return;
 	}
 
@@ -21,11 +21,11 @@ void BufferEvent::PushData(const char *pdata, int datalen)
 //----------------------------------------------------------------------------
 char *BufferEvent::PrepareDataSpace(int datalen)
 {
-	if(mDataLength+datalen > m_BufferSize)
+	if(mDataLength+datalen > mBufferSize)
 	{
 		PX2_LOG_ERROR(
-		"PrepareDataSpace get wrong params, datalen=%d, mDataLength=%d, m_BufferSize=%d", 
-			datalen, mDataLength, m_BufferSize);
+		"PrepareDataSpace get wrong params, datalen=%d, mDataLength=%d, mBufferSize=%d", 
+			datalen, mDataLength, mBufferSize);
 		return 0;
 	}
 
@@ -37,15 +37,15 @@ char *BufferEvent::PrepareDataSpace(int datalen)
 //----------------------------------------------------------------------------
 BufferEventPool::BufferEventPool(int bufsize, int num_reserve, int max_event) 
 	: 
-m_BufferSize(bufsize),
+mBufferSize(bufsize),
 m_NumEventMalloc(0), 
 m_MaxEventMalloc(max_event)
 {
 	for(int i=0; i<num_reserve; i++)
 	{
 		BufferEvent *pevent =
-			(BufferEvent *)malloc(m_BufferSize+BufferEvent::HEAD_SIZE);
-		pevent->Init(m_BufferSize);
+			(BufferEvent *)malloc(mBufferSize+BufferEvent::HEAD_SIZE);
+		pevent->Init(mBufferSize);
 		m_Pool.push_back(pevent);
 
 		m_NumEventMalloc++;
@@ -66,11 +66,11 @@ BufferEvent *BufferEventPool::AllocBufferEvent()
 	{
 		if(m_NumEventMalloc >= m_MaxEventMalloc) return 0;
 
-		int buflen = m_BufferSize+BufferEvent::HEAD_SIZE;
+		int buflen = mBufferSize+BufferEvent::HEAD_SIZE;
 		BufferEvent *pevent = (BufferEvent *)malloc(buflen);
 		if(pevent == 0) return 0;
 
-		pevent->Init(m_BufferSize);
+		pevent->Init(mBufferSize);
 		m_NumEventMalloc++;
 		return pevent;
 	}
@@ -85,10 +85,10 @@ BufferEvent *BufferEventPool::AllocBufferEvent()
 //----------------------------------------------------------------------------
 void BufferEventPool::FreeBufferEvent(BufferEvent *pevent)
 {
-	if(pevent->m_BufferSize != m_BufferSize)
+	if(pevent->mBufferSize != mBufferSize)
 	{
 		PX2_LOG_ERROR("wrong bufferevent, input_size=%d, size=%d", 
-			pevent->m_BufferSize, m_BufferSize);
+			pevent->mBufferSize, mBufferSize);
 		return;
 	}
 	m_Pool.push_back(pevent);
@@ -126,8 +126,7 @@ inline int NextIntLog2( unsigned x )
 }
 //----------------------------------------------------------------------------
 BufferEventQueue::BufferEventQueue(int minbufsize, int maxbufsize, 
-	int *max_events)
-	: 
+	int *max_events) : 
 m_nAllocEvent(0)
 {
 	if(!IsPowerOfTwo(minbufsize) || !IsPowerOfTwo(maxbufsize))
@@ -136,42 +135,42 @@ m_nAllocEvent(0)
 			maxbufsize);
 	}
 
-	m_MinBufSizeIndex = PrevIntLog2(minbufsize);
-	m_MaxBufSizeIndex = PrevIntLog2(maxbufsize);
+	mMinBufSizeIndex = PrevIntLog2(minbufsize);
+	mMaxBufSizeIndex = PrevIntLog2(maxbufsize);
 
 	int nreserve = 0;
-	int npool = m_MaxBufSizeIndex-m_MinBufSizeIndex+1;
-	m_Pools.resize(npool);
+	int npool = mMaxBufSizeIndex-mMinBufSizeIndex+1;
+	mPools.resize(npool);
 	for(int i=0; i<npool; i++)
 	{
-		int bufsize = 1<<(i+m_MinBufSizeIndex);
+		int bufsize = 1<<(i+mMinBufSizeIndex);
 
-		m_Pools[i] = new BufferEventPool(bufsize, nreserve, max_events[i]);
+		mPools[i] = new BufferEventPool(bufsize, nreserve, max_events[i]);
 	}
 }
 //----------------------------------------------------------------------------
 BufferEventQueue::~BufferEventQueue()
 {
 	size_t i;
-	for(i=0; i<m_Pools.size(); i++)
+	for(i=0; i<mPools.size(); i++)
 	{
-		delete m_Pools[i];
+		delete mPools[i];
 	}
 }
 //----------------------------------------------------------------------------
 BufferEvent *BufferEventQueue::AllocBufferEvent(int nbytes)
 {
-	ScopedCS lock(&m_PoolMutex);
+	ScopedCS lock(&mPoolMutex);
 
 	int index = NextIntLog2(nbytes);
-	if(index > m_MaxBufSizeIndex)
+	if(index > mMaxBufSizeIndex)
 	{
 		PX2_LOG_ERROR("alloc too large buffer");
 		return 0;
 	}
 
-	if(index < m_MinBufSizeIndex) index = m_MinBufSizeIndex;
-	BufferEvent *pevent = m_Pools[index-m_MinBufSizeIndex]->AllocBufferEvent();
+	if(index < mMinBufSizeIndex) index = mMinBufSizeIndex;
+	BufferEvent *pevent = mPools[index-mMinBufSizeIndex]->AllocBufferEvent();
 	if (pevent != 0)
 	{
 		m_nAllocEvent++;
@@ -186,7 +185,7 @@ BufferEvent *BufferEventQueue::AllocBufferEvent(int nbytes)
 //----------------------------------------------------------------------------
 void BufferEventQueue::FreeBufferEvent(BufferEvent *pevent)
 {
-	ScopedCS lock(&m_PoolMutex);
+	ScopedCS lock(&mPoolMutex);
 
 	if(pevent == 0)
 	{
@@ -194,50 +193,51 @@ void BufferEventQueue::FreeBufferEvent(BufferEvent *pevent)
 		return;
 	}
 
-	int index = NextIntLog2(pevent->m_BufferSize);
-	if(index<m_MinBufSizeIndex && index>m_MaxBufSizeIndex)
+	int index = NextIntLog2(pevent->mBufferSize);
+	if(index<mMinBufSizeIndex && index>mMaxBufSizeIndex)
 	{
 		PX2_LOG_ERROR(
 			"freebufferevent received wrong buffer, buffersize=%d",
-			pevent->m_BufferSize);
+			pevent->mBufferSize);
 		return;
 	}
 
 	m_nAllocEvent--;
-	m_Pools[index-m_MinBufSizeIndex]->FreeBufferEvent(pevent);
+	mPools[index-mMinBufSizeIndex]->FreeBufferEvent(pevent);
 }
 //----------------------------------------------------------------------------
 void BufferEventQueue::InsertEventFront(BufferEvent *pevent)
 {
-	ScopedCS lock(&m_QueMutex);
+	ScopedCS lock(&mQueMutex);
 
-	if(!m_EventQue.empty() && pevent->GetMessageID()==m_EventQue.front()->GetMessageID()) //多次插入reconnect消息导致问题
+	if(!mEventQue.empty() && pevent->GetMessageID()
+		==mEventQue.front()->GetMessageID()) //多次插入reconnect消息导致问题
 	{
 		return;
 	}
 
-	m_EventQue.push_front(pevent);
+	mEventQue.push_front(pevent);
 }
 //----------------------------------------------------------------------------
 void BufferEventQueue::PostBufferEvent(BufferEvent *pevent)
 {
-	ScopedCS lock(&m_QueMutex);
+	ScopedCS lock(&mQueMutex);
 
-	m_EventQue.push_back(pevent);
+	mEventQue.push_back(pevent);
 }
 //----------------------------------------------------------------------------
 BufferEvent *BufferEventQueue::PopBufferEvent()
 {
-	ScopedCS lock(&m_QueMutex);
+	ScopedCS lock(&mQueMutex);
 
-	if(m_EventQue.empty())
+	if(mEventQue.empty())
 	{
 		return 0;
 	}
 	else
 	{
-		BufferEvent *pevent = m_EventQue.front();
-		m_EventQue.pop_front();
+		BufferEvent *pevent = mEventQue.front();
+		mEventQue.pop_front();
 		return pevent;
 	}
 }
@@ -274,12 +274,12 @@ bool BufferEventQueue::PostDisconnectEvent(unsigned int clientid)
 //----------------------------------------------------------------------------
 int BufferEventQueue::GetNumEventInPool(int *num_per_pool)
 {
-	ScopedCS lock(&m_PoolMutex);
+	ScopedCS lock(&mPoolMutex);
 
 	int count = 0;
-	for(size_t i=0; i<m_Pools.size(); i++)
+	for(size_t i=0; i<mPools.size(); i++)
 	{
-		num_per_pool[count++] = m_Pools[i]->GetNumEventMalloc();
+		num_per_pool[count++] = mPools[i]->GetNumEventMalloc();
 	}
 
 	return count;
@@ -287,8 +287,8 @@ int BufferEventQueue::GetNumEventInPool(int *num_per_pool)
 //----------------------------------------------------------------------------
 int BufferEventQueue::GetEventQueLen()
 {
-	ScopedCS lock(&m_QueMutex);
+	ScopedCS lock(&mQueMutex);
 
-	return int(m_EventQue.size());
+	return int(mEventQue.size());
 }
 //----------------------------------------------------------------------------

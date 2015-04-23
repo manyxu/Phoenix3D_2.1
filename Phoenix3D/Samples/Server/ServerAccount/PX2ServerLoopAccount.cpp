@@ -10,7 +10,7 @@
 #include "PX2FString.hpp"
 #include "PX2ServerAuth.hpp"
 #include "PX2ServerDBConnect.hpp"
-#include "PX2ServerAccount.hpp"
+#include "PX2SRV_ServerAccount.hpp"
 #include "PX2NetInitTerm.hpp"
 #include "PX2ServerInfoManager.hpp"
 #include "account.pb.h"

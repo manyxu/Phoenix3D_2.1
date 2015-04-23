@@ -102,12 +102,14 @@ int ClientConnector::_ClientOnWrite()
 	return 0;
 }
 //----------------------------------------------------------------------------
-ClientConnector::ClientConnector(int num_msghandlers) 
-	: 
+ClientConnector::ClientConnector(int num_msghandlers) : 
 mConnectState(CONNSTATE_INIT),
 mConnStateTime(0)
 {
-	int max_events[] = {1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024 };
+	int max_events[] = {
+		1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024,
+		1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 
+		1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024 };
 	mSendQue = new BufferEventQueue(16, 64*1024, max_events);
 	mRecvQue = new BufferEventQueue(16, 64*1024, max_events);
 
@@ -247,7 +249,8 @@ int ClientConnector::Reconnect(BufferEvent *pevent)
 	return 0;
 }
 //----------------------------------------------------------------------------
-void ClientConnector::RegisterHandler(int msgid, ServerMsgHandleFunc msgfunc, bool need_answer, int other_answer_msg)
+void ClientConnector::RegisterHandler(int msgid, ServerMsgHandleFunc msgfunc,
+	bool need_answer, int other_answer_msg)
 {
 	assert(msgid>=0 && msgid<int(mMsgHandlers.size()));
 
@@ -387,7 +390,7 @@ int ClientConnector::_HandleServerBufferEvent(BufferEvent *pevent)
 	}
 	return 0;
 }
-
+//----------------------------------------------------------------------------
 int ClientConnector::_HandleServerMsg()
 {
 	BufferEvent *pevent;

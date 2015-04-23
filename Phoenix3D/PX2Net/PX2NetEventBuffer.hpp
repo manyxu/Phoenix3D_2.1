@@ -29,7 +29,7 @@ namespace PX2
 
 	public:
 		unsigned int m_ClientID;
-		int m_BufferSize;
+		int mBufferSize;
 		int mDataLength;
 
 		char mBuffer[1];
@@ -45,11 +45,11 @@ namespace PX2
 		BufferEvent *AllocBufferEvent();
 		void FreeBufferEvent(BufferEvent *pevent);
 
-		int GetBufferSize(){ return m_BufferSize; }
+		int GetBufferSize(){ return mBufferSize; }
 		int GetNumEventMalloc(){ return m_NumEventMalloc; }
 
 	private:
-		int m_BufferSize;
+		int mBufferSize;
 		int m_NumEventMalloc;
 		int m_MaxEventMalloc;
 		std::vector<BufferEvent *>m_Pool;
@@ -78,18 +78,18 @@ namespace PX2
 		int GetEventQueLen();
 
 	private:
-		std::vector<BufferEventPool *>m_Pools;	
-		int m_MinBufSizeIndex;
-		int m_MaxBufSizeIndex;
+		std::vector<BufferEventPool *>mPools;	
+		int mMinBufSizeIndex;
+		int mMaxBufSizeIndex;
 
 		int m_CurUsedMemory;
 		int m_MemoryLimit;
 		int m_nAllocEvent;
 
-		std::deque<BufferEvent *>m_EventQue;
+		std::deque<BufferEvent *>mEventQue;
 
-		Mutex m_PoolMutex;
-		Mutex m_QueMutex;
+		Mutex mPoolMutex;
+		Mutex mQueMutex;
 	};
 
 #define MSGID_BYTES 1   //msgid用多少个字节表示

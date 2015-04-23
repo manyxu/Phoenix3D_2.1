@@ -3,7 +3,7 @@
 //----------------------------------------------------------------------------
 inline void BufferEvent::Init(int bufsize)
 {
-	m_BufferSize = bufsize;
+	mBufferSize = bufsize;
 	mDataLength = 0;
 }
 //----------------------------------------------------------------------------
