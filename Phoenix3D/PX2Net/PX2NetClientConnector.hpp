@@ -43,7 +43,7 @@ namespace PX2
 
 		//出现网络错误时， 调用此函数试图重连，并且把之前没确认发到的消息重新再发
 		//传入需要在消息重发前需要发送的复位消息， 如果为NULL， 就不会发复位消息
-		int Reconnect(BufferEvent *pevent=NULL); 
+		int Reconnect(BufferEvent *ent = 0);
 
 		template<class T>
 		int SendMsgToServer(int msgid, const T &msg);
@@ -74,18 +74,12 @@ namespace PX2
 		int mSendLen;
 
 		SocketAddress mAddr;
-
-		//发送消息后， 如果是需要服务器确认的， 不直接释放， 等服务器返回确认消息后再释放
-		//如果中间出现网络错误， 重新连接，重发所有需要确认消息
-		std::vector<BufferEvent *>mWaitConfirmMsg; 
-
 		StreamSocket mSocket;
 
 	private:
 		int _InternalConnectB();
 		int _InternalConnectNB();
 		void _InternalDisconnect();
-		void _ConfirmMsgCome(int msgid); //对每条服务器消息， 判断是否是之前发出消息的返回消息， 如果是， 清理掉等待服务器消息
 		int _HandleServerMsg ();
 		int _HandleServerBufferEvent(BufferEvent *pevent);
 		int _OnReservedMsg (const void *pbuffer, int buflen);

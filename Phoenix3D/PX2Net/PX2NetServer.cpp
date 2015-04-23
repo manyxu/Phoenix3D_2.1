@@ -115,7 +115,7 @@ int Server::HandleClientEvent(BufferEvent *ent)
 	if (!pfunc)
 		return CER_HANDLER_NULL;
 
-	return (this->*pfunc)(ent->m_ClientID,
+	return (this->*pfunc)(ent->mClientID,
 		((const char *)ent->mBuffer) + MSGID_BYTES,
 		ent->mDataLength - MSGID_BYTES);
 }
@@ -131,9 +131,9 @@ void Server::HandleClientEvents()
 		if (CER_SUCCEED != result)
 		{
 			PX2_LOG_ERROR("HandleClientEvent error, clientid=%d, result=%d，msgid=%d",
-				ent->m_ClientID, result, ReadMessageID(ent->mBuffer));
+				ent->mClientID, result, ReadMessageID(ent->mBuffer));
 			
-			mServerImp->DisconnectClient(ent->m_ClientID); //!!!是否应该断掉
+			mServerImp->DisconnectClient(ent->mClientID); //!!!是否应该断掉
 		}
 
 		mBufferEventQue->FreeBufferEvent(ent);

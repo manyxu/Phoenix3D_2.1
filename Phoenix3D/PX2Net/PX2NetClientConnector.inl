@@ -21,7 +21,8 @@ template<class T>
 int ClientConnector::SendMsgToServer(int msgid, const T &msg)
 {
 	BufferEvent *pevent = MsgToBufferEvent(mSendQue, msgid, msg);
-	if (pevent == 0) return -1;
+	if (!pevent) return -1;
+
 	mSendQue->PostBufferEvent(pevent);
 
 	return 0;

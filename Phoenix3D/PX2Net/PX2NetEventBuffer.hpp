@@ -28,10 +28,9 @@ namespace PX2
 		};
 
 	public:
-		unsigned int m_ClientID;
+		unsigned int mClientID;
 		int mBufferSize;
 		int mDataLength;
-
 		char mBuffer[1];
 	};
 
@@ -144,7 +143,7 @@ namespace PX2
 		int nbytes = msg.ByteSize();
 		assert(nbytes < buffersize-MSGLEN_BYTES-MSGID_BYTES);
 
-		WriteMessageLen(buffer, nbytes+MSGID_BYTES);
+		WriteMessageLen(buffer, (MSGID_BYTES+nbytes));
 		WriteMessageID(buffer+MSGLEN_BYTES, msgid);
 
 		if(!msg.SerializeToArray(buffer+MSGLEN_BYTES+MSGID_BYTES, nbytes))

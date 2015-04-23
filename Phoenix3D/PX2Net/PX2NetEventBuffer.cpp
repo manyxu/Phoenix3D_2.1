@@ -246,7 +246,7 @@ bool BufferEventQueue::PostConnectEvent(unsigned int clientid)
 	BufferEvent *pevent = AllocBufferEvent(MSGID_BYTES+1);
 	if(pevent == 0) return false;
 
-	pevent->m_ClientID = clientid;
+	pevent->mClientID = clientid;
 	WriteMessageID(pevent->mBuffer, BufferEvent::MSGID_RESERVED);
 	pevent->mBuffer[MSGID_BYTES] = 0;
 	pevent->mDataLength = MSGID_BYTES+1;
@@ -261,7 +261,7 @@ bool BufferEventQueue::PostDisconnectEvent(unsigned int clientid)
 	BufferEvent *pevent = AllocBufferEvent(MSGID_BYTES+1);
 	if(pevent == 0) return false;
 
-	pevent->m_ClientID = clientid;
+	pevent->mClientID = clientid;
 	WriteMessageID(pevent->mBuffer, BufferEvent::MSGID_RESERVED);
 	pevent->mBuffer[MSGID_BYTES] = 1;
 	pevent->mDataLength = MSGID_BYTES+1;

@@ -648,7 +648,7 @@ bool ServerIocp::_OnRead(ClientContext *pcontext, OverlapBuffer *pbuf,
 				return false;
 			}
 
-			pevent->m_ClientID = pcontext->mClientID;
+			pevent->mClientID = pcontext->mClientID;
 			pcontext->mBufferEvent = pevent;
 
 			num_readbytes = pkglen <= srclen ? pkglen : srclen;
