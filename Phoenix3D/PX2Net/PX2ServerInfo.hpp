@@ -18,8 +18,9 @@ namespace PX2
 		int Status;
 		std::string Type;
 		std::string Name;
-		std::string Addr;
+		std::string IP;
 		std::string WWWAddr;
+		int Port;
 		int NumMaxConnect; // for server
 	};
 

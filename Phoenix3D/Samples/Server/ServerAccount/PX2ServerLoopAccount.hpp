@@ -4,6 +4,7 @@
 #define PX2SERVERLOOPACCOUNT_HPP
 
 #include "PX2ServerLoop.hpp"
+#include "PX2SVR_DBConnect.hpp"
 
 namespace PX2Server
 {
@@ -23,6 +24,7 @@ namespace PX2Server
 		virtual void Run();
 
 	protected:
+		DBConnect *mDBConnect;
 		AuthManager *mAuthManager;
 		ServerAccount *mServerAccount;
 	};

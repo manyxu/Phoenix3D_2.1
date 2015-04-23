@@ -270,6 +270,12 @@
     <ClInclude Include="PX2EventHandlerObject.hpp">
       <Filter>ObjectSystem</Filter>
     </ClInclude>
+    <ClInclude Include="PX2Crypt.hpp">
+      <Filter>Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2MD5.hpp">
+      <Filter>Crypt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2Assert.cpp">
@@ -476,6 +482,12 @@
     <ClCompile Include="PX2EventHandlerObject.cpp">
       <Filter>ObjectSystem</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Crypt.cpp">
+      <Filter>Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2MD5.cpp">
+      <Filter>Crypt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2DoubleChainList.inl">
@@ -623,6 +635,9 @@
     </Filter>
     <Filter Include="XML\RapidXML">
       <UniqueIdentifier>{f4446ab6-5387-42c3-ab21-72c64df9056b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crypt">
+      <UniqueIdentifier>{3f61408b-958c-4b9f-810c-b3e7e8adfe5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

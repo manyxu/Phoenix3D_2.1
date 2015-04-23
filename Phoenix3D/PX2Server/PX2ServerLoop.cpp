@@ -42,6 +42,7 @@ bool ServerLoop::Initlize()
 #endif
 	logger->AddOutputWindowHandler(LT_INFO | LT_ERROR | LT_USER);
 	logger->AddConsoleHandler(LT_INFO | LT_ERROR | LT_USER);
+	logger->SetLogFileInfo(false);
 	logger->StartLogger();
 
 	LocalDateTime time;

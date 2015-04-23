@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="..\Proto\account.pb.cc">
+      <Filter>Proto</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Test_ClientData.cpp">
+      <Filter>ClientData</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2Test_ClientConnect.cpp">
+      <Filter>Connect</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Connect">
+      <UniqueIdentifier>{e7cff9b5-c647-4e2f-8fc2-2931960c31dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Proto">
+      <UniqueIdentifier>{81f7127f-b46a-4b4f-97fa-5c539338cd96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ClientData">
+      <UniqueIdentifier>{f4a153a2-9f92-474a-988d-b0bf7bf36467}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Proto\account.pb.h">
+      <Filter>Proto</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Test_ClientData.hpp">
+      <Filter>ClientData</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Test_ClientConnect.hpp">
+      <Filter>Connect</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

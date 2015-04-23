@@ -30,10 +30,10 @@ namespace PX2
 		};
 
 		virtual SocketImpl* AcceptConnection (SocketAddress &clientAddr);
-		virtual int Connect (const SocketAddress &address);
-		virtual void Connect (const SocketAddress &address, 
+		virtual int ConnectB (const SocketAddress &address);
+		virtual int ConnectB(const SocketAddress &address,
 			const Timespan& timeout);
-		virtual void ConnectNB (const SocketAddress& address);
+		virtual int ConnectNB (const SocketAddress& address);
 
 		virtual void Bind (const SocketAddress& address,
 			bool reuseAddress = false);

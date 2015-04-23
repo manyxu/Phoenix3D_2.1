@@ -3,6 +3,8 @@
 #ifndef PX2CRYPT_HPP
 #define PX2CRYPT_HPP
 
+#include "PX2CorePre.hpp"
+
 namespace PX2
 {
 	
@@ -16,6 +18,8 @@ namespace PX2
 			unsigned long length);
 		static bool Decrypt(unsigned char *source, unsigned char *destination, 
 			unsigned long length);
+
+		static std::string GetPasswdMd5(const std::string &readablePasswd);
 	};
 
 }

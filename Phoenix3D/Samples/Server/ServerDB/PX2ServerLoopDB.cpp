@@ -23,12 +23,14 @@ bool ServerLoopDB::Initlize()
 {
 	ServerLoop::Initlize();
 
-	PX2_SVRINFOMAN.()
+	PX2_SVRINFOMAN.LoadServerInfo("DataServer/config.xml");
+	const ServerInfo *serverInfo = PX2_SVRINFOMAN.GetServerInfoByName("server_db");
+	if (!serverInfo) return false;
 
 	int numCpus = System::GetNumCPUs();
 	PX2_LOG_INFO("Num CPU = %d", numCpus);
 
-	mServerDB = new0 ServerDB(Server::ST_IOCP, 20050, 10, 10);
+	mServerDB = new0 ServerDB(Server::ST_IOCP, serverInfo->Port, serverInfo->NumMaxConnect, 10);
 	if (!mServerDB->Start())
 	{
 		return false;
@@ -37,7 +39,7 @@ bool ServerLoopDB::Initlize()
 	const std::vector<int> &threadIDs = mServerDB->GetThreadIDs();
 
 	mDBPool = new0 DBPool();
-	if (mDBPool->ConnectAllDB(threadIDs, "127.0.0.1", "phoenix3d", "phoenix3d",
+	if (mDBPool->ConnectAllDB(threadIDs, serverInfo->IP, "phoenix3d", "phoenix3d",
 		"phoenix3d", 3306))
 	{
 		PX2_LOG_INFO("Connect DB success.");
@@ -52,6 +54,8 @@ bool ServerLoopDB::Initlize()
 //----------------------------------------------------------------------------
 bool ServerLoopDB::Ternamate()
 {
+	PX2_SVRINFOMAN.Clear();
+
 	System::SleepSeconds(0.1f);
 
 	delete0(mServerDB);

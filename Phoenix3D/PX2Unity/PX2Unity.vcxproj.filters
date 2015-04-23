@@ -55,9 +55,6 @@
     <Filter Include="CURLDownload">
       <UniqueIdentifier>{22277187-3d64-41f8-b28e-a810ad222164}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Crypt">
-      <UniqueIdentifier>{02e8492d-cd4a-458c-89fc-4e82b5d88dc3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ResourceManager\Update">
       <UniqueIdentifier>{4cb5ee0d-2edb-41aa-8e54-2e189a659827}</UniqueIdentifier>
     </Filter>
@@ -108,9 +105,6 @@
     </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{2ac750f3-f54a-43f3-9e0b-e5d1f00de43e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MD5">
-      <UniqueIdentifier>{92c339ec-7471-4c6e-81da-42cf279801b3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Input\Ctrls">
       <UniqueIdentifier>{fbbf7bba-7ff6-48eb-b44b-6b302dd75392}</UniqueIdentifier>
@@ -696,14 +690,8 @@
     <ClCompile Include="PX2CURLDownload.cpp">
       <Filter>CURLDownload</Filter>
     </ClCompile>
-    <ClCompile Include="PX2Crypt.cpp">
-      <Filter>Crypt</Filter>
-    </ClCompile>
     <ClCompile Include="PX2ResourceUpdate.cpp">
       <Filter>ResourceManager\Update</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2MD5.cpp">
-      <Filter>MD5</Filter>
     </ClCompile>
     <ClCompile Include="PX2Font.cpp">
       <Filter>Font</Filter>
@@ -1309,14 +1297,8 @@
     <ClInclude Include="PX2CURLDownload.hpp">
       <Filter>CURLDownload</Filter>
     </ClInclude>
-    <ClInclude Include="PX2Crypt.hpp">
-      <Filter>Crypt</Filter>
-    </ClInclude>
     <ClInclude Include="PX2ResourceUpdate.hpp">
       <Filter>ResourceManager\Update</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2MD5.hpp">
-      <Filter>MD5</Filter>
     </ClInclude>
     <ClInclude Include="PX2ResourceManager.hpp">
       <Filter>ResourceManager</Filter>

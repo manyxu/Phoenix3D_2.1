@@ -56,6 +56,9 @@ namespace PX2
 		void SetBlock (bool isBlock);
 		bool IsBlock ();
 
+		void SetLogFileInfo(bool logFileInfo);
+		bool IsLogFileInfo() const;
+
 		// LogHandler 需要被new0 分配，在CloseLogger会对所有的handler进行释放
 		bool AddHandler (LogHandler *handler);
 		void RemoveHandler (LogHandler *handler);
@@ -81,6 +84,7 @@ namespace PX2
 		std::wstring _GetFileName (const std::wstring &path);
 
 		bool mIsBlock;
+		bool mIsLogFileInfo;
 		
 		bool mDoQuit;
 		char mTimeBuff[64];

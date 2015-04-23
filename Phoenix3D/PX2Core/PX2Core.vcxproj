@@ -25,6 +25,7 @@
     <ClInclude Include="PX2BufferIO.hpp" />
     <ClInclude Include="PX2Core.hpp" />
     <ClInclude Include="PX2CorePre.hpp" />
+    <ClInclude Include="PX2Crypt.hpp" />
     <ClInclude Include="PX2DateTime.hpp" />
     <ClInclude Include="PX2DoubleChainList.hpp" />
     <ClInclude Include="PX2Endian.hpp" />
@@ -60,6 +61,7 @@
     <ClInclude Include="PX2LogConsoleHandler.hpp" />
     <ClInclude Include="PX2LogFileHandler.hpp" />
     <ClInclude Include="PX2LogOutputWindowHandler.hpp" />
+    <ClInclude Include="PX2MD5.hpp" />
     <ClInclude Include="PX2Memory.hpp" />
     <ClInclude Include="PX2MinHeap.hpp" />
     <ClInclude Include="PX2MsgQueue.hpp" />
@@ -115,6 +117,7 @@
     <ClCompile Include="PX2Ascii.cpp" />
     <ClCompile Include="PX2Assert.cpp" />
     <ClCompile Include="PX2BufferIO.cpp" />
+    <ClCompile Include="PX2Crypt.cpp" />
     <ClCompile Include="PX2DateTime.cpp" />
     <ClCompile Include="PX2Endian.cpp" />
     <ClCompile Include="PX2Environment.cpp" />
@@ -140,6 +143,7 @@
     <ClCompile Include="PX2LogConsoleHandler.cpp" />
     <ClCompile Include="PX2LogFileHandler.cpp" />
     <ClCompile Include="PX2LogOutputWindowHandler.cpp" />
+    <ClCompile Include="PX2MD5.cpp" />
     <ClCompile Include="PX2Memory.cpp" />
     <ClCompile Include="PX2Mutex.cpp" />
     <ClCompile Include="PX2Object.cpp" />

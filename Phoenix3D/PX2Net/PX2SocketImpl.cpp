@@ -4,6 +4,7 @@
 #include "PX2SocketImpl.hpp"
 #include "PX2StreamSocketImpl.hpp"
 #include "PX2NetError.hpp"
+#include "PX2System.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -54,15 +55,23 @@ SocketImpl* SocketImpl::AcceptConnection (SocketAddress &clientAddr)
 	return 0;
 }
 //----------------------------------------------------------------------------
-int SocketImpl::Connect (const SocketAddress& address)
+int SocketImpl::ConnectB(const SocketAddress& address)
 {
 	if (mSocket == PX2_INVALID_SOCKET)
 	{
 		Init(address.GetAF());
 	}
 
-	int rc = ::connect(mSocket, address.GetAddr(), address.GetAddrLength());
-	if (0 != rc)
+	int rc;
+	do
+	{
+		System::SleepSeconds(0.1f);
+
+		rc = ::connect(mSocket, address.GetAddr(), address.GetAddrLength());
+
+	} while (rc != 0 && NetError::LastError() == PX2_EINTR);
+
+	if (rc != 0)
 	{
 		int err = NetError::LastError();
 		NetError::Error(err, address.ToString());
@@ -71,7 +80,8 @@ int SocketImpl::Connect (const SocketAddress& address)
 	return rc;
 }
 //----------------------------------------------------------------------------
-void SocketImpl::Connect(const SocketAddress& address, const Timespan& timeout)
+int SocketImpl::ConnectB(const SocketAddress& address,
+	const Timespan& timeout)
 {
 	if (mSocket == PX2_INVALID_SOCKET)
 	{
@@ -104,9 +114,11 @@ void SocketImpl::Connect(const SocketAddress& address, const Timespan& timeout)
 	}
 
 	SetBlocking(true);
+
+	return rc;
 }
 //----------------------------------------------------------------------------
-void SocketImpl::ConnectNB(const SocketAddress& address)
+int SocketImpl::ConnectNB(const SocketAddress& address)
 {
 	if (mSocket == PX2_INVALID_SOCKET)
 	{
@@ -126,6 +138,8 @@ void SocketImpl::ConnectNB(const SocketAddress& address)
 			NetError::Error(err, address.ToString());
 		}
 	}
+
+	return rc;
 }
 //----------------------------------------------------------------------------
 void SocketImpl::Bind(const SocketAddress& address, bool reuseAddress)

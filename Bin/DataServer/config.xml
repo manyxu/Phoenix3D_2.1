@@ -1,5 +1,5 @@
 <servers>
-	<server_db name="server_db" IP="127.0.0.1" addr="" wwwddr="" port="8000" nummaxconnect="10"/>
-	<server_account name="server_account" IP="127.0.0.1" addr="" wwwddr="" port="8001" nummaxconnect="20000"/>
-	<server_simulation name="server_simulation" IP="" addr="" wwwaddr="" port="0" nummaxconnect="20000"/>
+	<server_db name="server_db" ip="127.0.0.1" wwwaddr="" port="8000" nummaxconnect="10"/>
+	<server_account name="server_account" ip="127.0.0.1" wwwaddr="" port="8001" nummaxconnect="20000"/>
+	<server_simulation name="server_simulation" ip="" wwwaddr="" port="0" nummaxconnect="20000"/>
 </servers>

@@ -3,9 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PX2ServerLoopAccount.cpp" />
-    <ClCompile Include="PX2ServerAuth.cpp">
-      <Filter>Auth</Filter>
-    </ClCompile>
     <ClCompile Include="PX2ServerDBConnect.cpp">
       <Filter>DBConnect</Filter>
     </ClCompile>
@@ -14,6 +11,12 @@
     </ClCompile>
     <ClCompile Include="PX2ServerAccount.cpp">
       <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2ServerAuth.cpp">
+      <Filter>Auth</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2SVR_DBConnect.cpp">
+      <Filter>DBConnect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +32,9 @@
     </ClInclude>
     <ClInclude Include="PX2ServerAccount.hpp">
       <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2SVR_DBConnect.hpp">
+      <Filter>DBConnect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
 #include "PX2Net.hpp"
 #include "PX2Core.hpp"
 #include "PX2Mathematics.hpp"
-#include "PX2ServerLoopSimu.hpp"
+#include "PX2SVR_ServerLoopSimu.hpp"
 using namespace PX2;
 using namespace PX2Server;
 

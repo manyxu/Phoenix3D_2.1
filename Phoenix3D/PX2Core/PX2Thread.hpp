@@ -7,6 +7,7 @@
 #include "PX2ThreadType.hpp"
 #include "PX2Runnable.hpp"
 #include "PX2Mutex.hpp"
+#include "PX2SmartPointer.hpp"
 
 namespace PX2
 {
@@ -79,6 +80,7 @@ public_internal:
 	};
 
 #include "PX2Thread.inl"
+	typedef Pointer0<Thread> ThreadPtr;
 
 }
 

@@ -33,9 +33,11 @@ namespace PX2
 		void RegisterHandler(int msgid, ServerMsgHandleFunc msgfunc, bool need_answer=true, int other_answer_msg=-1);
 
 		StreamSocket &GetSocket ();
-		int Connect(const std::string &ip, int16_t port);
-		int Connect(const SocketAddress &addr);
-		int Disconnect();
+		int ConnectB(const std::string &ip, int16_t port);
+		int ConnectB(const SocketAddress &addr);
+		int ConnectNB(const std::string &ip, int16_t port);
+		int ConnectNB(const SocketAddress &addr);
+		void Disconnect();
 		int GetConnectState ();
 		void SetConnectState(int state);
 
@@ -80,7 +82,8 @@ namespace PX2
 		StreamSocket mSocket;
 
 	private:
-		void _InternalConnect();
+		int _InternalConnectB();
+		int _InternalConnectNB();
 		void _InternalDisconnect();
 		void _ConfirmMsgCome(int msgid); //对每条服务器消息， 判断是否是之前发出消息的返回消息， 如果是， 清理掉等待服务器消息
 		int _HandleServerMsg ();
@@ -91,7 +94,6 @@ namespace PX2
 	};
 
 #include "PX2NetClientConnector.inl"
-
 	typedef Pointer0<ClientConnector> ClientConnectPtr;
 
 }

@@ -15,6 +15,7 @@ namespace PX2
 
 	public:
 		bool LoadServerInfo(const std::string &filename);
+		void Clear();
 
 		const ServerInfo *GetServerInfoByType(const std::string &type) const;
 		const ServerInfo *GetServerInfoByName(const std::string &name) const;

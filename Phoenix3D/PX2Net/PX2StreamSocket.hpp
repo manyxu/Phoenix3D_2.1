@@ -22,9 +22,9 @@ namespace PX2
 
 		StreamSocket& operator = (const Socket& socket);
 
-		int Connect(const SocketAddress& address);
-		void Connect(const SocketAddress& address, const Timespan& timeout);
-		void ConnectNB(const SocketAddress& address);
+		int ConnectB(const SocketAddress& address);
+		int ConnectB(const SocketAddress& address, const Timespan& timeout);
+		int ConnectNB(const SocketAddress& address);
 
 		void ShutdownReceive();
 		void ShutdownSend();

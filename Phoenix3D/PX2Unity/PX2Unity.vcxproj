@@ -153,7 +153,6 @@
     <ClCompile Include="PX2InputEventListener.cpp" />
     <ClCompile Include="PX2InputManager.cpp" />
     <ClCompile Include="PX2InputPushTransformController.cpp" />
-    <ClCompile Include="PX2MD5.cpp" />
     <ClCompile Include="FreeType\src\autofit\autofit.c" />
     <ClCompile Include="FreeType\src\base\ftbase.c" />
     <ClCompile Include="FreeType\src\base\ftbbox.c" />
@@ -205,7 +204,6 @@
     <ClCompile Include="Lua\print.c" />
     <ClCompile Include="PX2CharCodingGBK.cpp" />
     <ClCompile Include="PX2CharCodingUTF8.cpp" />
-    <ClCompile Include="PX2Crypt.cpp" />
     <ClCompile Include="PX2CURLDownload.cpp" />
     <ClCompile Include="PX2Font.cpp" />
     <ClCompile Include="PX2FontBitmapImpl.cpp" />
@@ -377,7 +375,6 @@
     <ClInclude Include="PX2InputEventListener.hpp" />
     <ClInclude Include="PX2InputManager.hpp" />
     <ClInclude Include="PX2InputPushTransformController.hpp" />
-    <ClInclude Include="PX2MD5.hpp" />
     <ClInclude Include="FreeType\include\ft2build.h" />
     <ClInclude Include="Lua\lapi.h" />
     <ClInclude Include="Lua\lauxlib.h" />
@@ -405,7 +402,6 @@
     <ClInclude Include="PX2CharCoding.hpp" />
     <ClInclude Include="PX2CharCodingGBK.hpp" />
     <ClInclude Include="PX2CharCodingUTF8.hpp" />
-    <ClInclude Include="PX2Crypt.hpp" />
     <ClInclude Include="PX2CURLDownload.hpp" />
     <ClInclude Include="PX2Font.hpp" />
     <ClInclude Include="PX2FontBitmapImpl.hpp" />

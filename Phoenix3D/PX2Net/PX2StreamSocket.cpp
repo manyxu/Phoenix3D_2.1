@@ -13,7 +13,7 @@ Socket(new0 StreamSocketImpl)
 StreamSocket::StreamSocket(const SocketAddress& address) :
 Socket(new0 StreamSocketImpl(address.GetFamily()))
 {
-	Connect(address);
+	ConnectB(address);
 }
 //----------------------------------------------------------------------------
 StreamSocket::StreamSocket(IPAddress::Family family) : 
@@ -60,20 +60,20 @@ StreamSocket& StreamSocket::operator = (const Socket& socket)
 	return *this;
 }
 //----------------------------------------------------------------------------
-int StreamSocket::Connect(const SocketAddress& address)
+int StreamSocket::ConnectB(const SocketAddress& address)
 {
-	return GetImpl()->Connect(address);
+	return GetImpl()->ConnectB(address);
 }
 //----------------------------------------------------------------------------
-void StreamSocket::Connect(const SocketAddress& address, 
+int StreamSocket::ConnectB(const SocketAddress& address,
 	const Timespan& timeout)
 {
-	GetImpl()->Connect(address, timeout);
+	return GetImpl()->ConnectB(address, timeout);
 }
 //----------------------------------------------------------------------------
-void StreamSocket::ConnectNB(const SocketAddress& address)
+int StreamSocket::ConnectNB(const SocketAddress& address)
 {
-	GetImpl()->ConnectNB(address);
+	return GetImpl()->ConnectNB(address);
 }
 //----------------------------------------------------------------------------
 void StreamSocket::ShutdownReceive()

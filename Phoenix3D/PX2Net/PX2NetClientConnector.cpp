@@ -128,43 +128,82 @@ ClientConnector::~ClientConnector()
 	delete[] mSendBuf;
 }
 //----------------------------------------------------------------------------
-void ClientConnector::_InternalConnect()
+int ClientConnector::_InternalConnectB()
 {
 	mRecvLen = 0;
 	mSendLen = 0;
 
-	if(0 != mSocket.Connect(mAddr))
+	int result = mSocket.ConnectB(mAddr);
+
+	if (0 != result)
 	{
-		int err = NetError::LastError();
-		if(err == PX2_EISCONN)
-		{
-			SetConnectState(CONNSTATE_CONNECTED);
-		}
-		else if(err == PX2_EWOULDBLOCK)
-		{
-			SetConnectState(CONNSTATE_TRYCONNECT);
-		}
+		return -1;
 	}
 	else
 	{
 		SetConnectState(CONNSTATE_CONNECTED);
-	}
 
-	SetConnectState(CONNSTATE_CONNECTED);
+		return 0;
+	}
 }
 //----------------------------------------------------------------------------
-int ClientConnector::Connect(const std::string &ip, int16_t port)
+int ClientConnector::_InternalConnectNB()
+{
+	mRecvLen = 0;
+	mSendLen = 0;
+
+	int result = mSocket.ConnectNB(mAddr);
+
+	if (0 != result)
+	{
+		int err = NetError::LastError();
+		if (err == PX2_EISCONN)
+		{
+			SetConnectState(CONNSTATE_CONNECTED);
+
+			return 0;
+		}
+		else if (err == PX2_EWOULDBLOCK)
+		{
+			SetConnectState(CONNSTATE_TRYCONNECT);
+
+			return 0;
+		}
+
+		return -1;
+	}
+	else
+	{
+		SetConnectState(CONNSTATE_CONNECTED);
+
+		return 0;
+	}
+}
+//----------------------------------------------------------------------------
+int ClientConnector::ConnectB(const std::string &ip, int16_t port)
 {
 	SocketAddress sa(ip, port);
-	return Connect(sa);
+	return ConnectB(sa);
 }
 //----------------------------------------------------------------------------
-int ClientConnector::Connect (const SocketAddress &addr)
+int ClientConnector::ConnectB(const SocketAddress &addr)
+{
+	mAddr = addr;
+
+	return _InternalConnectB();
+}
+//----------------------------------------------------------------------------
+int ClientConnector::ConnectNB(const std::string &ip, int16_t port)
+{
+	SocketAddress sa(ip, port);
+	return ConnectNB(sa);
+}
+//----------------------------------------------------------------------------
+int ClientConnector::ConnectNB(const SocketAddress &addr)
 {
 	mAddr = addr;
 	
-	_InternalConnect();
-	return 0;
+	return _InternalConnectNB();
 }
 //----------------------------------------------------------------------------
 void ClientConnector::_InternalDisconnect()
@@ -176,12 +215,10 @@ void ClientConnector::_InternalDisconnect()
 	mSocket.Close();
 }
 //----------------------------------------------------------------------------
-int ClientConnector::Disconnect()
+void ClientConnector::Disconnect()
 {
 	_InternalDisconnect();
 	SetConnectState(CONNSTATE_INIT);
-
-	return 0;
 }
 //----------------------------------------------------------------------------
 int ClientConnector::Reconnect(BufferEvent *pevent)
@@ -189,7 +226,7 @@ int ClientConnector::Reconnect(BufferEvent *pevent)
 	assert(mConnectState == CONNSTATE_CONN_ERROR);
 
 	_InternalDisconnect();
-	_InternalConnect();
+	_InternalConnectNB();
 
 	if(mConnectState == CONNSTATE_CONN_ERROR)
 	{

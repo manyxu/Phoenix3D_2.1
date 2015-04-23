@@ -27,12 +27,12 @@ ServerAccount::~ServerAccount()
 //----------------------------------------------------------------------------
 void ServerAccount::HandleDBEvents()
 {
-	PX2::BufferEvent *pevent;
-	while ((pevent = PopDBResultEvent()) != 0)
-	{
-		HandleDBEvent(pevent);
-		FreeDBResultEvent(pevent);
-	}
+	//PX2::BufferEvent *pevent;
+	//while ((pevent = PopDBResultEvent()) != 0)
+	//{
+	//	HandleDBEvent(pevent);
+	//	FreeDBResultEvent(pevent);
+	//}
 }
 //----------------------------------------------------------------------------
 int ServerAccount::HandleDBEvent(BufferEvent *pevent)

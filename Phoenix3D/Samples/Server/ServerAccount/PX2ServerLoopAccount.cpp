@@ -12,12 +12,14 @@
 #include "PX2ServerDBConnect.hpp"
 #include "PX2ServerAccount.hpp"
 #include "PX2NetInitTerm.hpp"
+#include "PX2ServerInfoManager.hpp"
 #include "account.pb.h"
 using namespace PX2Server;
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 ServerLoopAccount::ServerLoopAccount() :
+mDBConnect(0),
 mServerAccount(0)
 {
 }
@@ -30,22 +32,29 @@ bool ServerLoopAccount::Initlize()
 {
 	ServerLoop::Initlize();
 
-	int numCpus = System::GetNumCPUs();
-	PX2_LOG_INFO("Num CPU = %d", numCpus);
+	PX2_SVRINFOMAN.LoadServerInfo("DataServer/config.xml");
+
+	const ServerInfo *serverInfoDB = PX2_SVRINFOMAN.GetServerInfoByName("server_db");
+	if (!serverInfoDB) return false;
+	const ServerInfo *serverInfoAC = PX2_SVRINFOMAN.GetServerInfoByName("server_account");
+	if (!serverInfoAC) return false;
 
 	mAuthManager = new0 AuthManager(10000);
 
-	if (!StartDBConnections(1))
+	mDBConnect = new0 DBConnect();
+	if (mDBConnect->ConnectB(serverInfoDB->IP, serverInfoDB->Port) < 0)
 	{
-		PX2_LOG_ERROR("failed to start db connects");
-		return 2;
+		PX2_LOG_ERROR("failed to connect to db server.");
+
+		return false;
 	}
+
 	PX2_LOG_INFO("db connections succeeded");
 
-	mServerAccount = new0 ServerAccount(Server::ST_IOCP, 20055, 20000, account_proto::MsgType_ARRAYSIZE);
+	mServerAccount = new0 ServerAccount(Server::ST_IOCP, serverInfoAC->Port, 20000, account_proto::MsgType_ARRAYSIZE);
 	if (!mServerAccount->Start())
 	{
-		return 3;
+		return false;
 	}
 
 	return true;
@@ -53,6 +62,8 @@ bool ServerLoopAccount::Initlize()
 //----------------------------------------------------------------------------
 bool ServerLoopAccount::Ternamate()
 {
+	PX2_SVRINFOMAN.Clear();
+
 	System::SleepSeconds(0.1f);
 
 	delete0(mAuthManager);

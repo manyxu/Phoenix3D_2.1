@@ -2,7 +2,6 @@
 
 #include "PX2ServerInfoManager.hpp"
 #include "PX2XMLData.hpp"
-#include "PX2ResourceManager.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -16,37 +15,35 @@ ServerInfoManager::~ServerInfoManager()
 //----------------------------------------------------------------------------
 bool ServerInfoManager::LoadServerInfo(const std::string &filename)
 {
-	char *buffer = 0;
-	int bufferSize = 0;
-
-	if (PX2_RM.LoadBuffer(filename, bufferSize, buffer))
+	XMLData data;
+	if (data.LoadFile(filename))
 	{
-		XMLData data;
-		if (data.LoadBuffer(buffer, bufferSize))
+		XMLNode rootNode = data.GetRootNode();
+		XMLNode child = rootNode.IterateChild();
+
+		while (!child.IsNull())
 		{
-			XMLNode rootNode = data.GetRootNode();
-			XMLNode child = rootNode.IterateChild();
+			ServerInfo *info = new0 ServerInfo();
 
-			while (!child.IsNull())
-			{
-				ServerInfo *info = new0 ServerInfo();
+			info->Type = child.GetName();
+			info->Name = child.AttributeToString("name");
+			info->IP = child.AttributeToString("ip");
+			info->WWWAddr = child.AttributeToString("wwwaddr");
+			info->NumMaxConnect = child.AttributeToInt("nummaxconnect");
+			info->Port = child.AttributeToInt("port");
 
-				info->Type = child.GetName();
-				info->Name = child.AttributeToString("name");
-				info->Addr = child.AttributeToString("addr");
-				info->WWWAddr = child.AttributeToString("wwwaddr");
-				info->NumMaxConnect = child.AttributeToInt("nummaxconnect");
+			mServerInfos.push_back(info);
 
-				mServerInfos.push_back(info);
-
-				child = rootNode.IterateChild(child);
-			}
+			child = rootNode.IterateChild(child);
 		}
-
-		return true;
 	}
 
-	return false;
+	return true;
+}
+//----------------------------------------------------------------------------
+void ServerInfoManager::Clear()
+{
+	mServerInfos.clear();
 }
 //----------------------------------------------------------------------------
 const ServerInfo *ServerInfoManager::GetServerInfoByType(

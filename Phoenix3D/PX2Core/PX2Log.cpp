@@ -49,7 +49,8 @@ unsigned int LogHandler::GetLevels ()
 Logger::Logger ()
 	:
 mDoQuit(false),
-mIsBlock(true)
+mIsBlock(true),
+mIsLogFileInfo(true)
 {
 	memset(mTimeBuff, 0, sizeof(mTimeBuff));
 }
@@ -67,6 +68,16 @@ void Logger::SetBlock (bool isBlock)
 bool Logger::IsBlock ()
 {
 	return mIsBlock;
+}
+//----------------------------------------------------------------------------
+void Logger::SetLogFileInfo(bool logFileInfo)
+{
+	mIsLogFileInfo = logFileInfo;
+}
+//----------------------------------------------------------------------------
+bool Logger::IsLogFileInfo() const
+{
+	return mIsLogFileInfo;
 }
 //----------------------------------------------------------------------------
 bool Logger::AddHandler (LogHandler *handler)
@@ -179,8 +190,15 @@ void Logger::LogMessage (int level, long line, const char* fileName,
 	LogBuffer *logBuffer = new LogBuffer();
 	logBuffer->Level = level;
 
-	sprintf((char*)logBuffer->Buffer, "%s%s [%s:%d]\n", errorFlag.c_str(), infoBuf,
-		strFilename.c_str(), (int)line);
+	if (mIsLogFileInfo)
+	{
+		sprintf((char*)logBuffer->Buffer, "%s%s [%s:%d]\n", errorFlag.c_str(), infoBuf,
+			strFilename.c_str(), (int)line);
+	}
+	else
+	{
+		sprintf((char*)logBuffer->Buffer, "%s%s\n", errorFlag.c_str(), infoBuf);
+	}
 
 	if (mIsBlock)
 	{

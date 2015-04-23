@@ -1,18 +1,16 @@
-// PX2ServerInfo.cpp
+// PX2Test_ClientData.cpp
 
-#include "PX2ServerInfo.hpp"
-using namespace PX2;
+#include "PX2Test_ClientData.hpp"
 
 //----------------------------------------------------------------------------
-ServerInfo::ServerInfo() :
-ID(0),
-Status(0),
-Port(0),
-NumMaxConnect(0)
+ClientData::ClientData() :
+Connect_Accout(0),
+Connect_Simu(0),
+UIN(0)
 {
 }
 //----------------------------------------------------------------------------
-ServerInfo::~ServerInfo()
+ClientData::~ClientData()
 {
 }
 //----------------------------------------------------------------------------

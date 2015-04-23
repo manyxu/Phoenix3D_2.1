@@ -1,6 +1,7 @@
 // PX2Crypt.cpp
 
 #include "PX2Crypt.hpp"
+#include "PX2MD5.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -19,7 +20,7 @@ bool Crypt::Encrypt(unsigned char *source, unsigned char *destination,
 
 	for (i=0; i<length; i++)
 	{
-		destination[i] = source[i]^Key >> 8;
+		destination[i] = (unsigned char)(source[i]^Key >> 8);
 		Key = (destination[i] + Key) * C1 + C2;
 	}
 
@@ -39,10 +40,25 @@ bool Crypt::Decrypt(unsigned char *source, unsigned char *destination,
 	for (i=0; i<length; i++)
 	{
 		PreviousBlock = source[i];
-		destination[i] = source[i]^Key >> 8;
+		destination[i] = (unsigned char)(source[i] ^ Key >> 8);
 		Key = (PreviousBlock + Key) * C1 + C2;
 	}
 
 	return true;
+}
+//----------------------------------------------------------------------------
+std::string Crypt::GetPasswdMd5(const std::string &readablePasswd)
+{
+	char buffer[17], out[33];
+	memset(buffer, 0, sizeof(buffer));
+	memset(out, 0, sizeof(out));
+
+	Md5HashBuffer(buffer, readablePasswd.c_str(), (int)readablePasswd.length());
+	Md5HexString(buffer, out);
+
+	memmove(out, out + 8, 16);
+	out[16] = 0;
+
+	return std::string(out);
 }
 //----------------------------------------------------------------------------
