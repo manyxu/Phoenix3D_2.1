@@ -4,8 +4,8 @@
 #include "PX2ServerDB.hpp"
 #include "PX2System.hpp"
 #include "PX2Log.hpp"
-#include "PX2DBObject.hpp"
 #include "PX2ServerInfoManager.hpp"
+#include "PX2DataBaseMySQL.hpp"
 #include "db.pb.h"
 using namespace PX2Server;
 using namespace PX2;
@@ -31,7 +31,7 @@ bool ServerLoopDB::Initlize()
 	int numCpus = System::GetNumCPUs();
 	PX2_LOG_INFO("Num CPU = %d", numCpus);
 
-	mServerDB = new0 ServerDB(Server::ST_IOCP, serverInfo->Port, 
+	mServerDB = new0 ServerDB(Server::ST_IOCP, serverInfo->Port,
 		serverInfo->NumMaxConnect, db_proto::MsgType_ARRAYSIZE);
 	if (!mServerDB->Start())
 	{
@@ -40,8 +40,10 @@ bool ServerLoopDB::Initlize()
 
 	const std::vector<int> &threadIDs = mServerDB->GetThreadIDs();
 
-	mDBPool = new0 DBPool();
-	if (mDBPool->ConnectAllDB(threadIDs, serverInfo->IP, "phoenix3d", "phoenix3d",
+#ifdef PX2SERVER_DB_USE_MYSQL
+
+	mDataBase = new0 DataBaseMySQL();
+	if (mDataBase->Connect(serverInfo->IP, "phoenix3d", "phoenix3d",
 		"phoenix3d", 3306))
 	{
 		PX2_LOG_INFO("Connect DB success.");
@@ -50,6 +52,8 @@ bool ServerLoopDB::Initlize()
 	{
 		PX2_LOG_ERROR("Connect DB failed.");
 	}
+
+#endif
 
 	return true;
 }
@@ -61,7 +65,7 @@ bool ServerLoopDB::Ternamate()
 	System::SleepSeconds(0.1f);
 
 	delete0(mServerDB);
-	delete0(mDBPool);
+	delete0(mDataBase);
 
 	ServerLoop::Ternamate();
 

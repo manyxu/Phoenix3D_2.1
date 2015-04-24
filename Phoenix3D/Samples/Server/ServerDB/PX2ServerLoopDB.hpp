@@ -5,11 +5,15 @@
 
 #include "PX2ServerLoop.hpp"
 
+namespace PX2
+{
+	class DataBase;
+}
+
 namespace PX2Server
 {
 
 	class ServerDB;
-	class DBPool;
 	
 	class ServerLoopDB : public ServerLoop
 	{
@@ -24,7 +28,7 @@ namespace PX2Server
 
 	protected:
 		ServerDB *mServerDB;
-		DBPool *mDBPool;
+		PX2::DataBase *mDataBase;
 	};
 
 }

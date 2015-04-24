@@ -106,7 +106,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;PX2SERVER_DB_USE_MYSQL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\..\PX2SDK\Include;..\..\..\PX2Net;..\Proto;..\..\..\ThirdPartiesLibs\MySQL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -153,15 +153,20 @@
   <ItemGroup>
     <ClCompile Include="..\Proto\db.pb.cc" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PX2DBObject.cpp" />
+    <ClCompile Include="PX2DataBase.cpp" />
+    <ClCompile Include="PX2DataBaseMySQL.cpp" />
     <ClCompile Include="PX2ServerDB.cpp" />
     <ClCompile Include="PX2ServerLoopDB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Proto\db.pb.h" />
-    <ClInclude Include="PX2DBObject.hpp" />
+    <ClInclude Include="PX2DataBase.hpp" />
+    <ClInclude Include="PX2DataBaseMySQL.hpp" />
     <ClInclude Include="PX2ServerDB.hpp" />
     <ClInclude Include="PX2ServerLoopDB.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2DataBase.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

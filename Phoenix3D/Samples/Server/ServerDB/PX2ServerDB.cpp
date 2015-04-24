@@ -2,7 +2,7 @@
 
 #include "PX2ServerDB.hpp"
 #include "PX2Log.hpp"
-#include "PX2DBObject.hpp"
+#include "PX2DataBase.hpp"
 #include "db.pb.h"
 using namespace PX2Server;
 using namespace PX2;
@@ -60,23 +60,22 @@ int ServerDB::OnAuthAccount(unsigned int clientid, const void *pbuffer, int bufl
 //----------------------------------------------------------------------------
 bool ServerDB::OnCreateAccout(const std::string &useName, const std::string &password_md5)
 {
-	sprintf(mSQLBuf, "call sp_Create_Account_001(%s, '%s', '%s')", "NULL", useName.c_str(), password_md5.c_str());
+	DataBase *db = DataBase::GetSingletonPtr();
 
-	DBObject *dbObj = DBPool::GetSingleton().GetDBRandom();
+	DBInsert stmt(db);
+	stmt.SetQuery("INSERT INTO `account_tb` (`uin`, `username`, `password`) VALUES ");
 
-	if (!dbObj->Execute(mSQLBuf))
+	DBQueryStream query;
+	query << 10004 << ", " << useName << ", " << password_md5;
+
+	if (!stmt.AddRow(query.str())) return false;
+
+	bool ret = stmt.Execute();
+	if (!ret)
 	{
-		PX2_LOG_ERROR("%s error.", mSQLBuf);
-		return false;
+		PX2_LOG_ERROR("sql exe error.");
 	}
 
-	int result = 0;
-	if (dbObj->Fetch())
-	{
-		*dbObj >> result;
-	}
-	dbObj->EndFetch();
-
-	return 0;
+	return ret;
 }
 //----------------------------------------------------------------------------

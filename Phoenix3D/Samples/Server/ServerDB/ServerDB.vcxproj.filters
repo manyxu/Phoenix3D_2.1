@@ -13,9 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PX2DBObject.cpp">
-      <Filter>DBMySQL</Filter>
-    </ClCompile>
     <ClCompile Include="PX2ServerLoopDB.cpp" />
     <ClCompile Include="PX2ServerDB.cpp">
       <Filter>Server</Filter>
@@ -23,11 +20,14 @@
     <ClCompile Include="..\Proto\db.pb.cc">
       <Filter>Proto</Filter>
     </ClCompile>
+    <ClCompile Include="PX2DataBaseMySQL.cpp">
+      <Filter>DBMySQL</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DataBase.cpp">
+      <Filter>DBMySQL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PX2DBObject.hpp">
-      <Filter>DBMySQL</Filter>
-    </ClInclude>
     <ClInclude Include="PX2ServerLoopDB.hpp" />
     <ClInclude Include="PX2ServerDB.hpp">
       <Filter>Server</Filter>
@@ -35,5 +35,16 @@
     <ClInclude Include="..\Proto\db.pb.h">
       <Filter>Proto</Filter>
     </ClInclude>
+    <ClInclude Include="PX2DataBaseMySQL.hpp">
+      <Filter>DBMySQL</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DataBase.hpp">
+      <Filter>DBMySQL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PX2DataBase.inl">
+      <Filter>DBMySQL</Filter>
+    </None>
   </ItemGroup>
 </Project>

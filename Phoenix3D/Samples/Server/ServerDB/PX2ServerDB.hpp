@@ -23,9 +23,6 @@ namespace PX2Server
 
 	protected:
 		bool OnCreateAccout(const std::string &useName, const std::string &password_md5);
-
-	protected:
-		char mSQLBuf[8192];
 	};
 
 }
