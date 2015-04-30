@@ -169,6 +169,10 @@ function e_SetEditMode_UI()
 	PX2_EDIT:SetEditType(Edit.ET_UI)
 end
 
+function e_SetEditMode_CenterView()
+	E_MainFrame:OnStageCentre()
+end
+
 -- Scene
 function e_SceneActor_CreateRectangle()
 	local scene = PX2_PROJ:GetScene()

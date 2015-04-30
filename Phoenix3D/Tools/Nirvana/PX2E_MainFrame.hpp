@@ -67,6 +67,7 @@ namespace PX2Editor
 		void OnExport();
 
 		void OnShowWindow(const std::string &tag);
+		void OnStageCentre();
 
 		void OnEditorSimulate();
 		void OnEditorPlay();
@@ -124,9 +125,12 @@ namespace PX2Editor
 		void _CreateMenu();
 		void _CreateViews();
 
-		void _CreateMainView(bool isTopStyle);
+		void _CreateStartView(bool isTopStyle);
+		void _CreateStageView(bool isTopStyle);
+		void _CreateLogicView(bool isTopStyle);
 		void _CreateProjView(bool isTopStyle);
 		void _CreateInspView(bool isTopStyle);
+		void _CreateLogView(bool isTopStyle);
 		void _CreatePreView(bool isTopStyle);
 		void _CreateResView(bool isTopStyle);
 		void _CreateTimeLine(bool isTopStyle);
@@ -185,8 +189,9 @@ namespace PX2Editor
 
 		TopView *mTopView;
 		StartView *mStartView;
-		RenderView *mRenderViewScene;
-		RenderView *mRenderViewLogic;
+		RenderView_Cot *mStageView_Cot;
+		RenderView *mStageView;
+		RenderView *mLogicView;
 		ProjView *mProjView;
 		ResView *mResView;
 		InspView *mInspView;
@@ -198,8 +203,6 @@ namespace PX2Editor
 		RenderView *mTimeLineView;
 		
 		LogView *mLogView;
-
-		PX2wxAuiNotebook *mNoteBookCenter;
 
 		std::map<wxWindow*, wxAuiNotebook*> mBookMap;
 

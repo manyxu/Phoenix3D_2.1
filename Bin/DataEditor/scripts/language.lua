@@ -133,6 +133,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("LogicView", "逻辑")
 	PX2_LM:AddItem1("ConsoleView", "控制台")
 	PX2_LM:AddItem1("PreView", "预览")
+	PX2_LM:AddItem1("LogView", "日志")
 	
 	-- ProjView
 	PX2_LM:AddItem1("pv_Project", "工程(Project)")

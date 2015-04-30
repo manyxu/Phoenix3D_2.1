@@ -20,6 +20,7 @@
 		void OnExport();
 		
 		void OnShowWindow(const std::string &tag);
+		void OnStageCentre();
 		
 		void OnEditorSimulate();
 		void OnEditorPlay();

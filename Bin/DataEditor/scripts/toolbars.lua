@@ -39,6 +39,8 @@ function e_CreateToolBarSceneUI()
 	NirMan:AddToolSeparater()
 	NirMan:AddTool("DataEditor/icons/edittype/simulate.png", "e_SetEditMode_UI()", PX2_LM:GetValue("Simulate"), 1)
 	NirMan:AddTool("DataEditor/icons/edittype/play.png", "e_SetEditMode_UI()", PX2_LM:GetValue("Play"), 1)
+	NirMan:AddToolSeparater()
+	NirMan:AddTool("DataEditor/icons/edittype/play.png", "e_SetEditMode_CenterView()", PX2_LM:GetValue("Play"), 1)
 end
 
 -- project view toolbar

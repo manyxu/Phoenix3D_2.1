@@ -54,8 +54,9 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 	mToolBarMenu(0),
 	mToolMenu(0),
 	mTopView(0),
-	mRenderViewScene(0),
-	mRenderViewLogic(0),
+	mStageView_Cot(0),
+	mStageView(0),
+	mLogicView(0),
 	mProjView(0),
 	mIsCrossCursor(false)
 {
@@ -320,7 +321,7 @@ void E_MainFrame::_UpdateStatusPickingPos(int index)
 //----------------------------------------------------------------------------
 RenderView *E_MainFrame::GetRenderViewScene()
 {
-	return mRenderViewScene;
+	return mStageView;
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::OnTimer(wxTimerEvent& e)
@@ -754,6 +755,18 @@ void E_MainFrame::OnShowWindow(const std::string &tag)
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnStageCentre()
+{
+	wxAuiPaneInfo *info = 0;
+	info = &(mAuiManager->GetPane(mStageView_Cot));
+
+	if (info && info->IsValid())
+	{
+		info->Dock().Centre();
+		mAuiManager->Update();
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::OnEditorSimulate()
 {
 	bool isCanDoEdit = PX2_EDIT.CanDoEdit();
@@ -833,7 +846,7 @@ void  E_MainFrame::OnCreateTerrain()
 	}
 	else
 	{
-		DlgTerrainNew dlg(mRenderViewScene);
+		DlgTerrainNew dlg(mStageView);
 		if (dlg.ShowModal() == wxID_OK)
 		{
 			PX2_CREATER.CreateActor_Terrain(scene, APoint::ORIGIN,
@@ -852,7 +865,7 @@ void E_MainFrame::OnCreateTerrainPange()
 	RawTerrain *rawTerrain = DynamicCast<RawTerrain>(PX2_SELECTION.GetFirstObject());
 	if (rawTerrain)
 	{
-		DlgTerrainPageNew dlg(mRenderViewScene);
+		DlgTerrainPageNew dlg(mStageView);
 		if (dlg.ShowModal() == wxID_OK)
 		{
 			TerrainPage *page = rawTerrain->GetPage(dlg.mRowI, dlg.mColI);
@@ -1139,11 +1152,14 @@ void E_MainFrame::_CreateMainToolBar()
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateViews()
 {
-	_CreateMainView(true);
+	_CreateStageView(true);
+	//_CreateStartView(false);
+	_CreateLogicView(false);
 	_CreateProjView(false);
 	_CreatePreView(false);
 	_CreateResView(false);
 	_CreateInspView(false);
+	_CreateLogView(false);
 	_CreateTimeLine(false);
 }
 //----------------------------------------------------------------------------
@@ -1154,35 +1170,33 @@ void E_MainFrame::_CreateProjView(bool isTopStyle)
 		wxAuiPaneInfo().Left().CaptionVisible(false), isTopStyle);
 }
 //----------------------------------------------------------------------------
-void E_MainFrame::_CreateMainView(bool isTopStyle)
+void E_MainFrame::_CreateStartView(bool isTopStyle)
 {
-	std::vector<WindowObj> objs;
-
 	mStartView = new StartView(this);
-	WindowObj objStart;
-	objStart.TheWindow = mStartView;
-	objStart.Caption = PX2_LMVAL("StartView");
-	objStart.Name = "StartView";
-	objs.push_back(objStart);
 
-	RenderView_Cot *viewCont_SceneUI = new RenderView_Cot(RVT_SCENEUI, this);
-	mRenderViewScene = viewCont_SceneUI->GetRenderView();
-	WindowObj objRenderViewScene;
-	objRenderViewScene.TheWindow = viewCont_SceneUI;
-	objRenderViewScene.Caption = PX2_LMVAL("Stage");
-	objRenderViewScene.Name = "Stage";
-	objs.push_back(objRenderViewScene);
+	_CreateView(mStartView, "StartView", PX2_LM.GetValue("StartView"),
+		wxAuiPaneInfo().Left().CaptionVisible(true), isTopStyle);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateStageView(bool isTopStyle)
+{
+	mStageView_Cot = new RenderView_Cot(RVT_SCENEUI, this);
+	mStageView = mStageView_Cot->GetRenderView();
 
+	mAuiManager->AddPane(mStageView_Cot,
+		wxAuiPaneInfo().Name(wxT("Stage")).Caption(PX2_LM.GetValue("Stage"))
+		.DefaultPane().Centre().Dockable(true)
+		.FloatingSize(800, 600).MinSize(0, 0)
+		.CloseButton(true).MaximizeButton(true).MinimizeButton(true).PinButton(true));
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateLogicView(bool isTopStyle)
+{
 	RenderView_Cot *viewCont_Logic = new RenderView_Cot(RVT_LOGIC, this);
-	mRenderViewLogic = viewCont_Logic->GetRenderView();
-	WindowObj objLogicView;
-	objLogicView.TheWindow = viewCont_Logic;
-	objLogicView.Caption = PX2_LMVAL("LogicView");
-	objLogicView.Name = "Logic";
-	objs.push_back(objLogicView);
+	mLogicView = viewCont_Logic->GetRenderView();
 
-	mNoteBookCenter = _CreateView(objs, "Center", "Center",
-		wxAuiPaneInfo().CenterPane(), isTopStyle);
+	_CreateView(viewCont_Logic, "LogicView", PX2_LM.GetValue("LogicView"),
+		wxAuiPaneInfo().Right().CaptionVisible(true), isTopStyle);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateInspView(bool isTopStyle)
@@ -1195,17 +1209,18 @@ void E_MainFrame::_CreateInspView(bool isTopStyle)
 	objInsp.Caption = PX2_LMVAL("InspView");
 	objInsp.Name = "InspView";
 
-	mLogView = new LogView(this);
-	WindowObj objLog;
-	objLog.TheWindow = mLogView;
-	objLog.Caption = PX2_LMVAL("ConsoleView");
-	objLog.Name = "ConsoleView";
-
 	objs.push_back(objInsp);
-	objs.push_back(objLog);
 
 	_CreateView(objs, "InspView", PX2_LM.GetValue("InspView"),
 		wxAuiPaneInfo().Right(), isTopStyle);
+}
+//----------------------------------------------------------------------------
+void E_MainFrame::_CreateLogView(bool isTopStyle)
+{
+	mLogView = new LogView(this);
+
+	_CreateView(mLogView, "ConsoleView", PX2_LM.GetValue("ConsoleView"),
+		wxAuiPaneInfo().DefaultPane().Right(), isTopStyle);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreatePreView(bool isTopStyle)
@@ -1307,7 +1322,7 @@ PX2wxAuiNotebook *E_MainFrame::_CreateView(std::vector<WindowObj> &objs,
 
 	paneInfo.CloseButton(true).MaximizeButton(true).MinimizeButton(true)
 		.PinButton(true).MinSize(200., 100).Name(panelName).
-		Caption(panelCaption).CaptionVisible(!isTopStyle).Floatable(true);
+		Caption(panelCaption).CaptionVisible(!isTopStyle).Floatable(!isTopStyle);
 	mAuiManager->AddPane(noteBook, paneInfo);
 
 	noteBook->Refresh();
