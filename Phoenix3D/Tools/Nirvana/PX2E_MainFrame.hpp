@@ -202,7 +202,7 @@ namespace PX2Editor
 		RenderView_Cot *mTimeLineRenderView_Cot;
 		RenderView *mTimeLineView;
 		
-		LogView *mLogView;
+		LogView *mConsoleView;
 
 		std::map<wxWindow*, wxAuiNotebook*> mBookMap;
 

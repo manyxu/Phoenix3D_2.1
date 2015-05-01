@@ -1,2 +1,0 @@
-// X_Chara.inl
-

@@ -67,7 +67,7 @@ E_MainFrame::E_MainFrame(const std::string &title, int xPos, int yPos,
 //----------------------------------------------------------------------------
 E_MainFrame::~E_MainFrame()
 {
-	Logger::GetSingleton().RemoveHandler(mLogView->GetLogTextCtrl());
+	Logger::GetSingleton().RemoveHandler(mConsoleView->GetLogTextCtrl());
 
 	if (mAuiManager)
 	{
@@ -719,7 +719,7 @@ void E_MainFrame::OnShowWindow(const std::string &tag)
 	}
 	else if ("Stage" == tag)
 	{
-		//info = &(mAuiManager->GetPane(mProjView));
+		info = &(mAuiManager->GetPane(mStageView_Cot));
 	}
 	else if ("TimeLine" == tag)
 	{
@@ -731,11 +731,11 @@ void E_MainFrame::OnShowWindow(const std::string &tag)
 	}
 	else if ("InspView" == tag)
 	{
-		//info = &(mAuiManager->GetPane(mBookMap[mInspView]));
+		info = &(mAuiManager->GetPane(mBookMap[mInspView]));
 	}
 	else if ("ConsoleView" == tag)
 	{
-		//info = &(mAuiManager->GetPane(mBookMap[mLogView]));
+		info = &(mAuiManager->GetPane(mBookMap[mConsoleView]));
 	}
 	else if ("PreView" == tag)
 	{
@@ -1201,25 +1201,17 @@ void E_MainFrame::_CreateLogicView(bool isTopStyle)
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateInspView(bool isTopStyle)
 {
-	std::vector<WindowObj> objs;
-
 	mInspView = new InspView(this);
-	WindowObj objInsp;
-	objInsp.TheWindow = mInspView;
-	objInsp.Caption = PX2_LMVAL("InspView");
-	objInsp.Name = "InspView";
 
-	objs.push_back(objInsp);
-
-	_CreateView(objs, "InspView", PX2_LM.GetValue("InspView"),
+	_CreateView(mInspView, "InspView", PX2_LM.GetValue("InspView"),
 		wxAuiPaneInfo().Right(), isTopStyle);
 }
 //----------------------------------------------------------------------------
 void E_MainFrame::_CreateLogView(bool isTopStyle)
 {
-	mLogView = new LogView(this);
+	mConsoleView = new LogView(this);
 
-	_CreateView(mLogView, "ConsoleView", PX2_LM.GetValue("ConsoleView"),
+	_CreateView(mConsoleView, "ConsoleView", PX2_LM.GetValue("ConsoleView"),
 		wxAuiPaneInfo().DefaultPane().Right(), isTopStyle);
 }
 //----------------------------------------------------------------------------
