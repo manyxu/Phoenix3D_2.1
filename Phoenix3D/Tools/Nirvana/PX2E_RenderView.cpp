@@ -226,7 +226,7 @@ void RenderView::OnRightUp(wxMouseEvent& e)
 	{
 		Edit::EditType editType = PX2_EDIT.GetEditType();
 
-		if (Edit::ET_SCENE == editType)
+		if (Edit::ET_SCENE == editType || Edit::ET_UI == editType)
 		{
 			if (!mIsRightDownOnMotion)
 			{
@@ -415,6 +415,8 @@ void RenderView::_NewEditRenderView(const std::string &name)
 	if (sz.Width < 100.0f) sz.Width = 100;
 	if (sz.Height < 100.0f) sz.Height = 100;
 
+	Edit::EditType editType = PX2_EDIT.GetEditType();
+
 	EditRenderView *renderView = 0;
 	if ("Scene" == name)
 	{
@@ -426,7 +428,8 @@ void RenderView::_NewEditRenderView(const std::string &name)
 		renderView->SetRenderStep(rs_Scene);
 		renderView->SetRenderer(rsRender_Scene);
 		renderView->SetCamera(rsCamera_Scene);
-		renderView->Enable(Edit::ET_UI != PX2_EDIT.GetEditType());
+		renderView->Enable(Edit::ET_UI != editType);
+		renderView->Show(true);
 	}
 	else if ("UI" == name)
 	{
@@ -444,7 +447,8 @@ void RenderView::_NewEditRenderView(const std::string &name)
 		renderView->SetRenderStep(rs_UI);
 		renderView->SetRenderer(rs_Render_UI);
 		renderView->SetCamera(rs_Camera_UI);
-		renderView->Enable(Edit::ET_UI == PX2_EDIT.GetEditType());
+		renderView->Enable(Edit::ET_UI == editType);
+		renderView->Show(Edit::ET_UI == editType);
 
 		rs_CameraNode_UI->LocalTransform.SetTranslateXZ(
 			projSize.Width / 2.0f, projSize.Height / 2.0f);

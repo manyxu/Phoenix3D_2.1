@@ -1,23 +1,21 @@
 // PX2Tuple.pkg
 
-	template <int DIMENSION, typename TYPE>
 	class Tuple
 	{
+		TOLUA_TEMPLATE_BIND(K TYPE, int float)
+	
 		Tuple ();
-		Tuple (const Tuple& tuple);
+		Tuple (const Tuple<K TYPE> & tuple);
 		~Tuple ();
 
 		inline operator const TYPE* () const;
 		inline operator TYPE* ();
-		inline const TYPE& operator[] (int i) const;
-		inline TYPE& operator[] (int i);
+		inline const TYPE & operator[] (int i) const;
+		inline TYPE & operator[] (int i);		
 
-		Tuple& operator= (const Tuple& tuple);
+		Tuple<K TYPE> &operator= (const Tuple<K TYPE> &tuple);
 
-		bool operator== (const Tuple& tuple) const;
-		bool operator!= (const Tuple& tuple) const;
-		bool operator<  (const Tuple& tuple) const;
-		bool operator<= (const Tuple& tuple) const;
-		bool operator>  (const Tuple& tuple) const;
-		bool operator>= (const Tuple& tuple) const;
+		bool operator== (const Tuple<K TYPE> & tuple) const;
+		bool operator<  (const Tuple<K TYPE> & tuple) const;
+		bool operator<= (const Tuple<K TYPE> & tuple) const;
 	};

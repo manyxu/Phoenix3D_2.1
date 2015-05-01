@@ -168,7 +168,7 @@ void ResTree::OnSelChanged(wxTreeEvent& event)
 		else if (resPath.find(".lua") != std::string::npos)
 		{
 		}
-		else if (resPath.find(".px2Logic") != std::string::npos)
+		else if (resPath.find(".px2logic") != std::string::npos)
 		{
 			SelectResData data;
 			data.ResPathname = resPath;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:006f429b58b7f5f3826fe78b63c30aa0$ -->
+<!-- $TexturePacker:SmartUpdate:e4d777677d5705d63dcabde28e8b39a2$ -->
 <!--Format:
 n  => name of the sprite
 x  => sprite x pos in texture
@@ -13,7 +13,7 @@ oW => sprite's original width (only available if trimmed)
 oH => sprite's original height (only available if trimmed)
 r => 'y' only set if sprite is rotated
 -->
-<TextureAtlas imagePath="zhujiemian.png" width="256" height="512">
+<TextureAtlas imagePath="zhujiemian.png" width="256" height="353">
     <sprite n="cailiaodikuang" x="80" y="328" w="76" h="18"/>
     <sprite n="chengjiu" x="157" y="83" w="84" h="79"/>
     <sprite n="chengjiu1" x="170" y="2" w="84" h="79"/>

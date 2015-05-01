@@ -810,7 +810,7 @@ void EditRenderView_Scene::DoExecute(Event *event)
 		}
 
 		mSceneNodeCtrl->GetCtrlsGroup()->Show(editType == Edit::ET_SCENE);
-		mBoundCtrl->GetCtrlsGroup()->Show(editType == Edit::ET_SCENE);;
+		mBoundCtrl->GetCtrlsGroup()->Show(editType == Edit::ET_SCENE);
 	}
 	else if (InputEventSpace::IsEqual(event, InputEventSpace::KeyPressed))
 	{

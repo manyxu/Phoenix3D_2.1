@@ -49,6 +49,9 @@ namespace PX2
 		void Enable(bool enable);
 		bool IsEnable() const;
 
+		void Show(bool show);
+		bool IsShow() const;
+
 	protected:
 		RendererInput *mRendererInput;
 		Renderer *mRenderer;
@@ -59,6 +62,7 @@ namespace PX2
 		bool mIsRenderCreated;
 
 		bool mIsEnable;
+		bool mIsShow;
 
 	public:
 		virtual void OnSize(const Sizef& size);

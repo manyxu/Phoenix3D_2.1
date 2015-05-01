@@ -222,10 +222,12 @@ void EditRenderView_UI::DoExecute(Event *event)
 		if (editType == Edit::ET_UI)
 		{
 			Enable(true);
+			Show(true);
 		}
 		else
 		{
 			Enable(false);
+			Show(false);
 		}
 	}
 }

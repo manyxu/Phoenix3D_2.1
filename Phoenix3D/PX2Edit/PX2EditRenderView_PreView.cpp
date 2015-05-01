@@ -26,9 +26,12 @@ mPreViewType(PVT_NONE)
 
 	mUIText = new0 UIText();
 	mPicFrame->AttachChild(mUIText);
+	mUIText->SetFontWidthHeight(13, 13);
 	mUIText->SetRectUseage(UIText::RU_ALIGNS);
 	mUIText->SetAligns(TEXTALIGN_RIGHT | TEXTALIGN_TOP);
-	mUIText->SetColor(Float3::WHITE);
+	mUIText->SetFontColor(Float3::WHITE);
+	mUIText->SetBorderShadowColor(Float3::BLACK);
+	mUIText->SetDrawStyle(FD_BORDER);
 
 	mModelScene = new0 Scene();
 	mModelCameraActor = mModelScene->GetUseCameraActor();
@@ -327,7 +330,7 @@ void EditRenderView_PreView::SetObject(PX2::Object *obj)
 				mUIPicBox->SetTexture(data.ResPathname, data.EleName);
 				mUIPicBox->SetSize((float)texPackEle.W, (float)texPackEle.H);
 
-				texStr = "width:" + StringHelp::IntToString(texPackEle.W) + " " + "height:" + StringHelp::IntToString(texPackEle.H) + " ";
+				texStr = "width: " + StringHelp::IntToString(texPackEle.W) + "  " + "height: " + StringHelp::IntToString(texPackEle.H) + "  ";
 			}
 		}
 		mUIText->SetText(texStr);

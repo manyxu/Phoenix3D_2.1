@@ -146,7 +146,7 @@ void ResTreeItem::_BuildChild(bool isOnlyDir)
 	
 	if (!mIsOnlyDir)
 	{
-		if (_IsAFile(mResPathName))
+		if (_IsAFile(mResPathName) && !mIsTexPackElement)
 		{ // 是一个文件
 
 			mResPathName = mResPathName.substr(0, mResPathName.size() - 1);
@@ -166,7 +166,7 @@ void ResTreeItem::_BuildChild(bool isOnlyDir)
 					for (int i = 0; i < (int)texPack.Elements.size(); i++)
 					{
 						std::string eleName = texPack.Elements[i].ElementName;
-						ResTreeItem *item = new0 ResTreeItem(mResTree, eleName, GetPathName());
+						ResTreeItem *item = new0 ResTreeItem(mResTree, eleName, mResPathName);
 						item->SetBeTexPackElement(true);
 						AddChild(item);
 					}

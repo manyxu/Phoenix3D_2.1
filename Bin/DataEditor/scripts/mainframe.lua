@@ -66,7 +66,3 @@ function e_CreateMainMenu()
 	--help
 	local itemHelp = E_MainFrame:AddMainMenuItem((PX2_LM:GetValue("Help")))
 end
-
-function e_ResView_CopyResPath()
-	
-end

@@ -20,7 +20,7 @@ namespace PX2
 		
 		Rect ();
 		Rect (const T &left, const T &bottom, const T &right, const T &top);
-		Rect (const T &rect);
+		Rect(const Rect<T> &rct);
 
 		T Width () const;
 		T Height () const;

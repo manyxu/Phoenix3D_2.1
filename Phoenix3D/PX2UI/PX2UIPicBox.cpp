@@ -132,10 +132,7 @@ void UIPicBox::SetTexture(const std::string &filename)
 	Texture *texture = DynamicCast<Texture>(PX2_RM.BlockLoad(filename));
 	if (texture)
 	{
-		if (mTexMode != TM_TEX)
-		{
-			mIsBufferNeedUpdate = true;
-		}
+		mIsBufferNeedUpdate = true;
 
 		mTexMode = TM_TEX;
 
@@ -163,10 +160,7 @@ void UIPicBox::SetTexture(const std::string &texPackName,
 
 	if (texture)
 	{
-		if (mTexMode != TM_TEXPACK_ELE)
-		{
-			mIsBufferNeedUpdate = true;
-		}
+		mIsBufferNeedUpdate = true;
 
 		mTexMode = TM_TEXPACK_ELE;
 

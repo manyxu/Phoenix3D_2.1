@@ -91,7 +91,7 @@ void RenderStepScene::Update(double appSeconds, double elapsedSeconds)
 //----------------------------------------------------------------------------
 void RenderStepScene::ComputeVisibleSetAndEnv()
 {
-	if (!IsEnable()) return;
+	if (!IsShow()) return;
 
 	if (!mNode) return;
 
@@ -120,7 +120,7 @@ void RenderStepScene::ComputeVisibleSetAndEnv()
 //----------------------------------------------------------------------------
 void RenderStepScene::Draw()
 {
-	if (!IsEnable()) return;
+	if (!IsShow()) return;
 	if (!mRenderer) return;
 	if (!mNode) return;
 

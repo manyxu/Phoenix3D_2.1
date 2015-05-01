@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 04/30/15 21:29:49.
+** Generated automatically by tolua++-1.0.92 on 05/01/15 18:11:50.
 */
 
 #ifndef __cplusplus
@@ -18,6 +18,13 @@ TOLUA_API int  tolua_PX2Editor_open (lua_State* tolua_S);
 /* function to release collected object via destructor */
 #ifdef __cplusplus
 
+static int tolua_collect_SelectResData (lua_State* tolua_S)
+{
+ SelectResData* self = (SelectResData*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_EditMap (lua_State* tolua_S)
 {
  EditMap* self = (EditMap*) tolua_tousertype(tolua_S,1,0);
@@ -25,9 +32,9 @@ static int tolua_collect_EditMap (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_SelectResData (lua_State* tolua_S)
+static int tolua_collect_Sizef (lua_State* tolua_S)
 {
- SelectResData* self = (SelectResData*) tolua_tousertype(tolua_S,1,0);
+ Sizef* self = (Sizef*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -45,6 +52,7 @@ static int tolua_collect_Edit (lua_State* tolua_S)
 static void tolua_reg_types (lua_State* tolua_S)
 {
  tolua_usertype(tolua_S,"EffectableController");
+ tolua_usertype(tolua_S,"Sizef");
  tolua_usertype(tolua_S,"CurveGroup");
  tolua_usertype(tolua_S,"Node");
  tolua_usertype(tolua_S,"PX2::ObjectPtr");
@@ -6006,6 +6014,48 @@ static int tolua_set_SelectResData_EleName(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: GetTheObjectTexSize of class  SelectResData */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_SelectResData_GetTheObjectTexSize00
+static int tolua_PX2Editor_SelectResData_GetTheObjectTexSize00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const SelectResData",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const SelectResData* self = (const SelectResData*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetTheObjectTexSize'", NULL);
+#endif
+  {
+   Sizef tolua_ret = (Sizef)  self->GetTheObjectTexSize();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((Sizef)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"Sizef");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(Sizef));
+     tolua_pushusertype(tolua_S,tolua_obj,"Sizef");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetTheObjectTexSize'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: SetTimeLineRenderStep_UIGroup of class  TimeLineEdit */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_TimeLineEdit_SetTimeLineRenderStep_UIGroup00
 static int tolua_PX2Editor_TimeLineEdit_SetTimeLineRenderStep_UIGroup00(lua_State* tolua_S)
@@ -7652,6 +7702,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"ResPathname",tolua_get_SelectResData_ResPathname,tolua_set_SelectResData_ResPathname);
    tolua_variable(tolua_S,"TheObject",tolua_get_SelectResData_TheObject,tolua_set_SelectResData_TheObject);
    tolua_variable(tolua_S,"EleName",tolua_get_SelectResData_EleName,tolua_set_SelectResData_EleName);
+   tolua_function(tolua_S,"GetTheObjectTexSize",tolua_PX2Editor_SelectResData_GetTheObjectTexSize00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"TimeLineEdit","TimeLineEdit","",NULL);
   tolua_beginmodule(tolua_S,"TimeLineEdit");

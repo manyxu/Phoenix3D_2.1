@@ -18,6 +18,7 @@ mPt_Data(0),
 mRendererInput(0),
 mRenderer(0),
 mIsEnable(true),
+mIsShow(true),
 mIsLeftDown(false),
 mIsRightDown(false),
 mIsMiddleDown(false),
@@ -134,7 +135,7 @@ RenderStep *EditRenderView::GetRenderStepCtrl1()
 //----------------------------------------------------------------------------
 void EditRenderView::Tick(double elapsedTime)
 {
-	if (!IsEnable()) return;
+	//if (!IsEnable()) return;
 
 	if (mRenderStep && mIsRenderCreated)
 	{
@@ -181,6 +182,31 @@ void EditRenderView::Enable(bool enable)
 bool EditRenderView::IsEnable() const
 {
 	return mIsEnable;
+}
+//----------------------------------------------------------------------------
+void EditRenderView::Show(bool show)
+{
+	mIsShow = show;
+
+	if (mRenderStep)
+	{
+		mRenderStep->Show(show);
+	}
+
+	if (mRenderStepCtrl)
+	{
+		mRenderStepCtrl->Show(show);
+	}
+
+	if (mRenderStepCtrl1)
+	{
+		mRenderStepCtrl1->Show(show);
+	}
+}
+//----------------------------------------------------------------------------
+bool EditRenderView::IsShow() const
+{
+	return mIsShow;
 }
 //----------------------------------------------------------------------------
 void EditRenderView::OnSize(const Sizef& size)

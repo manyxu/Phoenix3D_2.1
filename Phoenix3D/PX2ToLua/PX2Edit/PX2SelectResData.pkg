@@ -17,4 +17,6 @@
 		std::string ResPathname;
 		PX2::ObjectPtr TheObject;
 		std::string EleName; // 如果是RT_TEXPACKELE,这个成员有效
+		
+		Sizef GetTheObjectTexSize() const;
 	};

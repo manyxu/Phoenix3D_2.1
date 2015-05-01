@@ -32,11 +32,11 @@ namespace PX2
 		bool mIsUpdated;
 
 	public:
-		void Enable(bool enable);
-		bool IsEnable() const;
+		void Show(bool show);
+		bool IsShow() const;
 
 	protected:
-		bool mIsEnable;
+		bool mIsShow;
 
 		// Size
 		// 在编辑器中需要随着窗口，动态调整相机等，所以Size会频繁改变

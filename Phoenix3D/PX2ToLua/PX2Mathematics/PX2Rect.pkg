@@ -1,0 +1,32 @@
+// PX2Rect.pkg
+
+	class Rect
+	{
+		TOLUA_TEMPLATE_BIND(T, float, double, int)
+	
+		T Left;
+		T Bottom;
+		T Right;
+		T Top;
+		
+		Rect ();
+		Rect (const T &left, const T &bottom, const T &right, const T &top);
+		Rect (const Rect<T> &rct);
+
+		T Width () const;
+		T Height () const;
+
+		void Clear ();				
+		void Set(const T &left, const T &bottom, const T &right, const T &top);
+		void Swap (Rect<T> &rect);
+		bool IsEmpty () const;
+		bool IsInSide (const Rect<T> &rect) const;
+		bool IsIntersect(const Rect<T> &rect) const;
+		bool IsInsize (const Float2 &point) const;
+		bool IsInsize (float x, float y) const;
+		
+		Rect<T> operator- (const Rect<T> &rect);
+		Rect<T> operator+ (const Rect<T> &rect);
+
+		bool operator== (const Rect<T> &rect) const;
+	};

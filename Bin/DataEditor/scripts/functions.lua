@@ -343,7 +343,17 @@ function e_CreateUIPixBox(usePickPos)
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
-		PX2_CREATER:CreateUIPicBox(node, pickPos, "Data/engine/default.png", true, usePickPos)
+		local selectResData = PX2_EDIT:GetSelectedResource()
+		local selectResType = selectResData:GetSelectResType()
+		if SelectResData.RT_TEXPACKELEMENT == selectResType then
+			if nil~=selectResData.ResPathname and nil~=selectResData.EleName then
+				PX2_CREATER:CreateUIPicBox(node, pickPos, selectResData.ResPathname, selectResData.EleName, true, usePickPos)
+			end
+		elseif nil~=selectResData.ResPathname then
+			PX2_CREATER:CreateUIPicBox(node, pickPos, selectResData.ResPathname, true, usePickPos)
+		else
+			PX2_CREATER:CreateUIPicBox(node, pickPos, "Data/engine/default.png", true, usePickPos)
+		end
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
@@ -376,7 +386,23 @@ function e_CreateUIButton(usePickPos)
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
 		local pickPos = PX2_EDIT:GetPickPos()
-		PX2_CREATER:CreateUIButton(node, pickPos, true, usePickPos)
+		
+		local uiButton = PX2_CREATER:CreateUIButton(node, pickPos, true, usePickPos)
+		
+		local selectResData = PX2_EDIT:GetSelectedResource()
+		local selectResType = selectResData:GetSelectResType()
+		local texSize = selectResData:GetTheObjectTexSize()
+		if SelectResData.RT_TEXPACKELEMENT == selectResType then
+			if nil~=selectResData.ResPathname and nil~=selectResData.EleName then
+				uiButton:GetPicBoxAtState(UIButtonBase.BS_NORMAL):SetTexture(selectResData.ResPathname, selectResData.EleName)
+			end
+		elseif nil~=selectResData.ResPathname then
+			if nil~=selectResData.ResPathname then
+				uiButton:GetPicBoxAtState(UIButtonBase.BS_NORMAL):SetTexture(selectResData.ResPathname)
+			end			
+		end
+		
+		uiButton:SetSize(texSize)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end
@@ -552,6 +578,10 @@ end
 
 function e_ResView_Open()
 	E_MainFrame:OnResOpen()
+end
+
+function e_ResView_CopyResPath()
+	E_MainFrame:OnResCopyResPath()
 end
 
 --Insp view

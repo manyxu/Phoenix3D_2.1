@@ -21,12 +21,11 @@ Top(top)
 }
 //----------------------------------------------------------------------------
 template <typename T>
-Rect<T>::Rect (const T &rect)
-	:
-Left(rect.Left),
-Top(rect.Top),
-Right(rect.Right),
-Bottom(rect.Bottom)
+Rect<T>::Rect(const Rect<T> &rct) :
+Left(rct.Left),
+Top(rct.Top),
+Right(rct.Right),
+Bottom(rct.Bottom)
 {
 }
 //----------------------------------------------------------------------------

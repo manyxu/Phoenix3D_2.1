@@ -10,8 +10,8 @@ PX2_IMPLEMENT_RTTI(PX2, Object, RenderStep);
 RenderStep::RenderStep() :
 mRenderer(0),
 mIsUpdated(false),
+mIsShow(true),
 mIsSizeChangeReAdjustCamera(true),
-mIsEnable(true),
 mPriority(0),
 mIsDoClearDepth(false)
 {
@@ -47,9 +47,9 @@ void RenderStep::Update(double appSeconds, double elapsedSeconds)
 	mRenderer->SetCamera(beforeCamer);
 }
 //----------------------------------------------------------------------------
-void RenderStep::Enable(bool enable)
+void RenderStep::Show(bool show)
 {
-	mIsEnable = enable;
+	mIsShow = show;
 }
 //----------------------------------------------------------------------------
 void RenderStep::SetSize(const Sizef &size)
@@ -180,7 +180,7 @@ void RenderStep::SetNode(Node *node)
 //----------------------------------------------------------------------------
 void RenderStep::ComputeVisibleSetAndEnv()
 {
-	if (!IsEnable()) return;
+	if (!mIsShow) return;
 
 	const Camera *cam = mCuller.GetCamera();
 	if (mNode && cam)
@@ -193,7 +193,7 @@ void RenderStep::ComputeVisibleSetAndEnv()
 //----------------------------------------------------------------------------
 void RenderStep::Draw()
 {
-	if (!IsEnable()) return;
+	if (!mIsShow) return;
 
 	if (mRenderer)
 	{

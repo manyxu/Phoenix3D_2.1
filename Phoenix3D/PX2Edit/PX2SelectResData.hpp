@@ -5,6 +5,7 @@
 
 #include "PX2EditPre.hpp"
 #include "PX2Object.hpp"
+#include "PX2Size.hpp"
 
 namespace PX2
 {
@@ -26,6 +27,8 @@ namespace PX2
 		std::string ResPathname;
 		PX2::ObjectPtr TheObject;
 		std::string EleName; // 如果是RT_TEXPACKELE,这个成员有效
+
+		Sizef GetTheObjectTexSize() const;
 
 	private:
 		SelectResType mSelectResType;
