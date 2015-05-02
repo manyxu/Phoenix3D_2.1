@@ -4,4 +4,9 @@
 	{
 		InterpCurveUniformScaleController ();
 		virtual ~InterpCurveUniformScaleController ();
+		
+		static InterpCurveUniformScaleController *New ();
+		static InterpCurveUniformScaleController *New (const std::string &name);
+		static InterpCurveUniformScaleController *NewReg();
+		static InterpCurveUniformScaleController *NewReg(const std::string &name);
 	};
