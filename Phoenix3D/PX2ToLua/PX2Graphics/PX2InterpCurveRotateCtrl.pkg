@@ -1,4 +1,4 @@
-// PX2InterpCurveRotateController.pkg
+// PX2InterpCurveRotateCtrl.pkg
 	
 	class InterpCurveRotateController : public InterpCurveFloat3Controller
 	{

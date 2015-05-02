@@ -1,4 +1,4 @@
-// PX2InterpCurveAlphaController.pkg
+// PX2InterpCurveAlphaCtrl.pkg
 	
 	class InterpCurveAlphaController : public InterpCurveFloatController
 	{

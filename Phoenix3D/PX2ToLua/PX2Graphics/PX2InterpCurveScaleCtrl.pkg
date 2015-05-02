@@ -1,4 +1,4 @@
-// PX2InterpCurveScaleController.pkg
+// PX2InterpCurveScaleCtrl.pkg
 	
 	class InterpCurveScaleController : public InterpCurveFloat3Controller
 	{
