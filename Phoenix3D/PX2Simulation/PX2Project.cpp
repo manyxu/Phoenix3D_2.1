@@ -11,6 +11,7 @@
 #include "PX2UIPicBox.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2GraphicsRoot.hpp"
+#include "PX2SimulationEventType.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Object, Project);
@@ -46,10 +47,14 @@ mScreenOrientation(SO_LANDSCAPE)
 	SetUIFrame(mUIFrame);
 
 	mIsShowShadowBloomEveryPass = false;
+
+	ComeInEventWorld();
 }
 //----------------------------------------------------------------------------
 Project::~Project ()
 {
+	GoOutEventWorld();
+
 	PX2_GR.RemoveRenderSteps(mSceneRenderStep);
 	mSceneRenderStep = 0;
 
@@ -252,10 +257,6 @@ bool Project::Load(const std::string &filename)
 
 			// ui
 			mUIFilename = outPath + outBaseName + "_ui.px2obj";
-
-			if (mSceneRenderStep)
-			{
-			}
 		}
 	}
 	else
@@ -398,6 +399,19 @@ void Project::SetViewRect(const Rectf &viewRect)
 	if (mUIRenderStep)
 	{
 		mUIRenderStep->SetViewPort(viewRect);
+	}
+}
+//----------------------------------------------------------------------------
+void Project::DoExecute(Event *event)
+{
+	if (SimuES::IsEqual(event, SimuES::GeneralString))
+	{
+		std::string eventStr = event->GetData<std::string>();
+
+		char szScript[256];
+		//sprintf(szScript, "onEventGeneralString(\"%s\")", eventStr.c_str());
+
+		PX2_SM.CallString(szScript);
 	}
 }
 //----------------------------------------------------------------------------

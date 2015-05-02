@@ -89,6 +89,7 @@ bool EngineLoop::Initlize()
 	LuaManager *luaMan = (LuaManager*)mScriptMan;
 	tolua_PX2_open(luaMan->GetLuaState());
 
+	mScriptMan->SetUserTypePointer("PX2_ENGINELOOP", "EngineLoop", this);
 	mScriptMan->SetUserTypePointer("PX2_LOG", "Logger", Logger::GetSingletonPtr());
 	mScriptMan->SetUserTypePointer("PX2_LM", "LanguageManager", &(PX2_LM));
 	mScriptMan->SetUserTypePointer("PX2_RM", "ResourceManager", ResourceManager::GetSingletonPtr());

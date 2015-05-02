@@ -142,6 +142,10 @@ namespace PX2
 		// Project Keep
 	public_internal:
 		Pointer0<Project> msProject;
+
+		// Event
+	public:
+		void FireEventGeneralString(const std::string &str, float timeDelay=0.0f);
 	};
 
 #include "PX2EngineLoop.inl"

@@ -3,6 +3,7 @@
 #include "PX2EngineLoop.hpp"
 #include "PX2Time.hpp"
 #include "PX2LuaManager.hpp"
+#include "PX2SimulationEventType.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -59,5 +60,14 @@ void EngineLoop::SetPt_Size(const Sizef &size)
 const Sizef &EngineLoop::GetPt_Size() const
 {
 	return mPt_Size;
+}
+//----------------------------------------------------------------------------
+void EngineLoop::FireEventGeneralString(const std::string &str, 
+	float timeDelay)
+{
+	Event *ent = SimuES::CreateEventX(SimuES::GeneralString);
+	ent->SetData(str);
+	ent->SetTimeDelay(timeDelay);
+	PX2_EW.BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------

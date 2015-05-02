@@ -108,6 +108,10 @@ namespace PX2
 	protected:
 		Rectf mViewRect;
 
+		// Event
+	public:
+		virtual void DoExecute(Event *event);
+
 		// render setting
 	public:
 		void SetShowShadowBloomEveryPass(bool isShowShadowBloomEveryPass);

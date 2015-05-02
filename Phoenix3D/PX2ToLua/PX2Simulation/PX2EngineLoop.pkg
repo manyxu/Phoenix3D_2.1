@@ -1,0 +1,7 @@
+// PX2EngineLoop.pkg
+
+	class EngineLoop
+	{
+		// Event
+		void FireEventGeneralString(const std::string &str, float timeDelay=0.0f);
+	};
