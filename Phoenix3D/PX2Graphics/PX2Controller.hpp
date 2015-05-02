@@ -56,7 +56,6 @@ namespace PX2
 
 		// 动画更新，applicationTime是以毫秒作计算单位的
 		virtual bool Update (double applicationTime, double elapsedTime);
-		float GetRunTime () const;
 
 		/// 动画更新类型
 		enum RepeatType

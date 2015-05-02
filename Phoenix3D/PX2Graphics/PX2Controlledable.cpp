@@ -75,7 +75,7 @@ void Controlledable::SetSelfCtrled (bool selfCtrled)
 	mIsSelfCtrled = selfCtrled;
 }
 //----------------------------------------------------------------------------
-Controller *Controlledable::GetController (const std::string &name) const
+Controller *Controlledable::GetControllerByName(const std::string &name) const
 {
 	for (int i=0; i<GetNumControllers(); i++)
 	{

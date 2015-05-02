@@ -240,8 +240,6 @@ void UIButton::OnNotPicked(int info)
 		return;
 
 	PX2_UNUSED(info);
-
-	SetButtonState(BS_NORMAL);
 }
 //----------------------------------------------------------------------------
 

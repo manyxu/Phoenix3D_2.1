@@ -26,6 +26,9 @@ namespace PX2
 		const float &GetCurValueRaw () const;
 		const float &GetCurValueRelatived () const;
 
+		void Clear();
+		void AddPoint(float inVal, float outVal, InterpCurveMode mode);
+
 	public:
 		InterpCurveFloat mValues;
 

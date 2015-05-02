@@ -10,7 +10,8 @@ PX2_IMPLEMENT_FACTORY(InterpCurveFloat3Controller);
 PX2_IMPLEMENT_DEFAULT_NAMES(InterpCurveController, InterpCurveFloat3Controller);
 
 //----------------------------------------------------------------------------
-InterpCurveFloat3Controller::InterpCurveFloat3Controller (Float3 initValue) :
+InterpCurveFloat3Controller::InterpCurveFloat3Controller(const Float3 
+	&initValue) :
 mInitValue(initValue)
 {
 	mCurValueRaw = Float3::ZERO;
@@ -21,6 +22,23 @@ mInitValue(initValue)
 //----------------------------------------------------------------------------
 InterpCurveFloat3Controller::~InterpCurveFloat3Controller ()
 {
+}
+//----------------------------------------------------------------------------
+void InterpCurveFloat3Controller::Clear()
+{
+	mValues.Reset();
+}
+//----------------------------------------------------------------------------
+void InterpCurveFloat3Controller::AddPoint(float inVal, const Float3 &outVal, 
+	InterpCurveMode mode)
+{
+	mValues.AddPoint(inVal, outVal, Float3::ZERO, Float3::ZERO, mode);
+}
+//----------------------------------------------------------------------------
+void InterpCurveFloat3Controller::AddPoint(float inVal, const AVector &outVal, 
+	InterpCurveMode mode)
+{
+	mValues.AddPoint(inVal, outVal, Float3::ZERO, Float3::ZERO, mode);
 }
 //----------------------------------------------------------------------------
 void InterpCurveFloat3Controller::_Update (double applicationTime,

@@ -17,7 +17,7 @@ namespace PX2
 		PX2_DECLARE_STREAM(InterpCurveFloat3Controller);
 
 	public:
-		InterpCurveFloat3Controller (Float3 initValue=Float3::ZERO);
+		InterpCurveFloat3Controller (const Float3 &initValue=Float3::ZERO);
 		virtual ~InterpCurveFloat3Controller ();
 
 		void SetInitValue (const Float3 &val);
@@ -25,6 +25,10 @@ namespace PX2
 
 		const Float3 &GetCurValueRaw () const;
 		const Float3 &GetCurValueRelatived () const;
+
+		void Clear();
+		void AddPoint(float inVal, const Float3 &outVal, InterpCurveMode mode);
+		void AddPoint(float inVal, const AVector &outVal, InterpCurveMode mode);
 
 	public:
 		InterpCurveFloat3 mValues;

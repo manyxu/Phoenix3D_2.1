@@ -24,6 +24,18 @@ Componable::~Componable()
 	}
 }
 //----------------------------------------------------------------------------
+Component *Componable::GetComponent(int i) const
+{
+	if (0 <= i && i < (int)mComponents.size())
+	{
+		return mComponents[i];
+	}
+
+	assertion(false, "i should be in right range.\n");
+
+	return 0;
+}
+//----------------------------------------------------------------------------
 Component *Componable::GetComponentByName(const std::string &name) const
 {
 	for (int i = 0; i < GetNumComponents(); i++)

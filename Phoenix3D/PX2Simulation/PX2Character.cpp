@@ -249,7 +249,7 @@ void Character::_CalAnimNode(Movable *mov)
 	if (node)
 	{
 		BlendTransformController *btc = DynamicCast<BlendTransformController>(
-			node->GetController("BTC"));
+			node->GetControllerByName("BTC"));
 		if (!btc)
 		{
 			btc = new0 BlendTransformController(0, 0, true);

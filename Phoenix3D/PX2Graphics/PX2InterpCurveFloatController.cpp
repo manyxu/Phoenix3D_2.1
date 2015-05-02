@@ -22,6 +22,16 @@ InterpCurveFloatController::~InterpCurveFloatController ()
 {
 }
 //----------------------------------------------------------------------------
+void InterpCurveFloatController::Clear()
+{
+	mValues.Reset();
+}
+//----------------------------------------------------------------------------
+void InterpCurveFloatController::AddPoint(float inVal, float outVal, InterpCurveMode mode)
+{
+	mValues.AddPoint(inVal, outVal, 0.0, 0.0, mode);
+}
+//----------------------------------------------------------------------------
 void InterpCurveFloatController::_Update(double applicationTime,
 	double elapsedTime)
 {
