@@ -1,9 +1,9 @@
 <boost name="boost">
 	<config>
-		<var width="640" height="1136"/>
+		<var width="320" height="568"/>
 	</config>
 	<play>
-		<var projectname="sample_phoenix3d" playlogicmode="logic"/>
+		<var projectname="game_x" playlogicmode="logic"/>
 	</play>
 </boost>
 

@@ -246,7 +246,7 @@ bool LuaManager::CallObjectFuntionValist (const char *objectName,
 
 	const char *pfmt = format;
 	int count = 0;
-	static const char *args[] = {"arg1", "arg2", "arg3", "arg4"};
+	static const char *args[] = {"arg0", "arg1", "arg2", "arg3"};
 	while (pfmt[count])
 	{
 		if(*pfmt == 'i')

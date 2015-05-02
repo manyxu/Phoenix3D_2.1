@@ -65,6 +65,8 @@ namespace PX2
 		void SetAnchorID (int anchorID);
 		int GetAnchorID () const;
 
+		virtual void RegistToScriptSystemAll();
+
 		static void TravelExecute(Movable *mov, TravelExecuteFun fun, Any *data=0);
 
 	protected:

@@ -1,0 +1,15 @@
+// PX2InterpCurveFloatController.pkg
+	
+	class InterpCurveFloatController : public InterpCurveController
+	{
+		InterpCurveFloatController (float initValue=0.0f);
+		virtual ~InterpCurveFloatController ();
+
+		void SetInitValue (float val);
+		const float &GetInitValue () const;
+
+		const float &GetCurValueRaw () const;
+		const float &GetCurValueRelatived () const;
+
+		InterpCurveFloat mValues;
+	};

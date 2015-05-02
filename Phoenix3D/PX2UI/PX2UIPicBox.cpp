@@ -709,6 +709,8 @@ void UIPicBox::PostLink()
 	{
 		SetTexture(mTexturePackName, mElementName);
 	}
+
+	RegistToScriptSystemAll();
 }
 //----------------------------------------------------------------------------
 bool UIPicBox::Register(OutStream& target) const

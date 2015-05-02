@@ -246,6 +246,7 @@ namespace PX2
 		bool RegistToScriptSystem();
 		bool UnRegistToScriptSystem();
 		bool IsRegistedToScriptSystem();
+		virtual void RegistToScriptSystemAll();
 
 		void CallString(const char *fun, const char *format = "", ...);
 

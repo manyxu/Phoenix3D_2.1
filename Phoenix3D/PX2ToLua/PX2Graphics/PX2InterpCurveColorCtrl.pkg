@@ -1,0 +1,7 @@
+// PX2InterpCurveColorController.pkg
+	
+	class InterpCurveColorController : public InterpCurveFloat3Controller
+	{
+		InterpCurveColorController();
+		virtual ~InterpCurveColorController();
+	};

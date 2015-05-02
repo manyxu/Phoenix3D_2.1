@@ -346,10 +346,10 @@ function e_CreateUIPixBox(usePickPos)
 		local selectResData = PX2_EDIT:GetSelectedResource()
 		local selectResType = selectResData:GetSelectResType()
 		if SelectResData.RT_TEXPACKELEMENT == selectResType then
-			if nil~=selectResData.ResPathname and nil~=selectResData.EleName then
+			if ""~=selectResData.ResPathname and ""~=selectResData.EleName then
 				PX2_CREATER:CreateUIPicBox(node, pickPos, selectResData.ResPathname, selectResData.EleName, true, usePickPos)
 			end
-		elseif nil~=selectResData.ResPathname then
+		elseif ""~=selectResData.ResPathname then
 			PX2_CREATER:CreateUIPicBox(node, pickPos, selectResData.ResPathname, true, usePickPos)
 		else
 			PX2_CREATER:CreateUIPicBox(node, pickPos, "Data/engine/default.png", true, usePickPos)
@@ -393,16 +393,14 @@ function e_CreateUIButton(usePickPos)
 		local selectResType = selectResData:GetSelectResType()
 		local texSize = selectResData:GetTheObjectTexSize()
 		if SelectResData.RT_TEXPACKELEMENT == selectResType then
-			if nil~=selectResData.ResPathname and nil~=selectResData.EleName then
+			if ""~=selectResData.ResPathname and ""~=selectResData.EleName then
 				uiButton:GetPicBoxAtState(UIButtonBase.BS_NORMAL):SetTexture(selectResData.ResPathname, selectResData.EleName)
+				uiButton:SetSize(texSize)
 			end
-		elseif nil~=selectResData.ResPathname then
-			if nil~=selectResData.ResPathname then
-				uiButton:GetPicBoxAtState(UIButtonBase.BS_NORMAL):SetTexture(selectResData.ResPathname)
-			end			
+		elseif ""~=selectResData.ResPathname then
+			uiButton:GetPicBoxAtState(UIButtonBase.BS_NORMAL):SetTexture(selectResData.ResPathname)
+			uiButton:SetSize(texSize)
 		end
-		
-		uiButton:SetSize(texSize)
 	else
 		NirMan:MessageBox(PX2_LM:GetValue("Notice"), PX2_LM:GetValue("Tip1"))
 	end

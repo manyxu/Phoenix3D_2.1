@@ -1,0 +1,7 @@
+// PX2InterpCurveRotateController.pkg
+	
+	class InterpCurveRotateController : public InterpCurveFloat3Controller
+	{
+		InterpCurveRotateController ();
+		virtual ~InterpCurveRotateController ();
+	};

@@ -1,7 +1,17 @@
 // PX2Graphics.pkg
 
 $pfile "PX2Graphics/PX2Transform.pkg"
+$pfile "PX2Graphics/PX2Componable.pkg"
 $pfile "PX2Graphics/PX2Controlledable.pkg"
+$pfile "PX2Graphics/PX2Controller.pkg"
+$pfile "PX2Graphics/PX2InterpCurveFloatController.pkg"
+$pfile "PX2Graphics/PX2InterpCurveUniformScaleController.pkg"
+$pfile "PX2Graphics/PX2InterpCurveAlphaCtrl.pkg"
+$pfile "PX2Graphics/PX2InterpCurveFloat3Controller.pkg"
+$pfile "PX2Graphics/PX2InterpCurveScaleController.pkg"
+$pfile "PX2Graphics/PX2InterpCurveRotateController.pkg"
+$pfile "PX2Graphics/PX2InterpCurveTranslateController.pkg"
+$pfile "PX2Graphics/PX2InterpCurveColorController.pkg"
 $pfile "PX2Graphics/PX2Movable.pkg"
 $pfile "PX2Graphics/PX2Renderable.pkg"
 $pfile "PX2Graphics/PX2Triangles.pkg"

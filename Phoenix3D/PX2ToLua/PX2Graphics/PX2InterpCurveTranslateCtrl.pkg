@@ -1,0 +1,9 @@
+// PX2InterpCurveTranslateController.pkg
+	
+	class InterpCurveTranslateController : public InterpCurveFloat3Controller
+	{
+		InterpCurveTranslateController ();
+		virtual ~InterpCurveTranslateController ();
+
+		virtual void Reset ();
+	};

@@ -47,6 +47,12 @@ bool Object::RegistToScriptSystem()
 	return true;
 }
 //----------------------------------------------------------------------------
+void Object::RegistToScriptSystemAll()
+{
+	if (!IsRegistedToScriptSystem())
+		RegistToScriptSystem();
+}
+//----------------------------------------------------------------------------
 bool Object::UnRegistToScriptSystem()
 {
 	ScriptManager *sm = ScriptManager::GetSingletonPtr();

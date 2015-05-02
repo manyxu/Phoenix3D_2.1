@@ -410,6 +410,17 @@ void Node::SetReceiveShadow(bool reciveShadow)
 	}
 }
 //----------------------------------------------------------------------------
+void Node::RegistToScriptSystemAll()
+{
+	Movable::RegistToScriptSystemAll();
+
+	for (int i = 0; i < GetNumChildren(); i++)
+	{
+		if (mChild[i])
+			mChild[i]->RegistToScriptSystemAll();
+	}
+}
+//----------------------------------------------------------------------------
 void Node::OnNotPicked (int pickInfo)
 {
 	for (int i=0; i<(int)mChild.size(); i++)

@@ -63,5 +63,6 @@
 
 		bool RegistToScriptSystem();
 		bool UnRegistToScriptSystem();
-		bool IsRegistedToScriptSystem();
+		bool IsRegistedToScriptSystem();	
+		virtual void RegistToScriptSystemAll();
 	};

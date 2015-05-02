@@ -311,6 +311,8 @@ void UIFrame::Link(InStream& source)
 void UIFrame::PostLink()
 {
 	Node::PostLink();
+
+	RegistToScriptSystemAll();
 }
 //----------------------------------------------------------------------------
 bool UIFrame::Register(OutStream& target) const

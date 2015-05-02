@@ -2,4 +2,45 @@
 
 	class Node : public Movable
 	{
+		Node ();
+		virtual ~Node ();
+
+		virtual void Play ();
+		virtual bool IsPlaying () const;
+		virtual void Stop ();
+		virtual void Reset ();
+
+		/// 获得孩子数量
+		int GetNumChildren () const;
+		int GetNumValidChildren () const;
+
+		virtual int AttachChild (Movable* child);
+		void InsertChild (Movable *before, Movable *child);
+		virtual int DetachChild (Movable* child);
+		virtual bool DetachChildByName (const std::string &name);
+		virtual MovablePtr DetachChildAt (int i);
+		virtual void DetachAllChildren ();
+		virtual MovablePtr SetChild (int i, Movable* child);
+		virtual MovablePtr GetChild (int i);
+		virtual MovablePtr GetChildByName (const std::string &name);
+
+		virtual void Enable(bool enable);
+
+		virtual void SetAlpha (float alpha);
+		virtual void SetColor (const Float3 &color);
+		virtual void SetBrightness (float brightness);
+		virtual void SetCastShadow(bool castShadow);
+		virtual void SetReceiveShadow(bool reciveShadow);
+		
+		void SetDoPickPriority (bool doPickPriority); // 一般用来为Node设置
+		bool IsDoPickPriority () const;
+		virtual void OnNotPicked (int pickInfo);
+
+		void SetNeedCalUpdateChild (bool needCal);
+		bool IsNeedCalUpdateChild () const;
+
+		void SetAnchorID (int anchorID);
+		int GetAnchorID () const;
+
+		virtual void RegistToScriptSystemAll();
 	};

@@ -1,0 +1,7 @@
+// PX2InterpCurveScaleController.pkg
+	
+	class InterpCurveScaleController : public InterpCurveFloat3Controller
+	{
+		InterpCurveScaleController ();
+		virtual ~InterpCurveScaleController ();
+	};
