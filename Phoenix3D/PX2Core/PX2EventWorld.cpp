@@ -235,6 +235,7 @@ void EventWorld::_BroadcastingEvent (Event* event)
 
 		if (!mIsShoutdown)
 		{
+			// _UpdateEvent可能再次产生消息，会记录在mEventListBroadcasting里
 			_UpdateEvent(0.0f);
 
 			while (!mEventListBroadcasting->empty())

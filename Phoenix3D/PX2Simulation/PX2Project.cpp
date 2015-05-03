@@ -33,7 +33,8 @@ mScreenOrientation(SO_LANDSCAPE)
 	mSceneRenderStep->SetPriority(20);
 	mSceneRenderStep->SetName("Scene");
 	mSceneRenderStep->SetRenderer(Renderer::GetDefaultRenderer());
-	PX2_GR.AddRenderStep(mSceneRenderStep->GetName().c_str(), mSceneRenderStep);
+	PX2_GR.AddRenderStep(mSceneRenderStep->GetName().c_str(),
+		mSceneRenderStep);
 
 	mUIRenderStep = new0 UIView(0);
 	mUIRenderStep->SetPriority(10);
@@ -408,10 +409,10 @@ void Project::DoExecute(Event *event)
 	{
 		std::string eventStr = event->GetData<std::string>();
 
-		char szScript[256];
-		//sprintf(szScript, "onEventGeneralString(\"%s\")", eventStr.c_str());
+		std::string funStr = std::string("onEventGeneralString('")
+			+ eventStr+ "')";
 
-		PX2_SM.CallString(szScript);
+		PX2_SM.CallString(funStr);
 	}
 }
 //----------------------------------------------------------------------------

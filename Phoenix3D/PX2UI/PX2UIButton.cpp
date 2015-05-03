@@ -207,6 +207,43 @@ void UIButton::UpdateWorldData(double applicationTime, double elapsedTime)
 //----------------------------------------------------------------------------
 void UIButton::OnChildPicked(int info, Movable *child)
 {
+	//if (!IsEnable())
+	//	return;
+
+	//UIFrame::OnChildPicked(info, child);
+
+	//ButtonState state = GetButtonState();
+
+	//if (1 == info)
+	//{
+	//	if (state == BS_NORMAL || state == BS_HOVERED)
+	//	{
+	//		SetButtonState(BS_PRESSED);
+	//		OnPressed();
+	//	}
+	//}
+	//else if (2 == info)
+	//{
+	//	ButtonState state = GetButtonState();
+
+	//	if (state == BS_PRESSED)
+	//	{
+	//		SetButtonState(BS_NORMAL);
+	//		OnReleased();
+	//	}
+	//}
+}
+//----------------------------------------------------------------------------
+void UIButton::OnNotPicked(int info)
+{
+	if (!IsEnable())
+		return;
+
+	PX2_UNUSED(info);
+}
+//----------------------------------------------------------------------------
+void UIButton::OnChildUIAfterPicked(int info, Movable *child)
+{
 	if (!IsEnable())
 		return;
 
@@ -232,14 +269,6 @@ void UIButton::OnChildPicked(int info, Movable *child)
 			OnReleased();
 		}
 	}
-}
-//----------------------------------------------------------------------------
-void UIButton::OnNotPicked(int info)
-{
-	if (!IsEnable())
-		return;
-
-	PX2_UNUSED(info);
 }
 //----------------------------------------------------------------------------
 

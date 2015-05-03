@@ -218,8 +218,8 @@ void UIView::_DoPick(float x, float z, int pickInfo,
 {
 	vec.clear();
 
-	Movable *pickMov = 0;
-	Movable *topestMovable = GetTopestMovable();
+	MovablePtr pickMov = 0;
+	MovablePtr topestMovable = GetTopestMovable();
 	if (topestMovable) pickMov = topestMovable;
 	else pickMov = mNode;
 	if (!pickMov) return;

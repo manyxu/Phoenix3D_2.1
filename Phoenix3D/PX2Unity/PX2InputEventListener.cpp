@@ -77,7 +77,8 @@ void InputEventListener::MousePressed(MouseButtonID id, const APoint &pos)
 	OnInputEventData(data);
 }
 //----------------------------------------------------------------------------
-void InputEventListener::MouseDoublePressed(MouseButtonID id, const APoint &pos)
+void InputEventListener::MouseDoublePressed(MouseButtonID id, 
+	const APoint &pos)
 {
 	InputEventData data;
 	data.TheEventType = InputEventSpace::MouseDoublePressed;

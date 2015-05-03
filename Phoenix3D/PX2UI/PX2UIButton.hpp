@@ -44,6 +44,7 @@ namespace PX2
 
 		virtual void OnChildPicked(int info, Movable *child);
 		virtual void OnNotPicked(int info);
+		virtual void OnChildUIAfterPicked(int info, Movable *child);
 
 		AfterReleasedType mAfterReleasedType;
 		float mAfterReleasedRecoverTime;
