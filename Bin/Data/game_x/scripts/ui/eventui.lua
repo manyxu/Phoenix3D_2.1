@@ -1,7 +1,7 @@
 -- eventui.lua
 
-function onEventGeneralStringUI(eventStr)
+function OnEventGeneralStringUI(eventStr)
 	if "ToBat"==eventStr then
-		onUIBat()
+		OnUIBat()
 	end
 end

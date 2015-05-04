@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 05/01/15 18:11:50.
+** Generated automatically by tolua++-1.0.92 on 05/03/15 20:17:16.
 */
 
 #ifndef __cplusplus
@@ -6014,6 +6014,38 @@ static int tolua_set_SelectResData_EleName(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: IsTheObjectTex of class  SelectResData */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_SelectResData_IsTheObjectTex00
+static int tolua_PX2Editor_SelectResData_IsTheObjectTex00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const SelectResData",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const SelectResData* self = (const SelectResData*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsTheObjectTex'", NULL);
+#endif
+  {
+   bool tolua_ret = (bool)  self->IsTheObjectTex();
+   tolua_pushboolean(tolua_S,(bool)tolua_ret);
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IsTheObjectTex'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: GetTheObjectTexSize of class  SelectResData */
 #ifndef TOLUA_DISABLE_tolua_PX2Editor_SelectResData_GetTheObjectTexSize00
 static int tolua_PX2Editor_SelectResData_GetTheObjectTexSize00(lua_State* tolua_S)
@@ -7702,6 +7734,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_variable(tolua_S,"ResPathname",tolua_get_SelectResData_ResPathname,tolua_set_SelectResData_ResPathname);
    tolua_variable(tolua_S,"TheObject",tolua_get_SelectResData_TheObject,tolua_set_SelectResData_TheObject);
    tolua_variable(tolua_S,"EleName",tolua_get_SelectResData_EleName,tolua_set_SelectResData_EleName);
+   tolua_function(tolua_S,"IsTheObjectTex",tolua_PX2Editor_SelectResData_IsTheObjectTex00);
    tolua_function(tolua_S,"GetTheObjectTexSize",tolua_PX2Editor_SelectResData_GetTheObjectTexSize00);
   tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"TimeLineEdit","TimeLineEdit","",NULL);

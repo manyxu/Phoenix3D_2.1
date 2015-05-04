@@ -1,7 +1,9 @@
 package org.appplay.lib;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.List;
+import android.provider.Settings;
 
 import org.appplay.ap.R;
 import org.appplay.platformsdk.PlatformSDKNatives;
@@ -20,6 +22,7 @@ import android.content.pm.ConfigurationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -53,8 +56,41 @@ public class AppPlayBaseActivity extends Activity
 	{
 		sTheActivity = this;
 
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);	
 
+		// Device IDs
+		TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);	
+		String deviceIDStr = telephonyManager.getDeviceId();  
+		String subScriberIDStr = telephonyManager.getSubscriberId();
+		
+		String serialnumStr = null;
+		try 
+		{
+	        Class<?> c = Class.forName("android.os.SystemProperties");  
+	        Method get = c.getMethod("get", String.class, String.class );  
+	        serialnumStr = (String)(get.invoke(c, "ro.serialno", "unknown" ));  
+		}
+		catch (Exception ignored)
+		{  
+	    }		
+		String serialnumStr2 = null;  
+		try
+		{  
+			Class myclass = Class.forName( "android.os.SystemProperties" );  
+		 	Method[] methods = myclass.getMethods();  
+		 	Object[] params = new Object[] {new String("ro.serialno"), new String("Unknown") };  
+		 	serialnumStr2 = (String)(methods[2].invoke( myclass, params ));
+		}
+		catch (Exception ignored)
+		{	      
+		}
+
+		String androidIDStr = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+		
+		String myDeviceIDStr = deviceIDStr + serialnumStr;
+		AppPlayNatives.nativeSetDeviceIDStr(myDeviceIDStr);		
+		
+		// Package
 		String packageName = getApplication().getPackageName();
 		PackageManager packMgr = getApplication().getPackageManager();
 		ApplicationInfo info = null;
@@ -74,6 +110,7 @@ public class AppPlayBaseActivity extends Activity
 		sVersion_Filename = info.dataDir + "/version.xml";
 		sVersion_Filename_Temp = info.dataDir + "/version_Temp.xml";
 		
+		// Initlize
         Log.d("appplay.ap", "begin - AppPlayActivity::onCreate"); 
         
         AppPlayMetaData.Initlize(getApplicationContext());
@@ -85,7 +122,7 @@ public class AppPlayBaseActivity extends Activity
 		
 		 Log.d("appplay.ap", "end - AppPlayActivity::onCreate"); 
 	}
-
+	
 	@Override
 	protected void onStop()
 	{

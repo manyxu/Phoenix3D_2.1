@@ -1,20 +1,13 @@
 -- main.lua
 
-function onBut_Enter()
+function OnBut_Enter()
 	local name = this:GetName()
 	if arg0 == UICT_PRESSED then
-		playSmallCtrl(this)
+		PlaySmallCtrl(this)
 	elseif arg0 == UICT_RELEASED then
-		playBigCtlr(this)
-		
-		--onUIBat()
-		
+		PlayBigCtrl(this)
 		PX2_ENGINELOOP:FireEventGeneralString("ToBat")
 	elseif arg0 == UICT_RELEASED_NOTVALIED then
-		playBigCtlr(this)
+		PlayBigCtrl(this)
 	end
-end
-
-function onUIBat()
-	PX2_PROJ:GetUIFrame():DetachAllChildren()
 end

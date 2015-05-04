@@ -56,6 +56,16 @@ inline RenderStep *GraphicsRoot::GetRenderStepUI()
 	return mRenderStepUI;
 }
 //----------------------------------------------------------------------------
+inline void GraphicsRoot::SetPlayType(PlayType type)
+{
+	mPlayType = type;
+}
+//----------------------------------------------------------------------------
+inline GraphicsRoot::PlayType GraphicsRoot::GetPlayType() const
+{
+	return mPlayType;
+}
+//----------------------------------------------------------------------------
 inline TriMesh *GraphicsRoot::GetXYPlane()
 {
 	return mTriMeshXY;

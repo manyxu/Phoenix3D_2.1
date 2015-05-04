@@ -338,7 +338,7 @@ function e_CreateNode()
 	end
 end
 
-function e_CreateUIPixBox(usePickPos)
+function e_CreateUIPicBox(usePickPos)
 	local selectObj = PX2_SELECTION:GetFirstObject()
 	local node = PX2_CREATER:ConvertToNode(selectObj)
 	if nil~=node then
@@ -349,7 +349,7 @@ function e_CreateUIPixBox(usePickPos)
 			if ""~=selectResData.ResPathname and ""~=selectResData.EleName then
 				PX2_CREATER:CreateUIPicBox(node, pickPos, selectResData.ResPathname, selectResData.EleName, true, usePickPos)
 			end
-		elseif ""~=selectResData.ResPathname then
+		elseif ""~=selectResData.ResPathname and selectResData.IsTheObjectTex() then
 			PX2_CREATER:CreateUIPicBox(node, pickPos, selectResData.ResPathname, true, usePickPos)
 		else
 			PX2_CREATER:CreateUIPicBox(node, pickPos, "Data/engine/default.png", true, usePickPos)

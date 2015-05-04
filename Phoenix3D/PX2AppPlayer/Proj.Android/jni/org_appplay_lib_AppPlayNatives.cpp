@@ -76,6 +76,20 @@ extern "C"
 			env->ReleaseStringUTFChars(type, str);
 		}
 	}
+	
+	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeSetDeviceIDStr
+	(JNIEnv *env, jclass, jstring deviceIDStr)
+	{
+	  	const char* str;
+		jboolean isCopy;
+		str = env->GetStringUTFChars(deviceIDStr, &isCopy);
+		if (isCopy)
+		{
+			appplay::NativeCall::SetDeviceIDStr(str);
+
+			env->ReleaseStringUTFChars(deviceIDStr, str);
+		}
+	}
 
 	JNIEXPORT void JNICALL Java_org_appplay_lib_AppPlayNatives_nativeTouchPressed
 		(JNIEnv *, jclass, jint id, jfloat x, jfloat y)

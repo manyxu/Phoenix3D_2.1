@@ -20,6 +20,21 @@ SelectResData::SelectResType SelectResData::GetSelectResType() const
 	return mSelectResType;
 }
 //----------------------------------------------------------------------------
+bool SelectResData::IsTheObjectTex() const
+{
+	if (RT_NORMAL == mSelectResType)
+	{
+		Texture2D *tex2D = DynamicCast<Texture2D>(TheObject);
+		if (tex2D) return true;
+	}
+	else if (RT_TEXPACKELEMENT == mSelectResType)
+	{
+		return true;
+	}
+
+	return false;
+}
+//----------------------------------------------------------------------------
 Sizef SelectResData::GetTheObjectTexSize() const
 {
 	if (RT_NORMAL == mSelectResType)

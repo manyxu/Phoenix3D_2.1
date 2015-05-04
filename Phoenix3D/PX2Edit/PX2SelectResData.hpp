@@ -28,6 +28,7 @@ namespace PX2
 		PX2::ObjectPtr TheObject;
 		std::string EleName; // 如果是RT_TEXPACKELE,这个成员有效
 
+		bool IsTheObjectTex() const;
 		Sizef GetTheObjectTexSize() const;
 
 	private:

@@ -1,6 +1,6 @@
 -- functions.lua
 
-function playSmallCtrl(uiObj)
+function PlaySmallCtrl(uiObj)
 	local bigCtrl = uiObj:GetControllerByName("BigCtrl");
 	if nil~=bigCtrl then
 		uiObj:DetachController(bigCtrl)
@@ -18,7 +18,7 @@ function playSmallCtrl(uiObj)
 	smallCtrl:ResetPlay()
 end
 
-function playBigCtlr(uiObj)
+function PlayBigCtrl(uiObj)
 	local smallCtrl = uiObj:GetControllerByName("SmallCtrl");
 	if nil~=smallCtrl then
 		uiObj:DetachController(smallCtrl)

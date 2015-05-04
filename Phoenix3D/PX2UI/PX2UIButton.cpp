@@ -81,6 +81,22 @@ void UIButton::OnEvent(Event *event)
 //----------------------------------------------------------------------------
 void UIButton::OnPressed()
 {
+	if (ART_NORMAL == mAfterReleasedType)
+	{
+		UIFrame *uiFrame = DynamicCast<UIFrame>(GetTopestParent());
+		if (uiFrame)
+		{
+			UIView *uiView = uiFrame->GetUIView();
+			if (uiView)
+			{
+				uiView->mPressedButs.push_back(this);
+			}
+		}
+	}
+
+	GraphicsRoot::PlayType playType = PX2_GR.GetPlayType();
+	if (GraphicsRoot::PT_PLAY != playType) return;
+
 	if (mUICallback)
 	{
 		mUICallback(this, UICT_PRESSED);
@@ -96,19 +112,6 @@ void UIButton::OnPressed()
 	{
 		CallString(mUIScriptHandler.c_str(), "i", (int)UICT_PRESSED);
 	}
-
-	if (ART_NORMAL == mAfterReleasedType)
-	{
-		UIFrame *uiFrame = DynamicCast<UIFrame>(GetTopestParent());
-		if (uiFrame)
-		{
-			UIView *uiView = uiFrame->GetUIView();
-			if (uiView)
-			{
-				uiView->mPressedButs.push_back(this);
-			}
-		}
-	}
 }
 //----------------------------------------------------------------------------
 void UIButton::OnReleased()
@@ -122,22 +125,6 @@ void UIButton::OnReleased()
 		Enable(false);
 		mIsRecoverBegin = true;
 		mRecoverBeginTime = (float)GetTimeInSeconds();
-	}
-
-	if (mUICallback)
-	{
-		mUICallback(this, UICT_RELEASED);
-	}
-
-	std::vector<Visitor *>::iterator it = mVisitors.begin();
-	for (; it != mVisitors.end(); it++)
-	{
-		(*it)->Visit(this, (int)UICT_RELEASED);
-	}
-
-	if (!mUIScriptHandler.empty())
-	{
-		CallString(mUIScriptHandler.c_str(), "i", (int)UICT_RELEASED);
 	}
 
 	UIFrame *uiFrame = DynamicCast<UIFrame>(GetTopestParent());
@@ -160,6 +147,25 @@ void UIButton::OnReleased()
 			}
 		}
 	}
+
+	GraphicsRoot::PlayType playType = PX2_GR.GetPlayType();
+	if (GraphicsRoot::PT_PLAY != playType) return;
+
+	if (mUICallback)
+	{
+		mUICallback(this, UICT_RELEASED);
+	}
+
+	std::vector<Visitor *>::iterator it = mVisitors.begin();
+	for (; it != mVisitors.end(); it++)
+	{
+		(*it)->Visit(this, (int)UICT_RELEASED);
+	}
+
+	if (!mUIScriptHandler.empty())
+	{
+		CallString(mUIScriptHandler.c_str(), "i", (int)UICT_RELEASED);
+	}
 }
 //----------------------------------------------------------------------------
 void UIButton::OnReleasedNotValied()
@@ -169,6 +175,9 @@ void UIButton::OnReleasedNotValied()
 	if (state == BS_PRESSED)
 	{
 		SetButtonState(BS_NORMAL);
+
+		GraphicsRoot::PlayType playType = PX2_GR.GetPlayType();
+		if (GraphicsRoot::PT_PLAY != playType) return;
 
 		if (mUICallback)
 		{

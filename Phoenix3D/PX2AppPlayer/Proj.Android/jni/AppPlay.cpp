@@ -159,6 +159,12 @@ void NativeCall::SetWriteablePath(std::string path)
     
 }
 //----------------------------------------------------------------------------
+void NativeCall::SetDeviceIDStr(std::string deviceIDStr)
+{
+#ifdef APPPLAY_PX2
+#endif
+}
+//----------------------------------------------------------------------------
 void NativeCall::Text_InsertText(const char *text, int length)
 {
 

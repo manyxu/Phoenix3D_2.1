@@ -32,6 +32,9 @@ namespace appplay
 		static void SetDataServerUpdateType(std::string type);
         
         static void SetWriteablePath(std::string path);
+		
+		// deive id
+		static void SetDeviceIDStr(std::string deviceIDStr);
 
 		// text
 		static void Text_InsertText(const char *text, int length);

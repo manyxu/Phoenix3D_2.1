@@ -409,7 +409,7 @@ void Project::DoExecute(Event *event)
 	{
 		std::string eventStr = event->GetData<std::string>();
 
-		std::string funStr = std::string("onEventGeneralString('")
+		std::string funStr = std::string("OnEventGeneralString('")
 			+ eventStr+ "')";
 
 		PX2_SM.CallString(funStr);

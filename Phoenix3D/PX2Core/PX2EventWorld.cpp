@@ -210,7 +210,7 @@ void EventWorld::_UpdateEvent(float detalTime)
 		*itEvent = 0;
 	}
 
-	// 移除出发了的消息
+	// 移除出发了的消息yiyi'ban
 	EventList::iterator itEvent1 = mEventList->begin();
 	for (; itEvent1 != mEventList->end();)
 	{

@@ -90,6 +90,21 @@ namespace PX2
 		std::map<FString, RenderStepPtr> mRenderStepMap;
 		std::vector<RenderStep *> mRenderStepVec;
 
+		// Play
+	public:
+		enum PlayType
+		{
+			PT_NONE,
+			PT_SIMULATE,
+			PT_PLAY,
+			PT_MAX_TYPE
+		};
+		void SetPlayType(PlayType type);
+		PlayType GetPlayType() const;
+
+	protected:
+		PlayType mPlayType;
+
 		// VertexFormat
 	public:
 		enum VertexFormatType

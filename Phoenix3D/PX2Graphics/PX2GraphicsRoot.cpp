@@ -25,6 +25,7 @@ const std::string GraphicsRoot::sTerResPath = "TerResPath";
 GraphicsRoot::GraphicsRoot ()
 {
 	mIsInEditor = false;
+	mPlayType = PT_NONE;
 
 	MaterialManager *mi = new0 MaterialManager();
 	PX2_UNUSED(mi);
