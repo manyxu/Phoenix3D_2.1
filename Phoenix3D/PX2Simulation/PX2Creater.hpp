@@ -39,6 +39,8 @@ namespace PX2
 		Creater();
 		virtual ~Creater();
 
+		Object *New(const std::string &className);
+
 		Actor *CreateActor_Rectangle(Scene *scene, const APoint &pos);
 		Actor *CreateActor_Box(Scene *scene, const APoint &pos);
 		Actor *CreateActor_Sphere(Scene *scene, const APoint &pos);

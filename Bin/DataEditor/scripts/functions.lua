@@ -56,13 +56,6 @@ function e_OnSetting()
 	E_MainFrame:OnSetting()
 end
 
-function e_OnImport()
-	
-end
-
-function e_OnExport()
-end
-
 function e_SelectEditAxisMode(selectAxisMode)
 	if 0==selectAxisMode then
 		PX2_EDIT:SetEditAxisMode(Edit.EAM_WORLD)
@@ -102,6 +95,7 @@ function e_OnDelete()
 end
 
 function e_OnImportSelectedRes()
+	E_MainFrame:OnImportSelectedRes()
 end
 
 function e_OnImport()

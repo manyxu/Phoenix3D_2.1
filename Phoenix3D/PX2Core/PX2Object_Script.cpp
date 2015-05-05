@@ -6,6 +6,21 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
+Object *Object::New()
+{
+	Object *obj = new0 Object();
+	obj->RegistToScriptSystemAll();
+	return obj;
+}
+//----------------------------------------------------------------------------
+Object *Object::New(const std::string &name)
+{
+	Object *obj = new0 Object();
+	obj->SetName(name);
+	obj->RegistToScriptSystemAll();
+	return obj;
+}
+//----------------------------------------------------------------------------
 void Object::SetUserScriptName(const std::string &scriptName)
 {
 	mUserScriptName = scriptName;

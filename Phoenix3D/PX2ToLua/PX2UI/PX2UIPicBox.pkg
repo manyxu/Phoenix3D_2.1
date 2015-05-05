@@ -8,6 +8,9 @@
 		UIPicBox(const std::string &packName, const std::string &eleName,
 			int isDynamicBuffer=0);
 		virtual ~UIPicBox();
+		
+		static Object *New();
+		static Object *New(const std::string &name);
 
 		enum PicBoxType
 		{

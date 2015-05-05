@@ -64,6 +64,7 @@ namespace PX2Editor
 		void OnExit();
 
 		void OnImport();
+		void OnImportSelectedRes();
 		void OnExport();
 
 		void OnShowWindow(const std::string &tag);

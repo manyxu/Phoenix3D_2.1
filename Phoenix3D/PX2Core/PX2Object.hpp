@@ -239,6 +239,9 @@ namespace PX2
 
 		// Scripts
 	public:
+		static Object *New();
+		static Object *New(const std::string &name);
+
 		void SetUserScriptName(const std::string &scriptName);
 		const std::string &GetUserScriptName() const;
 		const std::string &GetScriptName() const;

@@ -46,25 +46,14 @@ namespace PX2
 //----------------------------------------------------------------------------
 #define PX2_NEW(classname) \
 public: \
-	static classname *New () \
-	{ \
-		return new0 classname(); \
-	} \
-	\
-	static classname *New (const std::string &name) \
-	{ \
-		classname *obj = new0 classname(); \
-		obj->SetName(name); \
-		return obj; \
-	} \
-	static classname *NewReg() \
+	static Object *New() \
 	{ \
 		classname *obj = new0 classname(); \
 		obj->RegistToScriptSystemAll(); \
 		return obj; \
 	} \
 	\
-	static classname *NewReg(const std::string &name) \
+	static Object *New(const std::string &name) \
 	{ \
 		classname *obj = new0 classname(); \
 		obj->SetName(name); \

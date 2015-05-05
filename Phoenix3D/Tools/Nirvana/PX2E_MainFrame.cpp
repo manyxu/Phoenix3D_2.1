@@ -679,6 +679,31 @@ void E_MainFrame::OnImport()
 	}
 }
 //----------------------------------------------------------------------------
+void E_MainFrame::OnImportSelectedRes()
+{
+	int numObjs = PX2_SELECTION.GetNumObjects();
+	Object *obj = PX2_SELECTION.GetFirstObject();
+
+	if (1 != numObjs)
+	{
+		NirMan::GetSingleton().MessageBox(PX2_LM.GetValue("Notice"), PX2_LM.GetValue("Tip3"));
+		return;
+	}
+
+	if (!obj)
+	{
+		NirMan::GetSingleton().MessageBox(PX2_LM.GetValue("Notice"), PX2_LM.GetValue("Tip0"));
+		return;
+	}
+
+	const SelectResData &selectResData = PX2_EDIT.GetSelectedResource();
+	if (selectResData.TheObject)
+	{
+		Object *copyObject = selectResData.TheObject->Copy("");
+		PX2_CREATER.AddObject(obj, copyObject);
+	}
+}
+//----------------------------------------------------------------------------
 void E_MainFrame::OnExport()
 {
 	int numObjs = PX2_SELECTION.GetNumObjects();

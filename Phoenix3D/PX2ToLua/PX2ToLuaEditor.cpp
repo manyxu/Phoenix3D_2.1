@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2Editor
-** Generated automatically by tolua++-1.0.92 on 05/03/15 20:17:16.
+** Generated automatically by tolua++-1.0.92 on 05/05/15 14:02:19.
 */
 
 #ifndef __cplusplus
@@ -451,6 +451,37 @@ static int tolua_PX2Editor_E_MainFrame_OnImport00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'OnImport'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: OnImportSelectedRes of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnImportSelectedRes00
+static int tolua_PX2Editor_E_MainFrame_OnImportSelectedRes00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnImportSelectedRes'", NULL);
+#endif
+  {
+   self->OnImportSelectedRes();
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'OnImportSelectedRes'.",&tolua_err);
  return 0;
 #endif
 }
@@ -2112,6 +2143,32 @@ static int tolua_PX2Editor_E_MainFrame_OnImport01(lua_State* tolua_S)
  return 0;
 tolua_lerror:
  return tolua_PX2Editor_E_MainFrame_OnImport00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: OnImportSelectedRes of class  E_MainFrame */
+#ifndef TOLUA_DISABLE_tolua_PX2Editor_E_MainFrame_OnImportSelectedRes01
+static int tolua_PX2Editor_E_MainFrame_OnImportSelectedRes01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"E_MainFrame",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  E_MainFrame* self = (E_MainFrame*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'OnImportSelectedRes'", NULL);
+#endif
+  {
+   self->OnImportSelectedRes();
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2Editor_E_MainFrame_OnImportSelectedRes00(tolua_S);
 }
 #endif //#ifndef TOLUA_DISABLE
 
@@ -7504,6 +7561,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OnCloseScene",tolua_PX2Editor_E_MainFrame_OnCloseScene00);
    tolua_function(tolua_S,"OnExit",tolua_PX2Editor_E_MainFrame_OnExit00);
    tolua_function(tolua_S,"OnImport",tolua_PX2Editor_E_MainFrame_OnImport00);
+   tolua_function(tolua_S,"OnImportSelectedRes",tolua_PX2Editor_E_MainFrame_OnImportSelectedRes00);
    tolua_function(tolua_S,"OnExport",tolua_PX2Editor_E_MainFrame_OnExport00);
    tolua_function(tolua_S,"OnShowWindow",tolua_PX2Editor_E_MainFrame_OnShowWindow00);
    tolua_function(tolua_S,"OnStageCentre",tolua_PX2Editor_E_MainFrame_OnStageCentre00);
@@ -7556,6 +7614,7 @@ TOLUA_API int tolua_PX2Editor_open (lua_State* tolua_S)
    tolua_function(tolua_S,"OnCloseScene",tolua_PX2Editor_E_MainFrame_OnCloseScene01);
    tolua_function(tolua_S,"OnExit",tolua_PX2Editor_E_MainFrame_OnExit01);
    tolua_function(tolua_S,"OnImport",tolua_PX2Editor_E_MainFrame_OnImport01);
+   tolua_function(tolua_S,"OnImportSelectedRes",tolua_PX2Editor_E_MainFrame_OnImportSelectedRes01);
    tolua_function(tolua_S,"OnExport",tolua_PX2Editor_E_MainFrame_OnExport01);
    tolua_function(tolua_S,"OnShowWindow",tolua_PX2Editor_E_MainFrame_OnShowWindow01);
    tolua_function(tolua_S,"OnStageCentre",tolua_PX2Editor_E_MainFrame_OnStageCentre01);

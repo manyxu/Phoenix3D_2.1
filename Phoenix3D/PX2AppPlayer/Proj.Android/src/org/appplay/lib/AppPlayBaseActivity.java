@@ -37,7 +37,7 @@ public class AppPlayBaseActivity extends Activity
 	// LibSO
 	public static String sLibSO_Filename = "";
 	public static String sLibSO_Dir = "";
-	private static String sLibSO_Name="AppPlayJNI";
+	private static String sLibSO_Name = "AppPlayJNI";
 
 	// Vsersion
 	public static String sVersion_Dir = "";
@@ -56,49 +56,49 @@ public class AppPlayBaseActivity extends Activity
 	{
 		sTheActivity = this;
 
-		super.onCreate(savedInstanceState);	
+		super.onCreate(savedInstanceState);
 
 		// Device IDs
-		TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);	
-		String deviceIDStr = telephonyManager.getDeviceId();  
+		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+		String deviceIDStr = telephonyManager.getDeviceId();
 		String subScriberIDStr = telephonyManager.getSubscriberId();
-		
+
 		String serialnumStr = null;
-		try 
-		{
-	        Class<?> c = Class.forName("android.os.SystemProperties");  
-	        Method get = c.getMethod("get", String.class, String.class );  
-	        serialnumStr = (String)(get.invoke(c, "ro.serialno", "unknown" ));  
-		}
-		catch (Exception ignored)
-		{  
-	    }		
-		String serialnumStr2 = null;  
 		try
-		{  
-			Class myclass = Class.forName( "android.os.SystemProperties" );  
-		 	Method[] methods = myclass.getMethods();  
-		 	Object[] params = new Object[] {new String("ro.serialno"), new String("Unknown") };  
-		 	serialnumStr2 = (String)(methods[2].invoke( myclass, params ));
+		{
+			Class<?> c = Class.forName("android.os.SystemProperties");
+			Method get = c.getMethod("get", String.class, String.class);
+			serialnumStr = (String) (get.invoke(c, "ro.serialno", "unknown"));
+		} catch (Exception ignored)
+		{
 		}
-		catch (Exception ignored)
-		{	      
+		String serialnumStr2 = null;
+		try
+		{
+			Class myclass = Class.forName("android.os.SystemProperties");
+			Method[] methods = myclass.getMethods();
+			Object[] params = new Object[] { new String("ro.serialno"),
+					new String("Unknown") };
+			serialnumStr2 = (String) (methods[2].invoke(myclass, params));
+		} catch (Exception ignored)
+		{
 		}
 
-		String androidIDStr = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-		
+		String androidIDStr = Settings.Secure.getString(getContentResolver(),
+				Settings.Secure.ANDROID_ID);
+
 		String myDeviceIDStr = deviceIDStr + serialnumStr;
-		AppPlayNatives.nativeSetDeviceIDStr(myDeviceIDStr);		
-		
+		AppPlayNatives.nativeSetDeviceIDStr(myDeviceIDStr);
+
 		// Package
 		String packageName = getApplication().getPackageName();
 		PackageManager packMgr = getApplication().getPackageManager();
 		ApplicationInfo info = null;
 		try
 		{
-			info = packMgr.getApplicationInfo(packageName, MODE_WORLD_WRITEABLE);
-		} 
-		catch (NameNotFoundException e)
+			info = packMgr
+					.getApplicationInfo(packageName, MODE_WORLD_WRITEABLE);
+		} catch (NameNotFoundException e)
 		{
 			e.printStackTrace();
 		}
@@ -109,20 +109,20 @@ public class AppPlayBaseActivity extends Activity
 
 		sVersion_Filename = info.dataDir + "/version.xml";
 		sVersion_Filename_Temp = info.dataDir + "/version_Temp.xml";
-		
+
 		// Initlize
-        Log.d("appplay.ap", "begin - AppPlayActivity::onCreate"); 
-        
-        AppPlayMetaData.Initlize(getApplicationContext());
-        
+		Log.d("appplay.ap", "begin - AppPlayActivity::onCreate");
+
+		AppPlayMetaData.Initlize(getApplicationContext());
+
 		if (AppPlayMetaData.sIsNettable)
 			PlatformSDK.sThePlatformSDK = PlatformSDKCreater.Create(this);
 		else
 			Show_GLView();
-		
-		 Log.d("appplay.ap", "end - AppPlayActivity::onCreate"); 
+
+		Log.d("appplay.ap", "end - AppPlayActivity::onCreate");
 	}
-	
+
 	@Override
 	protected void onStop()
 	{
@@ -270,7 +270,6 @@ public class AppPlayBaseActivity extends Activity
 		});
 	}
 
-
 	// updated ok, let's show our opengles view
 	public void Show_GLView()
 	{
@@ -286,7 +285,8 @@ public class AppPlayBaseActivity extends Activity
 
 					System.load(sLibSO_Filename);
 
-					Log.d("appplay.lib", "end - load sLibSO(form dir):" + sLibSO_Filename);
+					Log.d("appplay.lib", "end - load sLibSO(form dir):"
+							+ sLibSO_Filename);
 				} else
 				{ // load so packaged with the first apk
 
@@ -295,15 +295,16 @@ public class AppPlayBaseActivity extends Activity
 					try
 					{
 						System.loadLibrary(sLibSO_Name);
-					}
-					catch (UnsatisfiedLinkError ulink)
+					} catch (UnsatisfiedLinkError ulink)
 					{
 						ulink.printStackTrace();
-						
-						Log.d("appplay.lib", "end - load so(form init packaged Failed):");
+
+						Log.d("appplay.lib",
+								"end - load so(form init packaged Failed):");
 					}
 
-					Log.d("appplay.lib", "end - load so(form init packaged):" + sLibSO_Name);
+					Log.d("appplay.lib", "end - load so(form init packaged):"
+							+ sLibSO_Name);
 				}
 
 				Log.d("appplay.lib", "ok - load so.");
@@ -313,7 +314,8 @@ public class AppPlayBaseActivity extends Activity
 				_SetPackageName(packageName);
 
 				// set platformsdk
-				PlatformSDKNatives.SetPlatformSDK(PlatformSDKCreater.sSDK_CurrentName);
+				PlatformSDKNatives
+						.SetPlatformSDK(PlatformSDKCreater.sSDK_CurrentName);
 
 				// -- begin FrameLayout --
 
@@ -440,10 +442,10 @@ public class AppPlayBaseActivity extends Activity
 		});
 
 	}
-	
-	public static String GetPackageName ()
+
+	public static String GetPackageName()
 	{
-		 return msPackageName;
+		return msPackageName;
 	}
 
 	// platform sdk functions
