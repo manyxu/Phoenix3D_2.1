@@ -349,6 +349,7 @@ void Scene::RegistProperties()
 
 	AddProperty("NumActors", PT_INT, (int)mActors.size(), false);
 	AddProperty("Size", PT_SIZE, mSize);
+
 	AddProperty("IsShowHelpNode", PT_BOOL, IsShowHelpNode());
 
 	AddProperty("IsUseBloom", PT_BOOL, mIsUseBloom);
@@ -388,7 +389,6 @@ void Scene::OnPropertyChanged(const PropertyObject &obj)
 	{
 		SetShowHelpNode(PX2_ANY_AS(obj.Data, bool));
 	}
-
 	else if ("IsUseBloom" == obj.Name)
 	{
 		SetUseBloom(PX2_ANY_AS(obj.Data, bool));
@@ -530,6 +530,8 @@ void Scene::Link(InStream& source)
 void Scene::PostLink()
 {
 	Node::PostLink();
+
+	RegistToScriptSystem();
 }
 //----------------------------------------------------------------------------
 bool Scene::Register(OutStream& target) const

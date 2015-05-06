@@ -1,26 +1,7 @@
-// PX2RenderStep.hpp
-
-#ifndef PX2RENDERSTEP_HPP
-#define PX2RENDERSTEP_HPP
-
-#include "PX2GraphicsPre.hpp"
-#include "PX2Object.hpp"
-#include "PX2Size.hpp"
-#include "PX2Rect.hpp"
-#include "PX2Culler.hpp"
-#include "PX2Node.hpp"
-#include "PX2Vector2.hpp"
-#include "PX2RenderTarget.hpp"
-
-namespace PX2
-{
-
-	class Renderer;
+// PX2RenderStep
 
 	class RenderStep : public Object
 	{
-		PX2_DECLARE_RTTI;
-
 	public:
 		RenderStep();
 		virtual ~RenderStep();
@@ -28,46 +9,30 @@ namespace PX2
 	public:
 		virtual void Update(double appSeconds, double elapsedSeconds);
 
-	protected:
-		bool mIsUpdated;
-
 	public:
 		void Show(bool show);
 		bool IsShow() const;
 
-	protected:
-		bool mIsShow;
-
 		// Size
-		// ÔÚ±à¼­Æ÷ÖĞĞèÒªËæ×Å´°¿Ú£¬¶¯Ì¬µ÷ÕûÏà»úµÈ£¬ËùÒÔSize»áÆµ·±¸Ä±ä
-		// ÔÚAppPlayerÖĞ£¬¼ÓÔØ¹¤³ÌÊ±ºò£¬ÉèÖÃÒ»´ÎºÍ¹¤³Ì´óĞ¡Ò»ÖÂ£¬²»»áÆµ·±¸Ä±ä
+		// åœ¨ç¼–è¾‘å™¨ä¸­éœ€è¦éšç€çª—å£ï¼ŒåŠ¨æ€è°ƒæ•´ç›¸æœºç­‰ï¼Œæ‰€ä»¥Sizeä¼šé¢‘ç¹æ”¹å˜
+		// åœ¨AppPlayerä¸­ï¼ŒåŠ è½½å·¥ç¨‹æ—¶å€™ï¼Œè®¾ç½®ä¸€æ¬¡å’Œå·¥ç¨‹å¤§å°ä¸€è‡´ï¼Œä¸ä¼šé¢‘ç¹æ”¹å˜
 	public:
 		virtual void SetSize(const Sizef &size);
 		const Sizef &GetSize() const;
 
 		void SetSizeChangeReAdjustCamera(bool doReAdjust);
 
-	protected:
-		Sizef mSize;
-		bool mIsSizeChangeReAdjustCamera;
-
 		// ScreenSize
-		// µ±ÆÁÄ»¸Ä±ä£¬rendertarget¿ÉÄÜĞèÒªÖØ½¨£¬ËùÒÔÉè¼Æ´Ë½Ó¿Ú£¬½øĞĞ´¦Àí
+		// å½“å±å¹•æ”¹å˜ï¼Œrendertargetå¯èƒ½éœ€è¦é‡å»ºï¼Œæ‰€ä»¥è®¾è®¡æ­¤æ¥å£ï¼Œè¿›è¡Œå¤„ç†
 	public:
 		virtual void SetScreenSize(const Sizef &size);
 		const Sizef &GetScreenSize() const;
-
-	protected:
-		Sizef mScreenSize;
 
 		// ViewPort
 	public:
 		void SetViewPort(const Rectf &viewPort);
 		void SetViewPort(float left, float bottom, float width, float height);
 		const Rectf &GetViewPort() const;
-
-	protected:
-		Rectf mViewPort;
 
 		// Renderer Camera Culler
 	public:
@@ -82,22 +47,14 @@ namespace PX2
 		bool GetPickRay(float x, float y, APoint& origin, AVector& direction);
 		Vector2f PointWorldToViewPort(const APoint &worldPos, bool *isInBack=0);
 
-	protected:
-		Renderer *mRenderer;
-		CameraPtr mCamera;
-		Culler mCuller;
-
 		// Node
 	public:
 		virtual void SetNode(Node *node);
 		Node *GetNode();
 
-	protected:
-		NodePtr mNode;
-
 		// Draw
 	public:
-		void SetPriority(int priority); // Ô½´óÔÂÔÚÇ°
+		void SetPriority(int priority); // è¶Šå¤§æœˆåœ¨å‰
 		int GetPriority() const;
 
 		void SetDoDepthClear(bool clear);
@@ -106,25 +63,7 @@ namespace PX2
 		virtual void ComputeVisibleSetAndEnv();
 		virtual void Draw();
 
-	public_internal:
-		static bool LessThan(const RenderStep *step0, const RenderStep *step1);
-
-	protected:
-		int mPriority;
-		bool mIsDoClearDepth;
-
-	public_internal:
-		// ±à¼­Æ÷ÖĞµ÷ÓÃ
-		void _Tick(double appTime, double elapsedTime);
-
 		// Help
 	public:
 		std::pair<float, float> CalPixelToWorld();
 	};
-
-#include "PX2RenderStep.inl"
-	typedef Pointer0<RenderStep> RenderStepPtr;
-
-}
-
-#endif

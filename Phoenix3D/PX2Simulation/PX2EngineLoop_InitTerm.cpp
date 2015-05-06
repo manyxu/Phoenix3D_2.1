@@ -419,3 +419,36 @@ void EngineLoop::SetScreenSize(const Sizef &screenSize)
 	}
 }
 //----------------------------------------------------------------------------
+Rectf EngineLoop::GetViewPortAdjustFromProject(const Rectf &viewPort)
+{
+	Project *proj = Project::GetSingletonPtr();
+	if (!proj) return Rectf();
+
+	const Sizef &projSize = proj->GetSize();
+
+	Rectf rect;
+
+	float leftPercent = viewPort.Left / projSize.Width;
+	float bottomPercent = viewPort.Bottom / projSize.Height;
+	float widthPercent = viewPort.Width() / projSize.Width;
+	float heightPercent = viewPort.Height() / projSize.Height;
+
+	rect.Left = mAdjustViewPort.Left + leftPercent * mAdjustViewPort.Width();
+	rect.Bottom = mAdjustViewPort.Bottom + bottomPercent * mAdjustViewPort.Height();
+	rect.Right = Mathf::Floor(rect.Left + widthPercent * mAdjustViewPort.Width());
+	rect.Top = Mathf::Floor(rect.Bottom + heightPercent * mAdjustViewPort.Height());
+
+	return rect;
+}
+//----------------------------------------------------------------------------
+Rectf EngineLoop::GetViewPortAdjustFromProject(float left, float bottom,
+	float width, float height)
+{
+	Rectf rect;
+	rect.Left = left;
+	rect.Bottom = bottom;
+	rect.Right = left + width;
+	rect.Top = bottom + height;
+	return GetViewPortAdjustFromProject(rect);
+}
+//----------------------------------------------------------------------------

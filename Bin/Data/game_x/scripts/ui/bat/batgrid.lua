@@ -12,6 +12,7 @@ BGO.CurPos = APoint.ORIGIN
 BGO.Alpha = 0.0
 BGO.Lightness = 1.0
 BGO.IsSplittedVisited = false
+BGO.GeoObj = nil
 
 function BGO:New(o)
 	o = o or {}
@@ -22,6 +23,9 @@ end
 
 gNumGridRow = 5
 gNumGridCol = 6
+gBGOSize = gProjWidth/gNumGridCol
+gBGOSizeHalf = gBGOSize/2.0
+
 
 BatGrid = {}
 BatGrid.GridFrame = nil
@@ -38,12 +42,13 @@ function BatGrid:Reset()
 	for i=0, gNumGridRow-1 do
 		for j=0, gNumGridCol-1 do
 			local bgo = BGO:New()
-			bgo.OriginPos = APoint(i*100.0, 0.0, j*100.0)
+			bgo.OriginPos = APoint(gBGOSizeHalf + j*gBGOSize, 0.0, gBGOSizeHalf + i*gBGOSize)
 			table.insert(BatGrid.BGOS, 1, bgo)
 			
-			local picBox = UIPicBox:New()	
-			picBox.LocalTransform:SetTranslate(bgo.OriginPos)
-			self.GridFrame:AttachChild(picBox)
+			bgo.GeoObj = PX2_CREATER:CreateSphere(nil, bgo.OriginPos, false, false, true)
+			self.GridFrame:AttachChild(bgo.GeoObj)
+			bgo.GeoObj.LocalTransform:SetUniformScale(50.0)
+			bgo.GeoObj.LocalTransform:SetTranslate(bgo.OriginPos)
 		end
 	end
 end

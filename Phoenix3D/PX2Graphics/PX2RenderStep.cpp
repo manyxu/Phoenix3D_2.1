@@ -87,6 +87,15 @@ void RenderStep::SetViewPort(const Rectf &viewPort)
 	mViewPort = viewPort;
 }
 //----------------------------------------------------------------------------
+void RenderStep::SetViewPort(float left, float bottom, float width, 
+	float height)
+{
+	mViewPort.Left = left;
+	mViewPort.Bottom = bottom;
+	mViewPort.Right = left + width;
+	mViewPort.Top = bottom + height;
+}
+//----------------------------------------------------------------------------
 void RenderStep::SetRenderer(Renderer *renderer)
 {
 	mRenderer = renderer;
@@ -98,7 +107,8 @@ void RenderStep::SetCamera(Camera *camera)
 	mCuller.SetCamera(mCamera);
 }
 //----------------------------------------------------------------------------
-bool RenderStep::GetPickRay(float x, float y, APoint& origin, AVector& direction)
+bool RenderStep::GetPickRay(float x, float y, APoint& origin, 
+	AVector& direction)
 {
 	if (!mCamera) return false;
 

@@ -379,6 +379,8 @@ void Actor::PostLink()
 	}
 
 	SetPickable(IsPickable());
+
+	RegistToScriptSystem();
 }
 //----------------------------------------------------------------------------
 bool Actor::Register(OutStream& target) const

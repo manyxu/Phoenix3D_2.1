@@ -1,5 +1,8 @@
 -- start.lua
 
+-- globals
+gProjWidth = PX2_PROJ:GetWidth()
+gProjHeight = PX2_PROJ:GetHeight()
 
 -- calls
 PX2_SM:CallFile("Data/game_x/scripts/generalfunctions.lua")
@@ -13,7 +16,6 @@ PX2_SM:CallFile("Data/game_x/scripts/ui/bat/batgrid.lua")
 function OnEventGeneralString(eventStr)
 	OnEventGeneralStringUI(eventStr)
 end
-
 
 -- TheGame
 GameX = {}

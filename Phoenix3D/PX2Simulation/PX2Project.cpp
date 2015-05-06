@@ -5,13 +5,13 @@
 #include "PX2StringHelp.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2StringTokenizer.hpp"
-#include "PX2ScriptManager.hpp"
 #include "PX2Renderer.hpp"
 #include "PX2UIView.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2GraphicsRoot.hpp"
 #include "PX2SimulationEventType.hpp"
+#include "PX2ScriptManager.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, Object, Project);

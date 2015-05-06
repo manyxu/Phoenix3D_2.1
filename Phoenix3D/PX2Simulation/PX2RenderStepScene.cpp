@@ -76,8 +76,10 @@ void RenderStepScene::Update(double appSeconds, double elapsedSeconds)
 	PX2_GR.SetCurEnvirParam(sceneEnvirParam);
 	mRenderer->SetCamera(mCamera);
 
-	PX2_UNUSED(elapsedSeconds);
-	if (mNode) mNode->Update(appSeconds, elapsedSeconds, false);
+	if (scene)
+	{
+		scene->Update(appSeconds, elapsedSeconds, false);
+	}
 
 	PX2_GR.SetCurEnvirParam(beformParam);
 	mRenderer->SetCamera(beforeCamer);
@@ -273,8 +275,11 @@ void RenderStepScene::Draw()
 	mRenderer->SetCamera(beforeCamer);
 	PX2_GR.SetCurEnvirParam(beformParam);
 
-	mEffect_UIView->SetViewPort(viewPortSimu);
-	mEffect_UIView->Draw();
+	if (scene->IsUseBloom() || scene->IsUseShadowMap())
+	{
+		mEffect_UIView->SetViewPort(viewPortSimu);
+		mEffect_UIView->Draw();
+	}
 }
 //----------------------------------------------------------------------------
 void RenderStepScene::SetSize(const Sizef &size)

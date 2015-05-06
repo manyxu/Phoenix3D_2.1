@@ -1290,13 +1290,17 @@
 									<value>1136 x 640</value>
 									<content>
 										<item>1136 x 640</item>
+										<item>568 x 320</item>
 										<item>640 x 1136</item>
+										<item>320 x 568</item>
 										<item>960 x 640</item>
+										<item>480 x 320</item>
 										<item>640 x 960</item>
+										<item>320 x 480</item>
 										<item>800 x 400</item>
+										<item>400 x 200</item>
 										<item>400 x 800</item>
-										<item>600 x 400</item>
-										<item>400 x 600</item>
+										<item>200 x 400</item>
 									</content>
 								</object>
 							</object>

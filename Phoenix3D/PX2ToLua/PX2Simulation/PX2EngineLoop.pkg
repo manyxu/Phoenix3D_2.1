@@ -2,6 +2,10 @@
 
 	class EngineLoop
 	{
+		Rectf GetViewPortAdjustFromProject(const Rectf &viewPort);
+		Rectf GetViewPortAdjustFromProject(float left, float bottom,
+			float width, float height);
+	
 		// Event
 		void FireEventGeneralString(const std::string &str, float timeDelay=0.0f);
 	};
