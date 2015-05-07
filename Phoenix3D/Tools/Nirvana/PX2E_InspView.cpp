@@ -1,12 +1,14 @@
 // PX2E_InspView.cpp
 
 #include "PX2E_InspView.hpp"
+#include "PX2E_Define.hpp"
 #include "PX2ObjectInspector.hpp"
 #include "PX2SimulationEventType.hpp"
 #include "PX2Selection.hpp"
 #include "PX2E_NirMan.hpp"
 #include "PX2ScriptManager.hpp"
 #include "PX2EditEventType.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -48,7 +50,8 @@ mCurWindow(0)
 
 	PX2_EW.ComeIn(this);
 
-	SetBackgroundColour(wxColour(255, 255, 255));
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
 }
 //----------------------------------------------------------------------------
 InspView::~InspView()

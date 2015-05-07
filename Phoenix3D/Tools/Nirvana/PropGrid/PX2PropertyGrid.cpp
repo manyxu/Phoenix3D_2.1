@@ -1,10 +1,8 @@
-/*
-*
-* ÎÄ¼þÃû³Æ	£º	PX2Inspector.cpp
-*
-*/
+// PX2Inspector.cpp
 
 #include "PX2PropertyGrid.hpp"
+#include "PX2Edit.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -71,17 +69,33 @@ void PropertyGrid::Create ()
 
 	mPropGridManager->SetDescBoxHeight(40);
 
-	wxColour my_grey_1(212, 208, 200);
-	wxColour my_grey_3(113, 111, 100);
 	mPropGridManager->Freeze();
 	mPropGridManager->GetGrid()->SetMarginColour(*wxWHITE);
 	mPropGridManager->GetGrid()->SetCaptionBackgroundColour(wxColour(207, 214, 229));
 	mPropGridManager->GetGrid()->SetCellBackgroundColour(*wxWHITE);
 	mPropGridManager->GetGrid()->SetCellTextColour(*wxBLACK);
-	mPropGridManager->GetGrid()->SetLineColour(my_grey_1); //wxColour(160,160,160)
 	mPropGridManager->Thaw();
 
 	mPropGridManager->Refresh();
+
+	mPropGridManager->GetGrid()->SetMarginColour(Float3TowxColour(
+		PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+
+	mPropGridManager->SetBackgroundColour(Float3TowxColour(
+		PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	mPropGridManager->SetForegroundColour(Float3TowxColour(
+		PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
+
+	mPropGridManager->GetGrid()->SetCellBackgroundColour(Float3TowxColour(
+		PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	mPropGridManager->GetGrid()->SetCellTextColour(Float3TowxColour(
+		PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
+
+	mPropGridManager->GetGrid()->SetCaptionBackgroundColour(Float3TowxColour(
+		PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+
+	mPropGridManager->GetGrid()->SetLineColour(Float3TowxColour(
+		PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
 }
 //-----------------------------------------------------------------------------
 void PropertyGrid::Clear ()

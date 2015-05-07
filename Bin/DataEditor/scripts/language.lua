@@ -60,6 +60,7 @@ function AddLanguages()
 	PX2_LM:AddItem1("Setting", "设置")
 	
 	PX2_LM:AddItem1("Help", "帮助")
+	PX2_LM:AddItem1("About", "关于")
 	
 	-- 编辑菜单
 	PX2_LM:AddItem1("Create", "创建")

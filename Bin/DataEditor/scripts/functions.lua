@@ -150,6 +150,13 @@ function e_OnPlayConfig()
 	E_MainFrame:OnPlayConfig()
 end
 
+function e_OnSetting()
+	E_MainFrame:OnSetting()
+end
+
+function e_OnAbout()
+end
+
 -- edit mode
 function e_SetEditMode_Scene()
 	PX2_EDIT:SetEditType(Edit.ET_SCENE)

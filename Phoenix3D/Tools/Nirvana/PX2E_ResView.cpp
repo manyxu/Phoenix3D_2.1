@@ -6,6 +6,7 @@
 #include "PX2E_Define.hpp"
 #include "PX2E_NirMan.hpp"
 #include "PX2ScriptManager.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -20,6 +21,9 @@ ResView::ResView()
 ResView::ResView(wxWindow *parent) :
 wxWindow(parent, -1)
 {
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
+
 	wxBoxSizer* bSizer54;
 	bSizer54 = new wxBoxSizer(wxVERTICAL);
 
@@ -37,7 +41,7 @@ wxWindow(parent, -1)
 
 	bSizer55->Add(mResTreeBar, 0, wxEXPAND | wxBOTTOM, 0);
 
-	bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
+	bSizer54->Add(bSizer55, 0, wxEXPAND, 0);
 
 	wxBoxSizer* bSizer56;
 	bSizer56 = new wxBoxSizer(wxVERTICAL);
@@ -46,17 +50,20 @@ wxWindow(parent, -1)
 		wxTE_CAPITALIZE | wxTE_CENTER | wxTE_PROCESS_ENTER | wxNO_BORDER);
 	mSearchCtrl->ShowSearchButton(false);
 	mSearchCtrl->ShowCancelButton(false);
-	bSizer56->Add(mSearchCtrl, 0, wxEXPAND, 5);
+	bSizer56->Add(mSearchCtrl, 0, wxEXPAND, 0);
 
-	bSizer54->Add(bSizer56, 0, wxEXPAND, 5);
+	mSearchCtrl->SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	mSearchCtrl->SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
+
+	bSizer54->Add(bSizer56, 0, wxEXPAND, 0);
 
 	wxBoxSizer* bSizer57;
 	bSizer57 = new wxBoxSizer(wxVERTICAL);
 
 	mSplitPanel = new ResSplitPanel(this, false);
-	bSizer57->Add(mSplitPanel, 1, wxEXPAND | wxTOP, 2);
+	bSizer57->Add(mSplitPanel, 1, wxEXPAND | wxTOP, 0);
 
-	bSizer54->Add(bSizer57, 1, wxEXPAND, 5);
+	bSizer54->Add(bSizer57, 1, wxEXPAND, 0);
 
 	this->SetSizer(bSizer54);
 	this->Layout();

@@ -6,6 +6,7 @@
 #include "PX2E_NirMan.hpp"
 #include "PX2Project.hpp"
 #include "PX2ScriptManager.hpp"
+#include "PX2Edit.hpp"
 #include "PX2wxAui.hpp"
 using namespace PX2Editor;
 
@@ -21,6 +22,9 @@ ProjView::ProjView(wxWindow *parent) :
 wxWindow(parent, wxID_ANY),
 mProjTree(0)
 {
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
+
 	wxBoxSizer* bSizer54;
 	bSizer54 = new wxBoxSizer(wxVERTICAL);
 
@@ -38,7 +42,7 @@ mProjTree(0)
 
 	bSizer55->Add(mProjTreeBar, 0, wxEXPAND | wxBOTTOM, 0);
 
-	bSizer54->Add(bSizer55, 0, wxEXPAND, 5);
+	bSizer54->Add(bSizer55, 0, wxEXPAND, 0);
 
 	wxBoxSizer* bSizer56;
 	bSizer56 = new wxBoxSizer(wxVERTICAL);
@@ -47,18 +51,20 @@ mProjTree(0)
 		wxTE_CAPITALIZE | wxTE_CENTER | wxTE_PROCESS_ENTER | wxNO_BORDER);
 	mSearchCtrl->ShowSearchButton(false);
 	mSearchCtrl->ShowCancelButton(false);
-	//searchCtrl->Enable(false);
-	bSizer56->Add(mSearchCtrl, 0, wxEXPAND, 5);
+	bSizer56->Add(mSearchCtrl, 0, wxEXPAND, 0);
 
-	bSizer54->Add(bSizer56, 0, wxEXPAND, 5);
+	mSearchCtrl->SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	mSearchCtrl->SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
+
+	bSizer54->Add(bSizer56, 0, wxEXPAND, 0);
 
 	wxBoxSizer* bSizer57;
 	bSizer57 = new wxBoxSizer(wxVERTICAL);
 
 	mProjTree = new ProjTree(this);
-	bSizer57->Add(mProjTree, 1, wxEXPAND | wxTOP, 2);
+	bSizer57->Add(mProjTree, 1, wxEXPAND | wxTOP, 0);
 
-	bSizer54->Add(bSizer57, 1, wxEXPAND, 5);
+	bSizer54->Add(bSizer57, 1, wxEXPAND, 0);
 
 	this->SetSizer(bSizer54);
 	this->Layout();

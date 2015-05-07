@@ -73,6 +73,8 @@ namespace PX2
 			int length=-1); //< 如果length<0,表示传入的字符串是已\0结尾
 
 		static std::string FormatSeconds (int seconds);
+
+		static std::string FormatColor(int r, int g, int b);
 	};
 
 	//----------------------------------------------------------------------------

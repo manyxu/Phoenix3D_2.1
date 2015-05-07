@@ -3,6 +3,8 @@
 #include "PX2ObjectInspector.hpp"
 #include "PX2ObjectPropertyGrid.hpp"
 #include "PX2LanguageManager.hpp"
+#include "PX2E_Define.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -24,6 +26,9 @@ mInitSized(false)
 	wxSize size = GetSize();
 	mObjectPropGrid->SetSize(size);
 	mMakingWindow->SetSize(size);
+
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
 }
 //-----------------------------------------------------------------------------
 ObjectInspector::~ObjectInspector()

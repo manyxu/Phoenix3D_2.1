@@ -3,6 +3,7 @@
 #include "PX2_MakingWindow.hpp"
 #include "PX2TerrainActor.hpp"
 #include "PX2Edit.hpp"
+#include "PX2E_Define.hpp"
 #include "PX2TerrainMakingPanel.hpp"
 using namespace PX2Editor;
 using namespace PX2;
@@ -18,6 +19,9 @@ mCurWindow(0)
 {
 	SetScrollRate(10, 10);
 	EnableScrolling(false, true);
+
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
 }
 //-----------------------------------------------------------------------------
 MakingWindow::~MakingWindow()

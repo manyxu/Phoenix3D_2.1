@@ -18,6 +18,7 @@
 #include "PX2ScriptManager.hpp"
 #include "PX2LanguageManager.hpp"
 #include "PX2EditDefine.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -48,6 +49,9 @@ mItemScene(0),
 mItemUI(0),
 mEditMenu(0)
 {
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
+
 	PX2_EW.ComeIn(this);
 
 	mImageList = new wxImageList(16, 16);
@@ -155,17 +159,22 @@ void ProjTree::SetSelectItemLevel(ProjTreeLevel level)
 //-----------------------------------------------------------------------------
 ProjTreeItem *ProjTree::GetItem(wxTreeItemId id)
 {
+	if (!mItemProj) return 0;
+
 	return mItemProj->GetItem(id);
 }
 //-----------------------------------------------------------------------------
 ProjTreeItem *ProjTree::GetItem(PX2::Object *obj)
 {
+	if (!mItemProj) return 0;
+
 	return mItemProj->GetItem(obj);
 }
 //----------------------------------------------------------------------------
 void ProjTree::_RefreshProject()
 {
 	Project *proj = Project::GetSingletonPtr();
+	if (!mItemProj) return;
 
 	wxTreeItemId projectID = AddRoot(proj->GetName(), 0);
 	mItemProj = new ProjTreeItem(this, projectID, ProjTreeItem::IT_CATALOG, 

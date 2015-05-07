@@ -12,6 +12,7 @@
 #include "PX2ResourceManager.hpp"
 #include "PX2NirvanaEventType.hpp"
 #include "PX2Edit.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -26,12 +27,16 @@ END_EVENT_TABLE()
 //-----------------------------------------------------------------------------
 ObjectPropertyGrid::ObjectPropertyGrid()
 {
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
 }
 //-----------------------------------------------------------------------------
 ObjectPropertyGrid::ObjectPropertyGrid(wxWindow *parent)
 :
 PropertyGrid(parent)
 {
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
 }
 //-----------------------------------------------------------------------------
 ObjectPropertyGrid::~ObjectPropertyGrid()
@@ -111,7 +116,6 @@ void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
 	backColors.push_back(wxColour(163, 73, 164));
 
 	PropertyPage *page = AddPropertyPage("General");
-
 	int numClasses = 0;
 	wxColour lastTextColor = textColors[0];
 	wxColour lastBackColor = backColors[0];
@@ -253,7 +257,7 @@ void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
 		}
 	}
 
-	mPropGridManager->ShowHeader(true);
+	mPropGridManager->ShowHeader(false);
 
 	for (int i = 0; i < (int)mCollpasedClassNames.size(); i++)
 	{
@@ -266,6 +270,9 @@ void ObjectPropertyGrid::OnSetObject(PX2::Object *actor)
 				mPropGridManager->Collapse(itProp->second);
 		}
 	}
+
+	mPropGridManager->SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	mPropGridManager->SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
 }
 //-----------------------------------------------------------------------------
 PX2::Object *ObjectPropertyGrid::GetObject()

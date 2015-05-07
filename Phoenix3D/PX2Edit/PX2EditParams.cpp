@@ -44,6 +44,9 @@ Theme::Theme()
 	Color_Aui_TabbarBot_Active = Float3::WHITE;
 	Color_Aui_TabbarText = Float3::WHITE;
 	Color_Aui_TabbarText_Active = Float3::BLACK;
+
+	Color_Page_Background = Float3::WHITE;
+	Color_Page_Foreground = Float3::BLACK;
 }
 //-----------------------------------------------------------------------------
 Theme::~Theme()
@@ -67,6 +70,7 @@ EditParams::EditParams()
 
 	mCurThemeStr = "Blue";
 	mCurTheme = 0;
+	mCurThemeIndex = 0;
 }
 //-----------------------------------------------------------------------------
 EditParams::~EditParams()
@@ -75,7 +79,92 @@ EditParams::~EditParams()
 //-----------------------------------------------------------------------------
 bool EditParams::Save(const std::string &filename)
 {
-	return true;
+	// xml
+	XMLData data;
+	data.Create();
+
+	XMLNode editParamsNode = data.NewChild("editparams");
+
+	// params
+	XMLNode paramsNode = editParamsNode.NewChild("params");
+
+	// gridsizeNode
+	XMLNode gridsizeNode = paramsNode.NewChild("gridsize");	
+	gridsizeNode.SetAttributeFloat("val", GridSize);
+
+	// themes
+	XMLNode themesNode = editParamsNode.NewChild("themes");
+	themesNode.SetAttributeString("curthemename", mCurThemeStr);
+
+	for (int i = 0; i < (int)mThemesVec.size(); i++)
+	{
+		const std::string themeName = mThemesVec[i];
+		Theme *theme = mThemesMap[themeName];
+
+		XMLNode themeNode = themesNode.NewChild("theme");
+		themeNode.SetAttributeString("name", themeName);
+
+		XMLNode node = themeNode.NewChild("aui_backgournd");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_Background));
+
+		node = themeNode.NewChild("aui_captionbackground");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_CaptionBackground));
+
+		node = themeNode.NewChild("aui_captionbackground_active");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_CaptionBackground_Active));
+
+		node = themeNode.NewChild("aui_captiontext");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_CaptionText));
+
+		node = themeNode.NewChild("aui_captiontext_active");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_CaptionText_Active));
+
+		node = themeNode.NewChild("aui_border");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_Border));
+
+		node = themeNode.NewChild("aui_borderthin");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_BorderThin));
+
+		node = themeNode.NewChild("aui_borderthin_center");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_BorderThin_Center));
+
+		node = themeNode.NewChild("aui_menubar_background");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_MenuBar_Background));
+
+		node = themeNode.NewChild("aui_toolbar_background");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_ToolBar_Background));
+
+		node = themeNode.NewChild("aui_toolbar_border");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_ToolBar_Border));
+
+		node = themeNode.NewChild("aui_toolbar_text");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_Toolbar_Text));
+
+		node = themeNode.NewChild("aui_tabbar");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_Tabbar));
+
+		node = themeNode.NewChild("aui_tabbar_active");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_Tabbar_Active));
+
+		node = themeNode.NewChild("aui_tabbartext");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_TabbarText));
+
+		node = themeNode.NewChild("aui_tabbartext_active");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Aui_TabbarText_Active));
+
+		node = themeNode.NewChild("page_background");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Page_Background));
+
+		node = themeNode.NewChild("page_foreground");
+		node.SetAttributeString("val", ColorFloat3ToString(theme->Color_Page_Foreground));
+	}
+
+	if (data.SaveFile(filename))
+	{
+		return true;
+	}
+
+	return false;
 }
 //-----------------------------------------------------------------------------
 bool EditParams::Load(const std::string &filename)
@@ -84,6 +173,8 @@ bool EditParams::Load(const std::string &filename)
 	int bufferSize = 0;
 	if (PX2_RM.LoadBuffer(filename, bufferSize, buffer))
 	{
+		mConfigFileName = filename;
+
 		XMLData data;
 		if (data.LoadBuffer(buffer, bufferSize))
 		{
@@ -110,41 +201,51 @@ bool EditParams::Load(const std::string &filename)
 					std::string themValName = themeValNode.GetName();
 
 					if ("aui_backgournd" == themValName)
-						theme->Color_Aui_Background = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_Background = StringToColorFloat3(themeValNode.AttributeToString("val"));
 
 					else if ("aui_captionbackground" == themValName)
-						theme->Color_Aui_CaptionBackground = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_CaptionBackground = StringToColorFloat3(themeValNode.AttributeToString("val"));
 					else if ("aui_captionbackground_active" == themValName)
-						theme->Color_Aui_CaptionBackground_Active = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_CaptionBackground_Active = StringToColorFloat3(themeValNode.AttributeToString("val"));
+
+					else if ("aui_captiontext" == themValName)
+						theme->Color_Aui_CaptionText = StringToColorFloat3(themeValNode.AttributeToString("val"));
+					else if ("aui_captiontext_active" == themValName)
+						theme->Color_Aui_CaptionText_Active = StringToColorFloat3(themeValNode.AttributeToString("val"));
 
 					else if ("aui_border" == themValName)
-						theme->Color_Aui_Border = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_Border = StringToColorFloat3(themeValNode.AttributeToString("val"));
 
 					else if ("aui_borderthin" == themValName)
-						theme->Color_Aui_BorderThin = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_BorderThin = StringToColorFloat3(themeValNode.AttributeToString("val"));
 
 					else if ("aui_borderthin_center" == themValName)
-						theme->Color_Aui_BorderThin_Center = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_BorderThin_Center = StringToColorFloat3(themeValNode.AttributeToString("val"));
 
 					else if ("aui_menubar_background" == themValName)
-						theme->Color_Aui_MenuBar_Background = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_MenuBar_Background = StringToColorFloat3(themeValNode.AttributeToString("val"));
 
 					else if ("aui_toolbar_background" == themValName)
-						theme->Color_Aui_ToolBar_Background = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_ToolBar_Background = StringToColorFloat3(themeValNode.AttributeToString("val"));
 					else if ("aui_toolbar_border" == themValName)
-						theme->Color_Aui_ToolBar_Border = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_ToolBar_Border = StringToColorFloat3(themeValNode.AttributeToString("val"));
 					else if ("aui_toolbar_text" == themValName)
-						theme->Color_Aui_Toolbar_Text = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_Toolbar_Text = StringToColorFloat3(themeValNode.AttributeToString("val"));
 
 					else if ("aui_tabbar" == themValName)
-						theme->Color_Aui_Tabbar = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_Tabbar = StringToColorFloat3(themeValNode.AttributeToString("val"));
 					else if ("aui_tabbar_active" == themValName)
-						theme->Color_Aui_Tabbar_Active = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_Tabbar_Active = StringToColorFloat3(themeValNode.AttributeToString("val"));
 					else if ("aui_tabbartext" == themValName)
-						theme->Color_Aui_TabbarText = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_TabbarText = StringToColorFloat3(themeValNode.AttributeToString("val"));
 					else if ("aui_tabbartext_active" == themValName)
-						theme->Color_Aui_TabbarText_Active = StringToFloat3(themeValNode.AttributeToString("val"));
+						theme->Color_Aui_TabbarText_Active = StringToColorFloat3(themeValNode.AttributeToString("val"));
 
+					else if ("page_background" == themValName)
+						theme->Color_Page_Background = StringToColorFloat3(themeValNode.AttributeToString("val"));
+					else if ("page_foreground" == themValName)
+						theme->Color_Page_Foreground = StringToColorFloat3(themeValNode.AttributeToString("val"));
+	
 					themeValNode = themeChildNode.IterateChild(themeValNode);
 				}
 
@@ -152,6 +253,14 @@ bool EditParams::Load(const std::string &filename)
 				mThemesMap[theme->Name] = theme;
 
 				themeChildNode = rootNode.IterateChild(themeChildNode);
+			}
+		}
+
+		for (int i = 0; i <(int)mThemesVec.size(); i++)
+		{
+			if (mCurThemeStr == mThemesVec[i])
+			{
+				mCurThemeIndex = i;
 			}
 		}
 	}
@@ -176,6 +285,8 @@ void EditParams::SetCurTheme(const std::string &typeStr)
 	{
 		mCurTheme = new0 Theme();
 	}
+
+	Save(mConfigFileName);
 }
 //-----------------------------------------------------------------------------
 const std::string &EditParams::GetCurThemeTypeStr() const
@@ -188,7 +299,7 @@ Theme *EditParams::GetCurTheme()
 	return mCurTheme;
 }
 //-----------------------------------------------------------------------------
-Float3 EditParams::StringToFloat3(const std::string &valStr)
+Float3 EditParams::StringToColorFloat3(const std::string &valStr)
 {
 	StringTokenizer stk(valStr, ",");
 	Float3 color = Float3::MakeColor(
@@ -197,6 +308,12 @@ Float3 EditParams::StringToFloat3(const std::string &valStr)
 		StringHelp::StringToInt(stk[2]));
 
 	return color;
+}
+//----------------------------------------------------------------------------
+std::string EditParams::ColorFloat3ToString(const Float3 &val)
+{
+	return StringHelp::FormatColor((int)(val[0] * 255.0f), 
+		(int)(val[1] * 255.0f), (int)(val[2] * 255.0f));
 }
 //----------------------------------------------------------------------------
 
@@ -216,7 +333,7 @@ void EditParams::RegistProperties()
 
 	if (!themeTypes.empty())
 	{
-		AddPropertyEnum("ThemeType", 0, themeTypes);
+		AddPropertyEnum("ThemeType", mCurThemeIndex, themeTypes);
 	}
 }
 //-----------------------------------------------------------------------------
@@ -226,6 +343,9 @@ void EditParams::OnPropertyChanged(const PropertyObject &obj)
 	
 	if ("ThemeType" == obj.Name)
 	{
+		int curTheme = PX2_ANY_AS(obj.Data, int);
+
+		SetCurTheme(mThemesVec[curTheme]);
 	}
 	else if ("IsShowGrid" == obj.Name)
 	{

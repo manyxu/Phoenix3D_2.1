@@ -5,6 +5,7 @@
 #include "PX2Project.hpp"
 #include "PX2ResourceManager.hpp"
 #include "PX2EditEventType.hpp"
+#include "PX2E_Define.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -87,6 +88,9 @@ mShowTerrainGrid(0)
 	RefreshOnTerainProcess();
 
 	PX2_EW.ComeIn(this);
+
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
 }
 //-----------------------------------------------------------------------------
 TerrainMakingPanel::~TerrainMakingPanel()

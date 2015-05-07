@@ -416,14 +416,26 @@ std::string StringHelp::FormatSeconds (int seconds)
 	{
 		if (sec < 10)
 		{
-			text = StringHelp::IntToString(min) + ":" + "0" + StringHelp::IntToString(sec);
+			text = StringHelp::IntToString(min) + ":" + "0" 
+				+ StringHelp::IntToString(sec);
 		}
 		else
 		{
-			text = StringHelp::IntToString(min) + ":" +StringHelp::IntToString(sec);
+			text = StringHelp::IntToString(min) + ":" + 
+				StringHelp::IntToString(sec);
 		}
 	}
 
 	return text;
+}
+//----------------------------------------------------------------------------
+std::string StringHelp::FormatColor(int r, int g, int b)
+{
+	std::string colorStr =
+		StringHelp::IntToString(r) + "," +
+		StringHelp::IntToString(g) + "," +
+		StringHelp::IntToString(b);
+
+	return colorStr;
 }
 //----------------------------------------------------------------------------

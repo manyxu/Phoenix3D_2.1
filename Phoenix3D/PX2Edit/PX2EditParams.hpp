@@ -45,6 +45,9 @@ namespace PX2
 		Float3 Color_Aui_TabbarBot_Active;
 		Float3 Color_Aui_TabbarText;
 		Float3 Color_Aui_TabbarText_Active;
+
+		Float3 Color_Page_Background;
+		Float3 Color_Page_Foreground;
 	};
 	typedef Pointer0<Theme> ThemePtr;
 
@@ -62,6 +65,9 @@ namespace PX2
 		bool Save(const std::string &filename);
 		bool Load(const std::string &filename);
 
+	protected:
+		std::string mConfigFileName;
+
 		// params
 	public:
 		float GridSize;
@@ -74,12 +80,14 @@ namespace PX2
 		Theme *GetCurTheme();
 
 	protected:
-		Float3 StringToFloat3(const std::string &valStr);
+		Float3 StringToColorFloat3(const std::string &valStr);
+		std::string ColorFloat3ToString(const Float3 &val);
 
 		std::string mCurThemeStr;
 		ThemePtr mCurTheme;
 		std::map<std::string, ThemePtr> mThemesMap;
 		std::vector<std::string> mThemesVec;
+		int mCurThemeIndex;
 	};
 
 	PX2_REGISTER_STREAM(EditParams);

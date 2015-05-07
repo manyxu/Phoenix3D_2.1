@@ -6,6 +6,8 @@
 #include "PX2ScriptManager.hpp"
 #include "PX2Log.hpp"
 #include "PX2wxAui.hpp"
+#include "PX2E_Define.hpp"
+#include "PX2Edit.hpp"
 using namespace PX2Editor;
 using namespace PX2;
 
@@ -18,11 +20,13 @@ EVT_TEXT_ENTER(ID_LOGPANEL_COMMOND, LogView::OnTextEnter)
 END_EVENT_TABLE()
 
 //-----------------------------------------------------------------------------
-LogView::LogView(wxWindow *parent)
-:
+LogView::LogView(wxWindow *parent):
 wxWindow(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNO_BORDER),
 mToolBar(0)
 {
+	SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
+
 	wxBoxSizer* bSizer9;
 	bSizer9 = new wxBoxSizer(wxVERTICAL);
 
@@ -48,8 +52,10 @@ mToolBar(0)
 	bSizer60 = new wxBoxSizer(wxVERTICAL);
 
 	mCommondTextCtrl = new wxTextCtrl(this, ID_LOGPANEL_COMMOND, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
-	mCommondTextCtrl->SetBackgroundColour(wxColour(225, 225, 225));
 	bSizer60->Add(mCommondTextCtrl, 1, wxEXPAND | wxTOP | wxBOTTOM, 0);
+
+	mCommondTextCtrl->SetBackgroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Background));
+	mCommondTextCtrl->SetForegroundColour(Float3TowxColour(PX2_EDIT.GetEditParams()->GetCurTheme()->Color_Page_Foreground));
 
 	bSizer9->Add(bSizer60, 0, wxEXPAND, 0);
 

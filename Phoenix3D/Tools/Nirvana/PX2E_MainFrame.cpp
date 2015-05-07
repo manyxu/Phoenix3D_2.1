@@ -249,10 +249,11 @@ void E_MainFrame::DoExecute(Event *event)
 			SetCursor(wxCursor(wxCURSOR_ARROW));
 		}
 	}
-	else if (EditEventSpace::IsEqual(event, EditEventSpace::EditThemeChange))
+	else if (EditEventSpace::IsEqual(event, EditEventSpace::SetTheme))
 	{
 		if (mAuiManager)
 		{
+			mAuiManager->Update();
 		}
 	}
 	else if (SimuES_E::IsEqual(event, SimuES_E::AddSelect) ||

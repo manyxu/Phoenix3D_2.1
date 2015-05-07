@@ -62,7 +62,9 @@ function e_CreateMainMenu()
 	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("VersionWindows"), "e_OnVersionWindows()", "edit")
 	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("VersionAndroid"), "e_OnVersionAndroid()", "edit")
 	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("VersionIOS"), "e_OnVersionIOS()", "edit")
-	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("Setting"), "e_OnSetting()", "edit")
+	E_MainFrame:AddSeparater(itemTool)
+	E_MainFrame:AddMenuItem(itemTool, PX2_LM:GetValue("Setting"), "e_OnSetting()", "")
 	--help
 	local itemHelp = E_MainFrame:AddMainMenuItem((PX2_LM:GetValue("Help")))
+	E_MainFrame:AddMenuItem(itemHelp, PX2_LM:GetValue("About"), "e_OnAbout()", "")
 end
