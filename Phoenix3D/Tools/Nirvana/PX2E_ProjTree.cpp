@@ -174,7 +174,7 @@ ProjTreeItem *ProjTree::GetItem(PX2::Object *obj)
 void ProjTree::_RefreshProject()
 {
 	Project *proj = Project::GetSingletonPtr();
-	if (!mItemProj) return;
+	if (!proj) return;
 
 	wxTreeItemId projectID = AddRoot(proj->GetName(), 0);
 	mItemProj = new ProjTreeItem(this, projectID, ProjTreeItem::IT_CATALOG, 
@@ -307,7 +307,8 @@ void ProjTree::_RefreshUI()
 	if (mItemUI)
 		mItemUI->AddChild(uiFrame, 0, treeLevel, mIsShowHelpNode);
 
-	Expand(mItemUI->GetItemID());
+	if (mItemUI)
+		Expand(mItemUI->GetItemID());
 }
 //----------------------------------------------------------------------------
 void ProjTree::_ClearUI()

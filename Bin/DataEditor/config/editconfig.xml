@@ -25,22 +25,22 @@
 		</theme>
 		<theme name="dark">
 			<aui_backgournd val="45,45,48"/>
-			<aui_captionbackground val="2,0,0"/>
+			<aui_captionbackground val="85,85,88"/>
 			<aui_captionbackground_active val="0,122,204"/>
 			<aui_captiontext val="200,200,200"/>
 			<aui_captiontext_active val="255,255,255"/>
-			<aui_border val="45,45,48"/>
+			<aui_border val="33,33,33"/>
 			<aui_borderthin val="45,45,48"/>
 			<aui_borderthin_center val="45,45,48"/>
 			<aui_menubar_background val="45,45,48"/>
-			<aui_toolbar_background val="45,45,48"/>
+			<aui_toolbar_background val="57,57,57"/>
 			<aui_toolbar_border val="45,45,48"/>
 			<aui_toolbar_text val="255,255,255"/>
 			<aui_tabbar val="45,45,48"/>
 			<aui_tabbar_active val="0,122,204"/>
 			<aui_tabbartext val="255,255,255"/>
 			<aui_tabbartext_active val="255,255,255"/>
-			<page_background val="45,45,48"/>
+			<page_background val="56,56,56"/>
 			<page_foreground val="150,150,150"/>
 		</theme>
 	</themes>
