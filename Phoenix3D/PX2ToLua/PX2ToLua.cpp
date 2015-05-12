@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 05/06/15 22:22:49.
+** Generated automatically by tolua++-1.0.92 on 05/12/15 21:28:04.
 */
 
 #ifndef __cplusplus
@@ -39845,6 +39845,105 @@ static int tolua_PX2_Scene_GetActorByID00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* method: SetViewPortProject of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_PX2_Scene_SetViewPortProject00
+static int tolua_PX2_Scene_SetViewPortProject00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,4,0,&tolua_err) ||
+     !tolua_isnumber(tolua_S,5,0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,6,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+  float left = ((float)  tolua_tonumber(tolua_S,2,0));
+  float bottom = ((float)  tolua_tonumber(tolua_S,3,0));
+  float width = ((float)  tolua_tonumber(tolua_S,4,0));
+  float height = ((float)  tolua_tonumber(tolua_S,5,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetViewPortProject'", NULL);
+#endif
+  {
+   self->SetViewPortProject(left,bottom,width,height);
+  }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'SetViewPortProject'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: SetViewPortProject of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_PX2_Scene_SetViewPortProject01
+static int tolua_PX2_Scene_SetViewPortProject01(lua_State* tolua_S)
+{
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"Scene",0,&tolua_err) ||
+     (tolua_isvaluenil(tolua_S,2,&tolua_err) || !tolua_isusertype(tolua_S,2,"const Rectf",0,&tolua_err)) ||
+     !tolua_isnoobj(tolua_S,3,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+ {
+  Scene* self = (Scene*)  tolua_tousertype(tolua_S,1,0);
+  const Rectf* rc = ((const Rectf*)  tolua_tousertype(tolua_S,2,0));
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SetViewPortProject'", NULL);
+#endif
+  {
+   self->SetViewPortProject(*rc);
+  }
+ }
+ return 0;
+tolua_lerror:
+ return tolua_PX2_Scene_SetViewPortProject00(tolua_S);
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetViewPortProject of class  Scene */
+#ifndef TOLUA_DISABLE_tolua_PX2_Scene_GetViewPortProject00
+static int tolua_PX2_Scene_GetViewPortProject00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+     !tolua_isusertype(tolua_S,1,"const Scene",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+  goto tolua_lerror;
+ else
+#endif
+ {
+  const Scene* self = (const Scene*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetViewPortProject'", NULL);
+#endif
+  {
+   const Rectf& tolua_ret = (const Rectf&)  self->GetViewPortProject();
+    tolua_pushusertype(tolua_S,(void*)&tolua_ret,"const Rectf");
+  }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetViewPortProject'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* method: new of class  Actor */
 #ifndef TOLUA_DISABLE_tolua_PX2_Actor_new00
 static int tolua_PX2_Actor_new00(lua_State* tolua_S)
@@ -43692,6 +43791,9 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetTerrainActor",tolua_PX2_Scene_GetTerrainActor00);
    tolua_function(tolua_S,"GetSkyActor",tolua_PX2_Scene_GetSkyActor00);
    tolua_function(tolua_S,"GetActorByID",tolua_PX2_Scene_GetActorByID00);
+   tolua_function(tolua_S,"SetViewPortProject",tolua_PX2_Scene_SetViewPortProject00);
+   tolua_function(tolua_S,"SetViewPortProject",tolua_PX2_Scene_SetViewPortProject01);
+   tolua_function(tolua_S,"GetViewPortProject",tolua_PX2_Scene_GetViewPortProject00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
   tolua_cclass(tolua_S,"Actor","Actor","Node",tolua_collect_Actor);

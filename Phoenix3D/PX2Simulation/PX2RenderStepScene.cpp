@@ -313,6 +313,25 @@ void RenderStepScene::SetScreenSize(const Sizef &size)
 		mIsShadowMapChanged = true;
 }
 //----------------------------------------------------------------------------
+void RenderStepScene::SetViewPortAdjustWithScene(const Rectf &viewPort)
+{
+	Scene *scene = DynamicCast<Scene>(mNode);
+	if (scene)
+	{
+		const Rectf &viewPortRect = scene->GetViewPortProject();
+		Rectf viewPortFromProject = PX2_ENGINELOOP.
+			GetViewPortAdjustFromProject(viewPortRect);
+		SetViewPort(viewPortFromProject);
+
+		SetSize(Sizef(viewPortFromProject.Width(), 
+			viewPortFromProject.Height()));
+	}
+	else
+	{
+		SetViewPort(viewPort);
+	}
+}
+//----------------------------------------------------------------------------
 void RenderStepScene::SetNode(Node *node)
 {
 	RenderStep::SetNode(node);
@@ -332,6 +351,11 @@ void RenderStepScene::DoExecute(Event *event)
 	else if (SimuES::IsEqual(event, SimuES::Scene_ShadowMapChange))
 	{
 		mIsShadowMapChanged = true;
+	}
+	else if (SimuES::IsEqual(event, SimuES::Scene_ViewPortProjectChanged))
+	{
+		// refresh
+		PX2_ENGINELOOP.SetScreenSize(PX2_ENGINELOOP.GetScreenSize());
 	}
 }
 //----------------------------------------------------------------------------

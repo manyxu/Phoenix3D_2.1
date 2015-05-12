@@ -14,4 +14,8 @@
 		SkyActor *GetSkyActor();
 		
 		Actor *GetActorByID(int id);
+		
+		void SetViewPortProject(float left, float bottom, float width, float height);
+		void SetViewPortProject(const Rectf &rc);
+		const Rectf &GetViewPortProject() const;
 	};

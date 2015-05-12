@@ -2,7 +2,7 @@
 	<params>
 		<gridsize val="40.000000"/>
 	</params>
-	<themes curthemename="dark">
+	<themes curthemename="blue">
 		<theme name="blue">
 			<aui_backgournd val="41,67,95"/>
 			<aui_captionbackground val="77,96,130"/>

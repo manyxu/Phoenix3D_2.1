@@ -306,7 +306,7 @@ void Project::SetScene(Scene *scene)
 		mSceneRenderStep->SetCamera(0);
 	}
 
-	mSceneRenderStep->SetSize(mSize);
+	//mSceneRenderStep->SetSize(mSize);
 }
 //----------------------------------------------------------------------------
 void Project::SetSceneFilename(const std::string &scenefilename)
@@ -394,7 +394,7 @@ void Project::SetViewRect(const Rectf &viewRect)
 {
 	if (mSceneRenderStep)
 	{
-		mSceneRenderStep->SetViewPort(viewRect);
+		mSceneRenderStep->SetViewPortAdjustWithScene(viewRect);
 	}
 
 	if (mUIRenderStep)

@@ -31,6 +31,7 @@ namespace PX2
 
 	public:
 		virtual void SetScreenSize(const Sizef &size);
+		void SetViewPortAdjustWithScene(const Rectf &viewPort);
 
 	public:
 		virtual void SetNode(Node *node);

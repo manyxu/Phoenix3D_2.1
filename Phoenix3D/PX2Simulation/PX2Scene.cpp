@@ -7,7 +7,7 @@
 #include "PX2SimulationEventType.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Node, Scene, 2);
+PX2_IMPLEMENT_RTTI_V(PX2, Node, Scene, 3);
 PX2_IMPLEMENT_STREAM(Scene);
 PX2_IMPLEMENT_FACTORY(Scene);
 PX2_IMPLEMENT_DEFAULT_NAMES(Node, Scene);
@@ -500,6 +500,10 @@ void Scene::Load(InStream& source)
 		source.ReadBool(mIsShadowRenderTargetSizeSameWithScreen);
 		source.ReadAggregate(mShadowRenderTargetSize);
 	}
+	if (3 <= readedVersion)
+	{
+		source.ReadAggregate(mViewPort);
+	}
 
 	PX2_END_DEBUG_STREAM_LOAD(Scene, source);
 }
@@ -587,6 +591,8 @@ void Scene::Save(OutStream& target) const
 	target.WriteBool(mIsShadowRenderTargetSizeSameWithScreen);
 	target.WriteAggregate(mShadowRenderTargetSize);
 
+	target.WriteAggregate(mViewPort);
+
 	PX2_END_DEBUG_STREAM_SAVE(Scene, target);
 }
 //----------------------------------------------------------------------------
@@ -623,6 +629,10 @@ int Scene::GetStreamingSize(Stream &stream) const
 			size += PX2_BOOLSIZE(mIsShadowRenderTargetSizeSameWithScreen);
 			size += sizeof(mShadowRenderTargetSize);
 		}
+		if (3 <= readedVersion)
+		{
+			size += sizeof(mViewPort);
+		}
 	}
 	else
 	{
@@ -640,6 +650,8 @@ int Scene::GetStreamingSize(Stream &stream) const
 		size += PX2_BOOLSIZE(mIsUseShadowMap);
 		size += PX2_BOOLSIZE(mIsShadowRenderTargetSizeSameWithScreen);
 		size += sizeof(mShadowRenderTargetSize);
+
+		size += sizeof(mViewPort);
 	}
 
 	return size;

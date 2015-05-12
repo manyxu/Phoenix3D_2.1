@@ -6,8 +6,7 @@ function OnUIBat()
 	PX2_PROJ:SetScene(scene)
 	
 	local startHeight = gBGOSize*gNumGridRow
-	local viewPort = PX2_ENGINELOOP:GetViewPortAdjustFromProject(0.0, startHeight, gProjWidth, gProjHeight-startHeight)
-	PX2_PROJ:GetSceneRenderStep():SetViewPort(viewPort)
+	scene:SetViewPortProject(0.0, startHeight, gProjWidth, gProjHeight-startHeight)
 
 	-- ui
 	PX2_PROJ:GetUIFrame():DetachAllChildren()

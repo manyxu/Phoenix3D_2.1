@@ -13,6 +13,7 @@ namespace PX2
 	PX2_EVENT(GeneralString)
 	PX2_EVENT(Character_Die)
 	PX2_EVENT(Actor_Delete)
+	PX2_EVENT(Scene_ViewPortProjectChanged)
 	PX2_EVENT(Scene_BloomChanged)
 	PX2_EVENT(Scene_ShadowMapChange)
 	PX2_DECLARE_EVENT_END(SimuES)
