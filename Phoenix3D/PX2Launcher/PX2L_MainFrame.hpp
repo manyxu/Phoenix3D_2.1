@@ -5,7 +5,6 @@
 
 #include "PX2LauncherPre.hpp"
 #include "PX2EventHandler.hpp"
-#include "PX2EditParams.hpp"
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2L_MainView.hpp"
 
