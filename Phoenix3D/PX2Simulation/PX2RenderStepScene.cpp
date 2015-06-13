@@ -319,12 +319,16 @@ void RenderStepScene::SetViewPortAdjustWithScene(const Rectf &viewPort)
 	if (scene)
 	{
 		const Rectf &viewPortRect = scene->GetViewPortProject();
-		Rectf viewPortFromProject = PX2_ENGINELOOP.
-			GetViewPortAdjustFromProject(viewPortRect);
-		SetViewPort(viewPortFromProject);
 
-		SetSize(Sizef(viewPortFromProject.Width(), 
-			viewPortFromProject.Height()));
+		if (!viewPortRect.IsEmpty())
+		{
+			Rectf viewPortFromProject = PX2_ENGINELOOP.
+				GetViewPortAdjustFromProject(viewPortRect);
+			SetViewPort(viewPortFromProject);
+
+			SetSize(Sizef(viewPortFromProject.Width(),
+				viewPortFromProject.Height()));
+		}
 	}
 	else
 	{
