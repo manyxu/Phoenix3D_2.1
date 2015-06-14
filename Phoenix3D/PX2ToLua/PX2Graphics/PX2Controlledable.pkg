@@ -1,6 +1,6 @@
 // PX2Controlledable.pkg
 	
-	class Controlledable : public Componable
+	class Controlledable : public Object
 	{
 		virtual ~Controlledable ();
 

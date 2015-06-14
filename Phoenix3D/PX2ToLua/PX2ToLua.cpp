@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 05/12/15 21:28:04.
+** Generated automatically by tolua++-1.0.92 on 06/13/15 15:46:03.
 */
 
 #ifndef __cplusplus
@@ -25,23 +25,16 @@ static int tolua_collect_EffectModelNode (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_AVector (lua_State* tolua_S)
+static int tolua_collect_Size_float_ (lua_State* tolua_S)
 {
- AVector* self = (AVector*) tolua_tousertype(tolua_S,1,0);
+ Size<float>* self = (Size<float>*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
 
-static int tolua_collect_UIButton (lua_State* tolua_S)
+static int tolua_collect_Rectf (lua_State* tolua_S)
 {
- UIButton* self = (UIButton*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
-static int tolua_collect_Movable (lua_State* tolua_S)
-{
- Movable* self = (Movable*) tolua_tousertype(tolua_S,1,0);
+ Rectf* self = (Rectf*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -67,9 +60,9 @@ static int tolua_collect_Controlledable (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_InterpCurveTranslateController (lua_State* tolua_S)
+static int tolua_collect_Node (lua_State* tolua_S)
 {
- InterpCurveTranslateController* self = (InterpCurveTranslateController*) tolua_tousertype(tolua_S,1,0);
+ Node* self = (Node*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -95,9 +88,9 @@ static int tolua_collect_APoint (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Scene (lua_State* tolua_S)
+static int tolua_collect_std__pair_float_float_ (lua_State* tolua_S)
 {
- Scene* self = (Scene*) tolua_tousertype(tolua_S,1,0);
+ std::pair<float,float>* self = (std::pair<float,float>*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -109,9 +102,9 @@ static int tolua_collect_Rect_int_ (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_InterpCurveRotateController (lua_State* tolua_S)
+static int tolua_collect_int64_t (lua_State* tolua_S)
 {
- InterpCurveRotateController* self = (InterpCurveRotateController*) tolua_tousertype(tolua_S,1,0);
+ int64_t* self = (int64_t*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -151,9 +144,9 @@ static int tolua_collect_Controller (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Creater (lua_State* tolua_S)
+static int tolua_collect_Scene (lua_State* tolua_S)
 {
- Creater* self = (Creater*) tolua_tousertype(tolua_S,1,0);
+ Scene* self = (Scene*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -172,9 +165,9 @@ static int tolua_collect_HPoint (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Rect_float_ (lua_State* tolua_S)
+static int tolua_collect_InterpCurveTranslateController (lua_State* tolua_S)
 {
- Rect<float>* self = (Rect<float>*) tolua_tousertype(tolua_S,1,0);
+ InterpCurveTranslateController* self = (InterpCurveTranslateController*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -200,9 +193,9 @@ static int tolua_collect_Vector2f (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Rectf (lua_State* tolua_S)
+static int tolua_collect_Creater (lua_State* tolua_S)
 {
- Rectf* self = (Rectf*) tolua_tousertype(tolua_S,1,0);
+ Creater* self = (Creater*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -214,16 +207,16 @@ static int tolua_collect_TriggerActor (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_UIButtonBase (lua_State* tolua_S)
+static int tolua_collect_UIButton (lua_State* tolua_S)
 {
- UIButtonBase* self = (UIButtonBase*) tolua_tousertype(tolua_S,1,0);
+ UIButton* self = (UIButton*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
 
-static int tolua_collect_UIFrame (lua_State* tolua_S)
+static int tolua_collect_UIButtonBase (lua_State* tolua_S)
 {
- UIFrame* self = (UIFrame*) tolua_tousertype(tolua_S,1,0);
+ UIButtonBase* self = (UIButtonBase*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -242,9 +235,9 @@ static int tolua_collect_Transform (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_EffectableController (lua_State* tolua_S)
+static int tolua_collect_UIFrame (lua_State* tolua_S)
 {
- EffectableController* self = (EffectableController*) tolua_tousertype(tolua_S,1,0);
+ UIFrame* self = (UIFrame*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -256,6 +249,13 @@ static int tolua_collect_InterpCurveFloat3Controller (lua_State* tolua_S)
 	return 0;
 }
 
+static int tolua_collect_EffectableController (lua_State* tolua_S)
+{
+ EffectableController* self = (EffectableController*) tolua_tousertype(tolua_S,1,0);
+	Mtolua_delete(self);
+	return 0;
+}
+
 static int tolua_collect_Soundable (lua_State* tolua_S)
 {
  Soundable* self = (Soundable*) tolua_tousertype(tolua_S,1,0);
@@ -263,9 +263,9 @@ static int tolua_collect_Soundable (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_BeamEmitter (lua_State* tolua_S)
+static int tolua_collect_Billboard (lua_State* tolua_S)
 {
- BeamEmitter* self = (BeamEmitter*) tolua_tousertype(tolua_S,1,0);
+ Billboard* self = (Billboard*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -291,16 +291,9 @@ static int tolua_collect_CameraShake (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Billboard (lua_State* tolua_S)
+static int tolua_collect_Movable (lua_State* tolua_S)
 {
- Billboard* self = (Billboard*) tolua_tousertype(tolua_S,1,0);
-	Mtolua_delete(self);
-	return 0;
-}
-
-static int tolua_collect_Rtti (lua_State* tolua_S)
-{
- Rtti* self = (Rtti*) tolua_tousertype(tolua_S,1,0);
+ Movable* self = (Movable*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -319,16 +312,16 @@ static int tolua_collect_Size_int_ (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Size_float_ (lua_State* tolua_S)
+static int tolua_collect_InterpCurveAlphaController (lua_State* tolua_S)
 {
- Size<float>* self = (Size<float>*) tolua_tousertype(tolua_S,1,0);
+ InterpCurveAlphaController* self = (InterpCurveAlphaController*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
 
-static int tolua_collect_RenderStep (lua_State* tolua_S)
+static int tolua_collect_BeamEmitter (lua_State* tolua_S)
 {
- RenderStep* self = (RenderStep*) tolua_tousertype(tolua_S,1,0);
+ BeamEmitter* self = (BeamEmitter*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -340,9 +333,9 @@ static int tolua_collect_SwitchNode (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_std__pair_float_float_ (lua_State* tolua_S)
+static int tolua_collect_RenderStep (lua_State* tolua_S)
 {
- std::pair<float,float>* self = (std::pair<float,float>*) tolua_tousertype(tolua_S,1,0);
+ RenderStep* self = (RenderStep*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -354,9 +347,9 @@ static int tolua_collect_Actor (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Node (lua_State* tolua_S)
+static int tolua_collect_Rect_float_ (lua_State* tolua_S)
 {
- Node* self = (Node*) tolua_tousertype(tolua_S,1,0);
+ Rect<float>* self = (Rect<float>*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -389,9 +382,9 @@ static int tolua_collect_Size_double_ (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_InterpCurveAlphaController (lua_State* tolua_S)
+static int tolua_collect_InterpCurveRotateController (lua_State* tolua_S)
 {
- InterpCurveAlphaController* self = (InterpCurveAlphaController*) tolua_tousertype(tolua_S,1,0);
+ InterpCurveRotateController* self = (InterpCurveRotateController*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -417,9 +410,9 @@ static int tolua_collect_Renderable (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_Componable (lua_State* tolua_S)
+static int tolua_collect_Rtti (lua_State* tolua_S)
 {
- Componable* self = (Componable*) tolua_tousertype(tolua_S,1,0);
+ Rtti* self = (Rtti*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -438,9 +431,9 @@ static int tolua_collect_URDoManager (lua_State* tolua_S)
 	return 0;
 }
 
-static int tolua_collect_int64_t (lua_State* tolua_S)
+static int tolua_collect_AVector (lua_State* tolua_S)
 {
- int64_t* self = (int64_t*) tolua_tousertype(tolua_S,1,0);
+ AVector* self = (AVector*) tolua_tousertype(tolua_S,1,0);
 	Mtolua_delete(self);
 	return 0;
 }
@@ -502,7 +495,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"RibbonEmitter");
  tolua_usertype(tolua_S,"Size<int>");
  tolua_usertype(tolua_S,"Size<float>");
- tolua_usertype(tolua_S,"InterpCurveScaleController");
+ tolua_usertype(tolua_S,"MaterialInstance");
  tolua_usertype(tolua_S,"AmbientRegionActor");
  tolua_usertype(tolua_S,"std::bitset<PX2_ACTOR_BS_SIZE>");
  tolua_usertype(tolua_S,"StencilProperty");
@@ -514,7 +507,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"EffectModel");
  tolua_usertype(tolua_S,"AVector");
  tolua_usertype(tolua_S,"InterpCurveRotateController");
- tolua_usertype(tolua_S,"PX2::AVector");
+ tolua_usertype(tolua_S,"const");
  tolua_usertype(tolua_S,"Float4");
  tolua_usertype(tolua_S,"MovablePtr");
  tolua_usertype(tolua_S,"LanguageManager");
@@ -535,60 +528,58 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"DepthProperty");
  tolua_usertype(tolua_S,"UIText");
  tolua_usertype(tolua_S,"Renderable");
- tolua_usertype(tolua_S,"Texture::Format");
+ tolua_usertype(tolua_S,"EffectObject");
  tolua_usertype(tolua_S,"URDo");
  tolua_usertype(tolua_S,"UIProgressBar");
  tolua_usertype(tolua_S,"Texture3D");
  tolua_usertype(tolua_S,"Selection");
  tolua_usertype(tolua_S,"Renderer");
  tolua_usertype(tolua_S,"PixelShader");
- tolua_usertype(tolua_S,"Logger");
+ tolua_usertype(tolua_S,"Billboard");
+ tolua_usertype(tolua_S,"Controller");
  tolua_usertype(tolua_S,"Singleton<URDoManager>");
  tolua_usertype(tolua_S,"URDoManager");
- tolua_usertype(tolua_S,"Controller");
- tolua_usertype(tolua_S,"CameraActor");
  tolua_usertype(tolua_S,"ShaderParameters");
- tolua_usertype(tolua_S,"CtrlPlayedCallback");
  tolua_usertype(tolua_S,"InterpCurveTranslateController");
- tolua_usertype(tolua_S,"InterpCurveColorController");
+ tolua_usertype(tolua_S,"UIEditBox");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"TexPack");
- tolua_usertype(tolua_S,"Componable");
- tolua_usertype(tolua_S,"const");
- tolua_usertype(tolua_S,"UIEditBox");
+ tolua_usertype(tolua_S,"CameraActor");
+ tolua_usertype(tolua_S,"CtrlPlayedCallback");
+ tolua_usertype(tolua_S,"InterpCurveColorController");
  tolua_usertype(tolua_S,"PX2::Terrain");
  tolua_usertype(tolua_S,"EffectableController");
  tolua_usertype(tolua_S,"InputPushTransformController");
  tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"InterpCurveFloat3Controller");
  tolua_usertype(tolua_S,"VisibleSet");
- tolua_usertype(tolua_S,"Creater");
+ tolua_usertype(tolua_S,"PX2::AVector");
  tolua_usertype(tolua_S,"SkyActor");
- tolua_usertype(tolua_S,"LightActor");
- tolua_usertype(tolua_S,"Vector3f");
- tolua_usertype(tolua_S,"InterpCurveAlphaController");
- tolua_usertype(tolua_S,"Texture1D");
- tolua_usertype(tolua_S,"VertexFormat");
- tolua_usertype(tolua_S,"MaterialInstance");
- tolua_usertype(tolua_S,"TerrainActor");
- tolua_usertype(tolua_S,"UIButton");
- tolua_usertype(tolua_S,"GlobalMaterial");
  tolua_usertype(tolua_S,"BeamEmitter");
+ tolua_usertype(tolua_S,"Creater");
+ tolua_usertype(tolua_S,"CameraShake");
+ tolua_usertype(tolua_S,"Vector3f");
+ tolua_usertype(tolua_S,"VertexFormat");
+ tolua_usertype(tolua_S,"int64_t");
+ tolua_usertype(tolua_S,"TerrainActor");
+ tolua_usertype(tolua_S,"LightActor");
+ tolua_usertype(tolua_S,"GlobalMaterial");
+ tolua_usertype(tolua_S,"Triangles");
  tolua_usertype(tolua_S,"std::vector<Object*>");
- tolua_usertype(tolua_S,"ResourceManager");
- tolua_usertype(tolua_S,"EffectObject");
+ tolua_usertype(tolua_S,"InterpCurveAlphaController");
+ tolua_usertype(tolua_S,"ParticleEmitter");
  tolua_usertype(tolua_S,"WireProperty");
  tolua_usertype(tolua_S,"Rect<double>");
  tolua_usertype(tolua_S,"PX2::Object");
- tolua_usertype(tolua_S,"EffectModule");
+ tolua_usertype(tolua_S,"UIButton");
  tolua_usertype(tolua_S,"Float3");
+ tolua_usertype(tolua_S,"ResourceManager");
+ tolua_usertype(tolua_S,"Texture::Format");
+ tolua_usertype(tolua_S,"EffectModule");
  tolua_usertype(tolua_S,"Rect<float>");
- tolua_usertype(tolua_S,"ParticleEmitter");
- tolua_usertype(tolua_S,"CameraShake");
- tolua_usertype(tolua_S,"Billboard");
- tolua_usertype(tolua_S,"Component");
- tolua_usertype(tolua_S,"int64_t");
- tolua_usertype(tolua_S,"Triangles");
+ tolua_usertype(tolua_S,"Logger");
+ tolua_usertype(tolua_S,"Texture1D");
+ tolua_usertype(tolua_S,"InterpCurveScaleController");
 }
 
 /* method: new of class  Rtti */
@@ -9036,355 +9027,6 @@ static int tolua_PX2_Transform_GetStreamingSize00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'GetStreamingSize'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: new of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_new00
-static int tolua_PX2_Componable_new00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"Componable",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   Componable* tolua_ret = (Componable*)  Mtolua_new((Componable)());
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Componable");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: new_local of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_new00_local
-static int tolua_PX2_Componable_new00_local(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertable(tolua_S,1,"Componable",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  {
-   Componable* tolua_ret = (Componable*)  Mtolua_new((Componable)());
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Componable");
-    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'new'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: delete of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_delete00
-static int tolua_PX2_Componable_delete00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Componable",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Componable* self = (Componable*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'delete'", NULL);
-#endif
-  Mtolua_delete(self);
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'delete'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: GetNumComponents of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_GetNumComponents00
-static int tolua_PX2_Componable_GetNumComponents00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"const Componable",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const Componable* self = (const Componable*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetNumComponents'", NULL);
-#endif
-  {
-   int tolua_ret = (int)  self->GetNumComponents();
-   tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'GetNumComponents'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: GetComponent of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_GetComponent00
-static int tolua_PX2_Componable_GetComponent00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"const Componable",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const Componable* self = (const Componable*)  tolua_tousertype(tolua_S,1,0);
-  int i = ((int)  tolua_tonumber(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetComponent'", NULL);
-#endif
-  {
-   Component* tolua_ret = (Component*)  self->GetComponent(i);
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Component");
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'GetComponent'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: GetComponentByName of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_GetComponentByName00
-static int tolua_PX2_Componable_GetComponentByName00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"const Componable",0,&tolua_err) ||
-     !tolua_iscppstring(tolua_S,2,0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  const Componable* self = (const Componable*)  tolua_tousertype(tolua_S,1,0);
-  const std::string name = ((const std::string)  tolua_tocppstring(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetComponentByName'", NULL);
-#endif
-  {
-   Component* tolua_ret = (Component*)  self->GetComponentByName(name);
-    tolua_pushusertype(tolua_S,(void*)tolua_ret,"Component");
-   tolua_pushcppstring(tolua_S,(const char*)name);
-  }
- }
- return 2;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'GetComponentByName'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: IsHasComponent of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_IsHasComponent00
-static int tolua_PX2_Componable_IsHasComponent00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Componable",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Component",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Componable* self = (Componable*)  tolua_tousertype(tolua_S,1,0);
-  Component* component = ((Component*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IsHasComponent'", NULL);
-#endif
-  {
-   bool tolua_ret = (bool)  self->IsHasComponent(component);
-   tolua_pushboolean(tolua_S,(bool)tolua_ret);
-  }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'IsHasComponent'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: AttachComponent of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_AttachComponent00
-static int tolua_PX2_Componable_AttachComponent00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Componable",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Component",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Componable* self = (Componable*)  tolua_tousertype(tolua_S,1,0);
-  Component* component = ((Component*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'AttachComponent'", NULL);
-#endif
-  {
-   self->AttachComponent(component);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'AttachComponent'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: DetachComponent of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_DetachComponent00
-static int tolua_PX2_Componable_DetachComponent00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Componable",0,&tolua_err) ||
-     !tolua_isusertype(tolua_S,2,"Component",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,3,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Componable* self = (Componable*)  tolua_tousertype(tolua_S,1,0);
-  Component* component = ((Component*)  tolua_tousertype(tolua_S,2,0));
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'DetachComponent'", NULL);
-#endif
-  {
-   self->DetachComponent(component);
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'DetachComponent'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: DetachAllComponents of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_DetachAllComponents00
-static int tolua_PX2_Componable_DetachAllComponents00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Componable",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Componable* self = (Componable*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'DetachAllComponents'", NULL);
-#endif
-  {
-   self->DetachAllComponents();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'DetachAllComponents'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* method: SortComponents of class  Componable */
-#ifndef TOLUA_DISABLE_tolua_PX2_Componable_SortComponents00
-static int tolua_PX2_Componable_SortComponents00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
-     !tolua_isusertype(tolua_S,1,"Componable",0,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
-  goto tolua_lerror;
- else
-#endif
- {
-  Componable* self = (Componable*)  tolua_tousertype(tolua_S,1,0);
-#ifndef TOLUA_RELEASE
-  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'SortComponents'", NULL);
-#endif
-  {
-   self->SortComponents();
-  }
- }
- return 0;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'SortComponents'.",&tolua_err);
  return 0;
 #endif
 }
@@ -42379,28 +42021,9 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"GetStreamingSize",tolua_PX2_Transform_GetStreamingSize00);
   tolua_endmodule(tolua_S);
   #ifdef __cplusplus
-  tolua_cclass(tolua_S,"Componable","Componable","Object",tolua_collect_Componable);
+  tolua_cclass(tolua_S,"Controlledable","Controlledable","Object",tolua_collect_Controlledable);
   #else
-  tolua_cclass(tolua_S,"Componable","Componable","Object",NULL);
-  #endif
-  tolua_beginmodule(tolua_S,"Componable");
-   tolua_function(tolua_S,"new",tolua_PX2_Componable_new00);
-   tolua_function(tolua_S,"new_local",tolua_PX2_Componable_new00_local);
-   tolua_function(tolua_S,".call",tolua_PX2_Componable_new00_local);
-   tolua_function(tolua_S,"delete",tolua_PX2_Componable_delete00);
-   tolua_function(tolua_S,"GetNumComponents",tolua_PX2_Componable_GetNumComponents00);
-   tolua_function(tolua_S,"GetComponent",tolua_PX2_Componable_GetComponent00);
-   tolua_function(tolua_S,"GetComponentByName",tolua_PX2_Componable_GetComponentByName00);
-   tolua_function(tolua_S,"IsHasComponent",tolua_PX2_Componable_IsHasComponent00);
-   tolua_function(tolua_S,"AttachComponent",tolua_PX2_Componable_AttachComponent00);
-   tolua_function(tolua_S,"DetachComponent",tolua_PX2_Componable_DetachComponent00);
-   tolua_function(tolua_S,"DetachAllComponents",tolua_PX2_Componable_DetachAllComponents00);
-   tolua_function(tolua_S,"SortComponents",tolua_PX2_Componable_SortComponents00);
-  tolua_endmodule(tolua_S);
-  #ifdef __cplusplus
-  tolua_cclass(tolua_S,"Controlledable","Controlledable","Componable",tolua_collect_Controlledable);
-  #else
-  tolua_cclass(tolua_S,"Controlledable","Controlledable","Componable",NULL);
+  tolua_cclass(tolua_S,"Controlledable","Controlledable","Object",NULL);
   #endif
   tolua_beginmodule(tolua_S,"Controlledable");
    tolua_function(tolua_S,"delete",tolua_PX2_Controlledable_delete00);

@@ -34,8 +34,8 @@ bool Skill::Activate()
 	if (IsOnCD())
 		return false;
 
-	SkillComponent *skillComp = DynamicCast<SkillComponent>(
-		mCharacter->GetComponentByName("SkillComponent"));
+	SkillController *skillComp = DynamicCast<SkillController>(
+		mCharacter->GetControllerByName("SkillController"));
 	if (skillComp)
 	{
 		assertion(false, "has no this component.");

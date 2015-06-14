@@ -5,7 +5,6 @@
 
 #include "PX2GraphicsPre.hpp"
 #include "PX2Controller.hpp"
-#include "PX2Componable.hpp"
 
 namespace PX2
 {
@@ -14,7 +13,7 @@ namespace PX2
 	/**
 	* 从此类派生的类具有绑定控制器的功能。
 	*/
-	class Controlledable : public Componable
+	class Controlledable : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

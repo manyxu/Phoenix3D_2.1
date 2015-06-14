@@ -1,7 +1,6 @@
 // PX2Graphics.pkg
 
 $pfile "PX2Graphics/PX2Transform.pkg"
-$pfile "PX2Graphics/PX2Componable.pkg"
 $pfile "PX2Graphics/PX2Controlledable.pkg"
 $pfile "PX2Graphics/PX2Controller.pkg"
 $pfile "PX2Graphics/PX2InterpCurveController.pkg"

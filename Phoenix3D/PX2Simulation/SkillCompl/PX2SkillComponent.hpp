@@ -3,21 +3,21 @@
 #ifndef PX2SKILLCOMPONENT_HPP
 #define PX2SKILLCOMPONENT_HPP
 
-#include "PX2Component.hpp"
+#include "PX2Controller.hpp"
 #include "PX2Skill.hpp"
 
 namespace PX2
 {
 
-	class SkillComponent : public Component
+	class SkillController : public Controller
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;
-		PX2_DECLARE_STREAM(SkillComponent);
+		PX2_DECLARE_STREAM(SkillController);
 
 	public:
-		SkillComponent();
-		virtual ~SkillComponent();
+		SkillController();
+		virtual ~SkillController();
 
 		// skill
 	public:
@@ -66,8 +66,8 @@ namespace PX2
 	};
 
 #include "PX2SkillComponent.inl"
-	PX2_REGISTER_STREAM(SkillComponent);
-	typedef Pointer0<SkillComponent> SkillComponentPtr;
+	PX2_REGISTER_STREAM(SkillController);
+	typedef Pointer0<SkillController> SkillComponentPtr;
 
 }
 

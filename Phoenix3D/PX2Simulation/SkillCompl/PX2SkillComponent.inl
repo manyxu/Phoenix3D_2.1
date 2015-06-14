@@ -1,42 +1,42 @@
 // PX2SkillComponent.inl
 
 //----------------------------------------------------------------------------
-inline int SkillComponent::GetNumSkills() const
+inline int SkillController::GetNumSkills() const
 {
 	return (int)mSkills.size();
 }
 //----------------------------------------------------------------------------
-inline Skill *SkillComponent::GetDefSkill()
+inline Skill *SkillController::GetDefSkill()
 {
 	return mDefSkill;
 }
 //----------------------------------------------------------------------------
-inline void SkillComponent::SetWatchDistance(float dist)
+inline void SkillController::SetWatchDistance(float dist)
 {
 	mWatchDistance = dist;
 }
 //----------------------------------------------------------------------------
-inline float SkillComponent::GetWatchDistance() const
+inline float SkillController::GetWatchDistance() const
 {
 	return mWatchDistance;
 }
 //----------------------------------------------------------------------------
-inline int SkillComponent::GetAimTarget() const
+inline int SkillController::GetAimTarget() const
 {
 	return mAimTargetID;
 }
 //----------------------------------------------------------------------------
-inline void SkillComponent::SetCanBeAimed(bool can)
+inline void SkillController::SetCanBeAimed(bool can)
 {
 	mIsCanAimed = can;
 }
 //----------------------------------------------------------------------------
-inline bool SkillComponent::IsCanBeAimed() const
+inline bool SkillController::IsCanBeAimed() const
 {
 	return mIsCanAimed;
 }
 //----------------------------------------------------------------------------
-inline int SkillComponent::GetNumAimingMe() const
+inline int SkillController::GetNumAimingMe() const
 {
 	return mNumAimingMe;
 }

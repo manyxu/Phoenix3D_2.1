@@ -119,10 +119,10 @@ ObjectAddDeleteURDo::ObjectAddDeleteURDo(bool isAdd,
 		mParent = ctrl->GetControlledable();
 	}
 
-	Component *comp = DynamicCast<Component>(mObject);
+	Controller *comp = DynamicCast<Controller>(mObject);
 	if (comp)
 	{
-		mParent = comp->GetCompable();
+		mParent = comp->GetControlledable();
 	}
 }
 //----------------------------------------------------------------------------

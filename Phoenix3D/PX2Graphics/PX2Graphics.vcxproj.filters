@@ -266,12 +266,6 @@
     <ClCompile Include="PX2VertexColor4Material.cpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClCompile>
-    <ClCompile Include="PX2Component.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2Componable.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="PX2TriStrip.cpp">
       <Filter>Geometry</Filter>
     </ClCompile>
@@ -772,12 +766,6 @@
     <ClInclude Include="PX2VertexColor4Material.hpp">
       <Filter>Materials\LocalMaterials\Simple</Filter>
     </ClInclude>
-    <ClInclude Include="PX2Component.hpp">
-      <Filter>Component</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2Componable.hpp">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="PX2TriStrip.hpp">
       <Filter>Geometry</Filter>
     </ClInclude>
@@ -1159,12 +1147,6 @@
     <None Include="PX2Controlledable.inl">
       <Filter>Controllers</Filter>
     </None>
-    <None Include="PX2Component.inl">
-      <Filter>Component</Filter>
-    </None>
-    <None Include="PX2Componable.inl">
-      <Filter>Component</Filter>
-    </None>
     <None Include="PX2Triangles.inl">
       <Filter>Geometry</Filter>
     </None>
@@ -1232,9 +1214,6 @@
     </Filter>
     <Filter Include="DynamicBuffer">
       <UniqueIdentifier>{f0ed51d7-31a8-4342-bb3c-d368c9636a3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component">
-      <UniqueIdentifier>{f1128f9a-439b-4520-849e-f7fa1ed0c924}</UniqueIdentifier>
     </Filter>
     <Filter Include="Geometry">
       <UniqueIdentifier>{c8d888be-e356-4b46-b455-270f132defd5}</UniqueIdentifier>

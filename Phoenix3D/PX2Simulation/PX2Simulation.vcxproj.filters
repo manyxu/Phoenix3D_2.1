@@ -46,12 +46,6 @@
     <Filter Include="SpacePartition">
       <UniqueIdentifier>{a384b5d6-cace-41b0-bcd4-179446b4e2df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Complements">
-      <UniqueIdentifier>{9b6a633e-c888-4f72-b20a-54f46acad4a0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Complements\SkillCompl">
-      <UniqueIdentifier>{ddfe11f9-7f79-4ab0-bf34-9ff4a2c178a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EngineLoop">
       <UniqueIdentifier>{f4c91037-3f89-4acc-ae19-4207a680d3ec}</UniqueIdentifier>
     </Filter>
@@ -75,6 +69,12 @@
     </Filter>
     <Filter Include="Actor\Trigger">
       <UniqueIdentifier>{b79157c8-5612-40c1-8664-8979a7621871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers">
+      <UniqueIdentifier>{9b6a633e-c888-4f72-b20a-54f46acad4a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controllers\SkillCompl">
+      <UniqueIdentifier>{ddfe11f9-7f79-4ab0-bf34-9ff4a2c178a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,31 +148,31 @@
     </ClInclude>
     <ClInclude Include="PX2SimulationDataDefine.hpp" />
     <ClInclude Include="SkillCompl\PX2Skill.hpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClInclude>
     <ClInclude Include="SkillCompl\PX2SkillActor.hpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClInclude>
     <ClInclude Include="SkillCompl\PX2SkillActorLink.hpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClInclude>
     <ClInclude Include="SkillCompl\PX2SkillComponent.hpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClInclude>
     <ClInclude Include="SkillCompl\PX2SkillInstance.hpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClInclude>
     <ClInclude Include="SkillCompl\PX2SkillStep.hpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClInclude>
     <ClInclude Include="SkillCompl\PX2SkillStepFarTrack.hpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClInclude>
     <ClInclude Include="SkillCompl\PX2SkillStepLink.hpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClInclude>
     <ClInclude Include="SkillCompl\PX2SkillStepRangeTime.hpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClInclude>
     <ClInclude Include="PX2AmbientRegionActor.hpp">
       <Filter>Actor\Ambient</Filter>
@@ -285,40 +285,40 @@
       <Filter>Character</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2Skill.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2Skill_Activate.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2Skill_Affect.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2Skill_Range.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2SkillActor.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2SkillActorLink.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2SkillComponent.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2SkillInstance.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2SkillStep.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2SkillStepFarTrack.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2SkillStepLink.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="SkillCompl\PX2SkillStepRangeTime.cpp">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </ClCompile>
     <ClCompile Include="PX2AmbientRegionActor.cpp">
       <Filter>Actor\Ambient</Filter>
@@ -386,31 +386,31 @@
       <Filter>SpacePartition</Filter>
     </None>
     <None Include="SkillCompl\PX2Skill.inl">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="SkillCompl\PX2SkillActor.inl">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="SkillCompl\PX2SkillActorLink.inl">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="SkillCompl\PX2SkillInstance.inl">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="SkillCompl\PX2SkillStep.inl">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="SkillCompl\PX2SkillStepFarTrack.inl">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="SkillCompl\PX2SkillStepLink.inl">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="SkillCompl\PX2SkillStepRangeTime.inl">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="SkillCompl\PX2SkillComponent.inl">
-      <Filter>Complements\SkillCompl</Filter>
+      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="PX2AmbientRegionActor.inl">
       <Filter>Actor\Ambient</Filter>

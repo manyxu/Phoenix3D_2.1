@@ -143,8 +143,6 @@ void Movable::OnNotPicked (int pickInfo)
 //----------------------------------------------------------------------------
 void Movable::UpdateWorldData(double applicationTime, double elapsedTime)
 {
-	UpdateComponents(applicationTime, elapsedTime);
-
 	UpdateControllers(applicationTime, elapsedTime);
 
 	if (LocalTransform.IsRSMatrix())

@@ -6,21 +6,21 @@
 #include "PX2Scene.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI(PX2, Component, SkillComponent);
-PX2_IMPLEMENT_STREAM(SkillComponent);
-PX2_IMPLEMENT_FACTORY(SkillComponent);
-PX2_IMPLEMENT_DEFAULT_NAMES(Component, SkillComponent);
+PX2_IMPLEMENT_RTTI(PX2, Controller, SkillController);
+PX2_IMPLEMENT_STREAM(SkillController);
+PX2_IMPLEMENT_FACTORY(SkillController);
+PX2_IMPLEMENT_DEFAULT_NAMES(Controller, SkillController);
 
 //----------------------------------------------------------------------------
-SkillComponent::SkillComponent()
+SkillController::SkillController()
 {
 }
 //----------------------------------------------------------------------------
-SkillComponent::~SkillComponent()
+SkillController::~SkillController()
 {
 }
 //----------------------------------------------------------------------------
-bool SkillComponent::AddSkill(Skill *skill)
+bool SkillController::AddSkill(Skill *skill)
 {
 	assertion(0 != skill, "skill should not be 0.");
 
@@ -31,7 +31,7 @@ bool SkillComponent::AddSkill(Skill *skill)
 		return false;
 
 	mSkills.push_back(skill);
-	skill->SetCharacter(DynamicCast<Character>(GetCompable()));
+	skill->SetCharacter(DynamicCast<Character>(GetControlledable()));
 	skill->OnAdded();
 
 	if (skill->GetName() == "Def")
@@ -40,7 +40,7 @@ bool SkillComponent::AddSkill(Skill *skill)
 	return true;
 }
 //----------------------------------------------------------------------------
-bool SkillComponent::HasSkill(Skill *skill)
+bool SkillController::HasSkill(Skill *skill)
 {
 	assertion(0 != skill, "skill should not be 0.");
 
@@ -56,7 +56,7 @@ bool SkillComponent::HasSkill(Skill *skill)
 	return false;
 }
 //----------------------------------------------------------------------------
-Skill *SkillComponent::GetSkillByID(int id)
+Skill *SkillController::GetSkillByID(int id)
 {
 	for (int i = 0; i < GetNumSkills(); i++)
 	{
@@ -71,7 +71,7 @@ Skill *SkillComponent::GetSkillByID(int id)
 	return 0;
 }
 //----------------------------------------------------------------------------
-Skill *SkillComponent::GetSkillByTypeID(int typeID)
+Skill *SkillController::GetSkillByTypeID(int typeID)
 {
 	for (int i = 0; i < GetNumSkills(); i++)
 	{
@@ -86,7 +86,7 @@ Skill *SkillComponent::GetSkillByTypeID(int typeID)
 	return 0;
 }
 //----------------------------------------------------------------------------
-Skill *SkillComponent::GetSkillByName(const std::string &name)
+Skill *SkillController::GetSkillByName(const std::string &name)
 {
 	for (int i = 0; i < GetNumSkills(); i++)
 	{
@@ -101,7 +101,7 @@ Skill *SkillComponent::GetSkillByName(const std::string &name)
 	return 0;
 }
 //----------------------------------------------------------------------------
-Skill *SkillComponent::GetSkill(int i)
+Skill *SkillController::GetSkill(int i)
 {
 	if (0 <= i && i < (int)mSkills.size())
 		return mSkills[i];
@@ -109,7 +109,7 @@ Skill *SkillComponent::GetSkill(int i)
 	return 0;
 }
 //----------------------------------------------------------------------------
-bool SkillComponent::RemoveSkill(Skill *skill)
+bool SkillController::RemoveSkill(Skill *skill)
 {
 	assertion(0 != skill, "skill should not be 0.");
 
@@ -132,7 +132,7 @@ bool SkillComponent::RemoveSkill(Skill *skill)
 	return false;
 }
 //----------------------------------------------------------------------------
-void SkillComponent::RemoveAllSkills()
+void SkillController::RemoveAllSkills()
 {
 	for (int i = 0; i < (int)mSkills.size(); i++)
 	{
@@ -142,10 +142,10 @@ void SkillComponent::RemoveAllSkills()
 	mSkills.clear();
 }
 //----------------------------------------------------------------------------
-std::list<Skill *> SkillComponent::GetValidSkills(const Character *target,
+std::list<Skill *> SkillController::GetValidSkills(const Character *target,
 	bool useTrigerDis, int positive, int needTarget, int cdOK)
 {
-	Character *selfChara = DynamicCast<Character>(GetCompable());
+	Character *selfChara = DynamicCast<Character>(GetControlledable());
 
 	const APoint &targetPos = target->LocalTransform.GetTranslate();
 	float targetSelfRadius = target->GetRadius();
@@ -197,7 +197,7 @@ std::list<Skill *> SkillComponent::GetValidSkills(const Character *target,
 	return skills;
 }
 //----------------------------------------------------------------------------
-bool SkillComponent::IsAnySkillHasInstance()
+bool SkillController::IsAnySkillHasInstance()
 {
 	for (int i = 0; i < (int)GetNumSkills(); i++)
 	{
@@ -209,7 +209,7 @@ bool SkillComponent::IsAnySkillHasInstance()
 	return false;
 }
 //----------------------------------------------------------------------------
-bool SkillComponent::IsAllSkillCallOver()
+bool SkillController::IsAllSkillCallOver()
 {
 	bool allCallOver = true;
 
@@ -227,7 +227,7 @@ bool SkillComponent::IsAllSkillCallOver()
 	return allCallOver;
 }
 //----------------------------------------------------------------------------
-void SkillComponent::ResetAllSkillsCD()
+void SkillController::ResetAllSkillsCD()
 {
 	for (int i = 0; i < GetNumSkills(); i++)
 	{
@@ -239,12 +239,12 @@ void SkillComponent::ResetAllSkillsCD()
 	}
 }
 //----------------------------------------------------------------------------
-void SkillComponent::SetAimTarget(int targetID)
+void SkillController::SetAimTarget(int targetID)
 {
 	mAimTargetID = targetID;
 }
 //----------------------------------------------------------------------------
-Character *SkillComponent::GetAimTargetCharacter() const
+Character *SkillController::GetAimTargetCharacter() const
 {
 	Scene *scene = PX2_PROJ.GetScene();
 	if (!scene) return 0;
@@ -252,7 +252,7 @@ Character *SkillComponent::GetAimTargetCharacter() const
 	return DynamicCast<Character>(scene->GetActorByID(mAimTargetID));
 }
 //----------------------------------------------------------------------------
-Character *SkillComponent::GetAimTargetCharacterAlive() const
+Character *SkillController::GetAimTargetCharacterAlive() const
 {
 	Scene *scene = PX2_PROJ.GetScene();
 	if (!scene) return 0;
@@ -270,53 +270,53 @@ Character *SkillComponent::GetAimTargetCharacterAlive() const
 //----------------------------------------------------------------------------
 // 持久化支持
 //----------------------------------------------------------------------------
-SkillComponent::SkillComponent(LoadConstructor value) :
-Component(value)
+SkillController::SkillController(LoadConstructor value) :
+Controller(value)
 {
 }
 //----------------------------------------------------------------------------
-void SkillComponent::Load(InStream& source)
+void SkillController::Load(InStream& source)
 {
 	PX2_BEGIN_DEBUG_STREAM_LOAD(source);
 
-	Component::Load(source);
+	Controller::Load(source);
 	PX2_VERSION_LOAD(source);
 
-	PX2_END_DEBUG_STREAM_LOAD(SkillComponent, source);
+	PX2_END_DEBUG_STREAM_LOAD(SkillController, source);
 }
 //----------------------------------------------------------------------------
-void SkillComponent::Link(InStream& source)
+void SkillController::Link(InStream& source)
 {
-	Component::Link(source);
+	Controller::Link(source);
 }
 //----------------------------------------------------------------------------
-void SkillComponent::PostLink()
+void SkillController::PostLink()
 {
-	Component::PostLink();
+	Controller::PostLink();
 }
 //----------------------------------------------------------------------------
-bool SkillComponent::Register(OutStream& target) const
+bool SkillController::Register(OutStream& target) const
 {
-	if (Component::Register(target))
+	if (Controller::Register(target))
 	{
 		return true;
 	}
 	return false;
 }
 //----------------------------------------------------------------------------
-void SkillComponent::Save(OutStream& target) const
+void SkillController::Save(OutStream& target) const
 {
 	PX2_BEGIN_DEBUG_STREAM_SAVE(target);
 
-	Component::Save(target);
+	Controller::Save(target);
 	PX2_VERSION_SAVE(target);
 
-	PX2_END_DEBUG_STREAM_SAVE(SkillComponent, target);
+	PX2_END_DEBUG_STREAM_SAVE(SkillController, target);
 }
 //----------------------------------------------------------------------------
-int SkillComponent::GetStreamingSize(Stream &stream) const
+int SkillController::GetStreamingSize(Stream &stream) const
 {
-	int size = Component::GetStreamingSize(stream);
+	int size = Controller::GetStreamingSize(stream);
 	size += PX2_VERSION_SIZE(mVersion);
 
 	return size;

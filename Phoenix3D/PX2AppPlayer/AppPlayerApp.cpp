@@ -30,11 +30,15 @@ bool AppPlayerApp::Initlize()
 	if (Application::Initlize())
 	{
 		std::string projectName = PX2_ENGINELOOP.GetProjectName();
-		std::string projectPath = "Data/" + projectName + "/" + projectName 
-			+ ".px2proj";
 
-		// Load Project
-		_LoadProject(projectPath);
+		if (!projectName.empty())
+		{
+			std::string projectPath = "Data/" + projectName + "/" + projectName
+				+ ".px2proj";
+
+			// Load Project
+			_LoadProject(projectPath);
+		}
 
 		return true;
 	}
