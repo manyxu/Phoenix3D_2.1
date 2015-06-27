@@ -292,6 +292,14 @@ VertexFormat *GraphicsRoot::GetVertexFormat(VertexFormatType type)
 				VertexFormat::AU_NORMAL, VertexFormat::AT_FLOAT3, 0,
 				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0);
 		}
+		else if (VFT_PCNT1 == type)
+		{
+			vf = VertexFormat::Create(4,
+				VertexFormat::AU_POSITION, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_COLOR, VertexFormat::AT_FLOAT4, 0,
+				VertexFormat::AU_NORMAL, VertexFormat::AT_FLOAT3, 0,
+				VertexFormat::AU_TEXCOORD, VertexFormat::AT_FLOAT2, 0);
+		}
 
 		mCreatedVFs[type] = vf;
 

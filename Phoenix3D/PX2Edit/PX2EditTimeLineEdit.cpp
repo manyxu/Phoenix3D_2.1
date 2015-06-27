@@ -43,7 +43,8 @@ void TimeLineEdit::SetTimeLineRenderStep_UIGroup(RenderStep *renderStep)
 {
 	mTimeLineRenderStep_UIGroup = renderStep;
 
-	mTimeLineRenderStep_UIGroup->SetNode(mCurveEditNode_UIGroup);
+	if (mTimeLineRenderStep_UIGroup)
+		mTimeLineRenderStep_UIGroup->SetNode(mCurveEditNode_UIGroup);
 }
 //----------------------------------------------------------------------------
 RenderStep *TimeLineEdit::GetTimeLineRenderStep_UIGroup() const
@@ -55,7 +56,8 @@ void TimeLineEdit::SetTimeLineRenderStep_Grid(RenderStep *renderStep)
 {
 	mTimeLineRenderStep_Grid = renderStep;
 
-	mTimeLineRenderStep_Grid->SetNode(mCurveEditNode_GridRoot);
+	if (mTimeLineRenderStep_Grid)
+		mTimeLineRenderStep_Grid->SetNode(mCurveEditNode_GridRoot);
 }
 //----------------------------------------------------------------------------
 RenderStep *TimeLineEdit::GetTimeLineRenderStep_Grid() const

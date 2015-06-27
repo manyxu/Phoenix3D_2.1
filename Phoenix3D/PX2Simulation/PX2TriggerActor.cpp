@@ -18,7 +18,7 @@ mAreaType(AT_SPHERE),
 mTrigerType(TT_ENTER_ONCE),
 mIsTrigered(false)
 {
-	SetName("TrigAtr");
+	SetName("TriggerActor");
 
 	SetAreaType(AT_SPHERE);
 }

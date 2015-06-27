@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 06/13/15 15:46:03.
+** Generated automatically by tolua++-1.0.92 on 06/21/15 11:10:14.
 */
 
 #ifndef __cplusplus

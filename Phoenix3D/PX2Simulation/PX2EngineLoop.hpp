@@ -105,6 +105,8 @@ namespace PX2
 		void SetScreenSize(const Sizef &screenSize);
 		const Sizef &GetScreenSize() const;
 		
+		const Rectf &GetAdjustViewPort() const;
+
 		Rectf GetViewPortAdjustFromProject(const Rectf &viewPort);
 		Rectf GetViewPortAdjustFromProject(float left, float bottom,
 			float width, float height);

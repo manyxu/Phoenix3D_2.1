@@ -15,7 +15,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Actor, EffectActor);
 //----------------------------------------------------------------------------
 EffectActor::EffectActor()
 {
-	SetName("EftAtr");
+	SetName("EffectActor");
 
 	VertexFormat *vf = PX2_GR.GetVertexFormat(GraphicsRoot::VFT_PC);
 	StandardMesh stdMesh(vf);

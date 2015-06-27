@@ -35,6 +35,9 @@ namespace PX2
 
 		static const Float3 ZERO;   //< (0,0,0)
 		static const Float3 UNIT;	//< (1,1,1)
+		static const Float3 UNIT_X;	//< (1,0,0)
+		static const Float3 UNIT_Y;	//< (0,1,0)
+		static const Float3 UNIT_Z;	//< (0,0,1)
 		static const Float3 BLACK;	//< (0,0,0)
 		static const Float3 WHITE;	//< (1,1,1)
 		static const Float3 RED;	//< (1,0,0)

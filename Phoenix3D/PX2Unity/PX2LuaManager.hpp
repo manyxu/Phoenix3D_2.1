@@ -29,6 +29,7 @@ namespace PX2
 
 		void SetLuaState (lua_State *state);
 		lua_State *GetLuaState ();
+		virtual void *GetSystemState();
 
 		virtual bool CallString (const char *str);
 		virtual bool CallString(const std::string &str);

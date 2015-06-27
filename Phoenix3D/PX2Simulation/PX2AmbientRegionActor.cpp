@@ -20,7 +20,7 @@ mSpecularPow(10.0f),
 mIntensity(1.0f),
 mLightCameraLookDistance(50.0f)
 {
-	SetName("AmbRegAtr");
+	SetName("AmbientRegionActor");
 
 	mAmbientColor = Float3(0.4f, 0.4f, 0.4f);
 	mDiffuseColor = Float3(1.0f, 1.0f, 1.0f);

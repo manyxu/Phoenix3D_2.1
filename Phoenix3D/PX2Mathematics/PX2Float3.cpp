@@ -5,6 +5,9 @@ using namespace PX2;
 
 const Float3 Float3::ZERO(0.0f, 0.0f, 0.0f);
 const Float3 Float3::UNIT(1.0f, 1.0f, 1.0f);
+const Float3 Float3::UNIT_X(1.0f, 0.0f, 0.0f);
+const Float3 Float3::UNIT_Y(0.0f, 1.0f, 0.0f);
+const Float3 Float3::UNIT_Z(0.0f, 0.0f, 1.0f);
 const Float3 Float3::BLACK(0.0f, 0.0f, 0.0f);
 const Float3 Float3::WHITE(1.0f, 1.0f, 1.0f);
 const Float3 Float3::RED(1.0f, 0.0f, 0.0f);

@@ -16,7 +16,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Actor, LightActor);
 //----------------------------------------------------------------------------
 LightActor::LightActor()
 {
-	SetName("LitAtr");
+	SetName("LightActor");
 
 	mLight = new0 Light(Light::LT_POINT);
 	mLightNode = new0 LightNode(mLight);

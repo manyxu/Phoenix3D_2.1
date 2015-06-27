@@ -46,6 +46,16 @@ inline const Rectf &Scene::GetViewPortProject() const
 	return mViewPort;
 }
 //----------------------------------------------------------------------------
+inline void Scene::SetOverrideWireFrame(bool wireframe)
+{
+	mIsOverrideWireFrame = wireframe;
+}
+//----------------------------------------------------------------------------
+inline bool Scene::IsOverrideWireFrame() const
+{
+	return mIsOverrideWireFrame;
+}
+//----------------------------------------------------------------------------
 inline bool Scene::IsUseBloom() const
 {
 	return mIsUseBloom;

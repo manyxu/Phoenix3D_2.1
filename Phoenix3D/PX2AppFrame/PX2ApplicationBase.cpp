@@ -80,6 +80,8 @@ const std::string &ApplicationBase::GetTitle() const
 //----------------------------------------------------------------------------
 void ApplicationBase::OnSize (int width, int height)
 {
+	if (0 == width || 0 == height) return;
+
 	PX2_ENGINELOOP.SetScreenSize(Sizef((float)width, (float)height));
 }
 //----------------------------------------------------------------------------

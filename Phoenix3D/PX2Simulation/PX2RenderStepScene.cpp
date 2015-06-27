@@ -169,6 +169,9 @@ void RenderStepScene::Draw()
 		mRenderer->ClearColorBuffer();
 		mRenderer->ClearDepthBuffer();
 
+		if (scene->IsOverrideWireFrame())
+			mRenderer->SetOverrideWireProperty(mOverrideWireProperty);
+
 		if (mHelpGridRenderStep)
 			mHelpGridRenderStep->Draw();
 
@@ -176,6 +179,8 @@ void RenderStepScene::Draw()
 		mRenderer->InitRenderStates();
 		mRenderer->SetCamera(mCamera);
 		mRenderer->Draw(mCuller.GetVisibleSet());
+
+		mRenderer->SetOverrideWireProperty(0);
 	}
 
 	// bloom
@@ -328,6 +333,13 @@ void RenderStepScene::SetViewPortAdjustWithScene(const Rectf &viewPort)
 
 			SetSize(Sizef(viewPortFromProject.Width(),
 				viewPortFromProject.Height()));
+		}
+		else
+		{
+			const Rectf &viewPortFromProject = PX2_ENGINELOOP.GetAdjustViewPort();
+			SetViewPort(viewPortFromProject);
+
+			SetSize(Sizef(viewPort.Width(), viewPort.Height()));
 		}
 	}
 	else

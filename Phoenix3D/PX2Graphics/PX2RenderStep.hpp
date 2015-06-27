@@ -11,6 +11,7 @@
 #include "PX2Node.hpp"
 #include "PX2Vector2.hpp"
 #include "PX2RenderTarget.hpp"
+#include "PX2WireProperty.hpp"
 
 namespace PX2
 {
@@ -86,6 +87,8 @@ namespace PX2
 		Renderer *mRenderer;
 		CameraPtr mCamera;
 		Culler mCuller;
+
+		WirePropertyPtr mOverrideWireProperty;
 
 		// Node
 	public:

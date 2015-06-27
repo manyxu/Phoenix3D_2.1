@@ -158,6 +158,8 @@ void EngineLoop::DidEnterBackground()
 //----------------------------------------------------------------------------
 bool EngineLoop::Ternamate()
 {
+	Play(EngineLoop::PT_NONE);
+
 	PX2_EW.Shutdown(true);
 	
 	if (mSelection)
@@ -404,19 +406,15 @@ void EngineLoop::SetScreenSize(const Sizef &screenSize)
 			mAdjustViewPort.Right = screenSize.Width;
 			mAdjustViewPort.Top = screenSize.Height - bot;
 		}
-
-		PX2_GR.SetScreenSize(screenSize);
-		PX2_GR.SetViewRect(mAdjustViewPort);
-		proj->SetViewRect(mAdjustViewPort);
 	}
 	else
 	{
-		Rectf rect = Rectf(0.0f, 0.0f, screenSize.Width, screenSize.Height);
-
-		PX2_GR.SetScreenSize(screenSize);
-		PX2_GR.SetViewRect(rect);
-		proj->SetViewRect(rect);
+		mAdjustViewPort = Rectf(0.0f, 0.0f, screenSize.Width, screenSize.Height);
 	}
+
+	PX2_GR.SetScreenSize(screenSize);
+	PX2_GR.SetViewRect(mAdjustViewPort);
+	proj->SetViewRect(mAdjustViewPort);
 }
 //----------------------------------------------------------------------------
 Rectf EngineLoop::GetViewPortAdjustFromProject(const Rectf &viewPort)

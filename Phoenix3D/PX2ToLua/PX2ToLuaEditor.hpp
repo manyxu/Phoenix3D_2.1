@@ -1,7 +1,7 @@
 // PX2ToLuaEditor.hpp
 
-#ifndef PX2TOLUA_HPP
-#define PX2TOLUA_HPP
+#ifndef PX2TOLUAEDITOR_HPP
+#define PX2TOLUAEDITOR_HPP
 
 #include "PX2CorePre.hpp"
 #include "PX2E_MainFrame.hpp"

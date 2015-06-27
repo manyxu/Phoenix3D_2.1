@@ -22,7 +22,7 @@ mHeight(1.0f),
 mSceneContainer(0),
 mSceneContainerIndex(0)
 {
-	SetName("Atr");
+	SetName("Actor");
 }
 //----------------------------------------------------------------------------
 Actor::~Actor()
@@ -47,6 +47,17 @@ void Actor::SetMovable (Movable *mov)
 	CollectAnchors();
 
 	mov->SetSaveWriteIngore(false);
+
+	SetReceiveShadow(mIsReceiveShadow);
+}
+//----------------------------------------------------------------------------
+int Actor::AttachChild(Movable* child)
+{
+	int result = Node::AttachChild(child);
+
+	SetReceiveShadow(mIsReceiveShadow);
+
+	return result;
 }
 //----------------------------------------------------------------------------
 void Actor::SetMovableFilename(const std::string &filename, bool shareVI)

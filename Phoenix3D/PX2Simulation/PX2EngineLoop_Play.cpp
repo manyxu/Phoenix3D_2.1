@@ -17,7 +17,19 @@ void EngineLoop::Play(EngineLoop::PlayType type)
 
 	if (!Project::GetSingletonPtr()) return;
 
-	std::string startFilename = "Data/" + mProjectName + "/scripts/start.lua";
-	PX2_SM.CallFile(startFilename.c_str());
+	if (!PX2_GR.IsInEditor())
+	{
+		std::string callFilename;
+		if (PT_PLAY == type)
+		{
+			callFilename = "Data/" + mProjectName + "/scripts/start.lua";
+		}
+		else
+		{
+			callFilename = "Data/" + mProjectName + "/scripts/end.lua";
+		}
+
+		PX2_SM.CallFile(callFilename.c_str());
+	}
 }
 //----------------------------------------------------------------------------

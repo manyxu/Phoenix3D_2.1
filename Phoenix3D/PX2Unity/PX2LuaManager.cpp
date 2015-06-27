@@ -78,6 +78,11 @@ void LuaManager::SetLuaState (lua_State *state)
 	lua_register(mState, "GetGlobal", GetGlobal);
 }
 //----------------------------------------------------------------------------
+void *LuaManager::GetSystemState()
+{
+	return mState;
+}
+//----------------------------------------------------------------------------
 bool LuaManager::CallString (const char *str)
 {
 	LuaStackBackup stackbackup(mState);

@@ -31,6 +31,11 @@ inline const Sizef &EngineLoop::GetScreenSize() const
 	return mScreenSize;
 }
 //----------------------------------------------------------------------------
+inline const Rectf &EngineLoop::GetAdjustViewPort() const
+{
+	return mAdjustViewPort;
+}
+//----------------------------------------------------------------------------
 inline EngineLoop::PlayType EngineLoop::GetPlayType() const
 {
 	return mPlayType;

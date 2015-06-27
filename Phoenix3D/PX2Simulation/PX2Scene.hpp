@@ -36,6 +36,7 @@ namespace PX2
 		void SetUseCameraActor(CameraActor *cameraActor);
 		CameraActor *GetUseCameraActor();
 
+		CameraActor *GetCameraAcotr();
 		AmbientRegionActor *GetDefaultAmbientRegionActor();
 		TerrainActor *GetTerrainActor();
 		SkyActor *GetSkyActor();
@@ -102,6 +103,9 @@ namespace PX2
 
 		// rendering
 	public:
+		void SetOverrideWireFrame(bool wireframe);
+		bool IsOverrideWireFrame() const;
+
 		void SetUseBloom(bool isUseBloom);
 		bool IsUseBloom() const;
 		void SetBloomRenderTargetSizeSameWithScreen(bool sizeSameWithScreen);
@@ -132,6 +136,8 @@ namespace PX2
 		float GetShadowOffsetProperty_Bias() const;
 
 	protected:
+		bool mIsOverrideWireFrame;
+
 		bool mIsUseBloom;
 		bool mIsBloomRenderTargetSizeSameWithScreen;
 		Float2 mBloomRenderTargetSize;

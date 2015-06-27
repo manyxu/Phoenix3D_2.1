@@ -3,6 +3,14 @@
 #include "AppPlayerApp.hpp"
 #include "PX2Renderer.hpp"
 #include "PX2EngineLoop.hpp"
+#include "PX2ScriptManager.hpp"
+
+#ifdef PX2_PROJECT_CUBE
+#include "../Samples/Client/Cube/Cube.hpp"
+#include "../PX2ToLua/Samples/Client/Cube/PX2ToLuaCube.hpp"
+#endif
+
+using namespace PX2;
 
 PX2_IMPLEMENT_APPLICATION(AppPlayerApp)
 //----------------------------------------------------------------------------
@@ -33,6 +41,11 @@ bool AppPlayerApp::Initlize()
 
 		if (!projectName.empty())
 		{
+#ifdef PX2_PROJECT_CUBE
+			void *state = PX2::ScriptManager::GetSingletonPtr()->GetSystemState();
+			tolua_PX2Cube_open((lua_State*)state);
+#endif
+
 			std::string projectPath = "Data/" + projectName + "/" + projectName
 				+ ".px2proj";
 

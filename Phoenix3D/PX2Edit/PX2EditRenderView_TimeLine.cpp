@@ -36,6 +36,9 @@ mZEnd(0.0f)
 //----------------------------------------------------------------------------
 EditRenderView_TimeLine::~EditRenderView_TimeLine()
 {
+	PX2_EDIT.GetTimeLineEdit()->SetTimeLineRenderStep_UIGroup(0);
+	PX2_EDIT.GetTimeLineEdit()->SetTimeLineRenderStep_Grid(0);
+
 	if (mRenderStep)
 	{
 		PX2_GR.RemoveRenderSteps(mRenderStep);

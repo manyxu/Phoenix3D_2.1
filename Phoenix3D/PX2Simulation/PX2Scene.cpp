@@ -7,7 +7,7 @@
 #include "PX2SimulationEventType.hpp"
 using namespace PX2;
 
-PX2_IMPLEMENT_RTTI_V(PX2, Node, Scene, 3);
+PX2_IMPLEMENT_RTTI_V(PX2, Node, Scene, 4);
 PX2_IMPLEMENT_STREAM(Scene);
 PX2_IMPLEMENT_FACTORY(Scene);
 PX2_IMPLEMENT_DEFAULT_NAMES(Node, Scene);
@@ -22,6 +22,7 @@ int Scene::GetNextID()
 //----------------------------------------------------------------------------
 Scene::Scene() :
 mIsShowHelpNode(true),
+mIsOverrideWireFrame(false),
 mIsUseBloom(false),
 mIsBloomRenderTargetSizeSameWithScreen(false),
 mBloomRenderTargetSize(Float2(512.0f, 512.0f)),
@@ -41,12 +42,13 @@ mShadowRenderTargetSize(Float2(512.0f, 512.0f))
 
 	CameraActor *camActor = new0 CameraActor();
 	AttachChild(camActor);
+	camActor->SetName("DefaultCameraActor");
 	camActor->LocalTransform.SetTranslate(APoint(0.0f, -5.0f, 1.0f));
 	SetUseCameraActor(camActor);
 
 	mDefaultAmbientRegionActor = new0 AmbientRegionActor();
-	mDefaultAmbientRegionActor->SetName("DefaultAmbientRegion");
 	AttachChild(mDefaultAmbientRegionActor);
+	mDefaultAmbientRegionActor->SetName("DefaultAmbientRegionActor");
 
 	SetColor(Float3::WHITE);
 
@@ -352,6 +354,8 @@ void Scene::RegistProperties()
 
 	AddProperty("IsShowHelpNode", PT_BOOL, IsShowHelpNode());
 
+	AddProperty("IsOverrideWireFrame", PT_BOOL, IsOverrideWireFrame());
+
 	AddProperty("IsUseBloom", PT_BOOL, mIsUseBloom);
 	AddProperty("IsBloomRenderTargetSizeSameWithScreen", PT_BOOL,
 		mIsBloomRenderTargetSizeSameWithScreen);
@@ -388,6 +392,10 @@ void Scene::OnPropertyChanged(const PropertyObject &obj)
 	else if ("IsShowHelpNode" == obj.Name)
 	{
 		SetShowHelpNode(PX2_ANY_AS(obj.Data, bool));
+	}
+	else if ("IsOverrideWireFrame" == obj.Name)
+	{
+		SetOverrideWireFrame(PX2_ANY_AS(obj.Data, bool));
 	}
 	else if ("IsUseBloom" == obj.Name)
 	{
@@ -450,6 +458,7 @@ void Scene::OnPropertyChanged(const PropertyObject &obj)
 //----------------------------------------------------------------------------
 Scene::Scene(LoadConstructor value) :
 Node(value),
+mIsOverrideWireFrame(false),
 mIsShowHelpNode(true),
 mIsUseBloom(false),
 mIsBloomRenderTargetSizeSameWithScreen(false),
@@ -503,6 +512,10 @@ void Scene::Load(InStream& source)
 	if (3 <= readedVersion)
 	{
 		source.ReadAggregate(mViewPort);
+	}
+	if (4 <= readedVersion)
+	{
+		source.ReadBool(mIsOverrideWireFrame);
 	}
 
 	PX2_END_DEBUG_STREAM_LOAD(Scene, source);
@@ -593,6 +606,8 @@ void Scene::Save(OutStream& target) const
 
 	target.WriteAggregate(mViewPort);
 
+	target.WriteBool(mIsOverrideWireFrame);
+
 	PX2_END_DEBUG_STREAM_SAVE(Scene, target);
 }
 //----------------------------------------------------------------------------
@@ -633,6 +648,10 @@ int Scene::GetStreamingSize(Stream &stream) const
 		{
 			size += sizeof(mViewPort);
 		}
+		if (4 <= readedVersion)
+		{
+			size += PX2_BOOLSIZE(mIsOverrideWireFrame);
+		}
 	}
 	else
 	{
@@ -652,6 +671,8 @@ int Scene::GetStreamingSize(Stream &stream) const
 		size += sizeof(mShadowRenderTargetSize);
 
 		size += sizeof(mViewPort);
+
+		size += PX2_BOOLSIZE(mIsOverrideWireFrame);
 	}
 
 	return size;

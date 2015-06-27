@@ -62,6 +62,8 @@ namespace PX2
 		virtual void SetMovable (Movable *mov);
 		Movable *GetMovable ();
 
+		virtual int AttachChild(Movable* child);
+
 		Node *CreateGetHelpNode ();
 		Node *GetNodeHelp();
 

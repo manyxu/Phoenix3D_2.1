@@ -323,7 +323,5 @@ bool Application::Ternamate()
 void Application::SetTitle(const std::string &title)
 {
 	ApplicationBase::SetTitle(title);
-
-
 }
 //----------------------------------------------------------------------------

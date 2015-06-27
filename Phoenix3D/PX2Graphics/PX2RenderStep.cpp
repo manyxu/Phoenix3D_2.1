@@ -17,6 +17,9 @@ mIsDoClearDepth(false)
 {
 	mSize.Set(1024.0f, 768.0f);
 
+	mOverrideWireProperty = new0 WireProperty();
+	mOverrideWireProperty->Enabled = true;
+
 	ComeInEventWorld();
 }
 //----------------------------------------------------------------------------
