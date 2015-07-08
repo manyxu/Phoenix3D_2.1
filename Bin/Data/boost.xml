@@ -1,9 +1,9 @@
 <boost name="boost">
 	<config>
-		<var width="320" height="568"/>
+		<var width="1136" height="640"/>
 	</config>
 	<play>
-		<var projectname="" playlogicmode="logic"/>
+		<var projectname="cube" playlogicmode="logic"/>
 	</play>
 </boost>
 

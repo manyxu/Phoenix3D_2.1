@@ -3,7 +3,7 @@
 #ifndef PX2CORE_HPP
 #define PX2CORE_HPP
 
-// Assert
+// Assert 
 #include "PX2Assert.hpp"
 
 // Base
