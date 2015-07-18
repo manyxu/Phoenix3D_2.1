@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="PX2PWindow.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PWinImpl.hpp">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PAppImpl.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PApplication.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PlatformUIPre.hpp" />
+    <ClInclude Include="Impl\Windows\PX2PAppImplWindows.hpp">
+      <Filter>Application\Impl</Filter>
+    </ClInclude>
+    <ClInclude Include="Impl\Windows\PX2PWinImplWindows.hpp">
+      <Filter>Window\Impl</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PX2PWindow.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PWinImpl.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PAppImpl.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PApplication.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Impl\Windows\PX2PAppImplWindows.cpp">
+      <Filter>Application\Impl</Filter>
+    </ClCompile>
+    <ClCompile Include="Impl\Windows\PX2PWinImplWindows.cpp">
+      <Filter>Window\Impl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Window">
+      <UniqueIdentifier>{1b723c73-1d76-48da-a84d-8357e89b626b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{b6d3d37c-257f-4e32-877e-6bf896b938b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\Impl">
+      <UniqueIdentifier>{24766d15-a749-4dd0-a376-e6b2133e55a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Impl">
+      <UniqueIdentifier>{8fa591a5-6dd7-4dd7-ba0a-c1e3c7f29664}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
