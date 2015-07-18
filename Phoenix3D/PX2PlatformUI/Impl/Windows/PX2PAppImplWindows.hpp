@@ -16,8 +16,8 @@ namespace PX2
 		virtual ~PAppImplWindows();
 
 		virtual void Run();
-
-	protected:
+	
+	public_internal:
 		bool _TranslateMessage(LPMSG msg);
 	};
 

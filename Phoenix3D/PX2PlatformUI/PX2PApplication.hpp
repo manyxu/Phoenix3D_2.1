@@ -20,6 +20,8 @@ namespace PX2
 
 		void Run();
 
+		PAppImpl *GetImpl();
+
 	protected:
 		PAppImplPtr mImpl;
 	};

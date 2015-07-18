@@ -21,15 +21,19 @@ namespace PX2
 		virtual void Create(PWinImpl *parent, const std::string &tilte,
 			const Vector2f &pos, const Sizef &size);
 
-		virtual void Show(bool show);
+		virtual void Show(bool show, bool takeFocus);
+		virtual void ShowModal();
 
 	protected:
 		bool _RegisterSuperClass();
 		bool _RegisterWindowClass();
 		static LRESULT CALLBACK _WndProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 			LPARAM lParam);
+		virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
+		virtual void OnFinalMessage(HWND hWnd);
 
 		HWND mhWnd;
+		WNDPROC mOldWndProc;
 		std::string mSuperClassName;
 		std::string mWindowClassName;
 	};

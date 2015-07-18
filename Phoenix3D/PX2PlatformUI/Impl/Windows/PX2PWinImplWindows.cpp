@@ -2,11 +2,14 @@
 
 #include "PX2PWinImplWindows.hpp"
 #include "PX2PApplication.hpp"
+#include "PX2PAppImplWindows.hpp"
+#include <windowsx.h>
 using namespace PX2;
 
 //----------------------------------------------------------------------------
 PWinImplWindows::PWinImplWindows() :
-mhWnd(0)
+mhWnd(0),
+mOldWndProc(::DefWindowProc)
 {
 	mWindowClassName = "PlatformWindow";
 }
@@ -38,16 +41,66 @@ void PWinImplWindows::Create(PWinImpl *parent, const std::string &tilte,
 	HWND parentHWnd = NULL;
 	if (parent) parentHWnd = ((PWinImplWindows*)parent)->mhWnd;
 
-	mhWnd = ::CreateWindowEx(WS_EX_STATICEDGE | WS_EX_APPWINDOW,
+	DWORD exStyle = WS_EX_STATICEDGE | WS_EX_APPWINDOW;
+	DWORD style = WS_VISIBLE | WS_OVERLAPPEDWINDOW;
+
+	if (parent)
+		exStyle = 0;
+
+	mhWnd = ::CreateWindowEx(exStyle,
 		mWindowClassName.c_str(), tilte.c_str(),
-		(WS_VISIBLE | WS_OVERLAPPEDWINDOW),
+		style,
 		(int)pos.X(), (int)pos.Y(), (int)size.Width, (int)size.Height,
 		parentHWnd, NULL, instance, this);
 }
 //----------------------------------------------------------------------------
-void PWinImplWindows::Show(bool show)
+void PWinImplWindows::Show(bool show, bool takeFocus)
 {
-	::ShowWindow(mhWnd, show ? SW_SHOW : SW_HIDE);
+	assertion(TRUE == IsWindow(mhWnd), "must be a window");
+	::ShowWindow(mhWnd, show ? (takeFocus ? SW_SHOWNORMAL : SW_SHOWNOACTIVATE)
+		: SW_HIDE);
+}
+//----------------------------------------------------------------------------
+void PWinImplWindows::ShowModal()
+{
+	assertion(TRUE == IsWindow(mhWnd), "must be a window");
+
+	UINT nRet = 0;
+	HWND hWndParent = GetWindowOwner(mhWnd);
+	
+	::ShowWindow(mhWnd, SW_SHOWNORMAL);
+	::EnableWindow(hWndParent, FALSE);
+
+	MSG msg = { 0 };
+	while (::IsWindow(mhWnd) && ::GetMessage(&msg, NULL, 0, 0)) 
+	{
+		if (msg.message == WM_CLOSE && msg.hwnd == mhWnd)
+		{
+			nRet = msg.wParam;
+			::EnableWindow(hWndParent, TRUE);
+			::SetFocus(hWndParent);
+		}
+
+		PAppImplWindows *appWindow = (PAppImplWindows*)(
+			PApplication::GetSingleton().GetImpl());
+
+		if (!appWindow->_TranslateMessage(&msg))
+		{
+			::TranslateMessage(&msg);
+			::DispatchMessage(&msg);
+		}
+
+		if (msg.message == WM_QUIT)
+			break;
+	}
+
+	::EnableWindow(hWndParent, TRUE);
+	::SetFocus(hWndParent);
+
+	if (msg.message == WM_QUIT)
+		::PostQuitMessage(msg.wParam);
+
+	PX2_UNUSED(nRet);
 }
 //----------------------------------------------------------------------------
 bool PWinImplWindows::_RegisterSuperClass()
@@ -79,33 +132,51 @@ bool PWinImplWindows::_RegisterWindowClass()
 LRESULT CALLBACK PWinImplWindows::_WndProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 	LPARAM lParam)
 {
-	//PWinImplWindows* pThis = NULL;
-	//if (uMsg == WM_NCCREATE)
-	//{
-	//	LPCREATESTRUCT lpcs = reinterpret_cast<LPCREATESTRUCT>(lParam);
-	//	pThis = static_cast<PWinImplWindows*>(lpcs->lpCreateParams);
-	//	pThis->m_hWnd = hWnd;
-	//	::SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LPARAM>(pThis));
-	//}
-	//else 
-	//{
-	//	pThis = reinterpret_cast<PWinImplWindows*>(::GetWindowLongPtr(hWnd, GWLP_USERDATA));
-	//	if (uMsg == WM_NCDESTROY && pThis != NULL) {
-	//		LRESULT lRes = ::CallWindowProc(pThis->m_OldWndProc, hWnd, uMsg, wParam, lParam);
-	//		::SetWindowLongPtr(pThis->m_hWnd, GWLP_USERDATA, 0L);
-	//		if (pThis->m_bSubclassed) pThis->Unsubclass();
-	//		pThis->m_hWnd = NULL;
-	//		pThis->OnFinalMessage(hWnd);
-	//		return lRes;
-	//	}
-	//}
-	//if (pThis != NULL)
-	//{
-	//	return pThis->HandleMessage(uMsg, wParam, lParam);
-	//}
-	//else
-	//{
+	PWinImplWindows* pThis = NULL;
+
+	if (uMsg == WM_NCCREATE)
+	{
+		LPCREATESTRUCT lpcs = reinterpret_cast<LPCREATESTRUCT>(lParam);
+		pThis = static_cast<PWinImplWindows*>(lpcs->lpCreateParams);
+		pThis->mhWnd = hWnd;
+
+		::SetWindowLongPtr(hWnd, GWLP_USERDATA, 
+			reinterpret_cast<LPARAM>(pThis));
+	}
+	else
+	{
+		pThis = reinterpret_cast<PWinImplWindows*>(::GetWindowLongPtr(hWnd,
+			GWLP_USERDATA));
+
+		if (uMsg == WM_NCDESTROY && pThis != NULL)
+		{
+			LRESULT lRes = ::CallWindowProc(pThis->mOldWndProc, hWnd, uMsg, 
+				wParam, lParam);
+			::SetWindowLongPtr(pThis->mhWnd, GWLP_USERDATA, 0L);
+
+			pThis->mhWnd = NULL;
+			pThis->OnFinalMessage(hWnd);
+
+			return lRes;
+		}
+	}
+
+	if (pThis != NULL)
+	{
+		return pThis->HandleMessage(uMsg, wParam, lParam);
+	}
+	else
+	{
 		return ::DefWindowProc(hWnd, uMsg, wParam, lParam);
-	//}
+	}
+}
+//----------------------------------------------------------------------------
+LRESULT PWinImplWindows::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	return ::CallWindowProc(mOldWndProc, mhWnd, uMsg, wParam, lParam);
+}
+//----------------------------------------------------------------------------
+void PWinImplWindows::OnFinalMessage(HWND hWnd)
+{
 }
 //----------------------------------------------------------------------------
