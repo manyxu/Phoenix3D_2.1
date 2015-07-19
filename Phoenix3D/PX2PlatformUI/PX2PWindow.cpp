@@ -28,6 +28,11 @@ void PWindow::Create(PWindow *parent, const std::string &tilte,
 	mImpl->Create(winImpl, tilte, pos, size);
 }
 //----------------------------------------------------------------------------
+void *PWindow::GetWinHandle()
+{
+	return mImpl->GetWinHandle();
+}
+//----------------------------------------------------------------------------
 void PWindow::Show(bool show, bool takeFocus)
 {
 	mImpl->Show(show, takeFocus);
@@ -36,5 +41,25 @@ void PWindow::Show(bool show, bool takeFocus)
 void PWindow::ShowModal()
 {
 	mImpl->ShowModal();
+}
+//----------------------------------------------------------------------------
+void PWindow::CenterWindow()
+{
+	mImpl->CenterWindow();
+}
+//----------------------------------------------------------------------------
+void PWindow::Minimize()
+{
+	mImpl->Minimize();
+}
+//----------------------------------------------------------------------------
+void PWindow::Maximize()
+{
+	mImpl->Maximize();
+}
+//----------------------------------------------------------------------------
+void PWindow::Restore()
+{
+	mImpl->Restore();
 }
 //----------------------------------------------------------------------------

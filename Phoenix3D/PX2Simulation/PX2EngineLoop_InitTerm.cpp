@@ -110,6 +110,8 @@ bool EngineLoop::InitlizeRenderer()
 
 	Renderer::SetDefaultRenderer(defRenderer);
 
+	mScreenSize = mPt_Size;
+
 	return true;
 }
 //----------------------------------------------------------------------------

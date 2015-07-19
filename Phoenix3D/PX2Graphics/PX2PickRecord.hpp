@@ -36,6 +36,9 @@ namespace PX2
 		// 质心坐标系点选择。所有坐标都在区间[0,1]内，
 		// 并且Bary[0] + Bary[1] + Bary[2] = 1。
 		float Bary[3];
+
+		// 本地坐标系下的法线
+		AVector LocalNormal;
 	};
 
 #include "PX2PickRecord.inl"

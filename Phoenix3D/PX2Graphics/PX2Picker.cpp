@@ -222,6 +222,16 @@ void Picker::ExecuteRecursive (Movable* object, bool &hasMeshPicked)
 							record.Bary[2] = calc.GetTriBary2();
 							Records.push_back(record);
 
+							Vector3f edg1 = vertex1 - vertex0;
+							Vector3f edg2 = vertex2 - vertex0;
+							Vector3f normal = edg1.UnitCross(edg2);
+							float dotVal = line.Direction.Dot(normal);
+							if (dotVal > Mathf::ZERO_TOLERANCE)
+							{
+								normal *= -1.0f;
+							}
+							record.LocalNormal = normal;
+
 							if (mIsDoMovPickCall)
 							{
 								hasMeshPicked = true;

@@ -31,6 +31,7 @@ void EngineLoop::Tick()
 		// clear screen
 		defaultRenderer->SetViewport(Rectf(0.0f, 0.0f, mScreenSize.Width, mScreenSize.Height));
         if (proj) defaultRenderer->SetClearColor(proj->GetBackgroundColor());
+		else defaultRenderer->SetClearColor(Float4::RED);
 		defaultRenderer->ClearBuffers();
 
 		if (mIsDoAdjustScreenViewRect)

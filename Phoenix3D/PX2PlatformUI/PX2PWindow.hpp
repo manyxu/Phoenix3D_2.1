@@ -19,9 +19,16 @@ namespace PX2
 
 		void Create(PWindow *parent, const std::string &tilte, 
 			const Vector2f &pos, const Sizef &size);
+		void *GetWinHandle();
 
 		void Show(bool show = true, bool takeFocus = true);
 		void ShowModal();
+
+		void CenterWindow();
+
+		void Minimize();
+		void Maximize();
+		void Restore();
 
 	protected:
 		PWinImplPtr mImpl;

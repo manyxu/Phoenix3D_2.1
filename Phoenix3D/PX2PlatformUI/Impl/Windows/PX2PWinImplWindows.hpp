@@ -20,9 +20,19 @@ namespace PX2
 
 		virtual void Create(PWinImpl *parent, const std::string &tilte,
 			const Vector2f &pos, const Sizef &size);
+		virtual void *GetWinHandle();
 
 		virtual void Show(bool show, bool takeFocus);
 		virtual void ShowModal();
+
+		virtual void CenterWindow();
+
+		virtual void Minimize();
+		virtual void Maximize();
+		virtual void Restore();
+
+	public_internal:
+		void SetNeedUpdate();
 
 	protected:
 		bool _RegisterSuperClass();
@@ -30,9 +40,26 @@ namespace PX2
 		static LRESULT CALLBACK _WndProc(HWND hWnd, UINT uMsg, WPARAM wParam,
 			LPARAM lParam);
 		virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
+		bool _MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& lRes);
 		virtual void OnFinalMessage(HWND hWnd);
 
+		LRESULT OnNcActivate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnNcCalcSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnNcPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+		LRESULT OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+
 		HWND mhWnd;
+		HDC mhDcPaint;
+		HDC mhDcOffscreen;
+		HDC mhDcBackground;
+		HBITMAP mhbmpOffscreen;
+		HBITMAP mhbmpBackground;
+		HPEN mhUpdateRectPen;
+
+		bool mIsUpdateNeeded;
+		bool mIsOffScreenPaint;
+		bool mIsAlphaBackground;
+
 		WNDPROC mOldWndProc;
 		std::string mSuperClassName;
 		std::string mWindowClassName;

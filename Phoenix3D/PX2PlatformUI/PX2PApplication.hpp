@@ -5,6 +5,8 @@
 
 #include "PX2PAppImpl.hpp"
 #include "PX2Singleton_NeedNew.hpp"
+#include "PX2Size.hpp"
+#include "PX2Rect.hpp"
 
 namespace PX2
 {
@@ -20,9 +22,18 @@ namespace PX2
 
 		void Run();
 
+		void SetCaptionRect(const Rectf &rect);
+		const Rectf &GetCaptionRect() const;
+
+		void SetRoundCorner(const Rectf &rect);
+		const Rectf &GetRoundCorner() const;
+
 		PAppImpl *GetImpl();
 
 	protected:
+		Rectf mCaptionRect;
+		Rectf mRoundCorner;
+
 		PAppImplPtr mImpl;
 	};
 
