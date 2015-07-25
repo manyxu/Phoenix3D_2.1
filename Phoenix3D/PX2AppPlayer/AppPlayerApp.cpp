@@ -4,12 +4,6 @@
 #include "PX2Renderer.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2ScriptManager.hpp"
-
-#ifdef PX2_PROJECT_CUBE
-#include "../Samples/Client/Cube/Cube.hpp"
-#include "../PX2ToLua/Samples/Client/Cube/PX2ToLuaCube.hpp"
-#endif
-
 using namespace PX2;
 
 PX2_IMPLEMENT_APPLICATION(AppPlayerApp)

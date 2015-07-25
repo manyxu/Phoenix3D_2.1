@@ -2,15 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="AppPlayerApp.cpp" />
-    <ClCompile Include="..\PX2ToLua\Samples\Client\Cube\PX2ToLuaCube.cpp">
-      <Filter>Project</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppPlayerApp.hpp" />
-    <ClInclude Include="..\PX2ToLua\Samples\Client\Cube\PX2ToLuaCube.hpp">
-      <Filter>Project</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Project">

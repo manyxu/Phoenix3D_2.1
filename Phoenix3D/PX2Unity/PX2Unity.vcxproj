@@ -214,6 +214,9 @@
     <ClCompile Include="PX2IMEDispatcher.cpp" />
     <ClCompile Include="PX2LanguageManager.cpp" />
     <ClCompile Include="PX2LuaManager.cpp" />
+    <ClCompile Include="PX2DynLib.cpp" />
+    <ClCompile Include="PX2DynLibManager.cpp" />
+    <ClCompile Include="PX2PluginManager.cpp" />
     <ClCompile Include="PX2ResourceManager.cpp" />
     <ClCompile Include="PX2ResourceUpdate.cpp" />
     <ClCompile Include="PX2Sound.cpp" />
@@ -415,6 +418,10 @@
     <ClInclude Include="PX2IMEDispatcher.hpp" />
     <ClInclude Include="PX2LanguageManager.hpp" />
     <ClInclude Include="PX2LuaManager.hpp" />
+    <ClInclude Include="PX2DynLib.hpp" />
+    <ClInclude Include="PX2DynLibManager.hpp" />
+    <ClInclude Include="PX2Plugin.hpp" />
+    <ClInclude Include="PX2PluginManager.hpp" />
     <ClInclude Include="PX2ResourceUpdate.hpp" />
     <ClInclude Include="PX2ResourceManager.hpp" />
     <ClInclude Include="PX2Sound.hpp" />

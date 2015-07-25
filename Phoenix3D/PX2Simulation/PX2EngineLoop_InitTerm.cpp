@@ -6,6 +6,7 @@
 #include "PX2ToLua.hpp"
 #include "PX2RendererInput.hpp"
 #include "PX2LocalDateTime.hpp"
+#include "PX2PluginManager.hpp"
 using namespace PX2;
 
 extern "C"
@@ -161,6 +162,8 @@ void EngineLoop::DidEnterBackground()
 bool EngineLoop::Ternamate()
 {
 	Play(EngineLoop::PT_NONE);
+
+	PX2_PLUGINMAN.UnloadPlugins();
 
 	PX2_EW.Shutdown(true);
 	

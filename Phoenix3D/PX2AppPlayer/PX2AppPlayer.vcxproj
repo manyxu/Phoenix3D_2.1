@@ -252,14 +252,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;PX2_PROJECT_CUBE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\;..\;..\PX2SDK\Include;..\PX2Unity\Lua;..\PX2Unity\ToLua;..\Samples\Client\Cube;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsD.lib;PX2UnityD.lib;PX2NetD.lib;PX2TerrainsD.lib;PX2UID.lib;PX2EffectD.lib;PX2SimulationD.lib;PX2AppFrameD.lib;fmod_vc.lib;d3d9.lib;d3dx9.lib;dxerr.lib;dinput8.lib;dxguid.lib;ws2_32.lib;CubeD.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\lib;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Lib\x86;..\Samples\Client\Cube\_OutPut\v120\Win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsD.lib;PX2UnityD.lib;PX2NetD.lib;PX2TerrainsD.lib;PX2UID.lib;PX2EffectD.lib;PX2SimulationD.lib;PX2AppFrameD.lib;fmod_vc.lib;d3d9.lib;d3dx9.lib;dxerr.lib;dinput8.lib;dxguid.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\lib;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Lib\x86;..\Samples\Client\Cube\_OutPut\v120\Win32\Debug;..\Samples\Client\Soccer\_OutPut\v120\Win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
@@ -473,11 +473,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\PX2ToLua\Samples\Client\Cube\PX2ToLuaCube.cpp" />
     <ClCompile Include="AppPlayerApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\PX2ToLua\Samples\Client\Cube\PX2ToLuaCube.hpp" />
     <ClInclude Include="AppPlayerApp.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

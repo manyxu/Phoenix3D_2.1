@@ -118,6 +118,9 @@
     <Filter Include="Importer">
       <UniqueIdentifier>{14cb6d03-7bc9-473c-8a08-16d4f2e580c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Plugin">
+      <UniqueIdentifier>{b9697665-8b11-46a4-8e64-1c7bf12f281d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2ResourceManager.cpp">
@@ -789,6 +792,15 @@
     <ClCompile Include="PX2CSVParser.cpp">
       <Filter>CSV</Filter>
     </ClCompile>
+    <ClCompile Include="PX2DynLib.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2DynLibManager.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2PluginManager.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Unity.hpp" />
@@ -1368,6 +1380,18 @@
     </ClInclude>
     <ClInclude Include="PX2CSVParser.hpp">
       <Filter>CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DynLib.hpp">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2DynLibManager.hpp">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Plugin.hpp">
+      <Filter>Plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2PluginManager.hpp">
+      <Filter>Plugin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
