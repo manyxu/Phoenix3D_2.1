@@ -21,7 +21,7 @@ namespace PX2
 		CONNSTATE_WAITSERVER, //向服务器发送完消息， 等待回复消息
 	};
 
-	class ClientConnector
+	class PX2_NET_ITEM ClientConnector
 	{
 	public:
 		typedef int (ClientConnector::*ServerMsgHandleFunc)(const void *pbuffer, int buflen);

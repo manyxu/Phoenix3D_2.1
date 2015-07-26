@@ -11,7 +11,7 @@ namespace PX2
 
 	class Object;
 
-	class InStream : public Stream
+	class PX2_CORE_ITEM InStream : public Stream
 	{
 	public:
 		InStream ();

@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class ChainListNode
+	class PX2_CORE_ITEM ChainListNode
 	{
 	public:
 		ChainListNode *NextNode;

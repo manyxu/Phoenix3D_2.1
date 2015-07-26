@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class MaterialManager : public Singleton<MaterialManager>
+	class PX2_GRAPHICS_ITEM MaterialManager : public Singleton<MaterialManager>
 	{
 	public:
 		MaterialManager();

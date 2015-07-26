@@ -4,11 +4,12 @@
 #define PX2CURLDOWNLOAD_HPP
 
 #include "PX2Mutex.hpp"
+#include "PX2UnityPre.hpp"
 
 namespace PX2
 {
 
-	class CURLDownload
+	class PX2_UNITY_ITEM CURLDownload
 	{
 	public:
 		CURLDownload ();

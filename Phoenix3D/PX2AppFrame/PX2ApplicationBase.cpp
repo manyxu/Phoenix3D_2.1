@@ -3,6 +3,7 @@
 #include "PX2ApplicationBase.hpp"
 #include "PX2EngineLoop.hpp"
 #include "PX2Project.hpp"
+#include "PX2PluginManager.hpp"
 using namespace PX2;
 
 //----------------------------------------------------------------------------
@@ -113,11 +114,15 @@ bool ApplicationBase::_LoadProject(const std::string &projFilename)
 			newProj->LoadScene(sceneFilename);
 		}
 
+		ResourceManager::GetSingleton();
+
 		const std::string &uiFilename = newProj->GetUIFilename();
 		if (!uiFilename.empty())
 		{
 			newProj->LoadUI(uiFilename);
 		}
+
+		PX2_PLUGINMAN.Load("Projects/Soccer/SoccerD.dll");
 
 		PX2_ENGINELOOP.Play(EngineLoop::PT_PLAY);
 

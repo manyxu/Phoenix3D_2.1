@@ -3,6 +3,7 @@
 #ifndef PX2PARTICLEEMITTERCONTROLLER_HPP
 #define PX2PARTICLEEMITTERCONTROLLER_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2ParticleEmitterController.hpp"
 #include "PX2ParticleObject.hpp"
 #include "PX2TRecyclingArray.hpp"
@@ -11,7 +12,7 @@
 namespace PX2
 {
 
-	class ParticleEmitterController : public EffectableController
+	class PX2_EFFECT_ITEM ParticleEmitterController : public EffectableController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

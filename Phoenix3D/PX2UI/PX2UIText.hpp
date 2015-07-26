@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class UIText : public TriMesh
+	class PX2_UI_ITEM UIText : public TriMesh
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

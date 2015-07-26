@@ -13,7 +13,7 @@ namespace PX2
 
 	class Effectable;
 
-	class EffectObject
+	class PX2_EFFECT_ITEM EffectObject
 	{
 	public:
 		EffectObject ();

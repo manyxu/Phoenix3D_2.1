@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class Interpolate
+	class PX2_MATHEMATICS_ITEM Interpolate
 	{
 	public:
 		Interpolate ();

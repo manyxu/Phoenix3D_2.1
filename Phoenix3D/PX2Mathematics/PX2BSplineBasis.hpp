@@ -14,7 +14,7 @@ namespace PX2
 	* 样条控制点数量为n+1，控制点满足0<=i<=n。样条的节点数组有n+d+2个元素。
 	*/
 	template <typename Real>
-	class BSplineBasis
+	class PX2_MATHEMATICS_ITEM BSplineBasis
 	{
 	public:
 		// Default constructor.  The number of control points is n+1 and the

@@ -14,7 +14,7 @@ namespace PX2
 
 	// ParticleEmitter
 
-	class PE_Callbacks
+	class PX2_EFFECT_ITEM PE_Callbacks
 	{
 	public:
 		static void PE_EmitRate (EffectModule *module, Effectable *able, float ctrlTime);
@@ -48,7 +48,7 @@ namespace PX2
 
 	// ParticleObject
 
-	class PO_Callbacks
+	class PX2_EFFECT_ITEM PO_Callbacks
 	{
 	public:
 		static void PO_RotAxisAtAge (EffectModule *module, EffectObject *obj);

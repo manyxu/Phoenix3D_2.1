@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class PooledThread: public Runnable
+	class PX2_CORE_ITEM PooledThread : public Runnable
 	{
 	public:
 		PooledThread(const std::string& name, int stackSize = 0);

@@ -20,7 +20,7 @@ namespace PX2
 	*	c) 如果后备区域也没有了，才问系统要
 	*
 	*/
-	class GeneralAlloctor
+	class PX2_CORE_ITEM GeneralAlloctor
 	{
 	public:
 		static void *Allocate (size_t numBytes);

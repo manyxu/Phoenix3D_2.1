@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class Font
+	class PX2_UNITY_ITEM Font
 	{
 	public:
 		enum FontType

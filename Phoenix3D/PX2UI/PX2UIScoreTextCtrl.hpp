@@ -3,12 +3,13 @@
 #ifndef PX2UISCORESTATICTEXTCTRL_HPP
 #define PX2UISCORESTATICTEXTCTRL_HPP
 
+#include "PX2UIPre.hpp"
 #include "PX2InterpCurveFloatController.hpp"
 
 namespace PX2
 {
 
-	class UIScoreStaticTextCtrl : public InterpCurveFloatController
+	class PX2_UI_ITEM UIScoreStaticTextCtrl : public InterpCurveFloatController
 	{
 		PX2_DECLARE_RTTI; 
 		PX2_DECLARE_NAMES;

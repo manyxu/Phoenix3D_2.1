@@ -12,7 +12,7 @@ namespace PX2
 	/**
 	* 将时间转换为微秒(一百万分之一秒)，计算时间的跨度
 	*/
-	class Timespan
+	class PX2_CORE_ITEM Timespan
 	{
 	public:
 		typedef Timestamp::TimeDiff TimeDiff;

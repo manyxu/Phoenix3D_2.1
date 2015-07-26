@@ -30,7 +30,7 @@ typedef struct HINSTANCE__* hInstance;
 namespace PX2
 {
 
-	class DynLib
+	class PX2_UNITY_ITEM DynLib
 	{
 	public:
 		DynLib(const std::string &name);

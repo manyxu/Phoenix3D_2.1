@@ -23,7 +23,7 @@ namespace PX2
 	/**
 	* 所有渲染对象都从此类派生。
 	*/
-	class Renderable : public Movable
+	class PX2_GRAPHICS_ITEM Renderable : public Movable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

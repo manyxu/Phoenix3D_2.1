@@ -7,11 +7,12 @@
 #include "PX2FontDefine.hpp"
 #include "PX2Font.hpp"
 #include "PX2Singleton.hpp"
+#include "PX2UnityPre.hpp"
 
 namespace PX2
 {
 
-	class FontManager : public Singleton<FontManager>
+	class PX2_UNITY_ITEM FontManager : public Singleton<FontManager>
 	{
 	public:
 		FontManager ();

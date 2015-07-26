@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class EffectActor : public Actor
+	class PX2_SIMULATION_ITEM EffectActor : public Actor
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

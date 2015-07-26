@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class ServerSocket : public Socket
+	class PX2_NET_ITEM ServerSocket : public Socket
 	{
 	public:
 		ServerSocket();

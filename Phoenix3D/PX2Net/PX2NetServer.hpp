@@ -21,7 +21,7 @@ namespace PX2
 		CER_USER_ERROR = 7,			// ÆäËü´íÎó
 	};
 
-	class Server
+	class PX2_NET_ITEM Server
 	{
 	public:
 		typedef int (Server::*MsgHandleFunc)(unsigned int clientid,

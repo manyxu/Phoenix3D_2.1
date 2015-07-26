@@ -119,7 +119,7 @@ void Selection::Translate(PX2::AVector vec)
 			APoint toPos = transBefore + vec;
 			mov->LocalTransform.SetTranslate(toPos);
 
-			mov->Update(GetTimeInSeconds(), false);
+			mov->Update(Time::GetTimeInSeconds(), false);
 		}
 	}
 
@@ -134,7 +134,7 @@ void Selection::TranslateTo(PX2::APoint pos)
 		if (mov)
 		{
 			mov->LocalTransform.SetTranslate(pos);
-			mov->Update(GetTimeInSeconds(), false);
+			mov->Update(Time::GetTimeInSeconds(), false);
 		}
 	}
 
@@ -155,7 +155,7 @@ void Selection::AddRolate(PX2::AVector vec)
 			Matrix3f matTrans;
 			matTrans.MakeEulerXYZ(rotation[0], rotation[1], rotation[2]);
 			mov->LocalTransform.SetRotate(matTrans);
-			mov->Update(GetTimeInSeconds(), false);
+			mov->Update(Time::GetTimeInSeconds(), false);
 		}
 	}
 

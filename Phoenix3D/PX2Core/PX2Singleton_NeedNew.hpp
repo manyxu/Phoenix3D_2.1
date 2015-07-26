@@ -4,14 +4,13 @@
 #define PX2SINGLETON_NEEDNEW_HPP
 
 #include "PX2Assert.hpp"
-#include "PX2Noncopyable.hpp"
 
 namespace PX2
 {
 
 	/// 模板单件类
 	template <typename TYPE>
-	class Singleton : private Noncopyable
+	class Singleton
 	{
 	public:
 		Singleton ()

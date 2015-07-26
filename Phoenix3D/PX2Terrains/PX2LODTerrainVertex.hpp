@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	/// LOD地形顶点类
-	class LODTerrainVertex
+	class PX2_TERRAINS_ITEM LODTerrainVertex
 	{
 	public:
 		LODTerrainVertex ();

@@ -3,13 +3,14 @@
 #ifndef PX2INPUTMANAGER_HPP
 #define PX2INPUTMANAGER_HPP
 
+#include "PX2UnityPre.hpp"
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2InputEventListener.hpp"
 
 namespace PX2
 {
 
-	class InputManager : public Singleton<InputManager>
+	class PX2_UNITY_ITEM InputManager : public Singleton<InputManager>
 	{
 	public:
 		InputManager();

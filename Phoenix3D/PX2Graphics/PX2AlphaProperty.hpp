@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class AlphaProperty : public Object
+	class PX2_GRAPHICS_ITEM AlphaProperty : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

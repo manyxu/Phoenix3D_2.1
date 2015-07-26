@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class VMatrixConstant : public ShaderFloat
+	class PX2_GRAPHICS_ITEM VMatrixConstant : public ShaderFloat
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

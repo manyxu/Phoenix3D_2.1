@@ -10,7 +10,7 @@ namespace PX2
 {
 	
 	/// »˝Ω«–Œ…»¿‡
-	class TriFan : public Triangles
+	class PX2_GRAPHICS_ITEM TriFan : public Triangles
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

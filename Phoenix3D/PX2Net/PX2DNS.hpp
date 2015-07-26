@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class DNS
+	class PX2_NET_ITEM DNS
 	{
 	public:
 		static HostEntry GetHostByName (const std::string &hostname);

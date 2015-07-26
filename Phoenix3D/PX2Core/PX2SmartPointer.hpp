@@ -18,8 +18,8 @@ namespace PX2
 		typedef ReferenceMap::iterator RMIterator;
 		typedef ReferenceMap::const_iterator RMCIterator;
 
-		static ReferenceMap msMap;
-		static Mutex msMutex;
+		PX2_CORE_ITEM static ReferenceMap msMap;
+		PX2_CORE_ITEM static Mutex msMutex;
 	};
 
 	//----------------------------------------------------------------------------

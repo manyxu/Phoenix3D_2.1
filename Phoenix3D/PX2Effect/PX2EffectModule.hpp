@@ -19,7 +19,7 @@ namespace PX2
 	typedef void (*UpdateEffectableCallback) (EffectModule *module, Effectable *able, float ctrlTime);
 	typedef void (*UpdateEffectObjectCallback) (EffectModule *module, EffectObject *obj);
 
-	class EffectModule : public Object
+	class PX2_EFFECT_ITEM EffectModule : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

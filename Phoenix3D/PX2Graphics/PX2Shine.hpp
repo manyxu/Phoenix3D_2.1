@@ -15,7 +15,7 @@ namespace PX2
 	/**
 	* 记录集合体表面的光照属性。
 	*/
-	class Shine : public Object
+	class PX2_GRAPHICS_ITEM Shine : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

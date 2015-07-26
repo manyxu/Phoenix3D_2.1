@@ -22,7 +22,7 @@ namespace PX2
 	*	Thread thr;
 	*	thr.start(ra);
 	*/
-	class ThreadTarget : public Runnable
+	class PX2_CORE_ITEM ThreadTarget : public Runnable
 	{
 	public:
 		typedef void (*Callback)();

@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class GeneralAlloctorObject
+	class PX2_CORE_ITEM GeneralAlloctorObject
 	{
 	public:
 		GeneralAlloctorObject () {}

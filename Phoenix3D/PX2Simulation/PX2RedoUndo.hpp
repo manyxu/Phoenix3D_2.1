@@ -13,7 +13,7 @@
 namespace PX2
 {
 
-	class URDo
+	class PX2_SIMULATION_ITEM URDo
 	{
 	public:
 		URDo();
@@ -25,7 +25,7 @@ namespace PX2
 
 	typedef PX2::Pointer0<URDo> URDoPtr;
 
-	class MovableTransURDo : public URDo
+	class PX2_SIMULATION_ITEM MovableTransURDo : public URDo
 	{
 	public:
 		MovableTransURDo();
@@ -47,7 +47,7 @@ namespace PX2
 		std::vector<PX2::APoint> mScalesReDo;
 	};
 
-	class ObjectAddDeleteURDo : public URDo
+	class PX2_SIMULATION_ITEM ObjectAddDeleteURDo : public URDo
 	{
 	public:
 		ObjectAddDeleteURDo(bool isAdd, PX2::Object *object);
@@ -67,7 +67,7 @@ namespace PX2
 		PX2::ObjectPtr mParent;
 	};
 
-	class URDoManager : public Singleton<URDoManager>
+	class PX2_SIMULATION_ITEM URDoManager : public Singleton<URDoManager>
 	{
 	public:
 		URDoManager();

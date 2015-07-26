@@ -3,12 +3,13 @@
 #ifndef PX2EFFECTMODEL_HPP
 #define PX2EFFECTMODEL_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2Effectable.hpp"
 
 namespace PX2
 {
 
-	class EffectModel : public Effectable
+	class PX2_EFFECT_ITEM EffectModel : public Effectable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

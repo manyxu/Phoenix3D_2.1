@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	struct CameraShakeChannel
+	struct PX2_EFFECT_ITEM CameraShakeChannel
 	{
 		CameraShakeChannel ();
 		~CameraShakeChannel ();
@@ -22,7 +22,7 @@ namespace PX2
 		float MaxDistance;
 	};
 
-	class CameraShake : public Effectable
+	class PX2_EFFECT_ITEM CameraShake : public Effectable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

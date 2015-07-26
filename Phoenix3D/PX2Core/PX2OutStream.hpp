@@ -11,7 +11,7 @@ namespace PX2
 
 	class Object;
 
-	class OutStream : public Stream
+	class PX2_CORE_ITEM OutStream : public Stream
 	{
 	public:
 		OutStream ();

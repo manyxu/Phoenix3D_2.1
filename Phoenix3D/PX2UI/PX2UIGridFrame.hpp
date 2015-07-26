@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class UIGridFrame : public UIFrame
+	class PX2_UI_ITEM UIGridFrame : public UIFrame
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

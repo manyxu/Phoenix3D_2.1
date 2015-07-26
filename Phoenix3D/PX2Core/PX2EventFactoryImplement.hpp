@@ -13,7 +13,7 @@ namespace PX2
 	class EventSpace;
 
 	/// 事件工厂实现类
-	class EventFactoryImplement
+	class PX2_CORE_ITEM EventFactoryImplement
 	{
 	public:
 		EventFactoryImplement ();

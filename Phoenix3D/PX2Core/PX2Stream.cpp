@@ -4,8 +4,7 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-Stream::Stream ()
-	:
+Stream::Stream () :
 mStreamType(ST_MAX_TYPE)
 {
 }

@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class LanguageManager : public Singleton<LanguageManager>
+	class PX2_UNITY_ITEM LanguageManager : public Singleton<LanguageManager>
 	{
 	public:
 		LanguageManager ();

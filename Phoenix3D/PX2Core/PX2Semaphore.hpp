@@ -19,7 +19,7 @@ namespace PX2
 	* 操作时，它要么通过然后将信号量减一，要么一直等下去，直到信号量大于一或超
 	* 时。（释放）实际上是在信号量上执行加操作，线程释放了由信号量守护的资源。
 	*/
-	class Semaphore
+	class PX2_CORE_ITEM Semaphore
 	{
 	public:
 		Semaphore(int initNum);

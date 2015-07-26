@@ -13,7 +13,7 @@ namespace PX2
 	* 点/向量类是一个其次坐标下的点(x,y,z,w)。如果代表一个点，则w = 1，如APoint。
 	* 如果w = 0代表一个向量，如AVector。
 	*/
-	class HPoint
+	class PX2_MATHEMATICS_ITEM HPoint
 	{
 	public:
 		HPoint ();  //< 未初始化

@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class BillboardController : public EffectableController
+	class PX2_EFFECT_ITEM BillboardController : public EffectableController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -13,7 +13,7 @@ namespace PX2
 	class LODTerrainPage;
 	class LODTerrainVertex;
 
-	class LODTerrainBlock
+	class PX2_TERRAINS_ITEM LODTerrainBlock
 	{
 	public:
 		int GetX () const;

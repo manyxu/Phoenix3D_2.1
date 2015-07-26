@@ -17,7 +17,7 @@
 namespace PX2
 {
 
-	class UIPicBox : public TriMesh
+	class PX2_UI_ITEM UIPicBox : public TriMesh
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

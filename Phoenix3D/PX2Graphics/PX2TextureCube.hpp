@@ -10,7 +10,7 @@ namespace PX2
 {
 	
 	/// 立方体纹理类
-	class TextureCube : public Texture
+	class PX2_GRAPHICS_ITEM TextureCube : public Texture
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

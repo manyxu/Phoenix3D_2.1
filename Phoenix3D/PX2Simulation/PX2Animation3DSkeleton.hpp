@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class Animation3DSkeleton : public Animation
+	class PX2_SIMULATION_ITEM Animation3DSkeleton : public Animation
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

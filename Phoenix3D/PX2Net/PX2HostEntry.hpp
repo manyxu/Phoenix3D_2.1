@@ -12,7 +12,7 @@ namespace PX2
 	/**
 	* 存储“主机名”，别名，和IP地址列表
 	*/
-	class HostEntry
+	class PX2_NET_ITEM HostEntry
 	{
 	public:
 		typedef std::vector<std::string> AliasList;

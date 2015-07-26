@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class ScreenTarget
+	class PX2_GRAPHICS_ITEM ScreenTarget
 	{
 	public:
 		// 屏幕空间的相机

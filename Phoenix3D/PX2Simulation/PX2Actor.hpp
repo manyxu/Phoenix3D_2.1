@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class Actor : public Node
+	class PX2_SIMULATION_ITEM Actor : public Node
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -16,7 +16,7 @@
 namespace PX2
 {
 
-	class Scene : public Node
+	class PX2_SIMULATION_ITEM Scene : public Node
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

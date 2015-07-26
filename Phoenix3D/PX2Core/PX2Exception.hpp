@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class Exception
+	class PX2_CORE_ITEM Exception
 	{
 	public:
 		Exception ();

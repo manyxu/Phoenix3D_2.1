@@ -47,6 +47,7 @@ namespace PX2
 		GVector operator/ (Real scalar) const;
 		GVector operator- () const;
 
+		PX2_MATHEMATICS_ITEM
 		friend GVector operator* (Real scalar, const GVector& vec)
 		{
 			return vec*scalar;

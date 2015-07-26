@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	template <typename Real>
-	class BezierCurve3 : public SingleCurve3<Real>
+	class PX2_MATHEMATICS_ITEM BezierCurve3 : public SingleCurve3<Real>
 	{
 	public:
 		// Construction and destruction.  BezierCurve3 accepts responsibility for

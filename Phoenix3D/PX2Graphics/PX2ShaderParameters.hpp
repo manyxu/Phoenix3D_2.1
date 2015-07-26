@@ -17,7 +17,7 @@ namespace PX2
 	* 一个材质，为每个渲染pass维护一个“着色器参数”，一个“着色器参数”内保存
 	* 着色器所有所需的“着色器常量”。
 	*/
-	class ShaderParameters : public Object
+	class PX2_GRAPHICS_ITEM ShaderParameters : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

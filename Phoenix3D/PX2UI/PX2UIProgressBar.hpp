@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class UIProgressBar : public UIFrame
+	class PX2_UI_ITEM UIProgressBar : public UIFrame
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

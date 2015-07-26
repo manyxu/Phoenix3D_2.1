@@ -3,6 +3,7 @@
 #ifndef PX2UIVIEW_HPP
 #define PX2UIVIEW_HPP
 
+#include "PX2UIPre.hpp"
 #include "PX2Object.hpp"
 #include "PX2Size.hpp"
 #include "PX2RenderStep.hpp"
@@ -14,7 +15,7 @@
 namespace PX2
 {
 
-	class UIView : public RenderStep
+	class PX2_UI_ITEM UIView : public RenderStep
 	{
 		PX2_DECLARE_RTTI;
 

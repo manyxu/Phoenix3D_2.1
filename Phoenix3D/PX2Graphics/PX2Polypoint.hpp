@@ -10,7 +10,7 @@ namespace PX2
 {
 	
 	/// 几何图形点类
-	class Polypoint : public Renderable
+	class PX2_GRAPHICS_ITEM Polypoint : public Renderable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

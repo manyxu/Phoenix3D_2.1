@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class ConcoseLogHandler : public LogHandler
+	class PX2_CORE_ITEM ConcoseLogHandler : public LogHandler
 	{
 	public:
 		ConcoseLogHandler (unsigned int levels);

@@ -12,7 +12,7 @@ namespace PX2
 	class LODTerrainBlock;
 	class LODTerrainVertex;
 
-	class LODTerrainPage : public TerrainPage
+	class PX2_TERRAINS_ITEM LODTerrainPage : public TerrainPage
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: PX2
-** Generated automatically by tolua++-1.0.92 on 06/21/15 11:10:14.
+** Generated automatically by tolua++-1.0.92 on 07/26/15 15:27:32.
 */
 
 #ifndef __cplusplus
@@ -478,6 +478,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Sizef");
  tolua_usertype(tolua_S,"Culler");
  tolua_usertype(tolua_S,"RenderTarget");
+ tolua_usertype(tolua_S,"Time");
  tolua_usertype(tolua_S,"APoint");
  tolua_usertype(tolua_S,"Rect<int>");
  tolua_usertype(tolua_S,"Texture");
@@ -507,7 +508,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"EffectModel");
  tolua_usertype(tolua_S,"AVector");
  tolua_usertype(tolua_S,"InterpCurveRotateController");
- tolua_usertype(tolua_S,"const");
+ tolua_usertype(tolua_S,"PX2::AVector");
  tolua_usertype(tolua_S,"Float4");
  tolua_usertype(tolua_S,"MovablePtr");
  tolua_usertype(tolua_S,"LanguageManager");
@@ -528,7 +529,7 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"DepthProperty");
  tolua_usertype(tolua_S,"UIText");
  tolua_usertype(tolua_S,"Renderable");
- tolua_usertype(tolua_S,"EffectObject");
+ tolua_usertype(tolua_S,"Texture::Format");
  tolua_usertype(tolua_S,"URDo");
  tolua_usertype(tolua_S,"UIProgressBar");
  tolua_usertype(tolua_S,"Texture3D");
@@ -539,9 +540,9 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"Controller");
  tolua_usertype(tolua_S,"Singleton<URDoManager>");
  tolua_usertype(tolua_S,"URDoManager");
- tolua_usertype(tolua_S,"ShaderParameters");
+ tolua_usertype(tolua_S,"Triangles");
  tolua_usertype(tolua_S,"InterpCurveTranslateController");
- tolua_usertype(tolua_S,"UIEditBox");
+ tolua_usertype(tolua_S,"ShaderParameters");
  tolua_usertype(tolua_S,"Object");
  tolua_usertype(tolua_S,"TexPack");
  tolua_usertype(tolua_S,"CameraActor");
@@ -553,30 +554,30 @@ static void tolua_reg_types (lua_State* tolua_S)
  tolua_usertype(tolua_S,"TextureCube");
  tolua_usertype(tolua_S,"InterpCurveFloat3Controller");
  tolua_usertype(tolua_S,"VisibleSet");
- tolua_usertype(tolua_S,"PX2::AVector");
+ tolua_usertype(tolua_S,"const");
  tolua_usertype(tolua_S,"SkyActor");
  tolua_usertype(tolua_S,"BeamEmitter");
- tolua_usertype(tolua_S,"Creater");
- tolua_usertype(tolua_S,"CameraShake");
+ tolua_usertype(tolua_S,"UIEditBox");
+ tolua_usertype(tolua_S,"int64_t");
  tolua_usertype(tolua_S,"Vector3f");
  tolua_usertype(tolua_S,"VertexFormat");
- tolua_usertype(tolua_S,"int64_t");
- tolua_usertype(tolua_S,"TerrainActor");
  tolua_usertype(tolua_S,"LightActor");
+ tolua_usertype(tolua_S,"TerrainActor");
+ tolua_usertype(tolua_S,"Creater");
  tolua_usertype(tolua_S,"GlobalMaterial");
- tolua_usertype(tolua_S,"Triangles");
- tolua_usertype(tolua_S,"std::vector<Object*>");
  tolua_usertype(tolua_S,"InterpCurveAlphaController");
- tolua_usertype(tolua_S,"ParticleEmitter");
+ tolua_usertype(tolua_S,"std::vector<Object*>");
+ tolua_usertype(tolua_S,"UIButton");
+ tolua_usertype(tolua_S,"CameraShake");
  tolua_usertype(tolua_S,"WireProperty");
  tolua_usertype(tolua_S,"Rect<double>");
  tolua_usertype(tolua_S,"PX2::Object");
- tolua_usertype(tolua_S,"UIButton");
- tolua_usertype(tolua_S,"Float3");
  tolua_usertype(tolua_S,"ResourceManager");
- tolua_usertype(tolua_S,"Texture::Format");
+ tolua_usertype(tolua_S,"Float3");
+ tolua_usertype(tolua_S,"EffectObject");
  tolua_usertype(tolua_S,"EffectModule");
  tolua_usertype(tolua_S,"Rect<float>");
+ tolua_usertype(tolua_S,"ParticleEmitter");
  tolua_usertype(tolua_S,"Logger");
  tolua_usertype(tolua_S,"Texture1D");
  tolua_usertype(tolua_S,"InterpCurveScaleController");
@@ -1965,21 +1966,26 @@ static int tolua_PX2_Object_RegistToScriptSystemAll00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* function: GetTimeInMicroseconds */
-#ifndef TOLUA_DISABLE_tolua_PX2_GetTimeInMicroseconds00
-static int tolua_PX2_GetTimeInMicroseconds00(lua_State* tolua_S)
+/* method: GetTimeInMicroseconds of class  Time */
+#ifndef TOLUA_DISABLE_tolua_PX2_Time_GetTimeInMicroseconds00
+static int tolua_PX2_Time_GetTimeInMicroseconds00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"Time",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
+  Time* self = (Time*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetTimeInMicroseconds'", NULL);
+#endif
   {
-   int64_t tolua_ret = (int64_t)  GetTimeInMicroseconds();
+   int64_t tolua_ret = (int64_t)  self->GetTimeInMicroseconds();
    {
 #ifdef __cplusplus
     void* tolua_obj = Mtolua_new((int64_t)(tolua_ret));
@@ -2002,21 +2008,26 @@ static int tolua_PX2_GetTimeInMicroseconds00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* function: GetTimeInSeconds */
-#ifndef TOLUA_DISABLE_tolua_PX2_GetTimeInSeconds00
-static int tolua_PX2_GetTimeInSeconds00(lua_State* tolua_S)
+/* method: GetTimeInSeconds of class  Time */
+#ifndef TOLUA_DISABLE_tolua_PX2_Time_GetTimeInSeconds00
+static int tolua_PX2_Time_GetTimeInSeconds00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
  if (
-     !tolua_isnoobj(tolua_S,1,&tolua_err)
+     !tolua_isusertype(tolua_S,1,"Time",0,&tolua_err) ||
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
+  Time* self = (Time*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+  if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetTimeInSeconds'", NULL);
+#endif
   {
-   double tolua_ret = (double)  GetTimeInSeconds();
+   double tolua_ret = (double)  self->GetTimeInSeconds();
    tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
   }
  }
@@ -41689,8 +41700,11 @@ TOLUA_API int tolua_PX2_open (lua_State* tolua_S)
    tolua_function(tolua_S,"IsRegistedToScriptSystem",tolua_PX2_Object_IsRegistedToScriptSystem00);
    tolua_function(tolua_S,"RegistToScriptSystemAll",tolua_PX2_Object_RegistToScriptSystemAll00);
   tolua_endmodule(tolua_S);
-  tolua_function(tolua_S,"GetTimeInMicroseconds",tolua_PX2_GetTimeInMicroseconds00);
-  tolua_function(tolua_S,"GetTimeInSeconds",tolua_PX2_GetTimeInSeconds00);
+  tolua_cclass(tolua_S,"Time","Time","",NULL);
+  tolua_beginmodule(tolua_S,"Time");
+   tolua_function(tolua_S,"GetTimeInMicroseconds",tolua_PX2_Time_GetTimeInMicroseconds00);
+   tolua_function(tolua_S,"GetTimeInSeconds",tolua_PX2_Time_GetTimeInSeconds00);
+  tolua_endmodule(tolua_S);
   tolua_cclass(tolua_S,"Logger","Logger","",NULL);
   tolua_beginmodule(tolua_S,"Logger");
    tolua_function(tolua_S,"GetSingleton",tolua_PX2_Logger_GetSingleton00);

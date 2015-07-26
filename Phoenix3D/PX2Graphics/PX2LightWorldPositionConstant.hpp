@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class LightWorldPositionConstant : public LightConstant
+	class PX2_GRAPHICS_ITEM LightWorldPositionConstant : public LightConstant
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

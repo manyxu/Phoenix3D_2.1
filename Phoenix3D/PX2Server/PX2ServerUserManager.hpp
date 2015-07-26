@@ -11,7 +11,7 @@ namespace PX2Server
 
 	const int MaxNickNameLength = 16;
 
-	class UserManager
+	class PX2_SERVER_ITEM UserManager
 	{
 	public:
 		UserManager(int player_pool_size);

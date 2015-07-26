@@ -9,7 +9,7 @@ namespace PX2
 {
 
 	template <typename Real>
-	class Surface
+	class PX2_MATHEMATICS_ITEM Surface
 	{
 	public:
 		virtual ~Surface ();

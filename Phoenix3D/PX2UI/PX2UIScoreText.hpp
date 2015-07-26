@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class UIScoreText : public UIText
+	class PX2_UI_ITEM UIScoreText : public UIText
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

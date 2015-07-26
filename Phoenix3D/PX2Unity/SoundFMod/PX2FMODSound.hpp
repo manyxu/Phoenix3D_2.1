@@ -5,6 +5,7 @@
 
 #ifdef PX2_USE_FMOD
 
+#include "PX2UnityPre.hpp"
 #include "PX2Sound.hpp"
 #include <fmod.hpp>
 

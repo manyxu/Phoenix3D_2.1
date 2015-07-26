@@ -76,7 +76,7 @@ void MovableTransURDo::OnUnDo()
 			mov->LocalTransform.SetRotate(mRotationMats[i]);
 			mov->LocalTransform.SetScale(mScales[i]);
 
-			mov->Update(GetTimeInSeconds(), 0.0f, false);
+			mov->Update(Time::GetTimeInSeconds(), 0.0f, false);
 		}
 	}
 }
@@ -92,7 +92,7 @@ void MovableTransURDo::OnReDo()
 			mov->LocalTransform.SetRotate(mRotationMatsReDo[i]);
 			mov->LocalTransform.SetScale(mScalesReDo[i]);
 
-			mov->Update(GetTimeInSeconds(), 0.0f, false);
+			mov->Update(Time::GetTimeInSeconds(), 0.0f, false);
 		}
 	}
 }

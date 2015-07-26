@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class ShineAmbientConstant : public ShaderFloat
+	class PX2_GRAPHICS_ITEM ShineAmbientConstant : public ShaderFloat
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

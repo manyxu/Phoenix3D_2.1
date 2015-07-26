@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	template <typename Real>
-	class SingleCurve3 : public Curve3<Real>
+	class PX2_MATHEMATICS_ITEM SingleCurve3 : public Curve3<Real>
 	{
 	public:
 		// ³éÏó»ùÀà

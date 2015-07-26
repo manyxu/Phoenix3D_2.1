@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class ActorPickRecord
+	class PX2_SIMULATION_ITEM ActorPickRecord
 	{
 	public:
 		ActorPickRecord()

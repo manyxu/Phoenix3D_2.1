@@ -14,7 +14,7 @@ namespace PX2
 	* 先创建的对象。设置这个类的目的是为了避免在main函数启动支持进行动态的内存
 	* 分配，这样可以更加容易地管理和跟踪内存泄漏。
 	*/
-	class InitTerm
+	class PX2_CORE_ITEM InitTerm
 	{
 	public:
 		typedef void (*Initializer)(void);

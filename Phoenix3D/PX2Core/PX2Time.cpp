@@ -37,7 +37,7 @@ namespace PX2
 #endif
 
 	//----------------------------------------------------------------------------
-	double GetTimeInMicroseconds ()
+	double Time::GetTimeInMicroseconds()
 	{
 #if defined(_WIN32) || defined(WIN32) || defined(__ANDROID__) || defined(__APPLE__)
 		if (!gsInitializedTime)
@@ -57,13 +57,13 @@ namespace PX2
 #endif
 	}
 	//----------------------------------------------------------------------------
-	double GetTimeInSeconds ()
+	double Time::GetTimeInSeconds()
 	{
 		double microseconds = GetTimeInMicroseconds();
 		return 0.000001*microseconds;
 	}
 	//----------------------------------------------------------------------------
-	void ResetTime ()
+	void Time::ResetTime()
 	{
 		gsInitializedTime = false;
 	}

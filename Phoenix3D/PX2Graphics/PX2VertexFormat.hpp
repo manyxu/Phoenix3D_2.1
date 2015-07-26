@@ -10,7 +10,7 @@ namespace PX2
 {
 	
 	/// 顶点格式类
-	class VertexFormat : public Object
+	class PX2_GRAPHICS_ITEM VertexFormat : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

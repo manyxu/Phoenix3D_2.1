@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class DlodNode : public SwitchNode
+	class PX2_GRAPHICS_ITEM DlodNode : public SwitchNode
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

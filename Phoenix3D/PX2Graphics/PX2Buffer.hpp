@@ -15,7 +15,7 @@ namespace PX2
 	/**
 	* vertex buffers, index buffers, 和textures这些资源从此类派生。
 	*/
-	class Buffer : public Object
+	class PX2_GRAPHICS_ITEM Buffer : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class LightSpecularConstant : public LightConstant
+	class PX2_GRAPHICS_ITEM LightSpecularConstant : public LightConstant
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

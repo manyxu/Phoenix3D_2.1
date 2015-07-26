@@ -21,6 +21,7 @@
 #include "PX2Polysegment.hpp"
 #include "PX2TriFan.hpp"
 #include "PX2TriStrip.hpp"
+#include "PX2TriMesh.hpp"
 #include "PX2GraphicsRoot.hpp"
 
 using namespace PX2;

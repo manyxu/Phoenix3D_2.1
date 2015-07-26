@@ -11,7 +11,7 @@ namespace PX2
 
 	class Character;
 
-	class Animation : public Object
+	class PX2_SIMULATION_ITEM Animation : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class MathHelp
+	class PX2_MATHEMATICS_ITEM MathHelp
 	{
 	public:
 		static Float3 Float4ToFloat3(const Float4 &from);

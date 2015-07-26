@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	/// 渲染到纹理对象类
-	class RenderTarget : public Object
+	class PX2_GRAPHICS_ITEM RenderTarget : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

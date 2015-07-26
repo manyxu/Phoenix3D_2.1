@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class VertexColor4Material : public Material
+	class PX2_GRAPHICS_ITEM VertexColor4Material : public Material
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

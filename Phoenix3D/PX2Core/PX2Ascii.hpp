@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class Ascii
+	class PX2_CORE_ITEM Ascii
 	{
 	public:
 		enum CharacterProperties

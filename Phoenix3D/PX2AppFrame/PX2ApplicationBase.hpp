@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class ApplicationBase
+	class PX2_APPFRAME_ITEM ApplicationBase
 	{
 	protected:
 		ApplicationBase ();

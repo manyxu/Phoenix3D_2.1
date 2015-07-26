@@ -18,7 +18,7 @@ namespace PX2
 	};
 
 	/// 事件对象
-	class Event
+	class PX2_CORE_ITEM Event
 	{
 	public:
 		typedef int EventType;

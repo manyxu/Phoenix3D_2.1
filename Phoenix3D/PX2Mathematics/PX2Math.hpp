@@ -60,24 +60,24 @@ namespace PX2
 		static Real Saturate (Real value);
 
 		// ³£Á¿
-		static const Real EPSILON;
-		static const Real ZERO_TOLERANCE;
-		static const Real MAX_REAL;
-		static const Real PI;
-		static const Real TWO_PI;
-		static const Real HALF_PI;
-		static const Real INV_PI;
-		static const Real INV_TWO_PI;
-		static const Real DEG_TO_RAD;
-		static const Real RAD_TO_DEG;
-		static const Real LN_2;
-		static const Real LN_10;
-		static const Real INV_LN_2;
-		static const Real INV_LN_10;
-		static const Real SQRT_2;
-		static const Real INV_SQRT_2;
-		static const Real SQRT_3;
-		static const Real INV_SQRT_3;
+		PX2_MATHEMATICS_ITEM static const Real EPSILON;
+		PX2_MATHEMATICS_ITEM static const Real ZERO_TOLERANCE;
+		PX2_MATHEMATICS_ITEM static const Real MAX_REAL;
+		PX2_MATHEMATICS_ITEM static const Real PI;
+		PX2_MATHEMATICS_ITEM static const Real TWO_PI;
+		PX2_MATHEMATICS_ITEM static const Real HALF_PI;
+		PX2_MATHEMATICS_ITEM static const Real INV_PI;
+		PX2_MATHEMATICS_ITEM static const Real INV_TWO_PI;
+		PX2_MATHEMATICS_ITEM static const Real DEG_TO_RAD;
+		PX2_MATHEMATICS_ITEM static const Real RAD_TO_DEG;
+		PX2_MATHEMATICS_ITEM static const Real LN_2;
+		PX2_MATHEMATICS_ITEM static const Real LN_10;
+		PX2_MATHEMATICS_ITEM static const Real INV_LN_2;
+		PX2_MATHEMATICS_ITEM static const Real INV_LN_10;
+		PX2_MATHEMATICS_ITEM static const Real SQRT_2;
+		PX2_MATHEMATICS_ITEM static const Real INV_SQRT_2;
+		PX2_MATHEMATICS_ITEM static const Real SQRT_3;
+		PX2_MATHEMATICS_ITEM static const Real INV_SQRT_3;
 	};
 	
 	template <class Real, class U>

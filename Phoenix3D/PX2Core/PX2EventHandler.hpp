@@ -13,7 +13,7 @@ namespace PX2
 	class EventWorld;
 
 	/// ÏûÏ¢¾ä±ú
-	class EventHandler
+	class PX2_CORE_ITEM EventHandler
 	{
 	public:
 		EventHandler ();

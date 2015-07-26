@@ -13,7 +13,7 @@
 namespace PX2
 {
 
-	class AmbientRegionActor : public TriggerActor
+	class PX2_SIMULATION_ITEM AmbientRegionActor : public TriggerActor
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

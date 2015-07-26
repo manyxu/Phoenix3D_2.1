@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class Terrain : public Node
+	class PX2_TERRAINS_ITEM Terrain : public Node
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

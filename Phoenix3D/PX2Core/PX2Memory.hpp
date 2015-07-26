@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class Memory
+	class PX2_CORE_ITEM Memory
 	{
 	public:
 		// 允许用户自己提供内存的分配和释放函数

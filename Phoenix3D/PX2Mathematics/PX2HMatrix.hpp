@@ -14,7 +14,7 @@ namespace PX2
 	/**
 	* homogeneous matrix
 	*/
-	class HMatrix
+	class PX2_MATHEMATICS_ITEM HMatrix
 	{
 	public:
 		HMatrix ();  //< 未初始化
@@ -100,6 +100,8 @@ namespace PX2
 		HMatrix operator* (float scalar) const;
 		HMatrix operator/ (float scalar) const;
 		HMatrix operator- () const;
+
+		PX2_MATHEMATICS_ITEM
 		friend HMatrix operator* (float scalar, const HMatrix& mat);
 
 		// 计算更新
@@ -130,7 +132,10 @@ namespace PX2
 		* M和P都是齐次的（M不需要时仿真矩阵，p也不需要w=1）。
 		*/
 		HPoint operator* (const HPoint& p) const;  // M*p
+
+		PX2_MATHEMATICS_ITEM
 		friend HPoint operator* (const HPoint& p, const HMatrix& mat);  // p*M
+
 		void BatchMultiply (int numPoints, const HPoint* input,
 			HPoint* output) const;  // M*p[0], ..., M*p[n-1]
 

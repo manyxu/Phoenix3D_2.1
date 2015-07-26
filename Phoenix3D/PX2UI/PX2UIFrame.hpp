@@ -3,6 +3,7 @@
 #ifndef PX2UIFRAME_HPP
 #define PX2UIFRAME_HPP
 
+#include "PX2UIPre.hpp"
 #include "PX2Node.hpp"
 #include "PX2Size.hpp"
 #include "PX2UICallback.hpp"
@@ -13,7 +14,7 @@ namespace PX2
 
 	class UIView;
 
-	class UIFrame : public Node
+	class PX2_UI_ITEM UIFrame : public Node
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_PROPERTY;

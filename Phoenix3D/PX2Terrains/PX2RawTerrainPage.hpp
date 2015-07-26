@@ -11,7 +11,7 @@ namespace PX2
 
 	class EditTerrainMaterial;
 
-	class RawTerrainPage : public TerrainPage
+	class PX2_TERRAINS_ITEM RawTerrainPage : public TerrainPage
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

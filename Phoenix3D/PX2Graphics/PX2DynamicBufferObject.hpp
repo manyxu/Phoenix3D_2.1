@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class DBObject_V
+	class PX2_GRAPHICS_ITEM DBObject_V
 	{
 	public:
 		DBObject_V ();
@@ -21,7 +21,7 @@ namespace PX2
 	};
 	typedef Pointer0<DBObject_V> DBObject_VPtr;
 
-	class DBObject_I
+	class PX2_GRAPHICS_ITEM DBObject_I
 	{
 	public:
 		DBObject_I ();

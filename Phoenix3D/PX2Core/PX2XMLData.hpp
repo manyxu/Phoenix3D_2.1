@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class XMLData
+	class PX2_CORE_ITEM XMLData
 	{
 	public:
 		XMLData ();

@@ -11,7 +11,7 @@ namespace PX2
 	class Object;
 	class Any;
 
-	class Visitor
+	class PX2_CORE_ITEM Visitor
 	{
 	public:
 		Visitor ();

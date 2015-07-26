@@ -3,6 +3,7 @@
 #ifndef PX2SOUND_HPP
 #define PX2SOUND_HPP
 
+#include "PX2UnityPre.hpp"
 #include "PX2APoint.hpp"
 #include "PX2AVector.hpp"
 #include "PX2SmartPointer.hpp"
@@ -10,7 +11,7 @@
 namespace PX2
 {
 
-	class Sound
+	class PX2_UNITY_ITEM Sound
 	{
 	public:
 		Sound();

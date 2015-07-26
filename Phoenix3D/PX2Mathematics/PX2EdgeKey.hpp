@@ -19,6 +19,14 @@ namespace PX2
 		int V[2];
 	};
 
+	class OrderedEdgeKey
+	{
+	public:
+		OrderedEdgeKey(int v0 = -1, int v1 = -1);
+		bool operator< (const OrderedEdgeKey& key) const;
+		int V[2];
+	};
+
 #include "PX2EdgeKey.inl"
 
 }

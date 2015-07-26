@@ -12,7 +12,7 @@ namespace PX2
 {
 
 	template <typename Real>
-	class DistPoint3Circle3 
+	class PX2_MATHEMATICS_ITEM DistPoint3Circle3
 		: public Distance<Real,Vector3<Real> >
 	{
 	public:

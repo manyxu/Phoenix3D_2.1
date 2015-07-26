@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class TerrainActor : public Actor
+	class PX2_SIMULATION_ITEM TerrainActor : public Actor
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

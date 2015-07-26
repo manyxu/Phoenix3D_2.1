@@ -14,7 +14,7 @@ namespace PX2
 
 	class Controlledable;
 
-	class Controller : public Object
+	class PX2_GRAPHICS_ITEM Controller : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

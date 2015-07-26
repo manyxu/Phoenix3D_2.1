@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class Color
+	class PX2_GRAPHICS_ITEM Color
 	{
 	public:
 		/// 从8-bit的通道里，将颜色转换到32-bit的颜色，alpha通道被设置到255。

@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class StringHelp
+	class PX2_CORE_ITEM StringHelp
 	{
 	public:
 		static bool Initlize();

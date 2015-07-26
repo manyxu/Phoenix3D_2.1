@@ -13,7 +13,7 @@ namespace PX2
 
 	typedef void (*TTCArriveAtTargetCallback) (TargetTransformController *ctrl);
 
-	class TargetTransformController : public TransformController
+	class PX2_GRAPHICS_ITEM TargetTransformController : public TransformController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

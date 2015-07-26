@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class CurveMesh : public Polysegment
+	class PX2_GRAPHICS_ITEM CurveMesh : public Polysegment
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

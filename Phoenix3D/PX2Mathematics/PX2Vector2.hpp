@@ -118,10 +118,10 @@ namespace PX2
 			Real epsilon, Information& info);
 
 		// Special vectors.
-		static const Vector2 ZERO;    // (0,0)
-		static const Vector2 UNIT_X;  // (1,0)
-		static const Vector2 UNIT_Y;  // (0,1)
-		static const Vector2 UNIT;     // (1,1)
+		PX2_MATHEMATICS_ITEM static const Vector2 ZERO;    // (0,0)
+		PX2_MATHEMATICS_ITEM static const Vector2 UNIT_X;  // (1,0)
+		PX2_MATHEMATICS_ITEM static const Vector2 UNIT_Y;  // (0,1)
+		PX2_MATHEMATICS_ITEM static const Vector2 UNIT;     // (1,1)
 
 	protected:
 		using Tuple<2,Real>::mTuple;

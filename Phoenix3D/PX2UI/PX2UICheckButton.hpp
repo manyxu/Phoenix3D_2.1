@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class UICheckButton : public UIButtonBase
+	class PX2_UI_ITEM UICheckButton : public UIButtonBase
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

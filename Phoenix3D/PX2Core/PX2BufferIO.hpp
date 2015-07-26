@@ -16,7 +16,7 @@ namespace PX2
 	* 通常我们使用FileIO::Load读取文件到内存缓冲区，然后使用BufferIO读取具体数值。
 	* 保存过程则与此相反。
 	*/
-	class BufferIO
+	class PX2_CORE_ITEM BufferIO
 	{
 	public:
 		/// 缓冲区读写方式

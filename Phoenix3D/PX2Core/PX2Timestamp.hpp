@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class Timestamp
+	class PX2_CORE_ITEM Timestamp
 	{
 	public:
 		typedef int64_t TimeVal;    /// UTC time value in microsecond Resolution

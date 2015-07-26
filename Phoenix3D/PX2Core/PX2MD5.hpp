@@ -3,6 +3,8 @@
 #ifndef PX2MD5_HPP
 #define PX2MD5_HPP
 
+#include "PX2CorePre.hpp"
+
 #ifdef __cplusplus
 extern "C"{
 #endif
@@ -15,19 +17,19 @@ typedef struct
 	unsigned char buffer[64];                         /* input buffer */
 } MD5_CTX;
 
-void MD5Init(MD5_CTX *);
-void MD5Update(MD5_CTX *, unsigned char *, unsigned int);
-void MD5Final(unsigned char [16], MD5_CTX *);
+PX2_CORE_ITEM void MD5Init(MD5_CTX *);
+PX2_CORE_ITEM void MD5Update(MD5_CTX *, unsigned char *, unsigned int);
+PX2_CORE_ITEM void MD5Final(unsigned char[16], MD5_CTX *);
 
 /*
 	输入const char *inBuffer、int length
 	输出char *outBuffer
 	其中length可为0,outBuffer的长度为MD5_DIGEST_LENGTH(16byte)
 */
-void Md5HashBuffer(char *, const char *, int);
-void Md5String(char *outBuffer, const char *inBuffer, int length);
-void Md5File(char *outBuffer, const char *filename);
-void Md5HexString(char in16[], char out32[]);
+PX2_CORE_ITEM void Md5HashBuffer(char *, const char *, int);
+PX2_CORE_ITEM void Md5String(char *outBuffer, const char *inBuffer, int length);
+PX2_CORE_ITEM void Md5File(char *outBuffer, const char *filename);
+PX2_CORE_ITEM void Md5HexString(char in16[], char out32[]);
 
 #ifdef __cplusplus
 }

@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class WireProperty : public Object
+	class PX2_GRAPHICS_ITEM WireProperty : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

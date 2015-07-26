@@ -70,7 +70,7 @@ void UIButton::SetAfterReleasedType(AfterReleasedType type)
 	{
 		mAfterReleasedRecoverTime = 0.0f;
 		mIsRecoverBegin = false;
-		mRecoverBeginTime = (float)GetTimeInSeconds();
+		mRecoverBeginTime = (float)Time::GetTimeInSeconds();
 	}
 }
 //----------------------------------------------------------------------------
@@ -124,7 +124,7 @@ void UIButton::OnReleased()
 	{
 		Enable(false);
 		mIsRecoverBegin = true;
-		mRecoverBeginTime = (float)GetTimeInSeconds();
+		mRecoverBeginTime = (float)Time::GetTimeInSeconds();
 	}
 
 	UIFrame *uiFrame = DynamicCast<UIFrame>(GetTopestParent());
@@ -203,7 +203,7 @@ void UIButton::UpdateWorldData(double applicationTime, double elapsedTime)
 
 	if (mIsRecoverBegin)
 	{
-		float curTime = (float)GetTimeInSeconds();
+		float curTime = (float)Time::GetTimeInSeconds();
 
 		if ((curTime - mRecoverBeginTime) > mAfterReleasedRecoverTime)
 		{
@@ -216,6 +216,9 @@ void UIButton::UpdateWorldData(double applicationTime, double elapsedTime)
 //----------------------------------------------------------------------------
 void UIButton::OnChildPicked(int info, Movable *child)
 {
+	PX2_UNUSED(child);
+	PX2_UNUSED(info);
+
 	//if (!IsEnable())
 	//	return;
 

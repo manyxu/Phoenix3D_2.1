@@ -3,12 +3,13 @@
 #ifndef PX2PARTICLEEMITTER_HPP
 #define PX2PARTICLEEMITTER_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2Effectable.hpp"
 
 namespace PX2
 {
 
-	class ParticleEmitter : public Effectable
+	class PX2_EFFECT_ITEM ParticleEmitter : public Effectable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class LightGroupConstant : public ShaderFloat
+	class PX2_GRAPHICS_ITEM LightGroupConstant : public ShaderFloat
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

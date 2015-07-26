@@ -18,7 +18,7 @@ namespace PX2
 	/**
 	* 通过此类，可以方便地访问VertexBuffer，修改VertexBuffer。
 	*/
-	class VertexBufferAccessor
+	class PX2_GRAPHICS_ITEM VertexBufferAccessor
 	{
 	public:
 		VertexBufferAccessor ();

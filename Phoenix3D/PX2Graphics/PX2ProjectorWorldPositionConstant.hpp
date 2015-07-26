@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class ProjectorWorldPositionConstant : public ShaderFloat
+	class PX2_GRAPHICS_ITEM ProjectorWorldPositionConstant : public ShaderFloat
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

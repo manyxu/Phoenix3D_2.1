@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class SkinController : public Controller
+	class PX2_GRAPHICS_ITEM SkinController : public Controller
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

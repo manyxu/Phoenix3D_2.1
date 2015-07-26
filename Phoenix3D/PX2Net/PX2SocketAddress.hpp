@@ -11,7 +11,7 @@ namespace PX2
 
 	class SocketAddressImpl;
 
-	class SocketAddress
+	class PX2_NET_ITEM SocketAddress
 	{
 	public:
 		SocketAddress ();

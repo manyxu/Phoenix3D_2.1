@@ -75,7 +75,7 @@ bool GraphicsRoot::Initlize ()
 		::CreateUniqueInstance());
 	mTriMeshXY->GetMaterialInstance()->GetMaterial()->GetWireProperty(0, 0)
 		->Enabled = true;
-	mTriMeshXY->Update(GetTimeInSeconds(), false);
+	mTriMeshXY->Update(Time::GetTimeInSeconds(), false);
 
 	mTriMeshXZ = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
 	mTriMeshXZ->WorldBoundIsCurrent = true;
@@ -84,7 +84,7 @@ bool GraphicsRoot::Initlize ()
 	mTriMeshXZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
 	mTriMeshXZ->SetMaterialInstance(VertexColor4Material
 		::CreateUniqueInstance());
-	mTriMeshXZ->Update(GetTimeInSeconds(), false);
+	mTriMeshXZ->Update(Time::GetTimeInSeconds(), false);
 
 	mTriMeshYZ = stdMesh.Rectangle(4, 4, 20000.0f, 20000.0f);
 	mTriMeshYZ->WorldBoundIsCurrent = true;
@@ -93,7 +93,7 @@ bool GraphicsRoot::Initlize ()
 	mTriMeshYZ->UpdateModelSpace(Renderable::GU_MODEL_BOUND_ONLY);
 	mTriMeshYZ->SetMaterialInstance(VertexColor4Material
 		::CreateUniqueInstance());
-	mTriMeshYZ->Update(GetTimeInSeconds(), false);
+	mTriMeshYZ->Update(Time::GetTimeInSeconds(), false);
 
 	return true;
 }

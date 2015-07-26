@@ -13,7 +13,7 @@ namespace PX2
 	class MaterialInstance;
 
 	/// ≤ƒ÷ ƒ£∞Â¿‡
-	class Material : public Object
+	class PX2_GRAPHICS_ITEM Material : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

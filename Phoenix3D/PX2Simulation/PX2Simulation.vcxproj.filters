@@ -122,9 +122,6 @@
     <ClInclude Include="PX2ActorPickRecord.hpp">
       <Filter>Pick</Filter>
     </ClInclude>
-    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
-      <Filter>ToLua</Filter>
-    </ClInclude>
     <ClInclude Include="PX2PlatformSDK.hpp">
       <Filter>PlatformSDK</Filter>
     </ClInclude>
@@ -250,9 +247,6 @@
     </ClCompile>
     <ClCompile Include="PX2ActorPicker.cpp">
       <Filter>Pick</Filter>
-    </ClCompile>
-    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
-      <Filter>ToLua</Filter>
     </ClCompile>
     <ClCompile Include="PX2PlatformSDK.cpp">
       <Filter>PlatformSDK</Filter>

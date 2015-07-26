@@ -10,7 +10,7 @@ namespace PX2
 {
 	
 	/// 三角形条带类
-	class TriStrip : public Triangles
+	class PX2_GRAPHICS_ITEM TriStrip : public Triangles
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -90,30 +90,30 @@ namespace PX2
 	//----------------------------------------------------------------------------
 	// ÊµÀý
 	//----------------------------------------------------------------------------
-	template 
+	template PX2_MATHEMATICS_ITEM
 		Sphere3<float> ContSphereOfAABB<float> (int, const Vector3<float>*);
 
-	template 
+	template PX2_MATHEMATICS_ITEM
 		Sphere3<float> ContSphereAverage<float> (int, const Vector3<float>*);
 
-	template 
+	template PX2_MATHEMATICS_ITEM
 		bool InSphere<float> (const Vector3<float>&, const Sphere3<float>&);
 
-	template 
+	template PX2_MATHEMATICS_ITEM
 		Sphere3<float> MergeSpheres<float> (const Sphere3<float>&,
 		const Sphere3<float>&);
 
 
-	template 
+	template PX2_MATHEMATICS_ITEM
 		Sphere3<double> ContSphereOfAABB<double> (int, const Vector3<double>*);
 
-	template 
+	template PX2_MATHEMATICS_ITEM
 		Sphere3<double> ContSphereAverage<double> (int, const Vector3<double>*);
 
-	template 
+	template PX2_MATHEMATICS_ITEM
 		bool InSphere<double> (const Vector3<double>&, const Sphere3<double>&);
 
-	template 
+	template PX2_MATHEMATICS_ITEM
 		Sphere3<double> MergeSpheres<double> (const Sphere3<double>&,
 		const Sphere3<double>&);
 	//----------------------------------------------------------------------------

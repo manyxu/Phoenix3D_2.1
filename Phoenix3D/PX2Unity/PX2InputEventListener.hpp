@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class InputEventListener
+	class PX2_UNITY_ITEM InputEventListener
 	{
 	public:
 		InputEventListener(int viewID);

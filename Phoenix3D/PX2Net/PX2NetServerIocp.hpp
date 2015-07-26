@@ -15,7 +15,7 @@ namespace PX2
 		IOCP_WRITE = 2,
 	};
 
-	class ServerIocp : public ServerImp
+	class PX2_NET_ITEM ServerIocp : public ServerImp
 	{
 	public:
 		ServerIocp(int port, int numMaxConnects, int numMaxMsgHandlers,

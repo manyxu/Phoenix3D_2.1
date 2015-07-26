@@ -15,7 +15,7 @@ namespace PX2
 		const Renderable *renderable1);
 	
 	/// 可见对象集
-	class VisibleSet
+	class PX2_GRAPHICS_ITEM VisibleSet
 	{
 	public:
 		VisibleSet ();

@@ -17,7 +17,7 @@ namespace PX2
 	* 该类实现“父亲-孩子”机制，用来组织场景的构建。从该类可以派生不同的类如：
 	* BspNode，SwitchNode等，实现不同的场景组织方式。
 	*/
-	class Node : public Movable
+	class PX2_GRAPHICS_ITEM Node : public Movable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

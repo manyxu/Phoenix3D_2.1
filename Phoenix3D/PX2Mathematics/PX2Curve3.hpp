@@ -11,7 +11,7 @@ namespace PX2
 
 	/// 样条曲线抽象基类
 	template <typename Real>
-	class Curve3
+	class PX2_MATHEMATICS_ITEM Curve3
 	{
 	public:
 		Curve3 (Real tmin, Real tmax);

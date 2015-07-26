@@ -92,7 +92,7 @@ namespace PX2
 	* 对于16bit的EventChannelType，8bit为系统频道，8bit为用户频道。
 	* 对于64bit的EventChannelType，16bit为系统频道，48bit为用户频道。
 	*/
-	class EventChannel
+	class PX2_CORE_ITEM EventChannel
 	{
 	public:
 		EventChannel ();

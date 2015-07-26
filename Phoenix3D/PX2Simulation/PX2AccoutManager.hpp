@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class AccoutManager : public Singleton<AccoutManager>
+	class PX2_SIMULATION_ITEM AccoutManager : public Singleton<AccoutManager>
 	{
 	public:
 		AccoutManager();

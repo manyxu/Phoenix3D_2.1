@@ -16,7 +16,7 @@ namespace PX2
 	* 标轴方向。世界变换的第0列是像机的方向（direction）向量，第1列是像机的上
 	* （up）向量，第2列是像机的右（right）向量。
 	*/
-	class CameraNode : public Node
+	class PX2_GRAPHICS_ITEM CameraNode : public Node
 	{
 	public:
 		PX2_DECLARE_RTTI;

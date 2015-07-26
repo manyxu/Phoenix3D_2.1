@@ -12,7 +12,7 @@ namespace PX2
 {
 
 	/// 仿真向量类（affine vector）
-	class AVector : public HPoint
+	class PX2_MATHEMATICS_ITEM AVector : public HPoint
 	{
 	public:
 		AVector ();  //< default (0,0,0,0)
@@ -37,6 +37,8 @@ namespace PX2
 		AVector operator* (float scalar) const;
 		AVector operator/ (float scalar) const;
 		AVector operator- () const;
+
+		PX2_MATHEMATICS_ITEM
 		friend AVector operator* (float scalar, const AVector& vec);
 
 		// 计算更新

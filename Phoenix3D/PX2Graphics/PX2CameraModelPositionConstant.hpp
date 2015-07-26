@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class CameraModelPositionConstant : public ShaderFloat
+	class PX2_GRAPHICS_ITEM CameraModelPositionConstant : public ShaderFloat
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

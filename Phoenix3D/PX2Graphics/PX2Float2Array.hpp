@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class Float2Array : public Object
+	class PX2_GRAPHICS_ITEM Float2Array : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

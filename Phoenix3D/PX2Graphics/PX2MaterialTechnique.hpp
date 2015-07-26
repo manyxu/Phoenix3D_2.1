@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class MaterialTechnique : public Object
+	class PX2_GRAPHICS_ITEM MaterialTechnique : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

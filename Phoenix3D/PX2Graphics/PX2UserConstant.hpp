@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class UserConstant : public ShaderFloat
+	class PX2_GRAPHICS_ITEM UserConstant : public ShaderFloat
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

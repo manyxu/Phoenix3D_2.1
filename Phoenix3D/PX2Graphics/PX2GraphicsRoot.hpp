@@ -14,6 +14,7 @@
 #include "PX2RenderStep.hpp"
 #include "PX2FString.hpp"
 #include "PX2Projector.hpp"
+#include "PX2TriMesh.hpp"
 
 namespace PX2
 {
@@ -24,9 +25,8 @@ namespace PX2
 
 	class Renderer;
 	class VisibleSet;
-	class TriMesh;
 
-	class GraphicsRoot : public Singleton<GraphicsRoot>
+	class PX2_GRAPHICS_ITEM GraphicsRoot : public Singleton<GraphicsRoot>
 	{
 	public:
 		GraphicsRoot ();

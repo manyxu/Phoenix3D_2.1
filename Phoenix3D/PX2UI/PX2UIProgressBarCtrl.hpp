@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class UIProgressBarCtrl : public InterpCurveFloatController
+	class PX2_UI_ITEM UIProgressBarCtrl : public InterpCurveFloatController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

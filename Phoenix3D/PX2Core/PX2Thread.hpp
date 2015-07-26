@@ -14,7 +14,7 @@ namespace PX2
 
 	class ThreadLocalStorage;
 
-	class Thread
+	class PX2_CORE_ITEM Thread
 	{
 	public:
 		Thread ();

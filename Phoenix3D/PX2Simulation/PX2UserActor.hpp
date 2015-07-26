@@ -11,7 +11,7 @@ namespace PX2
 
 	class User;
 
-	class UserActor : public Object
+	class PX2_SIMULATION_ITEM UserActor : public Object
 	{
 	public:
 		UserActor();

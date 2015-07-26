@@ -4,18 +4,18 @@
 #define PX2DYNLIBMANAGER_HPP
 
 #include "PX2UnityPre.hpp"
-#include "PX2Singleton.hpp"
+#include "PX2Singleton_NeedNew.hpp"
 #include "PX2DynLib.hpp"
 
 namespace PX2
 {
 
-	class DynLibManager
+	class PX2_UNITY_ITEM DynLibManager : public Singleton<DynLibManager>
 	{
 	public:
-		PX2_SINGLETION(DynLibManager);
+		DynLibManager();
+		virtual ~DynLibManager();
 
-	public:
 		DynLib *Load(const std::string &filename);
 		void Unload(DynLib *dynlib);
 

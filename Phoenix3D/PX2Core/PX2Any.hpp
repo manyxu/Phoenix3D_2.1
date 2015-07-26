@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class Any
+	class PX2_CORE_ITEM Any
 	{
 	public:
 		// ¹¹Ôì£¬Îö¹¹

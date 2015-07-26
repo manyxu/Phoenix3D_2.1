@@ -12,7 +12,7 @@ namespace PX2
 {
 	
 	/// µ∆π‚¿‡
-	class Light : public Object
+	class PX2_GRAPHICS_ITEM Light : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

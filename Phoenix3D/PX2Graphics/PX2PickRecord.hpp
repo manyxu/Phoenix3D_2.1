@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	/// 裁剪物体纪录类
-	class PickRecord
+	class PX2_GRAPHICS_ITEM PickRecord
 	{
 	public:
 		PickRecord ();

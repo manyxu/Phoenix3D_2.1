@@ -13,7 +13,7 @@ namespace PX2
 
 	/// Box3，Frustum3相交模板类
 	template <typename Real>
-	class IntrBox3Frustum3
+	class PX2_MATHEMATICS_ITEM IntrBox3Frustum3
 		: public Intersector<Real,Vector3<Real> >
 	{
 	public:

@@ -243,7 +243,7 @@ void InputPushTransformController::DoExecute(Event *event)
 		mIsPressedValid = true;
 		mSampingTiming = 0.0f;
 
-		mPressedTime = (float)GetTimeInSeconds();
+		mPressedTime = (float)Time::GetTimeInSeconds();
 		mPressedPos = data.MTPos;
 
 		if (mConvertCallback)
@@ -268,7 +268,7 @@ void InputPushTransformController::DoExecute(Event *event)
 
 		mIsPressedValid = false;
 
-		mReleasedTime = (float)GetTimeInSeconds();
+		mReleasedTime = (float)Time::GetTimeInSeconds();
 		mReleasedPos = data.MTPos;
 
 		if (mConvertCallback)

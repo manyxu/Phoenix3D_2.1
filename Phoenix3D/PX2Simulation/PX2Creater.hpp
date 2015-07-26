@@ -33,7 +33,7 @@ namespace PX2
 
 	class Scene;
 
-	class Creater : public Singleton<Creater>
+	class PX2_SIMULATION_ITEM Creater : public Singleton<Creater>
 	{
 	public:
 		Creater();

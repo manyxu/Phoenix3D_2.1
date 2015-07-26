@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class User : public Object
+	class PX2_SIMULATION_ITEM User : public Object
 	{
 	public:
 		User();

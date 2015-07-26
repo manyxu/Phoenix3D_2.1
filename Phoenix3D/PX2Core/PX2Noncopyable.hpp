@@ -7,7 +7,7 @@ namespace PX2
 {
 
 	/// 从此类派生类的对象将不可被拷贝
-	class Noncopyable
+	class PX2_CORE_ITEM Noncopyable
 	{
 	protected:
 		Noncopyable () {}

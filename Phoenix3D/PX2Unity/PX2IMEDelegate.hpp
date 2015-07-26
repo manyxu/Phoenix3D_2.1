@@ -6,11 +6,12 @@
 #include "PX2UnityPre.hpp"
 #include "PX2Rect.hpp"
 #include "PX2SmartPointer.hpp"
+#include "PX2UnityPre.hpp"
 
 namespace PX2
 {
 
-	class IMEKeyboardNotificationInfo
+	class PX2_UNITY_ITEM IMEKeyboardNotificationInfo
 	{
 	public:
 		IMEKeyboardNotificationInfo ();
@@ -21,7 +22,7 @@ namespace PX2
 		float Duration;
 	};
 	
-	class IMEDelegate
+	class PX2_UNITY_ITEM IMEDelegate
 	{
 	public:
 		virtual ~IMEDelegate();

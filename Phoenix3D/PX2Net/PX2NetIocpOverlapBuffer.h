@@ -11,7 +11,7 @@ namespace PX2
 
 	const int MAX_OVERLAPBUF_SIZE = 4096 - sizeof(OVERLAPPED) - sizeof(WSABUF) - 3 * 4;
 
-	class OverlapBuffer
+	class PX2_NET_ITEM OverlapBuffer
 	{
 	public:
 		void Init(int op);

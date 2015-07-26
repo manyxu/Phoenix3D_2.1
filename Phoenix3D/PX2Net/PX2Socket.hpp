@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class Socket
+	class PX2_NET_ITEM Socket
 	{
 	public:
 		typedef std::vector<Socket> SocketList;

@@ -13,7 +13,7 @@
 namespace PX2
 {
 
-	class CreateClodMesh
+	class PX2_GRAPHICS_ITEM CreateClodMesh
 	{
 	public:
 		CreateClodMesh (TriMesh* mesh, int& numRecords, CollapseRecord*& records);
@@ -23,7 +23,7 @@ namespace PX2
 		typedef std::set<TriangleKey> TriangleKeySet;
 		typedef std::set<EdgeKey> EdgeKeySet;
 
-		class Vertex
+		class PX2_GRAPHICS_ITEM Vertex
 		{
 		public:
 			Vertex ();
@@ -33,7 +33,7 @@ namespace PX2
 			bool Collapsible;
 		};
 
-		class Edge
+		class PX2_GRAPHICS_ITEM Edge
 		{
 		public:
 			Edge ();
@@ -49,7 +49,7 @@ namespace PX2
 		typedef std::map<TriangleKey,Triangle> TriangleMap;
 
 		// ±ﬂÀ˙œ›–≈œ¢
-		class CollapseInfo
+		class PX2_GRAPHICS_ITEM CollapseInfo
 		{
 		public:
 			CollapseInfo (int vKeep = -1, int vThrow = -1);

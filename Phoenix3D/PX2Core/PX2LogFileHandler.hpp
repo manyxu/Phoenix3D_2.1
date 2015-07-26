@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class FileLogHandler : public LogHandler
+	class PX2_CORE_ITEM FileLogHandler : public LogHandler
 	{
 	public:
 		FileLogHandler (unsigned int levels, const char *filename);

@@ -3,6 +3,7 @@
 #ifndef PX2LUAMANAGER_HPP
 #define PX2LUAMANAGER_HPP
 
+#include "PX2UnityPre.hpp"
 #include "PX2ScriptManager.hpp"
 
 struct lua_State;
@@ -10,7 +11,7 @@ struct lua_State;
 namespace PX2
 {
 
-	class LuaStackBackup
+	class PX2_UNITY_ITEM LuaStackBackup
 	{
 	public:
 		LuaStackBackup (lua_State *luaState);
@@ -21,7 +22,7 @@ namespace PX2
 		int	mTop;
 	};
 
-	class LuaManager : public ScriptManager
+	class PX2_UNITY_ITEM LuaManager : public ScriptManager
 	{
 	public:
 		LuaManager ();

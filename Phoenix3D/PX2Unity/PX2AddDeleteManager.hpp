@@ -5,11 +5,12 @@
 
 #include "PX2Node.hpp"
 #include "PX2Singleton_NeedNew.hpp"
+#include "PX2UnityPre.hpp"
 
 namespace PX2
 {
 
-	class AddingObj
+	class PX2_UNITY_ITEM AddingObj
 	{
 	public:
 		AddingObj();
@@ -23,7 +24,7 @@ namespace PX2
 	};
 	typedef Pointer0<AddingObj> AddingObjPtr;
 
-	class DeletingObj
+	class PX2_UNITY_ITEM DeletingObj
 	{
 	public:
 		DeletingObj();
@@ -37,7 +38,7 @@ namespace PX2
 	};
 	typedef Pointer0<DeletingObj> DeletingObjPtr;
 
-	class AddDeleteManager : public Singleton<AddDeleteManager>
+	class PX2_UNITY_ITEM AddDeleteManager : public Singleton<AddDeleteManager>
 	{
 	public:
 		AddDeleteManager();

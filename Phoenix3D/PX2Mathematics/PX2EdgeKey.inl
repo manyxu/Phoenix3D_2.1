@@ -37,3 +37,26 @@ inline EdgeKey::operator size_t () const
     return V[0] | (V[1] << 16);
 }
 //----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+inline OrderedEdgeKey::OrderedEdgeKey(int v0, int v1)
+{
+	V[0] = v0;
+	V[1] = v1;
+}
+//----------------------------------------------------------------------------
+inline bool OrderedEdgeKey::operator< (const OrderedEdgeKey& key) const
+{
+	if (V[1] < key.V[1])
+	{
+		return true;
+	}
+
+	if (V[1] > key.V[1])
+	{
+		return false;
+	}
+
+	return V[0] < key.V[0];
+}
+//----------------------------------------------------------------------------

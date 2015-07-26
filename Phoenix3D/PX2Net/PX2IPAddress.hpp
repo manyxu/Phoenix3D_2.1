@@ -12,7 +12,7 @@ namespace PX2
 
 	class IPAddressImpl;
 
-	class IPAddress
+	class PX2_NET_ITEM IPAddress
 	{
 	public:
 		enum Family

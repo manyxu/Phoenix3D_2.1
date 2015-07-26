@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class TerrainPage : public TriMesh
+	class PX2_TERRAINS_ITEM TerrainPage : public TriMesh
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

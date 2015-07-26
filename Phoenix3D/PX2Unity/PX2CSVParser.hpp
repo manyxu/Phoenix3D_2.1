@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class CSVParser
+	class PX2_UNITY_ITEM CSVParser
 	{
 	public:
 		class TableItem

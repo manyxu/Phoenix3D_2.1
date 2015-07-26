@@ -47,7 +47,7 @@ namespace PX2
 	}
 	//----------------------------------------------------------------------------
 
-	class Application : public ApplicationBase
+	class PX2_APPFRAME_ITEM Application : public ApplicationBase
 	{
 	public:
 		Application ();

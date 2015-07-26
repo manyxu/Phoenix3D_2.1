@@ -14,7 +14,7 @@ namespace PX2
 	* TOK_TRIM:收尾的字符被忽略，例如
 	*		StringTokenizer(",ab,cd,", ","); 产生两个token "ab"和"cd"
 	*/
-	class StringTokenizer
+	class PX2_CORE_ITEM StringTokenizer
 	{
 	public:
 		enum Options

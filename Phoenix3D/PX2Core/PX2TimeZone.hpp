@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class TimeZone
+	class PX2_CORE_ITEM TimeZone
 	{
 	public:
 		static int UTCOffset();

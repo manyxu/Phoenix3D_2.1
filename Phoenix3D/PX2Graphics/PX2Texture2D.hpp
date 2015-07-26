@@ -10,7 +10,7 @@ namespace PX2
 {
 	
 	/// 2DŒ∆¿Ì¿‡
-	class Texture2D : public Texture
+	class PX2_GRAPHICS_ITEM Texture2D : public Texture
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

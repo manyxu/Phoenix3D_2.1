@@ -13,7 +13,7 @@ namespace PX2
 {
 	
 	/// 三角形几何图形基类
-	class Triangles : public Renderable
+	class PX2_GRAPHICS_ITEM Triangles : public Renderable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

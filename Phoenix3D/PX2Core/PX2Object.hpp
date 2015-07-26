@@ -24,7 +24,7 @@ namespace PX2
 	* 对系统提供：运行识别机制，控制器系统，拷贝系统，名称ID系统,以及硬盘持久化
 	* 系统支持。
 	*/
-	class Object
+	class PX2_CORE_ITEM Object
 	{
 		// Enable Disable
 	public:
@@ -101,7 +101,7 @@ namespace PX2
 		virtual void DoExecute(Event *event);
 
 	protected:
-		Pointer0<ObjectEventHandler> mEventHandler;
+		ObjectEventHandler *mEventHandler;
 
 		// Visitor
 	public:
@@ -140,7 +140,7 @@ namespace PX2
 			PT_MAX_TYPE
 		};
 
-		struct PropertyObject
+		struct PX2_CORE_ITEM PropertyObject
 		{
 			PropertyObject ();
 			~PropertyObject ();
@@ -205,7 +205,7 @@ namespace PX2
 			FPT_POINTER_THIS,
 			FPT_MAX_TYPE
 		};
-		struct FunParam
+		struct PX2_CORE_ITEM FunParam
 		{
 			FunParam ();
 			~FunParam ();
@@ -214,7 +214,7 @@ namespace PX2
 			FunParamType Type;
 			Any Value;
 		};
-		struct FunObject
+		struct PX2_CORE_ITEM FunObject
 		{
 			std::string ClassName;
 			std::string FunName;

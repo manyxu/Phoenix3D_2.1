@@ -6,11 +6,12 @@
 #include "PX2UnityPre.hpp"
 #include "PX2Singleton.hpp"
 #include "PX2IMEDelegate.hpp"
+#include "PX2UnityPre.hpp"
 
 namespace PX2
 {
 
-	class IMEDispatcher : public Singleton<IMEDispatcher>
+	class PX2_UNITY_ITEM IMEDispatcher : public Singleton<IMEDispatcher>
 	{
 	public:
 		IMEDispatcher ();

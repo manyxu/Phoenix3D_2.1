@@ -3,12 +3,13 @@
 #ifndef PX2RIBBONEMITTER_HPP
 #define PX2RIBBONEMITTER_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2Effectable.hpp"
 
 namespace PX2
 {
 
-	class RibbonEmitter : public Effectable
+	class PX2_EFFECT_ITEM RibbonEmitter : public Effectable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

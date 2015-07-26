@@ -15,7 +15,7 @@ namespace PX2
 	* 四元数的表现形式为q = w + x*i + y*j + z*k （w,x,y,z）没有必要是单位长度向
 	* 量。
 	*/
-	class HQuaternion
+	class PX2_MATHEMATICS_ITEM HQuaternion
 	{
 	public:
 		HQuaternion ();  //< 未初始化
@@ -60,6 +60,8 @@ namespace PX2
 		HQuaternion operator* (float scalar) const;
 		HQuaternion operator/ (float scalar) const;
 		HQuaternion operator- () const;
+
+		PX2_MATHEMATICS_ITEM
 		friend HQuaternion operator* (float scalar, const HQuaternion& q)
 		{
 			return q*scalar;

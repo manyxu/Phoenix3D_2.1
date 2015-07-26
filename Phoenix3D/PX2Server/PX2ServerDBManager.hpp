@@ -9,7 +9,7 @@
 namespace PX2Server
 {
 
-	class DBManager
+	class PX2_SERVER_ITEM DBManager
 	{
 		PX2_SINGLETION(DBManager);
 

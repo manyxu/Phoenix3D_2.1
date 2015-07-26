@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class BufferEvent
+	class PX2_NET_ITEM BufferEvent
 	{
 	public:
 		void Init (int bufsize);
@@ -35,7 +35,7 @@ namespace PX2
 	};
 
 
-	class BufferEventPool
+	class PX2_NET_ITEM BufferEventPool
 	{
 	public:
 		BufferEventPool(int bufsize, int num_reserve, int max_event);
@@ -55,7 +55,7 @@ namespace PX2
 	};
 
 
-	class BufferEventQueue
+	class PX2_NET_ITEM BufferEventQueue
 	{
 	public:
 		// minbufsize, maxbufsize must be pow of 2

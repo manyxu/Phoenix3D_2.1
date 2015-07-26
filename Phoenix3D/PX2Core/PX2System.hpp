@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class System 
+	class PX2_CORE_ITEM System
 	{
 	public:
 		static void SleepSeconds (float seconds);

@@ -14,7 +14,7 @@ namespace PX2
 	* 当进入一个范围，这个类的局部临时对象创建一个mutex，当退出区域时，自动释放
 	* 这个mutex。
 	*/
-	class ScopedCS
+	class PX2_CORE_ITEM ScopedCS
 	{
 	public:
 		ScopedCS (Mutex* mutex);

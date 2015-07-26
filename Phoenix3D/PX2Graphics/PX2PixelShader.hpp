@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	/// ÏñËØ×ÅÉ«Æ÷Àà
-	class PixelShader : public Shader
+	class PX2_GRAPHICS_ITEM PixelShader : public Shader
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

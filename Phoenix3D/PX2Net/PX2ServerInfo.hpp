@@ -3,12 +3,13 @@
 #ifndef PX2SERVERINFO_HPP
 #define PX2SERVERINFO_HPP
 
+#include "PX2NetPre.hpp"
 #include "PX2SmartPointer.hpp"
 
 namespace PX2
 {
 
-	class ServerInfo
+	class PX2_NET_ITEM ServerInfo
 	{
 	public:
 		ServerInfo();

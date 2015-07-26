@@ -11,13 +11,13 @@
 namespace PX2
 {
 
-	class UIntHashCoder
+	class PX2_CORE_ITEM UIntHashCoder
 	{
 	public:
 		unsigned int operator () (unsigned int i) const;
 	};
 
-	class FixedStringHashCoder
+	class PX2_CORE_ITEM FixedStringHashCoder
 	{
 	public:
         int64_t operator () (const FString &str) const;

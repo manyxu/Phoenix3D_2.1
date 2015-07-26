@@ -14,7 +14,7 @@ namespace PX2
 	/**
 	* ClodMesh会创建一份输入的mesh的顶点索引的拷贝。
 	*/
-	class ClodMesh : public TriMesh
+	class PX2_GRAPHICS_ITEM ClodMesh : public TriMesh
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

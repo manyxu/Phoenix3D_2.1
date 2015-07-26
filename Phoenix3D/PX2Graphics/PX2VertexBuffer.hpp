@@ -10,7 +10,7 @@ namespace PX2
 {
 	
 	/// ∂•µ„ª∫≥Â«¯¿‡
-	class VertexBuffer : public Buffer
+	class PX2_GRAPHICS_ITEM VertexBuffer : public Buffer
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

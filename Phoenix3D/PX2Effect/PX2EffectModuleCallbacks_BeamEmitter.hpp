@@ -14,7 +14,7 @@ namespace PX2
 
 	// BeamEmitter
 
-	class BE_Callbacks
+	class PX2_EFFECT_ITEM BE_Callbacks
 	{
 	public:
 		static void BE_EmitRate (EffectModule *module, Effectable *able, float ctrlTime);

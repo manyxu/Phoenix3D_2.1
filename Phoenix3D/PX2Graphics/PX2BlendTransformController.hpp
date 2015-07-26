@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class BlendTransformController : public TransformController
+	class PX2_GRAPHICS_ITEM BlendTransformController : public TransformController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

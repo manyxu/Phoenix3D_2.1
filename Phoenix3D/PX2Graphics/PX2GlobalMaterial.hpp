@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class GlobalMaterial : public Object
+	class PX2_GRAPHICS_ITEM GlobalMaterial : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

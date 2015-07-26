@@ -6,9 +6,6 @@
 // jungler
 #include "PX2Jungler.hpp"
 
-// sky
-#include "PX2SkySphere.hpp"
-
 // terrains
 #include "PX2LODTerrain.hpp"
 #include "PX2LODTerrainPage.hpp"

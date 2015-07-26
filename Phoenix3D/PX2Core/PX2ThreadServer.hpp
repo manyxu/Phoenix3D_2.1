@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class ThreadServer : public Runnable
+	class PX2_CORE_ITEM ThreadServer : public Runnable
 	{
 	public:
 		ThreadServer ();

@@ -5,6 +5,7 @@
 
 #ifdef PX2_USE_FMOD
 
+#include "PX2UnityPre.hpp"
 #include "PX2SoundSystem.hpp"
 #include "PX2FMODSound.hpp"
 #include "PX2SmartPointer.hpp"

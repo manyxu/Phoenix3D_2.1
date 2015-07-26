@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class LightAttenuationConstant : public LightConstant
+	class PX2_GRAPHICS_ITEM LightAttenuationConstant : public LightConstant
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

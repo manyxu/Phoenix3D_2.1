@@ -3,13 +3,14 @@
 #ifndef PX2CAMERASHAKEOBJECT_HPP
 #define PX2CAMERASHAKEOBJECT_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2EffectObject.hpp"
 #include "PX2APoint.hpp"
 
 namespace PX2
 {
 
-	class CameraShakeObject : public EffectObject
+	class PX2_EFFECT_ITEM CameraShakeObject : public EffectObject
 	{
 	public:
 		CameraShakeObject ();

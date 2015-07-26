@@ -1,8 +1,6 @@
 // PX2Object.cpp
 
 #include "PX2Object.hpp"
-#include "PX2StringHelp.hpp"
-#include "PX2EventHandler.hpp"
 #include "PX2EventHandlerObject.hpp"
 using namespace PX2;
 
@@ -21,6 +19,8 @@ Object::~Object ()
 {
 	if (mEventHandler->IsInWorld())
 		GoOutEventWorld();
+
+	delete0(mEventHandler);
 }
 //----------------------------------------------------------------------------
 void Object::Enable(bool enable)

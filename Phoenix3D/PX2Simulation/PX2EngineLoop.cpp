@@ -12,6 +12,8 @@ mPt_Data(0),
 
 mRendererInput(0),
 
+mDynLibMan(0),
+mPluginMan(0),
 mTimerMan(0),
 mEventWorld(0),
 mLanguageMan(0),

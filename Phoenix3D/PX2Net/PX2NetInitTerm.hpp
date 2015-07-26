@@ -8,8 +8,8 @@
 namespace PX2
 {
 
-	void InitializeNetwork();
-	void TerminateNetwork();
+	PX2_NET_ITEM void InitializeNetwork();
+	PX2_NET_ITEM void TerminateNetwork();
 
 }
 

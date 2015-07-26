@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class ResourceVersion
+	class PX2_UNITY_ITEM ResourceVersion
 	{
 	public:
 		ResourceVersion ();
@@ -33,7 +33,7 @@ namespace PX2
 		int mRes;
 	};
 
-	class ResourceVersionItem
+	class PX2_UNITY_ITEM ResourceVersionItem
 	{
 	public:
 		ResourceVersionItem ();
@@ -43,7 +43,7 @@ namespace PX2
 		bool IsCurrent;
 	};
 
-	class ResourceFileMark
+	class PX2_UNITY_ITEM ResourceFileMark
 	{
 	public:
 		ResourceFileMark ();

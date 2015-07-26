@@ -13,7 +13,7 @@ namespace PX2
 	/**
 	* 从此类派生的类具有绑定控制器的功能。
 	*/
-	class Controlledable : public Object
+	class PX2_GRAPHICS_ITEM Controlledable : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

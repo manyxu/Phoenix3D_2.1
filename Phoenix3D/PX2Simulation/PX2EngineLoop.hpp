@@ -4,6 +4,8 @@
 #define PX2ENGINELOOP_HPP
 
 #include "PX2Singleton.hpp"
+#include "PX2DynLibManager.hpp"
+#include "PX2PluginManager.hpp"
 #include "PX2TimerManager.hpp"
 #include "PX2EventWorld.hpp"
 #include "PX2LanguageManager.hpp"
@@ -25,7 +27,7 @@ namespace PX2
 
 	class RendererInput;
 
-	class EngineLoop
+	class PX2_SIMULATION_ITEM EngineLoop
 	{
 		PX2_SINGLETION(EngineLoop);
 
@@ -53,6 +55,8 @@ namespace PX2
 	private:
 		RendererInput *mRendererInput;
 
+		DynLibManager *mDynLibMan;
+		PluginManager *mPluginMan;
 		TimerManager *mTimerMan;
 		EventWorld *mEventWorld;
 		LanguageManager *mLanguageMan;

@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class Soundable : public Effectable
+	class PX2_EFFECT_ITEM Soundable : public Effectable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

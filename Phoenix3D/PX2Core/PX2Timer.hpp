@@ -12,7 +12,7 @@ namespace PX2
 	
 	class Object;
 
-	class Timer
+	class PX2_CORE_ITEM Timer
 	{
 	public:
 		Timer ();

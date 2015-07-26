@@ -12,13 +12,13 @@ namespace PX2
 	class Effectable;
 	class EffectObject;
 
-	class CSE_Callbacks
+	class PX2_EFFECT_ITEM CSE_Callbacks
 	{
 	public:
 		static void CSE_EmitStrength (EffectModule *module, Effectable *able, float ctrlTime);
 	};
 
-	class CSO_Callbacks
+	class PX2_EFFECT_ITEM CSO_Callbacks
 	{
 	public:
 		static void CSO_StrengthAtAge (EffectModule *module, EffectObject *obj);

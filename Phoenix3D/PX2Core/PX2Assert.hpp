@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class Assert
+	class PX2_CORE_ITEM Assert
 	{
 	public:
 		Assert (bool condition, const char* file, int line, const char* format,

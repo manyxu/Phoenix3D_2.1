@@ -10,7 +10,7 @@ namespace PX2
 
 	typedef void *FStringHandle;
 
-	class FString
+	class PX2_CORE_ITEM FString
 	{
 	public:
 		static bool Initlize ();

@@ -90,7 +90,6 @@ void PluginManager::InstallPlugin(Plugin* plugin)
 	mPlugins.push_back(plugin);
 	
 	plugin->Install();
-	plugin->Initialise();
 
 	PX2_LOG_INFO("Plugin successfully installed");
 }
@@ -103,7 +102,6 @@ void PluginManager::UninstallPlugin(Plugin* plugin)
 		mPlugins.end(), plugin);
 	if (i != mPlugins.end())
 	{
-		plugin->Terminate();
 		plugin->Unstall();
 
 		mPlugins.erase(i);

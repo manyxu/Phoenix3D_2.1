@@ -13,7 +13,7 @@ namespace PX2
 	* 这个类的对象只有在着色器版本确定之后才能被创建，所以不能在应用程序的构造
 	* 函数里创建该对象，将其放到例似OnInitialize或者之后的函数里。
 	*/
-	class ImageProcessing2 : public ImageProcessing
+	class PX2_GRAPHICS_ITEM ImageProcessing2 : public ImageProcessing
 	{
 	public:
 		// Use this constructor for the standard image processing pipeline.

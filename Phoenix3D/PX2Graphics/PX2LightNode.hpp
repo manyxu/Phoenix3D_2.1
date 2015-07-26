@@ -16,7 +16,7 @@ namespace PX2
 	* 标轴方向。世界变换的第0列是光源方向（direction）向量，第1列是光源的上（up）
 	* 向量，第2列是光源的右（right）向量。
 	*/
-	class LightNode : public Node
+	class PX2_GRAPHICS_ITEM LightNode : public Node
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

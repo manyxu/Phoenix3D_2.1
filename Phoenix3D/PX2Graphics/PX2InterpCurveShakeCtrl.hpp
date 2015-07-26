@@ -11,7 +11,7 @@ namespace PX2
 
 	// 一个简单的震动控件,绑定时记录控制体方位,接触绑定时还原控制体方位
 	// 通常控制曲线的第一个和最后一个点的大小都为0
-	class InterpCurveShakeController : public InterpCurveFloatController
+	class PX2_GRAPHICS_ITEM InterpCurveShakeController : public InterpCurveFloatController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

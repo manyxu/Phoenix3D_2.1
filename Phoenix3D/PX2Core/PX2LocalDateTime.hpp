@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class LocalDateTime 
+	class PX2_CORE_ITEM LocalDateTime
 	{
 	public:
 		LocalDateTime ();

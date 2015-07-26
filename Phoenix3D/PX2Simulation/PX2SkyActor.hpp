@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class SkyActor : public Actor
+	class PX2_SIMULATION_ITEM SkyActor : public Actor
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

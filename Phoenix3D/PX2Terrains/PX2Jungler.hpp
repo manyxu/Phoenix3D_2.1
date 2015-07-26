@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class JObj
+	class PX2_TERRAINS_ITEM JObj
 	{
 	public:
 		JObj () 
@@ -24,7 +24,7 @@ namespace PX2
 		float Height;
 	};
 
-	class Jungler : public TriMesh
+	class PX2_TERRAINS_ITEM Jungler : public TriMesh
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

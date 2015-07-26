@@ -14,7 +14,7 @@ namespace PX2
 
 	class Scene;
 
-	class Cell
+	class PX2_SIMULATION_ITEM Cell
 	{
 	public:
 		Cell(const APoint &min, const APoint &max);
@@ -27,7 +27,7 @@ namespace PX2
 		Cell();
 	};
 
-	class CellSpace
+	class PX2_SIMULATION_ITEM CellSpace
 	{
 	public:
 

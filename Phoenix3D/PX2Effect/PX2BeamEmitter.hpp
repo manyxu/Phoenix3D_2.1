@@ -3,13 +3,14 @@
 #ifndef PX2BEAMEMITTER_HPP
 #define PX2BEAMEMITTER_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2Effectable.hpp"
 #include "PX2BeamObject.hpp"
 
 namespace PX2
 {
 
-	class BeamEmitter : public Effectable
+	class PX2_EFFECT_ITEM BeamEmitter : public Effectable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -49,8 +49,8 @@ namespace PX2
 
 	typedef unsigned short HalfFloat;
 
-	HalfFloat ToHalf (float value);
-	float ToFloat (HalfFloat value);
+	PX2_GRAPHICS_ITEM HalfFloat ToHalf(float value);
+	PX2_GRAPHICS_ITEM float ToFloat(HalfFloat value);
 
 }
 

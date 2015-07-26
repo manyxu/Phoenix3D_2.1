@@ -4,11 +4,12 @@
 #define PX2IMPORTER_HPP
 
 #include "PX2Movable.hpp"
+#include "PX2UnityPre.hpp"
 
 namespace PX2
 {
 
-	class Importer
+	class PX2_UNITY_ITEM Importer
 	{
 	public:
 		Importer();

@@ -14,7 +14,7 @@ namespace PX2
 	* 类的名称为PX2.Poo。如果应用程序有其他的名字空间，如SomeName，那么这个名称
 	* 为"SomeName.Poo"。
 	*/
-	class Rtti
+	class PX2_CORE_ITEM Rtti
 	{
 	public:
 		Rtti (const char* name, unsigned short version, const Rtti* baseType);

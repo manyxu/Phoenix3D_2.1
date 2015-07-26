@@ -189,11 +189,11 @@ bool LuaManager::CallBuffer (const char *buffer, unsigned long size)
 void LuaManager::SetUserTypePointer (const char *luaName, 
 	const char *className, void *ptr)
 {
-	LuaStackBackup stackbackup(mState);
+	//LuaStackBackup stackbackup(mState);
 
-	tolua_pushusertype(mState, ptr, className);
+	//tolua_pushusertype(mState, ptr, className);
 
-	lua_setglobal(mState, luaName);
+	//lua_setglobal(mState, luaName);
 }
 //----------------------------------------------------------------------------
 bool LuaManager::CallObjectFunction (const char *objectName, 

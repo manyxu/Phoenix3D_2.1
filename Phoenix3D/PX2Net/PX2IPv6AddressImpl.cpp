@@ -142,8 +142,6 @@ unsigned IPv6AddressImpl::PrefixLength() const
 	}
 	return 0;
 #endif
-    
-    return 0;
 }
 //----------------------------------------------------------------------------
 int32_t IPv6AddressImpl::GetScope() const

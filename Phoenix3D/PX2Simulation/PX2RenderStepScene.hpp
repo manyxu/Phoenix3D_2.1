@@ -3,6 +3,7 @@
 #ifndef PX2RENDERSTEPSCENE_HPP
 #define PX2RENDERSTEPSCENE_HPP
 
+#include "PX2SimulationPre.hpp"
 #include "PX2RenderStep.hpp"
 #include "PX2UIPicBox.hpp"
 #include "PX2UIView.hpp"
@@ -12,7 +13,7 @@
 namespace PX2
 {
 
-	class RenderStepScene : public RenderStep
+	class PX2_SIMULATION_ITEM RenderStepScene : public RenderStep
 	{
 		PX2_DECLARE_RTTI;
 

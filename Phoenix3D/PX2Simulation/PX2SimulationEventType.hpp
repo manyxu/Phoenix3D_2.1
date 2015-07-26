@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	PX2_DECLARE_EVENT_BEGIN(SimuES)
+	PX2_DECLARE_EVENT_BEGIN(PX2_SIMULATION_ITEM SimuES)
 	PX2_EVENT(GeneralString)
 	PX2_EVENT(Character_Die)
 	PX2_EVENT(Actor_Delete)
@@ -18,7 +18,7 @@ namespace PX2
 	PX2_EVENT(Scene_ShadowMapChange)
 	PX2_DECLARE_EVENT_END(SimuES)
 
-	PX2_DECLARE_EVENT_BEGIN(SimuES_E)
+	PX2_DECLARE_EVENT_BEGIN(PX2_SIMULATION_ITEM SimuES_E)
 	PX2_EVENT(AddSelect)
 	PX2_EVENT(RemoveSelect)
 	PX2_EVENT(RemoveAllSelects)

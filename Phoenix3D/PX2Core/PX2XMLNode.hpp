@@ -19,7 +19,7 @@ typedef rapidxml::xml_document<char> * XML_DOCPTR;
 namespace PX2
 {
 
-	class XMLNode
+	class PX2_CORE_ITEM XMLNode
 	{
 	public:
 		XMLNode (XML_NODEPTR element);

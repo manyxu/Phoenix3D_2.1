@@ -20,7 +20,7 @@ namespace PX2
 	* ÉäÏßray£º		tmin = 0, tmax = Mathf::MAX_REAL
 	* Ïß¶Îsegment£º	tmin = 0, tmax > 0
 	*/
-	class ActorPicker
+	class PX2_SIMULATION_ITEM ActorPicker
 	{
 	public:
 		ActorPicker();

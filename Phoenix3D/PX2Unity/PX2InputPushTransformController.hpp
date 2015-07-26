@@ -3,6 +3,7 @@
 #ifndef PX2INPUTPUSHTRANSFORMCONTROLLER_HPP
 #define PX2INPUTPUSHTRANSFORMCONTROLLER_HPP
 
+#include "PX2UnityPre.hpp"
 #include "PX2PushTransformController.hpp"
 #include "PX2APoint.hpp"
 
@@ -11,7 +12,7 @@ namespace PX2
 
 	typedef void(*TouchConvertCallback) (APoint &touchPos, int xPos, int yPos);
 
-	class InputPushTransformController : public PushTransformController
+	class PX2_UNITY_ITEM InputPushTransformController : public PushTransformController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

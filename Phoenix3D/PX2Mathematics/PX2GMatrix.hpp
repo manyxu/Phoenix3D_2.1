@@ -94,12 +94,14 @@ namespace PX2
 		GMatrix TransposeTimesTranspose (const GMatrix& mat) const;
 
 		// c * M
+		PX2_MATHEMATICS_ITEM
 		friend GMatrix<Real> operator* (Real scalar, const GMatrix<Real>& mat)
 		{
 			return mat*scalar;
 		}
 
 		// v^T * M (numRows(M) = size(v) is required)
+		PX2_MATHEMATICS_ITEM
 		friend GVector<Real> operator* (const GVector<Real>& vec,
 			const GMatrix<Real>& mat)
 		{

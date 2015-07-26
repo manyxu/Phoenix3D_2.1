@@ -43,4 +43,15 @@
     #endif
 #endif
 
+#if defined(PX2_GRAPHICS_DLL_EXPORT)
+// For the DLL library.
+#define PX2_GRAPHICS_ITEM __declspec(dllexport)
+#elif defined(PX2_GRAPHICS_DLL_IMPORT)
+// For a client of the DLL library.
+#define PX2_GRAPHICS_ITEM __declspec(dllimport)
+#else
+// For the static library and for Apple/Linux.
+#define PX2_GRAPHICS_ITEM
+#endif
+
 #endif

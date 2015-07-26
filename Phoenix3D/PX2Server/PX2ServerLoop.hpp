@@ -4,11 +4,12 @@
 #define PX2SERVERLOOP_HPP
 
 #include "PX2ServerUserManager.hpp"
+#include "PX2ServerPre.hpp"
 
 namespace PX2Server
 {
 
-	class ServerLoop
+	class PX2_SERVER_ITEM ServerLoop
 	{
 	public:
 		ServerLoop();

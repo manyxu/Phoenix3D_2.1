@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class EnvirParam : public Object
+	class PX2_GRAPHICS_ITEM EnvirParam : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_STREAM(EnvirParam);

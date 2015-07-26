@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class PluginManager : public Singleton<PluginManager>
+	class PX2_UNITY_ITEM PluginManager : public Singleton<PluginManager>
 	{
 	public:
 		PluginManager();

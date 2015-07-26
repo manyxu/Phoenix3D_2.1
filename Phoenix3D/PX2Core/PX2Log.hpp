@@ -20,7 +20,7 @@ namespace PX2
 		LT_USER = 4
 	};
 
-	class LogBuffer : public FixMemoryObject<LogBuffer>
+	class PX2_CORE_ITEM LogBuffer : public FixMemoryObject<LogBuffer>
 	{
 	public:
 		LogBuffer (int isWChar=0);
@@ -32,7 +32,7 @@ namespace PX2
 		char Buffer[2*MaxLogLength];
 	};
 
-	class LogHandler
+	class PX2_CORE_ITEM LogHandler
 	{
 	public:
 		LogHandler (unsigned int levels);
@@ -47,7 +47,7 @@ namespace PX2
 		unsigned int mLevelFlags;
 	};
 
-	class Logger : public ThreadServer, public Singleton<Logger>
+	class PX2_CORE_ITEM Logger : public ThreadServer, public Singleton<Logger>
 	{
 	public:
 		Logger ();

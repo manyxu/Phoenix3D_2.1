@@ -14,7 +14,7 @@ namespace PX2
 	/**
 	* 至少有1个寄存器，每个常量都是4个浮点值。
 	*/
-	class ShaderFloat : public Object
+	class PX2_GRAPHICS_ITEM ShaderFloat : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

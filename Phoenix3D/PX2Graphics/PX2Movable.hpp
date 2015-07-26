@@ -18,7 +18,7 @@ namespace PX2
 	* 所有需要空间数据支持的类型都从此类派生，同时支持截头体裁剪功能。空间数据
 	* 包括：空间变换，包围盒。
 	*/
-	class Movable : public Controlledable
+	class PX2_GRAPHICS_ITEM Movable : public Controlledable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

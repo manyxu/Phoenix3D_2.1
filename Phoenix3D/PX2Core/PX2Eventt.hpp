@@ -46,7 +46,7 @@ namespace PX2
 	* 在这个线程函数中只有设置gEvent为有信号状态时才执行下面的for循环，因为
 	* gEvent是全局变量，所以我们可以在别的线程中通过gEvent.Set控制这个线程。
 	*/
-	class Eventt
+	class PX2_CORE_ITEM Eventt
 	{
 	public:
 		/// 创建一个事件，如果autoReset为true，在Wait()成功后，事件自动Reset，

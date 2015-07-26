@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class InterpCurveFloat3Controller : public InterpCurveController
+	class PX2_GRAPHICS_ITEM InterpCurveFloat3Controller : public InterpCurveController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

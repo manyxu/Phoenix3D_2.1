@@ -12,7 +12,7 @@ namespace PX2
 {
 
 	template <typename Real>
-	class IntrLine3Triangle3
+	class PX2_MATHEMATICS_ITEM IntrLine3Triangle3
 		: public Intersector<Real,Vector3<Real> >
 	{
 	public:

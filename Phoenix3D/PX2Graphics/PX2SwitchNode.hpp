@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class SwitchNode : public Node
+	class PX2_GRAPHICS_ITEM SwitchNode : public Node
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

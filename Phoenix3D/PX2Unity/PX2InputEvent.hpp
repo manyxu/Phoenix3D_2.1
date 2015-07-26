@@ -13,7 +13,7 @@
 namespace PX2
 {
 
-	PX2_DECLARE_EVENT_BEGIN(InputEventSpace)
+	PX2_DECLARE_EVENT_BEGIN(PX2_UNITY_ITEM InputEventSpace)
 	PX2_EVENT(EnterView)
 	PX2_EVENT(LevelView)
 	PX2_EVENT(KeyPressed)

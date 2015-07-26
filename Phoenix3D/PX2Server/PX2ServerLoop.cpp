@@ -8,6 +8,7 @@
 #include "PX2StringHelp.hpp"
 #include "PX2FString.hpp"
 #include "PX2NetInitTerm.hpp"
+#include "PX2Time.hpp"
 using namespace PX2Server;
 using namespace PX2;
 
@@ -85,12 +86,12 @@ bool ServerLoop::Ternamate()
 //----------------------------------------------------------------------------
 void ServerLoop::Run()
 {
-	double lastReportTimeTime = GetTimeInSeconds();
+	double lastReportTimeTime = Time::GetTimeInSeconds();
 
 	int cursaveday = -1;
 	while (!mIsShutdownServer)
 	{
-		double curTime = GetTimeInSeconds();
+		double curTime = Time::GetTimeInSeconds();
 
 		if (curTime - lastReportTimeTime > 600.0)
 		{

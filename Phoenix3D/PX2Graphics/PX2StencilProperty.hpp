@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class StencilProperty : public Object
+	class PX2_GRAPHICS_ITEM StencilProperty : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

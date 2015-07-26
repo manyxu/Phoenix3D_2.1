@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class CollapseRecord
+	class PX2_GRAPHICS_ITEM CollapseRecord
 	{
 	public:
 		CollapseRecord (int vKeep = -1, int vThrow = -1, int numVertices = 0,

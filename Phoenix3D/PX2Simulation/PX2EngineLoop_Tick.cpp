@@ -7,7 +7,7 @@ using namespace PX2;
 //----------------------------------------------------------------------------
 void EngineLoop::Tick()
 {
-	mAppTime = GetTimeInSeconds();
+	mAppTime = Time::GetTimeInSeconds();
 	mElapsedTime = GetElapsedTime();
 	mLastAppTime = mAppTime;
 

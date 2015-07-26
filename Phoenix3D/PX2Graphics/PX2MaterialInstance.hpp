@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class MaterialInstance : public Object
+	class PX2_GRAPHICS_ITEM MaterialInstance : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

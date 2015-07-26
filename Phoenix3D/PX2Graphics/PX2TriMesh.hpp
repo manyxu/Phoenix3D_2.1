@@ -10,7 +10,7 @@ namespace PX2
 {
 	
 	/// 三角形网格类
-	class TriMesh : public Triangles
+	class PX2_GRAPHICS_ITEM TriMesh : public Triangles
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

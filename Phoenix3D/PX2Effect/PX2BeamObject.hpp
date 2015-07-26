@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class BeamObject : public EffectObject
+	class PX2_EFFECT_ITEM BeamObject : public EffectObject
 	{
 	public:
 		BeamObject ();

@@ -17,7 +17,7 @@
 namespace PX2
 {
 
-	class ResourceManager : public Runnable, public Singleton<ResourceManager>
+	class PX2_UNITY_ITEM ResourceManager : public Runnable, public Singleton<ResourceManager>
 	{
 	public:
 		ResourceManager ();

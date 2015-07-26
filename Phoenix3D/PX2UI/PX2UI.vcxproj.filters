@@ -47,6 +47,7 @@
     <ClInclude Include="PX2UIEditBox.hpp">
       <Filter>UIObj\EditBox</Filter>
     </ClInclude>
+    <ClInclude Include="PX2UI.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PX2UIView.cpp">

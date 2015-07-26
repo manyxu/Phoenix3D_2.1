@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class Float1 : public Tuple<1,float>
+	class PX2_MATHEMATICS_ITEM Float1 : public Tuple<1, float>
 	{
 	public:
 		Float1 ();   //< Î´³õÊ¼»¯

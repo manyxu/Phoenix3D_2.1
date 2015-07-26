@@ -13,7 +13,7 @@ namespace PX2
 	class RawTerrain;
 	class RawTerrainPage;
 
-	class LODTerrain : public Terrain
+	class PX2_TERRAINS_ITEM LODTerrain : public Terrain
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

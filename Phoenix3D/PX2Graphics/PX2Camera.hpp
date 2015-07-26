@@ -11,7 +11,7 @@ namespace PX2
 {
 
 	/// œ‡ª˙¿‡
-	class Camera : public Object
+	class PX2_GRAPHICS_ITEM Camera : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

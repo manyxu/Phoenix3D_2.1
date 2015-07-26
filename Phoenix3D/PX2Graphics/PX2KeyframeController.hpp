@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class KeyframeController : public TransformController
+	class PX2_GRAPHICS_ITEM KeyframeController : public TransformController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

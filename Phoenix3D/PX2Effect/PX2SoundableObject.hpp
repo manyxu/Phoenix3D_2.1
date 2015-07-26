@@ -3,13 +3,14 @@
 #ifndef PX2SOUNDABLEOBJECT_HPP
 #define PX2SOUNDABLEOBJECT_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2EffectObject.hpp"
 #include "PX2APoint.hpp"
 
 namespace PX2
 {
 
-	class SoundableObject : public EffectObject
+	class PX2_EFFECT_ITEM SoundableObject : public EffectObject
 	{
 	public:
 		SoundableObject ();

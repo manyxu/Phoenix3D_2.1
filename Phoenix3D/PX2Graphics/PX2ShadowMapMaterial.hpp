@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class ShadowMap_Material : public GlobalMaterial
+	class PX2_GRAPHICS_ITEM ShadowMap_Material : public GlobalMaterial
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

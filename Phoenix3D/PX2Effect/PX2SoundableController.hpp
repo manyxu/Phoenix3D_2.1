@@ -3,13 +3,14 @@
 #ifndef PX2SOUNDABLECONTROLLER_HPP
 #define PX2SOUNDABLECONTROLLER_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2EffectableController.hpp"
 #include "PX2SoundableObject.hpp"
 
 namespace PX2
 {
 
-	class SoundableController : public EffectableController
+	class PX2_EFFECT_ITEM SoundableController : public EffectableController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class BeamEmitterController : public EffectableController
+	class PX2_EFFECT_ITEM BeamEmitterController : public EffectableController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

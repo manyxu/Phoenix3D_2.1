@@ -3,6 +3,8 @@
 #ifndef PX2SHADERSTRUCT_HPP
 #define PX2SHADERSTRUCT_HPP
 
+#include "PX2GraphicsPre.hpp"
+
 namespace PX2
 {
 
@@ -10,7 +12,7 @@ namespace PX2
 	class Renderable;
 	class EnvirParam;
 
-	class ShaderStruct
+	class PX2_GRAPHICS_ITEM ShaderStruct
 	{
 	public:
 		ShaderStruct();

@@ -15,7 +15,7 @@ namespace PX2
 	* 个单位长度的法线向量，C是平面常数，X = (x0,x1,x2,1)是平面上的任意一点。你
 	* 必须确定法线向量是单位长度。整个存储的四元组为(n0,n1,n2,-c)。
 	*/
-	class HPlane
+	class PX2_MATHEMATICS_ITEM HPlane
 	{
 	public:
 		HPlane ();  //< 未初始化

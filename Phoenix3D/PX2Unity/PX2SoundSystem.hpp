@@ -3,6 +3,7 @@
 #ifndef PX2SOUNDSYSTEM_HPP
 #define PX2SOUNDSYSTEM_HPP
 
+#include "PX2UnityPre.hpp"
 #include "PX2Sound.hpp"
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2FString.hpp"
@@ -10,7 +11,7 @@
 namespace PX2
 {
 
-	struct SoundSystemInitInfo
+	struct PX2_UNITY_ITEM SoundSystemInitInfo
 	{
 		SoundSystemInitInfo();
 
@@ -20,7 +21,7 @@ namespace PX2
 		float RolloffScale;
 	};
 
-	struct SoundCreateInfo3D
+	struct PX2_UNITY_ITEM SoundCreateInfo3D
 	{
 		SoundCreateInfo3D();
 
@@ -32,7 +33,7 @@ namespace PX2
 		bool IsLoop;
 	};
 
-	class SoundSystem : public Singleton<SoundSystem>
+	class PX2_UNITY_ITEM SoundSystem : public Singleton<SoundSystem>
 	{
 	public:
 		virtual ~SoundSystem();

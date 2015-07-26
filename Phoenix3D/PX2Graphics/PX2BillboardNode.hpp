@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class BillboardNode : public Node
+	class PX2_GRAPHICS_ITEM BillboardNode : public Node
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

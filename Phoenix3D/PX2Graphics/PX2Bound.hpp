@@ -16,7 +16,7 @@ namespace PX2
 	* 身包围体变换过来或者直接设置。包围体只要用来做碰撞检测，相机裁剪等。该类
 	* 实现的包围体是一个包围球，因为球通常来说是最快的。
 	*/
-	class Bound
+	class PX2_GRAPHICS_ITEM Bound
 	{
 	public:
 		Bound ();

@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class ScriptManager : public Singleton <ScriptManager>
+	class PX2_CORE_ITEM ScriptManager : public Singleton <ScriptManager>
 	{
 	public:
 		ScriptManager();

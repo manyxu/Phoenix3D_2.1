@@ -11,7 +11,7 @@ namespace PX2
 {
 
 	template <typename Real>
-	class BSplineVolume
+	class PX2_MATHEMATICS_ITEM BSplineVolume
 	{
 	public:
 		// Construction and destruction of an open uniform B-spline volume.  The

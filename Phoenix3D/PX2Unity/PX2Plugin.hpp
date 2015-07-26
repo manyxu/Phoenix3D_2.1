@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class Plugin
+	class PX2_UNITY_ITEM Plugin
 	{
 	public:
 		Plugin() {}
@@ -18,9 +18,6 @@ namespace PX2
 
 		virtual void Install() = 0;
 		virtual void Unstall() = 0;
-
-		virtual void Initialise() = 0;
-		virtual void Terminate() = 0;
 	};
 
 }

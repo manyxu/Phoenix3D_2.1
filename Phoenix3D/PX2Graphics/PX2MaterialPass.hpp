@@ -16,7 +16,7 @@
 namespace PX2
 {
 
-	class MaterialPass : public Object
+	class PX2_GRAPHICS_ITEM MaterialPass : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

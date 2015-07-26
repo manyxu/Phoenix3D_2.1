@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	/// 顶点着色器类
-	class VertexShader : public Shader
+	class PX2_GRAPHICS_ITEM VertexShader : public Shader
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -17,7 +17,7 @@
 namespace PX2
 {
 
-	class Project : public Object, public Singleton<Project>
+	class PX2_SIMULATION_ITEM Project : public Object, public Singleton<Project>
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_PROPERTY;

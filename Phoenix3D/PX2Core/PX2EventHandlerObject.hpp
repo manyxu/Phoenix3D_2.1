@@ -10,7 +10,7 @@ namespace PX2
 
 	class Object;
 
-	class ObjectEventHandler : public EventHandler
+	class PX2_CORE_ITEM ObjectEventHandler : public EventHandler
 	{
 	public:
 		ObjectEventHandler(Object *obj);
@@ -19,6 +19,8 @@ namespace PX2
 		virtual void DoExecute(Event *event);
 
 	protected:
+		ObjectEventHandler();
+
 		Object *mObject;
 	};
 

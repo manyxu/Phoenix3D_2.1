@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class Billboard : public Effectable
+	class PX2_EFFECT_ITEM Billboard : public Effectable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

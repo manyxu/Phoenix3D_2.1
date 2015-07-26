@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class TimerManager : public Singleton<TimerManager>
+	class PX2_CORE_ITEM TimerManager : public Singleton<TimerManager>
 	{
 	public:
 		TimerManager ();

@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class CameraActor : public Actor
+	class PX2_SIMULATION_ITEM CameraActor : public Actor
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

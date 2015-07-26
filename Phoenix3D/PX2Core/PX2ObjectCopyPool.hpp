@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class ObjectCopyPool
+	class PX2_CORE_ITEM ObjectCopyPool
 	{
 	public:
 		ObjectCopyPool();

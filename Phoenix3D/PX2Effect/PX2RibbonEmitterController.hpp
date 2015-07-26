@@ -11,7 +11,7 @@
  namespace PX2
 {
 
-	class RibbonEmitterController : public EffectableController
+	 class PX2_EFFECT_ITEM RibbonEmitterController : public EffectableController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

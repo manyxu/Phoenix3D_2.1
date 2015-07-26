@@ -8,14 +8,14 @@
 namespace PX2
 {
 
-	class TLSAbstractSlot
+	class PX2_CORE_ITEM TLSAbstractSlot
 	{
 	public:
 		TLSAbstractSlot();
 		virtual ~TLSAbstractSlot();
 	};
 
-	class ThreadLocalStorage
+	class PX2_CORE_ITEM ThreadLocalStorage
 	{
 	public:
 		ThreadLocalStorage();

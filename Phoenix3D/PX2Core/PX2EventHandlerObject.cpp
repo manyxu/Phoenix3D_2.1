@@ -14,6 +14,10 @@ ObjectEventHandler::~ObjectEventHandler()
 {
 }
 //----------------------------------------------------------------------------
+ObjectEventHandler::ObjectEventHandler()
+{
+}
+//----------------------------------------------------------------------------
 void ObjectEventHandler::DoExecute(Event *event)
 {
 	mObject->DoExecute(event);

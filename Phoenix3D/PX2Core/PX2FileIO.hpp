@@ -14,7 +14,7 @@ namespace PX2
 	* 同样的，如果你以“只写”方式打开文件，调用读操作会出现错误。这个类不同时
 	* 支持“读写”访问。这个类封装标准文件操作。
 	*/
-	class FileIO
+	class PX2_CORE_ITEM FileIO
 	{
 	public:
 		/// 文件读取方式

@@ -12,7 +12,7 @@ namespace PX2
 
 	/// 距离模板抽象基类
 	template <typename Real, typename TVector>
-	class Distance
+	class PX2_MATHEMATICS_ITEM Distance
 	{
 	public:
 		// Abstract base class.

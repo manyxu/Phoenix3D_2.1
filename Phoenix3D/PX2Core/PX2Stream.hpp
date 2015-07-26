@@ -10,8 +10,8 @@
 
 namespace PX2
 {
-	class Object;
-	class Stream
+
+	class PX2_CORE_ITEM Stream
 	{
 	public:
 		/// 字符串的存储所需字节数。

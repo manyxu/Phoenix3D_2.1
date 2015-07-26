@@ -25,7 +25,7 @@ UserConstant::~UserConstant ()
 //----------------------------------------------------------------------------
 void UserConstant::Update(const ShaderStruct*)
 {
-	float val = (float)GetTimeInSeconds();
+	float val = (float)Time::GetTimeInSeconds();
 	(*this)[0] = val;
 }
 //----------------------------------------------------------------------------

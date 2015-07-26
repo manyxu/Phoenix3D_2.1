@@ -3,12 +3,13 @@
 #ifndef PX2SKYMESH_HPP
 #define PX2SKYMESH_HPP
 
+#include "PX2SimulationPre.hpp"
 #include "PX2TriMesh.hpp"
 
 namespace PX2
 {
 
-	class SkyMesh : public TriMesh
+	class PX2_SIMULATION_ITEM SkyMesh : public TriMesh
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

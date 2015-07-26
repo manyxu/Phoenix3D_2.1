@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class LoginData
+	class PX2_SIMULATION_ITEM LoginData
 	{
 	public:
 		LoginData();
@@ -32,7 +32,7 @@ namespace PX2
 		std::string Nickname;
 	};
 
-	class BuyData
+	class PX2_SIMULATION_ITEM BuyData
 	{
 	public:
 		BuyData();
@@ -55,7 +55,7 @@ namespace PX2
 		int Error;
 	};
 
-	class PlatformSDK
+	class PX2_SIMULATION_ITEM PlatformSDK
 	{
 		PX2_SINGLETION(PlatformSDK);
 

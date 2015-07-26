@@ -8,7 +8,7 @@
 namespace PX2Server
 {
 
-	enum UserState
+	enum PX2_SERVER_ITEM UserState
 	{
 		SUT_INIT = 0,  // 初始化，没有连接上
 		SUT_NEWROLE,   // 创建角色

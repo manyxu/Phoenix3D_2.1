@@ -3,6 +3,8 @@
 #ifndef PX2EFFECT_HPP
 #define PX2EFFECT_HPP
 
+#include "PX2EffectPre.hpp"
+
 // DataTypes
 #include "PX2TRange.hpp"
 #include "PX2TRecyclingArray.hpp"

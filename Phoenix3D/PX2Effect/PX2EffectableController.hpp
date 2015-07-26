@@ -3,6 +3,7 @@
 #ifndef PX2EFFECTABLECONTROLLER_HPP
 #define PX2EFFECTABLECONTROLLER_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2Controller.hpp"
 #include "PX2SmartPointer.hpp"
 #include "PX2EffectModule.hpp"
@@ -10,7 +11,7 @@
 namespace PX2
 {
 	
-	class EffectableController : public Controller
+	class PX2_EFFECT_ITEM EffectableController : public Controller
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

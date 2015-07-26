@@ -168,7 +168,7 @@ namespace PX2
 		KC_MEDIASELECT = 0xED     // Media Select
 	};
 
-	class TouchState
+	class PX2_UNITY_ITEM TouchState
 	{
 	public:
 		TouchState();
@@ -177,7 +177,7 @@ namespace PX2
 		APoint Pos;
 	};
 
-	class InputEventData
+	class PX2_UNITY_ITEM InputEventData
 	{
 	public:
 		InputEventData();

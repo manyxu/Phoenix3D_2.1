@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class MtlTexObj : public Object
+	class PX2_GRAPHICS_ITEM MtlTexObj : public Object
 	{
 	public:
 		MtlTexObj();

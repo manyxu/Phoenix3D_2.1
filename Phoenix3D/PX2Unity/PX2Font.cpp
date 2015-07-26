@@ -464,7 +464,7 @@ void Font::TextOutM (TriMesh *mesh, const std::string &text, float xPos, float y
 				{
 					if (BLINKMODEL_SMOOTH == blinkModel)
 					{
-						int microSec = (int)GetTimeInMicroseconds();
+						int microSec = (int)Time::GetTimeInMicroseconds();
 
 						int msNum = microSec % BLINK_CIRCLE;
 						if (msNum >= BLINK_HALFCIRCLE)
@@ -478,7 +478,7 @@ void Font::TextOutM (TriMesh *mesh, const std::string &text, float xPos, float y
 					}
 					else
 					{
-						int microSec = (int)GetTimeInMicroseconds();
+						int microSec = (int)Time::GetTimeInMicroseconds();
 						if ((microSec/BLINK_HALFCIRCLE) % 2)
 							curColor = Float4::ZERO;
 					}
@@ -762,7 +762,7 @@ void Font::TextOutRect(TriMesh *mesh, const std::string &text, Rectf &rect,
 				{
 					if (BLINKMODEL_SMOOTH == blinkModel)
 					{
-						int microSec = (int)GetTimeInMicroseconds();
+						int microSec = (int)Time::GetTimeInMicroseconds();
 						int msNum = microSec % BLINK_CIRCLE;
 						if (msNum >= BLINK_HALFCIRCLE)
 							msNum = BLINK_CIRCLE - msNum - 1;
@@ -772,7 +772,7 @@ void Font::TextOutRect(TriMesh *mesh, const std::string &text, Rectf &rect,
 					}
 					else
 					{
-						int microSec = (int)GetTimeInMicroseconds();
+						int microSec = (int)Time::GetTimeInMicroseconds();
 						if ((microSec/BLINK_HALFCIRCLE) % 2)
 							curColor = Float4::ZERO;
 					}

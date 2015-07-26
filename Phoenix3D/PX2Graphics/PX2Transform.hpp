@@ -19,7 +19,7 @@ namespace PX2
 	* S^{-1}矩阵的对角和S的对角互为倒数；R^t是R的转置矩阵。整个变换最终被打包到
 	* 矩阵mHMatrix，正向变换为{Y,1} = H*{X,1}，逆向变换为{X,1} = H^{-1}*{Y,1}。
 	*/
-	class Transform
+	class PX2_GRAPHICS_ITEM Transform
 	{
 	public:
 		/**

@@ -122,7 +122,7 @@ bool SoundSystem::PlaySound2DControl(const char *filename,
 	if (!IsSoundEnable())
 		return false;
 
-	float curTime = (float)GetTimeInSeconds();
+	float curTime = (float)Time::GetTimeInSeconds();
 	if (_CanPlaySameTime(filename, curTime))
 	{
 		mPlaySameTimeObjMap[filename].CurTiming = curTime;
@@ -153,7 +153,7 @@ bool SoundSystem::PlaySound3DControl(const char *filename,
 	if (!IsSoundEnable())
 		return false;
 
-	float curTime = (float)GetTimeInSeconds();
+	float curTime = (float)Time::GetTimeInSeconds();
 	if (_CanPlaySameTime(filename, curTime))
 	{
 		mPlaySameTimeObjMap[filename].CurTiming = curTime;

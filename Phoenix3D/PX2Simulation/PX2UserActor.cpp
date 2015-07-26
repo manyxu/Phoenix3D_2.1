@@ -4,18 +4,17 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-UserActor::UserActor()
-	:
-	mUser(0),
-	mServerID(-1),
-	mLevel(0),
-	mMaxLevel(99),
-	mCurLevelExp(0),
-	mCurLevelMaxExp(0),
-	mCurLevelEnergy(0),
-	mCurLevelMaxEnergy(0),
-	mGold(0),
-	mMoney(0)
+UserActor::UserActor() :
+mUser(0),
+mServerID(-1),
+mLevel(0),
+mMaxLevel(99),
+mCurLevelExp(0),
+mCurLevelMaxExp(0),
+mCurLevelEnergy(0),
+mCurLevelMaxEnergy(0),
+mGold(0),
+mMoney(0)
 {
 }
 //----------------------------------------------------------------------------

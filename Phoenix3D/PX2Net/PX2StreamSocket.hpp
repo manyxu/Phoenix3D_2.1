@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class StreamSocket: public Socket
+	class PX2_NET_ITEM StreamSocket : public Socket
 	{
 	public:
 		StreamSocket();

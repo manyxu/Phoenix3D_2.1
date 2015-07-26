@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class UIButtonBase : public UIFrame
+	class PX2_UI_ITEM UIButtonBase : public UIFrame
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

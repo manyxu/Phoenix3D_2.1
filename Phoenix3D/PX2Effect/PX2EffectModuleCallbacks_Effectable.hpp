@@ -14,7 +14,7 @@ namespace PX2
 
 	// Effectable
 
-	class EA_Callbacks
+	class PX2_EFFECT_ITEM EA_Callbacks
 	{
 	public:
 		static void EA_EmitSizeX (EffectModule *module, Effectable *able, float ctrlTime);
@@ -38,7 +38,7 @@ namespace PX2
 
 	// EffectObject
 
-	class EO_Callbacks
+	class PX2_EFFECT_ITEM EO_Callbacks
 	{
 	public:
 		static void EO_SizeXAtAge (EffectModule *module, EffectObject *obj);

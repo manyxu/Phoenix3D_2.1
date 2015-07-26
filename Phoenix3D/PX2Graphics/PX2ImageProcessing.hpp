@@ -13,7 +13,7 @@
 namespace PX2
 {
 
-	class ImageProcessing
+	class PX2_GRAPHICS_ITEM ImageProcessing
 	{
 	public:
 		ImageProcessing (int numCols, int numRows, int numTargets);

@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class Environment
+	class PX2_CORE_ITEM Environment
 	{
 		PX2_DECLARE_INITIALIZE;
 		PX2_DECLARE_TERMINATE;

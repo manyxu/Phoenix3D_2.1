@@ -12,7 +12,7 @@ namespace PX2
 {
 	
 	/// ³¡¾°²Ã¼ôÆ÷Àà
-	class Culler
+	class PX2_GRAPHICS_ITEM Culler
 	{
 	public:
 		/**

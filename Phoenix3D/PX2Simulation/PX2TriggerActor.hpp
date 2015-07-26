@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class TriggerActor : public Actor
+	class PX2_SIMULATION_ITEM TriggerActor : public Actor
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

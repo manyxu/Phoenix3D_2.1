@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class EffectModelController : public EffectableController
+	class PX2_EFFECT_ITEM EffectModelController : public EffectableController
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

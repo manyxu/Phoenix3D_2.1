@@ -3,6 +3,8 @@
 #ifndef PX2EVENTSPACEREGISTERMCR_HPP
 #define PX2EVENTSPACEREGISTERMCR_HPP
 
+#include "PX2CorePre.hpp"
+
 #define PX2_DECLARE_EVENT_BEGIN(Space) \
 	class Space : public EventSpaceRegister<Space> \
 	{ \

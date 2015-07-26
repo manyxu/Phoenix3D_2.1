@@ -13,7 +13,7 @@
 namespace PX2
 {
 	
-	class DynamicBufferManager : public Singleton<DynamicBufferManager>
+	class PX2_GRAPHICS_ITEM DynamicBufferManager : public Singleton<DynamicBufferManager>
 	{
 	public:
 		DynamicBufferManager ();

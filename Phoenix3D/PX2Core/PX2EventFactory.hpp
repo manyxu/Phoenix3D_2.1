@@ -8,11 +8,7 @@
 namespace PX2
 {
 	
-	/// 事件工厂
-	/**
-	*
-	*/
-	class EventFactory
+	class PX2_CORE_ITEM EventFactory
 	{
 	public:
 		// 单件

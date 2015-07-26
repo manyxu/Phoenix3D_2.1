@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class ScopedCSUN
+	class PX2_CORE_ITEM ScopedCSUN
 	{
 	public:
 		ScopedCSUN (Mutex* mutex, bool unlockNow=true);

@@ -57,12 +57,12 @@ namespace PX2
 			Vector4& vmin, Vector4& vmax);
 
 		// ÌØ¶¨Öµ
-		static const Vector4 ZERO;
-		static const Vector4 UNIT_X;  //< (1,0,0,0)
-		static const Vector4 UNIT_Y;  //< (0,1,0,0)
-		static const Vector4 UNIT_Z;  //< (0,0,1,0)
-		static const Vector4 UNIT_W;  //< (0,0,0,1)
-		static const Vector4 UNIT;     //< (1,1,1,1)
+		PX2_MATHEMATICS_ITEM static const Vector4 ZERO;
+		PX2_MATHEMATICS_ITEM static const Vector4 UNIT_X;  //< (1,0,0,0)
+		PX2_MATHEMATICS_ITEM static const Vector4 UNIT_Y;  //< (0,1,0,0)
+		PX2_MATHEMATICS_ITEM static const Vector4 UNIT_Z;  //< (0,0,1,0)
+		PX2_MATHEMATICS_ITEM static const Vector4 UNIT_W;  //< (0,0,0,1)
+		PX2_MATHEMATICS_ITEM static const Vector4 UNIT;     //< (1,1,1,1)
 
 	protected:
 		using Tuple<4,Real>::mTuple;

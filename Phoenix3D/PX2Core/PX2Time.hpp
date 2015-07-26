@@ -8,9 +8,13 @@
 namespace PX2
 {
 
-	double GetTimeInMicroseconds ();
-	double GetTimeInSeconds ();
-	void ResetTime ();
+	class PX2_CORE_ITEM Time
+	{
+	public:
+		static double GetTimeInMicroseconds();
+		static double GetTimeInSeconds();
+		static void ResetTime();
+	};
 
 }
 

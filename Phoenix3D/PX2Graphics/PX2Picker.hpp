@@ -19,7 +19,7 @@ namespace PX2
 	* ÉäÏßray£º		tmin = 0, tmax = Mathf::MAX_REAL
 	* Ïß¶Îsegment£º	tmin = 0, tmax > 0
 	*/
-	class Picker
+	class PX2_GRAPHICS_ITEM Picker
 	{
 	public:
 		Picker (bool isDoMovPickCall=false, int pickInfo=-1);

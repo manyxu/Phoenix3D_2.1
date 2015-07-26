@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	/// ¶¥µãË÷ÒýÀà
-	class IndexBuffer : public Buffer
+	class PX2_GRAPHICS_ITEM IndexBuffer : public Buffer
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

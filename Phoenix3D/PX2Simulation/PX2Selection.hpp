@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class Selection : public Singleton<Selection>
+	class PX2_SIMULATION_ITEM Selection : public Singleton<Selection>
 	{
 	public:
 		Selection();

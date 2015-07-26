@@ -35,11 +35,6 @@ bool AppPlayerApp::Initlize()
 
 		if (!projectName.empty())
 		{
-#ifdef PX2_PROJECT_CUBE
-			void *state = PX2::ScriptManager::GetSingletonPtr()->GetSystemState();
-			tolua_PX2Cube_open((lua_State*)state);
-#endif
-
 			std::string projectPath = "Data/" + projectName + "/" + projectName
 				+ ".px2proj";
 
@@ -51,5 +46,16 @@ bool AppPlayerApp::Initlize()
 	}
 
 	return false;
+}
+//----------------------------------------------------------------------------
+int main(int numArguments, char* arguments[])
+{
+	ApplicationBase::msAppInitlizeFun();
+
+	int exitCode = ApplicationBase::msEntry(numArguments, arguments);
+
+	ApplicationBase::msAppTernamateFun();
+
+	return exitCode;
 }
 //----------------------------------------------------------------------------

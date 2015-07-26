@@ -10,8 +10,7 @@
 namespace PX2
 {
 
-
-	class RibbonObject : public EffectObject
+	class PX2_EFFECT_ITEM RibbonObject : public EffectObject
 	{
 	public:
 		RibbonObject ();

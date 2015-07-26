@@ -11,7 +11,7 @@ namespace PX2
 {
 
 	template <typename Real, typename TVector>
-	class Intersector
+	class PX2_MATHEMATICS_ITEM Intersector
 	{
 	public:
 		virtual ~Intersector ();

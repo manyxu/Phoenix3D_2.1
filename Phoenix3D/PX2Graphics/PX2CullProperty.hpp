@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class CullProperty : public Object
+	class PX2_GRAPHICS_ITEM CullProperty : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

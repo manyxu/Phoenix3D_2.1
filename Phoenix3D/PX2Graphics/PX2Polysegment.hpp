@@ -18,7 +18,7 @@ namespace PX2
 	* V2,V3}组成的几何图形为<V0,V1>，和<V2,V3>，在这样的情况下，顶点个数必须是
 	* 偶数个。
 	*/
-	class Polysegment : public Renderable
+	class PX2_GRAPHICS_ITEM Polysegment : public Renderable
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

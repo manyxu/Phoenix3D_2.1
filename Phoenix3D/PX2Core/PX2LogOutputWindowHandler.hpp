@@ -9,7 +9,7 @@ namespace PX2
 {
 
 	/// 输出到调试窗口句柄
-	class OutputWindowHandler : public LogHandler
+	class PX2_CORE_ITEM OutputWindowHandler : public LogHandler
 	{
 	public:
 		OutputWindowHandler (unsigned int levels);

@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class LightActor : public Actor
+	class PX2_SIMULATION_ITEM LightActor : public Actor
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

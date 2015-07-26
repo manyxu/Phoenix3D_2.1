@@ -52,6 +52,11 @@ bool EngineLoop::Initlize()
 	PX2_LOG_INFO("Year:%d; Month:%d; Week:%d; Day:%d; DayOfWeek:%d; DayOfYear:%d; Hour:%d; Minute:%d; Second:%d; Millisecond:%d; Microsecond:%d",
 		year1, month1, week1, day1, dayOfWeek1, dayOfYear1, hour1, minute1, second1, millisecond1, microsecond1);
 
+	mDynLibMan = new0 DynLibManager();
+	PX2_UNUSED(mDynLibMan);
+	mPluginMan = new0 PluginManager();
+	PX2_UNUSED(mPluginMan);
+
 	mTimerMan = new0 TimerManager();
 
 	mIMEDisp = new0 IMEDispatcher();
@@ -88,7 +93,7 @@ bool EngineLoop::Initlize()
 	mAccoutManager = new0 AccoutManager();
 
 	LuaManager *luaMan = (LuaManager*)mScriptMan;
-	tolua_PX2_open(luaMan->GetLuaState());
+	//tolua_PX2_open(luaMan->GetLuaState());
 
 	mScriptMan->SetUserTypePointer("PX2_ENGINELOOP", "EngineLoop", this);
 	mScriptMan->SetUserTypePointer("PX2_LOG", "Logger", Logger::GetSingletonPtr());
@@ -163,7 +168,18 @@ bool EngineLoop::Ternamate()
 {
 	Play(EngineLoop::PT_NONE);
 
+	if (mDynLibMan)
+	{
+		delete0(mDynLibMan);
+		DynLibManager::Set(0);
+	}
+
 	PX2_PLUGINMAN.UnloadPlugins();
+	if (mPluginMan)
+	{
+		delete0(mPluginMan);
+		PluginManager::Set(0);
+	}
 
 	PX2_EW.Shutdown(true);
 	

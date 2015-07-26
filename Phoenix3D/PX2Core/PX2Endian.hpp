@@ -22,7 +22,7 @@ namespace PX2
 	*	字节号 0  1  2  3 
 	*	数据   08 07 06 05 
 	*/
-	class Endian
+	class PX2_CORE_ITEM Endian
 	{
 	public:
 		/// 字节类型是否是大字节序

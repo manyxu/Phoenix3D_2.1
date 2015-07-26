@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	/// ∑¬’Êµ„¿‡£®affine point£©
-	class APoint : public HPoint
+	class PX2_MATHEMATICS_ITEM APoint : public HPoint
 	{
 	public:
 		APoint ();  //< default (0,0,0,1)
@@ -46,7 +46,10 @@ namespace PX2
 		APoint operator+ (const APoint& pnt) const;
 		APoint operator* (float scalar) const;
 		APoint operator/ (float scalar) const;
+
+		PX2_MATHEMATICS_ITEM
 		friend APoint operator* (float scalar, const APoint& pnt);
+
 		APoint& operator+= (const APoint& pnt);
 		APoint& operator-= (const APoint& pnt);
 		APoint& operator*= (float scalar);

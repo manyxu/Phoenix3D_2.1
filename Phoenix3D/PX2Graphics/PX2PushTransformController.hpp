@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	// 给一个力，然后控制器自己处理
-	class PushTransformController : public Controller
+	class PX2_GRAPHICS_ITEM PushTransformController : public Controller
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

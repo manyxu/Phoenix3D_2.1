@@ -10,7 +10,7 @@ namespace PX2
 {
 
 	/// 事件空间
-	class EventSpace
+	class PX2_CORE_ITEM EventSpace
 	{
 	public:
 		// 空间

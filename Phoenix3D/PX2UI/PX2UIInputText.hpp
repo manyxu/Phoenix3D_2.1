@@ -22,7 +22,7 @@ namespace PX2
 	};
 	typedef void(*UIInputTextCallback) (UIInputText *inputText, UIInputTextCallType type);
 
-	class UIInputText : public UIText, public IMEDelegate
+	class PX2_UI_ITEM UIInputText : public UIText, public IMEDelegate
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

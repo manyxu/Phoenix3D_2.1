@@ -10,6 +10,7 @@
 #include "PX2Unity.hpp"
 #include "PX2Simulation.hpp"
 #include "PX2Effect.hpp"
+#include "PX2SimulationPre.hpp"
 using namespace PX2;
 
 #define PX2_LUA
@@ -23,7 +24,7 @@ using namespace PX2;
 
 
 struct lua_State;
-extern int  tolua_PX2_open (lua_State* tolua_S);
+extern int  tolua_PX2_open(lua_State* tolua_S);
 
 #endif
 

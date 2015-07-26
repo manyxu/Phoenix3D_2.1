@@ -9,7 +9,7 @@
 namespace PX2
 {
 	
-	class RawTerrain : public Terrain
+	class PX2_TERRAINS_ITEM RawTerrain : public Terrain
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

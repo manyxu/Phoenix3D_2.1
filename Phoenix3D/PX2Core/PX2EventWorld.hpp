@@ -12,7 +12,7 @@ namespace PX2
 {
 
 	/// 消息世界
-	class EventWorld : public Singleton<EventWorld>
+	class PX2_CORE_ITEM EventWorld : public Singleton<EventWorld>
 	{
 	public:
 		EventWorld ();

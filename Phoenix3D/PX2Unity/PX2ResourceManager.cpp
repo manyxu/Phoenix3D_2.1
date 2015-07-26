@@ -1000,7 +1000,7 @@ ResourceManager::LoadRecord &ResourceManager::InsertRecord (
 	ResTableIterator pelement = mResTable.Find(dstFilename.c_str());
 	if (0!=pelement)
 	{
-		pelement->value.LastTouchedTime = GetTimeInSeconds();
+		pelement->value.LastTouchedTime = Time::GetTimeInSeconds();
 		return pelement->value;
 	}
 
@@ -1010,7 +1010,7 @@ ResourceManager::LoadRecord &ResourceManager::InsertRecord (
 	rec.Filename = dstFilename;
 	rec.State = LS_UNLOADED;
 	rec.TheRecordType = isBuffer ? LoadRecord::RT_BUFFER : LoadRecord::RT_OBJECT;
-	rec.LastTouchedTime = GetTimeInSeconds();
+	rec.LastTouchedTime = Time::GetTimeInSeconds();
 
 	return rec;
 }
@@ -1027,7 +1027,7 @@ ResourceManager::LoadRecord &ResourceManager::InsertRecord (
 	rec.Filename = funName;
 	rec.Fun = fun;
 	rec.State = LS_UNLOADED;
-	rec.LastTouchedTime = GetTimeInSeconds();
+	rec.LastTouchedTime = Time::GetTimeInSeconds();
 
 	return rec;
 }
@@ -1050,12 +1050,12 @@ void ResourceManager::_LoadTheRecord (LoadRecord &rec)
 		if (rec.TheRecordType == LoadRecord::RT_FUN)
 		{
 			rec.Fun();
-			rec.LastTouchedTime = GetTimeInSeconds();
+			rec.LastTouchedTime = Time::GetTimeInSeconds();
 		}
 		else if (rec.TheRecordType == LoadRecord::RT_OBJECT)
 		{
 			rec.Obj = _LoadObject(rec.Filename);
-			rec.LastTouchedTime = GetTimeInSeconds();
+			rec.LastTouchedTime = Time::GetTimeInSeconds();
 		}
 		else if (rec.TheRecordType == LoadRecord::RT_BUFFER)
 		{
@@ -1066,7 +1066,7 @@ void ResourceManager::_LoadTheRecord (LoadRecord &rec)
 				rec.Buffer = buffer;
 				rec.BufferSize = bufferSize;
 			}
-			rec.LastTouchedTime = GetTimeInSeconds();
+			rec.LastTouchedTime = Time::GetTimeInSeconds();
 		}
 
 		rec.State = LS_LOADED;

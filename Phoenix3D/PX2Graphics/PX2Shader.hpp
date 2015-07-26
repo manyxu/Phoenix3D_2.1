@@ -14,7 +14,7 @@ namespace PX2
 	/**
 	* 顶点，像素着色器等从此类派生。该类是一个抽象基类，无法实例化。
 	*/
-	class Shader : public Object
+	class PX2_GRAPHICS_ITEM Shader : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

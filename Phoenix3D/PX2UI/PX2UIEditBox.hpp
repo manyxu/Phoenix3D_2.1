@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class UIEditBox : public UIFrame
+	class PX2_UI_ITEM UIEditBox : public UIFrame
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class NetError
+	class PX2_NET_ITEM NetError
 	{
 	public:
 

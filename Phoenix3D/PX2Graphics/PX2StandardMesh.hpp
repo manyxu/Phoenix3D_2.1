@@ -22,7 +22,7 @@ namespace PX2
 	* 列顺序。设置'isStatic'为true，创建VertexBuffer使用Buffer::BU_STATIC，否则
 	* 使用Buffer::BU_DYNAMIC。
 	*/
-	class StandardMesh
+	class PX2_GRAPHICS_ITEM StandardMesh
 	{
 	public:
 		StandardMesh (VertexFormat* vformat, bool isStatic = true,

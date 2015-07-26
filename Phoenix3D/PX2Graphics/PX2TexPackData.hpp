@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class TexPackElement
+	class PX2_GRAPHICS_ITEM TexPackElement
 	{
 	public:
 		TexPackElement ();
@@ -43,7 +43,7 @@ namespace PX2
 	};
 	typedef Pointer0<TexPackElement> TexPackElementPtr;
 
-	class TexPack
+	class PX2_GRAPHICS_ITEM TexPack
 	{
 	public:
 		TexPack ();

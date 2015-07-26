@@ -13,7 +13,7 @@ namespace PX2
 	/**
 	* 这个类和Camera唯一区别是，你可以设置特定的深度类型。
 	*/
-	class Projector : public Camera
+	class PX2_GRAPHICS_ITEM Projector : public Camera
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

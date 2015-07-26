@@ -10,7 +10,7 @@ namespace PX2
 
 	const float ANIMATION_BLENDTIME = 0.2f;
 
-	class AnimationObject
+	class PX2_SIMULATION_ITEM AnimationObject
 	{
 	public:
 		AnimationObject();

@@ -3,13 +3,14 @@
 #ifndef PX2PARTICLEOBJECT_HPP
 #define PX2PARTICLEOBJECT_HPP
 
+#include "PX2EffectPre.hpp"
 #include "PX2EffectObject.hpp"
 #include "PX2APoint.hpp"
 
 namespace PX2
 {
 
-	class ParticleObject : public EffectObject
+	class PX2_EFFECT_ITEM ParticleObject : public EffectObject
 	{
 	public:
 		ParticleObject ();

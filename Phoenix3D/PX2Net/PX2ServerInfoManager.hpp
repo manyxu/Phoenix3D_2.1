@@ -3,13 +3,14 @@
 #ifndef PX2SERVERINFOMANAGER_HPP
 #define PX2SERVERINFOMANAGER_HPP
 
+#include "PX2NetPre.hpp"
 #include "PX2Singleton.hpp"
 #include "PX2ServerInfo.hpp"
 
 namespace PX2
 {
 
-	class ServerInfoManager
+	class PX2_NET_ITEM ServerInfoManager
 	{
 		PX2_SINGLETION(ServerInfoManager);
 

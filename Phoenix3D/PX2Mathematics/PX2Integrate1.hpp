@@ -9,7 +9,7 @@ namespace PX2
 {
 
 	template <typename Real>
-	class Integrate1
+	class PX2_MATHEMATICS_ITEM Integrate1
 	{
 	public:
 		// The last parameter is for user-defined data.

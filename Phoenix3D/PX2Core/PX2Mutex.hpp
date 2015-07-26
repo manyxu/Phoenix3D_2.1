@@ -10,7 +10,7 @@ namespace PX2
 {
 	
 	/// Ïß³ÌËøÀà
-	class Mutex
+	class PX2_CORE_ITEM Mutex
 	{
 	public:
 		Mutex (bool isRecursive=true);

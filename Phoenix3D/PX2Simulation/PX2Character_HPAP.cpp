@@ -5,6 +5,8 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
+PX2_IMPLEMENT1_PM_F(Character, HP);
+//----------------------------------------------------------------------------
 void Character::OnCalMHP()
 {
 }
@@ -18,6 +20,8 @@ inline float Character::GetHPPercent() const
 {
 	return (float)GetHP() / (float)GetMHP();
 }
+//----------------------------------------------------------------------------
+PX2_IMPLEMENT1_PM_F(Character, AP);
 //----------------------------------------------------------------------------
 void Character::OnCalMAP()
 {

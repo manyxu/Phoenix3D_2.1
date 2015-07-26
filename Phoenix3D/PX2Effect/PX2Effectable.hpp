@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class Effectable : public TriMesh
+	class PX2_EFFECT_ITEM Effectable : public TriMesh
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

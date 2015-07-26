@@ -2,6 +2,7 @@
 
 #include "PX2ShadowMapMaterial.hpp"
 #include "PX2GraphicsRoot.hpp"
+#include "PX2TriMesh.hpp"
 using namespace PX2;
 
 PX2_IMPLEMENT_RTTI(PX2, GlobalMaterial, ShadowMap_Material);
@@ -50,7 +51,6 @@ void ShadowMap_Material::Draw(Renderer* renderer,
 		MaterialInstancePtr save = renderable->GetMaterialInstance();
 		const std::string &mtlName = save->GetMaterial()->GetName();
 
-		EnvirParam *envParam = PX2_GR.GetCurEnvirParam();
 		if ("std" == mtlName)
 		{
 			mInstanceStd->SetPixelTexture(0, "SampleBase", save->GetPixelTexture(0, "SampleBase"));

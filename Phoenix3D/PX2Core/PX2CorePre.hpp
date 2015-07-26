@@ -39,8 +39,14 @@
 #define PX2_USING_VC100
 #endif
 
+// Disable the Microsoft warnings about not using the secure functions.
 #pragma warning(disable : 4996)
-#pragma warning(disable : 4311)
+
+// The use of PX2_<libname>_ITEM to export an entire class generates warnings
+// when member data and functions involving templates or inlines occur.  To
+// avoid the warning,PX2_<libname>_ITEM can be applied only to those items
+// that really need to be exported.
+#pragma warning(disable : 4251) 
 
 #include <climits>
 #include <stdint.h>
@@ -92,6 +98,17 @@
 #define PX2_USE_PTHREAD
 #endif
 //----------------------------------------------------------------------------
+
+#if defined(PX2_CORE_DLL_EXPORT)
+// For the DLL library.
+#define PX2_CORE_ITEM __declspec(dllexport)
+#elif defined(PX2_CORE_DLL_IMPORT)
+// For a client of the DLL library.
+#define PX2_CORE_ITEM __declspec(dllimport)
+#else
+// For the static library and for Apple/Linux.
+#define PX2_CORE_ITEM
+#endif
 
 // 常用标准头文件
 #include <cassert>

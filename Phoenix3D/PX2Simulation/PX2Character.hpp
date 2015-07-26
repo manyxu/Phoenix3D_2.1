@@ -13,7 +13,7 @@
 namespace PX2
 {
 
-	class Character : public Actor
+	class PX2_SIMULATION_ITEM Character : public Actor
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

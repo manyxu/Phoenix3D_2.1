@@ -26,7 +26,7 @@ namespace PX2
 	// 时间点在标准C/C++中是一个整数，它用此时的时间和标准时间点相差的秒数（即
 	// 日历时间）来表示。
 
-	class DateTime
+	class PX2_CORE_ITEM DateTime
 	{
 	public:
 		enum Months

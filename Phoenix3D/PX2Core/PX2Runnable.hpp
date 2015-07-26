@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class Runnable
+	class PX2_CORE_ITEM Runnable
 	{
 	public:
 		Runnable ();

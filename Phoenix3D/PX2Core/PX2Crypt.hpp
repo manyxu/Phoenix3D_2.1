@@ -8,7 +8,7 @@
 namespace PX2
 {
 	
-	class Crypt
+	class PX2_CORE_ITEM Crypt
 	{
 	public:
 		Crypt ();
