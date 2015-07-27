@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class TerrainProcess
+	class PX2_EDIT_ITEM TerrainProcess
 	{
 	public:
 		~TerrainProcess();

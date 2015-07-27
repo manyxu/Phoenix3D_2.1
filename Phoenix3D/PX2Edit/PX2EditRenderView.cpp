@@ -139,7 +139,7 @@ void EditRenderView::Tick(double elapsedTime)
 
 	if (mRenderStep && mIsRenderCreated)
 	{
-		double tiemInSeconds = GetTimeInSeconds();
+		double tiemInSeconds = Time::GetTimeInSeconds();
 
 		mRenderStep->Update(tiemInSeconds, elapsedTime);
 

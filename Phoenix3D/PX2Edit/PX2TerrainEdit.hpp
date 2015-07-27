@@ -12,7 +12,7 @@
 namespace PX2
 {
 
-	class TerrainEdit
+	class PX2_EDIT_ITEM TerrainEdit
 	{
 	public:
 		TerrainEdit();

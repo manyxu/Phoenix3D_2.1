@@ -3,6 +3,7 @@
 #ifndef PX2CURVEGROUP_HPP
 #define PX2CURVEGROUP_HPP
 
+#include "PX2EditPre.hpp"
 #include "PX2Curve.hpp"
 #include "PX2EffectModule.hpp"
 #include "PX2Controller.hpp"
@@ -10,7 +11,7 @@
 namespace PX2
 {
 
-	class CurveGroup
+	class PX2_EDIT_ITEM CurveGroup
 	{
 	public:
 		enum CGType

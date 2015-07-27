@@ -109,7 +109,7 @@ void EditRenderView_PreView::Tick(double elapsedTime)
 
 	if (mRenderStep && mIsRenderCreated)
 	{
-		double tiemInSeconds = GetTimeInSeconds();
+		double tiemInSeconds = Time::GetTimeInSeconds();
 
 		if (PVT_NONE == mPreViewType)
 		{
@@ -351,7 +351,7 @@ void EditRenderView_PreView::SetObject(PX2::Object *obj)
 		Node::TravelExecute(mModelMovable, _ModePreViewTravelExecuteFun);
 		mModeActor->AttachChild(mModelMovable);
 		mModelMovable->ResetPlay();
-		mModeActor->Update(GetTimeInSeconds(), 0.0f, false);
+		mModeActor->Update(Time::GetTimeInSeconds(), 0.0f, false);
 		mModelCameraActor->ResetPlay();
 
 		const APoint &boundCenter = mModelMovable->WorldBound.GetCenter();

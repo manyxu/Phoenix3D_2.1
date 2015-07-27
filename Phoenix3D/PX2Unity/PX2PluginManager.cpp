@@ -23,7 +23,7 @@ void PluginManager::Load(const std::string &filename)
 	mPluginLibs.push_back(lib);
 
 	DLL_LOAD_PLUGIN pFunc = (DLL_LOAD_PLUGIN)lib->GetSymbol(
-		"DllLoadPlugin");
+		"DLLLoadPlugin");
 
 	if (!pFunc)
 	{
@@ -45,7 +45,7 @@ void PluginManager::Unload(const std::string &filename)
 		if (libName == filename)
 		{
 			DLL_UNLOAD_PLUGIN pFunc = (DLL_UNLOAD_PLUGIN)(*i)->GetSymbol(
-				"DllUnloadPlugin");
+				"DLLUnloadPlugin");
 
 			pFunc();
 
@@ -65,7 +65,7 @@ void PluginManager::UnloadPlugins()
 		i != mPluginLibs.rend(); ++i)
 	{
 		DLL_UNLOAD_PLUGIN pFunc = (DLL_UNLOAD_PLUGIN)(*i)->GetSymbol(
-			"DllUnloadPlugin");
+			"DLLUnloadPlugin");
 
 		pFunc();
 

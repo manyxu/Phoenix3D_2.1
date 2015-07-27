@@ -11,7 +11,8 @@
 
 namespace PX2
 {
-	class Theme
+
+	class PX2_EDIT_ITEM Theme
 	{
 	public:
 		Theme();

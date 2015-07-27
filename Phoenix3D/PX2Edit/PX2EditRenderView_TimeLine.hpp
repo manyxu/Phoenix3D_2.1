@@ -14,7 +14,7 @@ namespace PX2
 
 	class EffectModule;
 
-	class EditRenderView_TimeLine : public EditRenderView
+	class PX2_EDIT_ITEM EditRenderView_TimeLine : public EditRenderView
 	{
 	public:
 		EditRenderView_TimeLine();

@@ -114,7 +114,7 @@ void SceneNodeCtrl::OnMouseWheel(RenderStep *renderStep, float wheelDelta)
 		if (0.0f != rmax)
 		{
 			mCtrlsGroup->WorldTransform.SetUniformScale(rmax*0.11f);
-			mCtrlsGroup->Update(GetTimeInSeconds(), false);
+			mCtrlsGroup->Update(Time::GetTimeInSeconds(), false);
 		}
 	}
 	else
@@ -123,7 +123,7 @@ void SceneNodeCtrl::OnMouseWheel(RenderStep *renderStep, float wheelDelta)
 		if (scale == 0.0f) scale = 0.0001f;
 		if (scale < 1.0f) scale = 1.0f;
 		mCtrlsGroup->WorldTransform.SetUniformScale(scale);
-		mCtrlsGroup->Update(GetTimeInSeconds(), false);
+		mCtrlsGroup->Update(Time::GetTimeInSeconds(), false);
 	}
 }
 //----------------------------------------------------------------------------
@@ -389,7 +389,7 @@ void SceneNodeCtrl::OnMotion(bool leftDown, RenderStep *renderStep,
 		EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 	}
 
-	mCtrlsGroup->Update(GetTimeInSeconds(), false);
+	mCtrlsGroup->Update(Time::GetTimeInSeconds(), false);
 }
 //----------------------------------------------------------------------------
 PX2::Movable *SceneNodeCtrl::GetCurrentCtrlX()
@@ -664,7 +664,7 @@ void SceneNodeCtrl::UpdateCtrl()
 				}
 			}
 
-			mCtrlsGroup->Update(GetTimeInSeconds(), false);
+			mCtrlsGroup->Update(Time::GetTimeInSeconds(), false);
 		}
 		else if (mCtrlType == CT_SCALE)
 		{
@@ -702,7 +702,7 @@ void SceneNodeCtrl::UpdateCtrl()
 		mCtrlsGroup->SetActiveChild(6);
 	}
 
-	mCtrlsGroup->Update(GetTimeInSeconds(), false);
+	mCtrlsGroup->Update(Time::GetTimeInSeconds(), false);
 }
 //----------------------------------------------------------------------------
 void SceneNodeCtrl::UpdateCtrlTrans()
@@ -803,7 +803,7 @@ void SceneNodeCtrl::UpdateCtrlTrans()
 		}
 	}
 
-	mCtrlsGroup->Update(GetTimeInSeconds(), false);
+	mCtrlsGroup->Update(Time::GetTimeInSeconds(), false);
 }
 //----------------------------------------------------------------------------
 SceneNodeCtrl::DragType SceneNodeCtrl::GetDragType(RenderStep *renderStep,
@@ -844,7 +844,7 @@ SceneNodeCtrl::DragType SceneNodeCtrl::GetDragType(RenderStep *renderStep,
 	bool xzDrag = false;
 	float xzDragT = Mathf::MAX_REAL;
 
-	GetCtrlsGroup()->Update(GetTimeInSeconds(), false);
+	GetCtrlsGroup()->Update(Time::GetTimeInSeconds(), false);
 
 	picker.Execute(ctrlX, origin, direction, -Mathf::MAX_REAL, Mathf::MAX_REAL);
 	if ((int)picker.Records.size() > 0)
@@ -1028,6 +1028,6 @@ void BoundCtrl::UpdateCtrl()
 		mCtrlsGroup->SetActiveChild(1);
 	}
 
-	mCtrlsGroup->Update(GetTimeInSeconds(), false);
+	mCtrlsGroup->Update(Time::GetTimeInSeconds(), false);
 }
 //----------------------------------------------------------------------------

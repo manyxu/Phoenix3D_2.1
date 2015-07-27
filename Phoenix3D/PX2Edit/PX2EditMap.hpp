@@ -8,7 +8,7 @@
 namespace PX2
 {
 
-	class EditMap
+	class PX2_EDIT_ITEM EditMap
 	{
 	public:
 		EditMap();

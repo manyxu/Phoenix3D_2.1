@@ -13,7 +13,7 @@
 namespace PX2
 {
 
-	class TimeLineEdit
+	class PX2_EDIT_ITEM TimeLineEdit
 	{
 	public:
 		TimeLineEdit();

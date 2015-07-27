@@ -14,7 +14,7 @@ namespace PX2
 
 	class RenderStep;
 
-	class UIObjectCtrl : public PX2::EventHandler
+	class PX2_EDIT_ITEM UIObjectCtrl : public PX2::EventHandler
 	{
 	public:
 		UIObjectCtrl ();

@@ -16,7 +16,7 @@ namespace PX2
 
 	class RendererInput;
 
-	class EditRenderView : public EventHandler
+	class PX2_EDIT_ITEM EditRenderView : public EventHandler
 	{
 	public:
 		EditRenderView(int viewID); // viewIDCanBeTheSame

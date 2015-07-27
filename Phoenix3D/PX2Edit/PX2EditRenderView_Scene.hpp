@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class EditRenderView_Scene : public EditRenderView
+	class PX2_EDIT_ITEM EditRenderView_Scene : public EditRenderView
 	{
 	public:
 		EditRenderView_Scene();

@@ -10,7 +10,7 @@
 namespace PX2
 {
 
-	class SelectResData
+	class PX2_EDIT_ITEM SelectResData
 	{
 	public:
 		enum SelectResType

@@ -16,7 +16,7 @@ namespace PX2
 	class CurveFloat;
 	class CurveFloat3Axis;
 
-	class CurveCtrl
+	class PX2_EDIT_ITEM CurveCtrl
 	{
 	public:
 		virtual ~CurveCtrl ();

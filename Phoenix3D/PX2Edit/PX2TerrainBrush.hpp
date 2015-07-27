@@ -13,7 +13,7 @@
 namespace PX2
 {
 
-	class VertexAffectInfo
+	class PX2_EDIT_ITEM VertexAffectInfo
 	{
 	public:
 		VertexAffectInfo()

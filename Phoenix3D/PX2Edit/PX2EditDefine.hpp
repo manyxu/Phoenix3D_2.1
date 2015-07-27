@@ -3,6 +3,8 @@
 #ifndef PX2EDITDEFINE_HPP
 #define PX2EDITDEFINE_HPP
 
+#include "PX2EditPre.hpp"
+
 namespace PX2
 {
 

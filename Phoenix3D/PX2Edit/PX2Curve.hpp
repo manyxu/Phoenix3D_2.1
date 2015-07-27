@@ -11,7 +11,7 @@ namespace PX2
 {
 
 	// curves
-	class Curve 
+	class PX2_EDIT_ITEM Curve
 	{
 	public:
 		virtual ~Curve ();

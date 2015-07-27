@@ -94,7 +94,7 @@ void EditRenderView_TimeLine::Tick(double elapsedTime)
 {
 	if (!IsEnable()) return;
 
-	double tiemInSeconds = GetTimeInSeconds();
+	double tiemInSeconds = Time::GetTimeInSeconds();
 
 	mRenderStep->Update(tiemInSeconds, elapsedTime);
 	mRenderStep->ComputeVisibleSetAndEnv();
@@ -171,7 +171,7 @@ void EditRenderView_TimeLine::FitViewHorizontally()
 		pos.X() = inMin + inLength / 2.0f - inLength*leftOverWidth;
 
 	mUIViewGrid->GetCameraNode()->LocalTransform.SetTranslate(pos);
-	mUIViewGrid->GetCameraNode()->Update(GetTimeInSeconds(), 0.0f);
+	mUIViewGrid->GetCameraNode()->Update(Time::GetTimeInSeconds(), 0.0f);
 
 	_RefreshGrid(true);
 }
@@ -212,7 +212,7 @@ void EditRenderView_TimeLine::FitViewVertically()
 		pos.Z() = outMin + outLength / 2.0f;
 
 	mUIViewGrid->GetCameraNode()->LocalTransform.SetTranslate(pos);
-	mUIViewGrid->GetCameraNode()->Update(GetTimeInSeconds(), 0.0f);
+	mUIViewGrid->GetCameraNode()->Update(Time::GetTimeInSeconds(), 0.0f);
 
 	_RefreshGrid(true);
 }
@@ -276,7 +276,7 @@ void EditRenderView_TimeLine::FitViewToSelected()
 	camPos.X() = ctrPos.X();
 	camPos.Z() = ctrPos.Z();
 	mUIViewGrid->GetCameraNode()->LocalTransform.SetTranslate(camPos);
-	mUIViewGrid->GetCameraNode()->Update(GetTimeInSeconds(), 0.0f);
+	mUIViewGrid->GetCameraNode()->Update(Time::GetTimeInSeconds(), 0.0f);
 
 	_RefreshGrid(true);
 }
@@ -761,7 +761,7 @@ void EditRenderView_TimeLine::OnMotion(const APoint &pos)
 			APoint pos = mUIViewGrid->GetCameraNode()->LocalTransform.GetTranslate();
 			pos += AVector(movedX, 0.0f, movedZ);
 			mUIViewGrid->GetCameraNode()->LocalTransform.SetTranslate(pos);
-			mUIViewGrid->GetCameraNode()->Update(GetTimeInSeconds(), 0.0f);
+			mUIViewGrid->GetCameraNode()->Update(Time::GetTimeInSeconds(), 0.0f);
 
 			_RefreshGrid(false);
 		}

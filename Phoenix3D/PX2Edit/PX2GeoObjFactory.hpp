@@ -12,7 +12,7 @@ namespace PX2
 
 	class Renderer;
 
-	class GeoObjFactory
+	class PX2_EDIT_ITEM GeoObjFactory
 	{
 	public:
 		GeoObjFactory();

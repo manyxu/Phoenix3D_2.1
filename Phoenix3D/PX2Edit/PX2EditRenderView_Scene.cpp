@@ -189,7 +189,7 @@ void EditRenderView_Scene::_CreateGridGeometry()
 	mGridNode = new0 Node();
 	mGridNode->AttachChild(mGridAxis);
 	mGridNode->AttachChild(mGrid);
-	mGridNode->Update(GetTimeInSeconds(), true);
+	mGridNode->Update(Time::GetTimeInSeconds(), true);
 
 	mRenderStepCtrl = new0 RenderStep();
 	mRenderStepCtrl->SetPriority(30);
@@ -743,7 +743,7 @@ void EditRenderView_Scene::_CreateNodeCtrl()
 	mSceneCtrlNode = new0 Node();
 	mSceneCtrlNode->AttachChild(mSceneNodeCtrl->GetCtrlsGroup());
 	mSceneCtrlNode->AttachChild(mBoundCtrl->GetCtrlsGroup());
-	mSceneCtrlNode->Update(GetTimeInSeconds(), true);
+	mSceneCtrlNode->Update(Time::GetTimeInSeconds(), true);
 
 	mSceneCtrlNode->AttachChild(PX2_EDIT.GetHelpNode());
 

@@ -71,7 +71,7 @@ void EditRenderView_UI::_CreateNodeCtrl()
 
 	mUIObjectNode = new0 Node();
 	mUIObjectNode->AttachChild(mUIObjectCtrl->GetCtrlsGroup());
-	mUIObjectNode->Update(GetTimeInSeconds(), 0.0f, true);
+	mUIObjectNode->Update(Time::GetTimeInSeconds(), 0.0f, true);
 
 	mRenderStepCtrl1 = new0 RenderStep();
 	mRenderStepCtrl1->SetPriority(-10);

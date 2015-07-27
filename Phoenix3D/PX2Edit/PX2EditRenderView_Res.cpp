@@ -155,7 +155,7 @@ void EditRenderView_Res::Tick(double elapsedTime)
 			}
 			else if (mov)
 			{
-				//mov->Update(GetTimeInSeconds());
+				//mov->Update(Time::GetTimeInSeconds());
 				//float worldRadius = mov->WorldBound.GetRadius();
 				//if (0.0f == worldRadius) worldRadius = 1.0f;
 
@@ -194,7 +194,7 @@ void EditRenderView_Res::OnSize(const Sizef& size)
 		sizeHeight = 0.0f;
 
 	mGridFrame->SetSize(Sizef(mSize.Width, sizeHeight));
-	mGridFrame->Update(GetTimeInSeconds());
+	mGridFrame->Update(Time::GetTimeInSeconds());
 
 	mGridParentFrame->LocalTransform.SetTranslateZ(mPreViewHeight);
 

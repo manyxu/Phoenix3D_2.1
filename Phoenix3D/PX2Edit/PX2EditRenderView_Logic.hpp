@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class EditRenderView_Logic : public EditRenderView
+	class PX2_EDIT_ITEM EditRenderView_Logic : public EditRenderView
 	{
 	public:
 		EditRenderView_Logic();

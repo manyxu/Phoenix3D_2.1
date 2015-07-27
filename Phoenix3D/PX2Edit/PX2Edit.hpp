@@ -3,6 +3,7 @@
 #ifndef PX2EDIT_HPP
 #define PX2EDIT_HPP
 
+#include "PX2EditPre.hpp"
 #include "PX2Singleton_NeedNew.hpp"
 #include "PX2EditMap.hpp"
 #include "PX2EditDefine.hpp"
@@ -18,7 +19,7 @@ namespace PX2
 	class EditMap;
 	class EditParams;
 
-	class Edit : public Singleton<Edit>
+	class PX2_EDIT_ITEM Edit : public Singleton<Edit>
 	{
 	public:
 		Edit();

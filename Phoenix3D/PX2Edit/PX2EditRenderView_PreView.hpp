@@ -17,7 +17,7 @@
 namespace PX2
 {
 
-	class EditRenderView_PreView : public EditRenderView
+	class PX2_EDIT_ITEM EditRenderView_PreView : public EditRenderView
 	{
 	public:
 		EditRenderView_PreView();

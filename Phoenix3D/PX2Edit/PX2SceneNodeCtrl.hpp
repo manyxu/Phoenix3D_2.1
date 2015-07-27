@@ -14,7 +14,7 @@ namespace PX2
 	class Renderer;
 	class RenderStep;
 
-	class SceneNodeCtrl : public EventHandler
+	class PX2_EDIT_ITEM SceneNodeCtrl : public EventHandler
 	{
 	public:
 		SceneNodeCtrl();

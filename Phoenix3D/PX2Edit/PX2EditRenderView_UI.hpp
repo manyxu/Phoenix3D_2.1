@@ -11,7 +11,7 @@
 namespace PX2
 {
 
-	class EditRenderView_UI : public EditRenderView
+	class PX2_EDIT_ITEM EditRenderView_UI : public EditRenderView
 	{
 	public:
 		EditRenderView_UI();

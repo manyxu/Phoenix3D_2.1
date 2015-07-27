@@ -3,12 +3,13 @@
 #ifndef PX2EDITEVENTTYPE_HPP
 #define PX2EDITEVENTTYPE_HPP
 
+#include "PX2EditPre.hpp"
 #include "PX2EventSystem.hpp"
 
 namespace PX2
 {
 
-	PX2_DECLARE_EVENT_BEGIN(EditEventSpace)
+	PX2_DECLARE_EVENT_BEGIN(PX2_EDIT_ITEM EditEventSpace)
 	PX2_EVENT(NewProject)
 	PX2_EVENT(LoadedProject)
 	PX2_EVENT(SavedProject)

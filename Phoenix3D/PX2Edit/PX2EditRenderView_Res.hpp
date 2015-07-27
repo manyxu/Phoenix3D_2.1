@@ -15,7 +15,7 @@ namespace PX2
 
 	class SelectResData;
 
-	class EditRenderView_Res : public EditRenderView, public Visitor
+	class PX2_EDIT_ITEM EditRenderView_Res : public EditRenderView, public Visitor
 	{
 	public:
 		EditRenderView_Res();

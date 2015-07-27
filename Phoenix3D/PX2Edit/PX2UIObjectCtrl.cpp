@@ -44,7 +44,7 @@ void UIObjectCtrl::SetShapeType (ShapeType type)
 	mShapeType = type;
 
 	mCtrlsGroup->SetActiveChild((int)mShapeType);
-	mCtrlsGroup->Update(GetTimeInSeconds(), false);
+	mCtrlsGroup->Update(Time::GetTimeInSeconds(), false);
 }
 //----------------------------------------------------------------------------
 UIObjectCtrl::ShapeType UIObjectCtrl::GetShapeType()

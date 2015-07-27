@@ -9,7 +9,7 @@
 namespace PX2
 {
 
-	class Brush
+	class PX2_EDIT_ITEM Brush
 	{
 	public:
 		Brush();
