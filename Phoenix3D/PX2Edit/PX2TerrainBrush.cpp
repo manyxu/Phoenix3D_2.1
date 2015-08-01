@@ -64,7 +64,7 @@ void TerrainBrush::SelectPage()
 	EventWorld::GetSingleton().BroadcastingLocalEvent(ent);
 }
 //----------------------------------------------------------------------------
-PX2::TerrainPage *TerrainBrush::GetSelectedPage()
+TerrainPage *TerrainBrush::GetSelectedPage()
 {
 	return mSelectedTerrainPage;
 }

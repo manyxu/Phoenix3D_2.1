@@ -227,14 +227,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;PX2_USE_DX9;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;WIN32_LEAN_AND_MEAN;PX2_USE_DX9;PX2_CORE_DLL_IMPORT;PX2_MATHEMATICS_DLL_IMPORT;PX2_GRAPHICS_DLL_IMPORT;PX2_NET_DLL_IMPORT;PX2_UNITY_DLL_IMPORT;PX2_TERRAINS_DLL_IMPORT;PX2_EFFECT_DLL_IMPORT;PX2_UI_DLL_IMPORT;PX2_SIMULATION_DLL_IMPORT;PX2_APPFRAME_DLL_IMPORT;PX2_EDIT_DLL_IMPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\;.\PropGrid;..\..\PX2ToLua;..\..\PX2Unity\ToLua;..\..\PX2Unity\Lua;..\..\PX2SDK\Include;..\..\ThirdPartiesLibs\wxWidgets-3.0.2\include;..\..\ThirdPartiesLibs\wxWidgets-3.0.2\lib\vc_lib\mswud;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration);..\..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Lib\x86;..\..\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\lib;..\..\ThirdPartiesLibs\wxWidgets-3.0.2\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>wxmsw30ud_aui.lib;wxmsw30ud_html.lib;wxmsw30ud_adv.lib;wxmsw30ud_core.lib;wxmsw30ud_propgrid.lib;wxmsw30ud_xrc.lib;wxbase30ud_xml.lib;wxbase30ud.lib;wxmsw30ud_webview.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;ws2_32.lib;fmod_vc.lib;d3d9.lib;d3dx9.lib;dxerr.lib;dinput8.lib;dxguid.lib;PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsD.lib;PX2UnityD.lib;PX2EffectD.lib;PX2TerrainsD.lib;PX2UID.lib;PX2SimulationD.lib;PX2EditD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>wxmsw30ud_aui.lib;wxmsw30ud_html.lib;wxmsw30ud_adv.lib;wxmsw30ud_core.lib;wxmsw30ud_propgrid.lib;wxmsw30ud_xrc.lib;wxbase30ud_xml.lib;wxbase30ud.lib;wxmsw30ud_webview.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;wininet.lib;ws2_32.lib;fmod_vc.lib;d3d9.lib;d3dx9.lib;dxerr.lib;dinput8.lib;dxguid.lib;PX2CoreD.lib;PX2MathematicsD.lib;PX2GraphicsD.lib;PX2UnityD.lib;PX2NetD.lib;PX2TerrainsD.lib;PX2UID.lib;PX2EffectD.lib;PX2SimulationD.lib;PX2EditD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

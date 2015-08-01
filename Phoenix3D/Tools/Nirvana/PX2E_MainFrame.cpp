@@ -930,7 +930,7 @@ void E_MainFrame::OnResOpen()
 		GetCurrentDirectoryW(sizeof(wszPath), wszPath);
 		std::wstring fullPath = wszPath + std::wstring(_T("\\")) + filename;
 
-		ShellExecute(0, _T("open"), fullPath.c_str(), 0, 0, SW_SHOW);
+		//ShellExecute(0, _T("open"), fullPath.c_str(), 0, 0, SW_SHOW);
 #endif
 	}
 }

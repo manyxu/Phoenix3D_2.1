@@ -109,7 +109,7 @@ void ResTree::OnItemActivated(wxTreeEvent& event)
 	GetCurrentDirectoryW(sizeof(wszPath), wszPath);
 	std::wstring fullPath = wszPath + std::wstring(_T("\\")) + item->GetPathName();
 
-	ShellExecute(0, _T("open"), fullPath.c_str(), 0, 0, SW_SHOW);
+	//ShellExecute(0, _T("open"), fullPath.c_str(), 0, 0, SW_SHOW);
 #endif
 }
 //-----------------------------------------------------------------------------

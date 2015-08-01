@@ -28,7 +28,7 @@ namespace PX2
 		float Weight;
 	};
 
-	class PixelAffectInfo
+	class PX2_EDIT_ITEM PixelAffectInfo
 	{
 	public:
 		PixelAffectInfo()
@@ -63,7 +63,7 @@ namespace PX2
 		static int VertexNum;
 	};
 
-	class TerrainBrush : public Brush
+	class PX2_EDIT_ITEM TerrainBrush : public Brush
 	{
 	public:
 		TerrainBrush();
@@ -84,10 +84,10 @@ namespace PX2
 		virtual void SetSize(float size);
 
 		void SetTerrain(PX2::RawTerrain *terrain) { mTerrain = terrain; }
-		PX2::RawTerrain *GetTerrain() { return mTerrain; }
+		RawTerrain *GetTerrain() { return mTerrain; }
 
 		void SelectPage();
-		PX2::TerrainPage *GetSelectedPage();
+		TerrainPage *GetSelectedPage();
 
 		void CalculateInfulencedInfo(bool calAverage);
 		std::vector<PageAffectInfo> &GetInfulencedInfo() { return mPageInfoList; }

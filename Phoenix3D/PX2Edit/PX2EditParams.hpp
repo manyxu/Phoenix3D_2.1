@@ -52,7 +52,7 @@ namespace PX2
 	};
 	typedef Pointer0<Theme> ThemePtr;
 
-	class EditParams : public Object
+	class PX2_EDIT_ITEM EditParams : public Object
 	{
 		PX2_DECLARE_RTTI;
 		PX2_DECLARE_NAMES;

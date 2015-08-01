@@ -151,7 +151,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;PX2_CORE_DLL_IMPORT;PX2_MATHEMATICS_DLL_IMPORT;PX2_GRAPHICS_DLL_IMPORT;PX2_NET_DLL_IMPORT;PX2_UNITY_DLL_IMPORT;PX2_TERRAINS_DLL_IMPORT;PX2_EFFECT_DLL_IMPORT;PX2_UI_DLL_IMPORT;PX2_SIMULATION_DLL_IMPORT;PX2_APPFRAME_DLL_IMPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\PX2SDK\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
