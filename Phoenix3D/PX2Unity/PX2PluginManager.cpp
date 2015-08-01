@@ -34,6 +34,15 @@ void PluginManager::Load(const std::string &filename)
 	pFunc();
 }
 //----------------------------------------------------------------------------
+void PluginManager::TernamateAllPlugins()
+{
+	for (std::vector<Plugin *>::reverse_iterator i = mPlugins.rbegin();
+		i != mPlugins.rend(); ++i)
+	{
+		(*i)->OnTernamate();
+	}
+}
+//----------------------------------------------------------------------------
 void PluginManager::Unload(const std::string &filename)
 {
 	std::vector<DynLib *>::iterator i;
@@ -61,6 +70,13 @@ void PluginManager::Unload(const std::string &filename)
 //----------------------------------------------------------------------------
 void PluginManager::UnloadPlugins()
 {
+	for (std::vector<Plugin *>::reverse_iterator i = mPlugins.rbegin();
+		i != mPlugins.rend(); ++i)
+	{
+		(*i)->OnUnstall();
+	}
+	mPlugins.clear();
+
 	for (std::vector<DynLib *>::reverse_iterator i = mPluginLibs.rbegin(); 
 		i != mPluginLibs.rend(); ++i)
 	{
@@ -73,13 +89,6 @@ void PluginManager::UnloadPlugins()
 
 	}
 	mPluginLibs.clear();
-
-	for (std::vector<Plugin *>::reverse_iterator i = mPlugins.rbegin(); 
-		i != mPlugins.rend(); ++i)
-	{
-		(*i)->Unstall();
-	}
-
 	mPlugins.clear();
 }
 //----------------------------------------------------------------------------
@@ -89,7 +98,7 @@ void PluginManager::InstallPlugin(Plugin* plugin)
 
 	mPlugins.push_back(plugin);
 	
-	plugin->Install();
+	plugin->OnInstall();
 
 	PX2_LOG_INFO("Plugin successfully installed");
 }
@@ -102,7 +111,7 @@ void PluginManager::UninstallPlugin(Plugin* plugin)
 		mPlugins.end(), plugin);
 	if (i != mPlugins.end())
 	{
-		plugin->Unstall();
+		plugin->OnUnstall();
 
 		mPlugins.erase(i);
 	}

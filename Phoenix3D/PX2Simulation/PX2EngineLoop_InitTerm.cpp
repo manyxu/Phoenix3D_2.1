@@ -168,20 +168,9 @@ bool EngineLoop::Ternamate()
 {
 	Play(EngineLoop::PT_NONE);
 
-	PX2_PLUGINMAN.UnloadPlugins();
-	if (mPluginMan)
-	{
-		delete0(mPluginMan);
-		PluginManager::Set(0);
-	}
-
-	if (mDynLibMan)
-	{
-		delete0(mDynLibMan);
-		DynLibManager::Set(0);
-	}
-
 	PX2_EW.Shutdown(true);
+
+	PX2_PLUGINMAN.TernamateAllPlugins();
 	
 	if (mSelection)
 	{
@@ -293,6 +282,19 @@ bool EngineLoop::Ternamate()
 
 		delete0(mRendererInput);
 		mRendererInput = 0;
+	}
+
+	PX2_PLUGINMAN.UnloadPlugins();
+	if (mPluginMan)
+	{
+		delete0(mPluginMan);
+		PluginManager::Set(0);
+	}
+
+	if (mDynLibMan)
+	{
+		delete0(mDynLibMan);
+		DynLibManager::Set(0);
 	}
 
 	Logger *logger = Logger::GetSingletonPtr();

@@ -17,16 +17,14 @@ mAnchorID(0)
 //----------------------------------------------------------------------------
 Node::~Node ()
 {
-    std::vector<MovablePtr>::iterator iter = mChild.begin();
-    std::vector<MovablePtr>::iterator end = mChild.end();
-    for (/**/; iter != end; ++iter)
-    {
-        if (*iter)
-        {
-            (*iter)->SetParent(0);
-            *iter = 0;
-        }
-    }
+	for (int i = 0; i < (int)mChild.size(); i++)
+	{
+		if (mChild[i])
+		{
+			mChild[i]->SetParent(0);
+			mChild[i] = 0;
+		}
+	}
 }
 //----------------------------------------------------------------------------
 void Node::Play ()
