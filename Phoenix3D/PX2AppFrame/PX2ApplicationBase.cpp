@@ -122,7 +122,14 @@ bool ApplicationBase::_LoadProject(const std::string &projFilename)
 			newProj->LoadUI(uiFilename);
 		}
 
-		PX2_PLUGINMAN.Load("Projects/Soccer/SoccerD.dll");
+		std::string debugTag = "";
+#if defined (_DEBUG) 
+		debugTag = "D";
+#endif
+		std::string projDllPath = "Projects/Soccer/" + newProj->GetName()
+			+ debugTag + ".dll";
+
+		PX2_PLUGINMAN.Load(projDllPath);
 
 		PX2_ENGINELOOP.Play(EngineLoop::PT_PLAY);
 

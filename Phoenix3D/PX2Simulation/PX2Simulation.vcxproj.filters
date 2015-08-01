@@ -67,9 +67,6 @@
     <Filter Include="Actor\Trigger">
       <UniqueIdentifier>{b79157c8-5612-40c1-8664-8979a7621871}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Controllers">
-      <UniqueIdentifier>{9b6a633e-c888-4f72-b20a-54f46acad4a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ToLua">
       <UniqueIdentifier>{ea5b8e3a-393d-4b69-932b-55d209cfe77b}</UniqueIdentifier>
     </Filter>

@@ -745,7 +745,8 @@ xcopy /DY Renderers\*.inl ..\PX2SDK\Include
 xcopy /DY Renderers\Dx9Renderer\*.hpp ..\PX2SDK\Include
 mkdir ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
 xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
-xcopy /DY "$(OutDir)$(TargetName).lib" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)</Command>
+xcopy /DY "$(OutDir)$(TargetName).lib" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Configuration)
+xcopy /DY "$(TargetPath)" ..\..\Bin</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugDx9|Win32'">
