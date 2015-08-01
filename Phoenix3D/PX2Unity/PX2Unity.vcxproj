@@ -596,7 +596,7 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;FT2_BUILD_LIBRARY;PX2_USE_FMOD;PX2_CORE_DLL_IMPORT;PX2_MATHEMATICS_DLL_IMPORT;PX2_GRAPHICS_DLL_IMPORT;PX2_NET_DLL_IMPORT;PX2_UNITY_DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;FT2_BUILD_LIBRARY;PX2_USE_FMOD;PX2_CORE_DLL_IMPORT;PX2_MATHEMATICS_DLL_IMPORT;PX2_GRAPHICS_DLL_IMPORT;PX2_NET_DLL_IMPORT;PX2_UNITY_DLL_EXPORT;PX2_TOLUA_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\;.\ZLib;.\ZLib\minzip;..\PX2SDK\Include;.\FreeType\include;.\FreeType\include\freetype;.\FreeType\include\config;.\FreeType\include\internal;.\FreeType\src\base;.\FreeType\src\autofit;.\FreeType\src\cff;.\FreeType\src\pshinter;.\FreeType\src\psnames;.\FreeType\src\truetype;.\FreeType\src\smooth;.\FreeType\src\sfnt;.\FreeType\src\raster;.\Lua;.\ToLua;.\CURL;.\CURL\config\win32;.\SoundFMod;..\ThirdPartiesLibs\pthread\include;..\ThirdPartiesLibs\FMOD\FMOD Studio API Windows\api\lowlevel\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>

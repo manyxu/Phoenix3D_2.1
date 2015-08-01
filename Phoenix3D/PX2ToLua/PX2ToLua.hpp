@@ -24,7 +24,7 @@ using namespace PX2;
 
 
 struct lua_State;
-extern int  tolua_PX2_open(lua_State* tolua_S);
+PX2_SIMULATION_ITEM int  tolua_PX2_open(lua_State* tolua_S);
 
 #endif
 

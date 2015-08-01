@@ -34,9 +34,6 @@
     <Filter Include="Pick">
       <UniqueIdentifier>{dfc80d16-4423-48ca-8ca1-f436730d312f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ToLua">
-      <UniqueIdentifier>{aefd709f-6067-4eb0-8561-3c0d07d40c07}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlatformSDK">
       <UniqueIdentifier>{f01c14fe-8a45-4869-9576-75e8eb257246}</UniqueIdentifier>
     </Filter>
@@ -73,8 +70,8 @@
     <Filter Include="Controllers">
       <UniqueIdentifier>{9b6a633e-c888-4f72-b20a-54f46acad4a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Controllers\SkillCompl">
-      <UniqueIdentifier>{ddfe11f9-7f79-4ab0-bf34-9ff4a2c178a1}</UniqueIdentifier>
+    <Filter Include="ToLua">
+      <UniqueIdentifier>{ea5b8e3a-393d-4b69-932b-55d209cfe77b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -144,33 +141,6 @@
       <Filter>SpacePartition</Filter>
     </ClInclude>
     <ClInclude Include="PX2SimulationDataDefine.hpp" />
-    <ClInclude Include="SkillCompl\PX2Skill.hpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillCompl\PX2SkillActor.hpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillCompl\PX2SkillActorLink.hpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillCompl\PX2SkillComponent.hpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillCompl\PX2SkillInstance.hpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillCompl\PX2SkillStep.hpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillCompl\PX2SkillStepFarTrack.hpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillCompl\PX2SkillStepLink.hpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClInclude>
-    <ClInclude Include="SkillCompl\PX2SkillStepRangeTime.hpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClInclude>
     <ClInclude Include="PX2AmbientRegionActor.hpp">
       <Filter>Actor\Ambient</Filter>
     </ClInclude>
@@ -197,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="PX2RenderStepScene.hpp">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
+      <Filter>ToLua</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -278,42 +251,6 @@
     <ClCompile Include="PX2Character_HPAP.cpp">
       <Filter>Character</Filter>
     </ClCompile>
-    <ClCompile Include="SkillCompl\PX2Skill.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2Skill_Activate.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2Skill_Affect.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2Skill_Range.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2SkillActor.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2SkillActorLink.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2SkillComponent.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2SkillInstance.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2SkillStep.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2SkillStepFarTrack.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2SkillStepLink.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
-    <ClCompile Include="SkillCompl\PX2SkillStepRangeTime.cpp">
-      <Filter>Controllers\SkillCompl</Filter>
-    </ClCompile>
     <ClCompile Include="PX2AmbientRegionActor.cpp">
       <Filter>Actor\Ambient</Filter>
     </ClCompile>
@@ -340,6 +277,9 @@
     </ClCompile>
     <ClCompile Include="PX2RenderStepScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
+      <Filter>ToLua</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -378,33 +318,6 @@
     </None>
     <None Include="PX2CellSpaceT.inl">
       <Filter>SpacePartition</Filter>
-    </None>
-    <None Include="SkillCompl\PX2Skill.inl">
-      <Filter>Controllers\SkillCompl</Filter>
-    </None>
-    <None Include="SkillCompl\PX2SkillActor.inl">
-      <Filter>Controllers\SkillCompl</Filter>
-    </None>
-    <None Include="SkillCompl\PX2SkillActorLink.inl">
-      <Filter>Controllers\SkillCompl</Filter>
-    </None>
-    <None Include="SkillCompl\PX2SkillInstance.inl">
-      <Filter>Controllers\SkillCompl</Filter>
-    </None>
-    <None Include="SkillCompl\PX2SkillStep.inl">
-      <Filter>Controllers\SkillCompl</Filter>
-    </None>
-    <None Include="SkillCompl\PX2SkillStepFarTrack.inl">
-      <Filter>Controllers\SkillCompl</Filter>
-    </None>
-    <None Include="SkillCompl\PX2SkillStepLink.inl">
-      <Filter>Controllers\SkillCompl</Filter>
-    </None>
-    <None Include="SkillCompl\PX2SkillStepRangeTime.inl">
-      <Filter>Controllers\SkillCompl</Filter>
-    </None>
-    <None Include="SkillCompl\PX2SkillComponent.inl">
-      <Filter>Controllers\SkillCompl</Filter>
     </None>
     <None Include="PX2AmbientRegionActor.inl">
       <Filter>Actor\Ambient</Filter>

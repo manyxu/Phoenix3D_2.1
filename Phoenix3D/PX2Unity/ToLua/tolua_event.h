@@ -17,8 +17,8 @@
 
 #include "tolua++.h"
 
-TOLUA_API void tolua_moduleevents (lua_State* L);
-TOLUA_API int tolua_ismodulemetatable (lua_State* L);
-TOLUA_API void tolua_classevents (lua_State* L);
+TOLUA_ITEM void tolua_moduleevents (lua_State* L);
+TOLUA_ITEM int tolua_ismodulemetatable (lua_State* L);
+TOLUA_ITEM void tolua_classevents (lua_State* L);
 
 #endif

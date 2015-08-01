@@ -1,4 +1,0 @@
-// PX2SoundSystemInc.pkg
-
-$pfile "PX2SoundSystem/PX2Sound.pkg"
-$pfile "PX2SoundSystem/PX2SoundSystem.pkg"

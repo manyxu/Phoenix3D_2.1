@@ -17,22 +17,22 @@
 
 #include <stdlib.h>
 
-TOLUA_API void tolua_pushvalue (lua_State* L, int lo)
+TOLUA_ITEM void tolua_pushvalue (lua_State* L, int lo)
 {
  lua_pushvalue(L,lo);
 }
 
-TOLUA_API void tolua_pushboolean (lua_State* L, int value)
+TOLUA_ITEM void tolua_pushboolean (lua_State* L, int value)
 {
  lua_pushboolean(L,value);
 }
 
-TOLUA_API void tolua_pushnumber (lua_State* L, lua_Number value)
+TOLUA_ITEM void tolua_pushnumber (lua_State* L, lua_Number value)
 {
  lua_pushnumber(L,value);
 }
 
-TOLUA_API void tolua_pushstring (lua_State* L, const char* value)
+TOLUA_ITEM void tolua_pushstring (lua_State* L, const char* value)
 {
  if (value == NULL)
   lua_pushnil(L);
@@ -40,7 +40,7 @@ TOLUA_API void tolua_pushstring (lua_State* L, const char* value)
   lua_pushstring(L,value);
 }
 
-TOLUA_API void tolua_pushuserdata (lua_State* L, void* value)
+TOLUA_ITEM void tolua_pushuserdata (lua_State* L, void* value)
 {
  if (value == NULL)
   lua_pushnil(L);
@@ -48,7 +48,7 @@ TOLUA_API void tolua_pushuserdata (lua_State* L, void* value)
   lua_pushlightuserdata(L,value);
 }
 
-TOLUA_API void tolua_pushusertype (lua_State* L, void* value, const char* type)
+TOLUA_ITEM void tolua_pushusertype (lua_State* L, void* value, const char* type)
 {
  if (value == NULL)
   lua_pushnil(L);
@@ -112,20 +112,20 @@ TOLUA_API void tolua_pushusertype (lua_State* L, void* value, const char* type)
  }
 }
 
-TOLUA_API void tolua_pushusertype_and_takeownership (lua_State* L, void* value, const char* type)
+TOLUA_ITEM void tolua_pushusertype_and_takeownership (lua_State* L, void* value, const char* type)
 {
 	tolua_pushusertype(L,value,type);
 	tolua_register_gc(L,lua_gettop(L));
 }
 
-TOLUA_API void tolua_pushfieldvalue (lua_State* L, int lo, int index, int v)
+TOLUA_ITEM void tolua_pushfieldvalue (lua_State* L, int lo, int index, int v)
 {
  lua_pushnumber(L,index);
  lua_pushvalue(L,v);
  lua_settable(L,lo);
 }
 
-TOLUA_API void tolua_pushfieldboolean (lua_State* L, int lo, int index, int v)
+TOLUA_ITEM void tolua_pushfieldboolean (lua_State* L, int lo, int index, int v)
 {
  lua_pushnumber(L,index);
  lua_pushboolean(L,v);
@@ -133,35 +133,35 @@ TOLUA_API void tolua_pushfieldboolean (lua_State* L, int lo, int index, int v)
 }
 
 
-TOLUA_API void tolua_pushfieldnumber (lua_State* L, int lo, int index, lua_Number v)
+TOLUA_ITEM void tolua_pushfieldnumber (lua_State* L, int lo, int index, lua_Number v)
 {
  lua_pushnumber(L,index);
  tolua_pushnumber(L,v);
  lua_settable(L,lo);
 }
 
-TOLUA_API void tolua_pushfieldstring (lua_State* L, int lo, int index, const char* v)
+TOLUA_ITEM void tolua_pushfieldstring (lua_State* L, int lo, int index, const char* v)
 {
  lua_pushnumber(L,index);
  tolua_pushstring(L,v);
  lua_settable(L,lo);
 }
 
-TOLUA_API void tolua_pushfielduserdata (lua_State* L, int lo, int index, void* v)
+TOLUA_ITEM void tolua_pushfielduserdata (lua_State* L, int lo, int index, void* v)
 {
  lua_pushnumber(L,index);
  tolua_pushuserdata(L,v);
  lua_settable(L,lo);
 }
 
-TOLUA_API void tolua_pushfieldusertype (lua_State* L, int lo, int index, void* v, const char* type)
+TOLUA_ITEM void tolua_pushfieldusertype (lua_State* L, int lo, int index, void* v, const char* type)
 {
  lua_pushnumber(L,index);
  tolua_pushusertype(L,v,type);
  lua_settable(L,lo);
 }
 
-TOLUA_API void tolua_pushfieldusertype_and_takeownership (lua_State* L, int lo, int index, void* v, const char* type)
+TOLUA_ITEM void tolua_pushfieldusertype_and_takeownership (lua_State* L, int lo, int index, void* v, const char* type)
 {
  lua_pushnumber(L,index);
  tolua_pushusertype(L,v,type);

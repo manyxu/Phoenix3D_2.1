@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp" />
     <ClInclude Include="PX2AccoutManager.hpp" />
     <ClInclude Include="PX2Actor.hpp" />
     <ClInclude Include="PX2ActorPicker.hpp" />
@@ -60,17 +61,9 @@
     <ClInclude Include="PX2TriggerActor.hpp" />
     <ClInclude Include="PX2User.hpp" />
     <ClInclude Include="PX2UserActor.hpp" />
-    <ClInclude Include="SkillCompl\PX2Skill.hpp" />
-    <ClInclude Include="SkillCompl\PX2SkillActor.hpp" />
-    <ClInclude Include="SkillCompl\PX2SkillActorLink.hpp" />
-    <ClInclude Include="SkillCompl\PX2SkillComponent.hpp" />
-    <ClInclude Include="SkillCompl\PX2SkillInstance.hpp" />
-    <ClInclude Include="SkillCompl\PX2SkillStep.hpp" />
-    <ClInclude Include="SkillCompl\PX2SkillStepFarTrack.hpp" />
-    <ClInclude Include="SkillCompl\PX2SkillStepLink.hpp" />
-    <ClInclude Include="SkillCompl\PX2SkillStepRangeTime.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp" />
     <ClCompile Include="PX2AccoutManager.cpp" />
     <ClCompile Include="PX2Actor.cpp" />
     <ClCompile Include="PX2ActorPicker.cpp" />
@@ -106,18 +99,6 @@
     <ClCompile Include="PX2TriggerActor.cpp" />
     <ClCompile Include="PX2User.cpp" />
     <ClCompile Include="PX2UserActor.cpp" />
-    <ClCompile Include="SkillCompl\PX2Skill.cpp" />
-    <ClCompile Include="SkillCompl\PX2SkillActor.cpp" />
-    <ClCompile Include="SkillCompl\PX2SkillActorLink.cpp" />
-    <ClCompile Include="SkillCompl\PX2SkillComponent.cpp" />
-    <ClCompile Include="SkillCompl\PX2SkillInstance.cpp" />
-    <ClCompile Include="SkillCompl\PX2SkillStep.cpp" />
-    <ClCompile Include="SkillCompl\PX2SkillStepFarTrack.cpp" />
-    <ClCompile Include="SkillCompl\PX2SkillStepLink.cpp" />
-    <ClCompile Include="SkillCompl\PX2SkillStepRangeTime.cpp" />
-    <ClCompile Include="SkillCompl\PX2Skill_Activate.cpp" />
-    <ClCompile Include="SkillCompl\PX2Skill_Affect.cpp" />
-    <ClCompile Include="SkillCompl\PX2Skill_Range.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl" />
@@ -139,15 +120,6 @@
     <None Include="PX2TriggerActor.inl" />
     <None Include="PX2User.inl" />
     <None Include="PX2UserActor.inl" />
-    <None Include="SkillCompl\PX2Skill.inl" />
-    <None Include="SkillCompl\PX2SkillActor.inl" />
-    <None Include="SkillCompl\PX2SkillActorLink.inl" />
-    <None Include="SkillCompl\PX2SkillComponent.inl" />
-    <None Include="SkillCompl\PX2SkillInstance.inl" />
-    <None Include="SkillCompl\PX2SkillStep.inl" />
-    <None Include="SkillCompl\PX2SkillStepFarTrack.inl" />
-    <None Include="SkillCompl\PX2SkillStepLink.inl" />
-    <None Include="SkillCompl\PX2SkillStepRangeTime.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5F6FCB4C-6389-48A3-AE54-D5C2F89570CB}</ProjectGuid>
@@ -274,8 +246,8 @@ xcopy /DY "$(TargetPath)" ..\PX2SDK\Library\$(PlatformToolset)\$(Platform)\$(Con
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_CORE_DLL_IMPORT;PX2_MATHEMATICS_DLL_IMPORT;PX2_GRAPHICS_DLL_IMPORT;PX2_NET_DLL_IMPORT;PX2_UNITY_DLL_IMPORT;PX2_TERRAINS_DLL_IMPORT;PX2_EFFECT_DLL_IMPORT;PX2_UI_DLL_IMPORT;PX2_SIMULATION_DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;.\SkillCompl;..\PX2ToLua;..\PX2Unity\Lua;..\PX2Unity\ToLua;..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;PX2_CORE_DLL_IMPORT;PX2_MATHEMATICS_DLL_IMPORT;PX2_GRAPHICS_DLL_IMPORT;PX2_NET_DLL_IMPORT;PX2_UNITY_DLL_IMPORT;PX2_TERRAINS_DLL_IMPORT;PX2_EFFECT_DLL_IMPORT;PX2_UI_DLL_IMPORT;PX2_SIMULATION_DLL_EXPORT;PX2_TOLUA_DLL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\;..\PX2Unity\Lua;..\PX2Unity\ToLua;..\PX2ToLua;.\SkillCompl;..\PX2SDK\Include;..\ThirdPartiesLibs\Microsoft DirectX SDK %28June 2010%29\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

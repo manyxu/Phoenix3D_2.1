@@ -26,16 +26,4 @@
 
 		virtual const std::vector<std::string> &GetAllModuleNames_EA () const;
 		virtual const std::vector<std::string> &GetAllModuleNames_EO () const;
-
-		static int AllocChannel (float maxDist, bool useX, bool useY, bool useZ);
-		static void FreeChannel (int channel);
-		static void SetChannelShake (int channel, float strength, 
-			const APoint &shakeObjPos);
-		static float ShakeCamera (const APoint &recvCenter);
-
-		enum { NUMSHAKEMAXCHANNELS=16 };
-		static CameraShakeChannel ShakeChannels[NUMSHAKEMAXCHANNELS];
-
-		static std::vector<std::string> msModuleNames_EA;
-		static std::vector<std::string> msModuleNames_EO;
 	};

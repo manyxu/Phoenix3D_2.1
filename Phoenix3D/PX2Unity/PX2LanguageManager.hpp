@@ -15,8 +15,8 @@ namespace PX2
 		LanguageManager ();
 		virtual ~LanguageManager ();
 
-		bool Load (const char *filename);
-		bool Add (const char *filename);
+		bool Load (const std::string &filename);
+		bool Add (const std::string &filename);
 		void AddItem(const std::string &key, const std::string &langauge0, 
 			const std::string &langauge1);
 		void AddItem1(const std::string &key, const std::string &langauge0);

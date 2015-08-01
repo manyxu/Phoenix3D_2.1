@@ -6,68 +6,10 @@
 		Actor();
 		~Actor();
 
-		// BitSet
 	public:
 		virtual void SetTypeID(int typeID);
 		int GetTypeID() const;
 
 		virtual void SetGroup(int group);
 		int GetGroup() const;
-
-		enum BitSetType
-		{
-			BST_CHARACTER = 0,
-			BST_BUILDINGINGORE,
-			BST_BUILDING,
-			BST_CANBEAIMED,
-			BST_GROUP1 = 13,
-			BST_GROUP2,
-			BST_MAX_TYPE
-		};
-		std::bitset<PX2_ACTOR_BS_SIZE> &GetBitSet();
-		const std::bitset<PX2_ACTOR_BS_SIZE> &GetBitSet() const;
-		bool IsContainAllBits(const std::bitset<PX2_ACTOR_BS_SIZE> &bits) const;
-
-		// Movable
-	public:
-		virtual void SetMovableFilename(const std::string &filename,
-			bool shareVI = false);
-		const std::string &GetMovableFilename() const;
-		bool IsShareVI() const;
-
-		virtual void SetMovable (Movable *mov);
-		Movable *GetMovable ();
-
-		Node *CreateGetHelpNode ();
-		Node *GetNodeHelp();
-
-		void SetPickable(bool isPickable);
-		bool IsPickable() const;
-
-		void SetFace(const AVector &dir, const AVector &uping = AVector::UNIT_Z);
-		AVector GetFace();
-		void GetRDUVector(AVector &r, AVector &d, AVector &u);
-
-		virtual void SetHeading(const AVector &heading);
-		const AVector &GetHeading() const;
-
-		// Anchor
-	public:
-		void CollectAnchors();
-
-		APoint GetAnchorPos(int id);
-		Node *GetAnchor(int id);
-
-		// Params
-	public:
-		virtual void SetRadius(float radius);
-		float GetRadius() const;
-
-		virtual void SetHegiht(float height);
-		float GetHeight() const;
-		
-		// scene manager
-	public:
-		void *GetSceneContainer() const;
-		int GetSceneContainerIndex() const;
 	};

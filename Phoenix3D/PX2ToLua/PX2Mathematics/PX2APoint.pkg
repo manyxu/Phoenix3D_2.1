@@ -2,22 +2,23 @@
 
 	class APoint : public HPoint
 	{
-		APoint ();
+	public:
+		APoint ();  //< default (0,0,0,1)
 		APoint (const APoint& pnt);
 		APoint (float x, float y, float z);
 		~APoint ();
 
-		AVector operator- (const APoint& pnt) const;
-
-		APoint operator+ (const AVector& vec) const;
-		APoint operator- (const AVector& vec) const;
-
-		APoint operator+ (const APoint& pnt) const;
-		APoint operator* (float scalar) const;
-		APoint operator/ (float scalar) const;
-		APoint operator- () const;
-
+		/// 点和向量相乘
+		/**
+		* 在仿真数学中，点和向量的相乘是不允许的。然而在处理与平面相关问题时是
+		* 非常方便的。平面的形式为Dot(N,X-P) = 0，N是法线向量，P是平面上一点，
+		* X是平面上的任意点，X-P是一个向量，平面的形式可以转换为
+		* Dot(N,X) = Dot(N,P)。这个不符合仿真数学的形式，但是我们需要计算
+		* Dot(N,P)。在函数中，w被忽略，APoint被当做一个向量处理。
+		*/
 		float Dot (const AVector& vec) const;
 
-		static const APoint ORIGIN;  // (0,0,0,1)
+		// 特定值
+		//static const APoint ORIGIN;  // (0,0,0,1)
+		//static const APoint UNIT;
 	};

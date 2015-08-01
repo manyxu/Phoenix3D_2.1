@@ -3,10 +3,10 @@
 #include "PX2EngineLoop.hpp"
 #include "PX2Assert.hpp"
 #include "PX2LuaManager.hpp"
-#include "PX2ToLua.hpp"
 #include "PX2RendererInput.hpp"
 #include "PX2LocalDateTime.hpp"
 #include "PX2PluginManager.hpp"
+#include "PX2ToLua.hpp"
 using namespace PX2;
 
 extern "C"
@@ -93,7 +93,7 @@ bool EngineLoop::Initlize()
 	mAccoutManager = new0 AccoutManager();
 
 	LuaManager *luaMan = (LuaManager*)mScriptMan;
-	//tolua_PX2_open(luaMan->GetLuaState());
+	tolua_PX2_open(luaMan->GetLuaState());
 
 	mScriptMan->SetUserTypePointer("PX2_ENGINELOOP", "EngineLoop", this);
 	mScriptMan->SetUserTypePointer("PX2_LOG", "Logger", Logger::GetSingletonPtr());

@@ -7,7 +7,7 @@
 using namespace PX2;
 
 //----------------------------------------------------------------------------
-bool LanguageManager::Load (const char *filename)
+bool LanguageManager::Load(const std::string &filename)
 {
 	CSVParser csv;
 	
@@ -38,7 +38,7 @@ bool LanguageManager::Load (const char *filename)
 	return false;
 }
 //----------------------------------------------------------------------------
-bool LanguageManager::Add (const char *filename)
+bool LanguageManager::Add(const std::string &filename)
 {
 	CSVParser csv;
 

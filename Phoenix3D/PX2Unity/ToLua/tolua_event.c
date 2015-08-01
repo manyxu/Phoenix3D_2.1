@@ -418,7 +418,7 @@ static int class_gc_event (lua_State* L)
 	return 0;
 }
 */
-TOLUA_API int class_gc_event (lua_State* L)
+TOLUA_ITEM int class_gc_event (lua_State* L)
 {
 	void* u = *((void**)lua_touserdata(L,1));
 	int top;
@@ -463,7 +463,7 @@ TOLUA_API int class_gc_event (lua_State* L)
 /* Register module events
 	* It expects the metatable on the top of the stack
 */
-TOLUA_API void tolua_moduleevents (lua_State* L)
+TOLUA_ITEM void tolua_moduleevents (lua_State* L)
 {
 	lua_pushstring(L,"__index");
 	lua_pushcfunction(L,module_index_event);
@@ -475,7 +475,7 @@ TOLUA_API void tolua_moduleevents (lua_State* L)
 
 /* Check if the object on the top has a module metatable
 */
-TOLUA_API int tolua_ismodulemetatable (lua_State* L)
+TOLUA_ITEM int tolua_ismodulemetatable (lua_State* L)
 {
 	int r = 0;
 	if (lua_getmetatable(L,-1))
@@ -491,7 +491,7 @@ TOLUA_API int tolua_ismodulemetatable (lua_State* L)
 /* Register class events
 	* It expects the metatable on the top of the stack
 */
-TOLUA_API void tolua_classevents (lua_State* L)
+TOLUA_ITEM void tolua_classevents (lua_State* L)
 {
 	lua_pushstring(L,"__index");
 	lua_pushcfunction(L,class_index_event);

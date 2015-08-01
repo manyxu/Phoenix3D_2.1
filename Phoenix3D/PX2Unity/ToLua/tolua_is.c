@@ -20,7 +20,7 @@
 
 /* a fast check if a is b, without parameter validation
  i.e. if b is equal to a or a superclass of a. */
-TOLUA_API int tolua_fast_isa(lua_State *L, int mt_indexa, int mt_indexb, int super_index)
+TOLUA_ITEM int tolua_fast_isa(lua_State *L, int mt_indexa, int mt_indexb, int super_index)
 {
  int result;
 	if (lua_rawequal(L,mt_indexa,mt_indexb))
@@ -45,7 +45,7 @@ TOLUA_API int tolua_fast_isa(lua_State *L, int mt_indexa, int mt_indexb, int sup
 }
 
 /* Push and returns the corresponding object typename */
-TOLUA_API const char* tolua_typename (lua_State* L, int lo)
+TOLUA_ITEM const char* tolua_typename (lua_State* L, int lo)
 {
 	int tag = lua_type(L,lo);
  if (tag == LUA_TNONE)
@@ -85,7 +85,7 @@ TOLUA_API const char* tolua_typename (lua_State* L, int lo)
 	return lua_tostring(L,-1);
 }
 
-TOLUA_API void tolua_error (lua_State* L, const char* msg, tolua_Error* err)
+TOLUA_ITEM void tolua_error (lua_State* L, const char* msg, tolua_Error* err)
 {
 	if (msg[0] == '#')
 	{
@@ -203,7 +203,7 @@ static int lua_isusertype (lua_State* L, int lo, const char* type)
 	return 0;
 }
 
-TOLUA_API int tolua_isnoobj (lua_State* L, int lo, tolua_Error* err)
+TOLUA_ITEM int tolua_isnoobj (lua_State* L, int lo, tolua_Error* err)
 {
  if (lua_gettop(L)<abs(lo))
 		return 1;
@@ -213,7 +213,7 @@ TOLUA_API int tolua_isnoobj (lua_State* L, int lo, tolua_Error* err)
  return 0;
 }
 
-TOLUA_API int tolua_isboolean (lua_State* L, int lo, int def, tolua_Error* err)
+TOLUA_ITEM int tolua_isboolean (lua_State* L, int lo, int def, tolua_Error* err)
 {
 	if (def && lua_gettop(L)<abs(lo))
 		return 1;
@@ -225,7 +225,7 @@ TOLUA_API int tolua_isboolean (lua_State* L, int lo, int def, tolua_Error* err)
 	return 0;
 }
 
-TOLUA_API int tolua_isnumber (lua_State* L, int lo, int def, tolua_Error* err)
+TOLUA_ITEM int tolua_isnumber (lua_State* L, int lo, int def, tolua_Error* err)
 {
 	if (def && lua_gettop(L)<abs(lo))
 		return 1;
@@ -237,7 +237,7 @@ TOLUA_API int tolua_isnumber (lua_State* L, int lo, int def, tolua_Error* err)
 	return 0;
 }
 
-TOLUA_API int tolua_isstring (lua_State* L, int lo, int def, tolua_Error* err)
+TOLUA_ITEM int tolua_isstring (lua_State* L, int lo, int def, tolua_Error* err)
 {
 	if (def && lua_gettop(L)<abs(lo))
 		return 1;
@@ -249,7 +249,7 @@ TOLUA_API int tolua_isstring (lua_State* L, int lo, int def, tolua_Error* err)
 	return 0;
 }
 
-TOLUA_API int tolua_istable (lua_State* L, int lo, int def, tolua_Error* err)
+TOLUA_ITEM int tolua_istable (lua_State* L, int lo, int def, tolua_Error* err)
 {
 	if (def && lua_gettop(L)<abs(lo))
 		return 1;
@@ -261,7 +261,7 @@ TOLUA_API int tolua_istable (lua_State* L, int lo, int def, tolua_Error* err)
 	return 0;
 }
 
-TOLUA_API int tolua_isusertable (lua_State* L, int lo, const char* type, int def, tolua_Error* err)
+TOLUA_ITEM int tolua_isusertable (lua_State* L, int lo, const char* type, int def, tolua_Error* err)
 {
 	if (def && lua_gettop(L)<abs(lo))
 		return 1;
@@ -274,7 +274,7 @@ TOLUA_API int tolua_isusertable (lua_State* L, int lo, const char* type, int def
 }
 
 
-TOLUA_API int tolua_isuserdata (lua_State* L, int lo, int def, tolua_Error* err)
+TOLUA_ITEM int tolua_isuserdata (lua_State* L, int lo, int def, tolua_Error* err)
 {
 	if (def && lua_gettop(L)<abs(lo))
 		return 1;
@@ -286,7 +286,7 @@ TOLUA_API int tolua_isuserdata (lua_State* L, int lo, int def, tolua_Error* err)
 	return 0;
 }
 
-TOLUA_API int tolua_isvaluenil (lua_State* L, int lo, tolua_Error* err) {
+TOLUA_ITEM int tolua_isvaluenil (lua_State* L, int lo, tolua_Error* err) {
 
 	if (lua_gettop(L)<abs(lo))
 		return 0; /* somebody else should chack this */
@@ -299,7 +299,7 @@ TOLUA_API int tolua_isvaluenil (lua_State* L, int lo, tolua_Error* err) {
 	return 1;
 };
 
-TOLUA_API int tolua_isvalue (lua_State* L, int lo, int def, tolua_Error* err)
+TOLUA_ITEM int tolua_isvalue (lua_State* L, int lo, int def, tolua_Error* err)
 {
 	if (def || abs(lo)<=lua_gettop(L))  /* any valid index */
 		return 1;
@@ -309,7 +309,7 @@ TOLUA_API int tolua_isvalue (lua_State* L, int lo, int def, tolua_Error* err)
 	return 0;
 }
 
-TOLUA_API int tolua_isusertype (lua_State* L, int lo, const char* type, int def, tolua_Error* err)
+TOLUA_ITEM int tolua_isusertype (lua_State* L, int lo, const char* type, int def, tolua_Error* err)
 {
 	if (def && lua_gettop(L)<abs(lo))
 		return 1;
@@ -321,7 +321,7 @@ TOLUA_API int tolua_isusertype (lua_State* L, int lo, const char* type, int def,
 	return 0;
 }
 
-TOLUA_API int tolua_isvaluearray
+TOLUA_ITEM int tolua_isvaluearray
  (lua_State* L, int lo, int dim, int def, tolua_Error* err)
 {
 	if (!tolua_istable(L,lo,def,err))
@@ -330,7 +330,7 @@ TOLUA_API int tolua_isvaluearray
 		return 1;
 }
 
-TOLUA_API int tolua_isbooleanarray
+TOLUA_ITEM int tolua_isbooleanarray
  (lua_State* L, int lo, int dim, int def, tolua_Error* err)
 {
 	if (!tolua_istable(L,lo,def,err))
@@ -357,7 +357,7 @@ TOLUA_API int tolua_isbooleanarray
  return 1;
 }
 
-TOLUA_API int tolua_isnumberarray
+TOLUA_ITEM int tolua_isnumberarray
  (lua_State* L, int lo, int dim, int def, tolua_Error* err)
 {
 	if (!tolua_istable(L,lo,def,err))
@@ -384,7 +384,7 @@ TOLUA_API int tolua_isnumberarray
  return 1;
 }
 
-TOLUA_API int tolua_isstringarray
+TOLUA_ITEM int tolua_isstringarray
  (lua_State* L, int lo, int dim, int def, tolua_Error* err)
 {
 	if (!tolua_istable(L,lo,def,err))
@@ -411,7 +411,7 @@ TOLUA_API int tolua_isstringarray
  return 1;
 }
 
-TOLUA_API int tolua_istablearray
+TOLUA_ITEM int tolua_istablearray
  (lua_State* L, int lo, int dim, int def, tolua_Error* err)
 {
 	if (!tolua_istable(L,lo,def,err))
@@ -438,7 +438,7 @@ TOLUA_API int tolua_istablearray
  return 1;
 }
 
-TOLUA_API int tolua_isuserdataarray
+TOLUA_ITEM int tolua_isuserdataarray
  (lua_State* L, int lo, int dim, int def, tolua_Error* err)
 {
 	if (!tolua_istable(L,lo,def,err))
@@ -465,7 +465,7 @@ TOLUA_API int tolua_isuserdataarray
  return 1;
 }
 
-TOLUA_API int tolua_isusertypearray
+TOLUA_ITEM int tolua_isusertypearray
  (lua_State* L, int lo, const char* type, int dim, int def, tolua_Error* err)
 {
 	if (!tolua_istable(L,lo,def,err))
