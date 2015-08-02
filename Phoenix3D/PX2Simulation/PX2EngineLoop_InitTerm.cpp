@@ -92,6 +92,8 @@ bool EngineLoop::Initlize()
 
 	mAccoutManager = new0 AccoutManager();
 
+	mVBIBManager = new0 VBIBManager();
+
 	LuaManager *luaMan = (LuaManager*)mScriptMan;
 	tolua_PX2_open(luaMan->GetLuaState());
 
@@ -153,6 +155,7 @@ void EngineLoop::DidEnterBackground()
 	PX2_RM.Clear();
 	PX2_SM.Clear();
 	PX2_TimerM.ClearTimers();
+	mVBIBManager->Clear();
 
 	//mBeforeInBackgroundMusicEnable = PX2_SS.IsMusicEnable();
 	//mBeforeInBackgroundSoundEnable = PX2_SS.IsSoundEnable();
@@ -171,6 +174,13 @@ bool EngineLoop::Ternamate()
 	PX2_EW.Shutdown(true);
 
 	PX2_PLUGINMAN.TernamateAllPlugins();
+
+	if (mVBIBManager)
+	{
+		mVBIBManager->Clear();
+		delete0(mVBIBManager);
+		VBIBManager::Set(0);
+	}
 	
 	if (mSelection)
 	{

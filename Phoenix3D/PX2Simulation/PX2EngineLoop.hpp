@@ -20,6 +20,7 @@
 #include "PX2RedoUndo.hpp"
 #include "PX2Creater.hpp"
 #include "PX2AccoutManager.hpp"
+#include "PX2VBIBObj.hpp"
 #include "PX2Project.hpp"
 
 namespace PX2
@@ -71,6 +72,7 @@ namespace PX2
 		Creater *mCreater;
 		URDoManager *mURDoMan;
 		AccoutManager *mAccoutManager;
+		VBIBManager *mVBIBManager;
 
 	protected:
 		bool mIsInBackground;

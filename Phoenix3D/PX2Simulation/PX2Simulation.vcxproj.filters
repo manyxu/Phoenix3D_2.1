@@ -70,6 +70,12 @@
     <Filter Include="ToLua">
       <UniqueIdentifier>{ea5b8e3a-393d-4b69-932b-55d209cfe77b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Animation\2D">
+      <UniqueIdentifier>{c0e509ca-c28c-4217-86c5-dec49e0ec7a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation\3D">
+      <UniqueIdentifier>{6674cf42-aa15-4104-8a66-461107bb056d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PX2Actor.hpp">
@@ -125,12 +131,6 @@
     <ClInclude Include="PX2Character.hpp">
       <Filter>Character</Filter>
     </ClInclude>
-    <ClInclude Include="PX2Animation3DSkeleton.hpp">
-      <Filter>Animation</Filter>
-    </ClInclude>
-    <ClInclude Include="PX2AnimationObject.hpp">
-      <Filter>Animation</Filter>
-    </ClInclude>
     <ClInclude Include="PX2CellSpaceT.hpp">
       <Filter>SpacePartition</Filter>
     </ClInclude>
@@ -167,6 +167,21 @@
     </ClInclude>
     <ClInclude Include="..\PX2ToLua\PX2ToLua.hpp">
       <Filter>ToLua</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2Animation3DSkeleton.hpp">
+      <Filter>Animation\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AnimationObject.hpp">
+      <Filter>Animation\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2FramesMesh.hpp">
+      <Filter>Animation\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2AnimationFrames.hpp">
+      <Filter>Animation\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="PX2VBIBObj.hpp">
+      <Filter>Animation\2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -230,12 +245,6 @@
     <ClCompile Include="PX2Character_Anim.cpp">
       <Filter>Character</Filter>
     </ClCompile>
-    <ClCompile Include="PX2Animation3DSkeleton.cpp">
-      <Filter>Animation</Filter>
-    </ClCompile>
-    <ClCompile Include="PX2AnimationObject.cpp">
-      <Filter>Animation</Filter>
-    </ClCompile>
     <ClCompile Include="PX2Actor_BitSet.cpp">
       <Filter>Actor</Filter>
     </ClCompile>
@@ -278,6 +287,21 @@
     <ClCompile Include="..\PX2ToLua\PX2ToLua.cpp">
       <Filter>ToLua</Filter>
     </ClCompile>
+    <ClCompile Include="PX2Animation3DSkeleton.cpp">
+      <Filter>Animation\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AnimationObject.cpp">
+      <Filter>Animation\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2FramesMesh.cpp">
+      <Filter>Animation\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2AnimationFrames.cpp">
+      <Filter>Animation\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="PX2VBIBObj.cpp">
+      <Filter>Animation\2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="PX2Actor.inl">
@@ -307,12 +331,6 @@
     <None Include="PX2Animation.inl">
       <Filter>Animation</Filter>
     </None>
-    <None Include="PX2Animation3DSkeleton.inl">
-      <Filter>Animation</Filter>
-    </None>
-    <None Include="PX2AnimationObject.inl">
-      <Filter>Animation</Filter>
-    </None>
     <None Include="PX2CellSpaceT.inl">
       <Filter>SpacePartition</Filter>
     </None>
@@ -336,6 +354,18 @@
     </None>
     <None Include="PX2SkyMesh.inl">
       <Filter>Actor\SkyActor</Filter>
+    </None>
+    <None Include="PX2Animation3DSkeleton.inl">
+      <Filter>Animation\3D</Filter>
+    </None>
+    <None Include="PX2AnimationObject.inl">
+      <Filter>Animation\3D</Filter>
+    </None>
+    <None Include="PX2FramesMesh.inl">
+      <Filter>Animation\2D</Filter>
+    </None>
+    <None Include="PX2AnimationFrames.inl">
+      <Filter>Animation\2D</Filter>
     </None>
   </ItemGroup>
 </Project>

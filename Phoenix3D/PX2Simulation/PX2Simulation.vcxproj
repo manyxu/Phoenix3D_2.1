@@ -35,6 +35,7 @@
     <ClInclude Include="PX2AmbientRegionActor.hpp" />
     <ClInclude Include="PX2Animation.hpp" />
     <ClInclude Include="PX2Animation3DSkeleton.hpp" />
+    <ClInclude Include="PX2AnimationFrames.hpp" />
     <ClInclude Include="PX2AnimationObject.hpp" />
     <ClInclude Include="PX2CameraActor.hpp" />
     <ClInclude Include="PX2CellSpace.hpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="PX2Creater.hpp" />
     <ClInclude Include="PX2EffectActor.hpp" />
     <ClInclude Include="PX2EngineLoop.hpp" />
+    <ClInclude Include="PX2FramesMesh.hpp" />
     <ClInclude Include="PX2LightActor.hpp" />
     <ClInclude Include="PX2PlatformSDK.hpp" />
     <ClInclude Include="PX2PlatformSDKEventType.hpp" />
@@ -59,6 +61,7 @@
     <ClInclude Include="PX2SkyMesh.hpp" />
     <ClInclude Include="PX2TerrainActor.hpp" />
     <ClInclude Include="PX2TriggerActor.hpp" />
+    <ClInclude Include="PX2VBIBObj.hpp" />
     <ClInclude Include="PX2User.hpp" />
     <ClInclude Include="PX2UserActor.hpp" />
   </ItemGroup>
@@ -71,6 +74,7 @@
     <ClCompile Include="PX2AmbientRegionActor.cpp" />
     <ClCompile Include="PX2Animation.cpp" />
     <ClCompile Include="PX2Animation3DSkeleton.cpp" />
+    <ClCompile Include="PX2AnimationFrames.cpp" />
     <ClCompile Include="PX2AnimationObject.cpp" />
     <ClCompile Include="PX2CameraActor.cpp" />
     <ClCompile Include="PX2CellSpace.cpp" />
@@ -83,6 +87,7 @@
     <ClCompile Include="PX2EngineLoop_InitTerm.cpp" />
     <ClCompile Include="PX2EngineLoop_Play.cpp" />
     <ClCompile Include="PX2EngineLoop_Tick.cpp" />
+    <ClCompile Include="PX2FramesMesh.cpp" />
     <ClCompile Include="PX2LightActor.cpp" />
     <ClCompile Include="PX2PlatformSDK.cpp" />
     <ClCompile Include="PX2PlatformSDKEventType.cpp" />
@@ -97,6 +102,7 @@
     <ClCompile Include="PX2SkyMesh.cpp" />
     <ClCompile Include="PX2TerrainActor.cpp" />
     <ClCompile Include="PX2TriggerActor.cpp" />
+    <ClCompile Include="PX2VBIBObj.cpp" />
     <ClCompile Include="PX2User.cpp" />
     <ClCompile Include="PX2UserActor.cpp" />
   </ItemGroup>
@@ -105,11 +111,13 @@
     <None Include="PX2AmbientRegionActor.inl" />
     <None Include="PX2Animation.inl" />
     <None Include="PX2Animation3DSkeleton.inl" />
+    <None Include="PX2AnimationFrames.inl" />
     <None Include="PX2AnimationObject.inl" />
     <None Include="PX2CameraActor.inl" />
     <None Include="PX2CellSpaceT.inl" />
     <None Include="PX2Character.inl" />
     <None Include="PX2EngineLoop.inl" />
+    <None Include="PX2FramesMesh.inl" />
     <None Include="PX2LightActor.inl" />
     <None Include="PX2Project.inl" />
     <None Include="PX2Scene.inl" />

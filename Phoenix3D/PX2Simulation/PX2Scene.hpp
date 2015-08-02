@@ -36,7 +36,6 @@ namespace PX2
 		void SetUseCameraActor(CameraActor *cameraActor);
 		CameraActor *GetUseCameraActor();
 
-		CameraActor *GetCameraAcotr();
 		AmbientRegionActor *GetDefaultAmbientRegionActor();
 		TerrainActor *GetTerrainActor();
 		SkyActor *GetSkyActor();

@@ -27,6 +27,7 @@ mADMan(0),
 mSelection(0),
 mCreater(0),
 mAccoutManager(0),
+mVBIBManager(0),
 
 mIsInBackground(false),
 
