@@ -49,14 +49,14 @@ void AnimationFrames::OnPlay(Character *chara)
 {
 	Animation::OnPlay(chara);
 
-	Node *node = DynamicCast<Node>(chara->GetMovable());
-	if (node)
+	mAnimNode = DynamicCast<Node>(chara->GetObjectByName("AnimNode"));
+	if (mAnimNode)
 	{
 		const AVector &dir = chara->GetHeading();
-		node->DetachAllChildren();
+		mAnimNode->DetachAllChildren();
 
 		if (mFramesMesh)
-			node->AttachChild(mFramesMesh);
+			mAnimNode->AttachChild(mFramesMesh);
 
 		SetWorldRunDir(dir);
 

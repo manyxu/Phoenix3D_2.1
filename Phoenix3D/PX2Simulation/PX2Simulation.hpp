@@ -22,6 +22,8 @@
 
 // Animation
 #include "PX2Animation.hpp"
+#include "PX2AnimationFrames.hpp"
+#include "PX2Animation3DSkeleton.hpp"
 
 // Creater
 #include "PX2Creater.hpp"

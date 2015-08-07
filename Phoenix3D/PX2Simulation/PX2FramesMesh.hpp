@@ -21,7 +21,6 @@ namespace PX2
 		virtual void Play();
 		virtual bool IsPlaying() const;
 		virtual void Stop();
-		virtual void Reset();
 
 		void SetSize(float size);
 
@@ -48,10 +47,11 @@ namespace PX2
 		int mNumAllFrames;
 		int mNumFramesPerDir;
 		float mSize;
-
-		float mAnimPlayedTime;
 		float mPlayOnceTime;
 		bool mIsPlayOnce;
+
+		bool mIsPlaying;
+		float mAnimPlayedTime;
 		AVector mCurDir;
 	};
 

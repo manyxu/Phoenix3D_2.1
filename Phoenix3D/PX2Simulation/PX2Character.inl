@@ -16,6 +16,16 @@ inline float Character::GetMovableAutoWorldBoundRadius() const
 	return mMovableAutoWorldBoundRadius;
 }
 //----------------------------------------------------------------------------
+inline void Character::SetAnimType(AnimType type)
+{
+	mAnimType = type;
+}
+//----------------------------------------------------------------------------
+inline Character::AnimType Character::GetAnimType() const
+{
+	return mAnimType;
+}
+//----------------------------------------------------------------------------
 inline std::map<int, AnimationPtr> &Character::GetAnimsMap()
 {
 	return mAnimsMap;

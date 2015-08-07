@@ -104,6 +104,7 @@ void Animation::OnPlay (Character *actor)
 //----------------------------------------------------------------------------
 void Animation::OnRemove(Character *character)
 {
+	PX2_UNUSED(character);
 }
 //----------------------------------------------------------------------------
 void Animation::SetCharacter(Character *character)

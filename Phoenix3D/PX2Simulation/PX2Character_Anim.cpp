@@ -94,27 +94,30 @@ void Character::PlayAnim(Animation *anim)
 	if (mCurPlayingAnim)
 		mCurPlayingAnim->Stop();
 
-	Node *charNode = DynamicCast<Node>(GetMovable());
-	if (mCurPlayingAnim && charNode)
+	if (AT_SKELETON == mAnimType)
 	{
-		Animation3DSkeleton *anim3dSk = DynamicCast<Animation3DSkeleton>(mCurPlayingAnim);
+		Node *charNode = DynamicCast<Node>(GetMovable());
+		if (mCurPlayingAnim && charNode)
+		{
+			Animation3DSkeleton *anim3dSk = DynamicCast<Animation3DSkeleton>(mCurPlayingAnim);
 
-		if (anim3dSk)
-		{
-			Node *animNode = anim3dSk->GetAnimNode();
-			charNode->DetachChild(animNode);
-		}
+			if (anim3dSk)
+			{
+				Node *animNode = anim3dSk->GetAnimNode();
+				charNode->DetachChild(animNode);
+			}
 
-		if (!sameAnim)
-		{
-			mLastAnimObj = new0 AnimationObject();
-			mLastAnimObj->TheAnim = mCurPlayingAnim;
-			mLastAnimObj->BlendTime = 0.0f;
-			mLastAnimObj->TheCharacter = this;
-		}
-		else
-		{
-			mLastAnimObj = 0;
+			if (!sameAnim)
+			{
+				mLastAnimObj = new0 AnimationObject();
+				mLastAnimObj->TheAnim = mCurPlayingAnim;
+				mLastAnimObj->BlendTime = 0.0f;
+				mLastAnimObj->TheCharacter = this;
+			}
+			else
+			{
+				mLastAnimObj = 0;
+			}
 		}
 	}
 

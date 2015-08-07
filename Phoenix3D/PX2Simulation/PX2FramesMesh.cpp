@@ -16,12 +16,13 @@ mIsNeedReCal(true),
 mNumDir(8),
 mAnimPlayedTime(0.0f),
 mPlayOnceTime(1.0f),
-mIsPlayOnce(false)
+mIsPlayOnce(false),
+mIsPlaying(false)
 {
 	mModelBound.SetCenter(APoint::ORIGIN);
 	mModelBound.SetRadius(3.0f);
 
-	mSize = 10.0f;
+	mSize = 100.0f;
 }
 //----------------------------------------------------------------------------
 FramesMesh::~FramesMesh()
@@ -31,22 +32,17 @@ FramesMesh::~FramesMesh()
 //----------------------------------------------------------------------------
 void FramesMesh::Play()
 {
-
+	mIsPlaying = true;
 }
 //----------------------------------------------------------------------------
 bool FramesMesh::IsPlaying() const
 {
-	return false;
+	return mIsPlaying;
 }
 //----------------------------------------------------------------------------
 void FramesMesh::Stop()
 {
-
-}
-//----------------------------------------------------------------------------
-void FramesMesh::Reset()
-{
-
+	mIsPlaying = false;
 }
 //----------------------------------------------------------------------------
 void FramesMesh::SetSize(float size)
@@ -107,7 +103,7 @@ void FramesMesh::UpdateWorldData(double applicationTime, double elapsedTime)
 		}
 	}
 
-	if (!mIsNeedReCal)
+	if (mIsNeedReCal)
 	{
 		_Cal(mTexPackFilename);
 	}
@@ -132,7 +128,12 @@ void FramesMesh::_Cal(const std::string &texPackFilename)
 	SetVertexFormat(vf);
 
 	mNumAllFrames = (int)texPack.Elements.size();
-	mNumFramesPerDir = mNumAllFrames / 8;
+	mNumFramesPerDir = mNumAllFrames / mNumDir;
+	if (0 == mNumFramesPerDir)
+	{
+		//assertion(false, "no frames");
+		//return;
+	}
 
 	VBIBObj &obj = VBIBManager::GetSingleton().GetVBID(texPackFilename);
 	if (obj.IsValued)
@@ -148,7 +149,7 @@ void FramesMesh::_Cal(const std::string &texPackFilename)
 		int frameIndex = 0;
 		VertexBuffer *vb = new0 VertexBuffer(numVertex, vf->GetStride());
 		VertexBufferAccessor vba(vf, vb);
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < mNumDir; i++)
 		{
 			for (int j = 0; j < mNumFramesPerDir; j++)
 			{
@@ -231,6 +232,8 @@ void FramesMesh::_Cal(const std::string &texPackFilename)
 	mi->SetPixelTexture(0, "SampleBase", tex);
 	SetMaterialInstance(mi);
 
+	mi->GetMaterial()->GetCullProperty(0, 0)->Enabled = false;
+
 	mIsNeedReCal = false;
 }
 //----------------------------------------------------------------------------
@@ -304,7 +307,13 @@ void FramesMesh::_CalFrame()
 // 持久化支持
 //----------------------------------------------------------------------------
 FramesMesh::FramesMesh(LoadConstructor value) :
-TriMesh(value)
+TriMesh(value),
+mIsNeedReCal(true),
+mNumDir(8),
+mAnimPlayedTime(0.0f),
+mPlayOnceTime(1.0f),
+mIsPlayOnce(false),
+mIsPlaying(false)
 {
 }
 //----------------------------------------------------------------------------

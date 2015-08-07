@@ -231,30 +231,33 @@ void Renderable::SetReceiveShadow(bool reciveShadow)
 {
 	Movable::SetReceiveShadow(reciveShadow);
 
-	Material *mtl = mMaterialInstance->GetMaterial();
-	const std::string &mtlName = mtl->GetName();
-
-	if ("std" == mtlName)
+	if (mMaterialInstance)
 	{
-		std::string techName = "std_light";
+		Material *mtl = mMaterialInstance->GetMaterial();
+		const std::string &mtlName = mtl->GetName();
 
-		if (!reciveShadow)
-			techName = "std_light";
-		else
-			techName = "std_lightshadow";
+		if ("std" == mtlName)
+		{
+			std::string techName = "std_light";
 
-		mMaterialInstance->SetUseMaterialTechnique(techName);
-	}
-	if ("terrain" == mtlName)
-	{
-		std::string techName = "terrain_light";
+			if (!reciveShadow)
+				techName = "std_light";
+			else
+				techName = "std_lightshadow";
 
-		if (!reciveShadow)
-			techName = "terrain_light";
-		else
-			techName = "terrain_lightshadow";
+			mMaterialInstance->SetUseMaterialTechnique(techName);
+		}
+		if ("terrain" == mtlName)
+		{
+			std::string techName = "terrain_light";
 
-		mMaterialInstance->SetUseMaterialTechnique(techName);
+			if (!reciveShadow)
+				techName = "terrain_light";
+			else
+				techName = "terrain_lightshadow";
+
+			mMaterialInstance->SetUseMaterialTechnique(techName);
+		}
 	}
 }
 //----------------------------------------------------------------------------

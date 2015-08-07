@@ -34,6 +34,7 @@ namespace PX2
 		FramesMeshPtr mFramesMesh;
 		int mNumFramePerDir;
 
+		NodePtr mAnimNode;
 		AVector mWorldRunDir;
 	};
 

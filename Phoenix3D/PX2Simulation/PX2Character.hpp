@@ -48,6 +48,16 @@ namespace PX2
 
 		// anim
 	public:
+		// set it before add anim
+		enum AnimType
+		{
+			AT_FRAMES,
+			AT_SKELETON,
+			AT_MAX_TYPE
+		};
+		void SetAnimType(AnimType type);
+		AnimType GetAnimType() const;
+
 		bool AddAnim(Animation *anim);
 		bool HasAnim(Animation *anim);
 		bool HasAnim(int id);
@@ -72,6 +82,11 @@ namespace PX2
 		bool IsHasAnimPlaying() const;
 
 	protected:
+		AnimType mAnimType;
+
+		// Frames
+
+		// Skeleton
 		std::map<int, AnimationPtr> mAnimsMap;
 		AnimationPtr mCurPlayingAnim;
 		int mDefaultAnimID;

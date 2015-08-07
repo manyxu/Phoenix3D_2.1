@@ -17,6 +17,7 @@ PX2_IMPLEMENT_DEFAULT_NAMES(Actor, Character);
 
 //----------------------------------------------------------------------------
 Character::Character() :
+mAnimType(AT_SKELETON),
 mDefaultAnimID(0),
 mBaseHPCurLevel(0.0f),
 mIsDieDoDelete(true),
@@ -52,7 +53,8 @@ void Character::UpdateWorldData(double applicationTime, double elapsedTime)
 {
 	Actor::UpdateWorldData(applicationTime, elapsedTime);
 
-	_AnimationBlend();
+	if (AT_SKELETON == mAnimType)
+		_AnimationBlend();
 
 	if (mMovable)
 	{
@@ -152,11 +154,14 @@ void Character::SetMovableFilename(const std::string &filename, bool shareVI)
 {
 	Actor::SetMovableFilename(filename, shareVI);
 
-	_CalSkins();
+	if (AT_SKELETON == mAnimType)
+	{
+		_CalSkins();
 
-	// 为动作树每个Node加一个BlendTransformController
-	if (mModelAnimMovable)
-		_CalAnimNode(mModelAnimMovable);
+		// 为动作树每个Node加一个BlendTransformController
+		if (mModelAnimMovable)
+			_CalAnimNode(mModelAnimMovable);
+	}
 
 	SetMovableAutoWorldBoundRadius(mMovableAutoWorldBoundRadius);
 }
@@ -305,6 +310,7 @@ void Character::RegistProperties()
 	AddProperty("IsMovableAutoWorldBound", PT_BOOL, mIsMovableAutoWorldBound);
 	AddProperty("MovableAutoWorldBoundRadius", PT_FLOAT, 
 		mMovableAutoWorldBoundRadius);
+
 	AddProperty("NumAnimations", PT_INT, (int)mAnimsMap.size(), false);
 	AddProperty("DefaultAnimID", PT_INT, mDefaultAnimID);
 }
