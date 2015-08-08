@@ -1,0 +1,11 @@
+// SoccerManager.pkg
+
+	class SoccerManager
+	{
+	public:
+		static SoccerManager &GetSingleton();
+		static SoccerManager *GetSingletonPtr();
+	
+		void Initlize();
+		void Ternamate();
+	};

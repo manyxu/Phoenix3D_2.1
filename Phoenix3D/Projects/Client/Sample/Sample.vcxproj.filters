@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="SampleManager.hpp">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleCharacter.hpp">
+      <Filter>Gameable</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplePlugin.hpp">
+      <Filter>PluginExport</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplePre.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Game">
+      <UniqueIdentifier>{3b8ed845-e5ab-4623-9ac7-393f2c33dbcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gameable">
+      <UniqueIdentifier>{da5b407e-8106-4524-89f6-64c5dcbc0a0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ToLua">
+      <UniqueIdentifier>{e37249a1-da9b-4700-9b87-608c35e7018d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PluginExport">
+      <UniqueIdentifier>{41bf3bac-7605-4a70-89e7-7ce31d51e5cc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SampleManager.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleCharacter.cpp">
+      <Filter>Gameable</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleDll.cpp">
+      <Filter>PluginExport</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplePlugin.cpp">
+      <Filter>PluginExport</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
