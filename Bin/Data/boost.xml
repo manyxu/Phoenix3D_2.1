@@ -3,7 +3,7 @@
 		<var width="1136" height="640"/>
 	</config>
 	<play>
-		<var projectname="Soccer" playlogicmode="logic"/>
+		<var projectname="Sample" playlogicmode="logic"/>
 	</play>
 </boost>
 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:c4fccdcdaa18b92ca22852468ddc5d25$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="wbdz_Move.png" width="512" height="512">
+    <sprite n="wbdz_Move_0_1" x="200" y="314" w="38" h="54" oX="51" oY="24" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_0_10" x="160" y="314" w="38" h="54" oX="50" oY="24" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_0_2" x="120" y="312" w="38" h="54" oX="50" oY="24" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_0_3" x="80" y="312" w="38" h="54" oX="50" oY="25" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_0_4" x="2" y="310" w="38" h="54" oX="50" oY="24" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_0_5" x="42" y="312" w="36" h="54" oX="52" oY="24" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_0_6" x="450" y="268" w="38" h="54" oX="50" oY="24" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_0_7" x="410" y="268" w="38" h="54" oX="50" oY="25" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_0_8" x="370" y="266" w="38" h="54" oX="50" oY="25" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_0_9" x="330" y="262" w="38" h="54" oX="50" oY="25" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_1" x="230" y="434" w="52" h="62" oX="39" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_10" x="374" y="382" w="48" h="60" oX="41" oY="30" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_2" x="240" y="374" w="52" h="58" oX="39" oY="30" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_3" x="96" y="368" w="50" h="58" oX="40" oY="30" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_4" x="148" y="370" w="52" h="58" oX="39" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_5" x="42" y="368" w="52" h="58" oX="41" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_6" x="2" y="428" w="52" h="60" oX="41" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_7" x="424" y="382" w="52" h="60" oX="41" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_8" x="176" y="432" w="52" h="62" oX="40" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_135_9" x="324" y="444" w="50" h="62" oX="39" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_1" x="418" y="444" w="38" h="64" oX="51" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_10" x="376" y="444" w="40" h="64" oX="50" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_2" x="136" y="430" w="38" h="62" oX="51" oY="30" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_3" x="96" y="428" w="38" h="62" oX="51" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_4" x="334" y="382" w="38" h="60" oX="51" oY="30" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_5" x="202" y="370" w="36" h="60" oX="52" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_6" x="294" y="374" w="38" h="60" oX="51" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_7" x="2" y="366" w="38" h="60" oX="52" oY="30" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_8" x="56" y="428" w="38" h="62" oX="52" oY="30" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_180_9" x="284" y="436" w="38" h="64" oX="52" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_1" x="2" y="256" w="62" h="52" oX="37" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_10" x="432" y="214" w="62" h="52" oX="38" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_2" x="130" y="202" w="62" h="52" oX="38" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_3" x="190" y="150" w="62" h="50" oX="38" oY="30" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_4" x="128" y="150" w="60" h="50" oX="40" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_5" x="2" y="150" w="60" h="50" oX="40" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_6" x="392" y="106" w="58" h="50" oX="42" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_7" x="330" y="102" w="60" h="50" oX="40" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_8" x="64" y="150" w="62" h="50" oX="39" oY="30" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_225_9" x="66" y="202" w="62" h="52" oX="38" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_1" x="64" y="2" w="66" h="46" oX="32" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_10" x="132" y="2" w="64" h="46" oX="34" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_2" x="132" y="100" w="66" h="48" oX="33" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_3" x="64" y="100" w="66" h="48" oX="33" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_4" x="200" y="100" w="64" h="48" oX="35" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_5" x="260" y="2" w="60" h="46" oX="38" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_6" x="2" y="2" w="60" h="44" oX="38" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_7" x="198" y="2" w="60" h="46" oX="39" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_8" x="322" y="2" w="62" h="46" oX="38" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_270_9" x="332" y="52" w="64" h="48" oX="36" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_1" x="170" y="258" w="50" h="54" oX="49" oY="25" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_10" x="66" y="256" w="48" h="54" oX="51" oY="25" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_2" x="276" y="262" w="52" h="54" oX="48" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_3" x="194" y="202" w="50" h="54" oX="50" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_4" x="222" y="258" w="52" h="54" oX="48" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_5" x="422" y="324" w="52" h="56" oX="47" oY="25" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_6" x="368" y="324" w="52" h="56" oX="46" oY="25" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_7" x="116" y="256" w="52" h="54" oX="47" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_8" x="454" y="2" w="52" h="52" oX="47" oY="27" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_315_9" x="398" y="52" w="48" h="52" oX="51" oY="27" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_1" x="304" y="318" w="62" h="54" oX="41" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_10" x="240" y="318" w="62" h="54" oX="40" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_2" x="2" y="202" w="62" h="52" oX="40" oY="27" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_3" x="448" y="160" w="62" h="52" oX="39" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_4" x="370" y="212" w="60" h="52" oX="40" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_5" x="308" y="208" w="60" h="52" oX="39" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_6" x="452" y="106" w="58" h="52" oX="40" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_7" x="246" y="204" w="60" h="52" oX="39" oY="26" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_8" x="384" y="158" w="62" h="52" oX="38" oY="27" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_45_9" x="320" y="154" w="62" h="52" oX="39" oY="27" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_1" x="264" y="50" w="66" h="48" oX="42" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_10" x="198" y="50" w="64" h="48" oX="42" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_2" x="64" y="50" w="66" h="48" oX="41" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_3" x="386" y="2" w="66" h="48" oX="40" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_4" x="132" y="50" w="64" h="48" oX="40" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_5" x="448" y="56" w="60" h="48" oX="42" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_6" x="2" y="48" w="60" h="48" oX="41" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_7" x="2" y="98" w="60" h="50" oX="41" oY="28" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_8" x="266" y="100" w="62" h="50" oX="40" oY="29" oW="140" oH="140"/>
+    <sprite n="wbdz_Move_90_9" x="254" y="152" w="64" h="50" oX="40" oY="28" oW="140" oH="140"/>
+</TextureAtlas>

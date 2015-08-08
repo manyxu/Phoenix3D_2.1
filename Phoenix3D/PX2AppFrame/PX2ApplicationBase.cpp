@@ -126,7 +126,9 @@ bool ApplicationBase::_LoadProject(const std::string &projFilename)
 #if defined (_DEBUG) 
 		debugTag = "D";
 #endif
-		std::string projDllPath = "Projects/Soccer/" + newProj->GetName()
+		std::string projName = newProj->GetName();
+
+		std::string projDllPath = "Projects/" + projName + "/" + projName
 			+ debugTag + ".dll";
 
 		PX2_PLUGINMAN.Load(projDllPath);
